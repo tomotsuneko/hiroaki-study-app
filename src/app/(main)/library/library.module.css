@@ -1,0 +1,166 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+}
+
+.emptyState {
+  padding: 40px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.toc {
+  width: 250px;
+  flex-shrink: 0;
+  padding: 20px;
+  position: sticky;
+  top: 24px;
+}
+
+.tocTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  border-bottom: 2px solid var(--accent-primary);
+  padding-bottom: 8px;
+}
+
+.tocList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tocItem {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.tocItem:hover {
+  background: var(--bg-secondary);
+  color: var(--accent-primary);
+}
+
+.mainNotes {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.notebookPage {
+  background-color: #fffaf0; /* Slightly warm paper color */
+  border-radius: 4px 12px 12px 4px;
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.08);
+  padding: 40px 40px 40px 60px;
+  position: relative;
+  background-image: linear-gradient(#e5e7eb 1px, transparent 1px);
+  background-size: 100% 2em;
+  line-height: 2em;
+  min-height: 300px;
+}
+
+.notebookPage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 40px;
+  width: 2px;
+  background-color: #ef4444; /* Red margin line */
+  opacity: 0.4;
+}
+
+/* Notebook Binding Holes */
+.notebookPage::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 10px;
+  width: 16px;
+  background-image: radial-gradient(circle, #333 4px, transparent 5px);
+  background-size: 16px 32px;
+  background-repeat: repeat-y;
+  opacity: 0.2;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed #d1d5db;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  margin-top: -10px;
+}
+
+.cardTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  background-color: #fffaf0;
+  padding: 0 8px;
+  line-height: 1.2;
+}
+
+.date {
+  font-size: 0.85rem;
+  color: #6b7280;
+  background-color: #fffaf0;
+}
+
+.deleteBtn {
+  background: #fee2e2;
+  color: #ef4444;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: bold;
+}
+
+.deleteBtn:hover {
+  background: #fca5a5;
+  color: #b91c1c;
+}
+
+.cardContent {
+  color: #374151;
+  font-size: 0.95rem;
+}

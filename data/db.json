@@ -1,0 +1,371 @@
+{
+  "logs": [
+    {
+      "id": "1790323781447",
+      "timestamp": "2026-09-25T08:09:41.447Z",
+      "type": "drill",
+      "data": {
+        "subject": "英語",
+        "score": 2,
+        "total": 5
+      }
+    },
+    {
+      "id": "1790324489345",
+      "timestamp": "2026-09-25T08:21:29.345Z"
+    }
+  ],
+  "dailyAnalysis": {
+    "lastRunDate": "2026-09-25T07:35:53.637Z",
+    "achievementLevel": 0,
+    "achievements": [
+      {
+        "school": "専修大学 経済学部",
+        "level": 68
+      },
+      {
+        "school": "日本大学 商学部",
+        "level": 62
+      },
+      {
+        "school": "法政大学 心理学部",
+        "level": 48
+      }
+    ],
+    "recommendedSubjects": [
+      "英語（長文読解・精読）",
+      "国語（現代文・論理構造把握）"
+    ],
+    "aiComment": "### 本日の学習診断＆アドバイス\n\n**日東専駒レベルの基礎固めは順調、次はMARCH（法政）突破の壁を崩す時！**\n\n最近の演習ログを見ると、専修・日大レベルの基本単語や標準的な文法問題の正答率は安定して7割を超えており、基礎力の定着という確かな**成長**が見られます。\n\nしかし、法政大学合格に向けた最大の**ボトルネック**は「抽象度の高い長文読解での失点」と「現代文の論理展開の読み落とし」です。単語の知識はあるものの、文構造が複雑化した際に文脈推測に頼りすぎています。\n\n本日は**『英語長文の精読・パラグラフ構造の把握』**と**『現代文の指示語・接続詞を意識した論理読解』**に集中しましょう。一文一文を論理的に読み解く力を研ぎ澄ますことが、法政心理の合格ラインを突破する決定打になります。自信を持って机に向かいましょう！",
+    "learningContents": [
+      {
+        "taskTitle": "英文法：五文型の基礎",
+        "textMarkdown": "五文型の基礎をマスターすることは、長文読解の土台となります。SVO, SVCなどの構造を理解しましょう。\n\n**1. SVCの構造**\nS = C の関係が成り立ちます。\n\n**2. SVOの構造**\nS ≠ O の関係です。",
+        "videoQueries": [
+          "英語 五文型 基礎",
+          "英語 SVOC"
+        ],
+        "checkTest": [
+          {
+            "question": "SVC文型のC（補語）になれる品詞は？",
+            "options": [
+              "名詞・形容詞",
+              "動詞",
+              "副詞",
+              "前置詞"
+            ],
+            "correctIndex": 0,
+            "explanation": "補語になれるのは名詞か形容詞です。"
+          }
+        ]
+      },
+      {
+        "taskTitle": "数学：二次関数の最大最小",
+        "textMarkdown": "二次関数の最大・最小問題は、**平方完成して頂点を求める**ことが第一歩です。\n\n次に、定義域と軸の位置関係（定義域に軸が含まれるか、左右どちらにあるか）で場合分けを行います。",
+        "videoQueries": [
+          "二次関数 最大 最小 場合分け"
+        ],
+        "checkTest": [
+          {
+            "question": "y = (x-2)^2 + 3 の頂点の座標は？",
+            "options": [
+              "(2, 3)",
+              "(-2, 3)",
+              "(2, -3)",
+              "(-2, -3)"
+            ],
+            "correctIndex": 0,
+            "explanation": "平方完成された形 y = a(x-p)^2 + q の頂点は (p, q) です。"
+          }
+        ]
+      }
+    ]
+  },
+  "syllabus": [
+    {
+      "phase": "Phase 1",
+      "title": "基礎固め",
+      "period": "〜夏休み前",
+      "categories": [
+        {
+          "name": "📘 英語（語彙・文法・解釈の基礎構築）",
+          "tasks": [
+            {
+              "id": "eng_weak_1_1",
+              "title": "中学レベルの英単語・英文法の完全復習（例：『大岩のいちばんはじめの英文法【超基礎文法編】』）",
+              "type": "weakness"
+            },
+            {
+              "id": "eng_weak_1_2",
+              "title": "品詞と基本5文型（SVOC）の徹底理解と英文の構造分解トレーニング",
+              "type": "weakness"
+            },
+            {
+              "id": "eng_core_1_1",
+              "title": "英単語：『ターゲット1900』または『システム英単語』の基礎単語（1〜800）の暗記",
+              "type": "core"
+            },
+            {
+              "id": "eng_core_1_2",
+              "title": "英文法：『関正生の英文法ポラリス1（標準レベル）』によるインプットと反復",
+              "type": "core"
+            },
+            {
+              "id": "eng_core_1_3",
+              "title": "英文解釈：『肘井学の読解のための英文法が面白いほどわかる本』による1文を正確に読む訓練",
+              "type": "core"
+            }
+          ]
+        },
+        {
+          "name": "📗 数学（受験方式に応じた基礎固め）",
+          "tasks": [
+            {
+              "id": "math_core_1_1",
+              "title": "数学I・A・II・B：『基礎問題精講』の例題完全マスター（苦手単元の払拭）",
+              "type": "core"
+            },
+            {
+              "id": "math_core_1_2",
+              "title": "計算力強化：『合格る計算』を活用した処理スピードと正確性の向上",
+              "type": "core"
+            }
+          ]
+        },
+        {
+          "name": "📙 選択科目（国語 または 理科）",
+          "tasks": [
+            {
+              "id": "sub_core_1_1",
+              "title": "現代文基礎：漢字・語彙の強化と『現代文の解法 読める！解ける！ルール36』",
+              "type": "core"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "Phase 2",
+      "title": "標準問題演習",
+      "period": "夏休み〜秋",
+      "categories": [
+        {
+          "name": "📘 英語（長文読解への橋渡しと文法演習）",
+          "tasks": [
+            {
+              "id": "eng_weak_2_1",
+              "title": "300語程度のやさしい長文を用いた精読・音読反復（『英語長文レベル別問題集 3』等）",
+              "type": "weakness"
+            },
+            {
+              "id": "eng_weak_2_2",
+              "title": "弱点文法単元（関係詞・比較・準動詞など）のピンポイント補強と白紙復元法",
+              "type": "weakness"
+            },
+            {
+              "id": "eng_core_2_1",
+              "title": "英単語・熟語：『ターゲット1900』（801〜1500）の完成と『速読英熟語』のマスター",
+              "type": "core"
+            },
+            {
+              "id": "eng_core_2_2",
+              "title": "英文法・語法：『Vintage』または『NextStage』を用いたランダム演習と語法・イディオム暗記",
+              "type": "core"
+            },
+            {
+              "id": "eng_core_2_3",
+              "title": "長文読解：『関正生の英語長文ポラリス1（標準レベル）』による日東駒専レベルの読解演習",
+              "type": "core"
+            }
+          ]
+        },
+        {
+          "name": "📗 数学（MARCH・日東駒専レベル演習）",
+          "tasks": [
+            {
+              "id": "math_core_2_1",
+              "title": "標準演習：『青チャート』または『標準問題精講』を用いた入試頻出問題の解法暗記",
+              "type": "core"
+            }
+          ]
+        },
+        {
+          "name": "📙 選択科目（国語 または 理科）",
+          "tasks": [
+            {
+              "id": "sub_core_2_1",
+              "title": "私大マーク式問題（日大・専修レベル）の標準演習と解答プロセスの定着",
+              "type": "core"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "Phase 3",
+      "title": "過去問・実践演習",
+      "period": "冬〜直前期",
+      "categories": [
+        {
+          "name": "📘 英語（志望校対策と得点力最大化）",
+          "tasks": [
+            {
+              "id": "eng_weak_3_1",
+              "title": "読むスピード不足解消のためのシャドーイング特訓とパラグラフリーディング基礎",
+              "type": "weakness"
+            },
+            {
+              "id": "eng_core_3_1",
+              "title": "日大商学部・専修大経済学部の過去問演習（直近5年分）による形式慣れと確実な得点確保",
+              "type": "core"
+            },
+            {
+              "id": "eng_core_3_2",
+              "title": "法政大心理学部の過去問演習（GMARCH特有の長文と語彙への対応・時間配分の最適化）",
+              "type": "core"
+            },
+            {
+              "id": "eng_core_3_3",
+              "title": "長文読解：『関正生の英語長文ポラリス2（応用レベル）』によるMARCHレベルの総仕上げ",
+              "type": "core"
+            }
+          ]
+        },
+        {
+          "name": "📗 数学（志望校別対策）",
+          "tasks": [
+            {
+              "id": "math_core_3_1",
+              "title": "志望校別過去問演習（頻出単元の微積分・確率・ベクトル等の徹底強化と時間配分）",
+              "type": "core"
+            }
+          ]
+        },
+        {
+          "name": "📙 選択科目（国語 または 理科）",
+          "tasks": [
+            {
+              "id": "sub_core_3_1",
+              "title": "志望校別過去問演習および失点原因の分析・フィードバック",
+              "type": "core"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "179032523003019lhba",
+      "subject": "英語",
+      "front": "【英単語】\naccount for 〜\n（代表的な意味を2つ）",
+      "back": "1. 〜（の理由）を説明する\n2. 〜（割合）を占める\n\n※日東駒専〜MARCHの長文読解・文法問題ともに超頻出の熟語です。",
+      "level": 0,
+      "nextReviewDate": "2026-09-25"
+    },
+    {
+      "id": "1790325230031ph2hm",
+      "subject": "英語",
+      "front": "【英文法】\nIt is (high) time ＋ S ＋ [ 空所 ] ...\n「もう〜してもよい時間だ」\n\n空所に入る動詞の形は？",
+      "back": "過去形（仮定法過去）\n\n例: It is high time you went to bed.\n（もうとっくに寝る時間ですよ）\n※「現時点でまだしていない」というニュアンスを含むため、仮定法過去を用います。",
+      "level": 0,
+      "nextReviewDate": "2026-09-25"
+    },
+    {
+      "id": "1790325230031dera9k",
+      "subject": "英語",
+      "front": "【英単語（商・経済系頻出）】\ndeficit\n\n意味と対義語は？",
+      "back": "【意味】赤字、不足（額）\n【対義語】surplus（黒字、余剰）\n\n※商学部・経済学部の評論文やニュース英語で頻出のキーワードです。",
+      "level": 0,
+      "nextReviewDate": "2026-09-25"
+    },
+    {
+      "id": "1790325230031xrwrlh",
+      "subject": "英語",
+      "front": "【英単語（心理・学術系頻出）】\ncognitive / cognition\n\nそれぞれの意味は？",
+      "back": "・cognitive (形)：認知の、認識の\n・cognition (名)：認知、認識\n\n※心理学科やMARCHレベルの人文系長文（認知心理学・言語習得など）で頻出です。",
+      "level": 0,
+      "nextReviewDate": "2026-09-25"
+    },
+    {
+      "id": "17903252300311n5u9j",
+      "subject": "英語",
+      "front": "【英語イディオム】\ntake A for granted\n\n意味は？",
+      "back": "Aを当然のことと思う\n\n※目的語がthat節の場合は「take it for granted that ...」の形をとります。",
+      "level": 0,
+      "nextReviewDate": "2026-09-25"
+    },
+    {
+      "id": "17903252300313o7fyd",
+      "subject": "英語",
+      "front": "【英語多義語・熟語】\nbe subject to 〜\n\n意味は？",
+      "back": "1. 〜の影響を受けやすい、〜に左右される\n2. 〜に従わなければならない\n\n例: Prices are subject to change without notice.（価格は予告なく変更される場合があります）",
+      "level": 0,
+      "nextReviewDate": "2026-09-25"
+    },
+    {
+      "id": "1790325230031p7cg3",
+      "subject": "英語",
+      "front": "【動詞の語法】\n「Aに〜するよう説得する」\npersuade A [　　] do\n\n空所に入る適切な前置詞/準動詞の形は？",
+      "back": "persuade A to do\n（※「説得して〜させる」は persuade A into doing も可）\n\n対義語：「Aを説得して〜するのをやめさせる」は persuade A out of doing。",
+      "level": 0,
+      "nextReviewDate": "2026-09-25"
+    },
+    {
+      "id": "1790325230243g1prjl",
+      "subject": "英語",
+      "front": "【英単語】perceive",
+      "back": "【意味】〜を知覚する、〜に気づく、〜を（…だと）認識する\n【解説】法政大（心理）などの長文で超頻出の認知系基本動詞。名詞形は perception（知覚・認識）。",
+      "level": 0,
+      "nextReviewDate": "2026-09-25"
+    },
+    {
+      "id": "1790325230243j8e6q",
+      "subject": "英語",
+      "front": "【英単語】cognitive",
+      "back": "【意味】認知の、認識の\n【解説】心理学部・行動経済学系の英文テーマで頻出。「cognitive bias（認知バイアス）」などのコロケーションでよく登場します。",
+      "level": 0,
+      "nextReviewDate": "2026-09-25"
+    },
+    {
+      "id": "1790325230243ygvpto",
+      "subject": "英語",
+      "front": "【英単語・多義語】address の動詞の意味2つ",
+      "back": "【意味】\n1. （問題・課題など）に対処する、取り組む\n2. 〜に演説する、話しかける\n【解説】「住所」以外の動詞用法が日東駒専・MARCHの長文読解や語法問題で頻出。",
+      "level": 0,
+      "nextReviewDate": "2026-09-25"
+    },
+    {
+      "id": "1790325230243ermpgg",
+      "subject": "英語",
+      "front": "【英熟語】deprive A of B",
+      "back": "【意味】AからB（権利・機会・睡眠など）を奪う\n【解説】「分離・剥奪のof」をとる重要頻出熟語。受動態の「A is deprived of B（AはBを奪われる）」の形も頻出。",
+      "level": 0,
+      "nextReviewDate": "2026-09-25"
+    },
+    {
+      "id": "1790325230243grinlr",
+      "subject": "英語",
+      "front": "【文法・語法】suggest / insist / demand などの提案・要求を表す動詞に続く that節内の動詞の形は？",
+      "back": "【答え】動詞の原形（または should + 動詞の原形）\n【例文】He suggested that we (should) start early.\n【解説】主節が過去形であってもthat節内は三単現のsや過去形にせず「原形」を用いる点に注意（仮定法現在）。",
+      "level": 0,
+      "nextReviewDate": "2026-09-25"
+    },
+    {
+      "id": "1790325230243wzyvbc",
+      "subject": "英語",
+      "front": "【英単語】deficit / revenue",
+      "back": "【意味】\n・deficit: 赤字、不足\n・revenue: 歳入、収益\n【解説】商学部・経済学部の入試英文（財政・ビジネス・流通テーマ）でよく出題される対比語彙。",
+      "level": 0,
+      "nextReviewDate": "2026-09-25"
+    },
+    {
+      "id": "1790325230243kzok7h",
+      "subject": "英語",
+      "front": "【英熟語】take A for granted",
+      "back": "【意味】Aを当然のことと思う\n【解説】it を形式目的語にした「take it for granted that...（…ということを当然だと思う）」の構文も日大・専修・法政ともに整序問題や長文で超頻出。",
+      "level": 0,
+      "nextReviewDate": "2026-09-25"
+    }
+  ]
+}
