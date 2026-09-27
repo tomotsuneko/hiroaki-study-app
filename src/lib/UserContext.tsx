@@ -22,6 +22,8 @@ type UserProfile = {
   schoolName?: string;
   department?: string;
   grade?: number;
+  track?: 'arts' | 'science' | 'undecided';
+  selectedSubjects?: string[];
   lastGradeUpdateAcademicYear?: number;
   needsProfileUpdate?: boolean;
 };

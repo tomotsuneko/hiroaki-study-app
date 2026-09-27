@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 
 export async function POST(req: Request) {
   try {
-    const { schoolName, department, grade } = await req.json();
+    const { schoolName, department, grade, schoolType, track, selectedSubjects } = await req.json();
     const cookieStore = await cookies();
     const userId = cookieStore.get('study_user_id')?.value || 'anonymous';
 
@@ -13,18 +13,25 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'School name is required' }, { status: 400 });
     }
 
+    const trackText = track === 'arts' ? '文系' : track === 'science' ? '理系' : '未定/推薦';
+    const subjectsText = selectedSubjects && selectedSubjects.length > 0 ? selectedSubjects.join(', ') : '全般';
+
     const prompt = `
-    あなたは日本の高校教育・予備校カリキュラムの専門家です。
-    生徒が所属する「${schoolName} ${department}（${grade}年生）」の公開情報や一般的な偏差値帯・地域特性に基づき、
-    この学校で採用されている可能性が高いメイン教材（英語、数学、国語など）と、その学習進度（カリキュラム）を推測・調査してください。
-    
-    また、その学校の進度と「日東駒専・MARCHレベルの大学受験」に必要な標準カリキュラムを比較し、
-    学校のカリキュラムだけでは不足する部分（差分）を独自体系で補うための「個人専用学習方針」を生成してください。
+    あなたは日本の教育・予備校カリキュラムの専門家です。
+    生徒のプロフィール：
+    ・学校：${schoolName} ${department || ''}（${schoolType === 'high' ? '高校' : '中学'}${grade}年生）
+    ・文理選択：${trackText}
+    ・学習希望/受験科目：${subjectsText}
+
+    この生徒の公開情報や一般的な偏差値帯・地域特性に基づき、
+    採用されている可能性が高いメイン教材と、その学習進度（カリキュラム）を推測してください。
+    また、「日東駒専・MARCHレベル」または「上位高校」に向けた標準カリキュラムと比較し、
+    学習希望科目（${subjectsText}）において、学校の授業だけでは不足する部分を独自体系で補うための「個人専用学習方針」を生成してください。
 
     必ず以下のJSONフォーマットで出力してください。マークダウンなどは含めないでください。
     {
-      "estimatedTextbooks": ["数学: チャート式(黄)", "英語: ターゲット1900", "国語: 体系古典文法"],
-      "schoolPacing": "学校のカリキュラム進行速度の特徴（例: 数学は2年冬に終わる等）",
+      "estimatedTextbooks": ["${selectedSubjects?.[0] || '数学'}: チャート式(黄)", "英語: ターゲット1900"],
+      "schoolPacing": "学校のカリキュラム進行速度の特徴",
       "gapFillStrategy": "受験に向けた差分（学校で足りない部分）をどう埋めるかの戦略",
       "personalizedFocus": "直近3ヶ月で優先して取り組むべき小分類タスク"
     }

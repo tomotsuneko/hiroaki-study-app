@@ -1,8 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useUser } from '@/lib/UserContext';
 import styles from './profile.module.css';
+
+const HIGH_SCHOOL_SUBJECTS = ['英語', '数学IA', '数学IIBC', '数学III', '現代文', '古文・漢文', '物理', '化学', '生物', '地学', '日本史', '世界史', '地理', '公民(政経/倫理)'];
+const JUNIOR_HIGH_SUBJECTS = ['英語', '数学', '国語', '理科', '社会(地理)', '社会(歴史)', '社会(公民)'];
 
 export default function ProfilePage() {
   const { profile, setProfile } = useUser();
@@ -16,16 +19,37 @@ export default function ProfilePage() {
   const [schoolName, setSchoolName] = useState(profile.schoolName || '');
   const [department, setDepartment] = useState(profile.department || '');
   const [grade, setGrade] = useState<number>(profile.grade || 1);
+  const [track, setTrack] = useState<'arts' | 'science' | 'undecided'>(profile.track || 'undecided');
+  const [selectedSubjects, setSelectedSubjects] = useState<string[]>(profile.selectedSubjects || []);
   
   const [saved, setSaved] = useState(false);
+  const [isUpdatingCurriculum, setIsUpdatingCurriculum] = useState(false);
+
+  // トラック（文理）が変更されたときの自動科目選択ロジック
+  const handleTrackChange = (newTrack: 'arts' | 'science' | 'undecided') => {
+    setTrack(newTrack);
+    if (schoolType === 'high') {
+      if (newTrack === 'arts') {
+        setSelectedSubjects(['英語', '現代文', '古文・漢文', '日本史']); // 文系デフォルト（カスタマイズ可能）
+      } else if (newTrack === 'science') {
+        setSelectedSubjects(['英語', '数学IA', '数学IIBC', '数学III', '物理', '化学']); // 理系デフォルト
+      }
+    }
+  };
+
+  const toggleSubject = (sub: string) => {
+    if (selectedSubjects.includes(sub)) {
+      setSelectedSubjects(selectedSubjects.filter(s => s !== sub));
+    } else {
+      setSelectedSubjects([...selectedSubjects, sub]);
+    }
+  };
 
   const handleSchoolChange = (index: number, value: string) => {
     const newSchools = [...targetSchools];
     newSchools[index] = value;
     setTargetSchools(newSchools);
   };
-
-  const [isUpdatingCurriculum, setIsUpdatingCurriculum] = useState(false);
 
   const handleSave = async () => {
     const now = new Date();
@@ -41,6 +65,8 @@ export default function ProfilePage() {
       schoolName,
       department: schoolType === 'junior_high' ? undefined : department,
       grade,
+      track: schoolType === 'high' ? track : undefined,
+      selectedSubjects,
       lastGradeUpdateAcademicYear: currentAcademicYear,
       needsProfileUpdate: false, // Clear the alert flag on save
     });
@@ -49,13 +75,13 @@ export default function ProfilePage() {
     setTimeout(() => setSaved(false), 3000);
 
     // 学校名が設定されている場合、専用カリキュラムの自動調査・設定バッチを非同期で走らせる
-    if (schoolType === 'high' && schoolName) {
+    if (schoolName) {
       setIsUpdatingCurriculum(true);
       try {
         await fetch('/api/user/personalize-curriculum', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ schoolName, department, grade })
+          body: JSON.stringify({ schoolName, department, grade, schoolType, track, selectedSubjects })
         });
       } catch (e) {
         console.error("カリキュラム最適化に失敗しました", e);
@@ -72,7 +98,7 @@ export default function ProfilePage() {
         <p className={styles.subtitle}>所属情報や目標校を設定すると、AIが最適な学習プランを提案します。</p>
         {isUpdatingCurriculum && (
           <div style={{ marginTop: '10px', padding: '8px 12px', backgroundColor: '#DBEAFE', color: '#1E40AF', borderRadius: '8px', fontSize: '0.9rem', display: 'inline-block' }}>
-            🔄 所属学校のカリキュラムと教材を調査し、あなた専用の学習方針を同期しています...
+            🔄 学習希望科目と所属学校のカリキュラムを調査し、あなた専用の学習方針を同期しています...
           </div>
         )}
       </header>
@@ -83,13 +109,18 @@ export default function ProfilePage() {
           <input className={styles.input} type="text" value={profile.name} disabled />
         </div>
 
-        {/* --- 所属情報 --- */}
+        {/* --- 所属・学習方針 --- */}
         <div className={styles.formGroup}>
           <label className={styles.label}>学校の種類</label>
           <select 
             className={styles.input} 
             value={schoolType} 
-            onChange={e => setSchoolType(e.target.value as 'junior_high' | 'high')}
+            onChange={e => {
+              const val = e.target.value as 'junior_high' | 'high';
+              setSchoolType(val);
+              // 学校種別が変わったら選択科目をリセット
+              setSelectedSubjects([]);
+            }}
           >
             <option value="junior_high">中学校</option>
             <option value="high">高校</option>
@@ -103,7 +134,7 @@ export default function ProfilePage() {
             type="text" 
             value={schoolName} 
             onChange={e => setSchoolName(e.target.value)}
-            placeholder="例：我孫子高校" 
+            placeholder={schoolType === 'high' ? "例：我孫子高校" : "例：我孫子中学校"} 
           />
         </div>
 
@@ -135,6 +166,41 @@ export default function ProfilePage() {
             ※4月1日を経過すると自動的に次の学年へ進級します。
           </p>
         </div>
+
+        {schoolType === 'high' && (
+          <div className={styles.formGroup}>
+            <label className={styles.label}>文理選択</label>
+            <select 
+              className={styles.input} 
+              value={track} 
+              onChange={e => handleTrackChange(e.target.value as any)}
+            >
+              <option value="undecided">まだ決まっていない / 指定校推薦など</option>
+              <option value="arts">文系</option>
+              <option value="science">理系</option>
+            </select>
+          </div>
+        )}
+
+        <div className={styles.formGroup}>
+          <label className={styles.label}>学習希望科目（受験・テスト対象）</label>
+          <p className={styles.hint} style={{marginBottom: '12px'}}>
+            {schoolType === 'high' ? '受験に必要な科目や、定期テストで対策したい科目を選択してください。（文理選択で自動チェックされますが、自由に変更可能です）' : '対策したい教科を選択してください。'}
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '10px' }}>
+            {(schoolType === 'high' ? HIGH_SCHOOL_SUBJECTS : JUNIOR_HIGH_SUBJECTS).map(sub => (
+              <label key={sub} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem', cursor: 'pointer' }}>
+                <input 
+                  type="checkbox" 
+                  checked={selectedSubjects.includes(sub)} 
+                  onChange={() => toggleSubject(sub)}
+                  style={{ width: '16px', height: '16px' }}
+                />
+                {sub}
+              </label>
+            ))}
+          </div>
+        </div>
         {/* -------------- */}
 
         <div className={styles.formGroup}>
@@ -150,17 +216,16 @@ export default function ProfilePage() {
               placeholder={i === 0 ? "例：日本大学 理工学部（第一志望）" : `例：志望校${i + 1}`} 
             />
           ))}
-          <p className={styles.hint}>目標校を入力すると、それに沿った学習要綱が生成されます。</p>
         </div>
 
         <div className={styles.formGroup}>
-          <label className={styles.label}>苦手な科目・分野（カンマ区切り）</label>
+          <label className={styles.label}>苦手な分野（カンマ区切り）</label>
           <input 
             className={styles.input} 
             type="text" 
             value={weakSubjects} 
             onChange={e => setWeakSubjects(e.target.value)}
-            placeholder="例：数学IIB, 英語長文, 物理基礎" 
+            placeholder="例：英語長文, 物理基礎, 確率" 
           />
         </div>
 
