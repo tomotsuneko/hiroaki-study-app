@@ -1,17 +1,15 @@
-import * as adminNamespace from 'firebase-admin';
+import { initializeApp, getApps, cert } from 'firebase-admin/app';
+import { getFirestore } from 'firebase-admin/firestore';
 
-// Use require to bypass namespace strictness in TS for firebase-admin default export
-const admin = require('firebase-admin');
-
-if (!admin.apps?.length) {
+if (!getApps().length) {
   try {
     const projectId = process.env.FIREBASE_PROJECT_ID;
     const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
     const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
 
     if (projectId && clientEmail && privateKey) {
-      admin.initializeApp({
-        credential: admin.credential.cert({
+      initializeApp({
+        credential: cert({
           projectId,
           clientEmail,
           privateKey,
@@ -26,4 +24,4 @@ if (!admin.apps?.length) {
   }
 }
 
-export const dbAdmin = admin.apps?.length ? admin.firestore() : null;
+export const dbAdmin = getApps().length ? getFirestore() : null;
