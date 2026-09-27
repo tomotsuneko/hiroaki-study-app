@@ -3,6 +3,7 @@ import { genAI } from '@/lib/gemini';
 import { updateSyllabus } from '@/lib/db';
 import { dbAdmin } from '@/lib/firebase-admin';
 import { cookies } from 'next/headers';
+import { getActiveModels } from '@/lib/model-manager';
 
 export const maxDuration = 60; // Increase Vercel timeout to 60 seconds
 
@@ -79,10 +80,7 @@ ${personalizedData ? JSON.stringify(personalizedData) : '（※自動最適化�
   }
 ]`;
 
-    const modelsToTry = [
-      "gemini-1.5-pro", 
-      "gemini-1.5-flash"
-    ];
+    const modelsToTry = await getActiveModels('syllabus');
 
     let text = "";
     let success = false;

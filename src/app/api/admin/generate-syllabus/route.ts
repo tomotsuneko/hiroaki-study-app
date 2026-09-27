@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { genAI } from '@/lib/gemini';
 import { dbAdmin } from '@/lib/firebase-admin';
+import { getActiveModels } from '@/lib/model-manager';
 
 export const maxDuration = 60; // Increase Vercel timeout to 60 seconds
 
@@ -37,15 +38,32 @@ export async function POST(req: Request) {
     ]
     `;
 
-    const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-pro", // Pro model for complex curriculum generation
-      generationConfig: {
-        responseMimeType: "application/json",
+    const modelsToTry = await getActiveModels('syllabus');
+    
+    let jsonText = "";
+    let success = false;
+    
+    for (const modelName of modelsToTry) {
+      if (success) break;
+      try {
+        const model = genAI.getGenerativeModel({
+          model: modelName,
+          generationConfig: {
+            responseMimeType: "application/json",
+          }
+        });
+        const result = await model.generateContent(prompt);
+        jsonText = await result.response.text();
+        success = true;
+      } catch (err: any) {
+        console.warn(`Syllabus generation with ${modelName} failed:`, err.message);
       }
-    });
-
-    const result = await model.generateContent(prompt);
-    let jsonText = await result.response.text();
+    }
+    
+    if (!success) {
+      throw new Error("All fallback models failed to generate syllabus.");
+    }
+    
     const parsedData = JSON.parse(jsonText);
 
     // 【工程3: データベースへの保存・更新】
