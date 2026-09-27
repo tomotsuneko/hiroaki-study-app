@@ -25,7 +25,9 @@ export default function ProfilePage() {
     setTargetSchools(newSchools);
   };
 
-  const handleSave = () => {
+  const [isUpdatingCurriculum, setIsUpdatingCurriculum] = useState(false);
+
+  const handleSave = async () => {
     const now = new Date();
     const currentAcademicYear = (now.getMonth() + 1) >= 4 ? now.getFullYear() : now.getFullYear() - 1;
     
@@ -42,8 +44,25 @@ export default function ProfilePage() {
       lastGradeUpdateAcademicYear: currentAcademicYear,
       needsProfileUpdate: false, // Clear the alert flag on save
     });
+    
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
+
+    // 学校名が設定されている場合、専用カリキュラムの自動調査・設定バッチを非同期で走らせる
+    if (schoolType === 'high' && schoolName) {
+      setIsUpdatingCurriculum(true);
+      try {
+        await fetch('/api/user/personalize-curriculum', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ schoolName, department, grade })
+        });
+      } catch (e) {
+        console.error("カリキュラム最適化に失敗しました", e);
+      } finally {
+        setIsUpdatingCurriculum(false);
+      }
+    }
   };
 
   return (
@@ -51,6 +70,11 @@ export default function ProfilePage() {
       <header className={styles.header}>
         <h1 className={styles.title}>プロフィール設定</h1>
         <p className={styles.subtitle}>所属情報や目標校を設定すると、AIが最適な学習プランを提案します。</p>
+        {isUpdatingCurriculum && (
+          <div style={{ marginTop: '10px', padding: '8px 12px', backgroundColor: '#DBEAFE', color: '#1E40AF', borderRadius: '8px', fontSize: '0.9rem', display: 'inline-block' }}>
+            🔄 所属学校のカリキュラムと教材を調査し、あなた専用の学習方針を同期しています...
+          </div>
+        )}
       </header>
 
       <div className={`glass-panel ${styles.formCard}`}>

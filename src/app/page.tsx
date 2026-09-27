@@ -23,7 +23,11 @@ export default function Home() {
       
       const data = await res.json();
       if (res.ok) {
-        window.location.href = '/dashboard';
+        if (userId === 'admin') {
+          window.location.href = '/admin/syllabus';
+        } else {
+          window.location.href = '/dashboard';
+        }
       } else {
         setError(data.error || 'ログインに失敗しました');
       }
@@ -61,6 +65,7 @@ export default function Home() {
               <option value="hiroaki">ひろあき</option>
               <option value="wakana">わかな</option>
               <option value="test">テスト</option>
+              <option value="admin">管理者 (Syllabus DB)</option>
             </select>
           </div>
           
@@ -79,7 +84,7 @@ export default function Home() {
           </div>
 
           <button type="submit" className={`btn btn-primary ${styles.submitBtn}`} style={{ marginTop: '24px' }}>
-            学習を始める
+            ログインする
           </button>
         </form>
         
