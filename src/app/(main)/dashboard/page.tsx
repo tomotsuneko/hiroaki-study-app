@@ -185,6 +185,28 @@ export default function Dashboard() {
 
   return (
     <div className={styles.container}>
+      {profile.needsProfileUpdate && (
+        <div style={{
+          backgroundColor: '#FEF08A',
+          color: '#854D0E',
+          padding: '16px',
+          borderRadius: '12px',
+          marginBottom: '20px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+          borderLeft: '4px solid #EAB308'
+        }}>
+          <div>
+            <strong style={{ display: 'block', marginBottom: '4px' }}>🌸 ご進学・進級おめでとうございます！</strong>
+            <span>4月1日を経過したため、学年が上がりました。学校名や科などの新しい所属情報をプロフィールから更新してください。</span>
+          </div>
+          <Link href="/profile" className="btn btn-primary" style={{ padding: '8px 16px', whiteSpace: 'nowrap', marginLeft: '16px' }}>
+            プロフィールを更新
+          </Link>
+        </div>
+      )}
       <header className={styles.header}>
         <div className={styles.headerLeft}>
           <h1 className={styles.title}>ダッシュボード</h1>

@@ -17,6 +17,13 @@ type UserProfile = {
   tutorPersona?: string;
   currentMood?: string;
   completedTasks?: string[];
+  
+  schoolType?: 'junior_high' | 'high';
+  schoolName?: string;
+  department?: string;
+  grade?: number;
+  lastGradeUpdateAcademicYear?: number;
+  needsProfileUpdate?: boolean;
 };
 
 type UserContextType = {
@@ -61,6 +68,33 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         if (!parsed.tutorPersona) parsed.tutorPersona = '優しいお姉さん';
         if (!parsed.currentMood) parsed.currentMood = '普通';
         if (!parsed.completedTasks) parsed.completedTasks = [];
+        
+        // --- 学年自動進級ロジック ---
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentMonth = now.getMonth() + 1;
+        const currentAcademicYear = currentMonth >= 4 ? currentYear : currentYear - 1;
+
+        if (parsed.grade && parsed.lastGradeUpdateAcademicYear) {
+          const diff = currentAcademicYear - parsed.lastGradeUpdateAcademicYear;
+          if (diff > 0) {
+            if (parsed.grade === 3) {
+              // 3年生が進級のタイミングを迎えた場合はアラートフラグを立てる
+              parsed.needsProfileUpdate = true;
+            } else {
+              // 1年生や2年生なら自動進級
+              parsed.grade += diff;
+              if (parsed.grade > 3) {
+                parsed.grade = 3;
+                parsed.needsProfileUpdate = true;
+              }
+              parsed.lastGradeUpdateAcademicYear = currentAcademicYear;
+            }
+            // localStorageも更新しておく
+            localStorage.setItem('ai_tutor_profile', JSON.stringify(parsed));
+          }
+        }
+
         setProfileState(parsed);
       } catch (e) {
         console.error(e);
