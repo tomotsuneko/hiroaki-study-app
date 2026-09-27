@@ -4,61 +4,84 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 
-import { useUser } from '@/lib/UserContext';
-
 export default function Home() {
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const router = useRouter();
-  const { setProfile } = useUser();
-  const [selectedUser, setSelectedUser] = useState('テスト');
 
-  const users = [
-    { id: 'hiroaki', name: 'ひろあき' },
-    { id: 'wakana', name: 'わかな' },
-    { id: 'test', name: 'テスト' },
-  ];
-
-  const handleLogin = () => {
-    // コンテキストにユーザー情報を保存
-    setProfile({
-      name: selectedUser,
-      targetSchools: ['未設定 (プロフィールから設定)'],
-      weakSubjects: [],
-      savedNotes: [],
-    });
-    router.push(`/dashboard`);
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId, password })
+      });
+      
+      const data = await res.json();
+      if (res.ok) {
+        window.location.href = '/dashboard';
+      } else {
+        setError(data.error || 'ログインに失敗しました');
+      }
+    } catch (e) {
+      setError('サーバーエラーが発生しました');
+    }
   };
 
   return (
     <div className={styles.container}>
       <div className={`glass-panel animate-fade-in ${styles.loginBox}`}>
         <div className={styles.header}>
-          <h1 className={styles.title}>AI Tutor</h1>
-          <p className={styles.subtitle}>我孫子高校 理系特化 学習サポート</p>
+          <h1 className={styles.title} style={{ marginBottom: '8px' }}>AI Tutor</h1>
+          <p className={styles.subtitle} style={{ fontSize: '0.9rem' }}>AI&SI学習サポートツール</p>
         </div>
         
-        <form className={styles.form} onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
+        {error && (
+          <div style={{ background: '#FEE2E2', color: '#B91C1C', padding: '12px', borderRadius: '8px', marginBottom: '16px', fontSize: '0.9rem', textAlign: 'center' }}>
+            {error}
+          </div>
+        )}
+
+        <form className={styles.form} onSubmit={handleLogin}>
           <div className={styles.inputGroup}>
-            <label htmlFor="userSelect" className={styles.label}>利用者を選択</label>
-            <select 
-              id="userSelect"
-              className={styles.input}
-              value={selectedUser}
-              onChange={(e) => setSelectedUser(e.target.value)}
-              style={{ appearance: 'auto' }}
-            >
-              {users.map(u => (
-                <option key={u.id} value={u.name} style={{color: 'black'}}>{u.name}</option>
-              ))}
-            </select>
+            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', fontSize: '0.9rem', color: '#334155' }}>
+              ユーザーID
+            </label>
+            <input 
+              type="text" 
+              value={userId}
+              onChange={e => setUserId(e.target.value)}
+              placeholder="例: hiroaki"
+              style={{ width: '100%', padding: '12px', borderRadius: '10px', border: '1px solid #CBD5E1', fontSize: '1rem' }}
+              required
+            />
           </div>
           
-          <button type="submit" className={`btn btn-primary ${styles.submitBtn}`}>
+          <div className={styles.inputGroup} style={{ marginTop: '16px' }}>
+            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', fontSize: '0.9rem', color: '#334155' }}>
+              パスワード
+            </label>
+            <input 
+              type="password" 
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              placeholder="••••••••"
+              style={{ width: '100%', padding: '12px', borderRadius: '10px', border: '1px solid #CBD5E1', fontSize: '1rem' }}
+              required
+            />
+          </div>
+
+          <button type="submit" className={`btn btn-primary ${styles.submitBtn}`} style={{ marginTop: '24px' }}>
             学習を始める
           </button>
         </form>
         
-        <div className={styles.footer}>
-          <p>日東駒専レベルの現役合格を目指しましょう！</p>
+        <div className={styles.footer} style={{ marginTop: '24px' }}>
+          <p style={{ fontSize: '0.85rem', color: '#94A3B8' }}>※初回入力時は自動的にアカウントが作成されます。</p>
         </div>
       </div>
     </div>
