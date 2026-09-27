@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server';
-import { aiModel } from '@/lib/gemini';
+import { genAI } from '@/lib/gemini';
 import { dbAdmin } from '@/lib/firebase-admin';
+
+export const maxDuration = 60; // Increase Vercel timeout to 60 seconds
 
 export async function POST(req: Request) {
   try {
     const body = await req.json().catch(() => ({}));
     const targetSubject = body.subject || '英語'; // Default to English if not provided
     
-    // 【工程1＆2: 情報収集・整理 (AI Double Check)】
-    // 高度なプロンプトで予備校レベルの緻密なカリキュラムを抽出
     const prompt = `
     あなたは日本のトップ予備校のカリキュラム開発責任者です。
     大学受験（日東駒専・MARCHレベル）に向けた「${targetSubject}」の最新の学習要綱（シラバス）のデータベースを作成してください。
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     【大分類】【中分類】【小分類】の階層構造で緻密に整理してください。
     小分類は、後日AIが「具体的な1回分の学習コンテンツ（解説＋ドリル）」を自動生成できる粒度にしてください。
 
-    必ず以下のJSONフォーマットで出力してください。Markdownの装飾(\`\`\`json)などは一切含めず、純粋なJSON配列のみを出力してください。
+    必ず以下のJSONフォーマットで出力してください。
     [
       {
         "subjectName": "${targetSubject}",
@@ -37,12 +37,15 @@ export async function POST(req: Request) {
     ]
     `;
 
-    const result = await aiModel.generateContent(prompt);
+    const model = genAI.getGenerativeModel({
+      model: "gemini-1.5-pro", // Pro model for complex curriculum generation
+      generationConfig: {
+        responseMimeType: "application/json",
+      }
+    });
+
+    const result = await model.generateContent(prompt);
     let jsonText = await result.response.text();
-    
-    // Clean up Markdown backticks if Gemini includes them
-    jsonText = jsonText.replace(/```json/g, '').replace(/```/g, '').trim();
-    
     const parsedData = JSON.parse(jsonText);
 
     // 【工程3: データベースへの保存・更新】

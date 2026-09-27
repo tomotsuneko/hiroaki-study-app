@@ -4,6 +4,8 @@ import { updateSyllabus } from '@/lib/db';
 import { dbAdmin } from '@/lib/firebase-admin';
 import { cookies } from 'next/headers';
 
+export const maxDuration = 60; // Increase Vercel timeout to 60 seconds
+
 export async function POST(req: Request) {
   try {
     const { profile } = await req.json();
@@ -78,10 +80,7 @@ ${personalizedData ? JSON.stringify(personalizedData) : '（※自動最適化�
 ]`;
 
     const modelsToTry = [
-      "gemini-3.1-pro-preview", // Syllabus generation requires complex planning, so prioritize Pro
-      "gemini-3.7-flash",
-      "gemini-3.8-flash",
-      "gemini-flash-latest",
+      "gemini-1.5-pro", 
       "gemini-1.5-flash"
     ];
 
@@ -105,7 +104,6 @@ ${personalizedData ? JSON.stringify(personalizedData) : '（※自動最適化�
         success = true;
       } catch (err: any) {
         console.warn(`Syllabus model ${modelName} failed.`, err.message);
-        await new Promise(resolve => setTimeout(resolve, 1000));
       }
     }
 
