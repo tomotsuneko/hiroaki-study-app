@@ -4,7 +4,7 @@ import { getDailyAnalysis, addLog, getLogs, getStudyTime, addStudyTime, getSylla
 export async function GET() {
   return NextResponse.json({
     dailyAnalysis: await getDailyAnalysis(),
-    recentLogs: await getLogs().slice(-10),
+    recentLogs: (await getLogs()).slice(-10),
     studyTime: await getStudyTime(),
     syllabus: await getSyllabus()
   });

@@ -1,6 +1,9 @@
-import * as admin from 'firebase-admin';
+import * as adminNamespace from 'firebase-admin';
 
-if (!admin.apps.length) {
+// Use require to bypass namespace strictness in TS for firebase-admin default export
+const admin = require('firebase-admin');
+
+if (!admin.apps?.length) {
   try {
     const projectId = process.env.FIREBASE_PROJECT_ID;
     const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
@@ -23,4 +26,4 @@ if (!admin.apps.length) {
   }
 }
 
-export const dbAdmin = admin.apps.length ? admin.firestore() : null;
+export const dbAdmin = admin.apps?.length ? admin.firestore() : null;
