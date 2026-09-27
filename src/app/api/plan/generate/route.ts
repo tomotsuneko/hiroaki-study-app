@@ -99,6 +99,7 @@ ${personalizedData ? JSON.stringify(personalizedData) : '（※自動最適化�
         const result = await model.generateContent(`「${targetSchools}」合格に向けた、「${weakSubjects}」の弱点克服を含む最適な年間学習シラバスを構築してください。`);
         const response = await result.response;
         text = response.text();
+        text = text.replace(/```json/gi, '').replace(/```/g, '').trim();
         success = true;
       } catch (err: any) {
         console.warn(`Syllabus model ${modelName} failed.`, err.message);

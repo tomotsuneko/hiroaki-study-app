@@ -57,7 +57,12 @@ export default function SyllabusAdminPage() {
         });
         
         if (!res.ok) {
-           throw new Error(`${subj}の生成中にサーバーエラーが発生しました (タイムアウト等)`);
+           let errMessage = 'サーバーエラーが発生しました (タイムアウト等)';
+           try {
+             const errData = await res.json();
+             if (errData.error) errMessage = errData.error;
+           } catch (e) {}
+           throw new Error(`${subj}の生成に失敗しました: ${errMessage}`);
         }
         addLog(`✅ ${subj}の生成が完了しました！`);
       }

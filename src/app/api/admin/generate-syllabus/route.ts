@@ -54,6 +54,7 @@ export async function POST(req: Request) {
         });
         const result = await model.generateContent(prompt);
         jsonText = await result.response.text();
+        jsonText = jsonText.replace(/```json/gi, '').replace(/```/g, '').trim();
         success = true;
       } catch (err: any) {
         console.warn(`Syllabus generation with ${modelName} failed:`, err.message);
