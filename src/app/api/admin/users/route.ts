@@ -8,7 +8,7 @@ export async function GET() {
     const usersSnapshot = await dbAdmin.collection('users').get();
     const users: any[] = [];
     
-    usersSnapshot.forEach(doc => {
+    usersSnapshot.forEach((doc: any) => {
       const data = doc.data();
       if (data.db && data.db.syllabus) {
         users.push({

@@ -10,13 +10,13 @@ export async function POST(req: Request) {
     const cookieStore = await cookies();
     const userId = cookieStore.get('study_user_id')?.value || 'anonymous';
 
-    let personalizedData = null;
-    let masterCurriculum = [];
+    let personalizedData: any = null;
+    let masterCurriculum: any[] = [];
 
     if (dbAdmin) {
       // Fetch Master Syllabus (from all subjects)
       const curriculumSnapshot = await dbAdmin.collection('curriculum_db').get();
-      curriculumSnapshot.forEach(doc => {
+      curriculumSnapshot.forEach((doc: any) => {
         masterCurriculum.push(doc.data());
       });
 
