@@ -14,6 +14,7 @@ export default function PlanPage() {
   const [selectedTask, setSelectedTask] = useState<string | null>(null);
   const [generatedContent, setGeneratedContent] = useState<string>('');
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const isTargetSet = profile.targetSchools && profile.targetSchools.length > 0 && !profile.targetSchools[0].includes('未設定');
   const mainTarget = isTargetSet ? profile.targetSchools[0] : '未設定';
@@ -23,14 +24,19 @@ export default function PlanPage() {
 
   useEffect(() => {
     async function fetchSyllabus() {
+      setIsLoading(true);
       try {
         const res = await fetch('/api/db/daily');
         const data = await res.json();
-        if (data.syllabus) {
+        if (data.syllabus && Array.isArray(data.syllabus)) {
           setSyllabus(data.syllabus);
+        } else {
+          setSyllabus([]);
         }
       } catch (e) {
         console.error(e);
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchSyllabus();
@@ -45,10 +51,14 @@ export default function PlanPage() {
         body: JSON.stringify({ profile }),
       });
       const data = await res.json();
-      setSyllabus(data);
-      alert('AIによる最適な学習シラバスの構築が完了しました！');
+      if (Array.isArray(data)) {
+         setSyllabus(data);
+         alert('AIによる最適な学習シラバスの構築が完了しました！');
+      } else {
+         throw new Error("Invalid format");
+      }
     } catch (e) {
-      alert('シラバスの生成に失敗しました。');
+      alert('シラバスの生成に失敗しました。時間をおいて再試行してください。');
     } finally {
       setIsGeneratingSyllabus(false);
     }
@@ -58,11 +68,6 @@ export default function PlanPage() {
 
   const handleTaskClick = (taskName: string) => {
     router.push(`/lesson?task=${encodeURIComponent(taskName)}`);
-  };
-
-  const closeTaskModal = () => {
-    setSelectedTask(null);
-    setGeneratedContent('');
   };
 
   const toggleTaskCompletion = (e: React.MouseEvent, taskName: string) => {
@@ -87,19 +92,28 @@ export default function PlanPage() {
         <div className={`glass-panel ${styles.emptyState}`}>
           <p>まずはプロフィール設定から目標校を入力してください。</p>
         </div>
+      ) : isLoading ? (
+        <div className={`glass-panel ${styles.emptyState}`}>
+          <div className={styles.spinner}></div>
+          <p style={{ marginTop: '16px' }}>学習データを読み込み中...</p>
+        </div>
       ) : (
         <div className={styles.roadmap}>
           {isGeneratingSyllabus && (
-            <div className={styles.loading}>
-              <div className={styles.spinner}></div>
-              <p>AIが志望校と弱点に基づき、最適なシラバスを構築中...</p>
+            <div className={styles.loading} style={{ margin: '40px 0', padding: '40px', backgroundColor: '#F8FAFC', borderRadius: '12px', border: '1px solid #E2E8F0', textAlign: 'center' }}>
+              <div className={styles.spinner} style={{ margin: '0 auto 20px auto', width: '40px', height: '40px', borderTopColor: '#3B82F6' }}></div>
+              <h3 style={{ color: '#1E293B', marginBottom: '8px' }}>🔄 カリキュラムを生成中...</h3>
+              <p style={{ color: '#64748B' }}>あなたの学校の進度や目標校のレベルに合わせて、専用の学習計画をAIが構築しています。<br/>数十秒かかる場合がありますので、このままお待ちください。</p>
             </div>
           )}
 
           {!isGeneratingSyllabus && syllabus.length === 0 && (
-            <div className={`glass-panel ${styles.emptyState}`}>
-              <p>シラバスがまだ生成されていません。</p>
-              <button className="btn btn-primary" onClick={generateSyllabus} style={{ marginTop: '16px' }}>AIにシラバスを構築させる</button>
+            <div className={`glass-panel ${styles.emptyState}`} style={{ padding: '40px', textAlign: 'center' }}>
+              <h3 style={{ marginBottom: '12px', color: '#334155' }}>学習計画が未作成です</h3>
+              <p style={{ color: '#64748B', marginBottom: '24px' }}>目標校やプロフィールに基づいて、あなた専用のシラバスを生成します。</p>
+              <button className="btn btn-primary" onClick={generateSyllabus} style={{ padding: '12px 24px', fontSize: '1.1rem' }}>
+                ✨ AIにシラバスを構築させる
+              </button>
             </div>
           )}
 
@@ -110,11 +124,10 @@ export default function PlanPage() {
           )}
 
           {!isGeneratingSyllabus && syllabus.length > 0 && syllabus.map((phase: any, pIdx: number) => {
-            // Count progress for this phase
             let totalTasks = 0;
             let completedPhaseTasks = 0;
-            phase.categories.forEach((cat: any) => {
-              cat.tasks.forEach((t: any) => {
+            (phase.categories || []).forEach((cat: any) => {
+              (cat.tasks || []).forEach((t: any) => {
                 totalTasks++;
                 if ((profile.completedTasks || []).includes(t.title)) completedPhaseTasks++;
               });
@@ -133,11 +146,11 @@ export default function PlanPage() {
                   </div>
                 </div>
                 
-                {phase.categories.map((cat: any, cIdx: number) => (
+                {(phase.categories || []).map((cat: any, cIdx: number) => (
                   <div key={cIdx} className={styles.majorCategory}>
                     <h3 className={styles.majorTitle}>{cat.name}</h3>
                     <ul className={styles.taskList}>
-                      {cat.tasks.map((task: any) => {
+                      {(cat.tasks || []).map((task: any) => {
                         const isCompleted = profile.completedTasks?.includes(task.title);
                         const isWeakness = task.type === 'weakness';
                         return (
