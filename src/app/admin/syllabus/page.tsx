@@ -46,16 +46,26 @@ export default function SyllabusAdminPage() {
     addLog('🚀 マスターシラバス情報収集・分類AIパイプラインを起動しました...');
     
     try {
-      setTimeout(() => addLog('STEP 1: 文部科学省・学習指導要領の最新データを収集＆分析中... (AI Check 1/3)'), 1000);
-      setTimeout(() => addLog('STEP 2: 大手予備校のカリキュラム情報をクローリング＆比較中... (AI Check 2/3)'), 3000);
-      setTimeout(() => addLog('STEP 3: 科目ごとに「大・中・小」分類へ構造化中... (AI Check 3/3)'), 5000);
+      const subjectsToGenerate = ['英語', '数学', '国語', '理科', '社会'];
       
-      await fetch('/api/admin/generate-syllabus', { method: 'POST' });
+      for (const subj of subjectsToGenerate) {
+        addLog(`⏳ ${subj}のカリキュラムを構築中... (AI生成)`);
+        const res = await fetch('/api/admin/generate-syllabus', { 
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ subject: subj })
+        });
+        
+        if (!res.ok) {
+           throw new Error(`${subj}の生成中にサーバーエラーが発生しました (タイムアウト等)`);
+        }
+        addLog(`✅ ${subj}の生成が完了しました！`);
+      }
       
-      addLog('✅ マスターDBの生成・更新が完了しました！');
+      addLog('🎉 すべてのマスターDBの生成・更新が完了しました！');
       await fetchMasterDb(); // Refresh the list
-    } catch (e) {
-      addLog('❌ エラーが発生しました。');
+    } catch (e: any) {
+      addLog(`❌ エラーが発生しました: ${e.message}`);
     } finally {
       setIsGenerating(false);
     }

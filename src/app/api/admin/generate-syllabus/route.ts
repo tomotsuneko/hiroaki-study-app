@@ -2,24 +2,24 @@ import { NextResponse } from 'next/server';
 import { aiModel } from '@/lib/gemini';
 import { dbAdmin } from '@/lib/firebase-admin';
 
-export async function POST() {
+export async function POST(req: Request) {
   try {
-    // 1. 本来はここで文部科学省の学習指導要領や予備校の情報をスクレイピング/検索APIで取得します
-    // 今回はAI（Gemini）の事前学習知識をフル活用して「情報収集・整理・分類」の各工程をシミュレートします。
+    const body = await req.json().catch(() => ({}));
+    const targetSubject = body.subject || '英語'; // Default to English if not provided
     
     // 【工程1＆2: 情報収集・整理 (AI Double Check)】
     // 高度なプロンプトで予備校レベルの緻密なカリキュラムを抽出
     const prompt = `
     あなたは日本のトップ予備校のカリキュラム開発責任者です。
-    大学受験（日東駒専・MARCHレベル）に向けた「普通科の全科目（英語、数学、国語、理科、社会の主要科目）」の最新の学習要綱（シラバス）のデータベースを作成してください。
+    大学受験（日東駒専・MARCHレベル）に向けた「${targetSubject}」の最新の学習要綱（シラバス）のデータベースを作成してください。
     文部科学省の学習指導要領をベースにしつつ、予備校の実践的な指導ステップに基づいて、
-    科目ごとに【大分類】【中分類】【小分類】の階層構造で緻密に整理してください。
+    【大分類】【中分類】【小分類】の階層構造で緻密に整理してください。
     小分類は、後日AIが「具体的な1回分の学習コンテンツ（解説＋ドリル）」を自動生成できる粒度にしてください。
 
     必ず以下のJSONフォーマットで出力してください。Markdownの装飾(\`\`\`json)などは一切含めず、純粋なJSON配列のみを出力してください。
     [
       {
-        "subjectName": "科目名",
+        "subjectName": "${targetSubject}",
         "largeCategories": [
           {
             "name": "大分類名",
