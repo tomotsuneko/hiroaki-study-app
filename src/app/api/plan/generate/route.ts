@@ -1,22 +1,58 @@
 import { NextResponse } from 'next/server';
 import { genAI } from '@/lib/gemini';
 import { updateSyllabus } from '@/lib/db';
+import { dbAdmin } from '@/lib/firebase-admin';
+import { cookies } from 'next/headers';
 
 export async function POST(req: Request) {
   try {
     const { profile } = await req.json();
+    const cookieStore = await cookies();
+    const userId = cookieStore.get('study_user_id')?.value || 'anonymous';
+
+    let personalizedData = null;
+    let masterCurriculum = [];
+
+    if (dbAdmin) {
+      // Fetch Master Syllabus (from all subjects)
+      const curriculumSnapshot = await dbAdmin.collection('curriculum_db').get();
+      curriculumSnapshot.forEach(doc => {
+        masterCurriculum.push(doc.data());
+      });
+
+      // Fetch personalized curriculum from user doc
+      if (userId !== 'anonymous') {
+        const userDoc = await dbAdmin.collection('users').doc(userId).get();
+        if (userDoc.exists) {
+           personalizedData = userDoc.data()?.db?.personalizedCurriculum || null;
+        }
+      }
+    }
 
     const userName = profile?.name || '生徒';
-    const targetSchools = profile?.targetSchools?.length > 0 ? profile.targetSchools.join('、') : '日東駒専レベルの理系学部';
+    const targetSchools = profile?.targetSchools?.length > 0 ? profile.targetSchools.join('、') : '目標未設定';
     const weakSubjects = profile?.weakSubjects?.length > 0 ? profile.weakSubjects.join('、') : '特になし';
+    const schoolTypeStr = profile?.schoolType === 'junior_high' ? '中学' : '高校';
+    const gradeStr = profile?.grade ? `${profile.grade}年生` : '';
+    const trackStr = profile?.track === 'arts' ? '（文系）' : profile?.track === 'science' ? '（理系）' : '';
+    const selectedSubjectsStr = profile?.selectedSubjects?.length > 0 ? profile.selectedSubjects.join('、') : '全般';
 
     const systemInstruction = `あなたは超一流の予備校の教務責任者（カリキュラム・ディレクター）です。
-生徒名：「${userName}」、高校2年生（理系）
+生徒名：「${userName}」、${schoolTypeStr}${gradeStr}${trackStr}
 第一志望・目標校：「${targetSchools}」
 苦手科目：「${weakSubjects}」
+学習希望科目：「${selectedSubjectsStr}」
 
-この生徒が目標校に確実に合格するための、最も合理的で最適な「学習シラバス（学習計画）」を構築してください。
-大手予備校（駿台、河合塾、東進など）の一般的なカリキュラム構成や市販の王道参考書ルートを幅広く分析・抽出し、以下の条件を満たすJSONフォーマットで出力してください。
+【マスターシラバスDB (参考)】
+${JSON.stringify(masterCurriculum.slice(0, 3))} // (※主要なデータのみ抜粋)
+
+【個人最適化データ (最優先)】
+${personalizedData ? JSON.stringify(personalizedData) : '（※自動最適化データなし。プロフィールに基づき構築してください）'}
+
+上記の「マスターシラバスDB」の標準的なカリキュラムと、この生徒専用の「個人最適化データ（教材・進度・差分戦略）」を統合し、目標校に確実に合格するための最も合理的で最適な「個人専用学習シラバス（学習計画）」を構築してください。
+不要な科目（学習希望科目にないもの）は一切含めず、必要な科目にリソースを集中させてください。
+
+以下の条件を満たすJSONフォーマットで出力してください。
 
 【設計の条件】
 1. 合格から逆算した「固定ルート（コア項目）」と、苦手科目を克服するための「弱点克服ルート」を明確に区別して生成すること。
@@ -38,8 +74,7 @@ export async function POST(req: Request) {
         ]
       }
     ]
-  },
-  ...
+  }
 ]`;
 
     const modelsToTry = [

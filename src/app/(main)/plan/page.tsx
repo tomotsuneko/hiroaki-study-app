@@ -15,6 +15,7 @@ export default function PlanPage() {
   const [generatedContent, setGeneratedContent] = useState<string>('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [showCompleted, setShowCompleted] = useState(false);
 
   const isTargetSet = profile.targetSchools && profile.targetSchools.length > 0 && !profile.targetSchools[0].includes('未設定');
   const mainTarget = isTargetSet ? profile.targetSchools[0] : '未設定';
@@ -146,17 +147,36 @@ export default function PlanPage() {
                   </div>
                 </div>
                 
-                {(phase.categories || []).map((cat: any, cIdx: number) => (
+                {(phase.categories || []).map((cat: any, cIdx: number) => {
+                  const pendingTasks = (cat.tasks || []).filter((task: any) => !(profile.completedTasks?.includes(task.title)));
+                  const completedTasks = (cat.tasks || []).filter((task: any) => profile.completedTasks?.includes(task.title));
+                  
+                  if (pendingTasks.length === 0 && completedTasks.length > 0 && !showCompleted) {
+                    return null; // Category fully complete, hide if not showing completed
+                  }
+
+                  return (
                   <div key={cIdx} className={styles.majorCategory}>
                     <h3 className={styles.majorTitle}>{cat.name}</h3>
                     <ul className={styles.taskList}>
-                      {(cat.tasks || []).map((task: any) => {
-                        const isCompleted = profile.completedTasks?.includes(task.title);
+                      {pendingTasks.map((task: any) => {
                         const isWeakness = task.type === 'weakness';
                         return (
-                          <li key={task.id} className={styles.taskItem} onClick={() => handleTaskClick(task.title)} style={{ opacity: isCompleted ? 0.6 : 1, borderLeft: isWeakness ? '3px solid #f59e0b' : 'none' }}>
-                            <input type="checkbox" checked={isCompleted} onChange={() => {}} onClick={(e) => toggleTaskCompletion(e, task.title)} style={{ transform: 'scale(1.2)' }} />
-                            <span style={{ textDecoration: isCompleted ? 'line-through' : 'none', fontWeight: isWeakness ? 'bold' : 'normal', color: isWeakness ? '#d97706' : 'inherit' }}>
+                          <li key={task.id} className={styles.taskItem} onClick={() => handleTaskClick(task.title)} style={{ borderLeft: isWeakness ? '3px solid #f59e0b' : 'none' }}>
+                            <input type="checkbox" checked={false} onChange={() => {}} onClick={(e) => toggleTaskCompletion(e, task.title)} style={{ transform: 'scale(1.2)' }} />
+                            <span style={{ fontWeight: isWeakness ? 'bold' : 'normal', color: isWeakness ? '#d97706' : 'inherit' }}>
+                              {isWeakness ? '【弱点補強】' : ''}{task.title}
+                            </span>
+                          </li>
+                        )
+                      })}
+                      
+                      {showCompleted && completedTasks.map((task: any) => {
+                        const isWeakness = task.type === 'weakness';
+                        return (
+                          <li key={task.id} className={styles.taskItem} onClick={() => handleTaskClick(task.title)} style={{ opacity: 0.5, borderLeft: isWeakness ? '3px solid #f59e0b' : 'none' }}>
+                            <input type="checkbox" checked={true} onChange={() => {}} onClick={(e) => toggleTaskCompletion(e, task.title)} style={{ transform: 'scale(1.2)' }} />
+                            <span style={{ textDecoration: 'line-through', fontWeight: isWeakness ? 'bold' : 'normal', color: isWeakness ? '#d97706' : 'inherit' }}>
                               {isWeakness ? '【弱点補強】' : ''}{task.title}
                             </span>
                           </li>
@@ -164,10 +184,22 @@ export default function PlanPage() {
                       })}
                     </ul>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             );
           })}
+          
+          {!isGeneratingSyllabus && syllabus.length > 0 && (
+            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+              <button 
+                onClick={() => setShowCompleted(!showCompleted)} 
+                style={{ background: 'none', border: 'none', color: '#64748B', textDecoration: 'underline', cursor: 'pointer', fontSize: '0.9rem' }}
+              >
+                {showCompleted ? '完了済みのタスクを隠す' : '完了済みのタスクを表示する'}
+              </button>
+            </div>
+          )}
         </div>
       )}
 
