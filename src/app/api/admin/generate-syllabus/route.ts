@@ -42,27 +42,24 @@ export async function POST(req: Request) {
     
     let jsonText = "";
     let success = false;
+    let lastError = "Unknown error";
     
     for (const modelName of modelsToTry) {
       if (success) break;
       try {
-        const model = genAI.getGenerativeModel({
-          model: modelName,
-          generationConfig: {
-            responseMimeType: "application/json",
-          }
-        });
+        const model = genAI.getGenerativeModel({ model: modelName }); // Removed generationConfig to prevent compatibility errors
         const result = await model.generateContent(prompt);
         jsonText = await result.response.text();
         jsonText = jsonText.replace(/```json/gi, '').replace(/```/g, '').trim();
         success = true;
       } catch (err: any) {
+        lastError = err.message;
         console.warn(`Syllabus generation with ${modelName} failed:`, err.message);
       }
     }
     
     if (!success) {
-      throw new Error("All fallback models failed to generate syllabus.");
+      throw new Error(`All fallback models failed. Last error: ${lastError}`);
     }
     
     const parsedData = JSON.parse(jsonText);

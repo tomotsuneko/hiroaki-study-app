@@ -84,16 +84,14 @@ ${personalizedData ? JSON.stringify(personalizedData) : '（※自動最適化�
 
     let text = "";
     let success = false;
+    let lastError = "Unknown error";
 
     for (const modelName of modelsToTry) {
       if (success) break;
       try {
         const model = genAI.getGenerativeModel({ 
           model: modelName,
-          systemInstruction: systemInstruction,
-          generationConfig: {
-            responseMimeType: "application/json",
-          }
+          systemInstruction: systemInstruction
         });
 
         const result = await model.generateContent(`「${targetSchools}」合格に向けた、「${weakSubjects}」の弱点克服を含む最適な年間学習シラバスを構築してください。`);
@@ -102,12 +100,13 @@ ${personalizedData ? JSON.stringify(personalizedData) : '（※自動最適化�
         text = text.replace(/```json/gi, '').replace(/```/g, '').trim();
         success = true;
       } catch (err: any) {
+        lastError = err.message;
         console.warn(`Syllabus model ${modelName} failed.`, err.message);
       }
     }
 
     if (!success) {
-      throw new Error("All Gemini models failed for Syllabus generation.");
+      throw new Error(`All Gemini models failed for Syllabus generation. Last error: ${lastError}`);
     }
     
     const syllabusData = JSON.parse(text);
