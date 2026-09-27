@@ -44,8 +44,8 @@ export async function POST(req: Request) {
 
     return res;
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Login Error:', error);
-    return NextResponse.json({ error: 'サーバーエラーが発生しました' }, { status: 500 });
+    return NextResponse.json({ error: 'サーバーエラー: ' + (error.message || String(error)) }, { status: 500 });
   }
 }

@@ -51,14 +51,17 @@ export default function Home() {
             <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', fontSize: '0.9rem', color: '#334155' }}>
               ユーザーID
             </label>
-            <input 
-              type="text" 
+            <select 
               value={userId}
               onChange={e => setUserId(e.target.value)}
-              placeholder="例: hiroaki"
-              style={{ width: '100%', padding: '12px', borderRadius: '10px', border: '1px solid #CBD5E1', fontSize: '1rem' }}
+              style={{ width: '100%', padding: '12px', borderRadius: '10px', border: '1px solid #CBD5E1', fontSize: '1rem', appearance: 'auto' }}
               required
-            />
+            >
+              <option value="">選択してください</option>
+              <option value="hiroaki">ひろあき</option>
+              <option value="wakana">わかな</option>
+              <option value="test">テスト</option>
+            </select>
           </div>
           
           <div className={styles.inputGroup} style={{ marginTop: '16px' }}>

@@ -1,17 +1,14 @@
 import * as admin from 'firebase-admin';
 
-// Check if already initialized to avoid duplicate app errors in dev
-if (!admin.apps || !admin.apps.length) {
+if (!admin.apps.length) {
   try {
     const projectId = process.env.FIREBASE_PROJECT_ID;
     const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
     const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
 
     if (projectId && clientEmail && privateKey) {
-      // Use require for default export if ES import fails for admin
-      const firebaseAdmin = require('firebase-admin');
-      firebaseAdmin.initializeApp({
-        credential: firebaseAdmin.credential.cert({
+      admin.initializeApp({
+        credential: admin.credential.cert({
           projectId,
           clientEmail,
           privateKey,
@@ -26,6 +23,4 @@ if (!admin.apps || !admin.apps.length) {
   }
 }
 
-// In some setups, default import fails, so fallback to require.
-const adminDb = require('firebase-admin').firestore;
-export const dbAdmin = admin.apps?.length ? adminDb() : null;
+export const dbAdmin = admin.apps.length ? admin.firestore() : null;
