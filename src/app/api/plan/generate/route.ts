@@ -81,7 +81,7 @@ export async function POST(req: Request) {
     const syllabusData = JSON.parse(text);
     
     // DBに保存
-    updateSyllabus(syllabusData);
+    await updateSyllabus(syllabusData);
 
     return NextResponse.json(syllabusData);
   } catch (error: any) {

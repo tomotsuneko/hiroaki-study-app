@@ -65,8 +65,8 @@ export async function POST(req: Request) {
     const analysisData = JSON.parse(text);
     
     // DBに保存
-    import('@/lib/db').then(({ addLog }) => {
-      addLog('drill', { subject, score: analysisData.filter((a:any) => a.isCorrect).length, total: analysisData.length });
+    import('@/lib/db').then(async ({ addLog }) => {
+      await addLog('drill', { subject, score: analysisData.filter((a:any) => a.isCorrect).length, total: analysisData.length });
     });
 
     return NextResponse.json(analysisData);

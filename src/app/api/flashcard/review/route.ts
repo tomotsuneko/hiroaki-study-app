@@ -5,7 +5,7 @@ export async function POST(req: Request) {
   try {
     const { id, correct } = await req.json();
     if (id) {
-      updateFlashcardReview(id, correct);
+      await updateFlashcardReview(id, correct);
     }
     return NextResponse.json({ success: true });
   } catch (error) {

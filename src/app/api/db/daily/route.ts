@@ -3,10 +3,10 @@ import { getDailyAnalysis, addLog, getLogs, getStudyTime, addStudyTime, getSylla
 
 export async function GET() {
   return NextResponse.json({
-    dailyAnalysis: getDailyAnalysis(),
-    recentLogs: getLogs().slice(-10),
-    studyTime: getStudyTime(),
-    syllabus: getSyllabus()
+    dailyAnalysis: await getDailyAnalysis(),
+    recentLogs: await getLogs().slice(-10),
+    studyTime: await getStudyTime(),
+    syllabus: await getSyllabus()
   });
 }
 
@@ -15,11 +15,11 @@ export async function POST(req: Request) {
     const { type, data } = await req.json();
     if (type === 'studyTime') {
       const date = new Date().toISOString().split('T')[0];
-      addStudyTime(date, data.minutes, data.task);
+      await addStudyTime(date, data.minutes, data.task);
       return NextResponse.json({ success: true });
     }
     
-    addLog(type, data);
+    await addLog(type, data);
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to add log' }, { status: 500 });

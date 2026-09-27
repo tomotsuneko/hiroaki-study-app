@@ -1,7 +1,5 @@
-import fs from 'fs';
-import path from 'path';
-
-const DB_PATH = path.join(process.cwd(), 'data', 'db.json');
+import { dbAdmin } from './firebase-admin';
+import { cookies } from 'next/headers';
 
 type LogEntry = {
   id: string;
@@ -13,117 +11,119 @@ type LogEntry = {
 export type SyllabusTask = {
   id: string;
   title: string;
-  type: 'core' | 'weakness'; // 'core' = 固定ルート, 'weakness' = 弱点克服
+  type: 'core' | 'weakness';
 };
 
 export type SyllabusPhase = {
   phase: string;
   title: string;
-  period: string; // e.g. "〜夏休み前"
+  period: string;
   categories: {
-    name: string; // e.g. "📘 英語基礎"
+    name: string;
     tasks: SyllabusTask[];
   }[];
 };
 
 type Database = {
   logs: LogEntry[];
-  studyTime: Record<string, number>; // YYYY-MM-DD -> minutes
+  studyTime: Record<string, number>;
   syllabus: SyllabusPhase[] | null;
   dailyAnalysis: {
     lastRunDate: string;
-    achievementLevel: number; // legacy
+    achievementLevel: number;
     achievements?: { school: string, level: number }[];
     recommendedSubjects: string[];
     aiComment: string;
-    miniLesson?: {
-      title: string;
-      content: string; // Markdown lesson, including MS fundamentals
-      question: string;
-      options: string[];
-      correctAnswerIndex: number;
-      explanation: string;
-    };
-    learningContents?: {
-      taskTitle: string;
-      textMarkdown: string;
-      videoQueries: string[];
-      checkTest: {
-        question: string;
-        options: string[];
-        correctIndex: number;
-        explanation: string;
-      }[];
-    }[];
+    miniLesson?: any;
+    learningContents?: any[];
   } | null;
-  flashcards?: {
-    id: string;
-    subject: string;
-    front: string;
-    back: string;
-    level: number; // 0=new, 1=1d, 2=3d, 3=7d, 4=14d
-    nextReviewDate: string; // ISO date
-  }[];
+  flashcards?: any[];
 };
 
 const defaultDb: Database = {
   logs: [],
   studyTime: {},
   syllabus: null,
-  dailyAnalysis: null
+  dailyAnalysis: null,
+  flashcards: []
 };
 
-function readDB(): Database {
+// Retrieve user ID from cookies
+async function getUserId(): Promise<string> {
+  const cookieStore = await cookies();
+  const userId = cookieStore.get('study_user_id')?.value;
+  return userId || 'anonymous';
+}
+
+async function readDB(): Promise<Database> {
   try {
-    if (fs.existsSync(DB_PATH)) {
-      const data = fs.readFileSync(DB_PATH, 'utf-8');
-      return JSON.parse(data);
+    const userId = await getUserId();
+    if (!dbAdmin) return { ...defaultDb }; // fallback if no firebase
+
+    const doc = await dbAdmin.collection('users').doc(userId).get();
+    if (doc.exists) {
+      const data = doc.data();
+      return {
+        ...defaultDb,
+        ...(data?.db || {})
+      };
     }
   } catch (e) {
     console.error("DB Read Error:", e);
   }
-  return defaultDb;
+  return { ...defaultDb };
 }
 
-function writeDB(data: Database) {
+async function writeDB(dbData: Database) {
   try {
-    fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2), 'utf-8');
+    const userId = await getUserId();
+    if (!dbAdmin) return;
+    
+    await dbAdmin.collection('users').doc(userId).set({
+      db: dbData
+    }, { merge: true });
   } catch (e) {
     console.error("DB Write Error:", e);
   }
 }
 
-export function addLog(type: LogEntry['type'], data: any) {
-  const db = readDB();
+export async function addLog(type: LogEntry['type'], data: any) {
+  const db = await readDB();
+  if (!db.logs) db.logs = [];
   db.logs.push({
     id: Date.now().toString(),
     timestamp: new Date().toISOString(),
     type,
     data
   });
-  writeDB(db);
+  await writeDB(db);
 }
 
-export function getLogs() {
-  return readDB().logs;
+export async function getLogs() {
+  const db = await readDB();
+  return db.logs || [];
 }
 
-export function getDailyAnalysis() {
-  return readDB().dailyAnalysis;
+export async function getDailyAnalysis() {
+  const db = await readDB();
+  return db.dailyAnalysis;
 }
 
-export function updateDailyAnalysis(analysis: Database['dailyAnalysis']) {
-  const db = readDB();
+export async function updateDailyAnalysis(analysis: Database['dailyAnalysis']) {
+  const db = await readDB();
   db.dailyAnalysis = analysis;
-  writeDB(db);
+  await writeDB(db);
 }
 
-export function addStudyTime(date: string, minutes: number, task?: string) {
-  const db = readDB();
+export async function addStudyTime(date: string, minutes: number, task?: string) {
+  const db = await readDB();
+  if (!db.studyTime) db.studyTime = {};
   if (!db.studyTime[date]) {
     db.studyTime[date] = 0;
   }
   db.studyTime[date] += minutes;
+  
+  if (!db.logs) db.logs = [];
   
   if (task) {
     db.logs.push({
@@ -141,36 +141,39 @@ export function addStudyTime(date: string, minutes: number, task?: string) {
     });
   }
   
-  writeDB(db);
+  await writeDB(db);
 }
 
-export function getStudyTime() {
-  return readDB().studyTime;
+export async function getStudyTime() {
+  const db = await readDB();
+  return db.studyTime || {};
 }
 
-export function getSyllabus() {
-  return readDB().syllabus;
+export async function getSyllabus() {
+  const db = await readDB();
+  return db.syllabus;
 }
 
-export function updateSyllabus(syllabus: SyllabusPhase[]) {
-  const db = readDB();
+export async function updateSyllabus(syllabus: SyllabusPhase[]) {
+  const db = await readDB();
   db.syllabus = syllabus;
-  writeDB(db);
+  await writeDB(db);
 }
 
-export function getFlashcards() {
-  return readDB().flashcards || [];
+export async function getFlashcards() {
+  const db = await readDB();
+  return db.flashcards || [];
 }
 
-export function saveFlashcards(cards: any[]) {
-  const db = readDB();
+export async function saveFlashcards(cards: any[]) {
+  const db = await readDB();
   if (!db.flashcards) db.flashcards = [];
   db.flashcards.push(...cards);
-  writeDB(db);
+  await writeDB(db);
 }
 
-export function updateFlashcardReview(id: string, correct: boolean) {
-  const db = readDB();
+export async function updateFlashcardReview(id: string, correct: boolean) {
+  const db = await readDB();
   if (!db.flashcards) return;
   const card = db.flashcards.find(c => c.id === id);
   if (card) {
@@ -184,5 +187,5 @@ export function updateFlashcardReview(id: string, correct: boolean) {
     nextDate.setDate(nextDate.getDate() + daysToAdd);
     card.nextReviewDate = nextDate.toISOString().split('T')[0];
   }
-  writeDB(db);
+  await writeDB(db);
 }

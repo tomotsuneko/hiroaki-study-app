@@ -5,7 +5,7 @@ import { genAI } from '@/lib/gemini';
 export async function POST(req: Request) {
   try {
     const { profile } = await req.json();
-    const logs = getLogs();
+    const logs = await getLogs();
 
     // 過去24時間のログのみ抽出（デモ用なので全ログでも可ですが一応）
     const recentLogs = logs.slice(-50); // 簡略化のため最新50件
@@ -113,14 +113,14 @@ const systemInstruction = `あなたは進路指導・学習プランニング�
           }]
         }]
       };
-      updateDailyAnalysis({
+      await updateDailyAnalysis({
         lastRunDate: new Date().toISOString(),
         ...dummyData
       } as any);
       return NextResponse.json(dummyData);
     }
     
-    updateDailyAnalysis({
+    await updateDailyAnalysis({
       lastRunDate: new Date().toISOString(),
       achievementLevel: 0, // legacy
       achievements: analysisData.achievements,

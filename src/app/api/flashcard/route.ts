@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     const { subjects, targetSchools } = await req.json();
     const today = new Date().toISOString().split('T')[0];
     
-    const allCards = getFlashcards();
+    const allCards = await getFlashcards();
     let dueCards = allCards.filter(c => c.nextReviewDate <= today);
     
     // If we have enough cards due, just return some of them (mix of subject if possible)
@@ -56,7 +56,7 @@ export async function POST(req: Request) {
       nextReviewDate: today
     }));
     
-    saveFlashcards(generated);
+    await saveFlashcards(generated);
     
     const combined = [...dueCards, ...generated];
     return NextResponse.json(combined.slice(0, 10));

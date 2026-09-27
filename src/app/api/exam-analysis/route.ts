@@ -61,8 +61,8 @@ export async function POST(req: Request) {
     
     const analysisData = JSON.parse(text);
 
-    import('@/lib/db').then(({ addLog }) => {
-      addLog('exam', analysisData);
+    import('@/lib/db').then(async ({ addLog }) => {
+      await addLog('exam', analysisData);
     });
 
     return NextResponse.json(analysisData);
