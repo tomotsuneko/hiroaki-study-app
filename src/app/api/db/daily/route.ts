@@ -1,13 +1,14 @@
 import { NextResponse } from 'next/server';
-import { getDailyAnalysis, addLog, getLogs, getStudyTime, getSyllabus, getSyllabusUpdatedAt, addStudyTime } from '@/lib/db';
+import { readDB, addLog, addStudyTime } from '@/lib/db';
 
 export async function GET() {
+  const db = await readDB();
   return NextResponse.json({
-    dailyAnalysis: await getDailyAnalysis(),
-    recentLogs: (await getLogs()).slice(-10),
-    studyTime: await getStudyTime(),
-    syllabus: await getSyllabus(),
-    syllabusUpdatedAt: await getSyllabusUpdatedAt()
+    dailyAnalysis: db.dailyAnalysis,
+    recentLogs: (db.logs || []).slice(-10),
+    studyTime: db.studyTime || {},
+    syllabus: db.syllabus,
+    syllabusUpdatedAt: db.syllabusUpdatedAt
   });
 }
 

@@ -56,7 +56,7 @@ async function getUserId(): Promise<string> {
   return userId || 'anonymous';
 }
 
-async function readDB(): Promise<Database> {
+export async function readDB(): Promise<Database> {
   try {
     const userId = await getUserId();
     if (!dbAdmin) return { ...defaultDb }; // fallback if no firebase
