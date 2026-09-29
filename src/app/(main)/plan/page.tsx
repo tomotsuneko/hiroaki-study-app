@@ -22,6 +22,7 @@ export default function PlanPage() {
 
   const [syllabus, setSyllabus] = useState<any[]>([]);
   const [isGeneratingSyllabus, setIsGeneratingSyllabus] = useState(false);
+  const [activeTabs, setActiveTabs] = useState<{ [phaseIdx: number]: number }>({});
 
   useEffect(() => {
     async function fetchSyllabus() {
@@ -147,45 +148,70 @@ export default function PlanPage() {
                   </div>
                 </div>
                 
-                {(phase.categories || []).map((cat: any, cIdx: number) => {
-                  const pendingTasks = (cat.tasks || []).filter((task: any) => !(profile.completedTasks?.includes(task.title)));
-                  const completedTasks = (cat.tasks || []).filter((task: any) => profile.completedTasks?.includes(task.title));
-                  
-                  if (pendingTasks.length === 0 && completedTasks.length > 0 && !showCompleted) {
-                    return null; // Category fully complete, hide if not showing completed
-                  }
-
-                  return (
-                  <div key={cIdx} className={styles.majorCategory}>
-                    <h3 className={styles.majorTitle}>{cat.name}</h3>
-                    <ul className={styles.taskList}>
-                      {pendingTasks.map((task: any) => {
-                        const isWeakness = task.type === 'weakness';
-                        return (
-                          <li key={task.id} className={styles.taskItem} onClick={() => handleTaskClick(task.title)} style={{ borderLeft: isWeakness ? '3px solid #f59e0b' : 'none' }}>
-                            <input type="checkbox" checked={false} onChange={() => {}} onClick={(e) => toggleTaskCompletion(e, task.title)} style={{ transform: 'scale(1.2)' }} />
-                            <span style={{ fontWeight: isWeakness ? 'bold' : 'normal', color: isWeakness ? '#d97706' : 'inherit' }}>
-                              {isWeakness ? '【弱点補強】' : ''}{task.title}
-                            </span>
-                          </li>
-                        )
-                      })}
+                <div className={styles.tabContainer}>
+                  <div className={styles.tabHeader}>
+                    {(phase.categories || []).map((cat: any, cIdx: number) => {
+                      const totalCatTasks = (cat.tasks || []).length;
+                      const completedCatTasks = (cat.tasks || []).filter((task: any) => profile.completedTasks?.includes(task.title)).length;
+                      const catProgress = totalCatTasks === 0 ? 0 : Math.round((completedCatTasks / totalCatTasks) * 100);
+                      const isActive = (activeTabs[pIdx] || 0) === cIdx;
                       
-                      {showCompleted && completedTasks.map((task: any) => {
-                        const isWeakness = task.type === 'weakness';
-                        return (
-                          <li key={task.id} className={styles.taskItem} onClick={() => handleTaskClick(task.title)} style={{ opacity: 0.5, borderLeft: isWeakness ? '3px solid #f59e0b' : 'none' }}>
-                            <input type="checkbox" checked={true} onChange={() => {}} onClick={(e) => toggleTaskCompletion(e, task.title)} style={{ transform: 'scale(1.2)' }} />
-                            <span style={{ textDecoration: 'line-through', fontWeight: isWeakness ? 'bold' : 'normal', color: isWeakness ? '#d97706' : 'inherit' }}>
-                              {isWeakness ? '【弱点補強】' : ''}{task.title}
-                            </span>
-                          </li>
-                        )
-                      })}
-                    </ul>
+                      return (
+                        <button 
+                          key={cIdx} 
+                          className={`${styles.tabButton} ${isActive ? styles.activeTab : ''}`}
+                          onClick={() => setActiveTabs({ ...activeTabs, [pIdx]: cIdx })}
+                        >
+                          {cat.name} <span style={{ fontSize: '0.8rem', opacity: 0.8, marginLeft: '4px' }}>({catProgress}%)</span>
+                        </button>
+                      );
+                    })}
                   </div>
-                  );
-                })}
+                  
+                  <div className={styles.tabContent}>
+                    {(phase.categories || []).map((cat: any, cIdx: number) => {
+                      const isActive = (activeTabs[pIdx] || 0) === cIdx;
+                      if (!isActive) return null;
+
+                      const pendingTasks = (cat.tasks || []).filter((task: any) => !(profile.completedTasks?.includes(task.title)));
+                      const completedTasks = (cat.tasks || []).filter((task: any) => profile.completedTasks?.includes(task.title));
+                      
+                      if (pendingTasks.length === 0 && completedTasks.length > 0 && !showCompleted) {
+                        return <p key={cIdx} style={{ color: '#64748B', textAlign: 'center', padding: '20px' }}>すべてのタスクが完了しました！</p>;
+                      }
+
+                      return (
+                        <div key={cIdx} className={styles.majorCategory} style={{ margin: 0 }}>
+                          <ul className={styles.taskList} style={{ paddingLeft: 0 }}>
+                            {pendingTasks.map((task: any) => {
+                              const isWeakness = task.type === 'weakness';
+                              return (
+                                <li key={task.id} className={styles.taskItem} onClick={() => handleTaskClick(task.title)} style={{ borderLeft: isWeakness ? '3px solid #f59e0b' : 'none' }}>
+                                  <input type="checkbox" checked={false} onChange={() => {}} onClick={(e) => toggleTaskCompletion(e, task.title)} style={{ transform: 'scale(1.2)' }} />
+                                  <span style={{ fontWeight: isWeakness ? 'bold' : 'normal', color: isWeakness ? '#d97706' : 'inherit' }}>
+                                    {isWeakness ? '【弱点補強】' : ''}{task.title}
+                                  </span>
+                                </li>
+                              )
+                            })}
+                            
+                            {showCompleted && completedTasks.map((task: any) => {
+                              const isWeakness = task.type === 'weakness';
+                              return (
+                                <li key={task.id} className={styles.taskItem} onClick={() => handleTaskClick(task.title)} style={{ opacity: 0.5, borderLeft: isWeakness ? '3px solid #f59e0b' : 'none' }}>
+                                  <input type="checkbox" checked={true} onChange={() => {}} onClick={(e) => toggleTaskCompletion(e, task.title)} style={{ transform: 'scale(1.2)' }} />
+                                  <span style={{ textDecoration: 'line-through', fontWeight: isWeakness ? 'bold' : 'normal', color: isWeakness ? '#d97706' : 'inherit' }}>
+                                    {isWeakness ? '【弱点補強】' : ''}{task.title}
+                                  </span>
+                                </li>
+                              )
+                            })}
+                          </ul>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
             );
           })}
