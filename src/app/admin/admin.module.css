@@ -1,0 +1,33 @@
+.sidebar {
+  width: 250px;
+  background-color: #1E293B;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navLink {
+  padding: 10px;
+  border-radius: 8px;
+  color: #94A3B8;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.navLink:hover {
+  background-color: #334155;
+  color: white;
+}
+
+.activeLink {
+  background-color: #334155;
+  color: white;
+  font-weight: bold;
+}
