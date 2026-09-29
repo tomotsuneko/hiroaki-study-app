@@ -1,0 +1,3688 @@
+{
+ "map": "jhs_eigo1",
+ "title": "中学校_英語（1年）",
+ "school": "中学校",
+ "subject": "外国語（英語）第1学年",
+ "generated": "2026-09-29",
+ "fetched": "",
+ "segments": [
+  {
+   "key": "1",
+   "title": "中学1年",
+   "hours": 140,
+   "id_prefix": "中1",
+   "cos_items": [
+    "(1)ア(ア)",
+    "(1)ア(イ)",
+    "(1)ア(ウ)",
+    "(1)ア(エ)",
+    "(1)ア(オ)",
+    "(1)イ",
+    "(1)ウ(ア)",
+    "(1)ウ(イ)",
+    "(1)ウ(ウ)",
+    "(1)エ",
+    "(1)エ(ア)b",
+    "(1)エ(ア)c",
+    "(1)エ(イ)a",
+    "(1)エ(イ)b(a)",
+    "(1)エ(イ)e(a)",
+    "(1)エ(ウ)a(a)",
+    "(1)エ(ウ)c",
+    "(1)エ(ウ)d",
+    "(1)エ(ウ)e",
+    "(1)エ(ウ)g",
+    "(2)ア",
+    "(2)イ",
+    "(2)ウ",
+    "(3)①ア",
+    "(3)①イ(ア)",
+    "(3)①イ(イ)",
+    "(3)①イ(ウ)",
+    "(3)①イ(エ)",
+    "(3)①ウ(ア)",
+    "(3)①ウ(イ)",
+    "(3)①ウ(ウ)",
+    "(3)①ウ(エ)",
+    "(3)①エ(ア)",
+    "(3)①エ(イ)",
+    "(3)①エ(ウ)",
+    "(3)①オ(ア)",
+    "(3)①オ(イ)",
+    "(3)①オ(ウ)",
+    "(3)①カ(ア)",
+    "(3)①カ(イ)",
+    "(3)①カ(ウ)",
+    "(3)①カ(エ)",
+    "(3)②ア(ア)",
+    "(3)②ア(イ)",
+    "(3)②イ(ア)",
+    "(3)②イ(イ)",
+    "(3)②イ(ウ)",
+    "(3)②イ(エ)",
+    "(3)②イ(オ)",
+    "取扱い(1)ウ",
+    "取扱い(2)イ",
+    "取扱い(2)ウ",
+    "取扱い(2)エ(ア)",
+    "取扱い(2)エ(ウ)",
+    "取扱い(2)オ"
+   ],
+   "required_terms": []
+  }
+ ],
+ "header": [
+  "準拠：中学校学習指導要領（平成29年告示、令和3年度から全面実施）。次期学習指導要領は中学校で令和13年度から全面実施の予定（今後変更の可能性あり）[S1][S2][S15]",
+  "外国語科の標準授業時数は各学年140（1単位時間50分）[S3]。学習指導要領の英語の目標・内容は3学年分をまとめて示しており、学年ごとの目標は各学校が定める（3(1)イ）[S1]",
+  "第1学年で扱う文法事項は、東京書籍『NEW HORIZON English Course 1』の令和7年度用年間指導計画を基準にし、他の5社の第1学年用教科書の編修趣意書と照合して選んだ（1-3 の注）[S4]〜[S11]",
+  "高校入試：千葉県公立高等学校入学者選抜（令和9年度）の出題方針・実施要項に基づく [S13][S14]",
+  "小項目は学習指導要領の事項（言語材料・領域別の言語活動・言語の働き）で立て、教科書の課（Unit）や題材名には依存しない。中項目は中学校英語の各学年で共通の構成にした"
+ ],
+ "basis_note": "中学校学習指導要領 第2章第9節 外国語 第2の英語「2 内容」の記号。(1)＝英語の特徴やきまりに関する事項（ア 音声、イ 符号、ウ 語，連語及び慣用表現、エ 文，文構造及び文法事項）、(2)＝思考力，判断力，表現力等に関する事項、(3)①＝言語活動に関する事項、(3)②＝言語の働きに関する事項。例：(1)エ(ウ)e＝文法事項のｅ（動詞の時制及び相など）、(1)エ(イ)b(a)＝文構造ｂの⒜（本文の全角 ａ〜ｋ・⒜〜⒟ を半角で表記）、(3)①エ(イ)＝話すこと［やり取り］の(ｲ)。(1)エ＝エの柱書で、小学校学習指導要領 外国語の(1)エ「文及び文構造」（単文、肯定・否定の平叙文と命令文、be 動詞・助動詞・疑問詞 who など で始まる疑問文 など）を含む。内容の取扱い(2)イ＝英語の「3 指導計画の作成と内容の取扱い」の(2)イ [S1]",
+ "method_note": "学習指導要領と解説は外国語（英語）の内容を3学年まとめて示し（学年ごとの目標は各学校が定める。3(1)イ）、中項目（領域・言語材料）レベルまでしか定めていないため、1コマの区切りは学習指導要領の事項と解説の小見出し・活動例を単位にした。第1学年で扱う文法事項は東京書籍の年間指導計画を基準にし、他社の編修趣意書と照合した。教科書は課（Unit／Lesson／PROGRAM）ごとに複数の領域と言語材料を組み合わせて配当しており中項目と対応しないため、教科書会社の配当時数は合計時数（予備時間の算出）と領域の比重の参考にとどめた。",
+ "exam_columns": [
+  {
+   "name": "高校入試（千葉県）",
+   "note": "○＝千葉県公立高校入試（学力検査）の出題範囲に含まれる内容。千葉県は英語について「学習指導要領に基づき、…理解したり表現したりする力を全領域にわたり身に付けているかをみる」とし、「聞くこと」「読むこと」に加えて「『話すこと［やり取り］』及び『話すこと［発表］』と『書くこと』の領域では、日常的、社会的な話題について、基本的な語句や文を用いて話したり伝え合ったりする力及び自分の考えなどを英語でまとめ、適切に書く力をみる」と公表している [S13]。聞くことでは「対話文やまとまりのある文章から話し手の意向や大切な事柄を聞き取り、適切に判断して答える力」、読むことでは「日常的、社会的な話題に関する文章や図表、イラスト等から、必要な情報、概要や要点を読み取り、適切に答える力や、読み取った情報を基に思考し、判断する力」をみるとしている [S13]。学力検査の英語は60分・100点で、放送によるリスニングテストを含む [S13][S14]。△＝出題範囲（話すことの領域）に含まれるが、学力検査の英語は問題と放送によるリスニングテストで行われ（実施要項に口頭で話す検査の定めはない）、口頭で話す活動そのもの（即興のやり取り、説明・スピーチの実演、音読）は直接には問われない行。その行で使う表現や内容の組み立ては、筆記の問題でも問われうる（英語1〜3年で共通の基準）"
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "name": "中学校学習指導要領（平成29年告示）第2章第9節 外国語",
+   "publisher": "文部科学省",
+   "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_02.pdf",
+   "use": "目標・内容・指導計画の作成と内容の取扱いの転記、根拠コード"
+  },
+  {
+   "id": "S2",
+   "name": "中学校学習指導要領（平成29年告示）解説 外国語編",
+   "publisher": "文部科学省",
+   "url": "https://www.mext.go.jp/content/20210531-mxt_kyoiku01-100002608_010.pdf",
+   "use": "小項目の内容と扱いの程度、例文・活動例、小学校で扱う事項との区別（付録4 小学校学習指導要領 外国語）、解説ページ"
+  },
+  {
+   "id": "S3",
+   "name": "学校教育法施行規則 別表第二（令和8年4月1日施行版）",
+   "publisher": "e-Gov法令検索",
+   "url": "https://laws.e-gov.go.jp/law/322M40000080011",
+   "use": "標準授業時数（外国語 140・140・140、1単位時間50分）"
+  },
+  {
+   "id": "S4",
+   "name": "令和7年度用『NEW HORIZON』年間指導計画作成資料【1年】",
+   "publisher": "東京書籍",
+   "url": "https://ten.tokyo-shoseki.co.jp/text/chu/eigo/download/documents/R7eigo_saian_1_2502.pdf",
+   "use": "第1学年の文法事項とその順序（基準）、各単元・Real Life English などの配当時数（計99時間）、使用領域"
+  },
+  {
+   "id": "S5",
+   "name": "令和7年度用『NEW HORIZON』年間指導計画（略案）1〜3年",
+   "publisher": "東京書籍",
+   "url": "https://ten.tokyo-shoseki.co.jp/text/chu/list/keikaku/",
+   "use": "第1学年の配当（S4 と同じ計99時間）の確認、第1学年で扱わない文法事項の配当学年（2年・3年）"
+  },
+  {
+   "id": "S6",
+   "name": "編修趣意書 東京書籍 英語002-72『NEW HORIZON English Course 1』（令和5年度検定）-4",
+   "publisher": "文部科学省（発行者作成）",
+   "url": "https://www.mext.go.jp/content/20240408-ope_dev03-000035235-120.pdf",
+   "use": "第1学年の合計時数（99時間）"
+  },
+  {
+   "id": "S7",
+   "name": "編修趣意書 開隆堂出版 英語009-72『Sunshine English Course 1』（令和5年度検定）",
+   "publisher": "文部科学省（発行者作成）",
+   "url": "https://www.mext.go.jp/content/20240408-ope_dev03-000035235-126.pdf",
+   "use": "第1学年の合計時数（88時間）、Get Ready（6時間）、主な言語材料"
+  },
+  {
+   "id": "S8",
+   "name": "編修趣意書 三省堂 英語015-72『NEW CROWN English Series 1』（令和5年度検定）",
+   "publisher": "文部科学省（発行者作成）",
+   "url": "https://www.mext.go.jp/content/20240408-ope_dev03-000035235-129.pdf",
+   "use": "第1学年の合計時数（97時間）、小学校の復習（Starter 1〜6、5時間）、主な言語材料"
+  },
+  {
+   "id": "S9",
+   "name": "編修趣意書 教育出版 英語017-72『ONE WORLD English Course 1』（令和5年度検定）",
+   "publisher": "文部科学省（発行者作成）",
+   "url": "https://www.mext.go.jp/content/20240408-ope_dev03-000035235-132.pdf",
+   "use": "第1学年の合計時数（109時間）、Springboard 1〜6（9時間）、主な言語材料"
+  },
+  {
+   "id": "S10",
+   "name": "編修趣意書 光村図書出版 英語038-72『Here We Go! ENGLISH COURSE 1』（令和5年度検定）",
+   "publisher": "文部科学省（発行者作成）",
+   "url": "https://www.mext.go.jp/content/20240408-ope_dev03-000035235-135.pdf",
+   "use": "第1学年の合計時数（100時間）、Let's Be Friends!（8時間）、主な言語材料"
+  },
+  {
+   "id": "S11",
+   "name": "編修趣意書 新興出版社啓林館 英語061-72『BLUE SKY English Course 1』（令和5年度検定）",
+   "publisher": "文部科学省（発行者作成）",
+   "url": "https://www.mext.go.jp/content/20240408-ope_dev03-000035235-138.pdf",
+   "use": "第1学年の合計時数（103時間）、Let's Start（3時間）、主な言語材料"
+  },
+  {
+   "id": "S12",
+   "name": "編修趣意書 中学校 外国語（令和5年度検定）",
+   "publisher": "文部科学省",
+   "url": "https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00089.html",
+   "use": "英語6社の第1学年用編修趣意書の一覧"
+  },
+  {
+   "id": "S13",
+   "name": "令和9年度千葉県公立高等学校入学者選抜における学力検査の実施教科及び出題方針等",
+   "publisher": "千葉県教育委員会",
+   "url": "https://www.pref.chiba.lg.jp/kyouiku/shidou/press/2026/r9houshin.html",
+   "use": "英語の出題方針（全領域、聞くこと・読むこと・話すこと・書くこと）、検査時間・配点"
+  },
+  {
+   "id": "S14",
+   "name": "令和9年度千葉県公立高等学校入学者選抜実施要項",
+   "publisher": "千葉県教育委員会",
+   "url": "https://www.pref.chiba.lg.jp/kyouiku/shidou/nyuushi/koukou/r9/documents/00r9jissiyoukou2.pdf",
+   "use": "学力検査の教科・時間・配点（英語はリスニングテストを含む）、学校設定検査、英語の得点の傾斜"
+  },
+  {
+   "id": "S15",
+   "name": "学習指導要領等の改訂に関するスケジュール（イメージ）（令和8年7月8日 教育課程部会 総則・評価特別部会 参考資料3）",
+   "publisher": "文部科学省（中央教育審議会）",
+   "url": "https://www.mext.go.jp/content/20260708-mxt_kyoiku01-000050888-6.pdf",
+   "use": "次期学習指導要領の実施時期（中学校は令和13年度から全面実施予定）"
+  },
+  {
+   "id": "S16",
+   "name": "教科書Q&A 令和7年度版 中学校英語教科書「NEW CROWN」",
+   "publisher": "三省堂",
+   "url": "https://tb.sanseido-publ.co.jp/07ncpr/qa/",
+   "use": "配当時数の考え方（第1学年97時間、年間140時間の70%程度）"
+  },
+  {
+   "id": "S17",
+   "name": "令和7年度版 Here We Go! ENGLISH COURSE 1 年間指導計画・評価計画例〈単元別細案〉",
+   "publisher": "光村図書出版",
+   "url": "https://www.mitsumura-tosho.co.jp/kyokasho/c-eigo/keikaku",
+   "use": "光村図書の第1学年 Unit 8 の文法事項（現在進行形・過去進行形）の確認（編修趣意書の表の一部が判読できないため）"
+  }
+ ],
+ "limitations": [
+  "中項目・小項目は学習指導要領の事項の構造に沿って並べたもので、授業の順序を示すものではない。実際の授業では、各社の教科書のように課（Unit／Lesson）の中で文法事項と五つの領域の言語活動を組み合わせて扱うのが一般的である [S4]〜[S11]。",
+  "学習指導要領は言語活動を「例えば，次のような」と例示している。1コマの区切りとコマ配分は、解説の記述と教科書会社の配当時数を参考にした一例である（各単元の注を参照）。",
+  "第1学年で扱う文法事項は教科書によって異なる（例：三省堂・教育出版は will・be going to を、啓林館は動名詞・接続詞 when を第1学年で扱う）。本資料は東京書籍の配当を基準にしており、他社の教科書を使う学校では一部の事項が2年に移ったり1年に加わったりする（1-3 の注）。",
+  "「名詞の複数形」のように教科書では一般的だが解説に明示の記述がない内容を含む行には † を付けた。",
+  "「復習」行は、東京書籍の配当時数の合計（99時間）と標準授業時数140時間との差（予備時間41時間）に、範囲を明示した復習を割り当てたもの。実際の学校では定期考査や帯活動などにも使われる。",
+  "高校入試列の△は、話すことの領域の内容だが、学力検査の形式上、口頭で話す活動そのものは直接には問われないことを示す。△の行で身に付ける語彙・表現・文法の知識や内容の組み立て方は、筆記の問題でも用いられる。",
+  "千葉県の学力検査は5教科（英語は60分・100点、リスニングテストを含む）。一部の高校は学校設定検査として学校独自問題などを実施し、国際関係に関する学科では英語の得点を1.5倍又は2倍にできるため、実施校と内容は実施要項の付表で確認が必要 [S14]。",
+  "次期学習指導要領（中学校は令和13年度から全面実施予定）では内容や学年配当が変わる可能性がある。本資料は現行（平成29年告示）に基づく。"
+ ],
+ "units": [
+  {
+   "uid": "1-1",
+   "ref": "jhs_eigo1:1-1",
+   "segment": "中学1年",
+   "title": "小学校外国語からの接続",
+   "aim": "小学校で音声に十分に慣れ親しんだ簡単な語句や基本的な表現と、単文・命令文・疑問文などの文及び文構造を、具体的な課題を設定した言語活動の中で繰り返し使い、読んだり書いたりして表現できる段階まで定着させて、中学校の学習に接続する。",
+   "prereq": [],
+   "cos": "2(1)エ（小学校の文及び文構造）・(3)①ア、3(1)ウ",
+   "kaisetsu": "p.36-41, 54-55, 85-86",
+   "note": "解説が「中学校第１学年においては，特に，小学校における外国語活動や外国語科の内容，指導等の実態…を十分に踏まえる」（3(1)ウ）とし、(3)①アについて「中学校の初年次の導入段階から」小学校の言語活動を繰り返し行うよう求めるため、年度初めの中項目とした [S2]。各社の導入教材の配当時数：東京書籍 Unit 0・Sounds and Letters 0・Grammar for Communication 0（各1時間）[S4]、開隆堂 Get Ready、三省堂 Starter 1〜6、教育出版 Springboard 1〜6、光村図書 Let's Be Friends!、啓林館 Let's Start [S7]〜[S11]。",
+   "extra": false,
+   "hours": 6,
+   "publisher_hours": {
+    "東京書籍": 3,
+    "開隆堂": 6,
+    "三省堂": 5,
+    "教育出版": 9,
+    "光村図書": 8,
+    "啓林館": 3
+   },
+   "rows": [
+    {
+     "id": "jhs_eigo1/中1-001",
+     "rid": "中1-001",
+     "order_in_segment": 1,
+     "order_in_unit": 1,
+     "prev_id": null,
+     "next_id": "jhs_eigo1/中1-002",
+     "title": "小学校で慣れ親しんだ表現で挨拶と自己紹介をする",
+     "kind": "活用",
+     "summary": "初対面の相手と挨拶を交わし、名前や好きなもの、得意なことなどを、小学校で音声で十分に慣れ親しんだ簡単な語句や基本的な表現を使って伝え合う。",
+     "summary_core": "初対面の相手と挨拶を交わし、名前や好きなもの、得意なことなどを、小学校で音声で十分に慣れ親しんだ簡単な語句や基本的な表現を使って伝え合う。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①ア",
+      "取扱い(1)ウ"
+     ],
+     "basis_text": "(3)①ア、内容の取扱い(1)ウ",
+     "kaisetsu_page": "54-55",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-002",
+     "rid": "中1-002",
+     "order_in_segment": 2,
+     "order_in_unit": 2,
+     "prev_id": "jhs_eigo1/中1-001",
+     "next_id": "jhs_eigo1/中1-003",
+     "title": "小学校で学んだ疑問文でたずね合う",
+     "kind": "活用",
+     "summary": "Do you like blue? / When is your birthday? / What time do you get up? など、小学校で扱った be 動詞・助動詞（can、do）・疑問詞で始まる疑問文を使って、相手のことをたずね合う。",
+     "summary_core": "Do you like blue? / When is your birthday? / What time do you get up? など、小学校で扱った be 動詞・助動詞（can、do）・疑問詞で始まる疑問文を使って、相手のことをたずね合う。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ",
+      "(3)①ア"
+     ],
+     "basis_text": "(1)エ、(3)①ア",
+     "kaisetsu_page": "38-39",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-003",
+     "rid": "中1-003",
+     "order_in_segment": 3,
+     "order_in_unit": 3,
+     "prev_id": "jhs_eigo1/中1-002",
+     "next_id": "jhs_eigo1/中1-004",
+     "title": "英語の語順と小学校で学んだ文の形",
+     "kind": "学習",
+     "summary": "I play baseball. / She can swim fast. / I don't like soccer very much. など小学校で扱った単文（肯定・否定の平叙文）を使い、主語の後に動詞が来るなど、日本語と英語の語順の違いを確かめる。",
+     "summary_core": "I play baseball. / She can swim fast. / I don't like soccer very much. など小学校で扱った単文（肯定・否定の平叙文）を使い、主語の後に動詞が来るなど、日本語と英語の語順の違いを確かめる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ",
+      "取扱い(2)エ(ウ)"
+     ],
+     "basis_text": "(1)エ、内容の取扱い(2)エ(ウ)",
+     "kaisetsu_page": "36-39",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-004",
+     "rid": "中1-004",
+     "order_in_segment": 4,
+     "order_in_unit": 4,
+     "prev_id": "jhs_eigo1/中1-003",
+     "next_id": "jhs_eigo1/中1-005",
+     "title": "小学校で触れた過去形・to 不定詞を含む表現",
+     "kind": "学習",
+     "summary": "I went to Okinawa. / I enjoyed fishing. / I want to go to Italy. など、小学校で基本的な表現として触れた文を取り上げ、音声で十分に慣れ親しんだ表現を読んだり書いたりする。",
+     "summary_core": "I went to Okinawa. / I enjoyed fishing. / I want to go to Italy. など、小学校で基本的な表現として触れた文を取り上げ、音声で十分に慣れ親しんだ表現を読んだり書いたりする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ",
+      "(1)エ(ウ)e",
+      "(1)エ(ウ)g"
+     ],
+     "basis_text": "(1)エ・エ(ウ)e・エ(ウ)g",
+     "kaisetsu_page": "47-49",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-005",
+     "rid": "中1-005",
+     "order_in_segment": 5,
+     "order_in_unit": 5,
+     "prev_id": "jhs_eigo1/中1-004",
+     "next_id": "jhs_eigo1/中1-006",
+     "title": "活字体の大文字・小文字を正しく書く",
+     "kind": "学習",
+     "summary": "小学校で学んだ活字体の大文字・小文字を、語や句、文を書く中で正しく書けるようにする。生徒の学習負担に配慮しながら、必要に応じて筆記体にも触れる。",
+     "summary_core": "小学校で学んだ活字体の大文字・小文字を、語や句、文を書く中で正しく書けるようにする。生徒の学習負担に配慮しながら、必要に応じて筆記体にも触れる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)イ",
+      "取扱い(2)ウ"
+     ],
+     "basis_text": "(1)イ、内容の取扱い(2)ウ",
+     "kaisetsu_page": "92",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-006",
+     "rid": "中1-006",
+     "order_in_segment": 6,
+     "order_in_unit": 6,
+     "prev_id": "jhs_eigo1/中1-005",
+     "next_id": "jhs_eigo1/中1-007",
+     "title": "小学校で学んだ語句や表現を繰り返し使って定着させる",
+     "kind": "活用",
+     "summary": "日付や時刻などを表す表現など、小学校で学んだ簡単な語句や基本的な表現を、具体的な課題を設定した言語活動の中で繰り返し使い、話したり書いたりして表現できる段階まで定着させる。",
+     "summary_core": "日付や時刻などを表す表現など、小学校で学んだ簡単な語句や基本的な表現を、具体的な課題を設定した言語活動の中で繰り返し使い、話したり書いたりして表現できる段階まで定着させる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①ア",
+      "(1)ウ(ア)",
+      "取扱い(1)ウ"
+     ],
+     "basis_text": "(3)①ア、(1)ウ(ア)、内容の取扱い(1)ウ",
+     "kaisetsu_page": "54-55",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    }
+   ]
+  },
+  {
+   "uid": "1-2",
+   "ref": "jhs_eigo1:1-2",
+   "segment": "中学1年",
+   "title": "音声・符号・語、連語及び慣用表現",
+   "aim": "日本語との違いに留意して英語の発音・音の連結・強勢・イントネーション・区切りを身に付け、発音と綴りの対応、符号の使い方、語・連語・慣用表現と辞書の使い方を理解して、聞いたり話したり読んだり書いたりする活動で活用できるようにする。",
+   "prereq": [
+    "jhs_eigo1:1-1"
+   ],
+   "cos": "2(1)ア・イ・ウ、3(2)イ・オ",
+   "kaisetsu": "p.30-36, 91-92, 95",
+   "note": "音声は各社とも帯教材や各課の中で継続して扱う（東京書籍 Sounds and Letters 0〜4 各1時間 [S4]、三省堂 Words & Sounds 1・2 各1時間 [S8]、啓林館 Let's Start の「発音とつづり」[S11]）。解説の見出し（発音、連結、強勢、イントネーション、区切り、符号、語、連語、慣用表現）ごとに1コマとし、発音と綴り・辞書の使い方（内容の取扱い）を加えた。",
+   "extra": false,
+   "hours": 11,
+   "publisher_hours": {},
+   "rows": [
+    {
+     "id": "jhs_eigo1/中1-007",
+     "rid": "中1-007",
+     "order_in_segment": 7,
+     "order_in_unit": 1,
+     "prev_id": "jhs_eigo1/中1-006",
+     "next_id": "jhs_eigo1/中1-008",
+     "title": "文字と音の関係（発音と綴り）",
+     "kind": "学習",
+     "summary": "小学校で学んだ文字の名称の読み方から、文字の表す音の学習に移る。ある程度綴りと発音になじんだ語を使い、発音と綴りの基本的な対応関係を単純なものから確かめる。",
+     "summary_core": "小学校で学んだ文字の名称の読み方から、文字の表す音の学習に移る。ある程度綴りと発音になじんだ語を使い、発音と綴りの基本的な対応関係を単純なものから確かめる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "取扱い(2)イ",
+      "(1)ア(ア)"
+     ],
+     "basis_text": "内容の取扱い(2)イ、(1)ア(ア)",
+     "kaisetsu_page": "91-92",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-008",
+     "rid": "中1-008",
+     "order_in_segment": 8,
+     "order_in_unit": 2,
+     "prev_id": "jhs_eigo1/中1-007",
+     "next_id": "jhs_eigo1/中1-009",
+     "title": "日本語と英語の音声の違い（母音・子音）",
+     "kind": "学習",
+     "summary": "母音や子音の種類や数が日本語と異なることや、school・street・books のように子音が続くことに注意して、現代の標準的な発音を身に付ける。",
+     "summary_core": "母音や子音の種類や数が日本語と異なることや、school・street・books のように子音が続くことに注意して、現代の標準的な発音を身に付ける。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)ア(ア)"
+     ],
+     "basis_text": "(1)ア(ア)",
+     "kaisetsu_page": "30",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-009",
+     "rid": "中1-009",
+     "order_in_segment": 9,
+     "order_in_unit": 3,
+     "prev_id": "jhs_eigo1/中1-008",
+     "next_id": "jhs_eigo1/中1-010",
+     "title": "語と語の連結による音の変化",
+     "kind": "学習",
+     "summary": "Take it easy. / What time is it now? / Why don't you join us? のように、語と語が連結したり音が脱落したり影響し合ったりする変化に慣れ、聞き取りや発話に生かす。",
+     "summary_core": "Take it easy. / What time is it now? / Why don't you join us? のように、語と語が連結したり音が脱落したり影響し合ったりする変化に慣れ、聞き取りや発話に生かす。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)ア(イ)"
+     ],
+     "basis_text": "(1)ア(イ)",
+     "kaisetsu_page": "30-31",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-010",
+     "rid": "中1-010",
+     "order_in_segment": 10,
+     "order_in_unit": 4,
+     "prev_id": "jhs_eigo1/中1-009",
+     "next_id": "jhs_eigo1/中1-011",
+     "title": "語・句・文の強勢と英語のリズム",
+     "kind": "学習",
+     "summary": "machíne・néwspàper、recórd（動詞）と récord（名詞）など語の強勢や句・文の強勢を知り、内容語が強く発音されることで生まれる英語のリズムを身に付ける。重要な情報に強勢が置かれることにも気付く。",
+     "summary_core": "machíne・néwspàper、recórd（動詞）と récord（名詞）など語の強勢や句・文の強勢を知り、内容語が強く発音されることで生まれる英語のリズムを身に付ける。重要な情報に強勢が置かれることにも気付く。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)ア(ウ)"
+     ],
+     "basis_text": "(1)ア(ウ)",
+     "kaisetsu_page": "31",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-011",
+     "rid": "中1-011",
+     "order_in_segment": 11,
+     "order_in_unit": 5,
+     "prev_id": "jhs_eigo1/中1-010",
+     "next_id": "jhs_eigo1/中1-012",
+     "title": "文のイントネーション",
+     "kind": "学習",
+     "summary": "or を含む選択疑問文で上昇調と下降調を組み合わせること、平叙文を上昇調で言って疑問を表すこと、wh- 疑問文を上昇調で言って聞き返すことなど、基本的なイントネーションを身に付ける。",
+     "summary_core": "or を含む選択疑問文で上昇調と下降調を組み合わせること、平叙文を上昇調で言って疑問を表すこと、wh- 疑問文を上昇調で言って聞き返すことなど、基本的なイントネーションを身に付ける。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)ア(エ)"
+     ],
+     "basis_text": "(1)ア(エ)",
+     "kaisetsu_page": "31-32",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-012",
+     "rid": "中1-012",
+     "order_in_segment": 12,
+     "order_in_unit": 6,
+     "prev_id": "jhs_eigo1/中1-011",
+     "next_id": "jhs_eigo1/中1-013",
+     "title": "意味のまとまりと区切り",
+     "kind": "学習",
+     "summary": "文の構成や意味のまとまりを意識して区切って話したり、区切りに注意して聞いたりする。読んだ内容を表現するように、区切りを意識して音読する。",
+     "summary_core": "文の構成や意味のまとまりを意識して区切って話したり、区切りに注意して聞いたりする。読んだ内容を表現するように、区切りを意識して音読する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)ア(オ)"
+     ],
+     "basis_text": "(1)ア(オ)",
+     "kaisetsu_page": "32",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-013",
+     "rid": "中1-013",
+     "order_in_segment": 13,
+     "order_in_unit": 7,
+     "prev_id": "jhs_eigo1/中1-012",
+     "next_id": "jhs_eigo1/中1-014",
+     "title": "符号（感嘆符・引用符・アポストロフィなど）",
+     "kind": "学習",
+     "summary": "感嘆符（!）、引用符（“ ”）、アポストロフィ（’）などの意味と使い方を理解し、小学校で扱った終止符・疑問符・コンマも含めて正しく使って書く。",
+     "summary_core": "感嘆符（!）、引用符（“ ”）、アポストロフィ（’）などの意味と使い方を理解し、小学校で扱った終止符・疑問符・コンマも含めて正しく使って書く。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)イ"
+     ],
+     "basis_text": "(1)イ",
+     "kaisetsu_page": "33",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-014",
+     "rid": "中1-014",
+     "order_in_segment": 14,
+     "order_in_unit": 8,
+     "prev_id": "jhs_eigo1/中1-013",
+     "next_id": "jhs_eigo1/中1-015",
+     "title": "語彙（受容語彙と発信語彙）",
+     "kind": "学習",
+     "summary": "聞いたり読んだりして分かる受容語彙と、話したり書いたりして使う発信語彙の違いを理解し、1年で学ぶ語を言語活動の中で繰り返し使って定着させる。3学年間で小学校で学習した語に1600〜1800語程度の新語を加えて学ぶことを知る。",
+     "summary_core": "聞いたり読んだりして分かる受容語彙と、話したり書いたりして使う発信語彙の違いを理解し、1年で学ぶ語を言語活動の中で繰り返し使って定着させる。3学年間で小学校で学習した語に1600〜1800語程度の新語を加えて学ぶことを知る。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)ウ(ア)"
+     ],
+     "basis_text": "(1)ウ(ア)",
+     "kaisetsu_page": "33-35",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-015",
+     "rid": "中1-015",
+     "order_in_segment": 15,
+     "order_in_unit": 9,
+     "prev_id": "jhs_eigo1/中1-014",
+     "next_id": "jhs_eigo1/中1-016",
+     "title": "連語",
+     "kind": "学習",
+     "summary": "in front of・a lot of・look for など、言語の使用場面や働きでよく使われる身近な連語を学び、小学校で扱った get up・look at なども含めて、読んだり書いたりする中で使う。",
+     "summary_core": "in front of・a lot of・look for など、言語の使用場面や働きでよく使われる身近な連語を学び、小学校で扱った get up・look at なども含めて、読んだり書いたりする中で使う。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)ウ(イ)"
+     ],
+     "basis_text": "(1)ウ(イ)",
+     "kaisetsu_page": "35",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-016",
+     "rid": "中1-016",
+     "order_in_segment": 16,
+     "order_in_unit": 10,
+     "prev_id": "jhs_eigo1/中1-015",
+     "next_id": "jhs_eigo1/中1-017",
+     "title": "慣用表現",
+     "kind": "学習",
+     "summary": "excuse me・I see・I'm sorry・thank you・you're welcome など小学校で扱った慣用表現を場面に応じて使い、first of all など順序立てて伝える際の慣用表現にも触れる。",
+     "summary_core": "excuse me・I see・I'm sorry・thank you・you're welcome など小学校で扱った慣用表現を場面に応じて使い、first of all など順序立てて伝える際の慣用表現にも触れる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)ウ(ウ)"
+     ],
+     "basis_text": "(1)ウ(ウ)",
+     "kaisetsu_page": "35-36",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-017",
+     "rid": "中1-017",
+     "order_in_segment": 17,
+     "order_in_unit": 11,
+     "prev_id": "jhs_eigo1/中1-016",
+     "next_id": "jhs_eigo1/中1-018",
+     "title": "辞書の使い方",
+     "kind": "学習",
+     "summary": "辞書で語の意味や発音を調べる方法に慣れ、発音表記を音声の学習の補助として使う。未知語に出会うたびに調べるのではなく、文脈から推測できる語か、調べる必要がある語かを判断する。",
+     "summary_core": "辞書で語の意味や発音を調べる方法に慣れ、発音表記を音声の学習の補助として使う。未知語に出会うたびに調べるのではなく、文脈から推測できる語か、調べる必要がある語かを判断する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "取扱い(2)オ",
+      "取扱い(2)イ"
+     ],
+     "basis_text": "内容の取扱い(2)オ、内容の取扱い(2)イ",
+     "kaisetsu_page": "95",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    }
+   ]
+  },
+  {
+   "uid": "1-3",
+   "ref": "jhs_eigo1:1-3",
+   "segment": "中学1年",
+   "title": "文、文構造及び文法事項",
+   "aim": "be 動詞・一般動詞の現在形と過去形、現在進行形・過去進行形、三人称単数現在形、can、代名詞、疑問詞や which・whose・or を含む疑問文、命令文、感嘆文、There＋be 動詞、look＋形容詞、want to など第1学年の文法事項を意味のある文脈の中で理解し、事実や自分の考え、気持ちを伝え合う活動で活用できるようにする。関連する事項は時制や代名詞などとしてまとめて整理する。",
+   "prereq": [
+    "jhs_eigo1:1-1"
+   ],
+   "cos": "2(1)エ（第1学年で扱う事項）、3(2)エ",
+   "kaisetsu": "p.36-49, 92-95",
+   "note": "第1学年の文法事項は、基準とした東京書籍の年間指導計画 [S4] の事項（be 動詞・一般動詞、can、this・that・he・she、疑問詞、命令文、三人称単数現在形、代名詞の目的格・所有代名詞、Which・Whose、現在進行形、感嘆文、want [try] to、look＋形容詞、一般動詞と be 動詞の過去形、過去進行形、There is [are]）に合わせ、その順に並べた。他社の第1学年（編修趣意書の対照表の言語材料欄）と照合すると、be 動詞・一般動詞・can・疑問詞・三人称単数現在形・現在進行形・過去形は6社とも第1学年、過去進行形は教育出版を除く5社、want to などの to 不定詞（名詞としての用法）は三省堂・光村図書・啓林館、look＋形容詞は三省堂・教育出版・啓林館、There is [are] は開隆堂・教育出版、感嘆文は教育出版も第1学年で扱う [S7]〜[S11][S17]。一方、will・be going to（三省堂・教育出版）、have to・should（教育出版）、動名詞・接続詞 when・SVOO（啓林館）、Why ～? — Because ～.（開隆堂）を第1学年に置く社もある。東京書籍では will・be going to・have to・接続詞（when・because）・動名詞・SVOO は2年の文法事項であるため本資料には入れていない（should は東京書籍の略案の文法事項の欄には見当たらない）[S5]。第1学年で一部だけを扱う事項：(ウ)c 助動詞は can（must などは2年）、(ウ)e 時制及び相は現在形・過去形・現在進行形・過去進行形（未来表現は2年、現在完了形は3年）、(ウ)g to 不定詞は名詞としての用法（形容詞・副詞としての用法は2年）、(イ)b(a) は to 不定詞（動名詞・how など＋to 不定詞は2年）、(ア)b は which・whose・or を含む疑問文（助動詞 will・may などで始まる疑問文は2年）[S4][S5]。文法のまとめは各社とも独立したコーナーを置く（東京書籍 Grammar for Communication 0〜8 計11時間 [S4]、三省堂 Language Focus 1〜7 各1時間、光村図書 Active Grammar 1〜6、啓林館 Focus on Form 8時間 [S8][S10][S11]）。",
+   "extra": false,
+   "hours": 33,
+   "publisher_hours": {},
+   "rows": [
+    {
+     "id": "jhs_eigo1/中1-018",
+     "rid": "中1-018",
+     "order_in_segment": 18,
+     "order_in_unit": 1,
+     "prev_id": "jhs_eigo1/中1-017",
+     "next_id": "jhs_eigo1/中1-019",
+     "title": "be 動詞 am・are の文",
+     "kind": "学習",
+     "summary": "I am …. / You are …. / Are you …? / I am not …. で自分や相手のことを伝えたりたずねたりし、be 動詞の現在形の肯定文・否定文・疑問文の形と意味を理解する。",
+     "summary_core": "I am …. / You are …. / Are you …? / I am not …. で自分や相手のことを伝えたりたずねたりし、be 動詞の現在形の肯定文・否定文・疑問文の形と意味を理解する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e",
+      "(1)エ(ウ)a(a)"
+     ],
+     "basis_text": "(1)エ(ウ)e・エ(ウ)a(a)",
+     "kaisetsu_page": "46",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-019",
+     "rid": "中1-019",
+     "order_in_segment": 19,
+     "order_in_unit": 2,
+     "prev_id": "jhs_eigo1/中1-018",
+     "next_id": "jhs_eigo1/中1-020",
+     "title": "一般動詞の文",
+     "kind": "学習",
+     "summary": "I like …. / Do you …? / I do not …. で好きなことや日常の習慣を伝えたりたずねたりし、一般動詞の現在形の肯定文・否定文・疑問文を理解する。",
+     "summary_core": "I like …. / Do you …? / I do not …. で好きなことや日常の習慣を伝えたりたずねたりし、一般動詞の現在形の肯定文・否定文・疑問文を理解する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "46",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-020",
+     "rid": "中1-020",
+     "order_in_segment": 20,
+     "order_in_unit": 3,
+     "prev_id": "jhs_eigo1/中1-019",
+     "next_id": "jhs_eigo1/中1-021",
+     "title": "be 動詞の文と一般動詞の文の整理",
+     "kind": "演習",
+     "summary": "be 動詞の文と一般動詞の文の形と意味を比べて整理し、主語と動詞を的確に捉えて文を作る。",
+     "summary_core": "be 動詞の文と一般動詞の文の形と意味を比べて整理し、主語と動詞を的確に捉えて文を作る。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e",
+      "取扱い(2)エ(ア)"
+     ],
+     "basis_text": "(1)エ(ウ)e、内容の取扱い(2)エ(ア)",
+     "kaisetsu_page": "92",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-021",
+     "rid": "中1-021",
+     "order_in_segment": 21,
+     "order_in_unit": 4,
+     "prev_id": "jhs_eigo1/中1-020",
+     "next_id": "jhs_eigo1/中1-022",
+     "title": "He・She is の文（人称を表す代名詞）",
+     "kind": "学習",
+     "summary": "He [She] is …. / Is he [she] …? で身近な人を紹介したりたずねたりし、人称を表す代名詞 he・she と be 動詞 is の使い方を理解する。",
+     "summary_core": "He [She] is …. / Is he [she] …? で身近な人を紹介したりたずねたりし、人称を表す代名詞 he・she と be 動詞 is の使い方を理解する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)a(a)",
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)a(a)・エ(ウ)e",
+     "kaisetsu_page": "44",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-022",
+     "rid": "中1-022",
+     "order_in_segment": 22,
+     "order_in_unit": 5,
+     "prev_id": "jhs_eigo1/中1-021",
+     "next_id": "jhs_eigo1/中1-023",
+     "title": "助動詞 can",
+     "kind": "学習",
+     "summary": "I can …. / Can you …? / I cannot …. でできることを伝えたりたずねたりする。小学校で扱った「能力」に加え、Can I use your phone?（許可）や Can you open the window?（依頼）も使う。",
+     "summary_core": "I can …. / Can you …? / I cannot …. でできることを伝えたりたずねたりする。小学校で扱った「能力」に加え、Can I use your phone?（許可）や Can you open the window?（依頼）も使う。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)c"
+     ],
+     "basis_text": "(1)エ(ウ)c",
+     "kaisetsu_page": "45",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-023",
+     "rid": "中1-023",
+     "order_in_segment": 23,
+     "order_in_unit": 6,
+     "prev_id": "jhs_eigo1/中1-022",
+     "next_id": "jhs_eigo1/中1-024",
+     "title": "This・That の文（指示を表す代名詞）",
+     "kind": "学習",
+     "summary": "This is my hero. のように this・that など指示を表す代名詞を使って身近な人やものを紹介し、Is this …? / What is this? でたずねる。",
+     "summary_core": "This is my hero. のように this・that など指示を表す代名詞を使って身近な人やものを紹介し、Is this …? / What is this? でたずねる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)a(a)"
+     ],
+     "basis_text": "(1)エ(ウ)a(a)",
+     "kaisetsu_page": "44",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-024",
+     "rid": "中1-024",
+     "order_in_segment": 24,
+     "order_in_unit": 7,
+     "prev_id": "jhs_eigo1/中1-023",
+     "next_id": "jhs_eigo1/中1-025",
+     "title": "疑問詞 what・who の疑問文",
+     "kind": "学習",
+     "summary": "What …? / Who …? で知らないものや人についてたずね、答える。小学校で扱った疑問詞を、別の場面や異なる表現の中で使う。",
+     "summary_core": "What …? / Who …? で知らないものや人についてたずね、答える。小学校で扱った疑問詞を、別の場面や異なる表現の中で使う。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ"
+     ],
+     "basis_text": "(1)エ",
+     "kaisetsu_page": "38",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-025",
+     "rid": "中1-025",
+     "order_in_segment": 25,
+     "order_in_unit": 8,
+     "prev_id": "jhs_eigo1/中1-024",
+     "next_id": "jhs_eigo1/中1-026",
+     "title": "疑問詞 how・when の疑問文",
+     "kind": "学習",
+     "summary": "When is your birthday? のように when で時を、how で方法や様子をたずね、答える。",
+     "summary_core": "When is your birthday? のように when で時を、how で方法や様子をたずね、答える。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ"
+     ],
+     "basis_text": "(1)エ",
+     "kaisetsu_page": "38",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-026",
+     "rid": "中1-026",
+     "order_in_segment": 26,
+     "order_in_unit": 9,
+     "prev_id": "jhs_eigo1/中1-025",
+     "next_id": "jhs_eigo1/中1-027",
+     "title": "疑問詞 where と場所を表す前置詞",
+     "kind": "学習",
+     "summary": "Where …? で場所をたずね、on・in・at などの前置詞を使って答える。小学校で慣れ親しんだ前置詞を、文法事項として学ぶ。",
+     "summary_core": "Where …? で場所をたずね、on・in・at などの前置詞を使って答える。小学校で慣れ親しんだ前置詞を、文法事項として学ぶ。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ",
+      "(1)エ(ウ)d"
+     ],
+     "basis_text": "(1)エ・エ(ウ)d",
+     "kaisetsu_page": "46",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-027",
+     "rid": "中1-027",
+     "order_in_segment": 27,
+     "order_in_unit": 10,
+     "prev_id": "jhs_eigo1/中1-026",
+     "next_id": "jhs_eigo1/中1-028",
+     "title": "How many の疑問文と名詞の複数形",
+     "kind": "学習",
+     "summary": "How many …? で数をたずね、名詞の単数形と複数形を使い分けて答える。",
+     "summary_core": "How many …? で数をたずね、名詞の単数形と複数形を使い分けて答える。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ"
+     ],
+     "basis_text": "(1)エ",
+     "kaisetsu_page": "36",
+     "dagger": true,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-028",
+     "rid": "中1-028",
+     "order_in_segment": 28,
+     "order_in_unit": 11,
+     "prev_id": "jhs_eigo1/中1-027",
+     "next_id": "jhs_eigo1/中1-029",
+     "title": "What time・What＋名詞 の疑問文",
+     "kind": "学習",
+     "summary": "What time …? で時刻を、What＋名詞 …? で種類などをたずね、答える。",
+     "summary_core": "What time …? で時刻を、What＋名詞 …? で種類などをたずね、答える。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ"
+     ],
+     "basis_text": "(1)エ",
+     "kaisetsu_page": "38",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-029",
+     "rid": "中1-029",
+     "order_in_segment": 29,
+     "order_in_unit": 12,
+     "prev_id": "jhs_eigo1/中1-028",
+     "next_id": "jhs_eigo1/中1-030",
+     "title": "命令文（肯定・否定）",
+     "kind": "学習",
+     "summary": "Go straight for three blocks. / Please be quiet. / Don't run here. のように、小学校で扱った肯定・否定の命令文を使って、相手に指示したり、してはいけないことを伝えたりする。",
+     "summary_core": "Go straight for three blocks. / Please be quiet. / Don't run here. のように、小学校で扱った肯定・否定の命令文を使って、相手に指示したり、してはいけないことを伝えたりする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ"
+     ],
+     "basis_text": "(1)エ",
+     "kaisetsu_page": "39",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-030",
+     "rid": "中1-030",
+     "order_in_segment": 30,
+     "order_in_unit": 13,
+     "prev_id": "jhs_eigo1/中1-029",
+     "next_id": "jhs_eigo1/中1-031",
+     "title": "三人称単数現在形（肯定文）",
+     "kind": "学習",
+     "summary": "自分と相手以外の人について、一般動詞の現在形に -s・-es を付けて、その人が好きなことやふだんすることを伝える。",
+     "summary_core": "自分と相手以外の人について、一般動詞の現在形に -s・-es を付けて、その人が好きなことやふだんすることを伝える。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "46-48",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-031",
+     "rid": "中1-031",
+     "order_in_segment": 31,
+     "order_in_unit": 14,
+     "prev_id": "jhs_eigo1/中1-030",
+     "next_id": "jhs_eigo1/中1-032",
+     "title": "三人称単数現在形（疑問文・否定文）",
+     "kind": "学習",
+     "summary": "Does he [she] …? / He [She] does not …. で自分と相手以外の人についてたずねたり、否定したりする。",
+     "summary_core": "Does he [she] …? / He [She] does not …. で自分と相手以外の人についてたずねたり、否定したりする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "46-48",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-032",
+     "rid": "中1-032",
+     "order_in_segment": 32,
+     "order_in_unit": 15,
+     "prev_id": "jhs_eigo1/中1-031",
+     "next_id": "jhs_eigo1/中1-033",
+     "title": "人称代名詞の目的格",
+     "kind": "学習",
+     "summary": "him・her・them などの目的格を使って、人やものを繰り返さずに話題を続ける。",
+     "summary_core": "him・her・them などの目的格を使って、人やものを繰り返さずに話題を続ける。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)a(a)"
+     ],
+     "basis_text": "(1)エ(ウ)a(a)",
+     "kaisetsu_page": "44",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-033",
+     "rid": "中1-033",
+     "order_in_segment": 33,
+     "order_in_unit": 16,
+     "prev_id": "jhs_eigo1/中1-032",
+     "next_id": "jhs_eigo1/中1-034",
+     "title": "Whose の疑問文と所有代名詞",
+     "kind": "学習",
+     "summary": "Whose idea is this? — It's my idea. のように whose で持ち主をたずね、mine・yours などの代名詞も使って答える。",
+     "summary_core": "Whose idea is this? — It's my idea. のように whose で持ち主をたずね、mine・yours などの代名詞も使って答える。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ア)b",
+      "(1)エ(ウ)a(a)"
+     ],
+     "basis_text": "(1)エ(ア)b・エ(ウ)a(a)",
+     "kaisetsu_page": "38",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-034",
+     "rid": "中1-034",
+     "order_in_segment": 34,
+     "order_in_unit": 17,
+     "prev_id": "jhs_eigo1/中1-033",
+     "next_id": "jhs_eigo1/中1-035",
+     "title": "Which の疑問文と or を含む選択疑問文",
+     "kind": "学習",
+     "summary": "Which bus goes to the city library? や Would you like tea or coffee? のように、which や or を使ってどちらかをたずね、答える。or を含む疑問文のイントネーションにも注意する。",
+     "summary_core": "Which bus goes to the city library? や Would you like tea or coffee? のように、which や or を使ってどちらかをたずね、答える。or を含む疑問文のイントネーションにも注意する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ア)b",
+      "(1)ア(エ)"
+     ],
+     "basis_text": "(1)エ(ア)b・ア(エ)",
+     "kaisetsu_page": "37-38",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-035",
+     "rid": "中1-035",
+     "order_in_segment": 35,
+     "order_in_unit": 18,
+     "prev_id": "jhs_eigo1/中1-034",
+     "next_id": "jhs_eigo1/中1-036",
+     "title": "現在進行形（肯定文）",
+     "kind": "学習",
+     "summary": "Eri is opening the present. のように be 動詞＋動詞の -ing 形で今している動作を説明し、現在形との違いを理解する。",
+     "summary_core": "Eri is opening the present. のように be 動詞＋動詞の -ing 形で今している動作を説明し、現在形との違いを理解する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "47",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-036",
+     "rid": "中1-036",
+     "order_in_segment": 36,
+     "order_in_unit": 19,
+     "prev_id": "jhs_eigo1/中1-035",
+     "next_id": "jhs_eigo1/中1-037",
+     "title": "現在進行形（疑問文・否定文）",
+     "kind": "学習",
+     "summary": "Are you …ing? / What are you doing? などで相手が今していることをたずねたり答えたりし、否定文でも表す。",
+     "summary_core": "Are you …ing? / What are you doing? などで相手が今していることをたずねたり答えたりし、否定文でも表す。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "47",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-037",
+     "rid": "中1-037",
+     "order_in_segment": 37,
+     "order_in_unit": 20,
+     "prev_id": "jhs_eigo1/中1-036",
+     "next_id": "jhs_eigo1/中1-038",
+     "title": "感嘆文",
+     "kind": "学習",
+     "summary": "How interesting! / What a big tree! のような基本的な感嘆文で感動や驚きを伝え、感嘆符を使って書く。",
+     "summary_core": "How interesting! / What a big tree! のような基本的な感嘆文で感動や驚きを伝え、感嘆符を使って書く。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ア)c",
+      "(1)イ"
+     ],
+     "basis_text": "(1)エ(ア)c・イ",
+     "kaisetsu_page": "39",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-038",
+     "rid": "中1-038",
+     "order_in_segment": 38,
+     "order_in_unit": 21,
+     "prev_id": "jhs_eigo1/中1-037",
+     "next_id": "jhs_eigo1/中1-039",
+     "title": "want to などの to 不定詞（名詞としての用法）",
+     "kind": "学習",
+     "summary": "I want to drink water. のように、want・try などの後に to 不定詞を続けてしたいことやしようとしていることを伝え、What do you want to …? で相手にたずねる。",
+     "summary_core": "I want to drink water. のように、want・try などの後に to 不定詞を続けてしたいことやしようとしていることを伝え、What do you want to …? で相手にたずねる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)g",
+      "(1)エ(イ)b(a)"
+     ],
+     "basis_text": "(1)エ(ウ)g・エ(イ)b(a)",
+     "kaisetsu_page": "49",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-039",
+     "rid": "中1-039",
+     "order_in_segment": 39,
+     "order_in_unit": 22,
+     "prev_id": "jhs_eigo1/中1-038",
+     "next_id": "jhs_eigo1/中1-040",
+     "title": "look＋形容詞（主語＋be 動詞以外の動詞＋補語）",
+     "kind": "学習",
+     "summary": "You look nice in that jacket. のように look などの be 動詞以外の動詞の後に形容詞を続けて、人やものの様子を伝える。",
+     "summary_core": "You look nice in that jacket. のように look などの be 動詞以外の動詞の後に形容詞を続けて、人やものの様子を伝える。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(イ)a"
+     ],
+     "basis_text": "(1)エ(イ)a",
+     "kaisetsu_page": "40",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-040",
+     "rid": "中1-040",
+     "order_in_segment": 40,
+     "order_in_unit": 23,
+     "prev_id": "jhs_eigo1/中1-039",
+     "next_id": "jhs_eigo1/中1-041",
+     "title": "一般動詞の過去形（規則動詞）",
+     "kind": "学習",
+     "summary": "We watched TV in class today. のように規則動詞の過去形を使って、過去の出来事を伝える。",
+     "summary_core": "We watched TV in class today. のように規則動詞の過去形を使って、過去の出来事を伝える。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "46-47",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-041",
+     "rid": "中1-041",
+     "order_in_segment": 41,
+     "order_in_unit": 24,
+     "prev_id": "jhs_eigo1/中1-040",
+     "next_id": "jhs_eigo1/中1-042",
+     "title": "一般動詞の過去形（不規則動詞）",
+     "kind": "学習",
+     "summary": "We swam in the ocean last summer. のように不規則動詞の過去形を使う。小学校で基本的な表現として触れた I went to …. なども、主語が三人称単数でも -s を付けないことなど使い方を理解して使う。",
+     "summary_core": "We swam in the ocean last summer. のように不規則動詞の過去形を使う。小学校で基本的な表現として触れた I went to …. なども、主語が三人称単数でも -s を付けないことなど使い方を理解して使う。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "47-48",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-042",
+     "rid": "中1-042",
+     "order_in_segment": 42,
+     "order_in_unit": 25,
+     "prev_id": "jhs_eigo1/中1-041",
+     "next_id": "jhs_eigo1/中1-043",
+     "title": "一般動詞の過去形（疑問文・否定文）",
+     "kind": "学習",
+     "summary": "Did you …? / I did not …. で過去の出来事をたずねたり、否定したりする。",
+     "summary_core": "Did you …? / I did not …. で過去の出来事をたずねたり、否定したりする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "46",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-043",
+     "rid": "中1-043",
+     "order_in_segment": 43,
+     "order_in_unit": 26,
+     "prev_id": "jhs_eigo1/中1-042",
+     "next_id": "jhs_eigo1/中1-044",
+     "title": "be 動詞の過去形",
+     "kind": "学習",
+     "summary": "He was in China last year. のように was・were を使って過去の状態を伝えたり、たずねたりする。",
+     "summary_core": "He was in China last year. のように was・were を使って過去の状態を伝えたり、たずねたりする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "46",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-044",
+     "rid": "中1-044",
+     "order_in_segment": 44,
+     "order_in_unit": 27,
+     "prev_id": "jhs_eigo1/中1-043",
+     "next_id": "jhs_eigo1/中1-045",
+     "title": "過去進行形",
+     "kind": "学習",
+     "summary": "Hideki was kicking a ball. のように was [were]＋動詞の -ing 形で過去のある時点でしていた動作を説明し、過去形との違いを理解する。",
+     "summary_core": "Hideki was kicking a ball. のように was [were]＋動詞の -ing 形で過去のある時点でしていた動作を説明し、過去形との違いを理解する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "47",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-045",
+     "rid": "中1-045",
+     "order_in_segment": 45,
+     "order_in_unit": 28,
+     "prev_id": "jhs_eigo1/中1-044",
+     "next_id": "jhs_eigo1/中1-050",
+     "title": "There is [are] の文",
+     "kind": "学習",
+     "summary": "There is an old tree in front of my house. のように There＋be 動詞＋～ で人やものがあること・いることを伝え、Is there …? でたずねる。",
+     "summary_core": "There is an old tree in front of my house. のように There＋be 動詞＋～ で人やものがあること・いることを伝え、Is there …? でたずねる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(イ)e(a)"
+     ],
+     "basis_text": "(1)エ(イ)e(a)",
+     "kaisetsu_page": "43",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-050",
+     "rid": "中1-050",
+     "order_in_segment": 46,
+     "order_in_unit": 29,
+     "prev_id": "jhs_eigo1/中1-045",
+     "next_id": "jhs_eigo1/中1-046",
+     "title": "語順と修飾関係の日本語との違い",
+     "kind": "学習",
+     "summary": "a big dog のように修飾関係が日本語と同じ例と、a picture of my family・the girl with short hair のように前置詞句が後ろから修飾する例を比べ、語順や修飾関係の日本語との違いに気付く。",
+     "summary_core": "a big dog のように修飾関係が日本語と同じ例と、a picture of my family・the girl with short hair のように前置詞句が後ろから修飾する例を比べ、語順や修飾関係の日本語との違いに気付く。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "取扱い(2)エ(ウ)",
+      "(1)エ(ウ)d"
+     ],
+     "basis_text": "内容の取扱い(2)エ(ウ)、(1)エ(ウ)d",
+     "kaisetsu_page": "94-95",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-046",
+     "rid": "中1-046",
+     "order_in_segment": 47,
+     "order_in_unit": 30,
+     "prev_id": "jhs_eigo1/中1-050",
+     "next_id": "jhs_eigo1/中1-047",
+     "title": "文法のまとめ：疑問詞の使い分け",
+     "kind": "演習",
+     "summary": "what・who・how・when・where・which・whose などの疑問詞を整理し、たずねたい内容に応じて使い分けて質問する。",
+     "summary_core": "what・who・how・when・where・which・whose などの疑問詞を整理し、たずねたい内容に応じて使い分けて質問する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ア)b",
+      "取扱い(2)エ(ア)"
+     ],
+     "basis_text": "(1)エ(ア)b、内容の取扱い(2)エ(ア)",
+     "kaisetsu_page": "92-93",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-047",
+     "rid": "中1-047",
+     "order_in_segment": 48,
+     "order_in_unit": 31,
+     "prev_id": "jhs_eigo1/中1-046",
+     "next_id": "jhs_eigo1/中1-048",
+     "title": "文法のまとめ：代名詞の整理",
+     "kind": "演習",
+     "summary": "人称を表す代名詞の主格・所有格・目的格や mine・yours など、指示を表す that・these など、数量を表す some・few・much などを表に整理し、人やものについて話題を展開する際に使い分ける。",
+     "summary_core": "人称を表す代名詞の主格・所有格・目的格や mine・yours など、指示を表す that・these など、数量を表す some・few・much などを表に整理し、人やものについて話題を展開する際に使い分ける。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)a(a)",
+      "取扱い(2)エ(ア)"
+     ],
+     "basis_text": "(1)エ(ウ)a(a)、内容の取扱い(2)エ(ア)",
+     "kaisetsu_page": "44",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-048",
+     "rid": "中1-048",
+     "order_in_segment": 49,
+     "order_in_unit": 32,
+     "prev_id": "jhs_eigo1/中1-047",
+     "next_id": "jhs_eigo1/中1-049",
+     "title": "文法のまとめ：現在形と現在進行形",
+     "kind": "演習",
+     "summary": "現在形と現在進行形を対比し、ふだんの習慣や状態と今している動作を表し分ける。",
+     "summary_core": "現在形と現在進行形を対比し、ふだんの習慣や状態と今している動作を表し分ける。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e",
+      "取扱い(2)エ(ア)"
+     ],
+     "basis_text": "(1)エ(ウ)e、内容の取扱い(2)エ(ア)",
+     "kaisetsu_page": "47",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-049",
+     "rid": "中1-049",
+     "order_in_segment": 50,
+     "order_in_unit": 33,
+     "prev_id": "jhs_eigo1/中1-048",
+     "next_id": "jhs_eigo1/中1-051",
+     "title": "文法のまとめ：時制の整理（現在・過去・進行形）",
+     "kind": "演習",
+     "summary": "現在形・過去形、現在進行形・過去進行形を時制として比べて整理し、過去の出来事や過去のある時点の動作を表し分ける。",
+     "summary_core": "現在形・過去形、現在進行形・過去進行形を時制として比べて整理し、過去の出来事や過去のある時点の動作を表し分ける。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e",
+      "取扱い(2)エ(ア)"
+     ],
+     "basis_text": "(1)エ(ウ)e、内容の取扱い(2)エ(ア)",
+     "kaisetsu_page": "92",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    }
+   ]
+  },
+  {
+   "uid": "1-4",
+   "ref": "jhs_eigo1:1-4",
+   "segment": "中学1年",
+   "title": "聞くこと",
+   "aim": "はっきりと話されれば、日常的な話題について話し手の意向や必要な情報、話の概要を、社会的な話題について短い説明の要点を、聞く目的に応じて捉え、聞いた内容を英語で説明したり、誘いや依頼に適切に応答したりできるようにする。",
+   "prereq": [
+    "jhs_eigo1:1-2",
+    "jhs_eigo1:1-3"
+   ],
+   "cos": "2(3)①イ、(2)ア・イ",
+   "kaisetsu": "p.52-53, 55-58",
+   "note": "聞くことは各課の扉や Part の聞き取りのほか、独立したコーナーでも扱われる（東京書籍 Real Life English 1 コマーシャル、Learning Literature in English 各1時間 [S4]、三省堂 Take Action! Listen 1〜5 各1時間 [S8]、啓林館 Let's Listen 3時間 [S11]）。解説の (ｱ)〜(ｴ) の活動例ごとに1〜2コマとし、演習を1コマ加えた。",
+   "extra": false,
+   "hours": 7,
+   "publisher_hours": {},
+   "rows": [
+    {
+     "id": "jhs_eigo1/中1-051",
+     "rid": "中1-051",
+     "order_in_segment": 51,
+     "order_in_unit": 1,
+     "prev_id": "jhs_eigo1/中1-049",
+     "next_id": "jhs_eigo1/中1-052",
+     "title": "自然な口調の英語を聞いて話し手の意向を捉える",
+     "kind": "活用",
+     "summary": "教師が最近の出来事を話したり ALT が簡単なスピーチをしたりするのを聞き、話し手が伝えたいことや求めていることを正しく捉える。できるだけ自然な口調の英語に慣れる。",
+     "summary_core": "教師が最近の出来事を話したり ALT が簡単なスピーチをしたりするのを聞き、話し手が伝えたいことや求めていることを正しく捉える。できるだけ自然な口調の英語に慣れる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①イ(ア)",
+      "(2)ア"
+     ],
+     "basis_text": "(3)①イ(ア)、(2)ア",
+     "kaisetsu_page": "55-56",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-052",
+     "rid": "中1-052",
+     "order_in_segment": 52,
+     "order_in_unit": 2,
+     "prev_id": "jhs_eigo1/中1-051",
+     "next_id": "jhs_eigo1/中1-053",
+     "title": "聞く目的を決めて必要な情報を聞き取る",
+     "kind": "活用",
+     "summary": "商品のコマーシャルを、1回目は機能、2回目は値段というように聞き手の状況を設定して聞き、自分が必要とする情報に集中して聞き取る。",
+     "summary_core": "商品のコマーシャルを、1回目は機能、2回目は値段というように聞き手の状況を設定して聞き、自分が必要とする情報に集中して聞き取る。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①イ(イ)"
+     ],
+     "basis_text": "(3)①イ(イ)",
+     "kaisetsu_page": "56",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-053",
+     "rid": "中1-053",
+     "order_in_segment": 53,
+     "order_in_unit": 3,
+     "prev_id": "jhs_eigo1/中1-052",
+     "next_id": "jhs_eigo1/中1-054",
+     "title": "店や駅などのアナウンスから必要な情報を聞き取る",
+     "kind": "活用",
+     "summary": "店や公共交通機関で流れる簡単なアナウンスを、聞こえてくる情報全てに集中するのではなく、自分が必要とする情報を中心に聞き取る。",
+     "summary_core": "店や公共交通機関で流れる簡単なアナウンスを、聞こえてくる情報全てに集中するのではなく、自分が必要とする情報を中心に聞き取る。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①イ(イ)"
+     ],
+     "basis_text": "(3)①イ(イ)",
+     "kaisetsu_page": "56",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-054",
+     "rid": "中1-054",
+     "order_in_segment": 54,
+     "order_in_unit": 4,
+     "prev_id": "jhs_eigo1/中1-053",
+     "next_id": "jhs_eigo1/中1-055",
+     "title": "誘いや依頼のメッセージを聞いて応答する",
+     "kind": "活用",
+     "summary": "留守番電話のメッセージや友達からの誘いなどを聞いて相手の伝えたいことを理解し、承諾したり断ったり、内容を確認したりして適切に応答する。",
+     "summary_core": "留守番電話のメッセージや友達からの誘いなどを聞いて相手の伝えたいことを理解し、承諾したり断ったり、内容を確認したりして適切に応答する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①イ(ウ)"
+     ],
+     "basis_text": "(3)①イ(ウ)",
+     "kaisetsu_page": "56-57",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-055",
+     "rid": "中1-055",
+     "order_in_segment": 55,
+     "order_in_unit": 5,
+     "prev_id": "jhs_eigo1/中1-054",
+     "next_id": "jhs_eigo1/中1-056",
+     "title": "会話や説明を聞いて概要を捉え、英語で説明する",
+     "kind": "活用",
+     "summary": "ある人物の生い立ちを聞いてあらましを捉え、主な出来事をほかの生徒に伝えるなど、日常的な話題の会話や説明の概要を捉えて英語で説明する。",
+     "summary_core": "ある人物の生い立ちを聞いてあらましを捉え、主な出来事をほかの生徒に伝えるなど、日常的な話題の会話や説明の概要を捉えて英語で説明する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①イ(エ)",
+      "(2)イ"
+     ],
+     "basis_text": "(3)①イ(エ)、(2)イ",
+     "kaisetsu_page": "57",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-056",
+     "rid": "中1-056",
+     "order_in_segment": 56,
+     "order_in_unit": 6,
+     "prev_id": "jhs_eigo1/中1-055",
+     "next_id": "jhs_eigo1/中1-057",
+     "title": "スピーチを聞いて要点を整理する",
+     "kind": "活用",
+     "summary": "身近なテーマについての数人のスピーチを、話し手が最も伝えたいところはどこかを考えながら聞き、主な発話内容を整理して話す。",
+     "summary_core": "身近なテーマについての数人のスピーチを、話し手が最も伝えたいところはどこかを考えながら聞き、主な発話内容を整理して話す。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①イ(エ)",
+      "(2)ア"
+     ],
+     "basis_text": "(3)①イ(エ)、(2)ア",
+     "kaisetsu_page": "57-58",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-057",
+     "rid": "中1-057",
+     "order_in_segment": 57,
+     "order_in_unit": 7,
+     "prev_id": "jhs_eigo1/中1-056",
+     "next_id": "jhs_eigo1/中1-058",
+     "title": "聞くことの演習",
+     "kind": "演習",
+     "summary": "対話や放送、短い説明を、聞く前に状況と目的を確かめてから聞き、必要な情報や概要を捉える練習を重ねる。",
+     "summary_core": "対話や放送、短い説明を、聞く前に状況と目的を確かめてから聞き、必要な情報や概要を捉える練習を重ねる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①イ(イ)",
+      "(3)①イ(エ)"
+     ],
+     "basis_text": "(3)①イ(イ)・①イ(エ)",
+     "kaisetsu_page": "56-58",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    }
+   ]
+  },
+  {
+   "uid": "1-5",
+   "ref": "jhs_eigo1:1-5",
+   "segment": "中学1年",
+   "title": "読むこと",
+   "aim": "日常的な話題について簡単な語句や文で書かれた広告・予定表・手紙・短い説明・物語などから必要な情報や概要を、社会的な話題について短い文章の要点を読み取り、内容を表現するように音読したり、読んだ内容への賛否や考えを述べたりできるようにする。",
+   "prereq": [
+    "jhs_eigo1:1-2",
+    "jhs_eigo1:1-3"
+   ],
+   "cos": "2(3)①ウ、(2)ア・イ、3(2)オ",
+   "kaisetsu": "p.52-53, 58-61, 95",
+   "note": "読むことは各課の本文のほか、物語などを読むコーナーで扱われる（東京書籍 Unit 5〜10 の Read and Think、Let's Read 3時間 [S4]、三省堂 Take Action! Read 1〜3 各1時間・Reading Lesson 1・2 [S8]、教育出版 Reading 1・2 各4時間 [S9]、啓林館 Let's Read 4時間 [S11]）。解説の (ｱ)〜(ｴ) の活動例ごとに2コマ程度とし、演習を1コマ加えた。",
+   "extra": false,
+   "hours": 9,
+   "publisher_hours": {},
+   "rows": [
+    {
+     "id": "jhs_eigo1/中1-058",
+     "rid": "中1-058",
+     "order_in_segment": 58,
+     "order_in_unit": 1,
+     "prev_id": "jhs_eigo1/中1-057",
+     "next_id": "jhs_eigo1/中1-059",
+     "title": "文章の構成を考えながら黙読する",
+     "kind": "活用",
+     "summary": "自分に合った速さで読み、必要に応じて前に戻って読み返しながら、物語や説明がどのように進み、どうまとめられているかという文章の構成を意識して黙読する。",
+     "summary_core": "自分に合った速さで読み、必要に応じて前に戻って読み返しながら、物語や説明がどのように進み、どうまとめられているかという文章の構成を意識して黙読する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①ウ(ア)"
+     ],
+     "basis_text": "(3)①ウ(ア)",
+     "kaisetsu_page": "58",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-059",
+     "rid": "中1-059",
+     "order_in_segment": 59,
+     "order_in_unit": 2,
+     "prev_id": "jhs_eigo1/中1-058",
+     "next_id": "jhs_eigo1/中1-060",
+     "title": "内容を表現するように音読する",
+     "kind": "活用",
+     "summary": "対話文や物語の意味内容を理解した上で、登場人物らしく声の大きさや読む速さを変えるなどして、内容にふさわしく音読する。何のために音読するのかを意識する。",
+     "summary_core": "対話文や物語の意味内容を理解した上で、登場人物らしく声の大きさや読む速さを変えるなどして、内容にふさわしく音読する。何のために音読するのかを意識する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①ウ(ア)",
+      "(1)ア(オ)"
+     ],
+     "basis_text": "(3)①ウ(ア)、(1)ア(オ)",
+     "kaisetsu_page": "58-59",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-060",
+     "rid": "中1-060",
+     "order_in_segment": 60,
+     "order_in_unit": 3,
+     "prev_id": "jhs_eigo1/中1-059",
+     "next_id": "jhs_eigo1/中1-061",
+     "title": "パンフレットや広告から必要な情報を読み取る",
+     "kind": "活用",
+     "summary": "スポーツクラブのパンフレットを複数読み比べ、自分が通える曜日に体験したいスポーツを実施しているクラブを探すなど、必要な情報を読み取る。",
+     "summary_core": "スポーツクラブのパンフレットを複数読み比べ、自分が通える曜日に体験したいスポーツを実施しているクラブを探すなど、必要な情報を読み取る。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①ウ(イ)"
+     ],
+     "basis_text": "(3)①ウ(イ)",
+     "kaisetsu_page": "59",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-061",
+     "rid": "中1-061",
+     "order_in_segment": 61,
+     "order_in_unit": 4,
+     "prev_id": "jhs_eigo1/中1-060",
+     "next_id": "jhs_eigo1/中1-062",
+     "title": "予定表・手紙・電子メールから必要な情報を読み取る",
+     "kind": "活用",
+     "summary": "簡単な表現が使われた予定表や手紙、電子メールなどを、逐語的に読むのではなく、自分が必要とする情報を捉えながら読む。",
+     "summary_core": "簡単な表現が使われた予定表や手紙、電子メールなどを、逐語的に読むのではなく、自分が必要とする情報を捉えながら読む。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①ウ(イ)"
+     ],
+     "basis_text": "(3)①ウ(イ)",
+     "kaisetsu_page": "59",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-062",
+     "rid": "中1-062",
+     "order_in_segment": 62,
+     "order_in_unit": 5,
+     "prev_id": "jhs_eigo1/中1-061",
+     "next_id": "jhs_eigo1/中1-063",
+     "title": "短い説明を読んで概要を捉える",
+     "kind": "活用",
+     "summary": "諸外国の中学校生活を紹介する短い文章を、文章の流れを理解するためのキーワードを拾いながら読み、全体の内容を数文の英語でまとめる。",
+     "summary_core": "諸外国の中学校生活を紹介する短い文章を、文章の流れを理解するためのキーワードを拾いながら読み、全体の内容を数文の英語でまとめる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①ウ(ウ)",
+      "(2)ア"
+     ],
+     "basis_text": "(3)①ウ(ウ)、(2)ア",
+     "kaisetsu_page": "60",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-063",
+     "rid": "中1-063",
+     "order_in_segment": 63,
+     "order_in_unit": 6,
+     "prev_id": "jhs_eigo1/中1-062",
+     "next_id": "jhs_eigo1/中1-064",
+     "title": "エッセイを読んで出来事を時系列に整理する",
+     "kind": "活用",
+     "summary": "友人や教師が休日に感じたことなどを書いたエッセイを読んで出来事を時系列に沿って整理し、伝えようとしている内容を絵や簡単な英語で表す。",
+     "summary_core": "友人や教師が休日に感じたことなどを書いたエッセイを読んで出来事を時系列に沿って整理し、伝えようとしている内容を絵や簡単な英語で表す。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①ウ(ウ)"
+     ],
+     "basis_text": "(3)①ウ(ウ)",
+     "kaisetsu_page": "60",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-064",
+     "rid": "中1-064",
+     "order_in_segment": 64,
+     "order_in_unit": 7,
+     "prev_id": "jhs_eigo1/中1-063",
+     "next_id": "jhs_eigo1/中1-065",
+     "title": "物語を通して読んで話の流れを捉える",
+     "kind": "活用",
+     "summary": "短い物語を最初から最後まで通して読み、意味のまとまりごとに捉えながら話の流れをつかむ。読み取れたことをペアやグループで伝え合う。",
+     "summary_core": "短い物語を最初から最後まで通して読み、意味のまとまりごとに捉えながら話の流れをつかむ。読み取れたことをペアやグループで伝え合う。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①ウ(ウ)"
+     ],
+     "basis_text": "(3)①ウ(ウ)",
+     "kaisetsu_page": "59-60",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-065",
+     "rid": "中1-065",
+     "order_in_segment": 65,
+     "order_in_unit": 8,
+     "prev_id": "jhs_eigo1/中1-064",
+     "next_id": "jhs_eigo1/中1-066",
+     "title": "社会的な話題の説明を読んで要点を捉え、考えを述べる",
+     "kind": "活用",
+     "summary": "環境問題などの社会的な話題を扱った簡単な説明を、イラストや写真、図表も参考にしながら読んで書き手が伝えようとしている要点を捉え、内容に対する賛否や自分の考えを述べる。",
+     "summary_core": "環境問題などの社会的な話題を扱った簡単な説明を、イラストや写真、図表も参考にしながら読んで書き手が伝えようとしている要点を捉え、内容に対する賛否や自分の考えを述べる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①ウ(エ)",
+      "(2)イ"
+     ],
+     "basis_text": "(3)①ウ(エ)、(2)イ",
+     "kaisetsu_page": "60-61",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-066",
+     "rid": "中1-066",
+     "order_in_segment": 66,
+     "order_in_unit": 9,
+     "prev_id": "jhs_eigo1/中1-065",
+     "next_id": "jhs_eigo1/中1-067",
+     "title": "読むことの演習",
+     "kind": "演習",
+     "summary": "日常的な話題の短い文章や案内を読み、必要な情報や概要を捉える練習を重ねる。知らない語は文脈から推測できるかを判断し、必要に応じて辞書を使う。",
+     "summary_core": "日常的な話題の短い文章や案内を読み、必要な情報や概要を捉える練習を重ねる。知らない語は文脈から推測できるかを判断し、必要に応じて辞書を使う。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①ウ(イ)",
+      "(3)①ウ(ウ)",
+      "取扱い(2)オ"
+     ],
+     "basis_text": "(3)①ウ(イ)・①ウ(ウ)、内容の取扱い(2)オ",
+     "kaisetsu_page": "59-60",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    }
+   ]
+  },
+  {
+   "uid": "1-6",
+   "ref": "jhs_eigo1:1-6",
+   "segment": "中学1年",
+   "title": "話すこと［やり取り］",
+   "aim": "関心のある事柄について聞き返しや相づち、関連する質問を使って即興で伝え合い、日常的な話題について事実や考えを整理してメモを活用しながら伝えて質問に答え、社会的な話題について聞いたり読んだりしたことを基に考えや理由を述べ合えるようにする。",
+   "prereq": [
+    "jhs_eigo1:1-3",
+    "jhs_eigo1:1-4"
+   ],
+   "cos": "2(3)①エ、(2)ウ",
+   "kaisetsu": "p.53-54, 61-63",
+   "note": "やり取りは各課の Part の活動のほか、場面別のコーナーでも扱われる（東京書籍 Real Life English 2・3・4・6 各1時間 [S4]、三省堂 Take Action! Talk 1〜4 各1時間 [S8]、啓林館 Let's Talk 5時間 [S11]）。解説の (ｱ)〜(ｳ) の活動例（会話を継続させる方法、メモを活用した伝え合い、社会的な話題についての伝え合い）ごとに2〜4コマとし、演習を1コマ加えた。",
+   "extra": false,
+   "hours": 9,
+   "publisher_hours": {},
+   "rows": [
+    {
+     "id": "jhs_eigo1/中1-067",
+     "rid": "中1-067",
+     "order_in_segment": 67,
+     "order_in_unit": 1,
+     "prev_id": "jhs_eigo1/中1-066",
+     "next_id": "jhs_eigo1/中1-068",
+     "title": "会話を続けるための表現",
+     "kind": "学習",
+     "summary": "Pardon? / You mean …, right? と聞き返したり確かめたりする、I see. / Really? と相づちを打つ、I like baseball, too. と自分のことを伝える、How about you? と関連する質問を付け加えるなど、会話を続ける方法を知る。",
+     "summary_core": "Pardon? / You mean …, right? と聞き返したり確かめたりする、I see. / Really? と相づちを打つ、I like baseball, too. と自分のことを伝える、How about you? と関連する質問を付け加えるなど、会話を続ける方法を知る。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①エ(ア)",
+      "(3)②イ(ア)"
+     ],
+     "basis_text": "(3)①エ(ア)・②イ(ア)",
+     "kaisetsu_page": "61",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-068",
+     "rid": "中1-068",
+     "order_in_segment": 68,
+     "order_in_unit": 2,
+     "prev_id": "jhs_eigo1/中1-067",
+     "next_id": "jhs_eigo1/中1-069",
+     "title": "関心のある事柄について即興で質問し合う",
+     "kind": "活用",
+     "summary": "スポーツや音楽、休日の計画など身近な話題について、原稿を準備せずにその場で質問したり答えたりして会話を続ける。",
+     "summary_core": "スポーツや音楽、休日の計画など身近な話題について、原稿を準備せずにその場で質問したり答えたりして会話を続ける。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①エ(ア)"
+     ],
+     "basis_text": "(3)①エ(ア)",
+     "kaisetsu_page": "61",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-069",
+     "rid": "中1-069",
+     "order_in_segment": 69,
+     "order_in_unit": 3,
+     "prev_id": "jhs_eigo1/中1-068",
+     "next_id": "jhs_eigo1/中1-070",
+     "title": "自分から話を切り出して会話を始める",
+     "kind": "活用",
+     "summary": "話の切り出し方や質問の仕方が会話の流れを決めることを意識し、自分から話のきっかけを作って対話を始め、会話の流れに応じて関連する質問をすぐにする。",
+     "summary_core": "話の切り出し方や質問の仕方が会話の流れを決めることを意識し、自分から話のきっかけを作って対話を始め、会話の流れに応じて関連する質問をすぐにする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①エ(ア)"
+     ],
+     "basis_text": "(3)①エ(ア)",
+     "kaisetsu_page": "61",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-070",
+     "rid": "中1-070",
+     "order_in_segment": 70,
+     "order_in_unit": 4,
+     "prev_id": "jhs_eigo1/中1-069",
+     "next_id": "jhs_eigo1/中1-071",
+     "title": "やり取りの振り返りと表現の確認",
+     "kind": "活用",
+     "summary": "活動の後に自分が使った英語を振り返り、会話を続けようとしていた良いモデルを全体で共有して、場面に応じた適切な表現を確かめる。",
+     "summary_core": "活動の後に自分が使った英語を振り返り、会話を続けようとしていた良いモデルを全体で共有して、場面に応じた適切な表現を確かめる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①エ(ア)"
+     ],
+     "basis_text": "(3)①エ(ア)",
+     "kaisetsu_page": "61-62",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-071",
+     "rid": "中1-071",
+     "order_in_segment": 71,
+     "order_in_unit": 5,
+     "prev_id": "jhs_eigo1/中1-070",
+     "next_id": "jhs_eigo1/中1-072",
+     "title": "メモを基に日常的な話題を伝え合う",
+     "kind": "活用",
+     "summary": "週末の出来事など日常的な話題について、伝えたい内容の大まかな流れや主要な点をメモに書き、それを基に相手と口頭で伝え合う。慣れてきたらキーワードだけのメモにする。",
+     "summary_core": "週末の出来事など日常的な話題について、伝えたい内容の大まかな流れや主要な点をメモに書き、それを基に相手と口頭で伝え合う。慣れてきたらキーワードだけのメモにする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①エ(イ)"
+     ],
+     "basis_text": "(3)①エ(イ)",
+     "kaisetsu_page": "62",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-072",
+     "rid": "中1-072",
+     "order_in_segment": 72,
+     "order_in_unit": 6,
+     "prev_id": "jhs_eigo1/中1-071",
+     "next_id": "jhs_eigo1/中1-073",
+     "title": "伝えた内容への質問に答えて対話を続ける",
+     "kind": "活用",
+     "summary": "自分から事実や考えを伝えた後、その内容について相手から受けた質問に答えたり聞き返したりして対話を続け、情報や考えを共有する。",
+     "summary_core": "自分から事実や考えを伝えた後、その内容について相手から受けた質問に答えたり聞き返したりして対話を続け、情報や考えを共有する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①エ(イ)",
+      "(2)ウ"
+     ],
+     "basis_text": "(3)①エ(イ)、(2)ウ",
+     "kaisetsu_page": "62-63",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-073",
+     "rid": "中1-073",
+     "order_in_segment": 73,
+     "order_in_unit": 7,
+     "prev_id": "jhs_eigo1/中1-072",
+     "next_id": "jhs_eigo1/中1-074",
+     "title": "社会的な話題について読み取ったことを伝え、質問し合う",
+     "kind": "活用",
+     "summary": "社会的な話題について聞いたり読んだりした内容を基に、分かったことや感じたこと、自分ならどうするかとその理由を伝え、相手からの質問に答えたり質問し返したりする。",
+     "summary_core": "社会的な話題について聞いたり読んだりした内容を基に、分かったことや感じたこと、自分ならどうするかとその理由を伝え、相手からの質問に答えたり質問し返したりする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①エ(ウ)",
+      "(2)ウ"
+     ],
+     "basis_text": "(3)①エ(ウ)、(2)ウ",
+     "kaisetsu_page": "63",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-074",
+     "rid": "中1-074",
+     "order_in_segment": 74,
+     "order_in_unit": 8,
+     "prev_id": "jhs_eigo1/中1-073",
+     "next_id": "jhs_eigo1/中1-075",
+     "title": "テーマに関する情報を共有してから考えを伝え合う",
+     "kind": "活用",
+     "summary": "聞いたり読んだりする前に教師や生徒同士でテーマに関連する情報を共有・整理し、生徒が発話した語句を教師が簡単な文に言い換えた例も参考にして、自分の考えを伝え合う。",
+     "summary_core": "聞いたり読んだりする前に教師や生徒同士でテーマに関連する情報を共有・整理し、生徒が発話した語句を教師が簡単な文に言い換えた例も参考にして、自分の考えを伝え合う。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①エ(ウ)"
+     ],
+     "basis_text": "(3)①エ(ウ)",
+     "kaisetsu_page": "63",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-075",
+     "rid": "中1-075",
+     "order_in_segment": 75,
+     "order_in_unit": 9,
+     "prev_id": "jhs_eigo1/中1-074",
+     "next_id": "jhs_eigo1/中1-076",
+     "title": "やり取りの演習",
+     "kind": "演習",
+     "summary": "身近な話題について、相づちや聞き返し、関連する質問を使いながら即興で会話を続ける活動を継続して行い、即興で表現できる範囲を少しずつ広げる。",
+     "summary_core": "身近な話題について、相づちや聞き返し、関連する質問を使いながら即興で会話を続ける活動を継続して行い、即興で表現できる範囲を少しずつ広げる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①エ(ア)"
+     ],
+     "basis_text": "(3)①エ(ア)",
+     "kaisetsu_page": "61-62",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    }
+   ]
+  },
+  {
+   "uid": "1-7",
+   "ref": "jhs_eigo1:1-7",
+   "segment": "中学1年",
+   "title": "話すこと［発表］",
+   "aim": "関心のある事柄についてその場で考えを整理して口頭で説明し、日常的な話題について事実や考えを整理してまとまりのある簡単なスピーチをし、社会的な話題について聞いたり読んだりしたことを要約して考えや理由を話せるようにする。",
+   "prereq": [
+    "jhs_eigo1:1-2",
+    "jhs_eigo1:1-3"
+   ],
+   "cos": "2(3)①オ、(2)イ・ウ",
+   "kaisetsu": "p.53-54, 63-66",
+   "note": "発表は各課の課末の活動などで扱われる（東京書籍 Unit 5 の友達紹介のスピーチ、Unit 7 の実況レポート、Stage Activity 3 の発表 [S4]、開隆堂 Our Project 1〜3 各4時間 [S7]）。解説の (ｱ)〜(ｳ) の活動例（その場で考えを整理して説明する、簡単なスピーチ、社会的な話題についての要約と考え）に沿って配分した。",
+   "extra": false,
+   "hours": 7,
+   "publisher_hours": {},
+   "rows": [
+    {
+     "id": "jhs_eigo1/中1-076",
+     "rid": "中1-076",
+     "order_in_segment": 76,
+     "order_in_unit": 1,
+     "prev_id": "jhs_eigo1/中1-075",
+     "next_id": "jhs_eigo1/中1-077",
+     "title": "学校行事や出来事をその場で説明する",
+     "kind": "活用",
+     "summary": "学校行事や日常の出来事など共通の話題について、原稿や練習なしにその場で考えを整理して口頭で説明する。文化祭の説明のように、既習の表現で様々な言い方ができることに気付く。",
+     "summary_core": "学校行事や日常の出来事など共通の話題について、原稿や練習なしにその場で考えを整理して口頭で説明する。文化祭の説明のように、既習の表現で様々な言い方ができることに気付く。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①オ(ア)"
+     ],
+     "basis_text": "(3)①オ(ア)",
+     "kaisetsu_page": "63-64",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-077",
+     "rid": "中1-077",
+     "order_in_segment": 77,
+     "order_in_unit": 2,
+     "prev_id": "jhs_eigo1/中1-076",
+     "next_id": "jhs_eigo1/中1-078",
+     "title": "写真や実物を見せながら即興で説明する",
+     "kind": "活用",
+     "summary": "実物や写真、タブレット端末などを補助に使い、つなぎ言葉や言い直し、身振り手振りも用いながら、身近な事柄を即興で説明する。",
+     "summary_core": "実物や写真、タブレット端末などを補助に使い、つなぎ言葉や言い直し、身振り手振りも用いながら、身近な事柄を即興で説明する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①オ(ア)"
+     ],
+     "basis_text": "(3)①オ(ア)",
+     "kaisetsu_page": "64",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-078",
+     "rid": "中1-078",
+     "order_in_segment": 78,
+     "order_in_unit": 3,
+     "prev_id": "jhs_eigo1/中1-077",
+     "next_id": "jhs_eigo1/中1-079",
+     "title": "説明の仕方を振り返り、もう一度説明する",
+     "kind": "活用",
+     "summary": "一度説明した後、ペアやグループでよりよい説明の仕方や表現を振り返ったり、ネイティブ・スピーカーの説明をモデルとして聞いたりして、類似した話題について再度説明する。",
+     "summary_core": "一度説明した後、ペアやグループでよりよい説明の仕方や表現を振り返ったり、ネイティブ・スピーカーの説明をモデルとして聞いたりして、類似した話題について再度説明する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①オ(ア)"
+     ],
+     "basis_text": "(3)①オ(ア)",
+     "kaisetsu_page": "64",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-079",
+     "rid": "中1-079",
+     "order_in_segment": 79,
+     "order_in_unit": 4,
+     "prev_id": "jhs_eigo1/中1-078",
+     "next_id": "jhs_eigo1/中1-080",
+     "title": "スピーチの目的と内容の順序を考えてメモにする",
+     "kind": "活用",
+     "summary": "身近な人の紹介など日常的な話題のスピーチについて目的を明確にし、ブレインストーミングで構想を膨らませた後、伝えたい事実や考えの順番を考えて概要を箇条書きのメモにする。",
+     "summary_core": "身近な人の紹介など日常的な話題のスピーチについて目的を明確にし、ブレインストーミングで構想を膨らませた後、伝えたい事実や考えの順番を考えて概要を箇条書きのメモにする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①オ(イ)",
+      "(2)ウ"
+     ],
+     "basis_text": "(3)①オ(イ)、(2)ウ",
+     "kaisetsu_page": "64-65",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-080",
+     "rid": "中1-080",
+     "order_in_segment": 80,
+     "order_in_unit": 5,
+     "prev_id": "jhs_eigo1/中1-079",
+     "next_id": "jhs_eigo1/中1-081",
+     "title": "ペアでスピーチを練習して表現を改善する",
+     "kind": "活用",
+     "summary": "ペアでスピーチを練習し、分かりづらかった表現を確かめたり、聞き手に分かりやすい語句や表現を調べたり考えたりして、聞き手に配慮したスピーチに改善する。",
+     "summary_core": "ペアでスピーチを練習し、分かりづらかった表現を確かめたり、聞き手に分かりやすい語句や表現を調べたり考えたりして、聞き手に配慮したスピーチに改善する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①オ(イ)"
+     ],
+     "basis_text": "(3)①オ(イ)",
+     "kaisetsu_page": "65",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-081",
+     "rid": "中1-081",
+     "order_in_segment": 81,
+     "order_in_unit": 6,
+     "prev_id": "jhs_eigo1/中1-080",
+     "next_id": "jhs_eigo1/中1-082",
+     "title": "聞き手に配慮して簡単なスピーチをする",
+     "kind": "活用",
+     "summary": "アイコンタクトや姿勢、表情に加え、聞き手に問いかけたり考える間を取ったりしながら、日常的な話題について簡単なスピーチをする。",
+     "summary_core": "アイコンタクトや姿勢、表情に加え、聞き手に問いかけたり考える間を取ったりしながら、日常的な話題について簡単なスピーチをする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①オ(イ)"
+     ],
+     "basis_text": "(3)①オ(イ)",
+     "kaisetsu_page": "65",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-082",
+     "rid": "中1-082",
+     "order_in_segment": 82,
+     "order_in_unit": 7,
+     "prev_id": "jhs_eigo1/中1-081",
+     "next_id": "jhs_eigo1/中1-083",
+     "title": "社会的な話題について聞いたり読んだりした内容を要約して話す",
+     "kind": "活用",
+     "summary": "社会的な話題について聞いたり読んだりした内容をキーワードや図のメモにし、それを活用して口頭で要約したり、一番印象に残った内容とその理由を話したりする。",
+     "summary_core": "社会的な話題について聞いたり読んだりした内容をキーワードや図のメモにし、それを活用して口頭で要約したり、一番印象に残った内容とその理由を話したりする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①オ(ウ)",
+      "(2)イ"
+     ],
+     "basis_text": "(3)①オ(ウ)、(2)イ",
+     "kaisetsu_page": "65-66",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    }
+   ]
+  },
+  {
+   "uid": "1-8",
+   "ref": "jhs_eigo1:1-8",
+   "segment": "中学1年",
+   "title": "書くこと",
+   "aim": "関心のある事柄について簡単な語句や文を用いて正確に書き、日常的な話題について手紙・電子メールや出来事を説明するまとまりのある文章を書き、社会的な話題について聞いたり読んだりしたことへの考えや気持ち、その理由を書けるようにする。メモ・読み合い・推敲の段階を踏んで内容と表現を整える。",
+   "prereq": [
+    "jhs_eigo1:1-2",
+    "jhs_eigo1:1-3"
+   ],
+   "cos": "2(3)①カ、(2)イ・ウ",
+   "kaisetsu": "p.53-54, 66-69",
+   "note": "書くことは各課の課末の活動のほか、書く活動のコーナーで扱われる（東京書籍 Stage Activity 1 のポスター 2時間・Real Life English 5 の絵はがき 1時間・Unit 10 の日記 [S4]、啓林館 Let's Write 2時間 [S11]）。解説の (ｱ)〜(ｴ) の活動例と段階的な指導の例（メモ→書く→読み合い→推敲）に沿って配分した。",
+   "extra": false,
+   "hours": 8,
+   "publisher_hours": {},
+   "rows": [
+    {
+     "id": "jhs_eigo1/中1-083",
+     "rid": "中1-083",
+     "order_in_segment": 83,
+     "order_in_unit": 1,
+     "prev_id": "jhs_eigo1/中1-082",
+     "next_id": "jhs_eigo1/中1-084",
+     "title": "自分に関する基本的な情報を書く",
+     "kind": "活用",
+     "summary": "趣味や好き嫌い、日常的に行っていることなど、自分について相手に知ってほしい情報を、口頭で伝え合った後に適切な語句や文で書く。",
+     "summary_core": "趣味や好き嫌い、日常的に行っていることなど、自分について相手に知ってほしい情報を、口頭で伝え合った後に適切な語句や文で書く。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①カ(ア)"
+     ],
+     "basis_text": "(3)①カ(ア)",
+     "kaisetsu_page": "66",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-084",
+     "rid": "中1-084",
+     "order_in_segment": 84,
+     "order_in_unit": 2,
+     "prev_id": "jhs_eigo1/中1-083",
+     "next_id": "jhs_eigo1/中1-085",
+     "title": "手本となる文章の表現を活用して書く",
+     "kind": "学習",
+     "summary": "手本となる文章を数多く読み、その表現を活用したり入れ替えたりしながら書き方を学んだ上で、自分の力で書く。",
+     "summary_core": "手本となる文章を数多く読み、その表現を活用したり入れ替えたりしながら書き方を学んだ上で、自分の力で書く。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①カ(ア)"
+     ],
+     "basis_text": "(3)①カ(ア)",
+     "kaisetsu_page": "66",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-085",
+     "rid": "中1-085",
+     "order_in_segment": 85,
+     "order_in_unit": 3,
+     "prev_id": "jhs_eigo1/中1-084",
+     "next_id": "jhs_eigo1/中1-086",
+     "title": "書いた英文を見直して正確に書く",
+     "kind": "活用",
+     "summary": "綴りや語順、大文字と小文字の書き分け、符号の使い方などに注意して書いたものを見直し、辞書も使いながら誤りを直す。",
+     "summary_core": "綴りや語順、大文字と小文字の書き分け、符号の使い方などに注意して書いたものを見直し、辞書も使いながら誤りを直す。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①カ(ア)",
+      "(1)イ",
+      "取扱い(2)オ"
+     ],
+     "basis_text": "(3)①カ(ア)、(1)イ、内容の取扱い(2)オ",
+     "kaisetsu_page": "66-67",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-086",
+     "rid": "中1-086",
+     "order_in_segment": 86,
+     "order_in_unit": 4,
+     "prev_id": "jhs_eigo1/中1-085",
+     "next_id": "jhs_eigo1/中1-087",
+     "title": "手紙や葉書、電子メールで近況を伝える",
+     "kind": "活用",
+     "summary": "旅行先からの手紙や葉書、家族や友達に自分の近況を伝える手紙や電子メールなどを、受け手と状況を意識して書く。",
+     "summary_core": "旅行先からの手紙や葉書、家族や友達に自分の近況を伝える手紙や電子メールなどを、受け手と状況を意識して書く。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①カ(イ)",
+      "(3)②ア(イ)"
+     ],
+     "basis_text": "(3)①カ(イ)・②ア(イ)",
+     "kaisetsu_page": "67",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-087",
+     "rid": "中1-087",
+     "order_in_segment": 87,
+     "order_in_unit": 5,
+     "prev_id": "jhs_eigo1/中1-086",
+     "next_id": "jhs_eigo1/中1-088",
+     "title": "出来事を順序よく説明する日記を書く",
+     "kind": "活用",
+     "summary": "学校行事や部活動、休日の過ごし方など日常的な話題について、起こった出来事を時間を追って順序よく描写し、日記などの形式でまとまりのある文章を書く。",
+     "summary_core": "学校行事や部活動、休日の過ごし方など日常的な話題について、起こった出来事を時間を追って順序よく描写し、日記などの形式でまとまりのある文章を書く。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①カ(ウ)"
+     ],
+     "basis_text": "(3)①カ(ウ)",
+     "kaisetsu_page": "67",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-088",
+     "rid": "中1-088",
+     "order_in_segment": 88,
+     "order_in_unit": 6,
+     "prev_id": "jhs_eigo1/中1-087",
+     "next_id": "jhs_eigo1/中1-089",
+     "title": "メモ・読み合い・推敲の段階を踏んで書く",
+     "kind": "活用",
+     "summary": "テーマに関する情報やキーワードを順序を意識してメモし、それを基に書き表したものをペアやグループで読んでもらい、受けた質問やコメントを参考に推敲する。",
+     "summary_core": "テーマに関する情報やキーワードを順序を意識してメモし、それを基に書き表したものをペアやグループで読んでもらい、受けた質問やコメントを参考に推敲する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①カ(ウ)",
+      "(2)ウ"
+     ],
+     "basis_text": "(3)①カ(ウ)、(2)ウ",
+     "kaisetsu_page": "68",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-089",
+     "rid": "中1-089",
+     "order_in_segment": 89,
+     "order_in_unit": 7,
+     "prev_id": "jhs_eigo1/中1-088",
+     "next_id": "jhs_eigo1/中1-090",
+     "title": "文と文のつながりを意識してまとまりのある文章を書く",
+     "kind": "学習",
+     "summary": "キーワードを整理し、5W1H を意識して全体の構成を考え、文と文のつながりを示す語句を用いて、出来事などを説明するまとまりのある文章を書く。",
+     "summary_core": "キーワードを整理し、5W1H を意識して全体の構成を考え、文と文のつながりを示す語句を用いて、出来事などを説明するまとまりのある文章を書く。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①カ(ウ)"
+     ],
+     "basis_text": "(3)①カ(ウ)",
+     "kaisetsu_page": "68",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-090",
+     "rid": "中1-090",
+     "order_in_segment": 90,
+     "order_in_unit": 8,
+     "prev_id": "jhs_eigo1/中1-089",
+     "next_id": "jhs_eigo1/中1-091",
+     "title": "社会的な話題について考えや気持ちを書く",
+     "kind": "活用",
+     "summary": "社会的な話題について聞いたり読んだりした内容を基に、マッピングで考えや情報を整理し、ペアやグループで説明し合った後、自分の考えや気持ち、その理由を書く。",
+     "summary_core": "社会的な話題について聞いたり読んだりした内容を基に、マッピングで考えや情報を整理し、ペアやグループで説明し合った後、自分の考えや気持ち、その理由を書く。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①カ(エ)",
+      "(2)イ"
+     ],
+     "basis_text": "(3)①カ(エ)、(2)イ",
+     "kaisetsu_page": "68-69",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    }
+   ]
+  },
+  {
+   "uid": "1-9",
+   "ref": "jhs_eigo1:1-9",
+   "segment": "中学1年",
+   "title": "言語の使用場面と働き",
+   "aim": "小学校でも慣れ親しんだ身近な言語の使用場面（家庭・学校・地域、自己紹介・買物・食事・道案内など）と、コミュニケーションを円滑にする・気持ちや事実・考えを伝える・相手の行動を促すといった言語の働きに応じた表現を理解し、場面や相手に合わせて選んで使えるようにする。",
+   "prereq": [
+    "jhs_eigo1:1-3",
+    "jhs_eigo1:1-6"
+   ],
+   "cos": "2(3)②",
+   "kaisetsu": "p.69-81",
+   "note": "解説は「第１学年において言語活動を行う際には，小学校でも慣れ親しんだことのあるような身近な言語の使用場面や言語の働きを取り上げる」とする [S2]。場面別の表現は各社とも独立したコーナーで扱う（東京書籍 Real Life English 1〜6 各1時間 [S4]、開隆堂 Power-Up 1〜6 各1時間 [S7]、光村図書 Daily Life 1〜5 各1時間 [S10]、教育出版 Useful Expressions ①② 各1時間 [S9]）。使用場面4コマ、働き5コマとした。",
+   "extra": false,
+   "hours": 9,
+   "publisher_hours": {},
+   "rows": [
+    {
+     "id": "jhs_eigo1/中1-091",
+     "rid": "中1-091",
+     "order_in_segment": 91,
+     "order_in_unit": 1,
+     "prev_id": "jhs_eigo1/中1-090",
+     "next_id": "jhs_eigo1/中1-092",
+     "title": "身近な暮らしに関わる場面（家庭・学校・地域）",
+     "kind": "活用",
+     "summary": "家庭での生活、学校での学習や活動、地域の行事の場面で、小学校で使った表現を繰り返し使って定着を図るとともに、同じ質問への答え方を多様にするなど表現を広げる。",
+     "summary_core": "家庭での生活、学校での学習や活動、地域の行事の場面で、小学校で使った表現を繰り返し使って定着を図るとともに、同じ質問への答え方を多様にするなど表現を広げる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)②ア(ア)"
+     ],
+     "basis_text": "(3)②ア(ア)",
+     "kaisetsu_page": "70-71",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-092",
+     "rid": "中1-092",
+     "order_in_segment": 92,
+     "order_in_unit": 2,
+     "prev_id": "jhs_eigo1/中1-091",
+     "next_id": "jhs_eigo1/中1-093",
+     "title": "自己紹介・買物・食事の場面の表現",
+     "kind": "活用",
+     "summary": "自己紹介、買物（May I help you? — Yes, please. I'm looking for ….）、食事（What would you like to drink? — Orange juice, please.）など、特有の表現がよく使われる場面の表現を使ってやり取りする。",
+     "summary_core": "自己紹介、買物（May I help you? — Yes, please. I'm looking for ….）、食事（What would you like to drink? — Orange juice, please.）など、特有の表現がよく使われる場面の表現を使ってやり取りする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)②ア(イ)"
+     ],
+     "basis_text": "(3)②ア(イ)",
+     "kaisetsu_page": "71",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-093",
+     "rid": "中1-093",
+     "order_in_segment": 93,
+     "order_in_unit": 3,
+     "prev_id": "jhs_eigo1/中1-092",
+     "next_id": "jhs_eigo1/中1-094",
+     "title": "道案内の場面の表現",
+     "kind": "活用",
+     "summary": "Go straight on this street and turn left at the first corner. のように道順を説明したり、道をたずねたりする。小学校で扱った Where is ～? 以外のたずね方にも触れる。",
+     "summary_core": "Go straight on this street and turn left at the first corner. のように道順を説明したり、道をたずねたりする。小学校で扱った Where is ～? 以外のたずね方にも触れる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)②ア(イ)",
+      "(3)②イ(ウ)"
+     ],
+     "basis_text": "(3)②ア(イ)・②イ(ウ)",
+     "kaisetsu_page": "71",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-094",
+     "rid": "中1-094",
+     "order_in_segment": 94,
+     "order_in_unit": 4,
+     "prev_id": "jhs_eigo1/中1-093",
+     "next_id": "jhs_eigo1/中1-095",
+     "title": "旅行・電話での対応・手紙や電子メールの場面の表現",
+     "kind": "活用",
+     "summary": "小学校では扱っていない旅行、電話での対応（Hello. This is Mina. May I speak to Lucy?）、手紙や電子メールのやり取りの場面に特有の表現を知り、使う。",
+     "summary_core": "小学校では扱っていない旅行、電話での対応（Hello. This is Mina. May I speak to Lucy?）、手紙や電子メールのやり取りの場面に特有の表現を知り、使う。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)②ア(イ)"
+     ],
+     "basis_text": "(3)②ア(イ)",
+     "kaisetsu_page": "72",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-095",
+     "rid": "中1-095",
+     "order_in_segment": 95,
+     "order_in_unit": 5,
+     "prev_id": "jhs_eigo1/中1-094",
+     "next_id": "jhs_eigo1/中1-096",
+     "title": "コミュニケーションを円滑にする働き",
+     "kind": "活用",
+     "summary": "話し掛ける（Excuse me. / What's wrong?）、相づちを打つ、聞き直す（Pardon me?）、繰り返す働きの表現を、場面や状況に応じてイントネーションも変えながら使う。Let me see. などのつなぎ言葉も使う。",
+     "summary_core": "話し掛ける（Excuse me. / What's wrong?）、相づちを打つ、聞き直す（Pardon me?）、繰り返す働きの表現を、場面や状況に応じてイントネーションも変えながら使う。Let me see. などのつなぎ言葉も使う。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)②イ(ア)"
+     ],
+     "basis_text": "(3)②イ(ア)",
+     "kaisetsu_page": "72-74",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-096",
+     "rid": "中1-096",
+     "order_in_segment": 96,
+     "order_in_unit": 6,
+     "prev_id": "jhs_eigo1/中1-095",
+     "next_id": "jhs_eigo1/中1-097",
+     "title": "気持ちを伝える働き",
+     "kind": "活用",
+     "summary": "Thank you for your help. / I'm sorry to be late. のように具体的に礼を言ったり謝ったりし、褒める・苦情を言う・歓迎する表現も相手意識をもって選んで使う。",
+     "summary_core": "Thank you for your help. / I'm sorry to be late. のように具体的に礼を言ったり謝ったりし、褒める・苦情を言う・歓迎する表現も相手意識をもって選んで使う。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)②イ(イ)"
+     ],
+     "basis_text": "(3)②イ(イ)",
+     "kaisetsu_page": "74-75",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-097",
+     "rid": "中1-097",
+     "order_in_segment": 97,
+     "order_in_unit": 7,
+     "prev_id": "jhs_eigo1/中1-096",
+     "next_id": "jhs_eigo1/中1-098",
+     "title": "事実・情報を伝える働き",
+     "kind": "活用",
+     "summary": "説明する・報告する・発表する・描写する（My teacher is a tall young man. など）働きの表現を使い、客観性や論理性を意識して事実や情報を伝える。",
+     "summary_core": "説明する・報告する・発表する・描写する（My teacher is a tall young man. など）働きの表現を使い、客観性や論理性を意識して事実や情報を伝える。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)②イ(ウ)"
+     ],
+     "basis_text": "(3)②イ(ウ)",
+     "kaisetsu_page": "76-77",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-098",
+     "rid": "中1-098",
+     "order_in_segment": 98,
+     "order_in_unit": 8,
+     "prev_id": "jhs_eigo1/中1-097",
+     "next_id": "jhs_eigo1/中1-099",
+     "title": "考えや意図を伝える働き",
+     "kind": "活用",
+     "summary": "申し出る・約束する・意見を言う・賛成する・反対する・承諾する・断る働きの表現を、相手の気持ちに配慮しながら場面に応じて使い分ける。",
+     "summary_core": "申し出る・約束する・意見を言う・賛成する・反対する・承諾する・断る働きの表現を、相手の気持ちに配慮しながら場面に応じて使い分ける。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)②イ(エ)"
+     ],
+     "basis_text": "(3)②イ(エ)",
+     "kaisetsu_page": "77-80",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-099",
+     "rid": "中1-099",
+     "order_in_segment": 99,
+     "order_in_unit": 9,
+     "prev_id": "jhs_eigo1/中1-098",
+     "next_id": "jhs_eigo1/中1-100",
+     "title": "相手の行動を促す働き",
+     "kind": "活用",
+     "summary": "質問する・依頼する（Can you turn on the light?）・招待する（Can you come with us?）・命令する（Watch your step.）働きの表現を、相手や場面に応じて表現や言い方を変えて使う。",
+     "summary_core": "質問する・依頼する（Can you turn on the light?）・招待する（Can you come with us?）・命令する（Watch your step.）働きの表現を、相手や場面に応じて表現や言い方を変えて使う。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)②イ(オ)"
+     ],
+     "basis_text": "(3)②イ(オ)",
+     "kaisetsu_page": "80-81",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    }
+   ]
+  },
+  {
+   "uid": "1-10",
+   "ref": "jhs_eigo1:1-10",
+   "segment": "中学1年",
+   "title": "復習（予備時間）",
+   "aim": "第1学年の文法事項（be 動詞・一般動詞・can・代名詞・疑問文・命令文・進行形・過去形・There＋be 動詞など）、音声・語彙、五つの領域の言語活動、言語の使用場面と働きの範囲を復習し、学年で身に付けた知識と技能を総合問題で確かめる。",
+   "prereq": [],
+   "cos": "—",
+   "kaisetsu": "—",
+   "note": "標準授業時数140時間と各社の第1学年の合計時数との差（予備時間）は、東京書籍41・開隆堂52・三省堂43・教育出版31・光村図書40・啓林館37時間 [S6]〜[S11]。基準とした東京書籍の41時間を、範囲を明示した復習として並べた。",
+   "extra": false,
+   "hours": 41,
+   "publisher_hours": {},
+   "rows": [
+    {
+     "id": "jhs_eigo1/中1-100",
+     "rid": "中1-100",
+     "order_in_segment": 100,
+     "order_in_unit": 1,
+     "prev_id": "jhs_eigo1/中1-099",
+     "next_id": "jhs_eigo1/中1-101",
+     "title": "復習：英語の語順と小学校で学んだ文",
+     "kind": "復習",
+     "summary": "主語＋動詞の語順を確かめ、小学校で扱った肯定・否定の平叙文、肯定・否定の命令文、be 動詞・can・do で始まる疑問文を、日本語との語順の違いに注意して読んだり書いたりする。",
+     "summary_core": "主語＋動詞の語順を確かめ、小学校で扱った肯定・否定の平叙文、肯定・否定の命令文、be 動詞・can・do で始まる疑問文を、日本語との語順の違いに注意して読んだり書いたりする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ"
+     ],
+     "basis_text": "(1)エ",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-101",
+     "rid": "中1-101",
+     "order_in_segment": 101,
+     "order_in_unit": 2,
+     "prev_id": "jhs_eigo1/中1-100",
+     "next_id": "jhs_eigo1/中1-102",
+     "title": "復習：be 動詞の文",
+     "kind": "復習",
+     "summary": "主語に合わせた am・are・is の使い分けと、be 動詞の肯定文・否定文（be 動詞＋not）・疑問文（be 動詞を主語の前に出す）の形を確かめる。",
+     "summary_core": "主語に合わせた am・are・is の使い分けと、be 動詞の肯定文・否定文（be 動詞＋not）・疑問文（be 動詞を主語の前に出す）の形を確かめる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-102",
+     "rid": "中1-102",
+     "order_in_segment": 102,
+     "order_in_unit": 3,
+     "prev_id": "jhs_eigo1/中1-101",
+     "next_id": "jhs_eigo1/中1-103",
+     "title": "復習：一般動詞の文",
+     "kind": "復習",
+     "summary": "一般動詞の現在形の肯定文・否定文（do not＋動詞の原形）・疑問文（Do …?）と答え方を確かめ、be 動詞の文と混同しないようにする。",
+     "summary_core": "一般動詞の現在形の肯定文・否定文（do not＋動詞の原形）・疑問文（Do …?）と答え方を確かめ、be 動詞の文と混同しないようにする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-103",
+     "rid": "中1-103",
+     "order_in_segment": 103,
+     "order_in_unit": 4,
+     "prev_id": "jhs_eigo1/中1-102",
+     "next_id": "jhs_eigo1/中1-104",
+     "title": "復習：助動詞 can",
+     "kind": "復習",
+     "summary": "can＋動詞の原形の形と、能力（I can …）・許可（Can I …?）・依頼（Can you …?）の意味を確かめ、否定文（cannot）・疑問文と答え方を練習する。",
+     "summary_core": "can＋動詞の原形の形と、能力（I can …）・許可（Can I …?）・依頼（Can you …?）の意味を確かめ、否定文（cannot）・疑問文と答え方を練習する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)c"
+     ],
+     "basis_text": "(1)エ(ウ)c",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-104",
+     "rid": "中1-104",
+     "order_in_segment": 104,
+     "order_in_unit": 5,
+     "prev_id": "jhs_eigo1/中1-103",
+     "next_id": "jhs_eigo1/中1-105",
+     "title": "復習：this・that と he・she",
+     "kind": "復習",
+     "summary": "this・that を使って身近な人やものを紹介する文と、he・she を使って人について説明する文（He [She] is …）を確かめ、Is this …? / Is he …? の疑問文と答え方を練習する。",
+     "summary_core": "this・that を使って身近な人やものを紹介する文と、he・she を使って人について説明する文（He [She] is …）を確かめ、Is this …? / Is he …? の疑問文と答え方を練習する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)a(a)"
+     ],
+     "basis_text": "(1)エ(ウ)a(a)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-105",
+     "rid": "中1-105",
+     "order_in_segment": 105,
+     "order_in_unit": 6,
+     "prev_id": "jhs_eigo1/中1-104",
+     "next_id": "jhs_eigo1/中1-106",
+     "title": "復習：疑問詞 what・who・how・when・where",
+     "kind": "復習",
+     "summary": "what・who・how・when・where で始まる疑問文の語順（疑問詞＋疑問文の形）と、たずねる内容に合った答え方を確かめる。",
+     "summary_core": "what・who・how・when・where で始まる疑問文の語順（疑問詞＋疑問文の形）と、たずねる内容に合った答え方を確かめる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ"
+     ],
+     "basis_text": "(1)エ",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-106",
+     "rid": "中1-106",
+     "order_in_segment": 106,
+     "order_in_unit": 7,
+     "prev_id": "jhs_eigo1/中1-105",
+     "next_id": "jhs_eigo1/中1-107",
+     "title": "復習：How many・What time と名詞の複数形",
+     "kind": "復習",
+     "summary": "How many＋名詞の複数形 …? で数を、What time …? で時刻をたずねる文と答え方を確かめ、名詞の複数形の -s・-es の付け方を練習する。",
+     "summary_core": "How many＋名詞の複数形 …? で数を、What time …? で時刻をたずねる文と答え方を確かめ、名詞の複数形の -s・-es の付け方を練習する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ"
+     ],
+     "basis_text": "(1)エ",
+     "kaisetsu_page": "",
+     "dagger": true,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-107",
+     "rid": "中1-107",
+     "order_in_segment": 107,
+     "order_in_unit": 8,
+     "prev_id": "jhs_eigo1/中1-106",
+     "next_id": "jhs_eigo1/中1-108",
+     "title": "復習：命令文",
+     "kind": "復習",
+     "summary": "動詞の原形で始まる肯定の命令文、Don't で始まる否定の命令文、Please を付けた命令文を確かめ、指示や注意を伝える表現を練習する。",
+     "summary_core": "動詞の原形で始まる肯定の命令文、Don't で始まる否定の命令文、Please を付けた命令文を確かめ、指示や注意を伝える表現を練習する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ"
+     ],
+     "basis_text": "(1)エ",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-108",
+     "rid": "中1-108",
+     "order_in_segment": 108,
+     "order_in_unit": 9,
+     "prev_id": "jhs_eigo1/中1-107",
+     "next_id": "jhs_eigo1/中1-109",
+     "title": "復習：三人称単数現在形（肯定文）",
+     "kind": "復習",
+     "summary": "自分と相手以外の人やものについて、一般動詞の現在形の -s・-es の付け方を確かめる。",
+     "summary_core": "自分と相手以外の人やものについて、一般動詞の現在形の -s・-es の付け方を確かめる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-109",
+     "rid": "中1-109",
+     "order_in_segment": 109,
+     "order_in_unit": 10,
+     "prev_id": "jhs_eigo1/中1-108",
+     "next_id": "jhs_eigo1/中1-110",
+     "title": "復習：三人称単数現在形（疑問文・否定文）",
+     "kind": "復習",
+     "summary": "Does＋主語＋動詞の原形 …? の疑問文と答え方、does not [doesn't]＋動詞の原形の否定文を確かめ、動詞を原形に戻すことに注意する。",
+     "summary_core": "Does＋主語＋動詞の原形 …? の疑問文と答え方、does not [doesn't]＋動詞の原形の否定文を確かめ、動詞を原形に戻すことに注意する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-110",
+     "rid": "中1-110",
+     "order_in_segment": 110,
+     "order_in_unit": 11,
+     "prev_id": "jhs_eigo1/中1-109",
+     "next_id": "jhs_eigo1/中1-111",
+     "title": "復習：代名詞（目的格・所有代名詞）",
+     "kind": "復習",
+     "summary": "人称を表す代名詞の主格・所有格・目的格と mine・yours などを表で確かめ、前に出た人やものを代名詞で言い換えて文をつなぐ練習をする。",
+     "summary_core": "人称を表す代名詞の主格・所有格・目的格と mine・yours などを表で確かめ、前に出た人やものを代名詞で言い換えて文をつなぐ練習をする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)a(a)"
+     ],
+     "basis_text": "(1)エ(ウ)a(a)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-111",
+     "rid": "中1-111",
+     "order_in_segment": 111,
+     "order_in_unit": 12,
+     "prev_id": "jhs_eigo1/中1-110",
+     "next_id": "jhs_eigo1/中1-112",
+     "title": "復習：Which・Whose の疑問文",
+     "kind": "復習",
+     "summary": "which・whose で始まる疑問文と、or を含む選択疑問文（A or B?）の形と答え方を確かめ、選択疑問文のイントネーションにも注意する。",
+     "summary_core": "which・whose で始まる疑問文と、or を含む選択疑問文（A or B?）の形と答え方を確かめ、選択疑問文のイントネーションにも注意する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ア)b"
+     ],
+     "basis_text": "(1)エ(ア)b",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-112",
+     "rid": "中1-112",
+     "order_in_segment": 112,
+     "order_in_unit": 13,
+     "prev_id": "jhs_eigo1/中1-111",
+     "next_id": "jhs_eigo1/中1-113",
+     "title": "復習：現在進行形",
+     "kind": "復習",
+     "summary": "be 動詞＋動詞の -ing 形の肯定文・否定文・疑問文と答え方を確かめ、ふだんのことを表す現在形と今している動作を表す現在進行形の違いを練習する。",
+     "summary_core": "be 動詞＋動詞の -ing 形の肯定文・否定文・疑問文と答え方を確かめ、ふだんのことを表す現在形と今している動作を表す現在進行形の違いを練習する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-113",
+     "rid": "中1-113",
+     "order_in_segment": 113,
+     "order_in_unit": 14,
+     "prev_id": "jhs_eigo1/中1-112",
+     "next_id": "jhs_eigo1/中1-114",
+     "title": "復習：感嘆文と符号",
+     "kind": "復習",
+     "summary": "How …! / What …! の感嘆文と、感嘆符・引用符・アポストロフィなどの使い方を確かめる。",
+     "summary_core": "How …! / What …! の感嘆文と、感嘆符・引用符・アポストロフィなどの使い方を確かめる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ア)c",
+      "(1)イ"
+     ],
+     "basis_text": "(1)エ(ア)c・イ",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-114",
+     "rid": "中1-114",
+     "order_in_segment": 114,
+     "order_in_unit": 15,
+     "prev_id": "jhs_eigo1/中1-113",
+     "next_id": "jhs_eigo1/中1-115",
+     "title": "復習：want to などの to 不定詞",
+     "kind": "復習",
+     "summary": "want to・try to などの後に動詞の原形を続けて、したいことやしようとしていることを伝える文と、What do you want to …? の疑問文を確かめる。",
+     "summary_core": "want to・try to などの後に動詞の原形を続けて、したいことやしようとしていることを伝える文と、What do you want to …? の疑問文を確かめる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)g",
+      "(1)エ(イ)b(a)"
+     ],
+     "basis_text": "(1)エ(ウ)g・エ(イ)b(a)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-115",
+     "rid": "中1-115",
+     "order_in_segment": 115,
+     "order_in_unit": 16,
+     "prev_id": "jhs_eigo1/中1-114",
+     "next_id": "jhs_eigo1/中1-116",
+     "title": "復習：look＋形容詞",
+     "kind": "復習",
+     "summary": "look などの be 動詞以外の動詞の後に形容詞を続けて様子を伝える文（You look nice in that jacket.）を確かめ、be 動詞の文との意味の違いを捉える。",
+     "summary_core": "look などの be 動詞以外の動詞の後に形容詞を続けて様子を伝える文（You look nice in that jacket.）を確かめ、be 動詞の文との意味の違いを捉える。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(イ)a"
+     ],
+     "basis_text": "(1)エ(イ)a",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-116",
+     "rid": "中1-116",
+     "order_in_segment": 116,
+     "order_in_unit": 17,
+     "prev_id": "jhs_eigo1/中1-115",
+     "next_id": "jhs_eigo1/中1-117",
+     "title": "復習：一般動詞の過去形（規則・不規則）",
+     "kind": "復習",
+     "summary": "規則動詞の過去形（-ed）と主な不規則動詞の過去形を確かめ、yesterday・last … などの語句とともに過去の出来事を伝える文を書く。",
+     "summary_core": "規則動詞の過去形（-ed）と主な不規則動詞の過去形を確かめ、yesterday・last … などの語句とともに過去の出来事を伝える文を書く。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-117",
+     "rid": "中1-117",
+     "order_in_segment": 117,
+     "order_in_unit": 18,
+     "prev_id": "jhs_eigo1/中1-116",
+     "next_id": "jhs_eigo1/中1-118",
+     "title": "復習：一般動詞の過去形の疑問文・否定文",
+     "kind": "復習",
+     "summary": "Did＋主語＋動詞の原形 …? の疑問文と答え方、did not [didn't]＋動詞の原形の否定文を確かめ、動詞を原形に戻すことに注意する。",
+     "summary_core": "Did＋主語＋動詞の原形 …? の疑問文と答え方、did not [didn't]＋動詞の原形の否定文を確かめ、動詞を原形に戻すことに注意する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-118",
+     "rid": "中1-118",
+     "order_in_segment": 118,
+     "order_in_unit": 19,
+     "prev_id": "jhs_eigo1/中1-117",
+     "next_id": "jhs_eigo1/中1-119",
+     "title": "復習：be 動詞の過去形と過去進行形",
+     "kind": "復習",
+     "summary": "was・were の使い分けと、was [were]＋動詞の -ing 形の過去進行形を確かめ、過去形（したこと）と過去進行形（していたこと）の意味の違いを練習する。",
+     "summary_core": "was・were の使い分けと、was [were]＋動詞の -ing 形の過去進行形を確かめ、過去形（したこと）と過去進行形（していたこと）の意味の違いを練習する。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e"
+     ],
+     "basis_text": "(1)エ(ウ)e",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-119",
+     "rid": "中1-119",
+     "order_in_segment": 119,
+     "order_in_unit": 20,
+     "prev_id": "jhs_eigo1/中1-118",
+     "next_id": "jhs_eigo1/中1-120",
+     "title": "復習：There is [are] の文",
+     "kind": "復習",
+     "summary": "There＋be 動詞＋～ の文と Is there …? の疑問文を確かめる。",
+     "summary_core": "There＋be 動詞＋～ の文と Is there …? の疑問文を確かめる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(イ)e(a)"
+     ],
+     "basis_text": "(1)エ(イ)e(a)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-120",
+     "rid": "中1-120",
+     "order_in_segment": 120,
+     "order_in_unit": 21,
+     "prev_id": "jhs_eigo1/中1-119",
+     "next_id": "jhs_eigo1/中1-121",
+     "title": "復習：前置詞",
+     "kind": "復習",
+     "summary": "場所（in・on・at など）や時・期間（on Tuesdays・for ten years など）、出身（from）を表す前置詞の使い方を確かめ、前置詞句で人やものを説明する（the girl with short hair）練習をする。",
+     "summary_core": "場所（in・on・at など）や時・期間（on Tuesdays・for ten years など）、出身（from）を表す前置詞の使い方を確かめ、前置詞句で人やものを説明する（the girl with short hair）練習をする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)d"
+     ],
+     "basis_text": "(1)エ(ウ)d",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-121",
+     "rid": "中1-121",
+     "order_in_segment": 121,
+     "order_in_unit": 22,
+     "prev_id": "jhs_eigo1/中1-120",
+     "next_id": "jhs_eigo1/中1-122",
+     "title": "復習：時制の総整理",
+     "kind": "復習",
+     "summary": "現在形・過去形、現在進行形・過去進行形を、時を表す語句（every day・now・yesterday・then など）と結び付けて比べ、場面に応じて使い分ける。",
+     "summary_core": "現在形・過去形、現在進行形・過去進行形を、時を表す語句（every day・now・yesterday・then など）と結び付けて比べ、場面に応じて使い分ける。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)エ(ウ)e",
+      "取扱い(2)エ(ア)"
+     ],
+     "basis_text": "(1)エ(ウ)e、内容の取扱い(2)エ(ア)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-122",
+     "rid": "中1-122",
+     "order_in_segment": 122,
+     "order_in_unit": 23,
+     "prev_id": "jhs_eigo1/中1-121",
+     "next_id": "jhs_eigo1/中1-123",
+     "title": "復習：発音と綴り",
+     "kind": "復習",
+     "summary": "文字と音の対応関係を確かめ、綴りから発音を推測したり、音から綴りを推測したりする。",
+     "summary_core": "文字と音の対応関係を確かめ、綴りから発音を推測したり、音から綴りを推測したりする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "取扱い(2)イ",
+      "(1)ア(ア)"
+     ],
+     "basis_text": "内容の取扱い(2)イ、(1)ア(ア)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-123",
+     "rid": "中1-123",
+     "order_in_segment": 123,
+     "order_in_unit": 24,
+     "prev_id": "jhs_eigo1/中1-122",
+     "next_id": "jhs_eigo1/中1-124",
+     "title": "復習：強勢・イントネーション・区切り",
+     "kind": "復習",
+     "summary": "語や文の強勢、イントネーション、意味のまとまりの区切りに注意して聞いたり話したりする。",
+     "summary_core": "語や文の強勢、イントネーション、意味のまとまりの区切りに注意して聞いたり話したりする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)ア(ウ)",
+      "(1)ア(エ)",
+      "(1)ア(オ)"
+     ],
+     "basis_text": "(1)ア(ウ)・ア(エ)・ア(オ)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-124",
+     "rid": "中1-124",
+     "order_in_segment": 124,
+     "order_in_unit": 25,
+     "prev_id": "jhs_eigo1/中1-123",
+     "next_id": "jhs_eigo1/中1-125",
+     "title": "復習：語彙・連語・慣用表現",
+     "kind": "復習",
+     "summary": "1年で学んだ語、in front of・a lot of などの連語、excuse me・I see などの慣用表現の意味と使い方を確かめ、言語活動の中で使う。",
+     "summary_core": "1年で学んだ語、in front of・a lot of などの連語、excuse me・I see などの慣用表現の意味と使い方を確かめ、言語活動の中で使う。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(1)ウ(ア)",
+      "(1)ウ(イ)",
+      "(1)ウ(ウ)"
+     ],
+     "basis_text": "(1)ウ(ア)・ウ(イ)・ウ(ウ)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-125",
+     "rid": "中1-125",
+     "order_in_segment": 125,
+     "order_in_unit": 26,
+     "prev_id": "jhs_eigo1/中1-124",
+     "next_id": "jhs_eigo1/中1-126",
+     "title": "復習：必要な情報を聞き取る",
+     "kind": "復習",
+     "summary": "店や駅のアナウンスや商品のコマーシャルを、聞く目的を確かめてから聞き、自分が必要とする情報を聞き取る問題に取り組む。",
+     "summary_core": "店や駅のアナウンスや商品のコマーシャルを、聞く目的を確かめてから聞き、自分が必要とする情報を聞き取る問題に取り組む。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①イ(イ)"
+     ],
+     "basis_text": "(3)①イ(イ)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-126",
+     "rid": "中1-126",
+     "order_in_segment": 126,
+     "order_in_unit": 27,
+     "prev_id": "jhs_eigo1/中1-125",
+     "next_id": "jhs_eigo1/中1-127",
+     "title": "復習：メッセージを聞いて応答する",
+     "kind": "復習",
+     "summary": "友達からの誘いや依頼、留守番電話のメッセージを聞いて内容を把握し、承諾したり断ったりして適切に応答する問題に取り組む。",
+     "summary_core": "友達からの誘いや依頼、留守番電話のメッセージを聞いて内容を把握し、承諾したり断ったりして適切に応答する問題に取り組む。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①イ(ウ)"
+     ],
+     "basis_text": "(3)①イ(ウ)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-127",
+     "rid": "中1-127",
+     "order_in_segment": 127,
+     "order_in_unit": 28,
+     "prev_id": "jhs_eigo1/中1-126",
+     "next_id": "jhs_eigo1/中1-128",
+     "title": "復習：会話や説明の意向・概要を聞き取る",
+     "kind": "復習",
+     "summary": "日常的な話題の会話や説明、スピーチを聞いて、話し手の意向や概要・要点を捉える問題に取り組む。",
+     "summary_core": "日常的な話題の会話や説明、スピーチを聞いて、話し手の意向や概要・要点を捉える問題に取り組む。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①イ(ア)",
+      "(3)①イ(エ)"
+     ],
+     "basis_text": "(3)①イ(ア)・①イ(エ)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-128",
+     "rid": "中1-128",
+     "order_in_segment": 128,
+     "order_in_unit": 29,
+     "prev_id": "jhs_eigo1/中1-127",
+     "next_id": "jhs_eigo1/中1-129",
+     "title": "復習：案内や手紙から必要な情報を読み取る",
+     "kind": "復習",
+     "summary": "パンフレットや予定表、手紙、電子メールから、読む目的に合わせて自分が必要とする情報を探して読み取る問題に取り組む。",
+     "summary_core": "パンフレットや予定表、手紙、電子メールから、読む目的に合わせて自分が必要とする情報を探して読み取る問題に取り組む。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①ウ(イ)"
+     ],
+     "basis_text": "(3)①ウ(イ)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-129",
+     "rid": "中1-129",
+     "order_in_segment": 129,
+     "order_in_unit": 30,
+     "prev_id": "jhs_eigo1/中1-128",
+     "next_id": "jhs_eigo1/中1-130",
+     "title": "復習：短い文章や物語の概要を読み取る",
+     "kind": "復習",
+     "summary": "日常的な話題の短い説明やエッセイ、物語を読んで、出来事を時系列に整理したり、書き手が伝えたい大まかな内容を捉えたりする問題に取り組む。",
+     "summary_core": "日常的な話題の短い説明やエッセイ、物語を読んで、出来事を時系列に整理したり、書き手が伝えたい大まかな内容を捉えたりする問題に取り組む。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①ウ(ウ)"
+     ],
+     "basis_text": "(3)①ウ(ウ)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-130",
+     "rid": "中1-130",
+     "order_in_segment": 130,
+     "order_in_unit": 31,
+     "prev_id": "jhs_eigo1/中1-129",
+     "next_id": "jhs_eigo1/中1-131",
+     "title": "復習：社会的な話題の文章の要点を読み取る",
+     "kind": "復習",
+     "summary": "社会的な話題の簡単な説明を、図表なども参考にしながら読んで要点を捉える問題に取り組む。",
+     "summary_core": "社会的な話題の簡単な説明を、図表なども参考にしながら読んで要点を捉える問題に取り組む。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①ウ(エ)"
+     ],
+     "basis_text": "(3)①ウ(エ)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-131",
+     "rid": "中1-131",
+     "order_in_segment": 131,
+     "order_in_unit": 32,
+     "prev_id": "jhs_eigo1/中1-130",
+     "next_id": "jhs_eigo1/中1-132",
+     "title": "復習：即興のやり取り",
+     "kind": "復習",
+     "summary": "身近な話題について、聞き返し・相づち・関連する質問（How about you? など）を使って、原稿を準備せずに会話を続ける。",
+     "summary_core": "身近な話題について、聞き返し・相づち・関連する質問（How about you? など）を使って、原稿を準備せずに会話を続ける。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①エ(ア)"
+     ],
+     "basis_text": "(3)①エ(ア)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-132",
+     "rid": "中1-132",
+     "order_in_segment": 132,
+     "order_in_unit": 33,
+     "prev_id": "jhs_eigo1/中1-131",
+     "next_id": "jhs_eigo1/中1-133",
+     "title": "復習：メモを使った伝え合い",
+     "kind": "復習",
+     "summary": "日常的な話題について大まかな流れや主要な点をメモにし、それを基に伝えた後、相手の質問に答えたり聞き返したりして対話を続ける。",
+     "summary_core": "日常的な話題について大まかな流れや主要な点をメモにし、それを基に伝えた後、相手の質問に答えたり聞き返したりして対話を続ける。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①エ(イ)"
+     ],
+     "basis_text": "(3)①エ(イ)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-133",
+     "rid": "中1-133",
+     "order_in_segment": 133,
+     "order_in_unit": 34,
+     "prev_id": "jhs_eigo1/中1-132",
+     "next_id": "jhs_eigo1/中1-134",
+     "title": "復習：即興での説明とスピーチ",
+     "kind": "復習",
+     "summary": "身近な事柄をその場で説明したり、日常的な話題について簡単なスピーチをしたりする。",
+     "summary_core": "身近な事柄をその場で説明したり、日常的な話題について簡単なスピーチをしたりする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①オ(ア)",
+      "(3)①オ(イ)"
+     ],
+     "basis_text": "(3)①オ(ア)・①オ(イ)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "△"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-134",
+     "rid": "中1-134",
+     "order_in_segment": 134,
+     "order_in_unit": 35,
+     "prev_id": "jhs_eigo1/中1-133",
+     "next_id": "jhs_eigo1/中1-135",
+     "title": "復習：自分のことを正確に書く",
+     "kind": "復習",
+     "summary": "趣味や好き嫌いなど自分に関する基本的な情報を、綴り・語順・大文字と小文字・符号に注意して正確に書き、書いたものを見直して直す。",
+     "summary_core": "趣味や好き嫌いなど自分に関する基本的な情報を、綴り・語順・大文字と小文字・符号に注意して正確に書き、書いたものを見直して直す。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①カ(ア)"
+     ],
+     "basis_text": "(3)①カ(ア)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-135",
+     "rid": "中1-135",
+     "order_in_segment": 135,
+     "order_in_unit": 36,
+     "prev_id": "jhs_eigo1/中1-134",
+     "next_id": "jhs_eigo1/中1-136",
+     "title": "復習：手紙・電子メール・日記を書く",
+     "kind": "復習",
+     "summary": "受け手を意識して近況を伝える手紙や電子メールと、出来事を時間の順に説明する日記を書く。",
+     "summary_core": "受け手を意識して近況を伝える手紙や電子メールと、出来事を時間の順に説明する日記を書く。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①カ(イ)",
+      "(3)①カ(ウ)"
+     ],
+     "basis_text": "(3)①カ(イ)・①カ(ウ)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-136",
+     "rid": "中1-136",
+     "order_in_segment": 136,
+     "order_in_unit": 37,
+     "prev_id": "jhs_eigo1/中1-135",
+     "next_id": "jhs_eigo1/中1-137",
+     "title": "復習：社会的な話題について考えを書く",
+     "kind": "復習",
+     "summary": "社会的な話題について聞いたり読んだりした内容を基に、自分の考えや気持ち、その理由を書く。",
+     "summary_core": "社会的な話題について聞いたり読んだりした内容を基に、自分の考えや気持ち、その理由を書く。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)①カ(エ)"
+     ],
+     "basis_text": "(3)①カ(エ)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-137",
+     "rid": "中1-137",
+     "order_in_segment": 137,
+     "order_in_unit": 38,
+     "prev_id": "jhs_eigo1/中1-136",
+     "next_id": "jhs_eigo1/中1-138",
+     "title": "復習：場面に応じた表現",
+     "kind": "復習",
+     "summary": "自己紹介・買物・食事・道案内・電話などの場面に特有の表現（May I help you? / What would you like to drink? など）を確かめ、場面に合った応答を選んだり書いたりする。",
+     "summary_core": "自己紹介・買物・食事・道案内・電話などの場面に特有の表現（May I help you? / What would you like to drink? など）を確かめ、場面に合った応答を選んだり書いたりする。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)②ア(イ)"
+     ],
+     "basis_text": "(3)②ア(イ)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-138",
+     "rid": "中1-138",
+     "order_in_segment": 138,
+     "order_in_unit": 39,
+     "prev_id": "jhs_eigo1/中1-137",
+     "next_id": "jhs_eigo1/中1-139",
+     "title": "復習：言語の働きに応じた表現",
+     "kind": "復習",
+     "summary": "話し掛ける・聞き直す・礼を言う・依頼する・招待するなど、働きに応じた表現を確かめる。",
+     "summary_core": "話し掛ける・聞き直す・礼を言う・依頼する・招待するなど、働きに応じた表現を確かめる。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(3)②イ(ア)",
+      "(3)②イ(イ)",
+      "(3)②イ(オ)"
+     ],
+     "basis_text": "(3)②イ(ア)・②イ(イ)・②イ(オ)",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-139",
+     "rid": "中1-139",
+     "order_in_segment": 139,
+     "order_in_unit": 40,
+     "prev_id": "jhs_eigo1/中1-138",
+     "next_id": "jhs_eigo1/中1-140",
+     "title": "学年の総合演習（聞くこと・読むこと）",
+     "kind": "復習",
+     "summary": "対話やアナウンス、短い説明を聞いたり、広告・電子メール・物語などを読んだりして、1年で学んだ言語材料を手掛かりに必要な情報や概要を捉えて答える総合問題に取り組む。",
+     "summary_core": "対話やアナウンス、短い説明を聞いたり、広告・電子メール・物語などを読んだりして、1年で学んだ言語材料を手掛かりに必要な情報や概要を捉えて答える総合問題に取り組む。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(2)ア"
+     ],
+     "basis_text": "(2)ア",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    },
+    {
+     "id": "jhs_eigo1/中1-140",
+     "rid": "中1-140",
+     "order_in_segment": 140,
+     "order_in_unit": 41,
+     "prev_id": "jhs_eigo1/中1-139",
+     "next_id": null,
+     "title": "学年の総合演習（話すこと・書くこと）",
+     "kind": "復習",
+     "summary": "聞いたり読んだりした情報や表現を活用し、伝える内容を整理して話したり書いたりして伝え合う。",
+     "summary_core": "聞いたり読んだりした情報や表現を活用し、伝える内容を整理して話したり書いたりして伝え合う。",
+     "key_terms": [],
+     "term_sources": [],
+     "basis": [
+      "(2)イ",
+      "(2)ウ"
+     ],
+     "basis_text": "(2)イ・ウ",
+     "kaisetsu_page": "",
+     "dagger": false,
+     "exam": {
+      "高校入試（千葉県）": "○"
+     }
+    }
+   ]
+  }
+ ]
+}

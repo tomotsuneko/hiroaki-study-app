@@ -1,0 +1,2 @@
+https://laws.e-gov.go.jp/api/1/articles;lawId=419AC1000000051;article=3
+（投票権） 第三条 日本国民で年齢満十八年以上の者は、国民投票の投票権を有する。
