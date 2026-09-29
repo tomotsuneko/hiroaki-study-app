@@ -43,31 +43,29 @@ export default function SyllabusAdminPage() {
   const handleGenerate = async () => {
     setIsGenerating(true);
     setLogs([]);
-    addLog('🚀 マスターシラバス情報収集・分類AIパイプラインを起動しました...');
+    addLog('🚀 マスターシラバス構築パイプラインを起動しました...');
     
     try {
-      const subjectsToGenerate = ['英語', '数学', '国語', '理科', '社会'];
+      addLog('⏳ Markdownファイル群を解析・取り込み中...');
+      const res = await fetch('/api/admin/generate-syllabus', { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({})
+      });
       
-      for (const subj of subjectsToGenerate) {
-        addLog(`⏳ ${subj}のカリキュラムを構築中... (AI生成)`);
-        const res = await fetch('/api/admin/generate-syllabus', { 
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ subject: subj })
-        });
-        
-        if (!res.ok) {
-           let errMessage = 'サーバーエラーが発生しました (タイムアウト等)';
-           try {
-             const errData = await res.json();
-             if (errData.error) errMessage = errData.error;
-           } catch (e) {}
-           throw new Error(`${subj}の生成に失敗しました: ${errMessage}`);
-        }
-        addLog(`✅ ${subj}の生成が完了しました！`);
+      if (!res.ok) {
+         let errMessage = 'サーバーエラーが発生しました';
+         try {
+           const errData = await res.json();
+           if (errData.error) errMessage = errData.error;
+         } catch (e) {}
+         throw new Error(`生成に失敗しました: ${errMessage}`);
       }
       
-      addLog('🎉 すべてのマスターDBの生成・更新が完了しました！');
+      const data = await res.json();
+      addLog(`✅ ${data.message || '取り込み完了'}`);
+      addLog('🎉 マスターDBの生成・更新が完了しました！');
+      
       await fetchMasterDb(); // Refresh the list
     } catch (e: any) {
       addLog(`❌ エラーが発生しました: ${e.message}`);
@@ -87,7 +85,7 @@ export default function SyllabusAdminPage() {
       <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', marginBottom: '24px' }}>
         <h2 style={{ fontSize: '1.2rem', marginBottom: '16px' }}>1. マスターシラバスDB (共通基盤) の更新</h2>
         <p style={{ color: '#475569', marginBottom: '20px' }}>
-          公式の指導要領や予備校の標準カリキュラムをAIが収集・構造化し、全生徒のベースとなる「マスターDB」を更新します。
+          所定のディレクトリ（src/data/master_curriculum）に配置されたMarkdownファイル群を解析・構造化し、全生徒のベースとなる「マスターDB」を更新します。
         </p>
         <button 
           onClick={handleGenerate}
@@ -102,7 +100,7 @@ export default function SyllabusAdminPage() {
             fontWeight: 'bold'
           }}
         >
-          {isGenerating ? '🔄 AIパイプライン実行中...' : '▶️ マスターDBパイプラインを手動実行'}
+          {isGenerating ? '🔄 パイプライン実行中...' : '▶️ マスターDBパイプラインを手動実行'}
         </button>
         
         {logs.length > 0 && (
