@@ -1,3 +1,4 @@
+import { getActiveModels } from '@/lib/model-manager';
 import { NextResponse } from 'next/server';
 import { genAI } from '@/lib/gemini';
 
@@ -35,13 +36,7 @@ export async function POST(req: Request) {
 - もし知識に自信がない場合や、複雑すぎる計算問題の場合は、「推測」で答えず、「教科書の〇〇の範囲を一緒に確認しよう」「学校の先生にも念のため聞いてみてね」と正直にアシストに徹してください。
 - フォーマットは必ず見出し（###）や太字（**）を使った綺麗なMarkdownで出力し、数学の式がある場合はLaTeX記法（$$ または $）を使用してください。`;
 
-    const modelsToTry = [
-      "gemini-3.7-flash",
-      "gemini-3.8-flash",
-      "gemini-3.1-pro-preview",
-      "gemini-flash-latest",
-      "gemini-1.5-flash"
-    ];
+    const modelsToTry = await getActiveModels('chat');
 
     let text = "";
     let success = false;

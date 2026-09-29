@@ -1,3 +1,4 @@
+import { getActiveModels } from '@/lib/model-manager';
 import { NextResponse } from 'next/server';
 import { genAI } from '@/lib/gemini';
 import { getFlashcards, saveFlashcards } from '@/lib/db';
@@ -31,7 +32,7 @@ export async function POST(req: Request) {
   }
 ]`;
 
-    const modelsToTry = ["gemini-3.7-flash", "gemini-3.8-flash", "gemini-3.1-pro-preview", "gemini-flash-latest"];
+    const modelsToTry = await getActiveModels('chat');
     let text = "";
     let success = false;
 

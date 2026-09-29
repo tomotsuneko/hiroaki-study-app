@@ -1,3 +1,4 @@
+import { getActiveModels } from '@/lib/model-manager';
 import { NextResponse } from 'next/server';
 import { genAI } from '@/lib/gemini';
 
@@ -14,13 +15,7 @@ export async function POST(req: Request) {
 
     const base64Data = imageBase64.replace(/^data:image\/(png|jpeg|jpg);base64,/, "");
 
-    const modelsToTry = [
-      "gemini-3.7-flash",
-      "gemini-3.8-flash",
-      "gemini-3.1-pro-preview",
-      "gemini-flash-latest",
-      "gemini-1.5-flash"
-    ];
+    const modelsToTry = await getActiveModels('chat');
 
     let text = "";
     let success = false;

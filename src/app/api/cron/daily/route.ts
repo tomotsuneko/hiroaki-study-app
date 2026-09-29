@@ -1,3 +1,4 @@
+import { getActiveModels } from '@/lib/model-manager';
 import { NextResponse } from 'next/server';
 import { getLogs, updateDailyAnalysis } from '@/lib/db';
 import { genAI } from '@/lib/gemini';
@@ -48,9 +49,7 @@ const systemInstruction = `あなたは進路指導・学習プランニング�
 
     const prompt = JSON.stringify(recentLogs);
 
-    const modelsToTry = [
-      "gemini-3.7-flash", "gemini-3.8-flash", "gemini-3.1-pro-preview", "gemini-flash-latest", "gemini-1.5-flash"
-    ];
+    const modelsToTry = await getActiveModels('syllabus');
 
     let text = "";
     let success = false;
