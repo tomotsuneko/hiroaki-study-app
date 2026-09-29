@@ -41,10 +41,12 @@ export async function POST(req: Request) {
     const selectedSubjectsList = profile?.selectedSubjects || [];
     const selectedSubjectsStr = selectedSubjectsList.length > 0 ? selectedSubjectsList.join('、') : '全般';
 
-    // マスターDBを選択科目でフィルタリング（選択がない場合は全科目）
-    let filteredCurriculum = masterCurriculum;
+    // マスターDBを選択科目と学校区分でフィルタリング
+    const userSchoolType = profile?.schoolType || 'high_school';
+    let filteredCurriculum = masterCurriculum.filter(subject => subject.level === userSchoolType);
+    
     if (selectedSubjectsList.length > 0) {
-      filteredCurriculum = masterCurriculum.filter(subject => 
+      filteredCurriculum = filteredCurriculum.filter(subject => 
         selectedSubjectsList.some((s: string) => 
           subject.subjectName?.includes(s) || 
           subject.id?.includes(s) ||
@@ -52,9 +54,9 @@ export async function POST(req: Request) {
         )
       );
     }
-    // もしフィルタ結果が空なら全量渡す
+    // もしフィルタ結果が空なら学年の全量渡す
     if (filteredCurriculum.length === 0) {
-      filteredCurriculum = masterCurriculum;
+      filteredCurriculum = masterCurriculum.filter(subject => subject.level === userSchoolType);
     }
 
     const systemInstruction = `あなたは超一流の予備校の教務責任者（カリキュラム・ディレクター）です。

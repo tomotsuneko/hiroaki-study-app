@@ -24,15 +24,22 @@ export async function POST(req: Request) {
 
     const files = fs.readdirSync(dir).filter(f => f.endsWith('.md') && f !== '00_一覧.md');
     
-    // subjectName -> largeCategories array
+    // docId -> largeCategories array
     const dbData: Record<string, any> = {};
 
     for (const file of files) {
       const content = fs.readFileSync(path.join(dir, file), 'utf-8');
-      const baseSubj = getBaseSubject(file);
       
-      if (!dbData[baseSubj]) {
-        dbData[baseSubj] = { subjectName: baseSubj, largeCategories: [] };
+      let level = '';
+      if (file.startsWith('中学_')) level = 'junior_high';
+      else if (file.startsWith('高校_')) level = 'high_school';
+      else level = 'other';
+      
+      const baseSubj = getBaseSubject(file);
+      const docId = `${level}_${baseSubj}`;
+      
+      if (!dbData[docId]) {
+        dbData[docId] = { id: docId, level, subjectName: baseSubj, largeCategories: [] };
       }
       
       const lines = content.split('\n');
@@ -46,7 +53,7 @@ export async function POST(req: Request) {
           let title = line.replace('## ', '').trim();
           title = title.split('（')[0].trim();
           currentLarge = { name: title, mediumCategories: [] };
-          dbData[baseSubj].largeCategories.push(currentLarge);
+          dbData[docId].largeCategories.push(currentLarge);
           currentMedium = null;
           inTable = false;
         } else if (line.startsWith('### ')) {
@@ -88,9 +95,16 @@ export async function POST(req: Request) {
     const batch = dbAdmin.batch();
     const resultData = [];
     
-    for (const baseSubj of Object.keys(dbData)) {
-      const subjectData = dbData[baseSubj];
-      const docRef = dbAdmin.collection('curriculum_db').doc(baseSubj);
+    // Clear existing documents
+    const snapshot = await dbAdmin.collection('curriculum_db').get();
+    snapshot.docs.forEach((doc) => {
+      batch.delete(doc.ref);
+    });
+    
+    
+    for (const docId of Object.keys(dbData)) {
+      const subjectData = dbData[docId];
+      const docRef = dbAdmin.collection('curriculum_db').doc(docId);
       batch.set(docRef, {
         updatedAt: new Date().toISOString(),
         ...subjectData

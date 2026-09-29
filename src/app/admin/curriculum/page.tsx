@@ -64,11 +64,7 @@ export default function CurriculumAdminPage() {
   };
 
   const filteredDb = masterDb.filter(subject => {
-    if (activeTab === 'junior_high') {
-      return subject.id.includes('junior_high') || subject.subjectName.includes('中学');
-    } else {
-      return subject.id.includes('high_school') || (!subject.id.includes('junior_high') && !subject.subjectName.includes('中学'));
-    }
+    return activeTab === 'junior_high' ? subject.level === 'junior_high' : subject.level === 'high_school';
   });
 
   // Ensure index is within bounds when switching tabs
