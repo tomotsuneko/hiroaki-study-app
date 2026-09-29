@@ -72,13 +72,7 @@ export default function CurriculumAdminPage() {
     setCurrentIndex(0);
   }, [activeTab]);
 
-  const nextSlide = () => {
-    if (currentIndex < filteredDb.length - 1) setCurrentIndex(c => c + 1);
-  };
-  
-  const prevSlide = () => {
-    if (currentIndex > 0) setCurrentIndex(c => c - 1);
-  };
+
 
   return (
     <div>
@@ -152,24 +146,31 @@ export default function CurriculumAdminPage() {
 
         {filteredDb.length > 0 ? (
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-              <button 
-                onClick={prevSlide} 
-                disabled={currentIndex === 0}
-                style={{ padding: '8px 16px', borderRadius: '8px', border: '1px solid #CBD5E1', background: currentIndex === 0 ? '#F8FAFC' : 'white', cursor: currentIndex === 0 ? 'not-allowed' : 'pointer' }}
-              >
-                ◀ 前へ
-              </button>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '24px' }}>
+              {filteredDb.map((subj, idx) => (
+                <button
+                  key={subj.id}
+                  onClick={() => setCurrentIndex(idx)}
+                  style={{
+                    padding: '8px 16px',
+                    borderRadius: '8px',
+                    border: currentIndex === idx ? '1px solid #3B82F6' : '1px solid #CBD5E1',
+                    background: currentIndex === idx ? '#3B82F6' : 'white',
+                    color: currentIndex === idx ? 'white' : '#475569',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  {subj.subjectName || subj.id}
+                </button>
+              ))}
+            </div>
+            
+            <div style={{ marginBottom: '16px' }}>
               <h3 style={{ fontSize: '1.3rem', fontWeight: 'bold', color: '#0F172A' }}>
                 📖 {filteredDb[currentIndex].subjectName || filteredDb[currentIndex].id}
               </h3>
-              <button 
-                onClick={nextSlide} 
-                disabled={currentIndex === filteredDb.length - 1}
-                style={{ padding: '8px 16px', borderRadius: '8px', border: '1px solid #CBD5E1', background: currentIndex === filteredDb.length - 1 ? '#F8FAFC' : 'white', cursor: currentIndex === filteredDb.length - 1 ? 'not-allowed' : 'pointer' }}
-              >
-                次へ ▶
-              </button>
             </div>
             
             <div style={{ border: '1px solid #E2E8F0', borderRadius: '8px', overflow: 'hidden' }}>
