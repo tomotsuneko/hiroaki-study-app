@@ -60,8 +60,6 @@ const systemInstruction = `あなたは進路指導・学習プランニング�
         const model = genAI.getGenerativeModel({ 
           model: modelName,
           systemInstruction: systemInstruction,
-          // @ts-ignore
-          tools: [{ googleSearch: {} }],
           generationConfig: { 
             responseMimeType: "application/json",
             maxOutputTokens: 8192
