@@ -55,6 +55,7 @@ const systemInstruction = `あなたは進路指導・学習プランニング�
 
     let text = "";
     let success = false;
+    let lastErrorMsg = "No models attempted";
 
     for (const modelName of modelsToTry) {
       if (success) break;
@@ -72,6 +73,7 @@ const systemInstruction = `あなたは進路指導・学習プランニング�
         text = (await result.response).text();
         success = true;
       } catch (err: any) {
+        lastErrorMsg = err.message;
         console.warn(`Cron model ${modelName} failed:`, err.message);
       }
     }
@@ -81,7 +83,8 @@ const systemInstruction = `あなたは進路指導・学習プランニング�
       try {
         let cleanText = text.replace(/```json/gi, '').replace(/```/g, '').trim();
         analysisData = JSON.parse(cleanText);
-      } catch(e) {
+      } catch(e: any) {
+        lastErrorMsg = "JSON Parse Error: " + e.message + " | Raw: " + text.substring(0, 50) + "...";
         console.warn("Failed to parse Gemini output as JSON. Using fallback. Raw text:", text);
         success = false;
       }
@@ -92,7 +95,7 @@ const systemInstruction = `あなたは進路指導・学習プランニング�
       const dummyData = {
         achievements: (profile?.targetSchools || ["目標校1"]).map((s: string, i: number) => ({ school: s, level: 25 - (i*5) })),
         recommendedSubjects: profile?.weakSubjects || ["英語"],
-        aiComment: "現在AIサーバーが混み合っているため、過去のデータに基づく基本推奨プランを表示しています！焦らず基礎固めを続けましょう🔥",
+        aiComment: `現在AIサーバーが混み合っているため、過去のデータに基づく基本推奨プランを表示しています！焦らず基礎固めを続けましょう🔥 (デバッグ情報: ${lastErrorMsg})`,
         miniLesson: {
           title: "中学英語の復習：be動詞と一般動詞",
           content: "高校英語の長文読解でつまずく原因の多くは、実は中学1年生で習う「be動詞と一般動詞の区別」にあります。ここを完璧にするだけで、英文の構造がスッキリ見えてきますよ！",
