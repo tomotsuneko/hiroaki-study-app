@@ -1,16 +1,12 @@
 import { NextResponse } from 'next/server';
-import { getActiveModels } from '@/lib/model-manager';
+import { getActiveModelsConfig } from '@/lib/model-manager';
 
 export async function GET() {
   try {
-    const syllabusModels = await getActiveModels('syllabus');
-    const chatModels = await getActiveModels('chat');
+    const config = await getActiveModelsConfig();
     return NextResponse.json({
       success: true,
-      config: {
-        syllabus: syllabusModels,
-        chat: chatModels
-      }
+      config
     });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch config' }, { status: 500 });

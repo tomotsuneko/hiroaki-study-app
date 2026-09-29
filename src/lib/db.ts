@@ -28,6 +28,7 @@ type Database = {
   logs: LogEntry[];
   studyTime: Record<string, number>;
   syllabus: SyllabusPhase[] | null;
+  syllabusUpdatedAt?: string;
   dailyAnalysis: {
     lastRunDate: string;
     achievementLevel: number;
@@ -154,9 +155,15 @@ export async function getSyllabus() {
   return db.syllabus;
 }
 
+export async function getSyllabusUpdatedAt() {
+  const db = await readDB();
+  return db.syllabusUpdatedAt;
+}
+
 export async function updateSyllabus(syllabus: SyllabusPhase[]) {
   const db = await readDB();
   db.syllabus = syllabus;
+  db.syllabusUpdatedAt = new Date().toISOString();
   await writeDB(db);
 }
 

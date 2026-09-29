@@ -21,6 +21,7 @@ export default function PlanPage() {
   const mainTarget = isTargetSet ? profile.targetSchools[0] : '未設定';
 
   const [syllabus, setSyllabus] = useState<any[]>([]);
+  const [syllabusUpdatedAt, setSyllabusUpdatedAt] = useState<string | null>(null);
   const [isGeneratingSyllabus, setIsGeneratingSyllabus] = useState(false);
   const [activeTabs, setActiveTabs] = useState<{ [phaseIdx: number]: number }>({});
 
@@ -32,6 +33,7 @@ export default function PlanPage() {
         const data = await res.json();
         if (data.syllabus && Array.isArray(data.syllabus)) {
           setSyllabus(data.syllabus);
+          setSyllabusUpdatedAt(data.syllabusUpdatedAt || null);
         } else {
           setSyllabus([]);
         }
@@ -55,6 +57,7 @@ export default function PlanPage() {
       const data = await res.json();
       if (Array.isArray(data)) {
          setSyllabus(data);
+         setSyllabusUpdatedAt(new Date().toISOString());
          alert('AIによる最適な学習シラバスの構築が完了しました！');
       } else {
          throw new Error("Invalid format");
@@ -120,7 +123,12 @@ export default function PlanPage() {
           )}
 
           {!isGeneratingSyllabus && syllabus.length > 0 && (
-            <div style={{ marginBottom: '20px', textAlign: 'right' }}>
+            <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '16px' }}>
+              {syllabusUpdatedAt && (
+                <span style={{ fontSize: '0.85rem', color: '#94A3B8' }}>
+                  最終更新: {new Date(syllabusUpdatedAt).toLocaleString('ja-JP')}
+                </span>
+              )}
               <button className="btn btn-secondary" onClick={generateSyllabus} style={{ fontSize: '0.85rem' }}>🔄 シラバスを再構築 (現在のプロフィールに基づく)</button>
             </div>
           )}

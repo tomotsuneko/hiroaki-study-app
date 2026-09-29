@@ -60,21 +60,28 @@ export default function ModelsAdminPage() {
         <p style={{ color: '#475569', marginBottom: '20px' }}>
           Gemini APIと通信し、利用可能な最新のモデル（Flash / Pro）を自動取得してフォールバックチェーン（利用優先順位）を最適化します。※月1回の自動実行タスクとしても稼働します。
         </p>
-        <button 
-          onClick={handleUpdate}
-          disabled={isUpdating}
-          style={{
-            padding: '12px 24px',
-            backgroundColor: isUpdating ? '#94A3B8' : '#8B5CF6',
-            color: 'white',
-            borderRadius: '8px',
-            border: 'none',
-            cursor: isUpdating ? 'not-allowed' : 'pointer',
-            fontWeight: 'bold'
-          }}
-        >
-          {isUpdating ? '🔄 通信中...' : '⚡ 最新モデルをAPIから取得して同期'}
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <button 
+            onClick={handleUpdate}
+            disabled={isUpdating}
+            style={{
+              padding: '12px 24px',
+              backgroundColor: isUpdating ? '#94A3B8' : '#8B5CF6',
+              color: 'white',
+              borderRadius: '8px',
+              border: 'none',
+              cursor: isUpdating ? 'not-allowed' : 'pointer',
+              fontWeight: 'bold'
+            }}
+          >
+            {isUpdating ? '🔄 通信中...' : '⚡ 最新モデルをAPIから取得して同期'}
+          </button>
+          {config?.updatedAt && (
+            <span style={{ fontSize: '0.85rem', color: '#94A3B8' }}>
+              最終更新: {new Date(config.updatedAt).toLocaleString('ja-JP')}
+            </span>
+          )}
+        </div>
 
         {logs.length > 0 && (
           <div style={{ marginTop: '24px', padding: '16px', backgroundColor: '#F1F5F9', borderRadius: '8px', fontFamily: 'monospace' }}>

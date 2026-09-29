@@ -85,21 +85,35 @@ export default function CurriculumAdminPage() {
         <p style={{ color: '#475569', marginBottom: '20px' }}>
           所定のディレクトリ（src/data/master_curriculum）に配置されたMarkdownファイル群を解析・構造化し、全生徒のベースとなる「マスターDB」を更新します。
         </p>
-        <button 
-          onClick={handleGenerate}
-          disabled={isGenerating}
-          style={{
-            padding: '12px 24px',
-            backgroundColor: isGenerating ? '#94A3B8' : '#3B82F6',
-            color: 'white',
-            borderRadius: '8px',
-            border: 'none',
-            cursor: isGenerating ? 'not-allowed' : 'pointer',
-            fontWeight: 'bold'
-          }}
-        >
-          {isGenerating ? '🔄 パイプライン実行中...' : '▶️ マスターDBパイプラインを手動実行'}
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <button 
+            onClick={handleGenerate}
+            disabled={isGenerating}
+            style={{
+              padding: '12px 24px',
+              backgroundColor: isGenerating ? '#94A3B8' : '#3B82F6',
+              color: 'white',
+              borderRadius: '8px',
+              border: 'none',
+              cursor: isGenerating ? 'not-allowed' : 'pointer',
+              fontWeight: 'bold'
+            }}
+          >
+            {isGenerating ? '🔄 パイプライン実行中...' : '▶️ マスターDBパイプラインを手動実行'}
+          </button>
+          
+          {(() => {
+            if (masterDb.length === 0) return null;
+            const dates = masterDb.map(subj => new Date(subj.updatedAt || 0).getTime());
+            const maxDate = Math.max(...dates);
+            if (maxDate === 0) return null;
+            return (
+              <span style={{ fontSize: '0.85rem', color: '#94A3B8' }}>
+                最終更新: {new Date(maxDate).toLocaleString('ja-JP')}
+              </span>
+            );
+          })()}
+        </div>
         
         {logs.length > 0 && (
           <div style={{ marginTop: '24px', padding: '16px', backgroundColor: '#F1F5F9', borderRadius: '8px', fontFamily: 'monospace' }}>
