@@ -31,8 +31,8 @@ export async function POST(req: Request) {
       const content = fs.readFileSync(path.join(dir, file), 'utf-8');
       
       let level = '';
-      if (file.startsWith('中学_')) level = 'junior_high';
-      else if (file.startsWith('高校_')) level = 'high_school';
+      if (file.startsWith('中学')) level = 'junior_high';
+      else if (file.startsWith('高校') || file.startsWith('高等')) level = 'high_school';
       else level = 'other';
       
       const baseSubj = getBaseSubject(file);
