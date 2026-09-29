@@ -78,6 +78,10 @@
   line-height: 1.6;
 }
 
+.aiText > *:first-child {
+  margin-top: 0;
+}
+
 .actionButtons {
   margin-top: 10px;
 }
