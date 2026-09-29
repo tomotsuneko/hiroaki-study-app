@@ -23,7 +23,7 @@ function Sidebar() {
     <aside className={styles.sidebar}>
       <div className={styles.logoContainer}>
         <div className={styles.logoIcon}>AI</div>
-        <span className={styles.logoText}>AI Tutor</span>
+        <span className={styles.logoText}>AI&SI Tutor</span>
       </div>
       
       <nav className={styles.nav}>

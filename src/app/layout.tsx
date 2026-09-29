@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Abiko AI Tutor',
+  title: 'AI&SI Tutor',
   description: 'AI-powered learning support application for university entrance exams.',
 }
 
