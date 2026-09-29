@@ -51,11 +51,33 @@ function Sidebar() {
 
 import AIAvatar from '@/components/AIAvatar';
 import FloatingTimer from '@/components/FloatingTimer';
+import { useState, useEffect } from 'react';
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
   return (
     <div className={styles.appContainer}>
-      <Sidebar />
+      <button 
+        className={styles.hamburgerBtn}
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      >
+        {isMobileMenuOpen ? '✕' : '☰'}
+      </button>
+
+      {isMobileMenuOpen && (
+        <div className={styles.overlay} onClick={() => setIsMobileMenuOpen(false)} />
+      )}
+
+      <div className={`${styles.sidebarWrapper} ${isMobileMenuOpen ? styles.sidebarOpen : ''}`}>
+        <Sidebar />
+      </div>
+
       <main className={styles.mainContent}>
         {children}
       </main>

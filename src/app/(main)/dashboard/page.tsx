@@ -249,9 +249,6 @@ export default function Dashboard() {
                     </span>
                     <strong style={{ fontSize: '1.1rem' }}>{task.title}</strong>
                   </div>
-                  <button onClick={() => window.dispatchEvent(new CustomEvent('startPomodoro', { detail: { task: task.title } }))} className="btn btn-primary" style={{ padding: '8px 16px', fontSize: '0.9rem' }}>
-                    ⏱️ タイマー開始
-                  </button>
                 </div>
               ))}
             </div>
