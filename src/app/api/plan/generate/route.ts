@@ -38,7 +38,24 @@ export async function POST(req: Request) {
     const schoolTypeStr = profile?.schoolType === 'junior_high' ? '中学' : '高校';
     const gradeStr = profile?.grade ? `${profile.grade}年生` : '';
     const trackStr = profile?.track === 'arts' ? '（文系）' : profile?.track === 'science' ? '（理系）' : '';
-    const selectedSubjectsStr = profile?.selectedSubjects?.length > 0 ? profile.selectedSubjects.join('、') : '全般';
+    const selectedSubjectsList = profile?.selectedSubjects || [];
+    const selectedSubjectsStr = selectedSubjectsList.length > 0 ? selectedSubjectsList.join('、') : '全般';
+
+    // マスターDBを選択科目でフィルタリング（選択がない場合は全科目）
+    let filteredCurriculum = masterCurriculum;
+    if (selectedSubjectsList.length > 0) {
+      filteredCurriculum = masterCurriculum.filter(subject => 
+        selectedSubjectsList.some((s: string) => 
+          subject.subjectName?.includes(s) || 
+          subject.id?.includes(s) ||
+          s.includes(subject.subjectName)
+        )
+      );
+    }
+    // もしフィルタ結果が空なら全量渡す
+    if (filteredCurriculum.length === 0) {
+      filteredCurriculum = masterCurriculum;
+    }
 
     const systemInstruction = `あなたは超一流の予備校の教務責任者（カリキュラム・ディレクター）です。
 生徒名：「${userName}」、${schoolTypeStr}${gradeStr}${trackStr}
@@ -46,22 +63,25 @@ export async function POST(req: Request) {
 苦手科目：「${weakSubjects}」
 学習希望科目：「${selectedSubjectsStr}」
 
-【マスターシラバスDB (参考)】
-${JSON.stringify(masterCurriculum.slice(0, 3))} // (※主要なデータのみ抜粋)
+【マスターカリキュラムDB (全量)】
+${JSON.stringify(filteredCurriculum)}
 
 【個人最適化データ (最優先)】
 ${personalizedData ? JSON.stringify(personalizedData) : '（※自動最適化データなし。プロフィールに基づき構築してください）'}
 
-上記の「マスターシラバスDB」の標準的なカリキュラムと、この生徒専用の「個人最適化データ（教材・進度・差分戦略）」を統合し、目標校に確実に合格するための最も合理的で最適な「個人専用学習シラバス（学習計画）」を構築してください。
+上記の「マスターカリキュラムDB」の標準的なカリキュラムと、この生徒専用の「個人最適化データ（教材・進度・差分戦略）」を統合し、目標校に確実に合格するための最も合理的で最適な「個人専用学習シラバス（学習計画）」を構築してください。
 不要な科目（学習希望科目にないもの）は一切含めず、必要な科目にリソースを集中させてください。
 
 以下の条件を満たすJSONフォーマットで出力してください。
 
-【設計の条件】
-1. 合格から逆算した「固定ルート（コア項目）」と、苦手科目を克服するための「弱点克服ルート」を明確に区別して生成すること。
-2. Phase 1（基礎固め〜夏休み前）、Phase 2（標準問題演習・夏休み〜秋）、Phase 3（過去問・実践演習）の3フェーズ構成にすること。
-3. 各タスクの id にはユニークな文字列（例: "eng_core_1" 等）を割り振ること。
-4. 必ず以下のJSON構造のみを出力し、それ以外のテキスト（マークダウンのバッククォート等）は一切含めないでください。
+【設計の絶対条件（厳守）】
+1. 出力するタスク（tasks配列の各要素の title）には、提供した【マスターカリキュラムDB】の中に存在する【小分類】（smallCategories内の文字列）を**一言一句違わずそのまま使用**してください。
+2. AIが勝手にオリジナルの学習項目名称（DBに存在しないもの）を作成することは**固く禁じます**。必ずマスターカリキュラムDBから抽出してください。
+3. 目標校のレベルや生徒の状況から判断し、不要な小項目はスキップ（除外）しても構いません。
+4. 合格から逆算した「固定ルート（コア項目: type=\"core\"）」と、苦手科目を克服するための「弱点克服ルート（type=\"weakness\"）」を明確に区別して生成すること。
+5. Phase 1（基礎固め〜夏休み前）、Phase 2（標準問題演習・夏休み〜秋）、Phase 3（過去問・実践演習）の3フェーズ構成にすること。
+6. 各タスクの id にはユニークな文字列（例: "math_core_1" 等）を割り振ること。
+7. 必ず以下のJSON構造のみを出力し、それ以外のテキスト（マークダウンのバッククォート等）は一切含めないこと。
 
 [
   {
@@ -70,10 +90,10 @@ ${personalizedData ? JSON.stringify(personalizedData) : '（※自動最適化�
     "period": "〜夏休み前",
     "categories": [
       {
-        "name": "📘 英語基礎",
+        "name": "📘 英語",
         "tasks": [
-          { "id": "eng_core_1", "title": "英単語: ターゲット1900（1〜1500）の完璧化", "type": "core" },
-          { "id": "eng_weak_1", "title": "中学レベルの英文法のおさらい", "type": "weakness" }
+          { "id": "eng_core_1", "title": "名詞と冠詞", "type": "core" },
+          { "id": "eng_weak_1", "title": "過去形と過去進行形", "type": "weakness" }
         ]
       }
     ]
