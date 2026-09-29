@@ -31,9 +31,13 @@ export async function POST(req: Request) {
       const content = fs.readFileSync(path.join(dir, file), 'utf-8');
       
       let level = '';
-      if (file.startsWith('中学')) level = 'junior_high';
-      else if (file.startsWith('高校') || file.startsWith('高等')) level = 'high_school';
-      else level = 'other';
+      if (file.startsWith('中学校_')) {
+        level = 'junior_high';
+      } else if (file.startsWith('高等学校_')) {
+        level = 'high_school';
+      } else {
+        throw new Error(`予期せぬファイル名パターンが見つかりました: ${file}`);
+      }
       
       const baseSubj = getBaseSubject(file);
       const docId = `${level}_${baseSubj}`;
