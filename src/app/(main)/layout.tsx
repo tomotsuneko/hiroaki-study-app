@@ -9,7 +9,7 @@ function Sidebar() {
 
   const navItems = [
     { name: 'ダッシュボード', path: '/dashboard', icon: '📊' },
-    { name: '学習計画 (シラバス)', path: '/plan', icon: '🗺️' },
+    { name: '学習シラバス', path: '/plan', icon: '🗺️' },
     { name: '学習コンテンツ', path: '/lesson', icon: '📖' },
     { name: 'AI チューター', path: '/chat', icon: '💬' },
     { name: 'AI ドリル (テスト)', path: '/drill', icon: '📝' },

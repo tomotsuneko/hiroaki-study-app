@@ -83,7 +83,7 @@ export default function PlanPage() {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.title}>学習計画 (シラバス)</h1>
+        <h1 className={styles.title}>学習シラバス</h1>
         <p className={styles.subtitle}>
           目標校「<span className="text-gradient font-bold">{mainTarget}</span>」合格に向けたロードマップです。項目をクリックするとAIが解説します。
         </p>
@@ -103,7 +103,7 @@ export default function PlanPage() {
           {isGeneratingSyllabus && (
             <div className={styles.loading} style={{ margin: '40px 0', padding: '40px', backgroundColor: '#F8FAFC', borderRadius: '12px', border: '1px solid #E2E8F0', textAlign: 'center' }}>
               <div className={styles.spinner} style={{ margin: '0 auto 20px auto', width: '40px', height: '40px', borderTopColor: '#3B82F6' }}></div>
-              <h3 style={{ color: '#1E293B', marginBottom: '8px' }}>🔄 カリキュラムを生成中...</h3>
+              <h3 style={{ color: '#1E293B', marginBottom: '8px' }}>🔄 シラバスを生成中...</h3>
               <p style={{ color: '#64748B' }}>あなたの学校の進度や目標校のレベルに合わせて、専用の学習計画をAIが構築しています。<br/>数十秒かかる場合がありますので、このままお待ちください。</p>
             </div>
           )}

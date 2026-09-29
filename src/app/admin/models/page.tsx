@@ -96,7 +96,7 @@ export default function ModelsAdminPage() {
             
             <div style={{ border: '1px solid #E2E8F0', borderRadius: '8px', overflow: 'hidden' }}>
               <div style={{ backgroundColor: '#F8FAFC', padding: '12px 16px', fontWeight: 'bold', borderBottom: '1px solid #E2E8F0' }}>
-                📖 シラバス構築 (高負荷・高推論)
+                📖 カリキュラム / シラバス生成 (高負荷・高推論)
               </div>
               <div style={{ padding: '16px' }}>
                 <ol style={{ paddingLeft: '20px', margin: 0, color: '#334155' }}>

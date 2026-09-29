@@ -9,7 +9,7 @@ export default function AdminLayout({
         <h2 style={{ fontSize: '1.2rem', marginBottom: '20px' }}>⚙️ 管理者メニュー</h2>
         <nav style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
           <a href="/admin/syllabus" style={{ padding: '10px', backgroundColor: '#334155', borderRadius: '8px', color: 'white', textDecoration: 'none' }}>
-            📚 シラバスDB管理
+            📚 カリキュラム/シラバス管理
           </a>
           <a href="/admin/models" style={{ padding: '10px', color: '#94A3B8', textDecoration: 'none' }}>
             🤖 AIモデル・API管理

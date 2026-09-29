@@ -43,7 +43,7 @@ export default function SyllabusAdminPage() {
   const handleGenerate = async () => {
     setIsGenerating(true);
     setLogs([]);
-    addLog('🚀 マスターシラバス構築パイプラインを起動しました...');
+    addLog('🚀 マスターカリキュラム構築パイプラインを起動しました...');
     
     try {
       addLog('⏳ Markdownファイル群を解析・取り込み中...');
@@ -79,11 +79,11 @@ export default function SyllabusAdminPage() {
   return (
     <div>
       <h1 style={{ fontSize: '1.8rem', fontWeight: 'bold', marginBottom: '20px', color: '#0F172A' }}>
-        学習要綱・シラバス データベース管理
+        カリキュラム / シラバス データベース管理
       </h1>
       
       <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', marginBottom: '24px' }}>
-        <h2 style={{ fontSize: '1.2rem', marginBottom: '16px' }}>1. マスターシラバスDB (共通基盤) の更新</h2>
+        <h2 style={{ fontSize: '1.2rem', marginBottom: '16px' }}>1. マスターカリキュラムDB (共通基盤) の更新</h2>
         <p style={{ color: '#475569', marginBottom: '20px' }}>
           所定のディレクトリ（src/data/master_curriculum）に配置されたMarkdownファイル群を解析・構造化し、全生徒のベースとなる「マスターDB」を更新します。
         </p>
@@ -113,9 +113,9 @@ export default function SyllabusAdminPage() {
       </div>
 
       <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', marginBottom: '24px' }}>
-        <h2 style={{ fontSize: '1.2rem', marginBottom: '16px' }}>2. 現在のマスターシラバスDB (プレビュー)</h2>
+        <h2 style={{ fontSize: '1.2rem', marginBottom: '16px' }}>2. 現在のマスターカリキュラムDB (プレビュー)</h2>
         <p style={{ color: '#475569', marginBottom: '20px' }}>
-          生成済みの共通シラバス一覧です。個人シラバスはこれをベースに構築されます。
+          生成済みの共通カリキュラム一覧です。個人シラバスはこれをベースに構築されます。
         </p>
 
         {masterDb.length > 0 ? (
