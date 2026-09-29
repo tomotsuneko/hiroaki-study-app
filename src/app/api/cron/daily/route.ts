@@ -3,6 +3,8 @@ import { NextResponse } from 'next/server';
 import { getLogs, updateDailyAnalysis } from '@/lib/db';
 import { genAI } from '@/lib/gemini';
 
+export const maxDuration = 60; // Increase Vercel timeout for heavy LLM operations
+
 export async function POST(req: Request) {
   try {
     const { profile } = await req.json();
@@ -69,17 +71,18 @@ const systemInstruction = `あなたは進路指導・学習プランニング�
         const result = await model.generateContent(prompt);
         text = (await result.response).text();
         success = true;
-      } catch (err) {
-        console.warn(`Cron model ${modelName} failed.`);
+      } catch (err: any) {
+        console.warn(`Cron model ${modelName} failed:`, err.message);
       }
     }
 
     let analysisData;
     if (success) {
       try {
-        analysisData = JSON.parse(text);
+        let cleanText = text.replace(/```json/gi, '').replace(/```/g, '').trim();
+        analysisData = JSON.parse(cleanText);
       } catch(e) {
-        console.warn("Failed to parse Gemini output as JSON. Using fallback.");
+        console.warn("Failed to parse Gemini output as JSON. Using fallback. Raw text:", text);
         success = false;
       }
     }
