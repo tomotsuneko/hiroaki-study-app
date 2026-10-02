@@ -11,6 +11,7 @@ export default function AdminNav() {
     { name: '📚 カリキュラム管理', path: '/admin/curriculum' },
     { name: '📋 シラバス管理', path: '/admin/syllabus' },
     { name: '🤖 AIモデル・API管理', path: '/admin/models' },
+    { name: '📖 教材コンテンツ管理', path: '/admin/materials' },
   ];
 
   return (
