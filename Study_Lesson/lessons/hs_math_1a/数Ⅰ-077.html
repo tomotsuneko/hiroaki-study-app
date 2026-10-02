@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三角比の日常の事象への活用｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>図形と計量</span><span>数Ⅰ-077</span></div>
+  <h1>三角比の日常の事象への活用</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">活用</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">塔のてっぺんや山の頂上までの高さ、川の向こう岸までの距離は、巻き尺では測れません。でも、見込む角度と測れる距離が分かれば、三角形を見いだして計算で求められます。求めた値は、どこまで信用できるでしょうか。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>建造物や山、太陽などを見込む角度と測定できる距離から直角三角形を見いだし、三角比を使って高さを求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>直接測定できない2地点間の距離を、測定できる距離と角から三角形を見いだし、正弦定理・余弦定理を用いて求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>求めた結果を、目の高さ・測定の誤差・単純化した仮定などに注意して、もとの事象に即して解釈することができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-076）</span>空間図形の計量</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-077）</span>三角比の日常の事象への活用</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-078）</span>単元末演習（図形と計量）</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」「三平方の定理」。中学3年の縮図による測量（中3-084）を、三角比（数Ⅰ-058〜060）、三角比表（数Ⅰ-059）、正弦定理・余弦定理（数Ⅰ-068〜071）で計算に置きかえます。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：使う既習事項</h2>
+<p>この時間は、直角三角形の辺を三角比で表すこと（数Ⅰ-060）、三角比表の読み方（数Ⅰ-059）、正弦定理（数Ⅰ-069）・余弦定理（数Ⅰ-071）を使います。中学3年では、直接測れない木の高さや池をはさんだ2本の木の間の距離を、縮図をかいて求めました（中3-084）。</p>
+<div class="table-wrap">
+<table>
+  <caption>三角比表（この時間で使う角だけを抜き出したもの。小数第5位を四捨五入）</caption>
+  <tr><th>角</th><th>sin</th><th>cos</th><th>tan</th></tr>
+  <tr><td>30°</td><td>0.5000</td><td>0.8660</td><td>0.5774</td></tr>
+  <tr><td>32°</td><td>0.5299</td><td>0.8480</td><td>0.6249</td></tr>
+  <tr><td>33°</td><td>0.5446</td><td>0.8387</td><td>0.6494</td></tr>
+  <tr><td>35°</td><td>0.5736</td><td>0.8192</td><td>0.7002</td></tr>
+  <tr><td>36°</td><td>0.5878</td><td>0.8090</td><td>0.7265</td></tr>
+  <tr><td>40°</td><td>0.6428</td><td>0.7660</td><td>0.8391</td></tr>
+  <tr><td>45°</td><td>0.7071</td><td>0.7071</td><td>1.0000</td></tr>
+  <tr><td>50°</td><td>0.7660</td><td>0.6428</td><td>1.1918</td></tr>
+  <tr><td>60°</td><td>0.8660</td><td>0.5000</td><td>1.7321</td></tr>
+</table>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-060</span></div>
+  <p>\( \angle\mathrm{C}=90^\circ \) の直角三角形 ABC で、\( \mathrm{AC}=10 \)、\( A=30^\circ \) のとき、BC の長さはどれですか。</p>
+  <div class="choices">
+    <button>\( 5 \)</button>
+    <button>\( 10\sqrt{3} \)</button>
+    <button data-correct="true">\( \dfrac{10\sqrt{3}}{3} \)</button>
+    <button>\( 5\sqrt{3} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \tan A=\dfrac{\mathrm{BC}}{\mathrm{AC}} \) より \( \mathrm{BC}=10\tan 30^\circ=\dfrac{10}{\sqrt{3}}=\dfrac{10\sqrt{3}}{3} \) です。\( 5 \) は \( 10\sin 30^\circ \)、\( 5\sqrt{3} \) は \( 10\cos 30^\circ \) で、AC を斜辺と取り違えています（斜辺は AB）。\( 10\sqrt{3} \) は \( \dfrac{10}{\tan 30^\circ} \) と、比を逆にした値です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-059</span></div>
+  <p>上の三角比表を使うと、\( 40\tan 35^\circ \) の値に最も近いものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">28.0</button>
+    <button>22.9</button>
+    <button>32.8</button>
+    <button>57.1</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 40\times 0.7002=28.008 \) なので、およそ 28.0 です。22.9 は \( 40\sin 35^\circ=40\times 0.5736 \)、32.8 は \( 40\cos 35^\circ=40\times 0.8192 \)、57.1 は \( 40\div 0.7002 \) で、表の列や計算の向きを取り違えています。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-069</span></div>
+  <p>△ABC で \( \mathrm{AB}=10 \)、\( A=45^\circ \)、\( C=30^\circ \) のとき、BC の長さはどれですか。</p>
+  <div class="choices">
+    <button>\( 5\sqrt{2} \)</button>
+    <button data-correct="true">\( 10\sqrt{2} \)</button>
+    <button>\( 5\sqrt{6} \)</button>
+    <button>\( 20 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正弦定理より \( \dfrac{\mathrm{BC}}{\sin A}=\dfrac{\mathrm{AB}}{\sin C} \)、\( \mathrm{BC}=\dfrac{10\sin 45^\circ}{\sin 30^\circ}=\dfrac{10\cdot\frac{\sqrt{2}}{2}}{\frac{1}{2}}=10\sqrt{2} \) です。\( 5\sqrt{2} \) は \( 10\sin 45^\circ \) で、\( \sin 30^\circ \) で割るのを忘れた値です。\( 5\sqrt{6} \) は \( \sin 30^\circ \) の代わりに \( \tan 30^\circ=\dfrac{1}{\sqrt{3}} \) で割った値、\( 20 \) は \( \dfrac{10}{\sin 30^\circ} \) で、BC の向かいの角 A を使っていません（これは外接円の直径 \( 2R \) です）。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入（場面）：校庭から塔の高さを測る</h2>
+<div class="box think">
+  <p class="box-title">敷地に入れない塔の高さ</p>
+  <p>X市の高校の校庭から、近くの電波塔（学習用の架空の塔）が見えます。塔は柵で囲まれていて、根もとまで行って巻き尺を当てることはできません。</p>
+  <ul>
+    <li>校庭の点 P から塔の根もとまでの距離は、地図から 40 m と分かりました（地面は水平とします）。</li>
+    <li>点 P に立って、目の高さ 1.5 m から塔のてっぺんを見上げると、水平な向きとのなす角は 35° でした（分度器と水平器を組み合わせた道具で測ったとします）。</li>
+  </ul>
+  <p>塔の高さは何 m でしょうか。また、その答えはどのくらい信用できるでしょうか。この問いには、「3 見込む角から高さを求める」の例題1と、「5 結果をもとの事象に即して解釈する」で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="見込む角から高さを求める"><span class="num">3</span>見込む角から高さを求める</h2>
+<p>ある点から物を見るとき、物の両端へ向かう2本の視線がつくる角を、その点から物を<strong>見込む角</strong>ということにします（学習指導要領解説の「見込む角度」をもとにした、このページでの説明）。また、水平な向きから、高い所にある物を見上げてはかった角を「<strong>見上げる角</strong>」と呼びます（このページでの言い方で、数Ⅰ-060 と同じです。教科書では別の呼び名を使うことがあるので、教科書でも確かめよう）。</p>
+<p><strong>数学化（モデル化）</strong>の手順：① 場面を真横から見た図にかく → ② 直角三角形を見いだす（地面は水平、塔は地面に垂直とみなす）→ ③ 分かっている辺と角、求めたい辺を三角比で結ぶ。</p>
+<figure>
+  <div class="fig-row">
+<!--svg:f077a-->
+<svg viewBox="0 0 230 210" width="230" role="img" aria-label="点 P に立つ人の目 E から塔のてっぺん T を見上げる模式図。目の高さの水平線 EK は 40 m、角 TEK は 35°、角 EKT は直角。目の高さ 1.5 m は誇張して描いている">
+<line x1="38.9" y1="182" x2="227.6" y2="182" stroke="currentColor" stroke-width="1.5"/>
+<polygon points="192.5,182 203.6,182 203.6,56.2 192.5,56.2" fill="#8a99a8" fill-opacity="0.15" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+<line x1="50" y1="159.8" x2="198" y2="159.8" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="5 3"/>
+<line x1="50" y1="159.8" x2="198" y2="56.2" stroke="#c0392b" stroke-width="1.6"/>
+<line x1="198" y1="159.8" x2="198" y2="56.2" stroke="#1f5fbf" stroke-width="2"/>
+<polyline points="191,159.8 191,152.8 198,152.8" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<polyline points="74,159.8 74,159.2 74,158.6 73.9,158 73.9,157.4 73.8,156.8 73.7,156.1 73.6,155.5 73.5,154.9 73.4,154.4 73.2,153.8 73.1,153.2 72.9,152.6 72.7,152 72.5,151.4 72.3,150.9 72,150.3 71.8,149.7 71.5,149.2 71.2,148.6 71,148.1 70.7,147.6 70.3,147.1 70,146.5 69.7,146" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<text x="85.4" y="155" text-anchor="middle" font-size="12" fill="#b7791f">35°</text>
+<line x1="50" y1="182" x2="50" y2="164.2" stroke="currentColor" stroke-width="2"/>
+<circle cx="50" cy="161.3" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/>
+<circle cx="50" cy="159.8" r="2.5" fill="#c0392b"/>
+<text x="41" y="155.8" text-anchor="middle" font-size="12" fill="currentColor">E</text>
+<text x="41" y="195" text-anchor="middle" font-size="12" fill="currentColor">P</text>
+<text x="188" y="173.8" text-anchor="middle" font-size="12" fill="currentColor">K</text>
+<text x="206" y="60.2" text-anchor="start" font-size="12" fill="currentColor">T</text>
+<text x="124" y="173.8" text-anchor="middle" font-size="12" fill="currentColor">40 m</text>
+<text x="44" y="170.9" text-anchor="end" font-size="11" fill="currentColor">1.5 m</text>
+<text x="188.5" y="108" text-anchor="end" font-size="12" fill="#1f5fbf">TK</text>
+</svg>
+<svg viewBox="0 0 200 210" width="200" role="img" aria-label="地面に垂直に立てた棒と、長さ 15 m の影。太陽の光を平行な線で示し、影の先端から太陽を見上げる角は 50°">
+<line x1="7" y1="182" x2="174.4" y2="182" stroke="currentColor" stroke-width="1.5"/>
+<line x1="50.4" y1="182" x2="50.4" y2="71.2" stroke="currentColor" stroke-width="3"/>
+<line x1="50.4" y1="182" x2="143.4" y2="182" stroke="#8a99a8" stroke-width="5" stroke-opacity="0.6"/>
+<line x1="76.1" y1="153.5" x2="4.4" y2="68" stroke="#b7791f" stroke-width="1.2" stroke-dasharray="4 3"/>
+<line x1="143.4" y1="182" x2="47.8" y2="68" stroke="#b7791f" stroke-width="1.6"/>
+<line x1="162.9" y1="153.5" x2="91.2" y2="68" stroke="#b7791f" stroke-width="1.2" stroke-dasharray="4 3"/>
+<circle cx="33.8" cy="51.4" r="9.9" fill="none" stroke="#b7791f" stroke-width="2"/>
+<polyline points="121.4,182 121.4,181.2 121.5,180.4 121.5,179.6 121.6,178.8 121.8,178 121.9,177.2 122.1,176.5 122.3,175.7 122.6,174.9 122.8,174.2 123.1,173.4 123.5,172.7 123.8,172 124.2,171.3 124.6,170.6 125,169.9 125.5,169.3 125.9,168.6 126.4,168 127,167.4 127.5,166.8 128.1,166.2 128.7,165.7 129.3,165.1" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<text x="112" y="174.1" text-anchor="middle" font-size="12" fill="#b7791f">50°</text>
+<polyline points="57.4,182 57.4,175 50.4,175" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<text x="96.9" y="198" text-anchor="middle" font-size="12" fill="currentColor">影 15 m</text>
+<text x="42.4" y="126.6" text-anchor="end" font-size="12" fill="currentColor">棒</text>
+<text x="47.8" y="55.4" text-anchor="start" font-size="12" fill="#b7791f">太陽</text>
+</svg><!--/svg:f077a-->
+  </div>
+  <figcaption>図1　学習用に作成した模式図。塔の図：点 P から塔を見上げる場面（目の高さ 1.5 m、塔までの水平距離 40 m、見上げる角 35°）。棒の図：棒とその影、太陽の光（平行な線）。地面から太陽を見上げる角は 50°。どちらも長さの比は実際と同じにしていない</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の答え：建造物の高さ）</p>
+  <p>点 P から 40 m 離れた塔のてっぺんを、目の高さ 1.5 m から見上げる角が 35° のとき、塔の高さを求めなさい。答えは小数第1位まで求めなさい。</p>
+  <div class="step">着眼点：直角三角形は「目の位置 E」「塔の上で目と同じ高さの点 K」「てっぺん T」でできます。地面ではなく<strong>目の高さ</strong>の水平線が1辺です。</div>
+  <div class="step">\( \mathrm{EK}=40 \)、\( \angle\mathrm{TEK}=35^\circ \)、\( \angle\mathrm{EKT}=90^\circ \) より、\( \mathrm{TK}=40\tan 35^\circ=40\times 0.7002=28.008 \)。</div>
+  <div class="step">塔の高さ \( =\mathrm{TK}+(\text{目の高さ})=28.008+1.5=29.508 \)。</div>
+  <div class="step">答え：およそ 29.5 m（どのけたまで信用できるかは、「5 結果をもとの事象に即して解釈する」で考えます）</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（天体：太陽を見込む角と影の長さ）</p>
+  <p>地面に垂直に立てた棒の影の長さが 15 m で、影の先端から太陽を見上げる角（太陽の光と地面のなす角）が 50° のとき、棒の高さを求めなさい（小数第1位まで）。</p>
+  <div class="step">着眼点：太陽はとても遠いので、太陽の光は平行な直線とみなします（単純化）。棒の先端、根もと、影の先端で直角三角形ができます。</div>
+  <div class="step">\( (\text{棒の高さ})=15\tan 50^\circ=15\times 1.1918=17.877 \)。</div>
+  <div class="step">答え：およそ 17.9 m</div>
+</div>
+<p>例題2の考え方を使うと、同じ時刻の影の長さから、高い建物の高さも計算できます。太陽を見上げる角は季節や時刻で変わるので、影を測ったときの角を使います。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（山：頂上の真下まで行けない場合）</p>
+  <p>山の頂上 T を、水平な一直線の道の上の2地点 A、B から見上げます。A で 30°、A から山に向かって 1000 m 進んだ B で 45° でした。目の高さの水平線上で T の真下の点を H とし、A、B、H は一直線上にあるとみなします。TH の長さ \( h \) を求めなさい。</p>
+  <div class="step">着眼点：H までは行けないので、BH の長さが分かりません。そこで、直角三角形 TAH と TBH の2つを使い、AH と BH を \( h \) で表します。</div>
+  <div class="step">\( \mathrm{AH}=\dfrac{h}{\tan 30^\circ}=\sqrt{3}h \)、\( \mathrm{BH}=\dfrac{h}{\tan 45^\circ}=h \)。</div>
+  <div class="step">\( \mathrm{AH}-\mathrm{BH}=\mathrm{AB} \) より \( \sqrt{3}h-h=1000 \)、\( h=\dfrac{1000}{\sqrt{3}-1}=\dfrac{1000(\sqrt{3}+1)}{(\sqrt{3}-1)(\sqrt{3}+1)}=500(\sqrt{3}+1) \)。</div>
+  <div class="step">答え：\( h=500(\sqrt{3}+1) \)、およそ 1366 m（\( \sqrt{3}=1.732 \) として）。これは「目の高さの水平線から頂上まで」の高さです。</div>
+</div>
+<figure>
+<!--svg:f077b-->
+<svg viewBox="0 0 420 230" width="420" role="img" aria-label="山の頂上 T を、一直線上の2地点 A、B から見上げる模式図。A では 30°、B では 45°、AB は 1000 m、T の真下の点 H、TH の長さ h">
+<polyline points="186.5,185 223.3,137.8 254.8,85.2 281,41.6 323,80 365,137.8 401.8,185" fill="none" stroke="#1e8e5a" stroke-width="1.8"/>
+<line x1="20" y1="185" x2="417.5" y2="185" stroke="currentColor" stroke-width="1.4"/>
+<line x1="32.6" y1="185" x2="281" y2="41.6" stroke="#c0392b" stroke-width="1.4"/>
+<line x1="137.6" y1="185" x2="281" y2="41.6" stroke="#c0392b" stroke-width="1.4"/>
+<line x1="281" y1="41.6" x2="281" y2="185" stroke="#1f5fbf" stroke-width="1.8" stroke-dasharray="5 3"/>
+<polyline points="273,185 273,177 281,177" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<polyline points="62.6,185 62.6,184.3 62.6,183.7 62.5,183 62.5,182.4 62.4,181.7 62.3,181.1 62.3,180.4 62.1,179.8 62,179.1 61.9,178.5 61.7,177.9 61.6,177.2 61.4,176.6 61.2,176 61,175.4 60.8,174.7 60.6,174.1 60.3,173.5 60.1,172.9 59.8,172.3 59.5,171.7 59.2,171.1 58.9,170.6 58.6,170" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<polyline points="161.6,185 161.6,184.2 161.5,183.4 161.5,182.6 161.4,181.9 161.3,181.1 161.1,180.3 161,179.6 160.8,178.8 160.6,178 160.3,177.3 160.1,176.5 159.8,175.8 159.5,175.1 159.1,174.4 158.8,173.7 158.4,173 158,172.3 157.6,171.7 157.1,171 156.6,170.4 156.2,169.8 155.6,169.2 155.1,168.6 154.6,168" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<polyline points="165.6,185 165.6,184.1 165.5,183.2 165.5,182.3 165.4,181.3 165.2,180.4 165.1,179.5 164.9,178.6 164.6,177.8 164.4,176.9 164.1,176 163.8,175.1 163.5,174.3 163.1,173.4 162.7,172.6 162.3,171.8 161.8,171 161.4,170.2 160.9,169.4 160.4,168.7 159.8,168 159.2,167.2 158.7,166.5 158,165.9 157.4,165.2" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<text x="74.4" y="180" text-anchor="middle" font-size="12" fill="#b7791f">30°</text>
+<text x="173.5" y="176.8" text-anchor="middle" font-size="12" fill="#b7791f">45°</text>
+<text x="32.6" y="201" text-anchor="middle" font-size="13" fill="currentColor">A</text>
+<text x="137.6" y="201" text-anchor="middle" font-size="13" fill="currentColor">B</text>
+<text x="281" y="201" text-anchor="middle" font-size="13" fill="currentColor">H</text>
+<text x="281" y="34.6" text-anchor="middle" font-size="13" fill="currentColor">T</text>
+<text x="85.1" y="215" text-anchor="middle" font-size="12" fill="currentColor">1000 m</text>
+<text x="289" y="113.3" text-anchor="start" font-size="13" fill="#1f5fbf" font-style="italic">h</text>
+</svg><!--/svg:f077b-->
+  <figcaption>図2　例題3の模式図（学習用。A、B、H は一直線上にあり、地面は水平とみなす。長さの比は計算した値に合わせて描いた）</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 目の高さを加え忘れる、または地面から見上げたと考えてしまう（例題1）。<br>② 正接の代わりに正弦を使う：水平な距離と高さの関係は \( \tan \) です。正弦は「目から てっぺんまでの斜めの距離」と高さの関係です。<br>③ 例題3で、A から H までの距離を 1000 m としてしまう：1000 m は A から B までの距離です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="直接測れない2地点間の距離"><span class="num">4</span>直接測れない2地点間の距離</h2>
+<p>池や川をはさんだ2地点の距離は、巻き尺をまっすぐに張れません。測れる場所に1つの三角形をつくり、<strong>測れる辺と角</strong>から、正弦定理・余弦定理で残りの辺を計算します。</p>
+<figure>
+  <div class="fig-row">
+<!--svg:f077c-->
+<svg viewBox="0 0 210 200" width="210" role="img" aria-label="池をはさむ2地点 A、B と地点 C。CA=80 m、CB=50 m、角ACB=60°。AB を破線で示す">
+<polyline points="157,55.4 155.9,51.7 152.5,48.1 147.1,44.8 139.8,42 131,39.8 121.1,38.3 110.4,37.5 99.6,37.5 88.9,38.3 79,39.8 70.2,42 62.9,44.8 57.5,48.1 54.1,51.7 53,55.4 54.1,59.2 57.5,62.7 62.9,66 70.2,68.8 79,71 88.9,72.5 99.6,73.3 110.4,73.3 121.1,72.5 131,71 139.8,68.8 147.1,66 152.5,62.7 155.9,59.2 157,55.4" fill="none" stroke="#1f5fbf" stroke-width="1.4"/>
+<polygon points="157,55.4 155.9,51.7 152.5,48.1 147.1,44.8 139.8,42 131,39.8 121.1,38.3 110.4,37.5 99.6,37.5 88.9,38.3 79,39.8 70.2,42 62.9,44.8 57.5,48.1 54.1,51.7 53,55.4 54.1,59.2 57.5,62.7 62.9,66 70.2,68.8 79,71 88.9,72.5 99.6,73.3 110.4,73.3 121.1,72.5 131,71 139.8,68.8 147.1,66 152.5,62.7 155.9,59.2 157,55.4" fill="#1f5fbf" fill-opacity="0.15" stroke="none"/>
+<line x1="120" y1="172" x2="40" y2="33.4" stroke="currentColor" stroke-width="1.6"/>
+<line x1="120" y1="172" x2="170" y2="85.4" stroke="currentColor" stroke-width="1.6"/>
+<line x1="40" y1="33.4" x2="170" y2="85.4" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="6 4"/>
+<polyline points="111,156.4 111.7,156 112.4,155.7 113.1,155.4 113.8,155.1 114.6,154.8 115.3,154.6 116.1,154.4 116.9,154.3 117.7,154.2 118.4,154.1 119.2,154 120,154 120.8,154 121.6,154.1 122.3,154.2 123.1,154.3 123.9,154.4 124.7,154.6 125.4,154.8 126.2,155.1 126.9,155.4 127.6,155.7 128.3,156 129,156.4" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<text x="120" y="148.2" text-anchor="middle" font-size="12" fill="#b7791f">60°</text>
+<text x="120" y="188.6" text-anchor="middle" font-size="13" fill="currentColor">C</text>
+<text x="30.3" y="30.9" text-anchor="middle" font-size="13" fill="currentColor">A</text>
+<text x="181.9" y="88.4" text-anchor="middle" font-size="13" fill="currentColor">B</text>
+<text x="63.1" y="116.7" text-anchor="middle" font-size="12" fill="currentColor">80 m</text>
+<text x="161.9" y="142.6" text-anchor="middle" font-size="12" fill="currentColor">50 m</text>
+<text x="129" y="49.4" text-anchor="middle" font-size="12" fill="#1f5fbf">池</text>
+</svg>
+<svg viewBox="0 0 220 200" width="220" role="img" aria-label="川の手前の岸の2地点 A、B（AB=60 m）と向こう岸の地点 C。角CAB=75°、角CBA=45°。AC を破線で示す">
+<rect x="0.8" y="56" width="218.4" height="83.2" fill="#1f5fbf" fill-opacity="0.15"/>
+<line x1="0.8" y1="139.2" x2="219.2" y2="139.2" stroke="#1f5fbf" stroke-width="1.2"/>
+<line x1="0.8" y1="56" x2="219.2" y2="56" stroke="#1f5fbf" stroke-width="1.2"/>
+<text x="203.6" y="101.6" text-anchor="middle" font-size="12" fill="#1f5fbf">川</text>
+<polygon points="32,160 188,160 65,37" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="32" y1="160" x2="65" y2="37" stroke="#c0392b" stroke-width="1.8" stroke-dasharray="6 4"/>
+<polyline points="48,160 48,159.1 47.9,158.3 47.8,157.4 47.6,156.5 47.4,155.7 47.2,154.9 46.8,154 46.5,153.2 46.1,152.5 45.7,151.7 45.2,151 44.7,150.3 44.1,149.6 43.6,148.9 42.9,148.3 42.3,147.7 41.6,147.2 40.9,146.7 40.2,146.2 39.4,145.8 38.6,145.4 37.8,145.1 37,144.8 36.1,144.5" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<polyline points="172,160 172,159.5 172,159 172.1,158.4 172.1,157.9 172.2,157.4 172.3,156.9 172.4,156.4 172.5,155.9 172.7,155.4 172.8,154.9 173,154.4 173.2,153.9 173.4,153.4 173.7,152.9 173.9,152.5 174.1,152 174.4,151.6 174.7,151.1 175,150.7 175.3,150.3 175.6,149.8 176,149.5 176.3,149.1 176.7,148.7" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<polyline points="168,160 168,159.3 168,158.7 168.1,158 168.2,157.4 168.3,156.7 168.4,156.1 168.5,155.5 168.7,154.8 168.9,154.2 169.1,153.6 169.3,153 169.5,152.3 169.8,151.7 170.1,151.2 170.4,150.6 170.7,150 171,149.4 171.4,148.9 171.7,148.4 172.1,147.8 172.5,147.3 173,146.8 173.4,146.3 173.9,145.9" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<text x="53.9" y="149.8" text-anchor="middle" font-size="12" fill="#b7791f">75°</text>
+<text x="157.6" y="154.1" text-anchor="middle" font-size="12" fill="#b7791f">45°</text>
+<text x="21.9" y="171.1" text-anchor="middle" font-size="13" fill="currentColor">A</text>
+<text x="199" y="169.4" text-anchor="middle" font-size="13" fill="currentColor">B</text>
+<text x="60.8" y="30.2" text-anchor="middle" font-size="13" fill="currentColor">C</text>
+<text x="110" y="176" text-anchor="middle" font-size="12" fill="currentColor">60 m</text>
+</svg><!--/svg:f077c-->
+  </div>
+  <figcaption>図3　学習用に作成した模式図。池の図：池をはさむ2地点 A、B と、両方が見える地点 C（例題4）。川の図：川の手前の岸の2地点 A、B と、向こう岸の地点 C（例題5）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題4（池をはさむ2地点：余弦定理）</p>
+  <p>池をはさむ2地点 A、B の距離を求めたい。両方が見える地点 C で測ると、\( \mathrm{CA}=80 \) m、\( \mathrm{CB}=50 \) m、\( \angle\mathrm{ACB}=60^\circ \) でした。AB を求めなさい。</p>
+  <div class="step">着眼点：△ABC で2辺とその間の角が分かるので、余弦定理です。</div>
+  <div class="step">\( \mathrm{AB}^2=80^2+50^2-2\cdot 80\cdot 50\cos 60^\circ=6400+2500-4000=4900 \)</div>
+  <div class="step">答え：\( \mathrm{AB}=70 \) m</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5（川の向こう岸の地点：正弦定理）</p>
+  <p>川の手前の岸の2地点 A、B の距離は 60 m です。向こう岸の地点 C について、\( \angle\mathrm{CAB}=75^\circ \)、\( \angle\mathrm{CBA}=45^\circ \) でした。AC の長さを求めなさい。</p>
+  <div class="step">着眼点：1辺 AB とその両端の角が分かるので、残りの角を求めて正弦定理を使います。</div>
+  <div class="step">\( \angle\mathrm{ACB}=180^\circ-75^\circ-45^\circ=60^\circ \)。</div>
+  <div class="step">正弦定理より \( \dfrac{\mathrm{AC}}{\sin 45^\circ}=\dfrac{60}{\sin 60^\circ} \)、\( \mathrm{AC}=\dfrac{60\cdot\frac{\sqrt{2}}{2}}{\frac{\sqrt{3}}{2}}=\dfrac{60\sqrt{2}}{\sqrt{3}}=20\sqrt{6} \)。</div>
+  <div class="step">答え：\( \mathrm{AC}=20\sqrt{6} \)、およそ 49.0 m</div>
+</div>
+<div class="box point"><p class="box-title">縮図と三角比</p><p>中学3年（中3-084）では、測った辺と角から縮図をかき、縮図の長さを測って実際の距離を求めました。三角比・正弦定理・余弦定理を使うと、縮図をかかなくても計算で求められ、作図や読み取りの誤差が入りません。どちらも「三角形が1辺とその両端の角、2辺とその間の角などで決まる」（三角形の決定条件）ことを使っています。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 例題5で、AC の向かいの角を取り違える：AC の向かいの角は \( \angle\mathrm{B}=45^\circ \) です。\( \sin 75^\circ \) を使うのは BC を求めるときです。<br>② 例題4で符号を誤る：\( \mathrm{AB}^2=6400+2500+4000 \) とすると \( \mathrm{AB}=\sqrt{12900}\fallingdotseq 113.6 \) m になります。しかし \( \angle\mathrm{C}=60^\circ \) は鋭角なので、\( \mathrm{AB}^2&lt;\mathrm{CA}^2+\mathrm{CB}^2=8900 \)（数Ⅰ-071 の鋭角・鈍角の判定）で、AB は約 94.3 m より短いはずです。結果が場面に合うかを見直しましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="結果を解釈する"><span class="num">5</span>結果をもとの事象に即して解釈する（振り返り）</h2>
+<p>計算で求めた値は、測った値と、場面を単純化した仮定に頼っています。答えを「もとの場面の答え」にするときは、次の点を振り返ります。</p>
+<h3>① 目の高さや、どこからどこまでの長さか</h3>
+<p>例題1の 28.008 m は、目の高さから上の部分です。塔の高さは目の高さ 1.5 m を加えた値です。例題3の \( h \) も「目の高さの水平線から頂上まで」で、山の標高を知るには、観測した地点の標高と目の高さも必要です。</p>
+<h3>② 測定の誤差と、答えのけた</h3>
+<p>見上げる角を 1° 違えて 36° と測ったとすると、\( 40\tan 36^\circ+1.5=40\times 0.7265+1.5=30.56 \) となり、例題1の 29.508 m より約 1 m 大きくなります。角の測定に 1° 程度の誤差がありうるなら、塔の高さを「29.508 m」と細かく答えるのは意味がなく、「<strong>およそ 30 m</strong>」と答えるのが場面に合っています。これが導入の問い「どのくらい信用できるか」への答えです。</p>
+<h3>③ 単純化した仮定</h3>
+<ul>
+  <li>地面は水平、塔は地面に垂直とみなした（例題1）。</li>
+  <li>太陽の光は平行とみなした（例題2）。</li>
+  <li>A、B、H が一直線上にあるとみなした（例題3）。実際に道が山の真下の点に向かっていなければ、この式は使えません。</li>
+</ul>
+<p>仮定が場面に合わないときは、測り方を変える（測る地点を増やす、角を測り直す）か、結果に「この仮定のもとで」と添えます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>場面</th><th>見いだす三角形</th><th>使う式</th><th>振り返ること</th></tr>
+  <tr><td>建造物の高さ（例題1）</td><td>目の高さの水平線を1辺とする直角三角形</td><td>\( \tan \)</td><td>目の高さ、角の誤差と答えのけた</td></tr>
+  <tr><td>影と太陽（例題2）</td><td>棒・影・光の直角三角形</td><td>\( \tan \)</td><td>光を平行とみなす仮定</td></tr>
+  <tr><td>山の高さ（例題3）</td><td>2つの直角三角形</td><td>\( \tan \) と連立</td><td>A、B、H が一直線上という仮定</td></tr>
+  <tr><td>池をはさむ距離（例題4）</td><td>2辺とその間の角の三角形</td><td>余弦定理</td><td>結果が場面に合うか（∠C が鋭角なら \( \mathrm{AB}^2 \) は \( \mathrm{CA}^2+\mathrm{CB}^2 \) より小さい）</td></tr>
+  <tr><td>川の向こう岸（例題5）</td><td>1辺とその両端の角の三角形</td><td>正弦定理</td><td>向かいの角の取り違え</td></tr>
+</table>
+</div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>見込む角</dt><dd>ある点から物を見るとき、物の両端へ向かう2本の視線がつくる角（解説の「見込む角度」をもとにした、このページでの説明）。</dd>
+    <dt>見上げる角</dt><dd>このページでの言い方。水平な向きから、高い所にある物を見上げてはかった角。</dd>
+    <dt>模式図・単純化</dt><dd>場面の形を三角形で表すため、地面を水平、光を平行などとみなして描いた図と、そのための仮定。</dd>
+    <dt>測定の誤差</dt><dd>測った値に含まれるずれ。角が 1° 違うと結果がどれだけ変わるかを調べて、答えのけたを決める。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>高さは、目の高さの水平線を1辺とする直角三角形を見いだし、\( (\text{高さ})=(\text{水平距離})\times\tan(\text{見上げる角}) \) に目の高さを加える。真下まで行けないときは、2地点の角から連立して求める（O1）。</li>
+    <li>直接測れない距離は、測れる辺と角で三角形をつくり、2辺とその間の角なら余弦定理、1辺とその両端の角なら正弦定理（O2）。</li>
+    <li>結果は、どこからどこまでの長さか、角の誤差でどれだけ変わるか、どんな仮定を置いたかを振り返って、場面に合った形（「およそ 30 m」など）で答える（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">見上げる角と高さ</span><p>\( (\text{高さ})=d\tan\theta+(\text{目の高さ}) \)（\( d \) は水平距離）</p></div>
+  <div><span class="f-name">2地点から山を見上げる</span><p>\( \dfrac{h}{\tan\alpha}-\dfrac{h}{\tan\beta}=\mathrm{AB} \)（\( \alpha&lt;\beta \)）</p></div>
+  <div><span class="f-name">2地点間の距離</span><p>余弦定理 \( c^2=a^2+b^2-2ab\cos C \)、正弦定理 \( \dfrac{a}{\sin A}=\dfrac{b}{\sin B} \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。三角比の値は「前回までの確認」の三角比表を使ってください。場面の数値はすべて学習用の架空の値です。根号を含む答えは、根号の中をできるだけ小さい自然数にして 30√6 のように入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1・O3</span></div>
+  <p>木から水平に 12 m 離れた地点で、目の高さ 1.5 m から木のてっぺんを見上げる角が 40° でした。木の高さに最も近いものはどれですか。</p>
+  <div class="choices"><button>10.1 m</button><button>9.2 m</button><button data-correct="true">11.6 m</button><button>15.8 m</button></div>
+  <span class="result"></span>
+  <div class="explain">\( 12\tan 40^\circ+1.5=12\times 0.8391+1.5=11.5692 \) なので、およそ 11.6 m です。10.1 m は目の高さを加え忘れた値（\( 12\tan 40^\circ \)）、9.2 m は正接の代わりに正弦を使った値（\( 12\sin 40^\circ+1.5 \)）、15.8 m は \( 12\div\tan 40^\circ+1.5 \) と、比を逆にした値です。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="6.9|6.9m|約6.9|4√3|4ルート3|4root3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>地面に垂直な柱の影の長さが 4 m で、影の先端から太陽を見上げる角が 60° でした。柱の高さは何 m ですか。小数第1位まで求めなさい（数値だけを入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 6.9（m）。太陽の光を平行とみなすと、\( (\text{柱の高さ})=4\tan 60^\circ=4\sqrt{3}\fallingdotseq 4\times 1.7321=6.9284 \) で、およそ 6.9 m です。2.3 と答えた場合は、柱の先端の角（\( 90^\circ-60^\circ=30^\circ \)）を使って \( 4\tan 30^\circ \) を計算しています。太陽を見上げる角 60° は、影の先端の角です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>池をはさむ2地点 A、B の距離を求めるため、地点 C で測ると \( \mathrm{CA}=30 \) m、\( \mathrm{CB}=50 \) m、\( \angle\mathrm{ACB}=120^\circ \) でした。AB の長さはどれですか。</p>
+  <div class="choices"><button data-correct="true">\( 70 \) m</button><button>\( 10\sqrt{19} \) m</button><button>\( 10\sqrt{34} \) m</button><button>\( 4900 \) m</button></div>
+  <span class="result"></span>
+  <div class="explain">余弦定理より \( \mathrm{AB}^2=30^2+50^2-2\cdot 30\cdot 50\cos 120^\circ=900+2500+1500=4900 \)、\( \mathrm{AB}=70 \) m です。\( 10\sqrt{19} \) m は \( \cos 120^\circ=-\dfrac{1}{2} \) の符号を誤って \( 3400-1500 \) とした値、\( 10\sqrt{34} \) m は \( -2ab\cos C \) の項を落とした値、4900 m は平方根をとり忘れた値です。4900 m は、C を回って歩く道のり \( 30+50=80 \) m よりはるかに長く、場面に合いません。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="50√2|50ルート2|50root2|50*√2|50×√2|BC=50√2">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>川の手前の岸の2地点 A、B の距離は 100 m です。向こう岸の地点 C について \( \angle\mathrm{CAB}=30^\circ \)、\( \angle\mathrm{CBA}=105^\circ \) でした。BC の長さを根号を使って答えなさい（単位は m、数値だけを入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 50\sqrt{2} \)（m、およそ 70.7 m）。\( \angle\mathrm{ACB}=180^\circ-30^\circ-105^\circ=45^\circ \)。BC の向かいの角は \( \angle\mathrm{A}=30^\circ \) なので、正弦定理より \( \mathrm{BC}=\dfrac{100\sin 30^\circ}{\sin 45^\circ}=\dfrac{50}{\frac{\sqrt{2}}{2}}=50\sqrt{2} \) です。\( 100\sqrt{2} \) と答えた場合は、向かいの角を \( \angle\mathrm{C} \) と取り違えて \( \dfrac{100}{\sin 45^\circ} \)（外接円の直径）を求めています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O1</span></div>
+  <p>水平な一直線の道の上の2地点 A、B から、塔のてっぺん T を見上げます。A で 30°、A から塔に向かって 200 m 進んだ B で 60° でした。目の高さの水平線上で T の真下の点を H とし、A、B、H は一直線上にあるとみなします。TH の長さはどれですか。</p>
+  <div class="choices"><button>\( 200\sqrt{3} \) m</button><button data-correct="true">\( 100\sqrt{3} \) m</button><button>\( \dfrac{200\sqrt{3}}{3} \) m</button><button>\( \dfrac{400\sqrt{3}}{3} \) m</button></div>
+  <span class="result"></span>
+  <div class="explain">\( \mathrm{TH}=h \) とすると、\( \mathrm{AH}=\dfrac{h}{\tan 30^\circ}=\sqrt{3}h \)、\( \mathrm{BH}=\dfrac{h}{\tan 60^\circ}=\dfrac{h}{\sqrt{3}} \)。\( \sqrt{3}h-\dfrac{h}{\sqrt{3}}=200 \) より \( \dfrac{2}{\sqrt{3}}h=200 \)、\( h=100\sqrt{3} \)（およそ 173 m）です。\( 200\sqrt{3} \) m は BH を 200 m とした値（\( 200\tan 60^\circ \)）、\( \dfrac{200\sqrt{3}}{3} \) m は AH を 200 m とした値（\( 200\tan 30^\circ \)）です。\( \dfrac{400\sqrt{3}}{3} \) m は \( 200(\tan 60^\circ-\tan 30^\circ) \) と、正接の差に距離をかけた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>例題1で、見上げる角の測定には 1° 程度の誤差がありうるとします。塔の高さの答え方として最も適切なものはどれですか。</p>
+  <div class="choices"><button>計算どおり「29.508 m」と答えるのが最も正確である。</button><button>目の高さ 1.5 m は塔に比べて小さいので、加えずに「28.008 m」と答える。</button><button>見上げる角が2倍になれば高さも2倍になるので、角の誤差は気にしなくてよい。</button><button data-correct="true">角が 1° 違うと高さが約 1 m 変わるので、「およそ 30 m」と答える。</button></div>
+  <span class="result"></span>
+  <div class="explain">36° で計算すると 30.56 m で、35° のときより約 1 m 大きくなります（「5 結果をもとの事象に即して解釈する」の②）。1 m 程度の幅がある値を小数第3位まで答えても意味がないので、「およそ 30 m」が適切です。目の高さを加えないと、塔の高さではなく目の高さから上の長さになります。正接は角に比例しないので、「角が2倍なら高さも2倍」は誤りです（たとえば表で \( \tan 60^\circ=1.7321 \) は \( \tan 30^\circ=0.5774 \) のおよそ3倍です）。</div>
+</div>
+
+<div class="q" data-type="open" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O2</span></div>
+  <p>川の向こう岸にある2本の木 P、Q の間の距離を求めたい。手前の岸の2地点 A、B（\( \mathrm{AB}=40 \) m）で角を測ると、\( \angle\mathrm{PAB}=90^\circ \)、\( \angle\mathrm{PBA}=60^\circ \)、\( \angle\mathrm{QAB}=30^\circ \)、\( \angle\mathrm{QBA}=120^\circ \) でした。P、Q は直線 AB に関して同じ側にあり、4点は同じ水平面上にあるとみなします。</p>
+  <p>(1) AP の長さを求めなさい。　(2) AQ の長さを求めなさい。　(3) PQ の長さを求めなさい（小数第1位まで）。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) △ABP で \( \angle\mathrm{APB}=180^\circ-90^\circ-60^\circ=30^\circ \)。正弦定理より \( \mathrm{AP}=\dfrac{40\sin 60^\circ}{\sin 30^\circ}=40\sqrt{3} \)（m）。</p>
+    <p>(2) △ABQ で \( \angle\mathrm{AQB}=180^\circ-30^\circ-120^\circ=30^\circ \)。正弦定理より \( \mathrm{AQ}=\dfrac{40\sin 120^\circ}{\sin 30^\circ}=40\sqrt{3} \)（m）。</p>
+    <p>(3) \( \angle\mathrm{PAQ}=\angle\mathrm{PAB}-\angle\mathrm{QAB}=90^\circ-30^\circ=60^\circ \)。△APQ で余弦定理より \( \mathrm{PQ}^2=(40\sqrt{3})^2+(40\sqrt{3})^2-2\cdot 40\sqrt{3}\cdot 40\sqrt{3}\cos 60^\circ=4800 \)、\( \mathrm{PQ}=40\sqrt{3}=69.28\cdots \)。およそ 69.3 m。</p>
+    <p><strong>採点の観点</strong>　① △ABP、△ABQ で残りの角を求め、正弦定理で AP、AQ を求めている。② \( \angle\mathrm{PAQ} \) を角の差として求めている。③ △APQ で余弦定理を使い、PQ を求めている。</p>
+  </div>
+  <div class="explain">(3) では \( \mathrm{AP}=\mathrm{AQ} \)、\( \angle\mathrm{PAQ}=60^\circ \) なので、△APQ は正三角形とも分かり、\( \mathrm{PQ}=\mathrm{AP} \) です。直接行けない2地点の距離も、測れる2地点 A、B からの角を組み合わせれば求められます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O3</span></div>
+  <p>太郎さんは例題3の方法で山の高さを求め、「この山の標高は 1366 m だ」と言いました。花子さんは「その結論にはいくつか注意がいるよ」と言いました。花子さんの指摘として正しいものはどれですか。</p>
+  <div class="choices"><button>2地点の角を測ったので誤差はなく、1366 m は正確な標高である。</button><button data-correct="true">求めたのは目の高さの水平線から頂上までの高さなので、標高を知るには観測地点の標高と目の高さを加える必要があり、A、B、H が一直線上という仮定も確かめる必要がある。</button><button>A と B の距離を 2 倍にすれば、求めた高さも 2 倍になるので、測る距離を長くするほど高く求まる。</button><button>山の高さを求めるには、頂上の真下の点 H まで行って距離を測るしか方法がない。</button></div>
+  <span class="result"></span>
+  <div class="explain">例題3の \( h \) は「目の高さの水平線から頂上まで」です（「5 結果をもとの事象に即して解釈する」の①）。標高は海面からの高さなので、観測地点の標高と目の高さを加えます。また、A、B、H が一直線上にあるという単純化した仮定のもとの値です（③）。角の測定には誤差があります（②）。2地点の距離を変えると見上げる角も変わるので、「距離を 2 倍にすると高さも 2 倍」にはなりません。例題3のように、H まで行かなくても2地点の角から求められます。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O3</span></div>
+  <p>ビル（学習用の架空のビル）から水平に 50 m 離れた地点で、目の高さ 1.6 m からビルの屋上を見上げる角を測ると 32° でした。</p>
+  <p>(1) ビルの高さを小数第1位まで求めなさい。　(2) 角の測定に 1° 程度の誤差がありうるとき、見上げる角が 33° だった場合の高さを求め、(1) の答えをどのように伝えるのがよいか、理由とともに説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) \( 50\tan 32^\circ+1.6=50\times 0.6249+1.6=32.845 \)。およそ 32.8 m。</p>
+    <p>(2) \( 50\tan 33^\circ+1.6=50\times 0.6494+1.6=34.07 \)。1° の違いで約 1.2 m 変わるので、小数第1位まで答えても意味がない。「およそ 33 m（1 m 程度の誤差を含む）」と伝えるのがよい。</p>
+    <p><strong>採点の観点</strong>　① 目の高さの水平線を1辺とする直角三角形を見いだし、正接と目の高さで高さを求めている。② 角を 1° 変えたときの高さの変化を計算している。③ 変化の大きさをもとに、答えのけたや伝え方を説明している。</p>
+  </div>
+  <div class="explain">(2) の考え方は、例題1の振り返り（「5 結果をもとの事象に即して解釈する」の②）と同じです。測定の誤差が結果にどれだけ影響するかを確かめると、答えをもとの場面に合った形で伝えられます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(2) 図形と計量」の「図形の構成要素間の関係に着目し，日常の事象や社会の事象などを数学的に捉え，問題を解決したり，解決の過程を振り返って事象の数学的な特徴や他の事象との関係を考察したりすること」（イ(イ)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「事象を数理的に捉え，数学の問題を見いだすこと」「解決過程を振り返り，得られた結果を意味づけたり，活用したり，統合的・発展的に考察したりすること」などを求め、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。場面を三角形に表して計算し、結果を場面に戻して解釈するこの時間の流れは、こうした過程にあたります。</p>
+  <p class="small">問7〜問9は練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">単元末演習（図形と計量）（数Ⅰ-078）</p>
+  <p>次の時間は、単元「図形と計量」のまとめの演習です。三角比の値と相互関係、正弦定理・余弦定理、三角形の面積と内接円の半径、平面図形・空間図形の計量の問題を解き、単元の基本事項が身に付いているかを確かめます。</p>
+  <p>この時間では、測量の歴史や方法を図形の性質と合わせて考察すること（数学Ａ「数学と人間の活動」、数Ａ-085・086）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-076　空間図形の計量</div>
+  <div><span class="label">次の時間</span>数Ⅰ-078　単元末演習（図形と計量）</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-077「三角比の日常の事象への活用」（活用。学習指導要領 数学Ⅰ (2)イ(イ)、解説 p.40）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(2) 図形と計量 イ(イ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.40「例えば，建造物や山，天体等を見込む角度や直接測定できない 2 地点間の距離などを，見いだした三角形の三角比を使って求める活動などが考えられる」「得られた結果をもとの事象に基づいて解釈したりすることにより」、p.38「角度から三角比の値を求めたり，三角比の値から角度を求めたりする際に，コンピュータなどの情報機器や三角比表を積極的に利用するものとする」（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「空間図形への応用」（「三角比を測量に応用できる（応用例題8）」「日常の事象や社会の事象などに正弦定理や余弦定理を活用しようとする」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題はこのページのために作成したものです（出典を示したものを除く）。X市の電波塔・ビル・山・池・川などの場面と、距離・角度・高さの数値は、すべて学習用に作成した架空のもので、実在の建造物や山の値ではありません。三角比表の値は、計算で求めた値の小数第5位を四捨五入したものです。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-077",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-077",
+  "title": "三角比の日常の事象への活用",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-4", "title": "図形と計量"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)イ(イ)"],
+  "kaisetsu_page": "40",
+  "objectives": [
+    {"id": "O1", "text": "建造物や山、太陽などを見込む角度と測定できる距離から直角三角形を見いだし、三角比を使って高さを求めることができる。", "from": "建造物や山、天体などを見込む角度…を、見いだした三角形の三角比を使って求め", "sections": ["sec-1"], "checks": ["q1", "q2", "q5", "q9"]},
+    {"id": "O2", "text": "直接測定できない2地点間の距離を、測定できる距離と角から三角形を見いだし、正弦定理・余弦定理を用いて求めることができる。", "from": "直接測定できない2地点間の距離を、見いだした三角形の三角比を使って求め", "sections": ["sec-2"], "checks": ["q3", "q4", "q7"]},
+    {"id": "O3", "text": "求めた結果を、目の高さ・測定の誤差・単純化した仮定などに注意して、もとの事象に即して解釈することができる。", "from": "結果をもとの事象に即して解釈できる", "sections": ["sec-3"], "checks": ["q1", "q6", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "見込む角", "where": "sec-1"},
+    {"term": "見上げる角", "where": "sec-1"},
+    {"term": "模式図・単純化", "where": "sec-3"},
+    {"term": "測定の誤差", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "縮図を使って直接測れない高さや距離を求める", "taught_in": ["jhs_math/中3-084"], "gap": false, "where": "review"},
+    {"concept": "三角比の定義と、直角三角形の辺を三角比で表すこと（a=c sin A、高さの測量）", "taught_in": ["hs_math_1a/数Ⅰ-058", "hs_math_1a/数Ⅰ-060"], "gap": false, "where": "review"},
+    {"concept": "三角比表で値を読む", "taught_in": ["hs_math_1a/数Ⅰ-059"], "gap": false, "where": "review"},
+    {"concept": "30°・45°・60° と鈍角の三角比", "taught_in": ["hs_math_1a/数Ⅰ-058", "hs_math_1a/数Ⅰ-064"], "gap": false, "where": "sec-1"},
+    {"concept": "正弦定理（1辺と両端の角から辺）", "taught_in": ["hs_math_1a/数Ⅰ-068", "hs_math_1a/数Ⅰ-069"], "gap": false, "where": "review"},
+    {"concept": "余弦定理（2辺とその間の角から辺）", "taught_in": ["hs_math_1a/数Ⅰ-070", "hs_math_1a/数Ⅰ-071"], "gap": false, "where": "sec-2"},
+    {"concept": "三角形の内角の和は 180°", "taught_in": ["jhs_math/中2-048"], "gap": false, "where": "sec-2"},
+    {"concept": "分母の有理化（√3−1 の形）", "taught_in": ["hs_math_1a/数Ⅰ-014"], "gap": false, "where": "sec-1"},
+    {"concept": "三角形の決定条件（合同条件）", "taught_in": ["jhs_math/中2-053"], "gap": false, "where": "sec-2"}
+  ],
+  "out_of_scope": [
+    "測量の歴史や方法を図形の性質と合わせて考察すること（数Ａ-085・数Ａ-086）",
+    "単元全体の練習（数Ⅰ-078）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『図形と計量』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(2)イ(イ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.40 建造物や山、天体等を見込む角度・直接測定できない2地点間の距離の例示と、結果をもとの事象に基づいて解釈すること（「見込む角度」の語）。p.38 三角比表・情報機器の利用"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "三角比の測量への応用（応用例題8）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

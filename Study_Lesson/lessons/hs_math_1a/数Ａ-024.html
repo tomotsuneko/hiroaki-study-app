@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>余事象の確率｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+table.dice td, table.dice th { text-align: center; padding: 6px 3px; font-size: .92rem; }
+table.dice td.c { background: rgba(217, 130, 43, .16); }
+table.dice td.s { font-weight: 700; }
+.widget .w-row { display: flex; flex-wrap: wrap; gap: 4px 18px; align-items: center; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-024</span></div>
+  <h1>余事象の確率</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">「少なくとも1つ」が起こる場合は、数え上げると場合が多くて大変なことがあります。反対に「1つも起こらない」場合を数えて 1 から引く方法（余事象の確率）を学び、どちらを数えるかを見分けて使えるようにします。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>事象 \( A \) の余事象 \( \overline{A} \) の意味を理解し、\( P(\overline{A})=1-P(A) \) が成り立つ理由を、全事象の確率や排反な事象の確率と結び付けて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>余事象の確率を用いて、「少なくとも1つ」を含む事象の確率を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>「〜でない」「〜以下」などを含む事象について、余事象を使う方が求めやすいかを見分け、2通りの求め方で確かめながら確率を求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-023）</span>A∪B の確率（排反でない場合）</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-024）</span>余事象の確率</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-025）</span>確率の練習</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。この時間は特に、中2-083（起こらない確率）、数Ⅰ-022（補集合）、数Ａ-021（全事象・空事象・和事象）、数Ａ-022（排反な事象の確率）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">起こらない確率（中2-083）・補集合（数Ⅰ-022）・全事象と排反（数Ａ-021・022）</p>
+  <p>中学2年（中2-083）では、（ある事柄の起こらない確率）＝1−（その事柄の起こる確率）を使って確率を求めました。数Ⅰ-022 では、全体集合 \( U \) の要素のうち集合 \( A \) に属さないもの全体を \( A \) の<strong>補集合</strong>といい、\( \overline{A} \) で表しました。数Ａ-021 では全事象 \( U \) の確率が \( P(U)=1 \) であること、数Ａ-022 では事象 \( A \)、\( B \) が互いに排反（\( A\cap B=\emptyset \)）のとき \( P(A\cup B)=P(A)+P(B) \) となることを学びました（\( \emptyset \) はこのページでの空事象の記号です）。</p>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中2-083</span></div>
+  <p>あるくじを1本引いて当たる確率が \( \dfrac{3}{10} \) のとき、当たらない確率はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{10}{3} \)</button>
+    <button data-correct="true">\( \dfrac{7}{10} \)</button>
+    <button>\( -\dfrac{7}{10} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">（当たらない確率）＝1−（当たる確率）\( =1-\dfrac{3}{10}=\dfrac{7}{10} \) です。\( \dfrac{10}{3} \) は逆数にした誤りで、確率は 1 を超えません。\( -\dfrac{7}{10} \) は \( \dfrac{3}{10}-1 \) と引く順を逆にした誤りで、確率は負になりません。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-022・数Ａ-001</span></div>
+  <p>1 から 10 までの整数全体を全体集合 \( U \)、そのうち3の倍数全体の集合を \( A \) とします。補集合 \( \overline{A} \) の要素の個数 \( n(\overline{A}) \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 3 \)</button>
+    <button>\( 13 \)</button>
+    <button data-correct="true">\( 7 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( A=\{3,\ 6,\ 9\} \) なので、\( n(\overline{A})=n(U)-n(A)=10-3=7 \) です（数Ａ-001）。\( 3 \) は \( n(A) \) を答えた誤り、\( 13 \) は \( n(U)+n(A) \) と足した誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-021・数Ａ-022</span></div>
+  <p>1個のさいころを投げる試行で、\( A \) を「偶数の目が出る」、\( B \) を「奇数の目が出る」とします。和事象 \( A\cup B \) と積事象 \( A\cap B \) について正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( A\cup B \) は全事象 \( U \)、\( A\cap B \) は空事象 \( \emptyset \)（\( A \) と \( B \) は互いに排反）</button>
+    <button>\( A\cup B \) は空事象 \( \emptyset \)、\( A\cap B \) は全事象 \( U \)</button>
+    <button>\( A\cup B \) も \( A\cap B \) も全事象 \( U \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">どの目も偶数か奇数のどちらか一方なので、\( A\cup B=\{1,\ 2,\ 3,\ 4,\ 5,\ 6\}=U \)、\( A\cap B=\emptyset \) です。2番目の選択肢は和事象と積事象を取り違えています。3番目は、偶数でも奇数でもある目があるとした誤りです。この関係を「3 余事象と余事象の確率」で使います。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：少なくとも一方が6の目</h2>
+<div class="box think">
+  <p class="box-title">2つのさいころで「6」が出る？</p>
+  <p>大小2つのさいころを同時に投げます。少なくとも一方が6の目である確率を考えます。</p>
+  <p>太郎：「6の目が出る確率は、大も小も \( \dfrac{1}{6} \) だよね。足して \( \dfrac{1}{3} \) かな。」<br>花子：「表にかいて数えてもいいけど、6の目が1つも出ない方を数える方が楽かもしれないよ。」</p>
+  <p><strong>太郎さんの答えは正しいでしょうか。花子さんの考えは、どう使えばよいでしょうか。</strong>答えは「4 「少なくとも1つ」の確率」の例題2で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="余事象と余事象の確率"><span class="num">3</span>余事象と余事象の確率</h2>
+<p>事象 \( A \) に対して、「\( A \) が起こらない」という事象を \( A \) の<strong>余事象</strong>といい、\( \overline{A} \) で表します。全事象 \( U \) を全体集合とみると、余事象 \( \overline{A} \) は \( A \) の補集合（数Ⅰ-022）です。</p>
+<figure>
+<!--svg:f024a-->
+<svg viewBox="0 0 360 214" width="360" role="img" aria-label="全事象 U を長方形、事象 A を円で表した図。円の外側で長方形の内側の斜線部分が A の余事象（A が起こらない）。A と余事象は重ならず、合わせると U 全体になる" data-fig="f024a">
+<defs><pattern id="f024a-h" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#b7791f" stroke-width="2" stroke-opacity="0.75"/></pattern></defs>
+<text x="12" y="15" text-anchor="start" font-size="12" fill="currentColor">U：全事象（起こりうる結果全体）</text>
+<path d="M10 22h340v182h-340ZM60 113a68 68 0 1 0 136 0a68 68 0 1 0 -136 0Z" fill="url(#f024a-h)" fill-rule="evenodd" data-region="notA"/>
+<rect x="10" y="22" width="340" height="182" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<circle cx="128" cy="113" r="68" fill="none" stroke="#1f5fbf" stroke-width="2" data-set="A"/>
+<text x="128" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#1f5fbf" data-in="A">A</text>
+<text x="128" y="131" text-anchor="middle" font-size="12" fill="currentColor" data-in="A">（A が起こる）</text>
+<rect x="208.8" y="91" width="122.4" height="42" rx="4" style="fill: var(--card)" stroke="#b7791f" stroke-width="1" data-label-bg="notA"/>
+<text x="270" y="109" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor" data-in="notA">A の余事象</text>
+<text x="270" y="127" text-anchor="middle" font-size="12" fill="currentColor" data-in="notA">（A が起こらない）</text>
+<text x="344" y="38" text-anchor="end" font-size="13" fill="currentColor">U</text>
+</svg>
+<!--/svg:f024a-->
+  <figcaption>図1　全事象 \( U \)（長方形）と事象 \( A \)（青の実線の円）。斜線の部分が余事象 \( \overline{A} \)。\( A \) と \( \overline{A} \) は重ならず、合わせると \( U \) 全体になる</figcaption>
+</figure>
+<p>図1のように、\( A \) と \( \overline{A} \) について次の2つが成り立ちます。</p>
+<ul>
+  <li>\( A\cap\overline{A}=\emptyset \)：\( A \) と \( \overline{A} \) は同時には起こらない（互いに排反）</li>
+  <li>\( A\cup\overline{A}=U \)：どんな結果も \( A \) か \( \overline{A} \) のどちらかに入る</li>
+</ul>
+<p>互いに排反な事象の確率の和（数Ａ-022）と、全事象の確率 \( P(U)=1 \)（数Ａ-021）から、</p>
+$$ P(A)+P(\overline{A})=P(A\cup\overline{A})=P(U)=1 $$
+<p>となります。したがって、次の式が成り立ちます。</p>
+<div class="formula-card">
+  <div><span class="f-name">余事象の確率</span>$$ P(\overline{A})=1-P(A) $$<p class="small">同じことを \( P(A)=1-P(\overline{A}) \) とも書ける。</p></div>
+</div>
+<p>根元事象が同様に確からしいときは、要素の個数の関係 \( n(\overline{A})=n(U)-n(A) \)（数Ａ-001）の両辺を \( n(U) \) で割っても同じ式になります。中学2年（中2-083）の「（起こらない確率）＝1−（起こる確率）」を、事象と集合の言葉で表したものです。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（数えやすい方を数える）</p>
+  <p>大小2つのさいころを同時に投げるとき、出た目の和が10以下になる確率を求めなさい。</p>
+  <div class="step">着目1（余事象を決める）：\( A \) を「和が10以下」とすると、\( \overline{A} \) は「和が11以上」です。和が10以下の場合は多いので、少ない方の \( \overline{A} \) を数えます。</div>
+  <div class="step">着目2（余事象を数える）：和が11以上になるのは \( (5,\ 6) \)、\( (6,\ 5) \)、\( (6,\ 6) \) の3通り（\( (\text{大の目},\ \text{小の目}) \) の形）。目の出方は全部で \( 6\times6=36 \) 通りなので \( P(\overline{A})=\dfrac{3}{36}=\dfrac{1}{12} \)。</div>
+  <div class="step">着目3（1から引く）：\( P(A)=1-P(\overline{A})=1-\dfrac{1}{12}=\dfrac{11}{12} \)。答え \( \dfrac{11}{12} \)。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：余事象の境目を取り違える</p><p>1個のさいころで \( A \) を「2以下の目が出る」とすると、\( \overline{A} \) は「3以上の目が出る」です。「2以上」とすると、2の目を \( A \) と \( \overline{A} \) の両方に入れてしまい、\( P(A)+P(\overline{A})=\dfrac{2}{6}+\dfrac{5}{6}=\dfrac{7}{6} \) と 1 を超えます。余事象を決めたら、\( P(A)+P(\overline{A})=1 \) になっているか、境目の値がどちらか一方だけに入っているかを確かめましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="「少なくとも1つ」の確率"><span class="num">4</span>「少なくとも1つ」の確率</h2>
+<p>「少なくとも1つ〜が起こる」とは、「1つ以上起こる」（1つだけでも、2つ以上でもよい）ということです。その余事象は「1つも起こらない」、つまり「すべて起こらない」です。</p>
+<div class="box example worked">
+  <p class="box-title">例題2（導入の答え）</p>
+  <p>大小2つのさいころを同時に投げるとき、少なくとも一方が6の目である確率を求めなさい。</p>
+  <div class="step">着目1（余事象を言葉で）：「少なくとも一方が6」の余事象は「どちらも6でない」（大も小も1〜5）です。</div>
+  <div class="step">着目2（余事象を数える）：大の目が5通り、そのそれぞれに小の目が5通りずつなので、積の法則（数Ａ-005）より \( 5\times5=25 \) 通り。全部で36通りなので、余事象の確率は \( \dfrac{25}{36} \)。</div>
+  <div class="step">着目3（1から引く）：\( 1-\dfrac{25}{36}=\dfrac{11}{36} \)。答え \( \dfrac{11}{36} \)。</div>
+  <div class="step">確かめ：表2で★の欄を数えると11通りで一致します。太郎さんの \( \dfrac{1}{3}=\dfrac{12}{36} \) は、\( (6,\ 6) \) を「大が6」と「小が6」の両方で数え、2回数えた値でした。</div>
+</div>
+<div class="table-wrap">
+<!--gen:t024a-->
+<table class="dice" data-gen="t024a">
+  <tr><th>大＼小</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr>
+  <tr><th>1</th><td class="c">・</td><td class="c">・</td><td class="c">・</td><td class="c">・</td><td class="c">・</td><td class="s">★</td></tr>
+  <tr><th>2</th><td class="c">・</td><td class="c">・</td><td class="c">・</td><td class="c">・</td><td class="c">・</td><td class="s">★</td></tr>
+  <tr><th>3</th><td class="c">・</td><td class="c">・</td><td class="c">・</td><td class="c">・</td><td class="c">・</td><td class="s">★</td></tr>
+  <tr><th>4</th><td class="c">・</td><td class="c">・</td><td class="c">・</td><td class="c">・</td><td class="c">・</td><td class="s">★</td></tr>
+  <tr><th>5</th><td class="c">・</td><td class="c">・</td><td class="c">・</td><td class="c">・</td><td class="c">・</td><td class="s">★</td></tr>
+  <tr><th>6</th><td class="s">★</td><td class="s">★</td><td class="s">★</td><td class="s">★</td><td class="s">★</td><td class="s">★</td></tr>
+</table>
+<!--/gen:t024a-->
+</div>
+<p class="small">表2　大小2つのさいころの目の出方（縦が大の目、横が小の目）。★が少なくとも一方が6の目である場合（11通り）、塗った欄がどちらも6でない場合（25通り）</p>
+<div class="box point"><p class="box-title">「少なくとも一方」とド・モルガンの法則</p><p>例題2で \( A \)：大が6、\( B \)：小が6 とすると、「少なくとも一方が6」は和事象 \( A\cup B \)（数Ａ-021）です。その余事象は、ド・モルガンの法則（数Ⅰ-023）\( \overline{A\cup B}=\overline{A}\cap\overline{B} \) より「大も6でなく、かつ小も6でない」です。したがって \( P(A\cup B)=1-P(\overline{A}\cap\overline{B}) \) と求められます。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題3（硬貨）</p>
+  <p>3枚の硬貨を同時に投げるとき、少なくとも1枚は表が出る確率を求めなさい。</p>
+  <div class="step">着目1（区別して数える）：3枚を区別すると、表裏の出方は \( 2\times2\times2=8 \) 通りで、どれも同様に確からしい（数Ａ-020）。</div>
+  <div class="step">着目2（余事象）：「少なくとも1枚は表」の余事象は「3枚とも裏」で1通り。</div>
+  <div class="step">着目3：\( 1-\dfrac{1}{8}=\dfrac{7}{8} \)。答え \( \dfrac{7}{8} \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（玉を同時に取り出す）</p>
+  <p>赤玉4個と白玉3個が入った袋から、3個を同時に取り出すとき、少なくとも1個は白玉である確率を求めなさい。</p>
+  <div class="step">着目1（区別して組合せで数える）：7個の玉を区別すると、取り出し方は \( {}_7\mathrm{C}_3=35 \) 通り（数Ａ-011）。</div>
+  <div class="step">着目2（余事象）：「少なくとも1個は白玉」の余事象は「3個とも赤玉」で、\( {}_4\mathrm{C}_3=4 \) 通り。</div>
+  <div class="step">着目3：\( 1-\dfrac{4}{35}=\dfrac{31}{35} \)。答え \( \dfrac{31}{35} \)。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：「少なくとも1つ」の余事象を「すべて」とする</p><p>例題2で、「少なくとも一方が6」の余事象を「両方とも6」とすると、\( 1-\dfrac{1}{36}=\dfrac{35}{36} \) という誤った答えになります。「大だけが6」「小だけが6」も「少なくとも一方が6」に入るので、余事象には入りません。余事象は「1つも6でない」です。</p></div>
+
+<h3>さいころの個数を変えて確かめよう</h3>
+<p>\( n \) 個のさいころを同時に投げるとき、目の出方は全部で \( 6^n \) 通り、どれも6でない出方は \( 5^n \) 通りです（積の法則）。少なくとも1つ6の目が出る確率は \( 1-\dfrac{5^n}{6^n} \) です。何個以上投げると、この確率が \( \dfrac{1}{2} \) を超えるでしょうか。</p>
+<div class="widget" id="w24">
+  <div class="w-row">
+    <span><label for="w24-n">さいころの個数 \( n \)：</label><input type="range" id="w24-n" min="1" max="10" step="1" value="2"> <output id="w24-nv" for="w24-n">2</output></span>
+  </div>
+  <div><svg id="w24-svg" viewBox="0 0 340 72" width="340" role="img" aria-label="少なくとも1つ6の目が出る確率を、長さ1の帯の中の塗った長さで表した図。目盛り1/2に赤の破線"></svg></div>
+  <p class="w-out" id="w24-out" aria-live="polite">n = 2 個のとき：目の出方は全部で 6<sup>2</sup> ＝ 36 通り、どれも6でない出方は 5<sup>2</sup> ＝ 25 通り。少なくとも1つ6の目が出る確率は 1 − 25/36 ＝ 11/36 ≒ 0.306（1/2 以下）。</p>
+</div>
+<p class="small">帯の塗った長さが、少なくとも1つ6の目が出る確率です（帯全体の長さが 1、赤の破線が \( \dfrac{1}{2} \)）。小数は小数第4位を四捨五入した値です。3個では \( 1-\dfrac{125}{216}=\dfrac{91}{216}\fallingdotseq0.421 \)、4個では \( 1-\dfrac{625}{1296}=\dfrac{671}{1296}\fallingdotseq0.518 \) なので、4個以上で \( \dfrac{1}{2} \) を超えます。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="余事象を使うか見分ける"><span class="num">5</span>余事象を使うか見分ける・2通りで確かめる</h2>
+<p>余事象を使うと、いつも楽になるわけではありません。求めたい事象と余事象のうち、<span class="em">場合が少なく、数えやすい方</span>を数えます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>求めたい事象</th><th>余事象</th><th>数えやすいのは</th></tr>
+  <tr><td>少なくとも1個は白玉（例題4）</td><td>3個とも赤玉</td><td>余事象（4通り）</td></tr>
+  <tr><td>2つのさいころの目の和が10以下（例題1）</td><td>和が11以上</td><td>余事象（3通り）</td></tr>
+  <tr><td>3つのさいころの目の積が偶数（例題5）</td><td>3つとも奇数</td><td>余事象（27通り）</td></tr>
+  <tr><td>3個とも白玉（例題4の袋）</td><td>少なくとも1個は赤玉</td><td>もとの事象（1通り）</td></tr>
+</table>
+</div>
+<p class="small">表3　「〜でない」「少なくとも」「〜以下」などの言葉があれば余事象を考えてみる。ただし最後の行のように、もとの事象の方が数えやすいこともある</p>
+<div class="box example worked">
+  <p class="box-title">例題5（積が偶数）</p>
+  <p>大中小3つのさいころを同時に投げるとき、出た目の積が偶数になる確率を求めなさい。</p>
+  <div class="step">着目1（言いかえる）：積が偶数になるのは、少なくとも1つの目が偶数のときです。その余事象は「3つとも奇数」（積が奇数）です。</div>
+  <div class="step">着目2（余事象を数える）：目の出方は全部で \( 6\times6\times6=216 \) 通り、3つとも奇数は \( 3\times3\times3=27 \) 通り。</div>
+  <div class="step">着目3：\( 1-\dfrac{27}{216}=1-\dfrac{1}{8}=\dfrac{7}{8} \)。答え \( \dfrac{7}{8} \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題6（2通りの求め方で確かめる）</p>
+  <p>当たり3本を含む10本のくじから、2本を同時に引くとき、少なくとも1本は当たる確率を求めなさい。</p>
+  <div class="step">求め方①（余事象）：引き方は \( {}_{10}\mathrm{C}_2=45 \) 通り。余事象「2本ともはずれ」は、はずれ7本から2本で \( {}_7\mathrm{C}_2=21 \) 通り。\( 1-\dfrac{21}{45}=\dfrac{24}{45}=\dfrac{8}{15} \)。</div>
+  <div class="step">求め方②（排反な場合に分ける）：「当たりがちょうど1本」は \( {}_3\mathrm{C}_1\times{}_7\mathrm{C}_1=21 \) 通り、「2本とも当たり」は \( {}_3\mathrm{C}_2=3 \) 通り。この2つは互いに排反なので（数Ａ-022）、\( \dfrac{21}{45}+\dfrac{3}{45}=\dfrac{24}{45}=\dfrac{8}{15} \)。</div>
+  <div class="step">答え \( \dfrac{8}{15} \)。2通りの求め方で同じ値になりました。</div>
+</div>
+<div class="box point"><p class="box-title">例題2の3通りの求め方</p><p>例題2（少なくとも一方が6）は、① 表2で★を数える（11通り）、② 余事象「どちらも6でない」を使う \( 1-\dfrac{25}{36} \)、③ 和事象の確率（数Ａ-023）\( P(A\cup B)=P(A)+P(B)-P(A\cap B)=\dfrac{6}{36}+\dfrac{6}{36}-\dfrac{1}{36} \) の3通りで、どれも \( \dfrac{11}{36} \) になります。1つの方法で求めたら、別の方法で確かめる習慣をつけましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>余事象</dt><dd>事象 \( A \) に対して、「\( A \) が起こらない」という事象。\( \overline{A} \) で表す。全事象 \( U \) を全体集合とみたときの \( A \) の補集合（数Ⅰ-022）。</dd>
+    <dt>余事象の確率</dt><dd>\( P(\overline{A})=1-P(A) \)。\( A \) と \( \overline{A} \) が互いに排反で、\( A\cup\overline{A}=U \) となることから導く。</dd>
+    <dt>少なくとも1つ</dt><dd>1つ以上（1つだけでも、2つ以上でもよい）起こること。余事象は「1つも起こらない」。</dd>
+    <dt>ド・モルガンの法則</dt><dd>\( \overline{A\cup B}=\overline{A}\cap\overline{B} \)（数Ⅰ-023）。「\( A \) または \( B \) が起こる」の余事象は「\( A \) も \( B \) も起こらない」。</dd>
+    <dt>全事象・空事象</dt><dd>起こりうる結果全体の集合 \( U \) で表される事象と、決して起こらない事象 \( \emptyset \)。\( P(U)=1 \)、\( P(\emptyset)=0 \)（数Ａ-021）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>「\( A \) が起こらない」という事象が余事象 \( \overline{A} \)。\( A \) と \( \overline{A} \) は互いに排反で \( A\cup\overline{A}=U \) なので、\( P(A)+P(\overline{A})=1 \)、すなわち \( P(\overline{A})=1-P(A) \)（O1）。</li>
+    <li>「少なくとも1つ」の余事象は「1つも起こらない（すべて起こらない）」。余事象の確率を 1 から引いて求める。余事象を「すべて起こる」としない（O2）。</li>
+    <li>求めたい事象と余事象のうち、場合が少なく数えやすい方を数える。余事象と、排反な場合に分ける方法など、2通りで求めて確かめる（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">余事象の確率</span>$$ P(\overline{A})=1-P(A) $$</div>
+  <div><span class="f-name">「少なくとも1つ」の確率</span>$$ P(\text{少なくとも1つ起こる})=1-P(\text{1つも起こらない}) $$</div>
+  <div><span class="f-name">「または」の余事象（ド・モルガンの法則）</span>$$ P(A\cup B)=1-P(\overline{A}\cap\overline{B}) $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。確率の入力は、それ以上約分できない分数（3/4 など）で答えてください。小数で表せるときは小数でもかまいません。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>事象 \( A \) の確率が \( P(A)=\dfrac{2}{7} \) のとき、余事象 \( \overline{A} \) の確率 \( P(\overline{A}) \) はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{2}{7} \)</button>
+    <button>\( \dfrac{7}{2} \)</button>
+    <button data-correct="true">\( \dfrac{5}{7} \)</button>
+    <button>\( -\dfrac{5}{7} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( P(\overline{A})=1-P(A)=1-\dfrac{2}{7}=\dfrac{5}{7} \)。\( \dfrac{2}{7} \) は \( P(A) \) のまま答えた誤り、\( \dfrac{7}{2} \) は逆数にした誤りで、確率は 1 を超えません。\( -\dfrac{5}{7} \) は \( P(A)-1 \) と引く順を逆にした誤りで、確率は負になりません（数Ａ-021 の \( 0\leqq P(A)\leqq1 \)）。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="31/36">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>大小2つのさいころを同時に投げるとき、出た目の積が4以上になる確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{31}{36} \)。余事象「積が3以下」は \( (1,\ 1) \)、\( (1,\ 2) \)、\( (2,\ 1) \)、\( (1,\ 3) \)、\( (3,\ 1) \) の5通りなので、\( 1-\dfrac{5}{36}=\dfrac{31}{36} \)。\( \dfrac{5}{36} \) と答えた場合は余事象の確率のままです。積がちょうど4の \( (1,\ 4) \)、\( (2,\ 2) \)、\( (4,\ 1) \) は求める事象に入るので、余事象に入れてはいけません（入れると \( 1-\dfrac{8}{36}=\dfrac{7}{9} \) になります）。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="15/16|0.9375">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>4枚の硬貨を同時に投げるとき、少なくとも1枚は表が出る確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{15}{16} \)。4枚を区別すると表裏の出方は \( 2\times2\times2\times2=16 \) 通り。余事象「4枚とも裏」は1通りなので、\( 1-\dfrac{1}{16}=\dfrac{15}{16} \)。\( \dfrac{1}{16} \) は余事象の確率のまま答えた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>大小2つのさいころを同時に投げるとき、少なくとも一方が偶数の目である確率はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \dfrac{3}{4} \)</button>
+    <button>\( 1 \)</button>
+    <button>\( \dfrac{1}{4} \)</button>
+    <button>\( \dfrac{1}{2} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">余事象「どちらも奇数」は \( 3\times3=9 \) 通りなので、\( 1-\dfrac{9}{36}=\dfrac{27}{36}=\dfrac{3}{4} \)。\( 1 \) は \( \dfrac{1}{2}+\dfrac{1}{2} \) と足した誤りで、両方とも偶数の9通りを2回数えています（どちらも奇数のこともあるので、確率 1 にはなりません）。\( \dfrac{1}{4} \) は余事象の確率 \( \dfrac{9}{36} \) のまま、\( \dfrac{1}{2} \) は「ちょうど一方だけが偶数」（\( 3\times3\times2=18 \) 通り）を数え、両方とも偶数の場合を落とした誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="23/28">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>赤玉5個と白玉3個が入った袋から、3個を同時に取り出すとき、少なくとも1個は白玉である確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{23}{28} \)。取り出し方は \( {}_8\mathrm{C}_3=56 \) 通り、余事象「3個とも赤玉」は \( {}_5\mathrm{C}_3=10 \) 通りなので、\( 1-\dfrac{10}{56}=\dfrac{46}{56}=\dfrac{23}{28} \)。確かめ：白玉1個は \( {}_3\mathrm{C}_1\times{}_5\mathrm{C}_2=30 \) 通り、2個は \( {}_3\mathrm{C}_2\times{}_5\mathrm{C}_1=15 \) 通り、3個は1通りで、合わせて46通り。\( \dfrac{5}{28} \)（\( =\dfrac{10}{56} \)）と答えた場合は余事象の確率のままです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>1 から 100 までの整数を1つずつ書いた100枚のカードから1枚引くとき、2でも3でも割り切れない数のカードを引く確率はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{67}{100} \)</button>
+    <button>\( \dfrac{17}{100} \)</button>
+    <button>\( \dfrac{4}{25} \)</button>
+    <button data-correct="true">\( \dfrac{33}{100} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( A \)：2の倍数（50枚）、\( B \)：3の倍数（33枚）とすると、\( A\cap B \) は6の倍数で16枚。和事象の確率（数Ａ-023）より \( P(A\cup B)=\dfrac{50+33-16}{100}=\dfrac{67}{100} \)。「2でも3でも割り切れない」は \( \overline{A}\cap\overline{B}=\overline{A\cup B} \)（ド・モルガンの法則）なので、\( 1-\dfrac{67}{100}=\dfrac{33}{100} \)。\( \dfrac{67}{100} \) は余事象 \( A\cup B \) の確率のまま、\( \dfrac{17}{100} \) は重なりの16枚を引き忘れて \( 1-\dfrac{50+33}{100} \) とした誤り、\( \dfrac{4}{25} \)（\( =\dfrac{16}{100} \)）は「2でも3でも割り切れる」（6の倍数）と取り違えた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="7/8|0.875">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>4枚の硬貨を同時に投げるとき、表と裏がどちらも出る（表も裏も1枚以上出る）確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{7}{8} \)。余事象は「4枚とも表」または「4枚とも裏」の2通りなので、\( 1-\dfrac{2}{16}=\dfrac{14}{16}=\dfrac{7}{8} \)。確かめ：表が1枚・2枚・3枚の場合は \( 4+6+4=14 \) 通りで一致します。\( \dfrac{15}{16} \) と答えた場合は「4枚とも裏」だけを除いていて、問3の「少なくとも1枚は表」と取り違えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2</span></div>
+  <p>1個のさいころを6回投げる場面について、花子さんと太郎さんが話しています。</p>
+  <p>花子：「6の目が出る確率は \( \frac{1}{6} \) なんだから、6回投げれば6の目は1回は出るよね。」<br>太郎：「中学校で、必ず出るわけではないと習った気がするなあ。」</p>
+  <p>6回の目の出方（\( 6^6 \) 通り）はどれも同様に確からしいとします。正しい説明はどれですか。</p>
+  <div class="choices">
+    <button>1回に6の目が出る確率は \( \frac{1}{6} \) なので、6回投げると \( 6\times\frac{1}{6}=1 \) となり、必ず1回は出る。</button>
+    <button data-correct="true">少なくとも1回6の目が出る確率は \( 1-\frac{5^6}{6^6}=\frac{31031}{46656} \) で、およそ 0.67。必ず出るとはいえない。</button>
+    <button>6回とも6の目が出ない確率は \( \frac{5^6}{6^6} \) なので、少なくとも1回6の目が出る確率は、およそ 0.33 である。</button>
+    <button>少なくとも1回6の目が出る確率は \( 1-\frac{1}{6^6} \) で、ほぼ 1 なので、必ず出ると考えてよい。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">余事象「6回とも6でない」は \( 5^6=15625 \) 通りなので、少なくとも1回6の目が出る確率は \( 1-\dfrac{15625}{46656}=\dfrac{31031}{46656} \)（およそ 0.67）で、1 ではありません。中学2年（中2-080）で注意した、確率が \( \dfrac{1}{6} \) でも6回投げれば必ず1回出るわけではないことを、余事象を使って数で確かめたことになります。1番目の選択肢は、「1回目に6」「2回目に6」…の確率を足した誤りです。これらは同時に起こることがある（互いに排反でない）ので、確率をそのまま足すことはできません（数Ａ-022・023）。3番目は余事象の確率（およそ 0.33）のまま答えています。4番目は余事象を「6回とも6」と取り違えています。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>4人の生まれた曜日について考えます。4人の生まれた曜日の決まり方は、どれも同様に確からしいと仮定します（学習用の仮定）。</p>
+  <p>(1) 「少なくとも2人の生まれた曜日が同じである」の余事象を、言葉で書きなさい。<br>(2) 少なくとも2人の生まれた曜日が同じである確率を求めなさい。余事象を使う理由も書きなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) 4人の生まれた曜日がすべて異なる。</p>
+    <p>(2) 4人それぞれの曜日の決まり方は \( 7\times7\times7\times7=2401 \) 通り（重複順列、数Ａ-010）。余事象「すべて異なる」は、異なる7つの曜日から4つを選んで4人に並べる順列で \( {}_7\mathrm{P}_4=7\times6\times5\times4=840 \) 通り（数Ａ-006）。よって求める確率は \( 1-\dfrac{840}{2401}=1-\dfrac{120}{343}=\dfrac{223}{343} \)（およそ 0.65）。「同じ曜日がある」場合は、2人が同じ・3人が同じ・2人ずつ同じなど場合が多いが、余事象「すべて異なる」は1つの順列で数えられるので、余事象を使う。</p>
+    <p><strong>採点の観点</strong>　① 余事象を「すべて異なる」と正しく述べている（「全員が同じ」としていない）。② 全体を \( 7^4 \)、余事象を \( {}_7\mathrm{P}_4 \) で数えている。③ \( 1-\dfrac{840}{2401}=\dfrac{223}{343} \) と計算し、余事象を使う理由（場合の少ない方を数える）を書いている。</p>
+  </div>
+  <div class="explain">4人という少ない人数でも、少なくとも2人の曜日が同じ確率は \( \dfrac{1}{2} \) を超えます。(1) を「4人とも同じ曜日」とすると、2人だけ同じ場合などを落とすので誤りです。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(ウ)「確率の意味や基本的な法則についての理解を深め，それらを用いて事象の確率や期待値を求めること」とイ(イ)「確率の性質や法則に着目し，確率を求める方法を多面的に考察すること」に当たり、出題範囲に含まれます。学習指導要領解説は、取り扱うことが考えられる確率の性質や法則の一つとして、事象 \( A \) の余事象の確率 \( P(\overline{A})=1-P(A) \) を挙げています。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。</p>
+  <p class="small">問8・問9は日常の場面や会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">確率の練習（数Ａ-025）</p>
+  <p>次の時間は、数Ａ-018〜024 で学んだ、順列・組合せを用いた確率、排反な事象の確率、排反でない和事象の確率、余事象の確率を求める問題を解き、問題の型に応じて求め方を選んだり、別の方法で確かめたりします。</p>
+  <p>この時間では、確率どうしをかけて求める独立な試行の確率（数Ａ-026）、同じ試行を繰り返す反復試行の確率（数Ａ-027）、条件付き確率（数Ａ-028）は扱っていません。この時間の「さいころの個数を変えて確かめよう」の確率は、数Ａ-026 で学ぶ方法でも求められます。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-023　A∪B の確率（排反でない場合）</div>
+  <div><span class="label">次の時間</span>数Ａ-025　確率の練習</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-024「余事象の確率」（学習指導要領 数学Ａ (2)ア(ウ)・イ(イ)、解説 p.94）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率 ア(ウ)・イ(イ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.94（取り扱うことが考えられる確率の性質や法則：①\( 0\leqq P(A)\leqq1 \)、②空事象・全事象の確率、③排反な事象の確率、④事象 \( A \) の余事象の確率）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「確率の基本性質」（「確率の基本性質を理解し，和事象，余事象の確率の求め方がわかる」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。問9の「4人の生まれた曜日の決まり方はどれも同様に確からしい」は学習用の仮定です。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  function mk(parent, name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text !== undefined) e.textContent = text;
+    parent.appendChild(e);
+    return e;
+  }
+  function gcd(a, b) {
+    while (b) { var t = a % b; a = b; b = t; }
+    return a;
+  }
+  function round3(num, den) {
+    var q = Math.floor((2000 * num + den) / (2 * den));
+    var s = String(q);
+    while (s.length < 4) s = "0" + s;
+    return s.slice(0, s.length - 3) + "." + s.slice(s.length - 3);
+  }
+  var sn = document.getElementById("w24-n");
+  var svg = document.getElementById("w24-svg");
+  if (!sn || !svg) return;
+  var outN = document.getElementById("w24-nv");
+  var out = document.getElementById("w24-out");
+  var L = 20, T = 24, W = 300, H = 24;
+  function draw() {
+    var n = parseInt(sn.value, 10);
+    if (outN) outN.textContent = String(n);
+    var all = Math.pow(6, n), none = Math.pow(5, n);
+    var num = all - none, g = gcd(num, all);
+    var fr = (num / g) + "/" + (all / g);
+    var dec = round3(num, all);
+    var over = 2 * num > all;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    mk(svg, "rect", { x: L, y: T, width: W, height: H, fill: "none", stroke: "currentColor" });
+    mk(svg, "rect", { x: L, y: T, width: W * num / all, height: H, fill: "#1f5fbf", "fill-opacity": 0.45, "data-p": fr });
+    mk(svg, "line", { x1: L + W / 2, y1: T - 8, x2: L + W / 2, y2: T + H + 8, stroke: "#c0392b", "stroke-width": 2, "stroke-dasharray": "4 3" });
+    mk(svg, "text", { x: L + W / 2, y: T - 10, "text-anchor": "middle", "font-size": 14, fill: "currentColor" }, "1/2");
+    mk(svg, "text", { x: L, y: T + H + 20, "text-anchor": "middle", "font-size": 14, fill: "currentColor" }, "0");
+    mk(svg, "text", { x: L + W, y: T + H + 20, "text-anchor": "middle", "font-size": 14, fill: "currentColor" }, "1");
+    if (out) out.innerHTML = "n = " + n + " 個のとき：目の出方は全部で 6<sup>" + n + "</sup> ＝ " + all + " 通り、どれも6でない出方は 5<sup>" + n + "</sup> ＝ " + none
+      + " 通り。少なくとも1つ6の目が出る確率は 1 − " + none + "/" + all + " ＝ " + fr + " ≒ " + dec + "（" + (over ? "1/2 を超える" : "1/2 以下") + "）。";
+  }
+  sn.addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-024",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-024",
+  "title": "余事象の確率",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(ウ)", "(2)イ(イ)"],
+  "kaisetsu_page": "94",
+  "objectives": [
+    {"id": "O1", "text": "事象 \\( A \\) の余事象 \\( \\overline{A} \\) の意味を理解し、\\( P(\\overline{A})=1-P(A) \\) が成り立つ理由を、全事象の確率や排反な事象の確率と結び付けて説明できる。", "from": "余事象の確率 P(Ā)=1−P(A) を用いて", "sections": ["sec-1"], "checks": ["q1", "q2"]},
+    {"id": "O2", "text": "余事象の確率を用いて、「少なくとも1つ」を含む事象の確率を求めることができる。", "from": "「少なくとも1つ」などを含む事象の確率を求めることができる", "sections": ["sec-2"], "checks": ["q3", "q4", "q5", "q8", "q9"]},
+    {"id": "O3", "text": "「〜でない」「〜以下」などを含む事象について、余事象を使う方が求めやすいかを見分け、2通りの求め方で確かめながら確率を求めることができる。", "from": "「少なくとも1つ」などを含む事象の確率を求めることができる（「など」の部分と、根拠コード イ(イ)「確率の性質や法則に着目し，確率を求める方法を多面的に考察すること」）", "sections": ["sec-3"], "checks": ["q6", "q7", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "余事象", "where": "sec-1"},
+    {"term": "余事象の確率", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "（ある事柄の起こらない確率）＝1−（その事柄の起こる確率）", "taught_in": ["jhs_math/中2-083"], "where": "review"},
+    {"concept": "補集合 Ā（全体集合 U の要素で A に属さないもの全体）", "taught_in": ["hs_math_1a/数Ⅰ-022"], "where": "review"},
+    {"concept": "補集合の要素の個数 n(Ā)=n(U)−n(A)", "taught_in": ["hs_math_1a/数Ａ-001"], "where": "sec-1"},
+    {"concept": "根元事象が同様に確からしいときの確率 P(A)=n(A)/n(U)、全事象", "taught_in": ["hs_math_1a/数Ａ-018", "jhs_math/中2-080"], "where": "sec-1"},
+    {"concept": "全事象・空事象の確率 P(U)=1、P(∅)=0、0≦P(A)≦1、和事象・積事象", "taught_in": ["hs_math_1a/数Ａ-021"], "where": "review"},
+    {"concept": "排反な事象の確率 P(A∪B)=P(A)+P(B)", "taught_in": ["hs_math_1a/数Ａ-022"], "where": "sec-1"},
+    {"concept": "排反でない和事象の確率 P(A∪B)=P(A)+P(B)−P(A∩B)", "taught_in": ["hs_math_1a/数Ａ-023"], "where": "sec-3"},
+    {"concept": "ド・モルガンの法則（A∪B の補集合は Ā∩B̄）", "taught_in": ["hs_math_1a/数Ⅰ-023"], "where": "sec-2"},
+    {"concept": "2つのさいころ・硬貨の確率（二次元の表、区別して数える）", "taught_in": ["jhs_math/中2-082", "hs_math_1a/数Ａ-020"], "where": "sec-2"},
+    {"concept": "積の法則", "taught_in": ["hs_math_1a/数Ａ-005"], "where": "sec-2"},
+    {"concept": "組合せの総数 nCr", "taught_in": ["hs_math_1a/数Ａ-011"], "where": "sec-2"},
+    {"concept": "順列の総数 nPr", "taught_in": ["hs_math_1a/数Ａ-006"], "where": "quiz"},
+    {"concept": "重複順列（7×7×7×7 通り）", "taught_in": ["hs_math_1a/数Ａ-010"], "where": "quiz"},
+    {"concept": "1から100までの整数のうちある数の倍数の個数", "taught_in": ["hs_math_1a/数Ａ-001"], "where": "quiz"},
+    {"concept": "同じ数の積を累乗で表す（6^n）", "taught_in": ["jhs_math/中1-013"], "where": "sec-2"},
+    {"concept": "確率が 1/6 でも6回で必ず1回出るわけではない", "taught_in": ["jhs_math/中2-080"], "where": "quiz"}
+  ],
+  "out_of_scope": [
+    "確率の練習（数Ａ-025）",
+    "独立な試行の確率（数Ａ-026）。このページの n 個のさいころは、目の出方を積の法則で数えて求め、確率どうしのかけ算は使わない",
+    "反復試行の確率（数Ａ-027）、条件付き確率（数Ａ-028）"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(ウ)・イ(イ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.94 取り扱うことが考えられる確率の性質や法則（④余事象の確率）"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "「確率の基本性質」で余事象の確率の求め方を扱うことの確認"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

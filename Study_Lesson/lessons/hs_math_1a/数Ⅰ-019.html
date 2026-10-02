@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一次不等式の活用｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>数と式</span><span>数Ⅰ-019</span></div>
+  <h1>一次不等式の活用</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">活用</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">40人のクラスから3人の代表を選ぶ選挙で、最低何票とれば必ず当選できるでしょう。予算内で買える本数、どちらの料金プランが得か――身の回りの問題を、一次不等式や連立不等式に表して解決します。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>選挙で当選が確実になる最低の票数を、最も不利な票の分かれ方を考えて一次不等式に表し、求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>買い物や旅行の計画で、予算や個数・時間などの条件を連立不等式に表し、条件に合う値の範囲を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>数量の関係を表や図に整理して立式し、求めた解が場面の条件（整数であること、等号を含むかどうかなど）に合うかを振り返って答えを決めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-018）</span>絶対値を含む方程式・不等式</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>一次不等式の活用</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-020）</span>単元末演習（数と式）</div>
+</div>
+<p class="small">前提となる単元：中学1年「文字を用いた式」「一元一次方程式」、中学2年「一次関数」。同じ単元の数Ⅰ-015〜017（不等式の解の意味、一次不等式、連立不等式）を使います。この時間は新しい解き方を学ぶのではなく、これまでの解き方を場面に当てはめて使う時間です。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間に使う既習事項をまとめて確かめます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>使うこと</th><th>学んだコマ</th></tr>
+  <tr><td>数量の大小関係を不等号で表す（以上 \( \geqq \)、以下 \( \leqq \)、未満 \( &lt; \)、より大きい・より多い \( &gt; \)）</td><td>中1-039</td></tr>
+  <tr><td>不等式の解は、不等式を満たす値全体</td><td>数Ⅰ-015</td></tr>
+  <tr><td>一次不等式の解き方（負の数でわると向きが変わる）</td><td>数Ⅰ-016</td></tr>
+  <tr><td>連立不等式は、それぞれの解の共通部分</td><td>数Ⅰ-017</td></tr>
+  <tr><td>求めた解が問題の条件（人数は自然数など）に合うかを確かめる（解の吟味）</td><td>中1-053</td></tr>
+</table>
+</div>
+<p class="small">「以内」は、その数を含む意味で使います（「4000 円以内」は 4000 円ちょうども含み、\( \leqq 4000 \)）。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中1-039</span></div>
+  <p>「\( x \) 円の品物を 3 個買うと、代金は 1000 円未満になる」を不等式で表したものはどれですか。</p>
+  <div class="choices">
+    <button>\( 3x\leqq 1000 \)</button>
+    <button data-correct="true">\( 3x&lt;1000 \)</button>
+    <button>\( 3x&gt;1000 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「未満」はその数を含まないので \( &lt; \) を使い、\( 3x&lt;1000 \) です。\( 3x\leqq 1000 \) は「以下」の場合で、1000 円ちょうどを含んでしまいます。\( 3x&gt;1000 \) は大小の向きが逆です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-016</span></div>
+  <p>不等式 \( 3x&lt;20 \) を満たす最大の整数 \( x \) はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">6</button>
+    <button>7</button>
+    <button>\( \dfrac{20}{3} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x&lt;\dfrac{20}{3}=6.66\cdots \) なので、最大の整数は 6 です。7 は \( 3\cdot 7=21 \) で 20 を超えます。\( \dfrac{20}{3} \) は整数ではなく、しかも \( 3x&lt;20 \) の「\( &lt; \)」なので \( x=\dfrac{20}{3} \) 自体も解に含まれません。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-017</span></div>
+  <p>\( x&gt;15 \) と \( x\leqq 20 \) を同時に満たす整数 \( x \) は何個ですか。</p>
+  <div class="choices">
+    <button>4 個</button>
+    <button>6 個</button>
+    <button data-correct="true">5 個</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">共通部分は \( 15&lt;x\leqq 20 \) で、整数は 16、17、18、19、20 の 5 個です。4 個は 20 を含めなかった誤り、6 個は 15 を含めた誤りです。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：最低何票で当選できる？</h2>
+<div class="box think">
+  <p class="box-title">3人の代表を選ぶ選挙</p>
+  <p>学習用に作成した架空の場面です。40人のクラスで、代表を3人選ぶ選挙をします。あなたは立候補者の1人です。ほかの人の票の入り方がどうであっても<strong>必ず当選できる</strong>のは、あなたが最低何票とったときでしょうか。</p>
+  <p>「\( 40\div 3=13.3\cdots \) だから 14 票？」と考えた人はいませんか。本当に 14 票も必要でしょうか。答えは「3 場面1：選挙」で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="場面1：選挙"><span class="num">3</span>場面1：選挙で当選が確実になる最低の票数</h2>
+<div class="box source">
+  <p class="box-title">場面の条件（学習用に作成した架空の設定）</p>
+  <p>・40人のクラスの全員が、立候補者（4人以上）のだれか1人に1票ずつ投票する（無効票や白票はない）。<br>
+  ・得票の多い順に3人が当選する。<br>
+  ・同じ票数で3位を争う場合は、当選が「確実」とはいえないとする。</p>
+</div>
+<p>この場面は、学習指導要領解説が活用の例として挙げている「40 名のクラスから 3 名のクラス代表を選ぶ選挙を行うとき，最低何票入れば当選するか」をもとにしています。</p>
+<h3>数学の問題にする：最も不利な場合を考える</h3>
+<p>あなたの票数を \( x \) 票とすると、ほかの立候補者の票は合わせて \( 40-x \) 票です。あなたが当選できないのは、ほかに \( x \) 票以上とる人が<strong>3人以上</strong>いるときです。そうなる票の分かれ方があるかどうかを考えます。</p>
+<p>ほかの3人がそれぞれ \( x \) 票以上とるには、合わせて \( 3x \) 票以上が必要です。残りの \( 40-x \) 票でそれが<strong>できてしまう</strong>条件は \( 3x\leqq 40-x \) です。したがって、当選が確実になるのは、それが<strong>できない</strong>とき、つまり次の不等式が成り立つときです。</p>
+$$ 3x&gt;40-x $$
+<div class="box example worked">
+  <p class="box-title">解決する</p>
+  <p>不等式 \( 3x&gt;40-x \) を解き、当選が確実になる最低の票数を求めなさい。</p>
+  <div class="step">ステップ1：移項して \( 4x&gt;40 \)、両辺を正の数 4 でわって \( x&gt;10 \)。</div>
+  <div class="step">ステップ2（吟味：票数は整数）：\( x&gt;10 \) を満たす最小の整数は 11。</div>
+  <div class="step">ステップ3（確かめ）：下の表のとおり、10 票ではほかの3人が 10 票ずつとる分け方があり、11 票ではありません。</div>
+  <div class="step">答え：最低 11 票</div>
+</div>
+<div class="table-wrap">
+<table>
+  <tr><th>あなたの票 \( x \)</th><th>残りの票 \( 40-x \)</th><th>ほかの3人が \( x \) 票ずつとるのに必要な票 \( 3x \)</th><th>その分け方</th><th>当選</th></tr>
+  <tr><td>9</td><td>31</td><td>27</td><td>できる</td><td>確実でない</td></tr>
+  <tr><td>10</td><td>30</td><td>30</td><td>できる（10・10・10 で4人が同数）</td><td>確実でない</td></tr>
+  <tr><td>11</td><td>29</td><td>33</td><td>できない</td><td>確実</td></tr>
+  <tr><td>12</td><td>28</td><td>36</td><td>できない</td><td>確実</td></tr>
+</table>
+</div>
+<div class="box point"><p class="box-title">導入の問いの答え</p><p>最低 11 票で当選は確実です。\( 40\div 3 \) は「3人で票を分ける」場合の計算で、あなたと競う相手が<strong>ほかに3人</strong>（合わせて4人）いることを考えていません。4人で 40 票を分けると 1 人 10 票なので、10 票より多ければ、ほかの3人全員に並ばれることはありません。</p></div>
+<h3>票数を動かして確かめよう</h3>
+<p>スライダーで自分の票数 \( x \) を変え、「ほかの3人ができるだけ多くとる」最も不利な分かれ方で、当選が確実かどうかを確かめましょう。</p>
+<div class="widget" id="w1">
+  <label for="w1-x">あなたの票数 \( x \)：</label>
+  <input type="range" id="w1-x" min="0" max="40" step="1" value="10">
+  <output id="w1-xv" for="w1-x">10</output>
+  <div><svg id="w1-svg" viewBox="0 0 440 180" width="440" role="img" aria-label="あなたと、ほかの3人の票数を棒グラフで表した図。ほかの3人には、残りの票をあなたと同じ票数まで順に割り当てた最も不利な分かれ方を示す"></svg></div>
+  <p class="w-out" id="w1-out" aria-live="polite">x = 10 票のとき、残りは 30 票。ほかの 3 人が 10 票ずつ以上とる分け方があります（10 × 3 = 30 ≦ 30）。その場合、あなたは 4 位以下になるか、3 位を同数で争うので、当選は確実とはいえません。</p>
+</div>
+<h3>振り返る：条件を変えるとどうなるか</h3>
+<ul>
+  <li>代表が1人なら、ほかに \( x \) 票以上の人が1人でもいると確実でないので、\( x&gt;40-x \) より \( x&gt;20 \)、最低 21 票（全体の半分より多い票）です。</li>
+  <li>無効票が 2 票あり、有効な票が 38 票なら、3人の代表では \( 3x&gt;38-x \) より \( x&gt;9.5 \)、最低 10 票です。</li>
+</ul>
+<p>このように、答えは場面の条件によって変わります。立式する前に条件を書き出し、答えを出した後で条件に合うかを確かめることが大切です。</p>
+<div class="box caution"><p class="box-title">よくある間違い：等号の扱い</p><p>\( 3x\geqq 40-x \) を解いて「\( x\geqq 10 \)、最低 10 票」とするのは誤りです。10 票では、ほかの3人が 10 票ずつとると4人が同数になり、3人を選べません。「ほかの3人が \( x \) 票ずつ<strong>以上</strong>とれない」ことが条件なので、\( 3x \) が \( 40-x \) より<strong>大きい</strong>（等号を含まない）ことが必要です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="場面2：買い物"><span class="num">4</span>場面2：買い物の計画を連立不等式で考える</h2>
+<div class="box source">
+  <p class="box-title">場面の条件（学習用に作成した架空の設定）</p>
+  <p>文化祭の模擬店で、1本 150 円のジュースと 1本 100 円のお茶を、合わせて 30 本仕入れる。仕入れの予算は 4000 円以内で、ジュースの本数はお茶の本数より多くしたい。ジュースは何本にできるか。</p>
+</div>
+<p>学習指導要領解説は、数量の関係を図や表などに表して、自ら立式できるようにすることが大切だとしています。まず表に整理します。ジュースを \( x \) 本とすると、お茶は \( 30-x \) 本です。</p>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>ジュース</th><th>お茶</th><th>合計</th></tr>
+  <tr><th>本数（本）</th><td>\( x \)</td><td>\( 30-x \)</td><td>30</td></tr>
+  <tr><th>1本の値段（円）</th><td>150</td><td>100</td><td>—</td></tr>
+  <tr><th>代金（円）</th><td>\( 150x \)</td><td>\( 100(30-x) \)</td><td>\( 150x+100(30-x) \)</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">解決する</p>
+  <p>条件を連立不等式に表し、ジュースの本数として考えられる値をすべて求めなさい。また、ジュースをできるだけ多くするときの本数と代金を求めなさい。</p>
+  <div class="step">ステップ1（立式）：予算の条件は \( 150x+100(30-x)\leqq 4000 \) …①、本数の条件は \( x&gt;30-x \) …②。\( x \) は 0 以上 30 以下の整数です。</div>
+  <div class="step">ステップ2（① を解く）：\( 150x+3000-100x\leqq 4000 \)、\( 50x\leqq 1000 \)、\( x\leqq 20 \)。</div>
+  <div class="step">ステップ3（② を解く）：\( 2x&gt;30 \)、\( x&gt;15 \)。</div>
+  <div class="step">ステップ4（共通部分と吟味）：\( 15&lt;x\leqq 20 \)。本数は整数なので、\( x=16,\ 17,\ 18,\ 19,\ 20 \) の 5 通り。</div>
+  <div class="step">ステップ5：最も多いのは 20 本（お茶 10 本）で、代金は \( 150\cdot 20+100\cdot 10=4000 \) 円。「以内」なので予算ちょうども条件を満たします。</div>
+  <div class="step">答え：16 本、17 本、18 本、19 本、20 本。最も多くて 20 本、代金 4000 円</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>(1) お茶の本数も \( x \) と書き、代金を \( 150x+100x \) としてしまう。合計が 30 本と決まっているので、お茶は \( 30-x \) 本です。表に整理すると防げます。<br>
+(2) 予算が「4000 円未満」なら \( x&lt;20 \) となり、最も多くて 19 本です。「以内」「未満」の違いで答えが変わるので、言葉を不等号に直すところで確かめます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="場面3：旅行の計画"><span class="num">5</span>場面3：旅行の計画で料金プランを比べる</h2>
+<div class="box source">
+  <p class="box-title">場面の条件（学習用に作成した架空の料金）</p>
+  <p>旅行先で自転車を借りる。A プランは基本料金 300 円に加えて 1 時間ごとに 100 円、B プランは 1 時間ごとに 160 円。利用は 1 時間単位とする。</p>
+</div>
+<p>利用時間を \( t \) 時間（\( t \) は正の整数）とすると、料金は A プランが \( 300+100t \) 円、B プランが \( 160t \) 円です。図1は、1〜8 時間の料金を点で表したものです。</p>
+<figure>
+<!--svg:f019a-->
+<svg viewBox="0 0 440 300" width="440" role="img" aria-label="横軸に利用時間 t（1〜8 時間）、縦軸に料金をとり、A プラン 300＋100t を丸、B プラン 160t を四角で示したグラフ。t＝5 で両方 800 円、t が 6 以上では A のほうが安い" data-fig="f019a">
+<rect x="284.2" y="24" width="135.8" height="226" fill="#1e8e5a" fill-opacity="0.08"/>
+<line x1="58" y1="250" x2="428" y2="250" stroke="currentColor"/>
+<line x1="58" y1="250" x2="58" y2="16" stroke="currentColor"/>
+<line x1="58" y1="250" x2="58" y2="254" stroke="currentColor"/>
+<text x="58" y="268" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="103.2" y1="250" x2="103.2" y2="254" stroke="currentColor"/>
+<text x="103.2" y="268" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<line x1="148.5" y1="250" x2="148.5" y2="254" stroke="currentColor"/>
+<text x="148.5" y="268" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<line x1="193.8" y1="250" x2="193.8" y2="254" stroke="currentColor"/>
+<text x="193.8" y="268" text-anchor="middle" font-size="12" fill="currentColor">3</text>
+<line x1="239" y1="250" x2="239" y2="254" stroke="currentColor"/>
+<text x="239" y="268" text-anchor="middle" font-size="12" fill="currentColor">4</text>
+<line x1="284.2" y1="250" x2="284.2" y2="254" stroke="currentColor"/>
+<text x="284.2" y="268" text-anchor="middle" font-size="12" fill="currentColor">5</text>
+<line x1="329.5" y1="250" x2="329.5" y2="254" stroke="currentColor"/>
+<text x="329.5" y="268" text-anchor="middle" font-size="12" fill="currentColor">6</text>
+<line x1="374.8" y1="250" x2="374.8" y2="254" stroke="currentColor"/>
+<text x="374.8" y="268" text-anchor="middle" font-size="12" fill="currentColor">7</text>
+<line x1="420" y1="250" x2="420" y2="254" stroke="currentColor"/>
+<text x="420" y="268" text-anchor="middle" font-size="12" fill="currentColor">8</text>
+<line x1="54" y1="250" x2="58" y2="250" stroke="currentColor"/>
+<text x="50" y="254" text-anchor="end" font-size="12" fill="currentColor">0</text>
+<line x1="54" y1="217.7" x2="58" y2="217.7" stroke="currentColor"/>
+<line x1="58" y1="217.7" x2="420" y2="217.7" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="50" y="221.7" text-anchor="end" font-size="12" fill="currentColor">200</text>
+<line x1="54" y1="185.4" x2="58" y2="185.4" stroke="currentColor"/>
+<line x1="58" y1="185.4" x2="420" y2="185.4" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="50" y="189.4" text-anchor="end" font-size="12" fill="currentColor">400</text>
+<line x1="54" y1="153.1" x2="58" y2="153.1" stroke="currentColor"/>
+<line x1="58" y1="153.1" x2="420" y2="153.1" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="50" y="157.1" text-anchor="end" font-size="12" fill="currentColor">600</text>
+<line x1="54" y1="120.9" x2="58" y2="120.9" stroke="currentColor"/>
+<line x1="58" y1="120.9" x2="420" y2="120.9" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="50" y="124.9" text-anchor="end" font-size="12" fill="currentColor">800</text>
+<line x1="54" y1="88.6" x2="58" y2="88.6" stroke="currentColor"/>
+<line x1="58" y1="88.6" x2="420" y2="88.6" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="50" y="92.6" text-anchor="end" font-size="12" fill="currentColor">1000</text>
+<line x1="54" y1="56.3" x2="58" y2="56.3" stroke="currentColor"/>
+<line x1="58" y1="56.3" x2="420" y2="56.3" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="50" y="60.3" text-anchor="end" font-size="12" fill="currentColor">1200</text>
+<line x1="54" y1="24" x2="58" y2="24" stroke="currentColor"/>
+<line x1="58" y1="24" x2="420" y2="24" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="50" y="28" text-anchor="end" font-size="12" fill="currentColor">1400</text>
+<text x="420" y="288" text-anchor="end" font-size="12" fill="currentColor">利用時間 t（時間）</text>
+<text x="64" y="14" text-anchor="start" font-size="12" fill="currentColor">料金（円）</text>
+<path d="M58,201.6 L420,72.4" stroke="#1f5fbf" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/>
+<path d="M58,250 L420,43.4" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="2 3" fill="none"/>
+<circle cx="103.2" cy="185.4" r="4.5" fill="#1f5fbf" data-plan="A" data-t="1" data-cost="400"/>
+<rect x="99.2" y="220.2" width="8" height="8" fill="#c0392b" data-plan="B" data-t="1" data-cost="160"/>
+<circle cx="148.5" cy="169.3" r="4.5" fill="#1f5fbf" data-plan="A" data-t="2" data-cost="500"/>
+<rect x="144.5" y="194.3" width="8" height="8" fill="#c0392b" data-plan="B" data-t="2" data-cost="320"/>
+<circle cx="193.8" cy="153.1" r="4.5" fill="#1f5fbf" data-plan="A" data-t="3" data-cost="600"/>
+<rect x="189.8" y="168.5" width="8" height="8" fill="#c0392b" data-plan="B" data-t="3" data-cost="480"/>
+<circle cx="239" cy="137" r="4.5" fill="#1f5fbf" data-plan="A" data-t="4" data-cost="700"/>
+<rect x="235" y="142.7" width="8" height="8" fill="#c0392b" data-plan="B" data-t="4" data-cost="640"/>
+<circle cx="284.2" cy="120.9" r="4.5" fill="#1f5fbf" data-plan="A" data-t="5" data-cost="800"/>
+<rect x="280.2" y="116.9" width="8" height="8" fill="#c0392b" data-plan="B" data-t="5" data-cost="800"/>
+<circle cx="329.5" cy="104.7" r="4.5" fill="#1f5fbf" data-plan="A" data-t="6" data-cost="900"/>
+<rect x="325.5" y="91" width="8" height="8" fill="#c0392b" data-plan="B" data-t="6" data-cost="960"/>
+<circle cx="374.8" cy="88.6" r="4.5" fill="#1f5fbf" data-plan="A" data-t="7" data-cost="1000"/>
+<rect x="370.8" y="65.2" width="8" height="8" fill="#c0392b" data-plan="B" data-t="7" data-cost="1120"/>
+<circle cx="420" cy="72.4" r="4.5" fill="#1f5fbf" data-plan="A" data-t="8" data-cost="1100"/>
+<rect x="416" y="39.4" width="8" height="8" fill="#c0392b" data-plan="B" data-t="8" data-cost="1280"/>
+<text x="72" y="35.3" text-anchor="start" font-size="12" font-weight="700" fill="#1f5fbf">● A：300＋100t（円）</text>
+<text x="72" y="53.3" text-anchor="start" font-size="12" font-weight="700" fill="#c0392b">■ B：160t（円）</text>
+<line x1="284.2" y1="120.9" x2="284.2" y2="250" stroke="#b7791f" stroke-dasharray="3 3"/>
+<text x="278.2" y="104.9" text-anchor="end" font-size="12" font-weight="700" fill="#b7791f">t＝5 で同額 800 円</text>
+<text x="364.1" y="233.9" text-anchor="middle" font-size="12" font-weight="700" fill="#1e8e5a">A が安い</text>
+</svg>
+<!--/svg:f019a-->
+  <figcaption>図1　A プラン（●）と B プラン（■）の料金。点は 1 時間ごとの料金で、線は変化の様子を見やすくするために結んだもの（学習用の架空の料金）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">解決する (1)</p>
+  <p>A プランのほうが B プランより安くなるのは、何時間以上利用するときですか。</p>
+  <div class="step">ステップ1（立式）：「A のほうが安い」は \( 300+100t&lt;160t \)。</div>
+  <div class="step">ステップ2（解く）：移項して \( -60t&lt;-300 \)、両辺を負の数 \( -60 \) でわると向きが変わり \( t&gt;5 \)。</div>
+  <div class="step">ステップ3（吟味）：\( t \) は整数なので 6 時間以上。\( t=5 \) のときは両方とも 800 円で同じ額なので、「安くなる」には入りません。</div>
+  <div class="step">答え：6 時間以上</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">解決する (2)</p>
+  <p>自転車の予算を 1000 円以内とします。予算内に収まり、しかも A プランのほうが安くなる利用時間をすべて求めなさい。</p>
+  <div class="step">ステップ1（立式）：予算の条件 \( 300+100t\leqq 1000 \) …①と、(1) の条件 \( 300+100t&lt;160t \) …②の連立不等式です。</div>
+  <div class="step">ステップ2（解く）：① より \( 100t\leqq 700 \)、\( t\leqq 7 \)。② より \( t&gt;5 \)。共通部分は \( 5&lt;t\leqq 7 \)。</div>
+  <div class="step">ステップ3（吟味）：\( t \) は整数なので 6 時間と 7 時間。料金は 6 時間で 900 円、7 時間で 1000 円（予算ちょうど）で、B プランならそれぞれ 960 円、1120 円です。</div>
+  <div class="step">答え：6 時間、7 時間</div>
+</div>
+<div class="box point"><p class="box-title">活用の進め方</p><p>① 場面の条件を書き出し、数量の関係を表や図に整理する。<br>② 文字を決め、条件を不等式に表す（以上・以下・未満・より多い・以内を不等号に直す）。条件が2つ以上なら連立不等式にする。<br>③ 不等式を解く。<br>④ 答えが場面の条件（整数か、等号を含むか、前提の条件）に合うかを吟味して答えを決める。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>以上・以下・未満・以内</dt><dd>「以上」は \( \geqq \)、「以下」と「以内」は \( \leqq \)（その数を含む）、「未満」は \( &lt; \)（その数を含まない）。「より大きい・より多い」は \( &gt; \)。</dd>
+    <dt>最も不利な場合</dt><dd>「必ず」「確実に」を確かめるときに考える、条件を満たすのが最も難しくなる場合。場面1では、ほかの3人ができるだけ多く票をとる分かれ方。</dd>
+    <dt>解の吟味</dt><dd>求めた解が、問題の条件（人数や個数は整数、等号を含むかどうか、前提の条件など）に合うかを確かめること（中1-053）。</dd>
+    <dt>連立不等式</dt><dd>いくつかの不等式を組にしたもの。条件が2つ以上ある場面では、すべてを同時に満たす範囲（共通部分）を求める（数Ⅰ-017）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>選挙の最低票数は、最も不利な分かれ方（ほかの3人が自分と同じ票数以上をとる）ができない条件 \( 3x&gt;40-x \) から求め、40人で3人なら最低 11 票（O1）。</li>
+    <li>予算・個数・時間など2つ以上の条件は連立不等式に表し、共通部分から答えを選ぶ（O2）。</li>
+    <li>立式の前に数量を表や図に整理する。解いた後は、整数か、等号を含むか、前提の条件に合うかを吟味する（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">場面1（40人・3人）</span>
+    <p>当選確実の条件：ほかの3人が \( x \) 票以上ずつとれない<br>\( 3x&gt;40-x \) → \( x&gt;10 \) → 最低 11 票</p></div>
+  <div><span class="f-name">言葉と不等号</span>
+    <p>以上 \( \geqq \)　以下・以内 \( \leqq \)<br>未満 \( &lt; \)　より大きい \( &gt; \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。場面はすべて学習用に作成した架空のものです。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O3</span></div>
+  <p>1 個 80 円のみかんを \( x \) 個と、1 個 150 円のりんごを 4 個買い、代金を 1000 円以下にしたい。この条件を表す不等式はどれですか。</p>
+  <div class="choices"><button>\( 80x+150\leqq 1000 \)</button><button data-correct="true">\( 80x+600\leqq 1000 \)</button><button>\( 80x+600&lt;1000 \)</button><button>\( 80x+600\geqq 1000 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">りんご 4 個の代金は \( 150\cdot 4=600 \) 円なので、代金の合計は \( 80x+600 \) 円。「以下」は \( \leqq \) なので \( 80x+600\leqq 1000 \) です。\( 80x+150 \) はりんごの個数 4 をかけ忘れた誤りです。\( &lt; \) は「未満」の場合で、1000 円ちょうどを含みません。\( \geqq \) は大小の向きが逆です。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="5|5個|5こ">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O3</span></div>
+  <p>問1の条件のもとで、みかんは最大何個買えますか（個数を数字で入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 5 個。\( 80x+600\leqq 1000 \) より \( 80x\leqq 400 \)、\( x\leqq 5 \)。5 個なら代金は \( 400+600=1000 \) 円で、「以下」なのでちょうど 1000 円も条件を満たします。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O1</span></div>
+  <p>30人のクラスの全員が1票ずつ投票して、代表を2人選びます（場面1と同じ条件）。当選が確実になる最低の票数はどれですか。</p>
+  <div class="choices"><button>15 票</button><button>10 票</button><button data-correct="true">11 票</button><button>16 票</button></div>
+  <span class="result"></span>
+  <div class="explain">あなたが \( x \) 票のとき、ほかの2人が \( x \) 票以上ずつとれない条件は \( 2x&gt;30-x \)、つまり \( 3x&gt;30 \)、\( x&gt;10 \)。最低 11 票です。15 票は \( 30\div 2 \) と、競う相手が自分を含めて3人いることを考えていない計算です。10 票は等号を含めた誤りで、ほかの2人が 10 票ずつとると3人が同数になります。16 票は「過半数」と考えた誤りで、代表が2人なら 16 票も必要ありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>1冊 120 円のノートと 1冊 200 円のノートを合わせて 12 冊買います。代金は 2000 円以下にし、200 円のノートを 4 冊以上買いたい。200 円のノートの冊数として考えられるものは何通りありますか。</p>
+  <div class="choices"><button data-correct="true">4 通り</button><button>3 通り</button><button>8 通り</button><button>条件を満たす買い方はない</button></div>
+  <span class="result"></span>
+  <div class="explain">200 円のノートを \( y \) 冊とすると、120 円のノートは \( 12-y \) 冊。代金の条件 \( 120(12-y)+200y\leqq 2000 \) より \( 1440+80y\leqq 2000 \)、\( 80y\leqq 560 \)、\( y\leqq 7 \)。冊数の条件 \( y\geqq 4 \) との共通部分は \( 4\leqq y\leqq 7 \) で、\( y=4,\ 5,\ 6,\ 7 \) の 4 通りです。3 通りは「4 冊以上」を「4 冊より多く」と読んで 4 を除いた誤り、8 通りは \( y\geqq 4 \) を忘れて \( y=0 \)〜7 を数えた誤りです。「買い方はない」は、120 円のノートを 12 冊のまま \( 120\cdot 12+200y\leqq 2000 \) とし、\( y\leqq 2.8 \) となった誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="6|6時間">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2・O3</span></div>
+  <p>あるカラオケ店の料金は、会員なら入会金 500 円に加えて 1 時間ごとに 300 円、会員でなければ 1 時間ごとに 400 円です（1 時間単位）。会員になったほうが安くなるのは、合計何時間以上利用するときですか（時間を数字で入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 6 時間。利用時間を \( t \) 時間とすると \( 500+300t&lt;400t \)、\( -100t&lt;-500 \)、\( t&gt;5 \)。5 時間ちょうどでは両方 2000 円で同じなので、安くなるのは 6 時間以上です。「5」と答えた場合は、等号の吟味が抜けています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>1台に 8 人まで乗れる車で、50 人を一度に運びます。車は最低何台必要ですか。</p>
+  <div class="choices"><button>6 台</button><button>6.25 台</button><button>8 台</button><button data-correct="true">7 台</button></div>
+  <span class="result"></span>
+  <div class="explain">車の台数を \( n \) 台とすると、乗れる人数は最大 \( 8n \) 人なので、条件は \( 8n\geqq 50 \)、\( n\geqq 6.25 \)。台数は整数なので最低 7 台です。6 台は \( 6.25 \) を切り捨てた誤りで、48 人しか乗れません。6.25 台は吟味をしていない答えです。8 台は \( 50\div 8=6 \) 余り 2 の余りの 2 を台数に足してしまった誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O1・O3</span></div>
+  <p>場面1と同じ条件で、40人のクラスから代表を5人選ぶことになりました。</p>
+  <p>花子：「代表が3人のときは \( 3x&gt;40-x \) だったから、5人なら \( 5x&gt;40-x \) だね。」<br>太郎：「\( 6x&gt;40 \) で \( x&gt;6.66\cdots \)。だから……。」</p>
+  <p>当選が確実になる最低の票数はどれですか。</p>
+  <div class="choices"><button>6 票</button><button data-correct="true">7 票</button><button>8 票</button><button>9 票</button></div>
+  <span class="result"></span>
+  <div class="explain">\( x&gt;\dfrac{40}{6}=6.66\cdots \) を満たす最小の整数は 7 です。確かめ：6 票なら残り 34 票で、ほかの5人が 6 票ずつ（30 票）とる分け方があるので確実ではありません。7 票なら残り 33 票で、ほかの5人が 7 票ずつとるには 35 票必要なのでできず、当選は確実です。6 票は \( 6.66\cdots \) を切り捨てた誤り、8 票は \( 40\div 5 \) と、競う相手が自分を含めて6人いることを考えていない計算、9 票は \( 40\div 5 \) に 1 を足した誤りです。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2・O3</span></div>
+  <p>4人で日帰り旅行をします。レンタカーの料金は 1 台 8000 円、ガソリン代などは走行距離 1 km あたり 20 円とし、費用は4人で等しく分けます。1人あたりの費用を 3500 円以下にしたく、予定の観光地を回るには少なくとも 150 km 走る必要があります。走行距離を \( d \) km として条件を連立不等式に表し、\( d \) の範囲を求めなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　1人あたりの費用は \( \dfrac{8000+20d}{4} \) 円。条件は \( \dfrac{8000+20d}{4}\leqq 3500 \) …①、\( d\geqq 150 \) …②。① の両辺に 4 をかけて \( 8000+20d\leqq 14000 \)、\( 20d\leqq 6000 \)、\( d\leqq 300 \)。② との共通部分は \( 150\leqq d\leqq 300 \)。答え：150 km 以上 300 km 以下。</p>
+    <p><strong>採点の観点</strong>　① 費用を4人で分けた式を正しく立てている（4 でわることを忘れない）。② 「以下」「少なくとも」を \( \leqq \)、\( \geqq \) で表している。③ 共通部分を求め、両端を含めて答えている。</p>
+  </div>
+  <div class="explain">確かめ：300 km なら費用は \( 8000+6000=14000 \) 円、1人 3500 円でちょうど予算です。4 でわるのを忘れて \( 8000+20d\leqq 3500 \) とすると、\( d \) が負になってしまい、場面に合いません。答えが場面に合わないときは、立式を見直しましょう。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(1) 数と式」の「日常の事象や社会の事象などを数学的に捉え，一次不等式を問題解決に活用すること」（イ(エ)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「事象を数理的に捉え，数学の問題を見いだすこと，解決の見通しをもつこと」や「解決過程を振り返り，得られた結果を意味づけたり，活用したり」することなどを求め、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。場面を不等式に表し、解いた後に吟味するこの時間の流れは、この方針の述べる過程と重なります。</p>
+  <p class="small">確認問題はすべて学習用に作成した練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">単元末演習（数と式）（数Ⅰ-020）</p>
+  <p>次の時間は単元「数と式」のまとめとして、式の展開と因数分解、実数と根号を含む式の計算・分母の有理化、一次不等式・連立不等式とその活用の問題を、型を見分けながら解きます。</p>
+  <p>この時間では、二次不等式を使う活用（数Ⅰ-053）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-018　絶対値を含む方程式・不等式</div>
+  <div><span class="label">次の時間</span>数Ⅰ-020　単元末演習（数と式）</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-019「一次不等式の活用」（学習指導要領 数学Ⅰ (1)イ(エ)、解説 p.37）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(1) 数と式（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.37「日常の事象や社会の事象などを数学的に捉え，一次不等式を問題解決に活用すること」（40 名のクラスから 3 名の代表を選ぶ選挙の例、買い物や旅行等の計画で必要経費等の条件を連立不等式に表す例、数量の関係を図や表等に表して立式する指導）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。選挙・模擬店・レンタサイクル・カラオケ店・レンタカーの場面と料金は、すべて学習用に作成した架空のものです。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  /*logic-start*/
+  var N = 40, K = 3;
+  function w1State(x) {
+    var rest = N - x;
+    var cnt = x === 0 ? N - 1 : Math.min(N - 1, Math.floor(rest / x));
+    var rivals = [], left = rest;
+    for (var i = 0; i < K; i++) { var v = Math.min(x, left); rivals.push(v); left -= v; }
+    return { x: x, rest: rest, cnt: cnt, sure: cnt < K, rivals: rivals, other: left };
+  }
+  function w1Text(x) {
+    var s = w1State(x);
+    var t = "x = " + x + " 票のとき、残りは " + s.rest + " 票。";
+    if (s.sure) {
+      t += "ほかの人が " + x + " 票以上とれるのは多くても " + s.cnt + " 人です（" + x + " × " + (s.cnt + 1) + " = " + x * (s.cnt + 1) + " は " + s.rest + " より大きい）。あなたと同じかそれより多い票の人は " + s.cnt + " 人以下なので、当選は確実です。";
+    } else {
+      t += "ほかの 3 人が " + x + " 票ずつ以上とる分け方があります（" + x + " × 3 = " + 3 * x + " ≦ " + s.rest + "）。その場合、あなたは 4 位以下になるか、3 位を同数で争うので、当選は確実とはいえません。";
+    }
+    return t;
+  }
+  /*logic-end*/
+  if (typeof document === "undefined") return;
+  var NS = "http://www.w3.org/2000/svg";
+  var svg = document.getElementById("w1-svg");
+  var slider = document.getElementById("w1-x");
+  var outV = document.getElementById("w1-xv");
+  var outT = document.getElementById("w1-out");
+  if (!svg || !slider) return;
+  function mk(name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (a) { e.setAttribute(a, attrs[a]); });
+    if (text !== undefined) e.textContent = text;
+    svg.appendChild(e);
+    return e;
+  }
+  var base = 140, unit = 3;
+  function draw() {
+    var x = parseInt(slider.value, 10);
+    var s = w1State(x);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    mk("line", { x1: 20, y1: base, x2: 420, y2: base, stroke: "currentColor" });
+    var names = ["あなた", "ほかの人1", "ほかの人2", "ほかの人3"];
+    var vals = [x].concat(s.rivals);
+    vals.forEach(function (v, i) {
+      var cx = 70 + i * 80;
+      var col = i === 0 ? (s.sure ? "#1e8e5a" : "#c0392b") : "#8a99a8";
+      mk("rect", { x: cx - 22, y: base - v * unit, width: 44, height: v * unit, fill: col, "fill-opacity": i === 0 ? 0.85 : 0.6 });
+      mk("text", { x: cx, y: base - v * unit - 5, "text-anchor": "middle", "font-size": 12, "font-weight": 700, fill: "currentColor" }, v + " 票");
+      mk("text", { x: cx, y: base + 16, "text-anchor": "middle", "font-size": 12, fill: "currentColor" }, names[i]);
+    });
+    mk("line", { x1: 40, y1: base - x * unit, x2: 330, y2: base - x * unit, stroke: "#b7791f", "stroke-dasharray": "4 3" });
+    mk("text", { x: 400, y: base - 40, "text-anchor": "middle", "font-size": 12, fill: "currentColor" }, "そのほか");
+    mk("text", { x: 400, y: base - 24, "text-anchor": "middle", "font-size": 12, fill: "currentColor" }, "合計 " + s.other + " 票");
+    mk("text", { x: 400, y: base + 34, "text-anchor": "middle", "font-size": 12, "font-weight": 700, fill: s.sure ? "#1e8e5a" : "#c0392b" }, s.sure ? "当選確実" : "確実でない");
+    if (outV) outV.textContent = String(x);
+    if (outT) outT.textContent = w1Text(x);
+  }
+  slider.addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-019",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-019",
+  "title": "一次不等式の活用",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-1", "title": "数と式"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)イ(エ)"],
+  "kaisetsu_page": "37",
+  "objectives": [
+    {"id": "O1", "text": "選挙で当選が確実になる最低の票数を、最も不利な票の分かれ方を考えて一次不等式に表し、求めることができる。", "from": "日常の事象の条件を一次不等式…に表して問題を解決できる。例：「40名のクラスから3名の代表を選ぶ選挙で最低何票入れば当選するか」", "sections": ["sec-1"], "checks": ["q3", "q7"]},
+    {"id": "O2", "text": "買い物や旅行の計画で、予算や個数・時間などの条件を連立不等式に表し、条件に合う値の範囲を求めることができる。", "from": "買い物や旅行の計画で必要経費などの条件を連立不等式に表して考える", "sections": ["sec-2", "sec-3"], "checks": ["q4", "q5", "q8"]},
+    {"id": "O3", "text": "数量の関係を表や図に整理して立式し、求めた解が場面の条件（整数であること、等号を含むかどうかなど）に合うかを振り返って答えを決めることができる。", "from": "日常の事象の条件を一次不等式や連立不等式に表して問題を解決できる", "sections": ["sec-1", "sec-2", "sec-3"], "checks": ["q1", "q2", "q5", "q6", "q7", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "以上・以下・未満・以内", "where": "review"},
+    {"term": "最も不利な場合", "where": "sec-1"},
+    {"term": "解の吟味", "where": "sec-1"},
+    {"term": "連立不等式", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "数量の大小関係を不等号で表す（以上・以下・未満・より大きい）", "taught_in": ["jhs_math/中1-039"], "where": "review"},
+    {"concept": "不等式の解の意味", "taught_in": ["hs_math_1a/数Ⅰ-015"], "where": "review"},
+    {"concept": "一次不等式の解き方（負の数でわると向きが変わる）", "taught_in": ["hs_math_1a/数Ⅰ-016"], "where": "review"},
+    {"concept": "連立不等式の解（共通部分）", "taught_in": ["hs_math_1a/数Ⅰ-017"], "where": "review"},
+    {"concept": "求めた解が問題の条件に合うかを確かめる（解の吟味）", "taught_in": ["jhs_math/中1-053"], "where": "review"},
+    {"concept": "数量の関係を文字式に表す（代金＝単価×個数など）", "taught_in": ["jhs_math/中1-039", "jhs_math/中1-041"], "where": "sec-2"},
+    {"concept": "一次関数のグラフと2直線の交点（料金のグラフの読み取り）", "taught_in": ["jhs_math/中2-029", "jhs_math/中2-037"], "where": "sec-3"},
+    {"concept": "料金のように表やグラフで調べる関数関係", "taught_in": ["jhs_math/中3-060"], "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "二次不等式を使う活用（数Ⅰ-053）",
+    "単元全体の問題の型を混ぜた演習（数Ⅰ-020）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『数と式』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(1)イ(エ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.37 一次不等式の活用の例（40 名から 3 名を選ぶ選挙、買い物・旅行の計画の連立不等式）、図や表で数量の関係を表す指導"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

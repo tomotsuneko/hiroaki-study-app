@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>質的データと量的データの分析（層別）｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+table.data td, table.data th { text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>データの分析</span><span>数Ⅰ-088</span></div>
+  <h1>質的データと量的データの分析（層別）</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">活用</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">クラス対抗の大縄跳び大会。1列に並んで跳ぶのと2列に並んで跳ぶのとでは、どちらが多く連続で跳べると見込めるでしょうか。並び方だけでなく、並ぶ向きや縄の回し手でもデータを分けて比べると、見えてくることがあります。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>大縄跳びで1列と2列の並び方による連続回数を、箱ひげ図を並べて比べることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>並ぶ向きや縄の回し手などの要因でデータを層別して箱ひげ図で比較し、回数に関わっていそうな要因を読み取ることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>層別して比べた結果から事象の特徴を説明し、データを集める前に紐付ける項目を考えておく大切さを説明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-087）</span>質的データの分析（二次元表）</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-088）</span>質的データと量的データの分析（層別）</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-089）</span>仮説検定の考え方（実験）</div>
+</div>
+<p class="small">前提となる単元：中学1年「データの分布／不確定な事象の起こりやすさ」、中学2年「データの分布（四分位範囲と箱ひげ図）」。四分位数・箱ひげ図（中2-088・中2-089、数Ⅰ-079）、複数の集団の比較（中2-091）と、同じ単元の数Ⅰ-079（質的データ・量的データ、統計的探究プロセス）、数Ⅰ-087（別の観点で集計し直す）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：使う既習事項</h2>
+<div class="formula-card">
+  <div><span class="f-name">① 四分位数（中2-088・数Ⅰ-079）</span><p>小さい順に並べ、個数が偶数なら小さい方の半分と大きい方の半分に、奇数なら中央値を除いて前後に分け、それぞれの中央値を第1四分位数・第3四分位数とする（数Ⅰ-079 の約束）。</p></div>
+  <div><span class="f-name">② 箱ひげ図（中2-089・中2-091）</span><p>最小値・第1四分位数・中央値・第3四分位数・最大値で分布を表す。並べてかくと、複数の集団の分布を比べやすい。箱にはデータのおよそ半分が入る。</p></div>
+  <div><span class="f-name">③ 質的データと量的データ（数Ⅰ-079）</span><p>並び方（1列・2列）のような文字情報が質的データ、連続回数のような数値情報が量的データ。</p></div>
+  <div><span class="f-name">④ 集計し直す（数Ⅰ-087）</span><p>整理したデータを、別の観点でさらに漏れのないように分けて比べ直す。</p></div>
+</div>
+<p class="small">①〜④は、このページの中での番号です。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中2-088・数Ⅰ-079</span></div>
+  <p>8個の値 12, 15, 17, 18, 20, 23, 25, 30 の第1四分位数・中央値・第3四分位数の組はどれですか。</p>
+  <div class="choices">
+    <button>15、18、25</button>
+    <button data-correct="true">16、19、24</button>
+    <button>17、19、23</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">中央値は4番目と5番目の平均で \( (18+20)\div2=19 \)。小さい方の4個 12, 15, 17, 18 の中央値 \( (15+17)\div2=16 \) が第1四分位数、大きい方の4個 20, 23, 25, 30 の中央値 \( (23+25)\div2=24 \) が第3四分位数です。「15、18、25」は2番目・4番目・7番目の値をそのまま選んだ誤り、「17、19、23」は3番目と6番目の値を四分位数とした誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中2-089・中2-091</span></div>
+  <p>ある箱ひげ図の5つの値が、最小値 10、第1四分位数 15、中央値 20、第3四分位数 24、最大値 30 でした。正しいものはどれですか。</p>
+  <div class="choices">
+    <button>平均値は 20 である。</button>
+    <button>範囲は 9 である。</button>
+    <button data-correct="true">データのおよそ半分は 15 以上 24 以下にある。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">第1四分位数から第3四分位数までの箱に、データのおよそ半分が入ります。平均値は箱ひげ図の5つの値からは分かりません（20 は中央値）。9 は四分位範囲（\( 24-15 \)）で、範囲は \( 30-10=20 \) です。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：1列と2列、どちらが多く跳べる？</h2>
+<div class="box think">
+  <p class="box-title">X高校1年A組の練習の記録（学習用の架空のデータ）</p>
+  <p>X高校1年A組は、クラス対抗の大縄跳び大会に向けて、選手が1列に並んで跳ぶ方法と、2列に並んで跳ぶ方法を、それぞれ16回ずつ試しました。1回ごとに、並び方のほかに、並ぶ向き（全員が同じ向き／真ん中で向きが分かれる）と、縄の回し手（Aさん・Bさんの組、Cさん・Dさんの組）も記録しました。数は連続で跳べた回数です。</p>
+  <div class="table-wrap">
+  <table class="data" id="t088a">
+    <tr><th>並び方</th><th>向き</th><th>回し手</th><th>1回目</th><th>2回目</th><th>3回目</th><th>4回目</th></tr>
+    <tr><td>1列</td><td>同じ</td><td>AB</td><td>26</td><td>27</td><td>23</td><td>21</td></tr>
+    <tr><td>1列</td><td>同じ</td><td>CD</td><td>16</td><td>19</td><td>16</td><td>15</td></tr>
+    <tr><td>1列</td><td>異なる</td><td>AB</td><td>22</td><td>21</td><td>22</td><td>19</td></tr>
+    <tr><td>1列</td><td>異なる</td><td>CD</td><td>17</td><td>17</td><td>13</td><td>18</td></tr>
+    <tr><td>2列</td><td>同じ</td><td>AB</td><td>34</td><td>39</td><td>34</td><td>33</td></tr>
+    <tr><td>2列</td><td>同じ</td><td>CD</td><td>32</td><td>30</td><td>31</td><td>28</td></tr>
+    <tr><td>2列</td><td>異なる</td><td>AB</td><td>20</td><td>22</td><td>21</td><td>19</td></tr>
+    <tr><td>2列</td><td>異なる</td><td>CD</td><td>12</td><td>16</td><td>15</td><td>17</td></tr>
+  </table>
+  </div>
+  <p><strong>大会で多くの回数を連続で跳ぶと見込めるのは、どのような跳び方でしょうか。</strong>まず並び方で比べ、次に向きや回し手でも分けて比べます。答えは「5 結論と振り返り」の例題2でまとめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="箱ひげ図を並べて比べる"><span class="num">3</span>箱ひげ図を並べて比べる</h2>
+<p>この場面では、並び方（1列・2列）は私たちが選べる<strong>要因</strong>で質的データ、結果の連続回数は量的データです。高等学校学習指導要領解説は、制御する要因が質的データで、結果が量的データである問題場面では、<strong>箱ひげ図を並列して比べる</strong>としています。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（並び方で比べる）</p>
+  <p>導入の記録を並び方で分け、1列の16回と2列の16回の箱ひげ図を並べて比べなさい。</p>
+  <div class="step">着目1（四分位数）：1列の16回を小さい順に並べると 13, 15, 16, 16, 17, 17, 18, 19, 19, 21, 21, 22, 22, 23, 26, 27。中央値は \( (19+19)\div2=19 \)、第1四分位数は \( (16+17)\div2=16.5 \)、第3四分位数は \( (22+22)\div2=22 \) です。</div>
+  <div class="step">着目2（2列も同じように）：2列の16回は 12, 15, 16, 17, 19, 20, 21, 22, 28, 30, 31, 32, 33, 34, 34, 39。中央値は \( (22+28)\div2=25 \)、第1四分位数は \( (17+19)\div2=18 \)、第3四分位数は \( (32+33)\div2=32.5 \) です。</div>
+  <div class="step">着目3（並べて読む）：図1のように、2列の方が中央値が大きい（25 回と 19 回）一方で、2列は箱もひげも長く、散らばりがとても大きくなっています（四分位範囲は 1列 5.5、2列 14.5）。2列の最小値 12 は、1列の最小値 13 より小さいです。</div>
+  <div class="step">答え：<span data-ans="ex1">2列の方が中央値は大きいが、回数の散らばりが大きく、少ない回も多い。並び方だけでは「2列の方が多く跳べる」とは言い切りにくい。</span>なぜ2列の散らばりが大きいのかを、ほかの要因で調べます。</div>
+</div>
+<figure>
+<div class="fig-scroll">
+<!--svg:f088a-->
+<svg viewBox="0 0 560 156" width="560" role="img" aria-label="並び方別の連続回数の箱ひげ図。1列：最小値13、第1四分位数16.5、中央値19、第3四分位数22、最大値27。2列：最小値12、第1四分位数18、中央値25、第3四分位数32.5、最大値39" data-fig="f088a">
+<line x1="128" y1="14" x2="128" y2="112" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="128" y1="112" x2="128" y2="116" stroke="currentColor" stroke-width="1"/>
+<text x="128" y="129" text-anchor="middle" font-size="11" fill="currentColor">10</text>
+<line x1="196" y1="14" x2="196" y2="112" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="196" y1="112" x2="196" y2="116" stroke="currentColor" stroke-width="1"/>
+<text x="196" y="129" text-anchor="middle" font-size="11" fill="currentColor">15</text>
+<line x1="264" y1="14" x2="264" y2="112" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="264" y1="112" x2="264" y2="116" stroke="currentColor" stroke-width="1"/>
+<text x="264" y="129" text-anchor="middle" font-size="11" fill="currentColor">20</text>
+<line x1="332" y1="14" x2="332" y2="112" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="332" y1="112" x2="332" y2="116" stroke="currentColor" stroke-width="1"/>
+<text x="332" y="129" text-anchor="middle" font-size="11" fill="currentColor">25</text>
+<line x1="400" y1="14" x2="400" y2="112" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="400" y1="112" x2="400" y2="116" stroke="currentColor" stroke-width="1"/>
+<text x="400" y="129" text-anchor="middle" font-size="11" fill="currentColor">30</text>
+<line x1="468" y1="14" x2="468" y2="112" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="468" y1="112" x2="468" y2="116" stroke="currentColor" stroke-width="1"/>
+<text x="468" y="129" text-anchor="middle" font-size="11" fill="currentColor">35</text>
+<line x1="536" y1="14" x2="536" y2="112" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="536" y1="112" x2="536" y2="116" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="129" text-anchor="middle" font-size="11" fill="currentColor">40</text>
+<line x1="128" y1="112" x2="536" y2="112" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="147" text-anchor="end" font-size="12" fill="currentColor">連続回数（回）</text>
+<g data-box="13 16.5 19 22 27">
+<line x1="168.8" y1="37" x2="216.4" y2="37" stroke="currentColor" stroke-width="1.5"/>
+<line x1="291.2" y1="37" x2="359.2" y2="37" stroke="currentColor" stroke-width="1.5"/>
+<line x1="168.8" y1="29" x2="168.8" y2="45" stroke="currentColor" stroke-width="1.5"/>
+<line x1="359.2" y1="29" x2="359.2" y2="45" stroke="currentColor" stroke-width="1.5"/>
+<rect x="216.4" y="26" width="74.8" height="22" fill="#1f5fbf" stroke="currentColor" stroke-width="1.5" fill-opacity="0.18"/>
+<line x1="250.4" y1="26" x2="250.4" y2="48" stroke="currentColor" stroke-width="2.5"/>
+</g>
+<text x="120" y="41" text-anchor="end" font-size="12" fill="currentColor">1列</text>
+<g data-box="12 18 25 32.5 39">
+<line x1="155.2" y1="83" x2="236.8" y2="83" stroke="currentColor" stroke-width="1.5"/>
+<line x1="434" y1="83" x2="522.4" y2="83" stroke="currentColor" stroke-width="1.5"/>
+<line x1="155.2" y1="75" x2="155.2" y2="91" stroke="currentColor" stroke-width="1.5"/>
+<line x1="522.4" y1="75" x2="522.4" y2="91" stroke="currentColor" stroke-width="1.5"/>
+<rect x="236.8" y="72" width="197.2" height="22" fill="#1f5fbf" stroke="currentColor" stroke-width="1.5" fill-opacity="0.18"/>
+<line x1="332" y1="72" x2="332" y2="94" stroke="currentColor" stroke-width="2.5"/>
+</g>
+<text x="120" y="87" text-anchor="end" font-size="12" fill="currentColor">2列</text>
+</svg>
+<!--/svg:f088a-->
+</div>
+  <figcaption>図1　並び方別の連続回数の箱ひげ図（各16回、学習用の架空のデータ）</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い：中央値だけで決める</p><p>中央値が大きいからといって、いつも多く跳べるとは限りません。箱ひげ図では、中央値に加えて、箱の位置と長さ（四分位範囲）、ひげの範囲も比べます。2列は、中央値は大きいものの、1列の中央値より少ない回も4分の1以上あります（2列の第1四分位数 18 は、1列の中央値 19 より小さい）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="層別して比べる"><span class="num">4</span>層別して比べる</h2>
+<p>解説は、並び方以外の要因、たとえば並び方が全員同一方向の場合と真ん中で分かれる場合や、縄の回し手別にデータを分けて比較することが考えられるとしています。このように、データをある要因で分けて比べることを、<strong>層別</strong>して比較するといいます。</p>
+<h3>並ぶ向きで層別する</h3>
+<figure>
+<div class="fig-scroll">
+<!--svg:f088b-->
+<svg viewBox="0 0 560 248" width="560" role="img" aria-label="並ぶ向きで層別した箱ひげ図。1列・向き同じ：15、16、20、24.5、27。2列・向き同じ：28、30.5、32.5、34、39。1列・向き異なる：13、17、18.5、21.5、22。2列・向き異なる：12、15.5、18、20.5、22" data-fig="f088b">
+<line x1="128" y1="14" x2="128" y2="204" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="128" y1="204" x2="128" y2="208" stroke="currentColor" stroke-width="1"/>
+<text x="128" y="221" text-anchor="middle" font-size="11" fill="currentColor">10</text>
+<line x1="196" y1="14" x2="196" y2="204" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="196" y1="204" x2="196" y2="208" stroke="currentColor" stroke-width="1"/>
+<text x="196" y="221" text-anchor="middle" font-size="11" fill="currentColor">15</text>
+<line x1="264" y1="14" x2="264" y2="204" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="264" y1="204" x2="264" y2="208" stroke="currentColor" stroke-width="1"/>
+<text x="264" y="221" text-anchor="middle" font-size="11" fill="currentColor">20</text>
+<line x1="332" y1="14" x2="332" y2="204" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="332" y1="204" x2="332" y2="208" stroke="currentColor" stroke-width="1"/>
+<text x="332" y="221" text-anchor="middle" font-size="11" fill="currentColor">25</text>
+<line x1="400" y1="14" x2="400" y2="204" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="400" y1="204" x2="400" y2="208" stroke="currentColor" stroke-width="1"/>
+<text x="400" y="221" text-anchor="middle" font-size="11" fill="currentColor">30</text>
+<line x1="468" y1="14" x2="468" y2="204" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="468" y1="204" x2="468" y2="208" stroke="currentColor" stroke-width="1"/>
+<text x="468" y="221" text-anchor="middle" font-size="11" fill="currentColor">35</text>
+<line x1="536" y1="14" x2="536" y2="204" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="536" y1="204" x2="536" y2="208" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="221" text-anchor="middle" font-size="11" fill="currentColor">40</text>
+<line x1="128" y1="204" x2="536" y2="204" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="239" text-anchor="end" font-size="12" fill="currentColor">連続回数（回）</text>
+<g data-box="15 16 20 24.5 27">
+<line x1="196" y1="37" x2="209.6" y2="37" stroke="currentColor" stroke-width="1.5"/>
+<line x1="325.2" y1="37" x2="359.2" y2="37" stroke="currentColor" stroke-width="1.5"/>
+<line x1="196" y1="29" x2="196" y2="45" stroke="currentColor" stroke-width="1.5"/>
+<line x1="359.2" y1="29" x2="359.2" y2="45" stroke="currentColor" stroke-width="1.5"/>
+<rect x="209.6" y="26" width="115.6" height="22" fill="#1f5fbf" stroke="currentColor" stroke-width="1.5" fill-opacity="0.18"/>
+<line x1="264" y1="26" x2="264" y2="48" stroke="currentColor" stroke-width="2.5"/>
+</g>
+<text x="120" y="41" text-anchor="end" font-size="12" fill="currentColor">1列・向き同じ</text>
+<g data-box="28 30.5 32.5 34 39">
+<line x1="372.8" y1="83" x2="406.8" y2="83" stroke="currentColor" stroke-width="1.5"/>
+<line x1="454.4" y1="83" x2="522.4" y2="83" stroke="currentColor" stroke-width="1.5"/>
+<line x1="372.8" y1="75" x2="372.8" y2="91" stroke="currentColor" stroke-width="1.5"/>
+<line x1="522.4" y1="75" x2="522.4" y2="91" stroke="currentColor" stroke-width="1.5"/>
+<rect x="406.8" y="72" width="47.6" height="22" fill="#1f5fbf" stroke="currentColor" stroke-width="1.5" fill-opacity="0.18"/>
+<line x1="434" y1="72" x2="434" y2="94" stroke="currentColor" stroke-width="2.5"/>
+</g>
+<text x="120" y="87" text-anchor="end" font-size="12" fill="currentColor">2列・向き同じ</text>
+<g data-box="13 17 18.5 21.5 22">
+<line x1="168.8" y1="129" x2="223.2" y2="129" stroke="currentColor" stroke-width="1.5"/>
+<line x1="284.4" y1="129" x2="291.2" y2="129" stroke="currentColor" stroke-width="1.5"/>
+<line x1="168.8" y1="121" x2="168.8" y2="137" stroke="currentColor" stroke-width="1.5"/>
+<line x1="291.2" y1="121" x2="291.2" y2="137" stroke="currentColor" stroke-width="1.5"/>
+<rect x="223.2" y="118" width="61.2" height="22" fill="#1f5fbf" stroke="currentColor" stroke-width="1.5" fill-opacity="0.18"/>
+<line x1="243.6" y1="118" x2="243.6" y2="140" stroke="currentColor" stroke-width="2.5"/>
+</g>
+<text x="120" y="133" text-anchor="end" font-size="12" fill="currentColor">1列・向き異なる</text>
+<g data-box="12 15.5 18 20.5 22">
+<line x1="155.2" y1="175" x2="202.8" y2="175" stroke="currentColor" stroke-width="1.5"/>
+<line x1="270.8" y1="175" x2="291.2" y2="175" stroke="currentColor" stroke-width="1.5"/>
+<line x1="155.2" y1="167" x2="155.2" y2="183" stroke="currentColor" stroke-width="1.5"/>
+<line x1="291.2" y1="167" x2="291.2" y2="183" stroke="currentColor" stroke-width="1.5"/>
+<rect x="202.8" y="164" width="68" height="22" fill="#1f5fbf" stroke="currentColor" stroke-width="1.5" fill-opacity="0.18"/>
+<line x1="236.8" y1="164" x2="236.8" y2="186" stroke="currentColor" stroke-width="2.5"/>
+</g>
+<text x="120" y="179" text-anchor="end" font-size="12" fill="currentColor">2列・向き異なる</text>
+</svg>
+<!--/svg:f088b-->
+</div>
+  <figcaption>図2　並ぶ向きで層別した箱ひげ図（各8回、学習用の架空のデータ）。上の2本は全員が同じ向き、下の2本は真ん中で向きが分かれる場合</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例1（向きで層別して読む）</p>
+  <div class="step">2列・向き同じ：最小値 28、第1四分位数 30.5、中央値 32.5、第3四分位数 34、最大値 39。8回すべてが 28 回以上です。</div>
+  <div class="step">2列・向き異なる：最小値 12、第1四分位数 15.5、中央値 18、第3四分位数 20.5、最大値 22。最大値 22 でも、2列・向き同じの最小値 28 に届きません。</div>
+  <div class="step">1列：向き同じ（中央値 20）と向き異なる（中央値 18.5）の差は小さく、箱も重なっています。</div>
+  <div class="step">読み取り：<span data-ans="ex1b">図1で2列の散らばりが大きかったのは、向きが同じ回（多い）と向きが異なる回（少ない）が混ざっていたためと考えられます。</span>2列で向きが異なると、中央値 18 は1列全体の中央値 19 より小さくなっています。</div>
+</div>
+<h3>縄の回し手で層別する</h3>
+<figure>
+<div class="fig-scroll">
+<!--svg:f088c-->
+<svg viewBox="0 0 560 156" width="560" role="img" aria-label="縄の回し手で層別した箱ひげ図。回し手AB：19、21、22、30、39。回し手CD：12、15.5、17、23.5、32" data-fig="f088c">
+<line x1="128" y1="14" x2="128" y2="112" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="128" y1="112" x2="128" y2="116" stroke="currentColor" stroke-width="1"/>
+<text x="128" y="129" text-anchor="middle" font-size="11" fill="currentColor">10</text>
+<line x1="196" y1="14" x2="196" y2="112" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="196" y1="112" x2="196" y2="116" stroke="currentColor" stroke-width="1"/>
+<text x="196" y="129" text-anchor="middle" font-size="11" fill="currentColor">15</text>
+<line x1="264" y1="14" x2="264" y2="112" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="264" y1="112" x2="264" y2="116" stroke="currentColor" stroke-width="1"/>
+<text x="264" y="129" text-anchor="middle" font-size="11" fill="currentColor">20</text>
+<line x1="332" y1="14" x2="332" y2="112" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="332" y1="112" x2="332" y2="116" stroke="currentColor" stroke-width="1"/>
+<text x="332" y="129" text-anchor="middle" font-size="11" fill="currentColor">25</text>
+<line x1="400" y1="14" x2="400" y2="112" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="400" y1="112" x2="400" y2="116" stroke="currentColor" stroke-width="1"/>
+<text x="400" y="129" text-anchor="middle" font-size="11" fill="currentColor">30</text>
+<line x1="468" y1="14" x2="468" y2="112" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="468" y1="112" x2="468" y2="116" stroke="currentColor" stroke-width="1"/>
+<text x="468" y="129" text-anchor="middle" font-size="11" fill="currentColor">35</text>
+<line x1="536" y1="14" x2="536" y2="112" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="536" y1="112" x2="536" y2="116" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="129" text-anchor="middle" font-size="11" fill="currentColor">40</text>
+<line x1="128" y1="112" x2="536" y2="112" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="147" text-anchor="end" font-size="12" fill="currentColor">連続回数（回）</text>
+<g data-box="19 21 22 30 39">
+<line x1="250.4" y1="37" x2="277.6" y2="37" stroke="currentColor" stroke-width="1.5"/>
+<line x1="400" y1="37" x2="522.4" y2="37" stroke="currentColor" stroke-width="1.5"/>
+<line x1="250.4" y1="29" x2="250.4" y2="45" stroke="currentColor" stroke-width="1.5"/>
+<line x1="522.4" y1="29" x2="522.4" y2="45" stroke="currentColor" stroke-width="1.5"/>
+<rect x="277.6" y="26" width="122.4" height="22" fill="#1f5fbf" stroke="currentColor" stroke-width="1.5" fill-opacity="0.18"/>
+<line x1="291.2" y1="26" x2="291.2" y2="48" stroke="currentColor" stroke-width="2.5"/>
+</g>
+<text x="120" y="41" text-anchor="end" font-size="12" fill="currentColor">回し手 AB</text>
+<g data-box="12 15.5 17 23.5 32">
+<line x1="155.2" y1="83" x2="202.8" y2="83" stroke="currentColor" stroke-width="1.5"/>
+<line x1="311.6" y1="83" x2="427.2" y2="83" stroke="currentColor" stroke-width="1.5"/>
+<line x1="155.2" y1="75" x2="155.2" y2="91" stroke="currentColor" stroke-width="1.5"/>
+<line x1="427.2" y1="75" x2="427.2" y2="91" stroke="currentColor" stroke-width="1.5"/>
+<rect x="202.8" y="72" width="108.8" height="22" fill="#1f5fbf" stroke="currentColor" stroke-width="1.5" fill-opacity="0.18"/>
+<line x1="223.2" y1="72" x2="223.2" y2="94" stroke="currentColor" stroke-width="2.5"/>
+</g>
+<text x="120" y="87" text-anchor="end" font-size="12" fill="currentColor">回し手 CD</text>
+</svg>
+<!--/svg:f088c-->
+</div>
+  <figcaption>図3　縄の回し手で層別した箱ひげ図（各16回、学習用の架空のデータ）</figcaption>
+</figure>
+<p>回し手 AB の16回は中央値 22、回し手 CD の16回は中央値 17 で、AB の方が回数が多い傾向があります。ただし、どちらの回し手にも1列・2列、向き同じ・異なるの回が4回ずつ含まれているので、ひげの範囲は広く、AB の第1四分位数 21 は CD の第3四分位数 23.5 より小さく、箱は重なっています。</p>
+<div class="box point"><p class="box-title">層別して比べるときのポイント</p><p>① 結果（量的データ）に関わっていそうな要因（質的データ）を挙げ、要因ごとにデータを分ける。<br>② 分けたデータの箱ひげ図を並べ、中央値・箱・ひげを比べる。<br>③ ある要因で分けたときに分布がはっきり分かれれば、その要因が結果に関わっている可能性がある。分けた後のデータの数が少なすぎないかにも注意する。</p></div>
+<p class="small">箱ひげ図の四分位数は、数Ⅰ-079 の約束（16個・8個なので半分ずつに分ける）で求めています。どの分け方のデータにも、外れ値（数Ⅰ-083 の基準）はありません。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="結論と振り返り"><span class="num">5</span>結論と振り返り：データを紐付けて集める</h2>
+<div class="box example worked">
+  <p class="box-title">例題2（導入の問いの答え）</p>
+  <p>図1〜図3から、大会で多くの回数を連続で跳ぶと見込める跳び方を説明しなさい。</p>
+  <div class="step">並び方だけ（図1）：2列の方が中央値は大きいが、散らばりが大きい。</div>
+  <div class="step">向きで層別（図2）：2列で全員が同じ向きのときは 28〜39 回で、どの条件よりも多い。2列でも向きが異なると、1列と同じくらいかやや少ない。</div>
+  <div class="step">回し手で層別（図3）：AB の方が CD より多い傾向がある。</div>
+  <div class="step">答え：<span data-ans="intro">このデータでは、2列に並び、全員が同じ向きにそろえて跳ぶと、多くの回数を連続で跳ぶと見込める。回し手は AB の方が多い傾向がある。</span>ただし、これは各条件4回ずつの練習の記録からの見込みで、大会で必ずそうなるとは限りません。</div>
+</div>
+<p>このような考察ができたのは、1回ごとの記録（回数）が、並び方・向き・回し手という複数の種類のデータと<strong>紐付けられて</strong>いたからです。回数だけを記録していたら、後から向きや回し手で分けることはできません。解説も、このような考察は1つのデータが複数の種類のデータと紐付けられていることで可能になるので、<strong>データを収集する前に分析の構想を練り、紐付ける項目を洗い出すことが大切</strong>だとしています。</p>
+<div class="box point"><p class="box-title">データを集める前に（統計的探究プロセスの「計画」、数Ⅰ-079）</p><p>① 調べたい結果（量的データ）を決める（例：連続回数）。<br>② 結果に関わりそうな要因を洗い出す（例：並び方・向き・回し手・跳ぶ順番・練習の時刻）。<br>③ 1回ごとに、結果と要因を同じ行に記録する表を用意する。<br>④ 分析した後、新しく気になった要因があれば、計画を見直してデータを集め直す。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：条件ごとの平均値だけを記録する</p><p>条件ごとの平均値だけを残すと、後から別の要因で分けたり、箱ひげ図で散らばりを比べたりすることができません。1回ごとの記録を、要因と紐付けたまま残しておきます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>箱ひげ図の並列</dt><dd>要因（質的データ）ごとに結果（量的データ）の箱ひげ図をかき、並べて比べる方法。</dd>
+    <dt>層別</dt><dd>データをある要因（並ぶ向き、縄の回し手など）で分けて比べること。</dd>
+    <dt>紐付ける</dt><dd>1つのデータ（1回の回数など）を、複数の種類のデータ（並び方・向き・回し手など）と結び付けて記録すること。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>要因が質的データ、結果が量的データのときは、箱ひげ図を並べて比べる。1列と2列では、2列の中央値が大きいが散らばりも大きかった（O1）。</li>
+    <li>並ぶ向きや縄の回し手で層別すると、2列で向きが同じときに回数が多く、向きが異なると少ないことが分かり、2列の散らばりの理由が見えた（O2）。</li>
+    <li>結論は「このデータでは〜と見込める」と述べる。層別できるのは記録が要因と紐付けられているからで、データを集める前に紐付ける項目を洗い出すことが大切（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">比べる手順</span><p>要因で分ける → 箱ひげ図を並べる → 中央値・箱・ひげを比べる → 別の要因でも分ける（層別）</p></div>
+  <div><span class="f-name">記録のしかた</span><p>1回ごとに、結果と要因を同じ行に書く（紐付ける）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。問題のデータはすべて学習用の架空のデータです。四分位数は数Ⅰ-079 の約束で求めます。数を入力する問題は、半角・全角のどちらで入力してもかまいません。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>図1（並び方別の箱ひげ図）から読み取れることとして、正しいものはどれですか。</p>
+  <div class="choices">
+    <button>2列の方が1列より四分位範囲が小さい。</button>
+    <button>1列の最大値の方が、2列の最大値より大きい。</button>
+    <button>どの回も、2列の方が1列より多く跳べている。</button>
+    <button data-correct="true">2列の方が1列より中央値が大きい。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">中央値は1列 19 回、2列 25 回で、2列の方が大きいです。四分位範囲は1列 5.5、2列 14.5 で、2列の方が大きいので1つ目は誤り。最大値は1列 27、2列 39 なので2つ目も誤り。2列の最小値 12 は1列の最小値 13 より小さく、2列でも少ない回があるので、3つ目も誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="19|19回">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>導入の記録で、1列の16回の連続回数の中央値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 19 回。小さい順に並べた 13, 15, 16, 16, 17, 17, 18, 19, 19, 21, 21, 22, 22, 23, 26, 27 の8番目と9番目の平均で \( (19+19)\div2=19 \) です。16個なので、真ん中の2つの値の平均をとります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>この時間の「層別」の説明として、正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">データを、ある要因（並ぶ向きや回し手など）で分けて比べること。</button>
+    <button>外れ値を取り除いてから、残りのデータで比べること。</button>
+    <button>データを小さい順に並べ、4等分すること。</button>
+    <button>2つの量的データの関係を、散布図に表すこと。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">層別は、データをある要因で分けて比べることです（解説：縄の回し手別にデータを分けて（層別して）比較する）。外れ値を除くこと（数Ⅰ-083）、4等分すること（四分位数）、散布図に表すこと（数Ⅰ-084）は、層別ではありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>図2（並ぶ向きで層別した箱ひげ図）から読み取れることとして、正しいものはどれですか。</p>
+  <div class="choices">
+    <button>1列では、向きが異なる方が、向きが同じ方より中央値が大きい。</button>
+    <button data-correct="true">2列・向き同じの第1四分位数は、2列・向き異なるの最大値より大きい。</button>
+    <button>2列・向き異なるの中央値は、1列全体の中央値（19 回）より大きい。</button>
+    <button>向きで分けると、2列の2つの箱は図1の2列の箱と同じ長さになる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">2列・向き同じの第1四分位数は 30.5、2列・向き異なるの最大値は 22 なので、正しいです。1列の中央値は向き同じ 20、向き異なる 18.5 で、向きが同じ方が大きいので1つ目は誤り。2列・向き異なるの中央値 18 は 19 より小さいので3つ目も誤り。四分位範囲は、図1の2列が 14.5、向き同じが 3.5、向き異なるが 5 で、分けると箱は短くなるので4つ目も誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="23.5|23.5回">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>導入の記録で、回し手 CD の16回の連続回数の第3四分位数を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 23.5 回。回し手 CD の16回を小さい順に並べると 12, 13, 15, 15, 16, 16, 16, 17, 17, 17, 18, 19, 28, 30, 31, 32。大きい方の8個 17, 17, 18, 19, 28, 30, 31, 32 の中央値は \( (19+28)\div2=23.5 \) です。17 と答えた人は中央値（8番目と9番目の平均）を求めています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>次の練習では、跳ぶ順番（背の順・ばらばら）が回数に関わるかも調べたいと考えました。記録のとり方として、最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>回数だけを記録しておき、条件は後から思い出して書き込む。</button>
+    <button>条件ごとの平均値だけを記録し、1回ごとの回数は残さない。</button>
+    <button data-correct="true">1回ごとに、回数と並び方・向き・回し手・跳ぶ順番を同じ行に記録する。</button>
+    <button>回数が多かった回だけを記録し、少なかった回は記録しない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">1回ごとの回数を要因と紐付けて記録しておけば、後からどの要因でも層別して比べられます。後から思い出して書くと誤りが入りやすく、紐付けが確かでありません。平均値だけでは、散らばりを比べたり別の要因で分けたりできません。多かった回だけを記録すると、データが偏り、正しく比べられません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O1・O2・O3</span></div>
+  <p>図1〜図3を見て、2人が話しています。</p>
+  <p>太郎：「図1で2列の中央値が大きいから、大会では2列で跳べば、向きに関係なく1列より多く跳べるね。」<br>花子：「図2も見ようよ。」</p>
+  <p>花子さんが伝えたいこととして、最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>図2では、2列のどちらの向きでも1列の中央値より大きいので、太郎さんの言うとおりである。</button>
+    <button data-correct="true">2列でも、向きが異なると中央値は 18 回で、1列全体の中央値 19 回より小さい。2列で多く跳べると見込めるのは、全員が同じ向きにそろえたときである。</button>
+    <button>向きで分けると1つの箱のデータが8回になるので、図2からは何も読み取れない。</button>
+    <button>回し手による違いがあるので、向きや並び方は回数に関係しない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">図2では、2列・向き同じの中央値が 32.5、2列・向き異なるの中央値が 18 で、向きによって大きく分かれます。2列・向き異なるは1列全体の中央値 19 より小さいので、「向きに関係なく」は誤りです。8回ずつでも、分布の違いは読み取れます（ただし、回数が少ないことは結論の言い方に反映させます）。回し手による違いがあることは、向きや並び方が関係しないことの理由にはなりません。<br><span class="small">この会話文の問題は練習用に作成したもので、実際の入試の出題形式を示すものではありません。</span></div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2・O3</span></div>
+  <p>この時間の大縄跳びの記録について、並び方だけで比べたときと、向きで層別したときとで分かったことを、箱ひげ図の読み取りにもとづいて100字程度で説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　<span data-model="q8">並び方だけで比べると、2列は1列より中央値が大きいが散らばりも大きい。向きで層別すると、2列は向きが同じなら回数が多く、異なると1列より少なめになる。2列の散らばりの大きさは、主に向きの違いによると考えられる。</span></p>
+    <p><strong>採点の観点</strong>　① 並び方だけの比較で、中央値と散らばりの両方に触れている。② 向きで層別した結果（2列・向き同じが多く、向き異なるが少ない）を書いている。③ 層別によって分かったこと（散らばりの理由など）をまとめている。④ 100字程度（90〜110字）。</p>
+  </div>
+  <div class="explain">「中央値」「散らばり（箱やひげの長さ）」の両方に触れ、層別の前と後で何が分かったかを対比して書くのがポイントです。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(4) データの分析」の「目的に応じて複数の種類のデータを収集し，適切な統計量やグラフ，手法などを選択して分析を行い，データの傾向を把握して事象の特徴を表現すること」（イ(イ)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「解決過程を振り返り，得られた結果を意味づけたり，活用したり，統合的・発展的に考察したりすることなどを求める」と述べています。層別して比べ、並び方だけの比較の結果を意味づけ直すことは、この方針に沿った力です。</p>
+  <p class="small">問7・問8は会話や架空のデータを題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">仮説検定の考え方（実験）（数Ⅰ-089）</p>
+  <p>次の時間は、仮説検定の考え方を具体的な事象で学びます。「新素材の枕を使った30人中24人がよく眠れたと回答した」という結果について、よく眠れた場合とそうでない場合が半々だと仮定し、コインを30回投げる実験を繰り返して、24枚以上表が出る相対度数を調べます。</p>
+  <p>この時間では、仮説検定の考え方（数Ⅰ-089・090）は扱っていません。この時間の結論も「このデータでは〜と見込める」にとどめました。偶然の違いかどうかを確かめる考え方は、次の時間から学びます。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-087　質的データの分析（二次元表）</div>
+  <div><span class="label">次の時間</span>数Ⅰ-089　仮説検定の考え方（実験）</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-088「質的データと量的データの分析（層別）」（活用。学習指導要領 数学Ⅰ (4)イ(イ)、解説 p.44-47）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(4) データの分析 イ(イ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.45（統計的探究プロセス）、p.46-47（質的データと量的データ間の関係を調べる際には、制御する要因が質的データで結果が量的データである問題場面では箱ひげ図を並列して比べること、クラス対抗の大縄跳び大会であるクラスの選手が1列に並んで跳ぶのと2列に並んで跳ぶのとではどちらがより多くの回数を連続で跳ぶと見込めるかについてデータをとって考察する場面で、並び方以外の要因、例えば並び方が全員同一方向の場合と真ん中で分かれる場合や縄の回し手別にデータを分けて（層別して）比較することが考えられること、このような考察は1つのデータが複数の種類のデータと紐付けられていることにより可能になること、データを収集する前に分析の構想を練り紐付ける項目を洗い出すことが大切であること）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。大縄跳びの場面と、並び方・向き・回し手で分けて比べる考え方は解説の例によりますが、記録の数値（X高校1年A組の連続回数）と確認の小問の値は、すべて学習用に作成した架空のデータで、実在の学校・人物とは関係ありません。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-088",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-088",
+  "title": "質的データと量的データの分析（層別）",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-5", "title": "データの分析"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(4)イ(イ)"],
+  "kaisetsu_page": "44-47",
+  "objectives": [
+    {"id": "O1", "text": "大縄跳びで1列と2列の並び方による連続回数を、箱ひげ図を並べて比べることができる。", "from": "大縄跳びで1列と2列の並び方による連続回数を箱ひげ図を並べて比べ", "sections": ["sec-1"], "checks": ["q1", "q2", "q7", "q8"]},
+    {"id": "O2", "text": "並ぶ向きや縄の回し手などの要因でデータを層別して箱ひげ図で比較し、回数に関わっていそうな要因を読み取ることができる。", "from": "並ぶ向きや縄の回し手などの要因で層別して比較し", "sections": ["sec-2"], "checks": ["q3", "q4", "q5", "q7", "q8"]},
+    {"id": "O3", "text": "層別して比べた結果から事象の特徴を説明し、データを集める前に紐付ける項目を考えておく大切さを説明できる。", "from": "事象の特徴を説明できる", "sections": ["sec-3"], "checks": ["q6", "q7", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "箱ひげ図の並列", "where": "sec-1"},
+    {"term": "層別", "where": "sec-2"},
+    {"term": "紐付ける", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "四分位数の求め方（個数が偶数のときの分け方を含む）", "taught_in": ["jhs_math/中2-088", "hs_math_1a/数Ⅰ-079"], "gap": false, "where": "review"},
+    {"concept": "四分位範囲と箱ひげ図", "taught_in": ["jhs_math/中2-089"], "gap": false, "where": "review"},
+    {"concept": "複数の集団のデータを箱ひげ図で比較すること", "taught_in": ["jhs_math/中2-091"], "gap": false, "where": "review"},
+    {"concept": "質的データと量的データ、統計的探究プロセス（計画の段階）", "taught_in": ["hs_math_1a/数Ⅰ-079"], "gap": false, "where": "review"},
+    {"concept": "別の観点でさらに分けて集計し直すこと", "taught_in": ["hs_math_1a/数Ⅰ-087"], "gap": false, "where": "review"},
+    {"concept": "外れ値の基準", "taught_in": ["hs_math_1a/数Ⅰ-083"], "gap": false, "where": "sec-2"}
+  ],
+  "out_of_scope": [
+    "仮説検定の考え方（数Ⅰ-089・数Ⅰ-090）",
+    "要因の組み合わせ（交互作用）を詳しく調べる方法（このページでは扱わない）",
+    "単元末演習（数Ⅰ-091）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『データの分析』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(4)イ(イ)の事項（入試へのつながりの引用）"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.45 統計的探究プロセス、p.46-47 箱ひげ図の並列、大縄跳びの例と層別、紐付ける項目を洗い出すこと"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

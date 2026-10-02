@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二次の乗法公式による展開｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.widget .w-row { margin: 4px 0; }
+.widget .w-row output { display: inline-block; min-width: 2.2em; text-align: right; font-weight: 700; }
+.widget .w-out { font-size: 1.05rem; font-weight: 700; margin: 8px 0 2px; overflow-wrap: anywhere; }
+.widget .w-sub { font-size: .92rem; margin: 2px 0; overflow-wrap: anywhere; }
+.widget table { width: auto; min-width: 240px; text-align: center; }
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>数と式</span><span>数Ⅰ-003</span></div>
+  <h1>二次の乗法公式による展開</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">\( 23\times 47 \) を、\( 23=2\times 10+3 \)、\( 47=4\times 10+7 \) とみて計算するとどうなるでしょう。10 を \( x \) に置き換えると \( (2x+3)(4x+7) \)。中学校の乗法公式では展開できないこの形の積を、分配法則から公式にしてみましょう。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>中学校で学んだ4つの乗法公式を確かめ、係数や文字が変わった式の展開に用いることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>新たな公式 \( (ax+b)(cx+d)=acx^2+(ad+bc)x+bd \) を分配法則から導き、中学校の公式との関係を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>式の形に応じて乗法公式を選び、式の展開に用いることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-002）</span>整式の乗法</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-003）</span>二次の乗法公式による展開</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-004）</span>置き換えを利用した展開</div>
+</div>
+<p class="small">前提となる単元：中学3年「簡単な多項式」「正の数の平方根」、中学1年「一元一次方程式」。この時間は、中学3年の乗法公式（中3-004〜006）と、前の時間の分配法則・指数法則（数Ⅰ-002）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、中学校の乗法公式（中3-004・005）と、前の時間の指数法則 \( (ab)^n=a^nb^n \)（数Ⅰ-002）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中3-004</span></div>
+  <p>\( (x+4)(x-7) \) を展開した結果はどれですか。</p>
+  <div class="choices">
+    <button>\( x^2+11x-28 \)</button>
+    <button>\( x^2-28 \)</button>
+    <button data-correct="true">\( x^2-3x-28 \)</button>
+    <button>\( x^2-3x+28 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( (x+a)(x+b)=x^2+(a+b)x+ab \) で \( a=4,\ b=-7 \) とすると、\( x \) の係数は \( 4+(-7)=-3 \)、定数項は \( 4\times(-7)=-28 \) で、\( x^2-3x-28 \) です。\( x^2+11x-28 \) は和を \( 4+7 \) とした符号の誤り、\( x^2-28 \) は \( x \) の項を忘れた誤り、\( x^2-3x+28 \) は積の符号の誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中3-005</span></div>
+  <p>\( (a-3)^2 \) を展開した結果はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( a^2-6a+9 \)</button>
+    <button>\( a^2-9 \)</button>
+    <button>\( a^2-3a+9 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( (a-b)^2=a^2-2ab+b^2 \) より、\( a^2-2\times a\times 3+3^2=a^2-6a+9 \) です。\( a^2-9 \) は真ん中の項 \( -2ab \) を忘れ、さらに \( 3^2 \) の符号も誤っています。\( a^2-3a+9 \) は真ん中の項の 2 倍を忘れた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-002</span></div>
+  <p>\( (-3x)^2 \) を計算した結果はどれですか。</p>
+  <div class="choices">
+    <button>\( -9x^2 \)</button>
+    <button data-correct="true">\( 9x^2 \)</button>
+    <button>\( 3x^2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( (ab)^n=a^nb^n \) より \( (-3x)^2=(-3)^2x^2=9x^2 \) です。\( -9x^2 \) は、負の数を2個かけると正になることを見落とした誤り、\( 3x^2 \) は係数を2乗し忘れた誤りです。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：2けた×2けたを式で見ると？</h2>
+<div class="box think">
+  <p class="box-title">\( 23\times 47 \) の仕組み</p>
+  <p>\( 23=2\times 10+3 \)、\( 47=4\times 10+7 \) なので、10 を \( x \) とすると、\( 23\times 47 \) は \( (2x+3)(4x+7) \) で \( x=10 \) としたものです。</p>
+  <p>中学校の公式 \( (x+a)(x+b)=x^2+(a+b)x+ab \) は、\( x \) の係数が両方とも 1 のときの公式なので、このままでは使えません。\( (2x+3)(4x+7) \) を展開すると、どんな式になるでしょうか。その式に \( x=10 \) を代入すると、本当に \( 23\times 47 \) の答えになるでしょうか。</p>
+  <p>答えは「4 新しい公式を分配法則から導く」の例題4で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="中学校の乗法公式"><span class="num">3</span>中学校の乗法公式を確かめる</h2>
+<p>中学3年では、次の4つの<strong>乗法公式</strong>を学びました（中3-004〜006）。どれも、分配法則で展開した結果を公式にしたものです。</p>
+<div class="formula-card">
+  <div><span class="f-name">① 中3-004</span><p>\( (x+a)(x+b)=x^2+(a+b)x+ab \)</p></div>
+  <div><span class="f-name">② 中3-005</span><p>\( (a+b)^2=a^2+2ab+b^2 \)</p></div>
+  <div><span class="f-name">③ 中3-005</span><p>\( (a-b)^2=a^2-2ab+b^2 \)</p></div>
+  <div><span class="f-name">④ 中3-006</span><p>\( (a+b)(a-b)=a^2-b^2 \)</p></div>
+</div>
+<p>たとえば ② は、\( (a+b)^2=(a+b)(a+b)=a^2+ab+ba+b^2=a^2+2ab+b^2 \) です。図1のように、1辺が \( a+b \) の正方形を4つに分けると、面積 \( ab \) の長方形が2つあることから、真ん中の項が \( 2ab \) になることが分かります（\( a,\ b \) が正の数の場合の図）。</p>
+<figure>
+<!--svg:f003a-->
+<svg viewBox="0 0 260 222" width="260" role="img" aria-label="1辺が a+b の正方形を4つに分けた面積図。左上が a²、右上と左下が ab、右下が b²">
+<rect x="60" y="30" width="120" height="120" fill="#1f5fbf" fill-opacity="0.16" stroke="currentColor" stroke-width="1.5"/>
+<text x="120" y="95" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">a²</text>
+<rect x="180" y="30" width="60" height="120" fill="#b7791f" fill-opacity="0.16" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 3"/>
+<text x="210" y="95" text-anchor="middle" font-size="14" fill="currentColor">ab</text>
+<text x="50" y="95" text-anchor="end" font-size="14" fill="currentColor">a</text>
+<rect x="60" y="150" width="120" height="60" fill="#b7791f" fill-opacity="0.16" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 3"/>
+<text x="120" y="185" text-anchor="middle" font-size="14" fill="currentColor">ab</text>
+<rect x="180" y="150" width="60" height="60" fill="#1f5fbf" fill-opacity="0.05" stroke="currentColor" stroke-width="1.5"/>
+<text x="210" y="185" text-anchor="middle" font-size="14" fill="currentColor">b²</text>
+<text x="50" y="185" text-anchor="end" font-size="14" fill="currentColor">b</text>
+<text x="120" y="22" text-anchor="middle" font-size="14" fill="currentColor">a</text>
+<text x="210" y="22" text-anchor="middle" font-size="14" fill="currentColor">b</text>
+</svg>
+<!--/svg:f003a-->
+  <figcaption>図1　\( (a+b)^2=a^2+2ab+b^2 \) の面積図（学習用に作成した模式図。\( a,\ b \) は正の数）</figcaption>
+</figure>
+<h3>公式の文字は「式のまとまり」でもよい</h3>
+<p>公式の \( a,\ b \) には、数だけでなく \( 3x \) や \( -5y \) のような単項式を当てはめることができます。当てはめたものはかっこに入れて考え、指数法則 \( (ab)^n=a^nb^n \)（数Ⅰ-002）で計算します。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（平方の公式）</p>
+  <p>\( (3x-2y)^2 \) を展開しなさい。</p>
+  <div class="step">ステップ1（公式を選ぶ）：差の2乗なので ③ \( (a-b)^2=a^2-2ab+b^2 \) を使い、\( a \) を \( 3x \)、\( b \) を \( 2y \) とします。</div>
+  <div class="step">ステップ2（かっこに入れて当てはめる）：\( (3x)^2-2\times 3x\times 2y+(2y)^2 \)。</div>
+  <div class="step">答え：\( 9x^2-12xy+4y^2 \)</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（\( (x+a)(x+b) \) の形）</p>
+  <p>\( (x+3y)(x-5y) \) を展開しなさい。</p>
+  <div class="step">ステップ1（公式を選ぶ）：\( x \) の係数が両方 1 なので ① を使い、\( a \) を \( 3y \)、\( b \) を \( -5y \) とします。</div>
+  <div class="step">ステップ2（和と積）：和 \( 3y+(-5y)=-2y \)、積 \( 3y\times(-5y)=-15y^2 \)。</div>
+  <div class="step">答え：\( x^2-2xy-15y^2 \)</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（和と差の積）</p>
+  <p>\( (2a+5b)(2a-5b) \) を展開しなさい。</p>
+  <div class="step">ステップ1（公式を選ぶ）：同じ2つの項の和と差の積なので ④ を使い、\( a \) を \( 2a \)、\( b \) を \( 5b \) とします。</div>
+  <div class="step">答え：\( (2a)^2-(5b)^2=4a^2-25b^2 \)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：\( (a+b)^2=a^2+b^2 \)、\( (3x)^2=3x^2 \)</p><p>\( (a+b)^2 \) の真ん中の項 \( 2ab \) を忘れる誤りがよくあります。数で確かめると、\( (2+3)^2=25 \) ですが、\( 2^2+3^2=13 \) で違います。差の \( 25-13=12 \) が \( 2\times 2\times 3 \) です（図1の2つの長方形）。また、\( a \) に \( 3x \) を当てはめたとき、\( (3x)^2=9x^2 \) です。かっこに入れずに \( 3x^2 \) と書くと誤りになります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="新しい公式"><span class="num">4</span>新しい公式を分配法則から導く</h2>
+<p>\( x \) の係数が 1 でない \( (ax+b)(cx+d) \) を、前の時間と同じように分配法則で展開してみます（数Ⅰ-002）。</p>
+$$ (ax+b)(cx+d)=ax\cdot cx+ax\cdot d+b\cdot cx+b\cdot d=acx^2+adx+bcx+bd $$
+<p>\( adx \) と \( bcx \) は同類項なので、まとめると次の公式が得られます。</p>
+<div class="box point"><p class="box-title">新しい乗法公式</p>
+$$ (ax+b)(cx+d)=acx^2+(ad+bc)x+bd $$
+<p>\( x^2 \) の係数は「前どうしの積 \( ac \)」、定数項は「後ろどうしの積 \( bd \)」、\( x \) の係数は「外側どうしの積 \( ad \)」と「内側どうしの積 \( bc \)」の和です。</p></div>
+<p>学習指導要領解説は、数学Ⅰで扱う新たな公式は、中学校で扱う乗法公式を除くと \( (ax+b)(cx+d)=acx^2+(ad+bc)x+bd \) のみで、三次の乗法公式は数学Ⅱで取り扱うとしています。3次の公式は数学Ⅱ（数Ⅱ-001）で学びます。</p>
+<figure>
+<!--svg:f003b-->
+<svg viewBox="0 0 300 204" width="300" role="img" aria-label="縦 ax+b、横 cx+d の長方形を4つに分けた面積図。左上が acx²、右上が adx、左下が bcx、右下が bd">
+<rect x="70" y="30" width="150" height="110" fill="#1f5fbf" fill-opacity="0.16" stroke="currentColor" stroke-width="1.5"/>
+<text x="145" y="90" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">acx²</text>
+<rect x="220" y="30" width="60" height="110" fill="#b7791f" fill-opacity="0.16" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 3"/>
+<text x="250" y="90" text-anchor="middle" font-size="14" fill="currentColor">adx</text>
+<text x="60" y="90" text-anchor="end" font-size="14" fill="currentColor">ax</text>
+<rect x="70" y="140" width="150" height="50" fill="#b7791f" fill-opacity="0.16" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 3"/>
+<text x="145" y="170" text-anchor="middle" font-size="14" fill="currentColor">bcx</text>
+<rect x="220" y="140" width="60" height="50" fill="#1f5fbf" fill-opacity="0.05" stroke="currentColor" stroke-width="1.5"/>
+<text x="250" y="170" text-anchor="middle" font-size="14" fill="currentColor">bd</text>
+<text x="60" y="170" text-anchor="end" font-size="14" fill="currentColor">b</text>
+<text x="145" y="22" text-anchor="middle" font-size="14" fill="currentColor">cx</text>
+<text x="250" y="22" text-anchor="middle" font-size="14" fill="currentColor">d</text>
+</svg>
+<!--/svg:f003b-->
+  <figcaption>図2　\( (ax+b)(cx+d) \) の面積図。4つの長方形の面積が、公式の4つの積 \( acx^2,\ adx,\ bcx,\ bd \) に当たる（学習用に作成した模式図。各長さは正の場合）</figcaption>
+</figure>
+<h3>中学校の公式は、新しい公式の特別な場合</h3>
+<p>新しい公式で \( a=c=1 \) とすると、\( (x+b)(x+d)=x^2+(b+d)x+bd \) となり、中学校の ① と同じ形になります。また \( c=a,\ d=b \) とすると \( (ax+b)^2=a^2x^2+2abx+b^2 \) で、② に \( ax \) と \( b \) を当てはめたものと一致します。新しい公式は、① をより一般にしたものといえます。</p>
+
+<h3>かけ算の表で確かめよう</h3>
+<p>スライダーで \( a,\ b,\ c,\ d \) を変えると、4つの積と展開した式、\( x=10 \) を代入した数の計算が変わります（\( a,\ c \) は 1〜9、\( b,\ d \) は \( -9 \)〜9 の整数）。</p>
+<div class="widget" id="w1">
+  <div class="w-row"><label for="w1-a">\( a \)（\( ax+b \) の \( x \) の係数）</label> <input type="range" id="w1-a" min="1" max="9" step="1" value="2"> <output id="w1-av" for="w1-a">2</output></div>
+  <div class="w-row"><label for="w1-b">\( b \)（\( ax+b \) の定数項）</label> <input type="range" id="w1-b" min="-9" max="9" step="1" value="3"> <output id="w1-bv" for="w1-b">3</output></div>
+  <div class="w-row"><label for="w1-c">\( c \)（\( cx+d \) の \( x \) の係数）</label> <input type="range" id="w1-c" min="1" max="9" step="1" value="4"> <output id="w1-cv" for="w1-c">4</output></div>
+  <div class="w-row"><label for="w1-d">\( d \)（\( cx+d \) の定数項）</label> <input type="range" id="w1-d" min="-9" max="9" step="1" value="7"> <output id="w1-dv" for="w1-d">7</output></div>
+  <div class="table-wrap">
+  <table aria-label="かけ算の表">
+    <tr><th>×</th><th id="w1-hc1">4x</th><th id="w1-hc2">7</th></tr>
+    <tr><th id="w1-hr1">2x</th><td id="w1-c11">8x²</td><td id="w1-c12">14x</td></tr>
+    <tr><th id="w1-hr2">3</th><td id="w1-c21">12x</td><td id="w1-c22">21</td></tr>
+  </table>
+  </div>
+  <p class="w-out" id="w1-out" aria-live="polite">(2x + 3)(4x + 7) = 8x² + 26x + 21</p>
+  <p class="w-sub" id="w1-mid">外側の積 ad = 14、内側の積 bc = 12、x の係数 ad + bc = 26</p>
+  <p class="w-sub" id="w1-ten">x = 10 を代入：23 × 47 = 800 + 260 + 21 = 1081</p>
+  <p class="small">表の縦に \( ax,\ b \)、横に \( cx,\ d \) を並べ、ますに積を書いています。右上と左下のます（外側・内側の積）が \( x \) の項です。</p>
+</div>
+
+<div class="box example worked">
+  <p class="box-title">例題4（導入の答え）</p>
+  <p>\( (2x+3)(4x+7) \) を展開しなさい。また、その式に \( x=10 \) を代入して \( 23\times 47 \) を求めなさい。</p>
+  <div class="step">ステップ1（係数を読み取る）：\( a=2,\ b=3,\ c=4,\ d=7 \)。</div>
+  <div class="step">ステップ2（公式に当てはめる）：\( ac=8 \)、\( ad+bc=2\times 7+3\times 4=14+12=26 \)、\( bd=21 \)。よって \( 8x^2+26x+21 \)。</div>
+  <div class="step">ステップ3（\( x=10 \) を代入）：\( 8\times 100+26\times 10+21=800+260+21=1081 \)。</div>
+  <div class="step">答え：\( (2x+3)(4x+7)=8x^2+26x+21 \)、\( 23\times 47=1081 \)。筆算の答えと一致します。筆算の中で十の位の計算に使われる積 \( 2\times 7 \) と \( 3\times 4 \) の和が、公式の \( ad+bc \) に当たります（くり上がりは別に考えます）。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5（負の数を含む）</p>
+  <p>\( (3x-2)(2x+5) \) を展開しなさい。</p>
+  <div class="step">ステップ1（係数を読み取る）：\( a=3,\ b=-2,\ c=2,\ d=5 \)。\( b \) は符号も含めて \( -2 \) です。</div>
+  <div class="step">ステップ2（外側と内側）：\( ad+bc=3\times 5+(-2)\times 2=15-4=11 \)。</div>
+  <div class="step">答え：\( 6x^2+11x-10 \)</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題6（2種類の文字）</p>
+  <p>\( (4x-3y)(2x-5y) \) を展開しなさい。</p>
+  <div class="step">ステップ1（\( b,\ d \) に単項式を当てはめる）：\( a=4,\ b=-3y,\ c=2,\ d=-5y \) とみます。</div>
+  <div class="step">ステップ2（公式に当てはめる）：\( ac=8 \)、\( ad+bc=4\times(-5y)+(-3y)\times 2=-20y-6y=-26y \)、\( bd=(-3y)(-5y)=15y^2 \)。</div>
+  <div class="step">答え：\( 8x^2-26xy+15y^2 \)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：真ん中の係数を \( ac+bd \) にする、符号を落とす</p><p>\( x \) の係数は、外側の積 \( ad \) と内側の積 \( bc \) の和です。前どうし・後ろどうしの積 \( ac,\ bd \) は、それぞれ \( x^2 \) の係数と定数項になります。また、\( (3x-2)(2x+5) \) の \( b \) は \( -2 \) です。\( 2 \) として \( 15+4=19 \) とすると誤りになります。迷ったら、表のように4つの積を書き出して確かめましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="公式を選んで展開"><span class="num">5</span>式の形を見て公式を選ぶ</h2>
+<p>展開するときは、まず式の形を見て、どの公式が使えるかを判断します。どの公式も分配法則から導かれたものなので、迷ったときは分配法則で展開すれば必ず答えが出ます。</p>
+<div class="table-wrap">
+<table>
+  <caption>表1　式の形と使う公式</caption>
+  <tr><th>式の形</th><th>使う公式</th><th>例</th></tr>
+  <tr><td>同じ式の2乗</td><td>② \( (a+b)^2 \)、③ \( (a-b)^2 \)</td><td>\( (3x-2y)^2 \)</td></tr>
+  <tr><td>同じ2つの項の和と差の積</td><td>④ \( (a+b)(a-b) \)</td><td>\( (2a+5b)(2a-5b) \)</td></tr>
+  <tr><td>\( x \) の係数がどちらも 1</td><td>① \( (x+a)(x+b) \)</td><td>\( (x+3y)(x-5y) \)</td></tr>
+  <tr><td>\( x \) の係数が 1 でない1次式の積</td><td>新しい公式 \( (ax+b)(cx+d) \)</td><td>\( (3x-2)(2x+5) \)</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題7（符号に注意して公式を選ぶ）</p>
+  <p>\( (-2x+5)^2 \) を展開しなさい。</p>
+  <div class="step">ステップ1（形を見る）：同じ式の2乗なので ② を使い、\( a \) を \( -2x \)、\( b \) を \( 5 \) とします。</div>
+  <div class="step">ステップ2（当てはめる）：\( (-2x)^2+2\times(-2x)\times 5+5^2 \)。</div>
+  <div class="step">答え：\( 4x^2-20x+25 \)</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題8（展開してから加減する）</p>
+  <p>\( (x+2)^2-(x+3)(x-3) \) を計算しなさい。</p>
+  <div class="step">ステップ1（それぞれ公式で展開）：\( (x+2)^2=x^2+4x+4 \)、\( (x+3)(x-3)=x^2-9 \)。</div>
+  <div class="step">ステップ2（ひく式はかっこごとひく）：\( x^2+4x+4-(x^2-9)=x^2+4x+4-x^2+9 \)。符号がすべて変わります（数Ⅰ-001）。</div>
+  <div class="step">答え：\( 4x+13 \)</div>
+</div>
+<div class="box point"><p class="box-title">展開の手順</p><p>① 式の形を見て公式を選ぶ（表1）→ ② 公式の文字に当てはめる式をかっこに入れる（符号も含める）→ ③ 指数法則で計算し、同類項をまとめる → ④ ひく式があれば、かっこごとひく。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>乗法公式</dt><dd>よく出てくる形の積を、分配法則で展開した結果として公式にまとめたもの。中学校の4つの公式と、数学Ⅰの新しい公式 \( (ax+b)(cx+d)=acx^2+(ad+bc)x+bd \)。</dd>
+    <dt>展開</dt><dd>単項式や多項式の積の形の式を、かっこをはずして単項式の和の形に表すこと（中3-003、数Ⅰ-002）。</dd>
+    <dt>外側の積・内側の積</dt><dd>\( (ax+b)(cx+d) \) の \( ad \) と \( bc \) をこのページではこう呼ぶ。和 \( ad+bc \) が \( x \) の係数になる。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>中学校の4つの乗法公式は、文字に単項式を当てはめても使える。当てはめる式はかっこに入れ、係数も2乗する（O1）。</li>
+    <li>\( (ax+b)(cx+d)=acx^2+(ad+bc)x+bd \) は、分配法則で4つの積を求め、同類項 \( adx,\ bcx \) をまとめて導ける（O2）。</li>
+    <li>中学校の ① は新しい公式で \( a=c=1 \) とした場合である。3次の乗法公式は数学Ⅱで学ぶ（O2）。</li>
+    <li>式の形を見て公式を選び、符号も含めて当てはめる。ひく式はかっこごとひく（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">新しい乗法公式</span><p>\( (ax+b)(cx+d) \)<br>\( =acx^2+(ad+bc)x+bd \)</p></div>
+  <div><span class="f-name">中学校の公式</span><p>\( (x+a)(x+b)=x^2+(a+b)x+ab \)<br>\( (a\pm b)^2=a^2\pm 2ab+b^2 \)<br>\( (a+b)(a-b)=a^2-b^2 \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。式を入力する問題は、\( x^2 \) を x^2 または x² と入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>\( (2x+3y)^2 \) を展開した結果はどれですか。</p>
+  <div class="choices">
+    <button>\( 4x^2+9y^2 \)</button>
+    <button data-correct="true">\( 4x^2+12xy+9y^2 \)</button>
+    <button>\( 4x^2+6xy+9y^2 \)</button>
+    <button>\( 2x^2+12xy+3y^2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">② で \( a \) を \( 2x \)、\( b \) を \( 3y \) とすると、\( (2x)^2+2\times 2x\times 3y+(3y)^2=4x^2+12xy+9y^2 \) です。\( 4x^2+9y^2 \) は真ん中の項 \( 2ab \) を忘れた誤り、\( 4x^2+6xy+9y^2 \) は真ん中の項の 2 倍を忘れた誤り、\( 2x^2+12xy+3y^2 \) は \( (2x)^2,\ (3y)^2 \) の係数を2乗し忘れた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>\( (5a+2b)(5a-2b) \) を展開した結果はどれですか。</p>
+  <div class="choices">
+    <button>\( 25a^2+4b^2 \)</button>
+    <button>\( 5a^2-2b^2 \)</button>
+    <button>\( 10a^2-4b^2 \)</button>
+    <button data-correct="true">\( 25a^2-4b^2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">④ で \( a \) を \( 5a \)、\( b \) を \( 2b \) とすると、\( (5a)^2-(2b)^2=25a^2-4b^2 \) です。\( 25a^2+4b^2 \) は差の符号の誤り、\( 5a^2-2b^2 \) は係数を2乗し忘れた誤り、\( 10a^2-4b^2 \) は \( (5a)^2 \) の係数を \( 5\times 2 \) とした誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="19">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>\( (3x+2)(2x+5) \) を展開したときの \( x \) の係数を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 19。\( a=3,\ b=2,\ c=2,\ d=5 \) なので、\( ad+bc=3\times 5+2\times 2=15+4=19 \) です。展開した式は \( 6x^2+19x+10 \)。16 と答えた場合は、前どうし・後ろどうしの積の和 \( ac+bd=6+10 \) を計算しています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>\( (4x-3)(2x+5) \) を展開した結果はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 8x^2+14x-15 \)</button>
+    <button>\( 8x^2+26x-15 \)</button>
+    <button>\( 8x^2-7x-15 \)</button>
+    <button>\( 8x^2+14x+15 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( a=4,\ b=-3,\ c=2,\ d=5 \) より、\( ac=8 \)、\( ad+bc=20+(-6)=14 \)、\( bd=-15 \) で \( 8x^2+14x-15 \) です。\( 8x^2+26x-15 \) は内側の積 \( (-3)\times 2 \) を \( +6 \) とした符号の誤り、\( 8x^2-7x-15 \) は \( x \) の係数を \( ac+bd=8+(-15) \) とした誤り、\( 8x^2+14x+15 \) は定数項 \( (-3)\times 5 \) の符号の誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>\( (-3x+4)^2 \) を展開した結果はどれですか。</p>
+  <div class="choices">
+    <button>\( -9x^2-24x+16 \)</button>
+    <button>\( 9x^2+24x+16 \)</button>
+    <button data-correct="true">\( 9x^2-24x+16 \)</button>
+    <button>\( 9x^2+16 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">② で \( a \) を \( -3x \)、\( b \) を 4 とすると、\( (-3x)^2+2\times(-3x)\times 4+4^2=9x^2-24x+16 \) です。\( -9x^2-24x+16 \) は \( (-3x)^2 \) を負にした誤り、\( 9x^2+24x+16 \) は真ん中の項の符号を落とした誤り、\( 9x^2+16 \) は真ん中の項を忘れた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="4x+13|13+4x">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>\( (x+2)^2-(x+3)(x-3) \) を計算しなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 4x+13 \)（例題8と同じ式です。手を動かして確かめましょう）。\( x^2+4x+4-(x^2-9)=4x+13 \)。\( 4x-5 \) と答えた場合は \( -(x^2-9) \) の \( -9 \) の符号を変え忘れ、\( 2x+13 \) と答えた場合は \( (x+2)^2 \) の真ん中の項を \( 2x \) としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O2</span></div>
+  <p>太郎さんと花子さんが、\( 38\times 52 \) を暗算する方法を話しています。</p>
+  <p>太郎：「10 を \( x \) とすると、\( 38\times 52 \) は \( (3x+8)(5x+2) \) で \( x=10 \) としたものだね。」<br>花子：「新しい公式で展開してから \( x=10 \) を代入すればいいね。」</p>
+  <p>2人の方法で正しく計算しているものはどれですか。</p>
+  <div class="choices">
+    <button>\( 15x^2+16 \) に \( x=10 \) を代入して \( 1500+16=1516 \)</button>
+    <button data-correct="true">\( 15x^2+46x+16 \) に \( x=10 \) を代入して \( 1500+460+16=1976 \)</button>
+    <button>\( 15x^2+40x+16 \) に \( x=10 \) を代入して \( 1500+400+16=1916 \)</button>
+    <button>\( 15x^2+6x+16 \) に \( x=10 \) を代入して \( 1500+60+16=1576 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( a=3,\ b=8,\ c=5,\ d=2 \) で、\( ac=15 \)、\( ad+bc=3\times 2+8\times 5=6+40=46 \)、\( bd=16 \)。\( x=10 \) を代入すると \( 1500+460+16=1976 \) で、\( 38\times 52=1976 \) と一致します。\( 15x^2+16 \) は \( x \) の項を忘れた誤り、\( 15x^2+40x+16 \) は内側の積 \( bc=40 \) だけ、\( 15x^2+6x+16 \) は外側の積 \( ad=6 \) だけを \( x \) の係数にした誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O3</span></div>
+  <p>\( (2x-y)(2x+y)-(x-2y)^2 \) を計算した結果はどれですか。</p>
+  <div class="choices">
+    <button>\( 3x^2-4xy-5y^2 \)</button>
+    <button>\( 3x^2+4xy+3y^2 \)</button>
+    <button>\( 5x^2-4xy+3y^2 \)</button>
+    <button data-correct="true">\( 3x^2+4xy-5y^2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">④ より \( (2x-y)(2x+y)=4x^2-y^2 \)、③ より \( (x-2y)^2=x^2-4xy+4y^2 \)。かっこごとひいて \( 4x^2-y^2-x^2+4xy-4y^2=3x^2+4xy-5y^2 \) です。\( 3x^2-4xy-5y^2 \) は \( -(-4xy) \) を \( -4xy \) とした符号の誤り、\( 3x^2+4xy+3y^2 \) は \( -(4y^2) \) の符号を変え忘れた誤り、\( 5x^2-4xy+3y^2 \) はひかずにたした誤りです。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2</span></div>
+  <p>(1) 公式 \( (ax+b)(cx+d)=acx^2+(ad+bc)x+bd \) を、分配法則を使って導きなさい。(2) この公式で \( c=a,\ d=b \) とするとどんな式が得られますか。また、それが中学校のどの公式と同じことを表しているか説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) \( cx+d \) を1つのまとまりとみて分配法則を使うと、\( (ax+b)(cx+d)=ax(cx+d)+b(cx+d)=acx^2+adx+bcx+bd \)。\( adx \) と \( bcx \) は同類項なので、まとめて \( acx^2+(ad+bc)x+bd \)。</p>
+    <p>(2) \( (ax+b)(ax+b)=a\cdot a\,x^2+(ab+ba)x+b\cdot b \) より、\( (ax+b)^2=a^2x^2+2abx+b^2 \)。これは中学校の公式 \( (a+b)^2=a^2+2ab+b^2 \) の \( a \) を \( ax \)、\( b \) を \( b \) とした \( (ax)^2+2\cdot ax\cdot b+b^2 \) と同じである。</p>
+    <p><strong>採点の観点</strong>　① 分配法則を使って4つの積を示している。② 同類項 \( adx,\ bcx \) をまとめて公式の形にしている。③ (2) で \( (ax+b)^2 \) を正しく求め、平方の公式との対応を説明している。</p>
+  </div>
+  <div class="explain">(2) の式は、例題7のように \( a \) に負の数を入れても成り立ちます。たとえば \( a=-2,\ b=5 \) なら \( (-2x+5)^2=4x^2-20x+25 \) です。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲について特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲とする」とされています。この時間の内容は、数学Ⅰ「(1) 数と式」の「二次の乗法公式及び因数分解の公式の理解を深めること」（ア(ウ)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。問7のように、数の計算を式の形で見直す見方は、こうした処理の一つの例です。</p>
+  <p class="small">問7は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">置き換えを利用した展開（数Ⅰ-004）</p>
+  <p>次の時間は、\( (x+y+1)(x+y-2) \) のように、そのままでは公式の形に見えない式を扱います。式の一部（たとえば \( x+y \)）を1つの文字に置き換えると、この時間の公式が使える形になります。</p>
+  <p>この時間では、式の一部を置き換える展開（数Ⅰ-004）、因数分解（数Ⅰ-005・006）、3次の乗法公式（数Ⅱ-001）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-002　整式の乗法</div>
+  <div><span class="label">次の時間</span>数Ⅰ-004　置き換えを利用した展開</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-003「二次の乗法公式による展開」（学習指導要領 数学Ⅰ (1)ア(ウ)、解説 p.37）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(1) 数と式（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.36-37「なお，中学校で取り扱う乗法公式を除くとここで取り扱う新たな公式は（ax＋b）（cx＋d）＝acx²＋（ad＋bc）x＋bd のみで，三次の乗法公式は『数学Ⅱ』で取り扱うことに留意する」（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>中学校学習指導要領（平成29年告示）解説 数学編 第3学年 A(2)（4つの乗法公式、式の展開の公式を数の計算と関連付けること）（文部科学省）https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。「外側の積・内側の積」はこのページでの呼び方です。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var MINUS = "\u2212";
+  var ids = ["a", "b", "c", "d"];
+  var el = {};
+  ["a", "b", "c", "d", "av", "bv", "cv", "dv", "hc1", "hc2", "hr1", "hr2", "c11", "c12", "c21", "c22", "out", "mid", "ten"].forEach(function (k) {
+    el[k] = document.getElementById("w1-" + k);
+  });
+  if (!el.a || !el.out) return;
+  function num(n) { return n < 0 ? MINUS + Math.abs(n) : String(n); }
+  function paren(n) { return n < 0 ? "(" + num(n) + ")" : num(n); }
+  function mono(c, v) {
+    if (v === "" || c === 0) return num(c);
+    if (c === 1) return v;
+    if (c === -1) return MINUS + v;
+    return num(c) + v;
+  }
+  function joinTerms(list) {
+    var s = "";
+    list.forEach(function (t) {
+      var c = t[0], v = t[1];
+      if (c === 0) return;
+      var abs = Math.abs(c);
+      var body = (v !== "" && abs === 1) ? v : String(abs) + v;
+      if (s === "") s = (c < 0 ? MINUS : "") + body;
+      else s += (c < 0 ? " " + MINUS + " " : " + ") + body;
+    });
+    return s === "" ? "0" : s;
+  }
+  function draw() {
+    var a = parseInt(el.a.value, 10), b = parseInt(el.b.value, 10);
+    var c = parseInt(el.c.value, 10), d = parseInt(el.d.value, 10);
+    var ac = a * c, ad = a * d, bc = b * c, bd = b * d, mid = ad + bc;
+    el.av.textContent = num(a); el.bv.textContent = num(b); el.cv.textContent = num(c); el.dv.textContent = num(d);
+    el.hr1.textContent = mono(a, "x"); el.hr2.textContent = num(b);
+    el.hc1.textContent = mono(c, "x"); el.hc2.textContent = num(d);
+    el.c11.textContent = mono(ac, "x²"); el.c12.textContent = mono(ad, "x");
+    el.c21.textContent = mono(bc, "x"); el.c22.textContent = num(bd);
+    el.out.textContent = "(" + joinTerms([[a, "x"], [b, ""]]) + ")(" + joinTerms([[c, "x"], [d, ""]]) + ") = "
+      + joinTerms([[ac, "x²"], [mid, "x"], [bd, ""]]);
+    el.mid.textContent = "外側の積 ad = " + num(ad) + "、内側の積 bc = " + num(bc) + "、x の係数 ad + bc = " + num(mid);
+    var p = 10 * a + b, q = 10 * c + d;
+    el.ten.textContent = "x = 10 を代入：" + num(p) + " × " + num(q) + " = " + num(100 * ac) + " + " + paren(10 * mid)
+      + " + " + paren(bd) + " = " + num(p * q);
+  }
+  ids.forEach(function (k) { el[k].addEventListener("input", draw); });
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-003",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-003",
+  "title": "二次の乗法公式による展開",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-1", "title": "数と式"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ウ)"],
+  "kaisetsu_page": "37",
+  "objectives": [
+    {"id": "O1", "text": "中学校で学んだ4つの乗法公式を確かめ、係数や文字が変わった式の展開に用いることができる。", "from": "中学校で学んだ乗法公式を確かめ", "sections": ["sec-1"], "checks": ["q1", "q2"]},
+    {"id": "O2", "text": "新たな公式 \\( (ax+b)(cx+d)=acx^2+(ad+bc)x+bd \\) を分配法則から導き、中学校の公式との関係を説明できる。", "from": "新たな公式 (ax+b)(cx+d)=acx²+(ad+bc)x+bd を分配法則から導いて", "sections": ["sec-2"], "checks": ["q3", "q4", "q7", "q9"]},
+    {"id": "O3", "text": "式の形に応じて乗法公式を選び、式の展開に用いることができる。", "from": "式の展開に用いることができる。三次の乗法公式は数学Ⅱで扱う。", "sections": ["sec-3", "sec-2"], "checks": ["q5", "q6", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "乗法公式", "where": "sec-1"},
+    {"term": "展開", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "乗法公式 (x+a)(x+b)=x²+(a+b)x+ab", "taught_in": ["jhs_math/中3-004"], "where": "review"},
+    {"concept": "乗法公式 (a+b)²、(a−b)²", "taught_in": ["jhs_math/中3-005"], "where": "review"},
+    {"concept": "乗法公式 (a+b)(a−b)=a²−b²", "taught_in": ["jhs_math/中3-006"], "where": "sec-1"},
+    {"concept": "指数法則 (ab)ⁿ=aⁿbⁿ", "taught_in": ["hs_math_1a/数Ⅰ-002"], "where": "review"},
+    {"concept": "分配法則による多項式の乗法", "taught_in": ["hs_math_1a/数Ⅰ-002", "jhs_math/中3-003"], "where": "sec-2"},
+    {"concept": "同類項をまとめる、ひく式の符号を変える", "taught_in": ["hs_math_1a/数Ⅰ-001"], "where": "sec-3"},
+    {"concept": "長方形・正方形の面積（面積図）", "taught_in": ["jhs_math/中1-029"], "where": "sec-1"}
+  ],
+  "out_of_scope": [
+    "式の一部を置き換える展開（数Ⅰ-004）",
+    "因数分解（数Ⅰ-005・数Ⅰ-006）",
+    "3次の乗法公式（数Ⅱ-001）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『数と式』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(1)ア(ウ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.36-37 新たな公式は (ax+b)(cx+d) のみで、三次の乗法公式は数学Ⅱで扱うこと"},
+    {"name": "中学校学習指導要領（平成29年告示）解説 数学編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf", "use": "第3学年A(2)：中学校で扱う4つの乗法公式、展開の公式を数の計算と関連付けること"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

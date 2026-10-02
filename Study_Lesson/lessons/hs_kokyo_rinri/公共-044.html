@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>市場機構と価格の働き｜公共</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="../assets/lesson.js"></script>
+<style>
+  .mk-d { stroke: var(--primary); }
+  .mk-s { stroke: var(--caution); }
+  .mk-dt { fill: var(--primary); }
+  .mk-st { fill: var(--caution); }
+  .mk-out { font-weight: 700; min-height: 3.4em; }
+  .mk-presets { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>公共</span><span>経済に関わる事項（市場経済、金融、財政と社会保障）</span><span>公共-044</span></div>
+  <h1>市場機構と価格の働き</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">野菜の値段、アルバイトの時給、預金につく利子――どれも市場で決まる「価格」です。だれかが全体を指図しているわけではないのに、価格はなぜ品不足や売れ残りを減らす方向に動き、人やお金を必要なところへ導くのでしょうか。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>商品市場・労働市場・金融市場などの市場があり、それぞれで価格・賃金・金利という「価格」が形成されることを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>需要曲線・供給曲線を用いて、均衡価格の決まり方と、需要や供給の変化による価格と取引量の動きを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>価格の働きによって生産が調整され、資本や労働などの生産要素が効率的に配分される仕組みを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>自発的な交換によって参加者それぞれに利益が生じ、それが国境を越えた貿易取引でも同様であることを説明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（公共-043）</span>公正で自由な経済活動と政府の役割</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>市場機構と価格の働き</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（公共-045）</span>市場機能の限界と政府の施策</div>
+</div>
+<p class="small">前提となる単元：公共「公共的な空間における基本的原理」、中学校社会（公民的分野）「市場の働きと経済」「国民の生活と政府の役割」</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、中学校の公民的分野で学んだ「需要・供給と価格」の考え方を、需要曲線・供給曲線を使って一段深めます。まず、次の3つを確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中学校 公民-056（市場経済と価格の決まり方）</span></div>
+  <p>ある商品の市場で、需要量（買いたい量）と供給量（売りたい量）が一致するときの価格を何といいますか。</p>
+  <div class="choices">
+    <button>公共料金</button>
+    <button data-correct="true">均衡価格</button>
+    <button>定価</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は「均衡価格」です。公共料金（中学校 公民-057 で触れた言葉）や定価は、「需要量と供給量が一致するときの価格」という意味の言葉ではありません。均衡価格は、需要曲線と供給曲線の交点で表されます。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：公共-043（公正で自由な経済活動と政府の役割）</span></div>
+  <p>前の時間に学んだ内容として正しいものを選びましょう。</p>
+  <div class="choices">
+    <button>市場経済では、政府は経済に関わる役割を何も担わない。</button>
+    <button data-correct="true">公正で自由な競争が行われると、消費者の利益が確保され、社会的余剰が最大になる。</button>
+    <button>財産権の保護や商取引のルールは、市場の働きを妨げるので必要ない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は2番目です。市場経済では、公正で自由な競争によって消費者の利益が確保され、社会的余剰が最大になります。そのために政府は財産権を守り、商取引のルールを整える役割を担っています。この時間の7節では、社会的余剰を「取引に参加した人たちの得の合計」と考えて、グラフの面積で表してみます。</div>
+</div>
+<div class="q" data-type="input" id="r3" data-accept="(4,6)|4,6|x=4,y=6">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中学校 数学 中2-037（連立方程式の解とグラフの交点）</span></div>
+  <p>2つの直線 y = −x + 10 と y = x + 2 の交点の座標を (x, y) の形で答えましょう。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">−x + 10 = x + 2 より 2x = 8、x = 4、y = 6 なので、交点は (4, 6) です。連立方程式の解は2直線の交点の座標でした。この時間は、需要曲線と供給曲線の交点として価格を求めます。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">補足：金利（利子率）とは</p>
+  <p>お金を借りた人は、借りた額に上乗せして<strong>利子（利息）</strong>を払います。借りた額に対する1年あたりの利子の割合を<strong>金利（利子率）</strong>といいます。例えば10万円を金利 年2％ で1年借りると、利子は 100,000円 × 0.02 ＝ 2,000円 です。</p>
+  <p>金利は、お金を貸し借りする市場（金融市場）での「お金を借りる値段」にあたります。金融の仕組みと金利の働きは、公共-047 でくわしく学びます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：だれも値上げを相談していないのに？</h2>
+<div class="box think">
+  <p class="box-title">考えよう</p>
+  <p>ある年、天候不順でトマトの収穫が大きく減ったとします（架空の場面）。店どうしが相談して値上げを決めたわけではありません。</p>
+  <ol>
+    <li>トマトの値段は上がるでしょうか、下がるでしょうか。</li>
+    <li>値段が変わると、買う人と作る人は、それぞれ行動をどう変えるでしょうか。</li>
+    <li>値段が上がることには、社会にとってよい面もあるでしょうか。</li>
+  </ol>
+  <p>予想をメモしてから読み進めましょう。答えは5節と6節で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="三つの市場と価格"><span class="num">3</span>「市場」はどこにある？――三つの市場と三つの「価格」</h2>
+<p><strong>市場</strong>とは、売りたい人と買いたい人が出会い、取引が行われる場や仕組みのことです。特定の建物だけを指すのではなく、インターネット上の取引も含めて、同じものを売り買いする関係の全体を市場と考えます。買おうとすることを<strong>需要</strong>、売ろうとすることを<strong>供給</strong>といいます。</p>
+<p>市場には、取引されるものによっていろいろな種類があり、それぞれの市場で「価格」が形成されます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>市場</th><th>取引されるもの</th><th>需要する側（買い手）</th><th>供給する側（売り手）</th><th>形成される「価格」</th></tr>
+  <tr><td><strong>商品市場</strong></td><td>財（モノ）やサービス</td><td>主に家計（消費者）</td><td>主に企業</td><td><strong>価格</strong></td></tr>
+  <tr><td><strong>労働市場</strong></td><td>労働（働くこと）</td><td>企業など（人を雇う側）</td><td>家計（働く人）</td><td><strong>賃金</strong></td></tr>
+  <tr><td><strong>金融市場</strong></td><td>資金（お金の貸し借り）</td><td>資金を借りたい企業など</td><td>資金を貸したい家計など（預金などを通して）</td><td><strong>金利</strong></td></tr>
+</table>
+</div>
+<p>金融市場は、資金の融通（お金の貸し借り）が行われる市場です。金利は、この金融市場で形成される「お金を借りる値段」にあたります（1節の補足「金利（利子率）とは」）。</p>
+<p>企業が生産に使う労働・資本（機械・設備や、それを買うための資金）・土地などを<strong>生産要素</strong>といいます。労働市場や金融市場は、生産要素が取引される市場でもあります。</p>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>「家計はいつも買い手、企業はいつも売り手」と考えがちですが、労働市場では立場が入れかわります。働く人（家計）が労働を<strong>供給</strong>し、企業が労働を<strong>需要</strong>します。どちらが需要側かは「何が取引されているか」で決まります。</p></div>
+<div class="box point"><p class="box-title">三つの市場はつながっている</p><p>企業は商品市場で売るために、労働市場で人を雇い、金融市場で資金を集めます。ある商品がよく売れるようになると、その生産に必要な人や資金の需要も増えます。三つの「価格」は別々に決まっているのではなく、互いに影響し合っています（6節）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="均衡価格の決まり方"><span class="num">4</span>需要曲線・供給曲線で価格の決まり方を見る</h2>
+<p>価格と需要量の関係を表したグラフを<strong>需要曲線</strong>、価格と供給量の関係を表したグラフを<strong>供給曲線</strong>といいます。</p>
+<ul>
+  <li><strong>需要曲線は右下がり</strong>：価格が下がるほど、買いたい人や買いたい量が増えるからです。</li>
+  <li><strong>供給曲線は右上がり</strong>：価格が上がるほど、作って売れば利益が出やすくなり、売りたい量が増えるからです。</li>
+</ul>
+<div class="box caution"><p class="box-title">グラフの向きに注意</p><p>経済のグラフでは、<strong>縦軸が価格、横軸が数量</strong>です。数学では横軸の値を決めて縦軸の値を読むことが多いのですが、需要曲線・供給曲線は「縦軸の価格を1つ決めると、横軸でその価格での需要量・供給量が読める」グラフです。</p></div>
+<h3>架空の市場で考える</h3>
+<p>ある町の市場で1日に取引されるトマト（1箱）を考えます（<strong>学習用の架空のデータ</strong>）。価格を P 円とすると、需要量は（1000 − P）箱、供給量は（P − 200）箱とします。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>価格（円）</th><th>400</th><th>500</th><th>600</th><th>700</th><th>800</th></tr>
+  <tr><td>需要量（箱）</td><td>600</td><td>500</td><td>400</td><td>300</td><td>200</td></tr>
+  <tr><td>供給量（箱）</td><td>200</td><td>300</td><td>400</td><td>500</td><td>600</td></tr>
+  <tr><td>市場の状態</td><td>品不足 400箱</td><td>品不足 200箱</td><td><strong>一致</strong></td><td>売れ残り 200箱</td><td>売れ残り 400箱</td></tr>
+</table>
+</div>
+<figure>
+  <svg viewBox="0 0 440 360" role="img" aria-label="トマトの市場の需要曲線と供給曲線。価格600円・数量400箱で交わる。価格800円では売れ残り400箱、価格400円では品不足400箱が生じる。">
+    <defs><marker id="ah1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+    <g stroke="currentColor" stroke-opacity=".15">
+      <line x1="60" y1="260" x2="400" y2="260"/><line x1="60" y1="200" x2="400" y2="200"/><line x1="60" y1="140" x2="400" y2="140"/><line x1="60" y1="80" x2="400" y2="80"/><line x1="60" y1="20" x2="400" y2="20"/>
+      <line x1="128" y1="20" x2="128" y2="320"/><line x1="196" y1="20" x2="196" y2="320"/><line x1="264" y1="20" x2="264" y2="320"/><line x1="332" y1="20" x2="332" y2="320"/><line x1="400" y1="20" x2="400" y2="320"/>
+    </g>
+    <g stroke="currentColor" stroke-width="1.5"><line x1="60" y1="320" x2="410" y2="320"/><line x1="60" y1="320" x2="60" y2="12"/></g>
+    <g font-size="12" fill="currentColor" text-anchor="end">
+      <text x="54" y="324">0</text><text x="54" y="264">200</text><text x="54" y="204">400</text><text x="54" y="144">600</text><text x="54" y="84">800</text><text x="54" y="24">1000</text>
+    </g>
+    <g font-size="12" fill="currentColor" text-anchor="middle">
+      <text x="128" y="336">200</text><text x="196" y="336">400</text><text x="264" y="336">600</text><text x="332" y="336">800</text><text x="400" y="336">1000</text>
+    </g>
+    <text x="410" y="352" font-size="12" fill="currentColor" text-anchor="end">数量（箱）</text>
+    <text x="66" y="12" font-size="12" fill="currentColor">価格（円）</text>
+    <line class="mk-d" x1="77" y1="35" x2="383" y2="305" stroke-width="3"/>
+    <line class="mk-s" x1="60" y1="260" x2="315" y2="35" stroke-width="3"/>
+    <text class="mk-dt" x="388" y="312" font-size="14" font-weight="700">D</text>
+    <text class="mk-st" x="320" y="38" font-size="14" font-weight="700">S</text>
+    <g stroke="currentColor" stroke-dasharray="4 3"><line x1="60" y1="140" x2="196" y2="140"/><line x1="196" y1="140" x2="196" y2="320"/></g>
+    <circle cx="196" cy="140" r="5" fill="currentColor"/>
+    <text x="208" y="145" font-size="12" fill="currentColor" font-weight="700">E 均衡点</text>
+    <line x1="128" y1="80" x2="264" y2="80" stroke="currentColor" stroke-width="5" stroke-opacity=".45"/>
+    <text x="196" y="72" font-size="12" fill="currentColor" text-anchor="middle">売れ残り 400箱</text>
+    <line x1="128" y1="200" x2="264" y2="200" stroke="currentColor" stroke-width="5" stroke-opacity=".45"/>
+    <text x="196" y="216" font-size="12" fill="currentColor" text-anchor="middle">品不足 400箱</text>
+    <line x1="86" y1="88" x2="86" y2="128" stroke="currentColor" stroke-width="2" marker-end="url(#ah1)"/>
+    <line x1="86" y1="192" x2="86" y2="152" stroke="currentColor" stroke-width="2" marker-end="url(#ah1)"/>
+  </svg>
+  <figcaption>図1　トマトの市場（学習用の架空のデータ）。D＝需要曲線（青）、S＝供給曲線（赤）。800円では供給量＞需要量（売れ残り）、400円では需要量＞供給量（品不足）。矢印は価格が動く向き。</figcaption>
+</figure>
+<p>価格が800円だと、売りたい量（600箱）が買いたい量（200箱）を上回り、400箱の<strong>売れ残り</strong>が出ます。売り手は値下げしてでも売ろうとするので、価格は下がります。逆に価格が400円だと、400箱の<strong>品不足</strong>になり、高くても買いたい人がいるので価格は上がります。</p>
+<p>こうして価格は、需要量と供給量が一致する600円（図1の点E）に向かって動きます。この価格が<strong>均衡価格</strong>です。価格の変化を通じて需要と供給が調整されるこの仕組みを<strong>市場機構</strong>（価格メカニズム）といいます。</p>
+<div class="widget" id="w1">
+  <p class="box-title"><strong>操作してみよう：価格を動かすと？</strong></p>
+  <label for="w1-price">価格：<output id="w1-pv">800</output> 円</label><br>
+  <input type="range" id="w1-price" min="250" max="950" step="50" value="800" aria-describedby="w1-out">
+  <figure>
+    <svg viewBox="0 0 440 360" role="img" aria-label="価格を動かすと、その価格での需要量と供給量、その差が表示される図">
+      <g stroke="currentColor" stroke-width="1.5"><line x1="60" y1="320" x2="410" y2="320"/><line x1="60" y1="320" x2="60" y2="12"/></g>
+      <g font-size="12" fill="currentColor" text-anchor="end">
+        <text x="54" y="324">0</text><text x="54" y="264">200</text><text x="54" y="204">400</text><text x="54" y="144">600</text><text x="54" y="84">800</text><text x="54" y="24">1000</text>
+      </g>
+      <g font-size="12" fill="currentColor" text-anchor="middle">
+        <text x="128" y="336">200</text><text x="196" y="336">400</text><text x="264" y="336">600</text><text x="332" y="336">800</text><text x="400" y="336">1000</text>
+      </g>
+      <text x="410" y="352" font-size="12" fill="currentColor" text-anchor="end">数量（箱）</text>
+      <text x="66" y="12" font-size="12" fill="currentColor">価格（円）</text>
+      <line class="mk-d" x1="77" y1="35" x2="383" y2="305" stroke-width="3"/>
+      <line class="mk-s" x1="60" y1="260" x2="315" y2="35" stroke-width="3"/>
+      <text class="mk-dt" x="388" y="312" font-size="14" font-weight="700">D</text>
+      <text class="mk-st" x="320" y="38" font-size="14" font-weight="700">S</text>
+      <circle cx="196" cy="140" r="4" fill="currentColor"/>
+      <line id="w1-pline" x1="60" y1="80" x2="400" y2="80" stroke="currentColor" stroke-dasharray="4 3"/>
+      <line id="w1-gap" x1="128" y1="80" x2="264" y2="80" stroke="currentColor" stroke-width="6" stroke-opacity=".45"/>
+      <circle id="w1-dp" class="mk-dt" cx="128" cy="80" r="5"/>
+      <circle id="w1-sp" class="mk-st" cx="264" cy="80" r="5"/>
+      <text id="w1-lab" x="196" y="72" font-size="12" fill="currentColor" text-anchor="middle">売れ残り 400箱</text>
+    </svg>
+  </figure>
+  <p class="mk-out" id="w1-out" aria-live="polite">価格 800 円：需要量 200 箱、供給量 600 箱 → 400 箱の売れ残り。価格は下がる方向に動きます。</p>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題1</p>
+  <p>トマトの需要量が（1000 − P）箱、供給量が（P − 200）箱のとき（P は価格〔円〕）、均衡価格と、そのときの取引量を求めなさい。</p>
+  <div class="step">ステップ1：均衡価格では「需要量＝供給量」が成り立ちます。グラフでは、需要曲線と供給曲線の交点です（確認3の交点と同じ考え方）。</div>
+  <div class="step">ステップ2：1000 − P ＝ P − 200 より、2P ＝ 1200、P ＝ 600。</div>
+  <div class="step">ステップ3：取引量は 1000 − 600 ＝ 400（供給量で計算しても 600 − 200 ＝ 400 で一致）。答え：均衡価格 600円、取引量 400箱。</div>
+</div>
+<div class="box point"><p class="box-title">ポイント</p><p>品不足なら価格は上がり、売れ残りなら価格は下がる。この価格の動きが、需要量と供給量を一致させる方向に働きます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="曲線の移動"><span class="num">5</span>曲線が「移動」するとき――需要・供給の変化と新しい均衡</h2>
+<p>需要量や供給量が変わる理由には、2種類あります。ここを区別することが、この時間でいちばん大切なところです。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>何が変わったか</th><th>グラフでの表し方</th><th>例（架空の場面）</th></tr>
+  <tr><td><strong>その商品の価格</strong></td><td>同じ曲線の<strong>上を動く</strong>（曲線は動かない）</td><td>トマトが値下がりしたので、買う量を増やした</td></tr>
+  <tr><td><strong>価格以外の事情</strong></td><td>曲線そのものが<strong>左右に移動</strong>する</td><td>健康によいと話題になり、どの価格でも買いたい量が増えた（需要曲線が右へ）</td></tr>
+</table>
+</div>
+<p>価格以外の事情の例として、需要側では人気・流行、所得、ほかの商品の値段など、供給側では天候、原材料費、生産技術などが考えられます。どの価格でも需要量が増えれば需要曲線は右へ、減れば左へ移動します。供給曲線も同じです。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>変化</th><th>曲線の移動</th><th>均衡価格</th><th>取引量</th></tr>
+  <tr><td>需要の増加</td><td>需要曲線が右へ</td><td>上がる</td><td>増える</td></tr>
+  <tr><td>需要の減少</td><td>需要曲線が左へ</td><td>下がる</td><td>減る</td></tr>
+  <tr><td>供給の増加</td><td>供給曲線が右へ</td><td>下がる</td><td>増える</td></tr>
+  <tr><td>供給の減少</td><td>供給曲線が左へ</td><td>上がる</td><td>減る</td></tr>
+</table>
+</div>
+<div class="widget" id="w2">
+  <p class="box-title"><strong>操作してみよう：曲線を動かすと、新しい均衡はどこ？</strong></p>
+  <label for="w2-dd">需要の変化（どの価格でも）：<output id="w2-ddv">+100</output> 箱</label><br>
+  <input type="range" id="w2-dd" min="-300" max="300" step="50" value="100"><br>
+  <label for="w2-ds">供給の変化（どの価格でも）：<output id="w2-dsv">0</output> 箱</label><br>
+  <input type="range" id="w2-ds" min="-300" max="300" step="50" value="0">
+  <div class="mk-presets">
+    <button type="button" data-dd="100" data-ds="0">話題になり人気が高まった</button>
+    <button type="button" data-dd="0" data-ds="-200">天候不順で収穫が減った</button>
+    <button type="button" data-dd="0" data-ds="200">生産技術が進み費用が下がった</button>
+    <button type="button" data-dd="0" data-ds="0">元に戻す</button>
+  </div>
+  <figure>
+    <svg viewBox="0 0 440 360" role="img" aria-label="需要曲線と供給曲線を移動させると、移動前の均衡点Eと移動後の均衡点E′が表示される図">
+      <g stroke="currentColor" stroke-width="1.5"><line x1="60" y1="320" x2="410" y2="320"/><line x1="60" y1="320" x2="60" y2="12"/></g>
+      <g font-size="12" fill="currentColor" text-anchor="end">
+        <text x="54" y="324">0</text><text x="54" y="264">200</text><text x="54" y="204">400</text><text x="54" y="144">600</text><text x="54" y="84">800</text><text x="54" y="24">1000</text>
+      </g>
+      <g font-size="12" fill="currentColor" text-anchor="middle">
+        <text x="128" y="336">200</text><text x="196" y="336">400</text><text x="264" y="336">600</text><text x="332" y="336">800</text><text x="400" y="336">1000</text>
+      </g>
+      <text x="410" y="352" font-size="12" fill="currentColor" text-anchor="end">数量（箱）</text>
+      <text x="66" y="12" font-size="12" fill="currentColor">価格（円）</text>
+      <line class="mk-d" x1="77" y1="35" x2="383" y2="305" stroke-width="2" stroke-dasharray="6 4" stroke-opacity=".5"/>
+      <line class="mk-s" x1="60" y1="260" x2="315" y2="35" stroke-width="2" stroke-dasharray="6 4" stroke-opacity=".5"/>
+      <circle cx="196" cy="140" r="4" fill="currentColor" fill-opacity=".5"/>
+      <text x="184" y="145" font-size="12" fill="currentColor" text-anchor="end">E</text>
+      <line id="w2-d" class="mk-d" x1="111" y1="35" x2="400" y2="290" stroke-width="3"/>
+      <line id="w2-s" class="mk-s" x1="60" y1="260" x2="315" y2="35" stroke-width="3"/>
+      <text id="w2-dl" class="mk-dt" x="118" y="34" font-size="14" font-weight="700">D′</text>
+      <text id="w2-sl" class="mk-st" x="320" y="38" font-size="14" font-weight="700">S′</text>
+      <line id="w2-gy" x1="60" y1="125" x2="213" y2="125" stroke="currentColor" stroke-dasharray="3 3"/>
+      <line id="w2-gx" x1="213" y1="125" x2="213" y2="320" stroke="currentColor" stroke-dasharray="3 3"/>
+      <circle id="w2-e" cx="213" cy="125" r="5" fill="currentColor"/>
+      <text id="w2-el" x="225" y="130" font-size="12" fill="currentColor" font-weight="700">E′</text>
+    </svg>
+  </figure>
+  <p class="mk-out" id="w2-out" aria-live="polite">需要曲線：右へ100箱分移動（需要の増加）／供給曲線：移動なし<br>均衡価格 600円 → 650円（上がる）、取引量 400箱 → 450箱（増える）</p>
+  <p class="small">点線（D・S・E）が移動前、実線（D′・S′・E′）が移動後です。学習用の架空のデータで計算しています。</p>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2</p>
+  <p>図1のトマトの市場で、天候不順のため、どの価格でも供給量が200箱ずつ減りました（供給量は（P − 400）箱）。新しい均衡価格と取引量を求め、変化を説明しなさい。</p>
+  <div class="step">ステップ1：価格以外の事情（天候）による変化なので、供給曲線そのものが左へ200箱分移動します。</div>
+  <div class="step">ステップ2：1000 − P ＝ P − 400 より、2P ＝ 1400、P ＝ 700。取引量は 1000 − 700 ＝ 300。</div>
+  <div class="step">ステップ3：均衡価格は 600円 → 700円 に上がり、取引量は 400箱 → 300箱 に減ります（上の図で「天候不順で収穫が減った」を押すと確かめられます）。導入の問い1の答えは「上がる」です。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>「価格が上がると需要が減るので、需要曲線が左に移動する」は誤りです。価格の変化による需要量の変化は、<strong>同じ需要曲線の上を動く</strong>ことで表します。曲線が移動するのは、価格<strong>以外</strong>の事情が変わったときだけです。例題2でも、需要曲線は動かず、価格が上がったぶん需要曲線の上を左上へ動いて、買われる量が300箱に減っています。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="価格が資源を動かす"><span class="num">6</span>価格が生産を調整し、人や資金を動かす</h2>
+<p>需要が増えたときの動きを、もう一度たどってみましょう（操作できる図の初期表示と同じ、需要が100箱増えた場合）。価格が600円のままだと、需要量500箱に対して供給量400箱で、100箱の品不足になります。そこで価格は650円まで上がります。</p>
+<p>価格が上がると、生産者は「もっと作れば利益が出る」と判断し、生産を増やします。供給量は400箱から450箱に増えますが、このとき<strong>供給曲線は移動していません</strong>。価格が上がったことに応じて、供給曲線の上を右上へ動いたのです。価格の働きによって生産が調整されたことになります。</p>
+<figure>
+  <svg viewBox="0 0 360 470" role="img" aria-label="需要の増加から資源の効率的な配分までの流れ図。①人気が高まる、②価格が上がる、③生産を増やす、④人手や資金がもっと必要になる、⑤賃金や金利を合図に働き手や資金が移る、⑥人気が落ちた商品からは離れる、結果として資源が効率的に配分される。" style="max-width:420px">
+    <defs><marker id="ah2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+    <g fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="10" y="10" width="340" height="50" rx="8"/><rect x="10" y="76" width="340" height="50" rx="8"/><rect x="10" y="142" width="340" height="50" rx="8"/><rect x="10" y="208" width="340" height="50" rx="8"/><rect x="10" y="274" width="340" height="50" rx="8"/><rect x="10" y="340" width="340" height="50" rx="8"/>
+      <rect x="10" y="406" width="340" height="56" rx="8" stroke-width="3"/>
+    </g>
+    <g stroke="currentColor" stroke-width="1.5" marker-end="url(#ah2)"><line x1="180" y1="60" x2="180" y2="74"/><line x1="180" y1="126" x2="180" y2="140"/><line x1="180" y1="192" x2="180" y2="206"/><line x1="180" y1="258" x2="180" y2="272"/><line x1="180" y1="324" x2="180" y2="338"/><line x1="180" y1="390" x2="180" y2="404"/></g>
+    <g font-size="13" fill="currentColor">
+      <text x="22" y="31">① トマトの人気が高まる</text><text x="22" y="50">（需要曲線が右へ移動）</text>
+      <text x="22" y="97">② 品不足が生じ、トマトの価格が上がる</text><text x="22" y="116">（商品市場の価格が合図になる）</text>
+      <text x="22" y="163">③ 生産者は「もっと作れば利益が出る」と判断</text><text x="22" y="182">して生産を増やす（供給曲線の上を動く）</text>
+      <text x="22" y="229">④ 人手や機械・設備がもっと必要になる</text><text x="22" y="248">（労働や資金の需要が増える）</text>
+      <text x="22" y="295">⑤ 賃金や金利を合図に、働き手や資金が</text><text x="22" y="314">トマトの生産へ移っていく</text>
+      <text x="22" y="361">⑥ 人気が落ちた商品の生産からは、</text><text x="22" y="380">働き手や資金が離れていく</text>
+      <text x="22" y="429" font-weight="700">結果：求められている物の生産に、労働や</text><text x="22" y="449" font-weight="700">資本が振り向けられる（資源の効率的な配分）</text>
+    </g>
+  </svg>
+  <figcaption>図2　価格の働きによる生産の調整と生産要素の移動（架空の場面で考えた流れ）</figcaption>
+</figure>
+<p>この流れは、商品市場だけで終わりません。生産を増やすには人手や設備が必要なので、労働市場や金融市場でもトマトの生産に関わる需要が増えます。働き手や資金を集めるには、より高い賃金や金利を示す必要が出てきます。反対に、人気が落ちた商品では価格が下がり、生産が減って、働き手や資金はほかの生産に移っていきます。</p>
+<p>だれかが全体を計画して指示しなくても、人々が価格を見てそれぞれ自分の判断で行動することで、<strong>資本や労働などの生産要素が、それを必要とするところに効率的に配分されていく</strong>のです。これが導入の問い2・3の答えです。価格の上昇は、「この商品が足りない」ことを社会全体に知らせる合図の役割を果たしています。</p>
+<div class="box think">
+  <p class="box-title">考えよう</p>
+  <p>需要が増えたあとも、価格を600円のまま動かないように決めてしまったら、どうなるでしょうか（このモデルで考えましょう）。</p>
+  <p class="small">ヒント：需要量500箱に対して供給量400箱のままなので、100箱の品不足が続きます。価格が上がらないので、生産を増やす合図も出ません。</p>
+</div>
+<div class="box point"><p class="box-title">ポイント</p><p>価格・賃金・金利は、「何が、どれだけ求められているか」を知らせる合図です。この合図によって生産が調整され、限られた資源が求められるところへ振り向けられます（資源の効率的な配分）。ただし、これがうまく働くのは、前の時間に学んだ<strong>公正で自由な競争</strong>が保たれている場合です。うまく働かない場合（市場機能の限界）は、次の時間に学びます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-5" data-toc="自発的な交換と貿易"><span class="num">7</span>なぜ取引すると両方が得をするのか――自発的な交換と貿易</h2>
+<div class="box example worked">
+  <p class="box-title">例題3</p>
+  <p>買い手のAさんは、トマト1箱に最高800円まで払ってもよいと考えています。売り手のBさんは、500円以上なら売ってもよいと考えています。2人が600円で売買したとき、それぞれいくら得をしたといえるでしょうか。</p>
+  <div class="step">ステップ1：Aさんは800円の価値があると思う物を600円で買えたので、800 − 600 ＝ 200円分の得です。</div>
+  <div class="step">ステップ2：Bさんは500円以上なら売ってよいと思っていた物が600円で売れたので、600 − 500 ＝ 100円分の得です。</div>
+  <div class="step">ステップ3：2人とも得をしており、合計は300円です。価格が500円から800円の間なら、合計はいつも 800 − 500 ＝ 300円 で、価格は得の分け方を決めています。</div>
+</div>
+<p>だれにも強制されず、当事者が納得して行う取引を<strong>自発的な交換</strong>といいます。損をすると思えば、人は取引をしません。だから自発的な交換が行われるときは、買い手と売り手の<strong>それぞれに利益が生じている</strong>のです。</p>
+<p>需要曲線の高さは、それぞれの買い手が「払ってもよい最高額」を、供給曲線の高さは、それぞれの売り手が「売ってもよい最低額」を表しているとみることができます。すると、均衡価格で取引が行われたときの利益の合計は、図3の色のついた部分の面積になります。</p>
+<figure>
+  <svg viewBox="0 0 440 360" role="img" aria-label="均衡価格600円で取引したときの買い手の得（価格線より上で需要曲線より下の三角形）と売り手の得（価格線より下で供給曲線より上の三角形）を示す図">
+    <g stroke="currentColor" stroke-width="1.5"><line x1="60" y1="320" x2="410" y2="320"/><line x1="60" y1="320" x2="60" y2="12"/></g>
+    <g font-size="12" fill="currentColor" text-anchor="end">
+      <text x="54" y="324">0</text><text x="54" y="264">200</text><text x="54" y="204">400</text><text x="54" y="144">600</text><text x="54" y="84">800</text><text x="54" y="24">1000</text>
+    </g>
+    <g font-size="12" fill="currentColor" text-anchor="middle">
+      <text x="128" y="336">200</text><text x="196" y="336">400</text><text x="264" y="336">600</text><text x="332" y="336">800</text><text x="400" y="336">1000</text>
+    </g>
+    <text x="410" y="352" font-size="12" fill="currentColor" text-anchor="end">数量（箱）</text>
+    <text x="66" y="12" font-size="12" fill="currentColor">価格（円）</text>
+    <polygon points="60,20 60,140 196,140" style="fill: var(--primary)" fill-opacity=".22"/>
+    <polygon points="60,140 60,260 196,140" style="fill: var(--caution)" fill-opacity=".22"/>
+    <line class="mk-d" x1="60" y1="20" x2="383" y2="305" stroke-width="3"/>
+    <line class="mk-s" x1="60" y1="260" x2="315" y2="35" stroke-width="3"/>
+    <text class="mk-dt" x="388" y="312" font-size="14" font-weight="700">D</text>
+    <text class="mk-st" x="320" y="38" font-size="14" font-weight="700">S</text>
+    <line x1="60" y1="140" x2="196" y2="140" stroke="currentColor" stroke-width="1.5"/>
+    <line x1="196" y1="140" x2="196" y2="320" stroke="currentColor" stroke-dasharray="4 3"/>
+    <circle cx="196" cy="140" r="5" fill="currentColor"/>
+    <text x="72" y="108" font-size="12" fill="currentColor" font-weight="700">買い手の得</text>
+    <text x="72" y="190" font-size="12" fill="currentColor" font-weight="700">売り手の得</text>
+    <text x="208" y="145" font-size="12" fill="currentColor">E（600円・400箱）</text>
+  </svg>
+  <figcaption>図3　取引による利益（学習用の架空のデータ）。青い三角形＝買い手の得の合計、赤い三角形＝売り手の得の合計。</figcaption>
+</figure>
+<p>面積を計算すると、買い手の得の合計は 400 × (1000 − 600) ÷ 2 ＝ 80,000円、売り手の得の合計は 400 × (600 − 200) ÷ 2 ＝ 80,000円、合わせて160,000円です。この合計は、前の時間（公共-043）に出てきた<strong>社会的余剰</strong>を、このモデルで表したものと考えることができます（教科書での説明の仕方も確かめましょう）。</p>
+<h3>国境を越えても同じ――貿易取引</h3>
+<p>この考え方は、国内の取引でも、国境を越えた<strong>貿易取引</strong>でも同じです。例えば、日本の消費者が外国産の果物を買うとき、日本の消費者は「その値段なら買いたい」と思い、外国の生産者は「その値段なら売りたい」と思うから取引が成り立ちます。どちらも得をするから、自発的に取引するのです。</p>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>「取引では、一方が得をした分だけ他方が損をする」と考えるのは誤りです。自発的な交換では、買い手と売り手の<strong>両方</strong>に利益が生じます。ただし貿易では、輸入品と競争する国内の生産者が打撃を受けることがあり、国内産業の保護を求める主張も生まれます。自由貿易と保護貿易の利点と課題は、公共-059 で学びます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">8</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>市場</dt><dd>売りたい人と買いたい人が出会い、取引が行われる場や仕組み。商品市場・労働市場・金融市場などがある。</dd>
+    <dt>需要・需要量／供給・供給量</dt><dd>買おうとすること・その量／売ろうとすること・その量。</dd>
+    <dt>需要曲線</dt><dd>価格と需要量の関係を表すグラフ。価格が下がるほど需要量が増えるので、ふつう右下がりになる。</dd>
+    <dt>供給曲線</dt><dd>価格と供給量の関係を表すグラフ。価格が上がるほど供給量が増えるので、ふつう右上がりになる。</dd>
+    <dt>均衡価格</dt><dd>需要量と供給量が一致するときの価格。需要曲線と供給曲線の交点で表される。</dd>
+    <dt>市場機構（価格メカニズム）</dt><dd>価格の変化を通じて需要と供給が調整され、生産や資源の配分が決まっていく仕組み。</dd>
+    <dt>曲線の移動</dt><dd>価格以外の事情（人気、所得、天候、原材料費など）が変わり、どの価格でも需要量（供給量）が変わること。価格の変化による変化は、曲線の上の動きで表す。</dd>
+    <dt>賃金</dt><dd>労働市場で形成される、労働の価格。</dd>
+    <dt>金利</dt><dd>金融市場で形成される、資金の貸し借りの価格。借りた額に対する利子の割合。</dd>
+    <dt>生産要素</dt><dd>生産に使われる労働・資本・土地など。</dd>
+    <dt>資源の効率的な配分</dt><dd>限られた資源（労働・資本など）が、求められている財やサービスの生産に無駄なく振り向けられること。</dd>
+    <dt>自発的な交換</dt><dd>強制されず、当事者が納得して行う取引。買い手と売り手のそれぞれに利益が生じる。国境を越えた貿易取引でも同じ。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">9</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>商品市場では価格、労働市場では賃金、金融市場では金利という「価格」が形成される。労働市場では企業が需要側、家計が供給側になる。（O1）</li>
+    <li>需要曲線は右下がり、供給曲線は右上がりで、交点が均衡価格。品不足なら価格は上がり、売れ残りなら下がって、需要量と供給量が一致する方向に動く。（O2）</li>
+    <li>価格の変化による需要量・供給量の変化は曲線の上の動き、価格以外の事情の変化は曲線の移動で表す。需要の増加は価格を上げ取引量を増やし、供給の減少は価格を上げ取引量を減らす。（O2）</li>
+    <li>価格は「何が求められているか」を知らせる合図となり、生産が調整され、労働や資本などの生産要素が必要なところへ効率的に配分される。（O3）</li>
+    <li>自発的な交換では買い手と売り手のそれぞれに利益が生じる（その合計は社会的余剰と考えることができる）。国境を越えた貿易取引でも同じである。（O4）</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">均衡価格の求め方</span><p>需要量 ＝ 供給量 となる価格（需要曲線と供給曲線の交点）</p></div>
+  <div><span class="f-name">曲線の移動と均衡の変化</span><p>需要↑：価格↑・量↑／需要↓：価格↓・量↓<br>供給↑：価格↓・量↑／供給↓：価格↑・量↓</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">10</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。問題の場面や数値は学習用に作ったもの。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>労働市場についての説明として正しいものを選びなさい。</p>
+  <div class="choices">
+    <button>労働を需要するのは家計で、労働を供給するのは企業である。形成される価格は賃金である。</button>
+    <button data-correct="true">労働を需要するのは主に企業で、労働を供給するのは家計（働く人）である。形成される価格は賃金である。</button>
+    <button>労働を需要するのは主に企業で、労働を供給するのは家計（働く人）である。形成される価格は金利である。</button>
+    <button>労働市場では価格が形成されないので、賃金は需要と供給の影響を受けない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は2番目です。労働市場では、人を雇いたい企業が需要側、働きたい人（家計）が供給側で、労働の価格が賃金です。1番目は需要側と供給側が逆です（商品市場の立場のまま考えると間違えやすい）。3番目の金利は金融市場の価格です。4番目は誤りで、賃金も人手の過不足（需要と供給）の影響を受けます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>ある商品に均衡価格より高い価格がついているとき、ふつう起こることとして最も適当なものを選びなさい。</p>
+  <div class="choices">
+    <button data-correct="true">供給量が需要量を上回って売れ残りが生じるので、価格は下がる方向に動く。</button>
+    <button>需要量が供給量を上回って品不足が生じるので、価格は上がる方向に動く。</button>
+    <button>需要量と供給量が一致しているので、価格は動かない。</button>
+    <button>供給曲線が左に移動して、価格が均衡価格まで下がる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は1番目です（図1の価格800円の状態）。2番目は均衡価格より<strong>低い</strong>価格のときに起こることです。3番目の「一致」は均衡価格のときだけです。4番目は誤りで、価格が下がるときは曲線は移動せず、需要曲線・供給曲線の上を動いて均衡点に近づきます。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="金利|利子率|利率">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O1</span></div>
+  <p>金融市場で、資金の貸し借りに伴って形成される「価格」にあたるものを、漢字2字で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">答えは「金利」（利子率）です。資金を借りたい人が多いのに貸したい人が少なければ、金利は上がる方向に動きます。商品市場の価格、労働市場の賃金と並べて覚えましょう。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>ある商品の原材料費が大きく上がった。ほかの事情が変わらないとき、この商品の市場で起こることとして最も適当なものを選びなさい。</p>
+  <div class="choices">
+    <button>供給曲線が右に移動し、均衡価格は下がり、取引量は増える。</button>
+    <button data-correct="true">供給曲線が左に移動し、均衡価格は上がり、取引量は減る。</button>
+    <button>需要曲線が左に移動し、均衡価格は下がり、取引量は減る。</button>
+    <button>需要曲線が右に移動し、均衡価格は上がり、取引量は増える。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は2番目です。原材料費の上昇は売り手側の事情なので<strong>供給曲線</strong>が動きます。費用が上がると、同じ価格では前ほど売りたくなくなる（どの価格でも供給量が減る）ので左へ移動し、例題2と同じく価格は上がり取引量は減ります。1番目は費用が下がったとき、3・4番目は買い手側の事情が変わったときの動きです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>需要曲線・供給曲線についての説明のうち、<strong>誤っているもの</strong>を選びなさい。</p>
+  <div class="choices">
+    <button>価格が上がって需要量が減ることは、需要曲線の上を左上に動くことで表される。</button>
+    <button>所得が増えて、どの価格でも買いたい量が増えると、需要曲線は右に移動する。</button>
+    <button data-correct="true">価格が上がると需要が減るので、需要曲線は左に移動する。</button>
+    <button>天候に恵まれて収穫が増えると、供給曲線は右に移動する。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">誤っているのは3番目です。その商品の<strong>価格</strong>の変化による需要量の変化は、需要曲線の上の動きで表し、曲線そのものは移動しません。曲線が移動するのは、所得（2番目）や天候（4番目）のように価格以外の事情が変わったときです。1番目は正しい説明です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O4</span></div>
+  <p>日本の消費者が外国産の果物を輸入品として買う取引について、この時間の考え方に合う説明を選びなさい。</p>
+  <div class="choices">
+    <button>国境を越える取引では、一方の国が得をした分だけ、他方の国が損をする。</button>
+    <button>輸入は外国の生産者だけが得をする取引なので、自発的な交換とはいえない。</button>
+    <button data-correct="true">買う日本の消費者も、売る外国の生産者も、それぞれ利益があると考えるから取引が成り立つ。</button>
+    <button>貿易取引では価格が形成されないので、取引の参加者に利益は生じない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は3番目です。自発的な交換では参加者それぞれに利益が生じ、それは国内の取引でも国境を越えた貿易取引でも同じです。1番目・2番目は「取引は片方の得、片方の損」という誤解です。4番目も誤りで、貿易でも価格が形成されます。なお、輸入品と競争する国内の生産者が打撃を受けることがある点は、公共-059 で考えます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O1・O3</span></div>
+  <p>ある地域でインターネット通販の荷物が大きく増え、配達の仕事の人手が足りなくなった（架空の場面）。市場の働きから考えられる動きとして最も適当なものを選びなさい。</p>
+  <div class="choices">
+    <button data-correct="true">配達の仕事の賃金が上がる方向に動き、ほかの仕事から働き手が移ってくる。</button>
+    <button>配達の仕事の賃金が下がる方向に動き、働き手がほかの仕事に移っていく。</button>
+    <button>労働市場は商品市場と関係がないので、賃金も働き手の数も変わらない。</button>
+    <button>人手が足りないので、配達サービスの需要曲線が左に移動する。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は1番目です。荷物（サービス）の需要が増えると、配達する労働の需要も増えます。人手が足りない（労働の需要＞供給）ので賃金は上がる方向に動き、それが合図となって働き手が集まります。これが、価格（賃金）の働きによる生産要素の配分です。2番目は逆向き、3番目は市場どうしのつながりを見落としています。4番目は、人手不足は需要側の事情ではないので誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q8" data-accept="2500|2,500|2500円|2,500円">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O4</span></div>
+  <p>中古の自転車について、買い手のCさんは最高9,000円まで払ってもよいと考え、売り手のDさんは6,500円以上なら売ってもよいと考えている。2人が7,500円で売買したとき、2人の得の合計は何円か。数字で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span><span class="small">円</span></div>
+  <div class="explain">Cさんの得は 9,000 − 7,500 ＝ 1,500円、Dさんの得は 7,500 − 6,500 ＝ 1,000円で、合計 <strong>2,500円</strong> です。価格が6,500円から9,000円の間なら、合計はいつも 9,000 − 6,500 ＝ 2,500円 で、価格は得の分け方を決めるだけです（例題3と同じ考え方）。1,500円や1,000円と答えた人は、片方の得だけを計算しています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2</span></div>
+  <p>ある商品の市場で、需要と供給がともに増加した（需要曲線・供給曲線がともに右に移動した）。ほかの条件が変わらないとき、<strong>必ずいえること</strong>として最も適当なものを選びなさい。</p>
+  <div class="choices">
+    <button>均衡価格は必ず上がり、取引量は必ず増える。</button>
+    <button>均衡価格は必ず下がり、取引量は必ず増える。</button>
+    <button data-correct="true">取引量は増えるが、均衡価格が上がるか下がるかは、それぞれの移動の大きさによって決まる。</button>
+    <button>均衡価格も取引量も、必ず変わらない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は3番目です。需要の増加は価格を上げ、供給の増加は価格を下げるので、価格への影響は打ち消し合い、どちらが大きいかで決まります。取引量はどちらの増加でも増えるので必ず増えます。操作できる図で確かめると、需要+100・供給+300なら価格500円、需要+300・供給+100なら価格700円、需要+200・供給+200なら価格600円のままで、取引量はどれも600箱です。1・2番目は片方の移動だけを考えています。</div>
+</div>
+
+<div class="q" data-type="open" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O3・O4</span></div>
+  <p>「商品の価格が上がることは、買う人にとって損なだけだ」という意見に対して、この時間に学んだ価格の働きを使って反論しなさい（120字程度）。「需要」「供給」「資源」という語を必ず使うこと。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model"><p><strong>解答例</strong>　価格の上昇は、その商品の需要が供給を上回り、足りていないことを知らせる合図である。価格が上がると生産者は生産を増やし、労働や資本などの資源がその生産に移るので、品不足は解消に向かう。価格の働きで資源が求められる所へ配分されるので、損なだけとはいえない。（126字）</p><p><strong>採点の観点</strong>　①価格の上昇が「需要が供給を上回る」ことの合図だと述べている　②生産者が生産（供給量）を増やす動きを述べている　③労働・資本などの資源が移り、効率的に配分されることに触れている　④意見への反論として結論を示している</p></div>
+  <div class="explain">「価格が上がる → 買う人が損」という一面だけでなく、価格が生産者の行動を変え、社会全体の資源の使い道を調整するという働きに目を向けるのがポイントです。一方で、価格の上昇によって買えなくなる人が出るなど、買い手の負担が増える面があるのも確かです。反論では、その面を否定するのではなく、「損なだけ」とはいえない理由を示せているかを確かめましょう。余裕があれば、自発的な交換で買い手にも利益が残ること（買う人は、払ってもよい最高額より安ければ買う）に触れてもよいでしょう。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">11</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（「公共」の出題範囲）</p>
+  <p>令和9年度の大学入学共通テスト実施要項では、「公共」の内容は『公共，倫理』『公共，政治・経済』の出題範囲と、『地理総合／歴史総合／公共』の「公共」の出題範囲に含まれます。この時間の内容は、そのいずれの範囲にも入ります。</p>
+  <p>同年度の問題作成方針は、「公共」について「基礎的・基本的な概念や理論，考え方等を活用し，文章や資料を的確に読み解きながら考察する力を求める」とし、「現実社会の諸課題について理解したり考察したりするために必要な概念や知識に関わる問題，多様な資料を用いて考察する問題などを含めて検討する」としています。需要曲線・供給曲線は、価格の変化という身近な現象を、グラフという資料を読み解きながら説明するための基本的な考え方です。具体的な出題の形式は方針に示されていないので、ここでは決めつけません。</p>
+  <p class="small">「政治・経済」を選択する人は、政経-023（市場機構と価格の決定）で同じ考え方をさらに学びます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">12</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">市場機能の限界と政府の施策（公共-045）</p>
+  <p>この時間は、公正で自由な競争のもとで市場が<strong>うまく働く</strong>仕組みを学びました。次の時間は、寡占や独占、外部不経済（公害など）、情報の非対称性のように、市場がうまく働かない場合（市場機能の限界）と、公共財の供給や競争を保つ政策など政府の役割を学びます。「需要と供給で決まった価格が、社会にとって望ましいとは限らない場合」を、この時間の図を思い出しながら考えましょう。</p>
+  <p class="small">この時間では扱わなかったこと：寡占・独占や外部不経済などの市場の失敗（公共-045）、金融市場の仕組みと金利の働きのくわしい内容（公共-047）、比較生産費説と自由貿易・保護貿易（公共-059）、労働契約と労働保護立法（公共-055）。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>公共-043　公正で自由な経済活動と政府の役割</div>
+  <div><span class="label">次の時間</span>公共-045　市場機能の限界と政府の施策</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_kokyo_rinri/公共-044「市場機構と価格の働き」（学習指導要領 公共 Bア(ウ)、解説 p.70）。† の語句（需要曲線・供給曲線）はマップの出典 S14 で確認。</li>
+    <li>文部科学省『高等学校学習指導要領（平成30年告示）』第2章第3節 公民（公共 B ア(ウ)）　https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>文部科学省『高等学校学習指導要領（平成30年告示）解説 公民編』p.65-67、70（市場経済の機能と限界、価格・金利・賃金の形成、自発的な交換と貿易取引、生産の調整と生産要素の配分）　https://www.mext.go.jp/content/20211102-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>東京書籍『公共』（公共002-901）シラバス案（価格の働きを需要曲線・供給曲線を利用して理解）　https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108350/shakai_16700_syllabus.pdf</li>
+    <li>帝国書院『高校生の公共』年間指導計画案・評価規準例（図「需要と供給の均衡」「需要曲線の移動」）　https://www.teikokushoin.co.jp/files/product1/08koukou/08%E9%AB%98%E6%A0%A1%E7%94%9F%E3%81%AE%E5%85%AC%E5%85%B1_%E5%B9%B4%E9%96%93%E6%8C%87%E5%B0%8E%E8%A8%88%E7%94%BB%E6%A1%88%E3%83%BB%E8%A9%95%E4%BE%A1%E8%A6%8F%E6%BA%96%E4%BE%8B.pdf</li>
+    <li>清水書院『公共』編修趣意書（公共035-902。「需要曲線・供給曲線のシフト」）　https://www.mext.go.jp/content/20250415-ope_dev03-000041681-6.pdf</li>
+    <li>大学入試センター『令和9年度大学入学者選抜に係る大学入学共通テスト実施要項』『同 問題作成方針』（学習内容マップ hs_kokyo_rinri の出典 S3・S18）</li>
+    <li>トマト・自転車・配達の例と数値は、すべてこのページのために作った学習用の架空のデータです（検算：tools/worker/lesson_hs_kokyo_rinri_公共-044_verify.py）。</li>
+  </ul>
+  <p>作成：2026-09-29　版：1.1（2026-09-29 クロスチェックによる改修）　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  function X(q) { return 60 + q * 0.34; }
+  function Y(p) { return 320 - p * 0.3; }
+  function $(id) { return document.getElementById(id); }
+  function attr(el, a) { for (var k in a) { el.setAttribute(k, (Math.round(a[k] * 10) / 10).toString()); } }
+  function signed(v) { return (v > 0 ? "+" : "") + v; }
+  function trend(a, b, up, down) { return b > a ? up : (b < a ? down : "変わらない"); }
+
+  var w1 = $("w1-price");
+  if (w1) {
+    var upd1 = function () {
+      var p = Number(w1.value), d = 1000 - p, s = p - 200, y = Y(p);
+      $("w1-pv").textContent = p;
+      attr($("w1-pline"), { y1: y, y2: y });
+      attr($("w1-gap"), { x1: X(Math.min(d, s)), x2: X(Math.max(d, s)), y1: y, y2: y });
+      attr($("w1-dp"), { cx: X(d), cy: y });
+      attr($("w1-sp"), { cx: X(s), cy: y });
+      var lab = $("w1-lab"), msg;
+      attr(lab, { x: X((d + s) / 2), y: (d > s ? y + 18 : y - 8) });
+      if (s > d) {
+        lab.textContent = "売れ残り " + (s - d) + "箱";
+        msg = "→ " + (s - d) + " 箱の売れ残り。価格は下がる方向に動きます。";
+      } else if (d > s) {
+        lab.textContent = "品不足 " + (d - s) + "箱";
+        msg = "→ " + (d - s) + " 箱の品不足。価格は上がる方向に動きます。";
+      } else {
+        lab.textContent = "一致（均衡）";
+        msg = "→ 需要量と供給量が一致。これが均衡価格です。";
+      }
+      $("w1-out").textContent = "価格 " + p + " 円：需要量 " + d + " 箱、供給量 " + s + " 箱 " + msg;
+    };
+    w1.addEventListener("input", upd1);
+    upd1();
+  }
+
+  var dd = $("w2-dd"), ds = $("w2-ds");
+  if (dd && ds) {
+    var upd2 = function () {
+      var a = Number(dd.value), b = Number(ds.value);
+      $("w2-ddv").textContent = signed(a);
+      $("w2-dsv").textContent = signed(b);
+      var dlo = Math.max(50, a), dhi = Math.min(950, 1000 + a);
+      attr($("w2-d"), { x1: X(1000 + a - dhi), y1: Y(dhi), x2: X(1000 + a - dlo), y2: Y(dlo) });
+      attr($("w2-dl"), { x: X(1000 + a - dhi) + 7, y: Y(dhi) - 1 });
+      var slo = Math.max(50, 200 - b), shi = Math.min(950, 1200 - b);
+      attr($("w2-s"), { x1: X(slo - 200 + b), y1: Y(slo), x2: X(shi - 200 + b), y2: Y(shi) });
+      attr($("w2-sl"), { x: X(shi - 200 + b) + 5, y: Y(shi) + 3 });
+      var p = (1200 + a - b) / 2, q = (800 + a + b) / 2, ex = X(q), ey = Y(p);
+      attr($("w2-e"), { cx: ex, cy: ey });
+      attr($("w2-el"), { x: ex + 12, y: ey + 5 });
+      attr($("w2-gy"), { x2: ex, y1: ey, y2: ey });
+      attr($("w2-gx"), { x1: ex, x2: ex, y1: ey });
+      var dtxt = a === 0 ? "移動なし" : (a > 0 ? "右へ" + a + "箱分移動（需要の増加）" : "左へ" + (-a) + "箱分移動（需要の減少）");
+      var stxt = b === 0 ? "移動なし" : (b > 0 ? "右へ" + b + "箱分移動（供給の増加）" : "左へ" + (-b) + "箱分移動（供給の減少）");
+      var out = $("w2-out");
+      out.textContent = "";
+      out.appendChild(document.createTextNode("需要曲線：" + dtxt + "／供給曲線：" + stxt));
+      out.appendChild(document.createElement("br"));
+      out.appendChild(document.createTextNode("均衡価格 600円 → " + p + "円（" + trend(600, p, "上がる", "下がる") + "）、取引量 400箱 → " + q + "箱（" + trend(400, q, "増える", "減る") + "）"));
+    };
+    dd.addEventListener("input", upd2);
+    ds.addEventListener("input", upd2);
+    document.querySelectorAll("#w2 .mk-presets button").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        dd.value = btn.getAttribute("data-dd");
+        ds.value = btn.getAttribute("data-ds");
+        upd2();
+      });
+    });
+    upd2();
+  }
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_kokyo_rinri/公共-044",
+  "map": "hs_kokyo_rinri",
+  "rid": "公共-044",
+  "title": "市場機構と価格の働き",
+  "subject": "公共",
+  "unit": {
+    "ref": "hs_kokyo_rinri:公共-7",
+    "title": "経済に関わる事項（市場経済、金融、財政と社会保障）"
+  },
+  "exam": {
+    "共通テスト": "○",
+    "個別試験": ""
+  },
+  "basis": [
+    "Bア(ウ)"
+  ],
+  "kaisetsu_page": "70",
+  "objectives": [
+    {
+      "id": "O1",
+      "text": "商品市場・労働市場・金融市場などの市場があり、それぞれで価格・賃金・金利という「価格」が形成されることを説明できる。",
+      "from": "商品市場・金融市場・労働市場などで価格（金利・賃金）が形成され／金利は、資金の融通が行われる金融市場で形成される価格に当たる。",
+      "sections": [
+        "sec-1"
+      ],
+      "checks": [
+        "q1",
+        "q3",
+        "q7"
+      ]
+    },
+    {
+      "id": "O2",
+      "text": "需要曲線・供給曲線を用いて、均衡価格の決まり方と、需要や供給の変化による価格と取引量の動きを説明できる。",
+      "from": "価格の働きは需要曲線・供給曲線を用いて扱う。",
+      "sections": [
+        "sec-2",
+        "sec-3"
+      ],
+      "checks": [
+        "q2",
+        "q4",
+        "q5",
+        "q9"
+      ]
+    },
+    {
+      "id": "O3",
+      "text": "価格の働きによって生産が調整され、資本や労働などの生産要素が効率的に配分される仕組みを説明できる。",
+      "from": "価格の働きで生産が調整され、資本や労働などの生産要素が効率的に配分されることを理解する。",
+      "sections": [
+        "sec-4"
+      ],
+      "checks": [
+        "q7",
+        "q10"
+      ]
+    },
+    {
+      "id": "O4",
+      "text": "自発的な交換によって参加者それぞれに利益が生じ、それが国境を越えた貿易取引でも同様であることを説明できる。",
+      "from": "自発的な交換で参加者それぞれに利益が生じ、貿易取引でも同様であることを理解する。",
+      "sections": [
+        "sec-5"
+      ],
+      "checks": [
+        "q6",
+        "q8",
+        "q10"
+      ]
+    }
+  ],
+  "key_terms": [
+    {
+      "term": "需要曲線",
+      "where": "sec-2"
+    },
+    {
+      "term": "供給曲線",
+      "where": "sec-2"
+    },
+    {
+      "term": "均衡価格",
+      "where": "sec-2"
+    },
+    {
+      "term": "市場機構",
+      "where": "sec-2"
+    },
+    {
+      "term": "賃金",
+      "where": "sec-1"
+    },
+    {
+      "term": "金利",
+      "where": "sec-1"
+    },
+    {
+      "term": "生産要素",
+      "where": "sec-1"
+    },
+    {
+      "term": "資源の効率的な配分",
+      "where": "sec-4"
+    },
+    {
+      "term": "自発的な交換",
+      "where": "sec-5"
+    }
+  ],
+  "prerequisites": [
+    {
+      "concept": "市場価格が需要と供給の関係で決まり、需要量と供給量が一致する均衡価格があること（グラフの読み取りを含む）",
+      "taught_in": [
+        "jhs_shakai_komin/公民-056"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "価格には人的・物的資源を効率よく配分する働きがあること",
+      "taught_in": [
+        "jhs_shakai_komin/公民-057"
+      ],
+      "where": "sec-4"
+    },
+    {
+      "concept": "希少性と選択、分業と交換",
+      "taught_in": [
+        "jhs_shakai_komin/公民-051",
+        "jhs_shakai_komin/公民-052"
+      ],
+      "where": "sec-1"
+    },
+    {
+      "concept": "家計が労働を提供し企業が生産を行うこと",
+      "taught_in": [
+        "jhs_shakai_komin/公民-058"
+      ],
+      "where": "sec-1"
+    },
+    {
+      "concept": "公正で自由な競争で消費者の利益が確保され社会的余剰が最大化すること",
+      "taught_in": [
+        "hs_kokyo_rinri/公共-043"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "一次関数のグラフと、連立方程式の解がグラフの交点であること（均衡価格の計算）",
+      "taught_in": [
+        "jhs_math/中2-029",
+        "jhs_math/中2-037"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "金利（利子率）の意味：借りた額に対する利子の割合（金利が金融市場で形成される価格であることは、このコマの要点で扱う）",
+      "taught_in": [],
+      "gap": true,
+      "where": "supp-1"
+    }
+  ],
+  "out_of_scope": [
+    "寡占・独占、外部不経済、情報の非対称性など市場機能の限界と政府の施策（公共-045）",
+    "金融市場の仕組みと金利の働き、各種金融機関の役割（公共-047）",
+    "比較生産費説、自由貿易と保護貿易の利点と課題（公共-059）",
+    "労働契約と労働保護立法（公共-055）",
+    "需要曲線・供給曲線を用いた価格形成のさらなる考察（政治・経済 政経-023）"
+  ],
+  "selection_reason": "公共の学習・活用の行（共通テスト○）から、公共-044（市場機構と価格の働き）・公共-060（外国為替と国際収支）・公共-008（義務を重視する考え方：カント・ロールズ・セン）を比べた。公共-044は、曲線上の動きと曲線の移動の区別という誤解の多い抽象的な内容を含み、需要曲線・供給曲線の図と操作なしには理解しにくく、中学校公民（均衡価格・価格の働き）と公共-043（社会的余剰）・数学（一次関数・交点）の前提が多く、金利の意味にはざまの内容がある。さらに商品・労働・金融の三市場と資源配分、自発的な交換と貿易まで1コマで扱う必要があり、正確な図と数値の検算が欠かせないため、最も作るのが難しいと判断した。公共-060は為替と国際収支を1コマに詰めた密度の高い行だが、図の操作の必要性と前提のはざまは公共-044より小さい。公共-008は抽象度が高いが、思想家の考え方の紹介が中心で数値・図の正確さの要求は低い。",
+  "sources": [
+    {
+      "name": "高等学校学習指導要領（平成30年告示）第2章第3節 公民",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf",
+      "use": "公共 Bア(ウ) の事項"
+    },
+    {
+      "name": "高等学校学習指導要領（平成30年告示）解説 公民編 p.65-67、70",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20211102-mxt_kyoiku02-100002620_04.pdf",
+      "use": "市場経済の機能と限界、価格（金利・賃金）の形成、自発的な交換と貿易取引、生産の調整と生産要素の配分、社会的余剰"
+    },
+    {
+      "name": "『公共』（公共002-901）シラバス案",
+      "publisher": "東京書籍",
+      "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108350/shakai_16700_syllabus.pdf",
+      "use": "† 需要曲線・供給曲線（価格の働きを需要曲線・供給曲線で理解）"
+    },
+    {
+      "name": "『高校生の公共』年間指導計画案・評価規準例",
+      "publisher": "帝国書院",
+      "url": "https://www.teikokushoin.co.jp/files/product1/08koukou/08%E9%AB%98%E6%A0%A1%E7%94%9F%E3%81%AE%E5%85%AC%E5%85%B1_%E5%B9%B4%E9%96%93%E6%8C%87%E5%B0%8E%E8%A8%88%E7%94%BB%E6%A1%88%E3%83%BB%E8%A9%95%E4%BE%A1%E8%A6%8F%E6%BA%96%E4%BE%8B.pdf",
+      "use": "公共の教科書で「需要と供給の均衡」「需要曲線の移動」を扱うことの確認"
+    },
+    {
+      "name": "編修趣意書『公共』（公共035-902）",
+      "publisher": "清水書院（文部科学省公開）",
+      "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041681-6.pdf",
+      "use": "公共の教科書で「需要曲線・供給曲線のシフト」を扱うことの確認"
+    },
+    {
+      "name": "令和9年度大学入学共通テスト実施要項・問題作成方針",
+      "publisher": "大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf&n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%95%8F%E9%A1%8C%E4%BD%9C%E6%88%90%E6%96%B9%E9%87%9D.pdf",
+      "use": "入試へのつながり（「公共」の出題範囲と問題作成の方針の原文）"
+    }
+  ],
+  "version": "1.1",
+  "generated": "2026-09-29"
+}
+</script>
+</body>
+</html>

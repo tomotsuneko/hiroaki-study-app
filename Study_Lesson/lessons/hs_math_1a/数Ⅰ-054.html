@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二次関数とみなして考察する｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+table.data td, table.data th { text-align: center; }
+.math-center { text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>二次関数</span><span>数Ⅰ-054</span></div>
+  <h1>二次関数とみなして考察する</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">活用</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">中学2年では、データの点がほぼ一直線上に並ぶことから、2つの数量の関係を一次関数とみなしました。では、点が曲線のように並んだとき、二次関数とみなしてよいかはどう判断すればよいでしょう。この時間は、データを \( \left(x,\ \dfrac{y}{x}\right) \) や \( (x,\ \sqrt{y}) \) に変換して、点がほぼ一直線上に並ぶかを調べます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>データを座標平面に表すだけでは二次関数とみなせるか判断しにくい理由を、似た形の曲線に並ぶ別のデータと比べて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>(x, y/x) や (x, √y) に変換した点が一直線上に並ぶのはどんな二次関数のときかを式で説明し、データを変換した点がほぼ一直線上に並ぶかで二次関数とみなせるかを判断できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>変換した点に合わせた直線の式から二次関数の式を求めて予測し、データの範囲や誤差に注意して結果を振り返ることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-053）</span>二次不等式の活用</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-054）</span>二次関数とみなして考察する</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-055）</span>二次関数の総合演習（方程式・不等式との関連）</div>
+</div>
+<p class="small">前提となる単元：中学2年「一次関数」（一次関数とみなして予測する）、中学3年「平方根」「関数 y=ax²」。同じ単元の数Ⅰ-034（y=ax²+bx+c の形）、数Ⅰ-043・053（場面を二次関数・二次不等式で表す）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：使う既習事項</h2>
+<p>この時間は、中学で学んだ「一次関数とみなす」考え方と、直線の式の求め方、平方根を使います。</p>
+<div class="formula-card">
+  <div><span class="f-name">① 一次関数とみなす（中2-038）</span><p>実験などのデータを座標平面に表し、点がほぼ一直線上に並ぶとき、2つの数量の関係を一次関数とみなして、式やグラフから予測する。</p></div>
+  <div><span class="f-name">② 2点から直線の式を求める（中2-033）</span><p>2点を通る直線 \( y=ax+b \) の傾きは \( a=\dfrac{y\ の増加量}{x\ の増加量} \)。1点の座標を代入して \( b \) を求める。</p></div>
+  <div><span class="f-name">③ 平方根（中3-019・020）と多項式を単項式でわる計算（中3-002）</span><p>\( a&gt;0 \) のとき \( \sqrt{a^2}=a \)。\( (4x^2+6x)\div 2x=2x+3 \) のように、各項を単項式でわる。</p></div>
+</div>
+<p class="small">①〜③は、このページの中での番号です。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中2-033</span></div>
+  <p>2点 \( (2,\ 1) \)、\( (10,\ 5) \) を通る直線の式はどれですか。</p>
+  <div class="choices">
+    <button>\( y=2x-3 \)</button>
+    <button data-correct="true">\( y=\dfrac{1}{2}x \)</button>
+    <button>\( y=\dfrac{1}{2}x+1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">傾きは \( \dfrac{5-1}{10-2}=\dfrac{4}{8}=\dfrac{1}{2} \)。\( y=\dfrac{1}{2}x+b \) に \( (2,\ 1) \) を代入すると \( 1=1+b \)、\( b=0 \) なので \( y=\dfrac{1}{2}x \) です（原点を通る直線）。\( y=2x-3 \) は傾きを \( \dfrac{x\ の増加量}{y\ の増加量} \) と逆にした式です。\( y=\dfrac{1}{2}x+1 \) は \( b \) を求めずに、1点目の \( y \) 座標 1 を切片としています（\( x=2 \) のとき \( y=2 \) になり、点 \( (2,\ 1) \) を通りません）。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中3-002</span></div>
+  <p>\( x\neq 0 \) のとき、\( (3x^2+2x)\div x \) を計算したものはどれですか。</p>
+  <div class="choices">
+    <button>\( 3x^2+2 \)</button>
+    <button>\( 3x+2x \)</button>
+    <button data-correct="true">\( 3x+2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">各項を \( x \) でわって \( \dfrac{3x^2}{x}+\dfrac{2x}{x}=3x+2 \) です。\( 3x^2+2 \) は2つ目の項だけをわっています。\( 3x+2x \) は1つ目の項だけをわっています（まとめると \( 5x \)）。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中3-020</span></div>
+  <p>\( x&gt;0 \) のとき、\( \sqrt{9x^2} \) に等しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 3x \)</button>
+    <button>\( 9x \)</button>
+    <button>\( 3x^2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 9x^2=(3x)^2 \) で、\( x&gt;0 \) なら \( 3x&gt;0 \) なので \( \sqrt{9x^2}=3x \) です。\( 9x \) は 9 の平方根をとり忘れています。\( 3x^2 \) は \( x^2 \) の平方根をとり忘れています（\( (3x^2)^2=9x^4 \)）。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：曲線に並んだデータは二次関数？</h2>
+<div class="box think">
+  <p class="box-title">2つのデータ A・B（学習用の架空のデータ）</p>
+  <p>ある2つの実験で、数量 \( x \) と \( y \) を測って次のデータ A・B を得ました。</p>
+  <div class="table-wrap">
+  <table class="data">
+    <tr><th>\( x \)</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+    <tr><th>A の \( y \)</th><td>2.1</td><td>7.9</td><td>18.2</td><td>31.8</td><td>50.1</td></tr>
+    <tr><th>B の \( y \)</th><td>3.1</td><td>6.5</td><td>12.7</td><td>25.8</td><td>51.0</td></tr>
+  </table>
+  </div>
+  <p>図1は、A・B の点を座標平面に表したものです。どちらも、右に行くほど急に増える曲線のように並んでいます。</p>
+  <p><strong>A と B のうち、\( x \) と \( y \) の関係を二次関数とみなしてよいのはどちらでしょうか。</strong>図1だけで判断できるでしょうか。答えは「4 データを変換して判断する」で確かめます。</p>
+</div>
+<figure>
+  <div class="fig-row">
+<!--svg:f054a-->
+<svg viewBox="0 0 205 200" width="205" role="img" aria-label="データ A の点 (1, 2.1)、(2, 7.9)、(3, 18.2)、(4, 31.8)、(5, 50.1)。右に行くほど急に増える曲線のように並ぶ" data-fig="f054a1" data-frame="30 30 159 140 -0.6 5.8 -4.0 56.0"><defs><clipPath id="clip-f054a1"><rect x="30" y="30" width="159" height="140"/></clipPath></defs>
+<line x1="24" y1="160.7" x2="197" y2="160.7" stroke="currentColor" stroke-width="1"/>
+<polygon points="198,160.7 190,157.2 190,164.2" fill="currentColor"/>
+<text x="195" y="153.7" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="44.9" y1="176" x2="44.9" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="44.9,21 41.4,29 48.4,29" fill="currentColor"/>
+<text x="51.9" y="31" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="40.9" y="173.7" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="69.8" y1="157.7" x2="69.8" y2="163.7" stroke="currentColor"/>
+<text x="69.8" y="174.7" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="94.6" y1="157.7" x2="94.6" y2="163.7" stroke="currentColor"/>
+<text x="94.6" y="174.7" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="119.4" y1="157.7" x2="119.4" y2="163.7" stroke="currentColor"/>
+<text x="119.4" y="174.7" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="144.3" y1="157.7" x2="144.3" y2="163.7" stroke="currentColor"/>
+<text x="144.3" y="174.7" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="169.1" y1="157.7" x2="169.1" y2="163.7" stroke="currentColor"/>
+<text x="169.1" y="174.7" text-anchor="middle" font-size="11" fill="currentColor">5</text>
+<line x1="41.9" y1="137.3" x2="47.9" y2="137.3" stroke="currentColor"/>
+<text x="39.9" y="141.3" text-anchor="end" font-size="11" fill="currentColor">10</text>
+<line x1="41.9" y1="114" x2="47.9" y2="114" stroke="currentColor"/>
+<text x="39.9" y="118" text-anchor="end" font-size="11" fill="currentColor">20</text>
+<line x1="41.9" y1="90.7" x2="47.9" y2="90.7" stroke="currentColor"/>
+<text x="39.9" y="94.7" text-anchor="end" font-size="11" fill="currentColor">30</text>
+<line x1="41.9" y1="67.3" x2="47.9" y2="67.3" stroke="currentColor"/>
+<text x="39.9" y="71.3" text-anchor="end" font-size="11" fill="currentColor">40</text>
+<line x1="41.9" y1="44" x2="47.9" y2="44" stroke="currentColor"/>
+<text x="39.9" y="48" text-anchor="end" font-size="11" fill="currentColor">50</text>
+<circle cx="69.8" cy="155.8" r="4" fill="#1f5fbf" data-xy="1 21/10"/>
+<circle cx="94.6" cy="142.2" r="4" fill="#1f5fbf" data-xy="2 79/10"/>
+<circle cx="119.4" cy="118.2" r="4" fill="#1f5fbf" data-xy="3 91/5"/>
+<circle cx="144.3" cy="86.5" r="4" fill="#1f5fbf" data-xy="4 159/5"/>
+<circle cx="169.1" cy="43.8" r="4" fill="#1f5fbf" data-xy="5 501/10"/>
+<text x="110.5" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf">データ A</text>
+</svg>
+<svg viewBox="0 0 205 200" width="205" role="img" aria-label="データ B の点 (1, 3.1)、(2, 6.5)、(3, 12.7)、(4, 25.8)、(5, 51.0)。A と同じように、右に行くほど急に増える曲線のように並ぶ" data-fig="f054a2" data-frame="30 30 159 140 -0.6 5.8 -4.0 56.0"><defs><clipPath id="clip-f054a2"><rect x="30" y="30" width="159" height="140"/></clipPath></defs>
+<line x1="24" y1="160.7" x2="197" y2="160.7" stroke="currentColor" stroke-width="1"/>
+<polygon points="198,160.7 190,157.2 190,164.2" fill="currentColor"/>
+<text x="195" y="153.7" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="44.9" y1="176" x2="44.9" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="44.9,21 41.4,29 48.4,29" fill="currentColor"/>
+<text x="51.9" y="31" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="40.9" y="173.7" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="69.8" y1="157.7" x2="69.8" y2="163.7" stroke="currentColor"/>
+<text x="69.8" y="174.7" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="94.6" y1="157.7" x2="94.6" y2="163.7" stroke="currentColor"/>
+<text x="94.6" y="174.7" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="119.4" y1="157.7" x2="119.4" y2="163.7" stroke="currentColor"/>
+<text x="119.4" y="174.7" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="144.3" y1="157.7" x2="144.3" y2="163.7" stroke="currentColor"/>
+<text x="144.3" y="174.7" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="169.1" y1="157.7" x2="169.1" y2="163.7" stroke="currentColor"/>
+<text x="169.1" y="174.7" text-anchor="middle" font-size="11" fill="currentColor">5</text>
+<line x1="41.9" y1="137.3" x2="47.9" y2="137.3" stroke="currentColor"/>
+<text x="39.9" y="141.3" text-anchor="end" font-size="11" fill="currentColor">10</text>
+<line x1="41.9" y1="114" x2="47.9" y2="114" stroke="currentColor"/>
+<text x="39.9" y="118" text-anchor="end" font-size="11" fill="currentColor">20</text>
+<line x1="41.9" y1="90.7" x2="47.9" y2="90.7" stroke="currentColor"/>
+<text x="39.9" y="94.7" text-anchor="end" font-size="11" fill="currentColor">30</text>
+<line x1="41.9" y1="67.3" x2="47.9" y2="67.3" stroke="currentColor"/>
+<text x="39.9" y="71.3" text-anchor="end" font-size="11" fill="currentColor">40</text>
+<line x1="41.9" y1="44" x2="47.9" y2="44" stroke="currentColor"/>
+<text x="39.9" y="48" text-anchor="end" font-size="11" fill="currentColor">50</text>
+<circle cx="69.8" cy="153.4" r="4" fill="#7b3fa0" data-xy="1 31/10"/>
+<circle cx="94.6" cy="145.5" r="4" fill="#7b3fa0" data-xy="2 13/2"/>
+<circle cx="119.4" cy="131" r="4" fill="#7b3fa0" data-xy="3 127/10"/>
+<circle cx="144.3" cy="100.5" r="4" fill="#7b3fa0" data-xy="4 129/5"/>
+<circle cx="169.1" cy="41.7" r="4" fill="#7b3fa0" data-xy="5 51"/>
+<text x="110.5" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#7b3fa0">データ B</text>
+</svg>
+<!--/svg:f054a-->
+  </div>
+  <figcaption>図1　データ A・B の点（学習用の架空のデータ）。どちらも曲線のように並び、図だけでは違いが分かりにくい</figcaption>
+</figure>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="変換すると直線になる理由"><span class="num">3</span>変換すると直線になる理由</h2>
+<p>一次関数なら、点がほぼ一直線上に並ぶかどうかで判断できました（①）。しかし、曲線に並ぶ点は、二次関数のグラフにも、ほかの関数のグラフにも見えることがあり、見た目だけで二次関数と判断するのは難しいです。</p>
+<p>そこで、\( (x,\ y) \) をうまく変換して、<strong>二次関数なら一直線上に並ぶ点</strong>を作ります。こうすれば、中学2年と同じように「ほぼ一直線上に並ぶか」で判断できます。この考え方は、高等学校学習指導要領解説で、二次関数とみなしてよいかを判断する考え方として紹介されています。</p>
+
+<h3>(x, y/x) に変換する</h3>
+<p>\( y=ax^2+bx \)（\( x\neq 0 \)）のとき、両辺を \( x \) でわると（③）</p>
+<p class="math-center">\( \dfrac{y}{x}=ax+b \)</p>
+<p>です。右辺は \( x \) の一次式なので、点 \( \left(x,\ \dfrac{y}{x}\right) \) は、<strong>傾き \( a \)、切片 \( b \) の直線</strong>上に並びます。とくに \( y=ax^2 \)（\( b=0 \)）なら、原点を通る直線 \( \dfrac{y}{x}=ax \) 上に並びます。</p>
+<p>逆に、点 \( \left(x,\ \dfrac{y}{x}\right) \) が直線 \( \dfrac{y}{x}=ax+b \) 上にあれば、両辺に \( x \) をかけて \( y=ax^2+bx \) です。</p>
+
+<h3>(x, √y) に変換する</h3>
+<p>\( y=ax^2 \)（\( a&gt;0 \)、\( x&gt;0 \)）のとき、\( ax^2=(\sqrt{a}\,x)^2 \) で \( \sqrt{a}\,x&gt;0 \) なので（③）</p>
+<p class="math-center">\( \sqrt{y}=\sqrt{a}\,x \)</p>
+<p>です。点 \( (x,\ \sqrt{y}) \) は、<strong>原点を通る傾き \( \sqrt{a} \) の直線</strong>上に並びます。逆に、点 \( (x,\ \sqrt{y}) \) が直線 \( \sqrt{y}=px+q \)（\( px+q\geqq 0 \)）上にあれば、両辺を2乗して \( y=(px+q)^2 \) です。</p>
+
+<div class="box point"><p class="box-title">変換した点が一直線上に並ぶ二次関数</p>
+<div class="table-wrap">
+<table>
+  <tr><th>もとの関係</th><th>変換</th><th>変換した点が並ぶ直線</th></tr>
+  <tr><td>\( y=ax^2+bx \)</td><td>\( \left(x,\ \dfrac{y}{x}\right) \)</td><td>\( \dfrac{y}{x}=ax+b \)（傾き \( a \)、切片 \( b \)）</td></tr>
+  <tr><td>\( y=ax^2 \)</td><td>\( \left(x,\ \dfrac{y}{x}\right) \)</td><td>\( \dfrac{y}{x}=ax \)（原点を通る）</td></tr>
+  <tr><td>\( y=ax^2 \)（\( a&gt;0 \)）</td><td>\( (x,\ \sqrt{y}) \)</td><td>\( \sqrt{y}=\sqrt{a}\,x \)（原点を通る）</td></tr>
+</table>
+</div>
+<p>\( x&gt;0 \)、\( y\geqq 0 \) のデータで考えます。変換した点が直線上に並べば、上の表を逆にたどって、もとの関係を二次関数の式で表せます。</p></div>
+<div class="box caution"><p class="box-title">注意：どの二次関数でも直線になるわけではない</p><p>\( y=ax^2+bx+c \) で \( c\neq 0 \) のときは、\( \dfrac{y}{x}=ax+b+\dfrac{c}{x} \) となり、\( \dfrac{c}{x} \) の項があるので点 \( \left(x,\ \dfrac{y}{x}\right) \) は直線上に並びません。たとえば \( y=x^2+4 \) では、\( x=1,\ 2,\ 4 \) のとき \( \dfrac{y}{x}=5,\ 4,\ 5 \) です。この時間の変換は、上の表の形の二次関数とみなしてよいかを調べる方法です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="データを変換して判断する"><span class="num">4</span>データを変換して判断する</h2>
+<p>導入のデータ A・B を、\( \dfrac{y}{x} \) と \( \sqrt{y} \) に変換します。値は小数第3位を四捨五入しています。</p>
+<div class="table-wrap">
+<table class="data">
+  <tr><th>\( x \)</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+  <tr><th>A の \( \dfrac{y}{x} \)</th><td>2.10</td><td>3.95</td><td>6.07</td><td>7.95</td><td>10.02</td></tr>
+  <tr><th>A の \( \sqrt{y} \)</th><td>1.45</td><td>2.81</td><td>4.27</td><td>5.64</td><td>7.08</td></tr>
+  <tr><th>B の \( \dfrac{y}{x} \)</th><td>3.10</td><td>3.25</td><td>4.23</td><td>6.45</td><td>10.20</td></tr>
+  <tr><th>B の \( \sqrt{y} \)</th><td>1.76</td><td>2.55</td><td>3.56</td><td>5.08</td><td>7.14</td></tr>
+</table>
+</div>
+<figure>
+  <div class="fig-row">
+<!--svg:f054b-->
+<svg viewBox="0 0 205 200" width="205" role="img" aria-label="データ A の点 (x, y/x)。2.10、3.95、6.07、7.95、10.02 がほぼ両端を結ぶ破線の上に並ぶ" data-fig="f054b1" data-frame="30 30 159 140 -0.6 5.8 -0.9 11.5"><defs><clipPath id="clip-f054b1"><rect x="30" y="30" width="159" height="140"/></clipPath></defs>
+<line x1="24" y1="159.8" x2="197" y2="159.8" stroke="currentColor" stroke-width="1"/>
+<polygon points="198,159.8 190,156.3 190,163.3" fill="currentColor"/>
+<text x="195" y="152.8" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="44.9" y1="176" x2="44.9" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="44.9,21 41.4,29 48.4,29" fill="currentColor"/>
+<text x="51.9" y="31" text-anchor="start" font-size="12" fill="currentColor">y/x</text>
+<text x="40.9" y="172.8" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="69.8" y1="156.8" x2="69.8" y2="162.8" stroke="currentColor"/>
+<text x="69.8" y="173.8" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="94.6" y1="156.8" x2="94.6" y2="162.8" stroke="currentColor"/>
+<text x="94.6" y="173.8" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="119.4" y1="156.8" x2="119.4" y2="162.8" stroke="currentColor"/>
+<text x="119.4" y="173.8" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="144.3" y1="156.8" x2="144.3" y2="162.8" stroke="currentColor"/>
+<text x="144.3" y="173.8" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="169.1" y1="156.8" x2="169.1" y2="162.8" stroke="currentColor"/>
+<text x="169.1" y="173.8" text-anchor="middle" font-size="11" fill="currentColor">5</text>
+<line x1="41.9" y1="137.3" x2="47.9" y2="137.3" stroke="currentColor"/>
+<text x="39.9" y="141.3" text-anchor="end" font-size="11" fill="currentColor">2</text>
+<line x1="41.9" y1="114.7" x2="47.9" y2="114.7" stroke="currentColor"/>
+<text x="39.9" y="118.7" text-anchor="end" font-size="11" fill="currentColor">4</text>
+<line x1="41.9" y1="92.1" x2="47.9" y2="92.1" stroke="currentColor"/>
+<text x="39.9" y="96.1" text-anchor="end" font-size="11" fill="currentColor">6</text>
+<line x1="41.9" y1="69.5" x2="47.9" y2="69.5" stroke="currentColor"/>
+<text x="39.9" y="73.5" text-anchor="end" font-size="11" fill="currentColor">8</text>
+<line x1="41.9" y1="46.9" x2="47.9" y2="46.9" stroke="currentColor"/>
+<text x="39.9" y="50.9" text-anchor="end" font-size="11" fill="currentColor">10</text>
+<g data-line="99/50 3/25">
+<line x1="57.3" y1="147.3" x2="181.5" y2="35.5" stroke="#b7791f" stroke-width="1.3" stroke-dasharray="5 4"/>
+</g>
+<circle cx="69.8" cy="136.1" r="4" fill="#1f5fbf" data-xy="1 21/10"/>
+<circle cx="94.6" cy="115.2" r="4" fill="#1f5fbf" data-xy="2 79/20"/>
+<circle cx="119.4" cy="91.3" r="4" fill="#1f5fbf" data-xy="3 607/100"/>
+<circle cx="144.3" cy="70.1" r="4" fill="#1f5fbf" data-xy="4 159/20"/>
+<circle cx="169.1" cy="46.7" r="4" fill="#1f5fbf" data-xy="5 501/50"/>
+<text x="110.5" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf">A の (x, y/x)</text>
+</svg>
+<svg viewBox="0 0 205 200" width="205" role="img" aria-label="データ B の点 (x, y/x)。3.10、3.25、4.23、6.45、10.20 は、両端を結ぶ破線から大きく下に離れ、曲がった形に並ぶ" data-fig="f054b2" data-frame="30 30 159 140 -0.6 5.8 -0.9 11.5"><defs><clipPath id="clip-f054b2"><rect x="30" y="30" width="159" height="140"/></clipPath></defs>
+<line x1="24" y1="159.8" x2="197" y2="159.8" stroke="currentColor" stroke-width="1"/>
+<polygon points="198,159.8 190,156.3 190,163.3" fill="currentColor"/>
+<text x="195" y="152.8" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="44.9" y1="176" x2="44.9" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="44.9,21 41.4,29 48.4,29" fill="currentColor"/>
+<text x="51.9" y="31" text-anchor="start" font-size="12" fill="currentColor">y/x</text>
+<text x="40.9" y="172.8" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="69.8" y1="156.8" x2="69.8" y2="162.8" stroke="currentColor"/>
+<text x="69.8" y="173.8" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="94.6" y1="156.8" x2="94.6" y2="162.8" stroke="currentColor"/>
+<text x="94.6" y="173.8" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="119.4" y1="156.8" x2="119.4" y2="162.8" stroke="currentColor"/>
+<text x="119.4" y="173.8" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="144.3" y1="156.8" x2="144.3" y2="162.8" stroke="currentColor"/>
+<text x="144.3" y="173.8" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="169.1" y1="156.8" x2="169.1" y2="162.8" stroke="currentColor"/>
+<text x="169.1" y="173.8" text-anchor="middle" font-size="11" fill="currentColor">5</text>
+<line x1="41.9" y1="137.3" x2="47.9" y2="137.3" stroke="currentColor"/>
+<text x="39.9" y="141.3" text-anchor="end" font-size="11" fill="currentColor">2</text>
+<line x1="41.9" y1="114.7" x2="47.9" y2="114.7" stroke="currentColor"/>
+<text x="39.9" y="118.7" text-anchor="end" font-size="11" fill="currentColor">4</text>
+<line x1="41.9" y1="92.1" x2="47.9" y2="92.1" stroke="currentColor"/>
+<text x="39.9" y="96.1" text-anchor="end" font-size="11" fill="currentColor">6</text>
+<line x1="41.9" y1="69.5" x2="47.9" y2="69.5" stroke="currentColor"/>
+<text x="39.9" y="73.5" text-anchor="end" font-size="11" fill="currentColor">8</text>
+<line x1="41.9" y1="46.9" x2="47.9" y2="46.9" stroke="currentColor"/>
+<text x="39.9" y="50.9" text-anchor="end" font-size="11" fill="currentColor">10</text>
+<g data-line="71/40 53/40">
+<line x1="57.3" y1="134.9" x2="181.5" y2="34.7" stroke="#b7791f" stroke-width="1.3" stroke-dasharray="5 4"/>
+</g>
+<circle cx="69.8" cy="124.8" r="4" fill="#7b3fa0" data-xy="1 31/10"/>
+<circle cx="94.6" cy="123.1" r="4" fill="#7b3fa0" data-xy="2 13/4"/>
+<circle cx="119.4" cy="112.1" r="4" fill="#7b3fa0" data-xy="3 423/100"/>
+<circle cx="144.3" cy="87" r="4" fill="#7b3fa0" data-xy="4 129/20"/>
+<circle cx="169.1" cy="44.7" r="4" fill="#7b3fa0" data-xy="5 51/5"/>
+<text x="110.5" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#7b3fa0">B の (x, y/x)</text>
+</svg>
+<!--/svg:f054b-->
+  </div>
+  <figcaption>図2　点 (x, y/x)。破線は両端の点を結ぶ直線（このページで目安にする直線）。A はほぼ破線の上に並ぶが、B は破線から大きく下に離れる</figcaption>
+</figure>
+<figure>
+  <div class="fig-row">
+<!--svg:f054c-->
+<svg viewBox="0 0 205 200" width="205" role="img" aria-label="データ A の点 (x, √y)。1.45、2.81、4.27、5.64、7.08 がほぼ原点を通る直線上に並ぶ" data-fig="f054c1" data-frame="30 30 159 140 -0.6 5.8 -0.6 8.0"><defs><clipPath id="clip-f054c1"><rect x="30" y="30" width="159" height="140"/></clipPath></defs>
+<line x1="24" y1="160.2" x2="197" y2="160.2" stroke="currentColor" stroke-width="1"/>
+<polygon points="198,160.2 190,156.7 190,163.7" fill="currentColor"/>
+<text x="195" y="153.2" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="44.9" y1="176" x2="44.9" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="44.9,21 41.4,29 48.4,29" fill="currentColor"/>
+<text x="51.9" y="31" text-anchor="start" font-size="12" fill="currentColor">√y</text>
+<text x="40.9" y="173.2" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="69.8" y1="157.2" x2="69.8" y2="163.2" stroke="currentColor"/>
+<text x="69.8" y="174.2" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="94.6" y1="157.2" x2="94.6" y2="163.2" stroke="currentColor"/>
+<text x="94.6" y="174.2" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="119.4" y1="157.2" x2="119.4" y2="163.2" stroke="currentColor"/>
+<text x="119.4" y="174.2" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="144.3" y1="157.2" x2="144.3" y2="163.2" stroke="currentColor"/>
+<text x="144.3" y="174.2" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="169.1" y1="157.2" x2="169.1" y2="163.2" stroke="currentColor"/>
+<text x="169.1" y="174.2" text-anchor="middle" font-size="11" fill="currentColor">5</text>
+<line x1="41.9" y1="127.7" x2="47.9" y2="127.7" stroke="currentColor"/>
+<text x="39.9" y="131.7" text-anchor="end" font-size="11" fill="currentColor">2</text>
+<line x1="41.9" y1="95.1" x2="47.9" y2="95.1" stroke="currentColor"/>
+<text x="39.9" y="99.1" text-anchor="end" font-size="11" fill="currentColor">4</text>
+<line x1="41.9" y1="62.6" x2="47.9" y2="62.6" stroke="currentColor"/>
+<text x="39.9" y="66.6" text-anchor="end" font-size="11" fill="currentColor">6</text>
+<g data-line="563/400 17/400">
+<line x1="57.3" y1="148.1" x2="181.5" y2="33.5" stroke="#b7791f" stroke-width="1.3" stroke-dasharray="5 4"/>
+</g>
+<circle cx="69.8" cy="136.6" r="4" fill="#1f5fbf" data-xy="1 29/20"/>
+<circle cx="94.6" cy="114.5" r="4" fill="#1f5fbf" data-xy="2 281/100"/>
+<circle cx="119.4" cy="90.7" r="4" fill="#1f5fbf" data-xy="3 427/100"/>
+<circle cx="144.3" cy="68.4" r="4" fill="#1f5fbf" data-xy="4 141/25"/>
+<circle cx="169.1" cy="45" r="4" fill="#1f5fbf" data-xy="5 177/25"/>
+<text x="110.5" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf">A の (x, √y)</text>
+</svg>
+<svg viewBox="0 0 205 200" width="205" role="img" aria-label="データ B の点 (x, √y)。1.76、2.55、3.56、5.08、7.14 は、両端を結ぶ破線より下側にずれて曲がった形に並び、一直線上に並ばない" data-fig="f054c2" data-frame="30 30 159 140 -0.6 5.8 -0.6 8.0"><defs><clipPath id="clip-f054c2"><rect x="30" y="30" width="159" height="140"/></clipPath></defs>
+<line x1="24" y1="160.2" x2="197" y2="160.2" stroke="currentColor" stroke-width="1"/>
+<polygon points="198,160.2 190,156.7 190,163.7" fill="currentColor"/>
+<text x="195" y="153.2" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="44.9" y1="176" x2="44.9" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="44.9,21 41.4,29 48.4,29" fill="currentColor"/>
+<text x="51.9" y="31" text-anchor="start" font-size="12" fill="currentColor">√y</text>
+<text x="40.9" y="173.2" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="69.8" y1="157.2" x2="69.8" y2="163.2" stroke="currentColor"/>
+<text x="69.8" y="174.2" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="94.6" y1="157.2" x2="94.6" y2="163.2" stroke="currentColor"/>
+<text x="94.6" y="174.2" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="119.4" y1="157.2" x2="119.4" y2="163.2" stroke="currentColor"/>
+<text x="119.4" y="174.2" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="144.3" y1="157.2" x2="144.3" y2="163.2" stroke="currentColor"/>
+<text x="144.3" y="174.2" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="169.1" y1="157.2" x2="169.1" y2="163.2" stroke="currentColor"/>
+<text x="169.1" y="174.2" text-anchor="middle" font-size="11" fill="currentColor">5</text>
+<line x1="41.9" y1="127.7" x2="47.9" y2="127.7" stroke="currentColor"/>
+<text x="39.9" y="131.7" text-anchor="end" font-size="11" fill="currentColor">2</text>
+<line x1="41.9" y1="95.1" x2="47.9" y2="95.1" stroke="currentColor"/>
+<text x="39.9" y="99.1" text-anchor="end" font-size="11" fill="currentColor">4</text>
+<line x1="41.9" y1="62.6" x2="47.9" y2="62.6" stroke="currentColor"/>
+<text x="39.9" y="66.6" text-anchor="end" font-size="11" fill="currentColor">6</text>
+<g data-line="269/200 83/200">
+<line x1="57.3" y1="142.5" x2="181.5" y2="33.1" stroke="#b7791f" stroke-width="1.3" stroke-dasharray="5 4"/>
+</g>
+<circle cx="69.8" cy="131.6" r="4" fill="#7b3fa0" data-xy="1 44/25"/>
+<circle cx="94.6" cy="118.7" r="4" fill="#7b3fa0" data-xy="2 51/20"/>
+<circle cx="119.4" cy="102.3" r="4" fill="#7b3fa0" data-xy="3 89/25"/>
+<circle cx="144.3" cy="77.5" r="4" fill="#7b3fa0" data-xy="4 127/25"/>
+<circle cx="169.1" cy="44" r="4" fill="#7b3fa0" data-xy="5 357/50"/>
+<text x="110.5" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#7b3fa0">B の (x, √y)</text>
+</svg>
+<!--/svg:f054c-->
+  </div>
+  <figcaption>図3　点 (x, √y)。破線は両端の点を結ぶ直線（このページで目安にする直線）。A はほぼ破線の上（ほぼ原点を通る直線上）に並ぶが、B は破線より下側にずれて曲がった形に並ぶ</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例1（導入の問いの答え）</p>
+  <div class="step">着目：変換した点が「ほぼ一直線上に並ぶか」を、両端の点を結ぶ直線とのずれで確かめます（このページで使う目安です。目安にする直線の決め方はほかにもあります）。</div>
+  <div class="step">A の \( \dfrac{y}{x} \)：両端 \( (1,\ 2.10) \)、\( (5,\ 10.02) \) を結ぶ直線の傾きは \( \dfrac{10.02-2.10}{5-1}=1.98 \)。この直線上で \( x=3 \) のときの値は \( 2.10+1.98\times 2=6.06 \) で、データの 6.07 とほぼ同じです。\( x=2,\ 4 \) でもずれは 0.13 以下です（図2）。</div>
+  <div class="step">B の \( \dfrac{y}{x} \)：両端 \( (1,\ 3.10) \)、\( (5,\ 10.20) \) を結ぶ直線の傾きは \( \dfrac{10.20-3.10}{4}=1.775 \)。\( x=3 \) のときの値は \( 3.10+1.775\times 2=6.65 \) ですが、データは 4.23 で、2 以上離れています。</div>
+  <div class="step">\( \sqrt{y} \) でも、A はほぼ原点を通る直線上に並び、B は両端を結ぶ直線より下側にずれて曲がった形に並びます（図3）。</div>
+  <div class="step">答え：<span data-ans="intro">二次関数とみなしてよいのは A</span>。A の \( \dfrac{y}{x} \) は傾き約 2 で原点の近くを通る直線にほぼ並ぶので、\( \dfrac{y}{x}\approx 2x \)、つまり \( y\approx 2x^2 \) とみなせます。B は、図1では A と似た曲線に見えますが、変換すると一直線上に並ばないので、上の表の形の二次関数とはみなせません（B の増え方は、下の「よくある間違い」を参照）。</div>
+</div>
+<p>A を \( y=2x^2 \) とみなすと、\( x=1,\ 2,\ 3,\ 4,\ 5 \) のときの値は 2、8、18、32、50 で、データとの差は 0.2 以内です。測定には誤差があるので、データがぴったり直線上に並ぶことはほとんどありません。このページでは、「ほぼ一直線上」かどうかを、ずれの大きさをデータの値と比べて判断します。</p>
+<div class="box caution"><p class="box-title">よくある間違い：生のデータの見た目で決める</p><p>「点が曲線に並んで、右に行くほど増え方が大きいから二次関数」と判断すると、B も二次関数としてしまいます。B の \( y \) は、\( x \) が1増えるごとにおよそ2倍になっていて（3.1、6.5、12.7、25.8、51.0）、二次関数とは違う増え方です。変換した点で確かめることが大切です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="式に表して予測する"><span class="num">5</span>二次関数の式に表して予測する</h2>
+<p>二次関数とみなせたら、変換した点に合わせた直線の式から、もとの二次関数の式を求めます。ここでは、両端の2点を結ぶ直線を使います（②）。</p>
+<div class="box point"><p class="box-title">二次関数とみなして考察する手順</p><p>① 目的を決め、データを座標平面に表す（場面）。<br>② \( \left(x,\ \dfrac{y}{x}\right) \) や \( (x,\ \sqrt{y}) \) に変換し、ほぼ一直線上に並ぶかを調べる（数学化）。<br>③ 直線の式を求め、もとの二次関数の式に直して予測する（解決）。<br>④ 式の値とデータを比べ、予測したい値がデータの範囲から離れていないかを確かめる（振り返り）。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題1（(x, y/x) を使う：自転車が止まるまでの距離）</p>
+  <p>自転車で走る速さ \( x \)（m/s）と、ブレーキをかけようとしてから止まるまでに進む距離 \( y \)（m）を測り、次のデータを得ました（学習用の架空のデータ）。速さ 12 m/s のときの距離を予測しなさい。</p>
+  <div class="table-wrap">
+  <table class="data">
+    <tr><th>\( x \)</th><td>2</td><td>4</td><td>6</td><td>8</td><td>10</td></tr>
+    <tr><th>\( y \)</th><td>2.0</td><td>4.8</td><td>8.5</td><td>12.7</td><td>18.0</td></tr>
+    <tr><th>\( \dfrac{y}{x} \)</th><td>1.00</td><td>1.20</td><td>1.42</td><td>1.59</td><td>1.80</td></tr>
+  </table>
+  </div>
+  <div class="step">ステップ1（変換して調べる）：点 \( \left(x,\ \dfrac{y}{x}\right) \) は、ほぼ一直線上に並びます（図4の「点 (x, y/x)」の図）。</div>
+  <div class="step">ステップ2（着目：直線の式）：両端 \( (2,\ 1.00) \)、\( (10,\ 1.80) \) を結ぶ直線の傾きは \( \dfrac{1.80-1.00}{10-2}=0.1 \)。\( 1.00=0.1\times 2+b \) より \( b=0.8 \)。よって \( \dfrac{y}{x}\approx 0.1x+0.8 \)。</div>
+  <div class="step">ステップ3（もとの式に直す）：両辺に \( x \) をかけて \( y\approx 0.1x^2+0.8x \)。切片が 0.8 で 0 ではないので、\( y=ax^2 \) ではなく \( y=ax^2+bx \) の形です。</div>
+  <div class="step">ステップ4（確かめ）：この式で \( x=6 \) のとき \( 3.6+4.8=8.4 \)、\( x=8 \) のとき \( 6.4+6.4=12.8 \) で、データの 8.5、12.7 との差は 0.1 です。</div>
+  <div class="step">ステップ5（予測）：\( x=12 \) のとき \( 0.1\times 144+0.8\times 12=14.4+9.6=24.0 \)。</div>
+  <div class="step">答え：<span data-ans="ex1">\( y\approx 0.1x^2+0.8x \)</span> とみなすと、速さ 12 m/s のときの距離は約 24 m と予測できる</div>
+</div>
+<figure>
+  <div class="fig-row">
+<!--svg:f054d-->
+<svg viewBox="0 0 205 200" width="205" role="img" aria-label="例題1のデータの点 (2, 2.0)、(4, 4.8)、(6, 8.5)、(8, 12.7)、(10, 18.0) と、y=0.1x²+0.8x のグラフ。点はグラフのすぐ近くにある" data-fig="f054d1" data-frame="30 30 159 140 -1.2 11.5 -1.6 21.0"><defs><clipPath id="clip-f054d1"><rect x="30" y="30" width="159" height="140"/></clipPath></defs>
+<line x1="24" y1="160.1" x2="197" y2="160.1" stroke="currentColor" stroke-width="1"/>
+<polygon points="198,160.1 190,156.6 190,163.6" fill="currentColor"/>
+<text x="195" y="153.1" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="45" y1="176" x2="45" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="45,21 41.5,29 48.5,29" fill="currentColor"/>
+<text x="52" y="31" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="41" y="173.1" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="70.1" y1="157.1" x2="70.1" y2="163.1" stroke="currentColor"/>
+<text x="70.1" y="174.1" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="95.1" y1="157.1" x2="95.1" y2="163.1" stroke="currentColor"/>
+<text x="95.1" y="174.1" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="120.1" y1="157.1" x2="120.1" y2="163.1" stroke="currentColor"/>
+<text x="120.1" y="174.1" text-anchor="middle" font-size="11" fill="currentColor">6</text>
+<line x1="145.2" y1="157.1" x2="145.2" y2="163.1" stroke="currentColor"/>
+<text x="145.2" y="174.1" text-anchor="middle" font-size="11" fill="currentColor">8</text>
+<line x1="170.2" y1="157.1" x2="170.2" y2="163.1" stroke="currentColor"/>
+<text x="170.2" y="174.1" text-anchor="middle" font-size="11" fill="currentColor">10</text>
+<line x1="42" y1="129.1" x2="48" y2="129.1" stroke="currentColor"/>
+<text x="40" y="133.1" text-anchor="end" font-size="11" fill="currentColor">5</text>
+<line x1="42" y1="98.1" x2="48" y2="98.1" stroke="currentColor"/>
+<text x="40" y="102.1" text-anchor="end" font-size="11" fill="currentColor">10</text>
+<line x1="42" y1="67.2" x2="48" y2="67.2" stroke="currentColor"/>
+<text x="40" y="71.2" text-anchor="end" font-size="11" fill="currentColor">15</text>
+<line x1="42" y1="36.2" x2="48" y2="36.2" stroke="currentColor"/>
+<text x="40" y="40.2" text-anchor="end" font-size="11" fill="currentColor">20</text>
+<path d="M45,160.1 L46.2,159.6 L47.3,159.2 L48.5,158.7 L49.6,158.2 L50.8,157.7 L51.9,157.2 L53.1,156.7 L54.2,156.1 L55.4,155.6 L56.5,155 L57.6,154.5 L58.8,153.9 L59.9,153.3 L61.1,152.7 L62.2,152.1 L63.4,151.5 L64.5,150.9 L65.7,150.2 L66.8,149.6 L68,148.9 L69.1,148.3 L70.3,147.6 L71.4,146.9 L72.6,146.2 L73.7,145.5 L74.9,144.8 L76,144 L77.2,143.3 L78.3,142.5 L79.5,141.8 L80.6,141 L81.7,140.2 L82.9,139.4 L84,138.6 L85.2,137.8 L86.3,137 L87.5,136.2 L88.6,135.3 L89.8,134.5 L90.9,133.6 L92.1,132.7 L93.2,131.8 L94.4,130.9 L95.5,130 L96.7,129.1 L97.8,128.2 L99,127.2 L100.1,126.3 L101.3,125.3 L102.4,124.4 L103.6,123.4 L104.7,122.4 L105.8,121.4 L107,120.4 L108.1,119.4 L109.3,118.3 L110.4,117.3 L111.6,116.2 L112.7,115.2 L113.9,114.1 L115,113 L116.2,111.9 L117.3,110.8 L118.5,109.7 L119.6,108.6 L120.8,107.4 L121.9,106.3 L123.1,105.1 L124.2,104 L125.4,102.8 L126.5,101.6 L127.7,100.4 L128.8,99.2 L129.9,98 L131.1,96.7 L132.2,95.5 L133.4,94.2 L134.5,93 L135.7,91.7 L136.8,90.4 L138,89.1 L139.1,87.8 L140.3,86.5 L141.4,85.2 L142.6,83.9 L143.7,82.5 L144.9,81.2 L146,79.8 L147.2,78.4 L148.3,77 L149.5,75.6 L150.6,74.2 L151.8,72.8 L152.9,71.4 L154,70 L155.2,68.5 L156.3,67 L157.5,65.6 L158.6,64.1 L159.8,62.6 L160.9,61.1 L162.1,59.6 L163.2,58.1 L164.4,56.5 L165.5,55 L166.7,53.4 L167.8,51.9 L169,50.3 L170.1,48.7 L171.3,47.1 L172.4,45.5 L173.6,43.9 L174.7,42.3 L175.9,40.7 L177,39 L178.1,37.4 L179.3,35.7 L180.4,34 L181.6,32.3 L182.7,30.6" fill="none" stroke="#b7791f" stroke-width="1.8" data-f="0.1 0.8 0" clip-path="url(#clip-f054d1)"/>
+<circle cx="70.1" cy="147.7" r="4" fill="#1f5fbf" data-xy="2 2"/>
+<circle cx="95.1" cy="130.4" r="4" fill="#1f5fbf" data-xy="4 24/5"/>
+<circle cx="120.1" cy="107.4" r="4" fill="#1f5fbf" data-xy="6 17/2"/>
+<circle cx="145.2" cy="81.4" r="4" fill="#1f5fbf" data-xy="8 127/10"/>
+<circle cx="170.2" cy="48.6" r="4" fill="#1f5fbf" data-xy="10 18"/>
+<text x="110" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf">点 (x, y)</text>
+</svg>
+<svg viewBox="0 0 205 200" width="205" role="img" aria-label="例題1の点 (x, y/x)。1.00、1.20、1.42、1.59、1.80 が、直線 y/x=0.1x+0.8 のほぼ上に並ぶ。直線は原点を通らず、切片は 0.8" data-fig="f054d2" data-frame="34 30 155 140 -1.2 11.5 -0.15 2.1"><defs><clipPath id="clip-f054d2"><rect x="34" y="30" width="155" height="140"/></clipPath></defs>
+<line x1="28" y1="160.7" x2="197" y2="160.7" stroke="currentColor" stroke-width="1"/>
+<polygon points="198,160.7 190,157.2 190,164.2" fill="currentColor"/>
+<text x="195" y="153.7" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="48.6" y1="176" x2="48.6" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="48.6,21 45.1,29 52.1,29" fill="currentColor"/>
+<text x="55.6" y="31" text-anchor="start" font-size="12" fill="currentColor">y/x</text>
+<text x="44.6" y="173.7" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="73.1" y1="157.7" x2="73.1" y2="163.7" stroke="currentColor"/>
+<text x="73.1" y="174.7" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="97.5" y1="157.7" x2="97.5" y2="163.7" stroke="currentColor"/>
+<text x="97.5" y="174.7" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="121.9" y1="157.7" x2="121.9" y2="163.7" stroke="currentColor"/>
+<text x="121.9" y="174.7" text-anchor="middle" font-size="11" fill="currentColor">6</text>
+<line x1="146.3" y1="157.7" x2="146.3" y2="163.7" stroke="currentColor"/>
+<text x="146.3" y="174.7" text-anchor="middle" font-size="11" fill="currentColor">8</text>
+<line x1="170.7" y1="157.7" x2="170.7" y2="163.7" stroke="currentColor"/>
+<text x="170.7" y="174.7" text-anchor="middle" font-size="11" fill="currentColor">10</text>
+<line x1="45.6" y1="129.6" x2="51.6" y2="129.6" stroke="currentColor"/>
+<text x="43.6" y="133.6" text-anchor="end" font-size="11" fill="currentColor">0.5</text>
+<line x1="45.6" y1="98.4" x2="51.6" y2="98.4" stroke="currentColor"/>
+<text x="43.6" y="102.4" text-anchor="end" font-size="11" fill="currentColor">1</text>
+<line x1="45.6" y1="67.3" x2="51.6" y2="67.3" stroke="currentColor"/>
+<text x="43.6" y="71.3" text-anchor="end" font-size="11" fill="currentColor">1.5</text>
+<line x1="45.6" y1="36.2" x2="51.6" y2="36.2" stroke="currentColor"/>
+<text x="43.6" y="40.2" text-anchor="end" font-size="11" fill="currentColor">2</text>
+<g data-line="1/10 4/5">
+<line x1="54.7" y1="107.8" x2="182.9" y2="42.4" stroke="#b7791f" stroke-width="1.3" stroke-dasharray="5 4"/>
+</g>
+<circle cx="73.1" cy="98.4" r="4" fill="#1f5fbf" data-xy="2 1"/>
+<circle cx="97.5" cy="86" r="4" fill="#1f5fbf" data-xy="4 6/5"/>
+<circle cx="121.9" cy="72.3" r="4" fill="#1f5fbf" data-xy="6 71/50"/>
+<circle cx="146.3" cy="61.7" r="4" fill="#1f5fbf" data-xy="8 159/100"/>
+<circle cx="170.7" cy="48.7" r="4" fill="#1f5fbf" data-xy="10 9/5"/>
+<text x="112" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf">点 (x, y/x)</text>
+</svg>
+<!--/svg:f054d-->
+  </div>
+  <figcaption>図4　例題1のデータ（学習用の架空のデータ）。「点 (x, y)」の図：データの点と y=0.1x²+0.8x のグラフ。「点 (x, y/x)」の図：変換した点と直線 y/x=0.1x+0.8（破線）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題2（(x, √y) を使う：斜面をころがる球）</p>
+  <p>斜面で球をころがし、ころがり始めてからの時間 \( x \)（秒）と進んだ距離 \( y \)（cm）を測りました（学習用の架空のデータ）。\( x \) と \( y \) の関係を \( y=ax^2 \) とみなしてよいかを調べ、\( a \) の値を求めなさい。</p>
+  <div class="table-wrap">
+  <table class="data">
+    <tr><th>\( x \)</th><td>0.5</td><td>1.0</td><td>1.5</td><td>2.0</td><td>2.5</td></tr>
+    <tr><th>\( y \)</th><td>7.6</td><td>29.5</td><td>68.0</td><td>119.0</td><td>188.0</td></tr>
+    <tr><th>\( \sqrt{y} \)</th><td>2.76</td><td>5.43</td><td>8.25</td><td>10.91</td><td>13.71</td></tr>
+  </table>
+  </div>
+  <div class="step">ステップ1（変換して調べる）：点 \( (x,\ \sqrt{y}) \) は、ほぼ一直線上に並びます（図5）。両端 \( (0.5,\ 2.76) \)、\( (2.5,\ 13.71) \) を結ぶ直線は \( x=0 \) のとき約 0.02 で、ほぼ原点を通ります。</div>
+  <div class="step">ステップ2（着目：原点を通る直線の傾き）：原点と \( (2.5,\ 13.71) \) を結ぶ直線の傾きは \( 13.71\div 2.5\approx 5.48 \)。よって \( \sqrt{y}\approx 5.48x \)。</div>
+  <div class="step">ステップ3（もとの式に直す）：両辺を2乗して \( y\approx 5.48^2x^2 \)。\( 5.48^2=30.0304 \) なので \( a\approx 30 \)。</div>
+  <div class="step">ステップ4（確かめ）：\( y=30x^2 \) で \( x=1.5 \) のとき 67.5、\( x=2.0 \) のとき 120 で、データの 68.0、119.0 との差は 1 以内です。\( \dfrac{y}{x} \) も 15.20、29.50、45.33、59.50、75.20 で、ほぼ原点を通る直線（傾き約 30）に並び、同じ結論になります。</div>
+  <div class="step">答え：<span data-ans="ex2">\( y\approx 30x^2 \)</span> とみなしてよい（\( a\approx 30 \)）</div>
+</div>
+<figure>
+<!--svg:f054e-->
+<svg viewBox="0 0 420 250" width="420" role="img" aria-label="例題2の点 (x, √y)。(0.5, 2.76)、(1, 5.43)、(1.5, 8.25)、(2, 10.91)、(2.5, 13.71) が、原点を通る直線 √y=5.48x のほぼ上に並ぶ" data-fig="f054e" data-frame="36 22 358 198 -0.25 3.1 -1.2 16.5"><defs><clipPath id="clip-f054e"><rect x="36" y="22" width="358" height="198"/></clipPath></defs>
+<line x1="30" y1="206.6" x2="402" y2="206.6" stroke="currentColor" stroke-width="1"/>
+<polygon points="403,206.6 395,203.1 395,210.1" fill="currentColor"/>
+<text x="400" y="199.6" text-anchor="end" font-size="12" fill="currentColor">x（秒）</text>
+<line x1="62.7" y1="226" x2="62.7" y2="14" stroke="currentColor" stroke-width="1"/>
+<polygon points="62.7,13 59.2,21 66.2,21" fill="currentColor"/>
+<text x="69.7" y="23" text-anchor="start" font-size="12" fill="currentColor">√y</text>
+<text x="58.7" y="219.6" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="116.1" y1="203.6" x2="116.1" y2="209.6" stroke="currentColor"/>
+<text x="116.1" y="220.6" text-anchor="middle" font-size="11" fill="currentColor">0.5</text>
+<line x1="169.6" y1="203.6" x2="169.6" y2="209.6" stroke="currentColor"/>
+<text x="169.6" y="220.6" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="223" y1="203.6" x2="223" y2="209.6" stroke="currentColor"/>
+<text x="223" y="220.6" text-anchor="middle" font-size="11" fill="currentColor">1.5</text>
+<line x1="276.4" y1="203.6" x2="276.4" y2="209.6" stroke="currentColor"/>
+<text x="276.4" y="220.6" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="329.9" y1="203.6" x2="329.9" y2="209.6" stroke="currentColor"/>
+<text x="329.9" y="220.6" text-anchor="middle" font-size="11" fill="currentColor">2.5</text>
+<line x1="383.3" y1="203.6" x2="383.3" y2="209.6" stroke="currentColor"/>
+<text x="383.3" y="220.6" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="59.7" y1="150.6" x2="65.7" y2="150.6" stroke="currentColor"/>
+<text x="57.7" y="154.6" text-anchor="end" font-size="11" fill="currentColor">5</text>
+<line x1="59.7" y1="94.7" x2="65.7" y2="94.7" stroke="currentColor"/>
+<text x="57.7" y="98.7" text-anchor="end" font-size="11" fill="currentColor">10</text>
+<line x1="59.7" y1="38.8" x2="65.7" y2="38.8" stroke="currentColor"/>
+<text x="57.7" y="42.8" text-anchor="end" font-size="11" fill="currentColor">15</text>
+<g data-line="137/25 0">
+<line x1="62.7" y1="206.6" x2="383.3" y2="22.7" stroke="#b7791f" stroke-width="1.3" stroke-dasharray="5 4"/>
+</g>
+<circle cx="116.1" cy="175.7" r="4.5" fill="#1f5fbf" data-xy="1/2 69/25"/>
+<circle cx="169.6" cy="145.8" r="4.5" fill="#1f5fbf" data-xy="1 543/100"/>
+<circle cx="223" cy="114.3" r="4.5" fill="#1f5fbf" data-xy="3/2 33/4"/>
+<circle cx="276.4" cy="84.5" r="4.5" fill="#1f5fbf" data-xy="2 1091/100"/>
+<circle cx="329.9" cy="53.2" r="4.5" fill="#1f5fbf" data-xy="5/2 1371/100"/>
+<text x="342.7" y="83.5" text-anchor="start" font-size="12" fill="#b7791f">√y=5.48x</text>
+</svg>
+<!--/svg:f054e-->
+  <figcaption>図5　例題2の点 (x, √y)（学習用の架空のデータ）と、原点を通る直線 √y=5.48x</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 直線の式から戻すとき、\( \dfrac{y}{x}=0.1x+0.8 \) を \( y=0.1x^2+0.8 \) としてしまう誤りです。両辺に \( x \) をかけるので、右辺の<strong>すべての項</strong>に \( x \) がかかり、\( y=0.1x^2+0.8x \) です。<br>② \( \sqrt{y}=5.48x \) から \( y=5.48x^2 \) としてしまう誤りです。両辺を2乗するので、係数も2乗して \( y=5.48^2x^2 \) です。</p></div>
+<div class="box think"><p class="box-title">振り返り：みなした式を使える範囲</p><p>例題1の式は、速さ 2〜10 m/s のデータから求めたものです。12 m/s はデータの範囲の少し外なので、予測の 24 m はおよその値と考えます。データの範囲から大きく離れた値（たとえば 30 m/s）では、同じ関係が成り立つかをデータから確かめられないので、式の値をそのまま答えにすることはできません。例題2でも、斜面の長さを超えるような時間には式を使えません。中学1年で比例・反比例とみなして予測したときに、結果を使える範囲に制約があることを学んだように（中1-073）、<strong>みなした式は、確かめた範囲の近くで使う</strong>ことが大切です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間で使う語句</p>
+  <dl>
+    <dt>二次関数とみなす</dt><dd>実際のデータは誤差などで式にぴったり合わないが、2つの数量の関係を二次関数で表されると考えて、考察や予測に使うこと。中学2年の「一次関数とみなす」（中2-038）と同じ考え方。</dd>
+    <dt>(x, y/x) への変換</dt><dd>データの各点 \( (x,\ y) \) の \( y \) を \( \dfrac{y}{x} \) に置きかえること。\( y=ax^2+bx \) なら、変換した点は直線 \( \dfrac{y}{x}=ax+b \) 上に並ぶ。</dd>
+    <dt>(x, √y) への変換</dt><dd>データの各点 \( (x,\ y) \) の \( y \) を \( \sqrt{y} \) に置きかえること。\( y=ax^2 \)（\( a&gt;0 \)、\( x&gt;0 \)）なら、変換した点は原点を通る直線 \( \sqrt{y}=\sqrt{a}\,x \) 上に並ぶ。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>データの点が曲線に並んでも、二次関数以外の関係でも似た曲線になることがあるので、見た目だけで二次関数とみなせるかを判断するのは難しい（O1）。</li>
+    <li>\( y=ax^2+bx \) なら点 \( \left(x,\ \dfrac{y}{x}\right) \) は直線 \( \dfrac{y}{x}=ax+b \) 上に、\( y=ax^2 \) なら点 \( (x,\ \sqrt{y}) \) は原点を通る直線 \( \sqrt{y}=\sqrt{a}\,x \) 上に並ぶ。変換した点がほぼ一直線上に並ぶかで、二次関数とみなせるかを判断する（O2）。</li>
+    <li>変換した点に合わせた直線の式を、もとの二次関数の式に直して予測する。式の値とデータを比べ、データの範囲から離れた予測には注意する（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">\( \left(x,\ \dfrac{y}{x}\right) \) が直線 \( \dfrac{y}{x}=ax+b \) 上</span><p>\( y=ax^2+bx \)</p></div>
+  <div><span class="f-name">\( (x,\ \sqrt{y}) \) が原点を通る直線 \( \sqrt{y}=px \) 上</span><p>\( y=p^2x^2 \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。問題のデータはすべて学習用の架空のデータです。数を入力する問題は、半角・全角のどちらで入力してもかまいません。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>実験のデータを座標平面に表すと、点が右に行くほど急に増える曲線のように並びました。これだけで「二次関数とみなせる」と判断するのが難しい理由として、正しいものはどれですか。</p>
+  <div class="choices"><button>二次関数のグラフは、いつも原点を通るから</button><button data-correct="true">二次関数ではない関係のデータも、似た形の曲線に並ぶことがあるから</button><button>曲線に並ぶデータは、一次関数とみなすことになっているから</button><button>点が5個だけでは、座標平面に表すことができないから</button></div>
+  <span class="result"></span>
+  <div class="explain">導入のデータ B は、\( x \) が1増えるごとに \( y \) がおよそ2倍になる、二次関数とは違う増え方ですが、図1では A と似た曲線に見えました。そのため、見た目だけでは判断できません。「いつも原点を通る」は誤りです（たとえば \( y=x^2+1 \) は原点を通りません）。「一次関数とみなす」のは、点がほぼ一直線上に並ぶときです。点が5個でも座標平面に表すことはできます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>データの点 \( (x,\ y) \) を \( \left(x,\ \dfrac{y}{x}\right) \) に変換すると、直線 \( \dfrac{y}{x}=3x+2 \) 上に並びました。もとの \( x \) と \( y \) の関係を表す式はどれですか。</p>
+  <div class="choices"><button>\( y=3x+2 \)</button><button>\( y=3x^2+2 \)</button><button data-correct="true">\( y=3x^2+2x \)</button><button>\( y=(3x+2)^2 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( \dfrac{y}{x}=3x+2 \) の両辺に \( x \) をかけると \( y=3x^2+2x \) です。\( y=3x+2 \) は \( x \) をかけ忘れています。\( y=3x^2+2 \) は最初の項にだけ \( x \) をかけています。\( y=(3x+2)^2 \) は、\( (x,\ \sqrt{y}) \) が直線 \( \sqrt{y}=3x+2 \) 上に並ぶときの式で、変換を取り違えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>\( x&gt;0 \) のデータの点 \( (x,\ y) \) を \( (x,\ \sqrt{y}) \) に変換すると、原点を通る直線 \( \sqrt{y}=2x \) 上に並びました。もとの \( x \) と \( y \) の関係を表す式はどれですか。</p>
+  <div class="choices"><button data-correct="true">\( y=4x^2 \)</button><button>\( y=2x^2 \)</button><button>\( y=4x \)</button><button>\( y=\sqrt{2}\,x^2 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( \sqrt{y}=2x \) の両辺を2乗すると \( y=(2x)^2=4x^2 \) です。\( y=2x^2 \) は係数 2 を2乗し忘れています。\( y=4x \) は \( x \) を2乗し忘れています。\( y=\sqrt{2}\,x^2 \) は、係数を2乗する代わりに平方根をとっています。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="3|a=3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>次のデータについて、\( \dfrac{y}{x} \) を計算すると、点 \( \left(x,\ \dfrac{y}{x}\right) \) はほぼ原点を通る直線上に並びます。\( x \) と \( y \) の関係を \( y=ax^2 \) とみなすとき、\( a \) の値を整数で答えなさい。</p>
+  <div class="table-wrap"><table class="data"><tr><th>\( x \)</th><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><th>\( y \)</th><td>3.1</td><td>11.8</td><td>27.3</td><td>47.6</td></tr></table></div>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 3。\( \dfrac{y}{x} \) は 3.1、5.9、9.1、11.9 で、およそ \( 3x \)（3、6、9、12）です。\( \dfrac{y}{x}\approx 3x \) より \( y\approx 3x^2 \)、\( a=3 \)。\( y=3x^2 \) の値 3、12、27、48 とデータの差は 0.4 以内です。\( x=4 \) のときの \( \dfrac{y}{x} \) の値 11.9 や、\( x=1 \) のときの \( y \) の値 3.1 をそのまま \( a \) とするのは、直線の傾きと点の座標を取り違えた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>次の P〜S のうち、点 \( \left(x,\ \dfrac{y}{x}\right) \) が一直線上に並び、\( y=ax^2+bx \) の形の二次関数で表せるものはどれですか。</p>
+  <div class="table-wrap"><table class="data">
+    <tr><th>\( x \)</th><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+    <tr><th>P の \( y \)</th><td>3</td><td>6</td><td>12</td><td>24</td></tr>
+    <tr><th>Q の \( y \)</th><td>3</td><td>9</td><td>15</td><td>21</td></tr>
+    <tr><th>R の \( y \)</th><td>3</td><td>10</td><td>29</td><td>66</td></tr>
+    <tr><th>S の \( y \)</th><td>3</td><td>10</td><td>21</td><td>36</td></tr>
+  </table></div>
+  <div class="choices"><button>P</button><button>Q</button><button>R</button><button data-correct="true">S</button></div>
+  <span class="result"></span>
+  <div class="explain">\( \dfrac{y}{x} \) を計算すると、S は 3、5、7、9 で、\( x \) が1増えるごとに2ずつ増えるので一直線上に並びます。\( \dfrac{y}{x}=2x+1 \) より \( y=2x^2+x \) です。P は 3、3、4、6 で増え方が一定でなく、一直線上に並びません（\( y \) は2倍ずつ）。Q は 3、4.5、5、5.25 で、一直線上に並びません。Q の点 \( (x,\ y) \) はそのまま直線 \( y=6x-3 \) 上に並ぶので、一次関数です。R は 3、5、\( \dfrac{29}{3}\approx 9.67 \)、16.5 で、一直線上に並びません。R と S は \( x=1,\ 2 \) の値が同じなので、2点だけでは区別できないことにも注意しましょう。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="55">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>ある実験のデータを \( \left(x,\ \dfrac{y}{x}\right) \) に変換すると、\( x=2,\ 4,\ 6,\ 8 \) のとき \( \dfrac{y}{x} \) は 1.5、2.5、3.5、4.5 で、一直線上に並びました。\( x \) と \( y \) の関係を二次関数とみなして、\( x=10 \) のときの \( y \) の値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 55。直線の傾きは \( \dfrac{4.5-1.5}{8-2}=0.5 \)、\( 1.5=0.5\times 2+b \) より \( b=0.5 \)。\( \dfrac{y}{x}=0.5x+0.5 \) より \( y=0.5x^2+0.5x \)。\( x=10 \) のとき \( 50+5=55 \)。\( \dfrac{y}{x} \) の直線をそのまま延ばして \( x=10 \) のときの値 5.5 を答えるのは、\( \dfrac{y}{x} \) の値と \( y \) の値を取り違えた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O2</span></div>
+  <p>\( x\geqq 0 \) のデータの点 \( (x,\ y) \) を \( (x,\ \sqrt{y}) \) に変換すると、直線 \( \sqrt{y}=x+1 \) 上に並びました。もとの \( x \) と \( y \) の関係を表す式はどれですか。</p>
+  <div class="choices"><button>\( y=x^2+1 \)</button><button data-correct="true">\( y=x^2+2x+1 \)</button><button>\( y=x^2+x+1 \)</button><button>\( y=x+1 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">両辺を2乗すると \( y=(x+1)^2=x^2+2x+1 \) です。\( y=x^2+1 \) は、項ごとに2乗した誤りです（\( (x+1)^2\neq x^2+1 \)）。\( y=x^2+x+1 \) は展開のときに \( 2x \) の 2 を落としています。\( y=x+1 \) は2乗し忘れています。確かめ：\( x=1 \) のとき \( \sqrt{y}=2 \) なので \( y=4 \)。正しい式では \( 1+2+1=4 \) です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O3</span></div>
+  <p>例題1のデータ（速さ 2〜10 m/s）について、太郎さんと花子さんが話しています。</p>
+  <p>太郎：「\( \left(x,\ \dfrac{y}{x}\right) \) がほぼ一直線上に並んだから、\( y=0.1x^2+0.8x \) とみなせるね。だから速さ 30 m/s のときの距離は \( 0.1\times 900+0.8\times 30=114 \) m だと言い切れるよ。」<br>花子：「30 m/s のところは、データがないけれど……。」</p>
+  <p>この会話について、正しい説明はどれですか。</p>
+  <div class="choices">
+    <button>\( \left(x,\ \dfrac{y}{x}\right) \) で調べたのは誤りで、\( (x,\ \sqrt{y}) \) で調べないと二次関数とはみなせない。</button>
+    <button>生のデータの点が曲線に並んでいるので、もともと二次関数であり、どんな速さでも 114 m のように式で言い切れる。</button>
+    <button data-correct="true">データの範囲では \( y=0.1x^2+0.8x \) とみなしてよいが、30 m/s はデータの範囲から大きく離れていて、同じ関係が成り立つかをデータから確かめられないので、114 m と言い切ることはできない。</button>
+    <button>式の計算が誤りで、正しく計算すれば 30 m/s のときの距離を言い切ることができる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \left(x,\ \dfrac{y}{x}\right) \) がほぼ一直線上に並んだので、データの範囲で \( y=0.1x^2+0.8x \) とみなすのは妥当です。計算 \( 90+24=114 \) も正しいです。しかし、30 m/s はデータの範囲（2〜10 m/s）から大きく離れていて、その速さでも同じ関係が成り立つかは、このデータからは分かりません。「\( (x,\ \sqrt{y}) \) で調べないとみなせない」は誤りです。\( y=ax^2+bx \) の形では \( \left(x,\ \dfrac{y}{x}\right) \) が直線になります。「生のデータが曲線だから二次関数」は、導入のデータ B のように見た目だけでは判断できないので誤りです。「計算が誤り」も誤りです。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>ある実験で、次のデータを得ました（学習用の架空のデータ）。</p>
+  <div class="table-wrap"><table class="data"><tr><th>\( x \)</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th>\( y \)</th><td>4.1</td><td>15.8</td><td>36.3</td><td>63.6</td><td>100.4</td></tr></table></div>
+  <p>(1) \( \sqrt{y} \) の値を小数第3位を四捨五入して求め、点 \( (x,\ \sqrt{y}) \) がどのように並ぶかを説明しなさい。<br>(2) \( x \) と \( y \) の関係を \( y=ax^2 \) とみなして \( a \) の値を求め、\( x=6 \) のときの \( y \) の値を予測しなさい。また、その予測について注意することを1つ書きなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) \( \sqrt{y} \) は 2.02、3.97、6.02、7.97、10.02。\( x \) が1増えるごとに約 2 ずつ増え、点 \( (x,\ \sqrt{y}) \) はほぼ原点を通る直線 \( \sqrt{y}=2x \) 上に並ぶ。</p>
+    <p>(2) \( \sqrt{y}\approx 2x \) より \( y\approx 4x^2 \)、\( a=4 \)。\( x=6 \) のとき \( y\approx 4\times 36=144 \)。注意：\( x=6 \) はデータの範囲（1〜5）の外なので、予測の 144 はおよその値で、実際に同じ関係が成り立つかは確かめる必要がある。</p>
+    <p><strong>採点の観点</strong>　① \( \sqrt{y} \) の値を正しく求めている。② 点がほぼ原点を通る直線上に並ぶことを、増え方や直線の式で説明している。③ \( \sqrt{y}\approx 2x \) を2乗して \( y\approx 4x^2 \) とし、\( x=6 \) の値 144 を求めている。④ データの範囲の外の予測であることなど、結果の使い方の注意を書いている。</p>
+  </div>
+  <div class="explain">確かめ：\( y=4x^2 \) の値は 4、16、36、64、100 で、データとの差は 0.4 以内です。\( \dfrac{y}{x} \)（4.10、7.90、12.10、15.90、20.08）もほぼ原点を通る直線（傾き約 4）に並び、同じ結論になります。\( \sqrt{y}=2x \) から \( y=2x^2 \) とするのは、係数を2乗し忘れた誤りです。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(3) 二次関数」の「二つの数量の関係に着目し，日常の事象や社会の事象などを数学的に捉え，問題を解決したり，解決の過程を振り返って事象の数学的な特徴や他の事象との関係を考察したりすること」（イ(イ)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べ、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。データを表やグラフに表し、変換して二次関数とみなせるかを判断するこの時間の流れは、こうした過程の練習になります。</p>
+  <p class="small">問8・問9は会話や架空のデータを題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">二次関数の総合演習（方程式・不等式との関連）（数Ⅰ-055）</p>
+  <p>次の時間は、判別式を用いた共有点の個数、二次不等式がすべての実数で成り立つ条件、二次不等式を含む連立不等式など、グラフと方程式・不等式を組み合わせた問題を、式とグラフを関連付けて解く演習をします。</p>
+  <p>この時間では、データに直線を当てはめる方法を計算で決めること（このページでは両端の2点を結ぶ直線で考えました）や、二次関数以外の関数とみなす方法は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-053　二次不等式の活用</div>
+  <div><span class="label">次の時間</span>数Ⅰ-055　二次関数の総合演習（方程式・不等式との関連）</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-054「二次関数とみなして考察する」（活用。学習指導要領 数学Ⅰ (3)イ(イ)、解説 p.42-43）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(3) 二次関数 イ(イ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.42-43（中学校第2学年でデータがほぼ一直線上に並ぶことを基に一次関数とみなすこと、二次関数とみなしてよいかはそのようには判断できないという難しさ、（x，y）を（x，y/x）や（x，√y）と変換した点がほぼ一直線上に並ぶかどうかで判断する考え方。「生徒の特性等に応じてこのような考え方を取り扱うことも考えられる」）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。このページのデータ（データ A・B、自転車、斜面をころがる球、確認問題のデータ）は、すべて学習用に作成した架空のデータで、実際の測定値ではありません。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-054",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-054",
+  "title": "二次関数とみなして考察する",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-3", "title": "二次関数"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(3)イ(イ)"],
+  "kaisetsu_page": "42-43",
+  "objectives": [
+    {"id": "O1", "text": "データを座標平面に表すだけでは二次関数とみなせるか判断しにくい理由を、似た形の曲線に並ぶ別のデータと比べて説明できる。", "from": "データを座標平面に表すだけでは二次関数とみなせるか判断しにくいことを知り", "sections": ["intro", "sec-1", "sec-2"], "checks": ["q1", "q8"]},
+    {"id": "O2", "text": "(x, y/x) や (x, √y) に変換した点が一直線上に並ぶのはどんな二次関数のときかを式で説明し、データを変換した点がほぼ一直線上に並ぶかで二次関数とみなせるかを判断できる。", "from": "(x, y/x) や (x, √y) と変換した点がほぼ一直線上に並ぶかで二次関数とみなせるかを判断できる", "sections": ["sec-1", "sec-2"], "checks": ["q2", "q3", "q4", "q5", "q7", "q9"]},
+    {"id": "O3", "text": "変換した点に合わせた直線の式から二次関数の式を求めて予測し、データの範囲や誤差に注意して結果を振り返ることができる。", "from": "二次関数とみなせるかを判断できる（みなした後の考察・予測。解説 p.42 イ(イ)「問題を解決したり，解決の過程を振り返って」）", "sections": ["sec-3"], "checks": ["q6", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "二次関数とみなす", "where": "sec-1"},
+    {"term": "(x, y/x) への変換", "where": "sec-1"},
+    {"term": "(x, √y) への変換", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "データがほぼ一直線上に並ぶことから一次関数とみなして予測する", "taught_in": ["jhs_math/中2-038"], "where": "review"},
+    {"concept": "比例・反比例とみなして予測し、結果の適用範囲に制約があることを知る", "taught_in": ["jhs_math/中1-073"], "where": "sec-3"},
+    {"concept": "2点の座標から直線（一次関数）の式を求める", "taught_in": ["jhs_math/中2-033"], "where": "review"},
+    {"concept": "多項式を単項式でわる", "taught_in": ["jhs_math/中3-002"], "where": "review"},
+    {"concept": "平方根の意味と根号（a>0 のとき √(a²)=a）", "taught_in": ["jhs_math/中3-019", "jhs_math/中3-020"], "where": "review"},
+    {"concept": "y=ax² で表される関数（斜面をころがる球の時間と距離）と、事象を y=ax² とみなして予測すること", "taught_in": ["jhs_math/中3-049", "jhs_math/中3-057"], "where": "sec-3"},
+    {"concept": "y=ax²+bx+c の形の二次関数", "taught_in": ["hs_math_1a/数Ⅰ-034"], "where": "sec-1"},
+    {"concept": "具体的な事象の数量の関係を二次関数で表すこと", "taught_in": ["hs_math_1a/数Ⅰ-043"], "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "データに当てはめる直線を計算で決める方法（このページでは両端の2点を結ぶ直線で考える）",
+    "二次関数以外の関数（指数関数など）とみなす方法（数Ⅱ-095 などで扱う）",
+    "y=ax²+bx+c（c≠0）の形とみなしてよいかを判断する方法"
+  ],
+  "selection_reason": "数学Ⅰ 単元『二次関数』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(3)イ(イ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.42-43 一次関数とみなすこととの比較、(x, y/x)・(x, √y) に変換して判断する考え方"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

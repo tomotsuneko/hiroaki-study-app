@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>円順列｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+.widget .w-row { display: flex; flex-wrap: wrap; gap: 4px 18px; align-items: center; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-009</span></div>
+  <h1>円順列</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">4人が1列に並ぶ並べ方は 24通りです。では、丸いテーブルのまわりに座るなら何通りでしょう。円形に並べると「回して重なる並べ方」が生まれます。その見方から、円形の並べ方の総数を導きます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>円順列では、回転して一致する並べ方を同じものとみることを、図を使って説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>回転して一致するものを同じとみる見方から、円順列の総数 \( (n-1)! \) を導くことができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>公式を導く過程でどのような見方をしたか（\( n \) 通りずつを1つとみる、1つのものを固定する）を振り返り、その見方を使って条件のある円順列の総数を求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-008）</span>条件のある順列</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-009）</span>円順列</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-010）</span>重複順列</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。同じ単元の数Ａ-003（対応付けて数える）、数Ａ-007（階乗）、数Ａ-008（条件のある順列）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、階乗（数Ａ-007）と、条件のある順列の考え方（数Ａ-008）を使います。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-007</span></div>
+  <p>\( \dfrac{6!}{6} \) と等しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( 1! \)</button>
+    <button data-correct="true">\( 5! \)</button>
+    <button>\( 6! \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 6!=6\times5! \) なので \( \dfrac{6!}{6}=5!=120 \) です（数Ａ-007 の \( n!=n\times(n-1)! \)）。\( 1! \) は \( \dfrac{6}{6}=1 \) と、階乗の中の数を割った誤り、\( 6! \) は 6 で割るのを忘れた誤りです。この時間の公式で、この計算を使います。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-008</span></div>
+  <p>A、B を含む5人が1列に並ぶとき、A と B が隣り合う並べ方は何通りですか。</p>
+  <div class="choices">
+    <button>24通り</button>
+    <button>120通り</button>
+    <button data-correct="true">48通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">A と B をひとまとめにして4つを並べ \( 4!=24 \)（通り）、中の並べ方 \( 2! \) をかけて \( 4!\times2!=48 \)（通り）。24通りは中の並べ方をかけ忘れた誤り、120通りは \( 5! \) で条件を考えていません。「6 見方を使って条件のある円順列を求める」で、円形の場合と比べます。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：丸いテーブルの座り方</h2>
+<div class="box think">
+  <p class="box-title">4人が丸いテーブルを囲む</p>
+  <p>A、B、C、D の4人が、丸いテーブルのまわりの4つの席に座ります。席には番号などの区別はなく、だれの右隣・左隣にだれがいるかだけを考えます。</p>
+  <ul>
+    <li>1列に並ぶなら、並べ方は \( 4!=24 \)（通り）でした。丸いテーブルでも24通りでしょうか。</li>
+    <li>「A の右隣が B、その右隣が C、…」という座り方は、テーブルをぐるっと回して見ても変わりません。このことは数え方にどう関係するでしょうか。</li>
+  </ul>
+  <p>答えは「4 円順列の総数を導く」で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="円形に並べるとは"><span class="num">3</span>円形に並べるとは：回転して一致するものは同じ</h2>
+<p>4人の座り方を、いちばん上の席から時計回りに読んだ文字の列で表すことにします。図1の左端の座り方は「ABCD」です。この4人が、席の順番を保ったまま1席ずつ時計回りに移ると、上の席から読む列は「DABC」「CDAB」「BCDA」と変わります。</p>
+<figure>
+<div class="fig-scroll">
+<!--svg:f009a-->
+<svg viewBox="0 0 590 190" width="590" role="img" aria-label="A、B、C、D の4人の円形の並び方を、1席ずつ時計回りに回した4つの図。上の席から時計回りに読むとABCD、DABC、CDAB、BCDA で、4つとも同じ円順列">
+<circle cx="70" cy="78" r="24" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="70" cy="38" r="13" fill="#ffffff" fill-opacity="0.0" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="70" y="43" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">A</text>
+<circle cx="110" cy="78" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="110" y="83" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="70" cy="118" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="70" y="123" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="30" cy="78" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="30" y="83" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<text x="87" y="29" text-anchor="start" font-size="10" fill="#8a99a8">上</text>
+<text x="70" y="154" text-anchor="middle" font-size="12" fill="currentColor">読むと ABCD</text>
+<path d="M 132 78 L 152 78 M 146 73 L 152 78 L 146 83" fill="none" stroke="currentColor" stroke-width="1.5"/>
+<circle cx="220" cy="78" r="24" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="220" cy="38" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="220" y="43" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<circle cx="260" cy="78" r="13" fill="#ffffff" fill-opacity="0.0" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="260" y="83" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">A</text>
+<circle cx="220" cy="118" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="220" y="123" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="180" cy="78" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="180" y="83" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="237" y="29" text-anchor="start" font-size="10" fill="#8a99a8">上</text>
+<text x="220" y="154" text-anchor="middle" font-size="12" fill="currentColor">読むと DABC</text>
+<path d="M 282 78 L 302 78 M 296 73 L 302 78 L 296 83" fill="none" stroke="currentColor" stroke-width="1.5"/>
+<circle cx="370" cy="78" r="24" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="370" cy="38" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="370" y="43" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="410" cy="78" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="410" y="83" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<circle cx="370" cy="118" r="13" fill="#ffffff" fill-opacity="0.0" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="370" y="123" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">A</text>
+<circle cx="330" cy="78" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="330" y="83" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="387" y="29" text-anchor="start" font-size="10" fill="#8a99a8">上</text>
+<text x="370" y="154" text-anchor="middle" font-size="12" fill="currentColor">読むと CDAB</text>
+<path d="M 432 78 L 452 78 M 446 73 L 452 78 L 446 83" fill="none" stroke="currentColor" stroke-width="1.5"/>
+<circle cx="520" cy="78" r="24" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="520" cy="38" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="520" y="43" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="560" cy="78" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="560" y="83" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="520" cy="118" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="520" y="123" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<circle cx="480" cy="78" r="13" fill="#ffffff" fill-opacity="0.0" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="480" y="83" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">A</text>
+<text x="537" y="29" text-anchor="start" font-size="10" fill="#8a99a8">上</text>
+<text x="520" y="154" text-anchor="middle" font-size="12" fill="currentColor">読むと BCDA</text>
+<text x="295" y="18" text-anchor="middle" font-size="12" fill="currentColor">1つずつ時計回りに回すと（→）</text>
+<text x="295" y="178" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">4つとも、どの人から見ても右隣・左隣が同じ＝同じ円順列</text>
+</svg>
+<!--/svg:f009a-->
+</div>
+  <figcaption>図1　同じ座り方を1席ずつ時計回りに回した4つの図。A を青で示す。上から読む列は違うが、どの人の右隣・左隣も変わらない</figcaption>
+</figure>
+<p>4つの図では、上から読んだ列はすべて違いますが、どれも「A の時計回りの隣が B、B の隣が C、C の隣が D、D の隣が A」という同じ並び方です。テーブルを回せば重なるので、円形に並べるときは、これらを<span class="em">同じ並べ方とみます</span>。</p>
+<p>いくつかのものを円形に並べたものを<strong>円順列</strong>といいます。円順列では、<strong>回転して一致する並べ方は同じもの</strong>とみます。</p>
+<div class="box caution"><p class="box-title">よくある間違い：上から読んだ列が違えば別の並べ方と考える</p><p>「ABCD」と「DABC」は、1列に並ぶなら別の並べ方ですが、円形では回転すると重なるので同じ円順列です。一方、時計回りに「ABCD」と読める並び方と、時計回りに「ADCB」と読める並び方は、A の時計回りの隣が B と D で違います。回転だけでは重ならないので、別の円順列です。同じかどうかは「どの人から見ても、隣が同じか」で確かめましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="円順列の総数を導く"><span class="num">4</span>円順列の総数を導く</h2>
+<h3>見方1：1列の並べ方を、\( n \) 通りずつ1つにまとめる</h3>
+<p>4人を1列に並べる並べ方（上から読んだ列）は \( 4!=24 \)（通り）あります。1つの円順列を1席ずつ回すと、図1のように上から読む列が4通りでき、5回目でもとに戻ります。4人はみな違う人なので、回すたびに上の席の人が変わり、この4通りの列はすべて異なります。</p>
+<p>逆に、24通りの列のどれも、ちょうど1つの円順列から読んだものです。つまり24通りの列は、同じ円順列どうしで4通りずつの組に分かれます。</p>
+$$ \text{円順列の総数}=\frac{4!}{4}=\frac{24}{4}=6 $$
+<p>導入の問いの答えは 6通りで、24通りではありません。6通りの円順列を図2に示します。</p>
+<figure>
+<div class="fig-scroll">
+<!--svg:f009b-->
+<svg viewBox="0 0 470 268" width="470" role="img" aria-label="A を上の席に固定し、残りの3つの席に B、C、D を並べた6つの円順列。上から時計回りに読むと ABCD、ABDC、ACBD、ACDB、ADBC、ADCB">
+<circle cx="85" cy="62" r="22" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="85" cy="24" r="13" fill="#ffffff" fill-opacity="0.0" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="85" y="29" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">A</text>
+<circle cx="123" cy="62" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="123" y="67" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="85" cy="100" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="85" y="105" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="47" cy="62" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="47" y="67" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<text x="102" y="15" text-anchor="start" font-size="10" fill="#8a99a8">上</text>
+<text x="85" y="130" text-anchor="middle" font-size="12" fill="currentColor">① ABCD</text>
+<circle cx="235" cy="62" r="22" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="235" cy="24" r="13" fill="#ffffff" fill-opacity="0.0" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="235" y="29" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">A</text>
+<circle cx="273" cy="62" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="273" y="67" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="235" cy="100" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="235" y="105" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<circle cx="197" cy="62" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="197" y="67" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="252" y="15" text-anchor="start" font-size="10" fill="#8a99a8">上</text>
+<text x="235" y="130" text-anchor="middle" font-size="12" fill="currentColor">② ABDC</text>
+<circle cx="385" cy="62" r="22" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="385" cy="24" r="13" fill="#ffffff" fill-opacity="0.0" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="385" y="29" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">A</text>
+<circle cx="423" cy="62" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="423" y="67" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="385" cy="100" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="385" y="105" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="347" cy="62" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="347" y="67" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<text x="402" y="15" text-anchor="start" font-size="10" fill="#8a99a8">上</text>
+<text x="385" y="130" text-anchor="middle" font-size="12" fill="currentColor">③ ACBD</text>
+<circle cx="85" cy="190" r="22" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="85" cy="152" r="13" fill="#ffffff" fill-opacity="0.0" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="85" y="157" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">A</text>
+<circle cx="123" cy="190" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="123" y="195" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="85" cy="228" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="85" y="233" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<circle cx="47" cy="190" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="47" y="195" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="102" y="143" text-anchor="start" font-size="10" fill="#8a99a8">上</text>
+<text x="85" y="258" text-anchor="middle" font-size="12" fill="currentColor">④ ACDB</text>
+<circle cx="235" cy="190" r="22" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="235" cy="152" r="13" fill="#ffffff" fill-opacity="0.0" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="235" y="157" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">A</text>
+<circle cx="273" cy="190" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="273" y="195" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<circle cx="235" cy="228" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="235" y="233" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="197" cy="190" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="197" y="195" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="252" y="143" text-anchor="start" font-size="10" fill="#8a99a8">上</text>
+<text x="235" y="258" text-anchor="middle" font-size="12" fill="currentColor">⑤ ADBC</text>
+<circle cx="385" cy="190" r="22" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="385" cy="152" r="13" fill="#ffffff" fill-opacity="0.0" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="385" y="157" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">A</text>
+<circle cx="423" cy="190" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="423" y="195" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<circle cx="385" cy="228" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="385" y="233" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="347" cy="190" r="13" fill="#ffffff" fill-opacity="0.0" stroke="currentColor" stroke-width="1.5"/>
+<text x="347" y="195" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="402" y="143" text-anchor="start" font-size="10" fill="#8a99a8">上</text>
+<text x="385" y="258" text-anchor="middle" font-size="12" fill="currentColor">⑥ ADCB</text>
+</svg>
+<!--/svg:f009b-->
+</div>
+  <figcaption>図2　A、B、C、D の4人の円順列6通り。どの円順列も、回して A を上の席にそろえて示している</figcaption>
+</figure>
+<p>人数が \( n \) 人でも同じです。\( n \) 人を1列に並べる並べ方は \( n! \) 通りあり、1つの円順列から \( n \) 通りずつの列ができるので、</p>
+<div class="formula-card"><div><span class="f-name">異なる \( n \) 個の円順列の総数</span>$$ \frac{n!}{n}=(n-1)! $$</div></div>
+<p>となります（\( n!=n\times(n-1)! \) を使いました）。たとえば5人なら \( (5-1)!=4!=24 \)（通り）、6人なら \( 5!=120 \)（通り）です。</p>
+
+<h3>回して確かめよう</h3>
+<p>人数 \( n \) を選び、「回した席の数」を変えてみましょう。上の席から読む列が変わっても、同じ円順列であることと、1つの円順列から \( n \) 通りの列ができることが確かめられます。</p>
+<div class="widget" id="w9">
+  <div class="w-row">
+    <span><label for="w9-n">人数 \( n \)：</label><input type="range" id="w9-n" min="3" max="6" step="1" value="4"> <output id="w9-nv" for="w9-n">4</output></span>
+    <span><label for="w9-k">回した席の数：</label><input type="range" id="w9-k" min="0" max="3" step="1" value="0"> <output id="w9-kv" for="w9-k">0</output></span>
+  </div>
+  <div><svg id="w9-svg" viewBox="0 0 300 260" width="300" role="img" aria-label="円形のテーブルに n 人が座った図。回した席の数だけ全員が時計回りに移る。上の席から時計回りに読んだ列を下に示す"></svg></div>
+  <p class="w-out" id="w9-out" aria-live="polite">（初期表示）4人の座り方を上の席から時計回りに読むと「ABCD」。この並び方を回してできる列は ABCD、DABC、CDAB、BCDA の4通りで、すべて同じ円順列です。</p>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：\( n! \) から \( n \) を引く</p><p>「回転したものを除く」と考えて、5人の円順列を \( 5!-5=115 \) とする誤りです。回転して重なる列は、1つの円順列につき5通りずつあるので、5で<strong>割り</strong>ます。\( \dfrac{5!}{5}=24 \)（通り）です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="もう1つの見方と振り返り"><span class="num">5</span>もう1つの見方と、導く過程の振り返り</h2>
+<h3>見方2：1つのものの位置を固定する</h3>
+<p>図2では、どの円順列も A が上の席にくるように回してそろえました。どの円順列も、回せば必ず A を上の席にでき、そのときの並び方は1つに決まります。そこで、<span class="em">A の席を上に固定して、残りの席に残りの人を並べる</span>と考えます。</p>
+<p>A を固定すると、残りの3つの席は「A から時計回りに1番目・2番目・3番目」と区別できるので、B、C、D の並べ方は1列に並べるのと同じく \( 3!=6 \)（通り）です。\( n \) 人なら、1人を固定して残りの \( n-1 \) 人を並べるので \( (n-1)! \) 通りとなり、見方1と同じ結果になります。</p>
+<div class="box point"><p class="box-title">公式を導く過程で、どのような見方をしたか</p>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>見方1</th><th>見方2</th></tr>
+  <tr><td>何に着目したか</td><td>1つの円順列から、回転によって \( n \) 通りの列ができる</td><td>回転すれば、どの円順列でも特定の1人を上の席にそろえられる</td></tr>
+  <tr><td>どう数えたか</td><td>1列の並べ方 \( n! \) 通りを、\( n \) 通りずつ1つとみて \( n \) で割る</td><td>1人を固定して、残りの \( n-1 \) 人を1列のように並べる</td></tr>
+  <tr><td>式</td><td>\( \dfrac{n!}{n}=(n-1)! \)</td><td>\( (n-1)! \)</td></tr>
+</table>
+</div>
+<p>どちらも「回転して一致するものを同じとみる」ことを、数え方の中でどう処理するかの工夫です。見方1は数Ａ-003 の「分かりやすいもの（1列の並べ方）と対応付けて数える」考え方、見方2は数Ａ-008 の「条件のある所を先に決める」考え方につながっています。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：席に区別があるのに \( (n-1)! \) とする</p><p>円形のテーブルでも、席に1番〜5番の番号がついていて「だれが何番の席か」を区別するなら、回すと座る席の番号が変わるので、回転して一致するものも別の座り方になります。このときは1列に並べるのと同じで \( 5!=120 \)（通り）です。\( (n-1)! \) が使えるのは、回転して一致するものを同じとみるときです。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="条件のある円順列"><span class="num">6</span>見方を使って条件のある円順列を求める</h2>
+<p>条件のある円順列では、見方2の「1つを固定する」が役立ちます。条件にかかわる人を固定すると、ほかの人の席を「その人から時計回りに何番目」と区別できるからです。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（隣り合う）</p>
+  <p>A、B を含む6人が円形のテーブルのまわりに座るとき、A と B が隣り合う座り方は何通りありますか。</p>
+  <div class="step">ステップ1（固定する）：A の席を固定します。ほかの5つの席は「A から時計回りに1番目〜5番目」と区別できます。</div>
+  <div class="step">ステップ2（条件のある所を先に）：B は A の時計回りの隣（1番目）か、反時計回りの隣（5番目）なので2通り。</div>
+  <div class="step">ステップ3（残りを並べる）：残りの4人を残りの4つの席に並べて \( 4!=24 \)（通り）。積の法則より \( 2\times4!=48 \)。答え 48通り。</div>
+</div>
+<p>数Ａ-008 のように A と B をひとまとめにしても求められます。［AB］と残りの4人の計5つの円順列が \( (5-1)!=24 \)（通り）、中の並べ方が \( 2! \) 通りで、\( 4!\times2!=48 \)（通り）となり一致します。1列のとき（確認2の48通り）とは、人数も数え方も違う点に注意しましょう。</p>
+<div class="box example worked">
+  <p class="box-title">例題2（向かい合う）</p>
+  <p>A、B を含む6人が円形のテーブルのまわりに等間隔に座るとき、A と B が向かい合う座り方は何通りありますか。</p>
+  <div class="step">ステップ1（固定する）：A の席を固定します。</div>
+  <div class="step">ステップ2（条件のある所を先に）：B は A の真向かい（A から時計回りに3番目）の席に決まるので1通り。</div>
+  <div class="step">ステップ3（残りを並べる）：残りの4人を4つの席に並べて \( 4!=24 \)。答え 24通り。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：固定した後も、もう一度 \( (n-1)! \) を使う</p><p>例題2で、A と B の席を決めた後の4人を「円形だから \( (4-1)!=6 \) 通り」とする誤りです。A を固定した時点で回転の重なりはなくなり、残りの席は区別できるので、残りは1列と同じく \( 4! \) 通りです。円順列の公式を使うのは、回転して重なるものが残っている段階だけです。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>円順列</dt><dd>いくつかのものを円形に並べたもの。回転して一致する並べ方は同じものとみる。異なる \( n \) 個の円順列の総数は \( (n-1)! \)。</dd>
+    <dt>回転して一致する</dt><dd>円形の並べ方全体を回すと重なること。どのものから見ても、隣にあるものが同じになっている。</dd>
+    <dt>1つのものを固定する</dt><dd>回転して一致するものを同じとみるとき、特定の1つの位置を決めてしまい、残りを1列のように並べる数え方（このページの見方2）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>円順列では、回転して一致する並べ方を同じものとみる。同じかどうかは「どのものから見ても隣が同じか」で確かめる（O1）。</li>
+    <li>1つの円順列から、回転によって1列の並べ方が \( n \) 通りずつできるので、円順列の総数は \( \dfrac{n!}{n}=(n-1)! \)（O2）。</li>
+    <li>見方1は「\( n \) 通りずつ1つとみて割る」、見方2は「1つを固定して残りを並べる」。条件のある円順列は、条件にかかわるものを固定し、残りの席を区別して数える（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">円順列の総数</span>$$ \frac{n!}{n}=(n-1)! $$</div>
+  <div><span class="f-name">席に区別があるとき（回転して一致するものも別とみる）</span>$$ n! $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。とくに断りがなければ、円形に座る問題は、回転して一致する座り方を同じとみます。数で答える問題は、半角数字で入力してください（「通り」は付けても付けなくてもかまいません）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O2</span></div>
+  <p>8人が円形のテーブルのまわりに座る座り方は何通りですか。</p>
+  <div class="choices"><button>40320通り</button><button data-correct="true">5040通り</button><button>40312通り</button><button>7通り</button></div>
+  <span class="result"></span>
+  <div class="explain">8人の円順列なので \( (8-1)!=7!=5040 \)（通り）。40320通りは \( 8! \) で、回転して一致するものを別に数えています。40312通りは \( 8!-8 \) と、8で割るところを8を引いた誤り。7通りは \( 8-1 \) で、階乗の記号を落としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>4人が円形に座っています。いちばん上の席から時計回りに読むと「A、B、C、D」です。これと<strong>同じ円順列</strong>はどれですか（どれも上の席から時計回りに読んだものです）。</p>
+  <div class="choices"><button>A、C、B、D</button><button>A、D、C、B</button><button>B、A、D、C</button><button data-correct="true">C、D、A、B</button></div>
+  <span class="result"></span>
+  <div class="explain">「C、D、A、B」は、もとの並び方を2席回したもので、A の時計回りの隣が B、B の隣が C、C の隣が D と変わりません。「A、C、B、D」は A の時計回りの隣が C で別の並び方です。「A、D、C、B」は時計回りと反時計回りが逆になった並び方で、A の時計回りの隣が D なので、回転だけでは重なりません。「B、A、D、C」も A の時計回りの隣が D で、別の円順列です。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="240|240通り">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>A、B を含む7人が円形のテーブルのまわりに座ります。A と B が隣り合う座り方は何通りですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 240。A の席を固定すると、B は A の両隣のどちらかで2通り。残りの5人を残りの5つの席に並べて \( 5!=120 \)（通り）。\( 2\times5!=240 \)（通り）。［AB］をひとまとめにして6つの円順列 \( (6-1)!=120 \) に \( 2! \) をかけても240通りです。\( 6!\times2!=1440 \) としたなら、ひとまとめにした6つを1列のように並べていて、回転して一致するものを別に数えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>A、B を含む8人が円形のテーブルのまわりに等間隔に座るとき、A と B が向かい合う座り方は何通りですか。</p>
+  <div class="choices"><button data-correct="true">720通り</button><button>1440通り</button><button>5040通り</button><button>120通り</button></div>
+  <span class="result"></span>
+  <div class="explain">A の席を固定すると、B は A の真向かいの1通り。残りの6人を残りの6つの席に並べて \( 6!=720 \)（通り）。1440通りは \( 2\times6! \) で、B の席を隣り合う場合と同じく2通りとした誤り。5040通りは \( 7! \) で、A を固定したあと B の条件を考えずに残りの7人を並べた数（8人の円順列の総数）です。120通りは、残りの6人をもう一度円順列とみて \( (6-1)!=5! \) とした誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="720|720通り">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>異なる7個の玉を円形に並べる並べ方は何通りですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 720。7個の円順列なので \( (7-1)!=6!=720 \)（通り）。\( 7!=5040 \) としたなら、回転して一致するものを別に数えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O1</span></div>
+  <p>円形のテーブルに1番〜5番の番号のついた5つの席があります。5人がこの席に座るとき、「だれが何番の席に座るか」で区別すると、座り方は何通りですか。</p>
+  <div class="choices"><button>24通り</button><button data-correct="true">120通り</button></div>
+  <span class="result"></span>
+  <div class="explain">席に番号があるので、回して重なる座り方でも座る席の番号が変わり、別の座り方になります。1番の席から順に5人を並べるのと同じで \( 5!=120 \)（通り）。24通りは円順列の公式 \( (5-1)! \) を使った誤りで、回転して一致するものを同じとみるときの数です。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="12|12通り">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>大人3人と子ども3人が円形のテーブルのまわりに座ります。大人と子どもが交互に座る座り方は何通りですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 12。大人の1人を固定すると、席は時計回りに「子・大・子・大・子」と決まります。残りの大人2人を大人の2つの席に並べて \( 2!=2 \)（通り）、子ども3人を子どもの3つの席に並べて \( 3!=6 \)（通り）。\( 2!\times3!=12 \)（通り）。1列のときのように型を2通りとして \( 24 \) としたなら、固定した大人の位置から型は1つに決まることを見落としています。\( 3!\times3!=36 \) としたなら、大人を固定したことを忘れて大人3人の並べ方を \( 3! \) と数えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2・O3</span></div>
+  <p>A、B を含む6人が円形のテーブルのまわりに座ります。花子さんと太郎さんが、A と B が隣り合わない座り方を考えています。</p>
+  <p>花子：「6人の円順列の総数から、A と B が隣り合う座り方を除けばいいね。」<br>太郎：「総数は A を固定して残りの5人を並べると考えればいいね。」</p>
+  <p>A と B が隣り合わない座り方は何通りですか。</p>
+  <div class="choices"><button>48通り</button><button>96通り</button><button data-correct="true">72通り</button><button>672通り</button></div>
+  <span class="result"></span>
+  <div class="explain">6人の円順列の総数は、A を固定して残り5人を並べて \( 5!=120 \)（通り）。A と B が隣り合う座り方は例題1より48通り。よって \( 120-48=72 \)（通り）。A を固定して、B が A の両隣以外の3つの席のどれかに座る（3通り）と考えても、\( 3\times4!=72 \)（通り）で一致します。48通りは隣り合う座り方の数です。96通りは \( 120-24 \) で、隣り合う座り方を \( 4! \) としてまとめた中の並べ方 \( 2! \) をかけ忘れた誤り、672通りは \( 6!-48=720-48 \) と、総数に1列の並べ方 \( 6! \) を使った誤りです。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>異なる \( n \) 個のものの円順列の総数が \( (n-1)! \) になることを、2通りの見方で説明しなさい。それぞれの見方で、「回転して一致するものを同じとみる」ことをどのように処理したかを書きなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　【見方1】\( n \) 個を1列に並べる並べ方は \( n! \) 通り。1つの円順列を1つずつ回すと、ある位置から読んだ列が \( n \) 通りでき、\( n \) 個はすべて異なるのでこれらはすべて異なる。どの列もちょうど1つの円順列から読める。よって \( n! \) 通りの列は \( n \) 通りずつ同じ円順列にまとまり、円順列の総数は \( \dfrac{n!}{n}=(n-1)! \)。回転して一致する \( n \) 通りを1つとみて、\( n \) で割ることで処理した。</p>
+    <p>【見方2】どの円順列も、回せば特定の1個を決まった位置にそろえられ、そのときの並び方は1つに決まる。そこで1個の位置を固定すると、残りの \( n-1 \) 個の位置は固定した1個からの順番で区別でき、並べ方は \( (n-1)! \) 通り。回転の自由を、1個を固定することで取り除いて処理した。</p>
+    <p><strong>採点の観点</strong>　① 見方1で、1つの円順列に \( n \) 通りの列が対応することと、\( n \) で割る理由を書いている。② 見方2で、固定すると残りの位置が区別できることを書いている。③ それぞれ、回転して一致するものの処理の仕方を言葉で書いている。</p>
+  </div>
+  <div class="explain">見方1の「\( n \) 通りの列がすべて異なる」は、もとの \( n \) 個がすべて異なるから言えることです。見方2は、条件のある円順列（例題1・2）を求めるときにそのまま使えます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(イ)「具体的な事象を基に順列及び組合せの意味を理解し，順列の総数や組合せの総数を求めること」に当たり、出題範囲に含まれます。学習指導要領解説は、円順列などを扱う指導に当たって「公式を導く過程を振り返らせどのような見方や考え方をしたのかを確認」することが大切だとしています。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「解決過程を振り返り，得られた結果を意味づけたり，活用したり，統合的・発展的に考察したりすること」などを求めると述べています。</p>
+  <p class="small">問8は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">重複順列（数Ａ-010）</p>
+  <p>次の時間は、同じものを繰り返し使ってよい並べ方（重複順列）を学びます。1つの位置ごとに選べるものの数が減らないので、積の法則と結び付けて総数 \( n^r \) を求め、ものを組や部屋に分ける場合にも使います。</p>
+  <p>この時間では、選ぶだけで並べない組合せ（数Ａ-011）は扱っていません。また、円形に並べたものを裏返して重なるものまで同じとみる数え方は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-008　条件のある順列</div>
+  <div><span class="label">次の時間</span>数Ａ-010　重複順列</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-009「円順列」（学習指導要領 数学Ａ (2)ア(イ)、解説 p.93）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.93（円順列，重複順列，同じものを含む順列などを取り扱う場合の指導に当たっても，公式を導く過程を振り返らせどのような見方や考え方をしたのかを確認する）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「円順列・重複順列」（既知の順列や積の法則をもとにして円順列を考察すること）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>東京書籍「編修趣意書 数Ａ002-904」（円順列を学習する前に、4人が手を繋いだときにできる輪の違いを考えることから始める工夫）https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。「見方1・見方2」はこのページでの呼び方です。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  var svg = document.getElementById("w9-svg");
+  var sn = document.getElementById("w9-n");
+  var sk = document.getElementById("w9-k");
+  if (!svg || !sn || !sk) return;
+  var outN = document.getElementById("w9-nv");
+  var outK = document.getElementById("w9-kv");
+  var outT = document.getElementById("w9-out");
+  var LET = "ABCDEF";
+  var CX = 150, CY = 128, R = 86, RS = 16;
+  function mk(name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text !== undefined) e.textContent = text;
+    svg.appendChild(e);
+    return e;
+  }
+  function fact(n) {
+    var p = 1;
+    for (var i = 2; i <= n; i++) p *= i;
+    return p;
+  }
+  function reading(n, k) {
+    var s = "";
+    for (var i = 0; i < n; i++) s += LET.charAt(((i - k) % n + n) % n);
+    return s;
+  }
+  function draw() {
+    var n = parseInt(sn.value, 10);
+    sk.max = String(n - 1);
+    var k = Math.min(parseInt(sk.value, 10), n - 1);
+    sk.value = String(k);
+    if (outN) outN.textContent = String(n);
+    if (outK) outK.textContent = String(k);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    mk("circle", { cx: CX, cy: CY, r: R - RS - 4, fill: "none", stroke: "#8a99a8", "stroke-width": 1.5, "stroke-dasharray": "4 3" });
+    mk("text", { x: CX, y: 18, "text-anchor": "middle", "font-size": 12, fill: "currentColor" }, "▼ 上の席から時計回りに読む");
+    var rd = reading(n, k);
+    for (var i = 0; i < n; i++) {
+      var th = -Math.PI / 2 + 2 * Math.PI * i / n;
+      var x = CX + R * Math.cos(th), y = CY + R * Math.sin(th);
+      var ch = rd.charAt(i);
+      var col = ch === "A" ? "#1f5fbf" : "currentColor";
+      mk("circle", { cx: x.toFixed(1), cy: y.toFixed(1), r: RS, fill: "none", stroke: col, "stroke-width": 1.5 });
+      mk("text", { x: x.toFixed(1), y: (y + 5).toFixed(1), "text-anchor": "middle", "font-size": 15, "font-weight": 700, fill: col }, ch);
+    }
+    mk("text", { x: CX, y: CY + 5, "text-anchor": "middle", "font-size": 12, fill: "currentColor" }, "読むと " + rd);
+    mk("text", { x: CX, y: 252, "text-anchor": "middle", "font-size": 12, fill: "currentColor" }, "回した席の数 " + k + "（A を青で示す）");
+    var all = [];
+    for (var j = 0; j < n; j++) all.push(reading(n, j));
+    if (outT) outT.textContent = n + "人の座り方を上の席から時計回りに読むと「" + rd + "」。この並び方を回してできる列は "
+      + all.join("、") + " の" + n + "通りで、すべて同じ円順列です。" + n + "人を1列に並べる列は " + n + "! = " + fact(n)
+      + " 通りあり、1つの円順列から " + n + " 通りずつ列ができるので、円順列の総数は " + fact(n) + " ÷ " + n + " = "
+      + fact(n - 1) + "（= (" + n + "−1)!）通りです。";
+  }
+  sn.addEventListener("input", draw);
+  sk.addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-009",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-009",
+  "title": "円順列",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(イ)"],
+  "kaisetsu_page": "93",
+  "objectives": [
+    {"id": "O1", "text": "円順列では、回転して一致する並べ方を同じものとみることを、図を使って説明できる。", "from": "いくつかのものを円形に並べる円順列／回転して一致するものを同じとみる見方", "sections": ["sec-1"], "checks": ["q2", "q6"]},
+    {"id": "O2", "text": "回転して一致するものを同じとみる見方から、円順列の総数 \\( (n-1)! \\) を導くことができる。", "from": "円順列の総数 (n−1)! を、回転して一致するものを同じとみる見方から導き", "sections": ["sec-2"], "checks": ["q1", "q5", "q8", "q9"]},
+    {"id": "O3", "text": "公式を導く過程でどのような見方をしたか（\\( n \\) 通りずつを1つとみる、1つのものを固定する）を振り返り、その見方を使って条件のある円順列の総数を求めることができる。", "from": "公式を導く過程でどのような見方をしたかを確かめる", "sections": ["sec-3", "sec-4"], "checks": ["q3", "q4", "q7", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "円順列", "where": "sec-1"},
+    {"term": "回転して一致する", "where": "sec-1"},
+    {"term": "1つのものを固定する", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "階乗 n! と n!=n×(n−1)!", "taught_in": ["hs_math_1a/数Ａ-007"], "where": "review"},
+    {"concept": "隣り合う並べ方（ひとまとめにみる）・全体から除く・条件のある所を先に決める", "taught_in": ["hs_math_1a/数Ａ-008"], "where": "review"},
+    {"concept": "分かりやすいものと対応付けて数える", "taught_in": ["hs_math_1a/数Ａ-003"], "where": "sec-3"},
+    {"concept": "積の法則", "taught_in": ["hs_math_1a/数Ａ-005"], "where": "sec-4"},
+    {"concept": "図形を回転させて重ねる（回転移動）", "taught_in": ["jhs_math/中1-078"], "where": "sec-1"}
+  ],
+  "out_of_scope": [
+    "重複順列（数Ａ-010）",
+    "組合せ nCr（数Ａ-011）",
+    "円形に並べたものを裏返して重なるものも同じとみる数え方（じゅず順列など）：地図の行になく、教科書での扱いを公的資料で確かめられなかったので扱わない"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(イ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.93 円順列などの指導で公式を導く過程を振り返らせ、どのような見方や考え方をしたのかを確認すること"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "「既知の順列や積の法則をもとにして，円順列，重複順列を考察することができる」"},
+    {"name": "編修趣意書 数Ａ002-904", "publisher": "東京書籍（文部科学省公開）", "url": "https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html", "use": "円順列の学習の前に4人が手を繋いだときにできる輪の違いを考える工夫（導入の参考）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

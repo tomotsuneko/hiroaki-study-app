@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>四角形が円に内接するための条件｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.proof ol { margin: 4px 0 4px 1.2em; }
+.proof .tag { font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>図形の性質</span><span>数Ａ-049</span></div>
+  <h1>四角形が円に内接するための条件</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">前の時間は「円に内接する四角形ならば、対角の和は 180°」を証明しました。では逆に、対角の和が 180° の四角形は、いつも円に内接するのでしょうか。逆が成り立つことを示し、4点が同じ円周上にあることの証明に使います。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>円に内接する四角形の性質の逆「対角の和が 180° の四角形は円に内接する」を、円周角の定理の逆を用いて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>四角形が円に内接するための条件をまとめ、条件を満たさない四角形が円に内接しないことを、円に内接する四角形の性質の対偶として説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>四角形が円に内接するための条件を用いて、4点が同じ円周上にあることを証明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-048）</span>円に内接する四角形の性質</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-049）</span>四角形が円に内接するための条件</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-050）</span>円の接線と接線の長さ</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」、中学1年「平面図形」「空間図形」。前の時間（数Ａ-048）の円に内接する四角形の性質、数Ａ-047 の円周角の定理の逆、数Ａ-037 の「3点を通る円はただ1つ」、数学Ⅰの逆・対偶（中2-063、数Ⅰ-027）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">この時間に使うこと（数Ａ-048、数Ａ-047、数Ａ-037、中2-063、数Ⅰ-027）</p>
+  <ul>
+    <li><strong>円に内接する四角形の性質</strong>（数Ａ-048）：円に内接する四角形 ABCD では、対角の和は \( 180^\circ \)。1つの外角は、それと隣り合う内角の対角に等しい。</li>
+    <li><strong>円周角の定理の逆</strong>（数Ａ-047）：2点 P、Q が直線 AB について同じ側にあり、\( \angle\mathrm{APB}=\angle\mathrm{AQB} \) ならば、4点 A、B、P、Q は1つの円周上にある。数Ａ-047 と同じく、\( \angle\mathrm{APB} \) を「点 P から線分 AB を見込む角」とよびます。</li>
+    <li><strong>3点を通る円</strong>（数Ａ-037）：一直線上にない3点を通る円は、ただ1つある。</li>
+    <li><strong>逆と対偶</strong>（中2-063、数Ⅰ-027）：「\( p \) ならば \( q \)」の逆は「\( q \) ならば \( p \)」、対偶は「\( q \) でないならば \( p \) でない」。もとの命題が真でも逆は真とは限らないが、対偶は必ず真。</li>
+  </ul>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-048</span></div>
+  <p>円に内接する四角形 ABCD で \( \angle\mathrm{B}=75^\circ \) のとき、\( \angle\mathrm{D} \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 75^\circ \)</button>
+    <button data-correct="true">\( 105^\circ \)</button>
+    <button>\( 285^\circ \)</button>
+    <button>\( 15^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">対角の和は \( 180^\circ \) なので、\( 180^\circ-75^\circ=105^\circ \) です（数Ａ-048）。\( 75^\circ \) は対角を等しいとした誤り、\( 285^\circ \) は \( 360^\circ-75^\circ \)、\( 15^\circ \) は \( 90^\circ-75^\circ \) とした誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中2-063、数Ⅰ-027</span></div>
+  <p>命題「四角形が円に内接するならば、対角の和は \( 180^\circ \) である」の<strong>逆</strong>はどれですか。</p>
+  <div class="choices">
+    <button>四角形の対角の和が \( 180^\circ \) でないならば、円に内接しない。</button>
+    <button>四角形が円に内接しないならば、対角の和は \( 180^\circ \) でない。</button>
+    <button data-correct="true">四角形の対角の和が \( 180^\circ \) ならば、円に内接する。</button>
+    <button>四角形が円に内接するならば、対角は等しい。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">逆は、仮定と結論を入れかえた命題です。1つ目は仮定と結論を入れかえて両方を否定した<strong>対偶</strong>で、もとの命題（数Ａ-048 で証明済み）が真なので、これも真です。2つ目は、仮定と結論をそれぞれ否定しただけの命題（裏）です。4つ目は、結論を別のことに変えた命題で、逆ではありません（対角が等しくなるのは \( 90^\circ \) どうしのときだけ）。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-047</span></div>
+  <p>2点 P、Q が直線 AB について同じ側にあり、\( \angle\mathrm{APB}=\angle\mathrm{AQB}=50^\circ \) です。正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">4点 A、B、P、Q は1つの円周上にある。</button>
+    <button>4点 A、B、P、Q が1つの円周上にあるかどうかは、これだけでは分からない。</button>
+    <button>線分 AB は、4点を通る円の直径である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">同じ側にある2点から線分 AB を見込む角が等しいので、円周角の定理の逆より、4点は1つの円周上にあります（数Ａ-047）。「同じ側」と「角が等しい」の2つがそろっているので、判断できます。AB が直径になるのは、見込む角が \( 90^\circ \) のときです。</div>
+</div>
+<p>前の時間に証明した性質「円に内接する ならば 対角の和は \( 180^\circ \)」の逆は、確認2のとおり「対角の和が \( 180^\circ \) ならば 円に内接する」です。逆はいつも成り立つとは限らないので、成り立つかどうかを証明して確かめます。</p>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：長方形とひし形の頂点は、円の上に並ぶ？</h2>
+<div class="box think">
+  <p class="box-title">4つの頂点を通る円はかけるか</p>
+  <ul>
+    <li>① 長方形の4つの頂点は、1つの円周上にあるでしょうか。</li>
+    <li>② 正方形でないひし形の4つの頂点は、1つの円周上にあるでしょうか。</li>
+  </ul>
+  <p>前の時間の問7では、「円に内接する平行四辺形は長方形である」ことが分かりました。では、長方形はいつも円に内接するのでしょうか。予想してから読み進めましょう。答えは「4 外角の条件と、円に内接しないことの判断」で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="対角の和が 180° なら内接する"><span class="num">3</span>対角の和が 180° なら、円に内接する</h2>
+<p>この時間（数Ａ-049）は、四角形として、どの内角も \( 180^\circ \) より小さいものを考えます。このとき、四角形 ABCD の頂点 B と D は、対角線 AC について反対側にあります。</p>
+<p class="small">1つの内角が \( 180^\circ \) より大きい四角形（へこんだ四角形）では、その角を含む組の対角の和は \( 180^\circ \) より大きく、もう1組の和は \( 180^\circ \) より小さくなる（4つの内角の和は \( 360^\circ \)）ので、対角の和が \( 180^\circ \) になることはありません。円に内接する四角形は対角の和が \( 180^\circ \) なので（数Ａ-048）、へこんだ四角形は円に内接しません。</p>
+<div class="box point">
+  <p class="box-title">円に内接する四角形の性質の逆</p>
+  <p>四角形 ABCD で \( \angle\mathrm{B}+\angle\mathrm{D}=180^\circ \) ならば、四角形 ABCD は円に内接する。</p>
+  <p class="small">これは、数Ａ-048 で証明した性質「円に内接するならば、対角の和は \( 180^\circ \)」の<strong>逆</strong>です。逆は証明しなければ使えません。</p>
+</div>
+<figure>
+<!--svg:f049a-->
+<svg viewBox="0 0 250 240" width="250" role="img" aria-label="3点 A、B、C を通る円 O と、B を含まない弧 AC の上の点 D′。四角形 ABCD の ∠ADC と、四角形 ABCD′ の ∠AD′C はどちらも 180°−∠B で等しい" data-fig="f049a" data-s="92.000000" data-ox="125.000000" data-oy="120.000000">
+<circle cx="125" cy="120" r="92" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円O" data-cx="0.000000" data-cy="0.000000" data-r="1.000000"/>
+<line x1="38.5" y1="88.5" x2="195.5" y2="179.1" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3" data-seg="AC"/>
+<line x1="38.5" y1="88.5" x2="72.2" y2="195.4" stroke="currentColor" stroke-width="1.8" data-seg="AB"/>
+<line x1="72.2" y1="195.4" x2="195.5" y2="179.1" stroke="currentColor" stroke-width="1.8" data-seg="BC"/>
+<line x1="195.5" y1="179.1" x2="168.2" y2="38.8" stroke="currentColor" stroke-width="1.8" data-seg="CD"/>
+<line x1="168.2" y1="38.8" x2="38.5" y2="88.5" stroke="currentColor" stroke-width="1.8" data-seg="DA"/>
+<line x1="38.5" y1="88.5" x2="90.5" y2="34.7" stroke="currentColor" stroke-width="1.2" data-seg="AD'"/>
+<line x1="90.5" y1="34.7" x2="195.5" y2="179.1" stroke="currentColor" stroke-width="1.2" data-seg="D'C"/>
+<path d="M171.4,55.5 A17,17 0 0 1 152.3,44.9" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="D,A,C" data-mark="1"/>
+<path d="M100.5,48.5 A17,17 0 0 1 78.7,46.9" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="D',A,C" data-mark="1"/>
+<path d="M67.4,180.1 A16,16 0 0 1 88.1,193.3 M66.3,176.7 A19.6,19.6 0 0 1 91.7,192.8" fill="none" stroke="#1e8e5a" stroke-width="1.4" data-angle="B,A,C" data-mark="2"/>
+<circle cx="38.55" cy="88.53" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="-0.939693" data-y="0.342020" data-on="円O"/>
+<circle cx="72.23" cy="195.36" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="-0.573576" data-y="-0.819152" data-on="円O"/>
+<circle cx="195.48" cy="179.14" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="0.766044" data-y="-0.642788" data-on="円O"/>
+<circle cx="168.19" cy="38.77" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="D" data-x="0.469472" data-y="0.882948" data-on="円O"/>
+<circle cx="90.54" cy="34.70" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="D'" data-x="-0.374607" data-y="0.927184" data-on="円O"/>
+<text x="26.3" y="88.3" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="64.8" y="210.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="205.4" y="191.7" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="174.3" y="31.5" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<text x="84.9" y="25" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D′</text>
+<circle cx="125.00" cy="120.00" r="3.2" fill="#7b3fa0" stroke="#7b3fa0" stroke-width="1.4" data-pt="O" data-x="0.000000" data-y="0.000000"/>
+<text x="131.5" y="135.5" text-anchor="middle" font-size="14" fill="#7b3fa0" font-weight="700">O</text>
+</svg>
+<!--/svg:f049a-->
+  <figcaption>図1　逆の証明の図。3点 A、B、C を通る円 O（紫の破線）の、B を含まない弧 AC の上に点 D′ をとる。∠AD′C＝180°−∠B（数Ａ-048）で、仮定から ∠ADC も 180°−∠B なので、∠ADC＝∠AD′C（橙の弧1本）。D と D′ は直線 AC について同じ側にあるので、円周角の定理の逆より D も円 O の周上にある（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example proof">
+  <p class="box-title">証明（対角の和が 180° の四角形は円に内接する）</p>
+  <p><span class="tag">仮定</span>　四角形 ABCD で \( \angle\mathrm{B}+\angle\mathrm{D}=180^\circ \)<br><span class="tag">結論</span>　4点 A、B、C、D は1つの円周上にある（四角形 ABCD は円に内接する）</p>
+  <ol>
+    <li>3点 A、B、C は一直線上にないので、この3点を通る円 O がただ1つある（数Ａ-037）。</li>
+    <li>円 O の、B を含まない弧 AC の上に、D と異なる点 D′ をとる。四角形 ABCD′ は円 O に内接するので、\( \angle\mathrm{B}+\angle\mathrm{AD'C}=180^\circ \)（円に内接する四角形の性質、数Ａ-048）。</li>
+    <li>仮定より \( \angle\mathrm{ADC}=180^\circ-\angle\mathrm{B} \)。② より \( \angle\mathrm{AD'C}=180^\circ-\angle\mathrm{B} \)。よって \( \angle\mathrm{ADC}=\angle\mathrm{AD'C} \)。</li>
+    <li>D は対角線 AC について B と反対側にある。D′ も B を含まない弧の上の点なので、直線 AC について B と反対側にある。よって、D と D′ は直線 AC について同じ側にある。</li>
+    <li>③、④ より、円周角の定理の逆（数Ａ-047）から、4点 A、C、D、D′ は1つの円周上にある。</li>
+    <li>3点 A、C、D′ を通る円はただ1つで（数Ａ-037）、A、C、D′ は円 O の周上にあるから、その円は円 O である。よって D は円 O の周上にある。</li>
+  </ol>
+  <p>したがって、4点 A、B、C、D は円 O の周上にあり、四角形 ABCD は円に内接する。（証明終わり）</p>
+</div>
+<p>証明では、まだ円の上にあるか分からない D の代わりに、円の上にあると分かっている D′ をとり、数Ａ-048 の性質で D′ の角を求めました。そして、D の角と比べて円周角の定理の逆を使いました。前の2時間に学んだことを組み合わせています。</p>
+<div class="box point">
+  <p class="box-title">四角形が円に内接するための条件</p>
+  <p>次のどれかが成り立てば、四角形 ABCD は円に内接する。</p>
+  <p>(ア) 1組の対角の和が \( 180^\circ \)（\( \angle\mathrm{B}+\angle\mathrm{D}=180^\circ \) など）<br>(イ) 1つの外角が、それと隣り合う内角の対角に等しい（E を辺 BC の C の先の延長上の点として \( \angle\mathrm{DCE}=\angle\mathrm{BAD} \) など）<br>(ウ) 1つの辺を、残りの2つの頂点から見込む角が等しい（\( \angle\mathrm{BAC}=\angle\mathrm{BDC} \) など。A と D は直線 BC について同じ側にあるので、数Ａ-047 の円周角の定理の逆）</p>
+  <p class="small">(ア)は1組でよい理由：四角形の内角の和は \( 360^\circ \)（中2-049）なので、1組の対角の和が \( 180^\circ \) なら、もう1組の和も \( 180^\circ \) になります。(ア)〜(ウ)の番号は、このページでの番号です。</p>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：証明の前に逆を使う</p><p>「数Ａ-048 の性質が成り立つから、逆も成り立つ」とは言えません。逆は別の命題で、成り立つかどうかは証明して確かめる必要があります（中2-063）。たとえば「長方形ならば対角線の長さは等しい」は真ですが、逆「対角線の長さが等しい四角形は長方形」は偽です（等しい対角線が中点で交わらない四角形があります）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="外角の条件と内接しないこと"><span class="num">4</span>外角の条件と、円に内接しないことの判断</h2>
+<h3>(イ) 外角の条件</h3>
+<p>E を辺 BC の C の先の延長上の点とします。\( \angle\mathrm{DCE}=\angle\mathrm{BAD} \) なら、\( \angle\mathrm{BCD}=180^\circ-\angle\mathrm{DCE}=180^\circ-\angle\mathrm{BAD} \) なので、\( \angle\mathrm{BAD}+\angle\mathrm{BCD}=180^\circ \) です。よって(ア)から、四角形 ABCD は円に内接します。(イ)は、数Ａ-048 の外角の性質の逆です。</p>
+<h3>円に内接しないことの判断</h3>
+<p>「対角の和が \( 180^\circ \) でない四角形は、円に内接しない」も成り立ちます。ただし、その根拠は(ア)（逆）ではありません。</p>
+<div class="box point">
+  <p class="box-title">円に内接しないことの根拠は「性質の対偶」</p>
+  <p>数Ａ-048 の性質「円に内接するならば、対角の和は \( 180^\circ \)」の<strong>対偶</strong>は、「対角の和が \( 180^\circ \) でないならば、円に内接しない」です。もとの性質が真なので、対偶も真です（数Ⅰ-027）。</p>
+  <p>(ア)は「対角の和が \( 180^\circ \) ならば内接する」で、\( 180^\circ \) でないときのことは何も述べていません。だから、(ア)を根拠に「内接しない」とは言えません。</p>
+</div>
+<div class="table-wrap">
+<table>
+  <tr><th>命題</th><th>どの時間で示したか</th><th>使い方</th></tr>
+  <tr><td>円に内接する ならば 対角の和は 180°</td><td>数Ａ-048（性質）</td><td>内接すると分かっている四角形の角を求める</td></tr>
+  <tr><td>対角の和が 180° ならば 円に内接する</td><td>数Ａ-049（性質の逆）</td><td>4点が同じ円周上にあることを示す</td></tr>
+  <tr><td>対角の和が 180° でない ならば 円に内接しない</td><td>数Ａ-048 の性質の対偶</td><td>円に内接しないことを示す</td></tr>
+</table>
+</div>
+<p>性質とその逆がどちらも真なので、四角形について「円に内接する」ことと「1組の対角の和が \( 180^\circ \) である」ことは同値です。つまり、対角の和が \( 180^\circ \) であることは、四角形が円に内接するための必要十分条件です（数Ⅰ-026）。</p>
+<div class="box point"><p class="box-title">導入の問いの答え</p><p>① 長方形はどの角も \( 90^\circ \) なので、対角の和は \( 90^\circ+90^\circ=180^\circ \) です。(ア)より、長方形の4つの頂点は1つの円周上にあります（正方形も長方形なので同じ）。数Ａ-048 の問7と合わせると、平行四辺形が円に内接するのは、長方形のときで、そのときに限ります。<br>② 正方形でないひし形は、対角が等しく（中2-067）、\( 90^\circ \) ではないので、対角の和は \( 180^\circ \) になりません。数Ａ-048 の性質の対偶より、円に内接しません。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：逆を根拠に「内接しない」と書く</p><p>「\( \angle\mathrm{A}+\angle\mathrm{C}=170^\circ \) だから、四角形が円に内接するための条件（逆）より、円に内接しない」は、結論は正しくても根拠が誤りです。正しくは「円に内接すれば、数Ａ-048 の性質より \( \angle\mathrm{A}+\angle\mathrm{C}=180^\circ \) のはず。\( 170^\circ \) なので円に内接しない（性質の対偶）」と書きます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="4点が同じ円周上にあることの証明"><span class="num">5</span>4点が同じ円周上にあることを証明する</h2>
+<p>4点が同じ円周上にあることを示すには、4点を頂点とする四角形をつくり、(ア)〜(ウ)のどれかが成り立つことを示します。どの4点で、どの順の四角形を考えるかを、はっきり書きます。</p>
+<figure>
+<!--svg:f049b-->
+<svg viewBox="0 0 215 279" width="215" role="img" aria-label="△ABC と、辺 AB 上の点 D、辺 AC 上の点 E。∠ADE＝∠ACB＝55°、∠AED＝∠ABC＝65°。4点 D、B、C、E を通る円" data-fig="f049b" data-s="50.000000" data-ox="20.897460" data-oy="180.852419">
+<circle cx="107.5" cy="171.5" r="87.1" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円DBCE" data-cx="1.732051" data-cy="0.186549" data-r="1.742068"/>
+<line x1="90.1" y1="32.4" x2="20.9" y2="180.9" stroke="currentColor" stroke-width="1.8" data-seg="AB"/>
+<line x1="20.9" y1="180.9" x2="194.1" y2="180.9" stroke="currentColor" stroke-width="1.8" data-seg="BC"/>
+<line x1="194.1" y1="180.9" x2="90.1" y2="32.4" stroke="currentColor" stroke-width="1.8" data-seg="CA"/>
+<line x1="59" y1="99.2" x2="128.4" y2="87" stroke="currentColor" stroke-width="1.5" data-seg="DE"/>
+<path d="M65.7,84.7 A16,16 0 0 1 74.7,96.4" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="D,A,E" data-mark="1"/>
+<path d="M172.1,180.9 A22,22 0 0 1 181.5,162.8" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="C,B,E" data-mark="1"/>
+<text x="159.3" y="166.4" text-anchor="middle" font-size="12" fill="#b7791f">55°</text>
+<path d="M114.6,89.4 A14,14 0 0 1 120.3,75.5 M111,90 A17.6,17.6 0 0 1 118.3,72.5" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="E,A,D" data-mark="2"/>
+<path d="M29.3,162.7 A20,20 0 0 1 40.9,180.9 M30.9,159.5 A23.6,23.6 0 0 1 44.5,180.9" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="B,A,C" data-mark="2"/>
+<text x="55.3" y="162.5" text-anchor="middle" font-size="12" fill="#b7791f">65°</text>
+<circle cx="90.14" cy="32.37" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="1.384754" data-y="2.969616"/>
+<text x="90.1" y="23.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="20.90" cy="180.85" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000" data-on="円DBCE"/>
+<text x="11.7" y="194.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="194.10" cy="180.85" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="3.464102" data-y="0.000000" data-on="円DBCE"/>
+<text x="203.3" y="194.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="58.98" cy="99.19" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="D" data-x="0.761615" data-y="1.633289" data-on="円DBCE"/>
+<text x="51.2" y="91.8" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<circle cx="128.35" cy="86.96" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="E" data-x="2.149148" data-y="1.877948" data-on="円DBCE"/>
+<text x="131.7" y="77.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">E</text>
+</svg>
+<!--/svg:f049b-->
+  <figcaption>図2　例題1の △ABC と、辺 AB 上の点 D、辺 AC 上の点 E。四角形 DBCE の D における外角 ∠ADE と、D の向かいの頂点 C の内角 ∠BCE（＝∠ACB）が等しい（橙の弧1本）。4点 D、B、C、E を通る円（紫の破線）（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題1（外角の条件を使う）</p>
+  <p>△ABC の辺 AB 上に点 D、辺 AC 上に点 E があり、\( \angle\mathrm{ADE}=\angle\mathrm{ACB}=55^\circ \)、\( \angle\mathrm{ABC}=65^\circ \) です。(1) 4点 D、B、C、E が同じ円周上にあることを示しなさい。(2) \( \angle\mathrm{AED} \) を求めなさい。</p>
+  <div class="step">着眼点：四角形 DBCE（D→B→C→E の順）を考えます。A は辺 BD を D の先に延ばした直線上にあるので、\( \angle\mathrm{ADE} \) は四角形 DBCE の D における外角です。</div>
+  <div class="step">(1) D における外角 \( \angle\mathrm{ADE} \) と隣り合う内角は \( \angle\mathrm{BDE} \)、その対角は C の内角 \( \angle\mathrm{BCE}=\angle\mathrm{ACB} \) です。\( \angle\mathrm{ADE}=\angle\mathrm{BCE} \) なので、(イ)より四角形 DBCE は円に内接し、4点 D、B、C、E は同じ円周上にある。</div>
+  <div class="step">(2) 四角形 DBCE は円に内接するので、E における外角 \( \angle\mathrm{AED} \)（A は辺 CE を E の先に延ばした直線上）は、隣り合う内角 \( \angle\mathrm{CED} \) の対角 \( \angle\mathrm{DBC}=\angle\mathrm{ABC} \) に等しい（数Ａ-048）。よって \( \angle\mathrm{AED}=65^\circ \)。</div>
+  <div class="step">確かめ：△ADE で \( \angle\mathrm{DAE}=180^\circ-55^\circ-65^\circ=60^\circ \)、△ABC でも \( \angle\mathrm{BAC}=180^\circ-65^\circ-55^\circ=60^\circ \) で、合っています。</div>
+</div>
+<figure>
+<!--svg:f049c-->
+<svg viewBox="0 0 263 211" width="263" role="img" aria-label="鋭角三角形 ABC と、B から CA への垂線 BD、C から AB への垂線 CE、その交点 P。四角形 AEPD は ∠AEP＝∠ADP＝90° で、4点 A、E、P、D は AP を直径とする円の周上にある" data-fig="f049c" data-s="52.000000" data-ox="22.300000" data-oy="188.700000">
+<circle cx="105.5" cy="71.7" r="49.4" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円AEPD" data-cx="1.600000" data-cy="2.250000" data-r="0.950000"/>
+<line x1="105.5" y1="22.3" x2="22.3" y2="188.7" stroke="currentColor" stroke-width="1.8" data-seg="AB"/>
+<line x1="22.3" y1="188.7" x2="240.7" y2="188.7" stroke="currentColor" stroke-width="1.8" data-seg="BC"/>
+<line x1="240.7" y1="188.7" x2="105.5" y2="22.3" stroke="currentColor" stroke-width="1.8" data-seg="CA"/>
+<line x1="22.3" y1="188.7" x2="153.9" y2="81.8" stroke="#1f5fbf" stroke-width="1.4" stroke-dasharray="5 3" data-seg="BD"/>
+<line x1="240.7" y1="188.7" x2="66" y2="101.3" stroke="#1f5fbf" stroke-width="1.4" stroke-dasharray="5 3" data-seg="CE"/>
+<path d="M69.6,94.2 L76.7,97.8 L73.1,104.9" fill="none" stroke="currentColor" stroke-width="1.2" data-right="E,A,P"/>
+<path d="M148.8,75.6 L142.6,80.6 L147.6,86.9" fill="none" stroke="currentColor" stroke-width="1.2" data-right="D,A,P"/>
+<circle cx="22.30" cy="188.70" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="13.1" y="202.1" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="240.70" cy="188.70" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="4.200000" data-y="0.000000"/>
+<text x="249.9" y="202.1" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="105.50" cy="22.30" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="1.600000" data-y="3.200000" data-on="円AEPD"/>
+<text x="105.5" y="13.5" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="65.98" cy="101.34" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="E" data-x="0.840000" data-y="1.680000" data-on="円AEPD"/>
+<text x="53.2" y="103.3" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">E</text>
+<circle cx="153.85" cy="81.81" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="D" data-x="2.529882" data-y="2.055529" data-on="円AEPD"/>
+<text x="166.4" y="82.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<circle cx="105.50" cy="121.10" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P" data-x="1.600000" data-y="1.300000" data-on="円AEPD"/>
+<text x="105.5" y="138.3" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">P</text>
+</svg>
+<!--/svg:f049c-->
+  <figcaption>図3　例題2の鋭角三角形 ABC。BD⊥AC、CE⊥AB（青の破線）、BD と CE の交点 P。四角形 AEPD の対角 ∠AEP と ∠ADP はどちらも直角で、4点 A、E、P、D は同じ円（紫の破線）の周上にある（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題2（対角の条件を使う証明）</p>
+  <p>鋭角三角形 ABC の頂点 B から辺 CA に垂線 BD を、頂点 C から辺 AB に垂線 CE を下ろし、BD と CE の交点を P とします。4点 A、E、P、D が同じ円周上にあることを証明しなさい。</p>
+  <div class="step">着眼点：四角形 AEPD（A→E→P→D の順）の、E と D の角はどちらも垂線がつくる直角です。E と D は向かい合う頂点です。</div>
+  <div class="step"><strong>証明</strong>　四角形 AEPD において、CE⊥AB より \( \angle\mathrm{AEP}=90^\circ \)、BD⊥AC より \( \angle\mathrm{ADP}=90^\circ \)。よって \( \angle\mathrm{AEP}+\angle\mathrm{ADP}=180^\circ \)。1組の対角の和が \( 180^\circ \) なので、四角形が円に内接するための条件(ア)より、四角形 AEPD は円に内接する。したがって、4点 A、E、P、D は同じ円周上にある。（証明終わり）</div>
+  <div class="step">振り返り：\( \angle\mathrm{AEP} \) と \( \angle\mathrm{ADP} \) が直角なので、この円は AP を直径とする円です（半円の弧に対する円周角が直角であることの逆、中3-089・091）。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 四角形の頂点の順を取り違えて、隣り合う2つの角の和を使う：例題2で四角形を A→E→D→P の順に考えると、E と D は向かい合いません。向かい合う頂点かどうかを、四角形の頂点の順で確かめます。<br>② (イ)で外角と対角の組を取り違える：例題1で、\( \angle\mathrm{ADE} \) と比べるのは D の向かいの頂点 C の角です。B の角 \( \angle\mathrm{ABC} \) ではありません（\( \angle\mathrm{ADE}=\angle\mathrm{ABC} \) なら DE//BC です。中2-046）。<br>③ (ウ)で、2つの頂点が同じ側にあることを確かめない（数Ａ-047）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>四角形が円に内接するための条件</dt><dd>(ア) 1組の対角の和が 180°、(イ) 1つの外角が、それと隣り合う内角の対角に等しい、(ウ) 1つの辺を残りの2頂点から見込む角が等しい。どれかが成り立てば、四角形は円に内接する（番号はこのページでの番号）。</dd>
+    <dt>性質の逆</dt><dd>数Ａ-048 の性質「円に内接するならば対角の和は 180°」の仮定と結論を入れかえた「対角の和が 180° ならば円に内接する」。この時間に証明した。</dd>
+    <dt>性質の対偶</dt><dd>「対角の和が 180° でないならば円に内接しない」。数Ａ-048 の性質が真なので真。円に内接しないことの根拠に使う。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>対角の和が 180° の四角形は円に内接する（数Ａ-048 の性質の逆）。3点 A、B、C を通る円の上に D′ をとり、数Ａ-048 の性質と円周角の定理の逆（数Ａ-047）で D も円の上にあることを示した（O1）。</li>
+    <li>円に内接するための条件は、(ア) 対角の和 180°、(イ) 外角＝隣り合う内角の対角、(ウ) 1辺を見込む角が等しい。対角の和が 180° でない四角形が内接しないことの根拠は、数Ａ-048 の性質の対偶で、逆ではない。長方形は内接し、正方形でないひし形は内接しない（O2）。</li>
+    <li>4点が同じ円周上にあることは、4点を頂点とする四角形の頂点の順を決め、(ア)〜(ウ)のどれかを示して証明する（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">四角形 ABCD が円に内接するための条件（どれか1つ）</span>
+  <p>\( \angle\mathrm{B}+\angle\mathrm{D}=180^\circ \) ／ \( \angle\mathrm{DCE}=\angle\mathrm{BAD} \)（E は BC の延長上）／ \( \angle\mathrm{BAC}=\angle\mathrm{BDC} \)</p></div>
+  <div><span class="f-name">円に内接しないことの根拠</span>
+  <p>対角の和が \( 180^\circ \) でないならば、内接しない（数Ａ-048 の性質の対偶）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。四角形は、どの内角も 180° より小さいものとします。入力問題は数字だけを入力してください（「°」を付けてもかまいません）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>四角形 ABCD の4つの角が次のようであるとき、円に内接するものはどれですか。</p>
+  <div class="choices">
+    <button>\( \angle\mathrm{A}=80^\circ \)、\( \angle\mathrm{B}=100^\circ \)、\( \angle\mathrm{C}=80^\circ \)、\( \angle\mathrm{D}=100^\circ \)</button>
+    <button>\( \angle\mathrm{A}=90^\circ \)、\( \angle\mathrm{B}=90^\circ \)、\( \angle\mathrm{C}=100^\circ \)、\( \angle\mathrm{D}=80^\circ \)</button>
+    <button data-correct="true">\( \angle\mathrm{A}=80^\circ \)、\( \angle\mathrm{B}=95^\circ \)、\( \angle\mathrm{C}=100^\circ \)、\( \angle\mathrm{D}=85^\circ \)</button>
+    <button>\( \angle\mathrm{A}=70^\circ \)、\( \angle\mathrm{B}=110^\circ \)、\( \angle\mathrm{C}=100^\circ \)、\( \angle\mathrm{D}=80^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \angle\mathrm{A}+\angle\mathrm{C}=80^\circ+100^\circ=180^\circ \) なので、(ア)より円に内接します。1つ目は \( \angle\mathrm{A}+\angle\mathrm{C}=160^\circ \)、2つ目は \( 190^\circ \)、4つ目は \( 170^\circ \) で、どれも対角の和が \( 180^\circ \) でないので、数Ａ-048 の性質の対偶より円に内接しません。1つ目と4つ目は、隣り合う角の和（\( \angle\mathrm{A}+\angle\mathrm{B} \)）が \( 180^\circ \) になっていますが、それは条件ではありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>四角形 ABCD の辺 BC を C の先に延ばした直線上に点 E をとると、\( \angle\mathrm{DCE}=72^\circ \)、\( \angle\mathrm{BAD}=68^\circ \) でした。正しい説明はどれですか。</p>
+  <div class="choices">
+    <button>円に内接するかどうかは、これだけでは分からない。</button>
+    <button data-correct="true">円に内接しない。円に内接すれば \( \angle\mathrm{DCE}=\angle\mathrm{BAD} \) のはずだから（数Ａ-048 の外角の性質の対偶）。</button>
+    <button>円に内接するかどうかは、\( \angle\mathrm{DCE} \) と \( \angle\mathrm{ABC} \) を比べないと分からない。</button>
+    <button>円に内接しない。条件(イ)「外角が隣り合う内角の対角に等しいならば内接する」から、等しくなければ内接しないといえる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">円に内接する四角形では、外角 \( \angle\mathrm{DCE} \) は隣り合う内角 \( \angle\mathrm{BCD} \) の対角 \( \angle\mathrm{BAD} \) に等しくなります（数Ａ-048）。\( 72^\circ \) と \( 68^\circ \) で等しくないので、この四角形は円に内接しません。根拠は数Ａ-048 の外角の性質の対偶です（対角の和で考えても、\( \angle\mathrm{BCD}=180^\circ-72^\circ=108^\circ \) で \( \angle\mathrm{BAD}+\angle\mathrm{BCD}=176^\circ \) となり、\( 180^\circ \) ではありません）。対偶で判断できるので「分からない」は誤りです。3つ目は、外角と比べる角を取り違えています。比べるのは C の向かいの頂点 A の角 \( \angle\mathrm{BAD} \) で、\( \angle\mathrm{DCE}=\angle\mathrm{ABC} \) は AB//DC の条件です（同位角、中2-046）。4つ目は結論は正しいものの、条件(イ)（逆）を根拠にしていて誤りです。(イ)は、外角と対角が等しくないときのことは述べていません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>四角形 ABCD の辺 BC を C の先に延ばした直線上に点 E をとります。四角形 ABCD が円に内接するための条件として正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \angle\mathrm{DCE}=\angle\mathrm{BAD} \)</button>
+    <button>\( \angle\mathrm{DCE}=\angle\mathrm{ABC} \)</button>
+    <button>\( \angle\mathrm{DCE}=\angle\mathrm{BCD} \)</button>
+    <button>\( \angle\mathrm{DCE}=\angle\mathrm{ADC} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">外角 \( \angle\mathrm{DCE} \) と隣り合う内角 \( \angle\mathrm{BCD} \) の対角は \( \angle\mathrm{BAD} \) なので、(イ)の条件は \( \angle\mathrm{DCE}=\angle\mathrm{BAD} \) です。\( \angle\mathrm{DCE}=\angle\mathrm{ABC} \) なら同位角が等しいので AB//DC（中2-046）で、円に内接するとは限りません。\( \angle\mathrm{DCE}=\angle\mathrm{BCD} \) は C の角がどちらも \( 90^\circ \) という意味で、それだけでは決まりません。\( \angle\mathrm{DCE}=\angle\mathrm{ADC} \) なら錯角が等しいので AD//BC で、これも内接するとは限りません。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="50|50°|50度|x=50">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1</span></div>
+  <p>四角形 ABCD で \( \angle\mathrm{A}=2x^\circ \)、\( \angle\mathrm{C}=(x+30)^\circ \) です。四角形 ABCD が円に内接するのは、\( x \) がいくつのときですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 50。円に内接する四角形の対角の和は \( 180^\circ \)（数Ａ-048）、逆に対角の和が \( 180^\circ \) なら円に内接する（(ア)）ので、\( 2x+(x+30)=180 \) と同値です。\( 3x=150 \)、\( x=50 \)（\( \angle\mathrm{A}=100^\circ \)、\( \angle\mathrm{C}=80^\circ \)）。30 と答えた場合は、対角を等しいとして \( 2x=x+30 \) を解いています。100 と答えた場合は \( \angle\mathrm{A} \) の大きさを答えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2・O3</span></div>
+  <p>四角形 ABCD について、次のうち「円に内接する」と<strong>いえない</strong>ものはどれですか。</p>
+  <div class="choices">
+    <button>\( \angle\mathrm{A}=75^\circ \)、\( \angle\mathrm{C}=105^\circ \)</button>
+    <button>辺 BC を C の先に延ばした点 E について、\( \angle\mathrm{DCE}=\angle\mathrm{BAD}=75^\circ \)</button>
+    <button>\( \angle\mathrm{BAC}=\angle\mathrm{BDC}=40^\circ \)</button>
+    <button data-correct="true">\( \angle\mathrm{A}=75^\circ \)、\( \angle\mathrm{B}=105^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">1つ目は対角の和が \( 180^\circ \) なので(ア)、2つ目は外角が隣り合う内角の対角に等しいので(イ)、3つ目は辺 BC を同じ側の A、D から見込む角が等しいので(ウ)により、どれも円に内接します。4つ目の \( \angle\mathrm{A} \) と \( \angle\mathrm{B} \) は隣り合う角で、和が \( 180^\circ \) でも AD//BC がいえるだけです（中2-046）。たとえば \( \angle\mathrm{C}=80^\circ \)、\( \angle\mathrm{D}=100^\circ \) の台形なら \( \angle\mathrm{A}+\angle\mathrm{C}=155^\circ \) で、円に内接しません。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="35|35°|35度">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>四角形 ABCD で \( \angle\mathrm{ABC}=100^\circ \)、\( \angle\mathrm{ADC}=80^\circ \)、\( \angle\mathrm{BAC}=35^\circ \) です。\( \angle\mathrm{BDC} \) は何度ですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 35（°）。\( \angle\mathrm{ABC}+\angle\mathrm{ADC}=180^\circ \) なので、(ア)より四角形 ABCD は円に内接します。すると A と D は直線 BC について同じ側にあり、\( \angle\mathrm{BDC} \) と \( \angle\mathrm{BAC} \) は同じ弧 BC に対する円周角なので等しく、\( 35^\circ \) です（数Ａ-047）。45 と答えた場合は、△ABC で \( \angle\mathrm{ACB}=180^\circ-100^\circ-35^\circ \) を求めていて、別の角です。65 と答えた場合は \( 100^\circ-35^\circ \) としていて、根拠がありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O2</span></div>
+  <p>太郎さんと花子さんが、四角形の花壇 ABCD の4つの角に立てた杭を、1本の円形のロープで囲めるか話しています（学習用の架空の場面。杭は点とみなします）。</p>
+  <p>太郎：「角を測ったら \( \angle\mathrm{A}=89^\circ \)、\( \angle\mathrm{C}=89^\circ \) だった。和が \( 178^\circ \) で \( 180^\circ \) でないから、4本の杭は1つの円周上にないね。」<br>花子：「結論はそれでいいけど、何を根拠にするかが大事だね。」</p>
+  <p>根拠の説明として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>四角形が円に内接するための条件(ア)「対角の和が \( 180^\circ \) ならば内接する」から、和が \( 180^\circ \) でなければ内接しないといえる。</button>
+    <button>和が \( 180^\circ \) に近いので、4本の杭は1つの円周上にあるとみてよい。</button>
+    <button data-correct="true">「円に内接するならば対角の和は \( 180^\circ \)」（数Ａ-048）の対偶から、和が \( 180^\circ \) でなければ円に内接しないといえる。</button>
+    <button>もう1組の対角 \( \angle\mathrm{B}+\angle\mathrm{D} \) を測らないと、何もいえない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「内接しない」の根拠は、数Ａ-048 の性質の対偶です。1つ目は(ア)（逆）を根拠にしていて、論理が誤りです（(ア)は \( 180^\circ \) でないときのことを述べていません）。2つ目は、測った値が少しでも \( 180^\circ \) と違えば内接しないので誤りです（ただし、実際の測定には誤差があることには注意が必要です）。4つ目は、1組の対角の和が \( 180^\circ \) でないことが分かれば内接しないといえるので、誤りです（もう1組の和は \( 360^\circ-178^\circ=182^\circ \) です）。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O3</span></div>
+  <p>\( \mathrm{AB}=\mathrm{AC} \) の二等辺三角形 ABC で、辺 AB 上に点 D、辺 AC 上に点 E を、DE//BC となるようにとります（D、E は A、B、C と異なる点）。4点 D、B、C、E が同じ円周上にあることを証明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　四角形 DBCE（D→B→C→E の順）を考える。DE//BC より、同位角が等しいので \( \angle\mathrm{ADE}=\angle\mathrm{ABC} \)（中2-045）。\( \mathrm{AB}=\mathrm{AC} \) より、二等辺三角形の底角は等しいので \( \angle\mathrm{ABC}=\angle\mathrm{ACB} \)（中2-060）。よって \( \angle\mathrm{ADE}=\angle\mathrm{ACB}=\angle\mathrm{BCE} \)。A は辺 BD を D の先に延ばした直線上にあるので、\( \angle\mathrm{ADE} \) は四角形 DBCE の D における外角で、\( \angle\mathrm{BCE} \) はそれと隣り合う内角 \( \angle\mathrm{BDE} \) の対角である。1つの外角が、それと隣り合う内角の対角に等しいので、四角形が円に内接するための条件(イ)より、四角形 DBCE は円に内接する。したがって、4点 D、B、C、E は同じ円周上にある。（証明終わり）</p>
+    <p><strong>採点の観点</strong>　① 平行線の同位角と二等辺三角形の底角から \( \angle\mathrm{ADE}=\angle\mathrm{BCE} \) を導いている。② \( \angle\mathrm{ADE} \) が四角形 DBCE の D における外角で、\( \angle\mathrm{BCE} \) がその対角であることを書いている。③ 円に内接するための条件（外角の条件、または対角の和）を根拠に結論を書いている。</p>
+  </div>
+  <div class="explain">\( \angle\mathrm{BDE}=180^\circ-\angle\mathrm{ADE}=180^\circ-\angle\mathrm{BCE} \) と書きかえて、(ア)（対角の和 \( \angle\mathrm{BDE}+\angle\mathrm{BCE}=180^\circ \)）を使っても証明できます。AB＝AC でない三角形では \( \angle\mathrm{ABC}\neq\angle\mathrm{ACB} \) なので、DE//BC でも4点は同じ円周上にありません（数Ａ-048 の性質の対偶）。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(1) 図形の性質」のア(イ)「円に関する基本的な性質について理解すること」とイ(ア)に関わり、出題範囲に含まれます。学習指導要領解説は、円の性質の例として「円に内接する四角形の性質及び四角形が円に内接するための条件」を挙げています。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。4点が同じ円周上にあると分かると、円周角の定理や数Ａ-048 の性質が使えるようになり、角の大きさの問題が解けるようになります（例題1の(2)、問6）。</p>
+  <p class="small">問7は会話と日常の場面を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">円の接線と接線の長さ（数Ａ-050）</p>
+  <p>次の時間は、円と直線の関係に進みます。円外の点から円に引いた2本の接線の長さが等しいことを、接線が接点を通る半径に垂直であること（中1-085）と直角三角形の合同から示し、三角形の内接円（数Ａ-038）と、接点で分けられる辺の長さの関係を調べます。</p>
+  <p>この時間では、方べきの定理の逆を使って4点が同じ円周上にあることを示す方法（数Ａ-053）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-048　円に内接する四角形の性質</div>
+  <div><span class="label">次の時間</span>数Ａ-050　円の接線と接線の長さ</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-049「四角形が円に内接するための条件」（学習指導要領 数学Ａ (1)ア(イ)・イ(ア)、解説 p.90）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(1) 図形の性質（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.90（「円の性質については，例えば，円に内接する四角形の性質及び四角形が円に内接するための条件…について理解できるようにする」）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「円に内接する四角形」（「四角形が円に内接するための条件を利用して，図形の性質を証明できる」「円に内接する四角形の性質に着目し，逆に，四角形が円に内接するための条件について論理的に考察することができる」「三角形の外接円は必ず存在するが，三角形以外の場合は必ずしも存在しないことから，四角形が円に内接する条件を考察しようとする」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・図はこのページのために作成したものです（出典を示したものを除く）。花壇の場面は学習用の架空のものです。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-049",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-049",
+  "title": "四角形が円に内接するための条件",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-2", "title": "図形の性質"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(イ)", "(1)イ(ア)"],
+  "kaisetsu_page": "90",
+  "objectives": [
+    {"id": "O1", "text": "円に内接する四角形の性質の逆「対角の和が 180° の四角形は円に内接する」を、円周角の定理の逆を用いて説明できる。", "from": "四角形が円に内接するための条件を理解し（対角の和の条件）", "sections": ["sec-1"], "checks": ["q1", "q4"]},
+    {"id": "O2", "text": "四角形が円に内接するための条件をまとめ、条件を満たさない四角形が円に内接しないことを、円に内接する四角形の性質の対偶として説明できる。", "from": "四角形が円に内接するための条件を理解し（条件のまとめと、内接しないことの判断）", "sections": ["sec-1", "sec-2"], "checks": ["q2", "q3", "q5", "q7"]},
+    {"id": "O3", "text": "四角形が円に内接するための条件を用いて、4点が同じ円周上にあることを証明できる。", "from": "4点が同じ円周上にあることの証明に用いることができる", "sections": ["sec-3"], "checks": ["q5", "q6", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "四角形が円に内接するための条件", "where": "sec-1"},
+    {"term": "性質の逆", "where": "sec-1"},
+    {"term": "性質の対偶", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "円に内接する四角形の性質（対角の和は 180°、外角は隣り合う内角の対角に等しい）", "taught_in": ["hs_math_1a/数Ａ-048"], "gap": false, "where": "review"},
+    {"concept": "円周角の定理の逆、同じ弧に対する円周角は等しい", "taught_in": ["hs_math_1a/数Ａ-047", "jhs_math/中3-091"], "gap": false, "where": "review"},
+    {"concept": "一直線上にない3点を通る円はただ1つ", "taught_in": ["hs_math_1a/数Ａ-037"], "gap": false, "where": "review"},
+    {"concept": "逆と反例", "taught_in": ["jhs_math/中2-063"], "gap": false, "where": "review"},
+    {"concept": "命題の逆・裏・対偶、対偶の真偽はもとの命題と一致する", "taught_in": ["hs_math_1a/数Ⅰ-027"], "gap": false, "where": "review"},
+    {"concept": "必要十分条件（同値）", "taught_in": ["hs_math_1a/数Ⅰ-026"], "gap": false, "where": "sec-2"},
+    {"concept": "四角形の内角の和は 360°", "taught_in": ["jhs_math/中2-049"], "gap": false, "where": "sec-1"},
+    {"concept": "平行線の同位角・錯角、平行線になるための条件", "taught_in": ["jhs_math/中2-045", "jhs_math/中2-046"], "gap": false, "where": "quiz"},
+    {"concept": "二等辺三角形の底角は等しい", "taught_in": ["jhs_math/中2-060"], "gap": false, "where": "quiz"},
+    {"concept": "平行四辺形の対角は等しい、長方形・ひし形・正方形の定義", "taught_in": ["jhs_math/中2-067", "jhs_math/中2-072"], "gap": false, "where": "sec-2"},
+    {"concept": "半円の弧に対する円周角は直角とその逆", "taught_in": ["jhs_math/中3-089", "jhs_math/中3-091"], "gap": false, "where": "sec-3"},
+    {"concept": "三角形の内角の和", "taught_in": ["jhs_math/中2-048"], "gap": false, "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "方べきの定理の逆による判断（数Ａ-053）",
+    "どれかの内角が 180° より大きい四角形（このページでは考えない）",
+    "円の接線（数Ａ-050・051）"
+  ],
+  "selection_reason": "数学Ａ 単元『図形の性質』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(1)ア(イ)・イ(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.90 四角形が円に内接するための条件（保存本文：sources/text/hs_kaisetsu_math.txt）"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "四角形が円に内接するための条件を性質の逆として考察し、図形の性質の証明に用いること（保存本文：sources/text/suken_syllabus_suakai.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

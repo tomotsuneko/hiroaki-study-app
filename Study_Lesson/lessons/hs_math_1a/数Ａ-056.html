@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作図（内分点・外分点、円の接線）｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.proof ol { margin: 4px 0 4px 1.2em; }
+.proof .tag { font-weight: 700; }
+.proc { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; }
+.proc > div { padding: 4px 0; }
+@media (max-width: 560px) { .proc { grid-template-columns: 1fr; } }
+.widget .w-row { margin: 4px 0; }
+.widget .w-row select { margin-right: 8px; }
+.widget .w-row input[type=range] { width: 160px; max-width: 100%; vertical-align: middle; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>図形の性質</span><span>数Ａ-056</span></div>
+  <h1>作図（内分点・外分点、円の接線）</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">目盛りのない定規とコンパスだけで、線分を 3:2 に分ける点や、円の外の点から円に接する直線をかけるでしょうか。どの図形の性質に着目すればよいかを考えて方針を立て、手順が正しい理由を説明します。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>線分を与えられた比に内分・外分する点の作図の方針を、平行線と線分の比に着目して立て、手順が正しいことを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>円の外部の1点を通る円の接線の作図の方針を、半円の弧に対する円周角と接線と半径の関係に着目して立て、手順が正しいことを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>作図の過程を振り返り、作図した点や直線が条件を満たしているか、条件を満たすものがほかにないかを、図形の性質で確かめることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-055）</span>星形七角形の先端の角の和</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-056）</span>作図（内分点・外分点、円の接線）</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-057）</span>正五角形の作図</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」、中学1年「平面図形」「空間図形」。この時間は、中学1年の基本の作図（中1-081〜086）、中学3年の円の接線の作図（中3-093）、線分の内分・外分（数Ａ-035）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">作図の約束と基本の作図（中1-081〜086、中2-046、中3-093）</p>
+  <ul>
+    <li><strong>作図</strong>（中1-081）：定規とコンパスだけを用いて図をかくこと。定規は2点を通る直線をひくために使い、目盛りは使いません。コンパスは円や弧をかくことと、長さを写しとることに使います。</li>
+    <li><strong>基本の作図</strong>：線分の垂直二等分線（中1-082。2点から等しい距離にある点の集まり）、角の二等分線（中1-083）、垂線（中1-084）、円周上の点を通る接線（中1-085）、角を写しとること（中1-086）。</li>
+    <li><strong>平行線の作図</strong>：直線外の点を通り、その直線に平行な直線は、同位角が等しくなるように角を写しとってひけます（角を写す作図は中1-086、同位角が等しければ平行は中2-046）。</li>
+    <li><strong>円外の点からの接線の作図</strong>（中3-093）：中学3年では、円周角の定理を利用して、円外の点から円に引く接線を作図しました。この時間は、その手順が正しい理由を確かめ直します。</li>
+  </ul>
+  <p>線分 AB を \( m:n \) に内分する点は \( \mathrm{AP}:\mathrm{PB}=m:n \) となる線分 AB 上の点、外分する点は \( \mathrm{AQ}:\mathrm{QB}=m:n \)（\( m\neq n \)）となる直線 AB 上で線分 AB の外の点です（数Ａ-035）。</p>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-035</span></div>
+  <p>長さ 10 の線分 AB を \( 2:3 \) に内分する点を P とします。AP の長さはどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{20}{3} \)</button>
+    <button data-correct="true">4</button>
+    <button>6</button>
+    <button>5</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">AB を \( 2+3=5 \) 目盛りに分けると 1 目盛りは 2 で、P は A から 2 目盛りなので \( \mathrm{AP}=4 \) です。\( \dfrac{20}{3} \) は \( \dfrac{2}{3}\times10 \) で、分母を目盛りの総数 5 でなく 3 にしています。6 は PB の長さ、5 は中点までの長さです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中1-082</span></div>
+  <p>線分 AB の垂直二等分線の作図で、A、B を中心に同じ半径の円をかき、その2つの交点を結びます。この直線が垂直二等分線になる理由として正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">2つの交点は、どちらも A と B から等しい距離にあり、垂直二等分線は2点から等しい距離にある点の集まりだから。</button>
+    <button>2つの交点を結ぶ直線は、いつも線分 AB と同じ長さになるから。</button>
+    <button>コンパスの半径を AB の長さにしたから。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">同じ半径でかいたので、2つの交点はどちらも A と B から等しい距離にあり、垂直二等分線（2点から等しい距離にある点の集まり、中1-082）の上にあります。異なる2点で直線は決まるので、2つの交点を結ぶと垂直二等分線になります。2つ目は誤りで、交点を結んだ長さは半径によって変わります。3つ目は、半径は AB の半分より大きければよく、AB と同じである必要はありません。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中3-089</span></div>
+  <p>線分 OP を直径とする円の周上に、O、P と異なる点 T があります。\( \angle\mathrm{OTP} \) の大きさはどれですか。</p>
+  <div class="choices">
+    <button>\( 180^\circ \)</button>
+    <button>\( 45^\circ \)</button>
+    <button>T の位置によって変わる</button>
+    <button data-correct="true">\( 90^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \angle\mathrm{OTP} \) は半円の弧に対する円周角なので \( 90^\circ \) です（中3-089）。\( 180^\circ \) は半円の弧に対する中心角で、円周角はその半分です。\( 45^\circ \) は T が弧の真ん中にあって OT=PT のときの \( \angle\mathrm{TOP} \) と取り違えています。円周角は T の位置によらず一定です。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：目盛りを使わずに 3:2 に分ける</h2>
+<div class="box think">
+  <p class="box-title">定規の目盛りを使わない</p>
+  <p>長さの分からない線分 AB を、目盛りのない定規とコンパスだけで分けます。</p>
+  <ul>
+    <li>① 線分 AB を \( 3:2 \) に内分する点は作図できるでしょうか。垂直二等分線をくり返すと中点（\( 1:1 \)）やその半分は作れますが、\( 3:2 \) はどうでしょうか。</li>
+    <li>② 円の外の点 P から円に接線を引くには、接点をどう決めればよいでしょうか。</li>
+  </ul>
+  <p>予想してから読み進めましょう。①は「3 線分を内分する点の作図」の例題1で、②は「5 円の外部の点を通る接線の作図」の例題3で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="内分する点の作図"><span class="num">3</span>線分を内分する点の作図</h2>
+<h3>方針を立てる</h3>
+<p>作図では、「どの図形の性質を使えば、求める点が決まるか」を先に考えます。数Ａ-035 で、<strong>平行な直線は2つの線分を同じ比に分ける</strong>ことを確かめました。そこで、A から別の半直線 ℓ をひき、ℓ の上に<strong>コンパスで等間隔の目盛り</strong>を作って比を表し、その比を<strong>平行線で線分 AB に写す</strong>という方針を立てます。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（線分 AB を 3:2 に内分する点の作図。導入の問い①の答え）</p>
+  <p>線分 AB を \( 3:2 \) に内分する点 Q を作図しなさい。また、手順が正しい理由を説明しなさい。</p>
+  <div class="step">
+    <div class="proc"><div><strong>手順①</strong>　A から、直線 AB と重ならない半直線 ℓ をひく。</div><div><strong>理由</strong>　ℓ の上に、比を表す目盛りを作るため。ℓ の向きは自由に決めてよい。</div></div>
+    <figure><!--svg:f056a1-->
+<svg viewBox="0 0 233 174" width="233" role="img" aria-label="線分 AB を 3:2 に内分する点の作図の段階1。① A から半直線 ℓ をひく" data-fig="f056a1" data-s="30.000000" data-ox="26.500000" data-oy="146.000000">
+<line x1="26.5" y1="146" x2="206.5" y2="146" stroke="currentColor" stroke-width="2.0" data-seg="AB"/>
+<line x1="26.5" y1="146" x2="163.6" y2="38.9" stroke="#8a99a8" stroke-width="1.3" data-seg="ℓ"/>
+<circle cx="26.50" cy="146.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="0.000000" data-y="0.000000"/>
+<circle cx="206.50" cy="146.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="6.000000" data-y="0.000000"/>
+<text x="6" y="16" text-anchor="start" font-size="12" fill="currentColor">① A から半直線 ℓ をひく</text>
+<text x="17.3" y="159.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="215.7" y="159.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="172.6" y="42.8" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">ℓ</text>
+</svg>
+<!--/svg:f056a1--></figure>
+  </div>
+  <div class="step">
+    <div class="proc"><div><strong>手順②</strong>　コンパスで、ℓ の上に A から同じ長さを 5 回続けて写しとる。A から 3 番目の点を C、5 番目の点を D とする。</div><div><strong>理由</strong>　コンパスで写した長さは等しい（中1-081）ので、\( \mathrm{AC}:\mathrm{CD}=3:2 \)。比の和 \( 3+2=5 \) 個の目盛りを作る。</div></div>
+    <figure><!--svg:f056a2-->
+<svg viewBox="0 0 233 174" width="233" role="img" aria-label="線分 AB を 3:2 に内分する点の作図の段階2。② コンパスで等間隔に 5 つの点" data-fig="f056a2" data-s="30.000000" data-ox="26.500000" data-oy="146.000000">
+<line x1="26.5" y1="146" x2="206.5" y2="146" stroke="currentColor" stroke-width="2.0" data-seg="AB"/>
+<line x1="26.5" y1="146" x2="163.6" y2="38.9" stroke="#8a99a8" stroke-width="1.3" data-seg="ℓ"/>
+<polyline points="54.3,134.8 53.8,133.5 53.2,132.2 52.5,131 51.8,129.8 51,128.7 50.1,127.5 49.3,126.5 48.3,125.4 47.3,124.4 46.3,123.5 45.2,122.6 44.1,121.7" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔1" data-c="0.000000,0.000000" data-r="1.000000"/>
+<circle cx="50.14" cy="127.53" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P1" data-x="0.788011" data-y="0.615661"/>
+<polyline points="78,116.3 77.4,115 76.8,113.8 76.1,112.5 75.4,111.3 74.6,110.2 73.8,109.1 72.9,108 72,106.9 71,105.9 70,105 68.9,104.1 67.8,103.3" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔2" data-c="0.788011,0.615661" data-r="1.000000"/>
+<circle cx="73.78" cy="109.06" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P2" data-x="1.576022" data-y="1.231323"/>
+<polyline points="101.6,97.8 101,96.5 100.4,95.3 99.8,94.1 99,92.9 98.3,91.7 97.4,90.6 96.5,89.5 95.6,88.5 94.6,87.5 93.6,86.5 92.5,85.6 91.4,84.8" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔3" data-c="1.576022,1.231323" data-r="1.000000"/>
+<circle cx="97.42" cy="90.59" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P3" data-x="2.364032" data-y="1.846984"/>
+<polyline points="125.2,79.4 124.7,78.1 124.1,76.8 123.4,75.6 122.7,74.4 121.9,73.2 121.1,72.1 120.2,71 119.2,70 118.3,69 117.2,68.1 116.2,67.2 115.1,66.3" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔4" data-c="2.364032,1.846984" data-r="1.000000"/>
+<circle cx="121.06" cy="72.12" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P4" data-x="3.152043" data-y="2.462646"/>
+<polyline points="148.9,60.9 148.3,59.6 147.7,58.3 147,57.1 146.3,55.9 145.5,54.8 144.7,53.7 143.8,52.6 142.9,51.5 141.9,50.5 140.9,49.6 139.8,48.7 138.7,47.9" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔5" data-c="3.152043,2.462646" data-r="1.000000"/>
+<circle cx="144.70" cy="53.65" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P5" data-x="3.940054" data-y="3.078307"/>
+<circle cx="26.50" cy="146.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="0.000000" data-y="0.000000"/>
+<circle cx="206.50" cy="146.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="6.000000" data-y="0.000000"/>
+<text x="6" y="16" text-anchor="start" font-size="12" fill="currentColor">② コンパスで等間隔に 5 つの点</text>
+<text x="17.3" y="159.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="215.7" y="159.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="172.6" y="42.8" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">ℓ</text>
+<text x="87.5" y="86.1" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">C</text>
+<text x="134.7" y="49.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">D</text>
+</svg>
+<!--/svg:f056a2--></figure>
+  </div>
+  <div class="step">
+    <div class="proc"><div><strong>手順③</strong>　D と B を定規で結ぶ。</div><div><strong>理由</strong>　この直線に平行な直線で、ℓ 上の比を AB に写す。</div></div>
+    <figure><!--svg:f056a3-->
+<svg viewBox="0 0 233 174" width="233" role="img" aria-label="線分 AB を 3:2 に内分する点の作図の段階3。③ 5 番目の点 D と B を結ぶ" data-fig="f056a3" data-s="30.000000" data-ox="26.500000" data-oy="146.000000">
+<line x1="26.5" y1="146" x2="206.5" y2="146" stroke="currentColor" stroke-width="2.0" data-seg="AB"/>
+<line x1="26.5" y1="146" x2="163.6" y2="38.9" stroke="#8a99a8" stroke-width="1.3" data-seg="ℓ"/>
+<polyline points="54.3,134.8 53.8,133.5 53.2,132.2 52.5,131 51.8,129.8 51,128.7 50.1,127.5 49.3,126.5 48.3,125.4 47.3,124.4 46.3,123.5 45.2,122.6 44.1,121.7" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔1" data-c="0.000000,0.000000" data-r="1.000000"/>
+<circle cx="50.14" cy="127.53" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P1" data-x="0.788011" data-y="0.615661"/>
+<polyline points="78,116.3 77.4,115 76.8,113.8 76.1,112.5 75.4,111.3 74.6,110.2 73.8,109.1 72.9,108 72,106.9 71,105.9 70,105 68.9,104.1 67.8,103.3" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔2" data-c="0.788011,0.615661" data-r="1.000000"/>
+<circle cx="73.78" cy="109.06" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P2" data-x="1.576022" data-y="1.231323"/>
+<polyline points="101.6,97.8 101,96.5 100.4,95.3 99.8,94.1 99,92.9 98.3,91.7 97.4,90.6 96.5,89.5 95.6,88.5 94.6,87.5 93.6,86.5 92.5,85.6 91.4,84.8" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔3" data-c="1.576022,1.231323" data-r="1.000000"/>
+<circle cx="97.42" cy="90.59" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P3" data-x="2.364032" data-y="1.846984"/>
+<polyline points="125.2,79.4 124.7,78.1 124.1,76.8 123.4,75.6 122.7,74.4 121.9,73.2 121.1,72.1 120.2,71 119.2,70 118.3,69 117.2,68.1 116.2,67.2 115.1,66.3" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔4" data-c="2.364032,1.846984" data-r="1.000000"/>
+<circle cx="121.06" cy="72.12" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P4" data-x="3.152043" data-y="2.462646"/>
+<polyline points="148.9,60.9 148.3,59.6 147.7,58.3 147,57.1 146.3,55.9 145.5,54.8 144.7,53.7 143.8,52.6 142.9,51.5 141.9,50.5 140.9,49.6 139.8,48.7 138.7,47.9" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔5" data-c="3.152043,2.462646" data-r="1.000000"/>
+<circle cx="144.70" cy="53.65" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P5" data-x="3.940054" data-y="3.078307"/>
+<line x1="144.7" y1="53.7" x2="206.5" y2="146" stroke="#b7791f" stroke-width="1.7" data-seg="DB"/>
+<circle cx="26.50" cy="146.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="0.000000" data-y="0.000000"/>
+<circle cx="206.50" cy="146.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="6.000000" data-y="0.000000"/>
+<text x="6" y="16" text-anchor="start" font-size="12" fill="currentColor">③ 5 番目の点 D と B を結ぶ</text>
+<text x="17.3" y="159.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="215.7" y="159.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="172.6" y="42.8" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">ℓ</text>
+<text x="87.5" y="86.1" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">C</text>
+<text x="134.7" y="49.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">D</text>
+</svg>
+<!--/svg:f056a3--></figure>
+  </div>
+  <div class="step">
+    <div class="proc"><div><strong>手順④</strong>　C を通り直線 DB に平行な直線をひき（同位角を写す、中1-086・中2-046）、線分 AB との交点を Q とする。</div><div><strong>理由</strong>　\( \mathrm{CQ}\,/\!/\,\mathrm{DB} \) なので、△ADB で C と Q は辺 AD と辺 AB を同じ比に内分する（数Ａ-035、中3-071）。よって \( \mathrm{AQ}:\mathrm{QB}=\mathrm{AC}:\mathrm{CD}=3:2 \)。</div></div>
+    <figure><!--svg:f056a4-->
+<svg viewBox="0 0 233 174" width="233" role="img" aria-label="線分 AB を 3:2 に内分する点の作図の段階4。④ 3 番目の点 C を通る平行線" data-fig="f056a4" data-s="30.000000" data-ox="26.500000" data-oy="146.000000">
+<line x1="26.5" y1="146" x2="206.5" y2="146" stroke="currentColor" stroke-width="2.0" data-seg="AB"/>
+<line x1="26.5" y1="146" x2="163.6" y2="38.9" stroke="#8a99a8" stroke-width="1.3" data-seg="ℓ"/>
+<polyline points="54.3,134.8 53.8,133.5 53.2,132.2 52.5,131 51.8,129.8 51,128.7 50.1,127.5 49.3,126.5 48.3,125.4 47.3,124.4 46.3,123.5 45.2,122.6 44.1,121.7" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔1" data-c="0.000000,0.000000" data-r="1.000000"/>
+<circle cx="50.14" cy="127.53" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P1" data-x="0.788011" data-y="0.615661"/>
+<polyline points="78,116.3 77.4,115 76.8,113.8 76.1,112.5 75.4,111.3 74.6,110.2 73.8,109.1 72.9,108 72,106.9 71,105.9 70,105 68.9,104.1 67.8,103.3" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔2" data-c="0.788011,0.615661" data-r="1.000000"/>
+<circle cx="73.78" cy="109.06" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P2" data-x="1.576022" data-y="1.231323"/>
+<polyline points="101.6,97.8 101,96.5 100.4,95.3 99.8,94.1 99,92.9 98.3,91.7 97.4,90.6 96.5,89.5 95.6,88.5 94.6,87.5 93.6,86.5 92.5,85.6 91.4,84.8" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔3" data-c="1.576022,1.231323" data-r="1.000000"/>
+<circle cx="97.42" cy="90.59" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P3" data-x="2.364032" data-y="1.846984"/>
+<polyline points="125.2,79.4 124.7,78.1 124.1,76.8 123.4,75.6 122.7,74.4 121.9,73.2 121.1,72.1 120.2,71 119.2,70 118.3,69 117.2,68.1 116.2,67.2 115.1,66.3" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔4" data-c="2.364032,1.846984" data-r="1.000000"/>
+<circle cx="121.06" cy="72.12" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P4" data-x="3.152043" data-y="2.462646"/>
+<polyline points="148.9,60.9 148.3,59.6 147.7,58.3 147,57.1 146.3,55.9 145.5,54.8 144.7,53.7 143.8,52.6 142.9,51.5 141.9,50.5 140.9,49.6 139.8,48.7 138.7,47.9" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔5" data-c="3.152043,2.462646" data-r="1.000000"/>
+<circle cx="144.70" cy="53.65" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P5" data-x="3.940054" data-y="3.078307"/>
+<line x1="144.7" y1="53.7" x2="206.5" y2="146" stroke="#b7791f" stroke-width="1.7" data-seg="DB"/>
+<line x1="149.5" y1="168.4" x2="82.4" y2="68.2" stroke="#b7791f" stroke-width="1.7" stroke-dasharray="6 4" data-seg="CQ"/>
+<circle cx="134.50" cy="146.00" r="3.4" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="Q" data-x="3.600000" data-y="0.000000"/>
+<circle cx="26.50" cy="146.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="0.000000" data-y="0.000000"/>
+<circle cx="206.50" cy="146.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="6.000000" data-y="0.000000"/>
+<text x="6" y="16" text-anchor="start" font-size="12" fill="currentColor">④ 3 番目の点 C を通る平行線</text>
+<text x="17.3" y="159.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="215.7" y="159.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="172.6" y="42.8" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">ℓ</text>
+<text x="110.2" y="96.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">C</text>
+<text x="134.7" y="49.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">D</text>
+<text x="131.1" y="162.8" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">Q</text>
+</svg>
+<!--/svg:f056a4--></figure>
+  </div>
+  <div class="step">答え：Q が線分 AB を \( 3:2 \) に内分する点です（青の点）。線分 AB の長さを測らなくても、目盛りを ℓ の上に作れば、どんな比でも同じ方法で作図できます。</div>
+</div>
+<p class="small">例題1の図は、AB の長さを 6、ℓ の目盛りの間隔を 1 としてかいた学習用の図です（実際の作図では長さを測りません）。橙の実線が直線 DB、橙の破線がそれに平行な直線、灰の細い弧がコンパスの跡です。</p>
+<div class="box point"><p class="box-title">ポイント：内分の作図の手順と理由の対応</p><p>比 \( m:n \) を「ℓ 上の等間隔の目盛り」で表し（コンパス）、それを「平行線」で AB に写す（平行線と線分の比）。\( m \) 番目の点が C、\( m+n \) 番目の点が D です。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 平行線を通す点を取り違える：\( 3:2 \) なのに 2 番目の点を通る平行線をひくと、\( \mathrm{AQ}:\mathrm{QB}=2:3 \) の点になります。A から \( m \) 番目の点を通します。<br>② 定規の目盛りで AB を測って 5 等分する：作図では定規の目盛りを使いません。AB の長さが割り切れない数でも、ℓ 上の目盛りと平行線なら正確に分けられます。<br>③ D と B を結ばずに、C と B を結んで平行線を考える：比を写すのは「目盛りの端 D と B を結ぶ直線」に平行な直線です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="外分する点の作図"><span class="num">4</span>線分を外分する点の作図</h2>
+<p>外分する点も、同じ方針で作図できます。違うのは、ℓ 上の点 D のとり方です。内分では C から A と反対の向きに \( n \) 目盛り<strong>進んだ</strong>点を D にしましたが、外分では C から A の向きに \( n \) 目盛り<strong>戻った</strong>点を D にします（\( m&lt;n \) なら、D は A を通り越して ℓ の反対側の延長上にきます）。</p>
+<div class="box example worked">
+  <p class="box-title">例題2（線分 AB を 3:1 に外分する点の作図）</p>
+  <p>線分 AB を \( 3:1 \) に外分する点 Q を作図し、手順が正しい理由を説明しなさい。</p>
+  <div class="step">
+    <div class="proc"><div><strong>手順</strong>　A から半直線 ℓ をひき、コンパスで ℓ 上に等間隔の目盛りをとる。A から 3 番目の点を C、C から A の向きに 1 目盛り戻った点（A から 2 番目の点）を D とする。D と B を結び、C を通り直線 DB に平行な直線をひいて、直線 AB との交点を Q とする。</div><div><strong>理由</strong>　\( \mathrm{CQ}\,/\!/\,\mathrm{DB} \) で、D、C は ℓ 上、B、Q は直線 AB 上にあり、A で交わる。延長上の点でも平行な直線は同じ比に分ける（数Ａ-035 の図4、中3-071）ので、\( \mathrm{AQ}:\mathrm{QB}=\mathrm{AC}:\mathrm{CD}=3:1 \)。Q は線分 AB の外にあるので、外分する点。</div></div>
+  </div>
+  <div class="step">確かめ：AB は \( 3-1=2 \) 目盛り分にあたり（\( \mathrm{AD}=2 \) 目盛りに対応）、Q は B の側の延長上にある（数Ａ-035 の「\( m&gt;n \) なら B の側」と一致）。</div>
+</div>
+<figure>
+<!--svg:f056b-->
+<svg viewBox="0 0 239 132" width="239" role="img" aria-label="線分 AB を 3:1 に外分する点 Q の作図。ℓ 上に A から3目盛りの点 C、C から A の向きに1目盛り戻った点 D をとり、D と B を結ぶ直線（橙の実線）に平行な直線を C を通してひくと、直線 AB の B の側の延長と Q で交わる" data-fig="f056b" data-s="30.000000" data-ox="26.500000" data-oy="104.000000">
+<line x1="26.5" y1="104" x2="146.5" y2="104" stroke="currentColor" stroke-width="2.0" data-seg="AB"/>
+<line x1="146.5" y1="104" x2="221.5" y2="104" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="2 3" data-seg="ext"/>
+<line x1="26.5" y1="104" x2="113.8" y2="30.7" stroke="#8a99a8" stroke-width="1.3" data-seg="ℓ"/>
+<polyline points="53.9,91.8 53.3,90.5 52.7,89.3 51.9,88.1 51.2,86.9 50.4,85.8 49.5,84.7 48.6,83.7 47.6,82.7 46.6,81.7 45.5,80.8 44.4,79.9 43.3,79.1" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔1" data-c="0.000000,0.000000" data-r="1.000000"/>
+<circle cx="49.48" cy="84.72" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P1" data-x="0.766044" data-y="0.642788"/>
+<polyline points="76.9,72.5 76.3,71.3 75.6,70 74.9,68.8 74.2,67.7 73.3,66.5 72.5,65.4 71.5,64.4 70.6,63.4 69.6,62.4 68.5,61.5 67.4,60.7 66.3,59.8" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔2" data-c="0.766044,0.642788" data-r="1.000000"/>
+<circle cx="72.46" cy="65.43" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P2" data-x="1.532089" data-y="1.285575"/>
+<polyline points="99.9,53.2 99.3,52 98.6,50.7 97.9,49.5 97.1,48.4 96.3,47.2 95.4,46.1 94.5,45.1 93.6,44.1 92.5,43.1 91.5,42.2 90.4,41.4 89.2,40.6" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="等間隔3" data-c="1.532089,1.285575" data-r="1.000000"/>
+<circle cx="95.44" cy="46.15" r="2.4" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P3" data-x="2.298133" data-y="1.928363"/>
+<line x1="72.5" y1="65.4" x2="146.5" y2="104" stroke="#b7791f" stroke-width="1.7" data-seg="DB"/>
+<line x1="79.5" y1="37.8" x2="222.5" y2="112.3" stroke="#b7791f" stroke-width="1.7" stroke-dasharray="6 4" data-seg="CQ"/>
+<circle cx="206.50" cy="104.00" r="3.4" fill="#c0392b" stroke="#c0392b" stroke-width="1.4" data-pt="Q" data-x="6.000000" data-y="0.000000"/>
+<circle cx="26.50" cy="104.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="0.000000" data-y="0.000000"/>
+<circle cx="146.50" cy="104.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="4.000000" data-y="0.000000"/>
+<text x="17.3" y="117.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="153" y="119.5" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="206.5" y="121.2" text-anchor="middle" font-size="14" fill="#c0392b" font-weight="700">Q</text>
+<text x="95.4" y="37" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">C</text>
+<text x="62.5" y="61" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">D</text>
+</svg>
+<!--/svg:f056b-->
+  <figcaption>図1　例題2の作図の完成図。C は A から3目盛り、D は2目盛り。橙の実線 DB に平行な橙の破線が、直線 AB の延長（灰の点線）と Q（赤の点）で交わる（AB の長さを 4、目盛りの間隔を 1 としてかいた学習用の図）</figcaption>
+</figure>
+<h3>操作して確かめよう：比を変えて作図の段階を進める</h3>
+<p>分け方と \( m \)、\( n \) を選び、つまみで作図の段階（1〜4）を進めます。\( m&lt;n \) の外分では D が ℓ の反対側の延長上にくること、\( m=n \) の外分では作図ができないことを確かめましょう。</p>
+<div class="widget" id="w1">
+  <div class="w-row"><label for="w1-k">分け方：</label><select id="w1-k"><option value="in" selected>内分</option><option value="ex">外分</option></select>
+    <label for="w1-m">\( m \)：</label><select id="w1-m"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+    <label for="w1-n">\( n \)：</label><select id="w1-n"><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option></select></div>
+  <div class="w-row"><label for="w1-st">作図の段階：</label><input type="range" id="w1-st" min="1" max="4" step="1" value="4" aria-describedby="w1-out"></div>
+  <div><svg id="w1-svg" viewBox="0 0 340 230" width="340" role="img" aria-label="線分 AB、半直線 ℓ と等間隔の目盛り、点 C・D、直線 DB と C を通る平行線、作図した点 Q。段階に応じて表示する"></svg></div>
+  <p class="w-out" id="w1-out" aria-live="polite">段階4：C を通り直線 DB に平行な直線と直線 AB の交点が Q です。AQ : QB = AC : CD = 2 : 3 なので、Q は線分 AB を 2:3 に内分する点です。（AB = 4 とすると AQ = 8/5、QB = 12/5）</p>
+  <p class="small">実線＝線分 AB、灰の線＝半直線 ℓ（と反対側の延長）、灰の短い線＝コンパスでとった目盛り、橙の実線＝直線 DB、橙の破線＝C を通る平行線、青の点＝内分する点、赤の点＝外分する点。図は AB を 4、目盛りの間隔を 1 としてかき、全体が入るように縮尺を変えています。（スクリプトが動かない場合は、例題1・2の図で同じことを確かめられます）</p>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 外分でも D を \( m+n \) 番目の点にする：それは内分の作図で、Q は線分 AB 上にできます。外分では C から A の向きに \( n \) 目盛り戻ります。<br>② \( m&lt;n \) のとき D がとれないと考える：D は ℓ を A の反対側に延ばした直線上にとります。<br>③ \( m=n \) の外分を作図しようとする：D が A に重なり、直線 DB は直線 AB そのものになるので、C を通る平行線は直線 AB と交わりません。\( 1:1 \) に外分する点はない（数Ａ-035）ことと一致します。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="円の外部の点を通る接線の作図"><span class="num">5</span>円の外部の点を通る接線の作図</h2>
+<h3>方針を立てる</h3>
+<p>円 O の外部の点 P を通る接線を引くには、接点 T が分かればよいことになります。接線は接点を通る半径に垂直（中1-085）なので、T は \( \angle\mathrm{OTP}=90^\circ \) となる円 O の周上の点です。\( \angle\mathrm{OTP}=90^\circ \) となる点は、<strong>OP を直径とする円</strong>の周上にあります（半円の弧に対する円周角は直角、中3-089）。そこで、「円 O と、OP を直径とする円の交点が接点」という方針を立てます（中3-093 と同じ方針）。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（円の外部の点 P を通る接線の作図。導入の問い②の答え）</p>
+  <p>円 O と、円 O の外部の点 P が与えられています。P を通る円 O の接線を作図し、手順が正しい理由を説明しなさい。</p>
+  <div class="step">
+    <div class="proc"><div><strong>手順①</strong>　O と P を定規で結ぶ。</div><div><strong>理由</strong>　OP を直径とする円をかくために、線分 OP の中点が必要になる。</div></div>
+    <figure><!--svg:f056c1-->
+<svg viewBox="0 0 210 191" width="210" role="img" aria-label="円 O の外部の点 P を通る接線の作図の段階1。① O と P を結ぶ" data-fig="f056c1" data-s="17.000000" data-ox="68.450000" data-oy="104.500000">
+<circle cx="68.5" cy="104.5" r="51" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円O" data-cx="0.000000" data-cy="0.000000" data-r="3.000000"/>
+<line x1="68.5" y1="104.5" x2="187.4" y2="104.5" stroke="currentColor" stroke-width="1.6" data-seg="OP"/>
+<circle cx="68.45" cy="104.50" r="3.2" fill="#7b3fa0" stroke="#7b3fa0" stroke-width="1.4" data-pt="O" data-x="0.000000" data-y="0.000000"/>
+<circle cx="187.45" cy="104.50" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P" data-x="7.000000" data-y="0.000000"/>
+<text x="6" y="16" text-anchor="start" font-size="12" fill="currentColor">① O と P を結ぶ</text>
+<text x="57.2" y="114.9" text-anchor="middle" font-size="13" fill="#7b3fa0" font-weight="700">O</text>
+<text x="198.7" y="115.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">P</text>
+</svg>
+<!--/svg:f056c1--></figure>
+  </div>
+  <div class="step">
+    <div class="proc"><div><strong>手順②</strong>　線分 OP の垂直二等分線を作図し、OP との交点を M とする。</div><div><strong>理由</strong>　垂直二等分線は OP の中点を通る（中1-082）ので、M は OP の中点。</div></div>
+    <figure><!--svg:f056c2-->
+<svg viewBox="0 0 210 191" width="210" role="img" aria-label="円 O の外部の点 P を通る接線の作図の段階2。② OP の垂直二等分線で中点 M" data-fig="f056c2" data-s="17.000000" data-ox="68.450000" data-oy="104.500000">
+<circle cx="68.5" cy="104.5" r="51" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円O" data-cx="0.000000" data-cy="0.000000" data-r="3.000000"/>
+<line x1="68.5" y1="104.5" x2="187.4" y2="104.5" stroke="currentColor" stroke-width="1.6" data-seg="OP"/>
+<polyline points="135.2,63.7 134.1,62 132.9,60.3 131.7,58.6 130.5,56.9 129.3,55.3 128,53.8 126.6,52.2 125.2,50.7 123.8,49.2 122.3,47.8 120.8,46.4 119.3,45.1" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="垂直二等分線" data-c="0.000000,0.000000" data-r="4.600000"/>
+<polyline points="119.3,163.9 120.8,162.6 122.3,161.2 123.8,159.8 125.2,158.3 126.6,156.8 128,155.2 129.3,153.7 130.5,152.1 131.7,150.4 132.9,148.7 134.1,147 135.2,145.3" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="垂直二等分線" data-c="0.000000,0.000000" data-r="4.600000"/>
+<polyline points="136.6,45.1 135.1,46.4 133.6,47.8 132.1,49.2 130.7,50.7 129.3,52.2 128,53.8 126.6,55.3 125.4,56.9 124.2,58.6 123,60.3 121.8,62 120.7,63.7" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="垂直二等分線" data-c="7.000000,0.000000" data-r="4.600000"/>
+<polyline points="120.7,145.3 121.8,147 123,148.7 124.2,150.4 125.4,152.1 126.6,153.7 128,155.2 129.3,156.8 130.7,158.3 132.1,159.8 133.6,161.2 135.1,162.6 136.6,163.9" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="垂直二等分線" data-c="7.000000,0.000000" data-r="4.600000"/>
+<line x1="128" y1="53.8" x2="128" y2="155.2" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3" data-seg="垂直二等分線"/>
+<circle cx="127.95" cy="104.50" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="M" data-x="3.500000" data-y="0.000000"/>
+<circle cx="68.45" cy="104.50" r="3.2" fill="#7b3fa0" stroke="#7b3fa0" stroke-width="1.4" data-pt="O" data-x="0.000000" data-y="0.000000"/>
+<circle cx="187.45" cy="104.50" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P" data-x="7.000000" data-y="0.000000"/>
+<text x="6" y="16" text-anchor="start" font-size="12" fill="currentColor">② OP の垂直二等分線で中点 M</text>
+<text x="57.2" y="114.9" text-anchor="middle" font-size="13" fill="#7b3fa0" font-weight="700">O</text>
+<text x="198.7" y="115.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">P</text>
+<text x="134.5" y="119.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">M</text>
+</svg>
+<!--/svg:f056c2--></figure>
+  </div>
+  <div class="step">
+    <div class="proc"><div><strong>手順③</strong>　M を中心とし、半径 MO の円をかく。</div><div><strong>理由</strong>　\( \mathrm{MO}=\mathrm{MP} \) なので、この円は O と P を通り、OP を直径とする円になる。</div></div>
+    <figure><!--svg:f056c3-->
+<svg viewBox="0 0 210 191" width="210" role="img" aria-label="円 O の外部の点 P を通る接線の作図の段階3。③ M を中心に半径 MO の円" data-fig="f056c3" data-s="17.000000" data-ox="68.450000" data-oy="104.500000">
+<circle cx="68.5" cy="104.5" r="51" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円O" data-cx="0.000000" data-cy="0.000000" data-r="3.000000"/>
+<line x1="68.5" y1="104.5" x2="187.4" y2="104.5" stroke="currentColor" stroke-width="1.6" data-seg="OP"/>
+<polyline points="135.2,63.7 134.1,62 132.9,60.3 131.7,58.6 130.5,56.9 129.3,55.3 128,53.8 126.6,52.2 125.2,50.7 123.8,49.2 122.3,47.8 120.8,46.4 119.3,45.1" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="垂直二等分線" data-c="0.000000,0.000000" data-r="4.600000"/>
+<polyline points="119.3,163.9 120.8,162.6 122.3,161.2 123.8,159.8 125.2,158.3 126.6,156.8 128,155.2 129.3,153.7 130.5,152.1 131.7,150.4 132.9,148.7 134.1,147 135.2,145.3" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="垂直二等分線" data-c="0.000000,0.000000" data-r="4.600000"/>
+<polyline points="136.6,45.1 135.1,46.4 133.6,47.8 132.1,49.2 130.7,50.7 129.3,52.2 128,53.8 126.6,55.3 125.4,56.9 124.2,58.6 123,60.3 121.8,62 120.7,63.7" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="垂直二等分線" data-c="7.000000,0.000000" data-r="4.600000"/>
+<polyline points="120.7,145.3 121.8,147 123,148.7 124.2,150.4 125.4,152.1 126.6,153.7 128,155.2 129.3,156.8 130.7,158.3 132.1,159.8 133.6,161.2 135.1,162.6 136.6,163.9" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="垂直二等分線" data-c="7.000000,0.000000" data-r="4.600000"/>
+<line x1="128" y1="53.8" x2="128" y2="155.2" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3" data-seg="垂直二等分線"/>
+<circle cx="127.95" cy="104.50" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="M" data-x="3.500000" data-y="0.000000"/>
+<circle cx="128" cy="104.5" r="59.5" fill="none" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="5 4" data-circle="円M" data-cx="3.500000" data-cy="0.000000" data-r="3.500000"/>
+<circle cx="68.45" cy="104.50" r="3.2" fill="#7b3fa0" stroke="#7b3fa0" stroke-width="1.4" data-pt="O" data-x="0.000000" data-y="0.000000"/>
+<circle cx="187.45" cy="104.50" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P" data-x="7.000000" data-y="0.000000"/>
+<text x="6" y="16" text-anchor="start" font-size="12" fill="currentColor">③ M を中心に半径 MO の円</text>
+<text x="57.2" y="114.9" text-anchor="middle" font-size="13" fill="#7b3fa0" font-weight="700">O</text>
+<text x="198.7" y="115.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">P</text>
+<text x="134.5" y="119.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">M</text>
+</svg>
+<!--/svg:f056c3--></figure>
+  </div>
+  <div class="step">
+    <div class="proc"><div><strong>手順④</strong>　③の円と円 O の交点を T、T′ とし、P と T、P と T′ を結ぶ。直線 PT、PT′ が求める接線。</div><div><strong>理由</strong>　T は OP を直径とする円の周上にあるので \( \angle\mathrm{OTP}=90^\circ \)（中3-089）。T は円 O の周上の点で、直線 PT は半径 OT に T で垂直である。T′ も同じ。</div></div>
+    <figure><!--svg:f056c4-->
+<svg viewBox="0 0 210 191" width="210" role="img" aria-label="円 O の外部の点 P を通る接線の作図の段階4。④ 交点 T、T′ と P を結ぶ" data-fig="f056c4" data-s="17.000000" data-ox="68.450000" data-oy="104.500000">
+<circle cx="68.5" cy="104.5" r="51" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円O" data-cx="0.000000" data-cy="0.000000" data-r="3.000000"/>
+<line x1="68.5" y1="104.5" x2="187.4" y2="104.5" stroke="currentColor" stroke-width="1.6" data-seg="OP"/>
+<polyline points="135.2,63.7 134.1,62 132.9,60.3 131.7,58.6 130.5,56.9 129.3,55.3 128,53.8 126.6,52.2 125.2,50.7 123.8,49.2 122.3,47.8 120.8,46.4 119.3,45.1" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="垂直二等分線" data-c="0.000000,0.000000" data-r="4.600000"/>
+<polyline points="119.3,163.9 120.8,162.6 122.3,161.2 123.8,159.8 125.2,158.3 126.6,156.8 128,155.2 129.3,153.7 130.5,152.1 131.7,150.4 132.9,148.7 134.1,147 135.2,145.3" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="垂直二等分線" data-c="0.000000,0.000000" data-r="4.600000"/>
+<polyline points="136.6,45.1 135.1,46.4 133.6,47.8 132.1,49.2 130.7,50.7 129.3,52.2 128,53.8 126.6,55.3 125.4,56.9 124.2,58.6 123,60.3 121.8,62 120.7,63.7" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="垂直二等分線" data-c="7.000000,0.000000" data-r="4.600000"/>
+<polyline points="120.7,145.3 121.8,147 123,148.7 124.2,150.4 125.4,152.1 126.6,153.7 128,155.2 129.3,156.8 130.7,158.3 132.1,159.8 133.6,161.2 135.1,162.6 136.6,163.9" fill="none" stroke="#8a99a8" stroke-width="1.1" data-arc="垂直二等分線" data-c="7.000000,0.000000" data-r="4.600000"/>
+<line x1="128" y1="53.8" x2="128" y2="155.2" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3" data-seg="垂直二等分線"/>
+<circle cx="127.95" cy="104.50" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="M" data-x="3.500000" data-y="0.000000"/>
+<circle cx="128" cy="104.5" r="59.5" fill="none" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="5 4" data-circle="円M" data-cx="3.500000" data-cy="0.000000" data-r="3.500000"/>
+<line x1="187.4" y1="104.5" x2="68.8" y2="48.2" stroke="#1f5fbf" stroke-width="1.8" data-seg="PT"/>
+<line x1="187.4" y1="104.5" x2="68.8" y2="160.8" stroke="#1f5fbf" stroke-width="1.8" data-seg="PT′"/>
+<line x1="68.5" y1="104.5" x2="90.3" y2="58.4" stroke="#8a99a8" stroke-width="1.1" stroke-dasharray="3 3" data-seg="OT"/>
+<path d="M86.9,65.6 L94.1,69.1 L97.5,61.8" fill="none" stroke="currentColor" stroke-width="1.2" data-right="T,O,P"/>
+<circle cx="90.31" cy="58.42" r="3.2" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="1.4" data-pt="T" data-x="1.285714" data-y="2.710524"/>
+<circle cx="90.31" cy="150.58" r="3.2" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="1.4" data-pt="T′" data-x="1.285714" data-y="-2.710524"/>
+<circle cx="68.45" cy="104.50" r="3.2" fill="#7b3fa0" stroke="#7b3fa0" stroke-width="1.4" data-pt="O" data-x="0.000000" data-y="0.000000"/>
+<circle cx="187.45" cy="104.50" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P" data-x="7.000000" data-y="0.000000"/>
+<text x="6" y="16" text-anchor="start" font-size="12" fill="currentColor">④ 交点 T、T′ と P を結ぶ</text>
+<text x="57.2" y="114.9" text-anchor="middle" font-size="13" fill="#7b3fa0" font-weight="700">O</text>
+<text x="198.7" y="115.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">P</text>
+<text x="134.5" y="119.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">M</text>
+<text x="89.2" y="49.7" text-anchor="middle" font-size="14" fill="#1e8e5a" font-weight="700">T</text>
+<text x="88.8" y="171.7" text-anchor="middle" font-size="14" fill="#1e8e5a" font-weight="700">T′</text>
+</svg>
+<!--/svg:f056c4--></figure>
+  </div>
+</div>
+<p class="small">例題3の図は、円 O の半径を 3、OP を 7 としてかいた学習用の図です。紫の破線が円 O、灰の破線が OP を直径とする円、青の実線が接線、緑の点が接点です。</p>
+<div class="box example proof">
+  <p class="box-title">証明（手順④の直線 PT が円 O の接線であること）</p>
+  <p><span class="tag">仮定</span>　T は円 O（半径 \( r \)）の周上の点で、\( \angle\mathrm{OTP}=90^\circ \)。<br><span class="tag">結論</span>　直線 PT は円 O に接する（円 O と T だけを共有する）。</p>
+  <ol>
+    <li>直線 PT 上の T 以外の点を X とする。△OTX は \( \angle\mathrm{OTX}=90^\circ \) の直角三角形である。</li>
+    <li>三平方の定理より \( \mathrm{OX}^2=\mathrm{OT}^2+\mathrm{TX}^2&gt;\mathrm{OT}^2=r^2 \) なので、\( \mathrm{OX}&gt;r \)（中3-097）。X は円 O の外部にある。</li>
+    <li>よって、直線 PT と円 O の共有点は T だけで、直線 PT は円 O に接する。（証明終わり）</li>
+  </ol>
+  <p class="small">これは「接線は接点を通る半径に垂直」（中1-085）の<strong>逆</strong>「円周上の点 T で半径 OT に垂直な直線は接線」にあたります。逆は、このように証明してから使います（中1-085 の円周上の点を通る接線の作図でも、この性質を使っています）。</p>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 手順③で、半径を OP にして円をかく：M を中心に半径 MO（OP の半分）の円をかきます。O を中心に半径 OP の円をかいても、接点は求まりません。<br>② 接点を「OP の垂直二等分線と円 O の交点」とする：その点では \( \angle\mathrm{OTP}=90^\circ \) になりません。接点は、OP を直径とする円と円 O の交点です。<br>③ 理由に「∠OTP＝90° だから接する」とだけ書き、T が円 O の周上にあることを書かない：直線 PT が半径に垂直なのは、T が円 O の周上にあるときに意味をもちます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="作図を振り返る"><span class="num">6</span>作図を振り返る：条件を満たすか、ほかにないか</h2>
+<p>作図が終わったら、作図した点や直線が<strong>すべて条件に適しているか</strong>、条件を満たすものが<strong>ほかにないか</strong>を、図形の性質に立ち返って確かめます。</p>
+<div class="box example worked">
+  <p class="box-title">例題4（接線はほかにないか）</p>
+  <p>例題3で、P を通る円 O の接線は、直線 PT と PT′ の2本だけであることを説明しなさい。</p>
+  <div class="step">着眼点：逆向きに考えます。P を通る円 O の接線があれば、その接点を S とすると、接線は接点を通る半径に垂直（中1-085）なので \( \angle\mathrm{OSP}=90^\circ \)。</div>
+  <div class="step">\( \angle\mathrm{OSP}=90^\circ \) なので、S は OP を直径とする円の周上にある（円周角の定理の逆の考え。直角を見込む点は OP を直径とする円の周上にある、中3-091）。</div>
+  <div class="step">S は円 O の周上にもあるので、2つの円の交点 T、T′ のどちらかです。2つの円の共有点は2個までなので（数Ａ-054）、接線は PT と PT′ の2本だけです。</div>
+</div>
+<div class="box point">
+  <p class="box-title">作図の振り返りの観点</p>
+  <p>・作図した点が条件に適しているか：内分・外分の作図では \( \mathrm{AQ}:\mathrm{QB}=m:n \) を平行線と線分の比で、接線の作図では \( \angle\mathrm{OTP}=90^\circ \) を円周角で確かめる。<br>・条件を満たすものがほかにないか：内分する点・外分する点はただ1つ（数Ａ-035）。円外の点を通る接線は2本だけ（例題4）。<br>・作図ができない場合はないか：外分で \( m=n \) のとき（交点ができない）、接線で P が円の周上や内部にあるとき（確認問題の問6・問7）。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>作図</dt><dd>定規とコンパスだけを用いて図をかくこと（中1-081）。定規は直線をひくため、コンパスは円をかくこと・長さを写しとることに使う。</dd>
+    <dt>内分する点の作図</dt><dd>A から半直線 ℓ をひき、コンパスで等間隔の目盛りをとる。\( m \) 番目の点 C、\( m+n \) 番目の点 D をとり、C を通り DB に平行な直線と AB の交点が、AB を \( m:n \) に内分する点。</dd>
+    <dt>外分する点の作図</dt><dd>内分と同じ方法で、D を「C から A の向きに \( n \) 目盛り戻った点」にする。C を通り DB に平行な直線と直線 AB の交点が、AB を \( m:n \) に外分する点（\( m\neq n \)）。</dd>
+    <dt>円の外部の点を通る接線の作図</dt><dd>OP の中点 M を中心に半径 MO の円（OP を直径とする円）をかき、円 O との交点 T、T′ と P を結ぶ。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>内分・外分する点の作図：比をコンパスの等間隔の目盛りで表し、平行線で線分 AB に写す。\( \mathrm{AQ}:\mathrm{QB}=\mathrm{AC}:\mathrm{CD}=m:n \) は平行線と線分の比（数Ａ-035）から（O1）。</li>
+    <li>円外の点 P を通る接線の作図：OP を直径とする円と円 O の交点が接点。半円の弧に対する円周角が直角なので OT⊥PT、T で半径に垂直な直線は接線（O2）。</li>
+    <li>作図を振り返り、条件に適しているか（理由）、ほかにないか（接線は2本だけ）、作図できない場合はないか（\( m=n \) の外分、P が円の周上・内部）を確かめる（O3）。</li>
+  </ul>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。「目盛り」は、ℓ 上にコンパスで等間隔にとった点の間隔のこととする。入力問題は数字だけを入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>線分 AB を \( 2:5 \) に内分する点を例題1の方法で作図します。ℓ 上にとる等間隔の点の数と、平行線を通す点の組合せとして正しいものはどれですか。</p>
+  <div class="choices">
+    <button>点を 7 個とり、A から 5 番目の点を通す。</button>
+    <button>点を 5 個とり、A から 2 番目の点を通す。</button>
+    <button data-correct="true">点を 7 個とり、A から 2 番目の点を通す。</button>
+    <button>点を 3 個とり、A から 2 番目の点を通す。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">比の和 \( 2+5=7 \) 個の目盛りをとり、7 番目の点 D と B を結んで、A から 2 番目の点 C を通る平行線をひきます。1つ目は 5 番目を通していて、\( 5:2 \) に内分する点になります。2つ目は目盛りが 5 個で、\( 2:3 \) に内分する点になります。4つ目は \( 5-2=3 \) 個としていて、外分の考え方と混同しています（\( 2:1 \) に内分する点になる）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>例題1の作図で、\( \mathrm{AQ}:\mathrm{QB}=3:2 \) となることの根拠として最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>中点連結定理</button>
+    <button data-correct="true">平行な直線は2つの線分を同じ比に分ける（三角形と比の定理）</button>
+    <button>三角形の合同条件</button>
+    <button>円周角の定理</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \mathrm{CQ}\,/\!/\,\mathrm{DB} \) なので、△ADB で C と Q は辺 AD と辺 AB を同じ比に分けます（数Ａ-035、中3-071）。中点連結定理は2辺の中点を結ぶ場合（\( 1:1 \)）だけの性質です。合同条件では長さの比は出ません。円周角の定理は円が出てくる作図（接線）で使う性質です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>例題3の作図で、OP を直径とする円をかく理由として正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">OP を直径とする円の周上の点 T では \( \angle\mathrm{OTP}=90^\circ \) になり、接線と半径が垂直になる点を見つけられるから。</button>
+    <button>OP を直径とする円と円 O は、いつも1点で接するから。</button>
+    <button>OP を直径とする円の中心 M が、接点になるから。</button>
+    <button>OP を直径とする円の半径が、接線の長さに等しいから。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">半円の弧に対する円周角は直角なので、OP を直径とする円の周上の点 T では \( \angle\mathrm{OTP}=90^\circ \) です。円 O との交点なら、PT は半径 OT に垂直で接線になります。2つ目は誤りで、P が円 O の外部にあれば2つの円は2点で交わります。3つ目は誤りで、M は OP の中点で円 O の周上にはありません（接点ではない）。4つ目は誤りで、接線の長さ PT は \( \sqrt{\mathrm{OP}^2-r^2} \) で、半径 \( \mathrm{OP}\div2 \) とは一般に違います。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="2">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1</span></div>
+  <p>線分 AB を \( 3:5 \) に外分する点を、例題2の方法で作図します。ℓ 上に A から 3 目盛りの点 C をとり、C から A の向きに 5 目盛り戻った点を D とします。D は、A から見て ℓ の反対側の延長上の、A から何目盛りの点ですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 2。C は A から 3 目盛りで、そこから A の向きに 5 目盛り戻ると、A を \( 5-3=2 \) 目盛り通り越します。D は ℓ の反対側の延長上で A から 2 目盛りの点です。8 と答えた場合は、内分のように \( 3+5 \) 目盛りの点にしています。5 と答えた場合は、C からではなく A から 5 目盛りとっています。このあと D と B を結び、C を通る平行線をひくと、Q は A の側の延長上にできます（\( m&lt;n \) なので A の側、数Ａ-035）。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="12|PT=12">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>半径 9 の円 O の外部に、\( \mathrm{OP}=15 \) となる点 P があります。例題3の方法で P を通る接線を作図し、接点を T とします。PT の長さを求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 12。T は OP を直径とする円の周上にあるので \( \angle\mathrm{OTP}=90^\circ \)。直角三角形 OTP で \( \mathrm{PT}^2=15^2-9^2=144 \)、\( \mathrm{PT}=12 \) です（中3-104）。7.5 と答えた場合は、作図に使った円の半径 \( \mathrm{OP}\div2 \) を答えています。6 と答えた場合は \( 15-9 \) で、三平方の定理を使っていません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>点 P が円 O の<strong>周上</strong>にあるとき、例題3の手順をそのまま行うとどうなりますか。円 O の半径を \( r \) とします。</p>
+  <div class="choices">
+    <button>OP を直径とする円と円 O は2点で交わり、接線が2本かける。</button>
+    <button data-correct="true">OP を直径とする円（半径 \( \dfrac{r}{2} \)）は円 O に P で内接し、交点は P だけになるので、手順④で直線が決まらない。このときは P で半径 OP に垂直な直線をひく（中1-085）。</button>
+    <button>OP を直径とする円がかけないので、接線はない。</button>
+    <button>OP を直径とする円と円 O は外接し、接線が3本かける。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">OP を直径とする円の中心 M と O の距離は \( \dfrac{r}{2} \) で、2つの半径 \( r \)、\( \dfrac{r}{2} \) の差 \( r-\dfrac{r}{2}=\dfrac{r}{2} \) に等しいので内接します（数Ａ-054）。共有点は P だけで、「P と T を結ぶ」ことができません。P が周上にあるときの接線は1本で、P で半径 OP に垂直な直線です。1つ目は P が外部にある場合です。3つ目は誤りで、円はかけます。4つ目は、中心間の距離 \( \dfrac{r}{2} \) が半径の和 \( \dfrac{3r}{2} \) より小さいので外接しません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>点 P が円 O の<strong>内部</strong>（O 以外の点）にあるとき、P を通る円 O の接線について正しいものはどれですか。</p>
+  <div class="choices">
+    <button>OP を直径とする円と円 O の交点を使えば、接線が2本かける。</button>
+    <button>P を通り OP に垂直な直線が接線になる。</button>
+    <button data-correct="true">OP を直径とする円は円 O の内部にあって交わらず、P を通る接線はない。</button>
+    <button>接線は1本だけある。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">OP を直径とする円の点 X は \( \mathrm{OX}\leqq\mathrm{OP}&lt;r \) なので、円 O の内部にあり、2つの円は交わりません。実際、接線上の接点以外の点は円の外部にあるので（例題3の証明）、円の内部の点 P を通る接線はありません。1つ目は交点がないので作図できません。2つ目の直線は円 O と2点で交わり、接線ではありません。4つ目は P が周上にある場合です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O3</span></div>
+  <p>花壇の端の杭 A、B の間に、\( \mathrm{AQ}:\mathrm{QB}=2:3 \) となる位置 Q に杭を打ちます。巻き尺は使えず、まっすぐな長い棒（定規の代わり）とひも（コンパスの代わり）だけを使います（学習用に作成した架空の場面）。</p>
+  <p>太郎：「A から別の向きにまっすぐ線をひいて、ひもで同じ長さを 5 回とろう。」<br>花子：「そのあと、どこを結んで、どこを通る平行な線をひけばいいかな。」</p>
+  <p>正しい手順はどれですか。（A から順に、とった点を \( \mathrm{E}_1 \)〜\( \mathrm{E}_5 \) とする）</p>
+  <div class="choices">
+    <button>\( \mathrm{E}_5 \) と B を結び、\( \mathrm{E}_3 \) を通ってそれに平行な線をひく。</button>
+    <button>\( \mathrm{E}_2 \) と B を結び、\( \mathrm{E}_5 \) を通ってそれに平行な線をひく。</button>
+    <button>\( \mathrm{E}_5 \) と B を結び、その線の中点を通って AB に平行な線をひく。</button>
+    <button data-correct="true">\( \mathrm{E}_5 \) と B を結び、\( \mathrm{E}_2 \) を通ってそれに平行な線をひく。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">比の和 5 の目盛りの端 \( \mathrm{E}_5 \) と B を結び、A から 2 番目の \( \mathrm{E}_2 \) を通る平行線と AB の交点が Q です（\( \mathrm{AQ}:\mathrm{QB}=\mathrm{AE}_2:\mathrm{E}_2\mathrm{E}_5=2:3 \)）。1つ目は \( \mathrm{E}_3 \) を通していて \( 3:2 \) の点になります。2つ目は結ぶ点と通す点が逆で、\( \mathrm{E}_5 \) を通る平行線は線分 AB の外で直線 AB と交わり（AB を \( 5:3 \) に外分する点）、内分する点になりません。3つ目は AB に平行な線なので、AB と交わりません。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>例題3の作図で、2つの接点を T、T′ とします。4点 O、T、P、T′ がどれも OP を直径とする円の周上にあることを使って、\( \angle\mathrm{TOT'}+\angle\mathrm{TPT'}=180^\circ \) であることを説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　O、P は OP を直径とする円の直径の両端なので、この円の周上にある。T、T′ はこの円と円 O の交点なので、やはりこの円の周上にある。T と T′ は直線 OP について反対側にあるので、四角形 OTPT′ はこの円に内接する。円に内接する四角形の対角の和は \( 180^\circ \)（数Ａ-048）なので、\( \angle\mathrm{TOT'}+\angle\mathrm{TPT'}=180^\circ \)。</p>
+    <p><strong>採点の観点</strong>　① O、T、P、T′ がすべて OP を直径とする円の周上にあることを、作図の手順から説明している。② 四角形 OTPT′ が円に内接することを示している（T と T′ が直線 OP の反対側）。③ 円に内接する四角形の対角の和が \( 180^\circ \) であることを根拠にしている。</p>
+  </div>
+  <div class="explain">別の説明：\( \angle\mathrm{OTP}=\angle\mathrm{OT'P}=90^\circ \) なので、四角形 OTPT′ の内角の和 \( 360^\circ \)（中2-049）から \( \angle\mathrm{TOT'}+\angle\mathrm{TPT'}=360^\circ-90^\circ-90^\circ=180^\circ \) とも示せます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(1) 図形の性質」のイ(イ)（図形の性質や作図について統合的・発展的に考察すること）とア(ア)（三角形に関する基本的な性質）に関わり、出題範囲に含まれます。</p>
+  <p>学習指導要領の解説は、作図の指導について「作図の技能そのものよりも，どのような性質に着目して作図を行うべきか方針を立てたり，作図の過程を振り返って，作図した図形上の点がすべて条件に適しているか，条件を満たす場合が他にないかを図形の性質に立ち返って確認したりすることが大切である」としています。問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」としています。</p>
+  <p class="small">問8は会話と日常の場面を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">正五角形の作図（数Ａ-057）</p>
+  <p>次の時間は、正五角形の作図の方針を、正五角形の対角線と辺の関係などの図形の性質に基づいて考え、作図した図形が条件を満たすかを確かめます。この時間に使った「垂直二等分線で線分の中点をとる作図」（例題3の手順②）や、垂線の作図も使います。</p>
+  <p>この時間では、長さ \( \sqrt{a} \) や \( \dfrac{a}{b} \) の線分の作図は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-055　星形七角形の先端の角の和</div>
+  <div><span class="label">次の時間</span>数Ａ-057　正五角形の作図</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-056「作図（内分点・外分点、円の接線）」（学習指導要領 数学Ａ (1)イ(イ)・ア(ア)、解説 p.90-91）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(1) 図形の性質（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.90-91（中学校第1学年で基本的な作図の方法とその活用を取り扱っていること、「円の外部の 1 点を通る円の接線の作図，線分を与えられた比に内分する点や外分する点の作図」、作図の指導で方針を立てることと振り返って確認することが大切であること）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「８．作図」（「線分の内分点・外分点の作図」「平行線と線分の比の性質を利用して，内分点・外分点の作図の方法」を考察する）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・図はこのページのために作成したものです（出典を示したものを除く）。外分の作図で「C から A の向きに n 目盛り戻った点を D とする」とまとめた手順は、このページでの説明の仕方です。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var svg = document.getElementById("w1-svg");
+  var selK = document.getElementById("w1-k"), selM = document.getElementById("w1-m"), selN = document.getElementById("w1-n");
+  var sl = document.getElementById("w1-st");
+  var out = document.getElementById("w1-out");
+  if (!svg || !selK || !selM || !selN || !sl || !out) return;
+  var W = 340, H = 230, AB = 4, TH = 40 * Math.PI / 180;
+  var BLUE = "#1f5fbf", RED = "#c0392b", ORANGE = "#b7791f", GRAY = "#8a99a8";
+  var UX = Math.cos(TH), UY = Math.sin(TH);
+  function r1(v) { return String(Math.round(v * 10) / 10); }
+  function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { var t = a % b; a = b; b = t; } return a; }
+  function frac(p, q) { if (q < 0) { p = -p; q = -q; } var g = gcd(p, q); p /= g; q /= g; return q === 1 ? String(p) : p + "/" + q; }
+  function draw() {
+    var kind = selK.value, m = parseInt(selM.value, 10), n = parseInt(selN.value, 10), st = parseInt(sl.value, 10);
+    var dk = (kind === "in") ? m + n : m - n;
+    var lo = Math.min(0, dk), hi = Math.max(m, dk);
+    var none = (kind === "ex" && m === n);
+    var qx = none ? null : AB * m / dk;
+    var xs = [0, AB, lo * UX - 0.4, (hi + 0.8) * UX], ys = [0, lo * UY, (hi + 0.8) * UY];
+    if (qx !== null) xs.push(qx);
+    var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs), y0 = Math.min.apply(null, ys), y1 = Math.max.apply(null, ys);
+    var sc = Math.min((W - 50) / (x1 - x0), (H - 50) / (y1 - y0), 46);
+    var ox = (W - sc * (x1 - x0)) / 2 - sc * x0, oy = (H + sc * (y1 - y0)) / 2 + sc * y0 + 4;
+    function X(x) { return ox + sc * x; }
+    function Y(y) { return oy - sc * y; }
+    var h = [], labels = [], dots = [];
+    function line(x1_, y1_, x2_, y2_, c, w, dash, tag) {
+      h.push('<line x1="' + r1(X(x1_)) + '" y1="' + r1(Y(y1_)) + '" x2="' + r1(X(x2_)) + '" y2="' + r1(Y(y2_)) + '" stroke="' + c + '" stroke-width="' + w + '"' + (dash ? ' stroke-dasharray="' + dash + '"' : '') + ' data-seg="' + tag + '"/>');
+    }
+    function dot(x, y, nm, c, r) {
+      h.push('<circle cx="' + r1(X(x)) + '" cy="' + r1(Y(y)) + '" r="' + r + '" fill="' + c + '" data-pt="' + nm + '" data-x="' + x.toFixed(6) + '" data-y="' + y.toFixed(6) + '"/>');
+      dots.push([X(x), Y(y)]);
+    }
+    function label(x, y, nm, c) {
+      var cand = [[-11, 17], [11, 17], [-13, -7], [13, -7], [0, 19], [0, -10], [-17, 5], [17, 5]];
+      var px = X(x), py = Y(y), w = 9 * nm.length, i, j, ok, bx, by;
+      for (i = 0; i < cand.length; i++) {
+        bx = px + cand[i][0]; by = py + cand[i][1];
+        ok = bx - w / 2 > 1 && bx + w / 2 < W - 1 && by - 12 > 1 && by + 3 < H - 1;
+        for (j = 0; ok && j < labels.length; j++) if (Math.abs(labels[j][0] - bx) < (w + labels[j][2]) / 2 + 2 && Math.abs(labels[j][1] - by) < 15) ok = false;
+        for (j = 0; ok && j < dots.length; j++) if (Math.abs(dots[j][0] - bx) < w / 2 + 3 && dots[j][1] > by - 14 && dots[j][1] < by + 5) ok = false;
+        if (ok) break;
+      }
+      if (i === cand.length) { bx = px + cand[0][0]; by = py + cand[0][1]; }
+      labels.push([bx, by, w]);
+      h.push('<text x="' + r1(bx) + '" y="' + r1(by) + '" text-anchor="middle" font-size="13" font-weight="700" fill="' + c + '">' + nm + '</text>');
+    }
+    line(0, 0, AB, 0, "currentColor", 2.2, "", "AB");
+    if (st >= 4 && qx !== null && (qx > AB || qx < 0)) line(Math.min(0, qx) - 0.3, 0, Math.max(AB, qx) + 0.3, 0, GRAY, 1.2, "2 3", "直線AB");
+    line(lo * UX, lo * UY, (hi + 0.8) * UX, (hi + 0.8) * UY, GRAY, 1.3, "", "ℓ");
+    var k;
+    if (st >= 2) {
+      for (k = lo; k <= hi; k++) {
+        if (k === 0) continue;
+        var tx = k * UX, ty = k * UY;
+        h.push('<line x1="' + r1(X(tx) - 4 * UY) + '" y1="' + r1(Y(ty) - 4 * UX) + '" x2="' + r1(X(tx) + 4 * UY) + '" y2="' + r1(Y(ty) + 4 * UX) + '" stroke="' + GRAY + '" stroke-width="1.2" data-tick="' + k + '"/>');
+      }
+    }
+    var cx = m * UX, cy = m * UY, dx = dk * UX, dy = dk * UY;
+    dot(0, 0, "A", "currentColor", 3.2);
+    dot(AB, 0, "B", "currentColor", 3.2);
+    if (st >= 2) { dot(cx, cy, "C", "currentColor", 3); if (dk !== 0) dot(dx, dy, "D", "currentColor", 3); }
+    if (st >= 3 && !none) line(dx, dy, AB, 0, ORANGE, 1.7, "", "DB");
+    if (st >= 4 && !none) {
+      line(cx, cy, qx, 0, ORANGE, 1.7, "6 4", "CQ");
+      dot(qx, 0, "Q", kind === "in" ? BLUE : RED, 3.6);
+    }
+    label(0, 0, "A", "currentColor");
+    label(AB, 0, "B", "currentColor");
+    if (st >= 2) { label(cx, cy, "C", "currentColor"); if (dk !== 0) label(dx, dy, "D", "currentColor"); }
+    if (st >= 4 && !none) label(qx, 0, "Q", kind === "in" ? BLUE : RED);
+    svg.innerHTML = h.join("");
+    var txt;
+    if (st === 1) txt = "段階1：A から、直線 AB と重ならない半直線 ℓ をひきます。";
+    else if (st === 2) {
+      if (kind === "in") txt = "段階2：ℓ 上にコンパスで等間隔の目盛りをとり、A から " + m + " 番目の点を C、" + (m + n) + " 番目の点を D とします（C から A と反対の向きに " + n + " 目盛り進んだ点）。";
+      else if (none) txt = "段階2：C は A から " + m + " 番目の点です。C から A の向きに " + n + " 目盛り戻ると、D は A に重なります。";
+      else if (m > n) txt = "段階2：ℓ 上にコンパスで等間隔の目盛りをとり、A から " + m + " 番目の点を C とします。C から A の向きに " + n + " 目盛り戻った点（A から " + (m - n) + " 番目）を D とします。";
+      else txt = "段階2：A から " + m + " 番目の点を C とします。C から A の向きに " + n + " 目盛り戻ると A を通り越すので、D は ℓ の反対側の延長上で A から " + (n - m) + " 目盛りの点です。";
+    } else if (none) txt = "段階" + st + "：D が A に重なるので、直線 DB は直線 AB そのものになり、C を通る平行線は直線 AB と交わりません。" + m + ":" + n + " に外分する点はありません。";
+    else if (st === 3) txt = "段階3：D と B を定規で結びます。";
+    else {
+      var aq = frac(AB * m, dk), qb = frac(AB * n, (kind === "in" ? m + n : Math.abs(m - n)));
+      txt = "段階4：C を通り直線 DB に平行な直線と直線 AB の交点が Q です。AQ : QB = AC : CD = " + m + " : " + n + " なので、Q は線分 AB を " + m + ":" + n + " に" + (kind === "in" ? "内分する点です。" : "外分する点です（" + (m > n ? "B" : "A") + " の側の延長上）。") + "（AB = 4 とすると AQ = " + frac(Math.abs(AB * m), Math.abs(dk)) + "、QB = " + qb + "）";
+    }
+    out.textContent = txt;
+  }
+  selK.addEventListener("change", draw);
+  selM.addEventListener("change", draw);
+  selN.addEventListener("change", draw);
+  sl.addEventListener("input", draw);
+  sl.addEventListener("change", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-056",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-056",
+  "title": "作図（内分点・外分点、円の接線）",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-2", "title": "図形の性質"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)イ(イ)", "(1)ア(ア)"],
+  "kaisetsu_page": "90-91",
+  "objectives": [
+    {"id": "O1", "text": "線分を与えられた比に内分・外分する点の作図の方針を、平行線と線分の比に着目して立て、手順が正しいことを説明できる。", "from": "線分を与えられた比に内分・外分する点の作図…について、着目する性質から方針を立て、手順が正しいことを図形の性質で説明できる", "sections": ["sec-1", "sec-2"], "checks": ["q1", "q2", "q4", "q8"]},
+    {"id": "O2", "text": "円の外部の1点を通る円の接線の作図の方針を、半円の弧に対する円周角と接線と半径の関係に着目して立て、手順が正しいことを説明できる。", "from": "円の外部の1点を通る円の接線の作図について、着目する性質から方針を立て、手順が正しいことを図形の性質で説明できる", "sections": ["sec-3"], "checks": ["q3", "q5", "q9"]},
+    {"id": "O3", "text": "作図の過程を振り返り、作図した点や直線が条件を満たしているか、条件を満たすものがほかにないかを、図形の性質で確かめることができる。", "from": "手順が正しいことを図形の性質で説明できる（解説「作図した図形上の点がすべて条件に適しているか，条件を満たす場合が他にないかを図形の性質に立ち返って確認」）", "sections": ["sec-4", "sec-2"], "checks": ["q6", "q7", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "作図", "where": "review"},
+    {"term": "内分する点の作図", "where": "sec-1"},
+    {"term": "外分する点の作図", "where": "sec-2"},
+    {"term": "円の外部の点を通る接線の作図", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "作図の意味（定規とコンパスだけを用いる）、円の性質", "taught_in": ["jhs_math/中1-081"], "gap": false, "where": "review"},
+    {"concept": "垂直二等分線の作図（2点から等しい距離にある点の集まり）", "taught_in": ["jhs_math/中1-082"], "gap": false, "where": "review"},
+    {"concept": "垂線の作図", "taught_in": ["jhs_math/中1-084"], "gap": false, "where": "review"},
+    {"concept": "円の接線（接点を通る半径に垂直）、円周上の点を通る接線の作図", "taught_in": ["jhs_math/中1-085"], "gap": false, "where": "review"},
+    {"concept": "角を写しとる作図", "taught_in": ["jhs_math/中1-086"], "gap": false, "where": "review"},
+    {"concept": "同位角が等しければ2直線は平行", "taught_in": ["jhs_math/中2-046"], "gap": false, "where": "review"},
+    {"concept": "円外の点から円に引く接線の作図（円周角の定理の利用）", "taught_in": ["jhs_math/中3-093"], "gap": false, "where": "review"},
+    {"concept": "線分の内分・外分（内分する点・外分する点はただ1つ、m=n の外分はない）", "taught_in": ["hs_math_1a/数Ａ-035"], "gap": false, "where": "review"},
+    {"concept": "平行な直線は線分を同じ比に分ける（三角形と比の定理、延長上の点を含む）", "taught_in": ["jhs_math/中3-071", "jhs_math/中3-074", "hs_math_1a/数Ａ-035"], "gap": false, "where": "sec-1"},
+    {"concept": "半円の弧に対する円周角は直角", "taught_in": ["jhs_math/中3-089"], "gap": false, "where": "review"},
+    {"concept": "円周角の定理の逆の考え（直角を見込む点は直径を両端とする円の周上）", "taught_in": ["jhs_math/中3-091"], "gap": false, "where": "sec-4"},
+    {"concept": "三平方の定理、接線の長さ", "taught_in": ["jhs_math/中3-097", "jhs_math/中3-104"], "gap": false, "where": "sec-3"},
+    {"concept": "逆", "taught_in": ["jhs_math/中2-063"], "gap": false, "where": "sec-3"},
+    {"concept": "2つの円の位置関係（内接、共有点は2個まで）", "taught_in": ["hs_math_1a/数Ａ-054"], "gap": false, "where": "sec-4"},
+    {"concept": "円に内接する四角形の対角の和は180°", "taught_in": ["hs_math_1a/数Ａ-048"], "gap": false, "where": "quiz"},
+    {"concept": "四角形の内角の和は360°", "taught_in": ["jhs_math/中2-049"], "gap": false, "where": "quiz"}
+  ],
+  "out_of_scope": [
+    "正五角形の作図（数Ａ-057）",
+    "長さ √a や a/b の線分の作図（このページでは扱わない）",
+    "座標を用いた内分点・外分点の位置（数Ⅱ-032・数Ⅱ-034）"
+  ],
+  "selection_reason": "数学Ａ 単元『図形の性質』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(1)イ(イ)・ア(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.90-91 作図の扱い（円の外部の1点を通る接線、内分点・外分点の作図、方針と振り返り）（保存本文：sources/text/hs_kaisetsu_math.txt 4992-5002 行）"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "内分点・外分点の作図を平行線と線分の比の性質を利用して考えることの確認（保存本文：sources/text/suken_syllabus_suakai.txt 295-306 行）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

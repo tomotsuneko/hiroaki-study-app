@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>関数と f(x)｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>二次関数</span><span>数Ⅰ-031</span></div>
+  <h1>関数と f(x)</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">中学校では「\( y \) は \( x \) の関数である」という言い方を学びました。高校では、関数を \( f(x) \) という記号で表し、\( x \) のとりうる値の範囲（定義域）と \( y \) のとる値の範囲（値域）にも目を向けます。単元「二次関数」の入り口として、関数の表し方を整えましょう。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>伴って変わる2つの数量について、一方の値を決めると他方の値がただ1つに決まるかどうかで、関数であるかを判断できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>関数を記号 \( f(x) \) を用いて表し、\( f(2) \) や \( f(a) \) などの関数の値を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>定義域を限った一次関数のグラフをかき、定義域と値域を求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-030）</span>単元末演習（集合と命題）</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>関数と f(x)</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-032）</span>y=ax²+q と y=a(x−p)² のグラフ</div>
+</div>
+<p class="small">前提となる単元：中学3年「関数 y=ax²」「二次方程式」、数学Ⅰ「数と式」（単元「二次関数」の前提）。この時間は特に、関数の意味と変域（中1-057・中1-058）、座標（中1-062）、一次関数のグラフと変域（中2-029・中2-031）、関数 y=ax²（中3-049・中3-053）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、関数の意味（中1-057）、関数 \( y=ax^2 \) の値（中3-049）と変域（中3-053）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中1-057</span></div>
+  <p>次のうち、\( y \) が \( x \) の関数であるものはどれですか。</p>
+  <div class="choices">
+    <button>周の長さが \( x \) cm の長方形の面積 \( y \) cm²</button>
+    <button data-correct="true">1辺が \( x \) cm の正方形の面積 \( y \) cm²</button>
+    <button>自然数 \( x \) の約数 \( y \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正方形は、1辺 \( x \) を決めると面積 \( y=x^2 \) がただ1つに決まるので、\( y \) は \( x \) の関数です。長方形は、周の長さが 12 cm でも、縦 1 cm・横 5 cm なら面積 5 cm²、縦 2 cm・横 4 cm なら 8 cm² で、\( y \) が1つに決まりません。約数は、\( x=6 \) のとき \( y \) は 1、2、3、6 のどれもあてはまり、1つに決まりません。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中3-049</span></div>
+  <p>関数 \( y=-2x^2 \) で、\( x=-3 \) のときの \( y \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( 18 \)</button>
+    <button>\( 36 \)</button>
+    <button>\( 12 \)</button>
+    <button data-correct="true">\( -18 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( y=-2\times(-3)^2=-2\times 9=-18 \) です。\( 18 \) は \( (-3)^2 \) を \( -9 \) として \( -2\times(-9) \) と計算した誤り、\( 36 \) は \( -2\times(-3) \) 全体を2乗して \( 6^2 \) とした誤り、\( 12 \) は2乗を「2倍」と取り違えて \( -2\times(-6) \) とした誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中3-053</span></div>
+  <p>関数 \( y=x^2 \) で、\( x \) の変域が \( -1\leqq x\leqq 2 \) のとき、\( y \) の変域はどれですか。</p>
+  <div class="choices">
+    <button>\( 1\leqq y\leqq 4 \)</button>
+    <button data-correct="true">\( 0\leqq y\leqq 4 \)</button>
+    <button>\( -1\leqq y\leqq 2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x=0 \) が変域に含まれ、そのとき \( y=0 \) がいちばん小さい値です。いちばん大きいのは \( x=2 \) のときの \( 4 \) なので、\( 0\leqq y\leqq 4 \)。\( 1\leqq y\leqq 4 \) は両端 \( x=-1,\ 2 \) の値 1、4 だけを見た誤り、\( -1\leqq y\leqq 2 \) は \( x \) の変域をそのまま書いた誤りです。グラフが曲がる関数では、両端の値だけで \( y \) の範囲は決まりません。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：数を入れると数が出てくる「箱」</h2>
+<div class="box think">
+  <p class="box-title">どの箱なら「関数」といえる？</p>
+  <p>数を入れると、決まった規則で数を出す「箱」を考えます（図1）。</p>
+<figure>
+<!--svg:f031a-->
+<svg viewBox="0 0 440 196" width="440" role="img" aria-label="3 つの箱。箱A は入れた数を2乗し、3 を入れると 9 が出る。箱B は入れた数の約数を1つ出し、6 を入れると 1、2、3、6 のどれが出るか決まらない。箱C は2倍して1を引き、1 を入れると 1 が出る" data-fig="f031a">
+<defs><marker id="ar-f031a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<text x="28" y="39" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">3</text>
+<line x1="42" y1="34" x2="72" y2="34" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-f031a)"/>
+<rect x="76" y="10" width="164" height="48" rx="8" fill="#1f5fbf" fill-opacity="0.08" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="158" y="29" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf">箱A</text>
+<text x="158" y="48" text-anchor="middle" font-size="12" fill="currentColor">入れた数を2乗する</text>
+<line x1="244" y1="34" x2="274" y2="34" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-f031a)"/>
+<text x="282" y="39" text-anchor="start" font-size="15" font-weight="700" fill="currentColor">9</text>
+<text x="28" y="101" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">6</text>
+<line x1="42" y1="96" x2="72" y2="96" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-f031a)"/>
+<rect x="76" y="72" width="164" height="48" rx="8" fill="#1f5fbf" fill-opacity="0.08" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="158" y="91" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf">箱B</text>
+<text x="158" y="110" text-anchor="middle" font-size="12" fill="currentColor">入れた数の約数を1つ出す</text>
+<line x1="244" y1="96" x2="274" y2="96" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-f031a)"/>
+<text x="282" y="101" text-anchor="start" font-size="15" font-weight="700" fill="currentColor">1, 2, 3, 6 のどれか？</text>
+<text x="28" y="163" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">1</text>
+<line x1="42" y1="158" x2="72" y2="158" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-f031a)"/>
+<rect x="76" y="134" width="164" height="48" rx="8" fill="#1f5fbf" fill-opacity="0.08" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="158" y="153" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf">箱C</text>
+<text x="158" y="172" text-anchor="middle" font-size="12" fill="currentColor">2倍して1を引く</text>
+<line x1="244" y1="158" x2="274" y2="158" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-f031a)"/>
+<text x="282" y="163" text-anchor="start" font-size="15" font-weight="700" fill="currentColor">1</text>
+</svg>
+<!--/svg:f031a-->
+  <figcaption>図1　数を入れると数が出てくる箱（学習用に作成した模式図）</figcaption>
+</figure>
+  <p>① 箱A・箱B のうち、「出てくる数は、入れた数の関数である」といえるのはどちらでしょうか。</p>
+  <p>② 箱C（入れた数を2倍して1を引く）に、\( -1 \) 以上 \( 2 \) 以下の数だけを入れることにします。出てくる数は、どんな範囲になるでしょうか。</p>
+  <p>①は「3 関数の意味をふり返る」で、②は「5 定義域と値域」の例題3で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="関数の意味"><span class="num">3</span>関数の意味をふり返る</h2>
+<p>中学1年では、伴って変わる2つの数量 \( x,\ y \) があって、\( x \) の値を決めると \( y \) の値が<strong>ただ1つに決まる</strong>とき、「\( y \) は \( x \) の<strong>関数</strong>である」と学びました（中1-057）。\( x,\ y \) のように、いろいろな値をとる文字を<strong>変数</strong>といいます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>伴って変わる2つの数量</th><th>式</th><th>\( x \) を1つ決めると \( y \) は</th><th>関数か</th></tr>
+  <tr><td>1辺 \( x \) cm の正方形の面積 \( y \) cm²</td><td>\( y=x^2 \)</td><td>ただ1つ</td><td>関数（中3-049）</td></tr>
+  <tr><td>はじめ 4 L 入った水そうに毎分 2 L ずつ水を入れたときの、\( x \) 分後の水の量 \( y \) L</td><td>\( y=2x+4 \)</td><td>ただ1つ</td><td>関数（一次関数。中2-026）</td></tr>
+  <tr><td>実数 \( x \) の絶対値 \( y \)</td><td>\( y=|x| \)</td><td>ただ1つ</td><td>関数（絶対値は数Ⅰ-012）</td></tr>
+  <tr><td>絶対値が \( x \) である数 \( y \)（\( x&gt;0 \)）</td><td>—</td><td>2つ（\( x=3 \) なら \( 3 \) と \( -3 \)）</td><td>関数ではない</td></tr>
+</table>
+</div>
+<p>最後の2つは、\( x \) と \( y \) の役割を入れかえただけですが、結果が違います。「\( x \) の絶対値」は \( x \) を決めれば1つに決まりますが、「絶対値が \( x \) である数」は正と負の2つがあるからです。</p>
+<div class="box point"><p class="box-title">関数かどうかの判断</p><p>\( x \) がとりうる<strong>どの値についても</strong>、\( y \) の値がただ1つに決まるとき、\( y \) は \( x \) の関数です。\( y \) が2つ以上ある \( x \) が1つでもあれば、関数ではありません。</p></div>
+<div class="box think"><p class="box-title">導入の問い①の答え</p><p>箱A は、入れた数 \( x \) に対して出てくる数 \( x^2 \) がただ1つに決まるので、出てくる数は入れた数の関数です。箱B は、6 を入れても 1、2、3、6 のどれが出るか決まらないので、関数ではありません。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：式で表せなければ関数ではない</p><p>郵便料金と重さのように、式で表しにくい関係もあります（中3-060）。それでも、重さを決めると料金がただ1つに決まるなら、料金は重さの関数です。関数かどうかは、式があるかではなく「ただ1つに決まるか」で判断します。</p></div>
+<h3>関数のグラフ</h3>
+<p>\( x \) 軸・\( y \) 軸を定めて、点の位置を座標（中1-062）で表す平面を<strong>座標平面</strong>といいます。関数 \( y=2x+4 \) で、\( x \) と、それに対応する \( y \) の値の組 \( (x,\ y) \) を座標とする点をすべてとると、その全体が関数のグラフになります（中1・中2 で比例や一次関数のグラフとして学びました）。グラフは、\( x \) と \( y \) の対応を目で見られるようにしたものです。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="記号 f(x) と関数の値"><span class="num">4</span>記号 \( f(x) \) と関数の値</h2>
+<p>\( y \) が \( x \) の関数であることを、\( y=f(x) \) と書きます。例えば、関数 \( y=x^2-3x+1 \) を \( f(x)=x^2-3x+1 \) と書き、この関数を「関数 \( f(x) \)」ともいいます。学習指導要領解説は、関数概念の理解を深める意味から、記号 \( f(x) \) を使用することも考えられるとしています（p.42）。</p>
+<p>関数 \( f(x) \) で、\( x=a \) のときの \( y \) の値を \( f(a) \) と書き、\( x=a \) における<strong>関数の値</strong>といいます。導入の箱にたとえると、\( f \) は箱、\( f(a) \) は「\( a \) を入れたときに出てくる数」です。</p>
+<div class="box point"><p class="box-title">\( f(a) \) の求め方</p><p>式 \( f(x) \) の \( x \) を、すべて \( a \) に置きかえて計算します。\( a \) が負の数や文字の式のときは、かっこを付けて置きかえます（代入と式の値は中1-031）。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題1（関数の値）</p>
+  <p>\( f(x)=x^2-3x+1 \) のとき、\( f(2) \)、\( f(-1) \)、\( f(0) \) を求めなさい。</p>
+  <div class="step">ステップ1（着目点：\( x \) を 2 に置きかえる）：\( f(2)=2^2-3\times 2+1=4-6+1=-1 \)。</div>
+  <div class="step">ステップ2（負の数はかっこを付けて代入）：\( f(-1)=(-1)^2-3\times(-1)+1=1+3+1=5 \)。</div>
+  <div class="step">ステップ3：\( f(0)=0^2-3\times 0+1=1 \)。</div>
+  <div class="step">答え：\( f(2)=-1 \)、\( f(-1)=5 \)、\( f(0)=1 \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（文字の式を代入する）</p>
+  <p>例題1の \( f(x) \) について、\( f(a) \) と \( f(a+1) \) を \( a \) の式で表しなさい。</p>
+  <div class="step">ステップ1：\( f(a)=a^2-3a+1 \)。</div>
+  <div class="step">ステップ2（着目点：\( x \) を \( (a+1) \) にまるごと置きかえる）：\( f(a+1)=(a+1)^2-3(a+1)+1 \)。</div>
+  <div class="step">ステップ3（展開して整理。乗法公式は中3-005・数Ⅰ-003）：\( =a^2+2a+1-3a-3+1=a^2-a-1 \)。</div>
+  <div class="step">答え：\( f(a)=a^2-3a+1 \)、\( f(a+1)=a^2-a-1 \)。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p>
+<ul>
+  <li>\( f(-1) \) で \( -1^2 \) と書いて \( -1 \) とする。\( -1^2 \) は \( -(1^2)=-1 \)、正しくは \( (-1)^2=1 \) です。</li>
+  <li>\( f(a+1) \) を \( f(a)+1 \) と考える。\( f(a)+1=a^2-3a+2 \) で、\( f(a+1)=a^2-a-1 \) とは違います。\( a=0 \) なら \( f(1)=-1 \)、\( f(0)+1=2 \) です。</li>
+  <li>\( f(x) \) を「\( f \) と \( x \) の積」と読む。\( f(x) \) は1つの記号で、かけ算ではありません。</li>
+</ul></div>
+<p>いくつかの関数を同時に扱うときは、\( g(x) \)、\( h(x) \) のように別の文字も使います。次の時間からは、\( f(x)=2x^2-3 \) のような二次式で表される関数を調べていきます。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="定義域と値域"><span class="num">5</span>定義域と値域</h2>
+<p>関数 \( y=f(x) \) で、変数 \( x \) のとりうる値の範囲を、その関数の<strong>定義域</strong>といいます。\( x \) が定義域全体を動くとき、\( y \) がとる値の範囲を<strong>値域</strong>といいます。中学校で学んだ「\( x \) の変域」「\( y \) の変域」（中1-058・中2-031）を、関数についての言葉で言い表したものです。</p>
+<p>定義域は、式の後ろにかっこで書きます。例えば「\( y=2x-1 \)（\( -1\leqq x\leqq 2 \)）」です。このページでは、定義域を書いていないときは、\( x \) はすべての実数をとるものとします。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（導入の問い②の答え）</p>
+  <p>関数 \( y=2x-1 \)（\( -1\leqq x\leqq 2 \)）のグラフをかき、値域を求めなさい。</p>
+  <div class="step">ステップ1（着目点：定義域の両端の値）：\( x=-1 \) のとき \( y=-3 \)、\( x=2 \) のとき \( y=3 \)。どちらの端も定義域に含まれるので、点 \( (-1,\ -3) \) と \( (2,\ 3) \) を ● でかきます。</div>
+  <div class="step">ステップ2（グラフをかく）：2点を結ぶ線分がグラフです。定義域の外の部分は、かくなら点線にして区別します（図2）。</div>
+  <div class="step">ステップ3（\( y \) の範囲を読む）：傾きが正なので、\( x \) が増えると \( y \) も増えます（中2-030）。グラフの点の高さは \( -3 \) から \( 3 \) までのすべての値をとります。</div>
+  <div class="step">答え：値域は \( -3\leqq y\leqq 3 \)。導入の箱C に \( -1 \) 以上 \( 2 \) 以下の数を入れると、\( -3 \) 以上 \( 3 \) 以下の数が出てきます。</div>
+</div>
+<figure>
+<!--svg:f031b-->
+<svg viewBox="0 0 206 250" width="206" role="img" aria-label="y=2x−1 のグラフ。定義域 −1≦x≦2 の部分を実線、外を点線でかき、両端 (−1, −3) と (2, 3) を黒丸で示す。x 軸上の太線が定義域、y 軸上の太線が値域 −3≦y≦3" data-fig="f031b" data-map="-3,4,-4,5,30,18,154,198">
+<defs><marker id="ar-f031b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker><clipPath id="clip-f031b"><rect x="30" y="18" width="154" height="198"/></clipPath></defs>
+<line x1="30" y1="18" x2="30" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="52" y1="18" x2="52" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="74" y1="18" x2="74" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="118" y1="18" x2="118" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="140" y1="18" x2="140" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="162" y1="18" x2="162" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="184" y1="18" x2="184" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="216" x2="184" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="194" x2="184" y2="194" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="172" x2="184" y2="172" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="150" x2="184" y2="150" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="106" x2="184" y2="106" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="84" x2="184" y2="84" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="62" x2="184" y2="62" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="40" x2="184" y2="40" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="18" x2="184" y2="18" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="26" y1="128" x2="192" y2="128" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f031b)"/>
+<line x1="96" y1="220" x2="96" y2="10" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f031b)"/>
+<text x="190" y="144" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">x</text>
+<text x="89" y="16" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">y</text>
+<text x="93" y="142" text-anchor="end" font-size="12" font-style="italic" fill="currentColor">O</text>
+<line x1="52" y1="125" x2="52" y2="131" stroke="currentColor"/>
+<text x="52" y="143" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="-2">−2</text>
+<line x1="74" y1="125" x2="74" y2="131" stroke="currentColor"/>
+<text x="74" y="143" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="-1">−1</text>
+<line x1="118" y1="125" x2="118" y2="131" stroke="currentColor"/>
+<text x="118" y="143" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="1">1</text>
+<line x1="140" y1="125" x2="140" y2="131" stroke="currentColor"/>
+<text x="140" y="143" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="2">2</text>
+<line x1="162" y1="125" x2="162" y2="131" stroke="currentColor"/>
+<text x="162" y="143" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="3">3</text>
+<line x1="93" y1="194" x2="99" y2="194" stroke="currentColor"/>
+<text x="90" y="198" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="-3">−3</text>
+<line x1="93" y1="172" x2="99" y2="172" stroke="currentColor"/>
+<text x="90" y="176" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="-2">−2</text>
+<line x1="93" y1="150" x2="99" y2="150" stroke="currentColor"/>
+<text x="90" y="154" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="-1">−1</text>
+<line x1="93" y1="106" x2="99" y2="106" stroke="currentColor"/>
+<text x="90" y="110" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="1">1</text>
+<line x1="93" y1="84" x2="99" y2="84" stroke="currentColor"/>
+<text x="90" y="88" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="2">2</text>
+<line x1="93" y1="62" x2="99" y2="62" stroke="currentColor"/>
+<text x="90" y="66" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="3">3</text>
+<line x1="93" y1="40" x2="99" y2="40" stroke="currentColor"/>
+<text x="90" y="44" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="4">4</text>
+<g clip-path="url(#clip-f031b)"><path d="M30,282 L74,194" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 4" data-f="line:2,-1" data-dom="-3,-1"/></g>
+<g clip-path="url(#clip-f031b)"><path d="M140,62 L184,-26" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 4" data-f="line:2,-1" data-dom="2,4"/></g>
+<g clip-path="url(#clip-f031b)"><path d="M74,194 L140,62" fill="none" stroke="#1f5fbf" stroke-width="3" data-f="line:2,-1" data-dom="-1,2"/></g>
+<line x1="74" y1="128" x2="140" y2="128" stroke="#1e8e5a" stroke-width="5" stroke-opacity="0.8" data-seg="-1,0,2,0"/>
+<line x1="96" y1="194" x2="96" y2="62" stroke="#b7791f" stroke-width="5" stroke-opacity="0.8" data-seg="0,-3,0,3"/>
+<line x1="74" y1="194" x2="74" y2="128" stroke="#1e8e5a" stroke-width="1" stroke-dasharray="3 3" data-seg="-1,-3,-1,0"/>
+<line x1="140" y1="62" x2="140" y2="128" stroke="#1e8e5a" stroke-width="1" stroke-dasharray="3 3" data-seg="2,3,2,0"/>
+<line x1="74" y1="194" x2="96" y2="194" stroke="#b7791f" stroke-width="1" stroke-dasharray="3 3" data-seg="-1,-3,0,-3"/>
+<line x1="140" y1="62" x2="96" y2="62" stroke="#b7791f" stroke-width="1" stroke-dasharray="3 3" data-seg="2,3,0,3"/>
+<circle cx="74" cy="128" r="3.5" fill="#1e8e5a" data-x="-1" data-y="0" data-in="1"/>
+<circle cx="140" cy="128" r="3.5" fill="#1e8e5a" data-x="2" data-y="0" data-in="1"/>
+<circle cx="96" cy="194" r="3.5" fill="#b7791f" data-x="0" data-y="-3" data-in="1"/>
+<circle cx="96" cy="62" r="3.5" fill="#b7791f" data-x="0" data-y="3" data-in="1"/>
+<circle cx="74" cy="194" r="4.5" fill="#1f5fbf" data-x="-1" data-y="-3" data-in="1"/>
+<text x="67" y="190" text-anchor="end" font-size="11" fill="#1f5fbf">(−1, −3)</text>
+<circle cx="140" cy="62" r="4.5" fill="#1f5fbf" data-x="2" data-y="3" data-in="1"/>
+<text x="148" y="66" text-anchor="start" font-size="11" fill="#1f5fbf">(2, 3)</text>
+<text x="126.8" y="157" text-anchor="middle" font-size="11" font-weight="700" fill="#1e8e5a">定義域</text>
+<text x="101" y="211.6" text-anchor="start" font-size="11" font-weight="700" fill="#b7791f">値域</text>
+</svg>
+<!--/svg:f031b-->
+  <figcaption>図2　\( y=2x-1 \)（\( -1\leqq x\leqq 2 \)）のグラフ（実線）。\( x \) 軸上の太線が定義域、\( y \) 軸上の太線が値域、点線は定義域の外</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題4（端を含まない定義域）</p>
+  <p>関数 \( y=-x+2 \)（\( -2&lt;x\leqq 3 \)）の値域を求めなさい。</p>
+  <div class="step">ステップ1（着目点：端を含むか）：\( x=-2 \) は定義域に含まれないので、点 \( (-2,\ 4) \) は ○ でかきます。\( x=3 \) は含まれるので、点 \( (3,\ -1) \) は ● です。</div>
+  <div class="step">ステップ2：傾きが負なので、\( x \) が増えると \( y \) は減ります。\( y \) は \( -1 \) から \( 4 \) の手前までの値をとり、\( 4 \) にはなりません（図3）。</div>
+  <div class="step">答え：値域は \( -1\leqq y&lt;4 \)。</div>
+</div>
+<figure>
+<!--svg:f031c-->
+<svg viewBox="0 0 250 250" width="250" role="img" aria-label="y=−x+2 のグラフ。定義域 −2＜x≦3 の部分を実線でかき、左端 (−2, 4) は白丸、右端 (3, −1) は黒丸。x 軸上の太線が定義域、y 軸上の太線が値域 −1≦y＜4" data-fig="f031c" data-map="-4,5,-3,6,30,18,198,198">
+<defs><marker id="ar-f031c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker><clipPath id="clip-f031c"><rect x="30" y="18" width="198" height="198"/></clipPath></defs>
+<line x1="30" y1="18" x2="30" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="52" y1="18" x2="52" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="74" y1="18" x2="74" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="96" y1="18" x2="96" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="140" y1="18" x2="140" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="162" y1="18" x2="162" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="184" y1="18" x2="184" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="206" y1="18" x2="206" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="228" y1="18" x2="228" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="216" x2="228" y2="216" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="194" x2="228" y2="194" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="172" x2="228" y2="172" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="128" x2="228" y2="128" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="106" x2="228" y2="106" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="84" x2="228" y2="84" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="62" x2="228" y2="62" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="40" x2="228" y2="40" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="18" x2="228" y2="18" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="26" y1="150" x2="236" y2="150" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f031c)"/>
+<line x1="118" y1="220" x2="118" y2="10" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f031c)"/>
+<text x="234" y="166" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">x</text>
+<text x="111" y="16" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">y</text>
+<text x="115" y="164" text-anchor="end" font-size="12" font-style="italic" fill="currentColor">O</text>
+<line x1="52" y1="147" x2="52" y2="153" stroke="currentColor"/>
+<text x="52" y="165" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="-3">−3</text>
+<line x1="74" y1="147" x2="74" y2="153" stroke="currentColor"/>
+<text x="74" y="165" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="-2">−2</text>
+<line x1="96" y1="147" x2="96" y2="153" stroke="currentColor"/>
+<text x="96" y="165" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="-1">−1</text>
+<line x1="140" y1="147" x2="140" y2="153" stroke="currentColor"/>
+<text x="140" y="165" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="1">1</text>
+<line x1="162" y1="147" x2="162" y2="153" stroke="currentColor"/>
+<text x="162" y="165" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="2">2</text>
+<line x1="184" y1="147" x2="184" y2="153" stroke="currentColor"/>
+<text x="184" y="165" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="3">3</text>
+<line x1="206" y1="147" x2="206" y2="153" stroke="currentColor"/>
+<text x="206" y="165" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="4">4</text>
+<line x1="115" y1="194" x2="121" y2="194" stroke="currentColor"/>
+<text x="112" y="198" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="-2">−2</text>
+<line x1="115" y1="172" x2="121" y2="172" stroke="currentColor"/>
+<text x="112" y="176" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="-1">−1</text>
+<line x1="115" y1="128" x2="121" y2="128" stroke="currentColor"/>
+<text x="112" y="132" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="1">1</text>
+<line x1="115" y1="106" x2="121" y2="106" stroke="currentColor"/>
+<text x="112" y="110" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="2">2</text>
+<line x1="115" y1="84" x2="121" y2="84" stroke="currentColor"/>
+<text x="112" y="88" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="3">3</text>
+<line x1="115" y1="62" x2="121" y2="62" stroke="currentColor"/>
+<text x="112" y="66" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="4">4</text>
+<line x1="115" y1="40" x2="121" y2="40" stroke="currentColor"/>
+<text x="112" y="44" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="5">5</text>
+<g clip-path="url(#clip-f031c)"><path d="M30,18 L74,62" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 4" data-f="line:-1,2" data-dom="-4,-2"/></g>
+<g clip-path="url(#clip-f031c)"><path d="M184,172 L228,216" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 4" data-f="line:-1,2" data-dom="3,5"/></g>
+<g clip-path="url(#clip-f031c)"><path d="M74,62 L184,172" fill="none" stroke="#1f5fbf" stroke-width="3" data-f="line:-1,2" data-dom="-2,3"/></g>
+<line x1="74" y1="150" x2="184" y2="150" stroke="#1e8e5a" stroke-width="5" stroke-opacity="0.8" data-seg="-2,0,3,0"/>
+<line x1="118" y1="172" x2="118" y2="62" stroke="#b7791f" stroke-width="5" stroke-opacity="0.8" data-seg="0,-1,0,4"/>
+<line x1="74" y1="62" x2="74" y2="150" stroke="#1e8e5a" stroke-width="1" stroke-dasharray="3 3" data-seg="-2,4,-2,0"/>
+<line x1="184" y1="172" x2="184" y2="150" stroke="#1e8e5a" stroke-width="1" stroke-dasharray="3 3" data-seg="3,-1,3,0"/>
+<line x1="74" y1="62" x2="118" y2="62" stroke="#b7791f" stroke-width="1" stroke-dasharray="3 3" data-seg="-2,4,0,4"/>
+<line x1="184" y1="172" x2="118" y2="172" stroke="#b7791f" stroke-width="1" stroke-dasharray="3 3" data-seg="3,-1,0,-1"/>
+<circle cx="74" cy="150" r="3.5" fill="#fff" style="fill:var(--card)" stroke="#1e8e5a" stroke-width="2" data-x="-2" data-y="0" data-in="0"/>
+<circle cx="184" cy="150" r="3.5" fill="#1e8e5a" data-x="3" data-y="0" data-in="1"/>
+<circle cx="118" cy="62" r="3.5" fill="#fff" style="fill:var(--card)" stroke="#b7791f" stroke-width="2" data-x="0" data-y="4" data-in="0"/>
+<circle cx="118" cy="172" r="3.5" fill="#b7791f" data-x="0" data-y="-1" data-in="1"/>
+<circle cx="74" cy="62" r="4.5" fill="#fff" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-x="-2" data-y="4" data-in="0"/>
+<text x="66" y="54" text-anchor="end" font-size="11" fill="#1f5fbf">(−2, 4)</text>
+<circle cx="184" cy="172" r="4.5" fill="#1f5fbf" data-x="3" data-y="-1" data-in="1"/>
+<text x="192" y="186" text-anchor="start" font-size="11" fill="#1f5fbf">(3, −1)</text>
+<text x="129" y="179" text-anchor="middle" font-size="11" font-weight="700" fill="#1e8e5a">定義域</text>
+<text x="123" y="198.4" text-anchor="start" font-size="11" font-weight="700" fill="#b7791f">値域</text>
+</svg>
+<!--/svg:f031c-->
+  <figcaption>図3　\( y=-x+2 \)（\( -2&lt;x\leqq 3 \)）のグラフ。○ は含まない端、● は含む端。値域の端も、対応するグラフの端に合わせて ○● を付ける</figcaption>
+</figure>
+<div class="box point"><p class="box-title">一次関数の値域の求め方</p><p>① 定義域の両端の \( y \) の値を求める → ② グラフをかき、端の点が ●（含む）か ○（含まない）かを確かめる → ③ \( y \) の小さい方から大きい方へ、不等式で書く。一次関数ではグラフがまっすぐなので、値域は両端の値で決まります。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：左端の値から順に書く</p><p>例題4で「\( x=-2 \) のとき 4、\( x=3 \) のとき \( -1 \)」をそのまま並べて \( 4&lt;y\leqq -1 \) と書くと、この不等式を満たす \( y \) はありません。値域は \( y \) の小さい方から書きます。また、\( 4 \) を含まないのは、\( x=-2 \) を含まないからです。\( y \) の側の ○● は、対応する \( x \) の端から決めます。</p></div>
+<h3>場面から決まる定義域</h3>
+<p>定義域は、場面から決まることもあります。「3 関数の意味をふり返る」の水そう（\( y=2x+4 \)）で、水そうの容量が 20 L なら、満水になるのは \( 2x+4=20 \) から \( x=8 \) のときです。水を入れ始めてから満水になるまでを考えると、定義域は \( 0\leqq x\leqq 8 \)、値域は \( 4\leqq y\leqq 20 \) になります。</p>
+<p>なお、前回までの確認の確認3のように、グラフが曲がる関数では、両端の値だけで値域は決まりません。二次関数の値の変化は、数Ⅰ-039・040 でグラフを使って詳しく調べます。</p>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>関数</dt><dd>伴って変わる2つの変数 \( x,\ y \) で、\( x \) の値を決めると \( y \) の値がただ1つに決まるとき、\( y \) は \( x \) の関数であるという（中1-057）。</dd>
+    <dt>\( y=f(x) \)</dt><dd>\( y \) が \( x \) の関数であることを表す書き方。\( f(x)=x^2-3x+1 \) のように、関数の式を表すのにも使う。</dd>
+    <dt>関数の値</dt><dd>関数 \( f(x) \) で、\( x=a \) のときの \( y \) の値。\( f(a) \) と書く。</dd>
+    <dt>座標平面</dt><dd>座標を定めた平面。関数のグラフは、\( (x,\ y) \) を座標とする点の全体。</dd>
+    <dt>定義域</dt><dd>関数 \( y=f(x) \) で、\( x \) のとりうる値の範囲。式の後ろにかっこで書く。</dd>
+    <dt>値域</dt><dd>\( x \) が定義域全体を動くとき、\( y \) がとる値の範囲。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>\( x \) のどの値についても \( y \) がただ1つに決まるとき、\( y \) は \( x \) の関数。式で表しにくい関係でも、ただ1つに決まれば関数である（O1）。</li>
+    <li>\( y \) が \( x \) の関数であることを \( y=f(x) \) と書く。\( f(a) \) は \( x=a \) のときの値で、\( x \) をかっこ付きで \( a \) に置きかえて求める。\( f(a+1) \) と \( f(a)+1 \) は違う（O2）。</li>
+    <li>\( x \) のとりうる値の範囲が定義域、\( y \) のとる値の範囲が値域。一次関数では、グラフの両端の点（● か ○）から値域が決まり、\( y \) の小さい方から書く（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">関数の値</span>
+    <p>\( f(x)=x^2-3x+1 \) のとき<br>\( f(-1)=(-1)^2-3\times(-1)+1=5 \)<br>\( f(a+1)=(a+1)^2-3(a+1)+1 \)</p></div>
+  <div><span class="f-name">定義域と値域（一次関数の例）</span>
+    <p>\( y=2x-1 \)（\( -1\leqq x\leqq 2 \)）<br>定義域 \( -1\leqq x\leqq 2 \)<br>値域 \( -3\leqq y\leqq 3 \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。不等式を入力する問題は、≦ を &lt;= と入力してもかまいません。文字の式の \( a^2 \) は a^2 または a² と入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>次のうち、\( y \) が \( x \) の関数で<strong>ない</strong>ものはどれですか。</p>
+  <div class="choices">
+    <button>1辺が \( x \) cm の正三角形の周の長さ \( y \) cm</button>
+    <button>半径が \( x \) cm の円の面積 \( y \) cm²</button>
+    <button data-correct="true">2乗すると \( x \) になる数 \( y \)（\( x&gt;0 \)）</button>
+    <button>\( x \) 円の品物を買って 1000 円出したときのおつり \( y \) 円（\( x\leqq 1000 \)）</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">2乗すると \( x \) になる数は \( x \) の平方根で、\( x=4 \) なら \( 2 \) と \( -2 \) の2つがあるので、\( y \) はただ1つに決まりません。正三角形の周の長さは \( y=3x \)、円の面積は \( y=\pi x^2 \)、おつりは \( y=1000-x \) で、どれも \( x \) を決めると \( y \) がただ1つに決まるので関数です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>\( f(x)=2x^2-x+3 \) のとき、\( f(-2) \) の値はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 13 \)</button>
+    <button>\( 9 \)</button>
+    <button>\( -3 \)</button>
+    <button>\( 21 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( f(-2)=2\times(-2)^2-(-2)+3=8+2+3=13 \) です。\( 9 \) は \( -x \) に \( -2 \) を入れるときの符号を誤って \( 8-2+3 \) とした誤り、\( -3 \) は \( (-2)^2 \) を \( -4 \) として \( 2\times(-4)+2+3 \) とした誤り、\( 21 \) は \( 2x^2 \) を \( (2x)^2 \) と読んで \( (-4)^2+2+3 \) とした誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="-2≦y≦4|−2≦y≦4|4≧y≧-2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>関数 \( y=3x-2 \)（\( 0\leqq x\leqq 2 \)）の値域を、\( y \) を使った不等式で答えなさい（例：1&lt;=y&lt;=5）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( -2\leqq y\leqq 4 \)。\( x=0 \) のとき \( y=-2 \)、\( x=2 \) のとき \( y=4 \) で、傾きが正なので \( y \) は \( -2 \) から \( 4 \) まで増えます。両端とも定義域に含まれるので、どちらにも等号が付きます。\( -2&lt;y&lt;4 \) と答えた場合は、端を含むことを落としています。\( x \) を使って書いた場合は、定義域と値域を取り違えています。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="a^2-2|a²-2|-2+a^2|-2+a²">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>\( f(x)=x^2-4x+2 \) のとき、\( f(a+2) \) を \( a \) の式で表し、できるだけ簡単にしなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( a^2-2 \)。\( f(a+2)=(a+2)^2-4(a+2)+2=a^2+4a+4-4a-8+2=a^2-2 \) です。\( a^2-4a+4 \) と答えた場合は、\( f(a)+2=a^2-4a+2+2 \) を求めています。\( x \) を \( a+2 \) にまるごと置きかえることが大切です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>関数 \( y=-2x+1 \)（\( -1&lt;x\leqq 2 \)）の値域はどれですか。</p>
+  <div class="choices">
+    <button>\( -3&lt;y\leqq 3 \)</button>
+    <button>\( 3&lt;y\leqq -3 \)</button>
+    <button data-correct="true">\( -3\leqq y&lt;3 \)</button>
+    <button>\( -1&lt;y\leqq 2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x=-1 \) のとき \( y=3 \)（\( x=-1 \) は含まない）、\( x=2 \) のとき \( y=-3 \)（含む）。傾きが負なので、値域は \( -3\leqq y&lt;3 \) です。\( -3&lt;y\leqq 3 \) は、\( x \) の側の ○● をそのまま \( y \) の小さい方・大きい方に当てはめた誤りです。\( 3&lt;y\leqq -3 \) は左端の値から順に並べた誤りで、満たす \( y \) がありません。\( -1&lt;y\leqq 2 \) は定義域をそのまま書いた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>図4は、ある一次関数のグラフです（● は含む端、○ は含まない端）。この関数の定義域と値域の組として正しいものはどれですか。</p>
+<figure>
+<!--svg:f031d-->
+<svg viewBox="0 0 228 172" width="228" role="img" aria-label="ある一次関数のグラフ。左端 (−2, 0) は黒丸、右端 (4, 3) は白丸で、その間を線分で結ぶ" data-fig="f031d" data-map="-3,5,-2,4,30,18,176,132">
+<defs><marker id="ar-f031d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker><clipPath id="clip-f031d"><rect x="30" y="18" width="176" height="132"/></clipPath></defs>
+<line x1="30" y1="18" x2="30" y2="150" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="52" y1="18" x2="52" y2="150" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="74" y1="18" x2="74" y2="150" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="118" y1="18" x2="118" y2="150" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="140" y1="18" x2="140" y2="150" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="162" y1="18" x2="162" y2="150" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="184" y1="18" x2="184" y2="150" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="206" y1="18" x2="206" y2="150" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="150" x2="206" y2="150" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="128" x2="206" y2="128" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="84" x2="206" y2="84" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="62" x2="206" y2="62" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="40" x2="206" y2="40" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="30" y1="18" x2="206" y2="18" stroke="currentColor" stroke-opacity="0.12"/>
+<line x1="26" y1="106" x2="214" y2="106" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f031d)"/>
+<line x1="96" y1="154" x2="96" y2="10" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f031d)"/>
+<text x="212" y="122" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">x</text>
+<text x="89" y="16" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">y</text>
+<text x="93" y="120" text-anchor="end" font-size="12" font-style="italic" fill="currentColor">O</text>
+<line x1="52" y1="103" x2="52" y2="109" stroke="currentColor"/>
+<text x="52" y="121" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="-2">−2</text>
+<line x1="74" y1="103" x2="74" y2="109" stroke="currentColor"/>
+<text x="74" y="121" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="-1">−1</text>
+<line x1="118" y1="103" x2="118" y2="109" stroke="currentColor"/>
+<text x="118" y="121" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="1">1</text>
+<line x1="140" y1="103" x2="140" y2="109" stroke="currentColor"/>
+<text x="140" y="121" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="2">2</text>
+<line x1="162" y1="103" x2="162" y2="109" stroke="currentColor"/>
+<text x="162" y="121" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="3">3</text>
+<line x1="184" y1="103" x2="184" y2="109" stroke="currentColor"/>
+<text x="184" y="121" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="4">4</text>
+<line x1="93" y1="128" x2="99" y2="128" stroke="currentColor"/>
+<text x="90" y="132" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="-1">−1</text>
+<line x1="93" y1="84" x2="99" y2="84" stroke="currentColor"/>
+<text x="90" y="88" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="1">1</text>
+<line x1="93" y1="62" x2="99" y2="62" stroke="currentColor"/>
+<text x="90" y="66" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="2">2</text>
+<line x1="93" y1="40" x2="99" y2="40" stroke="currentColor"/>
+<text x="90" y="44" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="3">3</text>
+<g clip-path="url(#clip-f031d)"><path d="M52,106 L184,40" fill="none" stroke="#1f5fbf" stroke-width="3" data-f="line:1/2,1" data-dom="-2,4"/></g>
+<circle cx="52" cy="106" r="4.5" fill="#1f5fbf" data-x="-2" data-y="0" data-in="1"/>
+<text x="54" y="97" text-anchor="end" font-size="11" fill="#1f5fbf">(−2, 0)</text>
+<circle cx="184" cy="40" r="4.5" fill="#fff" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-x="4" data-y="3" data-in="0"/>
+<text x="182" y="30" text-anchor="end" font-size="11" fill="#1f5fbf">(4, 3)</text>
+</svg>
+<!--/svg:f031d-->
+  <figcaption>図4　問6のグラフ</figcaption>
+</figure>
+  <div class="choices">
+    <button>定義域 \( -2\leqq x\leqq 4 \)、値域 \( 0\leqq y\leqq 3 \)</button>
+    <button>定義域 \( 0\leqq x&lt;3 \)、値域 \( -2\leqq y&lt;4 \)</button>
+    <button>定義域 \( -2&lt;x\leqq 4 \)、値域 \( 0&lt;y\leqq 3 \)</button>
+    <button data-correct="true">定義域 \( -2\leqq x&lt;4 \)、値域 \( 0\leqq y&lt;3 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">グラフの左端は ● の \( (-2,\ 0) \)、右端は ○ の \( (4,\ 3) \) です。\( x \) は \( -2 \) 以上 \( 4 \) 未満なので定義域は \( -2\leqq x&lt;4 \)、\( y \) は \( 0 \) 以上 \( 3 \) 未満なので値域は \( 0\leqq y&lt;3 \)。両端に等号を付けた選択肢は ○ を見落とした誤り、\( 0\leqq x&lt;3 \) の選択肢は \( x \) と \( y \) の範囲を入れかえた誤り、\( -2&lt;x\leqq 4 \) の選択肢は ● と ○ を逆に読んだ誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O2・O3</span></div>
+  <p>\( a,\ b \) は定数で、\( a&lt;0 \) とします。関数 \( f(x)=ax+b \)（\( 1\leqq x\leqq 3 \)）の値域が \( -1\leqq y\leqq 5 \) であるとき、\( a,\ b \) の組はどれですか。</p>
+  <div class="choices">
+    <button>\( a=3,\ b=-4 \)</button>
+    <button data-correct="true">\( a=-3,\ b=8 \)</button>
+    <button>\( a=3,\ b=2 \)</button>
+    <button>\( a=-3,\ b=2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( a&lt;0 \) なので \( x \) が増えると \( y \) は減り、左端で大きい値、右端で小さい値をとります。よって \( f(1)=a+b=5 \)、\( f(3)=3a+b=-1 \)。辺々引くと \( 2a=-6 \)、\( a=-3 \)、\( b=8 \)（連立方程式の加減法は中2-016）。確かめ：\( f(1)=5 \)、\( f(3)=-1 \)。\( a=3,\ b=-4 \) は \( f(1)=-1 \)、\( f(3)=5 \) とした場合で、\( a&lt;0 \) を満たしません。\( a=3,\ b=2 \) は \( 2a=5-(-1)=6 \) と引く向きを誤った誤り、\( a=-3,\ b=2 \) は \( a \) を求めた後、\( b \) を求めるときに \( f(1)=-1 \) と端と値の対応を取り違えた誤りです（このとき値域は \( -7\leqq y\leqq -1 \) になります）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O3</span></div>
+  <p>太郎さんと花子さんが、スマートフォンの充電について話しています（学習用に作成した架空の場面です）。充電を始めたとき 20％ で、1分ごとに 2％ ずつ増え、100％ になると増えなくなるものとします。充電を始めてから \( x \) 分後の充電量を \( y \)％ とします。</p>
+  <p>太郎：「\( y=2x+20 \) だから、定義域は \( x\geqq 0 \) でいいよね。」<br>花子：「100％ になると増えなくなるから、この式が使えるのは満充電になるまでだよ。」</p>
+  <p>花子さんの指摘を踏まえ、\( y=2x+20 \) が表す範囲として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>定義域 \( x\geqq 0 \)、値域 \( y\geqq 20 \)</button>
+    <button>定義域 \( 0\leqq x\leqq 50 \)、値域 \( 20\leqq y\leqq 120 \)</button>
+    <button>定義域 \( 20\leqq x\leqq 100 \)、値域 \( 0\leqq y\leqq 40 \)</button>
+    <button data-correct="true">定義域 \( 0\leqq x\leqq 40 \)、値域 \( 20\leqq y\leqq 100 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 2x+20=100 \) より \( x=40 \) で満充電になります。式が使えるのは \( 0\leqq x\leqq 40 \) で、このとき \( y \) は \( 20 \) から \( 100 \) まで増えるので、値域は \( 20\leqq y\leqq 100 \) です。「\( x\geqq 0 \)、\( y\geqq 20 \)」は満充電で止まることを考えていない誤り、「\( 0\leqq x\leqq 50 \)」は、はじめから 20％ あることを考えずに、0％ から 100％ まで増えると考えて \( 100\div 2=50 \) とした誤りで、\( x=50 \) では \( y=120 \) となり 100％ を超えます。「\( 20\leqq x\leqq 100 \)」は定義域と値域を入れかえた誤りです。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2</span></div>
+  <p>関数 \( f(x)=x^2 \) について、(1) \( f(a+1)-f(a) \) を \( a \) の式で表しなさい。(2) 「\( f(a+1)=f(a)+1 \)」が成り立つような \( a \) の値を求め、この等式がいつでも成り立つわけではない理由を説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) \( f(a+1)-f(a)=(a+1)^2-a^2=a^2+2a+1-a^2=2a+1 \)。</p>
+    <p>(2) \( f(a+1)=f(a)+1 \) は \( f(a+1)-f(a)=1 \) と同じなので、\( 2a+1=1 \) より \( a=0 \)。この等式が成り立つのは \( a=0 \) のときだけで、例えば \( a=1 \) のとき \( f(2)=4 \)、\( f(1)+1=2 \) となり成り立たない。\( f(a+1) \) は \( x \) を \( a+1 \) に置きかえた値であり、\( f(a) \) に 1 を加えた値ではないからである。</p>
+    <p><strong>採点の観点</strong>　① \( f(a+1)=(a+1)^2 \) と置きかえて正しく展開している。② \( 2a+1=1 \) から \( a=0 \) を求めている。③ 成り立たない例を挙げるなどして、\( f(a+1) \) と \( f(a)+1 \) の意味の違いを説明している。</p>
+  </div>
+  <div class="explain">\( f(a+1)-f(a)=2a+1 \) は \( a \) によって変わる値です。これが 1 になるのは \( a=0 \) のときだけなので、「\( f(a+1)=f(a)+1 \)」を公式のように使うことはできません。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(3) 二次関数」の「二次関数の値の変化やグラフの特徴について理解すること」（ア(ア)）を学ぶための土台に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。関数を式・グラフで表し、場面から定義域を決めるこの時間の考え方は、そうした処理の土台になります。</p>
+  <p class="small">問8は会話や日常の場面を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">y=ax²+q と y=a(x−p)² のグラフ（数Ⅰ-032）</p>
+  <p>次の時間は、\( y \) が \( x \) の二次式で表される関数（二次関数）を取り上げ、中学3年で学んだ \( y=ax^2 \) のグラフを \( y \) 軸方向や \( x \) 軸方向に平行移動したグラフが、それぞれ \( y=ax^2+q \)、\( y=a(x-p)^2 \) で表されることを調べます。この時間の関数の値 \( f(a) \) や、\( x \) を \( x-p \) に置きかえる考え方がそこで役立ちます。</p>
+  <p>この時間では、二次関数のグラフ（数Ⅰ-032〜035）と、二次関数の値の変化と最大値・最小値（数Ⅰ-039・040）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-030　単元末演習（集合と命題）</div>
+  <div><span class="label">次の時間</span>数Ⅰ-032　y=ax²+q と y=a(x−p)² のグラフ</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-031「関数と f(x)」（学習指導要領 数学Ⅰ (3)ア(ア)、解説 p.41-42。† 教科書で一般的な内容を含む行）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(3) 二次関数（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.41-42（中学校で比例・反比例・一次関数・関数 y=ax² を扱っていること、関数概念の理解を深める意味から記号 f(x) を使用することも考えられること）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「関数とグラフ」（関数・座標平面の理解、定義域に制限がある1次関数のグラフをかいて値域を求めること）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>東京書籍「評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）」の「関数」（関数を表す記号 y＝f(x) を使うこと、定義域と値域の理解）https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。問8の充電の場面は学習用に作成した架空の設定です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-031",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-031",
+  "title": "関数と f(x)",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-3", "title": "二次関数"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(3)ア(ア)"],
+  "kaisetsu_page": "41-42",
+  "objectives": [
+    {"id": "O1", "text": "伴って変わる2つの数量について、一方の値を決めると他方の値がただ1つに決まるかどうかで、関数であるかを判断できる。", "from": "中学校で学んだ関数 y=ax² などを振り返って関数の意味を確かめ", "sections": ["sec-1"], "checks": ["q1", "q8"]},
+    {"id": "O2", "text": "関数を記号 \\( f(x) \\) を用いて表し、\\( f(2) \\) や \\( f(a) \\) などの関数の値を求めることができる。", "from": "記号 f(x) を用いて関数とその値を表すことができる", "sections": ["sec-2"], "checks": ["q2", "q4", "q7", "q9"]},
+    {"id": "O3", "text": "定義域を限った一次関数のグラフをかき、定義域と値域を求めることができる。", "from": "変域を限った一次関数のグラフから定義域と値域を求める", "sections": ["sec-3"], "checks": ["q3", "q5", "q6", "q7", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "関数", "where": "sec-1"},
+    {"term": "変数", "where": "sec-1"},
+    {"term": "座標平面", "where": "sec-1"},
+    {"term": "関数の値", "where": "sec-2"},
+    {"term": "定義域", "where": "sec-3"},
+    {"term": "値域", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "関数の意味（一方の値を決めると他方の値がただ1つに決まる関係）と変数", "taught_in": ["jhs_math/中1-057"], "where": "review"},
+    {"concept": "変数のとる値の範囲（変域）を不等号で表す", "taught_in": ["jhs_math/中1-058"], "where": "sec-3"},
+    {"concept": "座標（x軸・y軸・原点、点の座標）", "taught_in": ["jhs_math/中1-062"], "where": "sec-1"},
+    {"concept": "一次関数 y=ax+b とそのグラフ（傾きの正負と増減）", "taught_in": ["jhs_math/中2-026", "jhs_math/中2-029", "jhs_math/中2-030"], "where": "sec-3"},
+    {"concept": "x の変域に対応する y の変域をグラフで求める", "taught_in": ["jhs_math/中2-031"], "where": "sec-3"},
+    {"concept": "関数 y=ax² の意味と値", "taught_in": ["jhs_math/中3-049"], "where": "review"},
+    {"concept": "関数 y=ax² の値の増減と変域", "taught_in": ["jhs_math/中3-053"], "where": "review"},
+    {"concept": "式で表しにくい関数関係", "taught_in": ["jhs_math/中3-060"], "where": "sec-1"},
+    {"concept": "代入と式の値（負の数を代入する）", "taught_in": ["jhs_math/中1-031"], "where": "sec-2"},
+    {"concept": "乗法公式 (a+b)² による展開", "taught_in": ["jhs_math/中3-005", "hs_math_1a/数Ⅰ-003"], "where": "sec-2"},
+    {"concept": "絶対値", "taught_in": ["hs_math_1a/数Ⅰ-012"], "where": "sec-1"},
+    {"concept": "数直線で端の数を含む（●）・含まない（○）の表し方", "taught_in": ["hs_math_1a/数Ⅰ-015"], "where": "sec-3"},
+    {"concept": "連立方程式の加減法（問7）", "taught_in": ["jhs_math/中2-016"], "where": "quiz"},
+    {"concept": "平方根（正の数の平方根は正と負の2つ）（問1の解説）", "taught_in": ["jhs_math/中3-019"], "where": "quiz"}
+  ],
+  "out_of_scope": [
+    "二次関数の定義と y=ax²+q・y=a(x−p)² のグラフ（数Ⅰ-032）",
+    "y=a(x−p)²+q・y=ax²+bx+c のグラフ（数Ⅰ-033〜035）",
+    "二次関数の値の変化と最大値・最小値（数Ⅰ-039・数Ⅰ-040）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『二次関数』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(3)ア(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.41-42 中学校で扱った関数、記号 f(x) の使用"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "関数・座標平面の理解、定義域に制限がある1次関数のグラフと値域（† の内容と語句「定義域」「値域」）"},
+    {"name": "評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf", "use": "関数を表す記号 y＝f(x)、定義域と値域"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

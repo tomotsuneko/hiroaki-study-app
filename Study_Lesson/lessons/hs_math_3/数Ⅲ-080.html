@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>区分求積法と定積分｜数学Ⅲ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+  .widget .readout td:nth-child(2) { font-family: var(--mono); text-align: right; }
+  .widget .ctrl { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+  .widget select { font: inherit; font-size: .92rem; padding: 3px 6px; border-radius: 8px; border: 1px solid var(--line); background: var(--card); color: var(--fg); }
+  svg text { font-family: var(--font); }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅲ</span><span>積分法とその応用</span><span>数Ⅲ-080</span></div>
+  <h1>区分求積法と定積分</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-out">共通テスト —</span>
+  </div>
+  <p class="lead">中学校では「錐体の体積は柱体の \(\frac{1}{3}\)」を実験で確かめ、数学Ⅱでは放物線 \(y=x^2\) の下の面積が \(\frac{1}{3}\) になることを定積分で求めました。どちらにも現れる \(\frac{1}{3}\) は偶然でしょうか。図形を細かく切って足し合わせ、その極限をとる「区分求積法」で、定積分の記号 \(\int\cdots dx\) の意味に迫ります。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>区間を \(n\) 等分してできる長方形などの和の \(n\to\infty\) の極限として面積や体積を求める考え（区分求積法）を理解し、その考えで面積や体積を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>定積分を和の極限と結び付けて捉え、積分法の記号 \(\int\) や \(dx\) の意味を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>\(\displaystyle\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}f\Bigl(\frac{k}{n}\Bigr)=\int_0^1 f(x)dx\) を用いて、和の極限を定積分で表して求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅲ-079）</span>定積分の練習</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>区分求積法と定積分</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅲ-081）</span>いろいろな曲線と面積</div>
+</div>
+<p class="small">前提となる単元：数学Ⅲ「微分法」、数学Ⅱ「微分・積分の考え」、数学C「平面上の曲線」。この時間は特に、数学B「数列」の和の記号 \(\sum\)（数Ｂ-009〜011）、数学Ⅲ「関数と極限」の数列の極限（数Ⅲ-009〜012）、数学Ⅱの定積分と面積（数Ⅱ-116・119）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は「和を計算する（\(\sum\) の公式）」→「極限をとる」→「定積分と結び付ける」の3段階で進みます。それぞれの道具を確かめておきましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ｂ-010</span></div>
+  <p>\(\displaystyle\sum_{k=1}^{n}k^2\) に等しいものはどれですか。</p>
+  <div class="choices">
+    <button>\(\frac{n(n+1)}{2}\)</button>
+    <button data-correct="true">\(\frac{n(n+1)(2n+1)}{6}\)</button>
+    <button>\(\left\{\frac{n(n+1)}{2}\right\}^2\)</button>
+    <button>\(n^3\)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\(1^2+2^2+\cdots+n^2=\frac{n(n+1)(2n+1)}{6}\)（数Ｂ-010）。\(\frac{n(n+1)}{2}\) は \(\sum k\)、\(\left\{\frac{n(n+1)}{2}\right\}^2\) は \(\sum k^3\) の公式です。\(n=2\) で確かめると \(1+4=5\) で、\(\frac{2\cdot 3\cdot 5}{6}=5\) だけが合います。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅲ-010・011</span></div>
+  <p>\(\displaystyle\lim_{n\to\infty}\frac{(n+1)(2n+1)}{6n^2}\) の値はどれですか。</p>
+  <div class="choices">
+    <button>\(\frac{1}{6}\)</button>
+    <button>\(0\)</button>
+    <button data-correct="true">\(\frac{1}{3}\)</button>
+    <button>正の無限大に発散する</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">分母・分子を \(n^2\) で割ると \(\frac{1}{6}\Bigl(1+\frac{1}{n}\Bigr)\Bigl(2+\frac{1}{n}\Bigr)\to\frac{1}{6}\cdot 1\cdot 2=\frac{1}{3}\)（数Ⅲ-011 の式の変形）。\(\frac{1}{6}\) は \(2n\) の係数 2 を見落とした誤り、0 や発散は分母と分子の次数（どちらも2次）を比べ損ねた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅲ-066・068・073</span></div>
+  <p>定積分 \(\int_0^1\frac{1}{1+x}\,dx\) の値はどれですか。（\(\log\) は自然対数）</p>
+  <div class="choices">
+    <button>\(\frac{3}{4}\)</button>
+    <button data-correct="true">\(\log 2\)</button>
+    <button>\(\frac{1}{2}\)</button>
+    <button>\(\log 0\) が現れるので求められない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\(\int\frac{1}{1+x}dx=\log(1+x)+C\)（\(1+x=t\) とおく置換、数Ⅲ-068）なので、\(\Bigl[\log(1+x)\Bigr]_0^1=\log 2-\log 1=\log 2\)。\(\frac{3}{4}\) は \(\frac{1}{1+x}\) を微分した \(-\frac{1}{(1+x)^2}\) を使ってしまった誤り、\(\frac{1}{2}\) は上端での関数の値 \(\frac{1}{1+1}\) を答えた誤り、「求められない」は不定積分を \(\log x\) とした誤りです。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">補足：記号 \(\sum\) の最小限の確認（数学B「数列」を履修していない人へ）</p>
+  <p>\(\displaystyle\sum_{k=1}^{n}a_k\) は \(a_1+a_2+\cdots+a_n\) を表します（\(k\) に 1, 2, …, \(n\) を順に代入して足す）。\(\displaystyle\sum_{k=0}^{n-1}a_k=a_0+a_1+\cdots+a_{n-1}\) のように、始まりと終わりの番号は変えられます。この時間で使う性質と公式は次のとおりです（数Ｂ-009〜011）。</p>
+  $$ \sum_{k=1}^{n}(pa_k+qb_k)=p\sum_{k=1}^{n}a_k+q\sum_{k=1}^{n}b_k,\quad \sum_{k=1}^{n}c=cn,\quad \sum_{k=1}^{n}k=\frac{n(n+1)}{2},\quad \sum_{k=1}^{n}k^2=\frac{n(n+1)(2n+1)}{6} $$
+  <p class="small">解説は、数列は数学Bで扱うが履修していないことも考えられるので、指導に配慮が必要としています（解説 p.73）。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：2つの「\(\frac{1}{3}\)」はなぜ同じ？</h2>
+<figure>
+  <svg viewBox="0 0 460 240" role="img" aria-label="左：放物線 y=x の2乗の下で 0 から 1 までの部分に色を付けた図。右：正方形を底面とする角柱と、その中に入る同じ底面・同じ高さの角錐の見取図。">
+    <path d="M40 205 L45 204.8 L50 204.3 L55 203.5 L60 202.3 L65 200.8 L70 199 L75 196.8 L80 194.3 L85 191.5 L90 188.3 L95 184.8 L100 181 L105 176.8 L110 172.3 L115 167.5 L120 162.3 L125 156.8 L130 151 L135 144.8 L140 138.3 L145 131.5 L150 124.3 L155 116.8 L160 109 L165 100.8 L170 92.3 L175 83.5 L180 74.3 L185 64.8 L190 55 L190 205 Z" fill="#1f5fbf" fill-opacity="0.22"/>
+    <rect x="40" y="55" width="150" height="150" fill="none" stroke="currentColor" stroke-dasharray="4 4" stroke-opacity="0.6"/>
+    <line x1="32" y1="205" x2="214" y2="205" stroke="currentColor"/>
+    <line x1="40" y1="213" x2="40" y2="34" stroke="currentColor"/>
+    <path d="M40 205 L45 204.8 L50 204.3 L55 203.5 L60 202.3 L65 200.8 L70 199 L75 196.8 L80 194.3 L85 191.5 L90 188.3 L95 184.8 L100 181 L105 176.8 L110 172.3 L115 167.5 L120 162.3 L125 156.8 L130 151 L135 144.8 L140 138.3 L145 131.5 L150 124.3 L155 116.8 L160 109 L165 100.8 L170 92.3 L175 83.5 L180 74.3 L185 64.8 L190 55" fill="none" stroke="#1f5fbf" stroke-width="2"/>
+    <text x="28" y="220" font-size="12" fill="currentColor">O</text>
+    <text x="186" y="220" font-size="12" fill="currentColor">1</text>
+    <text x="28" y="59" font-size="12" fill="currentColor">1</text>
+    <text x="206" y="220" font-size="12" fill="currentColor">x</text>
+    <text x="45" y="38" font-size="12" fill="currentColor">y</text>
+    <text x="140" y="80" font-size="12" fill="#1f5fbf">y＝x²</text>
+    <text x="118" y="190" font-size="13" fill="currentColor">1/3</text>
+    <text x="30" y="236" font-size="12" fill="currentColor">(a) 放物線の下の面積</text>
+    <polygon points="270,205 390,205 354.6,55.8" fill="#b7791f" fill-opacity="0.25"/>
+    <polygon points="390,205 439.1,170.6 354.6,55.8" fill="#b7791f" fill-opacity="0.4"/>
+    <g stroke="currentColor" fill="none">
+      <path d="M270 205 L390 205 L439.1 170.6 M270 205 L270 73 M390 205 L390 73 M439.1 170.6 L439.1 38.6 M270 73 L390 73 L439.1 38.6 L319.1 38.6 Z"/>
+      <path d="M270 205 L319.1 170.6 L439.1 170.6 M319.1 170.6 L319.1 38.6" stroke-dasharray="4 3" stroke-opacity="0.7"/>
+      <path d="M354.6 55.8 L270 205 M354.6 55.8 L390 205 M354.6 55.8 L439.1 170.6" stroke="#9a5b00" stroke-width="1.6"/>
+      <path d="M354.6 55.8 L319.1 170.6" stroke="#9a5b00" stroke-dasharray="4 3"/>
+    </g>
+    <text x="262" y="236" font-size="12" fill="currentColor">(b) 角錐は角柱の 1/3？</text>
+  </svg>
+  <figcaption>図1　(a) 放物線 \(y=x^2\)、\(x\) 軸、直線 \(x=1\) で囲まれた部分の面積は \(\frac{1}{3}\)（数Ⅱ-116）。(b) 底面と高さが等しい角錐と角柱。中学校では、角錐の体積が角柱の \(\frac{1}{3}\) であることを模型や実験で確かめた（中1-102）。</figcaption>
+</figure>
+<div class="box think">
+  <p class="box-title">面積の \(\frac{1}{3}\) と体積の \(\frac{1}{3}\)</p>
+  <p>(a) は面積、(b) は体積で、形もまったく違います。それでも同じ \(\frac{1}{3}\) が現れるのはなぜでしょうか。また、(b) の \(\frac{1}{3}\) は実験で確かめただけでした。計算で説明することはできるでしょうか。</p>
+  <p>ヒント：どちらも「薄く切って、足して、切り方を限りなく細かくする」と考えます。答えは次の「3」で明らかになります。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="区分求積法"><span class="num">3</span>区分求積法：細かく切って足し、極限をとる</h2>
+<h3>放物線の下の面積を長方形ではさむ</h3>
+<p>放物線 \(y=x^2\)、\(x\) 軸、直線 \(x=1\) で囲まれた部分の面積を \(S\) とします。区間 \(0\leqq x\leqq 1\) を \(n\) 等分すると、1つの小区間の幅は \(\frac{1}{n}\)、分ける点は \(x=\frac{k}{n}\)（\(k=0,1,\ldots,n\)）です。</p>
+<p><strong>右端の値を高さにした長方形</strong>（図2(a)）は、\(k\) 番目の小区間 \(\frac{k-1}{n}\leqq x\leqq\frac{k}{n}\) で高さ \(\bigl(\frac{k}{n}\bigr)^2\) です。\(y=x^2\) はこの区間で増加するので、長方形は図形からはみ出し、面積の和 \(S_n\) は \(S\) より大きくなります。</p>
+$$ S_n=\sum_{k=1}^{n}\Bigl(\frac{k}{n}\Bigr)^2\cdot\frac{1}{n}=\frac{1}{n^3}\sum_{k=1}^{n}k^2=\frac{1}{n^3}\cdot\frac{n(n+1)(2n+1)}{6}=\frac{(n+1)(2n+1)}{6n^2} $$
+<p><strong>左端の値を高さにした長方形</strong>（図2(b)）は図形の内側に収まり、和 \(s_n\) は \(S\) より小さくなります。</p>
+$$ s_n=\sum_{k=0}^{n-1}\Bigl(\frac{k}{n}\Bigr)^2\cdot\frac{1}{n}=\frac{1}{n^3}\cdot\frac{(n-1)n(2n-1)}{6}=\frac{(n-1)(2n-1)}{6n^2} $$
+<figure>
+  <svg viewBox="0 0 460 240" role="img" aria-label="放物線 y=x の2乗の下を5つの長方形で近似した図。左は右端の値を高さにした外側の長方形、右は左端の値を高さにした内側の長方形。">
+    <g fill="#1f5fbf" fill-opacity="0.22" stroke="#1f5fbf" stroke-width="1">
+      <rect x="40" y="198.2" width="34" height="6.8"/> <rect x="74" y="177.8" width="34" height="27.2"/> <rect x="108" y="143.8" width="34" height="61.2"/> <rect x="142" y="96.2" width="34" height="108.8"/> <rect x="176" y="35" width="34" height="170"/>
+      <rect x="304" y="198.2" width="34" height="6.8"/> <rect x="338" y="177.8" width="34" height="27.2"/> <rect x="372" y="143.8" width="34" height="61.2"/> <rect x="406" y="96.2" width="34" height="108.8"/>
+    </g>
+    <g stroke="currentColor">
+      <line x1="32" y1="205" x2="222" y2="205"/><line x1="40" y1="212" x2="40" y2="24"/>
+      <line x1="262" y1="205" x2="452" y2="205"/><line x1="270" y1="212" x2="270" y2="24"/>
+    </g>
+    <path d="M40 205 L45.7 204.8 L51.3 204.2 L57 203.3 L62.7 202 L68.3 200.3 L74 198.2 L79.7 195.7 L85.3 192.9 L91 189.7 L96.7 186.1 L102.3 182.1 L108 177.8 L113.7 173.1 L119.3 168 L125 162.5 L130.7 156.6 L136.3 150.4 L142 143.8 L147.7 136.8 L153.3 129.4 L159 121.7 L164.7 113.6 L170.3 105.1 L176 96.2 L181.7 86.9 L187.3 77.3 L193 67.3 L198.7 56.9 L204.3 46.1 L210 35" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M270 205 L275.7 204.8 L281.3 204.2 L287 203.3 L292.7 202 L298.3 200.3 L304 198.2 L309.7 195.7 L315.3 192.9 L321 189.7 L326.7 186.1 L332.3 182.1 L338 177.8 L343.7 173.1 L349.3 168 L355 162.5 L360.7 156.6 L366.3 150.4 L372 143.8 L377.7 136.8 L383.3 129.4 L389 121.7 L394.7 113.6 L400.3 105.1 L406 96.2 L411.7 86.9 L417.3 77.3 L423 67.3 L428.7 56.9 L434.3 46.1 L440 35" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="28" y="220" font-size="12" fill="currentColor">O</text><text x="206" y="220" font-size="12" fill="currentColor">1</text><text x="28" y="39" font-size="12" fill="currentColor">1</text>
+    <text x="258" y="220" font-size="12" fill="currentColor">O</text><text x="436" y="220" font-size="12" fill="currentColor">1</text><text x="258" y="39" font-size="12" fill="currentColor">1</text>
+    <text x="40" y="16" font-size="12" fill="currentColor">(a) 右端の値を高さに（外側）</text>
+    <text x="270" y="16" font-size="12" fill="currentColor">(b) 左端の値を高さに（内側）</text>
+    <text x="52" y="236" font-size="12" fill="currentColor">S₅＝0.44</text>
+    <text x="282" y="236" font-size="12" fill="currentColor">s₅＝0.24</text>
+  </svg>
+  <figcaption>図2　\(n=5\) の場合。(a) の長方形は図形からはみ出し、(b) の長方形は図形の内側に収まる。</figcaption>
+</figure>
+<p>したがって \(s_n&lt;S&lt;S_n\) です。\(n\) を大きくすると、次のように2つの和の差（\(S_n-s_n=\frac{1}{n}\)）は小さくなります。</p>
+<div class="table-wrap"><table>
+  <tr><th>\(n\)</th><th>5</th><th>10</th><th>100</th><th>1000</th></tr>
+  <tr><td>\(s_n\)（内側）</td><td>0.24</td><td>0.285</td><td>0.32835</td><td>0.3328335</td></tr>
+  <tr><td>\(S_n\)（外側）</td><td>0.44</td><td>0.385</td><td>0.33835</td><td>0.3338335</td></tr>
+</table></div>
+<p>確認2のとおり \(\displaystyle\lim_{n\to\infty}S_n=\frac{1}{3}\)、同様に \(\displaystyle\lim_{n\to\infty}s_n=\lim_{n\to\infty}\frac{1}{6}\Bigl(1-\frac{1}{n}\Bigr)\Bigl(2-\frac{1}{n}\Bigr)=\frac{1}{3}\)。\(S\) は両側からはさまれているので、はさみうちの原理（数Ⅲ-012）より \(S=\frac{1}{3}\) です。数学Ⅱで \(\int_0^1x^2dx=\frac{1}{3}\) と求めた値と一致します。</p>
+<div class="box point"><p class="box-title">区分求積法</p><p>図形を細い長方形などに分け、その面積（体積）の和の、分け方を限りなく細かくしたときの極限として、面積や体積を求める方法を<span class="em">区分求積法</span>といいます。極限をとる前の和は近似値にすぎず、極限をとってはじめて正確な値になります。</p></div>
+
+<div class="widget" id="w-rs">
+  <p><strong>操作してみよう</strong>　関数、長方形の高さのとり方、分割数 \(n\) を変えて、長方形の面積の和が定積分の値に近づく様子を見よう。減少する関数 \(\frac{1}{1+x}\) では、右端と左端の大小が逆になることも確かめよう。</p>
+  <div class="ctrl">
+    <label for="w2-f">関数</label>
+    <select id="w2-f"><option value="0">f(x)＝x²</option><option value="1">f(x)＝√x</option><option value="2">f(x)＝1/(1＋x)</option></select>
+    <label for="w2-e">高さ</label>
+    <select id="w2-e"><option value="r">右端の値（k＝1〜n）</option><option value="l">左端の値（k＝0〜n−1）</option></select>
+    <label for="w2-n">分割数 n：<output id="w2-n-out">5</output></label>
+    <input type="range" id="w2-n" min="1" max="60" step="1" value="5">
+  </div>
+  <svg id="w2-svg" viewBox="0 0 420 290" role="img" aria-label="区間 0 から 1 を n 等分し、選んだ関数のグラフの下に n 個の長方形を並べた図。n を増やすと長方形の面積の和がグラフの下の面積に近づく。">
+    <path id="w2-rects" fill="#1f5fbf" fill-opacity="0.22" stroke="#1f5fbf" stroke-width="0.8"/>
+    <line x1="30" y1="262" x2="412" y2="262" stroke="currentColor"/>
+    <line x1="40" y1="272" x2="40" y2="12" stroke="currentColor"/>
+    <line x1="36" y1="42" x2="44" y2="42" stroke="currentColor"/>
+    <path id="w2-curve" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="28" y="278" font-size="12" fill="currentColor">O</text>
+    <text x="376" y="278" font-size="12" fill="currentColor">1</text>
+    <text x="404" y="278" font-size="12" fill="currentColor">x</text>
+    <text x="26" y="46" font-size="12" fill="currentColor">1</text>
+    <text x="45" y="18" font-size="12" fill="currentColor">y</text>
+  </svg>
+  <div class="table-wrap"><table class="readout">
+    <tr><th>量</th><th>値</th></tr>
+    <tr><td>長方形の面積の和 \(\frac{1}{n}\sum f\)</td><td id="w2-sum"></td></tr>
+    <tr><td>定積分 \(\int_0^1 f(x)\,dx\) の値</td><td id="w2-int"></td></tr>
+    <tr><td>差（和 − 定積分）</td><td id="w2-diff"></td></tr>
+  </table></div>
+</div>
+
+<h3>体積にも使える：角錐の体積が \(\frac{1}{3}\) になるわけ</h3>
+<figure>
+  <svg viewBox="0 0 380 240" role="img" aria-label="角錐を横から見た三角形を、高さ方向に5等分した厚さの角柱で外側から近似した図。頂点からの距離を x とし、底面は x=h。">
+    <g fill="#1f5fbf" fill-opacity="0.16" stroke="#1f5fbf" stroke-width="1">
+      <rect x="108" y="25" width="44" height="36"/>
+      <rect x="86" y="61" width="88" height="36"/>
+      <rect x="64" y="97" width="132" height="36"/>
+      <rect x="42" y="133" width="176" height="36"/>
+      <rect x="20" y="169" width="220" height="36"/>
+    </g>
+    <polygon points="130,25 20,205 240,205" fill="none" stroke="currentColor" stroke-width="2"/>
+    <line x1="300" y1="25" x2="300" y2="205" stroke="currentColor"/>
+    <polygon points="296,197 304,197 300,207" fill="currentColor"/>
+    <line x1="250" y1="133" x2="250" y2="169" stroke="currentColor"/>
+    <line x1="245" y1="133" x2="255" y2="133" stroke="currentColor"/>
+    <line x1="245" y1="169" x2="255" y2="169" stroke="currentColor"/>
+    <text x="256" y="156" font-size="11" fill="currentColor">h/n</text>
+    <text x="306" y="30" font-size="12" fill="currentColor">x＝0（頂点）</text>
+    <text x="306" y="120" font-size="12" fill="currentColor">x</text>
+    <text x="306" y="209" font-size="12" fill="currentColor">x＝h（底面）</text>
+    <text x="92" y="224" font-size="12" fill="currentColor">底面積 B</text>
+  </svg>
+  <figcaption>図3　角錐を横から見た図（\(n=5\)）。頂点から距離 \(x\) の断面は底面と相似で、相似比は \(x:h\)。</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題1（角錐の体積）</p>
+  <p>底面積 \(B\)、高さ \(h\) の角錐の体積 \(V\) を、区分求積法で求めなさい。</p>
+  <div class="step">ステップ1：断面積を表す。底面に平行な平面で、頂点から距離 \(x\) の位置で切ると、頂点の側に小さい角錐ができます。頂点を相似の中心として（中3-066 の相似の位置の考えを立体に広げる）もとの角錐を \(\frac{x}{h}\) 倍に縮小したものがこの小さい角錐なので、2つの角錐は相似で相似比は \(x:h\)。切り口は小さい角錐の底面なので、もとの底面と相似で相似比は \(x:h\) です（相似な立体の対応する面、中3-080）。面積比は相似比の2乗（中3-078）なので、断面積は \(B\Bigl(\frac{x}{h}\Bigr)^2\)。</div>
+  <div class="step">ステップ2：薄い角柱で近似する。高さを \(n\) 等分し、\(k\) 番目の部分（\(\frac{k-1}{n}h\leqq x\leqq\frac{k}{n}h\)）を、下側の切り口 \(B\bigl(\frac{k}{n}\bigr)^2\) を底面とし厚さ \(\frac{h}{n}\) の角柱で置き換える（図3。角錐を外側から包む）。体積の和は \(V_n=\displaystyle\sum_{k=1}^{n}B\Bigl(\frac{k}{n}\Bigr)^2\cdot\frac{h}{n}=Bh\cdot\frac{(n+1)(2n+1)}{6n^2}\)</div>
+  <div class="step">ステップ3：極限をとる。\(V_n\) は放物線のときの \(S_n\) の \(Bh\) 倍なので \(V_n\to\frac{1}{3}Bh\)。上側の切り口を底面にした内側の角柱の和も \(Bh\cdot\frac{(n-1)(2n-1)}{6n^2}\to\frac{1}{3}Bh\) なので、はさみうちの原理より　\(V=\dfrac{1}{3}Bh\)</div>
+</div>
+<p><strong>導入の答え。</strong>2つの \(\frac{1}{3}\) は、どちらも \(\displaystyle\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\Bigl(\frac{k}{n}\Bigr)^2=\frac{1}{3}\) という同じ極限から出てきます。放物線では「高さ」が \(x^2\) に比例し、角錐では「断面積」が \(x^2\) に比例するからです。中学校で実験で確かめた事実を、計算で説明できました。</p>
+<div class="box caution"><p class="box-title">よくある間違い</p>
+  <ul>
+    <li><strong>幅の掛け忘れ</strong>：長方形の面積は「高さ × 幅」。区間 \([0,1]\) を \(n\) 等分した幅 \(\frac{1}{n}\) を掛け忘れると、和は \(n\to\infty\) で発散してしまいます。</li>
+    <li><strong>番号の範囲</strong>：右端の値なら \(k=1\) から \(n\)、左端の値なら \(k=0\) から \(n-1\)。\(k=0\) から \(n\) まで足すと長方形が \(n+1\) 個になります。</li>
+    <li><strong>有限の \(n\) で等しいとする</strong>：\(S_n\) や \(s_n\) は \(S\) の近似値で、\(S\) に等しくなるのは極限をとったときだけです。</li>
+  </ul>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="定積分と記号の意味"><span class="num">4</span>定積分と記号 \(\int\)・\(dx\) の意味</h2>
+<p>「3」の考えを一般の区間に広げます。関数 \(f(x)\) は閉区間 \([a,b]\) で連続とします。区間を \(n\) 等分し、</p>
+$$ \Delta x=\frac{b-a}{n},\qquad x_k=a+k\,\Delta x\quad(k=0,1,2,\ldots,n) $$
+<p>とおきます（\(x_0=a\)、\(x_n=b\)）。このとき、次の等式が成り立ちます。</p>
+$$ \lim_{n\to\infty}\sum_{k=1}^{n}f(x_k)\,\Delta x=\lim_{n\to\infty}\sum_{k=0}^{n-1}f(x_k)\,\Delta x=\int_a^b f(x)\,dx $$
+<figure>
+  <svg viewBox="0 0 420 250" role="img" aria-label="曲線 y=f(x) の下の区間 a から b を6等分し、各小区間の右端の値を高さにした長方形を並べた図。3番目の長方形を強調し、高さ f(x3)、幅 Δx と示してある。">
+    <g fill="#1f5fbf" fill-opacity="0.15" stroke="#1f5fbf" stroke-width="1">
+      <rect x="67.5" y="86" width="55" height="129"/>
+      <rect x="122.5" y="65" width="55" height="150"/>
+      <rect x="232.5" y="59" width="55" height="156"/>
+      <rect x="287.5" y="74" width="55" height="141"/>
+      <rect x="342.5" y="101" width="55" height="114"/>
+    </g>
+    <rect x="177.5" y="56" width="55" height="159" fill="#b7791f" fill-opacity="0.35" stroke="#9a5b00" stroke-width="1.5"/>
+    <line x1="30" y1="215" x2="415" y2="215" stroke="currentColor"/>
+    <line x1="40" y1="225" x2="40" y2="16" stroke="currentColor"/>
+    <path d="M56.5 127 L63.4 122 L70.2 117.1 L77.1 112.4 L84 107.8 L90.9 103.5 L97.8 99.4 L104.6 95.4 L111.5 91.6 L118.4 88.1 L125.2 84.7 L132.1 81.5 L139 78.4 L145.9 75.6 L152.8 73 L159.6 70.5 L166.5 68.2 L173.4 66.2 L180.2 64.3 L187.1 62.6 L194 61 L200.9 59.7 L207.8 58.6 L214.6 57.6 L221.5 56.8 L228.4 56.3 L235.2 55.9 L242.1 55.7 L249 55.6 L255.9 55.8 L262.8 56.2 L269.6 56.7 L276.5 57.4 L283.4 58.4 L290.2 59.5 L297.1 60.8 L304 62.2 L310.9 63.9 L317.8 65.8 L324.6 67.8 L331.5 70 L338.4 72.5 L345.2 75.1 L352.1 77.9 L359 80.8 L365.9 84 L372.8 87.4 L379.6 90.9 L386.5 94.6 L393.4 98.6 L400.2 102.7 L407.1 107 L414 111.4" fill="none" stroke="currentColor" stroke-width="2"/>
+    <line x1="180" y1="196" x2="230" y2="196" stroke="currentColor"/>
+    <polygon points="180,196 186,193 186,199" fill="currentColor"/>
+    <polygon points="230,196 224,193 224,199" fill="currentColor"/>
+    <text x="196" y="190" font-size="12" fill="currentColor">Δx</text>
+    <text x="150" y="44" font-size="12" fill="#9a5b00">高さ f(x₃)</text>
+    <text x="350" y="66" font-size="12" fill="currentColor">y＝f(x)</text>
+    <text x="28" y="232" font-size="12" fill="currentColor">O</text>
+    <text x="52" y="232" font-size="11" fill="currentColor">x₀＝a</text>
+    <text x="118" y="232" font-size="11" fill="currentColor">x₁</text>
+    <text x="173" y="232" font-size="11" fill="currentColor">x₂</text>
+    <text x="228" y="232" font-size="11" fill="currentColor">x₃</text>
+    <text x="283" y="232" font-size="11" fill="currentColor">x₄</text>
+    <text x="338" y="232" font-size="11" fill="currentColor">x₅</text>
+    <text x="384" y="232" font-size="11" fill="currentColor">x₆＝b</text>
+    <text x="45" y="22" font-size="12" fill="currentColor">y</text>
+  </svg>
+  <figcaption>図4　\(n=6\) の場合（曲線は学習用の模式図）。濃い色の長方形の面積が \(f(x_3)\,\Delta x\)。このような長方形の面積をすべて足したものが \(\sum_{k=1}^{6}f(x_k)\,\Delta x\)。</figcaption>
+</figure>
+<p>\(f(x)\geqq 0\) のとき、左辺は長方形の面積の和の極限、右辺（数学Ⅱで \(F(b)-F(a)\) と定めた値）は図形の面積です（数Ⅱ-116）。「3」の \(y=x^2\) のように \(f(x)\) が増加（または減少）する場合は、右端の和と左端の和の差が \(\bigl|f(b)-f(a)\bigr|\,\Delta x\) で、\(n\to\infty\) のとき 0 に近づくので、2つの和ではさむ方法で確かめられます。増加・減少が入れかわる一般の連続関数でもこの等式が成り立つことが知られており、高校ではこれを認めて使います。また、\(f(x)\) が負の値をとる区間があっても、\(f(x_k)\,\Delta x\) を負の数として足すことで、この等式はそのまま成り立ちます。</p>
+
+<h3>記号の対応</h3>
+<div class="table-wrap"><table>
+  <tr><th>和の極限</th><th>定積分</th><th>意味</th></tr>
+  <tr><td>\(\displaystyle\sum_{k=1}^{n}\)</td><td>\(\displaystyle\int_a^b\)</td><td>\(k=1\) から \(n\) まで足す ⇔ \(x=a\) から \(b\) まで集める</td></tr>
+  <tr><td>\(f(x_k)\)</td><td>\(f(x)\)</td><td>細い長方形の高さ</td></tr>
+  <tr><td>\(\Delta x\)</td><td>\(dx\)</td><td>細い長方形の幅（\(n\to\infty\) で限りなく小さくなる）</td></tr>
+  <tr><td>\(f(x_k)\,\Delta x\)</td><td>\(f(x)\,dx\)</td><td>1つの細い長方形の面積</td></tr>
+</table></div>
+<div class="box point"><p class="box-title">\(\int_a^b f(x)\,dx\) の読み方</p><p>「高さ \(f(x)\)、幅 \(dx\) の細い長方形を、\(x=a\) から \(x=b\) まで集めたもの（の極限）」と読むことができます。この読み方をすると、この単元でこの先学ぶ体積（断面積 × 厚さを集める）や道のり（速さ × 時間を集める）も、同じ形の定積分で表せることが見通せます。</p></div>
+<p>特に区間が \([0,1]\) のときは \(\Delta x=\frac{1}{n}\)、\(x_k=\frac{k}{n}\) なので、次の形になります。これが「5」で使う公式です。</p>
+$$ \lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}f\Bigl(\frac{k}{n}\Bigr)=\int_0^1 f(x)\,dx $$
+<div class="box caution"><p class="box-title">よくある間違い</p><p>\(dx\) は「\(x\) についての式である」という飾りではなく、幅 \(\Delta x\) に対応する部分です。\(\int_a^b f(x)\) のように \(dx\) を書き落とすと、「何について集めるのか」が分からなくなります。置換積分で \(dx\) を \(dt\) に書きかえる（数Ⅲ-068）のも、幅の対応を正しく変えるためです。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="和の極限を定積分で"><span class="num">5</span>和の極限を定積分で求める</h2>
+<p>「4」の公式を逆向きに使うと、\(\sum\) の公式では直接求められない和の極限を、定積分で求めることができます。</p>
+<div class="box point"><p class="box-title">和の極限を定積分に直す手順</p>
+  <ol>
+    <li>和の外に \(\frac{1}{n}\) を1つくくり出す。</li>
+    <li>残りの各項を、\(\frac{k}{n}\) だけの式 \(f\bigl(\frac{k}{n}\bigr)\) に直す（\(f(x)\) を見つける）。</li>
+    <li>\(k\) の範囲から \(\frac{k}{n}\) の動く範囲を調べ、積分区間を決める（\(k=1,\ldots,n\) なら \([0,1]\)）。</li>
+    <li>定積分を計算する。</li>
+  </ol>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2</p>
+  <p>極限 \(\displaystyle\lim_{n\to\infty}\sum_{k=1}^{n}\frac{1}{n+k}\) を求めなさい。</p>
+  <div class="step">ステップ1：\(\frac{1}{n}\) をくくり出す。\(\dfrac{1}{n+k}=\dfrac{1}{n}\cdot\dfrac{1}{1+\frac{k}{n} }\)</div>
+  <div class="step">ステップ2：\(f(x)=\dfrac{1}{1+x}\) とすると、和は \(\displaystyle\frac{1}{n}\sum_{k=1}^{n}f\Bigl(\frac{k}{n}\Bigr)\)。\(k=1,\ldots,n\) なので積分区間は \([0,1]\)。</div>
+  <div class="step">ステップ3：\(\displaystyle\lim_{n\to\infty}\sum_{k=1}^{n}\frac{1}{n+k}=\int_0^1\frac{1}{1+x}\,dx=\Bigl[\log(1+x)\Bigr]_0^1=\log 2\)</div>
+  <div class="step">確かめ：\(n=10\) のとき和は約 0.6688、\(n=100\) のとき約 0.6907 で、\(\log 2\) の値（約 0.6931）に近づいています。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3</p>
+  <p>極限 \(\displaystyle\lim_{n\to\infty}\sum_{k=1}^{n}\frac{\sqrt{k} }{n\sqrt{n} }\) を求めなさい。</p>
+  <div class="step">ステップ1：\(\dfrac{\sqrt{k} }{n\sqrt{n} }=\dfrac{1}{n}\sqrt{\dfrac{k}{n} }\) と変形する。</div>
+  <div class="step">ステップ2：\(f(x)=\sqrt{x}\) とすると、積分区間は \([0,1]\)。</div>
+  <div class="step">ステップ3：\(\displaystyle\int_0^1\sqrt{x}\,dx=\Bigl[\frac{2}{3}x^{\frac{3}{2} }\Bigr]_0^1=\frac{2}{3}\)（\(n=100\) のとき和は約 0.6715）</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：項の数と積分区間</p>
+  <ul>
+    <li>\(\displaystyle\sum_{k=1}^{2n}\frac{1}{n}f\Bigl(\frac{k}{n}\Bigr)\) のように \(k\) が \(2n\) まで動くときは、\(\frac{k}{n}\) が \(\frac{1}{n}\) から \(2\) まで動き（右端の値）、長方形が区間 \([0,2]\) を覆うので、積分区間は \([0,2]\) です。幅 \(\frac{1}{n}\) の長方形が \(2n\) 個並ぶと、全体の幅は 2 になります。</li>
+    <li>\(\displaystyle\sum_{k=n+1}^{2n}\frac{1}{k}\) のように番号が \(n+1\) から始まる和は、\(k=n+j\) とおくと \(\displaystyle\sum_{j=1}^{n}\frac{1}{n+j}\) となり、例題2と同じ形になります。</li>
+    <li>\(\frac{1}{n}\) をくくり出さずに「\(\frac{1}{n+k}\) の \(n\) を \(x\) にする」などと置きかえるのは誤りです。必ず \(\frac{1}{n}\times f\bigl(\frac{k}{n}\bigr)\) の形を作りましょう。</li>
+  </ul>
+</div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>区分求積法</dt><dd>図形を細い長方形などに分け、その面積（体積）の和の、分け方を限りなく細かくしたときの極限として面積や体積を求める方法。</dd>
+    <dt>定積分（和の極限としての見方）</dt><dd>\([a,b]\) で連続な \(f(x)\) について \(\int_a^b f(x)\,dx=\displaystyle\lim_{n\to\infty}\sum_{k=1}^{n}f(x_k)\,\Delta x\)（\(\Delta x=\frac{b-a}{n}\)、\(x_k=a+k\Delta x\)）。\(k=0\) から \(n-1\) までの和の極限も同じ値になる。</dd>
+    <dt>積分法の記号 \(\int\)、\(dx\)</dt><dd>\(\int_a^b\) は \(x=a\) から \(b\) まで集めること（和 \(\sum\) に対応）、\(dx\) は細い長方形の幅（\(\Delta x\) に対応）を表すと読める。</dd>
+    <dt>\(\Delta x\)</dt><dd>区間を \(n\) 等分したときの1つの小区間の幅。\([0,1]\) なら \(\frac{1}{n}\)。</dd>
+    <dt>和の記号 \(\sum\)（既習）</dt><dd>\(\sum_{k=1}^{n}a_k=a_1+a_2+\cdots+a_n\)（数Ｂ-009）。</dd>
+    <dt>はさみうちの原理（既習）</dt><dd>\(a_n\leqq c_n\leqq b_n\) で \(a_n\) と \(b_n\) が同じ値 \(\alpha\) に収束すれば、\(c_n\) も \(\alpha\) に収束する（数Ⅲ-012）。</dd>
+    <dt>閉区間 \([a,b]\)（既習）</dt><dd>\(a\leqq x\leqq b\) を満たす実数 \(x\) 全体（数Ⅲ-029）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>（O1）区間を \(n\) 等分した長方形（体積なら薄い柱体）の和を作り、\(n\to\infty\) の極限をとって面積や体積を求めるのが区分求積法。外側と内側の和ではさむと、極限が正確な値になることを確かめられる。放物線の下の面積も角錐の体積も、\(\lim\frac{1}{n}\sum\bigl(\frac{k}{n}\bigr)^2=\frac{1}{3}\) から求まる。</li>
+    <li>（O2）\([a,b]\) で連続な \(f(x)\) について \(\int_a^b f(x)\,dx=\lim\sum f(x_k)\,\Delta x\)。\(\int\) は \(\sum\) に、\(dx\) は幅 \(\Delta x\) に、\(f(x)\,dx\) は細い長方形の面積に対応する。</li>
+    <li>（O3）和の極限は、\(\frac{1}{n}\) をくくり出して \(\frac{1}{n}\sum f\bigl(\frac{k}{n}\bigr)\) の形にし、\(\frac{k}{n}\) の動く範囲から積分区間を決めて、定積分で求める。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">定積分と和の極限（\(\Delta x=\frac{b-a}{n}\)、\(x_k=a+k\Delta x\)）</span>$$ \int_a^b f(x)\,dx=\lim_{n\to\infty}\sum_{k=1}^{n}f(x_k)\,\Delta x $$</div>
+  <div><span class="f-name">区間 \([0,1]\) の場合</span>$$ \lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}f\Bigl(\frac{k}{n}\Bigr)=\int_0^1 f(x)\,dx $$</div>
+  <div><span class="f-name">はさむ2つの和（右端・左端）</span>$$ \lim_{n\to\infty}\frac{1}{n}\sum_{k=0}^{n-1}f\Bigl(\frac{k}{n}\Bigr)=\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}f\Bigl(\frac{k}{n}\Bigr) $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。\(\log\) は自然対数。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>区間 \([0,1]\) を \(n\) 等分し、各小区間の右端での \(y=x\) の値を高さとする \(n\) 個の長方形を作ります。その面積の和はどれですか。</p>
+  <div class="choices">
+    <button>\(\frac{n-1}{2n}\)</button>
+    <button>\(\frac{n(n+1)}{2}\)</button>
+    <button data-correct="true">\(\frac{n+1}{2n}\)</button>
+    <button>\(\frac{n+1}{2}\)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">和は \(\sum_{k=1}^{n}\frac{k}{n}\cdot\frac{1}{n}=\frac{1}{n^2}\cdot\frac{n(n+1)}{2}=\frac{n+1}{2n}\)。\(n\to\infty\) で \(\frac{1}{2}\) となり、三角形の面積（\(=\int_0^1x\,dx\)）と一致します。\(\frac{n-1}{2n}\) は左端の値を高さにした和、\(\frac{n(n+1)}{2}\) は高さを \(\frac{k}{n}\) でなく \(k\) とし、幅も掛けていない \(\sum k\)、\(\frac{n+1}{2}\) は \(\frac{1}{n}\) を1回しか掛けていない誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="1/4|0.25">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O3</span></div>
+  <p>\(\displaystyle\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\Bigl(\frac{k}{n}\Bigr)^3\) を求めなさい（分数は 1/2 のように入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">\(f(x)=x^3\)、積分区間 \([0,1]\) とみて \(\int_0^1x^3dx=\Bigl[\frac{x^4}{4}\Bigr]_0^1=\frac{1}{4}\)。\(\sum k^3=\bigl\{\frac{n(n+1)}{2}\bigr\}^2\) を使って和を \(\frac{(n+1)^2}{4n^2}\) と計算してから極限をとっても同じ値になり、確かめになります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>定積分 \(\int_a^b f(x)\,dx\) を和の極限 \(\displaystyle\lim_{n\to\infty}\sum_{k=1}^{n}f(x_k)\,\Delta x\) とみるとき、記号 \(dx\) に対応するものはどれですか。</p>
+  <div class="choices">
+    <button>分けた個数 \(n\)</button>
+    <button>長方形の高さ \(f(x_k)\)</button>
+    <button>\(x\) の値そのもの</button>
+    <button data-correct="true">分けた小区間の幅 \(\Delta x=\frac{b-a}{n}\)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\(f(x)\,dx\) が細い長方形の面積「高さ × 幅」に対応するので、\(dx\) は幅 \(\Delta x\) に当たります。高さは \(f(x)\)、個数 \(n\) は \(n\to\infty\) の極限の中に消え、足し合わせることは \(\int\) が表しています。\(x\) の値そのもの（\(x_k\)）は、高さ \(f(x_k)\) を決めるための位置で、幅ではありません。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="1/2|0.5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>\(\displaystyle\lim_{n\to\infty}\sum_{k=1}^{n}\frac{n}{(n+k)^2}\) を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">\(\dfrac{n}{(n+k)^2}=\dfrac{n}{n^2\bigl(1+\frac{k}{n}\bigr)^2}=\dfrac{1}{n}\cdot\dfrac{1}{\bigl(1+\frac{k}{n}\bigr)^2}\)。\(f(x)=\frac{1}{(1+x)^2}\) として \(\int_0^1\frac{dx}{(1+x)^2}=\Bigl[-\frac{1}{1+x}\Bigr]_0^1=-\frac{1}{2}+1=\frac{1}{2}\)。分母の \((n+k)^2\) から \(n^2\) をくくり出すと、分子の \(n\) と合わせて \(\frac{1}{n}\) が1つ残ることがポイントです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>\(\displaystyle\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\sin\frac{k\pi}{n}\) の値はどれですか。</p>
+  <div class="choices">
+    <button>\(2\)</button>
+    <button data-correct="true">\(\frac{2}{\pi}\)</button>
+    <button>\(\frac{1}{\pi}\)</button>
+    <button>\(2\pi\)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\(\sin\frac{k\pi}{n}=f\bigl(\frac{k}{n}\bigr)\) となる関数は \(f(x)=\sin\pi x\) で、積分区間は \([0,1]\)。\(\int_0^1\sin\pi x\,dx=\Bigl[-\frac{1}{\pi}\cos\pi x\Bigr]_0^1=\frac{1}{\pi}+\frac{1}{\pi}=\frac{2}{\pi}\)。\(2\) は \(\int_0^{\pi}\sin x\,dx\) と取り違えた誤り、\(\frac{1}{\pi}\) は上端の値 \(-\frac{1}{\pi}\cos\pi=\frac{1}{\pi}\) だけで下端の値 \(-\frac{1}{\pi}\) を引き忘れた誤り、\(2\pi\) は不定積分を \(-\pi\cos\pi x\) とした（\(\pi\) で割るところを掛けた）誤りです。積分区間を \([0,\pi]\) にしたいなら、幅が \(\frac{\pi}{n}\) の和 \(\frac{\pi}{n}\sum\sin\frac{k\pi}{n}\) を考える必要があり、与えられた和はその \(\frac{1}{\pi}\) 倍です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O1</span></div>
+  <p>半径 \(r\) の半球を、底面に平行な平面で高さ \(\frac{r}{n}\) ごとに \(n\) 個の部分に切ります。\(k\) 番目の部分（底面からの高さ \(\frac{k-1}{n}r\) から \(\frac{k}{n}r\) まで）を、上側の切り口を底面とし厚さ \(\frac{r}{n}\) の円柱で置き換えたときの体積の和を \(V_n\) とします。\(\displaystyle\lim_{n\to\infty}V_n\) はどれですか。</p>
+  <div class="choices">
+    <button>\(\frac{1}{3}\pi r^3\)</button>
+    <button>\(\pi r^3\)</button>
+    <button>\(\frac{4}{3}\pi r^3\)</button>
+    <button data-correct="true">\(\frac{2}{3}\pi r^3\)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">高さ \(\frac{k}{n}r\) の切り口は、三平方の定理より半径 \(\sqrt{r^2-\bigl(\frac{k}{n}r\bigr)^2}\) の円で、面積は \(\pi r^2\Bigl\{1-\bigl(\frac{k}{n}\bigr)^2\Bigr\}\)。よって \(V_n=\sum_{k=1}^{n}\pi r^2\Bigl\{1-\bigl(\frac{k}{n}\bigr)^2\Bigr\}\frac{r}{n}=\pi r^3\Bigl\{1-\frac{(n+1)(2n+1)}{6n^2}\Bigr\}\to\pi r^3\Bigl(1-\frac{1}{3}\Bigr)=\frac{2}{3}\pi r^3\)。これは球の体積 \(\frac{4}{3}\pi r^3\)（中1-105）の半分で、正しく半球の体積になっています。\(\frac{4}{3}\pi r^3\) は球全体、\(\pi r^3\) は外側の円柱（半径 \(r\)、高さ \(r\)）の体積、\(\frac{1}{3}\pi r^3\) は \(\pi r^3\cdot\frac{(n+1)(2n+1)}{6n^2}\) の極限だけを求め、1 から引き忘れた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O1・O2</span></div>
+  <p>\(f(x)\) は区間 \([0,1]\) で連続とし、\(L_n=\displaystyle\frac{1}{n}\sum_{k=0}^{n-1}f\Bigl(\frac{k}{n}\Bigr)\)、\(R_n=\displaystyle\frac{1}{n}\sum_{k=1}^{n}f\Bigl(\frac{k}{n}\Bigr)\) とします。\(n\to\infty\) のときの極限について正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\(R_n\) の極限は、\(L_n\) の極限より \(f(1)-f(0)\) だけ大きい。</button>
+    <button data-correct="true">どちらも \(\int_0^1 f(x)\,dx\) に収束し、極限は等しい。</button>
+    <button>いつも \(L_n&lt;R_n\) なので、極限も \(L_n\) の方が小さい。</button>
+    <button>\(L_n\) は \(k=0\) の項を含むので収束しない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">2つの和の違いは、\(R_n\) に \(f(1)\) の項があり \(L_n\) に \(f(0)\) の項があることだけなので、\(R_n-L_n=\frac{f(1)-f(0)}{n}\to 0\)。したがって極限は等しく、どちらも \(\int_0^1 f(x)\,dx\) です。差は \(f(1)-f(0)\) ではなく、その \(\frac{1}{n}\) 倍です。この式から、\(L_n&lt;R_n\) となるのは \(f(0)&lt;f(1)\) のとき（たとえば増加関数）だけで、\(f(0)&gt;f(1)\)（たとえば減少関数）なら逆、\(f(0)=f(1)\) なら等しくなります。有限の \(n\) で大小があっても、極限は等しくなりえます。\(k=0\) の項 \(\frac{1}{n}f(0)\) も \(n\to\infty\) で 0 に近づくので、\(L_n\) が収束しない理由にはなりません。</div>
+</div>
+
+<div class="q" data-type="input" id="q8" data-accept="log3|log 3|ln3|loge3">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O3</span></div>
+  <p>\(\displaystyle\lim_{n\to\infty}\sum_{k=1}^{2n}\frac{1}{n+k}\) を求めなさい（例：log5 のように入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">\(\frac{1}{n+k}=\frac{1}{n}\cdot\frac{1}{1+\frac{k}{n} }\) で、\(k=1,\ldots,2n\) だから \(\frac{k}{n}\) は \(\frac{1}{n}\) から \(2\) まで動きます。幅 \(\frac{1}{n}\) の長方形が \(2n\) 個で区間 \([0,2]\) を覆うので、\(\int_0^2\frac{dx}{1+x}=\Bigl[\log(1+x)\Bigr]_0^2=\log 3\)。積分区間を \([0,1]\) として \(\log 2\) とする誤りに注意しましょう（\(n=1000\) のとき和は約 1.0983、\(\log 3\) は約 1.0986）。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>\(P_n=\dfrac{(n+2)(n+4)(n+6)\cdots(n+2n)}{n^n}\)（分子は \(n+2k\)（\(k=1,2,\ldots,n\)）の \(n\) 個の積）とします。</p>
+  <p>(1) \(\frac{1}{n}\log P_n\) を \(\displaystyle\frac{1}{n}\sum_{k=1}^{n}g\Bigl(\frac{k}{n}\Bigr)\) の形に表しなさい。<br>(2) \(\displaystyle\lim_{n\to\infty}\frac{1}{n}\log P_n\) を求めなさい。<br>(3) \(\displaystyle\lim_{n\to\infty}\bigl(P_n\bigr)^{\frac{1}{n} }\) を求めなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) 分子の \(n\) 個の因数を、分母 \(n^n\) の \(n\) で1つずつ割ると \(\frac{n+2k}{n}=1+\frac{2k}{n}\) なので、\(P_n=\bigl(1+\frac{2}{n}\bigr)\bigl(1+\frac{4}{n}\bigr)\cdots\bigl(1+\frac{2n}{n}\bigr)\)。積の対数は対数の和だから \(\displaystyle\frac{1}{n}\log P_n=\frac{1}{n}\sum_{k=1}^{n}\log\Bigl(1+2\cdot\frac{k}{n}\Bigr)\)。すなわち \(g(x)=\log(1+2x)\)。</p>
+    <p>(2) \(g(x)\) は \([0,1]\) で連続だから、\(\displaystyle\lim_{n\to\infty}\frac{1}{n}\log P_n=\int_0^1\log(1+2x)\,dx\)。\(1+2x=t\) とおくと \(dx=\frac{1}{2}dt\)、\(x:0\to 1\) のとき \(t:1\to 3\) なので \(\displaystyle\frac{1}{2}\int_1^3\log t\,dt=\frac{1}{2}\Bigl[t\log t-t\Bigr]_1^3=\frac{1}{2}\bigl\{(3\log 3-3)-(0-1)\bigr\}=\frac{3}{2}\log 3-1\)（約 0.6479）。</p>
+    <p>(3) \(\bigl(P_n\bigr)^{\frac{1}{n} }=e^{\frac{1}{n}\log P_n}\) で、指数関数は連続だから \(\displaystyle\lim_{n\to\infty}\bigl(P_n\bigr)^{\frac{1}{n} }=e^{\frac{3}{2}\log 3-1}=\frac{3^{3/2} }{e}=\frac{3\sqrt{3} }{e}\)（約 1.912）。</p>
+    <p><strong>採点の観点</strong>　(1) 各因数を \(n\) で割って \(1+\frac{2k}{n}\) の形にし、対数で積を和に直している。(2) 和の極限を積分区間 \([0,1]\) の定積分で表し、置換積分（\(1+2x=t\)）と部分積分（\(\int\log t\,dt=t\log t-t+C\)）を正しく行っている。(3) 対数をとる前の量に戻す理由（指数関数の連続性）を述べている。</p>
+  </div>
+  <div class="explain">積の形の極限は、対数をとると和になり、区分求積法が使えるようになります。(1) で \(\frac{1}{n}\) の位置（和の外に1つ）を確かめてから \(g\) を決めること、(2) で置換したとき積分区間も \(t\) の範囲に直すこと（数Ⅲ-074）が、よくつまずく点です。\(\int\log t\,dt\) は部分積分（数Ⅲ-070）で求めます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト —（数学Ⅲは出題科目に含まれない）・個別試験は大学ごとに確認</p>
+  <p>令和9年度大学入学共通テスト実施要項の数学の出題科目は、数学①『数学Ⅰ，数学Ａ』『数学Ⅰ』と数学②『数学Ⅱ，数学Ｂ，数学Ｃ』で、数学Ⅲを含む出題科目はありません。したがって、この時間の内容は共通テストの出題範囲外です。ただし、土台になっている数学Ⅱの定積分と面積（数Ⅱ-116 など）と、数学Bの数列（\(\sum\)）は、数学②の出題範囲に含まれます。</p>
+  <p>個別試験（各大学の試験）は、学習内容マップでは大学を指定していません（空欄）。数学Ⅲが出題範囲に含まれるかどうかは大学ごとに定められるので、志望する大学の入学者選抜要項で確かめましょう。</p>
+  <p>学習の面では、解説が、面積・体積・曲線の長さなどを求める方法を別々に扱うのではなく「それらの背景にある極限や定積分の考えの共通性などに着目できるようにすることが大切」としています（解説 p.82）。この時間の「分けて、足して、極限をとる」という見方は、この先の面積・体積・曲線の長さ・道のりのすべてに共通する考え方です。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">いろいろな曲線と面積（数Ⅲ-081）</p>
+  <p>次の時間は、数学Ⅱで扱った面積の求め方を振り返り、三角関数・指数関数・対数関数・分数関数・無理関数などのいろいろな曲線と \(x\) 軸で囲まれた図形の面積を、定積分で求めます。この時間に確かめた「定積分は細い長方形の面積の和の極限」という見方が、どんな曲線でも面積を定積分で表してよい根拠になります。</p>
+  <p>この時間の例題1（角錐の体積）では、断面積に厚さを掛けて足す和を \(\sum k^2\) で直接計算しました。断面積 \(S(x)\) を定積分して体積 \(\int_a^b S(x)\,dx\) を求める一般的な方法は、数Ⅲ-085「立体の体積」で扱います。曲線の長さ（数Ⅲ-088・089）や点の運動の道のり（数Ⅲ-091・092）も同じ考えで定積分に表します。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅲ-079　定積分の練習</div>
+  <div><span class="label">次の時間</span>数Ⅲ-081　いろいろな曲線と面積</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_3/数Ⅲ-080「区分求積法と定積分」（学習指導要領 数学Ⅲ (3)ア(ウ)・イ(イ)、解説 p.82）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学 第2款 第3 数学Ⅲ（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.73・p.80-82（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf　… 「面積や体積に関連して，区分求積法の考えに基づいて定積分を理解できるようにしたり，それを基にして積分法の記号の意味を理解できるようにしたりすることも考えられる」（p.82）、内容の取扱い(2)（置換積分法・部分積分法の程度）</li>
+    <li>教科書編修趣意書 数Ⅲ708『数学Ⅲ』（数研出版、令和3年度検定、文部科学省公開）… 「定積分と和の極限」を本文で扱う内容として記載</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項（大学入試センター）</li>
+  </ul>
+  <p>作成：2026-09-29　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。計算の答えは tools/worker/lesson_hs_math_3_数Ⅲ-080_verify.py で検算しています。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  const svg = document.getElementById("w2-svg");
+  if (!svg) return;
+  const F = [
+    { f: (x) => x * x, I: 1 / 3, name: "1/3" },
+    { f: (x) => Math.sqrt(x), I: 2 / 3, name: "2/3" },
+    { f: (x) => 1 / (1 + x), I: Math.log(2), name: "log 2" }
+  ];
+  const X = (x) => 40 + 340 * x;
+  const Y = (y) => 262 - 220 * y;
+  const el = (id) => document.getElementById(id);
+  function draw() {
+    const g = F[parseInt(el("w2-f").value, 10)];
+    const left = el("w2-e").value === "l";
+    const n = parseInt(el("w2-n").value, 10);
+    el("w2-n-out").textContent = String(n);
+    let d = "";
+    let sum = 0;
+    for (let k = 1; k <= n; k++) {
+      const xl = (k - 1) / n;
+      const xr = k / n;
+      const hgt = g.f(left ? xl : xr);
+      sum += hgt / n;
+      d += "M" + X(xl).toFixed(2) + " " + Y(0) + " V" + Y(hgt).toFixed(2) + " H" + X(xr).toFixed(2) + " V" + Y(0) + " Z ";
+    }
+    el("w2-rects").setAttribute("d", d);
+    let c = "";
+    for (let i = 0; i <= 100; i++) {
+      const x = i / 100;
+      c += (i ? " L" : "M") + X(x).toFixed(1) + " " + Y(g.f(x)).toFixed(1);
+    }
+    el("w2-curve").setAttribute("d", c);
+    el("w2-sum").textContent = sum.toFixed(6);
+    el("w2-int").textContent = g.name + " ≈ " + g.I.toFixed(6);
+    el("w2-diff").textContent = (sum - g.I).toFixed(6);
+  }
+  ["w2-f", "w2-e", "w2-n"].forEach((id) => {
+    el(id).addEventListener("input", draw);
+    el(id).addEventListener("change", draw);
+  });
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_3/数Ⅲ-080",
+  "map": "hs_math_3",
+  "rid": "数Ⅲ-080",
+  "title": "区分求積法と定積分",
+  "subject": "数学Ⅲ",
+  "unit": {"ref": "hs_math_3:Ⅲ-4", "title": "積分法とその応用"},
+  "exam": {"共通テスト": "—", "個別試験": ""},
+  "basis": ["(3)ア(ウ)", "(3)イ(イ)"],
+  "kaisetsu_page": "82",
+  "objectives": [
+    {"id": "O1", "text": "区間を \\(n\\) 等分してできる長方形などの和の \\(n\\to\\infty\\) の極限として面積や体積を求める考え（区分求積法）を理解し、その考えで面積や体積を求めることができる。", "from": "面積や体積に関連して、区分求積法の考えに基づいて定積分を理解し", "sections": ["sec-1"], "checks": ["q1", "q6", "q7"]},
+    {"id": "O2", "text": "定積分を和の極限と結び付けて捉え、積分法の記号 \\(\\int\\) や \\(dx\\) の意味を説明できる。", "from": "それを基にして積分法の記号の意味を理解する", "sections": ["sec-2"], "checks": ["q3", "q7", "q9"]},
+    {"id": "O3", "text": "\\(\\displaystyle\\lim_{n\\to\\infty}\\frac{1}{n}\\sum_{k=1}^{n}f\\Bigl(\\frac{k}{n}\\Bigr)=\\int_0^1 f(x)dx\\) を用いて、和の極限を定積分で表して求めることができる。", "from": "n→∞ のとき (1/n){f(1/n)＋f(2/n)＋…＋f(n/n)} が ∫₀¹f(x)dx に収束することを用いて、和の極限を定積分で表して求める", "sections": ["sec-2", "sec-3"], "checks": ["q2", "q4", "q5", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "区分求積法", "where": "sec-1"},
+    {"term": "定積分（和の極限）", "where": "sec-2"},
+    {"term": "積分法の記号 ∫、dx", "where": "sec-2"},
+    {"term": "Δx", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "和の記号 Σ と Σk・Σk²・Σk³ の公式、Σ の性質", "taught_in": ["hs_math_bc/数Ｂ-009", "hs_math_bc/数Ｂ-010", "hs_math_bc/数Ｂ-011", "hs_math_bc/数Ｂ-012"], "where": "supp-1"},
+    {"concept": "数列の極限と式の変形による極限の求め方", "taught_in": ["hs_math_3/数Ⅲ-009", "hs_math_3/数Ⅲ-010", "hs_math_3/数Ⅲ-011"], "where": "review"},
+    {"concept": "はさみうちの原理", "taught_in": ["hs_math_3/数Ⅲ-012"], "where": "sec-1"},
+    {"concept": "関数の連続性・閉区間、指数関数の連続性", "taught_in": ["hs_math_3/数Ⅲ-028", "hs_math_3/数Ⅲ-029"], "where": "sec-2"},
+    {"concept": "定積分 F(b)−F(a) が面積を表すこと、細い長方形の和による定積分の直観的な意味", "taught_in": ["hs_math_2/数Ⅱ-116", "hs_math_2/数Ⅱ-119"], "where": "sec-2"},
+    {"concept": "関数の増減と、数列の和と定積分の大小の比較", "taught_in": ["hs_math_3/数Ⅲ-050", "hs_math_3/数Ⅲ-078"], "where": "sec-1"},
+    {"concept": "xᵅ・1/x・三角関数の不定積分、置換積分法（ax+b=t）、部分積分法、定積分の基本性質", "taught_in": ["hs_math_3/数Ⅲ-066", "hs_math_3/数Ⅲ-067", "hs_math_3/数Ⅲ-068", "hs_math_3/数Ⅲ-070", "hs_math_3/数Ⅲ-073", "hs_math_3/数Ⅲ-074"], "where": "review"},
+    {"concept": "自然対数と対数の性質（積の対数は対数の和）", "taught_in": ["hs_math_3/数Ⅲ-041", "hs_math_2/数Ⅱ-088"], "where": "quiz"},
+    {"concept": "増分 Δx の記号", "taught_in": ["hs_math_3/数Ⅲ-063"], "where": "sec-2"},
+    {"concept": "錐体の体積は柱体の 1/3（実験による確認）、柱体の体積、球の体積", "taught_in": ["jhs_math/中1-101", "jhs_math/中1-102", "jhs_math/中1-105"], "where": "intro"},
+    {"concept": "相似な図形の面積比は相似比の2乗、相似の位置（相似の中心）、相似な立体の対応する面は相似（角錐の断面が底面と相似になる理由）", "taught_in": ["jhs_math/中3-078", "jhs_math/中3-066", "jhs_math/中3-080"], "where": "sec-1"},
+    {"concept": "三平方の定理（半球の断面の半径）", "taught_in": ["jhs_math/中3-097"], "where": "quiz"}
+  ],
+  "out_of_scope": [
+    "いろいろな曲線と x 軸・2曲線で囲まれた図形の面積（数Ⅲ-081〜083）",
+    "断面積の定積分による体積の公式 V=∫S(x)dx と回転体の体積（数Ⅲ-085〜087）",
+    "曲線の長さ（数Ⅲ-088・089）、点の運動と道のり（数Ⅲ-091・092）",
+    "数列の和と定積分の大小を用いた不等式の証明（数Ⅲ-078。この時間は既習として使う）",
+    "調和級数の発散の考察（数Ⅲ-097 課題学習）",
+    "増加・減少が入れかわる一般の連続関数で和の極限が定積分に一致することの証明（高校では認めて使う）"
+  ],
+  "selection_reason": "数学Ⅲで最も作るのが難しいコマとして選んだ。①抽象度：「和の極限＝定積分」は、数学Ⅱの F(b)−F(a) による定義と別の見方で、長方形の個数・幅・高さの対応や k の範囲（1〜n と 0〜n−1、2n までの和）で誤解が生じやすい。②前提：数学Bの Σ と和の公式（未履修への配慮が解説 p.73 にある）、数学Ⅲの数列の極限・はさみうちの原理・連続性、数学Ⅱの定積分と面積、中学の相似と錐体の体積と、3科目・中学にまたがる。③図・操作：分割数 n を変えて長方形の和が近づく様子は、スライダーの図がないと捉えにくい。④正確さ：和の値・極限値・積分区間の決定を厳密に扱う必要がある。⑤入試：共通テストの範囲外（—）だが、積分法の面積・体積・曲線の長さ・道のりの共通の土台（解説 p.82）。比べた候補：数Ⅲ-048「平均値の定理」（抽象的だが扱いは「意味を理解し…知る」程度で、前提が数学Ⅲ内に収まる）、数Ⅲ-086「回転体の体積」（立体の図が必要だが、公式の導出は区分求積法の考えを前提とし、計算練習が中心）。",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）第2章第4節 数学 第2款 第3 数学Ⅲ", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "内容(3)ア(ウ)・イ(イ)、内容の取扱い(2)"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.82：区分求積法の考えに基づく定積分と積分法の記号の意味、面積・体積・曲線の長さの共通性。p.73：数学B未履修への配慮。p.80-81：置換積分法・部分積分法の程度"},
+    {"name": "教科書編修趣意書 数Ⅲ708『数学Ⅲ』（令和3年度検定）", "publisher": "数研出版（文部科学省公開）", "url": "https://www.mext.go.jp/a_menu/shotou/kyoukasho/kentei/220523/000022510/20220523-000022510-mxt_ope01-080.pdf", "use": "「定積分と和の極限」を本文で扱うことの確認（例題・練習で扱う程度）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "数学の出題科目（数学Ⅲが含まれないこと）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-29"
+}
+</script>
+</body>
+</html>

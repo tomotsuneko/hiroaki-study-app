@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>信頼区間の意味｜数学Ｂ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ｂ</span><span>統計的な推測</span><span>数Ｂ-056</span></div>
+  <h1>信頼区間の意味</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">「母平均は 29.0 g 以上 30.6 g 以下と推定される（信頼度95％）」。この「95％」は、いったい何が95％なのでしょうか。標本を何組もとって信頼区間をたくさんつくり、その答えを確かめます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>同じ母集団から抽出した幾つもの標本について、それぞれの標本平均から信頼度95％と99％の信頼区間を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>コンピュータで多数の標本を抽出して信頼区間をつくり、母平均を含む区間の割合が信頼度に近いことを確かめることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>信頼度95％の信頼区間の意味を「同じ方法で区間をつくることを繰り返すと、約95％の区間が母平均を含む」と説明し、誤った解釈を見分けることができる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>信頼度を95％から99％に上げると区間の幅がどう変わるかを、係数1.96と2.58を用いて説明することができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ｂ-055）</span>母平均の推定</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>信頼区間の意味</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ｂ-057）</span>母比率の推定</div>
+</div>
+<p class="small">前提となる単元：数学Ⅰ「データの分析」、数学Ａ「場合の数と確率」、数学Ⅱ「いろいろな式」（単元「統計的な推測」の前提）。この時間は特に、同じ単元の数Ｂ-046（標準正規分布と正規分布表）、数Ｂ-054（標本平均の分布）、数Ｂ-055（母平均の推定）の内容を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、次の3つを使います。どれも前の時間までに学んだことです。</p>
+<ul>
+  <li><strong>標本平均の分布</strong>（数Ｂ-054）：母平均 \(m\)、母標準偏差 \(\sigma\) の母集団から大きさ \(n\) の標本を無作為に抽出すると、標本平均 \(\overline{X}\) の平均は \(m\)、標準偏差は \(\sigma/\sqrt n\)。\(n\) が大きいとき、\(\overline{X}\) の分布は正規分布 \(N\!\left(m,\ \sigma^2/n\right)\) とみなせます。</li>
+  <li><strong>標準化と正規分布表</strong>（数Ｂ-046）：\(Z=\dfrac{\overline{X}-m}{\sigma/\sqrt n}\) は標準正規分布 \(N(0,1)\) に従うとみなせ、確率は正規分布表の値 \(p(u)=P(0\leqq Z\leqq u)\) から求めます。</li>
+  <li><strong>母平均の信頼区間</strong>（数Ｂ-055）：母平均を幅をもった区間で推定すること（区間推定）を学びました。\(\sigma\) が分かっているとき、信頼度95％の信頼区間は次のとおりです。$$ \overline{X}-1.96\cdot\frac{\sigma}{\sqrt n}\leqq m\leqq \overline{X}+1.96\cdot\frac{\sigma}{\sqrt n} $$</li>
+</ul>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ｂ-054</span></div>
+  <p>母標準偏差が 2.0 g の母集団から、大きさ 25 の標本を無作為に抽出します。標本平均 \(\overline{X}\) の標準偏差はいくらですか。</p>
+  <div class="choices">
+    <button>2.0 g</button>
+    <button data-correct="true">0.4 g</button>
+    <button>0.08 g</button>
+    <button>0.16 g</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\(\sigma/\sqrt n=2.0/\sqrt{25}=2.0/5=0.4\)（g）です。2.0 g は母集団の個々の値の散らばりで、標本平均の散らばりはそれより小さくなります。0.08 は \(2.0/25\)（\(\sqrt{\ }\) を付け忘れ）、0.16 は分散 \(0.4^2\) です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ｂ-046・数Ｂ-055</span></div>
+  <p>正規分布表で \(p(1.96)=0.4750\) です。\(Z\) が標準正規分布に従うとき、\(P(-1.96\leqq Z\leqq 1.96)\) はいくらですか。</p>
+  <div class="choices">
+    <button>0.4750</button>
+    <button>0.9750</button>
+    <button data-correct="true">0.9500</button>
+    <button>0.0500</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">分布曲線は \(y\) 軸について対称なので、\(P(-1.96\leqq Z\leqq 1.96)=2p(1.96)=2\times0.4750=0.9500\) です。0.4750 は片側だけ、0.9750 は \(P(Z\leqq1.96)\)、0.0500 は区間の外側の確率です。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ｂ-055</span></div>
+  <p>母標準偏差が 2.0 g の母集団から大きさ 25 の標本を抽出したところ、標本平均は 30.2 g でした。母平均 \(m\) に対する信頼度95％の信頼区間はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\(29.416\leqq m\leqq 30.984\)</button>
+    <button>\(26.28\leqq m\leqq 34.12\)</button>
+    <button>\(29.8\leqq m\leqq 30.6\)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\(1.96\times 2.0/\sqrt{25}=1.96\times0.4=0.784\) なので、\(30.2-0.784\leqq m\leqq 30.2+0.784\)、つまり \(29.416\leqq m\leqq 30.984\) です。\(26.28\leqq m\leqq 34.12\) は \(\sqrt n\) で割るのを忘れた場合、\(29.8\leqq m\leqq 30.6\) は \(1.96\) を掛け忘れた場合です。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：「95％」は何の95％？</h2>
+<p>ある工場の品質管理を担当する佐藤さんは、大量に生産されたクッキーから25枚を無作為に抽出して重さを量り、標本平均 29.8 g を得ました。クッキー1枚の重さの母標準偏差は、これまでの記録から 2.0 g と分かっています（このページの数値は学習用の架空の設定です）。</p>
+<p>前の時間の方法で計算すると、母平均 \(m\) の信頼度95％の信頼区間は \(29.016\leqq m\leqq 30.584\)、小数第2位を四捨五入して「29.0 g 以上 30.6 g 以下」です。報告を聞いた上司は、次のように言いました。</p>
+<div class="box think">
+  <p class="box-title">上司の2つの発言を考えよう</p>
+  <p>①「別の日に25枚を調べても、同じ区間が出るんだろうね。」</p>
+  <p>②「つまり、母平均が 29.0 g から 30.6 g の間にある確率が95％ということだね。」</p>
+  <p>どちらも正しいでしょうか。自分の予想をノートに書いてから、本編に進みましょう。答えは3節（①）と5節（②）で明らかになります。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="標本ごとの信頼区間"><span class="num">3</span>標本が変わると、信頼区間も変わる（95％と99％）</h2>
+<p>母平均 \(m\) は、母集団について決まっている<strong>1つの値</strong>です（ふつうは分かりません）。一方、信頼区間は標本平均 \(\overline{X}\) を中心につくるので、<span class="em">標本が変われば区間も変わります</span>。3人がそれぞれ別の標本をとった場合を計算してみましょう。</p>
+<div class="box example worked">
+  <p class="box-title">例題1　3人の95％信頼区間</p>
+  <p>母標準偏差 2.0 g のクッキーの母集団から、Aさん・Bさん・Cさんがそれぞれ25枚を無作為に抽出しました。標本平均は、Aさん 29.8 g、Bさん 30.5 g、Cさん 30.9 g でした。それぞれの標本から、母平均 \(m\) に対する信頼度95％の信頼区間を求めなさい。</p>
+  <div class="step">ステップ1：3人とも \(\sigma=2.0\)、\(n=25\) なので、区間の中心から端までの長さは共通です。\(\dfrac{\sigma}{\sqrt n}=\dfrac{2.0}{5}=0.4\)、\(1.96\times0.4=0.784\)（g）。</div>
+  <div class="step">ステップ2：それぞれの標本平均から 0.784 を引いた値と足した値が両端です。<br>Aさん：\(29.8\pm0.784\) より \(29.016\leqq m\leqq 30.584\)<br>Bさん：\(30.5\pm0.784\) より \(29.716\leqq m\leqq 31.284\)<br>Cさん：\(30.9\pm0.784\) より \(30.116\leqq m\leqq 31.684\)</div>
+  <div class="step">ステップ3：答え　上の3つの区間（単位は g）。同じ母集団・同じ方法なのに、<strong>3つの区間はすべて異なります</strong>。区間の幅はどれも \(2\times0.784=1.568\)（g）で同じです。導入の上司の発言①は正しくありません。</div>
+</div>
+
+<h3>信頼度99％の係数 2.58 を正規分布表から求める</h3>
+<p>信頼度を99％にするには、\(P(-u\leqq Z\leqq u)=0.99\) となる \(u\) を使います。対称性から \(2p(u)=0.99\)、つまり <strong>\(p(u)=0.495\)</strong> となる \(u\) を正規分布表で探します。</p>
+<div class="table-wrap">
+<table>
+  <caption class="small">正規分布表の一部（\(p(u)=P(0\leqq Z\leqq u)\)、小数第5位を四捨五入）</caption>
+  <tr><th>\(u\)</th><td>1.94</td><td>1.95</td><td><strong>1.96</strong></td><td>1.97</td><td>2.56</td><td>2.57</td><td><strong>2.58</strong></td><td>2.59</td></tr>
+  <tr><th>\(p(u)\)</th><td>0.4738</td><td>0.4744</td><td><strong>0.4750</strong></td><td>0.4756</td><td>0.4948</td><td>0.4949</td><td><strong>0.4951</strong></td><td>0.4952</td></tr>
+</table>
+</div>
+<p>0.495 は \(p(2.57)=0.4949\) と \(p(2.58)=0.4951\) のちょうど真ん中にあります。この4桁の表だけでは、2.57 と 2.58 のどちらに近いかは決まりません。</p>
+<p>もう1桁詳しく計算すると \(p(2.57)=0.49492\)、\(p(2.58)=0.49506\) です。0.495 との差は 0.00008 と 0.00006 なので、2.58 の方が近くなります（さらに詳しく求めると \(u=2.5758\cdots\)）。そこで、信頼度99％の係数には \(u\approx2.58\) を使います。同じように、95％のときは \(p(u)=0.475\) から \(u=1.96\) でした。</p>
+<div class="box point"><p class="box-title">母平均の信頼区間（母標準偏差 \(\sigma\) が分かっていて、\(n\) が大きいとき）</p>
+<p>信頼度95％：\(\overline{X}-1.96\cdot\dfrac{\sigma}{\sqrt n}\leqq m\leqq\overline{X}+1.96\cdot\dfrac{\sigma}{\sqrt n}\)</p>
+<p>信頼度99％：\(\overline{X}-2.58\cdot\dfrac{\sigma}{\sqrt n}\leqq m\leqq\overline{X}+2.58\cdot\dfrac{\sigma}{\sqrt n}\)</p>
+<p>係数は「区間の内側の確率」の半分（0.475、0.495）を正規分布表の中から探して決めます。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>99％の係数を求めるとき、正規分布表の中から 0.99 を探そうとする間違いがあります。表の値は \(P(0\leqq Z\leqq u)\)（右半分だけ）なので、探すのは \(0.99\div2=0.495\) です。また、\(\sqrt n\) で割るのを忘れると区間が \(\sqrt n\) 倍に広がってしまいます。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題2　同じ3人の99％信頼区間</p>
+  <p>例題1の3人の標本から、信頼度99％の信頼区間を求めなさい。</p>
+  <div class="step">ステップ1：中心から端までの長さは \(2.58\times0.4=1.032\)（g）です。</div>
+  <div class="step">ステップ2：Aさん：\(28.768\leqq m\leqq 30.832\)、Bさん：\(29.468\leqq m\leqq 31.532\)、Cさん：\(29.868\leqq m\leqq 31.932\)</div>
+  <div class="step">ステップ3：答え　上の3つの区間。幅は \(2\times1.032=2.064\)（g）で、95％のとき（1.568 g）より広くなります。同じ標本から求めた99％の区間は、95％の区間を内側に含んでいます。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="コンピュータで確かめる"><span class="num">4</span>コンピュータで、たくさんの信頼区間をつくってみる</h2>
+<p>実際の調査では母平均 \(m\) は分かりません。そこで、コンピュータの中に<strong>母平均が分かっている母集団</strong>をつくり、「標本を抽出して信頼区間をつくる」ことを何度も繰り返してみます。ここでは母集団分布を、平均 30.0 g、標準偏差 2.0 g の正規分布とします（学習用の設定）。</p>
+<p>この設定で例題1を見直すと、\(m=30.0\) は、Aさんの区間（29.016〜30.584）とBさんの区間（29.716〜31.284）には含まれますが、Cさんの区間（30.116〜31.684）には<strong>含まれません</strong>。Cさんの標本平均 30.9 g は、たまたま重いクッキーが多く選ばれて \(m\) から 0.9 g 離れ、0.784 g より大きくずれたからです。一方、Cさんの99％の区間（29.868〜31.932）は \(m\) を含みます。</p>
+<figure>
+  <svg viewBox="0 0 600 496" role="img" aria-label="母平均30.0の母集団から大きさ25の標本を20組とったときの信頼区間。20組のうち19組の95％信頼区間が母平均を含み、4番目だけが含まない。99％信頼区間は20組すべてが母平均を含む。">
+    <line x1="300" y1="18" x2="300" y2="440" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 3"/>
+    <text x="306" y="16" font-size="12" fill="currentColor">母平均 m = 30.0（シミュレーションでは既知）</text>
+<!--gen:図1-->
+<text x="60.0" y="462" font-size="12" text-anchor="middle" fill="currentColor">28.0</text><line x1="60.0" y1="440" x2="60.0" y2="446" stroke="currentColor"/>
+<text x="120.0" y="462" font-size="12" text-anchor="middle" fill="currentColor">28.5</text><line x1="120.0" y1="440" x2="120.0" y2="446" stroke="currentColor"/>
+<text x="180.0" y="462" font-size="12" text-anchor="middle" fill="currentColor">29.0</text><line x1="180.0" y1="440" x2="180.0" y2="446" stroke="currentColor"/>
+<text x="240.0" y="462" font-size="12" text-anchor="middle" fill="currentColor">29.5</text><line x1="240.0" y1="440" x2="240.0" y2="446" stroke="currentColor"/>
+<text x="300.0" y="462" font-size="12" text-anchor="middle" fill="currentColor">30.0</text><line x1="300.0" y1="440" x2="300.0" y2="446" stroke="currentColor"/>
+<text x="360.0" y="462" font-size="12" text-anchor="middle" fill="currentColor">30.5</text><line x1="360.0" y1="440" x2="360.0" y2="446" stroke="currentColor"/>
+<text x="420.0" y="462" font-size="12" text-anchor="middle" fill="currentColor">31.0</text><line x1="420.0" y1="440" x2="420.0" y2="446" stroke="currentColor"/>
+<text x="480.0" y="462" font-size="12" text-anchor="middle" fill="currentColor">31.5</text><line x1="480.0" y1="440" x2="480.0" y2="446" stroke="currentColor"/>
+<text x="540.0" y="462" font-size="12" text-anchor="middle" fill="currentColor">32.0</text><line x1="540.0" y1="440" x2="540.0" y2="446" stroke="currentColor"/>
+<line x1="60" y1="440" x2="540" y2="440" stroke="currentColor"/>
+<line x1="180.5" y1="34" x2="428.2" y2="34" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="210.2" y1="34" x2="398.4" y2="34" stroke="currentColor" stroke-width="4"/><circle cx="304.3" cy="34" r="3" fill="currentColor"/><text x="40" y="38" font-size="11" text-anchor="end" fill="currentColor">1</text>
+<line x1="209.9" y1="54" x2="457.5" y2="54" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="239.6" y1="54" x2="427.8" y2="54" stroke="currentColor" stroke-width="4"/><circle cx="333.7" cy="54" r="3" fill="currentColor"/><text x="40" y="58" font-size="11" text-anchor="end" fill="currentColor">2</text>
+<line x1="179.4" y1="74" x2="427.1" y2="74" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="209.2" y1="74" x2="397.3" y2="74" stroke="currentColor" stroke-width="4"/><circle cx="303.3" cy="74" r="3" fill="currentColor"/><text x="40" y="78" font-size="11" text-anchor="end" fill="currentColor">3</text>
+<line x1="72.6" y1="94" x2="320.3" y2="94" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="102.3" y1="94" x2="290.5" y2="94" stroke="currentColor" stroke-width="4" stroke-dasharray="6 4"/><circle cx="196.4" cy="94" r="3" fill="currentColor"/><text x="40" y="98" font-size="11" text-anchor="end" fill="currentColor">4</text>
+<text x="326.3" y="98" font-size="12" fill="currentColor">× 95％は含まない（99％は含む）</text>
+<line x1="193.8" y1="114" x2="441.4" y2="114" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="223.5" y1="114" x2="411.7" y2="114" stroke="currentColor" stroke-width="4"/><circle cx="317.6" cy="114" r="3" fill="currentColor"/><text x="40" y="118" font-size="11" text-anchor="end" fill="currentColor">5</text>
+<line x1="185.1" y1="134" x2="432.8" y2="134" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="214.9" y1="134" x2="403.1" y2="134" stroke="currentColor" stroke-width="4"/><circle cx="309.0" cy="134" r="3" fill="currentColor"/><text x="40" y="138" font-size="11" text-anchor="end" fill="currentColor">6</text>
+<line x1="137.8" y1="154" x2="385.5" y2="154" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="167.6" y1="154" x2="355.8" y2="154" stroke="currentColor" stroke-width="4"/><circle cx="261.7" cy="154" r="3" fill="currentColor"/><text x="40" y="158" font-size="11" text-anchor="end" fill="currentColor">7</text>
+<line x1="232.7" y1="174" x2="480.4" y2="174" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="262.4" y1="174" x2="450.6" y2="174" stroke="currentColor" stroke-width="4"/><circle cx="356.5" cy="174" r="3" fill="currentColor"/><text x="40" y="178" font-size="11" text-anchor="end" fill="currentColor">8</text>
+<line x1="211.9" y1="194" x2="459.6" y2="194" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="241.6" y1="194" x2="429.8" y2="194" stroke="currentColor" stroke-width="4"/><circle cx="335.7" cy="194" r="3" fill="currentColor"/><text x="40" y="198" font-size="11" text-anchor="end" fill="currentColor">9</text>
+<line x1="177.9" y1="214" x2="425.6" y2="214" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="207.7" y1="214" x2="395.8" y2="214" stroke="currentColor" stroke-width="4"/><circle cx="301.8" cy="214" r="3" fill="currentColor"/><text x="40" y="218" font-size="11" text-anchor="end" fill="currentColor">10</text>
+<line x1="203.2" y1="234" x2="450.9" y2="234" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="232.9" y1="234" x2="421.1" y2="234" stroke="currentColor" stroke-width="4"/><circle cx="327.0" cy="234" r="3" fill="currentColor"/><text x="40" y="238" font-size="11" text-anchor="end" fill="currentColor">11</text>
+<line x1="206.9" y1="254" x2="454.5" y2="254" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="236.6" y1="254" x2="424.8" y2="254" stroke="currentColor" stroke-width="4"/><circle cx="330.7" cy="254" r="3" fill="currentColor"/><text x="40" y="258" font-size="11" text-anchor="end" fill="currentColor">12</text>
+<line x1="212.4" y1="274" x2="460.1" y2="274" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="242.2" y1="274" x2="430.3" y2="274" stroke="currentColor" stroke-width="4"/><circle cx="336.3" cy="274" r="3" fill="currentColor"/><text x="40" y="278" font-size="11" text-anchor="end" fill="currentColor">13</text>
+<line x1="185.0" y1="294" x2="432.6" y2="294" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="214.7" y1="294" x2="402.9" y2="294" stroke="currentColor" stroke-width="4"/><circle cx="308.8" cy="294" r="3" fill="currentColor"/><text x="40" y="298" font-size="11" text-anchor="end" fill="currentColor">14</text>
+<line x1="260.8" y1="314" x2="508.5" y2="314" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="290.6" y1="314" x2="478.7" y2="314" stroke="currentColor" stroke-width="4"/><circle cx="384.6" cy="314" r="3" fill="currentColor"/><text x="40" y="318" font-size="11" text-anchor="end" fill="currentColor">15</text>
+<line x1="242.5" y1="334" x2="490.2" y2="334" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="272.3" y1="334" x2="460.5" y2="334" stroke="currentColor" stroke-width="4"/><circle cx="366.4" cy="334" r="3" fill="currentColor"/><text x="40" y="338" font-size="11" text-anchor="end" fill="currentColor">16</text>
+<line x1="189.0" y1="354" x2="436.7" y2="354" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="218.8" y1="354" x2="406.9" y2="354" stroke="currentColor" stroke-width="4"/><circle cx="312.9" cy="354" r="3" fill="currentColor"/><text x="40" y="358" font-size="11" text-anchor="end" fill="currentColor">17</text>
+<line x1="210.3" y1="374" x2="458.0" y2="374" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="240.0" y1="374" x2="428.2" y2="374" stroke="currentColor" stroke-width="4"/><circle cx="334.1" cy="374" r="3" fill="currentColor"/><text x="40" y="378" font-size="11" text-anchor="end" fill="currentColor">18</text>
+<line x1="132.5" y1="394" x2="380.2" y2="394" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="162.3" y1="394" x2="350.4" y2="394" stroke="currentColor" stroke-width="4"/><circle cx="256.3" cy="394" r="3" fill="currentColor"/><text x="40" y="398" font-size="11" text-anchor="end" fill="currentColor">19</text>
+<line x1="157.0" y1="414" x2="404.6" y2="414" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/><line x1="186.7" y1="414" x2="374.9" y2="414" stroke="currentColor" stroke-width="4"/><circle cx="280.8" cy="414" r="3" fill="currentColor"/><text x="40" y="418" font-size="11" text-anchor="end" fill="currentColor">20</text>
+<!--/gen:図1-->
+    <text x="300" y="488" font-size="11" text-anchor="middle" fill="currentColor">重さ（g）　太線：95％信頼区間　細線：99％信頼区間　●：標本平均</text>
+  </svg>
+  <figcaption>図1　大きさ25の標本を20組抽出したシミュレーションの結果（乱数の種を固定した1回分）。95％信頼区間は20組中19組（95％）、99％信頼区間は20組すべてが母平均を含んだ。</figcaption>
+</figure>
+<p>図1では、たまたま20組中ちょうど19組でしたが、いつもそうなるとは限りません。下のシミュレーションで、100組の標本をとることを何回か繰り返してみましょう。</p>
+<div class="widget" id="ci-sim">
+  <p><strong>シミュレーション：100組の標本から信頼区間をつくる</strong></p>
+  <p class="small">母集団：平均 \(m=30.0\) g、標準偏差 \(\sigma=2.0\) g の正規分布（学習用の設定）。ボタンを押すたびに、大きさ \(n\) の標本を100組、新しく無作為に抽出します。</p>
+  <p>
+    <label>信頼度 <select id="ci-level"><option value="95">95％（係数1.96）</option><option value="99">99％（係数2.58）</option></select></label>
+    　<label>標本の大きさ \(n\) = <strong id="ci-n-val">25</strong> <input type="range" id="ci-n" min="0" max="4" step="1" value="0" aria-label="標本の大きさ n"></label>
+  </p>
+  <p><button type="button" class="primary" id="ci-run">100組の標本をとる</button> <button type="button" id="ci-reset">記録を消す</button></p>
+  <svg id="ci-svg" viewBox="0 0 600 360" role="img" aria-label="100組の標本それぞれの信頼区間を横線で表した図。縦の破線が母平均 30.0。母平均を含まない区間は太い破線で、右端に×印を付けて表す。"></svg>
+  <p id="ci-stat" aria-live="polite"></p>
+  <p id="ci-total" class="small" aria-live="polite"></p>
+</div>
+<p>何回か試すと、次のことが分かります。</p>
+<ul>
+  <li>100組のうち \(m\) を含む区間の個数は、回ごとに変わります（例えば 93 個、96 個、95 個、…）。</li>
+  <li>繰り返すほど、含む区間の<strong>割合</strong>は 0.95 に近づきます（信頼度99％にすると 0.99 に近づきます）。多数回の試行の相対度数が確率に近づくという、数学Ａ（数Ａ-019）で学んだ頻度確率の考え方と同じです。</li>
+  <li>標本の大きさ \(n\) を変えると区間の<strong>長さ</strong>は変わりますが、\(m\) を含む割合は約95％のままです。</li>
+</ul>
+<div class="box point"><p class="box-title">含む区間の個数は二項分布に従う</p>
+<p>100組の標本は互いに独立に抽出するので、100個の95％信頼区間のうち \(m\) を含む個数を \(Y\) とすると、\(Y\) は二項分布 \(B(100,\ 0.95)\) に従います（数Ｂ-041・数Ｂ-043）。平均は \(100\times0.95=95\)、標準偏差は \(\sqrt{100\times0.95\times0.05}=\sqrt{4.75}\approx2.18\) です。ちょうど95個になる確率 \(P(Y=95)\) は約0.18にすぎず、93個や97個になることも珍しくありません。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="信頼度95％の意味"><span class="num">5</span>「信頼度95％」は、何が95％なのか</h2>
+<p>シミュレーションの結果を、式で確かめましょう。標本を抽出する<strong>前</strong>には、標本平均 \(\overline{X}\) は確率変数で、その分布は \(N\!\left(m,\ \sigma^2/n\right)\) とみなせます。確認2で見たように、</p>
+$$ P\!\left(m-1.96\cdot\frac{\sigma}{\sqrt n}\leqq \overline{X}\leqq m+1.96\cdot\frac{\sigma}{\sqrt n}\right)\approx0.95 $$
+<p>です。かっこの中の不等式は \(\left|\overline{X}-m\right|\leqq1.96\cdot\dfrac{\sigma}{\sqrt n}\) と同じで、「\(\overline{X}\) と \(m\) の距離が \(1.96\sigma/\sqrt n\) 以下」という意味です。これを \(m\) について書き直すと、</p>
+$$ P\!\left(\overline{X}-1.96\cdot\frac{\sigma}{\sqrt n}\leqq m\leqq \overline{X}+1.96\cdot\frac{\sigma}{\sqrt n}\right)\approx0.95 $$
+<p>となります。ここで<span class="em">動く（確率的に変わる）のは区間の両端 \(\overline{X}\pm1.96\sigma/\sqrt n\) で、\(m\) は動きません</span>。つまり0.95は、「これから抽出する標本でつくる区間が、\(m\) を含む区間になる確率」です。</p>
+<figure>
+  <svg viewBox="0 0 640 336" role="img" aria-label="標本平均の分布N(30, 0.4の2乗)の曲線と、その中央の95％の範囲29.216から30.784の網掛け。その下にAからEの5人の95％信頼区間。標本平均が網掛けの範囲に入ったA、B、D、Eの区間は母平均を含み、範囲の外の30.9になったCの区間だけが母平均を含まない。">
+<!--gen:図2-->
+<polygon points="182.4,150.0 182.4,133.9 185.3,132.3 188.3,130.6 191.2,128.7 194.2,126.8 197.1,124.7 200.0,122.5 203.0,120.2 205.9,117.8 208.9,115.3 211.8,112.7 214.7,109.9 217.7,107.1 220.6,104.2 223.6,101.1 226.5,98.1 229.4,94.9 232.4,91.7 235.3,88.5 238.3,85.2 241.2,81.9 244.1,78.7 247.1,75.4 250.0,72.2 253.0,69.1 255.9,66.0 258.8,63.1 261.8,60.2 264.7,57.5 267.7,54.9 270.6,52.4 273.5,50.2 276.5,48.1 279.4,46.3 282.4,44.7 285.3,43.3 288.2,42.1 291.2,41.2 294.1,40.5 297.1,40.1 300.0,40.0 302.9,40.1 305.9,40.5 308.8,41.2 311.8,42.1 314.7,43.3 317.6,44.7 320.6,46.3 323.5,48.1 326.5,50.2 329.4,52.4 332.3,54.9 335.3,57.5 338.2,60.2 341.2,63.1 344.1,66.0 347.0,69.1 350.0,72.2 352.9,75.4 355.9,78.7 358.8,81.9 361.7,85.2 364.7,88.5 367.6,91.7 370.6,94.9 373.5,98.1 376.4,101.1 379.4,104.2 382.3,107.1 385.3,109.9 388.2,112.7 391.1,115.3 394.1,117.8 397.0,120.2 400.0,122.5 402.9,124.7 405.8,126.8 408.8,128.7 411.7,130.6 414.7,132.3 417.6,133.9 417.6,150.0" fill="currentColor" fill-opacity="0.15" stroke="none"/>
+<polyline points="60.0,150.0 63.0,150.0 66.0,149.9 69.0,149.9 72.0,149.9 75.0,149.9 78.0,149.9 81.0,149.9 84.0,149.8 87.0,149.8 90.0,149.8 93.0,149.7 96.0,149.7 99.0,149.6 102.0,149.5 105.0,149.4 108.0,149.3 111.0,149.2 114.0,149.1 117.0,148.9 120.0,148.8 123.0,148.6 126.0,148.4 129.0,148.1 132.0,147.8 135.0,147.5 138.0,147.1 141.0,146.7 144.0,146.3 147.0,145.7 150.0,145.2 153.0,144.5 156.0,143.8 159.0,143.0 162.0,142.2 165.0,141.2 168.0,140.2 171.0,139.1 174.0,137.9 177.0,136.5 180.0,135.1 183.0,133.6 186.0,131.9 189.0,130.1 192.0,128.2 195.0,126.2 198.0,124.1 201.0,121.8 204.0,119.4 207.0,116.9 210.0,114.3 213.0,111.6 216.0,108.7 219.0,105.8 222.0,102.7 225.0,99.6 228.0,96.5 231.0,93.2 234.0,89.9 237.0,86.6 240.0,83.3 243.0,79.9 246.0,76.6 249.0,73.4 252.0,70.1 255.0,67.0 258.0,63.9 261.0,60.9 264.0,58.1 267.0,55.4 270.0,52.9 273.0,50.6 276.0,48.5 279.0,46.5 282.0,44.8 285.0,43.4 288.0,42.2 291.0,41.2 294.0,40.5 297.0,40.1 300.0,40.0 303.0,40.1 306.0,40.5 309.0,41.2 312.0,42.2 315.0,43.4 318.0,44.8 321.0,46.5 324.0,48.5 327.0,50.6 330.0,52.9 333.0,55.4 336.0,58.1 339.0,60.9 342.0,63.9 345.0,67.0 348.0,70.1 351.0,73.4 354.0,76.6 357.0,79.9 360.0,83.3 363.0,86.6 366.0,89.9 369.0,93.2 372.0,96.5 375.0,99.6 378.0,102.7 381.0,105.8 384.0,108.7 387.0,111.6 390.0,114.3 393.0,116.9 396.0,119.4 399.0,121.8 402.0,124.1 405.0,126.2 408.0,128.2 411.0,130.1 414.0,131.9 417.0,133.6 420.0,135.1 423.0,136.5 426.0,137.9 429.0,139.1 432.0,140.2 435.0,141.2 438.0,142.2 441.0,143.0 444.0,143.8 447.0,144.5 450.0,145.2 453.0,145.7 456.0,146.3 459.0,146.7 462.0,147.1 465.0,147.5 468.0,147.8 471.0,148.1 474.0,148.4 477.0,148.6 480.0,148.8 483.0,148.9 486.0,149.1 489.0,149.2 492.0,149.3 495.0,149.4 498.0,149.5 501.0,149.6 504.0,149.7 507.0,149.7 510.0,149.8 513.0,149.8 516.0,149.8 519.0,149.9 522.0,149.9 525.0,149.9 528.0,149.9 531.0,149.9 534.0,149.9 537.0,150.0 540.0,150.0" fill="none" stroke="currentColor" stroke-width="2"/>
+<line x1="60" y1="150" x2="540" y2="150" stroke="currentColor"/>
+<line x1="75.0" y1="150" x2="75.0" y2="155" stroke="currentColor"/><text x="75.0" y="168" font-size="12" text-anchor="middle" fill="currentColor">28.5</text>
+<line x1="150.0" y1="150" x2="150.0" y2="155" stroke="currentColor"/><text x="150.0" y="168" font-size="12" text-anchor="middle" fill="currentColor">29.0</text>
+<line x1="225.0" y1="150" x2="225.0" y2="155" stroke="currentColor"/><text x="225.0" y="168" font-size="12" text-anchor="middle" fill="currentColor">29.5</text>
+<line x1="300.0" y1="150" x2="300.0" y2="155" stroke="currentColor"/><text x="300.0" y="168" font-size="12" text-anchor="middle" fill="currentColor">30.0</text>
+<line x1="375.0" y1="150" x2="375.0" y2="155" stroke="currentColor"/><text x="375.0" y="168" font-size="12" text-anchor="middle" fill="currentColor">30.5</text>
+<line x1="450.0" y1="150" x2="450.0" y2="155" stroke="currentColor"/><text x="450.0" y="168" font-size="12" text-anchor="middle" fill="currentColor">31.0</text>
+<line x1="525.0" y1="150" x2="525.0" y2="155" stroke="currentColor"/><text x="525.0" y="168" font-size="12" text-anchor="middle" fill="currentColor">31.5</text>
+<line x1="182.4" y1="129.9" x2="182.4" y2="150" stroke="currentColor" stroke-dasharray="3 3"/>
+<line x1="417.6" y1="129.9" x2="417.6" y2="150" stroke="currentColor" stroke-dasharray="3 3"/>
+<line x1="152.4" y1="202" x2="387.6" y2="202" stroke="currentColor" stroke-width="3"/><circle cx="270.0" cy="202" r="4" fill="currentColor"/><text x="20" y="206" font-size="12" fill="currentColor">A 29.8</text><text x="395.6" y="206" font-size="12" fill="currentColor">含む</text>
+<line x1="257.4" y1="230" x2="492.6" y2="230" stroke="currentColor" stroke-width="3"/><circle cx="375.0" cy="230" r="4" fill="currentColor"/><text x="20" y="234" font-size="12" fill="currentColor">B 30.5</text><text x="500.6" y="234" font-size="12" fill="currentColor">含む</text>
+<line x1="317.4" y1="258" x2="552.6" y2="258" stroke="currentColor" stroke-width="3" stroke-dasharray="6 4"/><circle cx="435.0" cy="258" r="4" fill="currentColor"/><text x="20" y="262" font-size="12" fill="currentColor">C 30.9</text><text x="560.6" y="262" font-size="12" fill="currentColor">× 含まない</text>
+<line x1="92.4" y1="286" x2="327.6" y2="286" stroke="currentColor" stroke-width="3"/><circle cx="210.0" cy="286" r="4" fill="currentColor"/><text x="20" y="290" font-size="12" fill="currentColor">D 29.4</text><text x="335.6" y="290" font-size="12" fill="currentColor">含む</text>
+<line x1="212.4" y1="314" x2="447.6" y2="314" stroke="currentColor" stroke-width="3"/><circle cx="330.0" cy="314" r="4" fill="currentColor"/><text x="20" y="318" font-size="12" fill="currentColor">E 30.2</text><text x="455.6" y="318" font-size="12" fill="currentColor">含む</text>
+<!--/gen:図2-->
+    <line x1="300" y1="30" x2="300" y2="328" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 3"/>
+    <text x="306" y="28" font-size="12" fill="currentColor">m = 30.0</text>
+    <text x="440" y="60" font-size="12" fill="currentColor">標本平均の分布 N(30, 0.4²)</text>
+    <text x="248" y="118" font-size="12" text-anchor="middle" fill="currentColor">確率 0.95</text>
+    <text x="182" y="182" font-size="11" text-anchor="middle" fill="currentColor">29.216</text>
+    <text x="418" y="182" font-size="11" text-anchor="middle" fill="currentColor">30.784</text>
+  </svg>
+  <figcaption>図2　上：標本平均の分布と、その中央の95％の範囲（網掛け、\(30\pm0.784\)）。下：5人の95％信頼区間（●が標本平均、太線が区間）。●が網掛けの範囲に入ると区間は \(m\) を含み、外に出ると含まない（Cの破線）。</figcaption>
+</figure>
+<p>図2のように、区間が \(m\) を含むのは「標本平均が \(m\) から \(1.96\sigma/\sqrt n\) 以内に入ったとき」と同じです。標本平均がその範囲に入る確率が0.95なので、区間が \(m\) を含む確率も0.95になるのです。</p>
+
+<h3>標本を抽出した後の区間は？</h3>
+<p>佐藤さんの区間 \(29.016\leqq m\leqq30.584\) は、もう確率変数ではなく、決まった2つの数でできた区間です。\(m\) も決まった値なので、<strong>この区間は \(m\) を含んでいるか、含んでいないかのどちらか</strong>です（どちらかは分かりません）。そのため「この区間に \(m\) が含まれる確率が95％」という言い方は適切ではありません。導入の上司の発言②は、この点で不正確です。</p>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>標本を抽出する前</th><th>標本を抽出した後</th></tr>
+  <tr><th>区間の両端</th><td>確率変数（標本によって変わる）</td><td>決まった数（例：29.016 と 30.584）</td></tr>
+  <tr><th>母平均 \(m\)</th><td colspan="2">未知だが決まった1つの値（確率的に変わらない）</td></tr>
+  <tr><th>0.95 の意味</th><td>つくる区間が \(m\) を含む確率</td><td>その区間は \(m\) を含むか含まないか。0.95 は区間をつくった<strong>方法の信頼性</strong>を表す</td></tr>
+</table>
+</div>
+<div class="box point"><p class="box-title">信頼度95％の意味</p><p>同じ大きさの標本を抽出して同じ方法で信頼区間をつくることを何回も繰り返すと、<strong>つくった区間のうち約95％が母平均 \(m\) を含む</strong>。この方法でつくった1つの区間を示して、「信頼度95％で、\(m\) は 29.016 以上 30.584 以下と推定される」と表現します。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い（信頼度の意味の取り違え）</p>
+<p>✕「母平均 \(m\) が 29.016 以上 30.584 以下である確率は95％」…… \(m\) は変わらない値で、求めた区間は \(m\) を含むか含まないかのどちらかです。95％は区間をつくる方法についての確率です。</p>
+<p>✕「クッキーの95％は重さが 29.016 g 以上 30.584 g 以下」…… 信頼区間は母平均の推定です。個々のクッキーの重さは標準偏差 2.0 g で散らばるので、4節の設定（平均 30.0 g、標準偏差 2.0 g の正規分布）なら約95％のクッキーは \(30.0\pm1.96\times2.0\)、つまり 26.08 g 以上 33.92 g 以下にあり、信頼区間よりずっと広い範囲です。</p>
+<p>✕「別の25枚をとると、その標本平均が95％の確率でこの区間に入る」…… 求めた区間の中心は \(m\) ではなく今回の標本平均です。次の標本平均がこの区間に入る確率は、\(m\) がどこにあるかによって変わり、95％とは限りません。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="95％と99％の比較"><span class="num">6</span>信頼度を上げると、区間はどうなるか</h2>
+<p>同じ標本から95％と99％の区間をつくると、中心は同じ \(\overline{X}\) で、中心から端までの長さだけが変わります。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>信頼度</th><th>係数</th><th>区間の幅（一般）</th><th>クッキーの例（\(\sigma=2.0,\ n=25\)）</th><th>多数回つくったとき \(m\) を含む割合</th></tr>
+  <tr><td>95％</td><td>1.96</td><td>\(2\times1.96\cdot\dfrac{\sigma}{\sqrt n}\)</td><td>1.568 g</td><td>約95％</td></tr>
+  <tr><td>99％</td><td>2.58</td><td>\(2\times2.58\cdot\dfrac{\sigma}{\sqrt n}\)</td><td>2.064 g</td><td>約99％</td></tr>
+</table>
+</div>
+<p>幅の比は \(2.58\div1.96\approx1.32\) なので、99％の区間は95％の区間の<strong>約1.3倍の幅</strong>になります。信頼度を上げると \(m\) を取り逃がすことは減りますが、区間が広がって「\(m\) はだいたいこのあたり」という情報はあいまいになります。<span class="em">確実さと詳しさは、一方を上げると他方が下がる関係</span>にあります。</p>
+<div class="box think"><p class="box-title">考えよう：信頼度100％の区間は？</p><p>「絶対に \(m\) を含む」区間をつくろうとすると、どんな区間になるでしょうか。正規分布では、\(P(-u\leqq Z\leqq u)=1\) となる有限の \(u\) はありません。100％を求めると区間は限りなく広がり、推定の役に立たなくなります。だから95％や99％のような信頼度を決めて使うのです。</p></div>
+<p>区間を狭くするもう1つの方法は、標本を大きくすることです。区間の幅は \(\sqrt n\) に反比例するので、\(n\) を4倍にすると幅は \(\dfrac{1}{2}\) になります（前のシミュレーションで \(n\) を25から100に変えて確かめられます）。目的に応じて必要な標本の大きさを決める方法は、数Ｂ-063「標本調査の設計」で学びます。</p>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>「99％の方が精度が高いから、区間も狭い」と考えるのは誤りです。同じ標本なら、信頼度を上げるほど区間は<strong>広く</strong>なります。99％の区間は95％の区間を内側に含みます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>信頼区間</dt><dd>標本から求めた、母平均などの値を含むと推定される区間。母平均の場合、\(\overline{X}\pm(\text{係数})\times\sigma/\sqrt n\) を両端とする。</dd>
+    <dt>信頼度</dt><dd>信頼区間をつくる方法の確からしさを表す値（95％、99％など）。同じ方法で区間をつくることを繰り返すと、その割合の区間が母平均を含む。</dd>
+    <dt>区間推定</dt><dd>母集団の平均などを、幅をもった区間として推定すること。</dd>
+    <dt>係数 1.96・2.58</dt><dd>\(P(-u\leqq Z\leqq u)\) が 0.95、0.99 となる \(u\) の値を小数第2位まで求めたもの（正規分布表で \(p(u)=0.475,\ 0.495\)）。</dd>
+    <dt>区間の幅</dt><dd>信頼区間の上端と下端の差。\(2\times(\text{係数})\times\sigma/\sqrt n\)。信頼度を上げると広がり、\(n\) を大きくすると狭まる。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>信頼区間は標本平均を中心につくるので、標本ごとに変わる。95％は係数1.96、99％は係数2.58（正規分布表で \(p(u)=0.495\)）を使う。（O1）</li>
+    <li>コンピュータで標本を多数回抽出して区間をつくると、母平均を含む区間の割合は信頼度（0.95 や 0.99）に近づく。100個中の個数は \(B(100,\ 0.95)\) に従い、95前後でばらつく。（O2）</li>
+    <li>信頼度95％とは「同じ方法を繰り返すと約95％の区間が \(m\) を含む」という方法の信頼性。求めた1つの区間は \(m\) を含むか含まないかのどちらかで、「\(m\) がこの区間にある確率が95％」ではない。（O3）</li>
+    <li>信頼度を95％から99％に上げると、区間の幅は \(2.58/1.96\approx1.3\) 倍に広がる。確実さと詳しさは両立しにくい。\(n\) を4倍にすると幅は半分になる。（O4）</li>
+  </ul>
+</div>
+<div class="formula-card" style="grid-template-columns:minmax(0,1fr)">
+  <div><span class="f-name">母平均の信頼区間（信頼度95％）</span>$$ \overline{X}-1.96\cdot\frac{\sigma}{\sqrt n}\leqq m\leqq\overline{X}+1.96\cdot\frac{\sigma}{\sqrt n} $$</div>
+  <div><span class="f-name">母平均の信頼区間（信頼度99％）</span>$$ \overline{X}-2.58\cdot\frac{\sigma}{\sqrt n}\leqq m\leqq\overline{X}+2.58\cdot\frac{\sigma}{\sqrt n} $$</div>
+  <div><span class="f-name">区間の幅</span>$$ 2\times(\text{係数})\times\frac{\sigma}{\sqrt n} $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。正規分布表の値は、\(p(1.96)=0.4750\) と、小数第5位まで求めた \(p(2.57)=0.49492\)、\(p(2.58)=0.49506\) を用いる。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>ある製品の重さの母標準偏差は 4.0 g です。無作為に抽出した64個の標本平均が 52.3 g のとき、母平均 \(m\) に対する信頼度95％の信頼区間はどれですか。</p>
+  <div class="choices">
+    <button>\(44.46\leqq m\leqq 60.14\)</button>
+    <button data-correct="true">\(51.32\leqq m\leqq 53.28\)</button>
+    <button>\(51.01\leqq m\leqq 53.59\)</button>
+    <button>\(51.81\leqq m\leqq 52.79\)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\(\sigma/\sqrt n=4.0/8=0.5\)、\(1.96\times0.5=0.98\) なので、\(52.3\pm0.98\) より \(51.32\leqq m\leqq53.28\) です。\(44.46\leqq m\leqq60.14\) は \(\sqrt n\) で割り忘れた場合（\(1.96\times4.0=7.84\)）、\(51.01\leqq m\leqq53.59\) は99％の係数2.58を使った場合、\(51.81\leqq m\leqq52.79\) は中心から端までの長さ0.98をさらに半分にしてしまった場合です。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="2.58|u=2.58">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O4</span></div>
+  <p>信頼度99％の信頼区間で使う係数 \(u\)（\(P(-u\leqq Z\leqq u)=0.99\) を満たす \(u\)）を、確認問題の初めに示した正規分布表の値を用いて小数第2位まで答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 2.58。\(2p(u)=0.99\) より \(p(u)=0.495\)。\(p(2.57)=0.49492\)、\(p(2.58)=0.49506\) で、0.495 との差は 0.00008 と 0.00006 なので、近いのは \(u=2.58\) です。4桁の値（0.4949 と 0.4951）では差が同じになって決まらないので、もう1桁詳しい値で比べます。表の中で 0.99 を探したり、\(p(u)=0.99\) としたりしないように注意します。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>母平均 \(m\) の「信頼度95％の信頼区間」の意味として、正しいものはどれですか。</p>
+  <div class="choices">
+    <button>母集団の個々のデータのうち約95％が、求めた区間に入る。</button>
+    <button>求めた1つの区間に \(m\) が含まれる確率は、ちょうど0.95である。</button>
+    <button data-correct="true">標本を抽出して同じ方法で区間をつくることを何回も繰り返すと、つくった区間のうち約95％が \(m\) を含む。</button>
+    <button>同じ大きさの標本を何回とっても、95％の確率で同じ区間が得られる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は3つ目です。1つ目は個々のデータの散らばり（標準偏差 \(\sigma\)）と母平均の推定を混同しています。2つ目は、求めた区間も \(m\) も決まった値なので、含むか含まないかのどちらかであり、確率0.95の出来事ではありません。4つ目は、区間は標本平均を中心とするので標本ごとに変わります。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="190|190個|約190|約190個">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>母平均が分かっている母集団から、大きさ25の標本を互いに独立に200組抽出し、それぞれで母平均の信頼度95％の信頼区間をつくります。母平均を含む区間は約何個と予想されますか。整数で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は約190個。含む個数は二項分布 \(B(200,\ 0.95)\) に従い、平均は \(200\times0.95=190\)。標準偏差は \(\sqrt{200\times0.95\times0.05}=\sqrt{9.5}\approx3.08\) なので、実際には 187 や 193 になることもよくあります。「ちょうど190個になる」とは言えません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O4</span></div>
+  <p>同じ標本から、母平均の信頼度95％と99％の信頼区間をつくります。99％の信頼区間の幅は、95％の信頼区間の幅の約何倍ですか。</p>
+  <div class="choices">
+    <button>約0.76倍</button>
+    <button>約1.04倍</button>
+    <button data-correct="true">約1.32倍</button>
+    <button>約1.96倍</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">幅はそれぞれ \(2\times1.96\sigma/\sqrt n\) と \(2\times2.58\sigma/\sqrt n\) なので、比は \(2.58\div1.96\approx1.32\) です。約0.76倍は逆に割った値（\(1.96\div2.58\)）で、99％の方が狭いという誤解につながります。約1.04倍は \(0.99\div0.95\) で、信頼度の比と幅の比は同じではありません。約1.96倍は、95％の係数1.96そのものを幅の倍率と取り違えたものです。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="1/2|0.5|2分の1|半分|1/2倍|0.5倍">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O4</span></div>
+  <p>母標準偏差は変えずに、信頼度95％のまま、標本の大きさを25から100にします。信頼区間の幅は何倍になりますか。分数または小数で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \(\dfrac{1}{2}\) 倍。幅 \(2\times1.96\sigma/\sqrt n\) は \(\sqrt n\) に反比例するので、\(\sqrt{25}/\sqrt{100}=5/10=\dfrac{1}{2}\) 倍です。\(n\) を4倍にしても幅は \(\dfrac14\) にはなりません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O1</span></div>
+  <p>母標準偏差が分かっている母集団から抽出した標本で、母平均 \(m\) の信頼度95％の信頼区間 \(47.06\leqq m\leqq 52.94\) が得られました。同じ標本から信頼度99％の信頼区間を求めると、どれになりますか。</p>
+  <div class="choices">
+    <button>\(46.44\leqq m\leqq 53.56\)</button>
+    <button>\(42.41\leqq m\leqq 57.59\)</button>
+    <button>\(46.94\leqq m\leqq 53.06\)</button>
+    <button data-correct="true">\(46.13\leqq m\leqq 53.87\)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">区間の中心が標本平均で \((47.06+52.94)\div2=50.00\)。中心から端までが \(2.94=1.96\cdot\dfrac{\sigma}{\sqrt n}\) なので \(\dfrac{\sigma}{\sqrt n}=1.5\)。99％では \(2.58\times1.5=3.87\) なので \(46.13\leqq m\leqq53.87\) です。\(46.44\leqq m\leqq 53.56\) は両端を係数の差0.62だけ広げた誤り、\(42.41\leqq m\leqq 57.59\) は2.94を \(\sigma/\sqrt n\) と取り違えた誤り、\(46.94\leqq m\leqq 53.06\) は信頼度の比 \(0.99/0.95\) を掛けた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O3</span></div>
+  <p>クラスの40人が1人ずつ、同じ母集団（母標準偏差 2.0 g、母平均 \(m\) は未知）から大きさ25の標本を別々に無作為に抽出し、母平均の信頼度95％の信頼区間をつくりました。次は、花子さんと太郎さんの会話です。</p>
+  <p>花子「私の標本平均は 30.3 g で、区間は \(29.516\leqq m\leqq 31.084\) になったよ。」<br>太郎「ぼくは 29.6 g で、\(28.816\leqq m\leqq 30.384\) だった。区間がずれているね。」<br>花子「どちらかが計算を間違えたのかな。それに、どっちの区間に \(m\) が入っているんだろう。」</p>
+  <p>この場面についての説明として、正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">2人の区間が異なるのは標本平均が異なるからで、2人とも計算は正しい。どちらの区間が \(m\) を含むかは、この情報だけでは分からない。</button>
+    <button>2人の区間が重なる \(29.516\leqq m\leqq 30.384\) に \(m\) がある確率は、95％より大きい。</button>
+    <button>花子さんの区間が \(m\) を含む確率は0.95なので、太郎さんの区間が \(m\) を含む確率は0.05である。</button>
+    <button>40人の区間のうち \(m\) を含むものは、必ずちょうど38個になる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は1つ目。どちらも \(1.96\times2.0/\sqrt{25}=0.784\) を標本平均に足し引きしていて計算は正しく、区間の違いは標本の違いから生じます。2つ目は、求めた区間（やその重なり）に「\(m\) がある確率」を考えている点が誤りです。3つ目は、2人の区間は独立につくったもので、一方が含めば他方は含まない、という関係はありません（両方含むことも、両方含まないこともあります）。4つ目は、含む個数は \(B(40,\ 0.95)\) に従って38個前後でばらつくので、「必ずちょうど38個」とは言えません。<br><span class="small">この会話文の問題は練習用に作成したもので、実際の入試の出題形式を示すものではありません。</span></div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>100人がそれぞれ独立に、同じ母集団から大きさ \(n\) の標本を無作為に抽出し、母平均 \(m\) の信頼度95％の信頼区間をつくります。100個の区間のうち \(m\) を含むものの個数を \(Y\) とします。</p>
+  <p>(1) \(Y\) が従う確率分布を答え、\(Y\) の平均と標準偏差を求めなさい（標準偏差は小数第2位まで）。<br>(2) 「信頼度95％だから、\(Y\) はちょうど95になる」という主張は正しいですか。\(P(Y=95)\approx0.18\) であることを用いて、信頼度95％の意味とあわせて説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model"><p><strong>解答例</strong>　(1) 1つの区間が \(m\) を含む確率は0.95で、100個の区間は独立につくられるから、\(Y\) は二項分布 \(B(100,\ 0.95)\) に従う。平均 \(E(Y)=100\times0.95=95\)、標準偏差 \(\sigma(Y)=\sqrt{100\times0.95\times0.05}=\sqrt{4.75}\approx2.18\)。<br>(2) 正しくない。\(Y\) は平均95のまわりに標準偏差約2.18でばらつく確率変数で、ちょうど95になる確率は約0.18しかない。信頼度95％は「区間をつくることを多数回繰り返すと、\(m\) を含む区間の割合が0.95に近づく」という意味であり、100回で必ず95個になるという意味ではない。</p><p><strong>採点の観点</strong>　(1) 二項分布であることとその理由（独立・確率0.95）、平均95、標準偏差2.18。(2) \(Y\) がばらつくことを \(P(Y=95)\) や標準偏差を根拠に述べている。信頼度を「多数回の繰り返しでの割合」として説明している。</p></div>
+  <div class="explain">信頼度の意味は、1つの区間についての確率ではなく、方法を繰り返したときの割合で説明します。個数の分布は二項分布で調べられる、という数Ｂ-041・043とのつながりにも注目しましょう。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（数学②『数学Ⅱ，数学Ｂ，数学Ｃ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、『数学Ⅱ，数学Ｂ，数学Ｃ』について「「数学Ｂ」及び「数学Ｃ」については，数列（数学Ｂ），統計的な推測（数学Ｂ），ベクトル（数学Ｃ）及び平面上の曲線と複素数平面（数学Ｃ）の４項目に対応した出題とし，４項目のうち３項目の内容の問題を選択解答する」とされています。この時間の内容は「統計的な推測」に含まれます。</p>
+  <p>問題作成方針では、数学について「数学の問題発見・解決の過程を重視する」とし、「解決過程を振り返り，得られた結果を意味づけたり，活用したり」することなどを求めるとしています。信頼区間を計算するだけでなく、その結果が何を意味するかを文脈に即して説明できることは、この方針に沿った力です。なお、具体的な出題の形式はこのページでは断定しません。個別試験は、基準とする大学が決まっていないため対象外です。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">母比率の推定（数Ｂ-057）</p>
+  <p>次の時間は、母平均の代わりに<strong>母比率</strong>（母集団の中で、ある性質をもつものの割合）を、標本における比率から推定します。区間のつくり方は変わりますが、「信頼度95％＝同じ方法を繰り返すと約95％の区間が推定したい値を含む」という意味は、この時間に確かめたことと同じです。</p>
+  <p>この時間では扱わないこと：母比率の信頼区間（数Ｂ-057）、目的に応じて必要な標本の大きさを決める方法（数Ｂ-063）、仮説検定（数Ｂ-058〜062）。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ｂ-055　母平均の推定</div>
+  <div><span class="label">次の時間</span>数Ｂ-057　母比率の推定</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_bc/数Ｂ-056「信頼区間の意味」（学習指導要領 数学Ｂ 2 内容 (2)ア(エ)、解説 p.108）</li>
+    <li><a href="https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf">高等学校学習指導要領（平成30年告示）第2章第4節 数学 第5 数学Ｂ</a>（文部科学省）── 内容(2)ア(エ)「正規分布を用いた区間推定及び仮説検定の方法を理解すること」、［用語・記号］信頼区間</li>
+    <li><a href="https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf">高等学校学習指導要領（平成30年告示）解説 数学編 理数編</a>（文部科学省）── p.108「母平均の信頼区間の意味を理解できるようにするために，幾つもの標本を抽出し，それぞれの標本平均を求めたり，95％または 99％の信頼区間を求めたりすることも考えられる。その際，コンピュータなどの情報機器を積極的に用いるようにする。」</li>
+    <li><a href="https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00017382.pdf&amp;n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%AE%9F%E6%96%BD%E8%A6%81%E9%A0%85.pdf">令和9年度大学入学者選抜に係る大学入学共通テスト実施要項</a>・<a href="https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00005361.pdf&amp;n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%95%8F%E9%A1%8C%E4%BD%9C%E6%88%90%E6%96%B9%E9%87%9D.pdf">問題作成方針</a>（独立行政法人大学入試センター）── 入試へのつながり</li>
+  </ul>
+  <p>作成：2026-09-29　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（クッキーの重さなどの数値は学習用の架空の設定。図1とシミュレーションは乱数による）。数値は Python で検算しています。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  const M = 30, SIGMA = 2, ROWS = 100;
+  const NS = [25, 49, 100, 225, 400];
+  const svg = document.getElementById("ci-svg");
+  const levelSel = document.getElementById("ci-level");
+  const nRange = document.getElementById("ci-n");
+  const nVal = document.getElementById("ci-n-val");
+  const stat = document.getElementById("ci-stat");
+  const total = document.getElementById("ci-total");
+  if (!svg || !levelSel || !nRange) return;
+  let means = [];
+  const tally = { sets: 0, hit95: 0, hit99: 0 };
+  const X = (g) => 50 + (g - 26.5) * (500 / 7);
+  const f1 = (v) => v.toFixed(1);
+  function gauss() {
+    let u = 0;
+    while (u === 0) u = Math.random();
+    const v = Math.random();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+  function sampleMean(n) {
+    let s = 0;
+    for (let i = 0; i < n; i++) s += M + SIGMA * gauss();
+    return s / n;
+  }
+  function currentN() {
+    return NS[Number(nRange.value)];
+  }
+  function newSamples() {
+    const n = currentN();
+    means = [];
+    for (let k = 0; k < ROWS; k++) means.push(sampleMean(n));
+    const se = SIGMA / Math.sqrt(n);
+    means.forEach((xb) => {
+      if (Math.abs(xb - M) <= 1.96 * se) tally.hit95++;
+      if (Math.abs(xb - M) <= 2.58 * se) tally.hit99++;
+    });
+    tally.sets += ROWS;
+  }
+  function draw() {
+    const n = currentN();
+    const c = levelSel.value === "99" ? 2.58 : 1.96;
+    const se = SIGMA / Math.sqrt(n);
+    const half = c * se;
+    const parts = [];
+    parts.push('<line x1="50" y1="330" x2="550" y2="330" stroke="currentColor"/>');
+    for (let g = 27; g <= 33; g++) {
+      parts.push('<line x1="' + f1(X(g)) + '" y1="330" x2="' + f1(X(g)) + '" y2="336" stroke="currentColor"/>');
+      parts.push('<text x="' + f1(X(g)) + '" y="350" font-size="12" text-anchor="middle" fill="currentColor">' + g + '.0</text>');
+    }
+    let hit = 0;
+    means.forEach((xb, i) => {
+      const y = 20 + i * 3.05;
+      const a = Math.max(26.5, xb - half);
+      const b = Math.min(33.5, xb + half);
+      const ok = Math.abs(xb - M) <= half;
+      if (ok) hit++;
+      const style = ok ? ' stroke-width="1.6" stroke-opacity="0.45"' : ' stroke-width="2.6" stroke-dasharray="4 2"';
+      parts.push('<line x1="' + f1(X(a)) + '" y1="' + f1(y) + '" x2="' + f1(X(b)) + '" y2="' + f1(y) + '" stroke="currentColor"' + style + '/>');
+      if (!ok) parts.push('<text x="560" y="' + f1(y + 3) + '" font-size="10" fill="currentColor">×</text>');
+    });
+    parts.push('<line x1="' + f1(X(M)) + '" y1="14" x2="' + f1(X(M)) + '" y2="330" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 3"/>');
+    parts.push('<text x="' + f1(X(M) + 5) + '" y="12" font-size="12" fill="currentColor">m = 30.0</text>');
+    svg.innerHTML = parts.join("");
+    const level = levelSel.value;
+    stat.textContent = "今回の100組（n = " + n + "、信頼度" + level + "％）：m を含む区間 " + hit + " 個、含まない区間 " + (ROWS - hit) +
+      " 個（破線と×印）。区間の幅はどれも 2×" + c + "×2.0/√" + n + " = " + (2 * half).toFixed(3) + " g。";
+    total.textContent = "これまでに抽出した標本（n = " + n + "）：" + tally.sets + " 組。m を含んだ割合は、95％信頼区間で " +
+      (tally.hit95 / tally.sets).toFixed(3) + "、99％信頼区間で " + (tally.hit99 / tally.sets).toFixed(3) + "。";
+  }
+  function resetAll() {
+    tally.sets = 0; tally.hit95 = 0; tally.hit99 = 0;
+    newSamples();
+    draw();
+  }
+  document.getElementById("ci-run").addEventListener("click", () => {
+    newSamples();
+    draw();
+  });
+  document.getElementById("ci-reset").addEventListener("click", resetAll);
+  levelSel.addEventListener("change", draw);
+  nRange.addEventListener("input", () => {
+    nVal.textContent = String(currentN());
+    resetAll();
+  });
+  nVal.textContent = String(currentN());
+  resetAll();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_bc/数Ｂ-056",
+  "map": "hs_math_bc",
+  "rid": "数Ｂ-056",
+  "title": "信頼区間の意味",
+  "subject": "数学Ｂ",
+  "unit": {"ref": "hs_math_bc:B-2", "title": "統計的な推測"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(エ)"],
+  "kaisetsu_page": "108",
+  "objectives": [
+    {"id": "O1", "text": "同じ母集団から抽出した幾つもの標本について、それぞれの標本平均から信頼度95％と99％の信頼区間を求めることができる。", "from": "幾つもの標本を抽出してそれぞれの95％や99％の信頼区間を…求め", "sections": ["sec-1"], "checks": ["q1", "q7"]},
+    {"id": "O2", "text": "コンピュータで多数の標本を抽出して信頼区間をつくり、母平均を含む区間の割合が信頼度に近いことを確かめることができる。", "from": "幾つもの標本を抽出して…コンピュータなどで求め", "sections": ["sec-2"], "checks": ["q4", "q9"]},
+    {"id": "O3", "text": "信頼度95％の信頼区間の意味を「同じ方法で区間をつくることを繰り返すと、約95％の区間が母平均を含む」と説明し、誤った解釈を見分けることができる。", "from": "母平均の信頼区間の意味を理解する", "sections": ["sec-3"], "checks": ["q3", "q8", "q9"]},
+    {"id": "O4", "text": "信頼度を95％から99％に上げると区間の幅がどう変わるかを、係数1.96と2.58を用いて説明することができる。", "from": "95％や99％の信頼区間", "sections": ["sec-1", "sec-4"], "checks": ["q2", "q5", "q6"]}
+  ],
+  "key_terms": [
+    {"term": "信頼区間", "where": "sec-1"},
+    {"term": "信頼度", "where": "sec-3"},
+    {"term": "区間推定", "where": "terms"},
+    {"term": "区間の幅", "where": "sec-4"}
+  ],
+  "prerequisites": [
+    {"concept": "標本平均の平均は母平均 m、標準偏差は σ/√n で、n が大きいとき正規分布とみなせる", "taught_in": ["hs_math_bc/数Ｂ-054"], "where": "review"},
+    {"concept": "標本の値を確率変数とみる考え方（抽出前の標本平均は確率変数）", "taught_in": ["hs_math_bc/数Ｂ-053"], "where": "sec-3"},
+    {"concept": "標準化 Z＝(X−μ)/σ と正規分布表 p(u)＝P(0≦Z≦u) の読み方", "taught_in": ["hs_math_bc/数Ｂ-046"], "where": "review"},
+    {"concept": "母平均の信頼度95％の信頼区間の公式（係数1.96）", "taught_in": ["hs_math_bc/数Ｂ-055"], "where": "review"},
+    {"concept": "無作為抽出", "taught_in": ["hs_math_bc/数Ｂ-052", "jhs_math/中3-112"], "where": "sec-2"},
+    {"concept": "多数回の試行の相対度数が確率に近づく（頻度確率）", "taught_in": ["hs_math_1a/数Ａ-019", "jhs_math/中1-117"], "where": "sec-2"},
+    {"concept": "二項分布とその平均 np・標準偏差 √npq", "taught_in": ["hs_math_bc/数Ｂ-041", "hs_math_bc/数Ｂ-043"], "where": "sec-2"},
+    {"concept": "乱数を用いたシミュレーション", "taught_in": ["hs_info1/情Ⅰ-050", "hs_math_1a/数Ⅰ-089"], "where": "sec-2"},
+    {"concept": "正規分布の対称性と中央の範囲の確率", "taught_in": ["hs_math_bc/数Ｂ-045"], "where": "review"}
+  ],
+  "out_of_scope": ["母比率の推定と信頼区間（数Ｂ-057）", "目的に応じた標本の大きさの決定（数Ｂ-063）", "仮説検定（数Ｂ-058〜数Ｂ-062）"],
+  "selection_reason": "数学Ｂで最も作るのが難しいコマとして選んだ。信頼度の意味は抽象度が高く「母平均がこの区間にある確率が95％」という誤解が生じやすい。標本平均の分布（054）・標準化と正規分布表（046）・信頼区間の公式（055）・頻度確率（数Ａ）・二項分布（041・043）と前提が単元をまたぎ、多数の標本をとるシミュレーションがないと理解しにくい。係数2.58や区間の数値の正確さも要る。比べた候補：数Ｂ-054 標本平均の分布（抽象的だが計算中心で誤解の型が少ない）、数Ｂ-059 正規近似を用いた検定（手順は複雑だが解説の例に沿って段階的に示せる）。",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）第2章第4節 数学 第5 数学Ｂ", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "内容(2)ア(エ)、［用語・記号］信頼区間"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.108 区間推定の扱い（幾つもの標本、95％・99％の信頼区間、情報機器の活用）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf&n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%AE%9F%E6%96%BD%E8%A6%81%E9%A0%85.pdf", "use": "数学②の出題項目と選択解答の方法"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf&n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%95%8F%E9%A1%8C%E4%BD%9C%E6%88%90%E6%96%B9%E9%87%9D.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-29"
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>整式の整理と加法・減法｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>数と式</span><span>数Ⅰ-001</span></div>
+  <h1>整式の整理と加法・減法</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">高校数学の最初の時間です。\( 2ab+2bc+2ca \) は何次式でしょう。実は、答えは「どの文字に着目するか」で変わります。中学校で学んだ文字式の計算を振り返りながら、式を目的に応じて整理する見方を身に付けましょう。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>単項式・多項式の次数や係数、同類項などの用語の意味を説明でき、特定の文字に着目したときの次数・係数・定数項を答えることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>整式の同類項をまとめ、一つの文字に着目して降べきの順に整理することができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>中学校で学んだ計算を振り返りながら、整式の加法・減法を計算することができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">これまで（中学校）</span>中2「式の計算」、中3「簡単な多項式」</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-001）</span>整式の整理と加法・減法</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-002）</span>整式の乗法</div>
+</div>
+<p class="small">前提となる単元：中学3年「簡単な多項式」「正の数の平方根」、中学1年「一元一次方程式」。この時間は特に、中学2年の「単項式と多項式」「同類項と多項式の加法・減法」（中2-001・002）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認（中学校の復習）</h2>
+<p>この時間は高校数学の最初の時間なので、中学校で学んだことから確かめます。単項式・多項式と次数（中2-001）、同類項をまとめる計算（中2-002）、多項式と数の乗法（中2-003）の3つです。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中2-001</span></div>
+  <p>単項式 \( -4a^2b \) の次数はどれですか。</p>
+  <div class="choices">
+    <button>2</button>
+    <button data-correct="true">3</button>
+    <button>\( -4 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( -4a^2b=(-4)\times a\times a\times b \) です（\( a^2 \) は \( a \) を2個かけた累乗。中1-013・中1-027）。かけ合わされている文字は \( a,\ a,\ b \) の3個なので、次数は 3 です。2 と答えた場合は、\( a \) の指数だけを見たか、文字の種類（\( a \) と \( b \) の2種類）を数えています。\( -4 \) は数の部分（係数）で、次数ではありません。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中2-002</span></div>
+  <p>\( (4x+5y)-(2x-3y) \) を計算した結果はどれですか。</p>
+  <div class="choices">
+    <button>\( 2x+2y \)</button>
+    <button>\( 6x+2y \)</button>
+    <button data-correct="true">\( 2x+8y \)</button>
+    <button>\( 10xy \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">かっこの前が「−」なので、かっこの中の<strong>すべての項</strong>の符号を変えてはずします。\( 4x+5y-2x+3y=2x+8y \) です。\( 2x+2y \) は \( -3y \) の符号を変え忘れた誤り、\( 6x+2y \) はひかずにたした誤りです。\( 10xy \) は、文字の部分が違う \( 2x \) と \( 8y \) を1つにまとめてしまった誤りです。\( x \) の項と \( y \) の項はまとめられません。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中2-003</span></div>
+  <p>\( 2(3x-y)-3(x-2y) \) を計算した結果はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 3x+4y \)</button>
+    <button>\( 3x-8y \)</button>
+    <button>\( 3x+5y \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">分配法則でかっこをはずすと \( 6x-2y-3x+6y=3x+4y \) です。\( -3\times(-2y)=+6y \) となる所がポイントです。\( 3x-8y \) は \( -3\times(-2y) \) を \( -6y \) とした符号の誤り、\( 3x+5y \) は \( 2 \) を \( -y \) にかけ忘れた誤り（\( 6x-y-3x+6y \)）です。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：箱の縦だけを長くすると？</h2>
+<div class="box think">
+  <p class="box-title">直方体の表面積はどれだけ増える？</p>
+  <p>縦 \( a \) cm、横 \( b \) cm、高さ \( c \) cm の直方体の表面積を \( S \) cm² とすると、\( S=2ab+2bc+2ca \) です（中1-103 で学んだ、6つの面の面積の和）。</p>
+  <figure>
+<!--svg:f001a-->
+<svg viewBox="0 0 360 200" width="360" role="img" aria-label="縦 a、横 b、高さ c の直方体の見取図。縦の辺に a、横の辺に b、高さの辺に c と書いてある">
+<polygon points="60,80 220,80 220,180 60,180" fill="#1f5fbf" fill-opacity="0.08" stroke="currentColor" stroke-width="1.5"/>
+<polygon points="60,80 110,40 270,40 220,80" fill="#1f5fbf" fill-opacity="0.16" stroke="currentColor" stroke-width="1.5"/>
+<polygon points="220,80 270,40 270,140 220,180" fill="#1f5fbf" fill-opacity="0.04" stroke="currentColor" stroke-width="1.5"/>
+<line x1="60" y1="180" x2="110" y2="140" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="110" y1="140" x2="270" y2="140" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="110" y1="140" x2="110" y2="40" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="140" y="197" text-anchor="middle" font-size="15" fill="currentColor">b</text>
+<text x="258" y="172" text-anchor="middle" font-size="15" fill="currentColor">a</text>
+<text x="44" y="135" text-anchor="middle" font-size="15" fill="currentColor">c</text>
+</svg>
+<!--/svg:f001a-->
+    <figcaption>図1　縦 \( a \)、横 \( b \)、高さ \( c \) の直方体（学習用に作成した見取図）</figcaption>
+  </figure>
+  <p>縦の長さ \( a \) だけを 1 cm 長くすると、表面積 \( S \) はどれだけ増えるでしょうか。\( b \) と \( c \) は変えません。式 \( S=2ab+2bc+2ca \) の「どこ」を見れば、増え方が分かるでしょうか。</p>
+  <p>答えは「3 単項式・多項式を振り返り、着目する文字を決める」の例題1のあとで確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="用語と着目する文字"><span class="num">3</span>単項式・多項式を振り返り、着目する文字を決める</h2>
+<h3>単項式の係数と次数</h3>
+<p>\( -4a^2b \) や \( 3x \)、\( 7 \) のように、数や文字をかけ合わせただけでできている式を<strong>単項式</strong>といいます（中2-001）。単項式で、数の部分を<strong>係数</strong>、かけ合わせた文字の個数を<strong>次数</strong>といいます。\( -4a^2b \) の係数は \( -4 \)、次数は 3 です。数だけの単項式（\( 7 \) など）の次数は 0 と考えます。</p>
+<h3>多項式と項・定数項</h3>
+<p>\( x^2y+3xy^2-2y+5 \) のように、いくつかの単項式の和で表される式を<strong>多項式</strong>といい、一つ一つの単項式を<strong>項</strong>といいます。ひき算の形 \( -2y \) も、\( +(-2y) \) という項の和とみます。文字を含まない項（ここでは \( 5 \)）を<strong>定数項</strong>といいます。</p>
+<p>多項式の次数は、<strong>各項の次数のうち最も高いもの</strong>です。\( x^2y+3xy^2-2y+5 \) の各項の次数は 3、3、1、0 なので、この式の次数は 3 で、「3次式」といいます。次数が \( n \) の式を <strong>\( n \) 次式</strong>といいます。</p>
+<p>このページでは、単項式と多項式をまとめて<strong>整式</strong>と呼びます（学習内容マップの行の名前も「整式」を使っています）。中学校の学習指導要領では、単項式や多項式の計算を「簡単な整式の加法と減法」と表しています。高校の教科書では、節の名前に「整式」を使うものもあれば、同じ内容を「多項式の加法と減法」のように「多項式」という言葉で説明するものもあります（教科書で確かめよう）。</p>
+
+<h3>特定の文字に着目する</h3>
+<p>文字が2種類以上ある式では、<span class="em">ある1つの文字に着目し、ほかの文字は数と同じように扱う</span>見方ができます。このとき、次数や係数は着目した文字について考えます。</p>
+<figure>
+<!--svg:f001b-->
+<svg viewBox="0 0 440 214" width="440" role="img" aria-label="単項式 3ax² を 3×a×x×x と分けた図。文字全体を見ると次数 3・係数 3、x に着目すると次数 2・係数 3a、a に着目すると次数 1・係数 3x²">
+<text x="112" y="40" text-anchor="end" font-size="13" fill="currentColor">文字全体を見る</text>
+<rect x="124" y="16" width="40" height="36" rx="4" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="144" y="40" text-anchor="middle" font-size="16" fill="currentColor">3</text>
+<text x="173" y="40" text-anchor="middle" font-size="14" fill="currentColor">×</text>
+<rect x="182" y="16" width="40" height="36" rx="4" fill="#1f5fbf" fill-opacity="0.18" stroke="currentColor" stroke-width="2.5"/>
+<text x="202" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">a</text>
+<text x="231" y="40" text-anchor="middle" font-size="14" fill="currentColor">×</text>
+<rect x="240" y="16" width="40" height="36" rx="4" fill="#1f5fbf" fill-opacity="0.18" stroke="currentColor" stroke-width="2.5"/>
+<text x="260" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">x</text>
+<text x="289" y="40" text-anchor="middle" font-size="14" fill="currentColor">×</text>
+<rect x="298" y="16" width="40" height="36" rx="4" fill="#1f5fbf" fill-opacity="0.18" stroke="currentColor" stroke-width="2.5"/>
+<text x="318" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">x</text>
+<text x="350" y="32" text-anchor="start" font-size="13" fill="currentColor">次数 3</text>
+<text x="350" y="49" text-anchor="start" font-size="13" fill="currentColor">係数 3</text>
+<text x="112" y="110" text-anchor="end" font-size="13" fill="currentColor">x に着目</text>
+<rect x="124" y="86" width="40" height="36" rx="4" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="144" y="110" text-anchor="middle" font-size="16" fill="currentColor">3</text>
+<text x="173" y="110" text-anchor="middle" font-size="14" fill="currentColor">×</text>
+<rect x="182" y="86" width="40" height="36" rx="4" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="202" y="110" text-anchor="middle" font-size="16" fill="currentColor">a</text>
+<text x="231" y="110" text-anchor="middle" font-size="14" fill="currentColor">×</text>
+<rect x="240" y="86" width="40" height="36" rx="4" fill="#1f5fbf" fill-opacity="0.18" stroke="currentColor" stroke-width="2.5"/>
+<text x="260" y="110" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">x</text>
+<text x="289" y="110" text-anchor="middle" font-size="14" fill="currentColor">×</text>
+<rect x="298" y="86" width="40" height="36" rx="4" fill="#1f5fbf" fill-opacity="0.18" stroke="currentColor" stroke-width="2.5"/>
+<text x="318" y="110" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">x</text>
+<text x="350" y="102" text-anchor="start" font-size="13" fill="currentColor">次数 2</text>
+<text x="350" y="119" text-anchor="start" font-size="13" fill="currentColor">係数 3a</text>
+<text x="112" y="180" text-anchor="end" font-size="13" fill="currentColor">a に着目</text>
+<rect x="124" y="156" width="40" height="36" rx="4" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="144" y="180" text-anchor="middle" font-size="16" fill="currentColor">3</text>
+<text x="173" y="180" text-anchor="middle" font-size="14" fill="currentColor">×</text>
+<rect x="182" y="156" width="40" height="36" rx="4" fill="#1f5fbf" fill-opacity="0.18" stroke="currentColor" stroke-width="2.5"/>
+<text x="202" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">a</text>
+<text x="231" y="180" text-anchor="middle" font-size="14" fill="currentColor">×</text>
+<rect x="240" y="156" width="40" height="36" rx="4" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="260" y="180" text-anchor="middle" font-size="16" fill="currentColor">x</text>
+<text x="289" y="180" text-anchor="middle" font-size="14" fill="currentColor">×</text>
+<rect x="298" y="156" width="40" height="36" rx="4" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="318" y="180" text-anchor="middle" font-size="16" fill="currentColor">x</text>
+<text x="350" y="172" text-anchor="start" font-size="13" fill="currentColor">次数 1</text>
+<text x="350" y="189" text-anchor="start" font-size="13" fill="currentColor">係数 3x²</text>
+<text x="220" y="210" text-anchor="middle" font-size="11" fill="currentColor">太枠＝着目した文字（次数を数える）、点線の枠＝係数に入る部分</text>
+</svg>
+<!--/svg:f001b-->
+  <figcaption>図2　単項式 \( 3ax^2 \) の見方。着目する文字（太枠）の個数が次数、残りの部分（点線の枠）が係数になる</figcaption>
+</figure>
+<p>図2のように、\( 3ax^2 \) は</p>
+<ul>
+  <li>文字全体を見ると、次数 3、係数 3</li>
+  <li>\( x \) に着目すると、次数 2、係数 \( 3a \)（\( a \) は数と同じように扱うので、係数に入ります）</li>
+  <li>\( a \) に着目すると、次数 1、係数 \( 3x^2 \)</li>
+</ul>
+<p>となります。多項式でも同じで、着目した文字を含まない項は、その文字についての<strong>定数項</strong>です。\( x \) に着目すると、\( -2y \) も \( x \) を含まないので定数項の仲間になります。</p>
+
+<div class="box example worked">
+  <p class="box-title">例題1（着目する文字と次数・定数項）</p>
+  <p>多項式 \( 2x^3y-x^2y^2+4xy-3y+6 \) について、次の問いに答えなさい。(1) 何次式か。(2) \( x \) に着目すると何次式か。また、そのときの定数項は何か。(3) \( y \) に着目すると何次式か。また、そのときの定数項は何か。</p>
+  <div class="step">ステップ1（各項の次数を調べる）：文字全体で見ると、各項の次数は \( 2x^3y \) が 4、\( -x^2y^2 \) が 4、\( 4xy \) が 2、\( -3y \) が 1、\( 6 \) が 0。最も高いのは 4 なので、(1) は <strong>4次式</strong>。</div>
+  <div class="step">ステップ2（\( x \) だけを数える）：\( x \) についての次数は順に 3、2、1、0、0。最も高いのは 3 なので <strong>\( x \) の3次式</strong>。\( x \) を含まない項 \( -3y \) と \( 6 \) をまとめた <strong>\( -3y+6 \)</strong> が定数項です。</div>
+  <div class="step">ステップ3（\( y \) だけを数える）：\( y \) についての次数は順に 1、2、1、1、0。最も高いのは 2 なので <strong>\( y \) の2次式</strong>。\( y \) を含まない項は \( 6 \) だけなので、定数項は <strong>\( 6 \)</strong> です。</div>
+  <div class="step">答え：(1) 4次式　(2) \( x \) の3次式、定数項 \( -3y+6 \)　(3) \( y \) の2次式、定数項 \( 6 \)</div>
+</div>
+
+<div class="box point"><p class="box-title">導入の答え：\( a \) に着目すると増え方が見える</p><p>\( S=2ab+2bc+2ca \) を \( a \) に着目して見ると、\( a \) を含む項は \( 2ab \) と \( 2ca \)、含まない項は \( 2bc \) です。まとめると \( S=(2b+2c)a+2bc \) となり、\( S \) は \( a \) の1次式で、\( a \) の係数は \( 2b+2c \)、定数項は \( 2bc \) です。</p><p>\( a \) を 1 増やすと、\( (2b+2c)(a+1)+2bc-\{(2b+2c)a+2bc\}=2b+2c \) より、\( S \) は <strong>\( 2b+2c \) cm² 増えます</strong>。たとえば \( a=3,\ b=4,\ c=5 \) のとき \( S=94 \)、\( a=4 \) にすると \( S=112 \) で、増えた分 18 は \( 2\times 4+2\times 5 \) と一致します。文字全体で見れば \( S \) は2次式ですが、\( a \) について見れば1次式で、係数が「増え方」を表しています。</p></div>
+
+<div class="box caution"><p class="box-title">よくある間違い：定数項は「数だけの項」だと思い込む</p><p>\( x \) に着目したとき、\( -3y \) のように<strong>ほかの文字を含んでいても、\( x \) を含まなければ定数項</strong>です。着目する文字を決めたら、その文字を含むかどうかだけで判断しましょう。文字全体で見たときの定数項（数だけの項）とは違うことがあります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="同類項と降べきの順"><span class="num">4</span>同類項をまとめ、降べきの順に整理する</h2>
+<h3>同類項をまとめる</h3>
+<p>文字の部分が同じ項を<strong>同類項</strong>といいます（中2-002）。同類項は、分配法則 \( ma+na=(m+n)a \) を使って1つにまとめられます。たとえば \( 3x^2 \) と \( -x^2 \) は同類項で、\( 3x^2-x^2=(3-1)x^2=2x^2 \) です。指数は変わらないことに注意しましょう。</p>
+<h3>降べきの順</h3>
+<p>整式を、着目した文字について<strong>次数の高い項から順に</strong>並べることを、その文字について<strong>降べきの順</strong>に整理するといいます。たとえば \( 5+2x^2-3x \) を \( x \) について降べきの順に整理すると \( 2x^2-3x+5 \) です。次数がそろって見えるので、計算の見通しがよくなり、ほかの式と比べやすくなります（反対に、次数の低い項から順に並べることもあります）。</p>
+
+<div class="box example worked">
+  <p class="box-title">例題2（同類項をまとめて整理する）</p>
+  <p>\( 3x^2-5x+4-x^2+2x-7 \) の同類項をまとめ、\( x \) について降べきの順に整理しなさい。</p>
+  <div class="step">ステップ1（同類項を見つける）：\( x^2 \) の項は \( 3x^2,\ -x^2 \)、\( x \) の項は \( -5x,\ 2x \)、定数項は \( 4,\ -7 \) です。</div>
+  <div class="step">ステップ2（係数どうしを計算する）：\( (3-1)x^2+(-5+2)x+(4-7) \)。符号も係数の一部として計算します。</div>
+  <div class="step">答え：\( 2x^2-3x-3 \)</div>
+</div>
+
+<h3>文字が2種類以上ある式の整理</h3>
+<p>\( x \) に着目して整理するときは、\( y \) を数と同じように扱います。\( x \) についての次数が同じ項は、ほかの文字が違っていても \( x \) については同類項とみて、係数をかっこでまとめます。</p>
+<figure>
+<!--svg:f001c-->
+<svg viewBox="0 0 440 206" width="440" role="img" aria-label="x²+3xy−2x+y²−4y+5 の項を、x² の項、x の項、x を含まない項の3つの箱に仕分けた図。x² の項は x²、x の項は 3xy と −2x、x を含まない項は y²、−4y、5。まとめると x²+(3y−2)x+(y²−4y+5)">
+<text x="220" y="18" text-anchor="middle" font-size="14" fill="currentColor">x² + 3xy − 2x + y² − 4y + 5 を x について仕分ける</text>
+<rect x="10" y="32" width="126" height="100" rx="6" fill="#1f5fbf" fill-opacity="0.16" stroke="currentColor" stroke-width="2.5"/>
+<text x="73" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">x² の項</text>
+<text x="73" y="84" text-anchor="middle" font-size="15" fill="currentColor">x²</text>
+<text x="73" y="156" text-anchor="middle" font-size="14" fill="currentColor">係数 1</text>
+<rect x="157" y="32" width="126" height="100" rx="6" fill="#1f5fbf" fill-opacity="0.08" stroke="currentColor" stroke-width="1.5"/>
+<text x="220" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">x の項</text>
+<text x="220" y="84" text-anchor="middle" font-size="15" fill="currentColor">3xy</text>
+<text x="220" y="106" text-anchor="middle" font-size="15" fill="currentColor">−2x</text>
+<text x="220" y="156" text-anchor="middle" font-size="14" fill="currentColor">係数 3y − 2</text>
+<rect x="304" y="32" width="126" height="100" rx="6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 3"/>
+<text x="367" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">x を含まない項</text>
+<text x="367" y="84" text-anchor="middle" font-size="15" fill="currentColor">y²</text>
+<text x="367" y="106" text-anchor="middle" font-size="15" fill="currentColor">−4y</text>
+<text x="367" y="128" text-anchor="middle" font-size="15" fill="currentColor">5</text>
+<text x="367" y="156" text-anchor="middle" font-size="14" fill="currentColor">定数項 y²−4y+5</text>
+<text x="220" y="192" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">x² + (3y − 2)x + (y² − 4y + 5)</text>
+</svg>
+<!--/svg:f001c-->
+  <figcaption>図3　\( x \) についての次数で項を仕分ける。太枠＝2次、細い枠＝1次、点線の枠＝\( x \) を含まない項（定数項）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題3（1つの文字に着目して整理する）</p>
+  <p>\( x^2+3xy-2x+y^2-4y+5 \) を、(1) \( x \) について、(2) \( y \) について、それぞれ降べきの順に整理しなさい。</p>
+  <div class="step">ステップ1（\( x \) についての次数で仕分ける）：図3のように、\( x^2 \) の項は \( x^2 \)、\( x \) の項は \( 3xy,\ -2x \)、\( x \) を含まない項は \( y^2,\ -4y,\ 5 \) です。</div>
+  <div class="step">ステップ2（係数をかっこでまとめる）：\( 3xy-2x=(3y-2)x \) なので、(1) は \( x^2+(3y-2)x+(y^2-4y+5) \)。</div>
+  <div class="step">ステップ3（今度は \( y \) で仕分ける）：\( y^2 \) の項は \( y^2 \)、\( y \) の項は \( 3xy,\ -4y \)、\( y \) を含まない項は \( x^2,\ -2x,\ 5 \)。\( 3xy-4y=(3x-4)y \) なので、(2) は \( y^2+(3x-4)y+(x^2-2x+5) \)。</div>
+  <div class="step">答え：(1) \( x^2+(3y-2)x+(y^2-4y+5) \)　(2) \( y^2+(3x-4)y+(x^2-2x+5) \)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：\( 3xy \) と \( -2x \) はまとめられないと考える</p><p>文字全体で見ると、\( 3xy \) と \( -2x \) は文字の部分が違うので同類項ではありません。ところが <strong>\( x \) に着目すると、どちらも \( x \) の1次の項</strong>なので、\( (3y-2)x \) とまとめられます。「何について」整理するのかを、最初に決めることが大切です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="整式の加法・減法"><span class="num">5</span>整式の加法・減法</h2>
+<p>整式の加法・減法は、中学校で学んだ多項式の計算と同じです。数と同じように、<strong>交換法則</strong>（\( A+B=B+A \)）、<strong>結合法則</strong>（\( (A+B)+C=A+(B+C) \)）、<strong>分配法則</strong>（\( m(A+B)=mA+mB \)）が使えます（中1-007・中1-017）。やることは、かっこをはずして同類項をまとめることです。</p>
+<div class="box example worked">
+  <p class="box-title">例題4（和と差）</p>
+  <p>\( A=3x^2-2x+1 \)、\( B=x^2+4x-5 \) のとき、\( A+B \) と \( A-B \) を計算しなさい。</p>
+  <div class="step">ステップ1（\( A+B \)）：\( (3x^2-2x+1)+(x^2+4x-5)=3x^2-2x+1+x^2+4x-5 \)。同類項をまとめて \( 4x^2+2x-4 \)。</div>
+  <div class="step">ステップ2（\( A-B \)：かっこをはずす）：\( (3x^2-2x+1)-(x^2+4x-5)=3x^2-2x+1-x^2-4x+5 \)。\( B \) の<strong>3つの項すべて</strong>の符号が変わります（中1-034）。</div>
+  <div class="step">ステップ3（同類項をまとめる）：\( A-B=2x^2-6x+6 \)。</div>
+  <div class="step">答え：\( A+B=4x^2+2x-4 \)、\( A-B=2x^2-6x+6 \)</div>
+</div>
+<p>降べきの順に整理した式は、同じ次数の項を縦にそろえて計算することもできます（表1）。減法は、ひく式の各項の符号を変えてたすと考えます。</p>
+<div class="table-wrap">
+<table>
+  <caption>表1　同じ次数の項を縦にそろえた計算（例題4の \( A-B \)）</caption>
+  <tr><th></th><th>\( x^2 \) の項</th><th>\( x \) の項</th><th>定数項</th></tr>
+  <tr><td>\( A \)</td><td>\( 3x^2 \)</td><td>\( -2x \)</td><td>\( +1 \)</td></tr>
+  <tr><td>\( -B \)（符号を変える）</td><td>\( -x^2 \)</td><td>\( -4x \)</td><td>\( +5 \)</td></tr>
+  <tr><td>\( A-B \)</td><td>\( 2x^2 \)</td><td>\( -6x \)</td><td>\( +6 \)</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5（2種類の文字を含む式）</p>
+  <p>\( A=2x^2-3xy+y^2 \)、\( B=-x^2+xy-4y^2 \) のとき、\( 2A-3B \) を計算しなさい。</p>
+  <div class="step">ステップ1（数をかける）：\( 2A=4x^2-6xy+2y^2 \)、\( 3B=-3x^2+3xy-12y^2 \)（中2-003 の多項式と数の乗法）。</div>
+  <div class="step">ステップ2（ひく）：\( 2A-3B=4x^2-6xy+2y^2+3x^2-3xy+12y^2 \)。\( 3B \) の各項の符号を変えています。</div>
+  <div class="step">答え：\( 7x^2-9xy+14y^2 \)</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題6（先に \( A,\ B \) のまま整理する）</p>
+  <p>例題4の \( A,\ B \) について、\( 2(A+B)-(A-2B) \) を計算しなさい。</p>
+  <div class="step">ステップ1（見通しを立てる）：\( A,\ B \) の式をすぐに代入すると、かっこが何重にもなり計算が長くなります。まず \( A,\ B \) を1つの文字のように扱って整理します。</div>
+  <div class="step">ステップ2（\( A,\ B \) のまま整理）：\( 2(A+B)-(A-2B)=2A+2B-A+2B=A+4B \)。</div>
+  <div class="step">ステップ3（代入する）：\( A+4B=(3x^2-2x+1)+4(x^2+4x-5)=3x^2-2x+1+4x^2+16x-20 \)。</div>
+  <div class="step">答え：\( 7x^2+14x-19 \)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：ひく式の最初の項だけ符号を変える</p><p>\( A-B=3x^2-2x+1-x^2+4x-5 \) のように、\( B \) の最初の項 \( x^2 \) だけ符号を変え、残りをそのまま書いてしまう誤りがよくあります。\( -(x^2+4x-5)=-x^2-4x+5 \) のように、<strong>かっこの中のすべての項の符号が変わります</strong>。心配なときは、表1のように \( -B \) を1行で書いてから計算しましょう。</p><p>また、中学校の学習指導要領解説には、\( (4x+5)-(2x+3)=2x+2=4x \) のように、文字の部分が違う \( 2x \) と \( 2 \) をまとめてしまう誤りの例が挙げられています。まとめてよいのは同類項だけです。</p></div>
+<div class="box point"><p class="box-title">整式の加法・減法の手順</p><p>① かっこをはずす（前が「−」なら、すべての項の符号を変える）→ ② 同類項を見つける → ③ 係数を計算してまとめる → ④ 降べきの順に並べる。式が長いときは、先に \( A,\ B \) のまま整理してから代入します。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>単項式</dt><dd>数や文字をかけ合わせただけでできている式。例：\( -4a^2b \)、\( 3x \)、\( 7 \)。</dd>
+    <dt>係数</dt><dd>単項式の数の部分。特定の文字に着目したときは、それ以外の部分（ほかの文字を含んでもよい）が係数になる。</dd>
+    <dt>次数</dt><dd>単項式では、かけ合わせた文字の個数。多項式では、各項の次数のうち最も高いもの。特定の文字に着目したときは、その文字の個数で数える。</dd>
+    <dt>多項式・項</dt><dd>単項式の和で表される式を多項式といい、一つ一つの単項式を項という。</dd>
+    <dt>定数項</dt><dd>文字を含まない項。特定の文字に着目したときは、その文字を含まない項。</dd>
+    <dt>\( n \) 次式</dt><dd>次数が \( n \) の整式。</dd>
+    <dt>整式</dt><dd>このページでは、単項式と多項式をまとめてこう呼ぶ。教科書によっては「多項式」という言葉で説明している。</dd>
+    <dt>同類項</dt><dd>文字の部分が同じ項。分配法則で1つにまとめられる。特定の文字に着目したときは、その文字についての次数が同じ項を同類項とみてまとめる。</dd>
+    <dt>降べきの順</dt><dd>着目した文字について、次数の高い項から順に並べること。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>単項式の係数・次数、多項式の項・次数・定数項の意味を確かめた。次数や係数・定数項は、どの文字に着目するかで変わる（O1）。</li>
+    <li>着目した文字を含まない項は、ほかの文字を含んでいても定数項である（O1）。</li>
+    <li>同類項をまとめ、着目した文字について次数の高い順に並べる（降べきの順）。文字が2種類以上あるときは、係数をかっこでまとめる（O2）。</li>
+    <li>整式の加法・減法は、かっこをはずして同類項をまとめる。ひく式はすべての項の符号を変える（O3）。</li>
+    <li>式が長いときは、\( A,\ B \) のまま整理してから代入すると見通しがよい（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">次数の決め方</span>
+    <p>単項式：かけ合わせた文字の個数<br>多項式：各項の次数のうち最大のもの<br>\( x \) に着目：\( x \) の個数だけを数える</p></div>
+  <div><span class="f-name">\( x \) について降べきの順に整理</span>
+    <p>\( x^2+3xy-2x+y^2-4y+5 \)<br>\( =x^2+(3y-2)x+(y^2-4y+5) \)</p></div>
+  <div><span class="f-name">減法</span>
+    <p>\( -(x^2+4x-5)=-x^2-4x+5 \)<br>（すべての項の符号が変わる）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。数を入力する問題は半角・全角どちらでもよい。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>単項式 \( -5x^3y^2 \) について、\( x \) に着目したときの次数と係数の組はどれですか。</p>
+  <div class="choices">
+    <button>次数 5、係数 \( -5 \)</button>
+    <button data-correct="true">次数 3、係数 \( -5y^2 \)</button>
+    <button>次数 3、係数 \( -5 \)</button>
+    <button>次数 2、係数 \( -5x^3 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x \) に着目すると、\( x \) は3個かけ合わされているので次数は 3、残りの \( -5y^2 \) が係数です（\( y \) は数と同じように扱います）。「次数 5、係数 \( -5 \)」は文字全体で見た次数と係数です。「次数 3、係数 \( -5 \)」は \( y^2 \) を係数に入れ忘れています。「次数 2、係数 \( -5x^3 \)」は \( y \) に着目したときの次数と係数です。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="4|4次|4次式">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>多項式 \( x^3-2x^2y^2+5y^3-4 \) は何次式ですか。数字で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 4（4次式）。各項の次数は \( x^3 \) が 3、\( -2x^2y^2 \) が \( 2+2=4 \)、\( 5y^3 \) が 3、\( -4 \) が 0 で、最も高いのは 4 です。3 と答えた場合は、1つの文字の指数（\( x^3 \) の 3、\( y^3 \) の 3）だけを見て、\( x^2y^2 \) のように2種類の文字をかけた項の次数を足し忘れています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>\( 4x-3x^2+7-x+5x^2 \) の同類項をまとめ、\( x \) について降べきの順に整理したものはどれですか。</p>
+  <div class="choices">
+    <button>\( 8x^2+3x+7 \)</button>
+    <button>\( 2x^2+5x+7 \)</button>
+    <button>\( 8x^2+5x+7 \)</button>
+    <button data-correct="true">\( 2x^2+3x+7 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x^2 \) の項は \( -3x^2+5x^2=2x^2 \)、\( x \) の項は \( 4x-x=3x \)、定数項は 7 なので \( 2x^2+3x+7 \) です。\( 8x^2+3x+7 \) は \( -3x^2 \) の符号を落として \( 3+5 \) とした誤り、\( 2x^2+5x+7 \) は \( -x \) の符号を落として \( 4+1 \) とした誤り、\( 8x^2+5x+7 \) は両方の符号を落とした誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>\( x^2+2xy-3x+y^2+y-2 \) を \( x \) について降べきの順に整理したとき、定数項はどれですか。</p>
+  <div class="choices">
+    <button>\( -2 \)</button>
+    <button>\( 2y-3 \)</button>
+    <button data-correct="true">\( y^2+y-2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x \) について整理すると \( x^2+(2y-3)x+(y^2+y-2) \) です。\( x \) を含まない項は \( y^2,\ y,\ -2 \) なので、定数項は \( y^2+y-2 \) です。\( -2 \) と答えた場合は、\( y \) を含む項を定数項から外しています。\( x \) に着目しているので、\( y \) を含んでいても \( x \) を含まなければ定数項です。\( 2y-3 \) は \( x \) の係数で、定数項ではありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>\( A=2x^2-5x+3 \)、\( B=-x^2+2x-4 \) のとき、\( A-B \) はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 3x^2-7x+7 \)</button>
+    <button>\( 3x^2-3x-1 \)</button>
+    <button>\( x^2-3x-1 \)</button>
+    <button>\( 3x^2-7x-1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( A-B=2x^2-5x+3-(-x^2+2x-4)=2x^2-5x+3+x^2-2x+4=3x^2-7x+7 \) です。\( 3x^2-3x-1 \) は \( B \) の最初の項 \( -x^2 \) だけ符号を変え、\( +2x-4 \) をそのまま書いた誤りです。\( x^2-3x-1 \) はひかずに \( A+B \) を計算しています。\( 3x^2-7x-1 \) は最後の項 \( -4 \) の符号を変え忘れた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="-7|−7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>\( A=x^2-3xy+2y^2 \)、\( B=2x^2+xy-y^2 \) のとき、\( 2A-B \) を計算すると、\( xy \) の項の係数はいくつになりますか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( -7 \)。\( 2A-B=2x^2-6xy+4y^2-2x^2-xy+y^2=-7xy+5y^2 \) です。\( x^2 \) の項は \( 2x^2-2x^2=0 \) で消えます。\( -5 \) と答えた場合は、\( B \) の \( xy \) の符号を変え忘れて \( -6xy+xy \) としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>\( A=x^2+2x-3 \)、\( B=x^2-x+1 \) のとき、\( 3A-\{2B-(A-B)\} \) を計算した結果はどれですか。</p>
+  <div class="choices">
+    <button>\( 3x^2+9x-13 \)</button>
+    <button>\( -x^2+7x-9 \)</button>
+    <button data-correct="true">\( x^2+11x-15 \)</button>
+    <button>\( x^2+5x-7 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">まず \( A,\ B \) のまま整理します。内側から \( 2B-(A-B)=2B-A+B=3B-A \)、よって \( 3A-(3B-A)=4A-3B \)。代入すると \( 4(x^2+2x-3)-3(x^2-x+1)=4x^2+8x-12-3x^2+3x-3=x^2+11x-15 \) です。<br>\( 3x^2+9x-13 \) は、\( -(A-B) \) を \( -A-B \) として \( 4A-B \) にした誤り。\( -x^2+7x-9 \) は、外側の \( -(3B-A) \) を \( -3B-A \) として \( 2A-3B \) にした誤り。\( x^2+5x-7 \) は、その両方の誤りが重なって \( 2A-B \) になったものです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1</span></div>
+  <p>太郎さんと花子さんが、縦 \( a \)、横 \( b \)、高さ \( c \) の直方体の表面積 \( S=2ab+2bc+2ca \) について話しています。</p>
+  <p>太郎：「高さ \( c \) だけを 1 cm 長くしたら、表面積はどれだけ増えるのかな。」<br>花子：「\( c \) に着目して、式を整理してみたらどうかな。」</p>
+  <p>2人の考えを進めた説明として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( S \) は2次式なので、\( c \) を 1 cm 長くしたときの増え方は、\( c \) の値によって変わる。</button>
+    <button data-correct="true">\( S \) を \( c \) について整理すると \( (2a+2b)c+2ab \) となり、\( c \) を 1 cm 長くすると \( S \) は \( 2a+2b \) cm² 増える。</button>
+    <button>\( c \) について整理したときの定数項は \( 2ab \) なので、\( c \) を 1 cm 長くすると \( S \) は \( 2ab \) cm² 増える。</button>
+    <button>\( 2bc \) の \( c \) の係数は 2 なので、\( c \) を 1 cm 長くすると \( S \) は 2 cm² 増える。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( c \) を含む項は \( 2bc,\ 2ca \) なので、\( S=(2a+2b)c+2ab \)。\( S \) は \( c \) の1次式で、\( c \) を 1 増やすと \( S \) は係数の \( 2a+2b \) だけ増えます。「2次式なので増え方が変わる」は、文字全体で見た次数（2）と \( c \) についての次数（1）を取り違えています。「\( 2ab \) 増える」は定数項と係数を取り違えています。定数項 \( 2ab \) は \( c \) によらない部分です。「2 増える」は、\( 2bc \) の数の部分だけを係数とみた誤りで、\( c \) に着目したときの係数は \( 2b \) と \( 2a \) をあわせた \( 2a+2b \) です。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2</span></div>
+  <p>整式 \( x^2y-2xy^2+3x^2+y-xy+4 \) を、(1) \( x \) について、(2) \( y \) について、それぞれ降べきの順に整理しなさい。また、それぞれ何次式か、そのときの定数項は何かを答えなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) \( x^2 \) の項は \( x^2y,\ 3x^2 \)、\( x \) の項は \( -2xy^2,\ -xy \)、\( x \) を含まない項は \( y,\ 4 \)。よって \( (y+3)x^2+(-2y^2-y)x+(y+4) \)。\( x \) の2次式で、定数項は \( y+4 \)。</p>
+    <p>(2) \( y^2 \) の項は \( -2xy^2 \)、\( y \) の項は \( x^2y,\ y,\ -xy \)、\( y \) を含まない項は \( 3x^2,\ 4 \)。よって \( -2xy^2+(x^2-x+1)y+(3x^2+4) \)。\( y \) の2次式で、定数項は \( 3x^2+4 \)。</p>
+    <p><strong>採点の観点</strong>　① 着目した文字についての次数で項を正しく仕分けている。② 係数を正しくかっこでまとめ、次数の高い順に並べている。③ 何次式か・定数項を、着目した文字について答えている（文字全体の次数 3 と混同していない）。</p>
+  </div>
+  <div class="explain">(1) の \( x \) の係数は \( -(2y^2+y) \) と書いても同じです。(2) で \( y \) の項 \( y \) を見落とすと、係数が \( x^2-x \) になってしまいます。\( y \) は \( 1\times y \) と考え、係数 1 を忘れずに入れましょう。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲について特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲とする」とされています。この時間の内容は、数学Ⅰ「(1) 数と式」の事項（学習内容マップではア(ウ)・イ(イ)に対応づけています）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。式を目的に応じて整理する見方（問8のように、着目する文字を決めて式を読む見方）は、こうした処理の土台になります。</p>
+  <p class="small">問8は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">整式の乗法（数Ⅰ-002）</p>
+  <p>次の時間は、整式どうしの<strong>かけ算</strong>です。分配法則と、累乗の計算の決まり（指数法則）\( a^ma^n=a^{m+n} \) などを使って、単項式・多項式どうしの積を計算します。かけ算の結果も、この時間に学んだように同類項をまとめ、降べきの順に整理して答えます。</p>
+  <p>この時間では、整式どうしの乗法と指数法則（数Ⅰ-002）、乗法公式による展開（数Ⅰ-003）、多項式の除法（数学Ⅱ、数Ⅱ-005）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">これまで</span>中学校　中2-001・002「単項式と多項式」「同類項と多項式の加法・減法」</div>
+  <div><span class="label">次の時間</span>数Ⅰ-002　整式の乗法</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-001「整式の整理と加法・減法」（学習指導要領 数学Ⅰ (1)ア(ウ)・イ(イ)、解説 p.36-37。† 教科書で一般的な内容を含む行）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(1) 数と式（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.35「式に関しては…一つの文字に着目して整理したり」、p.36-37「一つの文字に着目して式を整理したり」（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>中学校学習指導要領（平成29年告示）解説 数学編 第2学年 A(1)（用語「同類項」、整式の加法・減法の誤りの例）（文部科学省）https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「多項式」（単項式・多項式・同類項・次数、ある文字に着目して降べきの順に整理すること、交換・結合・分配法則）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>東京書籍「評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）」の「単項式と多項式」（単項式・多項式・項・次数・係数・定数項・同類項・多項式の次数・\( n \) 次式、特定の文字に着目した整理）https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf</li>
+    <li>実教出版「編修趣意書 数Ⅰ007-903『高校 数学Ⅰ 新訂版』」（1章「数と式」の1節の名前が「整式」であることの確認）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-9.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-001",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-001",
+  "title": "整式の整理と加法・減法",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-1", "title": "数と式"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ウ)", "(1)イ(イ)"],
+  "kaisetsu_page": "36-37",
+  "objectives": [
+    {"id": "O1", "text": "単項式・多項式の次数や係数、同類項などの用語の意味を説明でき、特定の文字に着目したときの次数・係数・定数項を答えることができる。", "from": "単項式・多項式の次数や同類項などの用語を理解し", "sections": ["sec-1"], "checks": ["q1", "q2", "q8"]},
+    {"id": "O2", "text": "整式の同類項をまとめ、一つの文字に着目して降べきの順に整理することができる。", "from": "式を一つの文字に着目して降べきの順に整理して", "sections": ["sec-2"], "checks": ["q3", "q4", "q9"]},
+    {"id": "O3", "text": "中学校で学んだ計算を振り返りながら、整式の加法・減法を計算することができる。", "from": "整式の加法・減法を計算できる。中学校で学んだ単項式・多項式の計算を振り返って行う。", "sections": ["sec-3"], "checks": ["q5", "q6", "q7"]}
+  ],
+  "key_terms": [
+    {"term": "次数", "where": "sec-1"},
+    {"term": "同類項", "where": "sec-2"},
+    {"term": "降べきの順", "where": "sec-2"},
+    {"term": "単項式", "where": "sec-1"},
+    {"term": "係数", "where": "sec-1"},
+    {"term": "多項式", "where": "sec-1"},
+    {"term": "定数項", "where": "sec-1"},
+    {"term": "整式", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "単項式・多項式と項、単項式・多項式の次数", "taught_in": ["jhs_math/中2-001"], "where": "review"},
+    {"concept": "項と係数", "taught_in": ["jhs_math/中1-032"], "where": "sec-1"},
+    {"concept": "減法を加法に直し、式を項の和とみること", "taught_in": ["jhs_math/中1-010"], "where": "sec-1"},
+    {"concept": "同類項をまとめる、多項式の加法・減法", "taught_in": ["jhs_math/中2-002"], "where": "review"},
+    {"concept": "多項式と数の乗法（2A−3B などの計算）", "taught_in": ["jhs_math/中2-003"], "where": "review"},
+    {"concept": "累乗と指数、同じ文字の積を累乗で表すこと", "taught_in": ["jhs_math/中1-013", "jhs_math/中1-027"], "where": "review"},
+    {"concept": "かっこの前が − のときのかっこのはずし方", "taught_in": ["jhs_math/中1-034"], "where": "sec-3"},
+    {"concept": "加法の交換法則・結合法則", "taught_in": ["jhs_math/中1-007"], "where": "sec-3"},
+    {"concept": "分配法則", "taught_in": ["jhs_math/中1-017", "jhs_math/中1-035"], "where": "sec-2"},
+    {"concept": "直方体（角柱）の表面積", "taught_in": ["jhs_math/中1-103"], "where": "intro"}
+  ],
+  "out_of_scope": [
+    "整式どうしの乗法と指数法則（数Ⅰ-002）",
+    "乗法公式による展開（数Ⅰ-003）",
+    "多項式の除法（数Ⅱ-005）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『数と式』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(1)ア(ウ)・イ(イ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.35 中学校での式の学習と数学Ⅰでの扱い、p.36-37 一つの文字に着目して式を整理すること"},
+    {"name": "中学校学習指導要領（平成29年告示）解説 数学編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf", "use": "第2学年A(1)：用語「同類項」、整式の加法・減法と誤りの例（(4x+5)−(2x+3)=2x+2=4x）"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "単項式・多項式・同類項・次数の用語、ある文字に着目して降べきの順に整理すること、交換・結合・分配法則（† の内容）"},
+    {"name": "評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf", "use": "単項式・多項式・項・次数・係数・定数項・同類項・多項式の次数・n次式の用語、特定の文字に着目して整理すること"},
+    {"name": "編修趣意書 数Ⅰ007-903『高校 数学Ⅰ 新訂版』", "publisher": "実教出版（文部科学省掲載）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-9.pdf", "use": "1章1節の名前が「整式」であること（教科書で「整式」「多項式」の両方の言い方があることの注記）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>課題学習：直角三角錐の面積の関係｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.widget .w-row { margin: 4px 0; }
+.widget .w-row output { display: inline-block; min-width: 2.5em; font-weight: 700; }
+.widget .w-out { font-size: .92rem; margin: 4px 0 0; }
+.stage { display: inline-block; font-size: .8rem; font-weight: 700; padding: 1px 8px; border-radius: 10px; border: 1px solid currentColor; margin-right: 6px; }
+table.data td, table.data th { text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>課題学習</span><span>数Ⅰ-093</span></div>
+  <h1>課題学習：直角三角錐の面積の関係</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">課題学習</span>
+    <span class="badge exam-tri">共通テスト △</span>
+  </div>
+  <p class="lead">直角三角形では、3辺の長さの間に三平方の定理 \( a^2+b^2=c^2 \) が成り立ちました。では、1つの頂点に3つの直角が集まる三角錐では、4つの面の面積の間にどんな関係があるでしょうか。具体的な数で試して予想し、余弦定理と三角形の面積の公式を使って導きます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>直角三角錐 OABC の4つの面の形を調べ、OA、OB、OC の長さから3つの直角三角形の面積 S1、S2、S3 と △ABC の3辺の長さを求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>具体的な直角三角錐で4つの面の面積を計算し、三平方の定理と比べて、S1²＋S2²＋S3²＝S4² という関係を予想できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>余弦定理、三角形の面積の公式、三角比の相互関係を活用して、S1²＋S2²＋S3²＝S4² が成り立つことを導くことができる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>導いた関係を特別な場合や三平方の定理と比べて振り返り、O から面 ABC までの距離を求めるなど、課題を発展させることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-092）</span>課題学習：身近な無理数（黄金比・用紙の縦横の比）</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-093）</span>課題学習：直角三角錐の面積の関係</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-094）</span>課題学習：模擬店の利益を最大にする</div>
+</div>
+<p class="small">前提となる単元：なし（課題学習）。この時間は、中学1年「空間図形」、中学3年「三平方の定理」と、数学Ⅰ「図形と計量」の数Ⅰ-058〜076（三角比、相互関係、余弦定理、三角形の面積、空間図形の計量）を使います。本編の <span class="stage">①理解</span> などの印は、数Ⅰ-092 で示した課題学習の過程（①課題の理解 ②結果の予想 ③解決の方向の構想 ④解決 ⑤振り返りと発展）のどの段階かを表します。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：使う既習事項</h2>
+<p>この時間は、次の4つを使います。3問で確かめましょう。</p>
+<div class="formula-card">
+  <div><span class="f-name">① 三平方の定理（中3-097・099）</span><p>直角をはさむ2辺が \( a \)、\( b \)、斜辺が \( c \) の直角三角形で \( a^2+b^2=c^2 \)。</p></div>
+  <div><span class="f-name">② 余弦定理（数Ⅰ-070・071）</span><p>△ABC で \( \cos A=\dfrac{b^2+c^2-a^2}{2bc} \)（\( a=\mathrm{BC} \)、\( b=\mathrm{CA} \)、\( c=\mathrm{AB} \)）。</p></div>
+  <div><span class="f-name">③ 三角形の面積（数Ⅰ-073）</span><p>\( S=\dfrac{1}{2}bc\sin A \)。3辺が分かるときは、余弦定理で \( \cos A \) を求め、相互関係で \( \sin A \) を求めてから使う。</p></div>
+  <div><span class="f-name">④ 三角比の相互関係（数Ⅰ-061・065）</span><p>\( \sin^2A+\cos^2A=1 \)。\( 0^\circ&lt;A&lt;180^\circ \) では \( \sin A&gt;0 \)。</p></div>
+</div>
+<p class="small">①〜④は、このページの中での番号です。この時間の②の式は、三角錐の辺と区別するため、△ABC の辺を AB、BC、CA のまま書いて使います。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中3-099</span></div>
+  <p>\( \angle\mathrm{AOB}=90^\circ \)、\( \mathrm{OA}=1 \)、\( \mathrm{OB}=2 \) の直角三角形 OAB で、AB の長さはどれですか。</p>
+  <div class="choices">
+    <button>\( 3 \)</button>
+    <button data-correct="true">\( \sqrt{5} \)</button>
+    <button>\( 5 \)</button>
+    <button>\( \sqrt{3} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">三平方の定理で \( \mathrm{AB}^2=1^2+2^2=5 \)、\( \mathrm{AB}=\sqrt{5} \) です。\( 3 \) は長さをそのまま足した誤りです。\( 5 \) は \( \mathrm{AB}^2 \) の値で、平方根をとり忘れています。\( \sqrt{3} \) は \( 2^2-1^2=3 \) と、斜辺を OB と取り違えて引き算した誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-071</span></div>
+  <p>\( \mathrm{AB}=\sqrt{5} \)、\( \mathrm{CA}=\sqrt{10} \)、\( \mathrm{BC}=\sqrt{13} \) の △ABC で、\( \cos A \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( -\dfrac{\sqrt{2}}{10} \)</button>
+    <button>\( \dfrac{\sqrt{2}}{5} \)</button>
+    <button data-correct="true">\( \dfrac{\sqrt{2}}{10} \)</button>
+    <button>\( \dfrac{1}{50} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \cos A=\dfrac{\mathrm{AB}^2+\mathrm{CA}^2-\mathrm{BC}^2}{2\cdot\mathrm{AB}\cdot\mathrm{CA}}=\dfrac{5+10-13}{2\sqrt{5}\sqrt{10}}=\dfrac{2}{2\sqrt{50}}=\dfrac{1}{5\sqrt{2}}=\dfrac{\sqrt{2}}{10} \)。\( -\dfrac{\sqrt{2}}{10} \) は分子を \( 13-5-10 \) と逆に引いた誤りです。\( \dfrac{\sqrt{2}}{5} \) は分母の 2 を落としています。\( \dfrac{1}{50} \) は分母を \( 2\times5\times10 \) と、辺の長さでなく2乗の値でかけた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-061</span></div>
+  <p>\( 0^\circ&lt;A&lt;90^\circ \)、\( \cos A=\dfrac{1}{3} \) のとき、\( \sin A \) の値はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \dfrac{2\sqrt{2}}{3} \)</button>
+    <button>\( \dfrac{2}{3} \)</button>
+    <button>\( \dfrac{8}{9} \)</button>
+    <button>\( -\dfrac{2\sqrt{2}}{3} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sin^2A=1-\left(\dfrac{1}{3}\right)^2=\dfrac{8}{9} \)、\( \sin A&gt;0 \) なので \( \sin A=\dfrac{2\sqrt{2}}{3} \)。\( \dfrac{2}{3} \) は2乗を忘れて \( 1-\dfrac{1}{3} \) とした誤りです。\( \dfrac{8}{9} \) は \( \sin^2A \) の値で、平方根をとり忘れています。\( -\dfrac{2\sqrt{2}}{3} \) は、\( 0^\circ&lt;A&lt;90^\circ \) で \( \sin A&gt;0 \) であることを見落としています。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：直方体の角を切り落とすと</h2>
+<div class="box think">
+  <p class="box-title">切り口の面積と、残りの3つの面</p>
+  <p>直方体の1つの角 O から出る3本の辺の上に、点 A、B、C をとり、3点を通る平面で角を切り落とします。切り落とされた立体は、O に3つの直角が集まる三角錐 OABC です。</p>
+  <p>① \( \mathrm{OA}=\mathrm{OB}=\mathrm{OC}=1 \) のとき、4つの面の面積はそれぞれいくつでしょうか。</p>
+  <p>② 直角三角形の3辺の長さには三平方の定理が成り立ちました。三角錐 OABC の4つの面の面積の間にも、似た関係があるでしょうか。</p>
+  <p>①は「結果を予想する」の節、②は「一般の場合に導く」の節で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="課題の理解：面と辺"><span class="num">3</span>課題を理解する：直角三角錐の面と辺</h2>
+<h3><span class="stage">①理解</span>何が分かっていて、何を調べるのか</h3>
+<p>1つの頂点 O に3つの直角が集まっている三角錐 OABC、つまり \( \angle\mathrm{AOB}=\angle\mathrm{BOC}=\angle\mathrm{COA}=90^\circ \) の三角錐を、学習指導要領解説にならって<strong>直角三角錐</strong>と呼びます。解説と同じく、4つの面の面積を次のように表します。</p>
+<div class="table-wrap">
+<table class="data">
+  <tr><th>面</th><td>△OAB</td><td>△OBC</td><td>△OCA</td><td>△ABC</td></tr>
+  <tr><th>面積</th><td>\( S_1 \)</td><td>\( S_2 \)</td><td>\( S_3 \)</td><td>\( S_4 \)</td></tr>
+</table>
+</div>
+<figure>
+<!--svg:f093a-->
+<svg viewBox="0 0 270 245" width="270" role="img" aria-label="直角三角錐 OABC の見取図。O から出る辺 OA（長さ a）、OB（長さ b）、OC（長さ c）はたがいに垂直。面 OAB が S₁、面 OBC が S₂、面 OCA が S₃、面 ABC が S₄（青く塗った面。O に集まる3つの面は、その奥に透けて見える）" data-oa="4.0" data-ob="5.0" data-oc="4.0">
+<polygon points="27.6,217.4 220,175 70,55" fill="#1f5fbf" fill-opacity="0.15" stroke="#1f5fbf" stroke-width="2" data-role="abc"/>
+<line x1="70" y1="175" x2="27.6" y2="217.4" stroke="currentColor" stroke-width="1.8" data-role="OA"/>
+<line x1="70" y1="175" x2="220" y2="175" stroke="currentColor" stroke-width="1.8" data-role="OB"/>
+<line x1="70" y1="175" x2="70" y2="55" stroke="currentColor" stroke-width="1.8" data-role="OC"/>
+<polyline points="65.1,179.9 72.1,179.9 77,175" fill="none" stroke="currentColor" stroke-width="1"/>
+<polyline points="77,175 77,168 70,168" fill="none" stroke="currentColor" stroke-width="1"/>
+<polyline points="70,168 65.1,172.9 65.1,179.9" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="60" y="171" text-anchor="end" font-size="13" fill="currentColor">O</text>
+<text x="23.6" y="232.4" text-anchor="middle" font-size="13" fill="currentColor">A</text>
+<text x="228" y="180" text-anchor="start" font-size="13" fill="currentColor">B</text>
+<text x="70" y="48" text-anchor="middle" font-size="13" fill="currentColor">C</text>
+<text x="38.8" y="198.2" text-anchor="end" font-size="13" fill="currentColor" font-style="italic">a</text>
+<text x="145" y="191" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">b</text>
+<text x="62" y="119" text-anchor="end" font-size="13" fill="currentColor" font-style="italic">c</text>
+<text x="109.9" y="193.1" text-anchor="middle" font-size="12" fill="#1e8e5a" font-weight="700">S₁</text>
+<text x="120" y="140" text-anchor="middle" font-size="12" fill="#1e8e5a" font-weight="700">S₂</text>
+<text x="53.9" y="150.1" text-anchor="middle" font-size="12" fill="#1e8e5a" font-weight="700">S₃</text>
+<text x="160" y="108" text-anchor="start" font-size="12" fill="#1f5fbf" font-weight="700">S₄（面ABC）</text>
+</svg>
+<!--/svg:f093a-->
+  <figcaption>図1　直角三角錐 OABC の見取図。O から出る3本の辺 OA、OB、OC はたがいに垂直（□は直角の印）。\( \mathrm{OA}=a \)、\( \mathrm{OB}=b \)、\( \mathrm{OC}=c \) とする。O から出る辺を実線で、面 ABC を色で示した（O に集まる3つの面は、面 ABC の奥に透けて見えるように描いた）</figcaption>
+</figure>
+<p>\( \mathrm{OA}=a \)、\( \mathrm{OB}=b \)、\( \mathrm{OC}=c \) とします。O に集まる3つの面は直角三角形なので、面積と斜辺はすぐに分かります。</p>
+<ul>
+  <li>面積：\( S_1=\dfrac{1}{2}ab \)、\( S_2=\dfrac{1}{2}bc \)、\( S_3=\dfrac{1}{2}ca \)</li>
+  <li>△ABC の3辺（三平方の定理）：\( \mathrm{AB}^2=a^2+b^2 \)、\( \mathrm{BC}^2=b^2+c^2 \)、\( \mathrm{CA}^2=c^2+a^2 \)</li>
+</ul>
+<p>課題は、<strong>\( S_4 \)（△ABC の面積）と \( S_1 \)、\( S_2 \)、\( S_3 \) の間にどんな関係があるか</strong>です。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（面と辺を求める）</p>
+  <p>\( \mathrm{OA}=1 \)、\( \mathrm{OB}=2 \)、\( \mathrm{OC}=3 \) の直角三角錐 OABC で、\( S_1 \)、\( S_2 \)、\( S_3 \) と、△ABC の3辺の長さを求めなさい。</p>
+  <div class="step">着眼点：O に集まる3つの面は直角三角形。直角をはさむ2辺から面積を、三平方の定理から斜辺を求めます。</div>
+  <div class="step">ステップ1：\( S_1=\dfrac{1}{2}\cdot1\cdot2=1 \)、\( S_2=\dfrac{1}{2}\cdot2\cdot3=3 \)、\( S_3=\dfrac{1}{2}\cdot3\cdot1=\dfrac{3}{2} \)。</div>
+  <div class="step">ステップ2：\( \mathrm{AB}^2=1+4=5 \)、\( \mathrm{BC}^2=4+9=13 \)、\( \mathrm{CA}^2=9+1=10 \)。</div>
+  <div class="step">答え：\( S_1=1 \)、\( S_2=3 \)、\( S_3=\dfrac{3}{2} \)。\( \mathrm{AB}=\sqrt{5} \)、\( \mathrm{BC}=\sqrt{13} \)、\( \mathrm{CA}=\sqrt{10} \)。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：△ABC も直角三角形だと思う</p><p>O に集まる3つの面は直角三角形ですが、△ABC は直角三角形ではありません。例題1では \( \mathrm{AB}^2+\mathrm{CA}^2=15 \) で \( \mathrm{BC}^2=13 \) と等しくなく、ほかの組合せでも等しくなりません。もし直角三角形なら、三平方の定理（中3-097）により、どれか1つの辺の2乗がほかの2辺の2乗の和に等しくなるはずなので、△ABC は直角三角形ではないと分かります（3辺の長さから直角三角形かどうかを判断することは中3-100 で扱いました）。\( S_4 \) を「底辺×高さ÷2」ですぐに求めることはできません。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="結果を予想する"><span class="num">4</span>結果を予想する：特別な場合で試す</h2>
+<h3><span class="stage">②予想</span>計算しやすい場合で \( S_4 \) を求める</h3>
+<p>一般の場合はすぐには分からないので、△ABC の面積が求めやすい特別な場合で試します。</p>
+<div class="box example worked">
+  <p class="box-title">例題2（導入の問い①の答え：OA＝OB＝OC＝1）</p>
+  <p>\( \mathrm{OA}=\mathrm{OB}=\mathrm{OC}=1 \) のとき、\( S_1 \)〜\( S_4 \) を求めなさい。</p>
+  <div class="step">ステップ1：\( S_1=S_2=S_3=\dfrac{1}{2}\cdot1\cdot1=\dfrac{1}{2} \)。</div>
+  <div class="step">ステップ2：\( \mathrm{AB}=\mathrm{BC}=\mathrm{CA}=\sqrt{1+1}=\sqrt{2} \) なので、△ABC は正三角形で、どの角も \( 60^\circ \)。</div>
+  <div class="step">ステップ3：\( S_4=\dfrac{1}{2}\cdot\sqrt{2}\cdot\sqrt{2}\cdot\sin60^\circ=\dfrac{1}{2}\cdot2\cdot\dfrac{\sqrt{3}}{2}=\dfrac{\sqrt{3}}{2} \)（数Ⅰ-058・073）。</div>
+  <div class="step">答え：\( S_1=S_2=S_3=\dfrac{1}{2} \)、\( S_4=\dfrac{\sqrt{3}}{2}\fallingdotseq0.866 \)。</div>
+</div>
+<p>和をとると \( S_1+S_2+S_3=\dfrac{3}{2}=1.5 \) で、\( S_4 \) と等しくありません。三平方の定理にならって2乗してみると、</p>
+<p style="text-align:center">\( S_1^2+S_2^2+S_3^2=\dfrac{1}{4}+\dfrac{1}{4}+\dfrac{1}{4}=\dfrac{3}{4} \)、\( S_4^2=\left(\dfrac{\sqrt{3}}{2}\right)^2=\dfrac{3}{4} \)</p>
+<p>で、等しくなりました。もう1つ試します。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（OA＝1、OB＝OC＝2）</p>
+  <p>\( \mathrm{OA}=1 \)、\( \mathrm{OB}=\mathrm{OC}=2 \) のとき、\( S_1^2+S_2^2+S_3^2 \) と \( S_4^2 \) を比べなさい。</p>
+  <div class="step">ステップ1：\( S_1=\dfrac{1}{2}\cdot1\cdot2=1 \)、\( S_2=\dfrac{1}{2}\cdot2\cdot2=2 \)、\( S_3=\dfrac{1}{2}\cdot2\cdot1=1 \)。よって \( S_1^2+S_2^2+S_3^2=1+4+1=6 \)。</div>
+  <div class="step">ステップ2：\( \mathrm{AB}=\mathrm{CA}=\sqrt{1+4}=\sqrt{5} \)、\( \mathrm{BC}=\sqrt{4+4}=2\sqrt{2} \)。△ABC は \( \mathrm{AB}=\mathrm{AC} \) の二等辺三角形です。</div>
+  <div class="step">ステップ3：BC の中点を M とすると、AM は BC に垂直です（中2-061）。\( \mathrm{BM}=\sqrt{2} \) なので \( \mathrm{AM}=\sqrt{5-2}=\sqrt{3} \)（図2）。</div>
+  <div class="step">ステップ4：\( S_4=\dfrac{1}{2}\cdot2\sqrt{2}\cdot\sqrt{3}=\sqrt{6} \)、\( S_4^2=6 \)。</div>
+  <div class="step">答え：\( S_1^2+S_2^2+S_3^2=6 \)、\( S_4^2=6 \) で等しい（\( S_1+S_2+S_3=4 \) は \( S_4=\sqrt{6}\fallingdotseq2.449 \) と等しくない）。</div>
+</div>
+<figure>
+<!--svg:f093b-->
+<svg viewBox="0 0 230 190" width="230" role="img" aria-label="二等辺三角形 ABC。AB と AC は √5、BC は 2√2。BC の中点 M と A を結ぶ線分 AM は BC に垂直で長さ √3" data-ab="2.236068" data-ac="2.236068" data-bc="2.828427" data-am="1.732051">
+<polygon points="110.7,73.4 40,160 181.4,160" fill="#1f5fbf" fill-opacity="0.08" stroke="currentColor" stroke-width="1.8"/>
+<line x1="110.7" y1="73.4" x2="110.7" y2="160" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5 4"/>
+<polyline points="118.7,160 118.7,152 110.7,152" fill="none" stroke="currentColor" stroke-width="1"/>
+<circle cx="110.7" cy="160" r="3.5" fill="#c0392b"/>
+<text x="110.7" y="65.4" text-anchor="middle" font-size="13" fill="currentColor">A</text>
+<text x="34" y="165" text-anchor="end" font-size="13" fill="currentColor">B</text>
+<text x="187.4" y="165" text-anchor="start" font-size="13" fill="currentColor">C</text>
+<text x="110.7" y="177" text-anchor="middle" font-size="13" fill="currentColor">M</text>
+<text x="65.4" y="116.7" text-anchor="end" font-size="12" fill="#1f5fbf">√5</text>
+<text x="156.1" y="116.7" text-anchor="start" font-size="12" fill="#1f5fbf">√5</text>
+<text x="75.4" y="177" text-anchor="middle" font-size="12" fill="#1f5fbf">√2</text>
+<text x="146.1" y="177" text-anchor="middle" font-size="12" fill="#1f5fbf">√2</text>
+<text x="116.7" y="120.7" text-anchor="start" font-size="12" fill="#1f5fbf">√3</text>
+</svg>
+<!--/svg:f093b-->
+  <figcaption>図2　例題3の △ABC（\( \mathrm{AB}=\mathrm{AC}=\sqrt{5} \)、\( \mathrm{BC}=2\sqrt{2} \)）。M は BC の中点で、\( \mathrm{AM}\perp\mathrm{BC} \)、\( \mathrm{AM}=\sqrt{3} \)</figcaption>
+</figure>
+<div class="box think"><p class="box-title">予想</p><p>直角三角錐では、いつでも \( S_1^2+S_2^2+S_3^2=S_4^2 \) が成り立つのではないか。</p></div>
+<p>三平方の定理では、直角をはさむ2辺の長さの2乗の和が、斜辺の長さの2乗に等しくなりました。予想した関係は、「長さ」を「面積」に、「2辺」を「直角が集まる3つの面」に置き換えた形をしています。学習指導要領解説では、この関係を「四平方の定理と呼ぶこともある」としています。</p>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>三平方の定理</th><th>予想した関係（四平方の定理と呼ぶこともある）</th></tr>
+  <tr><th>図形</th><td>平面の直角三角形</td><td>空間の直角三角錐</td></tr>
+  <tr><th>直角</th><td>1つの頂点に1つ</td><td>1つの頂点 O に3つ</td></tr>
+  <tr><th>関係</th><td>直角をはさむ2辺の長さの2乗の和 ＝ 斜辺の長さの2乗</td><td>O に集まる3つの面の面積の2乗の和 ＝ 残りの面の面積の2乗</td></tr>
+</table>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：2つの例で成り立ったから「証明できた」</p><p>例題2・3は、どちらも △ABC が正三角形や二等辺三角形になる特別な場合です。いくつかの例で成り立っても、すべての直角三角錐で成り立つことの証明にはなりません（数Ⅰ-024 の「命題が真であること」の考え方）。予想は、一般の \( a \)、\( b \)、\( c \) で確かめる必要があります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="一般の場合に導く"><span class="num">5</span>一般の場合に導く：余弦定理と面積の公式</h2>
+<h3><span class="stage">③構想</span>何を使えば \( S_4 \) が求められるか</h3>
+<p>△ABC は3辺の長さが分かっています（課題を理解する節）。3辺が分かる三角形の面積は、数Ⅰ-073 で学んだように、次の順に求められます。</p>
+<div class="box point"><p class="box-title">解決の方針</p><p>(1) 余弦定理で \( \cos A \) を求める → (2) 相互関係で \( \sin^2A=1-\cos^2A \) → (3) 面積の公式 \( S_4=\dfrac{1}{2}\cdot\mathrm{AB}\cdot\mathrm{CA}\cdot\sin A \)。根号を避けるため、\( S_4 \) ではなく \( S_4^2 \) を計算する。</p></div>
+<p>学習指導要領解説では、この課題を「正弦定理や余弦定理を活用して，新たな性質を見いだす学習」の例としています。この時間の導き方では、余弦定理と三角形の面積の公式、相互関係を使い、正弦定理は使いません。</p>
+<h3><span class="stage">④解決</span>まず数で確かめる</h3>
+<div class="box example worked">
+  <p class="box-title">例題4（例題1の直角三角錐で \( S_4 \) を求める）</p>
+  <p>\( \mathrm{OA}=1 \)、\( \mathrm{OB}=2 \)、\( \mathrm{OC}=3 \) の直角三角錐で、\( S_4 \) を求め、\( S_1^2+S_2^2+S_3^2=S_4^2 \) が成り立つか確かめなさい。</p>
+  <div class="step">ステップ1（余弦定理）：例題1より \( \mathrm{AB}^2=5 \)、\( \mathrm{CA}^2=10 \)、\( \mathrm{BC}^2=13 \)。\( \cos A=\dfrac{5+10-13}{2\sqrt{5}\cdot\sqrt{10}}=\dfrac{2}{2\sqrt{50}}=\dfrac{1}{\sqrt{50}} \)（確認2）。</div>
+  <div class="step">ステップ2（相互関係）：\( \sin^2A=1-\dfrac{1}{50}=\dfrac{49}{50} \)、\( \sin A&gt;0 \) より \( \sin A=\dfrac{7}{\sqrt{50}} \)。</div>
+  <div class="step">ステップ3（面積の公式）：\( S_4=\dfrac{1}{2}\cdot\sqrt{5}\cdot\sqrt{10}\cdot\dfrac{7}{\sqrt{50}}=\dfrac{1}{2}\cdot\sqrt{50}\cdot\dfrac{7}{\sqrt{50}}=\dfrac{7}{2} \)。</div>
+  <div class="step">ステップ4（比べる）：\( S_1^2+S_2^2+S_3^2=1+9+\dfrac{9}{4}=\dfrac{49}{4} \)、\( S_4^2=\left(\dfrac{7}{2}\right)^2=\dfrac{49}{4} \)。</div>
+  <div class="step">答え：\( S_4=\dfrac{7}{2} \)。\( S_1^2+S_2^2+S_3^2=S_4^2=\dfrac{49}{4} \) が成り立つ。</div>
+</div>
+<figure>
+<!--svg:f093c-->
+<svg viewBox="0 0 220 200" width="220" role="img" aria-label="△ABC。AB は √5、CA は √10、BC は √13。角 A に弧の印。直角三角形でも二等辺三角形でもない" data-ab="2.236068" data-ac="3.162278" data-bc="3.605551">
+<polygon points="40,172 147.3,172 61.5,21.7" fill="#1f5fbf" fill-opacity="0.08" stroke="currentColor" stroke-width="1.8"/>
+<path d="M58,172 A18,18 0 0 0 42.5,154.2" fill="none" stroke="#1e8e5a" stroke-width="1.5"/>
+<text x="34" y="177" text-anchor="end" font-size="13" fill="currentColor">A</text>
+<text x="153.3" y="177" text-anchor="start" font-size="13" fill="currentColor">B</text>
+<text x="61.5" y="13.7" text-anchor="middle" font-size="13" fill="currentColor">C</text>
+<text x="93.7" y="189" text-anchor="middle" font-size="12" fill="#1f5fbf">√5</text>
+<text x="42.7" y="96.9" text-anchor="end" font-size="12" fill="#1f5fbf">√10</text>
+<text x="112.4" y="96.9" text-anchor="start" font-size="12" fill="#1f5fbf">√13</text>
+</svg>
+<!--/svg:f093c-->
+  <figcaption>図3　例題4の △ABC（\( \mathrm{AB}=\sqrt{5} \)、\( \mathrm{CA}=\sqrt{10} \)、\( \mathrm{BC}=\sqrt{13} \)）。直角三角形でも二等辺三角形でもないので、余弦定理で \( \cos A \) を求める</figcaption>
+</figure>
+<h3><span class="stage">④解決</span>文字で導く</h3>
+<div class="box example worked">
+  <p class="box-title">例題5（導入の問い②の答え：一般の場合）</p>
+  <p>\( \mathrm{OA}=a \)、\( \mathrm{OB}=b \)、\( \mathrm{OC}=c \) の直角三角錐 OABC で、\( S_1^2+S_2^2+S_3^2=S_4^2 \) が成り立つことを証明しなさい。</p>
+  <div class="step">ステップ1（三平方の定理）：\( \mathrm{AB}^2=a^2+b^2 \)、\( \mathrm{CA}^2=c^2+a^2 \)、\( \mathrm{BC}^2=b^2+c^2 \)。</div>
+  <div class="step">ステップ2（余弦定理）：\( \cos A=\dfrac{\mathrm{AB}^2+\mathrm{CA}^2-\mathrm{BC}^2}{2\cdot\mathrm{AB}\cdot\mathrm{CA}}=\dfrac{(a^2+b^2)+(c^2+a^2)-(b^2+c^2)}{2\cdot\mathrm{AB}\cdot\mathrm{CA}}=\dfrac{a^2}{\mathrm{AB}\cdot\mathrm{CA}} \)。</div>
+  <div class="step">ステップ3（面積の公式と相互関係）：\( S_4^2=\dfrac{1}{4}\mathrm{AB}^2\cdot\mathrm{CA}^2\sin^2A=\dfrac{1}{4}\mathrm{AB}^2\cdot\mathrm{CA}^2(1-\cos^2A)=\dfrac{1}{4}\left(\mathrm{AB}^2\cdot\mathrm{CA}^2-a^4\right) \)。</div>
+  <div class="step">ステップ4（展開）：\( \mathrm{AB}^2\cdot\mathrm{CA}^2-a^4=(a^2+b^2)(c^2+a^2)-a^4=a^2c^2+a^4+b^2c^2+a^2b^2-a^4=a^2b^2+b^2c^2+c^2a^2 \)。</div>
+  <div class="step">ステップ5：\( S_4^2=\dfrac{1}{4}(a^2b^2+b^2c^2+c^2a^2)=\left(\dfrac{1}{2}ab\right)^2+\left(\dfrac{1}{2}bc\right)^2+\left(\dfrac{1}{2}ca\right)^2=S_1^2+S_2^2+S_3^2 \)。（証明終わり）</div>
+</div>
+<p>こうして、予想した関係がすべての直角三角錐で成り立つことが分かりました。ステップ2で \( \cos A \) の分子がちょうど \( 2a^2 \) になり、ステップ4で \( a^4 \) が消えることが、式がきれいにまとまる鍵です。</p>
+<h3>辺の長さを変えて確かめよう</h3>
+<div class="widget" id="w1">
+  <div class="w-row"><label for="w1-a">\( \mathrm{OA}=a \)：</label><input type="range" id="w1-a" min="1" max="6" step="0.5" value="1"><output id="w1-av" for="w1-a">1</output></div>
+  <div class="w-row"><label for="w1-b">\( \mathrm{OB}=b \)：</label><input type="range" id="w1-b" min="1" max="6" step="0.5" value="2"><output id="w1-bv" for="w1-b">2</output></div>
+  <div class="w-row"><label for="w1-c">\( \mathrm{OC}=c \)：</label><input type="range" id="w1-c" min="1" max="6" step="0.5" value="3"><output id="w1-cv" for="w1-c">3</output></div>
+  <div><svg id="w1-svg" viewBox="0 0 300 270" width="300" role="img" aria-label="直角三角錐 OABC の見取図。スライダーで OA、OB、OC の長さを変えると形が変わる。面 ABC を色で示す"></svg></div>
+  <p class="w-out" id="w1-out" aria-live="polite">S₁ ＝ 1、S₂ ＝ 3、S₃ ＝ 1.5、S₄ ＝ 3.5</p>
+  <p class="w-out" id="w1-out2" aria-live="polite">S₁²＋S₂²＋S₃² ＝ 12.25　／　S₄²（余弦定理で cos A を求めて計算）＝ 12.25</p>
+  <p class="small">\( a \)、\( b \)、\( c \) は 0.5 刻みで 1〜6。\( S_4^2 \) は、\( S_1 \)〜\( S_3 \) を使わずに、△ABC の3辺から余弦定理と相互関係で計算した値です。\( S_4 \) が無理数のときは、小数第3位を四捨五入して ≒ を付けています。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="振り返りと発展"><span class="num">6</span>振り返りと発展：導いた関係を見直す</h2>
+<h3><span class="stage">⑤振り返り</span>特別な場合と合っているか</h3>
+<ul>
+  <li><strong>例題2・3と合う</strong>：\( a=b=c=1 \) なら \( \dfrac{1}{4}(1+1+1)=\dfrac{3}{4} \)、\( a=1 \)、\( b=c=2 \) なら \( \dfrac{1}{4}(4+16+4)=6 \) で、例題2・3の \( S_4^2 \) と一致します。</li>
+  <li><strong>つぶれる場合</strong>：\( c \) を 0 に近づけると、C は O に近づき、△ABC は △OAB に近づきます。式では \( S_2 \)、\( S_3 \) が 0 に近づき、\( S_4^2 \) は \( S_1^2 \) に近づくので、図の変化と合っています。</li>
+  <li><strong>△ABC はいつも鋭角三角形</strong>：例題5のステップ2から \( \cos A=\dfrac{a^2}{\mathrm{AB}\cdot\mathrm{CA}}&gt;0 \) です。同じように \( \cos B&gt;0 \)、\( \cos C&gt;0 \) なので、△ABC の3つの角はすべて鋭角です（数Ⅰ-071）。「△ABC は直角三角形ではない」（課題を理解する節）ことも、ここから確かめられます。</li>
+</ul>
+<h3><span class="stage">⑤発展</span>O から面 ABC までの距離</h3>
+<p>直角三角錐の体積を2通りに表すと、新しい関係が見つかります（数Ⅰ-076 で体積を2通りに表した考え方）。</p>
+<div class="box example worked">
+  <p class="box-title">例題6（発展：O から面 ABC までの距離 h）</p>
+  <p>O から面 ABC に引いた垂線の長さ（点と平面の距離、中1-098）を \( h \) とします。\( \dfrac{1}{h^2}=\dfrac{1}{a^2}+\dfrac{1}{b^2}+\dfrac{1}{c^2} \) が成り立つことを示しなさい。</p>
+  <div class="step">着眼点：OC は OA とも OB とも垂直なので、OA と OB で決まる平面 OAB に垂直です（中1-097）。△OAB を底面とすると、高さは OC です。</div>
+  <div class="step">ステップ1：体積は \( V=\dfrac{1}{3}\cdot\dfrac{1}{2}ab\cdot c=\dfrac{abc}{6} \)（中1-102）。△ABC を底面とみると \( V=\dfrac{1}{3}S_4h \)。よって \( h=\dfrac{abc}{2S_4} \)。</div>
+  <div class="step">ステップ2：\( h^2=\dfrac{a^2b^2c^2}{4S_4^2}=\dfrac{a^2b^2c^2}{a^2b^2+b^2c^2+c^2a^2} \)（例題5の結果を使う）。</div>
+  <div class="step">ステップ3：逆数をとると \( \dfrac{1}{h^2}=\dfrac{a^2b^2+b^2c^2+c^2a^2}{a^2b^2c^2}=\dfrac{1}{c^2}+\dfrac{1}{a^2}+\dfrac{1}{b^2} \)。（証明終わり）</div>
+</div>
+<p>たとえば \( a=1 \)、\( b=c=2 \) なら \( \dfrac{1}{h^2}=1+\dfrac{1}{4}+\dfrac{1}{4}=\dfrac{3}{2} \)、\( h=\sqrt{\dfrac{2}{3}}=\dfrac{\sqrt{6}}{3} \) です。例題3の \( S_4=\sqrt{6} \) を使って \( h=\dfrac{1\cdot2\cdot2}{2\sqrt{6}}=\dfrac{2}{\sqrt{6}}=\dfrac{\sqrt{6}}{3} \) と求めても同じになります。数Ⅰ-076 の例題2で、直方体の頂点 A から平面 BDE までの距離を求めたときの三角錐 ABDE も、A に3つの直角が集まり \( \mathrm{AB}=\mathrm{AD}=2 \)、\( \mathrm{AE}=1 \) なので、これと同じ形の直角三角錐です。そこで求めた距離も \( \dfrac{\sqrt{6}}{3} \) でした。</p>
+<p>平面でも同じ形の関係があります。直角をはさむ2辺が \( a \)、\( b \) の直角三角形で、直角の頂点から斜辺に引いた垂線の長さを \( h \) とすると、面積を2通りに表して \( \dfrac{1}{h^2}=\dfrac{1}{a^2}+\dfrac{1}{b^2} \) が成り立ちます（斜辺を \( c \) とすると \( ab=ch \)、\( c^2=a^2+b^2 \) から）。三平方の定理と四平方の定理のように、平面の関係が空間の関係に広がっています。</p>
+<div class="box caution"><p class="box-title">よくある間違い：片方の式だけ 1/3 や 1/2 を忘れる</p><p>例題6で、△OAB を底面とする式を \( V=\dfrac{abc}{6} \) としたのに、△ABC を底面とする式を \( V=S_4h \) とすると、\( h=\dfrac{abc}{6S_4} \) となり、正しい値の \( \dfrac{1}{3} \) になってしまいます。錐体の体積は、どちらの底面で考えても \( \dfrac{1}{3}\times(\text{底面積})\times(\text{高さ}) \) です（中1-102）。底面 △OAB の面積の \( \dfrac{1}{2} \) も忘れないようにします。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>直角三角錐</dt><dd>1つの頂点 O に3つの直角が集まっている三角錐 OABC（\( \angle\mathrm{AOB}=\angle\mathrm{BOC}=\angle\mathrm{COA}=90^\circ \)）。学習指導要領解説の言い方。</dd>
+    <dt>四平方の定理</dt><dd>直角三角錐 OABC で、△OAB、△OBC、△OCA、△ABC の面積を \( S_1 \)、\( S_2 \)、\( S_3 \)、\( S_4 \) とするとき \( S_1^2+S_2^2+S_3^2=S_4^2 \)。解説では「四平方の定理と呼ぶこともある」とされている。</dd>
+    <dt>三平方の定理</dt><dd>直角三角形の直角をはさむ2辺 \( a \)、\( b \) と斜辺 \( c \) について \( a^2+b^2=c^2 \)（中3-097）。四平方の定理はこれを空間に広げた形。</dd>
+    <dt>3辺から三角形の面積を求める手順</dt><dd>余弦定理で \( \cos A \) → 相互関係で \( \sin A \) → \( S=\dfrac{1}{2}bc\sin A \)（数Ⅰ-073）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>直角三角錐 OABC（\( \mathrm{OA}=a \)、\( \mathrm{OB}=b \)、\( \mathrm{OC}=c \)）では、\( S_1=\dfrac{1}{2}ab \)、\( S_2=\dfrac{1}{2}bc \)、\( S_3=\dfrac{1}{2}ca \)、△ABC の辺は \( \mathrm{AB}^2=a^2+b^2 \) など。△ABC は直角三角形ではない（O1）。</li>
+    <li>特別な場合（\( a=b=c \)、二等辺三角形になる場合）で計算すると、和ではなく2乗の和が \( S_4^2 \) と等しくなり、\( S_1^2+S_2^2+S_3^2=S_4^2 \) と予想できる（O2）。</li>
+    <li>余弦定理で \( \cos A=\dfrac{a^2}{\mathrm{AB}\cdot\mathrm{CA}} \)、相互関係と面積の公式で \( S_4^2=\dfrac{1}{4}(\mathrm{AB}^2\cdot\mathrm{CA}^2-a^4)=\dfrac{1}{4}(a^2b^2+b^2c^2+c^2a^2) \) となり、関係が証明できる（O3）。</li>
+    <li>特別な場合やつぶれる場合と照らして確かめ、体積を2通りに表すと \( \dfrac{1}{h^2}=\dfrac{1}{a^2}+\dfrac{1}{b^2}+\dfrac{1}{c^2} \) へと発展できる（O4）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">四平方の定理（直角三角錐 OABC）</span><p>\( S_1^2+S_2^2+S_3^2=S_4^2 \)、\( S_4^2=\dfrac{1}{4}(a^2b^2+b^2c^2+c^2a^2) \)</p></div>
+  <div><span class="f-name">O から面 ABC までの距離 h（発展）</span><p>\( \dfrac{1}{h^2}=\dfrac{1}{a^2}+\dfrac{1}{b^2}+\dfrac{1}{c^2} \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示します。直角三角錐 OABC は、つねに \( \angle\mathrm{AOB}=\angle\mathrm{BOC}=\angle\mathrm{COA}=90^\circ \) とし、\( S_1 \)〜\( S_4 \) は本文と同じ面の面積とします。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>\( \mathrm{OA}=2 \)、\( \mathrm{OB}=3 \)、\( \mathrm{OC}=4 \) の直角三角錐 OABC で、\( S_2 \)（△OBC の面積）はどれですか。</p>
+  <div class="choices">
+    <button>\( 12 \)</button>
+    <button>\( 3 \)</button>
+    <button data-correct="true">\( 6 \)</button>
+    <button>\( 5 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">△OBC は \( \angle\mathrm{BOC}=90^\circ \) の直角三角形なので、\( S_2=\dfrac{1}{2}\cdot3\cdot4=6 \) です。\( 12 \) は \( \dfrac{1}{2} \) をかけ忘れています。\( 3 \) は \( \dfrac{1}{2}\cdot2\cdot3 \) で、△OAB の面積 \( S_1 \) と取り違えています。\( 5 \) は斜辺 \( \mathrm{BC}=\sqrt{9+16} \) の長さで、面積ではありません。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="2√2|√8">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>\( \mathrm{OA}=1 \)、\( \mathrm{OB}=2 \)、\( \mathrm{OC}=2 \) の直角三角錐で、BC の長さを求めなさい（根号は「√」で入力。例：3√5）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 2\sqrt{2} \)。\( \mathrm{BC}^2=\mathrm{OB}^2+\mathrm{OC}^2=4+4=8 \) なので \( \mathrm{BC}=\sqrt{8}=2\sqrt{2} \) です。4 と答えた場合は長さをそのまま足しています。8 と答えた場合は \( \mathrm{BC}^2 \) の値で、平方根をとり忘れています。\( \sqrt{5} \) と答えた場合は、AB（または CA）の長さと取り違えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>\( \mathrm{OA}=\mathrm{OB}=\mathrm{OC}=1 \) の直角三角錐では、\( S_1=S_2=S_3=\dfrac{1}{2} \)、\( S_4=\dfrac{\sqrt{3}}{2} \) です。この4つの値について成り立つ等式はどれですか。</p>
+  <div class="choices">
+    <button>\( S_1+S_2+S_3=S_4 \)</button>
+    <button data-correct="true">\( S_1^2+S_2^2+S_3^2=S_4^2 \)</button>
+    <button>\( S_1^2+S_2^2=S_4^2 \)</button>
+    <button>\( S_1S_2S_3=S_4 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( S_1^2+S_2^2+S_3^2=\dfrac{3}{4} \)、\( S_4^2=\dfrac{3}{4} \) で等しくなります。\( S_1+S_2+S_3=S_4 \) は、左辺が \( \dfrac{3}{2} \) で \( S_4\fallingdotseq0.866 \) と等しくありません。\( S_1^2+S_2^2=S_4^2 \) は、三平方の定理の「2つ」にそろえて面を1つ落としたもので、左辺は \( \dfrac{1}{2} \) です。\( S_1S_2S_3=S_4 \) も、左辺が \( \dfrac{1}{8} \) で成り立ちません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>\( \mathrm{OA}=a \)、\( \mathrm{OB}=b \)、\( \mathrm{OC}=c \) の直角三角錐で、△ABC の \( \cos A \) を余弦定理で求めたものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \dfrac{a^2}{\mathrm{AB}\cdot\mathrm{CA}} \)</button>
+    <button>\( \dfrac{b^2+c^2}{2\cdot\mathrm{AB}\cdot\mathrm{CA}} \)</button>
+    <button>\( \dfrac{a^2}{2\cdot\mathrm{AB}\cdot\mathrm{CA}} \)</button>
+    <button>\( -\dfrac{a^2}{\mathrm{AB}\cdot\mathrm{CA}} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">分子は \( \mathrm{AB}^2+\mathrm{CA}^2-\mathrm{BC}^2=(a^2+b^2)+(c^2+a^2)-(b^2+c^2)=2a^2 \) なので、\( \cos A=\dfrac{2a^2}{2\cdot\mathrm{AB}\cdot\mathrm{CA}}=\dfrac{a^2}{\mathrm{AB}\cdot\mathrm{CA}} \) です。\( \dfrac{b^2+c^2}{2\cdot\mathrm{AB}\cdot\mathrm{CA}} \) は、分子に A と向かい合う辺の2乗 \( \mathrm{BC}^2 \) をそのまま入れた誤りです。\( \dfrac{a^2}{2\cdot\mathrm{AB}\cdot\mathrm{CA}} \) は、分子の \( a^2 \) が2つあることを見落としています。\( -\dfrac{a^2}{\mathrm{AB}\cdot\mathrm{CA}} \) は、分子を \( \mathrm{BC}^2-\mathrm{AB}^2-\mathrm{CA}^2 \) と逆に引いた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="7/2|3.5|7÷2">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>\( \mathrm{OA}=1 \)、\( \mathrm{OB}=2 \)、\( \mathrm{OC}=3 \) の直角三角錐で、\( S_4 \) の値を求めなさい（分数は 1/2 のように入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{7}{2} \)。\( S_1=1 \)、\( S_2=3 \)、\( S_3=\dfrac{3}{2} \) なので \( S_4^2=1+9+\dfrac{9}{4}=\dfrac{49}{4} \)、\( S_4&gt;0 \) より \( S_4=\dfrac{7}{2} \)（例題4で余弦定理から求めた値と同じ）。\( \dfrac{11}{2} \) と答えた場合は \( S_1+S_2+S_3 \) を求めています。\( \dfrac{49}{4} \) と答えた場合は \( S_4^2 \) の値で、平方根をとり忘れています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>例題5のステップ4の計算 \( (a^2+b^2)(c^2+a^2)-a^4 \) を展開して整理したものはどれですか。</p>
+  <div class="choices">
+    <button>\( a^2b^2+c^2a^2 \)</button>
+    <button>\( a^4+a^2b^2+b^2c^2+c^2a^2 \)</button>
+    <button>\( b^2c^2 \)</button>
+    <button data-correct="true">\( a^2b^2+b^2c^2+c^2a^2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( (a^2+b^2)(c^2+a^2)=a^2c^2+a^4+b^2c^2+a^2b^2 \) から \( a^4 \) を引くと \( a^2b^2+b^2c^2+c^2a^2 \) です。\( a^2b^2+c^2a^2 \) は \( b^2\times c^2 \) の項をかけ忘れています。\( a^4+a^2b^2+b^2c^2+c^2a^2 \) は \( a^4 \) を引き忘れています。\( b^2c^2 \) は \( (a^2+b^2)(c^2+a^2)=a^4+b^2c^2 \) のように、分配法則の途中の項を落としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O2・O4</span></div>
+  <p>ある直角三角錐で、\( S_1=3 \)、\( S_2=4 \)、\( S_3=12 \) でした。\( S_4 \) はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 13 \)</button>
+    <button>\( 19 \)</button>
+    <button>\( 169 \)</button>
+    <button>\( 5 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( S_4^2=3^2+4^2+12^2=9+16+144=169 \)、\( S_4&gt;0 \) より \( S_4=13 \) です（このような直角三角錐は、\( \mathrm{OA}=3\sqrt{2} \)、\( \mathrm{OB}=\sqrt{2} \)、\( \mathrm{OC}=4\sqrt{2} \) のとき実際にあります）。\( 19 \) は面積の和 \( 3+4+12 \) です。\( 169 \) は \( S_4^2 \) の値で、平方根をとり忘れています。\( 5 \) は \( \sqrt{3^2+4^2} \) で、三平方の定理と同じように2つの面だけで計算しています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O4</span></div>
+  <p>\( \mathrm{OA}=1 \)、\( \mathrm{OB}=2 \)、\( \mathrm{OC}=2 \) の直角三角錐で、O から面 ABC までの距離 \( h \) を求めます。</p>
+  <p>太郎：「体積は \( \dfrac{1}{3}\times\dfrac{1}{2}\cdot1\cdot2\times2 \) で求まるね。」<br>花子：「△ABC を底面とみて体積を表すと、\( S_4=\sqrt{6} \) を使って \( h \) が求まるよ。\( \dfrac{1}{h^2}=\dfrac{1}{a^2}+\dfrac{1}{b^2}+\dfrac{1}{c^2} \) でも確かめよう。」</p>
+  <p>\( h \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{2}{3} \)</button>
+    <button>\( \dfrac{2\sqrt{6}}{3} \)</button>
+    <button data-correct="true">\( \dfrac{\sqrt{6}}{3} \)</button>
+    <button>\( \sqrt{6} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">体積は \( V=\dfrac{1}{3}\cdot\dfrac{1}{2}\cdot1\cdot2\cdot2=\dfrac{2}{3} \)。\( V=\dfrac{1}{3}S_4h \) より \( h=\dfrac{3V}{S_4}=\dfrac{2}{\sqrt{6}}=\dfrac{\sqrt{6}}{3} \)。確かめ：\( \dfrac{1}{h^2}=1+\dfrac{1}{4}+\dfrac{1}{4}=\dfrac{3}{2} \)、\( h^2=\dfrac{2}{3} \) で一致します。\( \dfrac{2}{3} \) は \( h^2 \) の値（または体積 \( V \)）で、平方根をとっていないか、\( V \) を \( h \) と取り違えています。\( \dfrac{2\sqrt{6}}{3} \) は、底面 △OAB の面積を \( \dfrac{1}{2} \) をかけずに \( 1\cdot2=2 \) として体積を \( \dfrac{4}{3} \) とした誤りで、\( h=\dfrac{3\cdot\frac{4}{3}}{\sqrt{6}}=\dfrac{4}{\sqrt{6}}=\dfrac{2\sqrt{6}}{3} \) になります。\( \sqrt{6} \) は \( S_4 \) の値です。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O3</span></div>
+  <p>\( \mathrm{OA}=a \)、\( \mathrm{OB}=b \)、\( \mathrm{OC}=c \) の直角三角錐で \( S_4 \) を \( a \)、\( b \)、\( c \) で表す方針を、使う定理・公式の名前を挙げて、120字程度で説明しなさい（式の計算は書かなくてよい）。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　O に集まる3つの面は直角三角形なので、三平方の定理で AB、BC、CA の長さを a、b、c で表す。次に △ABC で余弦定理を使って cos A を求め、相互関係 sin²A＋cos²A＝1 から sin A を求める。最後に三角形の面積の公式で S4 を表す。（117字）</p>
+    <p><strong>採点の観点</strong>　①O に集まる面が直角三角形であることと三平方の定理で △ABC の3辺を表すことを書いている（3点）。②余弦定理で cos A を求めることを書いている（3点）。③相互関係で sin A を求め、面積の公式 \( S=\dfrac{1}{2}bc\sin A \) で S4 を表すことを書いている（3点）。④手順の順序が正しい（1点）。計10点。字数は多少前後してよい。「根号を避けるため S4² を計算する」ことに触れていればよりよい。</p>
+  </div>
+  <div class="explain">「△ABC の底辺と高さを測る」は、△ABC が直角三角形ではなく高さがすぐに分からないので、方針として不十分です。「S1＋S2＋S3 を計算する」は、和が \( S_4 \) と等しくならない（例題2）ので誤りです。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト △（課題学習）</p>
+  <p>学習内容マップでは、課題学習の行に △ の印を付けています。△ は「出題範囲の内容だが、活動そのもの（実演・発表・討論・レポート作成など）は筆記の学力検査で直接は問われにくい」という意味です。この時間に使った三平方の定理、余弦定理、三角形の面積の公式は、出題範囲の内容です。</p>
+  <p>令和9年度大学入学共通テスト実施要項では、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、題材の例として「教科書等では扱われていない数学の定理等を既習の知識等を活用しながら導くことのできるような題材」を挙げています。既習の定理を組み合わせて新しい関係を導くこの時間の活動は、こうした題材の考え方と重なります。</p>
+  <p class="small">確認問題は学習用に作成した練習問題で、実際の出題形式を示すものではありません。△ は出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">課題学習：模擬店の利益を最大にする（数Ⅰ-094）</p>
+  <p>この時間は、図形の性質を「予想 → 証明 → 振り返り・発展」の順に見いだしました。次の時間は「二次関数」の内容を使い、文化祭の模擬店で純利益が最大になる値段を決めます。場面を式に表すために、どんな仮定を置いたのかを確かめながら進めます。</p>
+  <p>この時間では、模擬店の利益の課題（数Ⅰ-094）と、課題学習の過程全体の振り返り・発表の仕方（数Ⅰ-096）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-092　課題学習：身近な無理数（黄金比・用紙の縦横の比）</div>
+  <div><span class="label">次の時間</span>数Ⅰ-094　課題学習：模擬店の利益を最大にする</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-093「課題学習：直角三角錐の面積の関係」（課題学習。学習指導要領 数学Ⅰ〔課題学習〕・(2)イ(ア)、解説 p.50）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」〔課題学習〕、内容の取扱い(4)、(2) 図形と計量 イ(ア)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.49（課題学習の過程）、p.50（課題学習の例〈図形と計量〉：正弦定理や余弦定理を活用して新たな性質を見いだす学習、1つの頂点 O に3つの直角が集まっている直角三角錐 OABC で △OAB、△OBC、△OCA、△ABC の面積を S1、S2、S3、S4 とするとき S1²＋S2²＋S3²＝S4² が成り立つこと（四平方の定理と呼ぶこともある）を導く）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>中学校学習指導要領（平成29年告示）解説 数学編 p.79（直線が２直線の交点においてその２直線に垂直であれば、その２直線によって決まる平面に垂直である）（文部科学省）https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。図は学習用に作成した見取図・模式図です。操作できる図は、ブラウザの JavaScript で動きます（動かない環境でも、本文の例題と図で学べます）。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  function mk(parent, name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text !== undefined) e.textContent = text;
+    parent.appendChild(e);
+    return e;
+  }
+  function frac(num, den) {
+    var ip = Math.floor(num / den), r = num % den, s = String(ip);
+    if (r === 0) return s;
+    s += ".";
+    for (var i = 0; i < 12 && r !== 0; i++) { r *= 10; s += String(Math.floor(r / den)); r = r % den; }
+    return s;
+  }
+  function half(v2) { return v2 % 2 === 0 ? String(v2 / 2) : (Math.floor(v2 / 2) + ".5"); }
+  var ia = document.getElementById("w1-a"), ib = document.getElementById("w1-b"), ic = document.getElementById("w1-c");
+  var svg = document.getElementById("w1-svg");
+  var out = document.getElementById("w1-out"), out2 = document.getElementById("w1-out2");
+  if (!ia || !ib || !ic || !svg) return;
+  var S = 26, OX = 75, OY = 190, KA = 0.3536;
+  function pt(a, b, c) { return [OX - KA * a * S + b * S, OY + KA * a * S - c * S]; }
+  function draw() {
+    var A2 = Math.round(parseFloat(ia.value) * 2), B2 = Math.round(parseFloat(ib.value) * 2), C2 = Math.round(parseFloat(ic.value) * 2);
+    var a = A2 / 2, b = B2 / 2, c = C2 / 2;
+    var O = pt(0, 0, 0), A = pt(a, 0, 0), B = pt(0, b, 0), C = pt(0, 0, c);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    mk(svg, "polygon", { points: A.join(",") + " " + B.join(",") + " " + C.join(","), fill: "#1f5fbf", "fill-opacity": 0.15, stroke: "#1f5fbf", "stroke-width": 2, "data-role": "abc" });
+    [A, B, C].forEach(function (P, i) {
+      mk(svg, "line", { x1: O[0], y1: O[1], x2: P[0], y2: P[1], stroke: "currentColor", "stroke-width": 1.8, "data-role": "edge" + "ABC"[i] });
+    });
+    var m = 7, uA = [-0.7071, 0.7071], uB = [1, 0], uC = [0, -1];
+    [[uA, uB], [uB, uC], [uC, uA]].forEach(function (p) {
+      var p1 = [O[0] + m * p[0][0], O[1] + m * p[0][1]], p2 = [p1[0] + m * p[1][0], p1[1] + m * p[1][1]], p3 = [O[0] + m * p[1][0], O[1] + m * p[1][1]];
+      mk(svg, "polyline", { points: p1.join(",") + " " + p2.join(",") + " " + p3.join(","), fill: "none", stroke: "currentColor", "stroke-width": 1 });
+    });
+    mk(svg, "text", { x: O[0] - 10, y: O[1] - 4, "text-anchor": "end", "font-size": 13, fill: "currentColor", "data-role": "lO" }, "O");
+    mk(svg, "text", { x: A[0] - 4, y: A[1] + 14, "text-anchor": "middle", "font-size": 13, fill: "currentColor", "data-role": "lA" }, "A");
+    mk(svg, "text", { x: B[0] + 8, y: B[1] + 5, "text-anchor": "start", "font-size": 13, fill: "currentColor", "data-role": "lB" }, "B");
+    mk(svg, "text", { x: C[0], y: C[1] - 7, "text-anchor": "middle", "font-size": 13, fill: "currentColor", "data-role": "lC" }, "C");
+    document.getElementById("w1-av").textContent = half(A2);
+    document.getElementById("w1-bv").textContent = half(B2);
+    document.getElementById("w1-cv").textContent = half(C2);
+    // 面積（a=A2/2 なので ab/2 = A2*B2/8）
+    var s1 = frac(A2 * B2, 8), s2 = frac(B2 * C2, 8), s3 = frac(C2 * A2, 8);
+    var sumN = 4 * (A2 * A2 * B2 * B2 + B2 * B2 * C2 * C2 + C2 * C2 * A2 * A2);
+    // △ABC の3辺（4倍した2乗）から余弦定理と相互関係で S4^2 を計算：S4^2 = (4PQ - (P+Q-R)^2)/256
+    var P = A2 * A2 + B2 * B2, Q = C2 * C2 + A2 * A2, R = B2 * B2 + C2 * C2;
+    var s4N = 4 * P * Q - (P + Q - R) * (P + Q - R);
+    var rt = Math.round(Math.sqrt(s4N)), s4;
+    if (rt * rt === s4N) s4 = "＝ " + frac(rt, 16);
+    else s4 = "≒ " + (Math.round(Math.sqrt(s4N) / 16 * 100) / 100).toFixed(2);
+    if (out) out.textContent = "S₁ ＝ " + s1 + "、S₂ ＝ " + s2 + "、S₃ ＝ " + s3 + "、S₄ " + s4;
+    if (out2) out2.textContent = "S₁²＋S₂²＋S₃² ＝ " + frac(sumN, 256) + "　／　S₄²（余弦定理で cos A を求めて計算）＝ " + frac(s4N, 256);
+  }
+  [ia, ib, ic].forEach(function (e) { e.addEventListener("input", draw); });
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-093",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-093",
+  "title": "課題学習：直角三角錐の面積の関係",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-6", "title": "課題学習"},
+  "exam": {"共通テスト": "△", "個別試験": ""},
+  "basis": ["課題学習", "(2)イ(ア)"],
+  "kaisetsu_page": "50",
+  "objectives": [
+    {"id": "O1", "text": "直角三角錐 OABC の4つの面の形を調べ、OA、OB、OC の長さから3つの直角三角形の面積 S1、S2、S3 と △ABC の3辺の長さを求めることができる。", "from": "1つの頂点に3つの直角が集まる直角三角錐 OABC で、各面の面積 S1、S2、S3、S4", "sections": ["sec-1"], "checks": ["q1", "q2", "q9"]},
+    {"id": "O2", "text": "具体的な直角三角錐で4つの面の面積を計算し、三平方の定理と比べて、S1²＋S2²＋S3²＝S4² という関係を予想できる。", "from": "S1²+S2²+S3²=S4²（四平方の定理）が成り立つこと", "sections": ["sec-2"], "checks": ["q3", "q7"]},
+    {"id": "O3", "text": "余弦定理、三角形の面積の公式、三角比の相互関係を活用して、S1²＋S2²＋S3²＝S4² が成り立つことを導くことができる。", "from": "正弦定理や余弦定理などを活用して導くことができる", "sections": ["sec-3"], "checks": ["q4", "q5", "q6", "q9"]},
+    {"id": "O4", "text": "導いた関係を特別な場合や三平方の定理と比べて振り返り、O から面 ABC までの距離を求めるなど、課題を発展させることができる。", "from": "S1²+S2²+S3²=S4²（四平方の定理）が成り立つことを…導く（単元のねらい：解決の振り返り・発展）", "sections": ["sec-4"], "checks": ["q7", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "直角三角錐", "where": "sec-1"},
+    {"term": "四平方の定理", "where": "sec-2"},
+    {"term": "三平方の定理", "where": "sec-2"},
+    {"term": "3辺から三角形の面積を求める手順", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "角錐（三角錐）", "taught_in": ["jhs_math/中1-092"], "gap": false, "where": "sec-1"},
+    {"concept": "直線と平面の垂直（交わる2直線に垂直なら平面に垂直）", "taught_in": ["jhs_math/中1-097"], "gap": false, "where": "sec-4"},
+    {"concept": "点と平面の距離・立体の高さ", "taught_in": ["jhs_math/中1-098"], "gap": false, "where": "sec-4"},
+    {"concept": "錐体の体積", "taught_in": ["jhs_math/中1-102"], "gap": false, "where": "sec-4"},
+    {"concept": "三平方の定理と直角三角形の辺の長さ", "taught_in": ["jhs_math/中3-097", "jhs_math/中3-099"], "gap": false, "where": "review"},
+    {"concept": "3辺の長さから直角三角形かどうかを判断する（三平方の定理とその逆）", "taught_in": ["jhs_math/中3-097", "jhs_math/中3-100"], "gap": false, "where": "sec-1"},
+    {"concept": "二等辺三角形の頂角の二等分線は底辺を垂直に二等分する", "taught_in": ["jhs_math/中2-061"], "gap": false, "where": "sec-2"},
+    {"concept": "30°・45°・60° の三角比の値", "taught_in": ["hs_math_1a/数Ⅰ-058"], "gap": false, "where": "sec-2"},
+    {"concept": "三角比の相互関係 sin²A＋cos²A＝1", "taught_in": ["hs_math_1a/数Ⅰ-061", "hs_math_1a/数Ⅰ-065"], "gap": false, "where": "review"},
+    {"concept": "余弦定理と、3辺から角の大きさを調べること", "taught_in": ["hs_math_1a/数Ⅰ-070", "hs_math_1a/数Ⅰ-071"], "gap": false, "where": "review"},
+    {"concept": "三角形の面積 S＝(1/2)bc sin A と、3辺が分かる三角形の面積", "taught_in": ["hs_math_1a/数Ⅰ-073"], "gap": false, "where": "review"},
+    {"concept": "空間図形の中に三角形を見いだし、体積を2通りに表す", "taught_in": ["hs_math_1a/数Ⅰ-076"], "gap": false, "where": "sec-4"},
+    {"concept": "根号を含む式の計算", "taught_in": ["hs_math_1a/数Ⅰ-013"], "gap": false, "where": "sec-3"},
+    {"concept": "整式の乗法（分配法則による展開）", "taught_in": ["hs_math_1a/数Ⅰ-002"], "gap": false, "where": "sec-3"},
+    {"concept": "命題が真であることと、例で確かめることの違い", "taught_in": ["hs_math_1a/数Ⅰ-024"], "gap": false, "where": "sec-2"}
+  ],
+  "out_of_scope": [
+    "模擬店の利益を最大にする課題（数Ⅰ-094）",
+    "課題学習の過程全体の振り返りと発表・議論の仕方（数Ⅰ-096）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『課題学習』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ〔課題学習〕と内容の取扱い(4)、(2)イ(ア)"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.49 課題学習の過程、p.50 課題学習の例〈図形と計量〉（直角三角錐、S1〜S4 の記号、四平方の定理と呼ぶこともある）"},
+    {"name": "中学校学習指導要領（平成29年告示）解説 数学編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf", "use": "p.79 直線と平面の垂直の判定（保存本文：sources/text/jhs_kaisetsu_math.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>条件付き確率｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+table.dice td, table.dice th { text-align: center; padding: 6px 3px; font-size: .92rem; }
+table.dice td.a { background: rgba(31, 95, 191, .18); font-weight: 700; }
+table.nw th, table.nw td { white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-028</span></div>
+  <h1>条件付き確率</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">2つのさいころを投げたあと、「目の和は8だよ」と教えてもらいました。大の目が小の目より大きい確率は、教えてもらう前と同じでしょうか。分かった情報をもとに確率を考え直す「条件付き確率」の意味を、場合の数の数え上げと図で学びます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>事象 \( A \) が起こったときに事象 \( B \) が起こる確率を条件付き確率 \( P_A(B) \) ということを理解し、\( A \) を新しい全体とみるという意味を図で説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>根元事象が同様に確からしいとき、\( P_A(B)=\dfrac{n(A\cap B)}{n(A)} \) を用いて、場合の数を数え上げて条件付き確率を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>表や図を用いて、\( P_A(B) \)、\( P_B(A) \)、\( P(A\cap B) \) を、何を全体とみるかに注意して区別して求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-027）</span>反復試行の確率</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-028）</span>条件付き確率</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-029）</span>条件付き確率の式と乗法定理</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。この時間は特に、確率の定め方 \( P(A)=\dfrac{n(A)}{n(U)} \)（数Ａ-018）、積事象（数Ａ-021）、二次元表で「何を1とみた割合か」を確かめること（数Ⅰ-087）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">確率の定め方（数Ａ-018）・積事象（数Ａ-021）</p>
+  <p>根元事象が同様に確からしいとき、事象 \( A \) の確率は \( P(A)=\dfrac{n(A)}{n(U)} \)（\( n(U) \) は全事象 \( U \) の根元事象の個数）でした（数Ａ-018）。事象 \( A \) と \( B \) がともに起こるという事象を積事象といい、\( A\cap B \) で表しました（数Ａ-021）。</p>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-021</span></div>
+  <p>1個のさいころを投げる試行で、\( A \)：奇数の目が出る、\( B \)：3以下の目が出る、とします。積事象 \( A\cap B \) はどれですか。</p>
+  <div class="choices">
+    <button>\( \{1,\ 2,\ 3,\ 5\} \)</button>
+    <button data-correct="true">\( \{1,\ 3\} \)</button>
+    <button>\( \{5\} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( A=\{1,\ 3,\ 5\} \)、\( B=\{1,\ 2,\ 3\} \) の両方に入るのは 1 と 3 です。\( \{1,\ 2,\ 3,\ 5\} \) は和事象 \( A\cup B \)、\( \{5\} \) は \( A \) だけに入る目です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-018・数Ａ-020</span></div>
+  <p>大小2つのさいころを同時に投げるとき、目の和が8になる確率はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{1}{12} \)</button>
+    <button>\( \dfrac{1}{7} \)</button>
+    <button data-correct="true">\( \dfrac{5}{36} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( (2,\ 6) \)、\( (3,\ 5) \)、\( (4,\ 4) \)、\( (5,\ 3) \)、\( (6,\ 2) \) の5通り（\( (\text{大の目},\ \text{小の目}) \) の形）なので \( \dfrac{5}{36} \)。\( \dfrac{1}{12} \)（\( =\dfrac{3}{36} \)）は、大小を区別せずに「2と6、3と5、4と4」の3通りと数えた誤りです。\( \dfrac{1}{7} \)（\( =\dfrac{3}{21} \)）は、大小を区別しない目の組21通りを、同様に確からしいとした誤りです（数Ａ-020）。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：「目の和は8だよ」と聞いたら</h2>
+<div class="box think">
+  <p class="box-title">教えてもらう前と後</p>
+  <p>大小2つのさいころを同時に投げました。目を見た花子さんが「目の和は8だよ」と教えてくれました。</p>
+  <p>太郎：「大の目が小の目より大きい確率は、36通りのうち15通りだから \( \dfrac{15}{36}=\dfrac{5}{12} \) だね。」<br>花子：「でも、和が8だと分かったんだから、36通り全部を考えなくてもいいんじゃない？」</p>
+  <p><strong>和が8だと分かったとき、大の目が小の目より大きい確率はいくつでしょうか。</strong>答えは「3 条件付き確率の意味」の例題1で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="条件付き確率の意味"><span class="num">3</span>条件付き確率の意味</h2>
+<p>「目の和は8」と分かると、起こりうる場合は36通りから、和が8になる5通りに絞られます。この5通りを新しい全体として、その中で「大の目が小の目より大きい」場合が何通りあるかを考えればよいのです。</p>
+<p>一般に、事象 \( A \) が起こったときに事象 \( B \) が起こる確率を、\( A \) が起こったときの \( B \) が起こる<strong>条件付き確率</strong>といい、\( P_A(B) \) で表します。\( A \) が起こったと分かっているので、<span class="em">\( A \) を新しい全体とみて</span>、その中で \( B \) も起こる場合、つまり \( A\cap B \) の割合を考えます。</p>
+<figure>
+<!--svg:f028a-->
+<svg viewBox="0 0 360 236" width="360" role="img" aria-label="全事象 U の長方形の中に、事象 A（青の実線の円）と事象 B（緑の破線の円）。A の外側は灰色で考えない部分。A を新しい全体として、A と B の重なり（斜線）の割合が条件付き確率" data-fig="f028a">
+<defs><clipPath id="f028a-cA"><circle cx="140" cy="118" r="66"/></clipPath><pattern id="f028a-h" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#1f5fbf" stroke-width="2" stroke-opacity="0.8"/></pattern></defs>
+<text x="14" y="18" font-size="12" fill="currentColor">U：全事象（もとの全体）</text>
+<path d="M10 26h340v172h-340Z M74 118a66 66 0 1 0 132 0a66 66 0 1 0 -132 0Z" fill="#8a99a8" fill-opacity="0.22" fill-rule="evenodd" data-region="outA"/>
+<rect x="10" y="26" width="340" height="172" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 3"/>
+<circle cx="222" cy="118" r="60" fill="url(#f028a-h)" clip-path="url(#f028a-cA)" data-region="AB"/>
+<circle cx="222" cy="118" r="60" fill="none" stroke="#1e8e5a" stroke-width="2" stroke-dasharray="6 4" data-set="B"/>
+<circle cx="140" cy="118" r="66" fill="none" stroke="#1f5fbf" stroke-width="3" data-set="A"/>
+<text x="110" y="46" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf" data-near="A">A（新しい全体）</text>
+<text x="184" y="122" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor" data-in="AB">A∩B</text>
+<text x="256" y="122" text-anchor="middle" font-size="15" font-weight="700" fill="#1e8e5a" data-in="Bonly">B</text>
+<text x="344" y="42" text-anchor="end" font-size="13" fill="currentColor">U</text>
+<text x="180" y="224" text-anchor="middle" font-size="13" fill="currentColor">P<tspan baseline-shift="sub" font-size="10">A</tspan>(B)＝（A∩B の個数）÷（A の個数）</text>
+</svg>
+<!--/svg:f028a-->
+  <figcaption>図1　条件付き確率 \( P_A(B) \) の考え方。\( A \)（青の実線の円）が起こったと分かったので、\( A \) の外（灰色）は考えない。\( A \) を新しい全体として、その中の \( A\cap B \)（斜線）の割合を考える</figcaption>
+</figure>
+<div class="table-wrap">
+<!--gen:t028a-->
+<table class="dice" data-gen="t028a">
+  <tr><th>大＼小</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr>
+  <tr><th>1</th><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+  <tr><th>2</th><td>▲3</td><td>4</td><td>5</td><td>6</td><td>7</td><td class="a">8</td></tr>
+  <tr><th>3</th><td>▲4</td><td>▲5</td><td>6</td><td>7</td><td class="a">8</td><td>9</td></tr>
+  <tr><th>4</th><td>▲5</td><td>▲6</td><td>▲7</td><td class="a">8</td><td>9</td><td>10</td></tr>
+  <tr><th>5</th><td>▲6</td><td>▲7</td><td class="a">▲8</td><td>▲9</td><td>10</td><td>11</td></tr>
+  <tr><th>6</th><td>▲7</td><td class="a">▲8</td><td>▲9</td><td>▲10</td><td>▲11</td><td>12</td></tr>
+</table>
+<!--/gen:t028a-->
+</div>
+<p class="small">表2　大小2つのさいころの目の和（縦が大の目、横が小の目）。塗った欄が \( A \)（和が8）、▲が \( B \)（大の目が小の目より大きい）</p>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の答え）</p>
+  <p>大小2つのさいころを同時に投げます。\( A \)：目の和が8、\( B \)：大の目が小の目より大きい、とします。\( P_A(B) \) を求めなさい。</p>
+  <div class="step">着目1（新しい全体）：\( A \) は表2の塗った欄で、\( (2,\ 6) \)、\( (3,\ 5) \)、\( (4,\ 4) \)、\( (5,\ 3) \)、\( (6,\ 2) \) の5通り。どれも同様に確からしい。</div>
+  <div class="step">着目2（その中で \( B \)）：塗った欄のうち▲は \( (5,\ 3) \)、\( (6,\ 2) \) の2通り。これが \( A\cap B \)。</div>
+  <div class="step">着目3：\( P_A(B)=\dfrac{2}{5} \)。答え \( \dfrac{2}{5} \)。</div>
+  <div class="step">比べる：何も分からないときの \( P(B) \) は、表2の▲が15通りで \( \dfrac{15}{36}=\dfrac{5}{12} \) でした。\( \dfrac{2}{5}=0.4 \) は \( \dfrac{5}{12}\fallingdotseq0.417 \)（小数第4位を四捨五入）より少し小さく、「和が8」という情報で確率が変わりました。</div>
+</div>
+<div class="box point"><p class="box-title">条件付き確率は「全体を取りかえた」確率</p><p>ふつうの確率 \( P(B) \) は、全事象 \( U \) を全体とみた \( B \) の割合です。条件付き確率 \( P_A(B) \) は、起こったと分かった \( A \) を全体とみた \( B \) の割合です。全体（分母）が変わるので、値も変わります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="数え上げて求める"><span class="num">4</span>場合の数を数え上げて求める</h2>
+<p>根元事象が同様に確からしいとき、\( A \) を新しい全体とすると、その根元事象は \( n(A) \) 個で、そのうち \( B \) も起こるのは \( n(A\cap B) \) 個です。したがって、次の式で求められます。</p>
+<div class="formula-card">
+  <div><span class="f-name">条件付き確率（根元事象が同様に確からしいとき）</span>$$ P_A(B)=\frac{n(A\cap B)}{n(A)} $$<p class="small">\( A \) が起こりうる（\( n(A) \) が 0 でない）とき。</p></div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（番号札）</p>
+  <p>1 から 15 までの番号を1つずつ書いた15枚の札から1枚引いたところ、3の倍数であることが分かりました。その札の番号が奇数である確率を求めなさい。</p>
+  <div class="step">着目1（事象を決める）：\( A \)：3の倍数、\( B \)：奇数。求めるのは \( P_A(B) \)。</div>
+  <div class="step">着目2（数える）：\( A=\{3,\ 6,\ 9,\ 12,\ 15\} \) で \( n(A)=5 \)。そのうち奇数は \( A\cap B=\{3,\ 9,\ 15\} \) で \( n(A\cap B)=3 \)。</div>
+  <div class="step">着目3：\( P_A(B)=\dfrac{n(A\cap B)}{n(A)}=\dfrac{3}{5} \)。答え \( \dfrac{3}{5} \)。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：分母を全体のままにする</p><p>例題2で \( \dfrac{3}{15}=\dfrac{1}{5} \) とするのは、分母を全体の15枚のままにした誤りで、これは「3の倍数で、しかも奇数」の札を引く確率 \( P(A\cap B) \) です。「3の倍数であることが分かった」ので、分母は \( n(A)=5 \) です。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題3（くじを順に引く）</p>
+  <p>当たり3本を含む10本のくじを、a、b の2人がこの順に1本ずつ引きます。引いたくじは戻しません。\( A \)：a が当たる、\( B \)：b が当たる、とするとき、\( P_A(B) \) を求めなさい。</p>
+  <div class="step">着目1（全体を数える）：10本を区別すると、2人の引き方は \( 10\times9=90 \) 通りで、どれも同様に確からしい（中2-084 でもこのように数えました）。</div>
+  <div class="step">着目2（\( A \) と \( A\cap B \)）：a が当たるのは \( 3\times9=27 \) 通りで \( n(A)=27 \)。2人とも当たるのは \( 3\times2=6 \) 通りで \( n(A\cap B)=6 \)。</div>
+  <div class="step">着目3：\( P_A(B)=\dfrac{6}{27}=\dfrac{2}{9} \)。答え \( \dfrac{2}{9} \)。</div>
+  <div class="step">見方を変える：a が当たった後は、残り9本のうち当たりが2本です。b がそこから引くと考えても \( \dfrac{2}{9} \) になり、一致します。</div>
+</div>
+<p>例題3では、a の結果によって b の当たる確率が変わります（a がはずれたときは、残り9本のうち当たりは3本）。戻さずに引く試行が独立でない（数Ａ-026）のは、このためです。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="何を全体とみるか"><span class="num">5</span>何を全体とみるか：\( P_A(B) \)、\( P_B(A) \)、\( P(A\cap B) \)</h2>
+<p>数Ⅰ-087 では、二次元表で「何を1とみた割合か」を確かめました。条件付き確率でも、何を全体とみるかを確かめることが大切です。</p>
+<div class="box source"><p class="box-title">X高校1年生 160人の、課題の提出と小テストの結果（学習用の架空のデータ）</p>
+<div class="table-wrap">
+<table class="nw" data-tab="t028b">
+  <tr><th></th><th>合格</th><th>不合格</th><th>計</th></tr>
+  <tr><th>提出した</th><td>72</td><td>18</td><td>90</td></tr>
+  <tr><th>提出しなかった</th><td>28</td><td>42</td><td>70</td></tr>
+  <tr><th>計</th><td>100</td><td>60</td><td>160</td></tr>
+</table>
+</div>
+</div>
+<p>160人から1人を選ぶとき、\( A \)：課題を提出した、\( B \)：小テストに合格した、とします。どの生徒を選ぶことも同様に確からしいとすると、</p>
+<div class="table-wrap">
+<table>
+  <tr><th>記号</th><th>何を全体とみるか</th><th>値</th></tr>
+  <tr><td>\( P(A\cap B) \)</td><td>160人の中で、提出して、しかも合格</td><td>\( \dfrac{72}{160}=\dfrac{9}{20} \)</td></tr>
+  <tr><td>\( P_A(B) \)</td><td>提出した90人の中で、合格</td><td>\( \dfrac{72}{90}=\dfrac{4}{5} \)</td></tr>
+  <tr><td>\( P_B(A) \)</td><td>合格した100人の中で、提出した</td><td>\( \dfrac{72}{100}=\dfrac{18}{25} \)</td></tr>
+</table>
+</div>
+<p class="small">表4　分子はどれも「提出して、しかも合格」の72人。違うのは分母（何を全体とみるか）</p>
+<div class="box caution"><p class="box-title">よくある間違い：\( P_A(B) \) と \( P_B(A) \) を取り違える</p><p>「提出した生徒の中で合格した生徒の割合」は \( \dfrac{4}{5} \)、「合格した生徒の中で提出した生徒の割合」は \( \dfrac{18}{25} \) で、違う値です。問題文の「〜のとき」「〜の中から」「〜であることが分かった」が、何を全体とみる合図になっているかを読み取り、下つきの文字（条件）を決めましょう。</p></div>
+<div class="box point"><p class="box-title">\( A \) が起こらなかったときの条件付き確率</p><p>課題を提出しなかった生徒（\( A \) の余事象 \( \overline{A} \)、数Ａ-024）の中で合格した生徒の割合は \( P_{\overline{A}}(B)=\dfrac{28}{70}=\dfrac{2}{5} \) です。下つきの文字が \( \overline{A} \) なので、\( \overline{A} \) の70人を全体とみます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>条件付き確率</dt><dd>事象 \( A \) が起こったときに事象 \( B \) が起こる確率。\( P_A(B) \) で表す。\( A \) を新しい全体とみたときの \( B \)（\( A\cap B \)）の割合。</dd>
+    <dt>\( P_A(B) \)</dt><dd>\( A \) が起こったときの \( B \) が起こる条件付き確率。根元事象が同様に確からしいとき \( P_A(B)=\dfrac{n(A\cap B)}{n(A)} \)。\( P_B(A) \) とは一般に値が違う。</dd>
+    <dt>積事象</dt><dd>\( A \) と \( B \) がともに起こるという事象 \( A\cap B \)（数Ａ-021）。条件付き確率の分子になる。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>事象 \( A \) が起こったときに事象 \( B \) が起こる確率を条件付き確率といい、\( P_A(B) \) で表す。\( A \) を新しい全体とみて、その中の \( A\cap B \) の割合を考える（O1）。</li>
+    <li>根元事象が同様に確からしいとき \( P_A(B)=\dfrac{n(A\cap B)}{n(A)} \)。分母は \( n(U) \) ではなく \( n(A) \)（O2）。</li>
+    <li>\( P(A\cap B) \)、\( P_A(B) \)、\( P_B(A) \) は分子が同じでも分母（何を全体とみるか）が違う。問題文の「〜のとき」「〜の中から」から全体を決める（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">条件付き確率（根元事象が同様に確からしいとき）</span>$$ P_A(B)=\frac{n(A\cap B)}{n(A)} $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。確率の入力は、それ以上約分できない分数（3/8 など）で答えてください。小数で表せるときは小数でもかまいません。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>\( P_A(B) \) が表すものはどれですか。</p>
+  <div class="choices">
+    <button>事象 \( A \) と事象 \( B \) がともに起こる確率</button>
+    <button data-correct="true">事象 \( A \) が起こったときに、事象 \( B \) が起こる確率</button>
+    <button>事象 \( B \) が起こったときに、事象 \( A \) が起こる確率</button>
+    <button>事象 \( A \) が起こらないときに、事象 \( B \) が起こる確率</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( P_A(B) \) は、\( A \) が起こったと分かっているときの \( B \) の確率で、下つきの \( A \) が条件（新しい全体）です。「ともに起こる確率」は \( P(A\cap B) \)、「\( B \) が起こったときの \( A \)」は \( P_B(A) \)、「\( A \) が起こらないときの \( B \)」は \( P_{\overline{A}}(B) \) です。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="2/5|0.4">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>1個のさいころを投げたところ、5以下の目であることが分かりました。その目が偶数である確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{2}{5} \)。\( A \)：5以下の目 \( =\{1,\ 2,\ 3,\ 4,\ 5\} \)、\( B \)：偶数の目とすると、\( A\cap B=\{2,\ 4\} \) なので \( P_A(B)=\dfrac{2}{5} \)。\( \dfrac{1}{3} \)（\( =\dfrac{2}{6} \)）と答えた場合は、分母を全体の6通りのままにしています。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="3/5|0.6">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>大小2つのさいころを同時に投げたところ、目の和が6であることが分かりました。2つとも奇数の目である確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{3}{5} \)。和が6になるのは \( (1,\ 5) \)、\( (2,\ 4) \)、\( (3,\ 3) \)、\( (4,\ 2) \)、\( (5,\ 1) \) の5通りで、そのうち2つとも奇数は \( (1,\ 5) \)、\( (3,\ 3) \)、\( (5,\ 1) \) の3通り。\( \dfrac{3}{36}=\dfrac{1}{12} \) と答えた場合は、分母を36通りのままにしています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>Y高校の1年生と2年生、合わせて200人に、文化祭の劇を見たかどうかを聞いた結果です（学習用の架空のデータ）。</p>
+  <div class="table-wrap">
+  <table class="nw" data-tab="t028q">
+    <tr><th></th><th>劇を見た</th><th>見なかった</th><th>計</th></tr>
+    <tr><th>1年生</th><td>48</td><td>32</td><td>80</td></tr>
+    <tr><th>2年生</th><td>36</td><td>84</td><td>120</td></tr>
+    <tr><th>計</th><td>84</td><td>116</td><td>200</td></tr>
+  </table>
+  </div>
+  <p>劇を見た生徒の中から1人を選ぶとき、その生徒が1年生である確率はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{3}{5} \)</button>
+    <button>\( \dfrac{6}{25} \)</button>
+    <button>\( \dfrac{2}{5} \)</button>
+    <button data-correct="true">\( \dfrac{4}{7} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「劇を見た生徒の中から」なので、劇を見た84人が全体です。そのうち1年生は48人で \( \dfrac{48}{84}=\dfrac{4}{7} \)。\( \dfrac{3}{5} \)（\( =\dfrac{48}{80} \)）は1年生80人を全体にした「1年生の中で劇を見た割合」で、条件を取り違えています。\( \dfrac{6}{25} \)（\( =\dfrac{48}{200} \)）は全体の200人を分母にした「1年生で、しかも劇を見た」確率、\( \dfrac{2}{5} \)（\( =\dfrac{80}{200} \)）は劇を見たかどうかを考えずに1年生を選ぶ確率です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>3枚の硬貨を同時に投げたところ、少なくとも1枚は表であることが分かりました。表が2枚以上である確率はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \dfrac{4}{7} \)</button>
+    <button>\( \dfrac{1}{2} \)</button>
+    <button>\( \dfrac{3}{7} \)</button>
+    <button>\( \dfrac{1}{7} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">3枚を区別すると出方は8通り。\( A \)：少なくとも1枚は表 は「3枚とも裏」以外の7通り。\( A \) のうち表が2枚以上なのは、表2枚の3通りと表3枚の1通りで4通り。よって \( P_A(B)=\dfrac{4}{7} \)。\( \dfrac{1}{2} \)（\( =\dfrac{4}{8} \)）は分母を8通りのままにした誤り、\( \dfrac{3}{7} \) は表がちょうど2枚の場合だけを数えた誤り、\( \dfrac{1}{7} \) は3枚とも表の場合だけを数えた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="1/2|0.5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2</span></div>
+  <p>当たり2本を含む5本のくじを、a、b の2人がこの順に1本ずつ引きます。引いたくじは戻しません。a がはずれたとき、b が当たる確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{1}{2} \)。くじを区別すると、2人の引き方は \( 5\times4=20 \) 通り。a がはずれるのは \( 3\times4=12 \) 通りで、そのうち b が当たるのは \( 3\times2=6 \) 通りなので \( \dfrac{6}{12}=\dfrac{1}{2} \)。a がはずれた後は、残り4本のうち当たりが2本と考えても同じです。\( \dfrac{3}{10} \)（\( =\dfrac{6}{20} \)）と答えた場合は、分母を20通りのままにした「a がはずれ、b が当たる」確率です。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="3/10|0.3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>問4の表で、2年生の中から1人を選ぶとき、その生徒が劇を見た生徒である確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{3}{10} \)。2年生120人が全体で、そのうち劇を見たのは36人なので \( \dfrac{36}{120}=\dfrac{3}{10} \)。\( A \)：1年生、\( B \)：劇を見た、とすると、2年生は \( A \) の余事象 \( \overline{A} \) なので、これは \( P_{\overline{A}}(B) \) です。\( \dfrac{3}{7} \)（\( =\dfrac{36}{84} \)）と答えた場合は、劇を見た84人を全体にしています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2</span></div>
+  <p>2枚の硬貨を同時に投げたあと、結果を見た花子さんが「少なくとも1枚は表だったよ」と教えてくれました。</p>
+  <p>太郎：「1枚は表だと分かったから、残りの1枚が表か裏かで、2枚とも表の確率は \( \frac{1}{2} \) だね。」</p>
+  <p>2枚とも表である確率として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( \frac{1}{2} \)</button>
+    <button>\( \frac{1}{4} \)</button>
+    <button data-correct="true">\( \frac{1}{3} \)</button>
+    <button>\( \frac{3}{4} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">2枚の硬貨を a、b と区別し、（a の結果, b の結果）で表すと、出方は（表, 表）（表, 裏）（裏, 表）（裏, 裏）の4通りで、どれも同様に確からしい。「少なくとも1枚は表」の \( A \) は（裏, 裏）以外の3通りで、そのうち2枚とも表は1通りなので、\( P_A(B)=\dfrac{1}{3} \) です。太郎さんの \( \dfrac{1}{2} \) は、「どちらの硬貨が表か」が分かっていないのに、片方を表と決めて残りの1枚だけを考えた誤りです。\( A \) の3通りのうち、裏の硬貨が1枚ある場合は（表, 裏）と（裏, 表）の2通りあるのに、太郎さんの考えではこれを1通りとして数えています。もし「a の硬貨は表だったよ」と教えてもらったのなら、新しい全体は（表, 表）（表, 裏）の2通りになり、2枚とも表の確率は \( \dfrac{1}{2} \) です。どの硬貨が表かまで分かったかどうかで、新しい全体が変わります。\( \dfrac{1}{4} \) は分母を4通りのままにした \( P(A\cap B) \)、\( \dfrac{3}{4} \) は「少なくとも1枚は表」の確率 \( P(A) \) です。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>大小2つのさいころを同時に投げます。\( A \)：目の積が偶数、\( B \)：目の和が偶数、とします。</p>
+  <p>(1) \( P_A(B) \) を求めなさい。どのように数えたかも書きなさい。<br>(2) (1) の値を \( P(B) \) と比べ、「積が偶数」と分かったことで、和が偶数である確率がどう変わったかを説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) 積が奇数になるのは2つとも奇数のときで \( 3\times3=9 \) 通りなので、\( n(A)=36-9=27 \)。積が偶数で和も偶数になるのは、2つとも偶数のとき（1つだけ偶数なら和は奇数）で \( 3\times3=9 \) 通りなので \( n(A\cap B)=9 \)。よって \( P_A(B)=\dfrac{9}{27}=\dfrac{1}{3} \)。</p>
+    <p>(2) 和が偶数になるのは2つとも偶数か2つとも奇数のときで \( 9+9=18 \) 通りなので、\( P(B)=\dfrac{18}{36}=\dfrac{1}{2} \)。「積が偶数」と分かると「2つとも奇数」の場合がなくなるので、和が偶数である確率は \( \dfrac{1}{2} \) から \( \dfrac{1}{3} \) に下がる。</p>
+    <p><strong>採点の観点</strong>　① \( n(A)=27 \) を余事象などで正しく数えている。② \( A\cap B \) が「2つとも偶数」であることを理由とともに述べ、\( n(A\cap B)=9 \) としている。③ \( P_A(B)=\dfrac{1}{3} \) と \( P(B)=\dfrac{1}{2} \) を比べ、全体が \( A \) に絞られたことで値が変わった理由を説明している。</p>
+  </div>
+  <div class="explain">表2のような二次元の表で、積が偶数の欄を塗り、その中で和が偶数の欄を数えても確かめられます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(オ)「条件付き確率の意味を理解し，簡単な場合について条件付き確率を求めること」に当たり、出題範囲に含まれます。学習指導要領解説は、「事象の構造が分かりやすい簡単な場合について，条件付き確率を求めることができるようにする」とし、論理的な確率では、条件付き確率は「場合の数の数え上げに帰着して考えることができる」ことを、具体例を通して見いださせたり図に表して考えさせたりすることを例に挙げています。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。</p>
+  <p class="small">問4・問7・問8は日常の場面や会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">条件付き確率の式と乗法定理（数Ａ-029）</p>
+  <p>次の時間は、この時間の式 \( P_A(B)=\dfrac{n(A\cap B)}{n(A)} \) の分母と分子を \( n(U) \) で割って、条件付き確率を確率の式 \( P_A(B)=\dfrac{P(A\cap B)}{P(A)} \) で表します。そこから乗法定理 \( P(A\cap B)=P(A)P_A(B)=P(B)P_B(A) \) を導き、例題3のように当たりくじを順に引く場合などの確率を求めます。</p>
+  <p>この時間では、条件付き確率を確率の式で表すこと、人数などが分からず割合だけが分かっている場合の条件付き確率、乗法定理（数Ａ-029）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-027　反復試行の確率</div>
+  <div><span class="label">次の時間</span>数Ａ-029　条件付き確率の式と乗法定理</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-028「条件付き確率」（学習指導要領 数学Ａ (2)ア(オ)、解説 p.94）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率 ア(オ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.94（事象の構造が分かりやすい簡単な場合について条件付き確率を求める、具体例や図を通して意味を理解する、場合の数の数え上げに帰着して考える）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「条件付き確率」（「条件付き確率を，記号を用いて表すことができる」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>東京書籍「教科書編修趣意書 数学Ａ（数Ａ002-904）」（条件付き確率の導入でくじ引きの場面を取り上げ、条件によって確率が変わることを実感できるようにしていることの確認）https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。「X高校」「Y高校」の表の人数は学習用の架空のデータです。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-028",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-028",
+  "title": "条件付き確率",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(オ)"],
+  "kaisetsu_page": "94",
+  "objectives": [
+    {"id": "O1", "text": "事象 \\( A \\) が起こったときに事象 \\( B \\) が起こる確率を条件付き確率 \\( P_A(B) \\) ということを理解し、\\( A \\) を新しい全体とみるという意味を図で説明できる。", "from": "場合の数の数え上げや図を用いて条件付き確率 PA(B) の意味を理解し", "sections": ["sec-1"], "checks": ["q1", "q8"]},
+    {"id": "O2", "text": "根元事象が同様に確からしいとき、\\( P_A(B)=\\dfrac{n(A\\cap B)}{n(A)} \\) を用いて、場合の数を数え上げて条件付き確率を求めることができる。", "from": "事象の構造が分かりやすい簡単な場合について、場合の数の数え上げや図を用いて…求めることができる", "sections": ["sec-2"], "checks": ["q2", "q3", "q5", "q6", "q8", "q9"]},
+    {"id": "O3", "text": "表や図を用いて、\\( P_A(B) \\)、\\( P_B(A) \\)、\\( P(A\\cap B) \\) を、何を全体とみるかに注意して区別して求めることができる。", "from": "図を用いて条件付き確率 PA(B) の意味を理解し、求めることができる", "sections": ["sec-3"], "checks": ["q4", "q7", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "条件付き確率", "where": "sec-1"},
+    {"term": "P_A(B)", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "根元事象が同様に確からしいときの確率 P(A)=n(A)/n(U)", "taught_in": ["hs_math_1a/数Ａ-018", "jhs_math/中2-080"], "where": "review"},
+    {"concept": "積事象 A∩B", "taught_in": ["hs_math_1a/数Ａ-021"], "where": "review"},
+    {"concept": "集合の要素の個数 n(A)", "taught_in": ["hs_math_1a/数Ａ-001"], "where": "sec-2"},
+    {"concept": "区別のつかないものも区別して数える（2つのさいころ・硬貨）", "taught_in": ["hs_math_1a/数Ａ-020", "jhs_math/中2-082"], "where": "review"},
+    {"concept": "くじを引く順番と当たりやすさ（場合の数による）", "taught_in": ["jhs_math/中2-084"], "where": "sec-2"},
+    {"concept": "積の法則（10×9 通り）", "taught_in": ["hs_math_1a/数Ａ-005"], "where": "sec-2"},
+    {"concept": "独立な試行（戻さずに引くと独立でない）", "taught_in": ["hs_math_1a/数Ａ-026"], "where": "sec-2"},
+    {"concept": "二次元表で何を1とみた割合かを確かめる", "taught_in": ["hs_math_1a/数Ⅰ-087"], "where": "sec-3"},
+    {"concept": "余事象 Ā", "taught_in": ["hs_math_1a/数Ａ-024"], "where": "sec-3"},
+    {"concept": "「少なくとも1つ」の余事象", "taught_in": ["hs_math_1a/数Ａ-024"], "where": "quiz"}
+  ],
+  "out_of_scope": [
+    "条件付き確率を確率の式 P_A(B)=P(A∩B)/P(A) で表すこと、割合だけが分かっている場合、乗法定理 P(A∩B)=P(A)P_A(B)=P(B)P_B(A)（数Ａ-029）",
+    "期待値（数Ａ-030）"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(オ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.94 条件付き確率の扱い（簡単な場合、具体例と図、場合の数の数え上げに帰着）"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "条件付き確率を記号で表す扱いの確認"},
+    {"name": "教科書編修趣意書 数学Ａ（東京書籍 数Ａ002-904）", "publisher": "文部科学省公開", "url": "https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html", "use": "条件付き確率の導入でくじ引きの場面を取り上げることの確認"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

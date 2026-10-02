@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>鈍角を含む三角比の相互関係｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>図形と計量</span><span>数Ⅰ-065</span></div>
+  <h1>鈍角を含む三角比の相互関係</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">鋭角で成り立っていた \( \sin^2A+\cos^2A=1 \) は、鈍角でも成り立つのでしょうか。成り立つなら、\( \sin\theta=\dfrac{3}{5} \) から \( \cos\theta \) は1つに決まるでしょうか。単位円で確かめます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>単位円上の点 \( \mathrm{P}(\cos\theta,\ \sin\theta) \) を用いて、\( 0^\circ\leqq\theta\leqq180^\circ \) でも \( \sin^2\theta+\cos^2\theta=1 \)、\( \tan\theta=\dfrac{\sin\theta}{\cos\theta} \)、\( 1+\tan^2\theta=\dfrac{1}{\cos^2\theta} \) が成り立つことを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>\( \sin\theta \) の値から \( \cos\theta \)・\( \tan\theta \) を求めるとき、\( \theta \) が鋭角か鈍角かで2通りになることに注意して、値を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>\( \cos\theta \) や \( \tan\theta \) の値から、ほかの三角比の値を求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-064）</span>180°−A の三角比</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-065）</span>鈍角を含む三角比の相互関係</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-066）</span>三角比の値と角</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」「三平方の定理」。同じ単元の数Ⅰ-061（鋭角の三角比の相互関係）、数Ⅰ-063（0°≦θ≦180° の三角比、単位円、符号）を使います。この時間の \( \theta \) は、とくに断らない限り \( 0^\circ\leqq\theta\leqq180^\circ \) です。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、鋭角の相互関係（数Ⅰ-061）、三角比の符号（数Ⅰ-063）、原点からの距離（中3-103）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-061</span></div>
+  <p>\( A \) は鋭角で \( \sin A=\dfrac{3}{5} \) のとき、\( \cos A \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{2}{5} \)</button>
+    <button data-correct="true">\( \dfrac{4}{5} \)</button>
+    <button>\( \dfrac{16}{25} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \cos^2A=1-\sin^2A=1-\dfrac{9}{25}=\dfrac{16}{25} \)、\( A \) は鋭角で \( \cos A&gt;0 \) なので \( \cos A=\dfrac{4}{5} \) です。\( \dfrac{2}{5} \) は2乗せずに \( 1-\dfrac{3}{5} \) とした誤り、\( \dfrac{16}{25} \) は \( \cos^2A \) の値で、平方根をとり忘れています。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-063</span></div>
+  <p>\( \theta \) が鈍角のとき、\( \cos\theta \) と \( \tan\theta \) の符号はどれですか。</p>
+  <div class="choices">
+    <button>どちらも正</button>
+    <button>\( \cos\theta \) は負、\( \tan\theta \) は正</button>
+    <button data-correct="true">どちらも負</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">鈍角のとき単位円上の点 P は \( y \) 軸より左（\( x&lt;0 \)）、\( x \) 軸より上（\( y&gt;0 \)）にあるので、\( \cos\theta=x&lt;0 \)、\( \tan\theta=\dfrac{y}{x}&lt;0 \) です。どちらも正は鋭角の場合、「tan は正」は分母 \( x \) が負であることを見落とした誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中3-103</span></div>
+  <p>単位円（原点を中心とする半径 1 の円）上の点 \( (x,\ y) \) について、いつも成り立つ式はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( x^2+y^2=1 \)</button>
+    <button>\( x+y=1 \)</button>
+    <button>\( x^2-y^2=1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">原点と点 \( (x,\ y) \) の距離は \( \sqrt{x^2+y^2} \)（三平方の定理、中3-103）で、これが半径 1 に等しいので \( x^2+y^2=1 \) です。\( x+y=1 \) は点 \( (1,\ 0) \) や \( (0,\ 1) \) では成り立ちますが、\( \left(\dfrac{1}{\sqrt{2}},\ \dfrac{1}{\sqrt{2}}\right) \) では成り立ちません。\( x^2-y^2=1 \) は \( (0,\ 1) \) で成り立ちません。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：sin θ＝3/5 のとき、cos θ は？</h2>
+<div class="box think">
+  <p class="box-title">θ はいくつある？</p>
+  <p>\( 0^\circ\leqq\theta\leqq180^\circ \) で \( \sin\theta=\dfrac{3}{5} \) とします。単位円の上半分で、\( y \) 座標が \( \dfrac{3}{5} \) の点はいくつあるでしょうか。そのそれぞれで、\( \cos\theta \) はいくつになるでしょうか。</p>
+  <p>数Ⅰ-061 のように「\( \cos\theta=\dfrac{4}{5} \)」と1つだけ答えてよいでしょうか。答えは「4 sin θ の値から cos θ・tan θ を求める」の例題1で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="相互関係は 0°〜180° でも成り立つ"><span class="num">3</span>相互関係は 0°〜180° でも成り立つ</h2>
+<p>数Ⅰ-061 では、鋭角について直角三角形から3つの相互関係（関係1〜3）を導きました。0°≦θ≦180° の三角比は単位円上の点 \( \mathrm{P}(\cos\theta,\ \sin\theta) \) で定めた（数Ⅰ-063）ので、今度は P の座標を使って確かめます。番号は数Ⅰ-061 と同じにします。</p>
+<h3>関係1：\( \tan\theta=\dfrac{\sin\theta}{\cos\theta} \)</h3>
+<p>定義より \( \tan\theta=\dfrac{y}{x}=\dfrac{\sin\theta}{\cos\theta} \) です（\( \theta\neq90^\circ \)）。</p>
+<h3>関係2：\( \sin^2\theta+\cos^2\theta=1 \)</h3>
+<p>P は単位円上にあるので、原点 O からの距離は 1 です。三平方の定理（中3-103）より \( \mathrm{OP}^2=x^2+y^2=1 \)。\( x=\cos\theta \)、\( y=\sin\theta \) を代入すると \( \cos^2\theta+\sin^2\theta=1 \) です。\( \theta \) が鈍角で \( x \) が負でも、2乗すれば正になるので、同じように成り立ちます。0°・90°・180° でも、\( (1,\ 0) \)、\( (0,\ 1) \)、\( (-1,\ 0) \) を代入すると成り立っています。</p>
+<h3>関係3：\( 1+\tan^2\theta=\dfrac{1}{\cos^2\theta} \)</h3>
+<p>関係2 の両辺を \( \cos^2\theta \) で割ると（\( \theta\neq90^\circ \) なので \( \cos\theta\neq0 \)）、\( \dfrac{\sin^2\theta}{\cos^2\theta}+1=\dfrac{1}{\cos^2\theta} \)。関係1 より \( \dfrac{\sin^2\theta}{\cos^2\theta}=\tan^2\theta \) なので、\( \tan^2\theta+1=\dfrac{1}{\cos^2\theta} \) です。</p>
+<div class="box point"><p class="box-title">三角比の相互関係（\( 0^\circ\leqq\theta\leqq180^\circ \)）</p>
+$$ \tan\theta=\frac{\sin\theta}{\cos\theta},\qquad \sin^2\theta+\cos^2\theta=1,\qquad 1+\tan^2\theta=\frac{1}{\cos^2\theta} $$
+<p>関係1・関係3 は \( \theta\neq90^\circ \) のとき。鋭角で成り立っていた関係が、拡張した三角比でもそのまま成り立ちます（数Ⅰ-063 の「拡張の意義」）。</p></div>
+<p>数Ⅰ-063 で求めた 120° の値で確かめてみましょう。\( \sin^2 120^\circ+\cos^2 120^\circ=\left(\dfrac{\sqrt{3}}{2}\right)^2+\left(-\dfrac{1}{2}\right)^2=\dfrac{3}{4}+\dfrac{1}{4}=1 \)、\( 1+\tan^2 120^\circ=1+(-\sqrt{3})^2=4=\dfrac{1}{\left(-\frac{1}{2}\right)^2} \) です。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>\( \theta \)</th><th>\( \sin\theta \)</th><th>\( \cos\theta \)</th><th>\( \tan\theta \)</th></tr>
+  <tr><td>鋭角</td><td>正</td><td>正</td><td>正</td></tr>
+  <tr><td>90°</td><td>1</td><td>0</td><td>なし</td></tr>
+  <tr><td>鈍角</td><td>正</td><td>負</td><td>負</td></tr>
+</table>
+</div>
+<p class="small">表1　三角比の符号（数Ⅰ-063）。0° と 180° では \( \sin\theta=0 \)、\( \tan\theta=0 \)、\( \cos\theta \) はそれぞれ \( 1 \)、\( -1 \)。</p>
+<p>表1から、<strong>\( \sin\theta \) は鋭角でも鈍角でも正</strong>、<strong>\( \cos\theta \) と \( \tan\theta \) は鋭角なら正、鈍角なら負</strong>と分かります。このことが、次の節で大切になります。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="sin θ から cos θ・tan θ を求める"><span class="num">4</span>sin θ の値から cos θ・tan θ を求める</h2>
+<p>\( \sin\theta \) の値が分かると、関係2 より \( \cos^2\theta=1-\sin^2\theta \) です。しかし \( \cos\theta \) は正のことも負のこともあるので、\( \cos\theta=\pm\sqrt{1-\sin^2\theta} \) の2つの候補があります。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の問いの答え）</p>
+  <p>\( 0^\circ\leqq\theta\leqq180^\circ \) で \( \sin\theta=\dfrac{3}{5} \) のとき、\( \cos\theta \) と \( \tan\theta \) の値を求めなさい。</p>
+  <div class="step">着目：単位円の上半分で \( y \) 座標が \( \dfrac{3}{5} \) の点は、\( y \) 軸の右と左に1つずつ、2つある（図1）。右の点は \( \theta \) が鋭角、左の点は鈍角。</div>
+  <div class="step">\( \cos^2\theta=1-\left(\dfrac{3}{5}\right)^2=\dfrac{16}{25} \) より \( \cos\theta=\pm\dfrac{4}{5} \)。</div>
+  <div class="step">\( \theta \) が鋭角のとき：\( \cos\theta=\dfrac{4}{5} \)、\( \tan\theta=\dfrac{\sin\theta}{\cos\theta}=\dfrac{3}{5}\div\dfrac{4}{5}=\dfrac{3}{4} \)。</div>
+  <div class="step">\( \theta \) が鈍角のとき：\( \cos\theta=-\dfrac{4}{5} \)、\( \tan\theta=\dfrac{3}{5}\div\left(-\dfrac{4}{5}\right)=-\dfrac{3}{4} \)。</div>
+  <div class="step">答え：\( \theta \) が鋭角のとき \( \cos\theta=\dfrac{4}{5} \)、\( \tan\theta=\dfrac{3}{4} \)。\( \theta \) が鈍角のとき \( \cos\theta=-\dfrac{4}{5} \)、\( \tan\theta=-\dfrac{3}{4} \)。</div>
+</div>
+<figure>
+<!--svg:f065a-->
+<svg viewBox="0 0 356 188" width="356" role="img" aria-label="単位円の上半分と直線 y=3/5。交点は P(4/5, 3/5)（θ は鋭角）と Q(−4/5, 3/5)（θ は鈍角）の2つ" data-fig="f065a" data-map="-1.55,1.6,-0.32,1.3,4,4,110">
+<defs><marker id="ar-f065a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<line x1="4" y1="147" x2="350.5" y2="147" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f065a)"/>
+<line x1="174.5" y1="182.2" x2="174.5" y2="4" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f065a)"/>
+<text x="348.5" y="163" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">x</text>
+<text x="167.5" y="14" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">y</text>
+<text x="169.5" y="162" text-anchor="end" font-size="12" font-style="italic" fill="currentColor">O</text>
+<path d="M284.5,147 L284.4,143.2 L284.2,139.3 L283.9,135.5 L283.4,131.7 L282.8,127.9 L282.1,124.1 L281.2,120.4 L280.2,116.7 L279.1,113 L277.9,109.4 L276.5,105.8 L275,102.3 L273.4,98.8 L271.6,95.4 L269.8,92 L267.8,88.7 L265.7,85.5 L263.5,82.3 L261.2,79.3 L258.8,76.3 L256.2,73.4 L253.6,70.6 L250.9,67.9 L248.1,65.3 L245.2,62.7 L242.2,60.3 L239.2,58 L236,55.8 L232.8,53.7 L229.5,51.7 L226.1,49.9 L222.7,48.1 L219.2,46.5 L215.7,45 L212.1,43.6 L208.5,42.4 L204.8,41.3 L201.1,40.3 L197.4,39.4 L193.6,38.7 L189.8,38.1 L186,37.6 L182.2,37.3 L178.3,37.1 L174.5,37 L170.7,37.1 L166.8,37.3 L163,37.6 L159.2,38.1 L155.4,38.7 L151.6,39.4 L147.9,40.3 L144.2,41.3 L140.5,42.4 L136.9,43.6 L133.3,45 L129.8,46.5 L126.3,48.1 L122.9,49.9 L119.5,51.7 L116.2,53.7 L113,55.8 L109.8,58 L106.8,60.3 L103.8,62.7 L100.9,65.3 L98.1,67.9 L95.4,70.6 L92.8,73.4 L90.2,76.3 L87.8,79.3 L85.5,82.3 L83.3,85.5 L81.2,88.7 L79.2,92 L77.4,95.4 L75.6,98.8 L74,102.3 L72.5,105.8 L71.1,109.4 L69.9,113 L68.8,116.7 L67.8,120.4 L66.9,124.1 L66.2,127.9 L65.6,131.7 L65.1,135.5 L64.8,139.3 L64.6,143.2 L64.5,147" fill="none" stroke="currentColor" stroke-width="1.6" data-circle="1.0"/>
+<line x1="284.5" y1="144" x2="284.5" y2="150" stroke="currentColor"/>
+<text x="284.5" y="162" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="1">1</text>
+<line x1="64.5" y1="144" x2="64.5" y2="150" stroke="currentColor"/>
+<text x="64.5" y="162" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="-1">−1</text>
+<line x1="171.5" y1="37" x2="177.5" y2="37" stroke="currentColor"/>
+<text x="168.5" y="41" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="1">1</text>
+<line x1="26" y1="81" x2="323" y2="81" stroke="#1e8e5a" stroke-width="1.6" stroke-dasharray="6 4" data-line="y=3/5"/>
+<text x="180.5" y="76" text-anchor="start" font-size="12" font-weight="700" fill="#1e8e5a">y=3/5</text>
+<line x1="262.5" y1="147" x2="262.5" y2="81" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3"/>
+<line x1="174.5" y1="147" x2="262.5" y2="81" stroke="#1f5fbf" stroke-width="2.4"/>
+<circle cx="262.5" cy="81" r="4.5" fill="#1f5fbf" data-x="0.8" data-y="0.6" data-r="1"/>
+<text x="268.5" y="70" text-anchor="start" font-size="12" font-weight="700" fill="#1f5fbf">P(4/5, 3/5)</text>
+<text x="268.5" y="54" text-anchor="start" font-size="11" fill="#1f5fbf">θ は鋭角</text>
+<text x="262.5" y="177" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">4/5</text>
+<line x1="86.5" y1="147" x2="86.5" y2="81" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3"/>
+<line x1="174.5" y1="147" x2="86.5" y2="81" stroke="#b7791f" stroke-width="2.4"/>
+<circle cx="86.5" cy="81" r="4.5" fill="#b7791f" data-x="-0.8" data-y="0.6" data-r="1"/>
+<text x="80.5" y="70" text-anchor="end" font-size="12" font-weight="700" fill="#b7791f">Q(−4/5, 3/5)</text>
+<text x="80.5" y="54" text-anchor="end" font-size="11" fill="#b7791f">θ は鈍角</text>
+<text x="86.5" y="177" text-anchor="middle" font-size="11" font-weight="700" fill="#b7791f">−4/5</text>
+</svg>
+<!--/svg:f065a-->
+  <figcaption>図1　単位円の上半分と直線 \( y=\dfrac{3}{5} \)。交点は \( \mathrm{P}\left(\dfrac{4}{5},\ \dfrac{3}{5}\right) \)（\( \theta \) が鋭角）と \( \mathrm{Q}\left(-\dfrac{4}{5},\ \dfrac{3}{5}\right) \)（\( \theta \) が鈍角）の2つ</figcaption>
+</figure>
+<p>導入の問いの答え：\( y \) 座標が \( \dfrac{3}{5} \) の点は2つあるので、\( \theta \) の条件がなければ \( \cos\theta \) は \( \dfrac{4}{5} \) と \( -\dfrac{4}{5} \) の2通りです。「\( \dfrac{4}{5} \)」だけでは、鈍角の場合が抜けてしまいます。</p>
+
+<div class="box example worked">
+  <p class="box-title">例題2（θ の範囲が決まっている場合）</p>
+  <p>\( 90^\circ&lt;\theta&lt;180^\circ \) で \( \sin\theta=\dfrac{1}{3} \) のとき、\( \cos\theta \) と \( \tan\theta \) の値を求めなさい。</p>
+  <div class="step">着目：\( \theta \) は鈍角なので \( \cos\theta&lt;0 \)。</div>
+  <div class="step">\( \cos^2\theta=1-\dfrac{1}{9}=\dfrac{8}{9} \)、\( \cos\theta&lt;0 \) なので \( \cos\theta=-\dfrac{\sqrt{8}}{3}=-\dfrac{2\sqrt{2}}{3} \)。</div>
+  <div class="step">\( \tan\theta=\dfrac{1}{3}\div\left(-\dfrac{2\sqrt{2}}{3}\right)=-\dfrac{1}{2\sqrt{2}}=-\dfrac{\sqrt{2}}{4} \)（分母を有理化した）。</div>
+  <div class="step">答え：\( \cos\theta=-\dfrac{2\sqrt{2}}{3} \)、\( \tan\theta=-\dfrac{\sqrt{2}}{4} \)</div>
+</div>
+<div class="box point"><p class="box-title">2通りになるのはいつか</p>
+<ul>
+  <li>\( 0&lt;\sin\theta&lt;1 \) のとき：\( \theta \) は鋭角と鈍角の2つあり、\( \cos\theta \)・\( \tan\theta \) は正と負の2通り。問題に「\( \theta \) は鈍角」などの条件があれば、1通りに決まる。</li>
+  <li>\( \sin\theta=1 \) のとき：\( \theta=90^\circ \) だけなので、\( \cos\theta=0 \) の1通り（\( \tan\theta \) は定めない）。</li>
+  <li>\( \sin\theta=0 \) のとき：\( \theta=0^\circ \) か \( 180^\circ \) で、\( \cos\theta=1 \) か \( -1 \) の2通り（鋭角・鈍角ではない）。</li>
+</ul></div>
+<div class="box caution"><p class="box-title">よくある間違い</p>
+<ul>
+  <li><strong>正の値だけを答える</strong>：鋭角の相互関係（数Ⅰ-061）の習慣で \( \cos\theta=\dfrac{4}{5} \) だけを答える誤りです。0°≦θ≦180° では鈍角の場合も考えます。</li>
+  <li><strong>sin θ にも ± を付ける</strong>：\( \cos\theta \) から \( \sin\theta \) を求めるときに \( \sin\theta=\pm\cdots \) とする誤りです。0°≦θ≦180° では \( \sin\theta\geqq0 \) なので、正（または 0）の値だけです。</li>
+  <li><strong>条件を読み落とす</strong>：例題2で「\( 90^\circ&lt;\theta&lt;180^\circ \)」を見落とすと、\( \cos\theta=\dfrac{2\sqrt{2}}{3} \) を答えてしまいます。</li>
+</ul></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="cos θ・tan θ から求める"><span class="num">5</span>cos θ・tan θ の値からほかの値を求める</h2>
+<h3>cos θ の値が分かっているとき</h3>
+<p>\( \sin\theta\geqq0 \) なので、\( \sin\theta=\sqrt{1-\cos^2\theta} \) と1通りに決まります。</p>
+<div class="box example worked">
+  <p class="box-title">例題3</p>
+  <p>\( \cos\theta=-\dfrac{1}{3} \) のとき、\( \sin\theta \) と \( \tan\theta \) の値を求めなさい。</p>
+  <div class="step">着目：\( \cos\theta&lt;0 \) なので \( \theta \) は鈍角。\( \sin\theta&gt;0 \)。</div>
+  <div class="step">\( \sin^2\theta=1-\dfrac{1}{9}=\dfrac{8}{9} \)、\( \sin\theta&gt;0 \) なので \( \sin\theta=\dfrac{2\sqrt{2}}{3} \)。</div>
+  <div class="step">\( \tan\theta=\dfrac{2\sqrt{2}}{3}\div\left(-\dfrac{1}{3}\right)=-2\sqrt{2} \)。</div>
+  <div class="step">答え：\( \sin\theta=\dfrac{2\sqrt{2}}{3} \)、\( \tan\theta=-2\sqrt{2} \)</div>
+</div>
+<h3>tan θ の値が分かっているとき</h3>
+<p>関係3 の \( 1+\tan^2\theta=\dfrac{1}{\cos^2\theta} \) で \( \cos^2\theta \) を求めます。\( \cos\theta \) の符号は \( \tan\theta \) の符号と同じ（表1）なので、\( \tan\theta\neq0 \) なら1通りに決まります。最後に \( \sin\theta=\tan\theta\times\cos\theta \) で \( \sin\theta \) を求めます。</p>
+<div class="box example worked">
+  <p class="box-title">例題4</p>
+  <p>\( \tan\theta=-2 \) のとき、\( \cos\theta \) と \( \sin\theta \) の値を求めなさい。</p>
+  <div class="step">着目：\( \tan\theta&lt;0 \) なので \( \theta \) は鈍角。\( \cos\theta&lt;0 \)。</div>
+  <div class="step">\( \dfrac{1}{\cos^2\theta}=1+(-2)^2=5 \) より \( \cos^2\theta=\dfrac{1}{5} \)。\( \cos\theta&lt;0 \) なので \( \cos\theta=-\dfrac{1}{\sqrt{5}}=-\dfrac{\sqrt{5}}{5} \)。</div>
+  <div class="step">\( \sin\theta=\tan\theta\times\cos\theta=(-2)\times\left(-\dfrac{1}{\sqrt{5}}\right)=\dfrac{2}{\sqrt{5}}=\dfrac{2\sqrt{5}}{5} \)。</div>
+  <div class="step">確かめ：\( \sin^2\theta+\cos^2\theta=\dfrac{4}{5}+\dfrac{1}{5}=1 \)。答え：\( \cos\theta=-\dfrac{\sqrt{5}}{5} \)、\( \sin\theta=\dfrac{2\sqrt{5}}{5} \)</div>
+</div>
+<p>数Ⅰ-063 の定義を使って確かめることもできます。\( \tan\theta=\dfrac{y}{x}=-2 \) で \( y&gt;0 \) なので、たとえば \( x=-1 \)、\( y=2 \) の点 \( (-1,\ 2) \) をとると、原点からの距離は \( \sqrt{1+4}=\sqrt{5} \) です。半径 \( \sqrt{5} \) の半円上の点と考えて、\( \cos\theta=\dfrac{-1}{\sqrt{5}} \)、\( \sin\theta=\dfrac{2}{\sqrt{5}} \) となり、例題4と一致します（図2）。</p>
+<figure>
+<!--svg:f065b-->
+<svg viewBox="0 0 270 176" width="270" role="img" aria-label="半径 √5 の半円と点 P(−1, 2)。tan θ=2/(−1)=−2、cos θ=−1/√5、sin θ=2/√5" data-fig="f065b" data-map="-2.95,2.95,-0.78,2.9,4,4,44.72135954999579">
+<defs><marker id="ar-f065b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<line x1="4" y1="133.7" x2="267.9" y2="133.7" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f065b)"/>
+<line x1="135.9" y1="168.6" x2="135.9" y2="4" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f065b)"/>
+<text x="265.9" y="149.7" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">x</text>
+<text x="128.9" y="14" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">y</text>
+<text x="130.9" y="148.7" text-anchor="end" font-size="12" font-style="italic" fill="currentColor">O</text>
+<path d="M235.9,133.7 L235.9,130.2 L235.7,126.7 L235.4,123.2 L235,119.8 L234.4,116.3 L233.7,112.9 L233,109.5 L232.1,106.1 L231,102.8 L229.9,99.5 L228.6,96.2 L227.3,93 L225.8,89.9 L224.2,86.7 L222.5,83.7 L220.7,80.7 L218.8,77.8 L216.8,74.9 L214.7,72.1 L212.5,69.4 L210.2,66.8 L207.9,64.2 L205.4,61.8 L202.8,59.4 L200.2,57.1 L197.5,54.9 L194.7,52.8 L191.8,50.8 L188.9,48.9 L185.9,47.1 L182.9,45.4 L179.8,43.8 L176.6,42.3 L173.4,41 L170.1,39.7 L166.8,38.6 L163.5,37.6 L160.1,36.7 L156.7,35.9 L153.3,35.2 L149.8,34.7 L146.4,34.2 L142.9,33.9 L139.4,33.8 L135.9,33.7 L132.4,33.8 L129,33.9 L125.5,34.2 L122,34.7 L118.6,35.2 L115.1,35.9 L111.7,36.7 L108.4,37.6 L105,38.6 L101.7,39.7 L98.5,41 L95.3,42.3 L92.1,43.8 L89,45.4 L85.9,47.1 L82.9,48.9 L80,50.8 L77.1,52.8 L74.4,54.9 L71.6,57.1 L69,59.4 L66.5,61.8 L64,64.2 L61.6,66.8 L59.3,69.4 L57.1,72.1 L55,74.9 L53,77.8 L51.1,80.7 L49.3,83.7 L47.6,86.7 L46,89.9 L44.6,93 L43.2,96.2 L42,99.5 L40.8,102.8 L39.8,106.1 L38.9,109.5 L38.1,112.9 L37.4,116.3 L36.9,119.8 L36.5,123.2 L36.2,126.7 L36,130.2 L35.9,133.7" fill="none" stroke="currentColor" stroke-width="1.6" data-circle="2.23606797749979"/>
+<line x1="235.9" y1="130.7" x2="235.9" y2="136.7" stroke="currentColor"/>
+<text x="235.9" y="148.7" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="2.23606797749979">√5</text>
+<line x1="35.9" y1="130.7" x2="35.9" y2="136.7" stroke="currentColor"/>
+<text x="35.9" y="148.7" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="-2.23606797749979">−√5</text>
+<line x1="91.2" y1="133.7" x2="91.2" y2="44.2" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3"/>
+<line x1="135.9" y1="133.7" x2="91.2" y2="44.2" stroke="#1f5fbf" stroke-width="2.4" data-seg="OP"/>
+<circle cx="91.2" cy="44.2" r="4.5" fill="#1f5fbf" data-x="-1" data-y="2" data-r="2.2360679775"/>
+<text x="85.2" y="36.2" text-anchor="end" font-size="12" font-weight="700" fill="#1f5fbf">P(−1, 2)</text>
+<line x1="91.2" y1="137.7" x2="91.2" y2="151.7" stroke="#8a99a8" stroke-dasharray="2 2"/>
+<text x="91.2" y="163.7" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">−1</text>
+<text x="86.2" y="93" text-anchor="end" font-size="11" font-weight="700" fill="currentColor">2</text>
+<path d="M151.9,133.7 L151.9,132.3 L151.7,130.9 L151.4,129.5 L150.9,128.1 L150.4,126.8 L149.7,125.6 L149,124.4 L148.1,123.3 L147.1,122.3 L146.1,121.3 L144.9,120.5 L143.7,119.7 L142.5,119.1 L141.1,118.6 L139.8,118.2 L138.4,117.9 L137,117.7 L135.6,117.7 L134.2,117.8 L132.8,118 L131.4,118.3 L130.1,118.8 L128.8,119.4" fill="none" stroke="#c0392b" stroke-width="1.5" data-angle="theta"/>
+<text x="153.1" y="114.7" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">θ</text>
+<text x="123.6" y="91" text-anchor="start" font-size="12" font-weight="700" fill="#1f5fbf">√5</text>
+</svg>
+<!--/svg:f065b-->
+  <figcaption>図2　\( \tan\theta=-2 \) の \( \theta \)。点 \( (-1,\ 2) \) は半径 \( \sqrt{5} \) の半円上にあり、\( \cos\theta=\dfrac{-1}{\sqrt{5}} \)、\( \sin\theta=\dfrac{2}{\sqrt{5}} \)</figcaption>
+</figure>
+<div class="table-wrap">
+<table>
+  <tr><th>分かっている値</th><th>使う関係</th><th>求める値の個数</th><th>理由</th></tr>
+  <tr><td>\( \sin\theta \)（\( 0&lt;\sin\theta&lt;1 \)）</td><td>関係2</td><td>\( \cos\theta \)・\( \tan\theta \) は2通り</td><td>\( \theta \) が鋭角でも鈍角でも \( \sin\theta&gt;0 \)</td></tr>
+  <tr><td>\( \cos\theta \)</td><td>関係2</td><td>\( \sin\theta \) は1通り</td><td>\( \sin\theta\geqq0 \)</td></tr>
+  <tr><td>\( \tan\theta \)（\( \tan\theta\neq0 \)）</td><td>関係3 → 関係1</td><td>\( \cos\theta \)・\( \sin\theta \) は1通り</td><td>\( \cos\theta \) の符号は \( \tan\theta \) と同じ</td></tr>
+</table>
+</div>
+<p class="small">表2　分かっている値と、求める値の個数。\( \tan\theta=0 \) のときは \( \theta=0^\circ \) か \( 180^\circ \) で、\( \cos\theta=\pm1 \) の2通り。</p>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>三角比の相互関係</dt><dd>\( \sin^2\theta+\cos^2\theta=1 \)、\( \tan\theta=\dfrac{\sin\theta}{\cos\theta} \)、\( 1+\tan^2\theta=\dfrac{1}{\cos^2\theta} \)。0°≦θ≦180° でも成り立つ（後の2つは \( \theta\neq90^\circ \)）。</dd>
+    <dt>\( \sin^2\theta \)</dt><dd>\( (\sin\theta)^2 \) のこと（数Ⅰ-061）。</dd>
+    <dt>2通りになる場合</dt><dd>\( 0&lt;\sin\theta&lt;1 \) から \( \cos\theta \) を求めるとき、\( \theta \) が鋭角か鈍角かで正と負の2通りになる。</dd>
+    <dt>分母の有理化</dt><dd>分母に根号を含まない形に変形すること（中3-026・数Ⅰ-014）。\( -\dfrac{1}{\sqrt{5}}=-\dfrac{\sqrt{5}}{5} \)。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>単位円上の点 \( \mathrm{P}(\cos\theta,\ \sin\theta) \) で \( x^2+y^2=1 \) なので、0°≦θ≦180° でも \( \sin^2\theta+\cos^2\theta=1 \)。\( \tan\theta=\dfrac{\sin\theta}{\cos\theta} \)、\( 1+\tan^2\theta=\dfrac{1}{\cos^2\theta} \) も成り立つ（O1）。</li>
+    <li>\( \sin\theta \) から \( \cos\theta \) を求めるとき、\( 0&lt;\sin\theta&lt;1 \) なら \( \theta \) が鋭角か鈍角かで \( \cos\theta \) は正と負の2通り。条件があれば1通りに決める（O2）。</li>
+    <li>\( \cos\theta \) から \( \sin\theta \) は1通り（\( \sin\theta\geqq0 \)）。\( \tan\theta \)（\( \tan\theta\neq0 \)）から \( \cos\theta \) は関係3 で求め、符号は \( \tan\theta \) と同じ。\( \tan\theta=0 \) なら \( \theta=0^\circ,\ 180^\circ \) で \( \cos\theta=\pm1 \)（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">相互関係（\( 0^\circ\leqq\theta\leqq180^\circ \)）</span>
+    <p>関係1：\( \tan\theta=\dfrac{\sin\theta}{\cos\theta} \)（\( \theta\neq90^\circ \)）<br>関係2：\( \sin^2\theta+\cos^2\theta=1 \)<br>関係3：\( 1+\tan^2\theta=\dfrac{1}{\cos^2\theta} \)（\( \theta\neq90^\circ \)）</p></div>
+  <div><span class="f-name">符号で場合を決める</span>
+    <p>\( \sin\theta\geqq0 \)（いつも）<br>鋭角：\( \cos\theta&gt;0 \)、\( \tan\theta&gt;0 \)<br>鈍角：\( \cos\theta&lt;0 \)、\( \tan\theta&lt;0 \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。\( \theta \) はとくに断らない限り \( 0^\circ\leqq\theta\leqq180^\circ \)。根号は √ を使い、−√21/5 のように入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>\( 0^\circ\leqq\theta\leqq180^\circ \) のすべての \( \theta \) で成り立つ式はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \sin^2\theta+\cos^2\theta=1 \)</button>
+    <button>\( \sin\theta+\cos\theta=1 \)</button>
+    <button>\( \tan\theta=\dfrac{\cos\theta}{\sin\theta} \)</button>
+    <button>\( 1+\tan^2\theta=\dfrac{1}{\sin^2\theta} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">単位円上の点 \( (\cos\theta,\ \sin\theta) \) で \( x^2+y^2=1 \) なので \( \sin^2\theta+\cos^2\theta=1 \) です。\( \sin\theta+\cos\theta=1 \) は2乗を落とした誤りで、\( \theta=45^\circ \) では \( \sqrt{2} \) になります。\( \dfrac{\cos\theta}{\sin\theta} \) は分母と分子が逆です。\( \dfrac{1}{\sin^2\theta} \) は \( \cos^2\theta \) と取り違えた誤りで、\( \theta=0^\circ \) では右辺が定まらず、\( \theta=60^\circ \) では左辺 4、右辺 \( \dfrac{4}{3} \) です。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="3/5|0.6">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O3</span></div>
+  <p>\( \cos\theta=-\dfrac{4}{5} \) のとき、\( \sin\theta \) の値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{3}{5} \)。\( \sin^2\theta=1-\dfrac{16}{25}=\dfrac{9}{25} \)、\( \sin\theta\geqq0 \) なので \( \sin\theta=\dfrac{3}{5} \) です。\( -\dfrac{3}{5} \) と答えた場合は、\( \cos\theta \) が負なので \( \sin\theta \) も負と考えた誤りです。\( \pm\dfrac{3}{5} \) とするのも誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>\( \sin\theta=\dfrac{4}{5} \) のとき、\( \cos\theta \) の値として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{3}{5} \) だけ</button>
+    <button>\( -\dfrac{3}{5} \) だけ</button>
+    <button data-correct="true">\( \dfrac{3}{5} \) または \( -\dfrac{3}{5} \)</button>
+    <button>\( \dfrac{1}{5} \) または \( -\dfrac{1}{5} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \cos^2\theta=1-\dfrac{16}{25}=\dfrac{9}{25} \)。条件がないので \( \theta \) は鋭角（\( \cos\theta=\dfrac{3}{5} \)）とも鈍角（\( \cos\theta=-\dfrac{3}{5} \)）とも考えられ、2通りです。「\( \dfrac{3}{5} \) だけ」は鈍角の場合を落とし、「\( -\dfrac{3}{5} \) だけ」は鋭角の場合を落としています。\( \pm\dfrac{1}{5} \) は \( 1-\dfrac{4}{5} \) と2乗せずに引いた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="-√15/4|-(√15)/4|-√(15)/4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>\( 90^\circ&lt;\theta&lt;180^\circ \) で \( \sin\theta=\dfrac{1}{4} \) のとき、\( \cos\theta \) の値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( -\dfrac{\sqrt{15}}{4} \)。\( \cos^2\theta=1-\dfrac{1}{16}=\dfrac{15}{16} \)、\( \theta \) は鈍角で \( \cos\theta&lt;0 \) なので \( \cos\theta=-\dfrac{\sqrt{15}}{4} \) です。\( \dfrac{\sqrt{15}}{4} \) と答えた場合は、「\( \theta \) は鈍角」の条件を見落としています。\( -\dfrac{3}{4} \) と答えた場合は、\( 1-\dfrac{1}{4} \) と2乗せずに引いています。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="-1/√15|-√15/15|-(√15)/15|-√(15)/15">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>問4の \( \theta \) について、\( \tan\theta \) の値を求めなさい（分母を有理化しても、しなくてもよい）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( -\dfrac{1}{\sqrt{15}}=-\dfrac{\sqrt{15}}{15} \)。\( \tan\theta=\dfrac{\sin\theta}{\cos\theta}=\dfrac{1}{4}\div\left(-\dfrac{\sqrt{15}}{4}\right)=-\dfrac{1}{\sqrt{15}} \) です。\( -\sqrt{15} \) と答えた場合は、\( \dfrac{\cos\theta}{\sin\theta} \) と分母と分子を逆にしています。正の値と答えた場合は、鈍角の tan は負であることを見落としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>\( \tan\theta=-3 \) のとき、\( \cos\theta \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{1}{\sqrt{10}} \)</button>
+    <button data-correct="true">\( -\dfrac{1}{\sqrt{10}} \)</button>
+    <button>\( \pm\dfrac{1}{\sqrt{10}} \)</button>
+    <button>\( -\dfrac{3}{\sqrt{10}} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \dfrac{1}{\cos^2\theta}=1+9=10 \) より \( \cos^2\theta=\dfrac{1}{10} \)。\( \tan\theta&lt;0 \) なので \( \theta \) は鈍角で \( \cos\theta&lt;0 \)、\( \cos\theta=-\dfrac{1}{\sqrt{10}} \) です。\( \dfrac{1}{\sqrt{10}} \) は符号を決め忘れた誤り、\( \pm\dfrac{1}{\sqrt{10}} \) は tan の符号から \( \theta \) が鈍角と決まることを使っていない誤りです。\( -\dfrac{3}{\sqrt{10}} \) は \( \sin\theta=\tan\theta\cos\theta=\dfrac{3}{\sqrt{10}} \) の符号を変えたもので、\( \cos\theta \) ではありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O2</span></div>
+  <p>\( \sin\theta=1 \) のとき、\( \cos\theta \) について正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( \cos\theta=1 \) または \( -1 \) の2通り</button>
+    <button data-correct="true">\( \cos\theta=0 \) の1通り</button>
+    <button>\( \theta \) が鋭角か鈍角かで、正と負の2通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \cos^2\theta=1-1=0 \) より \( \cos\theta=0 \) で、1通りです。\( \sin\theta=1 \) となるのは \( \theta=90^\circ \) だけで、鋭角でも鈍角でもありません。「1 または −1」は \( \sin\theta=0 \)（\( \theta=0^\circ,\ 180^\circ \)）の場合と取り違えています。「鋭角か鈍角かで2通り」は、\( 0&lt;\sin\theta&lt;1 \) のときの決まりを \( \sin\theta=1 \) にも当てはめた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2</span></div>
+  <p>太郎さんと花子さんが話しています。</p>
+  <p>太郎：「\( \sin\theta=\dfrac{1}{3} \) だから、\( \cos^2\theta=\dfrac{8}{9} \) で、\( \cos\theta=\dfrac{2\sqrt{2}}{3} \) だね。」<br>花子：「\( \theta \) の範囲は \( 0^\circ\leqq\theta\leqq180^\circ \) としか書いていないよ。」</p>
+  <p>花子さんの指摘を踏まえた説明として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( \cos\theta \) はいつも正なので、\( \cos\theta=\dfrac{2\sqrt{2}}{3} \) だけで正しい。</button>
+    <button>\( \sin\theta \) も \( \pm\dfrac{1}{3} \) の2通りあるので、\( \cos\theta \) は4通りある。</button>
+    <button>\( \cos\theta=\pm\left(1-\dfrac{1}{3}\right)=\pm\dfrac{2}{3} \) の2通りになる。</button>
+    <button data-correct="true">\( \theta \) が鈍角の場合もあるので、\( \cos\theta=\dfrac{2\sqrt{2}}{3} \) または \( -\dfrac{2\sqrt{2}}{3} \) の2通りになる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 0&lt;\sin\theta&lt;1 \) なので、\( \theta \) は鋭角と鈍角の2つあり、\( \cos\theta=\pm\dfrac{2\sqrt{2}}{3} \) です。「cos はいつも正」は鋭角だけで考えた誤り（鈍角の cos は負）です。\( \sin\theta \) は与えられた値 \( \dfrac{1}{3} \) で、0°≦θ≦180° では負になりません。\( \pm\dfrac{2}{3} \) は2乗せずに 1 から引いた誤りです。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O3</span></div>
+  <p>\( \tan\theta=-\dfrac{1}{2} \) のとき、\( \cos\theta \) と \( \sin\theta \) の値を求めなさい。符号をどのように決めたかも書きなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　\( 1+\tan^2\theta=\dfrac{1}{\cos^2\theta} \) より \( \dfrac{1}{\cos^2\theta}=1+\dfrac{1}{4}=\dfrac{5}{4} \)、\( \cos^2\theta=\dfrac{4}{5} \)。\( \tan\theta&lt;0 \) なので \( \theta \) は鈍角で \( \cos\theta&lt;0 \)。よって \( \cos\theta=-\dfrac{2}{\sqrt{5}}=-\dfrac{2\sqrt{5}}{5} \)。\( \sin\theta=\tan\theta\cos\theta=\left(-\dfrac{1}{2}\right)\times\left(-\dfrac{2}{\sqrt{5}}\right)=\dfrac{1}{\sqrt{5}}=\dfrac{\sqrt{5}}{5} \)。</p>
+    <p><strong>採点の観点</strong>　① \( 1+\tan^2\theta=\dfrac{1}{\cos^2\theta} \) で \( \cos^2\theta \) を求めている。② \( \tan\theta&lt;0 \) から鈍角と判断し、\( \cos\theta \) の符号を負に決めている。③ \( \sin\theta \) を正しく求め、\( \sin^2\theta+\cos^2\theta=1 \) で確かめられる値になっている。</p>
+  </div>
+  <div class="explain">確かめ：\( \sin^2\theta+\cos^2\theta=\dfrac{1}{5}+\dfrac{4}{5}=1 \)。点 \( (-2,\ 1) \) をとると原点からの距離は \( \sqrt{5} \) で、数Ⅰ-063 の定義からも \( \cos\theta=\dfrac{-2}{\sqrt{5}} \)、\( \sin\theta=\dfrac{1}{\sqrt{5}} \) と確かめられます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲について特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲とする」とされています。この時間の内容は、数学Ⅰ「(2) 図形と計量」の「三角比を鈍角まで拡張する意義を理解し，鋭角の三角比の値を用いて鈍角の三角比の値を求める方法を理解すること」（ア(イ)）に当たり、出題範囲に含まれます。学習指導要領解説は、鈍角までの三角比の基本的な相互関係の例として \( \tan A=\dfrac{\sin A}{\cos A} \)、\( \sin^2A+\cos^2A=1 \)、\( 1+\tan^2A=\dfrac{1}{\cos^2A} \) を挙げています（p.39）。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めています。式の計算と図（単位円）での確かめを行き来するこの時間の内容は、そうした処理の土台になります。</p>
+  <p class="small">問8は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">三角比の値と角（数Ⅰ-066）</p>
+  <p>この時間は、三角比の値から別の三角比の値を求めました。次の時間は、\( \sin\theta=\dfrac{1}{2} \) や \( \cos\theta=-\dfrac{1}{\sqrt{2}} \) などを満たす角 \( \theta \) そのものを、単位円の半円周上の点の位置から求めます。図1で \( y \) 座標が \( \dfrac{3}{5} \) の点が2つあったように、\( \sin\theta \) の値から求める角は2つになることがあります。</p>
+  <p>この時間では、三角比の値を満たす角を求めること（数Ⅰ-066）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-064　180°−A の三角比</div>
+  <div><span class="label">次の時間</span>数Ⅰ-066　三角比の値と角</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-065「鈍角を含む三角比の相互関係」（学習指導要領 数学Ⅰ (2)ア(イ)、解説 p.39）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(2) 図形と計量（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.39（鈍角までの三角比の基本的な相互関係として tan A＝sin A／cos A、sin²A＋cos²A＝1、1＋tan²A＝1／cos²A などを挙げる）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>東京書籍「シラバス案 数学Ⅰ（改訂版 数学Ⅰ Standard、数Ⅰ002-902）」の「拡張した三角比の相互関係」（「鈍角まで拡張した場合の三角比の相互関係…について理解し，それらを活用することができる」）https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_su1_syllabus.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-065",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-065",
+  "title": "鈍角を含む三角比の相互関係",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-4", "title": "図形と計量"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(イ)"],
+  "kaisetsu_page": "39",
+  "objectives": [
+    {"id": "O1", "text": "単位円上の点 \\( \\mathrm{P}(\\cos\\theta,\\ \\sin\\theta) \\) を用いて、\\( 0^\\circ\\leqq\\theta\\leqq180^\\circ \\) でも \\( \\sin^2\\theta+\\cos^2\\theta=1 \\)、\\( \\tan\\theta=\\dfrac{\\sin\\theta}{\\cos\\theta} \\)、\\( 1+\\tan^2\\theta=\\dfrac{1}{\\cos^2\\theta} \\) が成り立つことを説明できる。", "from": "0°≦θ≦180° の範囲で相互関係を用い", "sections": ["sec-1"], "checks": ["q1", "q9"]},
+    {"id": "O2", "text": "\\( \\sin\\theta \\) の値から \\( \\cos\\theta \\)・\\( \\tan\\theta \\) を求めるとき、\\( \\theta \\) が鋭角か鈍角かで2通りになることに注意して、値を求めることができる。", "from": "sin θ の値から cos θ を求めるときは、θ が鋭角か鈍角かで2通りになることに注意する", "sections": ["sec-2"], "checks": ["q3", "q4", "q5", "q7", "q8"]},
+    {"id": "O3", "text": "\\( \\cos\\theta \\) や \\( \\tan\\theta \\) の値から、ほかの三角比の値を求めることができる。", "from": "三角比の値の一つから他の値を求めることができる", "sections": ["sec-3"], "checks": ["q2", "q6", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "三角比の相互関係", "where": "sec-1"},
+    {"term": "sin²θ", "where": "sec-1"},
+    {"term": "2通りになる場合", "where": "sec-2"},
+    {"term": "分母の有理化", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "鋭角の三角比の相互関係（sin²A+cos²A=1、tan A=sin A/cos A、1+tan²A=1/cos²A）と sin²A の書き方", "taught_in": ["hs_math_1a/数Ⅰ-061"], "where": "review"},
+    {"concept": "0°≦θ≦180° の三角比の定義（単位円上の点 P(cos θ, sin θ)）と符号", "taught_in": ["hs_math_1a/数Ⅰ-063"], "where": "review"},
+    {"concept": "原点と点 (x, y) の距離（三平方の定理）", "taught_in": ["jhs_math/中3-103"], "where": "review"},
+    {"concept": "平方根（正の数の平方根は正と負の2つ）", "taught_in": ["jhs_math/中3-019", "jhs_math/中3-020"], "where": "sec-2"},
+    {"concept": "分母の有理化", "taught_in": ["jhs_math/中3-026", "hs_math_1a/数Ⅰ-014"], "where": "sec-2"},
+    {"concept": "根号を含む式の計算（√8=2√2 など）", "taught_in": ["hs_math_1a/数Ⅰ-013"], "where": "sec-2"}
+  ],
+  "out_of_scope": [
+    "三角比の値を満たす角 θ を求めること（数Ⅰ-066）",
+    "sin θ+cos θ の値から sin θ cos θ を求めるなどの三角比を含む式の値（地図の要点にない。東京書籍『改訂版 数学Ⅰ Advanced』の編修趣意書は p.215「三角比の式の値」を発展的な学習内容に挙げている：sources/text/hensyu_東京書籍_数Ⅰ002-901.txt 425 行。中身は未確認）",
+    "一般角の三角関数の相互関係（数Ⅱ-063）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『図形と計量』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(2)ア(イ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.39 鈍角までの三角比の基本的な相互関係"},
+    {"name": "シラバス案 数学Ⅰ（改訂版 数学Ⅰ Standard、数Ⅰ002-902）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_su1_syllabus.pdf", "use": "「鈍角まで拡張した場合の三角比の相互関係…について理解し，それらを活用することができる」（保存本文：sources/text/ts_m1_16704_syllabus.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

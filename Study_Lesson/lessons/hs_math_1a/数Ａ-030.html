@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>期待値｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+table.dist td, table.dist th { text-align: center; padding: 6px 8px; white-space: nowrap; }
+.widget .w-row { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-030</span></div>
+  <h1>期待値</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">1枚 100 円のくじを1回引くと、平均していくらの賞金が見込めるでしょうか。とりうる値とその確率から「1回あたりの平均の見込み」を表す期待値を学び、さいころの目や賞金の期待値を求めます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>変量のとる値とその値をとる確率を表にまとめ、期待値を「値とその確率の積の和」として求め、平均値との関係から意味を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>さいころの目や目の和、硬貨の表の枚数、くじを引く回数などの期待値を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>くじやゲームの賞金の期待値を求め、1回の値段などと比べて、その意味を説明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-029）</span>条件付き確率の式と乗法定理</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-030）</span>期待値</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-031）</span>期待値を用いた意思決定</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。この時間は特に、値ごとの度数から平均値を求めること（中1-111）、相対度数と確率（中1-112・数Ａ-019）、変量（数Ⅰ-082）、乗法定理（数Ａ-029）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">平均値（中1-111）・確率（数Ａ-018）・乗法定理（数Ａ-029）</p>
+  <p>値ごとの度数が分かっているデータの平均値は、（値×度数）の合計を度数の合計で割って求めます（中1-111。数Ⅰ-079 でも使いました）。前の時間（数Ａ-029）は、乗法定理 \( P(A\cap B)=P(A)P_A(B) \) を使って、くじを戻さずに順に引く場合の確率を求めました。</p>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中1-111</span></div>
+  <p>10人の小テストの得点は、10点が2人、20点が3人、50点が5人でした。得点の平均値はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">33 点</button>
+    <button>\( \dfrac{80}{3} \) 点</button>
+    <button>330 点</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">（値×度数）の合計は \( 10\times2+20\times3+50\times5=20+60+250=330 \)（点）で、これを10人で割って 33 点です。\( \dfrac{80}{3} \) 点（\( =\dfrac{10+20+50}{3} \)）は人数（度数）を考えずに3つの値を平均した誤り、330 点は合計のまま割り忘れた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中2-082・数Ａ-020</span></div>
+  <p>2枚の硬貨を同時に投げるとき、表がちょうど1枚出る確率はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{1}{3} \)</button>
+    <button data-correct="true">\( \dfrac{1}{2} \)</button>
+    <button>\( \dfrac{1}{4} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">2枚を区別すると（表, 表）（表, 裏）（裏, 表）（裏, 裏）の4通りで、表がちょうど1枚は2通りなので \( \dfrac{2}{4}=\dfrac{1}{2} \)。\( \dfrac{1}{3} \) は「2枚とも表・1枚だけ表・2枚とも裏」の3通りを同様に確からしいとした誤り（中2-082 で注意した誤り）、\( \dfrac{1}{4} \) は（表, 裏）の1通りだけを数えた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-029</span></div>
+  <p>当たり2本、はずれ3本のくじから1本ずつ引きます。引いたくじは戻しません。1本目がはずれ、2本目が当たる確率はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{6}{25} \)</button>
+    <button>\( \dfrac{11}{10} \)</button>
+    <button data-correct="true">\( \dfrac{3}{10} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">乗法定理より \( \dfrac{3}{5}\times\dfrac{2}{4}=\dfrac{3}{10} \)（1本目がはずれた後は、残り4本のうち当たりが2本）。\( \dfrac{6}{25} \)（\( =\dfrac{3}{5}\times\dfrac{2}{5} \)）は戻す場合の計算、\( \dfrac{11}{10} \)（\( =\dfrac{3}{5}+\dfrac{2}{4} \)）はかけるところを足した誤りで、1 を超えています。この考え方を「4 いろいろな期待値」の例題4で使います。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：100円のくじの賞金は平均いくら？</h2>
+<div class="box think">
+  <p class="box-title">X商店街のくじ（学習用の架空の例）</p>
+  <p>X商店街で、1枚 100 円のくじを売っています。くじは全部で100本で、賞金は次のとおりです。</p>
+  <div class="table-wrap">
+  <table class="dist" data-tab="t030i">
+    <tr><th></th><th>賞金</th><th>本数</th></tr>
+    <tr><th>1等</th><td>1000円</td><td>2本</td></tr>
+    <tr><th>2等</th><td>500円</td><td>8本</td></tr>
+    <tr><th>3等</th><td>100円</td><td>20本</td></tr>
+    <tr><th>はずれ</th><td>0円</td><td>70本</td></tr>
+    <tr><th>計</th><td></td><td>100本</td></tr>
+  </table>
+  </div>
+  <p>太郎：「賞金は 1000 円、500 円、100 円、0 円だから、平均すると \( (1000+500+100+0)\div4=400 \) 円。100 円で買えば得だね。」<br>花子：「1000 円が当たるのは2本だけなのに、そんなに見込めるかな。」</p>
+  <p><strong>1本引くとき、賞金は平均していくらと見込めるでしょうか。</strong>答えは「5 賞金の期待値」の例題5で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="期待値の意味"><span class="num">3</span>期待値の意味</h2>
+<p>1個のさいころを投げて出る目を考えます。仮に600回投げて、1〜6の目がちょうど100回ずつ出たとすると、出た目の平均値は、値ごとの度数から（中1-111）</p>
+$$ \frac{1\times100+2\times100+3\times100+4\times100+5\times100+6\times100}{600}=\frac{2100}{600}=\frac{7}{2} $$
+<p>です。これは \( 1\times\dfrac{100}{600}+2\times\dfrac{100}{600}+\cdots+6\times\dfrac{100}{600} \)、つまり「値×相対度数」の和と同じです。多数回の試行では相対度数が確率に近づくと考えられる（数Ａ-019）ので、相対度数の代わりに確率 \( \dfrac{1}{6} \) を使った</p>
+$$ 1\times\frac{1}{6}+2\times\frac{1}{6}+3\times\frac{1}{6}+4\times\frac{1}{6}+5\times\frac{1}{6}+6\times\frac{1}{6}=\frac{21}{6}=\frac{7}{2} $$
+<p>は、「1回あたりに出る目の平均の見込み」を表すと考えられます。</p>
+<p>さいころの目や賞金のように、試行の結果によって値が決まる量を、このページでは<strong>変量</strong>と呼びます（数Ⅰ-082 のデータの変量と同じく、文字 \( x \) などで表します）。変量 \( x \) のとる値が \( x_1,\ x_2,\ \cdots,\ x_n \) で、それぞれの値をとる確率が \( p_1,\ p_2,\ \cdots,\ p_n \) のとき、</p>
+<div class="formula-card">
+  <div><span class="f-name">期待値</span>$$ x_1p_1+x_2p_2+\cdots+x_np_n $$<p class="small">ただし \( p_1+p_2+\cdots+p_n=1 \)。「値×その値をとる確率」をすべて足したもの。</p></div>
+</div>
+<p>を、変量 \( x \) の<strong>期待値</strong>といいます。値と確率は、次のような表にまとめると計算しやすくなります。</p>
+<div class="table-wrap">
+<table class="dist" data-tab="t030d">
+  <tr><th>\( x \) の値</th><td>\( x_1 \)</td><td>\( x_2 \)</td><td>\( \cdots \)</td><td>\( x_n \)</td><td>計</td></tr>
+  <tr><th>確率</th><td>\( p_1 \)</td><td>\( p_2 \)</td><td>\( \cdots \)</td><td>\( p_n \)</td><td>1</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題1（さいころの目）</p>
+  <p>1個のさいころを投げるとき、出る目の期待値を求めなさい。</p>
+  <div class="step">着目1（表にまとめる）：目は 1〜6 で、どの目も確率 \( \dfrac{1}{6} \)。確率の合計は \( 6\times\dfrac{1}{6}=1 \)。</div>
+  <div class="step">着目2（値×確率の和）：\( 1\cdot\dfrac{1}{6}+2\cdot\dfrac{1}{6}+3\cdot\dfrac{1}{6}+4\cdot\dfrac{1}{6}+5\cdot\dfrac{1}{6}+6\cdot\dfrac{1}{6}=\dfrac{21}{6}=\dfrac{7}{2} \)。答え \( \dfrac{7}{2} \)。</div>
+</div>
+<div class="box point"><p class="box-title">期待値と平均値</p><p>学習指導要領解説は、数学Ａの「場合の数と確率」で「期待値（平均値）」を扱うとしています。期待値は、試行を何回も繰り返したときの値の平均がどのくらいになるかの見込みと考えられます。さいころの目に \( \dfrac{7}{2}=3.5 \) という目はないように、期待値は1回の試行で実際に出る値とは限りません。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：確率を考えずに値だけを平均する</p><p>導入の太郎さんの \( 400 \) 円は、1000 円・500 円・100 円・0 円の4つの値をそのまま平均したもので、それぞれの賞金が当たる確率（本数）の違いを考えていません。値ごとの確率が等しくないときは、必ず「値×確率」の和で求めます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="いろいろな期待値"><span class="num">4</span>いろいろな期待値</h2>
+<div class="box example worked">
+  <p class="box-title">例題2（硬貨の表の枚数）</p>
+  <p>3枚の硬貨を同時に投げるとき、表の出る枚数の期待値を求めなさい。</p>
+  <div class="step">着目1（値と確率の表）：3枚を区別すると出方は8通り。表の枚数が 0、1、2、3 になるのは、それぞれ \( 1 \)、\( {}_3\mathrm{C}_1=3 \)、\( {}_3\mathrm{C}_2=3 \)、\( 1 \) 通り。確率は \( \dfrac{1}{8} \)、\( \dfrac{3}{8} \)、\( \dfrac{3}{8} \)、\( \dfrac{1}{8} \)（合計 1）。</div>
+  <div class="step">着目2：\( 0\cdot\dfrac{1}{8}+1\cdot\dfrac{3}{8}+2\cdot\dfrac{3}{8}+3\cdot\dfrac{1}{8}=\dfrac{12}{8}=\dfrac{3}{2} \)。答え \( \dfrac{3}{2} \)（枚）。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（2つのさいころの目の和）</p>
+  <p>大小2つのさいころを同時に投げるとき、出る目の和の期待値を求めなさい。</p>
+  <div class="step">着目1（値と確率）：和は 2〜12 で、36通りのうち和が 2、3、…、7、…、12 になるのは 1、2、3、4、5、6、5、4、3、2、1 通り（図1）。</div>
+  <div class="step">着目2：\( \dfrac{2\cdot1+3\cdot2+4\cdot3+5\cdot4+6\cdot5+7\cdot6+8\cdot5+9\cdot4+10\cdot3+11\cdot2+12\cdot1}{36}=\dfrac{252}{36}=7 \)。答え \( 7 \)。</div>
+</div>
+<figure>
+<!--svg:f030a-->
+<svg viewBox="0 0 360 196" width="360" role="img" aria-label="2つのさいころの目の和 2〜12 の通り数の棒グラフ。和が7のとき最も多い6通りで、左右対称。期待値7の位置に印" data-fig="f030a">
+<text x="8" y="14" font-size="11" fill="currentColor">通り数（36通りのうち）</text>
+<line x1="20" y1="150" x2="346" y2="150" stroke="currentColor" stroke-width="1.2"/>
+<rect x="26" y="130" width="23" height="20" fill="#1f5fbf" fill-opacity="0.45" data-s="2" data-n="1"/>
+<text x="37.5" y="126" text-anchor="middle" font-size="11" fill="currentColor" data-count="2">1</text>
+<text x="37.5" y="166" text-anchor="middle" font-size="12" fill="currentColor" data-sum="2">2</text>
+<rect x="55" y="110" width="23" height="40" fill="#1f5fbf" fill-opacity="0.45" data-s="3" data-n="2"/>
+<text x="66.5" y="106" text-anchor="middle" font-size="11" fill="currentColor" data-count="3">2</text>
+<text x="66.5" y="166" text-anchor="middle" font-size="12" fill="currentColor" data-sum="3">3</text>
+<rect x="84" y="90" width="23" height="60" fill="#1f5fbf" fill-opacity="0.45" data-s="4" data-n="3"/>
+<text x="95.5" y="86" text-anchor="middle" font-size="11" fill="currentColor" data-count="4">3</text>
+<text x="95.5" y="166" text-anchor="middle" font-size="12" fill="currentColor" data-sum="4">4</text>
+<rect x="113" y="70" width="23" height="80" fill="#1f5fbf" fill-opacity="0.45" data-s="5" data-n="4"/>
+<text x="124.5" y="66" text-anchor="middle" font-size="11" fill="currentColor" data-count="5">4</text>
+<text x="124.5" y="166" text-anchor="middle" font-size="12" fill="currentColor" data-sum="5">5</text>
+<rect x="142" y="50" width="23" height="100" fill="#1f5fbf" fill-opacity="0.45" data-s="6" data-n="5"/>
+<text x="153.5" y="46" text-anchor="middle" font-size="11" fill="currentColor" data-count="6">5</text>
+<text x="153.5" y="166" text-anchor="middle" font-size="12" fill="currentColor" data-sum="6">6</text>
+<rect x="171" y="30" width="23" height="120" fill="#1f5fbf" fill-opacity="0.45" data-s="7" data-n="6"/>
+<text x="182.5" y="26" text-anchor="middle" font-size="11" fill="currentColor" data-count="7">6</text>
+<text x="182.5" y="166" text-anchor="middle" font-size="12" fill="currentColor" data-sum="7">7</text>
+<rect x="200" y="50" width="23" height="100" fill="#1f5fbf" fill-opacity="0.45" data-s="8" data-n="5"/>
+<text x="211.5" y="46" text-anchor="middle" font-size="11" fill="currentColor" data-count="8">5</text>
+<text x="211.5" y="166" text-anchor="middle" font-size="12" fill="currentColor" data-sum="8">8</text>
+<rect x="229" y="70" width="23" height="80" fill="#1f5fbf" fill-opacity="0.45" data-s="9" data-n="4"/>
+<text x="240.5" y="66" text-anchor="middle" font-size="11" fill="currentColor" data-count="9">4</text>
+<text x="240.5" y="166" text-anchor="middle" font-size="12" fill="currentColor" data-sum="9">9</text>
+<rect x="258" y="90" width="23" height="60" fill="#1f5fbf" fill-opacity="0.45" data-s="10" data-n="3"/>
+<text x="269.5" y="86" text-anchor="middle" font-size="11" fill="currentColor" data-count="10">3</text>
+<text x="269.5" y="166" text-anchor="middle" font-size="12" fill="currentColor" data-sum="10">10</text>
+<rect x="287" y="110" width="23" height="40" fill="#1f5fbf" fill-opacity="0.45" data-s="11" data-n="2"/>
+<text x="298.5" y="106" text-anchor="middle" font-size="11" fill="currentColor" data-count="11">2</text>
+<text x="298.5" y="166" text-anchor="middle" font-size="12" fill="currentColor" data-sum="11">11</text>
+<rect x="316" y="130" width="23" height="20" fill="#1f5fbf" fill-opacity="0.45" data-s="12" data-n="1"/>
+<text x="327.5" y="126" text-anchor="middle" font-size="11" fill="currentColor" data-count="12">1</text>
+<text x="327.5" y="166" text-anchor="middle" font-size="12" fill="currentColor" data-sum="12">12</text>
+<text x="182.5" y="184" text-anchor="middle" font-size="12" fill="#b7791f" data-ev="7">▲</text>
+<text x="194.5" y="184" text-anchor="start" font-size="12" fill="currentColor">期待値 7</text>
+</svg>
+<!--/svg:f030a-->
+  <figcaption>図1　2つのさいころの目の和と、36通りのうちその和になる通り数（棒の上の数）。期待値 7（▲）は、左右対称な分布の真ん中にある</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題4（当たるまで引く回数：乗法定理を使う）</p>
+  <p>当たり2本、はずれ3本の計5本のくじから、当たりが出るまで1本ずつ引きます。引いたくじは戻しません。引く回数の期待値を求めなさい。</p>
+  <div class="step">着目1（各回で終わる確率を乗法定理で）：1回目で当たる確率は \( \dfrac{2}{5} \)。2回目で終わるのは「はずれ→当たり」で \( \dfrac{3}{5}\cdot\dfrac{2}{4}=\dfrac{3}{10} \)。3回目は \( \dfrac{3}{5}\cdot\dfrac{2}{4}\cdot\dfrac{2}{3}=\dfrac{1}{5} \)。4回目は \( \dfrac{3}{5}\cdot\dfrac{2}{4}\cdot\dfrac{1}{3}\cdot\dfrac{2}{2}=\dfrac{1}{10} \)。はずれは3本なので、遅くとも4回目で当たる。</div>
+  <div class="step">着目2（確率の合計を確かめる）：\( \dfrac{2}{5}+\dfrac{3}{10}+\dfrac{1}{5}+\dfrac{1}{10}=1 \)。</div>
+  <div class="step">着目3：\( 1\cdot\dfrac{2}{5}+2\cdot\dfrac{3}{10}+3\cdot\dfrac{1}{5}+4\cdot\dfrac{1}{10}=\dfrac{4+6+6+4}{10}=2 \)。答え \( 2 \)（回）。</div>
+</div>
+<div class="box point"><p class="box-title">期待値を求める手順</p><p>① 変量のとりうる値をすべて挙げる　② それぞれの値をとる確率を求める（数え上げ、反復試行、乗法定理など）　③ 確率の合計が 1 になることを確かめる　④「値×確率」の和を計算する。③で 1 にならなければ、値の挙げ忘れや確率の誤りがあります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="賞金の期待値"><span class="num">5</span>賞金の期待値</h2>
+<div class="box example worked">
+  <p class="box-title">例題5（導入の答え）</p>
+  <p>導入の X商店街のくじ（100本）を1本引くとき、賞金の期待値を求めなさい。</p>
+  <div class="step">着目1（値と確率）：賞金 1000 円、500 円、100 円、0 円の確率は、本数から \( \dfrac{2}{100} \)、\( \dfrac{8}{100} \)、\( \dfrac{20}{100} \)、\( \dfrac{70}{100} \)（合計 1）。</div>
+  <div class="step">着目2：\( 1000\times\dfrac{2}{100}+500\times\dfrac{8}{100}+100\times\dfrac{20}{100}+0\times\dfrac{70}{100}=20+40+20+0=80 \)。答え 80 円。</div>
+  <div class="step">比べる：期待値 80 円は、1枚の値段 100 円より 20 円小さい。何回も買うと、1回あたり平均して 20 円ほど少なくなる見込みです。太郎さんの 400 円は、確率を考えていない値でした。</div>
+</div>
+<p>期待値は「1回あたりの平均の見込み」なので、1回だけ引いたときに 80 円もらえるわけではありません（実際にもらえるのは 1000 円、500 円、100 円、0 円のどれかです）。</p>
+
+<h3>1等の賞金と本数を変えて確かめよう</h3>
+<p>2等（500 円・8本）と3等（100 円・20本）、全体の本数（100本）はそのままにして、1等の賞金と本数を変えます（はずれの本数が変わります）。期待値が値段の 100 円と比べてどう変わるかを見てみましょう。</p>
+<div class="widget" id="w30">
+  <div class="w-row">
+    <span><label for="w30-y">1等の賞金：</label><input type="range" id="w30-y" min="0" max="2000" step="100" value="1000"> <output id="w30-yv" for="w30-y">1000</output> 円</span>
+    <span><label for="w30-k">1等の本数：</label><input type="range" id="w30-k" min="0" max="10" step="1" value="2"> <output id="w30-kv" for="w30-k">2</output> 本</span>
+  </div>
+  <div><svg id="w30-svg" viewBox="0 0 360 80" width="360" role="img" aria-label="賞金の期待値を、0円から300円の目盛りの上の帯の長さで表した図。値段100円の位置に赤の破線"></svg></div>
+  <p class="w-out" id="w30-out" aria-live="polite">1等が 1000 円で 2 本のとき（はずれは 70 本）：期待値は 1000×2/100 ＋ 500×8/100 ＋ 100×20/100 ＋ 0×70/100 ＝ 20 ＋ 40 ＋ 20 ＋ 0 ＝ 80（円）。1枚の値段 100 円より 20 円小さい。</p>
+</div>
+<p class="small">帯の長さが賞金の期待値（目盛りは 0〜300 円）、赤の破線が1枚の値段 100 円の位置です。期待値をもとにくじやゲームを選んだり、賞金を決めたりする方法は、数Ａ-031・032 で詳しく考えます。</p>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>期待値</dt><dd>変量 \( x \) のとる値 \( x_1,\ \cdots,\ x_n \) とその値をとる確率 \( p_1,\ \cdots,\ p_n \)（合計 1）について、\( x_1p_1+x_2p_2+\cdots+x_np_n \)。1回あたりの値の平均の見込みを表すと考えられる。</dd>
+    <dt>変量</dt><dd>さいころの目や賞金のように、試行の結果によって値が決まる量（このページでの説明）。数Ⅰ-082 のデータの変量と同じく文字 \( x \) などで表す。</dd>
+    <dt>平均値</dt><dd>（値×度数）の合計÷度数の合計（中1-111）。度数の代わりに相対度数を使っても同じ値になり、相対度数を確率に置きかえたものが期待値。</dd>
+    <dt>確率の乗法定理</dt><dd>\( P(A\cap B)=P(A)P_A(B) \)（数Ａ-029）。戻さずに引く場合など、各値をとる確率を求めるのに使う。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>変量のとる値とその確率を表にまとめ、「値×確率」の和 \( x_1p_1+\cdots+x_np_n \) を期待値という。平均値の「値×相対度数」の相対度数を確率に置きかえたもので、1回あたりの平均の見込みを表す（O1）。</li>
+    <li>さいころの目の期待値は \( \dfrac{7}{2} \)、2つのさいころの目の和は 7、3枚の硬貨の表の枚数は \( \dfrac{3}{2} \)。確率は数え上げ・組合せ・乗法定理などで求め、合計が 1 になることを確かめる（O2）。</li>
+    <li>賞金の期待値を1回の値段と比べると、何回も繰り返したときに平均して得か損かの見込みが分かる。値だけを平均せず、確率をかけて足す（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">期待値</span>$$ x_1p_1+x_2p_2+\cdots+x_np_n\qquad(p_1+p_2+\cdots+p_n=1) $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。入力は数（分数は 9/2 のように、それ以上約分できない形）で答えてください。小数で表せるときは小数でもかまいません。「円」「回」を付けてもかまいません。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>変量 \( x \) のとる値とその確率が次の表のとき、\( x \) の期待値はどれですか。</p>
+  <div class="table-wrap">
+  <table class="dist" data-tab="t030q1">
+    <tr><th>\( x \) の値</th><td>0</td><td>10</td><td>50</td><td>計</td></tr>
+    <tr><th>確率</th><td>\( \dfrac{1}{2} \)</td><td>\( \dfrac{3}{10} \)</td><td>\( \dfrac{1}{5} \)</td><td>1</td></tr>
+  </table>
+  </div>
+  <div class="choices">
+    <button>\( 20 \)</button>
+    <button>\( 60 \)</button>
+    <button data-correct="true">\( 13 \)</button>
+    <button>\( 0 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 0\times\dfrac{1}{2}+10\times\dfrac{3}{10}+50\times\dfrac{1}{5}=0+3+10=13 \)。\( 20 \)（\( =\dfrac{0+10+50}{3} \)）は確率を考えずに値を平均した誤り、\( 60 \) は値をそのまま足した誤り、\( 0 \) は最も起こりやすい値（確率 \( \dfrac{1}{2} \)）を期待値と取り違えた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>1個のさいころを投げ、偶数の目が出たらその目の数を得点とし、奇数の目が出たら得点を 0 とします。得点の期待値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 2。得点は 0（奇数の目、確率 \( \dfrac{3}{6} \)）、2、4、6（確率はそれぞれ \( \dfrac{1}{6} \)）なので、\( 0\cdot\dfrac{3}{6}+2\cdot\dfrac{1}{6}+4\cdot\dfrac{1}{6}+6\cdot\dfrac{1}{6}=\dfrac{12}{6}=2 \)。4 と答えた場合は、偶数の目 2、4、6 だけを平均していて、得点が 0 になる場合を考えていません。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>4枚の硬貨を同時に投げるとき、表の出る枚数の期待値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 2。表の枚数 0、1、2、3、4 の確率は、16通りのうち 1、4、6、4、1 通りなので \( \dfrac{1}{16} \)、\( \dfrac{4}{16} \)、\( \dfrac{6}{16} \)、\( \dfrac{4}{16} \)、\( \dfrac{1}{16} \)。\( \dfrac{0\cdot1+1\cdot4+2\cdot6+3\cdot4+4\cdot1}{16}=\dfrac{32}{16}=2 \)。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>大小2つのさいころを同時に投げ、大きい方の目から小さい方の目を引いた差（同じ目なら 0）を得点とします。得点の期待値はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \dfrac{35}{18} \)</button>
+    <button>\( \dfrac{5}{2} \)</button>
+    <button>\( \dfrac{7}{3} \)</button>
+    <button>\( 0 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">差が 0、1、2、3、4、5 になるのは、36通りのうち 6、10、8、6、4、2 通り。期待値は \( \dfrac{0\cdot6+1\cdot10+2\cdot8+3\cdot6+4\cdot4+5\cdot2}{36}=\dfrac{70}{36}=\dfrac{35}{18} \)。\( \dfrac{5}{2} \)（\( =\dfrac{0+1+2+3+4+5}{6} \)）は確率を考えずに値を平均した誤り、\( \dfrac{7}{3} \)（\( =\dfrac{70}{30} \)）は差が 0 の6通りを全体から除いて割った誤り、\( 0 \) は、大の目の期待値 \( \dfrac{7}{2} \) から小の目の期待値 \( \dfrac{7}{2} \) を引いた値で、得点の期待値ではありません。期待値は、得点のとる値とその確率から求めます。得点は 0 以上で、0 になるのは同じ目の6通りだけなので、「値×確率」の和が 0 になることはありません。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="150|150円">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>1個のさいころを投げ、1の目が出たら 600 円、2か3の目が出たら 150 円、それ以外の目なら 0 円の賞金がもらえるゲームがあります（学習用の架空の例）。賞金の期待値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 150 円。\( 600\times\dfrac{1}{6}+150\times\dfrac{2}{6}+0\times\dfrac{3}{6}=100+50+0=150 \)（円）。250 円と答えた場合は、600 円・150 円・0 円の3つの値をそのまま平均しています。125 円と答えた場合は、150 円の確率を \( \dfrac{1}{6} \) として、2の目と3の目の2通りあることを落としています。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="5/2|2.5|2.5回|5/2回">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2</span></div>
+  <p>当たり1本、はずれ3本の計4本のくじから、当たりが出るまで1本ずつ引きます。引いたくじは戻しません。引く回数の期待値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{5}{2} \)（回）。乗法定理で、1回目で当たる確率 \( \dfrac{1}{4} \)、2回目は \( \dfrac{3}{4}\cdot\dfrac{1}{3}=\dfrac{1}{4} \)、3回目は \( \dfrac{3}{4}\cdot\dfrac{2}{3}\cdot\dfrac{1}{2}=\dfrac{1}{4} \)、4回目は \( \dfrac{3}{4}\cdot\dfrac{2}{3}\cdot\dfrac{1}{2}\cdot\dfrac{1}{1}=\dfrac{1}{4} \)（合計 1）。期待値は \( (1+2+3+4)\times\dfrac{1}{4}=\dfrac{10}{4}=\dfrac{5}{2} \)。2回目以降の確率を \( \dfrac{3}{4}\cdot\dfrac{1}{4} \) のように戻す場合の計算にすると、確率の合計が 1 になりません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>50本のくじがあり、1等 2000 円が1本、2等 500 円が4本、3等 100 円が10本で、残りははずれ（0 円）です（学習用の架空の例）。1本引くときの賞金の期待値はどれですか。</p>
+  <div class="choices">
+    <button>\( 650 \) 円</button>
+    <button>\( 52 \) 円</button>
+    <button>\( 80 \) 円</button>
+    <button data-correct="true">\( 100 \) 円</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">はずれは \( 50-1-4-10=35 \) 本。\( 2000\times\dfrac{1}{50}+500\times\dfrac{4}{50}+100\times\dfrac{10}{50}+0\times\dfrac{35}{50}=40+40+20+0=100 \)（円）。650 円（\( =\dfrac{2000+500+100+0}{4} \)）は値だけを平均した誤り、52 円（\( =\dfrac{2000+500+100}{50} \)）は本数をかけずに各等の賞金を1本ずつとして足した誤り、80 円は3等の 20 円分を足し忘れた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O3</span></div>
+  <p>1個のさいころを1回投げる2つのゲームについて、花子さんと太郎さんが話しています（学習用の架空の例）。</p>
+  <p>ゲームA：出た目の数 × 100 円がもらえる。<br>ゲームB：6の目が出たら 600 円、それ以外の目なら 0 円。</p>
+  <p>花子：「ゲームB は 600 円がもらえることがあるから、B の方が得だと思う。」<br>太郎：「でも、6の目が出るのは \( \frac{1}{6} \) だけだよ。」</p>
+  <p>賞金の期待値で比べた説明として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>どちらも最高で 600 円もらえるので、期待値は同じである。</button>
+    <button data-correct="true">期待値は、A が \( 350 \) 円、B が \( 100 \) 円で、A の方が大きい。</button>
+    <button>期待値は、A が \( 350 \) 円、B が \( 600 \) 円で、B の方が大きい。</button>
+    <button>期待値は、A が \( 2100 \) 円、B が \( 600 \) 円で、A の方が大きい。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">A は \( (100+200+300+400+500+600)\times\dfrac{1}{6}=350 \)（円）、B は \( 600\times\dfrac{1}{6}+0\times\dfrac{5}{6}=100 \)（円）です。1番目は最高額だけで比べていて、確率を考えていません。3番目は B の期待値を最高額の 600 円のままにした誤り、4番目は確率 \( \dfrac{1}{6} \) をかけ忘れて値をそのまま足した誤りです。期待値は「1回あたりの平均の見込み」で、1回で何円もらえるかを決めるものではありません。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O3</span></div>
+  <p>1枚 200 円のくじが100本あります。1等 3000 円が2本、2等 1000 円が5本、3等 200 円が20本で、残りははずれ（0 円）です（学習用の架空の例）。</p>
+  <p>(1) 1本引くときの賞金の期待値を、値と確率の表を作って求めなさい。<br>(2) (1) の結果を1枚の値段と比べて、このくじについて言えることを説明しなさい。1回だけ買う場合についても触れなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) はずれは \( 100-2-5-20=73 \) 本。賞金 3000 円、1000 円、200 円、0 円の確率は \( \dfrac{2}{100} \)、\( \dfrac{5}{100} \)、\( \dfrac{20}{100} \)、\( \dfrac{73}{100} \)（合計 1）。期待値は \( 3000\times\dfrac{2}{100}+1000\times\dfrac{5}{100}+200\times\dfrac{20}{100}+0\times\dfrac{73}{100}=60+50+40+0=150 \)（円）。</p>
+    <p>(2) 期待値 150 円は値段 200 円より 50 円小さいので、何回も買うと1回あたり平均して 50 円ほど少なくなる見込みである。ただし、1回だけ買う場合にもらえるのは 3000 円・1000 円・200 円・0 円のどれかで、150 円もらえるわけではない。</p>
+    <p><strong>採点の観点</strong>　① 値と確率の表を作り、確率の合計が 1 になっている。② 期待値を「値×確率」の和として 150 円と求めている。③ 値段と比べた見込みと、期待値が1回でもらえる額ではないことの両方を書いている。</p>
+  </div>
+  <div class="explain">「期待値が値段より小さい」ことは、何回も繰り返したときの平均についての見込みです。どのくじを選ぶか、賞金をどう決めるかなどの判断に期待値を使う場面は、数Ａ-031・032 で扱います。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(ウ)「確率の意味や基本的な法則についての理解を深め，それらを用いて事象の確率や期待値を求めること」に当たり、出題範囲に含まれます。学習指導要領解説は、「従前，「数学 B」で取り扱われていた期待値は「数学 A」で取り扱うことに留意する」としています。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。</p>
+  <p class="small">問5・問7〜問9は日常の場面や会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">期待値を用いた意思決定（数Ａ-031）</p>
+  <p>次の時間は、イベントに向けてアイスクリームをどのくらい仕入れるかを考える場面で、天気の確率と売上から期待値を求めます。さらに、確率の値を変えて期待値がどう変わるかを調べ、仕入れ量を判断します。この時間の「値×確率の和」と、操作部品で値を変えて期待値の変化を見た考え方を使います。</p>
+  <p>この時間では、期待値を使って判断や意思決定をすること（数Ａ-031）、確率を面積比で考えて賞金を決めること（数Ａ-032）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-029　条件付き確率の式と乗法定理</div>
+  <div><span class="label">次の時間</span>数Ａ-031　期待値を用いた意思決定</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-030「期待値」（学習指導要領 数学Ａ (2)ア(ウ)、解説 p.93-94）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率 ア(ウ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.12（「場合の数と確率」では期待値（平均値）を取り扱い、統計的な内容との関連ももたせる）、p.92（従前「数学Ｂ」で取り扱われていた期待値は「数学Ａ」で取り扱う）、p.93-94 ア(ウ)（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「期待値」（「期待値の定義を理解し，確率の性質などに基づいて期待値を求めることができる」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>実教出版「教科書編修趣意書 数学Ａ（数Ａ007-902）」（くじ引きの確率、商品券の金額における期待値の計算などを題材として扱うことの確認）https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。X商店街のくじ、問5・問7〜問9のくじやゲームは学習用の架空の例です。「600回投げてちょうど100回ずつ」は説明のための仮の数です。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  function mk(parent, name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text !== undefined) e.textContent = text;
+    parent.appendChild(e);
+    return e;
+  }
+  var sy = document.getElementById("w30-y");
+  var sk = document.getElementById("w30-k");
+  var svg = document.getElementById("w30-svg");
+  if (!sy || !sk || !svg) return;
+  var outY = document.getElementById("w30-yv");
+  var outK = document.getElementById("w30-kv");
+  var out = document.getElementById("w30-out");
+  var TOTAL = 100, PRICE = 100;
+  var FIX = [[500, 8], [100, 20]];
+  var L = 24, T = 26, H = 22, SCALE = 1;
+  function draw() {
+    var y = parseInt(sy.value, 10), k = parseInt(sk.value, 10);
+    if (outY) outY.textContent = String(y);
+    if (outK) outK.textContent = String(k);
+    var lose = TOTAL - k - FIX[0][1] - FIX[1][1];
+    var parts = [[y, k]].concat(FIX).concat([[0, lose]]);
+    var terms = parts.map(function (q) { return q[0] * q[1] / TOTAL; });
+    var ev = terms.reduce(function (a, b) { return a + b; }, 0);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    mk(svg, "line", { x1: L, y1: T + H, x2: L + 300 * SCALE, y2: T + H, stroke: "currentColor", "stroke-width": 1 });
+    mk(svg, "rect", { x: L, y: T, width: ev * SCALE, height: H, fill: "#1f5fbf", "fill-opacity": 0.5, "data-ev": ev });
+    mk(svg, "line", { x1: L + PRICE * SCALE, y1: T - 12, x2: L + PRICE * SCALE, y2: T + H + 8, stroke: "#c0392b", "stroke-width": 2, "stroke-dasharray": "4 3" });
+    mk(svg, "text", { x: L + PRICE * SCALE, y: T - 15, "text-anchor": "middle", "font-size": 12, fill: "currentColor" }, "値段 100 円");
+    mk(svg, "text", { x: L, y: T - 15, "text-anchor": "middle", "font-size": 12, fill: "currentColor" }, "0");
+    mk(svg, "text", { x: L + 300 * SCALE, y: T - 15, "text-anchor": "middle", "font-size": 12, fill: "currentColor" }, "300 円");
+    mk(svg, "text", { x: L + ev * SCALE, y: T + H + 20, "text-anchor": "middle", "font-size": 13, "font-weight": 700, fill: "currentColor", "data-evlabel": ev }, ev + " 円");
+    var cmp = ev === PRICE ? "1枚の値段 100 円と等しい。" : (ev < PRICE ? "1枚の値段 100 円より " + (PRICE - ev) + " 円小さい。" : "1枚の値段 100 円より " + (ev - PRICE) + " 円大きい。");
+    if (out) out.textContent = "1等が " + y + " 円で " + k + " 本のとき（はずれは " + lose + " 本）：期待値は "
+      + parts.map(function (q) { return q[0] + "×" + q[1] + "/" + TOTAL; }).join(" ＋ ") + " ＝ "
+      + terms.join(" ＋ ") + " ＝ " + ev + "（円）。" + cmp;
+  }
+  sy.addEventListener("input", draw);
+  sk.addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-030",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-030",
+  "title": "期待値",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(ウ)"],
+  "kaisetsu_page": "93-94",
+  "objectives": [
+    {"id": "O1", "text": "変量のとる値とその値をとる確率を表にまとめ、期待値を「値とその確率の積の和」として求め、平均値との関係から意味を説明できる。", "from": "変量のとる値とその値をとる確率の積の和として期待値を理解し", "sections": ["sec-1"], "checks": ["q1", "q8", "q9"]},
+    {"id": "O2", "text": "さいころの目や目の和、硬貨の表の枚数、くじを引く回数などの期待値を求めることができる。", "from": "さいころの目や…の期待値を求めることができる", "sections": ["sec-2"], "checks": ["q2", "q3", "q4", "q6"]},
+    {"id": "O3", "text": "くじやゲームの賞金の期待値を求め、1回の値段などと比べて、その意味を説明できる。", "from": "賞金などの期待値を求めることができる", "sections": ["sec-3"], "checks": ["q5", "q7", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "期待値", "where": "sec-1"},
+    {"term": "変量", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "値ごとの度数から平均値を求める（値×度数の和÷度数の合計）", "taught_in": ["jhs_math/中1-111"], "gap": false, "where": "review"},
+    {"concept": "相対度数", "taught_in": ["jhs_math/中1-112"], "where": "sec-1"},
+    {"concept": "多数回の試行で相対度数が確率に近づく（頻度確率・大数の法則）", "taught_in": ["hs_math_1a/数Ａ-019", "jhs_math/中1-117"], "where": "sec-1"},
+    {"concept": "変量（量を文字 x などで表したもの）", "taught_in": ["hs_math_1a/数Ⅰ-082"], "where": "sec-1"},
+    {"concept": "根元事象が同様に確からしいときの確率、区別して数える", "taught_in": ["hs_math_1a/数Ａ-018", "hs_math_1a/数Ａ-020", "jhs_math/中2-082"], "where": "review"},
+    {"concept": "組合せ nCr（表の枚数の通り数）", "taught_in": ["hs_math_1a/数Ａ-011"], "where": "sec-2"},
+    {"concept": "排反な事象の確率（確率の合計が 1）", "taught_in": ["hs_math_1a/数Ａ-022", "hs_math_1a/数Ａ-021"], "where": "sec-2"},
+    {"concept": "確率の乗法定理（戻さずに順に引く）", "taught_in": ["hs_math_1a/数Ａ-029"], "where": "review"}
+  ],
+  "out_of_scope": [
+    "期待値を用いた意思決定（数Ａ-031）、面積比による確率と期待値（数Ａ-032）",
+    "期待値の記号と確率変数（数学Ｂの内容。このページでは記号を使わない）"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(ウ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.12 期待値（平均値）を扱う、p.92 期待値を数学Ａで扱う、p.93-94 ア(ウ)"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "「期待値」の項目（期待値の定義と求め方）"},
+    {"name": "教科書編修趣意書 数学Ａ（実教出版 数Ａ007-902）", "publisher": "文部科学省公開", "url": "https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html", "use": "くじ引きや商品券の金額の期待値を題材として扱うことの確認"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

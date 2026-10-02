@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>絶対値を含む方程式・不等式｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>数と式</span><span>数Ⅰ-018</span></div>
+  <h1>絶対値を含む方程式・不等式</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">数直線上で、点 2 からの距離が 3 より小さい点はどこにあるでしょう。この条件は \( |x-2|&lt;3 \) と書けます。絶対値を「距離」とみると、絶対値を含む方程式・不等式を数直線の上で解くことができます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>絶対値を原点からの距離とみて、|x|=c、|x|&lt;c、|x|&gt;c（c&gt;0）の形の方程式・不等式の解を数直線上で求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>|x−a| を2点 x、a の距離とみて、|x−2|&lt;3 のような方程式・不等式を解き、|ax+b|≦c などを A≦B≦C の形に直して解くことができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>中の式の符号で場合を分けて絶対値の記号をはずし、求めた値がその場合の範囲に入るかを確かめながら、絶対値を含む方程式・不等式を解くことができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-017）</span>連立不等式</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>絶対値を含む方程式・不等式</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-019）</span>一次不等式の活用</div>
+</div>
+<p class="small">前提となる単元：中学1年「正の数・負の数」「一元一次方程式」。同じ単元の数Ⅰ-012（絶対値）、数Ⅰ-016（一次不等式の解き方）、数Ⅰ-017（連立不等式）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、絶対値の意味（数Ⅰ-012）を中心に、一次不等式（数Ⅰ-016）と \( A&lt;B&lt;C \) の形の不等式（数Ⅰ-017）を使います。数Ⅰ-012 では、実数 \( a \) の絶対値 \( |a| \) を<strong>数直線上の原点と点 \( a \) の距離</strong>として学び、2つの実数の差の絶対値 \( |a-b| \) を2点 \( a,\ b \) の距離とみました。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-012</span></div>
+  <p>\( |-5| \) の値はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">5</button>
+    <button>\( -5 \)</button>
+    <button>0</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( |-5| \) は原点と点 \( -5 \) の距離なので 5 です。距離は負になりません。\( -5 \) は絶対値の記号を無視した答え、0 は「原点からの距離」を「原点の座標」と取り違えた答えです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-012</span></div>
+  <p>数直線上の2点 \( -1 \) と \( 4 \) の距離はどれですか。</p>
+  <div class="choices">
+    <button>3</button>
+    <button data-correct="true">5</button>
+    <button>\( -5 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">2点の距離は差の絶対値で、\( |4-(-1)|=|5|=5 \) です。3 は \( 4+(-1) \) と、差でなく和を計算した誤りです。\( -5 \) は \( -1-4 \) を計算して絶対値をとらなかった誤りで、距離は負になりません。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-012</span></div>
+  <p>\( x&lt;3 \) のとき、\( |x-3| \) を絶対値の記号を使わずに表したものはどれですか。</p>
+  <div class="choices">
+    <button>\( x-3 \)</button>
+    <button>\( -x-3 \)</button>
+    <button data-correct="true">\( 3-x \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x&lt;3 \) なら \( x-3 \) は負なので、\( |x-3|=-(x-3)=3-x \) です（\( a&lt;0 \) のとき \( |a|=-a \)）。\( x-3 \) は符号を考えずにそのまま外した誤り、\( -x-3 \) は \( -(x-3) \) のかっこをはずすときに \( -3 \) の符号を変え忘れた誤りです。たとえば \( x=1 \) なら \( |1-3|=2 \) で、\( 3-x=2 \) と一致します。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：「誤差 0.3 mm 以下」を式で表すと？</h2>
+<div class="box think">
+  <p class="box-title">部品の長さの検査</p>
+  <p>学習用に作成した架空の例です。ある部品の長さの目標は 50 mm で、実際の長さ \( x \) mm と目標との差（誤差）が 0.3 mm 以下なら合格とします。</p>
+  <p>長すぎても短すぎても誤差なので、誤差は \( x-50 \) ではなく \( |x-50| \) で表せます。合格の条件は \( |x-50|\leqq 0.3 \) です。</p>
+  <p>この条件を満たす \( x \) の範囲を、絶対値の記号を使わずに表すとどうなるでしょうか。答えは「4 2点の距離とみて解く」で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="絶対値は原点からの距離"><span class="num">3</span>絶対値は原点からの距離：|x|=c、|x|&lt;c、|x|&gt;c</h2>
+<p>\( |x| \) は、数直線上の原点と点 \( x \) の距離です。この見方で、絶対値を含む簡単な方程式・不等式を解きます（図1）。</p>
+<ul>
+  <li>\( |x|=3 \)：原点からの距離がちょうど 3 の点は、3 と \( -3 \) の2つです。解は \( x=-3,\ 3 \)。</li>
+  <li>\( |x|&lt;3 \)：原点からの距離が 3 より小さい点は、\( -3 \) と 3 の間にあります。解は \( -3&lt;x&lt;3 \)。</li>
+  <li>\( |x|&gt;3 \)：原点からの距離が 3 より大きい点は、\( -3 \) より左か、3 より右にあります。解は \( x&lt;-3,\ 3&lt;x \)。</li>
+</ul>
+<p>最後の答えは「\( x&lt;-3 \) または \( 3&lt;x \)」、つまりどちらか一方を満たす \( x \) 全体です。解が2つの範囲に分かれるときは、このページでは2つの範囲をコンマで区切って書きます。</p>
+<figure>
+<!--svg:f018a-->
+<svg viewBox="0 0 440 240" width="440" role="img" aria-label="3本の数直線。上：原点からの距離が 3 の点 −3 と 3。中：距離が 3 より小さい −3&lt;x&lt;3（両端は白丸）。下：距離が 3 より大きい x&lt;−3 と 3&lt;x（両端は白丸、外向きの線）" data-fig="f018a">
+<text x="8" y="15" text-anchor="start" font-size="12" font-weight="700" fill="currentColor">|x| = 3 の解：x = −3, 3</text>
+<line x1="10" y1="50" x2="430" y2="50" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,50 L422,46 L422,54 Z" fill="currentColor"/>
+<line x1="22" y1="46" x2="22" y2="54" stroke="currentColor"/>
+<text x="22" y="69" text-anchor="middle" font-size="12" fill="currentColor">−5</text>
+<line x1="61.2" y1="46" x2="61.2" y2="54" stroke="currentColor"/>
+<text x="61.2" y="69" text-anchor="middle" font-size="12" fill="currentColor">−4</text>
+<line x1="100.4" y1="46" x2="100.4" y2="54" stroke="currentColor"/>
+<text x="100.4" y="69" text-anchor="middle" font-size="12" fill="currentColor">−3</text>
+<line x1="139.6" y1="46" x2="139.6" y2="54" stroke="currentColor"/>
+<text x="139.6" y="69" text-anchor="middle" font-size="12" fill="currentColor">−2</text>
+<line x1="178.8" y1="46" x2="178.8" y2="54" stroke="currentColor"/>
+<text x="178.8" y="69" text-anchor="middle" font-size="12" fill="currentColor">−1</text>
+<line x1="218" y1="46" x2="218" y2="54" stroke="currentColor"/>
+<text x="218" y="69" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="257.2" y1="46" x2="257.2" y2="54" stroke="currentColor"/>
+<text x="257.2" y="69" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<line x1="296.4" y1="46" x2="296.4" y2="54" stroke="currentColor"/>
+<text x="296.4" y="69" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<line x1="335.6" y1="46" x2="335.6" y2="54" stroke="currentColor"/>
+<text x="335.6" y="69" text-anchor="middle" font-size="12" fill="currentColor">3</text>
+<line x1="374.8" y1="46" x2="374.8" y2="54" stroke="currentColor"/>
+<text x="374.8" y="69" text-anchor="middle" font-size="12" fill="currentColor">4</text>
+<line x1="414" y1="46" x2="414" y2="54" stroke="currentColor"/>
+<text x="414" y="69" text-anchor="middle" font-size="12" fill="currentColor">5</text>
+<line x1="101.4" y1="34" x2="217" y2="34" stroke="#b7791f" stroke-width="1.5"/>
+<path d="M100.4,34 L106.4,30.5 L106.4,37.5 Z" fill="#b7791f"/>
+<path d="M218,34 L212,30.5 L212,37.5 Z" fill="#b7791f"/>
+<text x="159.2" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="#b7791f">距離 3</text>
+<line x1="219" y1="34" x2="334.6" y2="34" stroke="#b7791f" stroke-width="1.5"/>
+<path d="M218,34 L224,30.5 L224,37.5 Z" fill="#b7791f"/>
+<path d="M335.6,34 L329.6,30.5 L329.6,37.5 Z" fill="#b7791f"/>
+<text x="276.8" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="#b7791f">距離 3</text>
+<circle cx="100.4" cy="50" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="-3" data-in="1"/>
+<circle cx="335.6" cy="50" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="3" data-in="1"/>
+<rect x="214" y="46" width="8" height="8" fill="#c0392b" data-center="0"/>
+<text x="8" y="95" text-anchor="start" font-size="12" font-weight="700" fill="currentColor">|x| &lt; 3 の解：−3 &lt; x &lt; 3</text>
+<line x1="10" y1="130" x2="430" y2="130" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,130 L422,126 L422,134 Z" fill="currentColor"/>
+<line x1="22" y1="126" x2="22" y2="134" stroke="currentColor"/>
+<text x="22" y="149" text-anchor="middle" font-size="12" fill="currentColor">−5</text>
+<line x1="61.2" y1="126" x2="61.2" y2="134" stroke="currentColor"/>
+<text x="61.2" y="149" text-anchor="middle" font-size="12" fill="currentColor">−4</text>
+<line x1="100.4" y1="126" x2="100.4" y2="134" stroke="currentColor"/>
+<text x="100.4" y="149" text-anchor="middle" font-size="12" fill="currentColor">−3</text>
+<line x1="139.6" y1="126" x2="139.6" y2="134" stroke="currentColor"/>
+<text x="139.6" y="149" text-anchor="middle" font-size="12" fill="currentColor">−2</text>
+<line x1="178.8" y1="126" x2="178.8" y2="134" stroke="currentColor"/>
+<text x="178.8" y="149" text-anchor="middle" font-size="12" fill="currentColor">−1</text>
+<line x1="218" y1="126" x2="218" y2="134" stroke="currentColor"/>
+<text x="218" y="149" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="257.2" y1="126" x2="257.2" y2="134" stroke="currentColor"/>
+<text x="257.2" y="149" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<line x1="296.4" y1="126" x2="296.4" y2="134" stroke="currentColor"/>
+<text x="296.4" y="149" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<line x1="335.6" y1="126" x2="335.6" y2="134" stroke="currentColor"/>
+<text x="335.6" y="149" text-anchor="middle" font-size="12" fill="currentColor">3</text>
+<line x1="374.8" y1="126" x2="374.8" y2="134" stroke="currentColor"/>
+<text x="374.8" y="149" text-anchor="middle" font-size="12" fill="currentColor">4</text>
+<line x1="414" y1="126" x2="414" y2="134" stroke="currentColor"/>
+<text x="414" y="149" text-anchor="middle" font-size="12" fill="currentColor">5</text>
+<path d="M100.4,130 L100.4,114 L335.6,114 L335.6,130" fill="none" stroke="#1f5fbf" stroke-width="2.5"/>
+<circle cx="100.4" cy="130" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="-3" data-in="0"/>
+<circle cx="335.6" cy="130" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="3" data-in="0"/>
+<rect x="214" y="126" width="8" height="8" fill="#c0392b" data-center="0"/>
+<text x="8" y="175" text-anchor="start" font-size="12" font-weight="700" fill="currentColor">|x| &gt; 3 の解：x &lt; −3, 3 &lt; x</text>
+<line x1="10" y1="210" x2="430" y2="210" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,210 L422,206 L422,214 Z" fill="currentColor"/>
+<line x1="22" y1="206" x2="22" y2="214" stroke="currentColor"/>
+<text x="22" y="229" text-anchor="middle" font-size="12" fill="currentColor">−5</text>
+<line x1="61.2" y1="206" x2="61.2" y2="214" stroke="currentColor"/>
+<text x="61.2" y="229" text-anchor="middle" font-size="12" fill="currentColor">−4</text>
+<line x1="100.4" y1="206" x2="100.4" y2="214" stroke="currentColor"/>
+<text x="100.4" y="229" text-anchor="middle" font-size="12" fill="currentColor">−3</text>
+<line x1="139.6" y1="206" x2="139.6" y2="214" stroke="currentColor"/>
+<text x="139.6" y="229" text-anchor="middle" font-size="12" fill="currentColor">−2</text>
+<line x1="178.8" y1="206" x2="178.8" y2="214" stroke="currentColor"/>
+<text x="178.8" y="229" text-anchor="middle" font-size="12" fill="currentColor">−1</text>
+<line x1="218" y1="206" x2="218" y2="214" stroke="currentColor"/>
+<text x="218" y="229" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="257.2" y1="206" x2="257.2" y2="214" stroke="currentColor"/>
+<text x="257.2" y="229" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<line x1="296.4" y1="206" x2="296.4" y2="214" stroke="currentColor"/>
+<text x="296.4" y="229" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<line x1="335.6" y1="206" x2="335.6" y2="214" stroke="currentColor"/>
+<text x="335.6" y="229" text-anchor="middle" font-size="12" fill="currentColor">3</text>
+<line x1="374.8" y1="206" x2="374.8" y2="214" stroke="currentColor"/>
+<text x="374.8" y="229" text-anchor="middle" font-size="12" fill="currentColor">4</text>
+<line x1="414" y1="206" x2="414" y2="214" stroke="currentColor"/>
+<text x="414" y="229" text-anchor="middle" font-size="12" fill="currentColor">5</text>
+<path d="M12,194 L100.4,194 L100.4,210" fill="none" stroke="#1f5fbf" stroke-width="2.5"/>
+<path d="M6,194 L15,189.5 L15,198.5 Z" fill="#1f5fbf"/>
+<circle cx="100.4" cy="210" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="-3" data-in="0"/>
+<path d="M335.6,210 L335.6,194 L416,194" fill="none" stroke="#1f5fbf" stroke-width="2.5"/>
+<path d="M422,194 L413,189.5 L413,198.5 Z" fill="#1f5fbf"/>
+<circle cx="335.6" cy="210" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="3" data-in="0"/>
+<rect x="214" y="206" width="8" height="8" fill="#c0392b" data-center="0"/>
+</svg>
+<!--/svg:f018a-->
+  <figcaption>図1　原点（■）からの距離で読む \( |x|=3 \)、\( |x|&lt;3 \)、\( |x|&gt;3 \) の解</figcaption>
+</figure>
+<div class="box point"><p class="box-title">\( c&gt;0 \) のとき</p><p>\( |x|=c \) の解は \( x=-c,\ c \)<br>\( |x|&lt;c \) の解は \( -c&lt;x&lt;c \)<br>\( |x|&gt;c \) の解は \( x&lt;-c,\ c&lt;x \)<br>（\( \leqq \)、\( \geqq \) のときは端の \( -c,\ c \) も含める）</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>(1) \( |x|&gt;3 \) の解を「\( -3&gt;x&gt;3 \)」とまとめて書くのは誤りです。この書き方は「\( x \) が \( -3 \) より小さく、しかも 3 より大きい」という意味になり、そのような \( x \) はありません。2つの範囲は分けて書きます。<br>
+(2) 右辺が負の数の場合に注意します。\( |x| \) は距離なので 0 以上です。\( |x|=-2 \) や \( |x|&lt;-1 \) を満たす \( x \) はなく、解はありません。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="2点の距離とみて解く"><span class="num">4</span>|x−a| を2点の距離とみて解く</h2>
+<p>\( |x-a| \) は、数直線上の2点 \( x \) と \( a \) の距離です（数Ⅰ-012）。したがって \( |x-2| \) は「点 2 からの距離」を表します。原点のかわりに点 2 を中心にして、「3 絶対値は原点からの距離」と同じように考えます。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（方程式）</p>
+  <p>方程式 \( |x-2|=3 \) を解きなさい。</p>
+  <div class="step">ステップ1（着目：何からの距離か）：\( |x-2| \) は点 2 からの距離。距離がちょうど 3 の点を探します。</div>
+  <div class="step">ステップ2：点 2 から右に 3 進んだ \( 2+3=5 \)、左に 3 進んだ \( 2-3=-1 \) の2つです。式で書くと \( x-2=3 \) または \( x-2=-3 \) で、同じ答えになります。</div>
+  <div class="step">答え：\( x=-1,\ 5 \)</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（不等式：距離が小さい）</p>
+  <p>不等式 \( |x-2|&lt;3 \) を解きなさい。</p>
+  <div class="step">ステップ1（距離で読む）：点 2 からの距離が 3 より小さい点は、\( -1 \) と 5 の間にあります（図2の上）。</div>
+  <div class="step">ステップ2（式で確かめる）：\( |X|&lt;3 \) の解は \( -3&lt;X&lt;3 \) なので、\( X=x-2 \) として \( -3&lt;x-2&lt;3 \)。これは \( A&lt;B&lt;C \) の形の不等式（数Ⅰ-017）で、3つの辺に 2 を加えて \( -1&lt;x&lt;5 \)。</div>
+  <div class="step">答え：\( -1&lt;x&lt;5 \)</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（不等式：距離が大きい）</p>
+  <p>不等式 \( |x-2|\geqq 3 \) を解きなさい。</p>
+  <div class="step">ステップ1（距離で読む）：点 2 からの距離が 3 以上の点は、\( -1 \) 以下か 5 以上です（図2の下）。端の \( -1 \) と 5 は距離がちょうど 3 なので含みます。</div>
+  <div class="step">ステップ2（式で確かめる）：\( x-2\leqq -3 \) または \( x-2\geqq 3 \) より、\( x\leqq -1 \) または \( x\geqq 5 \)。</div>
+  <div class="step">答え：\( x\leqq -1,\ 5\leqq x \)</div>
+</div>
+<figure>
+<!--svg:f018b-->
+<svg viewBox="0 0 440 175" width="440" role="img" aria-label="2本の数直線。上：点 2 からの距離が 3 より小さい −1&lt;x&lt;5（両端は白丸）。下：点 2 からの距離が 3 以上の x≦−1 と 5≦x（両端は黒丸、外向きの線）" data-fig="f018b">
+<text x="8" y="15" text-anchor="start" font-size="12" font-weight="700" fill="currentColor">|x − 2| &lt; 3 の解：−1 &lt; x &lt; 5</text>
+<line x1="10" y1="65" x2="430" y2="65" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,65 L422,61 L422,69 Z" fill="currentColor"/>
+<line x1="22" y1="61" x2="22" y2="69" stroke="currentColor"/>
+<text x="22" y="84" text-anchor="middle" font-size="12" fill="currentColor">−3</text>
+<line x1="61.2" y1="61" x2="61.2" y2="69" stroke="currentColor"/>
+<text x="61.2" y="84" text-anchor="middle" font-size="12" fill="currentColor">−2</text>
+<line x1="100.4" y1="61" x2="100.4" y2="69" stroke="currentColor"/>
+<text x="100.4" y="84" text-anchor="middle" font-size="12" fill="currentColor">−1</text>
+<line x1="139.6" y1="61" x2="139.6" y2="69" stroke="currentColor"/>
+<text x="139.6" y="84" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="178.8" y1="61" x2="178.8" y2="69" stroke="currentColor"/>
+<text x="178.8" y="84" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<line x1="218" y1="61" x2="218" y2="69" stroke="currentColor"/>
+<text x="218" y="84" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<line x1="257.2" y1="61" x2="257.2" y2="69" stroke="currentColor"/>
+<text x="257.2" y="84" text-anchor="middle" font-size="12" fill="currentColor">3</text>
+<line x1="296.4" y1="61" x2="296.4" y2="69" stroke="currentColor"/>
+<text x="296.4" y="84" text-anchor="middle" font-size="12" fill="currentColor">4</text>
+<line x1="335.6" y1="61" x2="335.6" y2="69" stroke="currentColor"/>
+<text x="335.6" y="84" text-anchor="middle" font-size="12" fill="currentColor">5</text>
+<line x1="374.8" y1="61" x2="374.8" y2="69" stroke="currentColor"/>
+<text x="374.8" y="84" text-anchor="middle" font-size="12" fill="currentColor">6</text>
+<line x1="414" y1="61" x2="414" y2="69" stroke="currentColor"/>
+<text x="414" y="84" text-anchor="middle" font-size="12" fill="currentColor">7</text>
+<path d="M100.4,65 L100.4,49 L335.6,49 L335.6,65" fill="none" stroke="#1f5fbf" stroke-width="2.5"/>
+<circle cx="100.4" cy="65" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="-1" data-in="0"/>
+<circle cx="335.6" cy="65" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="5" data-in="0"/>
+<line x1="101.4" y1="34" x2="217" y2="34" stroke="#b7791f" stroke-width="1.5"/>
+<path d="M100.4,34 L106.4,30.5 L106.4,37.5 Z" fill="#b7791f"/>
+<path d="M218,34 L212,30.5 L212,37.5 Z" fill="#b7791f"/>
+<text x="159.2" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="#b7791f">3</text>
+<line x1="219" y1="34" x2="334.6" y2="34" stroke="#b7791f" stroke-width="1.5"/>
+<path d="M218,34 L224,30.5 L224,37.5 Z" fill="#b7791f"/>
+<path d="M335.6,34 L329.6,30.5 L329.6,37.5 Z" fill="#b7791f"/>
+<text x="276.8" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="#b7791f">3</text>
+<rect x="214" y="61" width="8" height="8" fill="#c0392b" data-center="2"/>
+<text x="8" y="110" text-anchor="start" font-size="12" font-weight="700" fill="currentColor">|x − 2| ≧ 3 の解：x ≦ −1, 5 ≦ x</text>
+<line x1="10" y1="145" x2="430" y2="145" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,145 L422,141 L422,149 Z" fill="currentColor"/>
+<line x1="22" y1="141" x2="22" y2="149" stroke="currentColor"/>
+<text x="22" y="164" text-anchor="middle" font-size="12" fill="currentColor">−3</text>
+<line x1="61.2" y1="141" x2="61.2" y2="149" stroke="currentColor"/>
+<text x="61.2" y="164" text-anchor="middle" font-size="12" fill="currentColor">−2</text>
+<line x1="100.4" y1="141" x2="100.4" y2="149" stroke="currentColor"/>
+<text x="100.4" y="164" text-anchor="middle" font-size="12" fill="currentColor">−1</text>
+<line x1="139.6" y1="141" x2="139.6" y2="149" stroke="currentColor"/>
+<text x="139.6" y="164" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="178.8" y1="141" x2="178.8" y2="149" stroke="currentColor"/>
+<text x="178.8" y="164" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<line x1="218" y1="141" x2="218" y2="149" stroke="currentColor"/>
+<text x="218" y="164" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<line x1="257.2" y1="141" x2="257.2" y2="149" stroke="currentColor"/>
+<text x="257.2" y="164" text-anchor="middle" font-size="12" fill="currentColor">3</text>
+<line x1="296.4" y1="141" x2="296.4" y2="149" stroke="currentColor"/>
+<text x="296.4" y="164" text-anchor="middle" font-size="12" fill="currentColor">4</text>
+<line x1="335.6" y1="141" x2="335.6" y2="149" stroke="currentColor"/>
+<text x="335.6" y="164" text-anchor="middle" font-size="12" fill="currentColor">5</text>
+<line x1="374.8" y1="141" x2="374.8" y2="149" stroke="currentColor"/>
+<text x="374.8" y="164" text-anchor="middle" font-size="12" fill="currentColor">6</text>
+<line x1="414" y1="141" x2="414" y2="149" stroke="currentColor"/>
+<text x="414" y="164" text-anchor="middle" font-size="12" fill="currentColor">7</text>
+<path d="M12,129 L100.4,129 L100.4,145" fill="none" stroke="#1f5fbf" stroke-width="2.5"/>
+<path d="M6,129 L15,124.5 L15,133.5 Z" fill="#1f5fbf"/>
+<circle cx="100.4" cy="145" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="-1" data-in="1"/>
+<path d="M335.6,145 L335.6,129 L416,129" fill="none" stroke="#1f5fbf" stroke-width="2.5"/>
+<path d="M422,129 L413,124.5 L413,133.5 Z" fill="#1f5fbf"/>
+<circle cx="335.6" cy="145" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="5" data-in="1"/>
+<rect x="214" y="141" width="8" height="8" fill="#c0392b" data-center="2"/>
+</svg>
+<!--/svg:f018b-->
+  <figcaption>図2　点 2（■）からの距離で読む \( |x-2|&lt;3 \)（上）と \( |x-2|\geqq 3 \)（下）の解</figcaption>
+</figure>
+<h3>点を動かして確かめよう</h3>
+<p>スライダーで点 P（座標 \( x \)）を動かし、点 2 との距離 \( |x-2| \) と、\( |x-2|&lt;3 \) を満たすかどうかを確かめましょう。</p>
+<div class="widget" id="w1">
+  <label for="w1-x">点 P の座標 \( x \)：</label>
+  <input type="range" id="w1-x" min="-4" max="8" step="0.1" value="0">
+  <output id="w1-xv" for="w1-x">0.0</output>
+  <div><svg id="w1-svg" viewBox="0 0 440 110" width="440" role="img" aria-label="数直線上に点 2 と点 P を示し、2点を結ぶ線分とその長さ |x−2| を表示する図。−1 から 5 までの範囲に色を付けてある"></svg></div>
+  <p class="w-out" id="w1-out" aria-live="polite">x = 0.0 のとき、点 P と点 2 の距離は |0.0 − 2| = 2.0。3 より小さいので、|x − 2| &lt; 3 を満たします（P は −1 と 5 の間にあります）。</p>
+  <p class="small">■＝点 2、●＝点 P、色の付いた範囲＝\( -1&lt;x&lt;5 \)（両端の ○ は含まない）。</p>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（x の係数が 1 でない）</p>
+  <p>不等式 \( |2x-1|\leqq 5 \) を解きなさい。</p>
+  <div class="step">ステップ1（着目：中の式をひとまとまりとみる）：\( |X|\leqq 5 \) の解は \( -5\leqq X\leqq 5 \) なので、\( X=2x-1 \) として \( -5\leqq 2x-1\leqq 5 \)。</div>
+  <div class="step">ステップ2：3つの辺に 1 を加えて \( -4\leqq 2x\leqq 6 \)、3つの辺を正の数 2 でわって \( -2\leqq x\leqq 3 \)。</div>
+  <div class="step">ステップ3（距離で見直す）：\( |2x-1|=2\left|x-\dfrac{1}{2}\right| \) なので、条件は「点 \( \dfrac{1}{2} \) からの距離が \( \dfrac{5}{2} \) 以下」です。\( \dfrac{1}{2}-\dfrac{5}{2}=-2 \)、\( \dfrac{1}{2}+\dfrac{5}{2}=3 \) で、答えと一致します。</div>
+  <div class="step">答え：\( -2\leqq x\leqq 3 \)</div>
+</div>
+<div class="box point"><p class="box-title">導入の問いの答え</p><p>\( |x-50|\leqq 0.3 \) は \( -0.3\leqq x-50\leqq 0.3 \) と同じなので、3つの辺に 50 を加えて \( 49.7\leqq x\leqq 50.3 \) です。「目標 50 mm からの距離が 0.3 mm 以下」と読むこともできます。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：|x+1| を「点 1 からの距離」とする</p><p>\( |x+1|=|x-(-1)| \) なので、\( |x+1| \) は<strong>点 \( -1 \)</strong> からの距離です。たとえば \( |x+1|&lt;2 \) の解は、点 \( -1 \) から距離 2 未満の \( -3&lt;x&lt;1 \) です。「点 1 から」と読んで \( -1&lt;x&lt;3 \) とするのは誤りです（\( x=2 \) を代入すると \( |3|=3 \) で、2 より小さくありません）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="場合分けで絶対値をはずす"><span class="num">5</span>場合分けで絶対値の記号をはずして解く</h2>
+<p>\( |x+1|=2x \) のように右辺にも \( x \) があると、距離の見方だけでは解きにくくなります。そこで、数Ⅰ-012 で学んだ絶対値のはずし方を使います。</p>
+$$ |A|=\begin{cases} A &amp; (A\geqq 0 \text{ のとき}) \\ -A &amp; (A&lt;0 \text{ のとき}) \end{cases} $$
+<p>中の式 \( A \) が 0 以上か負かで \( x \) の範囲を分け、それぞれの範囲で絶対値の記号をはずして解きます。これを<strong>場合分け</strong>による解き方といいます。場合分けで絶対値を含む方程式・不等式を解く方法は、教科書によっては「研究」として扱われており、扱いの程度が教科書によって異なります。</p>
+<div class="box example worked">
+  <p class="box-title">例題5（例題2を場合分けで解く）</p>
+  <p>不等式 \( |x-2|&lt;3 \) を、場合分けで解きなさい。</p>
+  <div class="step">ステップ1（着目：中の式 \( x-2 \) の符号）：\( x-2\geqq 0 \)（\( x\geqq 2 \)）と \( x-2&lt;0 \)（\( x&lt;2 \)）に分けます。</div>
+  <div class="step">ステップ2（i）\( x\geqq 2 \) のとき：\( |x-2|=x-2 \) なので \( x-2&lt;3 \)、\( x&lt;5 \)。\( x\geqq 2 \) との共通部分は \( 2\leqq x&lt;5 \)。</div>
+  <div class="step">ステップ3（ii）\( x&lt;2 \) のとき：\( |x-2|=-(x-2) \) なので \( -x+2&lt;3 \)、\( -x&lt;1 \)、\( x&gt;-1 \)。\( x&lt;2 \) との共通部分は \( -1&lt;x&lt;2 \)。</div>
+  <div class="step">ステップ4（着目：答えは合わせる）：(i) と (ii) のどちらかに当てはまれば解なので、2つを合わせて \( -1&lt;x&lt;5 \)。例題2と一致します。</div>
+  <div class="step">答え：\( -1&lt;x&lt;5 \)</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題6（右辺に x がある方程式）</p>
+  <p>方程式 \( |x+1|=2x \) を解きなさい。</p>
+  <div class="step">ステップ1：\( x+1\geqq 0 \)（\( x\geqq -1 \)）と \( x+1&lt;0 \)（\( x&lt;-1 \)）に分けます。</div>
+  <div class="step">ステップ2（i）\( x\geqq -1 \) のとき：\( x+1=2x \) より \( x=1 \)。これは \( x\geqq -1 \) を満たすので解です。</div>
+  <div class="step">ステップ3（ii）\( x&lt;-1 \) のとき：\( -(x+1)=2x \) より \( -3x=1 \)、\( x=-\dfrac{1}{3} \)。これは \( x&lt;-1 \) を<strong>満たさない</strong>ので、解ではありません。</div>
+  <div class="step">ステップ4（確かめ）：\( x=1 \) のとき \( |1+1|=2=2\cdot 1 \) で成り立ちます。\( x=-\dfrac{1}{3} \) のとき左辺 \( \left|\dfrac{2}{3}\right|=\dfrac{2}{3} \)、右辺 \( -\dfrac{2}{3} \) で成り立ちません。</div>
+  <div class="step">答え：\( x=1 \)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：求めた値が場合の範囲に入るかを確かめない</p><p>例題6で \( x=-\dfrac{1}{3} \) も答えに入れるのは誤りです。(ii) の式 \( -(x+1)=2x \) は「\( x&lt;-1 \) のとき」に限って使える式なので、その範囲に入らない値は解になりません。不等式でも、各場合で求めた範囲と、その場合の条件との共通部分をとります。</p></div>
+<div class="box point"><p class="box-title">場合分けで解く手順</p><p>① 中の式が 0 以上か負かで、\( x \) の範囲を分ける。<br>② それぞれの範囲で絶対値の記号をはずして解く。<br>③ 求めた値・範囲と、その場合の条件との共通部分をとる。<br>④ 各場合の答えを<strong>合わせた</strong>ものが解（連立不等式の共通部分とは逆に、「どちらか」でよい）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>絶対値</dt><dd>数直線上の原点と点 \( x \) の距離 \( |x| \)（数Ⅰ-012）。\( x\geqq 0 \) なら \( |x|=x \)、\( x&lt;0 \) なら \( |x|=-x \)。</dd>
+    <dt>2点間の距離</dt><dd>数直線上の2点 \( a,\ b \) の距離は \( |a-b| \)。\( |x-a| \) は点 \( a \) からの距離。</dd>
+    <dt>場合分け</dt><dd>中の式が 0 以上か負かなどで \( x \) の範囲を分け、それぞれの場合について考えること。</dd>
+    <dt>絶対値を含む方程式・不等式</dt><dd>\( |x-2|=3 \)、\( |x-2|&lt;3 \) のように、絶対値の記号の中に未知数を含む方程式・不等式。距離の見方や場合分けで解く。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>\( |x| \) は原点からの距離。\( c&gt;0 \) のとき、\( |x|=c \) の解は \( x=-c,\ c \)、\( |x|&lt;c \) は \( -c&lt;x&lt;c \)、\( |x|&gt;c \) は \( x&lt;-c,\ c&lt;x \)（O1）。</li>
+    <li>\( |x-a| \) は点 \( a \) からの距離。\( |x-2|&lt;3 \) は \( -3&lt;x-2&lt;3 \) と同じで、\( -1&lt;x&lt;5 \)。\( |x+1| \) は点 \( -1 \) からの距離（O2）。</li>
+    <li>\( |2x-1|\leqq 5 \) のような式は、中の式をひとまとまりとみて \( -5\leqq 2x-1\leqq 5 \) に直す（O2）。</li>
+    <li>場合分けでは、中の式の符号で範囲を分けて記号をはずし、各場合の条件との共通部分をとってから、答えを合わせる（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">\( c&gt;0 \) のとき</span>
+    <p>\( |X|=c \) → \( X=-c,\ c \)<br>\( |X|&lt;c \) → \( -c&lt;X&lt;c \)<br>\( |X|&gt;c \) → \( X&lt;-c,\ c&lt;X \)</p></div>
+  <div><span class="f-name">絶対値のはずし方</span>
+    <p>\( A\geqq 0 \) のとき \( |A|=A \)<br>\( A&lt;0 \) のとき \( |A|=-A \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。範囲を入力する問題は、-4&lt;=x&lt;=6（または -4≦x≦6）のように入力してください（半角・全角のどちらでもよい）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>不等式 \( |x|&lt;4 \) の解はどれですか。</p>
+  <div class="choices"><button data-correct="true">\( -4&lt;x&lt;4 \)</button><button>\( x&lt;4 \)</button><button>\( x&lt;-4,\ 4&lt;x \)</button><button>\( x=-4,\ 4 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">原点からの距離が 4 より小さい点なので \( -4&lt;x&lt;4 \) です。\( x&lt;4 \) は左側の条件を忘れた誤りで、たとえば \( x=-10 \) は \( |-10|=10 \) となり 4 より小さくありません。\( x&lt;-4,\ 4&lt;x \) は距離が 4 より<strong>大きい</strong>範囲（\( |x|&gt;4 \) の解）、\( x=-4,\ 4 \) は方程式 \( |x|=4 \) の解です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>方程式 \( |x+3|=2 \) の解はどれですか。</p>
+  <div class="choices"><button>\( x=1,\ 5 \)</button><button>\( x=-1 \)</button><button>\( x=-1,\ 1 \)</button><button data-correct="true">\( x=-5,\ -1 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( |x+3|=|x-(-3)| \) は点 \( -3 \) からの距離です。距離が 2 の点は \( -3+2=-1 \) と \( -3-2=-5 \)。式では \( x+3=2 \) または \( x+3=-2 \) から \( x=-1,\ -5 \) です。\( x=1,\ 5 \) は「点 3 からの距離」と読んだ誤り、\( x=-1 \) は \( x+3=2 \) の場合だけを解いた誤りです。\( x=-1,\ 1 \) は、\( x+3=-2 \) を移項するときに符号を変えず \( x=-2+3 \) とした誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="-3&lt;=x&lt;=5|-3≦x≦5|-3&#x2264;x&#x2264;5|−3&lt;=x&lt;=5|−3≦x≦5|−3&#x2264;x&#x2264;5">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>不等式 \( |x-1|\leqq 4 \) を解きなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( -3\leqq x\leqq 5 \)。点 1 からの距離が 4 以下なので、\( 1-4=-3 \) から \( 1+4=5 \) まで（両端を含む）。式では \( -4\leqq x-1\leqq 4 \)、3つの辺に 1 を加えて \( -3\leqq x\leqq 5 \) です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>不等式 \( |x-2|&gt;5 \) の解はどれですか。</p>
+  <div class="choices"><button>\( -3&lt;x&lt;7 \)</button><button data-correct="true">\( x&lt;-3,\ 7&lt;x \)</button><button>\( x&gt;7 \)</button><button>\( x&lt;-7,\ 3&lt;x \)</button></div>
+  <span class="result"></span>
+  <div class="explain">点 2 からの距離が 5 より大きい点なので、\( 2-5=-3 \) より左と \( 2+5=7 \) より右です。解は \( x&lt;-3,\ 7&lt;x \)。\( -3&lt;x&lt;7 \) は距離が 5 より小さい範囲（\( |x-2|&lt;5 \) の解）、\( x&gt;7 \) は右側だけを答えた誤り（\( x=-4 \) も \( |-6|=6&gt;5 \) で解）です。\( x&lt;-7,\ 3&lt;x \) は、点 \( -2 \) を中心にした誤り（\( |x+2|&gt;5 \) の解）です。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="6|6個|6こ">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>不等式 \( |2x+3|&lt;7 \) を満たす整数 \( x \) は何個ありますか（個数を数字で入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 6 個。\( -7&lt;2x+3&lt;7 \)、3つの辺から 3 を引いて \( -10&lt;2x&lt;4 \)、正の数 2 でわって \( -5&lt;x&lt;2 \)。整数は \( -4,\ -3,\ -2,\ -1,\ 0,\ 1 \) の 6 個です。端の \( -5 \) と 2 は含まれません（\( x=2 \) のとき \( |7|=7 \) で、7 より小さくない）。端も数えると 8 個になってしまいます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>方程式 \( |x-4|=3x \) の解はどれですか。</p>
+  <div class="choices"><button>\( x=-2,\ 1 \)</button><button>\( x=-2 \)</button><button data-correct="true">\( x=1 \)</button><button>解はない</button></div>
+  <span class="result"></span>
+  <div class="explain">(i) \( x\geqq 4 \) のとき \( x-4=3x \) より \( x=-2 \)。これは \( x\geqq 4 \) を満たさないので解ではありません。(ii) \( x&lt;4 \) のとき \( -(x-4)=3x \) より \( 4=4x \)、\( x=1 \)。これは \( x&lt;4 \) を満たすので解です。確かめ：\( |1-4|=3=3\cdot 1 \)。\( x=-2,\ 1 \) と \( x=-2 \) は、(i) で求めた値が \( x\geqq 4 \) に入るかを確かめなかった誤りです（\( x=-2 \) なら左辺 6、右辺 \( -6 \)）。「解はない」は、\( x=1 \) を (i) の条件 \( x\geqq 4 \) と照らし合わせてしまい、(ii) の解も捨てた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O1・O2</span></div>
+  <p>学習用に作成した架空の場面です。ある工場では、部品の長さ \( x \) mm と目標の長さ 80 mm との差が 0.5 mm 以下のとき合格とします。合格となる \( x \) の範囲はどれですか。</p>
+  <div class="choices"><button data-correct="true">\( 79.5\leqq x\leqq 80.5 \)</button><button>\( x\leqq 80.5 \)</button><button>\( 79.5&lt;x&lt;80.5 \)</button><button>\( x\leqq 79.5,\ 80.5\leqq x \)</button></div>
+  <span class="result"></span>
+  <div class="explain">条件は \( |x-80|\leqq 0.5 \)。\( -0.5\leqq x-80\leqq 0.5 \) より \( 79.5\leqq x\leqq 80.5 \) です。\( x\leqq 80.5 \) は短すぎる部品も合格にしてしまう誤りで、差を \( x-80\leqq 0.5 \) とだけ考えています。\( 79.5&lt;x&lt;80.5 \) は、「以下」なのに端を含めなかった誤りです（ちょうど 80.5 mm の部品も差は 0.5 mm で合格）。\( x\leqq 79.5,\ 80.5\leqq x \) は、差が 0.5 mm 以上の不合格側の範囲（端を含む）です。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O3</span></div>
+  <p>不等式 \( |2x-4|\leqq x+1 \) を、場合分けを用いて解きなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(i) \( 2x-4\geqq 0 \)、つまり \( x\geqq 2 \) のとき：\( 2x-4\leqq x+1 \) より \( x\leqq 5 \)。\( x\geqq 2 \) との共通部分は \( 2\leqq x\leqq 5 \)。</p>
+    <p>(ii) \( 2x-4&lt;0 \)、つまり \( x&lt;2 \) のとき：\( -(2x-4)\leqq x+1 \) より \( -2x+4\leqq x+1 \)、\( -3x\leqq -3 \)、\( x\geqq 1 \)。\( x&lt;2 \) との共通部分は \( 1\leqq x&lt;2 \)。</p>
+    <p>(i)、(ii) を合わせて、\( 1\leqq x\leqq 5 \)。</p>
+    <p><strong>採点の観点</strong>　① 中の式 \( 2x-4 \) の符号で \( x\geqq 2 \) と \( x&lt;2 \) に分けている。② (ii) で \( -(2x-4) \) とし、\( -3 \) でわるときに向きを変えている。③ 各場合の条件との共通部分をとっている。④ 2つの場合を合わせて答えている。</p>
+  </div>
+  <div class="explain">確かめ：\( x=1 \) では左辺 \( |-2|=2 \)、右辺 2 で等しく、\( x=5 \) では左辺 6、右辺 6 で等しくなります。\( x=0 \) では \( 4\leqq 1 \)、\( x=6 \) では \( 8\leqq 7 \) で成り立たず、範囲の外が解でないことも分かります。右辺に \( x \) があるので、距離の見方だけでは解きにくい問題です。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O2</span></div>
+  <p>太郎さんと花子さんが、不等式 \( |x+1|&lt;3 \) について話しています。</p>
+  <p>太郎：「\( |x+1| \) は点 1 からの距離だから、解は \( -2&lt;x&lt;4 \) だね。」<br>花子：「\( x+1 \) は \( x-(-1) \) と書けるよね。だとすると……。」</p>
+  <p>正しい説明はどれですか。</p>
+  <div class="choices">
+    <button>太郎さんの考えが正しく、解は \( -2&lt;x&lt;4 \) である。</button>
+    <button data-correct="true">\( |x+1| \) は点 \( -1 \) からの距離なので、解は \( -4&lt;x&lt;2 \) である。</button>
+    <button>\( x+1&lt;3 \) だけを解けばよいので、解は \( x&lt;2 \) である。</button>
+    <button>点 1 からの距離でも点 \( -1 \) からの距離でも同じ範囲になるので、どちらの考えも正しい。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( |x+1|=|x-(-1)| \) は点 \( -1 \) からの距離です。距離が 3 より小さい点は \( -1-3=-4 \) と \( -1+3=2 \) の間で、解は \( -4&lt;x&lt;2 \)（\( -3&lt;x+1&lt;3 \) からも同じ）。太郎さんの \( -2&lt;x&lt;4 \) には、たとえば \( x=3 \) が入りますが、\( |3+1|=4 \) で 3 より小さくありません。\( x&lt;2 \) だけでは、\( x=-10 \)（\( |-9|=9 \)）のように解でない値が入ります。中心が 1 と \( -1 \) では範囲が違うので、「どちらも正しい」は誤りです。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(1) 数と式」の「不等式の解の意味や不等式の性質について理解し，一次不等式の解を求めること」（ア(エ)）と、実数に関する「数を実数まで拡張する意義を理解し，簡単な無理数の四則計算をすること」（ア(ア)）にかかわり、出題範囲に含まれます。絶対値を含む方程式・不等式は学習指導要領解説の数学Ⅰの項には明記がなく、教科書で一般に扱われている内容です（†）。</p>
+  <p>令和9年度の問題作成方針は、数学について「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求め、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。</p>
+  <p class="small">問7・問9は日常の場面や会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">一次不等式の活用（数Ⅰ-019）</p>
+  <p>次の時間は、選挙で当選するのに必要な票数や、買い物・旅行の計画で予算などの条件を、一次不等式や連立不等式に表して解決します。数Ⅰ-015〜018 で学んだ解き方を、日常の場面に当てはめて使います。</p>
+  <p>この時間では、絶対値の記号を2つ以上含む方程式・不等式（教科書によっては、絶対値を含むやや複雑な方程式・不等式を「研究」として扱っています）と、絶対値を含む関数のグラフは扱っていません。日常の事象への活用は数Ⅰ-019 で扱います。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-017　連立不等式</div>
+  <div><span class="label">次の時間</span>数Ⅰ-019　一次不等式の活用</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-018「絶対値を含む方程式・不等式」（学習指導要領 数学Ⅰ (1)ア(エ)・ア(ア)、解説 p.37。† 教科書で一般的な内容を含む行）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(1) 数と式（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.35-37（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>東京書籍「シラバス案 数学Ⅰ（数Ⅰ002-902）」の「不等式の応用」（「絶対値記号を含む基本的な方程式・不等式を解くことができる」ことが教科書の学習項目であることの確認）https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_su1_syllabus.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「1次不等式の利用」（絶対値の意味から絶対値を含む方程式・不等式を解くことが本文の例・例題で扱われること、やや複雑なものが「研究」であることの確認）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>新興出版社啓林館 高校数学「爽解数学」「深進数学」シリーズの数学Ⅰ 年間指導計画（「絶対値を含む方程式・不等式」が本文、「絶対値を含む方程式・不等式の場合分けによる解法」が「研究」であることの確認）https://www.shinko-keirin.co.jp/keirinkan/kou/math/teacher-2026/</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題はこのページのために作成したものです（出典を示したものを除く）。部品の長さの検査は、学習用に作成した架空の例です。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  /*logic-start*/
+  function fmt10(k) {
+    var a = Math.abs(k);
+    return (k < 0 ? "\u2212" : "") + Math.floor(a / 10) + "." + (a % 10);
+  }
+  function w1State(k) {
+    var d = Math.abs(k - 20);
+    return { k: k, d: d, inside: d < 30, equal: d === 30 };
+  }
+  function w1Text(k) {
+    var s = w1State(k);
+    var t = "x = " + fmt10(k) + " のとき、点 P と点 2 の距離は |" + fmt10(k) + " \u2212 2| = " + fmt10(s.d) + "。";
+    if (s.inside) {
+      t += "3 より小さいので、|x \u2212 2| < 3 を満たします（P は \u22121 と 5 の間にあります）。";
+    } else if (s.equal) {
+      t += "3 と等しいので、|x \u2212 2| < 3 は満たしません（端の点は含まれません）。|x \u2212 2| = 3 の解です。";
+    } else {
+      t += "3 より大きいので、|x \u2212 2| < 3 を満たしません。";
+    }
+    return t;
+  }
+  /*logic-end*/
+  if (typeof document === "undefined") return;
+  var NS = "http://www.w3.org/2000/svg";
+  var svg = document.getElementById("w1-svg");
+  var slider = document.getElementById("w1-x");
+  var outV = document.getElementById("w1-xv");
+  var outT = document.getElementById("w1-out");
+  if (!svg || !slider) return;
+  function mk(name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (a) { e.setAttribute(a, attrs[a]); });
+    if (text !== undefined) e.textContent = text;
+    svg.appendChild(e);
+    return e;
+  }
+  var L = 22, W = 392, base = 70;
+  function X(v) { return L + (v + 4) / 12 * W; }
+  function draw() {
+    var k = Math.round(parseFloat(slider.value) * 10);
+    var s = w1State(k);
+    var x = k / 10;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    mk("rect", { x: X(-1), y: base - 22, width: X(5) - X(-1), height: 22, fill: "#1f5fbf", "fill-opacity": 0.13 });
+    mk("line", { x1: L - 12, y1: base, x2: L + W + 16, y2: base, stroke: "currentColor", "stroke-width": 1.2 });
+    for (var t = -4; t <= 8; t++) {
+      mk("line", { x1: X(t), y1: base - 4, x2: X(t), y2: base + 4, stroke: "currentColor" });
+      mk("text", { x: X(t), y: base + 19, "text-anchor": "middle", "font-size": 12, fill: "currentColor" }, String(t).replace("-", "\u2212"));
+    }
+    [-1, 5].forEach(function (v) {
+      mk("circle", { cx: X(v), cy: base, r: 5, style: "fill:var(--card)", stroke: "#1f5fbf", "stroke-width": 2 });
+    });
+    var y = base - 34;
+    mk("line", { x1: X(Math.min(x, 2)), y1: y, x2: X(Math.max(x, 2)), y2: y, stroke: "#b7791f", "stroke-width": 3 });
+    mk("text", { x: (X(x) + X(2)) / 2, y: y - 6, "text-anchor": "middle", "font-size": 12, "font-weight": 700, fill: "#b7791f" }, "|x \u2212 2| = " + fmt10(s.d));
+    mk("rect", { x: X(2) - 4, y: base - 4, width: 8, height: 8, fill: "#c0392b" });
+    mk("circle", { cx: X(x), cy: base, r: 6, fill: s.inside ? "#1e8e5a" : "#c0392b" });
+    mk("text", { x: X(x), y: base - 10, "text-anchor": "middle", "font-size": 12, "font-weight": 700, fill: "currentColor" }, "P");
+    if (outV) outV.textContent = fmt10(k);
+    if (outT) outT.textContent = w1Text(k);
+  }
+  slider.addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-018",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-018",
+  "title": "絶対値を含む方程式・不等式",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-1", "title": "数と式"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(エ)", "(1)ア(ア)"],
+  "kaisetsu_page": "37",
+  "objectives": [
+    {"id": "O1", "text": "絶対値を原点からの距離とみて、|x|=c、|x|<c、|x|>c（c>0）の形の方程式・不等式の解を数直線上で求めることができる。", "from": "絶対値を含む簡単な方程式・不等式を、絶対値の意味（数直線上の距離）…を用いて解くことができる", "sections": ["sec-1"], "checks": ["q1", "q7", "q9"]},
+    {"id": "O2", "text": "|x−a| を2点 x、a の距離とみて、|x−2|<3 のような方程式・不等式を解き、|ax+b|≦c などを A≦B≦C の形に直して解くことができる。", "from": "|x−2|<3 のような絶対値を含む簡単な方程式・不等式を、絶対値の意味（数直線上の距離）…を用いて解くことができる", "sections": ["sec-2"], "checks": ["q2", "q3", "q4", "q5", "q7", "q9"]},
+    {"id": "O3", "text": "中の式の符号で場合を分けて絶対値の記号をはずし、求めた値がその場合の範囲に入るかを確かめながら、絶対値を含む方程式・不等式を解くことができる。", "from": "…や場合分けを用いて解くことができる", "sections": ["sec-3"], "checks": ["q6", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "絶対値", "where": "sec-1"},
+    {"term": "2点間の距離", "where": "sec-2"},
+    {"term": "場合分け", "where": "sec-3"},
+    {"term": "絶対値を含む方程式・不等式", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "絶対値を数直線上の原点からの距離とみること", "taught_in": ["hs_math_1a/数Ⅰ-012", "jhs_math/中1-004"], "where": "review"},
+    {"concept": "2つの実数の差の絶対値を数直線上の2点間の距離とみること", "taught_in": ["hs_math_1a/数Ⅰ-012"], "where": "review"},
+    {"concept": "符号で場合を分けて絶対値の記号をはずすこと", "taught_in": ["hs_math_1a/数Ⅰ-012"], "where": "review"},
+    {"concept": "一次不等式の解き方（負の数でわると向きが変わる）", "taught_in": ["hs_math_1a/数Ⅰ-016"], "where": "sec-2"},
+    {"concept": "一元一次方程式の解き方", "taught_in": ["jhs_math/中1-044", "jhs_math/中1-045"], "where": "sec-3"},
+    {"concept": "連立不等式と A<B<C の形の不等式、共通部分", "taught_in": ["hs_math_1a/数Ⅰ-017"], "where": "sec-2"},
+    {"concept": "解を数直線に表す（●・○）", "taught_in": ["hs_math_1a/数Ⅰ-015", "hs_math_1a/数Ⅰ-016"], "where": "sec-1"},
+    {"concept": "整数（整数の個数を数える問題）", "taught_in": ["hs_math_1a/数Ⅰ-009"], "where": "quiz"}
+  ],
+  "out_of_scope": [
+    "絶対値の記号を2つ以上含む方程式・不等式（絶対値を含むやや複雑な方程式・不等式を「研究」とする教科書がある）",
+    "絶対値を含む関数のグラフ（教科書によっては「研究」）",
+    "日常の事象の条件を一次不等式に表して解決すること（数Ⅰ-019）",
+    "絶対値を含む不等式の証明（数Ⅱ-028）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『数と式』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(1)ア(ア)・ア(エ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.35-37 実数と一次不等式の扱い（絶対値を含む方程式・不等式の明記はない＝†）"},
+    {"name": "シラバス案 数学Ⅰ（数Ⅰ002-902）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_su1_syllabus.pdf", "use": "「絶対値記号を含む基本的な方程式・不等式を解くことができる」（不等式の応用）＝教科書の学習項目（†の内容）"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "「絶対値の意味から絶対値を含む方程式や不等式を解くことができる」（例32、例題10）、やや複雑なものは p.46 研究"},
+    {"name": "年間指導計画 数学Ⅰ（爽解数学・深進数学シリーズ）", "publisher": "新興出版社啓林館", "url": "https://www.shinko-keirin.co.jp/keirinkan/kou/math/teacher-2026/", "use": "「絶対値を含む方程式・不等式」が本文、「絶対値を含む方程式・不等式の場合分けによる解法」が「研究」（保存本文：sources/text/kr_m1_soukai_keikaku.txt・kr_m1_shinshin_keikaku.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

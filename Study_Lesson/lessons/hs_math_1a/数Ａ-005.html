@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>積の法則｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.dice td.mark { font-weight: 700; background: rgba(31, 95, 191, .12); }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-005</span></div>
+  <h1>積の法則</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">72 の正の約数はいくつあるでしょう。1、2、3、4、…と書き出せば数えられますが、720 ならどうでしょうか。2つの事柄を組み合わせて起こる場合の数をかけ算で求める「積の法則」を学び、約数の個数を書き出さずに求めます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>積の法則の意味を、樹形図や表と関連付けて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>積の法則を用いて、二つ（以上）の事柄を組み合わせて起こる場合の数を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>素因数分解と積の法則を用いて、72 の正の約数の個数などを求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-004）</span>和の法則</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-005）</span>積の法則</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-006）</span>順列と nPr</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。この時間は特に、樹形図・表（中2-081・082、数Ａ-003）、和の法則（数Ａ-004）、素因数分解と約数（中1-020・021）、累乗（中1-013）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、表による数え上げ（中2-082）、素因数分解（中1-020）、和の法則（数Ａ-004）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中2-082</span></div>
+  <p>大小2個のさいころを同時に投げるとき、目の出方は全部で何通りですか。</p>
+  <div class="choices">
+    <button>12 通り</button>
+    <button data-correct="true">36 通り</button>
+    <button>21 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">縦に大の目 6 通り、横に小の目 6 通りの表をかくと、ますは 36 個です。12 通りは \( 6+6 \) と足した誤り、21 通りは大小を区別せず（1, 2）と（2, 1）を同じとみた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中1-020</span></div>
+  <p>72 を素因数分解したものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 2^3\times3^2 \)</button>
+    <button>\( 8\times9 \)</button>
+    <button>\( 2^2\times3^3 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 72=2\times2\times2\times3\times3=2^3\times3^2 \) です。\( 8\times9 \) は積は 72 ですが、8 も 9 も素数ではないので素因数分解ではありません。\( 2^2\times3^3 \) は \( 4\times27=108 \) で、指数を取り違えています。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-004</span></div>
+  <p>肉料理 4 種類、魚料理 3 種類の中から、どれか<strong>1品</strong>を選ぶ方法は何通りですか。</p>
+  <div class="choices">
+    <button>12 通り</button>
+    <button data-correct="true">7 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">選ぶ1品は肉料理か魚料理のどちらかで、同時には起こらないので、和の法則で \( 4+3=7 \) 通りです。12 通りは、肉料理と魚料理を<strong>1品ずつ</strong>選ぶ場合の数で、この時間の積の法則で求めます。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：約数はいくつ？</h2>
+<div class="box think">
+  <p class="box-title">72 と 720 の正の約数</p>
+  <p>72 の正の約数を小さい順に書き出すと、1、2、3、4、6、8、9、12、18、24、36、72 の 12 個です。</p>
+  <p>では、720 の正の約数はいくつあるでしょうか。書き出すと、数え落としや重複が心配です。72 の約数を「どう組み立てられているか」で見直すと、書き出さずに数えられます。答えは「約数の個数」の節の例題4で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="積の法則"><span class="num">3</span>積の法則：枝が同じ数ずつ分かれるとき</h2>
+<p>学習用に作成した架空の献立で考えます。主食を ごはん・パン・めん の 3 種類から1つ、主菜を 肉・魚・卵・豆腐 の 4 種類から1つ選んで組み合わせます。組み合わせ方は何通りでしょう。</p>
+<figure>
+<!--svg:f005a-->
+<svg viewBox="0 0 330 308" width="330" role="img" aria-label="主食 3 種類（ごはん、パン、めん）のそれぞれから、主菜 4 種類（肉、魚、卵、豆腐）の枝が 4 本ずつ出ている樹形図。枝の先は全部で 12 個" data-fig="f005a">
+<text x="102" y="24" text-anchor="middle" font-size="11" fill="currentColor">主食</text>
+<text x="180" y="24" text-anchor="middle" font-size="11" fill="currentColor">主菜</text>
+<circle cx="24" cy="154" r="3" fill="currentColor"/>
+<line x1="26" y1="154" x2="78.5" y2="74" stroke="currentColor" stroke-width="1.2"/>
+<text x="102" y="78.5" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf" data-node="ごはん">ごはん</text>
+<line x1="125.5" y1="74" x2="169.5" y2="44" stroke="currentColor" stroke-width="1.2"/>
+<text x="180" y="48.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="ごはん/肉">肉</text>
+<line x1="192.5" y1="44" x2="208" y2="44" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="214" y="47.9" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">ごはん・肉</text>
+<line x1="125.5" y1="74" x2="169.5" y2="64" stroke="currentColor" stroke-width="1.2"/>
+<text x="180" y="68.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="ごはん/魚">魚</text>
+<line x1="192.5" y1="64" x2="208" y2="64" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="214" y="67.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">ごはん・魚</text>
+<line x1="125.5" y1="74" x2="169.5" y2="84" stroke="currentColor" stroke-width="1.2"/>
+<text x="180" y="88.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="ごはん/卵">卵</text>
+<line x1="192.5" y1="84" x2="208" y2="84" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="214" y="87.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">ごはん・卵</text>
+<line x1="125.5" y1="74" x2="163" y2="104" stroke="currentColor" stroke-width="1.2"/>
+<text x="180" y="108.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="ごはん/豆腐">豆腐</text>
+<line x1="199" y1="104" x2="208" y2="104" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="214" y="107.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">ごはん・豆腐</text>
+<line x1="26" y1="154" x2="85" y2="154" stroke="currentColor" stroke-width="1.2"/>
+<text x="102" y="158.6" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf" data-node="パン">パン</text>
+<line x1="119" y1="154" x2="169.5" y2="124" stroke="currentColor" stroke-width="1.2"/>
+<text x="180" y="128.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="パン/肉">肉</text>
+<line x1="192.5" y1="124" x2="208" y2="124" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="214" y="127.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">パン・肉</text>
+<line x1="119" y1="154" x2="169.5" y2="144" stroke="currentColor" stroke-width="1.2"/>
+<text x="180" y="148.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="パン/魚">魚</text>
+<line x1="192.5" y1="144" x2="208" y2="144" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="214" y="147.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">パン・魚</text>
+<line x1="119" y1="154" x2="169.5" y2="164" stroke="currentColor" stroke-width="1.2"/>
+<text x="180" y="168.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="パン/卵">卵</text>
+<line x1="192.5" y1="164" x2="208" y2="164" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="214" y="167.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">パン・卵</text>
+<line x1="119" y1="154" x2="163" y2="184" stroke="currentColor" stroke-width="1.2"/>
+<text x="180" y="188.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="パン/豆腐">豆腐</text>
+<line x1="199" y1="184" x2="208" y2="184" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="214" y="187.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">パン・豆腐</text>
+<line x1="26" y1="154" x2="85" y2="234" stroke="currentColor" stroke-width="1.2"/>
+<text x="102" y="238.6" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf" data-node="めん">めん</text>
+<line x1="119" y1="234" x2="169.5" y2="204" stroke="currentColor" stroke-width="1.2"/>
+<text x="180" y="208.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="めん/肉">肉</text>
+<line x1="192.5" y1="204" x2="208" y2="204" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="214" y="207.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">めん・肉</text>
+<line x1="119" y1="234" x2="169.5" y2="224" stroke="currentColor" stroke-width="1.2"/>
+<text x="180" y="228.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="めん/魚">魚</text>
+<line x1="192.5" y1="224" x2="208" y2="224" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="214" y="227.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">めん・魚</text>
+<line x1="119" y1="234" x2="169.5" y2="244" stroke="currentColor" stroke-width="1.2"/>
+<text x="180" y="248.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="めん/卵">卵</text>
+<line x1="192.5" y1="244" x2="208" y2="244" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="214" y="247.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">めん・卵</text>
+<line x1="119" y1="234" x2="163" y2="264" stroke="currentColor" stroke-width="1.2"/>
+<text x="180" y="268.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="めん/豆腐">豆腐</text>
+<line x1="199" y1="264" x2="208" y2="264" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="214" y="267.9" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">めん・豆腐</text>
+<text x="8" y="290" text-anchor="start" font-size="11" fill="currentColor">主食 3 通りのそれぞれに主菜が 4 通りずつ → 3×4＝12</text>
+</svg>
+<!--/svg:f005a-->
+  <figcaption>図1　主食を選び、続いて主菜を選ぶ樹形図。どの主食からも、主菜の枝が 4 本ずつ出ている</figcaption>
+</figure>
+<p>図1の樹形図では、主食 3 通りの<strong>それぞれ</strong>から、主菜の枝が 4 本ずつ出ています。主食で場合を分けると、それぞれの場合は同時には起こらないので、和の法則（数Ａ-004）で \( 4+4+4=12 \) 通りです。同じ数を 3 回足しているので、\( 3\times4=12 \) とかけ算で求められます。主食を縦、主菜を横にした表をかけば、\( 3 \) 行 \( 4 \) 列で 12 個のますになることからも分かります。</p>
+<div class="formula-card">
+  <div><span class="f-name">積の法則</span><p>事柄 \( A \) の起こり方が \( m \) 通りあり、そのそれぞれについて事柄 \( B \) の起こり方が \( n \) 通りずつあるとき、\( A \) と \( B \) がともに起こる場合の数は \( m\times n \) 通りである。</p></div>
+</div>
+<p>中学2年で表をかいて数えた「大小2個のさいころの目の出方 36 通り」も、大の目 6 通りのそれぞれについて小の目が 6 通りずつあるので、積の法則で \( 6\times6=36 \) 通りと求められます。</p>
+<div class="box point"><p class="box-title">ポイント：「そのそれぞれについて \( n \) 通りずつ」</p><p>積の法則が使えるのは、最初の事柄がどのように起こっても、次の事柄の起こり方の<strong>数</strong>が同じ（枝が同じ数ずつ分かれる）ときです。選べるものの中身が変わってもかまいませんが、数が変わるときはそのままかけられません。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：枝の数が変わるのにかける</p><p>大小2個のさいころで、大の目が小の目より大きくなる場合を「大の目 6 通り、小の目はそれより小さい 5 通り」として \( 6\times5=30 \) とするのは誤りです。小の目の選び方は、大の目が 1 なら 0 通り、2 なら 1 通り、…、6 なら 5 通りと変わるので、積の法則は使えません。大の目で場合を分けて、和の法則で \( 0+1+2+3+4+5=15 \) 通りです（表1）。</p></div>
+<div class="table-wrap">
+<table class="dice" id="t-gt">
+  <tr><th>大＼小</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr>
+  <tr><th>1</th><td>－</td><td>－</td><td>－</td><td>－</td><td>－</td><td>－</td></tr>
+  <tr><th>2</th><td class="mark">○</td><td>－</td><td>－</td><td>－</td><td>－</td><td>－</td></tr>
+  <tr><th>3</th><td class="mark">○</td><td class="mark">○</td><td>－</td><td>－</td><td>－</td><td>－</td></tr>
+  <tr><th>4</th><td class="mark">○</td><td class="mark">○</td><td class="mark">○</td><td>－</td><td>－</td><td>－</td></tr>
+  <tr><th>5</th><td class="mark">○</td><td class="mark">○</td><td class="mark">○</td><td class="mark">○</td><td>－</td><td>－</td></tr>
+  <tr><th>6</th><td class="mark">○</td><td class="mark">○</td><td class="mark">○</td><td class="mark">○</td><td class="mark">○</td><td>－</td></tr>
+</table>
+</div>
+<p class="small">表1　大の目が小の目より大きいます（○）。行ごとの ○ の数が 0、1、2、3、4、5 と変わるので、かけ算ではなく足し算で数える。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="積の法則を使う"><span class="num">4</span>積の法則を使って数える</h2>
+<p>3つ以上の事柄でも、それぞれの段階で起こり方の数が一定なら、積の法則をくり返し使えます。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（3個のさいころ）</p>
+  <p>大中小3個のさいころを同時に投げるとき、目の出方は全部で何通りありますか。</p>
+  <div class="step">ステップ1（着目：どの段階も 6 通りずつ）：大の目 6 通りのそれぞれについて中の目が 6 通り、さらにそのそれぞれについて小の目が 6 通りあります。</div>
+  <div class="step">ステップ2：積の法則を2回使って \( 6\times6\times6=216 \)。答え 216 通り。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（条件のある2けたの整数）</p>
+  <p>2けたの整数のうち、十の位の数字が奇数で、一の位の数字が偶数であるものは何個ありますか。</p>
+  <div class="step">ステップ1（着目：各位の数字の選び方）：十の位は 1、3、5、7、9 の 5 通り。一の位は 0、2、4、6、8 の 5 通り（0 も偶数です）。</div>
+  <div class="step">ステップ2：十の位がどの数字でも、一の位の選び方は 5 通りずつなので、積の法則より \( 5\times5=25 \)。答え 25 個。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（式の展開と項の数）</p>
+  <p>\( (a+b+c)(x+y) \) を展開すると、項はいくつできますか。</p>
+  <div class="step">ステップ1（着目：項のでき方）：展開した式の項は、\( (a+b+c) \) から1つ、\( (x+y) \) から1つ選んでかけたものです（\( ax,\ ay,\ bx,\ \cdots \)）。</div>
+  <div class="step">ステップ2：選び方は \( 3\times2=6 \) 通りで、文字がすべて異なるので同類項はできません。答え 6 個。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：足すかかけるかを取り違える</p><p>「どれか1つを選ぶ」（肉料理か魚料理のどちらか1品）は、同時には起こらない場合を合わせるので和の法則です。「それぞれから1つずつ選んで組み合わせる」（主食と主菜を1つずつ）は、ともに起こる場合なので積の法則です。問題文の「または」「どちらか」「〜と〜を1つずつ」「続けて」などの言葉に注意しましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="約数の個数"><span class="num">5</span>約数の個数を積の法則で求める</h2>
+<p>72 を素因数分解すると \( 72=2^3\times3^2 \) です（中1-020）。72 の正の約数を素因数分解すると、2 と 3 以外の素数は出てこず、2 は 3 個以下、3 は 2 個以下しか含みません。素因数分解はただ一通りに決まる（中1-020）ので、72 の正の約数は、次の2つを1つずつ選んでかけた数として、ちょうど1回ずつ表せます。</p>
+<ul>
+  <li>2 の部分：\( 1,\ 2,\ 2^2,\ 2^3 \) の 4 通り（1 は「2 を1つも含まない」場合）</li>
+  <li>3 の部分：\( 1,\ 3,\ 3^2 \) の 3 通り（1 は「3 を1つも含まない」場合）</li>
+</ul>
+<p>2 の部分をどれに選んでも、3 の部分の選び方は 3 通りずつなので、積の法則より、72 の正の約数は \( 4\times3=12 \) 個です。表2は、選び方と約数の対応です。導入で書き出した 12 個と一致します。</p>
+<div class="table-wrap">
+<table id="t-div72">
+  <tr><th>2 の部分＼3 の部分</th><th>1</th><th>\( 3 \)</th><th>\( 3^2 \)</th></tr>
+  <tr><th>1</th><td>1</td><td>3</td><td>9</td></tr>
+  <tr><th>\( 2 \)</th><td>2</td><td>6</td><td>18</td></tr>
+  <tr><th>\( 2^2 \)</th><td>4</td><td>12</td><td>36</td></tr>
+  <tr><th>\( 2^3 \)</th><td>8</td><td>24</td><td>72</td></tr>
+</table>
+</div>
+<p class="small">表2　72 の正の約数。2 の部分（4 通り）と 3 の部分（3 通り）を1つずつ選んでかけた数。</p>
+<div class="box caution"><p class="box-title">よくある間違い：「1つも含まない」場合を落とす</p><p>\( 72=2^3\times3^2 \) だから「2 の選び方は 3 通り、3 の選び方は 2 通りで \( 3\times2=6 \) 個」とするのは誤りです。2 を1つも含まない約数（1、3、9）と、3 を1つも含まない約数（1、2、4、8）を落としています。2 の部分は 1、2、\( 2^2 \)、\( 2^3 \) の 4 通り、つまり「指数＋1」通りです。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題4（導入の答え）</p>
+  <p>720 の正の約数の個数を求めなさい。</p>
+  <div class="step">ステップ1（着目：素因数分解）：\( 720=2^4\times3^2\times5 \)。</div>
+  <div class="step">ステップ2（着目：素数ごとの部分の選び方）：2 の部分は 1、2、\( 2^2 \)、\( 2^3 \)、\( 2^4 \) の 5 通り、3 の部分は 1、3、\( 3^2 \) の 3 通り、5 の部分は 1、5 の 2 通り。</div>
+  <div class="step">ステップ3：積の法則より \( 5\times3\times2=30 \)。答え 30 個。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5（偶数である約数）</p>
+  <p>72 の正の約数のうち、偶数であるものの個数を求めなさい。</p>
+  <div class="step">ステップ1（着目：偶数は 2 を1つ以上含む）：2 の部分は 2、\( 2^2 \)、\( 2^3 \) の 3 通り（1 は選べない）。3 の部分は 1、3、\( 3^2 \) の 3 通り。</div>
+  <div class="step">ステップ2：積の法則より \( 3\times3=9 \)。答え 9 個（表2の 2 の部分が 1 でない行の 9 個）。</div>
+</div>
+<div class="box point"><p class="box-title">ポイント：約数の個数の求め方</p><p>① 素因数分解する　② 素数ごとに、その素数を何個含むか（0 個から指数の個数まで）を選ぶ　③ 選び方の数をかける。たとえば素因数分解が \( p^a\times q^b \)（\( p \)、\( q \) は異なる素数）なら、正の約数は \( (a+1)\times(b+1) \) 個です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>積の法則</dt><dd>事柄 \( A \) の起こり方が \( m \) 通りあり、そのそれぞれについて事柄 \( B \) の起こり方が \( n \) 通りずつあるとき、\( A \) と \( B \) がともに起こる場合の数は \( m\times n \) 通り。3つ以上の事柄でもくり返し使える。</dd>
+    <dt>和の法則</dt><dd>同時には起こらない事柄の場合の数を足す決まり（数Ａ-004）。「どちらか」は和、「ともに」「1つずつ」は積。</dd>
+    <dt>正の約数の個数</dt><dd>素因数分解したとき、素数ごとに含む個数の選び方（0 個から指数の個数まで）をかけて求める。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>樹形図の枝が同じ数ずつ分かれるとき（表なら行と列）、場合の数はかけ算で求められる。これが積の法則で、同じ数を足す和の法則をまとめたものとみられる。枝の数が変わるときはかけられない（O1）。</li>
+    <li>3個のさいころ（\( 6\times6\times6=216 \) 通り）、各位の数字の選び方、展開した式の項の数など、段階ごとに起こり方の数が一定なら積の法則をくり返し使う（O2）。</li>
+    <li>\( 72=2^3\times3^2 \) の正の約数は、2 の部分 4 通りと 3 の部分 3 通りの組なので \( 4\times3=12 \) 個。「1つも含まない」場合も数える（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">積の法則</span><p>\( A \) が \( m \) 通り、そのそれぞれについて \( B \) が \( n \) 通りずつ → \( A \) と \( B \) がともに起こるのは \( m\times n \) 通り</p></div>
+  <div><span class="f-name">正の約数の個数（\( p \)、\( q \) は異なる素数）</span>$$ p^a\times q^b\ \text{の正の約数の個数は}\ (a+1)(b+1) $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。入力問題は数字だけで答えてください（「通り」「個」を付けてもよい）。</p>
+
+<div class="q" data-type="input" id="q1" data-accept="12|12通り">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>Tシャツが 4 色、ズボンが 3 種類あります。Tシャツとズボンを1つずつ選んで組み合わせる方法は何通りですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 12。Tシャツ 4 通りのそれぞれについて、ズボンの選び方が 3 通りずつあるので、積の法則より \( 4\times3=12 \) 通りです。7 と答えた場合は、「どちらか1つを選ぶ」和の法則と取り違えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>1枚の硬貨と大小2個のさいころを同時に投げるとき、硬貨の表裏とさいころの目の出方は全部で何通りですか。</p>
+  <div class="choices">
+    <button>14 通り</button>
+    <button>36 通り</button>
+    <button data-correct="true">72 通り</button>
+    <button>12 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">硬貨の表裏 2 通りのそれぞれについて大の目が 6 通りずつ、さらにそのそれぞれについて小の目が 6 通りずつあるので、積の法則を2回使って \( 2\times6\times6=72 \) 通りです。14 通りは \( 2+6+6 \) と足した誤り、36 通りは硬貨の表裏を数えずに、さいころの目の出方（\( 6\times6 \)）だけを数えた誤り、12 通りは \( 2\times6 \) で、さいころ1個分で止めた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>12 の正の約数の個数はどれですか。</p>
+  <div class="choices">
+    <button>2 個</button>
+    <button>3 個</button>
+    <button>5 個</button>
+    <button data-correct="true">6 個</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 12=2^2\times3 \) なので、2 の部分は 1、2、\( 2^2 \) の 3 通り、3 の部分は 1、3 の 2 通りで、\( 3\times2=6 \) 個です（1、2、3、4、6、12）。2 個は指数をそのままかけた \( 2\times1 \)、3 個は指数を足した \( 2+1 \)、5 個は \( (2+1)+(1+1) \) と、かけるところを足した誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="24|24個">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>360 の正の約数の個数を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 24。\( 360=2^3\times3^2\times5 \) なので、2 の部分 4 通り、3 の部分 3 通り、5 の部分 2 通りで、\( 4\times3\times2=24 \) 個です。6 と答えた場合は、指数をそのままかけた \( 3\times2\times1 \) で、「1つも含まない」場合を落としています。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="125|125個">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>3けたの整数のうち、各位の数字がすべて奇数であるものは何個ありますか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 125。奇数の数字は 1、3、5、7、9 の 5 通りで、百の位・十の位・一の位のどれも、ほかの位の数字によらず 5 通りずつ選べます（同じ数字をくり返してよい）。積の法則より \( 5\times5\times5=125 \) 個です。15 と答えた場合は、\( 5+5+5 \) と足しています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O1</span></div>
+  <p>大小2個のさいころを同時に投げるとき、大の目が小の目以上になる（大の目と小の目が等しい場合も含める）場合は何通りですか。</p>
+  <div class="choices">
+    <button data-correct="true">21 通り</button>
+    <button>15 通り</button>
+    <button>18 通り</button>
+    <button>36 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">大の目が 1 のとき小の目は 1 の 1 通り、2 のとき 1、2 の 2 通り、…、6 のとき 6 通りと、大の目によって小の目の選び方の数が変わるので、積の法則はそのまま使えません。大の目で場合を分けて、和の法則で \( 1+2+3+4+5+6=21 \) 通りです（表1の ○ の 15 ますに、ぞろ目の 6 ますを加えた数）。15 通りは、大の目と小の目が等しい場合（ぞろ目の 6 通り）を落とした誤りで、大の目が小の目より大きい場合の数です。18 通りは \( 36\div2 \) と、ぞろ目を考えずに半分にした誤り、36 通りは目の出方の全体です。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="16|16個">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>540 の正の約数のうち、偶数であるものの個数を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 16。\( 540=2^2\times3^3\times5 \) です。偶数の約数は 2 を1つ以上含むので、2 の部分は 2、\( 2^2 \) の 2 通り。3 の部分は 1、3、\( 3^2 \)、\( 3^3 \) の 4 通り、5 の部分は 1、5 の 2 通り。積の法則より \( 2\times4\times2=16 \) 個です。24 は約数全体の個数（\( 3\times4\times2 \)）、8 は奇数の約数の個数（2 の部分が 1 だけ）です。約数全体 24 個から奇数の約数 8 個を引いて \( 24-8=16 \) と確かめることもできます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2</span></div>
+  <p>学習用に作成した架空の場面です。自転車の鍵は、0〜9 の数字が書かれた輪が 4 つ並んだダイヤル式で、4けたの番号（0000 のように 0 で始まってもよい）を合わせると開きます。</p>
+  <p>太郎：「番号は 0000 から 9999 までだから、9999 通りだね。」<br>花子：「同じ数字を何回使ってもいいのかな。」</p>
+  <p>番号の決め方は全部で何通りですか。</p>
+  <div class="choices">
+    <button>9999 通り</button>
+    <button data-correct="true">10000 通り</button>
+    <button>40 通り</button>
+    <button>5040 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">4 つの輪のそれぞれで、ほかの輪の数字によらず 0〜9 の 10 通りずつ選べる（同じ数字をくり返してよい）ので、積の法則より \( 10\times10\times10\times10=10000 \) 通りです。9999 通りは太郎さんの考えで、0000 を数え忘れています。40 通りは \( 10\times4 \) とした誤り、5040 通りは \( 10\times9\times8\times7 \) と、同じ数字を2回使えないと考えた誤りです。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O3</span></div>
+  <p>72 の正の約数の個数が \( 4\times3=12 \) 個と求められる理由を、「積の法則」という言葉を使って説明しなさい。また、なぜ「\( 3\times2 \)」ではなく「\( 4\times3 \)」になるのかも説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　\( 72=2^3\times3^2 \) なので、72 の正の約数は、2 の部分（1、2、\( 2^2 \)、\( 2^3 \) のどれか）と 3 の部分（1、3、\( 3^2 \) のどれか）を1つずつ選んでかけた数として、ちょうど1回ずつ表せる。2 の部分の選び方は 4 通りで、そのそれぞれについて 3 の部分の選び方が 3 通りずつあるから、積の法則より \( 4\times3=12 \) 個である。2 の部分には 2 を1つも含まない「1」も入るので、選び方は指数 3 より 1 多い 4 通りになる（3 の部分も同じく 3 通り）。</p>
+    <p><strong>採点の観点</strong>　① 約数を、素数ごとの部分を1つずつ選んだ積として表している。② 「そのそれぞれについて 3 通りずつ」と積の法則が使える理由を書いている。③ 「1つも含まない」場合があるので指数＋1 通りになることを書いている。</p>
+  </div>
+  <div class="explain">表2のように、2 の部分を行、3 の部分を列にした表にすると、4 行 3 列の 12 ますが約数に1つずつ対応します。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(ア)「集合の要素の個数に関する基本的な関係や和の法則，積の法則などの数え上げの原則について理解すること」に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求め、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。樹形図や表の構造を見抜いてかけ算で処理するこの時間の考え方は、その土台になります。</p>
+  <p class="small">問8は日常の場面と会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">順列と nPr（数Ａ-006）</p>
+  <p>問8で花子さんが気にしたように、「同じものを2回使えない」ときは、段階が進むごとに選べるものが1つずつ減っていきます。次の時間は、1 から 7 までの数字を書いた 7 枚のカードから 2 枚を選んで 2 けたの整数を作る場合などを、樹形図と積の法則で数え、異なるものを並べる「順列」の総数を求める公式を導きます。</p>
+  <p>この時間では、順列（数Ａ-006）と、素因数分解による約数の扱いの続き（整数の性質の単元、数Ａ-073）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-004　和の法則</div>
+  <div><span class="label">次の時間</span>数Ａ-006　順列と nPr</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-005「積の法則」（学習指導要領 数学Ａ (2)ア(ア)、解説 p.92-93）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率 ア(ア)（「和の法則，積の法則などの数え上げの原則」）（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.92-93（和の法則、積の法則などの数え上げの原則、樹形図や表に整理して調べる方法）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「場合の数」（和の法則と積の法則の使い分け、自然数の正の約数の個数を数える方法を考察すること）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。図1の献立、問8の自転車の鍵は学習用の架空の場面です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-005",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-005",
+  "title": "積の法則",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(ア)"],
+  "kaisetsu_page": "92-93",
+  "objectives": [
+    {"id": "O1", "text": "積の法則の意味を、樹形図や表と関連付けて説明できる。", "from": "積の法則を理解し", "sections": ["sec-1"], "checks": ["q1", "q6", "q9"]},
+    {"id": "O2", "text": "積の法則を用いて、二つ（以上）の事柄を組み合わせて起こる場合の数を求めることができる。", "from": "二つの事柄を組み合わせて起こる場合の数…を求めることができる", "sections": ["sec-2"], "checks": ["q2", "q5", "q8"]},
+    {"id": "O3", "text": "素因数分解と積の法則を用いて、72 の正の約数の個数などを求めることができる。", "from": "72 の正の約数の個数などを求めることができる", "sections": ["sec-3"], "checks": ["q3", "q4", "q7", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "積の法則", "where": "sec-1"},
+    {"term": "正の約数の個数", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "2つのさいころの目の出方を表で数える", "taught_in": ["jhs_math/中2-082"], "where": "review"},
+    {"concept": "樹形図・表で数え上げる", "taught_in": ["jhs_math/中2-081", "hs_math_1a/数Ａ-003"], "where": "sec-1"},
+    {"concept": "和の法則", "taught_in": ["hs_math_1a/数Ａ-004"], "where": "review"},
+    {"concept": "素数と素因数分解（表し方はただ一通り）", "taught_in": ["jhs_math/中1-020"], "where": "review"},
+    {"concept": "約数・倍数を素因数分解で捉え直す", "taught_in": ["jhs_math/中1-021"], "where": "sec-3"},
+    {"concept": "累乗（指数）", "taught_in": ["jhs_math/中1-013"], "where": "sec-3"},
+    {"concept": "式の展開（分配法則）", "taught_in": ["hs_math_1a/数Ⅰ-002"], "where": "sec-2"},
+    {"concept": "偶数（0 も 2 の倍数）", "taught_in": ["jhs_math/中2-008"], "where": "sec-2"}
+  ],
+  "out_of_scope": [
+    "順列と nPr（数Ａ-006）",
+    "素因数分解による約数の個数の続き・約数の和（整数の性質、数Ａ-073）"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(ア)の事項（積の法則の語）"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.92-93 和の法則・積の法則などの数え上げの原則、樹形図や表に整理する方法"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "和の法則と積の法則の使い分け、自然数の正の約数の個数を数える方法の考察が教科書で扱われることの確認"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

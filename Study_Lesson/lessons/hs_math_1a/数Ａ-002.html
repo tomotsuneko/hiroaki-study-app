@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A∪B の要素の個数｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-002</span></div>
+  <h1>A∪B の要素の個数</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">1 から 100 までの整数のうち、3 の倍数または 5 の倍数はいくつあるでしょう。3 の倍数 33 個と 5 の倍数 20 個を足して 53 個としてよいでしょうか。2つの集合の和集合の要素の個数を、重なりに注意して求めます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>\( n(A\cup B)=n(A)+n(B)-n(A\cap B) \) が成り立つ理由を、ベン図の4つの部分の要素の個数を用いて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>\( A\cap B=\emptyset \) ならば \( n(A\cup B)=n(A)+n(B) \) となることを理解し、2つの式を使い分けることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>1から100までの整数のうち3または5の倍数の個数などを、要素の個数の式と補集合の考えを用いて求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-001）</span>集合の要素の個数と補集合</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-002）</span>A∪B の要素の個数</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-003）</span>数え上げの原則と樹形図</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。この時間は特に、共通部分・和集合（数Ⅰ-022）、ベン図の4つの部分とド・モルガンの法則（数Ⅰ-023）、要素の個数 \( n(A) \) と補集合の要素の個数（数Ａ-001）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、和集合と共通部分（数Ⅰ-022）、ド・モルガンの法則（数Ⅰ-023）、補集合の要素の個数（数Ａ-001）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-022</span></div>
+  <p>\( A=\{1,\ 2,\ 3,\ 4,\ 5\} \)、\( B=\{4,\ 5,\ 6,\ 7\} \) のとき、\( A\cup B \) はどれですか。</p>
+  <div class="choices">
+    <button>\( \{4,\ 5\} \)</button>
+    <button data-correct="true">\( \{1,\ 2,\ 3,\ 4,\ 5,\ 6,\ 7\} \)</button>
+    <button>\( \{1,\ 2,\ 3,\ 6,\ 7\} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">和集合は、少なくとも一方に入っている要素全体の集合なので \( \{1,\ 2,\ 3,\ 4,\ 5,\ 6,\ 7\} \) です。4 と 5 は両方に入っていますが、1回だけ書きます。\( \{4,\ 5\} \) は共通部分 \( A\cap B \)、\( \{1,\ 2,\ 3,\ 6,\ 7\} \) は両方に入っている 4、5 を落とした誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-001</span></div>
+  <p>全体集合 \( U \) を 1 から 50 までの整数とし、\( A \) を 6 の倍数の集合とします。\( n(\overline{A}) \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 8 \)</button>
+    <button>\( 41 \)</button>
+    <button data-correct="true">\( 42 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 50\div6=8 \) あまり 2 なので \( n(A)=8 \)、\( n(\overline{A})=n(U)-n(A)=50-8=42 \) です。\( 8 \) は \( n(A) \) のまま、\( 41 \) は \( 50\div6=8.33\cdots \) を切り上げて \( n(A)=9 \) とした誤りです（\( 6\times9=54 \) は 50 を超えます）。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-023</span></div>
+  <p>全体集合 \( U \) の部分集合 \( A \)、\( B \) について、\( A\cup B \) の補集合 \( \overline{A\cup B} \) と等しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \overline{A}\cap\overline{B} \)</button>
+    <button>\( \overline{A}\cup\overline{B} \)</button>
+    <button>\( \overline{A\cap B} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">ド・モルガンの法則より \( \overline{A\cup B}=\overline{A}\cap\overline{B} \)（どちらにも入らない部分④）です。\( \overline{A}\cup\overline{B} \) と \( \overline{A\cap B} \) はどちらも①③④を表し、\( A\cap B \) の補集合です。「どちらでもないものの個数」の例題3で使います。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">補足：公倍数の数え方</p>
+  <p>3 の倍数でも 5 の倍数でもある数（3 と 5 の<strong>公倍数</strong>）は、15、30、45、…のように、3 と 5 の<strong>最小公倍数</strong> 15 の倍数です。素因数分解（中1-020・021）で考えると、3 の倍数でも 5 の倍数でもある数は、素因数に 3 と 5 をどちらも含むので、\( 3\times5=15 \) の倍数になります。</p>
+  <p>2つの数に共通の素因数があるときは注意します。\( 4=2^2 \)、\( 6=2\times3 \) なので、4 の倍数でも 6 の倍数でもある数は、素因数に \( 2^2 \) と 3 を含む数、つまり \( 2^2\times3=12 \) の倍数です。\( 4\times6=24 \) の倍数ではありません（12 は 4 の倍数でも 6 の倍数でもありますが、24 の倍数ではありません）。</p>
+  <p>倍数の個数は、数Ａ-001 の補足①のように「\( N\div k \) の商」で数えます。たとえば 1 から 100 までの 15 の倍数は、\( 100\div15=6 \) あまり 10 より 6 個です。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：33＋20 でよい？</h2>
+<div class="box think">
+  <p class="box-title">3 の倍数または 5 の倍数</p>
+  <p>1 から 100 までの整数のうち、3 の倍数または 5 の倍数である数はいくつあるでしょうか。</p>
+  <p>太郎：「3 の倍数は 33 個、5 の倍数は 20 個だから、\( 33+20=53 \) 個だね。」</p>
+  <p>太郎さんの考えは正しいでしょうか。15 や 30 のような数は、どう数えられているでしょう。答えは「3 または 5 の倍数を数える」の節の例題2で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="和集合の要素の個数"><span class="num">3</span>和集合の要素の個数の式</h2>
+<p>数Ⅰ-022 の例題1と同じく、全体集合を \( U=\{1,\ 2,\ \cdots,\ 12\} \)、\( A \) を 2 の倍数の集合、\( B \) を 3 の倍数の集合とします。</p>
+<p>$$ A=\{2,\ 4,\ 6,\ 8,\ 10,\ 12\},\qquad B=\{3,\ 6,\ 9,\ 12\},\qquad A\cup B=\{2,\ 3,\ 4,\ 6,\ 8,\ 9,\ 10,\ 12\} $$</p>
+<p>\( n(A)=6 \)、\( n(B)=4 \) ですが、\( n(A\cup B)=8 \) で、\( n(A)+n(B)=10 \) より 2 少なくなります。6 と 12 は \( A \) にも \( B \) にも入っているので、\( n(A)+n(B) \) では2回数えられているからです。</p>
+<figure>
+<!--svg:f002a-->
+<svg viewBox="0 0 360 232" width="360" role="img" aria-label="全体集合 U={1, 2, …, 12} の長方形の中に、2 の倍数の集合 A（実線の円）と 3 の倍数の集合 B（破線の円）。A だけの部分①に 2, 4, 8, 10、重なった部分②に 6, 12、B だけの部分③に 3, 9、どちらにも入らない部分④に 1, 5, 7, 11" data-fig="f002a">
+<text x="180" y="14" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">ベン図の4つの部分（U＝{1, 2, …, 12}）</text>
+<rect x="12" y="22" width="336" height="176" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<path d="M72,114 A66,66 0 1,1 204,114 A66,66 0 1,1 72,114 Z" fill="none" stroke="currentColor" stroke-width="1.6" data-circle="A" data-cx="138" data-cy="114" data-r="66"/>
+<path d="M156,114 A66,66 0 1,1 288,114 A66,66 0 1,1 156,114 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="7 3" data-circle="B" data-cx="222" data-cy="114" data-r="66"/>
+<text x="90.5" y="61.2" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="currentColor">A</text>
+<text x="269.5" y="61.2" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="currentColor">B</text>
+<text x="24" y="40" text-anchor="start" font-size="15" font-weight="700" font-style="italic" fill="currentColor">U</text>
+<text x="108.3" y="92.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">2</text>
+<text x="108.3" y="109.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">4</text>
+<text x="108.3" y="126.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">8</text>
+<text x="108.3" y="143.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">10</text>
+<text x="180" y="109.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">6</text>
+<text x="180" y="126.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">12</text>
+<text x="251.7" y="109.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">3</text>
+<text x="251.7" y="126.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">9</text>
+<text x="38" y="184" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">1</text>
+<text x="322" y="184" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">5</text>
+<text x="322" y="42" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">7</text>
+<text x="38" y="164" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">11</text>
+<text x="108.3" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">①</text>
+<text x="180" y="160" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">②</text>
+<text x="251.7" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">③</text>
+<text x="288" y="184" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">④</text>
+<text x="180" y="218" text-anchor="middle" font-size="12" fill="currentColor">n(A)＝6、n(B)＝4、n(A∩B)＝2、n(A∪B)＝6＋4－2＝8</text>
+</svg>
+<!--/svg:f002a-->
+  <figcaption>図1　ベン図の4つの部分（数Ⅰ-023 の①〜④）。①\( A \) だけ、②\( A\cap B \)、③\( B \) だけ、④どちらにも入らない</figcaption>
+</figure>
+<p>一般に、ベン図の部分①、②、③に入る要素の個数を、それぞれ \( x \)、\( y \)、\( z \) とします。</p>
+<ul>
+  <li>\( n(A)=x+y \)（①と②）、\( n(B)=y+z \)（②と③）</li>
+  <li>\( n(A\cup B)=x+y+z \)（①と②と③）、\( n(A\cap B)=y \)（②）</li>
+</ul>
+<p>\( n(A)+n(B)=x+2y+z \) で、②の \( y \) 個を2回数えています。そこで、2回数えた分を1回引くと \( n(A\cup B) \) になります。</p>
+<figure>
+<!--svg:f002b-->
+<svg viewBox="0 0 360 232" width="360" role="img" aria-label="円 A の内側に右上がりの斜線、円 B の内側に右下がりの斜線を付けた図。2つの円が重なった部分②だけ、2種類の斜線が交差している。n(A)+n(B) では②を2回数える" data-fig="f002b">
+<defs><pattern id="f002b-ha" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.75"/></pattern><pattern id="f002b-hb" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-45)"><line x1="0" y1="0" x2="0" y2="7" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.75"/></pattern></defs>
+<text x="180" y="14" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">n(A)（／）と n(B)（＼）を重ねると、②だけ2回</text>
+<path d="M180,63.1 A66,66 0 1,0 180,164.9 A66,66 0 0,1 180,63.1 Z" fill="#1f5fbf" fill-opacity="0.13" data-region="a"/>
+<path d="M180,63.1 A66,66 0 1,0 180,164.9 A66,66 0 0,1 180,63.1 Z" fill="url(#f002b-ha)" data-region="a" data-hatch="a"/>
+<path d="M180,63.1 A66,66 0 0,1 180,164.9 A66,66 0 0,1 180,63.1 Z" fill="#1f5fbf" fill-opacity="0.13" data-region="ab"/>
+<path d="M180,63.1 A66,66 0 0,1 180,164.9 A66,66 0 0,1 180,63.1 Z" fill="url(#f002b-ha)" data-region="ab" data-hatch="a"/>
+<path d="M180,63.1 A66,66 0 0,1 180,164.9 A66,66 0 0,1 180,63.1 Z" fill="url(#f002b-hb)" data-region="ab" data-hatch="b"/>
+<path d="M180,63.1 A66,66 0 1,1 180,164.9 A66,66 0 0,0 180,63.1 Z" fill="#1f5fbf" fill-opacity="0.13" data-region="b"/>
+<path d="M180,63.1 A66,66 0 1,1 180,164.9 A66,66 0 0,0 180,63.1 Z" fill="url(#f002b-hb)" data-region="b" data-hatch="b"/>
+<rect x="12" y="22" width="336" height="176" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<path d="M72,114 A66,66 0 1,1 204,114 A66,66 0 1,1 72,114 Z" fill="none" stroke="currentColor" stroke-width="1.6" data-circle="A" data-cx="138" data-cy="114" data-r="66"/>
+<path d="M156,114 A66,66 0 1,1 288,114 A66,66 0 1,1 156,114 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="7 3" data-circle="B" data-cx="222" data-cy="114" data-r="66"/>
+<text x="90.5" y="61.2" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="currentColor">A</text>
+<text x="269.5" y="61.2" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="currentColor">B</text>
+<text x="24" y="40" text-anchor="start" font-size="15" font-weight="700" font-style="italic" fill="currentColor">U</text>
+<text x="108.3" y="119" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">①</text>
+<text x="180" y="119" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">②</text>
+<text x="251.7" y="119" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">③</text>
+<text x="180" y="218" text-anchor="middle" font-size="12" fill="currentColor">n(A)＋n(B)＝(①＋②)＋(②＋③)＝①＋②×2＋③</text>
+</svg>
+<!--/svg:f002b-->
+  <figcaption>図2　\( n(A) \)（右上がりの斜線）と \( n(B) \)（右下がりの斜線）を足すと、②の部分だけ2回数えることになる</figcaption>
+</figure>
+<div class="formula-card">
+  <div><span class="f-name">和集合の要素の個数</span>$$ n(A\cup B)=n(A)+n(B)-n(A\cap B) $$</div>
+</div>
+<p>図1の例で確かめると、\( n(A\cup B)=6+4-2=8 \) となり、書き並べた個数と一致します。</p>
+<div class="box point"><p class="box-title">ポイント：重なりを「2回数えた分」だけ引く</p><p>\( n(A)+n(B) \) は、\( A\cap B \) の要素を2回数えています。引くのは \( n(A\cap B) \) を<strong>1回</strong>です。同じ考えで、「\( A \) だけ」に入る要素の個数は \( n(A)-n(A\cap B) \)（図1の①）と求められます。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：重なりを引き忘れる・2回引く</p><p>図1の例で \( 6+4=10 \) とするのは、6 と 12 を2回数えたままの誤りです。逆に \( 6+4-2\times2=6 \) とするのは、引きすぎて 6 と 12 を1回も数えていない誤りです（6 は①と③だけの個数）。ベン図で、どの部分を何回数えたかを確かめましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="共通部分がないとき"><span class="num">4</span>共通部分がないとき：\( A\cap B=\emptyset \)</h2>
+<p>要素を1つももたない集合を<strong>空集合</strong>というのでした（数Ⅰ-022）。このページでも、数Ⅰ-022 と同じく記号 \( \emptyset \) で表します（このページでの記号の書き方です。教科書の記号の形も確かめよう）。\( A \) と \( B \) に共通の要素がないことは \( A\cap B=\emptyset \) と書けます。このとき \( n(A\cap B)=0 \) なので、和集合の要素の個数の式は次の形になります。</p>
+<div class="formula-card">
+  <div><span class="f-name">共通部分がないとき</span>$$ A\cap B=\emptyset\ \text{ならば}\quad n(A\cup B)=n(A)+n(B) $$</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題1（共通部分がない2つの集合）</p>
+  <p>1 から 30 までの整数のうち、4 の倍数の集合を \( A \)、4 で割ると 1 余る数の集合を \( B \) とします。\( n(A\cup B) \) を求めなさい。</p>
+  <div class="step">ステップ1（着目：共通の要素があるか）：4 で割った余りは、\( A \) の要素では 0、\( B \) の要素では 1 です。余りが同時に 0 と 1 になる数はないので、\( A\cap B=\emptyset \)。</div>
+  <div class="step">ステップ2：\( A=\{4,\ 8,\ \cdots,\ 28\} \) より \( n(A)=7 \)。\( B=\{1,\ 5,\ \cdots,\ 29\} \) は \( 4\times0+1 \) から \( 4\times7+1 \) までで \( n(B)=8 \)。</div>
+  <div class="step">ステップ3：\( n(A\cup B)=n(A)+n(B)=7+8=15 \)。答え 15。</div>
+</div>
+<figure>
+<!--svg:f002d-->
+<svg viewBox="0 0 360 232" width="360" role="img" aria-label="全体集合 U を 1 から 30 までの整数とした図。円 A（4 の倍数、7 個）と円 B（4 で割ると 1 余る数、8 個）は離れていて重なる部分がない。A∪B の要素の個数は 7+8=15" data-fig="f002d">
+<text x="180" y="14" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">A∩B＝∅（共通部分がない）とき</text>
+<rect x="12" y="22" width="336" height="176" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<path d="M43,114 A62,62 0 1,1 167,114 A62,62 0 1,1 43,114 Z" fill="none" stroke="currentColor" stroke-width="1.6" data-circle="A" data-cx="105" data-cy="114" data-r="62"/>
+<path d="M193,114 A62,62 0 1,1 317,114 A62,62 0 1,1 193,114 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="7 3" data-circle="B" data-cx="255" data-cy="114" data-r="62"/>
+<text x="105" y="46" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">A：4 の倍数</text>
+<text x="255" y="46" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">B：4 で割ると 1 余る数</text>
+<text x="24" y="40" text-anchor="start" font-size="15" font-weight="700" font-style="italic" fill="currentColor">U</text>
+<text x="105" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">7 個</text>
+<text x="255" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">8 個</text>
+<text x="180" y="218" text-anchor="middle" font-size="12" fill="currentColor">n(A∪B)＝7＋8＝15</text>
+</svg>
+<!--/svg:f002d-->
+  <figcaption>図3　共通部分がない（2つの円が重ならない）ときは、個数をそのまま足してよい</figcaption>
+</figure>
+<p>\( n(A\cup B)=n(A)+n(B) \) が成り立つのは、\( n(A\cap B)=0 \)、つまり \( A\cap B=\emptyset \) のときです。共通部分があるのに足すだけにすると、重なりを2回数えてしまいます。</p>
+<div class="box point"><p class="box-title">ポイント：まず共通部分があるかを確かめる</p><p>① \( A\cap B \) に要素があるかを調べる　② 要素がなければ \( n(A)+n(B) \)、あれば \( n(A)+n(B)-n(A\cap B) \)。どちらの場合も、もとは同じ1つの式です。この「同時には入らないものは足してよい」という考えは、数Ａ-004 の「和の法則」で、場合の数を求めるときに使います。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="3 または 5 の倍数を数える"><span class="num">5</span>3 または 5 の倍数を数える</h2>
+<div class="box example worked">
+  <p class="box-title">例題2（導入の答え）</p>
+  <p>1 から 100 までの整数のうち、3 の倍数または 5 の倍数である数の個数を求めなさい。</p>
+  <div class="step">ステップ1（着目：集合を決める）：1 から 100 までの整数全体を \( U \)、3 の倍数の集合を \( A \)、5 の倍数の集合を \( B \) とします。求めるのは \( n(A\cup B) \) です。</div>
+  <div class="step">ステップ2：\( 100\div3=33 \) あまり 1 より \( n(A)=33 \)、\( 100\div5=20 \) より \( n(B)=20 \)。</div>
+  <div class="step">ステップ3（着目：共通部分は「3 の倍数かつ 5 の倍数」）：\( A\cap B \) は 15 の倍数の集合なので（補足）、\( n(A\cap B)=6 \)。</div>
+  <div class="step">ステップ4：\( n(A\cup B)=33+20-6=47 \)。答え 47 個。</div>
+</div>
+<figure>
+<!--svg:f002c-->
+<svg viewBox="0 0 360 232" width="360" role="img" aria-label="全体集合 U を 1 から 100 までの整数とした図。円 A は 3 の倍数で 33 個、円 B は 5 の倍数で 20 個。A だけの部分①は 27 個、重なった部分②（15 の倍数）は 6 個、B だけの部分③は 14 個、どちらにも入らない部分④は 53 個" data-fig="f002c">
+<text x="180" y="14" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">1 から 100 までの整数（個数で表した図）</text>
+<rect x="12" y="22" width="336" height="176" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<path d="M72,114 A66,66 0 1,1 204,114 A66,66 0 1,1 72,114 Z" fill="none" stroke="currentColor" stroke-width="1.6" data-circle="A" data-cx="138" data-cy="114" data-r="66"/>
+<path d="M156,114 A66,66 0 1,1 288,114 A66,66 0 1,1 156,114 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="7 3" data-circle="B" data-cx="222" data-cy="114" data-r="66"/>
+<text x="105" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">A：3 の倍数（33 個）</text>
+<text x="255" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">B：5 の倍数（20 個）</text>
+<text x="24" y="40" text-anchor="start" font-size="15" font-weight="700" font-style="italic" fill="currentColor">U</text>
+<text x="108.3" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">27</text>
+<text x="180" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">6</text>
+<text x="251.7" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">14</text>
+<text x="314" y="162" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">53</text>
+<text x="108.3" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">①</text>
+<text x="180" y="160" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">②</text>
+<text x="251.7" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">③</text>
+<text x="288" y="184" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">④</text>
+<text x="180" y="218" text-anchor="middle" font-size="12" fill="currentColor">n(A∪B)＝33＋20－6＝47</text>
+</svg>
+<!--/svg:f002c-->
+  <figcaption>図4　1 から 100 までの整数を、3 の倍数・5 の倍数で4つの部分に分けたときの個数</figcaption>
+</figure>
+<p>導入の太郎さんの \( 33+20=53 \) は、15、30、45、60、75、90 の6個を2回数えていました。図4で確かめると、①27個、②6個、③14個で、\( 27+6+14=47 \) です。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（どちらでもない数）</p>
+  <p>1 から 100 までの整数のうち、3 の倍数でも 5 の倍数でもない数の個数を求めなさい。</p>
+  <div class="step">ステップ1（着目：「どちらでもない」は補集合）：3 の倍数でなく、しかも 5 の倍数でない数の集合は \( \overline{A}\cap\overline{B} \) です。ド・モルガンの法則（数Ⅰ-023）より \( \overline{A}\cap\overline{B}=\overline{A\cup B} \)（図4の④）。</div>
+  <div class="step">ステップ2：補集合の要素の個数（数Ａ-001）より、\( n(\overline{A\cup B})=n(U)-n(A\cup B)=100-47=53 \)。答え 53 個。</div>
+</div>
+<div class="box caution"><p class="box-title">注意：同じ 53 でも意味が違う</p><p>例題3の答え 53 個は「どちらでもない数」の個数です。導入の太郎さんの \( 33+20=53 \) は、重なりを2回数えた誤った計算で、たまたま同じ値になっただけです。\( 47+53=100 \) となって全体の個数に戻ることで、例題2・3の答えを確かめられます。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題4（講習の申し込み）</p>
+  <p>学習用に作成した架空の例です。あるクラスの生徒 40 人のうち、数学の講習に申し込んだ生徒は 18 人、英語の講習に申し込んだ生徒は 15 人、両方に申し込んだ生徒は 6 人でした。(1) 少なくとも一方に申し込んだ生徒　(2) どちらにも申し込んでいない生徒　(3) 数学だけに申し込んだ生徒、はそれぞれ何人ですか。</p>
+  <div class="step">ステップ1：クラス全体を \( U \)、数学の講習に申し込んだ生徒の集合を \( A \)、英語を \( B \) とします。\( n(U)=40 \)、\( n(A)=18 \)、\( n(B)=15 \)、\( n(A\cap B)=6 \)。</div>
+  <div class="step">(1)：\( n(A\cup B)=18+15-6=27 \)。27 人。</div>
+  <div class="step">(2)：\( n(\overline{A}\cap\overline{B})=n(U)-n(A\cup B)=40-27=13 \)。13 人。</div>
+  <div class="step">(3)（着目：図1の①）：\( n(A)-n(A\cap B)=18-6=12 \)。12 人。</div>
+</div>
+<div class="box point"><p class="box-title">ポイント：解く手順</p><p>① 全体集合 \( U \) と集合 \( A \)、\( B \) を決める　② \( n(A) \)、\( n(B) \)、\( n(A\cap B) \) を数える（共通部分は「〜かつ〜」）　③ 和集合の要素の個数の式に当てはめる　④ 「どちらでもない」はド・モルガンの法則で \( \overline{A\cup B} \) に直し、\( n(U)-n(A\cup B) \) で求める。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>和集合の要素の個数</dt><dd>\( n(A\cup B)=n(A)+n(B)-n(A\cap B) \)。\( n(A)+n(B) \) で2回数えた \( A\cap B \) の要素を1回引く。</dd>
+    <dt>共通部分（\( A\cap B \)）・和集合（\( A\cup B \)）</dt><dd>両方に入っている要素全体の集合と、少なくとも一方に入っている要素全体の集合（数Ⅰ-022）。</dd>
+    <dt>空集合（\( \emptyset \)）</dt><dd>要素を1つももたない集合（数Ⅰ-022）。\( A\cap B=\emptyset \) のとき \( n(A\cup B)=n(A)+n(B) \)。記号はこのページでの書き方。</dd>
+    <dt>公倍数・最小公倍数</dt><dd>2つの数のどちらの倍数でもある数と、そのうち最小の正の数。公倍数は最小公倍数の倍数（補足）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>ベン図の①②③の個数を \( x,\ y,\ z \) とすると、\( n(A)+n(B)=x+2y+z \) で②を2回数えるので、\( n(A\cup B)=n(A)+n(B)-n(A\cap B) \)（O1）。</li>
+    <li>\( A\cap B=\emptyset \) のときは \( n(A\cap B)=0 \) なので \( n(A\cup B)=n(A)+n(B) \)。足す前に共通部分があるかを確かめる（O2）。</li>
+    <li>1 から 100 までの 3 または 5 の倍数は、15 の倍数を共通部分として \( 33+20-6=47 \) 個。どちらでもない数は \( \overline{A\cup B} \) と考えて \( 100-47=53 \) 個（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">和集合の要素の個数</span>$$ n(A\cup B)=n(A)+n(B)-n(A\cap B) $$</div>
+  <div><span class="f-name">共通部分がないとき</span>$$ A\cap B=\emptyset\ \text{ならば}\quad n(A\cup B)=n(A)+n(B) $$</div>
+  <div><span class="f-name">どちらでもないもの</span>$$ n(\overline{A}\cap\overline{B})=n(\overline{A\cup B})=n(U)-n(A\cup B) $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。入力問題は数字だけで答えてください（「個」「人」を付けてもよい）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>\( n(A)=12 \)、\( n(B)=9 \)、\( n(A\cap B)=4 \) のとき、\( n(A\cup B) \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 21 \)</button>
+    <button>\( 25 \)</button>
+    <button data-correct="true">\( 17 \)</button>
+    <button>\( 13 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( n(A\cup B)=12+9-4=17 \) です。\( 21 \) は \( 12+9 \) で共通部分を引き忘れた誤り、\( 25 \) は \( 12+9+4 \) と引くところを足した誤り、\( 13 \) は \( 12+9-4\times2 \) と共通部分を2回引いた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>全体集合 \( U \) を 1 から 20 までの整数とします。\( n(A\cup B)=n(A)+n(B) \) が成り立つ集合 \( A \)、\( B \) の組はどれですか。</p>
+  <div class="choices">
+    <button>\( A \)：2 の倍数、\( B \)：3 の倍数</button>
+    <button>\( A \)：素数、\( B \)：偶数</button>
+    <button>\( A \)：10 以下の数、\( B \)：10 以上の数</button>
+    <button data-correct="true">\( A \)：偶数、\( B \)：奇数</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( n(A\cup B)=n(A)+n(B) \) が成り立つのは \( A\cap B=\emptyset \) のときです。偶数でも奇数でもある数はないので、偶数と奇数の組では \( A\cap B=\emptyset \) です。2 の倍数と 3 の倍数は 6、12、18 が共通、素数と偶数は 2 が共通（2 は素数で偶数）、10 以下と 10 以上は 10 が共通なので、どれも共通部分が空集合ではありません。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="29|29個">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>1 から 50 までの整数のうち、2 の倍数または 7 の倍数である数の個数を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 29。2 の倍数は \( 50\div2=25 \) 個、7 の倍数は \( 50\div7=7 \) あまり 1 より 7 個。2 の倍数でも 7 の倍数でもある数は 14 の倍数で、\( 50\div14=3 \) あまり 8 より 3 個。よって \( 25+7-3=29 \) 個です。32 と答えた場合は、14 の倍数を引き忘れています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>1 から 200 までの整数のうち、4 の倍数または 6 の倍数である数の個数はどれですか。</p>
+  <div class="choices">
+    <button>\( 51 \)</button>
+    <button data-correct="true">\( 67 \)</button>
+    <button>\( 75 \)</button>
+    <button>\( 83 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">4 の倍数は \( 200\div4=50 \) 個、6 の倍数は \( 200\div6=33 \) あまり 2 より 33 個。共通部分は 4 と 6 の最小公倍数 12 の倍数で、\( 200\div12=16 \) あまり 8 より 16 個。よって \( 50+33-16=67 \) です。\( 75 \) は共通部分を \( 4\times6=24 \) の倍数（\( 200\div24=8 \) あまり 8 より 8 個）として \( 50+33-8 \) とした誤り（12、36 などを2回数えています）、\( 83 \) は \( 50+33 \) で共通部分を引き忘れた誤り、\( 51 \) は \( 50+33-16\times2 \) と2回引いた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="33|33個">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>1 から 100 までの整数のうち、2 でも 3 でも割り切れない数の個数を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 33。2 の倍数の集合を \( A \)、3 の倍数の集合を \( B \) とすると、求めるのは \( n(\overline{A}\cap\overline{B})=n(\overline{A\cup B}) \) です。\( n(A)=50 \)、\( n(B)=33 \)、\( A\cap B \) は 6 の倍数で \( 100\div6=16 \) あまり 4 より 16 個。\( n(A\cup B)=50+33-16=67 \)、よって \( 100-67=33 \) 個です。67 は \( A\cup B \) の個数のまま、17 は \( 100-(50+33) \) で共通部分を引き忘れた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="6|6人">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O1</span></div>
+  <p>学習用に作成した架空の例です。あるクラスの生徒 40 人に通学方法を聞いたところ、自転車を使う生徒は 22 人、電車を使う生徒は 15 人、どちらも使わない生徒は 9 人でした。自転車と電車の両方を使う生徒は何人ですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 6。自転車を使う生徒の集合を \( A \)、電車を \( B \) とすると、どちらかを使う生徒は \( n(A\cup B)=40-9=31 \) 人。\( n(A\cup B)=n(A)+n(B)-n(A\cap B) \) より \( 31=22+15-n(A\cap B) \)、よって \( n(A\cap B)=37-31=6 \) 人です。\( 22+15-40 \) とすると負の数になります。全体の 40 人を \( n(A\cup B) \) と取り違えないようにしましょう。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="200|200個">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>100 以上 999 以下の整数（3けたの整数）のうち、6 の倍数または 9 の倍数である数の個数を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 200。3けたの 6 の倍数は、1 から 999 までの \( 999\div6=166 \) あまり 3 より 166 個から、1 から 99 までの \( 99\div6=16 \) あまり 3 より 16 個を除いて 150 個。9 の倍数は同じように \( 111-11=100 \) 個。共通部分は 6 と 9 の最小公倍数 18 の倍数で、\( 55-5=50 \) 個（\( 999\div18=55 \) あまり 9、\( 99\div18=5 \) あまり 9）。よって \( 150+100-50=200 \) 個です。共通部分を \( 6\times9=54 \) の倍数とすると \( 18-1=17 \) 個になり、\( 150+100-17=233 \) と誤ります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O3</span></div>
+  <p>学習用に作成した架空の調査です。X高校の1年生 200 人に聞いたところ、「数学が好き」は 120 人、「英語が好き」は 95 人、「どちらも好きではない」は 30 人でした。</p>
+  <p>花子：「両方とも好きな人数は、\( 120+95-200=15 \) 人かな。」<br>太郎：「全体の 200 人には、どちらも好きではない 30 人も入っているよ。」</p>
+  <p>「数学も英語も好き」と答えた生徒の人数はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 45 \)</button>
+    <button>\( 15 \)</button>
+    <button>\( 75 \)</button>
+    <button>\( 50 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">数学が好きな生徒の集合を \( A \)、英語を \( B \) とします。少なくとも一方が好きな生徒は \( n(A\cup B)=200-30=170 \) 人なので、\( n(A\cap B)=n(A)+n(B)-n(A\cup B)=120+95-170=45 \) 人です。\( 15 \) は花子さんの計算で、全体の 200 人を \( n(A\cup B) \) と取り違えています。\( 75 \) は数学だけが好きな人数（\( 120-45 \)）、\( 50 \) は英語だけが好きな人数（\( 95-45 \)）です。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O2</span></div>
+  <p>\( n(A\cup B)=n(A)+n(B)-n(A\cap B) \) が成り立つ理由を、ベン図の部分を使って説明しなさい。また、この式から \( A\cap B=\emptyset \) のときに \( n(A\cup B)=n(A)+n(B) \) となることを説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　ベン図で、\( A \) だけの部分、\( A\cap B \) の部分、\( B \) だけの部分の要素の個数を \( x \)、\( y \)、\( z \) とする。\( n(A)=x+y \)、\( n(B)=y+z \) なので \( n(A)+n(B)=x+2y+z \) となり、\( A\cap B \) の \( y \) 個を2回数えている。\( n(A\cup B)=x+y+z \) だから、\( n(A\cup B)=n(A)+n(B)-y=n(A)+n(B)-n(A\cap B) \)。\( A\cap B=\emptyset \) のときは \( n(A\cap B)=0 \) なので、\( n(A\cup B)=n(A)+n(B) \) となる。</p>
+    <p><strong>採点の観点</strong>　① 3つの部分の個数で \( n(A) \)、\( n(B) \)、\( n(A\cup B) \) を表している。② \( A\cap B \) の要素を2回数えていることを書いている。③ 空集合の要素の個数が 0 であることから、特別な場合を導いている。</p>
+  </div>
+  <div class="explain">図2のように、\( n(A) \) と \( n(B) \) を重ねると②の部分だけ2回数えています。「引く」理由を、どの部分を何回数えたかで説明できれば十分です。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(ア)「集合の要素の個数に関する基本的な関係や和の法則，積の法則などの数え上げの原則について理解すること」に当たり、出題範囲に含まれます。学習指導要領解説は、集合の要素の個数に関する公式 \( n(A\cup B)=n(A)+n(B)-n(A\cap B) \) と、共通部分がない場合の式も、ここで取り扱うとしています。</p>
+  <p>令和9年度の問題作成方針は、数学について「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求め、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。調査の人数などを集合で表し、ベン図と式で処理するこの時間の考え方は、その土台になります。</p>
+  <p class="small">問6・問8は日常の場面や会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">数え上げの原則と樹形図（数Ａ-003）</p>
+  <p>次の時間は、場合の数を「もれなく重複なく」数え上げるための考え方（あるものに着目して分類・整理する、分かりやすいものと1対1に対応付ける、規則に基づき数の列を作るなど）と、樹形図や表を使った数え方を学びます。この時間の「重なりを2回数えない」「どの部分も数え落とさない」という見方は、そこでも基本になります。</p>
+  <p>この時間では、樹形図や表による数え上げ（数Ａ-003）と、同時には起こらない事柄の場合の数を足す和の法則（数Ａ-004）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-001　集合の要素の個数と補集合</div>
+  <div><span class="label">次の時間</span>数Ａ-003　数え上げの原則と樹形図</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-002「A∪B の要素の個数」（学習指導要領 数学Ａ (2)ア(ア)、解説 p.93）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率 ア(ア)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.93（「集合の要素の個数に関する次の公式もここで取り扱う」として n(A∪B)＝n(A)＋n(B)−n(A∩B)、共通部分がないときの式）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「集合の要素の個数」（集合の要素の個数の公式、具体的な日常の事象で人数などを求めること、ベン図による考察）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>教科書編修趣意書 数学Ａ（数研出版 数Ａ104-905：和集合の要素の個数を図を通して扱うこと。文部科学省公開）https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html</li>
+    <li>小学校学習指導要領（平成29年告示）算数 第5学年〔用語・記号〕「最小公倍数」（中学校学習指導要領の冊子に収録。文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_02.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話・調査の人数はこのページのために作成したものです（出典を示したものを除く）。例題4・問6・問8の人数は学習用の架空の数値です。空集合の記号は、このページでは \( \emptyset \) と書いています。記号の形は教科書でも確かめよう。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-002",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-002",
+  "title": "A∪B の要素の個数",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(ア)"],
+  "kaisetsu_page": "93",
+  "objectives": [
+    {"id": "O1", "text": "\\( n(A\\cup B)=n(A)+n(B)-n(A\\cap B) \\) が成り立つ理由を、ベン図の4つの部分の要素の個数を用いて説明できる。", "from": "n(A∪B)=n(A)+n(B)−n(A∩B)… となることを理解し", "sections": ["sec-1"], "checks": ["q1", "q6", "q8", "q9"]},
+    {"id": "O2", "text": "\\( A\\cap B=\\emptyset \\) ならば \\( n(A\\cup B)=n(A)+n(B) \\) となることを理解し、2つの式を使い分けることができる。", "from": "特に A∩B=φ ならば n(A∪B)=n(A)+n(B) となることを理解し", "sections": ["sec-2"], "checks": ["q2", "q9"]},
+    {"id": "O3", "text": "1から100までの整数のうち3または5の倍数の個数などを、要素の個数の式と補集合の考えを用いて求めることができる。", "from": "1から100までの整数のうち3または5の倍数の個数などを求めることができる", "sections": ["sec-3"], "checks": ["q3", "q4", "q5", "q7", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "和集合の要素の個数", "where": "sec-1"},
+    {"term": "空集合", "where": "sec-2"},
+    {"term": "公倍数", "where": "supp-1"},
+    {"term": "最小公倍数", "where": "supp-1"}
+  ],
+  "prerequisites": [
+    {"concept": "共通部分 A∩B・和集合 A∪B", "taught_in": ["hs_math_1a/数Ⅰ-022"], "where": "review"},
+    {"concept": "空集合（記号 ∅ はこのページでの書き方）", "taught_in": ["hs_math_1a/数Ⅰ-022"], "where": "sec-2"},
+    {"concept": "ベン図の4つの部分①〜④とド・モルガンの法則 Ā∩B̄ の補集合関係", "taught_in": ["hs_math_1a/数Ⅰ-023"], "where": "review"},
+    {"concept": "要素の個数 n(A) と補集合の要素の個数 n(Ā)=n(U)−n(A)", "taught_in": ["hs_math_1a/数Ａ-001"], "where": "review"},
+    {"concept": "素因数分解と倍数", "taught_in": ["jhs_math/中1-020", "jhs_math/中1-021"], "where": "supp-1"},
+    {"concept": "公倍数は最小公倍数の倍数であること（4 と 6 の公倍数は 24 でなく 12 の倍数）", "taught_in": ["hs_math_1a/数Ａ-074"], "gap": true, "where": "supp-1"},
+    {"concept": "1 から N までの k の倍数の個数（N÷k の商。数Ａ-001 の補足で学んだ）", "taught_in": ["hs_math_1a/数Ａ-001"], "gap": false, "where": "supp-1"},
+    {"concept": "素数（2 は素数で偶数）", "taught_in": ["jhs_math/中1-020"], "where": "q2"}
+  ],
+  "out_of_scope": [
+    "樹形図や表による数え上げ・数え上げの原則（数Ａ-003）",
+    "同時には起こらない事柄の場合の数を足す和の法則（数Ａ-004）"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.93 集合の要素の個数に関する公式（n(A∪B) と A∩B=φ の場合）"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "集合の要素の個数の公式、日常の事象で人数を求める扱い、ベン図"},
+    {"name": "教科書編修趣意書 数学Ａ（数研出版 数Ａ104-905）", "publisher": "文部科学省公開", "url": "https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html", "use": "和集合の要素の個数を図で扱うことの確認"},
+    {"name": "小学校学習指導要領（平成29年告示）算数（中学校学習指導要領の冊子に収録）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_02.pdf", "use": "第5学年〔用語・記号〕最小公倍数（補足の語）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

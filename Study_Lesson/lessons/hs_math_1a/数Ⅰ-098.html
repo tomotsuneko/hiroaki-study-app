@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>復習：実数・根号を含む式の計算と一次不等式｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>復習（予備時間）</span><span>数Ⅰ-098</span></div>
+  <h1>復習：実数・根号を含む式の計算と一次不等式</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">復習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">「数と式」の後半では、数の範囲を実数まで広げ、根号を含む式を計算し、不等式の性質をもとに一次不等式を解きました。この時間は数Ⅰ-009〜019 の要点を「数の分類」「根号の計算」「一次不等式」「絶対値」の4つにまとめ直し、計算と処理の技能を確かにします。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>有理数・無理数の意味と循環小数の分数表示をもとに、数を自然数・整数・有理数・無理数に分類し、実数の四則演算の性質を判断できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>根号の中を簡単にして根号を含む式の加法・減法・乗法を計算し、分母を有理化して式の値を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>不等式の性質を根拠に一次不等式・連立不等式を解き、場面の条件を不等式に表して、解の吟味まで行うことができる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>絶対値を数直線上の距離とみて絶対値の記号をはずし、絶対値を含む方程式・不等式を解くことができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-097）</span>復習：式の展開と因数分解</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-098）</span>復習：実数・根号を含む式の計算と一次不等式</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-100）</span>復習：集合と命題</div>
+</div>
+<p class="small">範囲：単元「数と式」のうち実数と一次不等式（数Ⅰ-009〜019）。この時間は単元「復習（予備時間）」の1コマで、新しい内容は扱いません。問題は単元末演習（数Ⅰ-020）と同じものを使わず、数値を変えています。各問の「復習するなら数Ⅰ-0xx」は、その型を学んだコマです。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：範囲の要点の一覧</h2>
+<p>数Ⅰ-009〜019 で学んだ要点を、学んだコマとともに並べます。</p>
+<div class="formula-card">
+  <div><span class="f-name">実数（数Ⅰ-009）</span>
+    <p>有理数：整数 \( m \) と 0 でない整数 \( n \) で \( \dfrac{m}{n} \) と表せる数<br>無理数：分数で表せない数<br>実数：有理数と無理数を合わせた数</p></div>
+  <div><span class="f-name">有限小数・循環小数（数Ⅰ-010）</span>
+    <p>有理数は整数・有限小数・循環小数のどれかで表され、無理数は循環しない無限小数<br>循環小数は、くり返しのけた数に合わせて 10 倍・100 倍…した数との差をとる</p></div>
+  <div><span class="f-name">四則演算と数直線（数Ⅰ-011）</span>
+    <p>有理数・実数は四則演算に関して閉じている（0 でわる除法を除く）<br>実数は数直線上の点と1対1に対応する</p></div>
+  <div><span class="f-name">絶対値（数Ⅰ-012）</span>
+    <p>\( a\geqq 0 \) なら \( |a|=a \)、\( a&lt;0 \) なら \( |a|=-a \)<br>\( |b-a| \) は2点 \( a \)、\( b \) の距離</p></div>
+  <div><span class="f-name">根号を含む式（数Ⅰ-013）</span>
+    <p>\( \sqrt{a^2}=|a| \)<br>\( \sqrt{a}\sqrt{b}=\sqrt{ab} \)（\( a,\ b&gt;0 \)）<br>\( \sqrt{k^2a}=k\sqrt{a} \)（\( k,\ a&gt;0 \)）<br>\( \sqrt{a}+\sqrt{b}\ne\sqrt{a+b} \)</p></div>
+  <div><span class="f-name">分母の有理化と対称式（数Ⅰ-014）</span>
+    <p>\( \dfrac{b}{\sqrt{a}}=\dfrac{b\sqrt{a}}{a} \)、\( \dfrac{1}{\sqrt{a}+\sqrt{b}}=\dfrac{\sqrt{a}-\sqrt{b}}{a-b} \)<br>\( x^2+y^2=(x+y)^2-2xy \)<br>\( x^2+xy+y^2=(x+y)^2-xy \)</p></div>
+  <div><span class="f-name">不等式の性質（数Ⅰ-015 の性質①〜④）</span>
+    <p>①② 両辺に同じ数を加える・引く：向きは変わらない<br>③ 両辺に正の数をかける・わる：向きは変わらない<br>④ 両辺に負の数をかける・わる：向きが変わる</p></div>
+  <div><span class="f-name">一次不等式・連立不等式（数Ⅰ-016・017）</span>
+    <p>移項して \( ax&gt;b \) などの形にし、\( a \) の符号で向きを決める<br>連立はそれぞれ解いて数直線で共通部分<br>\( A&lt;B&lt;C \) は \( A&lt;B \) と \( B&lt;C \)</p></div>
+  <div><span class="f-name">絶対値を含む不等式（数Ⅰ-018）</span>
+    <p>\( c&gt;0 \) のとき \( |X|&lt;c \) → \( -c&lt;X&lt;c \)<br>\( |X|&gt;c \) → \( X&lt;-c,\ c&lt;X \)</p></div>
+  <div><span class="f-name">一次不等式の活用（数Ⅰ-019）</span>
+    <p>表に整理して立式 → 解く → 整数か・等号を含むか・前提に合うかを吟味<br>以上 \( \geqq \)、以下・以内 \( \leqq \)、未満 \( &lt; \)</p></div>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-012</span></div>
+  <p>\( |\sqrt{5}-3| \) を絶対値の記号を使わずに表したものはどれですか。</p>
+  <div class="choices">
+    <button>\( \sqrt{5}-3 \)</button>
+    <button data-correct="true">\( 3-\sqrt{5} \)</button>
+    <button>\( \sqrt{5}+3 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sqrt{5}=2.236\cdots \) なので \( \sqrt{5}-3 \) は負の数です。中身全体に \( -1 \) をかけて \( -(\sqrt{5}-3)=3-\sqrt{5} \) となります。\( \sqrt{5}-3 \) のままでは絶対値が負の数になってしまいます。\( \sqrt{5}+3 \) は、中の数の符号だけを変えた誤りです（数Ⅰ-012 のよくある間違い）。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-015</span></div>
+  <p>\( a&lt;b \) のとき、必ず成り立つ不等式はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{a}{2}&gt;\dfrac{b}{2} \)</button>
+    <button>\( a+4&gt;b+4 \)</button>
+    <button data-correct="true">\( -3a+2&gt;-3b+2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">負の数 \( -3 \) をかけると向きが変わって \( -3a&gt;-3b \)（性質④）、両辺に 2 を加えても向きは変わらない（性質①）ので \( -3a+2&gt;-3b+2 \) です。\( \dfrac{a}{2}&gt;\dfrac{b}{2} \) は、正の数でわっても向きは変わらない（性質③）のに変えた誤り、\( a+4&gt;b+4 \) は、加えても向きは変わらない（性質①）のに変えた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-013</span></div>
+  <p>\( (\sqrt{7}+\sqrt{3})(\sqrt{7}-\sqrt{3}) \) を計算したものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">4</button>
+    <button>10</button>
+    <button>2</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">和と差の積の公式で \( (\sqrt{7})^2-(\sqrt{3})^2=7-3=4 \) です。10 は \( 7+3 \) と符号を誤った答え、2 は \( \sqrt{7-3}=\sqrt{4} \) と根号の中どうしで計算した誤りです。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：どの考えを使う？</h2>
+<div class="box think">
+  <p class="box-title">この4問、何に着目する？</p>
+  <p>(ア) \( \sqrt{12} \)、\( 0.\dot{4}\dot{2} \)、\( -\sqrt{\dfrac{9}{4}} \)、\( \dfrac{\sqrt{3}}{3} \)、\( \pi \)、\( -5 \)、\( 0 \) を、自然数・整数・有理数・無理数に分ける。<br>
+  (イ) \( x=\dfrac{\sqrt{6}+\sqrt{2}}{\sqrt{6}-\sqrt{2}} \)、\( y=\dfrac{\sqrt{6}-\sqrt{2}}{\sqrt{6}+\sqrt{2}} \) のとき、\( x^2+y^2 \) の値を求める。<br>
+  (ウ) 分数や小数を含む連立不等式を解き、解に含まれる整数の個数を求める。<br>
+  (エ) 基本料金のある店とない店の印刷料金を比べ、どちらが安いかを枚数で答える。</p>
+  <p>それぞれ「どの定義・性質を使うか」を予想しましょう。答えは、(ア) が「3 実数の分類」の例題1、(イ) が「4 根号を含む式の計算と分母の有理化」の例題4、(ウ)(エ) が「5 一次不等式・連立不等式とその活用」の例題5・6で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="実数の分類"><span class="num">3</span>実数の分類：分数で表せるかどうか</h2>
+<p>数の分類は、根号や分数の形といった見た目ではなく、計算・約分してから「整数 \( m \) と 0 でない整数 \( n \) で \( \dfrac{m}{n} \) と表せるか」で判断します（数Ⅰ-009）。小数で表したときの形とも結び付いています（数Ⅰ-010）。</p>
+<figure>
+<!--svg:f098a-->
+<svg viewBox="0 0 440 230" width="440" role="img" aria-label="実数の体系の図。実数の枠の中に有理数の枠、その中に整数の枠、その中に自然数の枠。例：自然数 1, 2, 3、整数 0, −1, −5、有理数 2/3, −0.25, 0.333…（循環小数）。有理数の枠の外で実数の枠の中が無理数（分数で表せない数）で、例は √2, √3, √2＋1, π" data-fig="f098a">
+<rect x="6" y="4" width="428" height="222" rx="5" fill="currentColor" fill-opacity="0.0" stroke="currentColor" stroke-width="1.6" data-box="実数"/>
+<rect x="14" y="32" width="276" height="186" rx="5" fill="#1f5fbf" fill-opacity="0.06" stroke="#1f5fbf" stroke-width="1.6" data-box="有理数"/>
+<rect x="22" y="60" width="160" height="150" rx="5" fill="#1e8e5a" fill-opacity="0.07" stroke="#1e8e5a" stroke-width="1.6" data-box="整数"/>
+<rect x="30" y="88" width="86" height="114" rx="5" fill="#b7791f" fill-opacity="0.09" stroke="#b7791f" stroke-width="1.6" data-box="自然数"/>
+<text x="14" y="22" text-anchor="start" font-size="12" font-weight="700" fill="currentColor">実数（有理数と無理数を合わせた数）</text>
+<text x="22" y="50" text-anchor="start" font-size="12" font-weight="700" fill="#1f5fbf">有理数（m/n と表せる数）</text>
+<text x="30" y="78" text-anchor="start" font-size="12" font-weight="700" fill="#1e8e5a">整数</text>
+<text x="38" y="106" text-anchor="start" font-size="12" font-weight="700" fill="#b7791f">自然数</text>
+<text x="38" y="132" text-anchor="start" font-size="12" fill="currentColor" data-ex="自然数">1, 2, 3, …</text>
+<text x="136" y="132" text-anchor="start" font-size="12" fill="currentColor" data-ex="整数">0</text>
+<text x="136" y="154" text-anchor="start" font-size="12" fill="currentColor" data-ex="整数">−1</text>
+<text x="136" y="176" text-anchor="start" font-size="12" fill="currentColor" data-ex="整数">−5</text>
+<text x="192" y="80" text-anchor="start" font-size="12" fill="currentColor" data-ex="有理数">2/3</text>
+<text x="192" y="100" text-anchor="start" font-size="12" fill="currentColor" data-ex="有理数">−0.25</text>
+<text x="192" y="120" text-anchor="start" font-size="12" fill="currentColor" data-ex="有理数">0.333…</text>
+<text x="192" y="140" text-anchor="start" font-size="11" fill="currentColor" data-ex="有理数">（循環小数）</text>
+<text x="300" y="50" text-anchor="start" font-size="12" font-weight="700" fill="#c0392b">無理数</text>
+<text x="300" y="68" text-anchor="start" font-size="11" fill="#c0392b">（分数で表せない数）</text>
+<text x="306" y="100" text-anchor="start" font-size="13" fill="currentColor" data-ex="無理数">√2</text>
+<text x="306" y="124" text-anchor="start" font-size="13" fill="currentColor" data-ex="無理数">√3</text>
+<text x="306" y="148" text-anchor="start" font-size="13" fill="currentColor" data-ex="無理数">√2＋1</text>
+<text x="306" y="172" text-anchor="start" font-size="13" fill="currentColor" data-ex="無理数">π</text>
+</svg>
+<!--/svg:f098a-->
+  <figcaption>図1　実数の体系（数Ⅰ-009 の図1と同じ関係を、学習用にかき直した図）。内側の枠の数は外側の枠の数でもある。無理数は実数のうち有理数でない数</figcaption>
+</figure>
+<h3>対比表：有理数と無理数</h3>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>有理数</th><th>無理数</th><th>学んだコマ</th></tr>
+  <tr><td>意味</td><td>整数 \( m \) と 0 でない整数 \( n \) で \( \dfrac{m}{n} \) と表せる</td><td>分数で表せない</td><td>数Ⅰ-009</td></tr>
+  <tr><td>小数で表すと</td><td>整数・有限小数・循環小数</td><td>循環しない無限小数</td><td>数Ⅰ-010</td></tr>
+  <tr><td>例</td><td>\( 3 \)、\( -\dfrac{2}{3} \)、\( 0.25 \)、\( 0.\dot{3} \)、\( \sqrt{9} \)</td><td>\( \sqrt{2} \)、\( \sqrt{3} \)、\( \sqrt{2}+1 \)、\( \pi \)</td><td>数Ⅰ-009</td></tr>
+  <tr><td>四則演算</td><td>2つの有理数の和・差・積・商（0 でわる場合を除く）は、いつも有理数</td><td>2つの無理数の和や積が有理数になることがある（\( \sqrt{2}+(-\sqrt{2})=0 \)）</td><td>数Ⅰ-011</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題1（数の分類）＝導入の (ア)</p>
+  <p>\( \sqrt{12} \)、\( 0.\dot{4}\dot{2} \)、\( -\sqrt{\dfrac{9}{4}} \)、\( \dfrac{\sqrt{3}}{3} \)、\( \pi \)、\( -5 \)、\( 0 \) を、自然数・整数・有理数・無理数に分けなさい。</p>
+  <div class="step">着目：まず計算・約分する。\( \sqrt{12}=2\sqrt{3} \)、\( 0.\dot{4}\dot{2}=\dfrac{42}{99}=\dfrac{14}{33} \)、\( -\sqrt{\dfrac{9}{4}}=-\dfrac{3}{2} \)。</div>
+  <div class="step">分数で表せるもの：\( \dfrac{14}{33} \)、\( -\dfrac{3}{2} \)、\( -5=\dfrac{-5}{1} \)、\( 0=\dfrac{0}{1} \) は有理数。このうち \( -5 \) と 0 は整数ですが、自然数ではありません。</div>
+  <div class="step">分数で表せないもの：\( \sqrt{3} \) は無理数（数Ⅰ-009）。もし \( 2\sqrt{3} \) や \( \dfrac{\sqrt{3}}{3} \) が分数で表せたら、\( \sqrt{3} \) も分数で表せてしまうので、どちらも無理数です。\( \pi \) も無理数であることが知られています（数Ⅰ-009）。</div>
+  <div class="step">答え：自然数はなし。整数は <span data-ans="ex1z">\( -5 \)、\( 0 \)</span>。有理数は <span data-ans="ex1q">\( 0.\dot{4}\dot{2} \)、\( -\sqrt{\dfrac{9}{4}} \)、\( -5 \)、\( 0 \)</span>。無理数は <span data-ans="ex1i">\( \sqrt{12} \)、\( \dfrac{\sqrt{3}}{3} \)、\( \pi \)</span>。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（くり返しが途中から始まる循環小数）</p>
+  <p>循環小数 \( 0.3\dot{1}\dot{8} \) を分数で表しなさい。</p>
+  <div class="step">着目：くり返されるのは「18」の2けたで、小数第2位から始まる。\( x=0.31818\cdots \) とおく。</div>
+  <div class="step">小数点以下をそろえるために \( 10x=3.1818\cdots \)、\( 1000x=318.1818\cdots \) をつくる。</div>
+  <div class="step">\( 1000x-10x=318-3 \) より \( 990x=315 \)。</div>
+  <div class="step">答え：<span data-ans="ex2">\( x=\dfrac{315}{990}=\dfrac{7}{22} \)</span></div>
+</div>
+<div class="box caution"><p class="box-title">つまずきやすい点（実数）</p>
+<p>(1) 「根号があれば無理数」「分数の形なら有理数」と見た目で決める。\( \sqrt{9}=3 \) は有理数、\( \dfrac{\sqrt{3}}{3} \) は無理数です（数Ⅰ-009）。<br>
+(2) 0 や負の整数を自然数に入れる。0 と \( -5 \) は整数ですが、自然数ではありません（数Ⅰ-009）。<br>
+(3) 循環小数の点の位置。\( 0.31818\cdots \) を \( 0.\dot{3}1\dot{8} \) と書くと「318 のくり返し」という別の数になります（数Ⅰ-010）。<br>
+(4) 「無理数＋無理数＝無理数」と思い込む。\( \sqrt{2}+(-\sqrt{2})=0 \) のように有理数になる場合があります（数Ⅰ-011）。<br>
+(5) 「小数が限りなく続くから無理数」とする。循環小数なら分数で表せます（数Ⅰ-010・029）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="根号を含む式の計算と分母の有理化"><span class="num">4</span>根号を含む式の計算と分母の有理化</h2>
+<p>根号を含む式は、根号の中をできるだけ小さい自然数にしてから、文字式と同じように計算します（数Ⅰ-013）。分母に根号があるときは、値を変えずに分母を有理化します（数Ⅰ-014）。</p>
+<h3>計算の型と方法</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>計算の型</th><th>方法</th><th>学んだコマ</th></tr>
+  <tr><td>根号の中を簡単にする</td><td>\( \sqrt{k^2a}=k\sqrt{a} \)。例：\( \sqrt{72}=6\sqrt{2} \)</td><td>数Ⅰ-013</td></tr>
+  <tr><td>加法・減法</td><td>根号の中を簡単にしてから、根号の中が同じ項どうしをまとめる</td><td>数Ⅰ-013</td></tr>
+  <tr><td>乗法</td><td>分配法則や乗法公式（数Ⅰ-003）で展開し、\( (\sqrt{a})^2=a \) で簡単にする</td><td>数Ⅰ-013</td></tr>
+  <tr><td>分母が \( \sqrt{a} \)</td><td>分母と分子に \( \sqrt{a} \) をかける</td><td>数Ⅰ-014</td></tr>
+  <tr><td>分母が \( \sqrt{a}\pm\sqrt{b} \)、\( a\pm\sqrt{b} \)</td><td>符号を変えた式を分母と分子にかけ、和と差の積で根号を消す</td><td>数Ⅰ-014</td></tr>
+  <tr><td>\( x^2+y^2 \) などの値</td><td>\( x+y \)、\( xy \) を先に求め、対称式を変形する</td><td>数Ⅰ-014</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（加法・減法と乗法）</p>
+  <p>(1) \( \sqrt{28}-\sqrt{63}+\sqrt{112} \)、(2) \( (2\sqrt{5}+\sqrt{3})(\sqrt{5}-2\sqrt{3}) \) を計算しなさい。</p>
+  <div class="step">(1) 着目：根号の中を \( k^2a \) の形に。\( \sqrt{28}=2\sqrt{7} \)、\( \sqrt{63}=3\sqrt{7} \)、\( \sqrt{112}=4\sqrt{7} \) なので \( 2\sqrt{7}-3\sqrt{7}+4\sqrt{7}=3\sqrt{7} \)。</div>
+  <div class="step">(2) 着目：分配法則で4つの積をつくる。\( 2\sqrt{5}\cdot\sqrt{5}+2\sqrt{5}\cdot(-2\sqrt{3})+\sqrt{3}\cdot\sqrt{5}+\sqrt{3}\cdot(-2\sqrt{3})=10-4\sqrt{15}+\sqrt{15}-6 \)。</div>
+  <div class="step">答え：(1) <span data-ans="ex3a">\( 3\sqrt{7} \)</span>　(2) <span data-ans="ex3b">\( 4-3\sqrt{15} \)</span></div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（分母の有理化と対称式）＝導入の (イ)</p>
+  <p>\( x=\dfrac{\sqrt{6}+\sqrt{2}}{\sqrt{6}-\sqrt{2}} \)、\( y=\dfrac{\sqrt{6}-\sqrt{2}}{\sqrt{6}+\sqrt{2}} \) のとき、\( x^2+y^2 \) の値を求めなさい。</p>
+  <div class="step">着目：分母が \( \sqrt{6}-\sqrt{2} \) なので、分母と分子に \( \sqrt{6}+\sqrt{2} \) をかける。<br>\( x=\dfrac{(\sqrt{6}+\sqrt{2})^2}{6-2}=\dfrac{8+2\sqrt{12}}{4}=\dfrac{8+4\sqrt{3}}{4}=2+\sqrt{3} \)。同じようにして \( y=2-\sqrt{3} \)。</div>
+  <div class="step">着目：\( x^2+y^2 \) は対称式なので、先に \( x+y=4 \)、\( xy=(2+\sqrt{3})(2-\sqrt{3})=4-3=1 \) を求める。</div>
+  <div class="step">\( x^2+y^2=(x+y)^2-2xy=16-2 \)。</div>
+  <div class="step">答え：<span data-ans="ex4">14</span></div>
+</div>
+<div class="box caution"><p class="box-title">つまずきやすい点（根号）</p>
+<p>(1) \( \sqrt{a}+\sqrt{b}=\sqrt{a+b} \) とする。根号どうしの足し算は、根号の中が同じ項どうししかまとめられません（数Ⅰ-013）。<br>
+(2) \( \sqrt{a^2}=a \) といつも書く。\( a&lt;0 \) なら \( \sqrt{a^2}=-a \) です（数Ⅰ-013）。<br>
+(3) 真ん中の項を落とす、係数の2乗を忘れる。\( (2\sqrt{2})^2=4\times 2=8 \) です（数Ⅰ-013）。<br>
+(4) 分母だけに根号をかける。分母と分子の両方に同じ数をかけないと、値が変わります（数Ⅰ-014）。<br>
+(5) 分母の計算で符号や2乗を誤る。\( (\sqrt{5}+2)(\sqrt{5}-2)=5-4=1 \) で、\( 5-2 \) ではありません（数Ⅰ-014）。<br>
+(6) \( x^2+y^2=(x+y)^2 \) とする。\( 2xy \) を引く必要があります（数Ⅰ-014）。</p></div>
+<div class="box point"><p class="box-title">単元をまたぐ整理：根号を含む数を、その後どこで使ったか</p>
+<div class="table-wrap">
+<table>
+  <tr><th>使った場面（コマ）</th><th>使った計算</th></tr>
+  <tr><td>背理法による証明（数Ⅰ-029）</td><td>\( \sqrt{2} \) が無理数であること、\( \sqrt{2}+1 \) が無理数であることの証明</td></tr>
+  <tr><td>グラフと \( x \) 軸の共有点（数Ⅰ-046）</td><td>解の公式で \( x=1\pm\sqrt{2} \) などを求め、約分する</td></tr>
+  <tr><td>二次不等式を含む連立不等式（数Ⅰ-052）</td><td>端に根号があるときは近似値で大小を確かめ、解に含まれる整数を数える</td></tr>
+</table>
+</div></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="一次不等式・連立不等式とその活用"><span class="num">5</span>一次不等式・連立不等式とその活用</h2>
+<p>一次不等式は、一次方程式と同じように移項して解けます。違うのは、負の数をかける・わるときに向きが変わることと、答えが値の範囲になることです（数Ⅰ-015・016）。</p>
+<h3>対比表：一次方程式と一次不等式</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>操作</th><th>一次方程式</th><th>一次不等式</th><th>根拠（数Ⅰ-015 の性質）</th></tr>
+  <tr><td>移項</td><td>できる</td><td>できる（向きは変わらない）</td><td>性質①②</td></tr>
+  <tr><td>両辺に正の数をかける・わる</td><td>できる</td><td>できる（向きは変わらない）</td><td>性質③</td></tr>
+  <tr><td>両辺に負の数をかける・わる</td><td>できる</td><td>できる。不等号の向きが変わる</td><td>性質④</td></tr>
+  <tr><td>答えの形</td><td>\( x=3 \) のような値</td><td>\( x&lt;3 \) のような値の範囲（数直線に ●・○）</td><td>数Ⅰ-015・016</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5（連立不等式と整数の個数）＝導入の (ウ)</p>
+  <p>連立不等式 $$ \begin{cases} \dfrac{3x+1}{4}-\dfrac{x-1}{2}&lt;2 \\ 0.3x-1.2\leqq 0.5x+0.4 \end{cases} $$ を解き（上の式を①、下の式を②とします）、解に含まれる整数の個数を求めなさい。</p>
+  <div class="step">① 着目：分母をはらう（正の数 4 をかける。右辺の 2 にもかける）。\( (3x+1)-2(x-1)&lt;8 \)、\( 3x+1-2x+2&lt;8 \)、\( x&lt;5 \)。</div>
+  <div class="step">② 着目：小数をなくす（正の数 10 をかける）。\( 3x-12\leqq 5x+4 \)、\( -2x\leqq 16 \)、負の数 \( -2 \) でわって向きを変え \( x\geqq -8 \)。</div>
+  <div class="step">共通部分（図2）：\( -8\leqq x&lt;5 \)。整数は \( -8 \) から 4 までの 13 個。</div>
+  <div class="step">答え：<span data-ans="ex5">\( -8\leqq x&lt;5 \)</span>、整数は <span data-ans="ex5n">13</span> 個</div>
+</div>
+<figure>
+<!--svg:f098b-->
+<svg viewBox="0 0 440 92" width="440" role="img" aria-label="数直線に ① x&amp;lt;5（5 に白丸、左向き）と ② x≧−8（−8 に黒丸、右向き）を高さを変えて描き、重なる −8≦x&amp;lt;5 の部分に色を付けた図" data-fig="f098b">
+<rect x="71" y="29" width="318.5" height="37" fill="#1f5fbf" fill-opacity="0.13" data-shade="sol"/>
+<line x1="10" y1="66" x2="430" y2="66" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,66 L422,62 L422,70 Z" fill="currentColor"/>
+<line x1="22" y1="62" x2="22" y2="70" stroke="currentColor"/>
+<text x="22" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−10</text>
+<line x1="46.5" y1="62" x2="46.5" y2="70" stroke="currentColor"/>
+<text x="46.5" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−9</text>
+<line x1="71" y1="62" x2="71" y2="70" stroke="currentColor"/>
+<text x="71" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−8</text>
+<line x1="95.5" y1="62" x2="95.5" y2="70" stroke="currentColor"/>
+<text x="95.5" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−7</text>
+<line x1="120" y1="62" x2="120" y2="70" stroke="currentColor"/>
+<text x="120" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−6</text>
+<line x1="144.5" y1="62" x2="144.5" y2="70" stroke="currentColor"/>
+<text x="144.5" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−5</text>
+<line x1="169" y1="62" x2="169" y2="70" stroke="currentColor"/>
+<text x="169" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−4</text>
+<line x1="193.5" y1="62" x2="193.5" y2="70" stroke="currentColor"/>
+<text x="193.5" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−3</text>
+<line x1="218" y1="62" x2="218" y2="70" stroke="currentColor"/>
+<text x="218" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−2</text>
+<line x1="242.5" y1="62" x2="242.5" y2="70" stroke="currentColor"/>
+<text x="242.5" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−1</text>
+<line x1="267" y1="62" x2="267" y2="70" stroke="currentColor"/>
+<text x="267" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">0</text>
+<line x1="291.5" y1="62" x2="291.5" y2="70" stroke="currentColor"/>
+<text x="291.5" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">1</text>
+<line x1="316" y1="62" x2="316" y2="70" stroke="currentColor"/>
+<text x="316" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">2</text>
+<line x1="340.5" y1="62" x2="340.5" y2="70" stroke="currentColor"/>
+<text x="340.5" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">3</text>
+<line x1="365" y1="62" x2="365" y2="70" stroke="currentColor"/>
+<text x="365" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">4</text>
+<line x1="389.5" y1="62" x2="389.5" y2="70" stroke="currentColor"/>
+<text x="389.5" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">5</text>
+<line x1="414" y1="62" x2="414" y2="70" stroke="currentColor"/>
+<text x="414" y="85" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">6</text>
+<path d="M12,50 L389.5,50 L389.5,66" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s1"/>
+<path d="M6,50 L15,45.5 L15,54.5 Z" fill="#1f5fbf"/>
+<circle cx="389.5" cy="66" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="5" data-in="0" data-set="s1"/>
+<text x="120" y="45" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">① x &lt; 5</text>
+<path d="M71,66 L71,35 L416,35" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s2"/>
+<path d="M422,35 L413,30.5 L413,39.5 Z" fill="#1f5fbf"/>
+<circle cx="71" cy="66" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="-8" data-in="1" data-set="s2"/>
+<text x="291.5" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">② x ≧ −8</text>
+</svg>
+<!--/svg:f098b-->
+  <figcaption>図2　① \( x&lt;5 \) と ② \( x\geqq -8 \) の共通部分は \( -8\leqq x&lt;5 \)（●は端を含む、○は含まない）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題6（活用：印刷の料金）＝導入の (エ)</p>
+  <p>学習用に作成した架空の場面です。チラシの印刷を、A 店は基本料金 1200 円と1枚 15 円、B 店は基本料金なしで1枚 25 円で引き受けます。(1) A 店のほうが安くなるのは何枚以上のときですか。(2) 予算が 4000 円以内で、A 店に頼むほうが安くなる枚数をすべて求めなさい。</p>
+  <div class="step">着目：枚数を \( n \) 枚とすると、A 店は \( 1200+15n \) 円、B 店は \( 25n \) 円。「安くなる」は等号を含まない。</div>
+  <div class="step">(1) \( 1200+15n&lt;25n \)、\( -10n&lt;-1200 \)、負の数 \( -10 \) でわって向きを変え \( n&gt;120 \)。吟味：枚数は整数なので 121 枚以上。120 枚ではどちらも 3000 円で同じです。</div>
+  <div class="step">(2) 予算の条件 \( 1200+15n\leqq 4000 \) より \( 15n\leqq 2800 \)、\( n\leqq 186.6\cdots \)。整数なので \( n\leqq 186 \)（186 枚で 3990 円、187 枚で 4005 円）。(1) と合わせて \( 121\leqq n\leqq 186 \)。</div>
+  <div class="step">答え：(1) <span data-ans="ex6a">121</span> 枚以上　(2) <span data-ans="ex6b">121</span> 枚以上 <span data-ans="ex6c">186</span> 枚以下</div>
+</div>
+<div class="box caution"><p class="box-title">つまずきやすい点（一次不等式）</p>
+<p>(1) 負の数でわるときに向きを変え忘れる。反対に「右辺が負の数になったら向きを変える」のも誤りで、向きを決めるのはかける数・わる数の符号です（数Ⅰ-016）。<br>
+(2) 分母をはらうとき、右辺にかけ忘れる・分子のかっこを付け忘れる（数Ⅰ-016）。<br>
+(3) 連立不等式で、2つの解を合わせた範囲を答える。答えは共通部分です（数Ⅰ-017）。<br>
+(4) \( A&lt;B&lt;C \) を「\( A&lt;B \) と \( A&lt;C \)」に分ける。隣どうしを組にします（数Ⅰ-017）。<br>
+(5) 「以上」「未満」の等号の扱いや、整数であることの吟味を忘れる（数Ⅰ-019）。</p></div>
+<div class="box point"><p class="box-title">単元をまたぐ整理：不等式の考えを、その後どこで使ったか</p>
+<div class="table-wrap">
+<table>
+  <tr><th>使った場面（コマ）</th><th>使った考え</th></tr>
+  <tr><td>集合（数Ⅰ-022）</td><td>不等式の解は値の集まり（数Ⅰ-015）。連立不等式の共通部分は、集合の共通部分 \( A\cap B \) と同じ</td></tr>
+  <tr><td>最大・最小の活用（数Ⅰ-043）</td><td>長さが正であることなどを連立不等式に表し、変数のとりうる値の範囲を求める</td></tr>
+  <tr><td>二次不等式（数Ⅰ-049）</td><td>\( x^2 \) の係数が負なら \( -1 \) をかけて向きを変える（性質④）</td></tr>
+  <tr><td>二次不等式を含む連立不等式（数Ⅰ-052）</td><td>それぞれの解を1本の数直線に表し、共通部分を求める</td></tr>
+</table>
+</div></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="絶対値と絶対値を含む方程式・不等式"><span class="num">6</span>絶対値と、絶対値を含む方程式・不等式</h2>
+<p>実数 \( a \) の絶対値 \( |a| \) は、数直線上で原点と点 \( a \) との距離です。\( a\geqq 0 \) なら \( |a|=a \)、\( a&lt;0 \) なら \( |a|=-a \) と、中身の符号で場合を分けて記号をはずします。2つの実数の差の絶対値 \( |b-a| \) は、数直線上の2点 \( a \)、\( b \) の距離です（数Ⅰ-012）。この見方を使うと、絶対値を含む方程式・不等式は「距離の条件」として解けます（数Ⅰ-018）。</p>
+<h3>対比表：絶対値を含む方程式・不等式（\( c&gt;0 \)）</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>式</th><th>距離の見方</th><th>解</th><th>学んだコマ</th></tr>
+  <tr><td>\( |X|=c \)</td><td>\( X \) と原点の距離がちょうど \( c \)</td><td>\( X=\pm c \)</td><td>数Ⅰ-018</td></tr>
+  <tr><td>\( |X|&lt;c \)</td><td>\( X \) と原点の距離が \( c \) より小さい</td><td>\( -c&lt;X&lt;c \)</td><td>数Ⅰ-018</td></tr>
+  <tr><td>\( |X|&gt;c \)</td><td>\( X \) と原点の距離が \( c \) より大きい</td><td>\( X&lt;-c,\ c&lt;X \)</td><td>数Ⅰ-018</td></tr>
+  <tr><td>\( |x-p| \)</td><td>点 \( x \) と点 \( p \) の距離（\( |x+1| \) は点 \( -1 \) からの距離）</td><td>—</td><td>数Ⅰ-012・018</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題7（絶対値を含む方程式・不等式）</p>
+  <p>(1) 方程式 \( |3x-2|=7 \)、(2) 不等式 \( |3x-2|\geqq 7 \) を解きなさい。</p>
+  <div class="step">着目：中の式 \( 3x-2 \) をひとまとまりとみると、(1) は「\( 3x-2 \) と原点の距離がちょうど 7」、(2) は「7 以上」という条件。</div>
+  <div class="step">(1) \( 3x-2=\pm 7 \)。\( 3x-2=7 \) より \( x=3 \)、\( 3x-2=-7 \) より \( x=-\dfrac{5}{3} \)。</div>
+  <div class="step">(2) \( 3x-2\leqq -7 \) または \( 7\leqq 3x-2 \)。\( 3x\leqq -5 \) より \( x\leqq -\dfrac{5}{3} \)、\( 9\leqq 3x \) より \( 3\leqq x \)。2つの範囲は分けて書く。</div>
+  <div class="step">答え：(1) <span data-ans="ex7a">\( x=3,\ -\dfrac{5}{3} \)</span>　(2) <span data-ans="ex7b">\( x\leqq -\dfrac{5}{3},\ 3\leqq x \)</span></div>
+</div>
+<div class="box caution"><p class="box-title">つまずきやすい点（絶対値）</p>
+<p>(1) 中身の符号を調べずに記号をはずす。\( |\sqrt{3}-2|=\sqrt{3}-2 \) とすると絶対値が負の数になります。中身全体の符号を調べ、負なら中身全体に \( -1 \) をかけます（数Ⅰ-012）。<br>
+(2) 絶対値を「±」で答える。\( |-\sqrt{7}| \) は \( \sqrt{7} \) で、絶対値は1つの 0 以上の数です（数Ⅰ-012）。<br>
+(3) \( |x+1| \) を「点 1 からの距離」とする。\( |x+1|=|x-(-1)| \) なので、点 \( -1 \) からの距離です（数Ⅰ-018）。<br>
+(4) \( |x|&gt;3 \) の解を「\( -3&gt;x&gt;3 \)」とまとめて書く。そのような \( x \) はないので、2つの範囲は分けて書きます（数Ⅰ-018）。<br>
+(5) 場合分けで解いたとき、求めた値がその場合の範囲に入るかを確かめない（数Ⅰ-018）。</p>
+<p class="small">場合分けで絶対値を含む方程式・不等式を解く方法は、教科書によっては「研究」として扱われており、扱いの程度が教科書によって異なります（数Ⅰ-018 と同じ注記。新興出版社啓林館の年間指導計画）。</p></div>
+<div class="box point"><p class="box-title">この範囲の問題の型と、練習した場所</p>
+<div class="table-wrap">
+<table>
+  <tr><th>型（学んだコマ）</th><th>このページで練習する問題</th></tr>
+  <tr><td>実数の分類（009）</td><td>例題1、問1</td></tr>
+  <tr><td>循環小数を分数に（010）</td><td>例題1・2、問2</td></tr>
+  <tr><td>四則演算が閉じていること（011）</td><td>問6</td></tr>
+  <tr><td>絶対値（012）</td><td>確認1、例題7、問10</td></tr>
+  <tr><td>根号を含む式の計算（013）</td><td>確認3、例題3、問3</td></tr>
+  <tr><td>分母の有理化・対称式（014）</td><td>例題4、問4・問7</td></tr>
+  <tr><td>不等式の性質（015）</td><td>確認2</td></tr>
+  <tr><td>一次不等式（016）</td><td>例題5、問5</td></tr>
+  <tr><td>連立不等式・\( A&lt;B&lt;C \)（017）</td><td>例題5、問8・問10</td></tr>
+  <tr><td>絶対値を含む方程式・不等式（018）</td><td>例題7、問10</td></tr>
+  <tr><td>一次不等式の活用（019）</td><td>例題6、問9</td></tr>
+</table>
+</div></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この範囲の重要語句（すべて既習）</p>
+  <dl>
+    <dt>有理数・無理数・実数</dt><dd>整数 \( m \) と 0 でない整数 \( n \) で \( \dfrac{m}{n} \) と表せる数が有理数、表せない数が無理数。合わせて実数（数Ⅰ-009）。</dd>
+    <dt>循環小数</dt><dd>無限小数のうち、ある位から先で同じ数字の並びが限りなくくり返されるもの（数Ⅰ-010）。</dd>
+    <dt>閉じている</dt><dd>ある範囲の数どうしで、ある演算をした結果がいつもその範囲の数になること（数Ⅰ-011）。</dd>
+    <dt>絶対値</dt><dd>数直線上で、原点と点 \( a \) との距離。記号 \( |a| \)（数Ⅰ-012）。</dd>
+    <dt>分母の有理化</dt><dd>分母に根号を含む数を、値を変えずに、分母に根号を含まない形に変形すること（数Ⅰ-014）。</dd>
+    <dt>対称式</dt><dd>\( x \) と \( y \) を入れかえても同じ式になる式（数Ⅰ-014）。</dd>
+    <dt>不等式の性質</dt><dd>数Ⅰ-015 の性質①〜④。このうち不等号の向きが変わるのは、負の数をかける・わるとき（性質④）。</dd>
+    <dt>連立不等式・共通部分</dt><dd>いくつかの不等式を組にしたものと、それぞれの解のどれにも含まれる範囲（数Ⅰ-017）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>有理数は \( \dfrac{m}{n} \)（\( m \) は整数、\( n \) は 0 でない整数）で表せる数で、整数・有限小数・循環小数のどれかになる。無理数は分数で表せない数。見た目でなく、計算・約分してから判断する（O1）。</li>
+    <li>根号は \( \sqrt{k^2a}=k\sqrt{a} \) で簡単にしてから同じ根号の項をまとめ、乗法は乗法公式で展開する。分母の \( \sqrt{a}\pm\sqrt{b} \) は符号を変えた式をかけて有理化し、対称式は \( x+y \)、\( xy \) から求める（O2）。</li>
+    <li>一次不等式を解くときは、負の数をかける・わるときに不等号の向きを変える（数Ⅰ-015 の性質④）。連立不等式は共通部分、\( A&lt;B&lt;C \) は隣どうしを組にする。場面の問題は、整数か・等号を含むかを吟味する（O3）。</li>
+    <li>絶対値は数直線上の原点からの距離で、\( |b-a| \) は2点の距離。\( c&gt;0 \) のとき \( |X|=c \) は \( X=\pm c \)、\( |X|&lt;c \) は \( -c&lt;X&lt;c \)、\( |X|&gt;c \) は \( X&lt;-c,\ c&lt;X \) と2つの範囲に分けて書く（O4）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">有理数</span><p>\( \dfrac{m}{n} \) と表せる＝整数・有限小数・循環小数</p></div>
+  <div><span class="f-name">有理化</span><p>\( \dfrac{1}{\sqrt{a}+\sqrt{b}}=\dfrac{\sqrt{a}-\sqrt{b}}{a-b} \)</p></div>
+  <div><span class="f-name">不等式</span><p>負の数をかける・わる → 向きが変わる</p></div>
+  <div><span class="f-name">絶対値（\( c&gt;0 \)）</span><p>\( |X|&lt;c \) → \( -c&lt;X&lt;c \)<br>\( |X|&gt;c \) → \( X&lt;-c,\ c&lt;X \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">範囲（数Ⅰ-009〜019）全体から10問です。基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）と、復習するときに戻るコマを示します。分数は 4/11 のように、範囲は x&lt;=5 または x≦5 のように入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1（復習するなら数Ⅰ-009）</span></div>
+  <p>次の数のうち、無理数であるものはどれですか。</p>
+  <div class="choices"><button>\( \dfrac{\sqrt{50}}{\sqrt{2}} \)</button><button>\( 0.\dot{1}\dot{2} \)</button><button>\( \sqrt{\dfrac{4}{9}} \)</button><button data-correct="true">\( \dfrac{\sqrt{3}}{2} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( \dfrac{\sqrt{3}}{2} \) は、もし分数で表せたら \( \sqrt{3} \) も分数で表せてしまうので無理数です（数Ⅰ-009）。\( \dfrac{\sqrt{50}}{\sqrt{2}}=\sqrt{25}=5 \)、\( \sqrt{\dfrac{4}{9}}=\dfrac{2}{3} \) は、根号がついていても有理数です。\( 0.\dot{1}\dot{2}=\dfrac{12}{99}=\dfrac{4}{33} \) は循環小数なので有理数です。「根号があれば無理数」「限りなく続く小数は無理数」と見た目で決めると誤ります。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="37/30">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1（復習するなら数Ⅰ-010）</span></div>
+  <p>循環小数 \( 1.2\dot{3} \) を、それ以上約分できない分数で表しなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{37}{30} \)。\( x=1.2333\cdots \) とおくと、くり返しは「3」の1けたで小数第2位から始まるので、\( 10x=12.333\cdots \)、\( 100x=123.333\cdots \) をつくります。\( 100x-10x=123-12 \) より \( 90x=111 \)、\( x=\dfrac{111}{90}=\dfrac{37}{30} \) です。\( \dfrac{122}{99} \) と答えた場合は、\( 1.\dot{2}\dot{3}=1.2323\cdots \)（「23」のくり返し）と取り違えています。\( \dfrac{111}{90} \) のままでは、まだ約分できます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2（復習するなら数Ⅰ-013）</span></div>
+  <p>\( \sqrt{98}-\sqrt{8}+\sqrt{18} \) を計算したものはどれですか。</p>
+  <div class="choices"><button>\( 6\sqrt{3} \)</button><button data-correct="true">\( 8\sqrt{2} \)</button><button>\( 12\sqrt{2} \)</button><button>\( 6\sqrt{2} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( \sqrt{98}=7\sqrt{2} \)、\( \sqrt{8}=2\sqrt{2} \)、\( \sqrt{18}=3\sqrt{2} \) なので、\( 7\sqrt{2}-2\sqrt{2}+3\sqrt{2}=8\sqrt{2} \) です。\( 6\sqrt{3} \) は根号の中どうしを \( 98-8+18=108 \) と計算して \( \sqrt{108}=6\sqrt{3} \) とした誤り（\( \sqrt{a}+\sqrt{b}\ne\sqrt{a+b} \)）です。\( 12\sqrt{2} \) は \( -\sqrt{8} \) の符号を落として \( 7+2+3 \) とした誤り、\( 6\sqrt{2} \) は \( \sqrt{8} \) を \( 4\sqrt{2} \) とした誤り（外に出るのは \( 4 \) の平方根の 2）です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問4</span><span class="q-obj">O2（復習するなら数Ⅰ-014）</span></div>
+  <p>\( \dfrac{6}{\sqrt{5}+\sqrt{2}} \) の分母を有理化したものはどれですか。</p>
+  <div class="choices"><button data-correct="true">\( 2\sqrt{5}-2\sqrt{2} \)</button><button>\( \dfrac{6(\sqrt{5}-\sqrt{2})}{7} \)</button><button>\( 6\sqrt{5}-6\sqrt{2} \)</button><button>\( 2 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">分母と分子に \( \sqrt{5}-\sqrt{2} \) をかけると、分母は \( (\sqrt{5})^2-(\sqrt{2})^2=3 \) なので \( \dfrac{6(\sqrt{5}-\sqrt{2})}{3}=2\sqrt{5}-2\sqrt{2} \) です。\( \dfrac{6(\sqrt{5}-\sqrt{2})}{7} \) は分母を \( 5+2 \) とした符号の誤り、\( 6\sqrt{5}-6\sqrt{2} \) は分母の 3 でわり忘れた誤りです。\( 2 \) は分母だけに \( \sqrt{5}-\sqrt{2} \) をかけて \( \dfrac{6}{3} \) とした誤りで、値が変わってしまいます（もとの数は \( 1.6\cdots \)）。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="x≦-3|-3≧x">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問5</span><span class="q-obj">O3（復習するなら数Ⅰ-016）</span></div>
+  <p>不等式 \( 2(x-4)\geqq 5x+1 \) を解きなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( x\leqq -3 \)。かっこをはずして \( 2x-8\geqq 5x+1 \)、移項して \( -3x\geqq 9 \)、負の数 \( -3 \) でわって向きを変え \( x\leqq -3 \) です。\( x\geqq -3 \) と答えた場合は向きを変え忘れています（\( x=0 \) を代入すると \( -8\geqq 1 \) で成り立たないので、0 は解ではありません）。\( x&lt;-3 \) は等号を落とした誤りで、\( x=-3 \) では両辺とも \( -14 \) で成り立ちます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O1（復習するなら数Ⅰ-011・数Ⅰ-010）</span></div>
+  <p>次のうち、いつも成り立つものはどれですか。</p>
+  <div class="choices">
+    <button>2つの無理数の積は、いつも無理数である。</button>
+    <button>2つの自然数の差は、いつも自然数である。</button>
+    <button data-correct="true">2つの有理数の差は、いつも有理数である。</button>
+    <button>循環しない無限小数で表される数は、いつも有理数である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">2つの有理数は \( \dfrac{a}{b} \)、\( \dfrac{c}{d} \)（\( a,\ b,\ c,\ d \) は整数、\( b\ne 0,\ d\ne 0 \)）と表せます。差は \( \dfrac{ad-bc}{bd} \) で、分子・分母は整数、分母は 0 でないので、有理数です。よって3番目の文はいつも成り立ちます（数Ⅰ-011：有理数は四則演算に関して閉じている）。「2つの無理数の積」は \( \sqrt{2}\times\sqrt{2}=2 \) が反例、「2つの自然数の差」は \( 3-5=-2 \) が反例です。「循環しない無限小数」で表される数は無理数で、有理数は整数・有限小数・循環小数のどれかで表されます（数Ⅰ-010）。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="25">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O2（復習するなら数Ⅰ-014）</span></div>
+  <p>\( x=\dfrac{3}{\sqrt{7}-2} \)、\( y=\dfrac{3}{\sqrt{7}+2} \) のとき、\( x^2+xy+y^2 \) の値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 25。有理化すると \( x=\dfrac{3(\sqrt{7}+2)}{7-4}=\sqrt{7}+2 \)、\( y=\sqrt{7}-2 \)（分母は \( (\sqrt{7})^2-2^2=3 \)）。\( x+y=2\sqrt{7} \)、\( xy=7-4=3 \) なので、\( x^2+xy+y^2=(x+y)^2-xy=28-3=25 \) です。28 と答えた場合は \( (x+y)^2 \) だけを計算しています。22 は \( x^2+y^2=(x+y)^2-2xy \) を求めてしまった答え、31 は \( -xy \) を \( +xy \) とした符号の誤りです。分母を \( 7-2=5 \) と2乗し忘れると、\( x \)、\( y \) の値から誤ります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問8</span><span class="q-obj">O3（復習するなら数Ⅰ-017）</span></div>
+  <p>不等式 \( 2x-3&lt;5x+6\leqq 3x+10 \) の解はどれですか。</p>
+  <div class="choices"><button>\( x&gt;-3 \)</button><button>\( -3\leqq x\leqq 2 \)</button><button>すべての実数</button><button data-correct="true">\( -3&lt;x\leqq 2 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">隣どうしを組にして、\( 2x-3&lt;5x+6 \) から \( -3x&lt;9 \)、\( x&gt;-3 \)。\( 5x+6\leqq 3x+10 \) から \( 2x\leqq 4 \)、\( x\leqq 2 \)。共通部分は \( -3&lt;x\leqq 2 \) です。\( x&gt;-3 \) は、「\( A&lt;B \) と \( A&lt;C \)」に分けて \( 2x-3&lt;3x+10 \)（\( x&gt;-13 \)）と組にした誤りです。\( -3\leqq x\leqq 2 \) は等号の誤りで、\( x=-3 \) では \( 2x-3 \) も \( 5x+6 \) も \( -9 \) となり、\( -9&lt;-9 \) は成り立ちません。「すべての実数」は、2つの解 \( x&gt;-3 \) と \( x\leqq 2 \) を合わせた範囲を答えた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O3（復習するなら数Ⅰ-019）</span></div>
+  <p>学習用に作成した架空の場面です。スポーツクラブ X は入会金 3000 円と1回 400 円、スポーツクラブ Y は入会金なしで1回 700 円です。どちらも、利用するたびに1回分の料金がかかります。</p>
+  <p>太郎：「\( n \) 回利用するとき、X は \( 3000+400n \) 円、Y は \( 700n \) 円だね。」<br>花子：「X のほうが安くなるのは、何回以上利用するときかな。」</p>
+  <p>正しい答えはどれですか。</p>
+  <div class="choices"><button>10 回以上</button><button data-correct="true">11 回以上</button><button>9 回以下</button><button>5 回以上</button></div>
+  <span class="result"></span>
+  <div class="explain">\( 3000+400n&lt;700n \) を解くと、\( -300n&lt;-3000 \)、負の数 \( -300 \) でわって向きを変え \( n&gt;10 \)。回数は整数なので 11 回以上です。10 回以上は等号の誤りで、10 回ではどちらも 7000 円で、X のほうが安いとはいえません。9 回以下は \( -300 \) でわるときに向きを変え忘れて \( n&lt;10 \) とした誤りです。5 回以上は X の1回 400 円を落として \( 3000&lt;700n \)（\( n&gt;4.2\cdots \)）とした誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q10" data-accept="7|7個|7こ">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O4（復習するなら数Ⅰ-012・数Ⅰ-018）</span></div>
+  <p>数直線上の点 P\( (x) \) が、点 A\( (3) \) との距離が 5 以下で、点 B\( (-1) \) との距離が 2 より大きいという2つの条件を満たします。このような整数 \( x \) は何個ありますか（個数を数字で入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 7 個。\( \mathrm{AP}=|x-3| \)、\( \mathrm{BP}=|x-(-1)|=|x+1| \) なので（数Ⅰ-012）、条件は \( |x-3|\leqq 5 \) と \( |x+1|&gt;2 \) です。\( |x-3|\leqq 5 \) より \( -5\leqq x-3\leqq 5 \)、\( -2\leqq x\leqq 8 \)。\( |x+1|&gt;2 \) より \( x+1&lt;-2 \) または \( 2&lt;x+1 \)、つまり \( x&lt;-3,\ 1&lt;x \)（数Ⅰ-018）。両方を満たすのは共通部分の \( 1&lt;x\leqq 8 \) で、整数は 2 から 8 までの 7 個です。6 個と答えた場合は、\( |x+1| \) を点 1 からの距離と読んで \( x&lt;-1,\ 3&lt;x \) とし、\( -2,\ 4,\ 5,\ 6,\ 7,\ 8 \) を数えています。8 個と答えた場合は、「2 より大きい」を「2 以上」と取り違えて \( x=1 \)（\( \mathrm{BP}=2 \)）を含めています。3 個と答えた場合は、\( |x+1|&gt;2 \) の解を、距離が 2 より小さい範囲 \( -3&lt;x&lt;1 \) と取り違えています。11 個と答えた場合は、2つ目の条件を使っていません。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(1) 数と式」の「数を実数まで拡張する意義を理解し，簡単な無理数の四則計算をすること」（ア(ア)）、「不等式の解の意味や不等式の性質について理解し，一次不等式の解を求めること」（ア(エ)）、「日常の事象や社会の事象などを数学的に捉え，一次不等式を問題解決に活用すること」（イ(エ)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めています。場面の条件を不等式に表して解き、整数や等号の条件で吟味する手順は、二次関数の最大・最小や二次不等式の活用でも同じです。</p>
+  <p class="small">問9は会話と日常の場面を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">復習：集合と命題（数Ⅰ-100）</p>
+  <p>次の時間は単元「集合と命題」（数Ⅰ-021〜029）を復習します。この時間に数直線に表した不等式の解や連立不等式の共通部分は、集合の共通部分 \( A\cap B \) として見直せます。問6で確かめた「有理数どうしの和・差・積・商は有理数」は、次の時間に背理法の証明の根拠として使います。</p>
+  <p>この時間では、新しい内容は扱っていません。二重根号や3次の対称式（一部の教科書で「発展」。単元「数と式」の注）は、この範囲に含まれません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-097　復習：式の展開と因数分解</div>
+  <div><span class="label">次の時間</span>数Ⅰ-100　復習：集合と命題</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-098「復習：実数・根号を含む式の計算と一次不等式」（区分：復習。学習指導要領 数学Ⅰ (1)ア(ア)・ア(エ)・イ(エ)。† 教科書で一般的な内容を含む行。範囲の数Ⅰ-012・018 の内容を含むため）。単元「復習（予備時間）」の注。範囲の各行 hs_math_1a/数Ⅰ-009〜019 の要点と、それぞれの完成ページの用語・公式・よくある間違い。単元「数と式」の注（二重根号・3次の対称式は載せていない）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(1) 数と式（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.34-37（単元「数と式」：数を実数まで拡張する意義、簡単な無理数の四則計算、一次不等式）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+    <li>教科書編修趣意書（発展的な学習内容の記述）：東京書籍『改訂版 数学Ⅰ Standard』（数Ⅰ002-902）の「二重根号」、数研出版『改訂版 数学Ⅰ』（数Ⅰ104-901）の「2重根号」「対称式と基本対称式」（同書の編修の趣旨に「発展(35ページ)で3次の対称式の値」）（文部科学省公開）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-2.pdf、https://www.mext.go.jp/content/20250415-ope_dev03-000041678-14.pdf</li>
+    <li>東京書籍「シラバス案 数学Ⅰ（数Ⅰ002-902）」の「不等式の応用」（「絶対値記号を含む基本的な方程式・不等式を解くことができる」ことが教科書の学習項目であることの確認。数Ⅰ-018 と同じ出典）https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_su1_syllabus.pdf</li>
+    <li>新興出版社啓林館 高校数学「爽解数学」「深進数学」シリーズの数学Ⅰ 年間指導計画（「絶対値を含む方程式・不等式」が本文、「絶対値を含む方程式・不等式の場合分けによる解法」が「研究」であることの確認。数Ⅰ-018 と同じ出典）https://www.shinko-keirin.co.jp/keirinkan/kou/math/teacher-2026/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料と、範囲の完成ページをもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。印刷の料金とスポーツクラブの場面は、学習用に作成した架空のものです。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-098",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-098",
+  "title": "復習：実数・根号を含む式の計算と一次不等式",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-7", "title": "復習（予備時間）"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ア)", "(1)ア(エ)", "(1)イ(エ)"],
+  "kaisetsu_page": "",
+  "objectives": [
+    {"id": "O1", "text": "有理数・無理数の意味と循環小数の分数表示をもとに、数を自然数・整数・有理数・無理数に分類し、実数の四則演算の性質を判断できる。", "from": "実数の分類", "sections": ["sec-1"], "checks": ["q1", "q2", "q6"]},
+    {"id": "O2", "text": "根号の中を簡単にして根号を含む式の加法・減法・乗法を計算し、分母を有理化して式の値を求めることができる。", "from": "根号を含む式の計算と分母の有理化", "sections": ["sec-2"], "checks": ["q3", "q4", "q7"]},
+    {"id": "O3", "text": "不等式の性質を根拠に一次不等式・連立不等式を解き、場面の条件を不等式に表して、解の吟味まで行うことができる。", "from": "一次不等式・連立不等式の解き方と活用の問題に取り組む", "sections": ["sec-3"], "checks": ["q5", "q8", "q9"]},
+    {"id": "O4", "text": "絶対値を数直線上の距離とみて絶対値の記号をはずし、絶対値を含む方程式・不等式を解くことができる。", "from": "実数の分類と絶対値…絶対値を含む方程式や不等式の解き方と活用の問題に取り組む", "sections": ["sec-4"], "checks": ["q10"]}
+  ],
+  "key_terms": [
+    {"term": "有理数・無理数・実数", "where": "sec-1"},
+    {"term": "循環小数", "where": "sec-1"},
+    {"term": "絶対値", "where": "sec-4"},
+    {"term": "分母の有理化", "where": "sec-2"},
+    {"term": "対称式", "where": "sec-2"},
+    {"term": "不等式の性質", "where": "sec-3"},
+    {"term": "連立不等式・共通部分", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "有理数・無理数・実数と数の体系（√3 が無理数、π が無理数であることが知られている）", "taught_in": ["hs_math_1a/数Ⅰ-009"], "gap": false, "where": "sec-1"},
+    {"concept": "有限小数・循環小数と、循環小数を分数で表す方法", "taught_in": ["hs_math_1a/数Ⅰ-010"], "gap": false, "where": "sec-1"},
+    {"concept": "四則演算が閉じていること、実数と数直線", "taught_in": ["hs_math_1a/数Ⅰ-011"], "gap": false, "where": "sec-1"},
+    {"concept": "絶対値の記号のはずし方", "taught_in": ["hs_math_1a/数Ⅰ-012"], "gap": false, "where": "review"},
+    {"concept": "根号を含む式の加法・減法・乗法", "taught_in": ["hs_math_1a/数Ⅰ-013"], "gap": false, "where": "sec-2"},
+    {"concept": "分母の有理化と対称式の値", "taught_in": ["hs_math_1a/数Ⅰ-014"], "gap": false, "where": "sec-2"},
+    {"concept": "不等式の解の意味と不等式の性質①〜④", "taught_in": ["hs_math_1a/数Ⅰ-015"], "gap": false, "where": "review"},
+    {"concept": "一次不等式の解き方", "taught_in": ["hs_math_1a/数Ⅰ-016"], "gap": false, "where": "sec-3"},
+    {"concept": "連立不等式と A<B<C の形の不等式", "taught_in": ["hs_math_1a/数Ⅰ-017"], "gap": false, "where": "sec-3"},
+    {"concept": "絶対値を含む方程式・不等式（距離の見方、場合分け）", "taught_in": ["hs_math_1a/数Ⅰ-018"], "gap": false, "where": "sec-4"},
+    {"concept": "差の絶対値と数直線上の2点間の距離", "taught_in": ["hs_math_1a/数Ⅰ-012"], "gap": false, "where": "sec-4"},
+    {"concept": "一次不等式の活用（立式と吟味）", "taught_in": ["hs_math_1a/数Ⅰ-019"], "gap": false, "where": "sec-3"},
+    {"concept": "単元をまたぐ整理で示す、根号・不等式を使った場面（背理法・集合・最大最小の活用・解の公式・二次不等式）", "taught_in": ["hs_math_1a/数Ⅰ-029", "hs_math_1a/数Ⅰ-022", "hs_math_1a/数Ⅰ-043", "hs_math_1a/数Ⅰ-046", "hs_math_1a/数Ⅰ-049", "hs_math_1a/数Ⅰ-052"], "gap": false, "where": "sec-3"},
+    {"concept": "乗法公式（根号を含む式の乗法・有理化で使う）", "taught_in": ["hs_math_1a/数Ⅰ-003"], "gap": false, "where": "sec-2"}
+  ],
+  "out_of_scope": [
+    "二重根号（一部の教科書で「発展」。単元「数と式」の注）",
+    "3次の対称式（一部の教科書で「発展」。単元「数と式」の注）",
+    "絶対値の記号を2つ以上含む方程式・不等式（絶対値を含むやや複雑な方程式・不等式を「研究」とする教科書がある。数Ⅰ-018）",
+    "集合と命題の復習（数Ⅰ-100）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『復習（予備時間）』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(1)ア(ア)・ア(エ)・イ(エ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.34-37 単元「数と式」の扱い（実数、簡単な無理数の四則計算、一次不等式）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"},
+    {"name": "教科書編修趣意書 数学Ⅰ『改訂版 数学Ⅰ Standard』（数Ⅰ002-902）", "publisher": "東京書籍（文部科学省公開）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-2.pdf", "use": "発展的な学習内容の記述（二重根号）"},
+    {"name": "教科書編修趣意書 数学Ⅰ『改訂版 数学Ⅰ』（数Ⅰ104-901）", "publisher": "数研出版（文部科学省公開）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-14.pdf", "use": "発展的な学習内容の記述（2重根号、対称式と基本対称式。3次の対称式の値は発展）"},
+    {"name": "シラバス案 数学Ⅰ（数Ⅰ002-902）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_su1_syllabus.pdf", "use": "「絶対値記号を含む基本的な方程式・不等式を解くことができる」（不等式の応用）＝教科書の学習項目（† の内容。数Ⅰ-018 と同じ出典）"},
+    {"name": "年間指導計画 数学Ⅰ（爽解数学・深進数学シリーズ）", "publisher": "新興出版社啓林館", "url": "https://www.shinko-keirin.co.jp/keirinkan/kou/math/teacher-2026/", "use": "「絶対値を含む方程式・不等式」が本文、「絶対値を含む方程式・不等式の場合分けによる解法」が「研究」（絶対値の節の注記。保存本文：sources/text/kr_m1_soukai_keikaku.txt・kr_m1_shinshin_keikaku.txt）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>組合せの活用（図形）｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+.widget .w-row { display: flex; flex-wrap: wrap; gap: 4px 18px; align-items: center; }
+.pair-list { display: flex; flex-wrap: wrap; gap: 4px 10px; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-013</span></div>
+  <h1>組合せの活用（図形）</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">正八角形には対角線が何本あるでしょうか。1本ずつ引いて数えると、数え漏れや同じ線の数え直しが起こりがちです。図形を「点や線の選び方」に置きかえて、組合せで数える方法を学びます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>多角形の2つの頂点の選び方と線分を1対1に対応させ、\( n \) 角形の対角線の本数を \( {}_n\mathrm{C}_2-n \) として求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>いくつかの点を結んでできる三角形の個数を、3点の選び方と対応させて組合せで求め、一直線上にある3点の組を除く必要があるかを判断できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>平行線の組でできる平行四辺形の個数などを、図形を決める点や線の選び方に対応させ、組合せと積の法則を用いて求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-012）</span>nCr の性質</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-013）</span>組合せの活用（図形）</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-014）</span>組分け</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。同じ単元の数Ａ-001〜012（補集合の要素の個数、数え上げの原則、和の法則・積の法則、順列、組合せ \( {}_n\mathrm{C}_r \) とその性質）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">組合せ（数Ａ-011）と \( {}_n\mathrm{C}_r \) の性質（数Ａ-012）</p>
+  <p>異なる \( n \) 個のものから異なる \( r \) 個を、順番を考えずに選ぶ選び方を<strong>組合せ</strong>といい、その総数を \( {}_n\mathrm{C}_r \) で表します。\( {}_n\mathrm{P}_r={}_n\mathrm{C}_r\times r! \) から \( {}_n\mathrm{C}_r=\dfrac{{}_n\mathrm{P}_r}{r!} \) です（数Ａ-011）。また \( {}_n\mathrm{C}_r={}_n\mathrm{C}_{n-r} \) が成り立ちます（数Ａ-012）。</p>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-011</span></div>
+  <p>\( {}_6\mathrm{C}_2 \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( 30 \)</button>
+    <button data-correct="true">\( 15 \)</button>
+    <button>\( 36 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( {}_6\mathrm{C}_2=\dfrac{{}_6\mathrm{P}_2}{2!}=\dfrac{6\cdot5}{2\cdot1}=15 \)。\( 30 \) は \( {}_6\mathrm{P}_2 \) で、選んだ2個の順番を区別して数えています（\( 2!=2 \) で割り忘れ）。\( 36 \) は \( 6^2 \) で、同じものを2回選ぶことも許した重複順列（数Ａ-010）の数です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-012</span></div>
+  <p>\( {}_{12}\mathrm{C}_{10} \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( 132 \)</button>
+    <button>\( 45 \)</button>
+    <button data-correct="true">\( 66 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( {}_{12}\mathrm{C}_{10}={}_{12}\mathrm{C}_{2}=\dfrac{12\cdot11}{2\cdot1}=66 \)。12個から10個を選ぶことは、選ばない2個を選ぶことと同じです。\( 132 \) は \( 12\cdot11 \) で \( 2! \) で割り忘れた値、\( 45 \) は \( {}_{10}\mathrm{C}_2 \) で、\( {}_{n}\mathrm{C}_{n-r} \) の \( n \) を 10 と取り違えた値です。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-001</span></div>
+  <p>1 から 50 までの整数のうち、3 の倍数<strong>でない</strong>ものは何個ですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 34 \)</button>
+    <button>\( 16 \)</button>
+    <button>\( 33 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">3 の倍数は \( 3\times1 \) から \( 3\times16=48 \) までの 16 個です。全体集合を 1 から 50 までの整数とすると、\( n(\overline{A})=n(U)-n(A)=50-16=34 \)（数Ａ-001）。\( 16 \) は 3 の倍数そのものの個数、\( 33 \) は \( 50\div3=16.6\cdots \) を切り上げて 3 の倍数を 17 個と数えた誤りです。この時間も、「数えにくいものは、全体から除くものを引く」考え方を使います。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">多角形と対角線</p>
+  <p>三角形・四角形・五角形のように、いくつかの線分で囲まれた図形を<strong>多角形</strong>といい、頂点が \( n \) 個の多角形を \( n \) 角形といいます（中2-049 で \( n \) 角形の内角の和を学びました）。多角形の<strong>隣り合わない</strong>2つの頂点を結ぶ線分を<strong>対角線</strong>といいます。「対角線」は小学校算数の第4学年で学ぶ用語です。</p>
+  <p>例：三角形にはどの2頂点も隣り合っているので対角線はなく、四角形 ABCD の対角線は AC と BD の2本です。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：正八角形の対角線は何本？</h2>
+<div class="box think">
+  <p class="box-title">数え漏れなく、重複なく</p>
+  <p>正八角形の対角線を、紙にかいて数えてみましょう。頂点を1つずつ回って引いていくと、「この線はもう数えたかな？」と迷う場面が出てきます。頂点の数が 20 個、30 個と増えたら、かいて数えるのは大変です。</p>
+  <ul>
+    <li>正八角形の対角線は何本でしょうか。予想してから数えてみましょう。</li>
+    <li>かかずに数える方法はないでしょうか。</li>
+  </ul>
+  <p>この時間は、図形を<strong>点や線の選び方</strong>に置きかえて、組合せ \( {}_n\mathrm{C}_r \) で数えます。答えは「3 対角線の本数を組合せで数える」で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="対角線の本数"><span class="num">3</span>対角線の本数を組合せで数える</h2>
+<p>正六角形 ABCDEF で考えます。6個の頂点から2個を選ぶと、その2点を結ぶ線分が1本決まります。逆に、頂点どうしを結ぶ線分を1本決めると、その両端の2点が決まります。つまり、「2つの頂点の選び方」と「頂点どうしを結ぶ線分」は<strong>1対1に対応</strong>しています。分かりやすいものと1対1に対応付けて数える考え方は、数Ａ-003 で学びました。</p>
+<p>線分 AB と線分 BA は同じ線分なので、選ぶ2点の順番は考えません。したがって、頂点どうしを結ぶ線分は \( {}_6\mathrm{C}_2=\dfrac{6\cdot5}{2\cdot1}=15 \) 本です。このうち6本は正六角形の辺なので、対角線は \( 15-6=9 \) 本です。</p>
+<figure>
+<!--svg:f013a-->
+<svg viewBox="0 0 300 262" width="300" role="img" aria-label="正六角形 ABCDEF。頂点どうしを結ぶ15本の線分のうち、6本の辺を実線、9本の対角線を赤の破線でかいた図">
+<line x1="102" y1="44.9" x2="246" y2="128" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="6 4" data-seg="AC"/>
+<line x1="102" y1="44.9" x2="198" y2="211.1" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="6 4" data-seg="AD"/>
+<line x1="102" y1="44.9" x2="102" y2="211.1" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="6 4" data-seg="AE"/>
+<line x1="198" y1="44.9" x2="198" y2="211.1" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="6 4" data-seg="BD"/>
+<line x1="198" y1="44.9" x2="102" y2="211.1" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="6 4" data-seg="BE"/>
+<line x1="198" y1="44.9" x2="54" y2="128" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="6 4" data-seg="BF"/>
+<line x1="246" y1="128" x2="102" y2="211.1" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="6 4" data-seg="CE"/>
+<line x1="246" y1="128" x2="54" y2="128" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="6 4" data-seg="CF"/>
+<line x1="198" y1="211.1" x2="54" y2="128" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="6 4" data-seg="DF"/>
+<line x1="102" y1="44.9" x2="198" y2="44.9" stroke="currentColor" stroke-width="2.4" data-seg="AB"/>
+<line x1="198" y1="44.9" x2="246" y2="128" stroke="currentColor" stroke-width="2.4" data-seg="BC"/>
+<line x1="246" y1="128" x2="198" y2="211.1" stroke="currentColor" stroke-width="2.4" data-seg="CD"/>
+<line x1="198" y1="211.1" x2="102" y2="211.1" stroke="currentColor" stroke-width="2.4" data-seg="DE"/>
+<line x1="102" y1="211.1" x2="54" y2="128" stroke="currentColor" stroke-width="2.4" data-seg="EF"/>
+<line x1="54" y1="128" x2="102" y2="44.9" stroke="currentColor" stroke-width="2.4" data-seg="AF"/>
+<circle cx="102" cy="44.9" r="3.5" fill="currentColor"/>
+<text x="93.8" y="35.7" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">A</text>
+<circle cx="198" cy="44.9" r="3.5" fill="currentColor"/>
+<text x="206.2" y="35.7" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">B</text>
+<circle cx="246" cy="128" r="3.5" fill="currentColor"/>
+<text x="262.3" y="133" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">C</text>
+<circle cx="198" cy="211.1" r="3.5" fill="currentColor"/>
+<text x="206.2" y="230.3" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">D</text>
+<circle cx="102" cy="211.1" r="3.5" fill="currentColor"/>
+<text x="93.8" y="230.3" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">E</text>
+<circle cx="54" cy="128" r="3.5" fill="currentColor"/>
+<text x="37.7" y="133" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">F</text>
+<text x="10" y="250" font-size="12" fill="currentColor">━ 辺（6本）</text>
+<text x="150" y="250" font-size="12" fill="#c0392b">- - 対角線（9本）</text>
+</svg>
+<!--/svg:f013a-->
+  <figcaption>図1　正六角形の頂点どうしを結ぶ 15 本の線分。辺は6本（実線）、対角線は9本（赤の破線）</figcaption>
+</figure>
+<div class="table-wrap">
+<table>
+  <tr><th>2頂点の選び方</th><th>本数</th><th>選び方（線分）</th></tr>
+  <tr><td>隣り合う2頂点（辺）</td><td>6</td><td>AB、BC、CD、DE、EF、FA</td></tr>
+  <tr><td>隣り合わない2頂点（対角線）</td><td>9</td><td>AC、AD、AE、BD、BE、BF、CE、CF、DF</td></tr>
+  <tr><td>合計</td><td>15</td><td>\( {}_6\mathrm{C}_2=15 \)</td></tr>
+</table>
+</div>
+<p>同じように考えると、\( n \) 角形（\( n\geqq3 \)）では、頂点どうしを結ぶ線分が \( {}_n\mathrm{C}_2 \) 本あり、そのうち \( n \) 本が辺です。</p>
+<div class="box point"><p class="box-title">\( n \) 角形の対角線の本数</p>
+$$ {}_n\mathrm{C}_2-n=\frac{n(n-1)}{2}-n=\frac{n(n-3)}{2} $$
+<p>（2頂点の選び方の総数）から（辺の本数）を引きます。</p></div>
+
+<h3>別の数え方で確かめる</h3>
+<p>1つの頂点から引ける対角線は、その頂点自身と両隣の2つの頂点を除いた \( n-3 \) 本です。\( n \) 個の頂点のそれぞれから引くと \( n(n-3) \) 本になりますが、たとえば対角線 AC は、A から引くときと C から引くときの<strong>2回</strong>数えています。そこで2で割って \( \dfrac{n(n-3)}{2} \) 本となり、組合せで求めた式と一致します。</p>
+<p><strong>導入の問いの答え</strong>：正八角形の対角線は \( {}_8\mathrm{C}_2-8=28-8=20 \) 本です（\( \dfrac{8\cdot5}{2}=20 \) でも同じ）。</p>
+
+<h3>頂点の数を変えて確かめよう</h3>
+<p>スライダーで頂点の数 \( n \) を変えると、正 \( n \) 角形と対角線（赤の破線）が表示されます。「頂点 A から引く対角線だけを表示」にすると、1つの頂点から引ける \( n-3 \) 本が見えます。</p>
+<div class="widget" id="w1">
+  <div class="w-row">
+    <span><label for="w1-n">頂点の数 \( n \)：</label><input type="range" id="w1-n" min="3" max="12" step="1" value="8"> <output id="w1-nv" for="w1-n">8</output></span>
+    <span><label><input type="checkbox" id="w1-one"> 頂点 A から引く対角線だけを表示</label></span>
+  </div>
+  <div><svg id="w1-svg" viewBox="0 0 320 300" width="320" role="img" aria-label="正 n 角形と、その対角線を赤の破線で表示する図。n はスライダーで 3 から 12 まで変えられる"></svg></div>
+  <p class="w-out" id="w1-out" aria-live="polite">n = 8 のとき：頂点どうしを結ぶ線分は ₈C₂ = 28 本。そのうち辺が 8 本なので、対角線は 28 − 8 = 20 本。</p>
+</div>
+
+<div class="box example worked">
+  <p class="box-title">例題1（十角形の対角線）</p>
+  <p>十角形の対角線の本数を求めなさい。</p>
+  <div class="step">着眼点：2つの頂点の選び方と、頂点どうしを結ぶ線分は1対1に対応します。選ぶ順番は考えないので組合せです。</div>
+  <div class="step">頂点どうしを結ぶ線分は \( {}_{10}\mathrm{C}_2=\dfrac{10\cdot9}{2\cdot1}=45 \) 本。</div>
+  <div class="step">このうち辺が 10 本なので、対角線は \( 45-10=35 \) 本。</div>
+  <div class="step">確かめ：\( \dfrac{10\times(10-3)}{2}=35 \)。答え 35 本。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（対角線の本数から何角形かを求める）</p>
+  <p>対角線が 44 本ある多角形は何角形ですか。</p>
+  <div class="step">着眼点：\( n \) 角形として、対角線の本数を \( n \) の式で表して方程式を作ります。\( n \) は 3 以上の整数です。</div>
+  <div class="step">\( \dfrac{n(n-3)}{2}=44 \) より \( n^2-3n=88 \)、\( n^2-3n-88=0 \)。</div>
+  <div class="step">因数分解して \( (n-11)(n+8)=0 \)（二次方程式を因数分解で解く方法は中3-041）。\( n=11,\ -8 \)。</div>
+  <div class="step">\( n\geqq3 \) なので \( n=11 \)。答え 十一角形。確かめ：\( {}_{11}\mathrm{C}_2-11=55-11=44 \)。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（対角線）</p><p>① \( {}_n\mathrm{C}_2 \) をそのまま答える：\( {}_n\mathrm{C}_2 \) には辺も含まれています。辺の \( n \) 本を引きます。<br>② \( n(n-3) \) で終える：どの対角線も両端の頂点から2回数えています。2で割ります。<br>③ \( {}_n\mathrm{P}_2 \) を使う：\( {}_n\mathrm{P}_2 \) は「A から C」と「C から A」を別に数えるので、線分の本数の2倍になります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="三角形の個数"><span class="num">4</span>点を結んでできる三角形の個数</h2>
+<p>一直線上にない3点を結ぶと、三角形が1つできます。逆に、三角形を1つ決めると、その3つの頂点が決まります。どの3点も一直線上にない点の集まりでは、「3点の選び方」と「三角形」が1対1に対応するので、\( n \) 個の点を結んでできる三角形の個数は \( {}_n\mathrm{C}_3 \) です。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（正七角形の頂点でできる三角形）</p>
+  <p>正七角形の7個の頂点のうち3個を結んでできる三角形の個数を求めなさい。</p>
+  <div class="step">着眼点：正七角形のどの3つの頂点も一直線上にないので、3点の選び方と三角形が1対1に対応します。</div>
+  <div class="step">三角形 ABC と三角形 BCA は同じ三角形なので、選ぶ順番は考えません。</div>
+  <div class="step">\( {}_7\mathrm{C}_3=\dfrac{7\cdot6\cdot5}{3\cdot2\cdot1}=35 \)。答え 35 個。</div>
+</div>
+<p>同じように、円周上の異なる8個の点のうち4個を選ぶと四角形が1つ決まるので、円周上の8点を結んでできる四角形は \( {}_8\mathrm{C}_4=70 \) 個です。</p>
+
+<h3>一直線上にある点を含むとき</h3>
+<p>3点が一直線上にあると、結んでも三角形になりません。このような3点の組が含まれるときは、その組を除いて数えます。</p>
+<figure>
+<!--svg:f013b-->
+<svg viewBox="0 0 400 236" width="400" role="img" aria-label="平行な2直線 p と q。p 上に A、B、C、D の4点、q 上に E、F、G の3点。B、D、F を結ぶ三角形を青で示し、A、B、C の3点は一直線上にあって三角形にならないことを示した図">
+<polygon points="150,60 310,60 210,170" fill="#1f5fbf" fill-opacity="0.12" stroke="#1f5fbf" stroke-width="2.2" data-tri="BDF"/>
+<line x1="30" y1="60" x2="370" y2="60" stroke="currentColor" stroke-width="1.6"/>
+<line x1="30" y1="170" x2="370" y2="170" stroke="currentColor" stroke-width="1.6"/>
+<text x="378" y="65" font-size="15" font-style="italic" fill="currentColor">p</text>
+<text x="378" y="175" font-size="15" font-style="italic" fill="currentColor">q</text>
+<rect x="54" y="44" width="192" height="32" rx="14" fill="none" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="5 3" data-collinear="ABC"/>
+<text x="150" y="36" text-anchor="middle" font-size="12" fill="#c0392b">A・B・C：一直線上なので三角形にならない</text>
+<circle cx="70" cy="60" r="4" fill="currentColor" data-pt="A"/>
+<text x="70" y="86" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">A</text>
+<circle cx="150" cy="60" r="4" fill="currentColor" data-pt="B"/>
+<text x="150" y="86" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">B</text>
+<circle cx="230" cy="60" r="4" fill="currentColor" data-pt="C"/>
+<text x="230" y="86" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">C</text>
+<circle cx="310" cy="60" r="4" fill="currentColor" data-pt="D"/>
+<text x="310" y="86" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">D</text>
+<circle cx="110" cy="170" r="4" fill="currentColor" data-pt="E"/>
+<text x="110" y="194" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">E</text>
+<circle cx="210" cy="170" r="4" fill="currentColor" data-pt="F"/>
+<text x="210" y="194" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">F</text>
+<circle cx="290" cy="170" r="4" fill="currentColor" data-pt="G"/>
+<text x="290" y="194" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">G</text>
+<text x="200" y="226" text-anchor="middle" font-size="12" fill="#1f5fbf">青：B・D・F を結んだ三角形（p から2点、q から1点）</text>
+</svg>
+<!--/svg:f013b-->
+  <figcaption>図2　平行な2直線 \( p \)、\( q \) の上の7個の点。\( p \) 上の3点（例：A、B、C）を選ぶと三角形にならない</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題4（平行な2直線の上の点でできる三角形）</p>
+  <p>図2のように、平行な2直線 \( p \)、\( q \) があり、\( p \) 上に4個の点 A、B、C、D、\( q \) 上に3個の点 E、F、G があります。この7個の点のうち3個を結んでできる三角形の個数を求めなさい。</p>
+  <div class="step">着眼点：同じ直線上の3点を選ぶと三角形になりません。「全体から除く」方法と「場合に分ける」方法の2通りで求めます。</div>
+  <div class="step">解き方1（全体から除く）：7点から3点を選ぶ選び方は \( {}_7\mathrm{C}_3=35 \) 通り。このうち、\( p \) 上の4点から3点を選ぶ \( {}_4\mathrm{C}_3=4 \) 通りと、\( q \) 上の3点を選ぶ \( {}_3\mathrm{C}_3=1 \) 通りは三角形になりません。\( 35-4-1=30 \) 個。</div>
+  <div class="step">解き方2（場合に分ける）：三角形になるのは、\( p \) から2点・\( q \) から1点を選ぶとき（\( {}_4\mathrm{C}_2\times3=18 \) 通り）か、\( p \) から1点・\( q \) から2点を選ぶとき（\( 4\times{}_3\mathrm{C}_2=12 \) 通り）。この2つは同時には起こらないので、和の法則（数Ａ-004）で \( 18+12=30 \) 個。それぞれの場合の数は積の法則（数Ａ-005）で求めています。</div>
+  <div class="step">答え 30 個。2通りの方法の結果が一致しました。</div>
+</div>
+<div class="box point"><p class="box-title">2通りの数え方</p><p>「全体から除く」は、数Ａ-001 の \( n(\overline{A})=n(U)-n(A) \) と同じ考え方です。「場合に分ける」は、三角形の頂点がどの直線から何個選ばれるかに着目しています。どちらでも求められるとき、両方で求めて答えを確かめることができます。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い（三角形）</p><p>① 一直線上にある3点の組を引き忘れる：\( {}_7\mathrm{C}_3=35 \) をそのまま答えてしまいます。<br>② 引くとき、一方の直線の分だけを引く：\( p \) 上の \( {}_4\mathrm{C}_3 \) と \( q \) 上の \( {}_3\mathrm{C}_3 \) の両方を引きます。<br>③ 順番を区別して \( {}_7\mathrm{P}_3 \) を使う：同じ三角形を \( 3!=6 \) 回ずつ数えることになります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="平行四辺形の個数"><span class="num">5</span>線の選び方と対応させる（平行四辺形の個数）</h2>
+<p>平行四辺形は、2組の向かい合う辺がそれぞれ平行な四角形です（中2-067）。図3のように、横に平行な4本の直線と、それらと交わる斜めに平行な3本の直線があります。これらの直線を辺に含む平行四辺形を考えます。</p>
+<figure>
+<!--svg:f013c-->
+<svg viewBox="0 0 420 262" width="420" role="img" aria-label="横に平行な4本の直線と、斜めに平行な3本の直線。横の組から2本、斜めの組から2本を選ぶと平行四辺形が1つ決まる。横の1本目と3本目、斜めの1本目と3本目で囲まれた平行四辺形を青で示した図">
+<polygon points="157.5,40 357.5,40 307.5,140 107.5,140" fill="#1f5fbf" fill-opacity="0.15" stroke="#1f5fbf" stroke-width="3" data-para="h1h3s1s3"/>
+<line x1="20" y1="40" x2="372" y2="40" stroke="currentColor" stroke-width="1.5" data-h="1"/>
+<text x="380" y="45" font-size="12" fill="currentColor">横1</text>
+<line x1="20" y1="90" x2="372" y2="90" stroke="currentColor" stroke-width="1.5" data-h="2"/>
+<text x="380" y="95" font-size="12" fill="currentColor">横2</text>
+<line x1="20" y1="140" x2="372" y2="140" stroke="currentColor" stroke-width="1.5" data-h="3"/>
+<text x="380" y="145" font-size="12" fill="currentColor">横3</text>
+<line x1="20" y1="190" x2="372" y2="190" stroke="currentColor" stroke-width="1.5" data-h="4"/>
+<text x="380" y="195" font-size="12" fill="currentColor">横4</text>
+<line x1="73.5" y1="208" x2="166.5" y2="22" stroke="#1e8e5a" stroke-width="1.5" stroke-dasharray="7 3" data-s="1"/>
+<text x="73.5" y="224" text-anchor="middle" font-size="12" fill="#1e8e5a">斜め1</text>
+<line x1="173.5" y1="208" x2="266.5" y2="22" stroke="#1e8e5a" stroke-width="1.5" stroke-dasharray="7 3" data-s="2"/>
+<text x="173.5" y="224" text-anchor="middle" font-size="12" fill="#1e8e5a">斜め2</text>
+<line x1="273.5" y1="208" x2="366.5" y2="22" stroke="#1e8e5a" stroke-width="1.5" stroke-dasharray="7 3" data-s="3"/>
+<text x="273.5" y="224" text-anchor="middle" font-size="12" fill="#1e8e5a">斜め3</text>
+<text x="10" y="252" font-size="12" fill="currentColor">実線：横の組（4本）</text>
+<text x="200" y="252" font-size="12" fill="#1e8e5a">緑の破線：斜めの組（3本）</text>
+</svg>
+<!--/svg:f013c-->
+  <figcaption>図3　横の組（4本）と斜めの組（3本）。横1・横3と斜め1・斜め3を選ぶと、青の平行四辺形が1つ決まる</figcaption>
+</figure>
+<p>横の組から2本、斜めの組から2本を選ぶと、それらで囲まれた平行四辺形が1つ決まります。逆に、平行四辺形を1つ決めると、その辺を含む直線が横の組から2本、斜めの組から2本決まります。つまり、平行四辺形と「横から2本・斜めから2本の選び方」は1対1に対応します。</p>
+<div class="box example worked">
+  <p class="box-title">例題5（平行四辺形の個数）</p>
+  <p>図3の7本の直線を辺に含む平行四辺形は、全部で何個ありますか。</p>
+  <div class="step">着眼点：平行四辺形を決めるのは「横の組の2本」と「斜めの組の2本」です。</div>
+  <div class="step">横の4本から2本：\( {}_4\mathrm{C}_2=6 \) 通り。斜めの3本から2本：\( {}_3\mathrm{C}_2=3 \) 通り。</div>
+  <div class="step">横の選び方のそれぞれに対して斜めの選び方が3通りずつあるので、積の法則で \( 6\times3=18 \)。答え 18 個。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（平行四辺形）</p><p>① いちばん小さい平行四辺形だけを数える：図3では \( 3\times2=6 \) 個ですが、それらをいくつか合わせた大きい平行四辺形もあります。<br>② 7本から4本を選ぶ \( {}_7\mathrm{C}_4 \) とする：同じ組から3本以上を選ぶ場合も入ってしまい、1対1に対応しません。<br>③ \( {}_4\mathrm{C}_2+{}_3\mathrm{C}_2 \) と足す：横の2本と斜めの2本は<strong>両方</strong>選んで1つの図形になるので、積の法則です。</p></div>
+<div class="box point"><p class="box-title">図形を数えるときの考え方</p>
+<ol>
+  <li>図形を決めるもの（頂点、辺を含む直線など）は何かを考える。</li>
+  <li>その選び方と図形が1対1に対応するかを確かめる。選ぶ順番を区別していないか、一直線上の点のように図形ができない選び方はないか、同じ図形が何通りもの選び方で決まらないか。</li>
+  <li>対応しない選び方を全体から除くか、場合に分けて数える。</li>
+</ol>
+<p>たとえば、4点が一直線上にあると、その4点のどの2点を選んでも同じ直線が決まります。このとき「2点の選び方」と「直線」は1対1に対応しません（確認問題の問10）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>組合せ</dt><dd>異なる \( n \) 個のものから異なる \( r \) 個を、順番を考えずに選ぶ選び方。総数は \( {}_n\mathrm{C}_r \)（数Ａ-011）。</dd>
+    <dt>1対1の対応</dt><dd>2つのものの集まりで、一方の1つに他方の1つがちょうど対応し、余るものがないこと。数えにくいものを、数えやすいものに置きかえて数えられる（数Ａ-003）。</dd>
+    <dt>対角線</dt><dd>多角形の隣り合わない2つの頂点を結ぶ線分。\( n \) 角形の対角線は \( {}_n\mathrm{C}_2-n=\dfrac{n(n-3)}{2} \) 本。</dd>
+    <dt>一直線上にある3点</dt><dd>結んでも三角形にならない3点。三角形の個数を数えるときは、その組を除く。</dd>
+    <dt>積の法則・和の法則</dt><dd>2つの選び方を続けて行うときは積、同時には起こらない場合に分けたときは和で、場合の数を求める（数Ａ-004・005）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>2つの頂点の選び方と頂点どうしを結ぶ線分は1対1に対応する。\( n \) 角形の対角線は \( {}_n\mathrm{C}_2-n=\dfrac{n(n-3)}{2} \) 本（O1）。</li>
+    <li>どの3点も一直線上にない \( n \) 個の点を結んでできる三角形は \( {}_n\mathrm{C}_3 \) 個。一直線上にある3点の組があれば、全体から除くか、場合に分けて数える（O2）。</li>
+    <li>平行四辺形は「一方の組から2本・他方の組から2本」の選び方と1対1に対応し、積の法則で求める。図形を決めるものを見つけ、選び方と1対1に対応するかを確かめる（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">\( n \) 角形の対角線の本数</span>$$ {}_n\mathrm{C}_2-n=\frac{n(n-3)}{2} $$</div>
+  <div><span class="f-name">どの3点も一直線上にない \( n \) 点でできる三角形</span>$$ {}_n\mathrm{C}_3 $$</div>
+  <div><span class="f-name">\( a \) 本と \( b \) 本の平行線の組でできる平行四辺形</span>$$ {}_a\mathrm{C}_2\times{}_b\mathrm{C}_2 $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。答えは 42 のように数だけを入力してください（「42本」「42個」のように単位を付けてもかまいません）。</p>
+
+<div class="q" data-type="input" id="q1" data-accept="27|27本">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>九角形の対角線の本数を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 27 本。頂点どうしを結ぶ線分は \( {}_9\mathrm{C}_2=36 \) 本で、そのうち辺が 9 本なので \( 36-9=27 \) 本です（\( \dfrac{9\times6}{2}=27 \) でも同じ）。36 と答えた場合は辺を引き忘れています。54 と答えた場合は、1つの頂点から 6 本ずつ引いて \( 9\times6=54 \) としたところで、両端から2回数えていることを忘れています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>正八角形の8個の頂点のうち3個を結んでできる三角形は何個ありますか。</p>
+  <div class="choices"><button>\( 336 \) 個</button><button>\( 28 \) 個</button><button data-correct="true">\( 56 \) 個</button><button>\( 48 \) 個</button></div>
+  <span class="result"></span>
+  <div class="explain">正八角形のどの3つの頂点も一直線上にないので、三角形は3点の選び方と1対1に対応し、\( {}_8\mathrm{C}_3=\dfrac{8\cdot7\cdot6}{3\cdot2\cdot1}=56 \) 個です。\( 336 \) は \( {}_8\mathrm{P}_3 \) で、同じ三角形を頂点の並べ方の \( 3!=6 \) 通りずつ数えています。\( 28 \) は \( {}_8\mathrm{C}_2 \) で、選ぶ点の個数を2個としています。\( 48 \) は \( 56-8 \) で、対角線のときのように辺の本数を引いていますが、三角形の個数では引くものはありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>平行な5本の直線と、それらと交わる平行な4本の直線があります。これらの直線を辺に含む平行四辺形は何個ありますか。</p>
+  <div class="choices"><button data-correct="true">\( 60 \) 個</button><button>\( 16 \) 個</button><button>\( 12 \) 個</button><button>\( 126 \) 個</button></div>
+  <span class="result"></span>
+  <div class="explain">5本の組から2本（\( {}_5\mathrm{C}_2=10 \) 通り）、4本の組から2本（\( {}_4\mathrm{C}_2=6 \) 通り）を選ぶと平行四辺形が1つ決まるので、積の法則で \( 10\times6=60 \) 個です。\( 16 \) は \( 10+6 \) と足した誤りです。\( 12 \) はいちばん小さい平行四辺形（\( 4\times3=12 \) 個）だけを数えた値です。\( 126 \) は9本から4本を選ぶ \( {}_9\mathrm{C}_4 \) で、同じ組から3本以上選ぶ場合も含んでいます。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="12|12角形|十二角形|n=12">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1</span></div>
+  <p>対角線が 54 本ある多角形は何角形ですか。\( n \) 角形の \( n \) の値を答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 12（十二角形）。\( \dfrac{n(n-3)}{2}=54 \) より \( n^2-3n-108=0 \)、\( (n-12)(n+9)=0 \)。\( n\geqq3 \) なので \( n=12 \) です。確かめ：\( {}_{12}\mathrm{C}_2-12=66-12=54 \)。9 と答えた場合は、2 で割るのを忘れて \( n(n-3)=54 \) を解いています（\( (n-9)(n+6)=0 \)）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>次の図のように、縦3列・横3行に等間隔に並んだ9個の点があります。このうち3個の点を結んでできる三角形は何個ありますか。</p>
+  <figure>
+<!--svg:f013d-->
+<svg viewBox="0 0 150 150" width="150" role="img" aria-label="縦3列、横3行に等間隔に並んだ9個の点">
+<circle cx="35" cy="35" r="4.5" fill="currentColor"/>
+<circle cx="75" cy="35" r="4.5" fill="currentColor"/>
+<circle cx="115" cy="35" r="4.5" fill="currentColor"/>
+<circle cx="35" cy="75" r="4.5" fill="currentColor"/>
+<circle cx="75" cy="75" r="4.5" fill="currentColor"/>
+<circle cx="115" cy="75" r="4.5" fill="currentColor"/>
+<circle cx="35" cy="115" r="4.5" fill="currentColor"/>
+<circle cx="75" cy="115" r="4.5" fill="currentColor"/>
+<circle cx="115" cy="115" r="4.5" fill="currentColor"/>
+</svg>
+<!--/svg:f013d-->
+  </figure>
+  <div class="choices"><button>\( 84 \) 個</button><button>\( 78 \) 個</button><button>\( 504 \) 個</button><button data-correct="true">\( 76 \) 個</button></div>
+  <span class="result"></span>
+  <div class="explain">9点から3点を選ぶ選び方は \( {}_9\mathrm{C}_3=84 \) 通り。このうち一直線上にある3点の組は、横の3行、縦の3列、斜めの2本（対角線上）の合わせて 8 組で、三角形になりません。\( 84-8=76 \) 個です。\( 84 \) は一直線上の組を引き忘れた値、\( 78 \) は縦と横の6組だけを引き、斜めの2組を忘れた値、\( 504 \) は \( {}_9\mathrm{P}_3 \) で順番を区別しています。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="70|70個">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2</span></div>
+  <p>平行な2直線 \( p \)、\( q \) があり、\( p \) 上に5個、\( q \) 上に4個の点があります。この9個の点のうち3個を結んでできる三角形の個数を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 70 個。全体から除くと、\( {}_9\mathrm{C}_3-{}_5\mathrm{C}_3-{}_4\mathrm{C}_3=84-10-4=70 \)。場合に分けると、\( p \) から2点・\( q \) から1点が \( {}_5\mathrm{C}_2\times4=40 \)、\( p \) から1点・\( q \) から2点が \( 5\times{}_4\mathrm{C}_2=30 \) で、\( 40+30=70 \)。84 は一直線上の組を引き忘れた値、74 は \( p \) 上の組だけを引いた値（\( 84-10 \)）、40 は \( p \) から2点を選ぶ場合だけを数えた値です。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="15|15個">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>平面上に6本の直線があり、どの2本も平行でなく、どの3本も同じ点を通りません。これらの直線の交点は全部で何個ありますか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 15 個。平行でない2本の直線は1点で交わるので、2本の直線の選び方1つに交点が1つ決まります。どの3本も同じ点を通らないので、異なる選び方で同じ交点になることはなく、交点と「2本の直線の選び方」は1対1に対応します。\( {}_6\mathrm{C}_2=15 \) 個です。30 と答えた場合は、\( {}_6\mathrm{P}_2 \) のように2本の順番を区別しています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O3</span></div>
+  <p>8チームが、どのチームとも1回ずつ試合をする総当たり戦を行います（学習用の架空の場面）。</p>
+  <p>太郎：「試合数は、正八角形の辺と対角線の本数の合計と同じになるよ。」<br>花子：「チームを頂点と考えるということ？」</p>
+  <p>試合数と太郎さんの考えについて、正しい説明はどれですか。</p>
+  <div class="choices">
+    <button>試合数は \( 8\times7=56 \) 試合。A 対 B と B 対 A は別の試合なので、正八角形の線分の数とは一致しない。</button>
+    <button data-correct="true">試合数は \( {}_8\mathrm{C}_2=28 \) 試合。チームを正八角形の頂点、試合をその2チームの頂点を結ぶ線分と対応させると1対1に対応し、辺と対角線の合計 \( 8+20=28 \) 本と一致する。</button>
+    <button>試合数は対角線の本数と同じ \( 20 \) 試合。辺で結ばれた隣どうしのチームは試合をしない。</button>
+    <button>試合数は \( 28 \) 試合だが、正八角形の辺と対角線の合計は \( {}_8\mathrm{C}_2-8=20 \) 本なので、太郎さんの考えは誤り。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">試合は「2チームの選び方」で決まり、順番は関係ないので \( {}_8\mathrm{C}_2=28 \) 試合です。チームを頂点とみると、試合と「2頂点を結ぶ線分」が1対1に対応し、線分は辺 8 本と対角線 \( 28-8=20 \) 本の合計 28 本です。\( 56 \) は A 対 B と B 対 A を別に数えた \( {}_8\mathrm{P}_2 \) で、同じ試合を2回数えています。\( 20 \) 試合は、隣どうし（辺で結ばれた2チーム）の試合を落としています。最後の説明は、\( {}_8\mathrm{C}_2-8 \) が対角線だけの本数で、「辺と対角線の合計」ではない点が誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q9" data-accept="16|16個">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2</span></div>
+  <p>正八角形の8個の頂点のうち3個を結んでできる三角形のうち、正八角形と辺を1つも共有しないものは何個ありますか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 16 個。三角形は全部で \( {}_8\mathrm{C}_3=56 \) 個（問2）。正八角形と2辺を共有するのは、隣り合う3つの頂点を結ぶもので、真ん中の頂点の選び方の 8 個。1辺だけを共有するのは、共有する辺の選び方 8 通りに対して、残りの頂点をその辺の両端と、両端それぞれの隣の頂点を除いた \( 8-4=4 \) 通りから選ぶので \( 8\times4=32 \) 個。よって \( 56-8-32=16 \) 個です。48 と答えた場合は、2辺を共有するものだけを引いています。8 と答えた場合は、1辺を選んで残りの頂点を \( 8-2=6 \) 通りとした \( 8\times6=48 \) 個を引いていますが、この数え方では2辺を共有する三角形を2回ずつ数えています。</div>
+</div>
+
+<div class="q" data-type="open" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O3・O1</span></div>
+  <p>平面上に7個の点 A、B、C、D、E、F、G があります。A、B、C、D の4点は一直線上にあり、それ以外には一直線上にある3点の組はありません。</p>
+  <p>(1) 7個の点のうち2点を通る直線は、全部で何本ありますか。<br>(2) (1) の答えを \( {}_7\mathrm{C}_2=21 \) 本としてはいけない理由を、「1対1」という語を使って説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) 2点の選び方は \( {}_7\mathrm{C}_2=21 \) 通り。このうち A、B、C、D から2点を選ぶ \( {}_4\mathrm{C}_2=6 \) 通りは、どれも同じ1本の直線を決める。よって直線は \( 21-6+1=16 \) 本。（別解：A〜D の中から2点を選ばない選び方 \( 21-6=15 \) 通りはすべて異なる直線を決め、それに直線 AD の1本を加えて 16 本。）</p>
+    <p>(2) A、B、C、D のうち2点を選ぶ6通りの選び方が、どれも同じ1本の直線を決めるので、「2点の選び方」と「直線」が1対1に対応していないから。</p>
+    <p><strong>採点の観点</strong>　① 一直線上の4点から2点を選ぶ6通りが同じ直線になることに気づいている。② その6通りを1本として数え直している。③ 選び方と直線が1対1に対応しないことを理由として述べている。</p>
+  </div>
+  <div class="explain">21 と答えた場合は、同じ直線を6回数えています。15 と答えた場合は、6通りを引いたあと、A〜D を通る直線そのものの1本を加え忘れています。三角形のときは「三角形にならない選び方」を除きましたが、直線のときは「同じ直線になる選び方」をまとめて1本と数えます。どちらも「選び方と図形が1対1に対応するか」を確かめることが出発点です。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(イ)「具体的な事象を基に順列及び組合せの意味を理解し，順列の総数や組合せの総数を求めること」とイ(ア)「事象の構造などに着目し，場合の数を求める方法を多面的に考察すること」に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。総当たり戦の試合数を図形の線分の数と対応させて考える（問8）ような、事象を数え上げの構造で捉える見方は、こうした処理の基本になります。</p>
+  <p class="small">問8は日常の場面と会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">組分け（数Ａ-014）</p>
+  <p>次の時間は、いくつかのものを組に分ける方法の総数を、<strong>組に区別がある場合とない場合</strong>に分けて、組合せを用いて求めます。この時間の「同じ図形が何通りもの選び方で決まっていないか（1対1に対応するか）」という見方は、組に区別がないときに同じ分け方を何回数えているかを考えるときにも使います。</p>
+  <p>この時間では、同じものを含む順列（数Ａ-015）や、碁盤の目の道の最短経路の数（数Ａ-016）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-012　nCr の性質</div>
+  <div><span class="label">次の時間</span>数Ａ-014　組分け</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-013「組合せの活用（図形）」（学習。学習指導要領 数学Ａ (2)ア(イ)・イ(ア)、解説 p.93）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率 ア(イ)・イ(ア)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.93（数え上げの原則として「より分かりやすいものと 1 対 1 に対応付けたり」すること、場合の数を樹形図や表に整理して順列・組合せの総数の求め方の公式を導くこと）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「組合せ」（「組合せの考え方を利用して図形の個数や同じものを含む順列の総数などが求められることに興味・関心をもつ」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>小学校学習指導要領（平成29年告示）第2章第3節 算数 第4学年〔用語・記号〕「対角線」、第5学年 B(1)ア(イ)「三角形や四角形など多角形についての簡単な性質を理解すること」（中学校学習指導要領（平成29年告示）の冊子に収録）（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_02.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題はこのページのために作成したものです（出典を示したものを除く）。問8の総当たり戦は学習用の架空の場面です。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  var RED = "#c0392b";
+  var NAMES = "ABCDEFGHIJKL";
+  var SUB = "₀₁₂₃₄₅₆₇₈₉";
+  function mk(parent, name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text !== undefined) e.textContent = text;
+    parent.appendChild(e);
+    return e;
+  }
+  function sub(n) {
+    return String(n).split("").map(function (d) { return SUB.charAt(parseInt(d, 10)); }).join("");
+  }
+  function r1(x) { return Math.round(x * 10) / 10; }
+  var svg = document.getElementById("w1-svg");
+  var sn = document.getElementById("w1-n");
+  var one = document.getElementById("w1-one");
+  if (!svg || !sn || !one) return;
+  var outN = document.getElementById("w1-nv");
+  var outT = document.getElementById("w1-out");
+  var CX = 160, CY = 145, R = 110, RL = 126;
+  function draw() {
+    var n = parseInt(sn.value, 10);
+    var onlyA = one.checked;
+    if (outN) outN.textContent = String(n);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var P = [];
+    for (var k = 0; k < n; k++) {
+      var th = Math.PI / 2 - 2 * Math.PI * k / n;
+      P.push([CX + R * Math.cos(th), CY - R * Math.sin(th), CX + RL * Math.cos(th), CY - RL * Math.sin(th)]);
+    }
+    var nd = 0;
+    for (var i = 0; i < n; i++) {
+      for (var j = i + 2; j < n; j++) {
+        if (i === 0 && j === n - 1) continue;
+        if (onlyA && i !== 0) continue;
+        mk(svg, "line", { x1: r1(P[i][0]), y1: r1(P[i][1]), x2: r1(P[j][0]), y2: r1(P[j][1]), stroke: RED, "stroke-width": onlyA ? 2 : 1.2, "stroke-dasharray": "6 4", "data-diag": "1" });
+        nd++;
+      }
+    }
+    for (var s = 0; s < n; s++) {
+      var t = (s + 1) % n;
+      mk(svg, "line", { x1: r1(P[s][0]), y1: r1(P[s][1]), x2: r1(P[t][0]), y2: r1(P[t][1]), stroke: "currentColor", "stroke-width": 2.2, "data-side": "1" });
+    }
+    for (var v = 0; v < n; v++) {
+      mk(svg, "circle", { cx: r1(P[v][0]), cy: r1(P[v][1]), r: 3, fill: v === 0 && onlyA ? RED : "currentColor" });
+      mk(svg, "text", { x: r1(P[v][2]), y: r1(P[v][3] + 5), "text-anchor": "middle", "font-size": 13, fill: "currentColor" }, NAMES.charAt(v));
+    }
+    var c2 = n * (n - 1) / 2;
+    var diag = c2 - n;
+    mk(svg, "text", { x: 6, y: 292, "font-size": 12, fill: RED }, (onlyA ? "頂点 A からの対角線 " : "対角線 ") + nd + " 本");
+    if (outT) {
+      if (onlyA) {
+        outT.textContent = "n = " + n + " のとき：頂点 A から引ける対角線は、A と両隣の頂点を除いた " + n + " − 3 = " + (n - 3)
+          + " 本。" + n + " 個の頂点から引くと " + n + " × " + (n - 3) + " = " + (n * (n - 3)) + " 本だが、どの対角線も両端から2回数えているので "
+          + (n * (n - 3)) + " ÷ 2 = " + diag + " 本。";
+      } else {
+        outT.textContent = "n = " + n + " のとき：頂点どうしを結ぶ線分は " + sub(n) + "C₂ = " + c2 + " 本。そのうち辺が " + n
+          + " 本なので、対角線は " + c2 + " − " + n + " = " + diag + " 本。";
+      }
+    }
+  }
+  sn.addEventListener("input", draw);
+  one.addEventListener("change", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-013",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-013",
+  "title": "組合せの活用（図形）",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(イ)", "(2)イ(ア)"],
+  "kaisetsu_page": "93",
+  "objectives": [
+    {"id": "O1", "text": "多角形の2つの頂点の選び方と線分を1対1に対応させ、\\( n \\) 角形の対角線の本数を \\( {}_n\\mathrm{C}_2-n \\) として求めることができる。", "from": "多角形の対角線の本数…を、組合せを用いて求めることができる", "sections": ["sec-1"], "checks": ["q1", "q4", "q8", "q10"]},
+    {"id": "O2", "text": "いくつかの点を結んでできる三角形の個数を、3点の選び方と対応させて組合せで求め、一直線上にある3点の組を除く必要があるかを判断できる。", "from": "いくつかの点を結んでできる三角形の個数…を、組合せを用いて求めることができる", "sections": ["sec-2"], "checks": ["q2", "q5", "q6", "q9"]},
+    {"id": "O3", "text": "平行線の組でできる平行四辺形の個数などを、図形を決める点や線の選び方に対応させ、組合せと積の法則を用いて求めることができる。", "from": "…などを、組合せを用いて求めることができる（根拠コード イ(ア)「事象の構造などに着目し，場合の数を求める方法を多面的に考察すること」）", "sections": ["sec-3"], "checks": ["q3", "q7", "q8", "q10"]}
+  ],
+  "key_terms": [
+    {"term": "組合せ", "where": "review"},
+    {"term": "1対1の対応", "where": "sec-1"},
+    {"term": "対角線", "where": "sec-1"},
+    {"term": "一直線上にある3点", "where": "sec-2"},
+    {"term": "積の法則・和の法則", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "組合せの意味と総数 nCr=nPr/r!", "taught_in": ["hs_math_1a/数Ａ-011"], "gap": false, "where": "review"},
+    {"concept": "nCr=nCn−r", "taught_in": ["hs_math_1a/数Ａ-012"], "gap": false, "where": "review"},
+    {"concept": "補集合の要素の個数 n(Ā)=n(U)−n(A)（全体から除いて数える）", "taught_in": ["hs_math_1a/数Ａ-001"], "gap": false, "where": "review"},
+    {"concept": "分かりやすいものと1対1に対応付けて数える（数え上げの原則）", "taught_in": ["hs_math_1a/数Ａ-003"], "gap": false, "where": "sec-1"},
+    {"concept": "和の法則", "taught_in": ["hs_math_1a/数Ａ-004"], "gap": false, "where": "sec-2"},
+    {"concept": "積の法則", "taught_in": ["hs_math_1a/数Ａ-005"], "gap": false, "where": "sec-3"},
+    {"concept": "順列 nPr（順番を区別した数え方との違い）", "taught_in": ["hs_math_1a/数Ａ-006", "hs_math_1a/数Ａ-007"], "gap": false, "where": "sec-1"},
+    {"concept": "重複順列 n^r（確認1の誤答の説明）", "taught_in": ["hs_math_1a/数Ａ-010"], "gap": false, "where": "review"},
+    {"concept": "多角形・n角形（n角形の内角の和）", "taught_in": ["jhs_math/中2-049"], "gap": false, "where": "supp-1"},
+    {"concept": "対角線（多角形の隣り合わない2頂点を結ぶ線分。「対角線」は小学校算数 第4学年の用語。地図は中学校から始まるので、多角形の対角線を定義する行がない）", "taught_in": [], "gap": true, "where": "supp-1"},
+    {"concept": "平行四辺形の定義（2組の対辺がそれぞれ平行）", "taught_in": ["jhs_math/中2-067"], "gap": false, "where": "sec-3"},
+    {"concept": "二次方程式を因数分解で解く", "taught_in": ["jhs_math/中3-041"], "gap": false, "where": "sec-1"},
+    {"concept": "2点を通る直線", "taught_in": ["jhs_math/中1-075"], "gap": false, "where": "quiz"}
+  ],
+  "out_of_scope": [
+    "組分け（組に区別がある場合とない場合）（数Ａ-014）",
+    "同じものを含む順列（数Ａ-015）、最短経路の数（数Ａ-016）",
+    "順列・組合せを用いた確率（数Ａ-020）"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(イ)・イ(ア)の事項（入試へのつながりの引用）"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.93 数え上げの原則（1対1に対応付ける）、組合せの公式を導く扱い"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "組合せの考え方で図形の個数を求めることが教科書で扱われることの確認"},
+    {"name": "小学校学習指導要領（平成29年告示）第2章第3節 算数（中学校学習指導要領（平成29年告示）の冊子に収録）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_02.pdf", "use": "第4学年〔用語・記号〕「対角線」、第5学年 多角形（補足の根拠。保存本文：sources/text/jhs_cos_honbun.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

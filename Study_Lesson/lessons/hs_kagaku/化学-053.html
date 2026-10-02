@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>弱酸・弱塩基の電離平衡と電離定数｜化学</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/mhchem.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.iw-read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 4px 16px; margin: 8px 0 0; }
+.table-wrap { position: relative; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>化学</span><span>化学平衡（平衡の移動・電離平衡）</span><span>化学-053</span></div>
+  <h1>弱酸・弱塩基の電離平衡と電離定数</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">同じ 0.10 mol/L の水溶液でも、塩酸は pH 1.0、酢酸水溶液は pH 約 2.8 です。では、どちらも 10 倍に薄めると pH はいくつになるでしょうか。弱酸の電離を「平衡」として見ると、この問いに数値で答えられるようになります。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>酢酸の電離平衡に化学平衡の法則を当てはめて酸の電離定数を表し、温度が一定なら濃度によらず一定であることを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>アンモニアの電離平衡について塩基の電離定数を表し、式に水の濃度を含めない理由を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>電離定数と濃度から電離度と水素イオン濃度（弱塩基では水酸化物イオン濃度）を求め、薄めると電離度が大きくなることを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>弱酸・弱塩基の水溶液の pH を求め、同じ濃度の強酸・強塩基と比べることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（化学-052）</span>pHと水のイオン積</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>弱酸・弱塩基の電離平衡と電離定数</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（化学-054）</span>酢酸の電離定数を求める実験</div>
+</div>
+<p class="small">前提となる単元：反応速度（化学）、酸と塩基（化学基礎）</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、平衡定数（化学-046・047）、ルシャトリエの原理（化学-048）、水のイオン積と pH（化学-051・052）、化学基礎で学んだ電離度と酸・塩基の強弱（化基-045）を使います。対数の計算は数学Ⅱの「対数の性質」「常用対数」（数Ⅱ-088・093）で学びます。</p>
+<div class="box review">
+  <p class="box-title">このページで使う式と値（25℃）</p>
+  <ul>
+    <li>\( \mathrm{pH} = -\log_{10}[\ce{H+}] \)　　水のイオン積 \( K_\mathrm{w} = [\ce{H+}][\ce{OH-}] = 1.0\times10^{-14}\ (\mathrm{mol/L})^2 \)</li>
+    <li>\( [\ce{H+}] = K_\mathrm{w} \div [\ce{OH-}] \) より、塩基性の水溶液では \( \mathrm{pH} = 14 + \log_{10}[\ce{OH-}] \)</li>
+    <li>\( \log MN = \log M + \log N \)、\( \log M^r = r\log M \)（したがって \( \log\sqrt{M} = \tfrac{1}{2}\log M \)）</li>
+    <li>\( \log_{10}2 = 0.30 \)、\( \log_{10}3 = 0.48 \)（このページで使う値）</li>
+  </ul>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：化学-046</span></div>
+  <p>\( \ce{H2 + I2 &lt;=&gt; 2HI} \) の平衡定数 K を表す式はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( K = \dfrac{ [\ce{HI}]^2 }{ [\ce{H2}][\ce{I2}] } \)</button>
+    <button>\( K = \dfrac{ [\ce{HI}] }{ [\ce{H2}][\ce{I2}] } \)</button>
+    <button>\( K = \dfrac{ [\ce{H2}][\ce{I2}] }{ [\ce{HI}]^2 } \)</button>
+    <button>\( K = \dfrac{ 2[\ce{HI}] }{ [\ce{H2}] + [\ce{I2}] } \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">化学平衡の法則では、生成物の濃度の積を反応物の濃度の積で割り、それぞれの濃度を係数の数だけかけ合わせます（HI は係数 2 なので2乗）。2つ目は係数を反映していない、3つ目は分子と分母が逆、4つ目は積ではなく和にしている誤りです。この時間は、この法則を水溶液中の電離に当てはめます。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：化学-052・数Ⅱ-093</span></div>
+  <p>\( [\ce{H+}] = 2.0\times10^{-3} \) mol/L の水溶液の pH はいくつですか（\( \log_{10}2 = 0.30 \)）。</p>
+  <div class="choices">
+    <button>2.3</button>
+    <button data-correct="true">2.7</button>
+    <button>3.3</button>
+    <button>0.60</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \mathrm{pH} = -\log_{10}(2.0\times10^{-3}) = -(\log_{10}2 - 3) = 3 - 0.30 = 2.7 \) です。「3.3」は log 2 を足してしまった誤り、「2.3」は 10⁻² の桁で考えた誤り、「0.60」は 10⁻³ の部分を落として log の値だけで計算した誤りです。[H⁺] が 1.0×10⁻³ mol/L（pH 3）より大きいので、pH は 3 より小さくなると見当をつけると確かめられます。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：化学-051</span></div>
+  <p>25℃で \( [\ce{OH-}] = 1.0\times10^{-3} \) mol/L の水溶液の \( [\ce{H+}] \) はいくらですか。</p>
+  <div class="choices">
+    <button>1.0×10⁻³ mol/L</button>
+    <button>1.0×10⁻⁷ mol/L</button>
+    <button data-correct="true">1.0×10⁻¹¹ mol/L</button>
+    <button>1.0×10⁻¹⁴ mol/L</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( [\ce{H+}] = \dfrac{ 1.0\times10^{-14} }{ 1.0\times10^{-3} } = 1.0\times10^{-11} \) mol/L で、pH は 11 です。水のイオン積は温度が一定なら一定で、酸性・塩基性に関係なく成り立ちます。1.0×10⁻³ mol/L は [OH⁻] をそのまま答えた誤り、1.0×10⁻⁷ mol/L は中性の水の値、1.0×10⁻¹⁴ mol/L は水のイオン積の値をそのまま書いた誤りです。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">オキソニウムイオン H₃O⁺ と [H⁺] の書き方</p>
+  <p>化基-044 で触れたように、水溶液中の水素イオン H⁺ は、実際には水分子と結び付いた<strong>オキソニウムイオン</strong> \( \ce{H3O+} \) として存在します。ブレンステッド・ローリーの定義（化基-044）で見ると、酢酸の電離は、酢酸が水分子に H⁺ を与える反応です。</p>
+  <p>$$ \ce{CH3COOH + H2O &lt;=&gt; CH3COO- + H3O+} $$</p>
+  <p>このページでは、これを簡単に \( \ce{CH3COOH &lt;=&gt; CH3COO- + H+} \) と書き、\( [\ce{H+}] \) は \( [\ce{H3O+}] \) のことを表すものとします。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：薄めると pH はどれだけ変わるか</h2>
+<div class="box think">
+  <p class="box-title">予想してみよう</p>
+  <p>0.10 mol/L の塩酸（pH 1.0）と 0.10 mol/L の酢酸水溶液（pH 約 2.8）を、それぞれ水で 10 倍に薄めて 0.010 mol/L にしました。</p>
+  <p>(1) 塩酸の pH はいくつになるでしょうか。(2) 酢酸水溶液の pH も同じように 1 だけ上がるでしょうか。(3) 薄めると、酢酸の電離度は変わるでしょうか。</p>
+  <p class="small">(1) は化学基礎の知識で答えられます。(2)・(3) の答えは本編（3〜6）で、式を使って確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="酸の電離定数"><span class="num">3</span>酢酸の電離平衡と酸の電離定数（O1）</h2>
+<p>強酸の塩酸は、水溶液中でほぼすべてが電離します。一方、弱酸の酢酸を水に溶かすと、一部の分子だけが電離します。電離する変化（右向き）と、イオンが結び付いて分子に戻る変化（左向き）がともに起こり、両方の速さが等しくなったところで、見かけ上変化が止まります。この状態を<strong>電離平衡</strong>といいます。</p>
+<p>$$ \ce{CH3COOH &lt;=&gt; CH3COO- + H+} $$</p>
+<p>電離平衡も化学平衡の一種なので、化学平衡の法則が成り立ちます。この平衡定数を<strong>電離定数</strong>といい、酸の電離定数は \( K_\mathrm{a} \) で表します。</p>
+<p>$$ K_\mathrm{a} = \frac{ [\ce{CH3COO-}][\ce{H+}] }{ [\ce{CH3COOH}] } $$</p>
+<p>単位は \( \dfrac{ (\mathrm{mol/L})(\mathrm{mol/L}) }{ \mathrm{mol/L} } = \mathrm{mol/L} \) です。平衡定数と同じく、\( K_\mathrm{a} \) は<span class="em">温度が一定なら、酢酸の濃度によらず一定</span>の値になり、温度が変わると変わります。</p>
+<div class="table-wrap"><table>
+  <tr><th>弱酸・弱塩基</th><th>電離平衡</th><th>電離定数（25℃、このページで使う値）</th></tr>
+  <tr><td>酢酸</td><td>\( \ce{CH3COOH &lt;=&gt; CH3COO- + H+} \)</td><td>\( K_\mathrm{a} = 2.7\times10^{-5} \) mol/L</td></tr>
+  <tr><td>アンモニア</td><td>\( \ce{NH3 + H2O &lt;=&gt; NH4+ + OH-} \)</td><td>\( K_\mathrm{b} = 2.3\times10^{-5} \) mol/L</td></tr>
+</table></div>
+<p class="small">電離定数の値は、資料によって少し異なることがあります。問題を解くときは、問題文で与えられた値を使います。</p>
+<p>\( K_\mathrm{a} \) が 10⁻⁵ mol/L 程度と小さいことは、平衡が大きく左に片寄っていて、酢酸のほとんどが分子のまま存在していることを表します。同じ濃度どうしで比べると、\( K_\mathrm{a} \) が大きい弱酸ほど電離しやすく、[H⁺] が大きい（酸として強い）といえます。</p>
+<div class="box point"><p class="box-title">電離定数と電離度の違い</p><p>電離定数 \( K_\mathrm{a} \) は、温度だけで決まる「その酸に固有の値」です。これに対して、化学基礎で学んだ電離度 α（溶かした酸のうち電離したものの割合）は、同じ酸でも<strong>濃度によって変わります</strong>。どう変わるかは、5「電離定数から電離度と [H⁺] を求める」で式から導きます。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>「酢酸水溶液を薄めると \( K_\mathrm{a} \) が大きくなる」は誤りです。薄めて変わるのは電離度と各イオンの濃度で、温度が同じなら \( K_\mathrm{a} \) は変わりません。</p></div>
+<p class="small">H₃O⁺ を使って \( \ce{CH3COOH + H2O &lt;=&gt; CH3COO- + H3O+} \) と書いた場合も、次の節のアンモニアと同じ理由で水の濃度を定数に含めるので、\( K_\mathrm{a} \) の式は上と同じ形になります。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="塩基の電離定数"><span class="num">4</span>アンモニアの電離平衡と塩基の電離定数（O2）</h2>
+<p>アンモニアは、水分子から H⁺ を受け取って OH⁻ を生じる弱塩基です（ブレンステッド・ローリーの定義で、水が酸、アンモニアが塩基としてはたらきます）。</p>
+<p>$$ \ce{NH3 + H2O &lt;=&gt; NH4+ + OH-} $$</p>
+<p>化学平衡の法則をそのまま当てはめると、次のようになります。</p>
+<p>$$ K = \frac{ [\ce{NH4+}][\ce{OH-}] }{ [\ce{NH3}][\ce{H2O}] } $$</p>
+<p>ところが、うすい水溶液では、水は溶媒として圧倒的に多く存在します。水 1 L（約 1000 g）の物質量は \( 1000 \div 18.0 \fallingdotseq 55.6 \) mol なので、\( [\ce{H2O}] \) は約 55.6 mol/L です。アンモニアの電離で使われる水は 10⁻³ mol/L 程度なので、\( [\ce{H2O}] \) はほとんど変わらず、一定とみなせます。そこで \( K[\ce{H2O}] \) をまとめて1つの定数にしたものを、<strong>塩基の電離定数</strong> \( K_\mathrm{b} \) とします。</p>
+<p>$$ K_\mathrm{b} = K[\ce{H2O}] = \frac{ [\ce{NH4+}][\ce{OH-}] }{ [\ce{NH3}] } = 2.3\times10^{-5}\ \mathrm{mol/L}\ (25^\circ\mathrm{C}) $$</p>
+<div class="table-wrap"><table>
+  <tr><th></th><th>弱酸（酢酸）</th><th>弱塩基（アンモニア）</th></tr>
+  <tr><td>電離で生じるイオン</td><td>H⁺（H₃O⁺）と CH₃COO⁻</td><td>OH⁻ と NH₄⁺</td></tr>
+  <tr><td>電離定数</td><td>\( K_\mathrm{a} = \dfrac{ [\ce{CH3COO-}][\ce{H+}] }{ [\ce{CH3COOH}] } \)</td><td>\( K_\mathrm{b} = \dfrac{ [\ce{NH4+}][\ce{OH-}] }{ [\ce{NH3}] } \)</td></tr>
+  <tr><td>式に含めないもの</td><td>水の濃度（定数に含める）</td><td>水の濃度（定数に含める）</td></tr>
+</table></div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>\( K_\mathrm{b} \) の分母に \( [\ce{H2O}] \) を書いてしまう誤りがよくあります。\( K_\mathrm{b} \) は、ほぼ一定の \( [\ce{H2O}] \) をすでに定数に含めたものなので、式には書きません。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="電離度と [H⁺] の求め方"><span class="num">5</span>電離定数から電離度と [H⁺] を求める（O3）</h2>
+<p>濃度 c〔mol/L〕の酢酸水溶液で、電離度を α とします。水の電離で生じる H⁺ はごくわずか（10⁻⁷ mol/L 以下）なので無視すると、平衡時の濃度は次のようになります。</p>
+<div class="table-wrap"><table>
+  <tr><th></th><th>\( \ce{CH3COOH} \)</th><th>\( \ce{CH3COO-} \)</th><th>\( \ce{H+} \)</th></tr>
+  <tr><td>電離する前</td><td>c</td><td>0</td><td>0</td></tr>
+  <tr><td>変化量</td><td>−cα</td><td>+cα</td><td>+cα</td></tr>
+  <tr><td>平衡時</td><td>c(1−α)</td><td>cα</td><td>cα</td></tr>
+</table></div>
+<p>これを \( K_\mathrm{a} \) の式に代入すると、</p>
+<p>$$ K_\mathrm{a} = \frac{ c\alpha \times c\alpha }{ c(1-\alpha) } = \frac{ c\alpha^2 }{ 1-\alpha } $$</p>
+<p>弱酸では α は 1 に比べて十分小さいので、\( 1-\alpha \fallingdotseq 1 \) と<strong>近似</strong>できます。すると \( K_\mathrm{a} \fallingdotseq c\alpha^2 \) となり、次の式が得られます。</p>
+<p>$$ \alpha = \sqrt{ \frac{ K_\mathrm{a} }{ c } }, \qquad [\ce{H+}] = c\alpha = \sqrt{ cK_\mathrm{a} } $$</p>
+<div class="box example worked">
+  <p class="box-title">例題1　0.10 mol/L 酢酸水溶液の電離度と [H⁺]</p>
+  <p>25℃で、0.10 mol/L の酢酸水溶液の電離度 α と水素イオン濃度 [H⁺] を求めなさい。\( K_\mathrm{a} = 2.7\times10^{-5} \) mol/L、\( \sqrt{2.7} = 1.64 \) とします。</p>
+  <div class="step"><strong>ステップ1：使う式を決める</strong>　弱酸なので \( 1-\alpha \fallingdotseq 1 \) と近似し、\( \alpha = \sqrt{ K_\mathrm{a}/c } \) を使います。</div>
+  <div class="step"><strong>ステップ2：代入する</strong>　\( \alpha = \sqrt{ \dfrac{ 2.7\times10^{-5} }{ 0.10 } } = \sqrt{ 2.7\times10^{-4} } = \sqrt{2.7}\times10^{-2} = 1.64\times10^{-2} \)。10⁻⁴ の平方根は 10⁻² です（指数が偶数になるように書くと計算しやすくなります）。</div>
+  <div class="step"><strong>ステップ3：近似が使えるか確かめる</strong>　α ≒ 0.016 で、\( 1-\alpha = 0.98 \) は 1 とみなせるので、近似してよかったことが分かります。</div>
+  <div class="step"><strong>ステップ4：[H⁺] を求める</strong>　\( [\ce{H+}] = c\alpha = 0.10\times1.64\times10^{-2} \fallingdotseq 1.6\times10^{-3} \) mol/L。答え：α は約 0.016、[H⁺] は 1.6×10⁻³ mol/L です。</div>
+</div>
+<h3>濃度を変えると電離度はどう変わるか</h3>
+<p>\( \alpha = \sqrt{ K_\mathrm{a}/c } \) から、\( K_\mathrm{a} \) が一定のとき、<span class="em">濃度 c が小さいほど電離度 α は大きくなります</span>。図1は、酢酸の濃度と電離度の関係を、近似式と、近似しないで二次方程式を解いた実際の値で比べたものです。</p>
+<figure>
+<!--gen:fig-alpha-->
+<svg viewBox="0 0 600 378" role="img" aria-label="酢酸のモル濃度と電離度の関係のグラフ。横軸は濃度で 0.001 から 1 mol/L まで10倍ごとの目盛り、縦軸は電離度 0 から 0.18。濃度が小さいほど電離度は大きくなり、c＝0.10 で約 0.016、0.010 で約 0.051、0.0010 で約 0.15。近似式の破線は濃度が小さいほど実際の値より上にずれ、0.0010 mol/L では約 0.16 になる。">
+<line x1="120.2" y1="24" x2="120.2" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="149.5" y1="24" x2="149.5" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="170.3" y1="24" x2="170.3" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="186.5" y1="24" x2="186.5" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="199.7" y1="24" x2="199.7" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="210.8" y1="24" x2="210.8" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="220.5" y1="24" x2="220.5" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="229.0" y1="24" x2="229.0" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="286.8" y1="24" x2="286.8" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="316.2" y1="24" x2="316.2" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="337.0" y1="24" x2="337.0" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="353.2" y1="24" x2="353.2" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="366.4" y1="24" x2="366.4" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="377.5" y1="24" x2="377.5" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="387.2" y1="24" x2="387.2" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="395.7" y1="24" x2="395.7" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="453.5" y1="24" x2="453.5" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="482.9" y1="24" x2="482.9" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="503.7" y1="24" x2="503.7" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="519.8" y1="24" x2="519.8" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="533.0" y1="24" x2="533.0" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="544.2" y1="24" x2="544.2" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="553.8" y1="24" x2="553.8" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="562.4" y1="24" x2="562.4" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="70.0" y1="24" x2="70.0" y2="320" stroke="currentColor" stroke-opacity=".2"/>
+<text x="70.0" y="337" text-anchor="middle" font-size="13" fill="currentColor">0.001</text>
+<line x1="236.7" y1="24" x2="236.7" y2="320" stroke="currentColor" stroke-opacity=".2"/>
+<text x="236.7" y="337" text-anchor="middle" font-size="13" fill="currentColor">0.01</text>
+<line x1="403.3" y1="24" x2="403.3" y2="320" stroke="currentColor" stroke-opacity=".2"/>
+<text x="403.3" y="337" text-anchor="middle" font-size="13" fill="currentColor">0.1</text>
+<line x1="570.0" y1="24" x2="570.0" y2="320" stroke="currentColor" stroke-opacity=".2"/>
+<text x="570.0" y="337" text-anchor="middle" font-size="13" fill="currentColor">1</text>
+<line x1="70" y1="320.0" x2="570" y2="320.0" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="287.1" x2="570" y2="287.1" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="254.2" x2="570" y2="254.2" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="221.3" x2="570" y2="221.3" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="188.4" x2="570" y2="188.4" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="155.6" x2="570" y2="155.6" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="122.7" x2="570" y2="122.7" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="89.8" x2="570" y2="89.8" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="56.9" x2="570" y2="56.9" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="24.0" x2="570" y2="24.0" stroke="currentColor" stroke-opacity=".15"/>
+<text x="64" y="324.6" text-anchor="end" font-size="13" fill="currentColor">0.00</text>
+<text x="64" y="291.7" text-anchor="end" font-size="13" fill="currentColor">0.02</text>
+<text x="64" y="258.8" text-anchor="end" font-size="13" fill="currentColor">0.04</text>
+<text x="64" y="225.9" text-anchor="end" font-size="13" fill="currentColor">0.06</text>
+<text x="64" y="193.0" text-anchor="end" font-size="13" fill="currentColor">0.08</text>
+<text x="64" y="160.1" text-anchor="end" font-size="13" fill="currentColor">0.10</text>
+<text x="64" y="127.2" text-anchor="end" font-size="13" fill="currentColor">0.12</text>
+<text x="64" y="94.3" text-anchor="end" font-size="13" fill="currentColor">0.14</text>
+<text x="64" y="61.4" text-anchor="end" font-size="13" fill="currentColor">0.16</text>
+<text x="64" y="28.6" text-anchor="end" font-size="13" fill="currentColor">0.18</text>
+<rect x="70" y="24" width="500" height="296" fill="none" stroke="currentColor"/>
+<text x="320.0" y="356" text-anchor="middle" font-size="13" fill="currentColor">酢酸のモル濃度 c〔mol/L〕（目盛りは10倍ごと）</text>
+<text x="64" y="17" text-anchor="end" font-size="13" fill="currentColor">電離度 α</text>
+<path d="M70.0,71.1 L72.1,74.3 L74.2,77.6 L76.3,80.8 L78.3,83.9 L80.4,87.0 L82.5,90.1 L84.6,93.2 L86.7,96.2 L88.7,99.1 L90.8,102.1 L92.9,105.0 L95.0,107.8 L97.1,110.6 L99.2,113.4 L101.2,116.2 L103.3,118.9 L105.4,121.6 L107.5,124.3 L109.6,126.9 L111.7,129.5 L113.8,132.0 L115.8,134.6 L117.9,137.0 L120.0,139.5 L122.1,141.9 L124.2,144.3 L126.2,146.7 L128.3,149.1 L130.4,151.4 L132.5,153.6 L134.6,155.9 L136.7,158.1 L138.8,160.3 L140.8,162.5 L142.9,164.6 L145.0,166.7 L147.1,168.8 L149.2,170.9 L151.2,172.9 L153.3,174.9 L155.4,176.9 L157.5,178.8 L159.6,180.8 L161.7,182.7 L163.8,184.5 L165.8,186.4 L167.9,188.2 L170.0,190.0 L172.1,191.8 L174.2,193.6 L176.3,195.3 L178.3,197.0 L180.4,198.7 L182.5,200.4 L184.6,202.0 L186.7,203.6 L188.8,205.3 L190.8,206.8 L192.9,208.4 L195.0,209.9 L197.1,211.5 L199.2,213.0 L201.2,214.4 L203.3,215.9 L205.4,217.3 L207.5,218.7 L209.6,220.1 L211.7,221.5 L213.7,222.9 L215.8,224.2 L217.9,225.6 L220.0,226.9 L222.1,228.2 L224.2,229.4 L226.2,230.7 L228.3,231.9 L230.4,233.2 L232.5,234.4 L234.6,235.6 L236.7,236.7 L238.7,237.9 L240.8,239.0 L242.9,240.2 L245.0,241.3 L247.1,242.4 L249.2,243.5 L251.2,244.5 L253.3,245.6 L255.4,246.6 L257.5,247.7 L259.6,248.7 L261.7,249.7 L263.8,250.6 L265.8,251.6 L267.9,252.6 L270.0,253.5 L272.1,254.4 L274.2,255.4 L276.2,256.3 L278.3,257.2 L280.4,258.0 L282.5,258.9 L284.6,259.8 L286.7,260.6 L288.8,261.4 L290.8,262.3 L292.9,263.1 L295.0,263.9 L297.1,264.7 L299.2,265.4 L301.2,266.2 L303.3,267.0 L305.4,267.7 L307.5,268.4 L309.6,269.2 L311.7,269.9 L313.8,270.6 L315.8,271.3 L317.9,272.0 L320.0,272.6 L322.1,273.3 L324.2,274.0 L326.3,274.6 L328.3,275.3 L330.4,275.9 L332.5,276.5 L334.6,277.1 L336.7,277.7 L338.8,278.3 L340.8,278.9 L342.9,279.5 L345.0,280.1 L347.1,280.6 L349.2,281.2 L351.2,281.7 L353.3,282.3 L355.4,282.8 L357.5,283.3 L359.6,283.8 L361.7,284.4 L363.8,284.9 L365.8,285.4 L367.9,285.8 L370.0,286.3 L372.1,286.8 L374.2,287.3 L376.2,287.7 L378.3,288.2 L380.4,288.6 L382.5,289.1 L384.6,289.5 L386.7,290.0 L388.8,290.4 L390.8,290.8 L392.9,291.2 L395.0,291.6 L397.1,292.0 L399.2,292.4 L401.2,292.8 L403.3,293.2 L405.4,293.6 L407.5,294.0 L409.6,294.3 L411.7,294.7 L413.8,295.0 L415.8,295.4 L417.9,295.7 L420.0,296.1 L422.1,296.4 L424.2,296.8 L426.2,297.1 L428.3,297.4 L430.4,297.7 L432.5,298.1 L434.6,298.4 L436.7,298.7 L438.7,299.0 L440.8,299.3 L442.9,299.6 L445.0,299.9 L447.1,300.1 L449.2,300.4 L451.3,300.7 L453.3,301.0 L455.4,301.3 L457.5,301.5 L459.6,301.8 L461.7,302.0 L463.8,302.3 L465.8,302.5 L467.9,302.8 L470.0,303.0 L472.1,303.3 L474.2,303.5 L476.2,303.8 L478.3,304.0 L480.4,304.2 L482.5,304.4 L484.6,304.7 L486.7,304.9 L488.8,305.1 L490.8,305.3 L492.9,305.5 L495.0,305.7 L497.1,305.9 L499.2,306.1 L501.2,306.3 L503.3,306.5 L505.4,306.7 L507.5,306.9 L509.6,307.1 L511.7,307.3 L513.8,307.4 L515.8,307.6 L517.9,307.8 L520.0,308.0 L522.1,308.1 L524.2,308.3 L526.2,308.5 L528.3,308.6 L530.4,308.8 L532.5,309.0 L534.6,309.1 L536.7,309.3 L538.8,309.4 L540.8,309.6 L542.9,309.7 L545.0,309.9 L547.1,310.0 L549.2,310.2 L551.2,310.3 L553.3,310.4 L555.4,310.6 L557.5,310.7 L559.6,310.8 L561.7,311.0 L563.8,311.1 L565.8,311.2 L567.9,311.4 L570.0,311.5" fill="none" stroke="#1f5fbf" stroke-width="2.6"/>
+<path d="M70.0,49.8 L72.1,53.7 L74.2,57.5 L76.3,61.2 L78.3,64.9 L80.4,68.6 L82.5,72.1 L84.6,75.7 L86.7,79.2 L88.7,82.6 L90.8,86.0 L92.9,89.4 L95.0,92.6 L97.1,95.9 L99.2,99.1 L101.2,102.3 L103.3,105.4 L105.4,108.4 L107.5,111.5 L109.6,114.4 L111.7,117.4 L113.8,120.3 L115.8,123.1 L117.9,125.9 L120.0,128.7 L122.1,131.4 L124.2,134.1 L126.2,136.8 L128.3,139.4 L130.4,142.0 L132.5,144.5 L134.6,147.0 L136.7,149.5 L138.8,151.9 L140.8,154.3 L142.9,156.7 L145.0,159.0 L147.1,161.3 L149.2,163.6 L151.2,165.8 L153.3,168.0 L155.4,170.2 L157.5,172.4 L159.6,174.5 L161.7,176.5 L163.8,178.6 L165.8,180.6 L167.9,182.6 L170.0,184.6 L172.1,186.5 L174.2,188.4 L176.3,190.3 L178.3,192.1 L180.4,194.0 L182.5,195.8 L184.6,197.6 L186.7,199.3 L188.8,201.0 L190.8,202.7 L192.9,204.4 L195.0,206.1 L197.1,207.7 L199.2,209.3 L201.2,210.9 L203.3,212.4 L205.4,214.0 L207.5,215.5 L209.6,217.0 L211.7,218.4 L213.7,219.9 L215.8,221.3 L217.9,222.7 L220.0,224.1 L222.1,225.5 L224.2,226.8 L226.2,228.2 L228.3,229.5 L230.4,230.8 L232.5,232.1 L234.6,233.3 L236.7,234.6 L238.7,235.8 L240.8,237.0 L242.9,238.2 L245.0,239.3 L247.1,240.5 L249.2,241.6 L251.2,242.7 L253.3,243.8 L255.4,244.9 L257.5,246.0 L259.6,247.1 L261.7,248.1 L263.8,249.1 L265.8,250.1 L267.9,251.1 L270.0,252.1 L272.1,253.1 L274.2,254.1 L276.2,255.0 L278.3,255.9 L280.4,256.8 L282.5,257.7 L284.6,258.6 L286.7,259.5 L288.8,260.4 L290.8,261.2 L292.9,262.1 L295.0,262.9 L297.1,263.7 L299.2,264.5 L301.2,265.3 L303.3,266.1 L305.4,266.9 L307.5,267.6 L309.6,268.4 L311.7,269.1 L313.8,269.8 L315.8,270.5 L317.9,271.3 L320.0,271.9 L322.1,272.6 L324.2,273.3 L326.3,274.0 L328.3,274.6 L330.4,275.3 L332.5,275.9 L334.6,276.6 L336.7,277.2 L338.8,277.8 L340.8,278.4 L342.9,279.0 L345.0,279.6 L347.1,280.1 L349.2,280.7 L351.2,281.3 L353.3,281.8 L355.4,282.4 L357.5,282.9 L359.6,283.4 L361.7,284.0 L363.8,284.5 L365.8,285.0 L367.9,285.5 L370.0,286.0 L372.1,286.5 L374.2,286.9 L376.2,287.4 L378.3,287.9 L380.4,288.3 L382.5,288.8 L384.6,289.2 L386.7,289.7 L388.8,290.1 L390.8,290.5 L392.9,291.0 L395.0,291.4 L397.1,291.8 L399.2,292.2 L401.2,292.6 L403.3,293.0 L405.4,293.4 L407.5,293.7 L409.6,294.1 L411.7,294.5 L413.8,294.9 L415.8,295.2 L417.9,295.6 L420.0,295.9 L422.1,296.3 L424.2,296.6 L426.2,296.9 L428.3,297.3 L430.4,297.6 L432.5,297.9 L434.6,298.2 L436.7,298.5 L438.7,298.8 L440.8,299.1 L442.9,299.4 L445.0,299.7 L447.1,300.0 L449.2,300.3 L451.3,300.6 L453.3,300.9 L455.4,301.1 L457.5,301.4 L459.6,301.7 L461.7,301.9 L463.8,302.2 L465.8,302.5 L467.9,302.7 L470.0,303.0 L472.1,303.2 L474.2,303.4 L476.2,303.7 L478.3,303.9 L480.4,304.1 L482.5,304.4 L484.6,304.6 L486.7,304.8 L488.8,305.0 L490.8,305.2 L492.9,305.4 L495.0,305.7 L497.1,305.9 L499.2,306.1 L501.2,306.3 L503.3,306.5 L505.4,306.7 L507.5,306.8 L509.6,307.0 L511.7,307.2 L513.8,307.4 L515.8,307.6 L517.9,307.8 L520.0,307.9 L522.1,308.1 L524.2,308.3 L526.2,308.4 L528.3,308.6 L530.4,308.8 L532.5,308.9 L534.6,309.1 L536.7,309.2 L538.8,309.4 L540.8,309.5 L542.9,309.7 L545.0,309.8 L547.1,310.0 L549.2,310.1 L551.2,310.3 L553.3,310.4 L555.4,310.5 L557.5,310.7 L559.6,310.8 L561.7,310.9 L563.8,311.1 L565.8,311.2 L567.9,311.3 L570.0,311.5" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7 5"/>
+<line x1="330" y1="46" x2="370" y2="46" stroke="#1f5fbf" stroke-width="2.6"/><text x="376" y="50" font-size="13" fill="currentColor">実際の値（二次方程式の解）</text>
+<line x1="330" y1="68" x2="370" y2="68" stroke="#c0392b" stroke-width="2" stroke-dasharray="7 5"/><text x="376" y="72" font-size="13" fill="currentColor">近似式 α＝√(Ka/c)</text>
+<circle cx="403.3" cy="293.2" r="4.5" fill="#1f5fbf"/>
+<text x="415.3" y="281.2" font-size="12.5" fill="currentColor">c＝0.1 のとき α≒0.016</text>
+<circle cx="236.7" cy="236.7" r="4.5" fill="#1f5fbf"/>
+<text x="248.7" y="224.7" font-size="12.5" fill="currentColor">c＝0.01 のとき α≒0.051</text>
+<circle cx="70.0" cy="71.1" r="4.5" fill="#1f5fbf"/>
+<text x="82.0" y="40.0" font-size="12.5" fill="currentColor">c＝0.001 のとき α≒0.151</text>
+</svg>
+<!--/gen:fig-alpha-->
+  <figcaption>図1　酢酸の濃度と電離度（25℃、\( K_\mathrm{a} = 2.7\times10^{-5} \) mol/L で計算）。横軸は 10 倍ごとの目盛り。濃度が小さいほど電離度は大きい。近似式との差は、c＝0.10 mol/L で約 0.8％、0.010 mol/L で約 3％、0.0010 mol/L で約 9％。</figcaption>
+</figure>
+<p>薄めると電離度が大きくなることは、ルシャトリエの原理（化学-048）からも説明できます。10 倍に薄めた直後は、どの粒子の濃度も 1/10 になるので、\( \dfrac{ [\ce{CH3COO-}][\ce{H+}] }{ [\ce{CH3COOH}] } \) の値は \( K_\mathrm{a} \) の 1/10 になります。この値が \( K_\mathrm{a} \) に戻るまで、電離する向き（溶質の粒子の数が増える向き）に平衡が移動するのです。</p>
+<div class="widget" id="iw">
+  <p><strong>操作してみよう：酢酸の濃度と電離度・pH</strong></p>
+  <label for="iw-c">酢酸のモル濃度 c（0.0010〜1.0 mol/L）</label>
+  <input type="range" id="iw-c" min="-3" max="0" step="0.01" value="-1">
+  <figure>
+<!--gen:widget-svg-->
+<svg viewBox="0 0 600 378" role="img" aria-label="スライダーで選んだ濃度での電離度を示す点が、グラフ上を動く。" id="iw-svg">
+<line x1="120.2" y1="24" x2="120.2" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="149.5" y1="24" x2="149.5" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="170.3" y1="24" x2="170.3" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="186.5" y1="24" x2="186.5" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="199.7" y1="24" x2="199.7" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="210.8" y1="24" x2="210.8" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="220.5" y1="24" x2="220.5" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="229.0" y1="24" x2="229.0" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="286.8" y1="24" x2="286.8" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="316.2" y1="24" x2="316.2" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="337.0" y1="24" x2="337.0" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="353.2" y1="24" x2="353.2" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="366.4" y1="24" x2="366.4" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="377.5" y1="24" x2="377.5" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="387.2" y1="24" x2="387.2" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="395.7" y1="24" x2="395.7" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="453.5" y1="24" x2="453.5" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="482.9" y1="24" x2="482.9" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="503.7" y1="24" x2="503.7" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="519.8" y1="24" x2="519.8" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="533.0" y1="24" x2="533.0" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="544.2" y1="24" x2="544.2" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="553.8" y1="24" x2="553.8" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="562.4" y1="24" x2="562.4" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="70.0" y1="24" x2="70.0" y2="320" stroke="currentColor" stroke-opacity=".2"/>
+<text x="70.0" y="337" text-anchor="middle" font-size="13" fill="currentColor">0.001</text>
+<line x1="236.7" y1="24" x2="236.7" y2="320" stroke="currentColor" stroke-opacity=".2"/>
+<text x="236.7" y="337" text-anchor="middle" font-size="13" fill="currentColor">0.01</text>
+<line x1="403.3" y1="24" x2="403.3" y2="320" stroke="currentColor" stroke-opacity=".2"/>
+<text x="403.3" y="337" text-anchor="middle" font-size="13" fill="currentColor">0.1</text>
+<line x1="570.0" y1="24" x2="570.0" y2="320" stroke="currentColor" stroke-opacity=".2"/>
+<text x="570.0" y="337" text-anchor="middle" font-size="13" fill="currentColor">1</text>
+<line x1="70" y1="320.0" x2="570" y2="320.0" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="287.1" x2="570" y2="287.1" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="254.2" x2="570" y2="254.2" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="221.3" x2="570" y2="221.3" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="188.4" x2="570" y2="188.4" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="155.6" x2="570" y2="155.6" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="122.7" x2="570" y2="122.7" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="89.8" x2="570" y2="89.8" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="56.9" x2="570" y2="56.9" stroke="currentColor" stroke-opacity=".15"/>
+<line x1="70" y1="24.0" x2="570" y2="24.0" stroke="currentColor" stroke-opacity=".15"/>
+<text x="64" y="324.6" text-anchor="end" font-size="13" fill="currentColor">0.00</text>
+<text x="64" y="291.7" text-anchor="end" font-size="13" fill="currentColor">0.02</text>
+<text x="64" y="258.8" text-anchor="end" font-size="13" fill="currentColor">0.04</text>
+<text x="64" y="225.9" text-anchor="end" font-size="13" fill="currentColor">0.06</text>
+<text x="64" y="193.0" text-anchor="end" font-size="13" fill="currentColor">0.08</text>
+<text x="64" y="160.1" text-anchor="end" font-size="13" fill="currentColor">0.10</text>
+<text x="64" y="127.2" text-anchor="end" font-size="13" fill="currentColor">0.12</text>
+<text x="64" y="94.3" text-anchor="end" font-size="13" fill="currentColor">0.14</text>
+<text x="64" y="61.4" text-anchor="end" font-size="13" fill="currentColor">0.16</text>
+<text x="64" y="28.6" text-anchor="end" font-size="13" fill="currentColor">0.18</text>
+<rect x="70" y="24" width="500" height="296" fill="none" stroke="currentColor"/>
+<text x="320.0" y="356" text-anchor="middle" font-size="13" fill="currentColor">酢酸のモル濃度 c〔mol/L〕（目盛りは10倍ごと）</text>
+<text x="64" y="17" text-anchor="end" font-size="13" fill="currentColor">電離度 α</text>
+<path d="M70.0,71.1 L72.1,74.3 L74.2,77.6 L76.3,80.8 L78.3,83.9 L80.4,87.0 L82.5,90.1 L84.6,93.2 L86.7,96.2 L88.7,99.1 L90.8,102.1 L92.9,105.0 L95.0,107.8 L97.1,110.6 L99.2,113.4 L101.2,116.2 L103.3,118.9 L105.4,121.6 L107.5,124.3 L109.6,126.9 L111.7,129.5 L113.8,132.0 L115.8,134.6 L117.9,137.0 L120.0,139.5 L122.1,141.9 L124.2,144.3 L126.2,146.7 L128.3,149.1 L130.4,151.4 L132.5,153.6 L134.6,155.9 L136.7,158.1 L138.8,160.3 L140.8,162.5 L142.9,164.6 L145.0,166.7 L147.1,168.8 L149.2,170.9 L151.2,172.9 L153.3,174.9 L155.4,176.9 L157.5,178.8 L159.6,180.8 L161.7,182.7 L163.8,184.5 L165.8,186.4 L167.9,188.2 L170.0,190.0 L172.1,191.8 L174.2,193.6 L176.3,195.3 L178.3,197.0 L180.4,198.7 L182.5,200.4 L184.6,202.0 L186.7,203.6 L188.8,205.3 L190.8,206.8 L192.9,208.4 L195.0,209.9 L197.1,211.5 L199.2,213.0 L201.2,214.4 L203.3,215.9 L205.4,217.3 L207.5,218.7 L209.6,220.1 L211.7,221.5 L213.7,222.9 L215.8,224.2 L217.9,225.6 L220.0,226.9 L222.1,228.2 L224.2,229.4 L226.2,230.7 L228.3,231.9 L230.4,233.2 L232.5,234.4 L234.6,235.6 L236.7,236.7 L238.7,237.9 L240.8,239.0 L242.9,240.2 L245.0,241.3 L247.1,242.4 L249.2,243.5 L251.2,244.5 L253.3,245.6 L255.4,246.6 L257.5,247.7 L259.6,248.7 L261.7,249.7 L263.8,250.6 L265.8,251.6 L267.9,252.6 L270.0,253.5 L272.1,254.4 L274.2,255.4 L276.2,256.3 L278.3,257.2 L280.4,258.0 L282.5,258.9 L284.6,259.8 L286.7,260.6 L288.8,261.4 L290.8,262.3 L292.9,263.1 L295.0,263.9 L297.1,264.7 L299.2,265.4 L301.2,266.2 L303.3,267.0 L305.4,267.7 L307.5,268.4 L309.6,269.2 L311.7,269.9 L313.8,270.6 L315.8,271.3 L317.9,272.0 L320.0,272.6 L322.1,273.3 L324.2,274.0 L326.3,274.6 L328.3,275.3 L330.4,275.9 L332.5,276.5 L334.6,277.1 L336.7,277.7 L338.8,278.3 L340.8,278.9 L342.9,279.5 L345.0,280.1 L347.1,280.6 L349.2,281.2 L351.2,281.7 L353.3,282.3 L355.4,282.8 L357.5,283.3 L359.6,283.8 L361.7,284.4 L363.8,284.9 L365.8,285.4 L367.9,285.8 L370.0,286.3 L372.1,286.8 L374.2,287.3 L376.2,287.7 L378.3,288.2 L380.4,288.6 L382.5,289.1 L384.6,289.5 L386.7,290.0 L388.8,290.4 L390.8,290.8 L392.9,291.2 L395.0,291.6 L397.1,292.0 L399.2,292.4 L401.2,292.8 L403.3,293.2 L405.4,293.6 L407.5,294.0 L409.6,294.3 L411.7,294.7 L413.8,295.0 L415.8,295.4 L417.9,295.7 L420.0,296.1 L422.1,296.4 L424.2,296.8 L426.2,297.1 L428.3,297.4 L430.4,297.7 L432.5,298.1 L434.6,298.4 L436.7,298.7 L438.7,299.0 L440.8,299.3 L442.9,299.6 L445.0,299.9 L447.1,300.1 L449.2,300.4 L451.3,300.7 L453.3,301.0 L455.4,301.3 L457.5,301.5 L459.6,301.8 L461.7,302.0 L463.8,302.3 L465.8,302.5 L467.9,302.8 L470.0,303.0 L472.1,303.3 L474.2,303.5 L476.2,303.8 L478.3,304.0 L480.4,304.2 L482.5,304.4 L484.6,304.7 L486.7,304.9 L488.8,305.1 L490.8,305.3 L492.9,305.5 L495.0,305.7 L497.1,305.9 L499.2,306.1 L501.2,306.3 L503.3,306.5 L505.4,306.7 L507.5,306.9 L509.6,307.1 L511.7,307.3 L513.8,307.4 L515.8,307.6 L517.9,307.8 L520.0,308.0 L522.1,308.1 L524.2,308.3 L526.2,308.5 L528.3,308.6 L530.4,308.8 L532.5,309.0 L534.6,309.1 L536.7,309.3 L538.8,309.4 L540.8,309.6 L542.9,309.7 L545.0,309.9 L547.1,310.0 L549.2,310.2 L551.2,310.3 L553.3,310.4 L555.4,310.6 L557.5,310.7 L559.6,310.8 L561.7,311.0 L563.8,311.1 L565.8,311.2 L567.9,311.4 L570.0,311.5" fill="none" stroke="#1f5fbf" stroke-width="2.6"/>
+<path d="M70.0,49.8 L72.1,53.7 L74.2,57.5 L76.3,61.2 L78.3,64.9 L80.4,68.6 L82.5,72.1 L84.6,75.7 L86.7,79.2 L88.7,82.6 L90.8,86.0 L92.9,89.4 L95.0,92.6 L97.1,95.9 L99.2,99.1 L101.2,102.3 L103.3,105.4 L105.4,108.4 L107.5,111.5 L109.6,114.4 L111.7,117.4 L113.8,120.3 L115.8,123.1 L117.9,125.9 L120.0,128.7 L122.1,131.4 L124.2,134.1 L126.2,136.8 L128.3,139.4 L130.4,142.0 L132.5,144.5 L134.6,147.0 L136.7,149.5 L138.8,151.9 L140.8,154.3 L142.9,156.7 L145.0,159.0 L147.1,161.3 L149.2,163.6 L151.2,165.8 L153.3,168.0 L155.4,170.2 L157.5,172.4 L159.6,174.5 L161.7,176.5 L163.8,178.6 L165.8,180.6 L167.9,182.6 L170.0,184.6 L172.1,186.5 L174.2,188.4 L176.3,190.3 L178.3,192.1 L180.4,194.0 L182.5,195.8 L184.6,197.6 L186.7,199.3 L188.8,201.0 L190.8,202.7 L192.9,204.4 L195.0,206.1 L197.1,207.7 L199.2,209.3 L201.2,210.9 L203.3,212.4 L205.4,214.0 L207.5,215.5 L209.6,217.0 L211.7,218.4 L213.7,219.9 L215.8,221.3 L217.9,222.7 L220.0,224.1 L222.1,225.5 L224.2,226.8 L226.2,228.2 L228.3,229.5 L230.4,230.8 L232.5,232.1 L234.6,233.3 L236.7,234.6 L238.7,235.8 L240.8,237.0 L242.9,238.2 L245.0,239.3 L247.1,240.5 L249.2,241.6 L251.2,242.7 L253.3,243.8 L255.4,244.9 L257.5,246.0 L259.6,247.1 L261.7,248.1 L263.8,249.1 L265.8,250.1 L267.9,251.1 L270.0,252.1 L272.1,253.1 L274.2,254.1 L276.2,255.0 L278.3,255.9 L280.4,256.8 L282.5,257.7 L284.6,258.6 L286.7,259.5 L288.8,260.4 L290.8,261.2 L292.9,262.1 L295.0,262.9 L297.1,263.7 L299.2,264.5 L301.2,265.3 L303.3,266.1 L305.4,266.9 L307.5,267.6 L309.6,268.4 L311.7,269.1 L313.8,269.8 L315.8,270.5 L317.9,271.3 L320.0,271.9 L322.1,272.6 L324.2,273.3 L326.3,274.0 L328.3,274.6 L330.4,275.3 L332.5,275.9 L334.6,276.6 L336.7,277.2 L338.8,277.8 L340.8,278.4 L342.9,279.0 L345.0,279.6 L347.1,280.1 L349.2,280.7 L351.2,281.3 L353.3,281.8 L355.4,282.4 L357.5,282.9 L359.6,283.4 L361.7,284.0 L363.8,284.5 L365.8,285.0 L367.9,285.5 L370.0,286.0 L372.1,286.5 L374.2,286.9 L376.2,287.4 L378.3,287.9 L380.4,288.3 L382.5,288.8 L384.6,289.2 L386.7,289.7 L388.8,290.1 L390.8,290.5 L392.9,291.0 L395.0,291.4 L397.1,291.8 L399.2,292.2 L401.2,292.6 L403.3,293.0 L405.4,293.4 L407.5,293.7 L409.6,294.1 L411.7,294.5 L413.8,294.9 L415.8,295.2 L417.9,295.6 L420.0,295.9 L422.1,296.3 L424.2,296.6 L426.2,296.9 L428.3,297.3 L430.4,297.6 L432.5,297.9 L434.6,298.2 L436.7,298.5 L438.7,298.8 L440.8,299.1 L442.9,299.4 L445.0,299.7 L447.1,300.0 L449.2,300.3 L451.3,300.6 L453.3,300.9 L455.4,301.1 L457.5,301.4 L459.6,301.7 L461.7,301.9 L463.8,302.2 L465.8,302.5 L467.9,302.7 L470.0,303.0 L472.1,303.2 L474.2,303.4 L476.2,303.7 L478.3,303.9 L480.4,304.1 L482.5,304.4 L484.6,304.6 L486.7,304.8 L488.8,305.0 L490.8,305.2 L492.9,305.4 L495.0,305.7 L497.1,305.9 L499.2,306.1 L501.2,306.3 L503.3,306.5 L505.4,306.7 L507.5,306.8 L509.6,307.0 L511.7,307.2 L513.8,307.4 L515.8,307.6 L517.9,307.8 L520.0,307.9 L522.1,308.1 L524.2,308.3 L526.2,308.4 L528.3,308.6 L530.4,308.8 L532.5,308.9 L534.6,309.1 L536.7,309.2 L538.8,309.4 L540.8,309.5 L542.9,309.7 L545.0,309.8 L547.1,310.0 L549.2,310.1 L551.2,310.3 L553.3,310.4 L555.4,310.5 L557.5,310.7 L559.6,310.8 L561.7,310.9 L563.8,311.1 L565.8,311.2 L567.9,311.3 L570.0,311.5" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7 5"/>
+<line x1="330" y1="46" x2="370" y2="46" stroke="#1f5fbf" stroke-width="2.6"/><text x="376" y="50" font-size="13" fill="currentColor">実際の値（二次方程式の解）</text>
+<line x1="330" y1="68" x2="370" y2="68" stroke="#c0392b" stroke-width="2" stroke-dasharray="7 5"/><text x="376" y="72" font-size="13" fill="currentColor">近似式 α＝√(Ka/c)</text>
+<line id="iw-vline" x1="70" y1="24" x2="70" y2="320" stroke="currentColor" stroke-dasharray="3 3" stroke-opacity=".6"/>
+<circle id="iw-dot2" cx="70" cy="320" r="5" fill="#c0392b"/>
+<circle id="iw-dot" cx="70" cy="320" r="6" fill="#1f5fbf" stroke="#fff" stroke-width="1.5"/>
+</svg>
+<!--/gen:widget-svg-->
+  </figure>
+  <div class="iw-read" aria-live="polite">
+    <span>c：<strong id="iw-cv">1.0×10⁻¹</strong> mol/L</span>
+    <span>電離度（実際の値）：<strong id="iw-ae">0.0163</strong></span>
+    <span>電離度（近似式）：<span id="iw-aa">0.0164</span>（ずれ <span id="iw-err">0.8</span>％）</span>
+    <span>[H⁺]：<span id="iw-h">1.6×10⁻³</span> mol/L</span>
+    <span>pH（実際の値）：<strong id="iw-ph">2.79</strong>（近似式では <span id="iw-pha">2.78</span>）</span>
+    <span>同じ濃度の塩酸の pH：<span id="iw-phs">1.00</span></span>
+  </div>
+  <p class="small">青い点が実際の値、赤い点が近似式の値です。c を小さくすると2つの点が離れていくことを確かめよう。「実際の値」は \( c\alpha^2 + K_\mathrm{a}\alpha - K_\mathrm{a} = 0 \) を解の公式で解いた値（水の電離は無視）です。</p>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い①</p><p>「薄めると電離度が大きくなるので、[H⁺] も大きくなる」は誤りです。\( [\ce{H+}] = \sqrt{ cK_\mathrm{a} } \) なので、10 倍に薄めると [H⁺] は \( 1/\sqrt{10} \)（約 0.32 倍）に<strong>小さく</strong>なります。電離する割合は増えても、酢酸全体の濃度が 1/10 になる効果の方が大きいからです。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い②：近似はいつでも使えるわけではない</p><p>\( 1-\alpha \fallingdotseq 1 \) は、α が 1 に比べて十分小さいときだけ使えます。図1のように、濃度がとても小さいときや電離定数が大きいときは近似式の値が実際より大きくずれます。そのときは \( c\alpha^2 + K_\mathrm{a}\alpha - K_\mathrm{a} = 0 \) を二次方程式の解の公式で解き、\( \alpha = \dfrac{ -K_\mathrm{a} + \sqrt{ K_\mathrm{a}^2 + 4cK_\mathrm{a} } }{ 2c } \) を使います。近似を使ったら、求めた α が 1 に比べて十分小さいかを必ず確かめましょう。</p></div>
+<p>アンモニアでも同じ考え方で、\( K_\mathrm{b} = \dfrac{ c\alpha^2 }{ 1-\alpha } \fallingdotseq c\alpha^2 \) から \( \alpha = \sqrt{ K_\mathrm{b}/c } \)、\( [\ce{OH-}] = c\alpha = \sqrt{ cK_\mathrm{b} } \) となります。0.10 mol/L のアンモニア水では α ≒ 0.015 です。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="弱酸・弱塩基の pH"><span class="num">6</span>弱酸・弱塩基の水溶液の pH（O4）</h2>
+<p>[H⁺]（または [OH⁻]）が求まれば、前の時間（化学-052）と同じように pH が求まります。弱酸では \( [\ce{H+}] = \sqrt{ cK_\mathrm{a} } \) なので、</p>
+<p>$$ \mathrm{pH} = -\log_{10}\sqrt{ cK_\mathrm{a} } = -\frac{1}{2}\log_{10}(cK_\mathrm{a}) $$</p>
+<div class="box example worked">
+  <p class="box-title">例題2　弱酸・弱塩基の pH</p>
+  <p>25℃で、(a) 0.10 mol/L の酢酸水溶液、(b) 0.10 mol/L のアンモニア水の pH を小数第1位まで求めなさい。\( K_\mathrm{a} = 2.7\times10^{-5} \) mol/L、\( K_\mathrm{b} = 2.3\times10^{-5} \) mol/L、\( \log_{10}3 = 0.48 \)、\( \log_{10}2.3 = 0.36 \) とします。</p>
+  <div class="step"><strong>ステップ1：(a) の [H⁺] を式で表す</strong>　\( [\ce{H+}] = \sqrt{ 0.10\times2.7\times10^{-5} } = \sqrt{ 2.7\times10^{-6} } \)</div>
+  <div class="step"><strong>ステップ2：(a) の pH</strong>　\( \log_{10}2.7 = \log_{10}\dfrac{ 3^3 }{ 10 } = 3\times0.48 - 1 = 0.44 \) なので、\( \mathrm{pH} = -\dfrac{1}{2}(\log_{10}2.7 - 6) = \dfrac{1}{2}(6 - 0.44) = 2.78 \)。答え：<strong>pH 2.8</strong>。</div>
+  <div class="step"><strong>ステップ3：(b) の [OH⁻]</strong>　\( [\ce{OH-}] = \sqrt{ 0.10\times2.3\times10^{-5} } = \sqrt{ 2.3\times10^{-6} } \) なので、\( \log_{10}[\ce{OH-}] = \dfrac{1}{2}(0.36 - 6) = -2.82 \)。</div>
+  <div class="step"><strong>ステップ4：(b) の pH</strong>　\( \mathrm{pH} = 14 + \log_{10}[\ce{OH-}] = 14 - 2.82 = 11.18 \)。答え：<strong>pH 11.2</strong>。</div>
+</div>
+<div class="table-wrap"><table>
+  <tr><th>0.10 mol/L の水溶液（25℃）</th><th>塩酸</th><th>酢酸水溶液</th><th>水酸化ナトリウム水溶液</th><th>アンモニア水</th></tr>
+  <tr><td>電離度</td><td>ほぼ 1</td><td>約 0.016</td><td>ほぼ 1</td><td>約 0.015</td></tr>
+  <tr><td>pH</td><td>1.0</td><td>2.8</td><td>13.0</td><td>11.2</td></tr>
+</table></div>
+<div class="box experiment">
+  <p class="box-title">実験　10 倍ずつ薄めたときの pH の変化を比べる</p>
+  <p><strong>目的</strong>　塩酸（強酸）と酢酸水溶液（弱酸）を 10 倍、100 倍に薄めて pH を測り、\( [\ce{H+}] = \sqrt{ cK_\mathrm{a} } \) から予想される「弱酸は 10 倍に薄めると pH が約 0.5 上がる」ことを確かめる。</p>
+  <p><strong>準備</strong>　0.10 mol/L 塩酸、0.10 mol/L 酢酸水溶液、純水、ホールピペット（10 mL）、メスフラスコ（100 mL）、ビーカー、pH メーター、pH 標準液、洗浄びん、保護眼鏡</p>
+  <p><strong>操作</strong></p>
+  <ol>
+    <li>pH メーターを pH 標準液で校正する。</li>
+    <li>ホールピペットで 0.10 mol/L 酢酸水溶液 10.0 mL をとってメスフラスコに入れ、純水を標線まで加えてよく振り混ぜる（0.010 mol/L）。同じ操作をくり返して 0.0010 mol/L の溶液をつくる。塩酸も同じようにする。</li>
+    <li>濃度の小さい溶液から順に pH を測る。測るごとに電極を純水で洗い、水気をふき取る。</li>
+    <li>液温を記録する。</li>
+  </ol>
+  <p><strong>結果の例</strong>（学習用に作成した値。25℃、\( K_\mathrm{a} = 2.7\times10^{-5} \) mol/L として計算し、小数第1位に丸めた）</p>
+<!--gen:table-exp-->
+<div class="table-wrap"><table><tr><th>モル濃度 c〔mol/L〕</th><th>塩酸の pH</th><th>酢酸水溶液の pH</th><th>酢酸の電離度（pH から計算）</th></tr><tr><td>0.10</td><td>1.0</td><td>2.8</td><td>約 0.016</td></tr><tr><td>0.010</td><td>2.0</td><td>3.3</td><td>約 0.050</td></tr><tr><td>0.0010</td><td>3.0</td><td>3.8</td><td>約 0.16</td></tr></table></div>
+<!--/gen:table-exp-->
+  <figure>
+<!--gen:fig-dilution-->
+<svg viewBox="0 0 600 378" role="img" aria-label="濃度と pH の関係のグラフ。横軸は濃度で右ほど薄い（1、0.1、0.01、0.001 mol/L）。塩酸は 10 倍に薄めるごとに pH が 1 ずつ上がる直線、酢酸は 0.5 ずつ上がるゆるやかな線。測定例の点は、塩酸が pH 1.0・2.0・3.0、酢酸が 2.8・3.3・3.8。">
+<line x1="519.8" y1="24" x2="519.8" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="490.5" y1="24" x2="490.5" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="469.7" y1="24" x2="469.7" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="453.5" y1="24" x2="453.5" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="440.3" y1="24" x2="440.3" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="429.2" y1="24" x2="429.2" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="419.5" y1="24" x2="419.5" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="411.0" y1="24" x2="411.0" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="353.2" y1="24" x2="353.2" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="323.8" y1="24" x2="323.8" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="303.0" y1="24" x2="303.0" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="286.8" y1="24" x2="286.8" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="273.6" y1="24" x2="273.6" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="262.5" y1="24" x2="262.5" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="252.8" y1="24" x2="252.8" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="244.3" y1="24" x2="244.3" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="186.5" y1="24" x2="186.5" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="157.1" y1="24" x2="157.1" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="136.3" y1="24" x2="136.3" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="120.2" y1="24" x2="120.2" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="107.0" y1="24" x2="107.0" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="95.8" y1="24" x2="95.8" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="86.2" y1="24" x2="86.2" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="77.6" y1="24" x2="77.6" y2="320" stroke="currentColor" stroke-opacity=".07"/>
+<line x1="570.0" y1="24" x2="570.0" y2="320" stroke="currentColor" stroke-opacity=".2"/>
+<text x="570.0" y="337" text-anchor="middle" font-size="13" fill="currentColor">0.001</text>
+<line x1="403.3" y1="24" x2="403.3" y2="320" stroke="currentColor" stroke-opacity=".2"/>
+<text x="403.3" y="337" text-anchor="middle" font-size="13" fill="currentColor">0.01</text>
+<line x1="236.7" y1="24" x2="236.7" y2="320" stroke="currentColor" stroke-opacity=".2"/>
+<text x="236.7" y="337" text-anchor="middle" font-size="13" fill="currentColor">0.1</text>
+<line x1="70.0" y1="24" x2="70.0" y2="320" stroke="currentColor" stroke-opacity=".2"/>
+<text x="70.0" y="337" text-anchor="middle" font-size="13" fill="currentColor">1</text>
+<line x1="70" y1="320.0" x2="570" y2="320.0" stroke="currentColor" stroke-opacity="0.15"/>
+<line x1="70" y1="283.0" x2="570" y2="283.0" stroke="currentColor" stroke-opacity="0.07"/>
+<line x1="70" y1="246.0" x2="570" y2="246.0" stroke="currentColor" stroke-opacity="0.15"/>
+<line x1="70" y1="209.0" x2="570" y2="209.0" stroke="currentColor" stroke-opacity="0.07"/>
+<line x1="70" y1="172.0" x2="570" y2="172.0" stroke="currentColor" stroke-opacity="0.15"/>
+<line x1="70" y1="135.0" x2="570" y2="135.0" stroke="currentColor" stroke-opacity="0.07"/>
+<line x1="70" y1="98.0" x2="570" y2="98.0" stroke="currentColor" stroke-opacity="0.15"/>
+<line x1="70" y1="61.0" x2="570" y2="61.0" stroke="currentColor" stroke-opacity="0.07"/>
+<line x1="70" y1="24.0" x2="570" y2="24.0" stroke="currentColor" stroke-opacity="0.15"/>
+<text x="64" y="324.5" text-anchor="end" font-size="13" fill="currentColor">0</text>
+<text x="64" y="250.5" text-anchor="end" font-size="13" fill="currentColor">1</text>
+<text x="64" y="176.5" text-anchor="end" font-size="13" fill="currentColor">2</text>
+<text x="64" y="102.5" text-anchor="end" font-size="13" fill="currentColor">3</text>
+<text x="64" y="28.5" text-anchor="end" font-size="13" fill="currentColor">4</text>
+<rect x="70" y="24" width="500" height="296" fill="none" stroke="currentColor"/>
+<text x="320.0" y="360" text-anchor="middle" font-size="13" fill="currentColor">モル濃度 c〔mol/L〕（右へ行くほど 10 倍ずつ薄い）</text>
+<text x="64" y="17" text-anchor="end" font-size="13" fill="currentColor">pH</text>
+<path d="M570.0,98.0 L567.9,98.9 L565.8,99.8 L563.8,100.8 L561.7,101.7 L559.6,102.6 L557.5,103.6 L555.4,104.5 L553.3,105.4 L551.2,106.3 L549.2,107.2 L547.1,108.2 L545.0,109.1 L542.9,110.0 L540.8,110.9 L538.8,111.9 L536.7,112.8 L534.6,113.7 L532.5,114.7 L530.4,115.6 L528.3,116.5 L526.2,117.4 L524.2,118.3 L522.1,119.3 L520.0,120.2 L517.9,121.1 L515.8,122.1 L513.8,123.0 L511.7,123.9 L509.6,124.8 L507.5,125.8 L505.4,126.7 L503.3,127.6 L501.2,128.5 L499.2,129.4 L497.1,130.4 L495.0,131.3 L492.9,132.2 L490.8,133.2 L488.8,134.1 L486.7,135.0 L484.6,135.9 L482.5,136.8 L480.4,137.8 L478.3,138.7 L476.2,139.6 L474.2,140.6 L472.1,141.5 L470.0,142.4 L467.9,143.3 L465.8,144.2 L463.8,145.2 L461.7,146.1 L459.6,147.0 L457.5,147.9 L455.4,148.9 L453.3,149.8 L451.2,150.7 L449.2,151.7 L447.1,152.6 L445.0,153.5 L442.9,154.4 L440.8,155.3 L438.8,156.3 L436.7,157.2 L434.6,158.1 L432.5,159.1 L430.4,160.0 L428.3,160.9 L426.2,161.8 L424.2,162.8 L422.1,163.7 L420.0,164.6 L417.9,165.5 L415.8,166.4 L413.8,167.4 L411.7,168.3 L409.6,169.2 L407.5,170.2 L405.4,171.1 L403.3,172.0 L401.2,172.9 L399.2,173.8 L397.1,174.8 L395.0,175.7 L392.9,176.6 L390.8,177.5 L388.8,178.5 L386.7,179.4 L384.6,180.3 L382.5,181.2 L380.4,182.2 L378.3,183.1 L376.2,184.0 L374.2,185.0 L372.1,185.9 L370.0,186.8 L367.9,187.7 L365.8,188.7 L363.8,189.6 L361.7,190.5 L359.6,191.4 L357.5,192.3 L355.4,193.3 L353.3,194.2 L351.2,195.1 L349.2,196.1 L347.1,197.0 L345.0,197.9 L342.9,198.8 L340.8,199.8 L338.8,200.7 L336.7,201.6 L334.6,202.5 L332.5,203.4 L330.4,204.4 L328.3,205.3 L326.2,206.2 L324.2,207.2 L322.1,208.1 L320.0,209.0 L317.9,209.9 L315.8,210.8 L313.7,211.8 L311.7,212.7 L309.6,213.6 L307.5,214.6 L305.4,215.5 L303.3,216.4 L301.2,217.3 L299.2,218.2 L297.1,219.2 L295.0,220.1 L292.9,221.0 L290.8,221.9 L288.8,222.9 L286.7,223.8 L284.6,224.7 L282.5,225.7 L280.4,226.6 L278.3,227.5 L276.2,228.4 L274.2,229.3 L272.1,230.3 L270.0,231.2 L267.9,232.1 L265.8,233.1 L263.8,234.0 L261.7,234.9 L259.6,235.8 L257.5,236.8 L255.4,237.7 L253.3,238.6 L251.2,239.5 L249.2,240.4 L247.1,241.4 L245.0,242.3 L242.9,243.2 L240.8,244.2 L238.8,245.1 L236.7,246.0 L234.6,246.9 L232.5,247.8 L230.4,248.8 L228.3,249.7 L226.2,250.6 L224.2,251.6 L222.1,252.5 L220.0,253.4 L217.9,254.3 L215.8,255.2 L213.8,256.2 L211.7,257.1 L209.6,258.0 L207.5,258.9 L205.4,259.9 L203.3,260.8 L201.3,261.7 L199.2,262.6 L197.1,263.6 L195.0,264.5 L192.9,265.4 L190.8,266.4 L188.7,267.3 L186.7,268.2 L184.6,269.1 L182.5,270.1 L180.4,271.0 L178.3,271.9 L176.2,272.8 L174.2,273.8 L172.1,274.7 L170.0,275.6 L167.9,276.5 L165.8,277.4 L163.8,278.4 L161.7,279.3 L159.6,280.2 L157.5,281.1 L155.4,282.1 L153.3,283.0 L151.2,283.9 L149.2,284.9 L147.1,285.8 L145.0,286.7 L142.9,287.6 L140.8,288.6 L138.8,289.5 L136.7,290.4 L134.6,291.3 L132.5,292.2 L130.4,293.2 L128.3,294.1 L126.2,295.0 L124.2,295.9 L122.1,296.9 L120.0,297.8 L117.9,298.7 L115.8,299.6 L113.8,300.6 L111.7,301.5 L109.6,302.4 L107.5,303.4 L105.4,304.3 L103.3,305.2 L101.2,306.1 L99.2,307.1 L97.1,308.0 L95.0,308.9 L92.9,309.8 L90.8,310.8 L88.8,311.7 L86.7,312.6 L84.6,313.5 L82.5,314.4 L80.4,315.4 L78.3,316.3 L76.2,317.2 L74.2,318.2 L72.1,319.1 L70.0,320.0" fill="none" stroke="#c0392b" stroke-width="2.4"/>
+<path d="M570.0,37.3 L567.9,37.8 L565.8,38.3 L563.8,38.8 L561.7,39.3 L559.6,39.8 L557.5,40.3 L555.4,40.8 L553.3,41.3 L551.2,41.8 L549.2,42.3 L547.1,42.8 L545.0,43.3 L542.9,43.8 L540.8,44.3 L538.8,44.8 L536.7,45.3 L534.6,45.8 L532.5,46.2 L530.4,46.7 L528.3,47.2 L526.2,47.7 L524.2,48.2 L522.1,48.7 L520.0,49.2 L517.9,49.7 L515.8,50.2 L513.8,50.7 L511.7,51.1 L509.6,51.6 L507.5,52.1 L505.4,52.6 L503.3,53.1 L501.2,53.6 L499.2,54.1 L497.1,54.6 L495.0,55.0 L492.9,55.5 L490.8,56.0 L488.8,56.5 L486.7,57.0 L484.6,57.5 L482.5,57.9 L480.4,58.4 L478.3,58.9 L476.2,59.4 L474.2,59.9 L472.1,60.4 L470.0,60.8 L467.9,61.3 L465.8,61.8 L463.8,62.3 L461.7,62.8 L459.6,63.2 L457.5,63.7 L455.4,64.2 L453.3,64.7 L451.2,65.2 L449.2,65.6 L447.1,66.1 L445.0,66.6 L442.9,67.1 L440.8,67.6 L438.8,68.0 L436.7,68.5 L434.6,69.0 L432.5,69.5 L430.4,69.9 L428.3,70.4 L426.2,70.9 L424.2,71.4 L422.1,71.8 L420.0,72.3 L417.9,72.8 L415.8,73.3 L413.8,73.8 L411.7,74.2 L409.6,74.7 L407.5,75.2 L405.4,75.7 L403.3,76.1 L401.2,76.6 L399.2,77.1 L397.1,77.5 L395.0,78.0 L392.9,78.5 L390.8,79.0 L388.8,79.4 L386.7,79.9 L384.6,80.4 L382.5,80.9 L380.4,81.3 L378.3,81.8 L376.2,82.3 L374.2,82.8 L372.1,83.2 L370.0,83.7 L367.9,84.2 L365.8,84.6 L363.8,85.1 L361.7,85.6 L359.6,86.1 L357.5,86.5 L355.4,87.0 L353.3,87.5 L351.2,87.9 L349.2,88.4 L347.1,88.9 L345.0,89.4 L342.9,89.8 L340.8,90.3 L338.8,90.8 L336.7,91.2 L334.6,91.7 L332.5,92.2 L330.4,92.6 L328.3,93.1 L326.2,93.6 L324.2,94.1 L322.1,94.5 L320.0,95.0 L317.9,95.5 L315.8,95.9 L313.7,96.4 L311.7,96.9 L309.6,97.3 L307.5,97.8 L305.4,98.3 L303.3,98.7 L301.2,99.2 L299.2,99.7 L297.1,100.1 L295.0,100.6 L292.9,101.1 L290.8,101.6 L288.8,102.0 L286.7,102.5 L284.6,103.0 L282.5,103.4 L280.4,103.9 L278.3,104.4 L276.2,104.8 L274.2,105.3 L272.1,105.8 L270.0,106.2 L267.9,106.7 L265.8,107.2 L263.8,107.6 L261.7,108.1 L259.6,108.6 L257.5,109.0 L255.4,109.5 L253.3,110.0 L251.2,110.4 L249.2,110.9 L247.1,111.4 L245.0,111.8 L242.9,112.3 L240.8,112.8 L238.8,113.2 L236.7,113.7 L234.6,114.2 L232.5,114.6 L230.4,115.1 L228.3,115.6 L226.2,116.0 L224.2,116.5 L222.1,117.0 L220.0,117.4 L217.9,117.9 L215.8,118.4 L213.8,118.8 L211.7,119.3 L209.6,119.8 L207.5,120.2 L205.4,120.7 L203.3,121.2 L201.3,121.6 L199.2,122.1 L197.1,122.5 L195.0,123.0 L192.9,123.5 L190.8,123.9 L188.7,124.4 L186.7,124.9 L184.6,125.3 L182.5,125.8 L180.4,126.3 L178.3,126.7 L176.2,127.2 L174.2,127.7 L172.1,128.1 L170.0,128.6 L167.9,129.1 L165.8,129.5 L163.8,130.0 L161.7,130.5 L159.6,130.9 L157.5,131.4 L155.4,131.8 L153.3,132.3 L151.2,132.8 L149.2,133.2 L147.1,133.7 L145.0,134.2 L142.9,134.6 L140.8,135.1 L138.8,135.6 L136.7,136.0 L134.6,136.5 L132.5,137.0 L130.4,137.4 L128.3,137.9 L126.2,138.3 L124.2,138.8 L122.1,139.3 L120.0,139.7 L117.9,140.2 L115.8,140.7 L113.8,141.1 L111.7,141.6 L109.6,142.1 L107.5,142.5 L105.4,143.0 L103.3,143.5 L101.2,143.9 L99.2,144.4 L97.1,144.8 L95.0,145.3 L92.9,145.8 L90.8,146.2 L88.8,146.7 L86.7,147.2 L84.6,147.6 L82.5,148.1 L80.4,148.6 L78.3,149.0 L76.2,149.5 L74.2,149.9 L72.1,150.4 L70.0,150.9" fill="none" stroke="#1f5fbf" stroke-width="2.4" stroke-dasharray="8 5"/>
+<rect x="231.7" y="241.0" width="10" height="10" fill="#c0392b"/>
+<rect x="398.3" y="167.0" width="10" height="10" fill="#c0392b"/>
+<rect x="565.0" y="93.0" width="10" height="10" fill="#c0392b"/>
+<circle cx="236.7" cy="112.8" r="5.5" fill="#1f5fbf"/>
+<circle cx="403.3" cy="75.8" r="5.5" fill="#1f5fbf"/>
+<circle cx="570.0" cy="38.8" r="5.5" fill="#1f5fbf"/>
+<rect x="222" y="268" width="10" height="10" fill="#c0392b"/><text x="238" y="278" font-size="13" fill="currentColor">塩酸（強酸）：10 倍に薄めるごとに pH が 1 上がる</text>
+<circle cx="227" cy="295" r="5.5" fill="#1f5fbf"/><text x="238" y="300" font-size="13" fill="currentColor">酢酸（弱酸）：10 倍に薄めるごとに pH が約 0.5 上がる</text>
+</svg>
+<!--/gen:fig-dilution-->
+    <figcaption>図2　濃度と pH（右へ行くほど薄い）。■ 塩酸（実線は pH＝−log c）、● 酢酸（破線は二次方程式から求めた値）。</figcaption>
+  </figure>
+  <p><strong>結果の読み取り</strong>　(1) 塩酸は 10 倍に薄めるごとに pH が 1.0 上がる。ほぼ完全に電離していて [H⁺]＝c だからである。(2) 酢酸は 2.8 → 3.3 → 3.8 と約 0.5 ずつしか上がらない。\( [\ce{H+}] = \sqrt{ cK_\mathrm{a} } \) では、c が 1/10 になると [H⁺] は \( 1/\sqrt{10} \) になり、pH は \( \tfrac{1}{2}\log_{10}10 = 0.5 \) 上がるという予想どおりである。(3) pH から計算した電離度は約 0.016 → 0.050 → 0.16 と大きくなっている。測定値から電離定数を求めて、濃度によらず一定になるか、ずれの原因は何かを検討するのは、次の時間（化学-054）の実験で行う。</p>
+  <p><strong>安全</strong>　保護眼鏡を着用する。酸が皮膚や目に付いたら、すぐに多量の水で洗い、先生に知らせる。pH メーターの電極の先はガラスで割れやすいので、ビーカーの底や壁に当てない。廃液は指定の容器に集める。</p>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：「弱い酸」と「うすい酸」は別のこと</p><p>弱酸・強酸は電離のしやすさ（電離定数・電離度）の違いで、濃度の大小とは別です。例えば 0.10 mol/L の酢酸水溶液（pH 2.8）は、0.0010 mol/L の塩酸（pH 3.0）よりも pH が小さくなります。また、中和に必要な塩基の量は、電離度ではなく酸の物質量で決まります（化基-048）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>電離平衡</dt><dd>弱酸・弱塩基などが水溶液中で一部だけ電離し、電離する変化とその逆の変化の速さが等しくなって、見かけ上変化が止まった化学平衡の状態。</dd>
+    <dt>電離定数</dt><dd>電離平衡に化学平衡の法則を当てはめた平衡定数。温度が一定なら、濃度によらず一定。</dd>
+    <dt>酸の電離定数 \( K_\mathrm{a} \)</dt><dd>酢酸では \( K_\mathrm{a} = [\ce{CH3COO-}][\ce{H+}]/[\ce{CH3COOH}] \)。25℃で 2.7×10⁻⁵ mol/L（このページの値）。同じ濃度なら、値が大きいほど電離しやすい。</dd>
+    <dt>塩基の電離定数 \( K_\mathrm{b} \)</dt><dd>アンモニアでは \( K_\mathrm{b} = [\ce{NH4+}][\ce{OH-}]/[\ce{NH3}] \)。ほぼ一定の水の濃度を定数に含めたもの。25℃で 2.3×10⁻⁵ mol/L（このページの値）。</dd>
+    <dt>電離度 α</dt><dd>溶かした酸（塩基）のうち電離したものの割合。弱酸では近似的に \( \alpha = \sqrt{ K_\mathrm{a}/c } \) で、濃度が小さいほど大きい。</dd>
+    <dt>オキソニウムイオン</dt><dd>水素イオンが水分子と結び付いたイオン \( \ce{H3O+} \)。[H⁺] は [H₃O⁺] を表す。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>弱酸の電離は電離平衡で、化学平衡の法則から酸の電離定数 \( K_\mathrm{a} \) が定まる。\( K_\mathrm{a} \) は温度だけで決まり、濃度によらない。（O1）</li>
+    <li>弱塩基のアンモニアでは、ほぼ一定の [H₂O] を定数に含めて \( K_\mathrm{b} = [\ce{NH4+}][\ce{OH-}]/[\ce{NH3}] \) とする。（O2）</li>
+    <li>\( K_\mathrm{a} = c\alpha^2/(1-\alpha) \)。α が十分小さいとき \( \alpha = \sqrt{ K_\mathrm{a}/c } \)、\( [\ce{H+}] = \sqrt{ cK_\mathrm{a} } \)。薄めると α は大きくなるが、[H⁺] は小さくなる。近似を使ったら α が小さいかを確かめる。（O3）</li>
+    <li>弱酸の pH は \( -\tfrac{1}{2}\log_{10}(cK_\mathrm{a}) \)。弱塩基は \( [\ce{OH-}] = \sqrt{ cK_\mathrm{b} } \) から \( \mathrm{pH} = 14 + \log_{10}[\ce{OH-}] \)。10 倍に薄めると、強酸は pH が 1、弱酸は約 0.5 上がる。（O4）</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">電離定数（25℃の値はこのページで使う値）</span>$$ K_\mathrm{a} = \frac{ [\ce{CH3COO-}][\ce{H+}] }{ [\ce{CH3COOH}] } = \frac{ c\alpha^2 }{ 1-\alpha } $$<p class="small">酢酸 2.7×10⁻⁵ mol/L、アンモニア（\( K_\mathrm{b} \)）2.3×10⁻⁵ mol/L</p></div>
+  <div><span class="f-name">α ≪ 1 のとき（弱酸）</span>$$ \alpha = \sqrt{ \frac{ K_\mathrm{a} }{ c } },\quad [\ce{H+}] = \sqrt{ cK_\mathrm{a} } $$<p class="small">弱塩基は \( K_\mathrm{a} \) を \( K_\mathrm{b} \)、[H⁺] を [OH⁻] に置き換える。</p></div>
+  <div><span class="f-name">pH（25℃）</span>$$ \mathrm{pH} = -\frac{1}{2}\log_{10}(cK_\mathrm{a}) $$<p class="small">塩基性：\( \mathrm{pH} = 14 + \log_{10}[\ce{OH-}] \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。特に指定がなければ 25℃、\( K_\mathrm{a} = 2.7\times10^{-5} \) mol/L（酢酸）、\( K_\mathrm{b} = 2.3\times10^{-5} \) mol/L（アンモニア）、\( K_\mathrm{w} = 1.0\times10^{-14}\ (\mathrm{mol/L})^2 \)、\( \log_{10}2 = 0.30 \)、\( \log_{10}3 = 0.48 \) とし、\( 1-\alpha \fallingdotseq 1 \) と近似してよい。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>酢酸の電離定数 \( K_\mathrm{a} \) を表す式として正しいものを選びなさい。</p>
+  <div class="choices">
+    <button data-correct="true">\( K_\mathrm{a} = \dfrac{ [\ce{CH3COO-}][\ce{H+}] }{ [\ce{CH3COOH}] } \)</button>
+    <button>\( K_\mathrm{a} = \dfrac{ [\ce{CH3COOH}] }{ [\ce{CH3COO-}][\ce{H+}] } \)</button>
+    <button>\( K_\mathrm{a} = [\ce{CH3COO-}] + [\ce{H+}] \)</button>
+    <button>\( K_\mathrm{a} = \dfrac{ [\ce{H+}] }{ [\ce{CH3COOH}] } \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">電離でできるイオンの濃度の積を、電離していない酢酸の濃度で割ります。2つ目は分子と分母が逆、3つ目は積でなく和、4つ目は CH₃COO⁻ を落としています（4つ目の値は電離度 α のような割合に近く、電離定数ではありません）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>アンモニアの電離平衡 \( \ce{NH3 + H2O &lt;=&gt; NH4+ + OH-} \) について、塩基の電離定数 \( K_\mathrm{b} \) を表す式として正しいものを選びなさい。</p>
+  <div class="choices">
+    <button>\( K_\mathrm{b} = \dfrac{ [\ce{NH4+}][\ce{OH-}] }{ [\ce{NH3}][\ce{H2O}] } \)</button>
+    <button data-correct="true">\( K_\mathrm{b} = \dfrac{ [\ce{NH4+}][\ce{OH-}] }{ [\ce{NH3}] } \)</button>
+    <button>\( K_\mathrm{b} = \dfrac{ [\ce{NH3}] }{ [\ce{NH4+}][\ce{OH-}] } \)</button>
+    <button>\( K_\mathrm{b} = \dfrac{ [\ce{NH4+}][\ce{H+}] }{ [\ce{NH3}] } \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">うすい水溶液では [H₂O]（約 55.6 mol/L）はほぼ一定なので、それを定数に含めたものが \( K_\mathrm{b} \) です。1つ目は化学平衡の法則をそのまま当てはめた K で、\( K_\mathrm{b} \) ではありません。3つ目は逆数、4つ目はアンモニアの電離で生じない H⁺ を使っています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O1・O3</span></div>
+  <p>25℃のまま、0.10 mol/L の酢酸水溶液を水で 10 倍に薄めました。\( K_\mathrm{a} \)、電離度 α、[H⁺] の変化の組合せとして正しいものを選びなさい。</p>
+  <div class="choices">
+    <button data-correct="true">\( K_\mathrm{a} \)：変わらない　α：大きくなる　[H⁺]：小さくなる</button>
+    <button>\( K_\mathrm{a} \)：変わらない　α：大きくなる　[H⁺]：大きくなる</button>
+    <button>\( K_\mathrm{a} \)：小さくなる　α：変わらない　[H⁺]：小さくなる</button>
+    <button>\( K_\mathrm{a} \)：大きくなる　α：大きくなる　[H⁺]：変わらない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">温度が同じなので \( K_\mathrm{a} \) は変わりません。\( \alpha = \sqrt{ K_\mathrm{a}/c } \) は \( \sqrt{10} \) 倍（約 3.2 倍）に大きくなりますが、\( [\ce{H+}] = \sqrt{ cK_\mathrm{a} } \) は \( 1/\sqrt{10} \) 倍に小さくなります。2つ目は「α が増えれば [H⁺] も増える」という誤解です。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="0.010|0.01|1.0×10^-2|1.0×10-2|1.0×10−2|1×10^-2|1.0x10^-2|1.0e-2|1e-2">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>0.27 mol/L の酢酸水溶液における酢酸の電離度 α を、有効数字2桁で求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">\( \alpha = \sqrt{ \dfrac{ 2.7\times10^{-5} }{ 0.27 } } = \sqrt{ 1.0\times10^{-4} } = 1.0\times10^{-2} \)、つまり α＝0.010 です。α は 1 に比べて十分小さいので、近似は妥当です（二次方程式を解いた値も 0.00995 で、有効数字2桁では同じ）。\( \sqrt{ K_\mathrm{a}\times c } \) を計算してしまうと [H⁺] になり、電離度ではありません。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="2.6|2.56|2.57|ph2.6|ph=2.6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O4</span></div>
+  <p>問4の酢酸水溶液の pH を、小数第1位まで求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">\( [\ce{H+}] = c\alpha = 0.27\times1.0\times10^{-2} = 2.7\times10^{-3} \) mol/L。\( \log_{10}2.7 = 3\times0.48 - 1 = 0.44 \) より、\( \mathrm{pH} = 3 - 0.44 = 2.56 \)、答えは <strong>2.6</strong> です。同じ濃度の塩酸なら pH は約 0.6 なので、弱酸の pH はずっと大きくなります。0.27 を [H⁺] と考えて pH 約 0.6 としてしまうのは、弱酸を強酸と同じに扱った誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="11.4|11.36|ph11.4|ph=11.4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2・O4</span></div>
+  <p>0.23 mol/L のアンモニア水の pH を、小数第1位まで求めなさい（\( \log_{10}2.3 = 0.36 \)）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">\( [\ce{OH-}] = \sqrt{ cK_\mathrm{b} } = \sqrt{ 0.23\times2.3\times10^{-5} } = \sqrt{ (2.3\times10^{-3})^2 } = 2.3\times10^{-3} \) mol/L（α＝0.010）。\( \mathrm{pH} = 14 + \log_{10}(2.3\times10^{-3}) = 14 + 0.36 - 3 = 11.36 \)、答えは <strong>11.4</strong> です。[OH⁻] から直接 \( -\log_{10}[\ce{OH-}] \) を計算して「2.6」とするのは、pH が [H⁺] で決まることを忘れた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="1.0×10^-5|1.0×10-5|1.0×10−5|1×10^-5|1×10-5|1.0x10^-5|1.0e-5|1e-5|0.000010|1.0×10^-5mol/l">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O1・O3</span></div>
+  <p>ある1価の弱酸 HA の 0.10 mol/L 水溶液の pH を 25℃で測ったところ、3.0 でした。HA の電離定数〔mol/L〕を有効数字2桁で求めなさい（「1.0×10^-5」のように入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">pH 3.0 より [H⁺]＝1.0×10⁻³ mol/L。\( \alpha = [\ce{H+}]/c = 1.0\times10^{-2} \) で、1 に比べて十分小さい。\( K_\mathrm{a} = c\alpha^2 = 0.10\times(1.0\times10^{-2})^2 = 1.0\times10^{-5} \) mol/L です（1−α を省かずに計算しても \( (1.0\times10^{-3})^2/(0.10-0.001) \fallingdotseq 1.0\times10^{-5} \)）。電離定数から pH を求める計算を逆にたどる問題で、次の時間（化学-054）の実験の結果の処理でも使います。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O3（グラフの読み取り）</span></div>
+  <p>図1（酢酸の濃度と電離度）から読み取れることとして最も適当なものを選びなさい。</p>
+  <div class="choices">
+    <button>濃度を 1/10 にすると、電離度も 1/10 になる。</button>
+    <button data-correct="true">濃度が小さいほど電離度は大きく、近似式の値は実際の値より大きくなり、そのずれは濃度が小さいほど大きい。</button>
+    <button>電離度は濃度によらずほぼ一定で、約 0.016 である。</button>
+    <button>近似式の値は、どの濃度でも実際の値より小さい。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">図1では、c＝0.10 → 0.010 → 0.0010 mol/L と薄くなるにつれて、実際の電離度は約 0.016 → 0.051 → 0.15 と大きくなります（1/10 にはならない）。近似式（破線）は常に実線より上にあり、0.0010 mol/L では約 0.16 と、約 9％大きくなります。近似では分母の 1−α を 1 にして分母を大きく見積もるので、\( K_\mathrm{a} = c\alpha^2 \) を満たす α は実際より大きく出ます。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O3・O4</span></div>
+  <p>0.10 mol/L の塩酸と 0.10 mol/L の酢酸水溶液を、それぞれ水で 10 倍に薄めると、塩酸の pH は 1.0 上がるが、酢酸水溶液の pH は約 0.5 しか上がらない。この違いを、電離度の変化と [H⁺] を表す式を用いて 150 字程度で説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model"><p><strong>解答例</strong>　塩酸はほぼ完全に電離するので [H⁺]＝c であり、10 倍に薄めると [H⁺] は 1/10 になって pH は 1 上がる。酢酸は電離平衡にあり [H⁺]＝√(cKa) である。薄めると平衡が電離の向きに移動して電離度 α＝√(Ka/c) が √10 倍に大きくなるため、[H⁺] は 1/√10 にしかならず、pH は (1/2)log10＝0.5 だけ上がる。</p><p><strong>採点の観点</strong>　(1) 強酸では [H⁺]＝c であることを書いている。(2) 弱酸では [H⁺]＝√(cKa) で、薄めると電離度が大きくなる（平衡が電離の向きに移動する）ことを書いている。(3) pH の増加が (1/2)log10＝0.5 になることを式で示している。</p></div>
+  <div class="explain">「酢酸は電離しにくいから pH が変わりにくい」だけでは不十分です。薄めると電離度が大きくなることが [H⁺] の減り方を小さくしている、という因果を式で示しましょう。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（出題科目『化学』）</p>
+  <p>令和9年度の実施要項では、『化学』の出題範囲に特記はなく、「出題範囲について特記がない場合，出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲とする」とされています。このコマの内容は、科目「化学」の内容として出題範囲に含まれます（1科目選択の場合 60 分・100 点）。</p>
+  <p>令和9年度問題作成方針は、『化学』などについて「観察，実験，調査の結果などを数学的な手法等を活用して分析し解釈する力を問う問題や，受験者にとって既知ではないものも含めた資料などに示された事物・現象を分析的・総合的に考察する力を問う問題などを含めて検討する。その際，基礎を付した科目の内容との関連も考慮する」としています。この時間の、測定した pH から電離度や電離定数を求める計算（問7）やグラフの読み取り（問8）は「数学的な手法等を活用して分析し解釈する」学習に、化学基礎で学んだ電離度・pH を平衡として捉え直す学習は「基礎を付した科目の内容との関連」に関わります。ただし、実際にどのような形式で出題されるかは、この方針からは決められません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">酢酸の電離定数を求める実験（化学-054）</p>
+  <p>次の時間は、濃度の異なる酢酸水溶液の pH を実際に測り、この時間の式（\( K_\mathrm{a} \fallingdotseq c\alpha^2 \)、\( \alpha = [\ce{H+}]/c \)）を使って電離定数を求めます。濃度によらず一定の値になるか、ずれがあればその原因は何かを、結果を分析・解釈して考えます。</p>
+  <p>この時間では扱わないこと：測定値から電離定数を求めて検討する実験（化学-054）、塩の加水分解と、難溶性の塩の溶解度積・共通イオン効果（化学-055）、緩衝液（化学-056）。このページでは、1価の弱酸（酢酸）と弱塩基（アンモニア）だけを扱います。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>化学-052　pHと水のイオン積</div>
+  <div><span class="label">次の時間</span>化学-054　酢酸の電離定数を求める実験</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_kagaku/化学-053「弱酸・弱塩基の電離平衡と電離定数」（学習指導要領 化学 (2)ア(イ)㋒、解説 p.105）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第5節 理科 第2款 第5 化学（文部科学省）<a href="https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf">https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</a>：「水のイオン積，pH 及び弱酸や弱塩基の電離平衡について理解すること」</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 理科編 理数編 p.104-105（文部科学省）<a href="https://www.mext.go.jp/content/20250311-mxt_kyoiku02-100002620_05.pdf">https://www.mext.go.jp/content/20250311-mxt_kyoiku02-100002620_05.pdf</a>：「酢酸やアンモニアのような弱酸や弱塩基の水溶液を取り上げ，電離定数を扱う」</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項 <a href="https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00017382.pdf">https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00017382.pdf</a>・問題作成方針 <a href="https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00005361.pdf">https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00005361.pdf</a>（独立行政法人大学入試センター）</li>
+    <li>教科書で扱う内容の確認：東京書籍『化学』シラバス案（酢酸の電離定数の近似、弱塩基の電離定数）、新興出版社啓林館『高等学校 化学 改訂版』指導計画・評価規準（電離平衡・電離定数・電離度）、数研出版『改訂版 化学』学習指導計画例（濃度や電離度と電離定数の関係、pH の求め方）、新興出版社啓林館『高等学校 化学基礎 改訂版』指導計画・評価規準（オキソニウムイオン）</li>
+    <li>数値は 25℃、\( K_\mathrm{a} \)＝2.7×10⁻⁵ mol/L、\( K_\mathrm{b} \)＝2.3×10⁻⁵ mol/L、\( K_\mathrm{w} \)＝1.0×10⁻¹⁴ (mol/L)² として Python で計算した（検算：tools/worker/lesson_hs_kagaku_化学-053_verify.py）。</li>
+  </ul>
+  <p>作成：2026-09-29　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var KA = 2.7e-5;
+  var AX = { x0: 70, x1: 570, y0: 24, y1: 320, lmin: -3, lmax: 0, ymax: 0.18 };
+  var slider = document.getElementById("iw-c");
+  if (!slider) return;
+  var SUP = { "-": "⁻", "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹" };
+  function X(c) { return AX.x0 + (Math.log10(c) - AX.lmin) / (AX.lmax - AX.lmin) * (AX.x1 - AX.x0); }
+  function Y(a) { return AX.y1 - Math.min(a, AX.ymax) / AX.ymax * (AX.y1 - AX.y0); }
+  function sci(x) {
+    var e = Math.floor(Math.log10(x));
+    var m = x / Math.pow(10, e);
+    if (m >= 9.95) { m = m / 10; e = e + 1; }
+    return m.toFixed(1) + "×10" + String(e).split("").map(function (ch) { return SUP[ch]; }).join("");
+  }
+  function set(id, v) { document.getElementById(id).textContent = v; }
+  function update() {
+    var c = Math.pow(10, parseFloat(slider.value));
+    var ae = (-KA + Math.sqrt(KA * KA + 4 * c * KA)) / (2 * c);
+    var aa = Math.sqrt(KA / c);
+    var h = c * ae;
+    set("iw-cv", sci(c));
+    set("iw-ae", ae.toPrecision(3));
+    set("iw-aa", aa.toPrecision(3));
+    set("iw-err", ((aa / ae - 1) * 100).toFixed(1));
+    set("iw-h", sci(h));
+    set("iw-ph", (-Math.log10(h)).toFixed(2));
+    set("iw-pha", (-0.5 * Math.log10(c * KA)).toFixed(2));
+    set("iw-phs", (-Math.log10(c)).toFixed(2));
+    var x = X(c).toFixed(1);
+    var dot = document.getElementById("iw-dot");
+    dot.setAttribute("cx", x);
+    dot.setAttribute("cy", Y(ae).toFixed(1));
+    var dot2 = document.getElementById("iw-dot2");
+    dot2.setAttribute("cx", x);
+    dot2.setAttribute("cy", Y(aa).toFixed(1));
+    var line = document.getElementById("iw-vline");
+    line.setAttribute("x1", x);
+    line.setAttribute("x2", x);
+  }
+  slider.addEventListener("input", update);
+  update();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_kagaku/化学-053",
+  "map": "hs_kagaku",
+  "rid": "化学-053",
+  "title": "弱酸・弱塩基の電離平衡と電離定数",
+  "subject": "化学",
+  "unit": {
+    "ref": "hs_kagaku:化学8",
+    "title": "化学平衡（平衡の移動・電離平衡）"
+  },
+  "exam": {
+    "共通テスト": "○",
+    "個別試験": ""
+  },
+  "basis": [
+    "(2)ア(イ)㋒"
+  ],
+  "kaisetsu_page": "105",
+  "objectives": [
+    {
+      "id": "O1",
+      "text": "酢酸の電離平衡に化学平衡の法則を当てはめて酸の電離定数を表し、温度が一定なら濃度によらず一定であることを説明できる。",
+      "from": "酢酸…のような弱酸…の水溶液を取り上げて電離定数を理解し",
+      "sections": [
+        "sec-1"
+      ],
+      "checks": [
+        "q1",
+        "q3",
+        "q7"
+      ]
+    },
+    {
+      "id": "O2",
+      "text": "アンモニアの電離平衡について塩基の電離定数を表し、式に水の濃度を含めない理由を説明できる。",
+      "from": "…アンモニアのような…弱塩基の水溶液を取り上げて電離定数を理解し",
+      "sections": [
+        "sec-2"
+      ],
+      "checks": [
+        "q2",
+        "q6"
+      ]
+    },
+    {
+      "id": "O3",
+      "text": "電離定数と濃度から電離度と水素イオン濃度（弱塩基では水酸化物イオン濃度）を求め、薄めると電離度が大きくなることを説明できる。",
+      "from": "電離定数と濃度から電離度や水素イオン濃度…を求める",
+      "sections": [
+        "sec-3"
+      ],
+      "checks": [
+        "q3",
+        "q4",
+        "q7",
+        "q8",
+        "q9"
+      ]
+    },
+    {
+      "id": "O4",
+      "text": "弱酸・弱塩基の水溶液の pH を求め、同じ濃度の強酸・強塩基と比べることができる。",
+      "from": "…・pHを求める",
+      "sections": [
+        "sec-4"
+      ],
+      "checks": [
+        "q5",
+        "q6",
+        "q9"
+      ]
+    }
+  ],
+  "key_terms": [
+    {
+      "term": "電離平衡",
+      "where": "sec-1"
+    },
+    {
+      "term": "電離定数",
+      "where": "sec-1"
+    },
+    {
+      "term": "酸の電離定数",
+      "where": "sec-1"
+    },
+    {
+      "term": "塩基の電離定数",
+      "where": "sec-2"
+    },
+    {
+      "term": "電離度",
+      "where": "sec-3"
+    },
+    {
+      "term": "オキソニウムイオン",
+      "where": "supp-1"
+    }
+  ],
+  "prerequisites": [
+    {
+      "concept": "化学平衡の法則と平衡定数",
+      "taught_in": [
+        "hs_kagaku/化学-046",
+        "hs_kagaku/化学-047"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "ルシャトリエの原理（薄めたときの平衡の移動）",
+      "taught_in": [
+        "hs_kagaku/化学-048"
+      ],
+      "where": "sec-3"
+    },
+    {
+      "concept": "水のイオン積（25℃で 1.0×10⁻¹⁴ (mol/L)²）",
+      "taught_in": [
+        "hs_kagaku/化学-051"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "pH＝−log₁₀[H⁺] と、[OH⁻] からの pH の求め方",
+      "taught_in": [
+        "hs_kagaku/化学-052",
+        "hs_kagaku/化基-046"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "電離度と酸・塩基の強弱（強酸・弱酸、強塩基・弱塩基）",
+      "taught_in": [
+        "hs_kagaku/化基-045"
+      ],
+      "where": "sec-3"
+    },
+    {
+      "concept": "ブレンステッド・ローリーの酸・塩基の定義（アンモニアが水から H⁺ を受け取る）",
+      "taught_in": [
+        "hs_kagaku/化基-044"
+      ],
+      "where": "sec-2"
+    },
+    {
+      "concept": "モル質量・モル濃度（水のモル濃度の見積もりを含む）",
+      "taught_in": [
+        "hs_kagaku/化基-035",
+        "hs_kagaku/化基-038"
+      ],
+      "where": "sec-2"
+    },
+    {
+      "concept": "中和の量的関係（弱酸でも中和に必要な塩基の量は物質量で決まる）",
+      "taught_in": [
+        "hs_kagaku/化基-048"
+      ],
+      "where": "sec-4"
+    },
+    {
+      "concept": "対数の性質と常用対数の計算（log 2＝0.30 など）",
+      "taught_in": [
+        "hs_math_2/数Ⅱ-088",
+        "hs_math_2/数Ⅱ-089",
+        "hs_math_2/数Ⅱ-093"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "平方根と指数の計算（√(a×10⁻ⁿ) の扱い）",
+      "taught_in": [
+        "jhs_math/中3-020",
+        "hs_math_2/数Ⅱ-080",
+        "hs_math_2/数Ⅱ-082"
+      ],
+      "where": "sec-3"
+    },
+    {
+      "concept": "有効数字",
+      "taught_in": [
+        "jhs_math/中3-033"
+      ],
+      "where": "quiz"
+    },
+    {
+      "concept": "二次方程式の解の公式（近似が使えないとき）",
+      "taught_in": [
+        "jhs_math/中3-040"
+      ],
+      "where": "sec-3"
+    },
+    {
+      "concept": "オキソニウムイオン H₃O⁺ と、[H⁺] が [H₃O⁺] を表すこと",
+      "taught_in": [
+        "hs_kagaku/化基-044"
+      ],
+      "gap": false,
+      "where": "supp-1"
+    }
+  ],
+  "out_of_scope": [
+    "測定した pH から電離定数を求め、濃度によらず一定かを検討する実験（化学-054）",
+    "塩の加水分解（化学-055）",
+    "難溶性の塩の溶解度積と共通イオン効果（化学-055）",
+    "緩衝液（化学-056）",
+    "多段階に電離する弱酸（このページでは1価の弱酸・弱塩基だけを扱う）"
+  ],
+  "selection_reason": "化学の候補として化学-053（弱酸・弱塩基の電離平衡と電離定数）、化学-014（金属結晶）、化学-048（ルシャトリエの原理）を比べた。化学-053 は、平衡定数・水のイオン積・pH（化学）、電離度（化学基礎）、対数・平方根（数学Ⅱ・中学数学）と前提が科目をまたいで最も多く、数学Ⅱの履修時期によってははざまが生じやすいこと、近似（1−α≒1）の意味と適用条件や「薄めると α は増えるが [H⁺] は減る」など誤解が生じやすいこと、有効数字・対数を含む計算の正確さが要ること、入試で頻出と考えられ差がつきやすいことに当てはまる。化学-014 は図への依存が大きいが前提は化学基礎の結晶にほぼ限られ、化学-048 は誤解は多いが計算の比重が小さい。",
+  "sources": [
+    {
+      "name": "高等学校学習指導要領（平成30年告示）第2章第5節 理科 第2款 第5 化学",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf",
+      "use": "内容 (2)ア(イ)㋒ と内容の取扱い(2)イ"
+    },
+    {
+      "name": "高等学校学習指導要領（平成30年告示）解説 理科編 理数編 p.104-105",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20250311-mxt_kyoiku02-100002620_05.pdf",
+      "use": "扱う物質（酢酸・アンモニア）と程度（電離定数を扱う、塩の加水分解や緩衝液には触れる）、例示された実験"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項（出題教科・科目の出題方法等）",
+      "publisher": "独立行政法人大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf",
+      "use": "『化学』の出題範囲・試験時間・配点"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針（理科）",
+      "publisher": "独立行政法人大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf",
+      "use": "入試へのつながりの原文"
+    },
+    {
+      "name": "『化学 Vol.1 理論編』『化学 Vol.2 物質編』シラバス案",
+      "publisher": "東京書籍",
+      "url": "https://ten.tokyo-shoseki.co.jp/text/hs/rika/data/rika_16668_syllabus.pdf",
+      "use": "酢酸の電離定数の近似、弱塩基の電離定数を教科書で扱うことの確認"
+    },
+    {
+      "name": "『高等学校 化学 改訂版』指導計画・評価規準",
+      "publisher": "新興出版社啓林館",
+      "url": "https://www.shinko-keirin.co.jp/keirinkan/kou/kou_wp/wp-content/uploads/2026/04/指導計画・評価規準化学061-901.xlsx",
+      "use": "語句（電離平衡・電離定数・電離度）の確認"
+    },
+    {
+      "name": "『改訂版 化学』学習指導計画例",
+      "publisher": "数研出版",
+      "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/kagaku/gen/shidoukeikaku_kagaku_104-901.xlsx",
+      "use": "濃度や電離度と電離定数の関係、pH の求め方を扱うことの確認"
+    },
+    {
+      "name": "『高等学校 化学基礎 改訂版』指導計画・評価規準",
+      "publisher": "新興出版社啓林館",
+      "url": "https://www.shinko-keirin.co.jp/keirinkan/kou/kou_wp/wp-content/uploads/2025/05/指導計画・評価規準化基061-901.xlsx",
+      "use": "語句（オキソニウムイオン）の確認"
+    }
+  ],
+  "version": "1.0",
+  "generated": "2026-09-29"
+}
+</script>
+</body>
+</html>

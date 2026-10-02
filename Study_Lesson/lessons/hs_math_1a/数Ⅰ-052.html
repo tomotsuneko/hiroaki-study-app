@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二次不等式を含む連立不等式｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>二次関数</span><span>数Ⅰ-052</span></div>
+  <h1>二次不等式を含む連立不等式</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">「\( x^2-2x-8&lt;0 \)」と「\( 3x-1\geqq 5 \)」を両方とも満たす \( x \) は、どんな範囲にあるでしょう。二次不等式の解も数直線に表せば、数Ⅰ-017 の連立不等式と同じように、重なる部分として答えが見えてきます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>一次不等式と二次不等式を組にした連立不等式を、それぞれの解を数直線上に表し、共通部分を求めて解くことができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>二次不等式どうしを組にした連立不等式を、解が2つの範囲に分かれる場合や端の数を含むかどうかに注意して解くことができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>A&lt;B&lt;C の形の不等式を連立不等式に直して解き、解に含まれる整数を求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-051）</span>二次不等式の練習</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-052）</span>二次不等式を含む連立不等式</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-053）</span>二次不等式の活用</div>
+</div>
+<p class="small">前提となる単元：中学3年「関数 y=ax²」「二次方程式」、数学Ⅰ「数と式」。同じ単元の数Ⅰ-047〜051（判別式、二次不等式の解き方）と、数Ⅰ-017（連立不等式）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：二次不等式の解と連立不等式</h2>
+<p>この時間は、二次不等式の解き方（数Ⅰ-048〜051）と、連立不等式の解き方（数Ⅰ-017）を組み合わせます。まず要点をまとめます。</p>
+<div class="formula-card">
+  <div><span class="f-name">① 二次不等式の解（数Ⅰ-048・049）</span><p>\( a&gt;0 \) で、\( ax^2+bx+c=0 \) が異なる2つの実数解 \( \alpha,\ \beta \)（\( \alpha&lt;\beta \)）をもつとき<br>\( ax^2+bx+c&gt;0 \) の解は \( x&lt;\alpha,\ \beta&lt;x \)（グラフが \( x \) 軸より上側）<br>\( ax^2+bx+c&lt;0 \) の解は \( \alpha&lt;x&lt;\beta \)（グラフが \( x \) 軸より下側）<br>\( \geqq \)・\( \leqq \) のときは、端の \( \alpha,\ \beta \) も解に含まれる。</p></div>
+  <div><span class="f-name">② 接する場合・共有点がない場合（数Ⅰ-050）</span><p>\( (x-2)^2&gt;0 \) の解は \( x=2 \) 以外のすべての実数<br>\( (x-2)^2\leqq 0 \) の解は \( x=2 \)<br>\( x^2+1&gt;0 \) の解はすべての実数、\( x^2+1&lt;0 \) は解はない</p></div>
+  <div><span class="f-name">③ 連立不等式（数Ⅰ-017）</span><p>組にした不等式を同時に満たす \( x \) の範囲が解。それぞれの解を1本の数直線に表し、共通部分を読み取る。端の数は、すべての不等式に含まれるときだけ解に含まれる。</p></div>
+</div>
+<p class="small">①〜③は、このページの中での番号です。\( x&lt;\alpha,\ \beta&lt;x \) は「\( x&lt;\alpha \) または \( \beta&lt;x \)」を表します。数直線の ● はその数を含む、○ は含まないことを表します（数Ⅰ-015）。\( x^2 \) の係数が負の二次不等式は、両辺に \( -1 \) をかけて係数を正にしてから解くことができます（不等号の向きが変わる。数Ⅰ-015 の性質④）。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-049</span></div>
+  <p>二次不等式 \( x^2-x-6&lt;0 \) の解はどれですか。</p>
+  <div class="choices">
+    <button>\( x&lt;-2,\ 3&lt;x \)</button>
+    <button>\( -3&lt;x&lt;2 \)</button>
+    <button data-correct="true">\( -2&lt;x&lt;3 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x^2-x-6=(x+2)(x-3) \) なので、グラフは \( x=-2,\ 3 \) で \( x \) 軸と交わる下に凸の放物線です。\( y&lt;0 \) となるのはグラフが \( x \) 軸より下側にある \( -2&lt;x&lt;3 \) です。\( x&lt;-2,\ 3&lt;x \) は \( x^2-x-6&gt;0 \) の解（上側）です。\( -3&lt;x&lt;2 \) は \( (x+3)(x-2) \) と因数分解を誤っています（展開すると \( x^2+x-6 \)）。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-050</span></div>
+  <p>二次不等式 \( x^2-4x+4&gt;0 \) の解はどれですか。</p>
+  <div class="choices">
+    <button>解はない</button>
+    <button data-correct="true">\( x=2 \) 以外のすべての実数</button>
+    <button>すべての実数</button>
+    <button>\( x=2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x^2-4x+4=(x-2)^2 \) で、グラフは点 \( (2,\ 0) \) で \( x \) 軸に接します。\( x=2 \) のときだけ値が 0 で、それ以外では正なので、解は \( x=2 \) 以外のすべての実数です。「解はない」は、\( x^2-4x+4&lt;0 \) の場合と取り違えています。「すべての実数」は \( x=2 \) で \( 0&gt;0 \) が成り立たないことを見落としています。\( x=2 \) は \( (x-2)^2\leqq 0 \) の解です。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-017</span></div>
+  <p>連立不等式 \( x+1&gt;0,\ x-3\leqq 0 \) の解はどれですか。</p>
+  <div class="choices">
+    <button>\( -1\leqq x&lt;3 \)</button>
+    <button>すべての実数</button>
+    <button data-correct="true">\( -1&lt;x\leqq 3 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x+1&gt;0 \) より \( x&gt;-1 \)、\( x-3\leqq 0 \) より \( x\leqq 3 \)。共通部分は \( -1&lt;x\leqq 3 \) です。\( -1 \) は \( x&gt;-1 \) に含まれないので ○、3 は \( x\leqq 3 \) に含まれるので ● です。\( -1\leqq x&lt;3 \) は端の含み方を入れかえた誤り、「すべての実数」は2つの解を合わせた範囲を答えた誤りです。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：2つの条件を両方満たすのは？</h2>
+<div class="box think">
+  <p class="box-title">二次不等式と一次不等式を同時に満たす \( x \)</p>
+  <p>次の2つの不等式を<strong>両方とも</strong>満たす \( x \) を考えます。</p>
+  <p>① \( x^2-2x-8&lt;0 \)　　② \( 3x-1\geqq 5 \)</p>
+  <p>\( x=3 \)、\( x=5 \)、\( x=2 \)、\( x=-1 \) のうち、両方を満たすのはどれでしょうか。また、両方を満たす \( x \) の範囲はどのように求めればよいでしょうか。答えは「3 一次不等式と二次不等式の連立」の例題1で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="一次不等式と二次不等式の連立"><span class="num">3</span>一次不等式と二次不等式の連立</h2>
+<p>二次不等式を含むいくつかの不等式を組にしたものも、数Ⅰ-017 と同じく<strong>連立不等式</strong>といいます。組にした不等式を<strong>同時に満たす</strong> \( x \) の値の範囲が、その連立不等式の解です。</p>
+<p>求め方も数Ⅰ-017 と同じです。違うのは、二次不等式の解をグラフと \( x \) 軸の位置関係から求めることと、その解が2つの範囲に分かれることがある点です。</p>
+<div class="box point"><p class="box-title">二次不等式を含む連立不等式の解き方</p><p>① それぞれの不等式を解く（二次不等式はグラフと \( x \) 軸の位置関係から）。<br>② それぞれの解を1本の数直線に、高さを変えて表す（端は ● か ○ か）。<br>③ すべての線が重なる部分（共通部分）を読み取る。端の数は、すべての不等式に代入して確かめる。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の問い）</p>
+  <p>連立不等式 $$ \begin{cases} x^2-2x-8&lt;0 \\ 3x-1\geqq 5 \end{cases} $$ を解きなさい（上の式を①、下の式を②とします）。</p>
+  <div class="step">ステップ1（着目：二次不等式はグラフで解く）：① の左辺は \( x^2-2x-8=(x+2)(x-4) \)。\( y=x^2-2x-8 \) のグラフは \( x=-2,\ 4 \) で \( x \) 軸と交わる下に凸の放物線で、\( y&lt;0 \) となるのは \( x \) 軸より下側の \( -2&lt;x&lt;4 \) です（図1の上）。</div>
+  <div class="step">ステップ2（一次不等式を解く）：② を移項して \( 3x\geqq 6 \)、両辺を正の数 3 でわって \( x\geqq 2 \)。</div>
+  <div class="step">ステップ3（着目：数直線に並べる）：\( -2&lt;x&lt;4 \) と \( x\geqq 2 \) を1本の数直線に表します（図1の下）。両方の線が重なるのは 2 から 4 までの部分です。</div>
+  <div class="step">ステップ4（端の数を確かめる）：\( x=2 \) は ② に含まれ、① に代入すると \( 4-4-8=-8&lt;0 \) で成り立つので ●。\( x=4 \) は ① に代入すると \( 16-8-8=0 \) で、\( 0&lt;0 \) は成り立たないので ○。</div>
+  <div class="step">答え：<span data-ans="ex1">\( 2\leqq x&lt;4 \)</span></div>
+</div>
+<figure>
+<!--svg:f052a-->
+<svg viewBox="0 0 440 294" width="440" role="img" aria-label="上は y=x²−2x−8 のグラフで、x 軸より上側を青の実線、x 軸より下側にある −2&amp;lt;x&amp;lt;4 の部分を橙の破線で示し、x 軸との共有点 (−2, 0)、(4, 0) に緑の点を打つ。下は数直線で、① −2&amp;lt;x&amp;lt;4（−2 と 4 に白丸）と ② x≧2（2 に黒丸、右向き）を高さを変えて描き、重なる 2≦x&amp;lt;4 に色を付けた図" data-fig="f052a" data-frame="26 22 388 176 -4.6 6.6 -10.5 7.5"><defs><clipPath id="clip-f052a"><rect x="26" y="22" width="388" height="176"/></clipPath></defs>
+<line x1="20" y1="95.3" x2="422" y2="95.3" stroke="currentColor" stroke-width="1"/>
+<polygon points="423,95.3 415,91.8 415,98.8" fill="currentColor"/>
+<text x="420" y="88.3" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="185.4" y1="204" x2="185.4" y2="14" stroke="currentColor" stroke-width="1"/>
+<polygon points="185.4,13 181.9,21 188.9,21" fill="currentColor"/>
+<text x="192.4" y="23" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="181.4" y="108.3" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="116.1" y1="92.3" x2="116.1" y2="98.3" stroke="currentColor"/>
+<text x="116.1" y="109.3" text-anchor="middle" font-size="11" fill="currentColor">−2</text>
+<line x1="323.9" y1="92.3" x2="323.9" y2="98.3" stroke="currentColor"/>
+<text x="323.9" y="109.3" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="182.4" y1="173.6" x2="188.4" y2="173.6" stroke="currentColor"/>
+<text x="180.4" y="177.6" text-anchor="end" font-size="11" fill="currentColor">−8</text>
+<line x1="182.4" y1="56.2" x2="188.4" y2="56.2" stroke="currentColor"/>
+<text x="180.4" y="60.2" text-anchor="end" font-size="11" fill="currentColor">4</text>
+<path d="M26,-123.3 L28.3,-116.2 L30.5,-109.2 L32.8,-102.3 L35,-95.5 L37.3,-88.7 L39.5,-82.1 L41.8,-75.5 L44,-69 L46.3,-62.6 L48.5,-56.2 L50.8,-50 L53,-43.8 L55.3,-37.7 L57.5,-31.7 L59.8,-25.8 L62,-20 L64.3,-14.2 L66.5,-8.6 L68.8,-3 L71,2.5 L73.3,8 L75.5,13.3 L77.8,18.6 L80,23.7 L82.3,28.8 L84.5,33.8 L86.8,38.8 L89,43.6 L91.3,48.4 L93.6,53.1 L95.8,57.7 L98.1,62.2 L100.3,66.6 L102.6,71 L104.8,75.2 L107.1,79.4 L109.3,83.5 L111.6,87.5 L113.8,91.5 L116.1,95.3" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-f="1 -2 -8" clip-path="url(#clip-f052a)"/>
+<path d="M116.1,95.3 L118.7,99.7 L121.3,103.9 L123.9,108 L126.5,112.1 L129.1,116 L131.7,119.8 L134.3,123.4 L136.9,127 L139.5,130.5 L142.1,133.8 L144.7,137.1 L147.2,140.2 L149.8,143.2 L152.4,146.2 L155,149 L157.6,151.7 L160.2,154.2 L162.8,156.7 L165.4,159.1 L168,161.3 L170.6,163.5 L173.2,165.5 L175.8,167.4 L178.4,169.3 L181,171 L183.6,172.6 L186.2,174 L188.8,175.4 L191.4,176.7 L194,177.8 L196.6,178.9 L199.2,179.8 L201.8,180.6 L204.4,181.4 L207,182 L209.6,182.5 L212.2,182.8 L214.8,183.1 L217.4,183.3 L220,183.3 L222.6,183.3 L225.2,183.1 L227.8,182.8 L230.4,182.5 L233,182 L235.6,181.4 L238.2,180.6 L240.8,179.8 L243.4,178.9 L246,177.8 L248.6,176.7 L251.2,175.4 L253.8,174 L256.4,172.6 L259,171 L261.6,169.3 L264.2,167.4 L266.8,165.5 L269.4,163.5 L272,161.3 L274.6,159.1 L277.2,156.7 L279.8,154.2 L282.4,151.7 L285,149 L287.6,146.2 L290.2,143.2 L292.8,140.2 L295.3,137.1 L297.9,133.8 L300.5,130.5 L303.1,127 L305.7,123.4 L308.3,119.8 L310.9,116 L313.5,112.1 L316.1,108 L318.7,103.9 L321.3,99.7 L323.9,95.3" fill="none" stroke="#b7791f" stroke-width="3" stroke-dasharray="6 4" data-f="1 -2 -8" clip-path="url(#clip-f052a)"/>
+<path d="M323.9,95.3 L326.2,91.5 L328.4,87.5 L330.7,83.5 L332.9,79.4 L335.2,75.2 L337.4,71 L339.7,66.6 L341.9,62.2 L344.2,57.7 L346.4,53.1 L348.7,48.4 L350.9,43.6 L353.2,38.8 L355.5,33.8 L357.7,28.8 L360,23.7 L362.2,18.6 L364.5,13.3 L366.7,8 L369,2.5 L371.2,-3 L373.5,-8.6 L375.7,-14.2 L378,-20 L380.2,-25.8 L382.5,-31.7 L384.7,-37.7 L387,-43.8 L389.2,-50 L391.5,-56.2 L393.7,-62.6 L396,-69 L398.2,-75.5 L400.5,-82.1 L402.7,-88.7 L405,-95.5 L407.2,-102.3 L409.5,-109.2 L411.7,-116.2 L414,-123.3" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-f="1 -2 -8" clip-path="url(#clip-f052a)"/>
+<circle cx="116.1" cy="95.3" r="4.5" fill="#1e8e5a" data-xy="-2 0"/>
+<circle cx="323.9" cy="95.3" r="4.5" fill="#1e8e5a" data-xy="4 0"/>
+<text x="226.9" y="134.4" text-anchor="middle" font-size="11" fill="#b7791f">y&lt;0 の部分</text>
+<text x="362" y="46.4" text-anchor="start" font-size="11" fill="currentColor">y=x²−2x−8</text>
+<line x1="116.1" y1="95.3" x2="116.1" y2="266" stroke="#b7791f" stroke-width="1.2" stroke-dasharray="3 3"/>
+<line x1="323.9" y1="95.3" x2="323.9" y2="266" stroke="#b7791f" stroke-width="1.2" stroke-dasharray="3 3"/>
+<rect x="254.6" y="229" width="69.3" height="37" fill="#1f5fbf" fill-opacity="0.13" data-shade=""/>
+<line x1="14" y1="266" x2="430" y2="266" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,266 L422,262 L422,270 Z" fill="currentColor"/>
+<line x1="46.8" y1="262" x2="46.8" y2="270" stroke="currentColor"/>
+<text x="46.8" y="285" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−4</text>
+<line x1="81.4" y1="262" x2="81.4" y2="270" stroke="currentColor"/>
+<text x="81.4" y="285" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−3</text>
+<line x1="116.1" y1="262" x2="116.1" y2="270" stroke="currentColor"/>
+<text x="116.1" y="285" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−2</text>
+<line x1="150.7" y1="262" x2="150.7" y2="270" stroke="currentColor"/>
+<text x="150.7" y="285" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−1</text>
+<line x1="185.4" y1="262" x2="185.4" y2="270" stroke="currentColor"/>
+<text x="185.4" y="285" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">0</text>
+<line x1="220" y1="262" x2="220" y2="270" stroke="currentColor"/>
+<text x="220" y="285" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">1</text>
+<line x1="254.6" y1="262" x2="254.6" y2="270" stroke="currentColor"/>
+<text x="254.6" y="285" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">2</text>
+<line x1="289.3" y1="262" x2="289.3" y2="270" stroke="currentColor"/>
+<text x="289.3" y="285" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">3</text>
+<line x1="323.9" y1="262" x2="323.9" y2="270" stroke="currentColor"/>
+<text x="323.9" y="285" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">4</text>
+<line x1="358.6" y1="262" x2="358.6" y2="270" stroke="currentColor"/>
+<text x="358.6" y="285" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">5</text>
+<line x1="393.2" y1="262" x2="393.2" y2="270" stroke="currentColor"/>
+<text x="393.2" y="285" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">6</text>
+<path d="M116.1,266 L116.1,250 L323.9,250 L323.9,266" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s1"/>
+<circle cx="116.1" cy="266" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="-2" data-in="0" data-set="s1"/>
+<circle cx="323.9" cy="266" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="4" data-in="0" data-set="s1"/>
+<text x="202.7" y="245" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">① −2 &lt; x &lt; 4</text>
+<path d="M254.6,266 L254.6,235 L416,235" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s2"/>
+<path d="M422,235 L413,230.5 L413,239.5 Z" fill="#1f5fbf"/>
+<circle cx="254.6" cy="266" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="2" data-in="1" data-set="s2"/>
+<text x="375.9" y="230" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">② x ≧ 2</text>
+</svg>
+<!--/svg:f052a-->
+  <figcaption>図1　上：\( y=x^2-2x-8 \) のグラフ（\( x \) 軸より上側は青の実線、下側は橙の破線、緑の●は \( x \) 軸との共有点）。\( x \) 軸より下側にある部分の \( x \) の範囲が ① の解 \( -2&lt;x&lt;4 \)。下：① と ② \( x\geqq 2 \) の解を数直線に表した図。色を付けた部分が共通部分 \( 2\leqq x&lt;4 \)</figcaption>
+</figure>
+<div class="box point"><p class="box-title">導入の問いの答え</p><p>\( x=3 \)：① は \( 9-6-8=-5&lt;0 \)、② は \( 3\cdot 3-1=8\geqq 5 \) で、両方を満たします。<br>\( x=5 \)：② は \( 14\geqq 5 \) で満たしますが、① は \( 25-10-8=7 \) で \( 7&lt;0 \) が成り立ちません。<br>\( x=2 \)：① は \( -8&lt;0 \)、② は \( 5\geqq 5 \) で、両方を満たします（端の 2 も解に含まれます）。<br>\( x=-1 \)：① は \( 1+2-8=-5&lt;0 \) で満たしますが、② は \( -4\geqq 5 \) が成り立ちません。<br>両方を満たすのは \( x=3 \) と \( x=2 \) で、どちらも例題1の答え \( 2\leqq x&lt;4 \) に含まれています。</p></div>
+
+<h3>二次不等式の解が2つの範囲に分かれるとき</h3>
+<div class="box example worked">
+  <p class="box-title">例題2</p>
+  <p>連立不等式 $$ \begin{cases} x^2-x-6&gt;0 \\ 2x+1&lt;9 \end{cases} $$ を解きなさい（上の式を①、下の式を②とします）。</p>
+  <div class="step">ステップ1：① の左辺は \( (x+2)(x-3) \)。グラフが \( x \) 軸より上側にあるのは \( x&lt;-2,\ 3&lt;x \) です。② は \( 2x&lt;8 \)、\( x&lt;4 \)。</div>
+  <div class="step">ステップ2（着目：範囲ごとに重なりを調べる）：① の解は「\( x&lt;-2 \)」と「\( 3&lt;x \)」の2つの部分に分かれています（図2）。\( x&lt;-2 \) の部分は、すべて \( x&lt;4 \) に含まれるのでそのまま残ります。\( 3&lt;x \) の部分のうち \( x&lt;4 \) と重なるのは \( 3&lt;x&lt;4 \) です。</div>
+  <div class="step">ステップ3（端の数）：\( -2 \) と 3 は ① に含まれない（\( 0&gt;0 \) は成り立たない）ので ○、4 は ② に含まれない（\( 9&lt;9 \) は成り立たない）ので ○。</div>
+  <div class="step">答え：<span data-ans="ex2">\( x&lt;-2,\ 3&lt;x&lt;4 \)</span></div>
+</div>
+<figure>
+<!--svg:f052b-->
+<svg viewBox="0 0 440 91" width="440" role="img" aria-label="数直線に ① x&amp;lt;−2, 3&amp;lt;x（同じ高さの2本の線、−2 と 3 に白丸）と ② x&amp;lt;4（4 に白丸、左向き）を描き、重なる x&amp;lt;−2 と 3&amp;lt;x&amp;lt;4 に色を付けた図" data-fig="f052b">
+<rect x="10" y="26" width="118.9" height="37" fill="#1f5fbf" fill-opacity="0.13" data-shade=""/>
+<rect x="307.1" y="26" width="35.6" height="37" fill="#1f5fbf" fill-opacity="0.13" data-shade=""/>
+<line x1="10" y1="63" x2="430" y2="63" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,63 L422,59 L422,67 Z" fill="currentColor"/>
+<line x1="22" y1="59" x2="22" y2="67" stroke="currentColor"/>
+<text x="22" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−5</text>
+<line x1="57.6" y1="59" x2="57.6" y2="67" stroke="currentColor"/>
+<text x="57.6" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−4</text>
+<line x1="93.3" y1="59" x2="93.3" y2="67" stroke="currentColor"/>
+<text x="93.3" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−3</text>
+<line x1="128.9" y1="59" x2="128.9" y2="67" stroke="currentColor"/>
+<text x="128.9" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−2</text>
+<line x1="164.5" y1="59" x2="164.5" y2="67" stroke="currentColor"/>
+<text x="164.5" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−1</text>
+<line x1="200.2" y1="59" x2="200.2" y2="67" stroke="currentColor"/>
+<text x="200.2" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">0</text>
+<line x1="235.8" y1="59" x2="235.8" y2="67" stroke="currentColor"/>
+<text x="235.8" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">1</text>
+<line x1="271.5" y1="59" x2="271.5" y2="67" stroke="currentColor"/>
+<text x="271.5" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">2</text>
+<line x1="307.1" y1="59" x2="307.1" y2="67" stroke="currentColor"/>
+<text x="307.1" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">3</text>
+<line x1="342.7" y1="59" x2="342.7" y2="67" stroke="currentColor"/>
+<text x="342.7" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">4</text>
+<line x1="378.4" y1="59" x2="378.4" y2="67" stroke="currentColor"/>
+<text x="378.4" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">5</text>
+<line x1="414" y1="59" x2="414" y2="67" stroke="currentColor"/>
+<text x="414" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">6</text>
+<path d="M12,47 L128.9,47 L128.9,63" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s1"/>
+<path d="M6,47 L15,42.5 L15,51.5 Z" fill="#1f5fbf"/>
+<circle cx="128.9" cy="63" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="-2" data-in="0" data-set="s1"/>
+<path d="M307.1,63 L307.1,47 L416,47" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s1"/>
+<path d="M422,47 L413,42.5 L413,51.5 Z" fill="#1f5fbf"/>
+<circle cx="307.1" cy="63" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="3" data-in="0" data-set="s1"/>
+<text x="218" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">① x &lt; −2, 3 &lt; x</text>
+<path d="M12,32 L342.7,32 L342.7,63" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s2"/>
+<path d="M6,32 L15,27.5 L15,36.5 Z" fill="#1f5fbf"/>
+<circle cx="342.7" cy="63" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="4" data-in="0" data-set="s2"/>
+<text x="93.3" y="27" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">② x &lt; 4</text>
+</svg>
+<!--/svg:f052b-->
+  <figcaption>図2　① \( x&lt;-2,\ 3&lt;x \)（同じ高さの2本の線）と ② \( x&lt;4 \) の共通部分（色を付けた部分）は \( x&lt;-2,\ 3&lt;x&lt;4 \)</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い：分かれた解の一方を落とす</p><p>例題2で答えを \( 3&lt;x&lt;4 \) だけにするのは誤りです。たとえば \( x=-3 \) は、① が \( 9+3-6=6&gt;0 \)、② が \( -6+1=-5&lt;9 \) で、両方を満たします。二次不等式の解が2つの部分に分かれるときは、<strong>部分ごとに</strong>もう一方の解との重なりを調べます。逆に、2つの解を合わせた範囲（例題2なら「すべての実数」）を答えるのも誤りです。答えは両方を満たす範囲です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="二次不等式どうしの連立"><span class="num">4</span>二次不等式どうしの連立と、端の数の扱い</h2>
+<p>2つの不等式がどちらも二次不等式のときも、手順は同じです。それぞれをグラフで解き、数直線に並べて共通部分を読み取ります。</p>
+<div class="box example worked">
+  <p class="box-title">例題3</p>
+  <p>連立不等式 $$ \begin{cases} x^2-3x-4\leqq 0 \\ x^2-4&gt;0 \end{cases} $$ を解きなさい（上の式を①、下の式を②とします）。</p>
+  <div class="step">ステップ1：① は \( (x+1)(x-4)\leqq 0 \) で、グラフが \( x \) 軸より下側または \( x \) 軸上にある \( -1\leqq x\leqq 4 \)。</div>
+  <div class="step">ステップ2：② は \( (x+2)(x-2)&gt;0 \) で、\( x&lt;-2,\ 2&lt;x \)。</div>
+  <div class="step">ステップ3（着目：部分ごとに重なりを調べる）：図3のように、② の \( x&lt;-2 \) の部分は ① の \( -1\leqq x\leqq 4 \) と重なりません。\( 2&lt;x \) の部分との重なりは \( 2&lt;x\leqq 4 \) です。</div>
+  <div class="step">ステップ4（端の数）：\( x=2 \) を ② に代入すると \( 4-4=0 \) で \( 0&gt;0 \) が成り立たないので ○。\( x=4 \) は ① が \( 16-12-4=0\leqq 0 \)、② が \( 16-4=12&gt;0 \) で両方成り立つので ●。</div>
+  <div class="step">答え：<span data-ans="ex3">\( 2&lt;x\leqq 4 \)</span></div>
+</div>
+<figure>
+<!--svg:f052c-->
+<svg viewBox="0 0 440 91" width="440" role="img" aria-label="数直線に ① −1≦x≦4（両端に黒丸）と ② x&amp;lt;−2, 2&amp;lt;x（−2 と 2 に白丸）を描き、重なる 2&amp;lt;x≦4 に色を付けた図" data-fig="f052c">
+<rect x="257.2" y="26" width="78.4" height="37" fill="#1f5fbf" fill-opacity="0.13" data-shade=""/>
+<line x1="10" y1="63" x2="430" y2="63" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,63 L422,59 L422,67 Z" fill="currentColor"/>
+<line x1="22" y1="59" x2="22" y2="67" stroke="currentColor"/>
+<text x="22" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−4</text>
+<line x1="61.2" y1="59" x2="61.2" y2="67" stroke="currentColor"/>
+<text x="61.2" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−3</text>
+<line x1="100.4" y1="59" x2="100.4" y2="67" stroke="currentColor"/>
+<text x="100.4" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−2</text>
+<line x1="139.6" y1="59" x2="139.6" y2="67" stroke="currentColor"/>
+<text x="139.6" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−1</text>
+<line x1="178.8" y1="59" x2="178.8" y2="67" stroke="currentColor"/>
+<text x="178.8" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">0</text>
+<line x1="218" y1="59" x2="218" y2="67" stroke="currentColor"/>
+<text x="218" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">1</text>
+<line x1="257.2" y1="59" x2="257.2" y2="67" stroke="currentColor"/>
+<text x="257.2" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">2</text>
+<line x1="296.4" y1="59" x2="296.4" y2="67" stroke="currentColor"/>
+<text x="296.4" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">3</text>
+<line x1="335.6" y1="59" x2="335.6" y2="67" stroke="currentColor"/>
+<text x="335.6" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">4</text>
+<line x1="374.8" y1="59" x2="374.8" y2="67" stroke="currentColor"/>
+<text x="374.8" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">5</text>
+<line x1="414" y1="59" x2="414" y2="67" stroke="currentColor"/>
+<text x="414" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">6</text>
+<path d="M139.6,63 L139.6,47 L335.6,47 L335.6,63" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s1"/>
+<circle cx="139.6" cy="63" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="-1" data-in="1" data-set="s1"/>
+<circle cx="335.6" cy="63" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="4" data-in="1" data-set="s1"/>
+<text x="218" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">① −1 ≦ x ≦ 4</text>
+<path d="M12,32 L100.4,32 L100.4,63" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s2"/>
+<path d="M6,32 L15,27.5 L15,36.5 Z" fill="#1f5fbf"/>
+<circle cx="100.4" cy="63" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="-2" data-in="0" data-set="s2"/>
+<path d="M257.2,63 L257.2,32 L416,32" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s2"/>
+<path d="M422,32 L413,27.5 L413,36.5 Z" fill="#1f5fbf"/>
+<circle cx="257.2" cy="63" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="2" data-in="0" data-set="s2"/>
+<text x="178.8" y="27" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">② x &lt; −2, 2 &lt; x</text>
+</svg>
+<!--/svg:f052c-->
+  <figcaption>図3　① \( -1\leqq x\leqq 4 \) と ② \( x&lt;-2,\ 2&lt;x \) の共通部分は \( 2&lt;x\leqq 4 \)。② の左の部分は ① と重ならない</figcaption>
+</figure>
+
+<h3>接する場合・共有点がない場合を含むとき</h3>
+<p>確認2のように、グラフが \( x \) 軸に接する二次不等式では「\( x=a \) 以外のすべての実数」のような解になります。これも2つの部分 \( x&lt;a \) と \( a&lt;x \) に分かれた解と考えれば、同じ方法で共通部分を求められます。</p>
+<div class="box example worked">
+  <p class="box-title">例題4</p>
+  <p>連立不等式 $$ \begin{cases} x^2-6x+9&gt;0 \\ x^2-4x\leqq 0 \end{cases} $$ を解きなさい（上の式を①、下の式を②とします）。</p>
+  <div class="step">ステップ1：① は \( (x-3)^2&gt;0 \)。グラフは点 \( (3,\ 0) \) で \( x \) 軸に接するので（判別式は \( D=36-36=0 \)、数Ⅰ-047）、解は \( x=3 \) 以外のすべての実数です。</div>
+  <div class="step">ステップ2：② は \( x(x-4)\leqq 0 \) で、\( 0\leqq x\leqq 4 \)。</div>
+  <div class="step">ステップ3（着目：除かれる1点）：共通部分は、\( 0\leqq x\leqq 4 \) から \( x=3 \) だけを除いた範囲です（図4）。3 は ① に含まれないので ○ です。</div>
+  <div class="step">答え：<span data-ans="ex4">\( 0\leqq x&lt;3,\ 3&lt;x\leqq 4 \)</span></div>
+</div>
+<figure>
+<!--svg:f052d-->
+<svg viewBox="0 0 440 91" width="440" role="img" aria-label="数直線に ① x=3 以外のすべての実数（3 に白丸をかいた左右の2本の線）と ② 0≦x≦4（両端に黒丸）を描き、共通部分 0≦x&amp;lt;3 と 3&amp;lt;x≦4 に色を付けた図" data-fig="f052d">
+<rect x="120" y="26" width="147" height="37" fill="#1f5fbf" fill-opacity="0.13" data-shade=""/>
+<rect x="267" y="26" width="49" height="37" fill="#1f5fbf" fill-opacity="0.13" data-shade=""/>
+<line x1="10" y1="63" x2="430" y2="63" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,63 L422,59 L422,67 Z" fill="currentColor"/>
+<line x1="22" y1="59" x2="22" y2="67" stroke="currentColor"/>
+<text x="22" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−2</text>
+<line x1="71" y1="59" x2="71" y2="67" stroke="currentColor"/>
+<text x="71" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−1</text>
+<line x1="120" y1="59" x2="120" y2="67" stroke="currentColor"/>
+<text x="120" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">0</text>
+<line x1="169" y1="59" x2="169" y2="67" stroke="currentColor"/>
+<text x="169" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">1</text>
+<line x1="218" y1="59" x2="218" y2="67" stroke="currentColor"/>
+<text x="218" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">2</text>
+<line x1="267" y1="59" x2="267" y2="67" stroke="currentColor"/>
+<text x="267" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">3</text>
+<line x1="316" y1="59" x2="316" y2="67" stroke="currentColor"/>
+<text x="316" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">4</text>
+<line x1="365" y1="59" x2="365" y2="67" stroke="currentColor"/>
+<text x="365" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">5</text>
+<line x1="414" y1="59" x2="414" y2="67" stroke="currentColor"/>
+<text x="414" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">6</text>
+<path d="M12,47 L267,47 L267,63" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s1"/>
+<path d="M6,47 L15,42.5 L15,51.5 Z" fill="#1f5fbf"/>
+<circle cx="267" cy="47" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="3" data-in="0" data-set="s1"/>
+<path d="M267,63 L267,47 L416,47" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s1"/>
+<path d="M422,47 L413,42.5 L413,51.5 Z" fill="#1f5fbf"/>
+<circle cx="267" cy="47" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="3" data-in="0" data-set="s1"/>
+<text x="71" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">① x = 3 以外</text>
+<path d="M120,63 L120,32 L316,32 L316,63" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s2"/>
+<circle cx="120" cy="32" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="0" data-in="1" data-set="s2"/>
+<circle cx="316" cy="32" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="4" data-in="1" data-set="s2"/>
+<text x="374.8" y="27" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">② 0 ≦ x ≦ 4</text>
+</svg>
+<!--/svg:f052d-->
+  <figcaption>図4　① \( x=3 \) 以外のすべての実数（3 に ○ をかいた2本の線）と ② \( 0\leqq x\leqq 4 \) の共通部分は \( 0\leqq x&lt;3,\ 3&lt;x\leqq 4 \)。● ○ は、それぞれの線の端に付けた</figcaption>
+</figure>
+<p>グラフが \( x \) 軸と共有点をもたない場合も同じように考えます。たとえば \( x^2+2x+3=(x+1)^2+2 \) なので、\( y=x^2+2x+3 \) のグラフはいつも \( x \) 軸より上側にあり（判別式は \( D=4-12=-8&lt;0 \)）、\( x^2+2x+3&gt;0 \) の解はすべての実数です。これと組にした連立不等式の解は、<strong>もう一方の不等式の解そのもの</strong>になります。逆に、\( x^2+2x+3&lt;0 \) のように解がない不等式を含むと、連立不等式の解もありません。</p>
+
+<h3>共通部分がないとき</h3>
+<div class="box example worked">
+  <p class="box-title">例題5</p>
+  <p>連立不等式 $$ \begin{cases} x^2-x-2&lt;0 \\ x^2-6x+8\leqq 0 \end{cases} $$ を解きなさい（上の式を①、下の式を②とします）。</p>
+  <div class="step">ステップ1：① は \( (x+1)(x-2)&lt;0 \) で \( -1&lt;x&lt;2 \)。② は \( (x-2)(x-4)\leqq 0 \) で \( 2\leqq x\leqq 4 \)。</div>
+  <div class="step">ステップ2（着目：境目の 2）：2つの範囲は \( x=2 \) で接しています（図5）。2 は ② には含まれます（●）が、① に代入すると \( 4-2-2=0 \) で \( 0&lt;0 \) が成り立たないので、① には含まれません（○）。</div>
+  <div class="step">ステップ3：両方を満たす \( x \) はありません。</div>
+  <div class="step">答え：<span data-ans="ex5">解はない</span></div>
+</div>
+<figure>
+<!--svg:f052e-->
+<svg viewBox="0 0 440 91" width="440" role="img" aria-label="数直線に ① −1&amp;lt;x&amp;lt;2（両端に白丸）と ② 2≦x≦4（両端に黒丸）を描いた図。2 で ① は白丸、② は黒丸になり、重なる部分はない" data-fig="f052e">
+<line x1="10" y1="63" x2="430" y2="63" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,63 L422,59 L422,67 Z" fill="currentColor"/>
+<line x1="22" y1="59" x2="22" y2="67" stroke="currentColor"/>
+<text x="22" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−2</text>
+<line x1="78" y1="59" x2="78" y2="67" stroke="currentColor"/>
+<text x="78" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−1</text>
+<line x1="134" y1="59" x2="134" y2="67" stroke="currentColor"/>
+<text x="134" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">0</text>
+<line x1="190" y1="59" x2="190" y2="67" stroke="currentColor"/>
+<text x="190" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">1</text>
+<line x1="246" y1="59" x2="246" y2="67" stroke="currentColor"/>
+<text x="246" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">2</text>
+<line x1="302" y1="59" x2="302" y2="67" stroke="currentColor"/>
+<text x="302" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">3</text>
+<line x1="358" y1="59" x2="358" y2="67" stroke="currentColor"/>
+<text x="358" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">4</text>
+<line x1="414" y1="59" x2="414" y2="67" stroke="currentColor"/>
+<text x="414" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">5</text>
+<path d="M78,63 L78,47 L246,47 L246,63" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s1"/>
+<circle cx="78" cy="47" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="-1" data-in="0" data-set="s1"/>
+<circle cx="246" cy="47" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="2" data-in="0" data-set="s1"/>
+<text x="162" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">① −1 &lt; x &lt; 2</text>
+<path d="M246,63 L246,32 L358,32 L358,63" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s2"/>
+<circle cx="246" cy="32" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="2" data-in="1" data-set="s2"/>
+<circle cx="358" cy="32" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="4" data-in="1" data-set="s2"/>
+<text x="302" y="27" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">② 2 ≦ x ≦ 4</text>
+</svg>
+<!--/svg:f052e-->
+  <figcaption>図5　① \( -1&lt;x&lt;2 \) と ② \( 2\leqq x\leqq 4 \)。2 は ② には含まれる（●）が ① には含まれない（○）ので、共通部分はない</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い：端の数を片方の不等式だけで決める</p><p>例題5で「2 は ② に含まれるから、解は \( x=2 \)」とするのは誤りです。\( x=2 \) は ① を満たしません。例題4でも、② の範囲 \( 0\leqq x\leqq 4 \) に 3 が含まれるからといって答えを \( 0\leqq x\leqq 4 \) とするのは誤りです。端の数や除かれる点は、<strong>すべての不等式</strong>に代入して確かめます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="A&lt;B&lt;C の形と整数の個数"><span class="num">5</span>A&lt;B&lt;C の形の不等式と、解に含まれる整数</h2>
+<p>数Ⅰ-017 で学んだように、\( A&lt;B&lt;C \) は「\( A&lt;B \) と \( B&lt;C \) が両方とも成り立つ」ことを表します。真ん中の辺に \( x^2 \) を含むときも、<strong>連立不等式</strong> \( \begin{cases} A&lt;B \\ B&lt;C \end{cases} \) に直して解きます（不等号が \( \leqq \) の場合も同じです）。一次不等式のときのように3つの辺を同時に変形する方法は使いにくいので、2つの不等式に分けて、それぞれを二次不等式として解きます。</p>
+<div class="box example worked">
+  <p class="box-title">例題6（真ん中の辺に \( x^2 \) がある）</p>
+  <p>不等式 \( 5\leqq x^2+4x&lt;12 \) を解きなさい。また、解に含まれる整数をすべて求めなさい。</p>
+  <div class="step">ステップ1（連立不等式に直す）：\( 5\leqq x^2+4x \) …①、\( x^2+4x&lt;12 \) …② に分けます。</div>
+  <div class="step">ステップ2：① は移項して \( x^2+4x-5\geqq 0 \)、\( (x+5)(x-1)\geqq 0 \) より \( x\leqq -5,\ 1\leqq x \)。</div>
+  <div class="step">ステップ3：② は移項して \( x^2+4x-12&lt;0 \)、\( (x+6)(x-2)&lt;0 \) より \( -6&lt;x&lt;2 \)。</div>
+  <div class="step">ステップ4（共通部分）：図6より、\( -6&lt;x\leqq -5,\ 1\leqq x&lt;2 \)。確かめ：\( x=-5 \) では \( x^2+4x=25-20=5 \) で \( 5\leqq 5&lt;12 \) が成り立ち、\( x=-6 \) では \( 36-24=12 \) で \( 12&lt;12 \) が成り立ちません。</div>
+  <div class="step">ステップ5（整数）：\( -6&lt;x\leqq -5 \) に含まれる整数は \( -5 \)、\( 1\leqq x&lt;2 \) に含まれる整数は 1 です。</div>
+  <div class="step">答え：<span data-ans="ex6">\( -6&lt;x\leqq -5,\ 1\leqq x&lt;2 \)</span>、整数は \( -5 \) と 1</div>
+</div>
+<figure>
+<!--svg:f052f-->
+<svg viewBox="0 0 440 91" width="440" role="img" aria-label="数直線に ① x≦−5, 1≦x（−5 と 1 に黒丸）と ② −6&amp;lt;x&amp;lt;2（両端に白丸）を描き、重なる −6&amp;lt;x≦−5 と 1≦x&amp;lt;2 に色を付けた図" data-fig="f052f">
+<rect x="87.3" y="26" width="32.7" height="37" fill="#1f5fbf" fill-opacity="0.13" data-shade=""/>
+<rect x="316" y="26" width="32.7" height="37" fill="#1f5fbf" fill-opacity="0.13" data-shade=""/>
+<line x1="10" y1="63" x2="430" y2="63" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,63 L422,59 L422,67 Z" fill="currentColor"/>
+<line x1="22" y1="59" x2="22" y2="67" stroke="currentColor"/>
+<text x="22" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−8</text>
+<line x1="54.7" y1="59" x2="54.7" y2="67" stroke="currentColor"/>
+<text x="54.7" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−7</text>
+<line x1="87.3" y1="59" x2="87.3" y2="67" stroke="currentColor"/>
+<text x="87.3" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−6</text>
+<line x1="120" y1="59" x2="120" y2="67" stroke="currentColor"/>
+<text x="120" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−5</text>
+<line x1="152.7" y1="59" x2="152.7" y2="67" stroke="currentColor"/>
+<text x="152.7" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−4</text>
+<line x1="185.3" y1="59" x2="185.3" y2="67" stroke="currentColor"/>
+<text x="185.3" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−3</text>
+<line x1="218" y1="59" x2="218" y2="67" stroke="currentColor"/>
+<text x="218" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−2</text>
+<line x1="250.7" y1="59" x2="250.7" y2="67" stroke="currentColor"/>
+<text x="250.7" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−1</text>
+<line x1="283.3" y1="59" x2="283.3" y2="67" stroke="currentColor"/>
+<text x="283.3" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">0</text>
+<line x1="316" y1="59" x2="316" y2="67" stroke="currentColor"/>
+<text x="316" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">1</text>
+<line x1="348.7" y1="59" x2="348.7" y2="67" stroke="currentColor"/>
+<text x="348.7" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">2</text>
+<line x1="381.3" y1="59" x2="381.3" y2="67" stroke="currentColor"/>
+<text x="381.3" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">3</text>
+<line x1="414" y1="59" x2="414" y2="67" stroke="currentColor"/>
+<text x="414" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">4</text>
+<path d="M12,47 L120,47 L120,63" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s1"/>
+<path d="M6,47 L15,42.5 L15,51.5 Z" fill="#1f5fbf"/>
+<circle cx="120" cy="63" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="-5" data-in="1" data-set="s1"/>
+<path d="M316,63 L316,47 L416,47" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s1"/>
+<path d="M422,47 L413,42.5 L413,51.5 Z" fill="#1f5fbf"/>
+<circle cx="316" cy="63" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="1" data-in="1" data-set="s1"/>
+<text x="218" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">① x ≦ −5, 1 ≦ x</text>
+<path d="M87.3,63 L87.3,32 L348.7,32 L348.7,63" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s2"/>
+<circle cx="87.3" cy="63" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="-6" data-in="0" data-set="s2"/>
+<circle cx="348.7" cy="63" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="2" data-in="0" data-set="s2"/>
+<text x="218" y="27" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">② −6 &lt; x &lt; 2</text>
+</svg>
+<!--/svg:f052f-->
+  <figcaption>図6　① \( x\leqq -5,\ 1\leqq x \) と ② \( -6&lt;x&lt;2 \) の共通部分は \( -6&lt;x\leqq -5,\ 1\leqq x&lt;2 \)</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い：\( A&lt;B&lt;C \) を「\( A&lt;B \) と \( A&lt;C \)」に分ける</p><p>数Ⅰ-017 と同じく、分けるときは隣どうし（\( A \) と \( B \)、\( B \) と \( C \)）を組にします。例題6で \( 5 \) と \( 12 \) を組にしても、\( 5&lt;12 \) はいつも正しいので何の条件にもなりません。確認問題の問6でも確かめましょう。</p></div>
+
+<h3>端に根号を含むとき</h3>
+<p>二次不等式の解の端が、解の公式（中3-040）で求めた根号を含む数になることがあります。そのときは、平方根の近似値（中3-022）や2乗した数の大小（中3-021）を使って、端の数の大小を確かめてから数直線に並べます。</p>
+<div class="box example worked">
+  <p class="box-title">例題7（端に根号を含む）</p>
+  <p>連立不等式 $$ \begin{cases} x^2-2x-2&lt;0 \\ 2x-3\geqq 0 \end{cases} $$ を解きなさい（上の式を①、下の式を②とします）。また、解に含まれる整数を求めなさい。</p>
+  <div class="step">ステップ1：\( x^2-2x-2=0 \) を解の公式で解くと \( x=\dfrac{2\pm\sqrt{4+8}}{2}=1\pm\sqrt{3} \)。よって ① の解は \( 1-\sqrt{3}&lt;x&lt;1+\sqrt{3} \)。</div>
+  <div class="step">ステップ2：② は \( 2x\geqq 3 \) より \( x\geqq \dfrac{3}{2} \)。</div>
+  <div class="step">ステップ3（着目：端の大小を近似値で確かめる）：\( 1.7^2=2.89 \)、\( 1.8^2=3.24 \) なので \( 1.7&lt;\sqrt{3}&lt;1.8 \)。よって \( 1-\sqrt{3} \) は \( -0.8 \) と \( -0.7 \) の間、\( 1+\sqrt{3} \) は 2.7 と 2.8 の間にあり、\( 1-\sqrt{3}&lt;\dfrac{3}{2}&lt;1+\sqrt{3} \) です（図7）。</div>
+  <div class="step">ステップ4（共通部分と整数）：共通部分は \( \dfrac{3}{2}\leqq x&lt;1+\sqrt{3} \)。この範囲に含まれる整数は 2 だけです（\( 1+\sqrt{3} \) は 3 より小さい）。</div>
+  <div class="step">答え：<span data-ans="ex7">\( \dfrac{3}{2}\leqq x&lt;1+\sqrt{3} \)</span>、整数は 2</div>
+</div>
+<figure>
+<!--svg:f052g-->
+<svg viewBox="0 0 440 103" width="440" role="img" aria-label="数直線に ① 1−√3&amp;lt;x&amp;lt;1+√3（約 −0.73 と約 2.73 に白丸）と ② x≧3/2（3/2 に黒丸、右向き）を描き、重なる 3/2≦x&amp;lt;1+√3 に色を付けた図" data-fig="f052g">
+<rect x="250.7" y="26" width="80.5" height="37" fill="#1f5fbf" fill-opacity="0.13" data-shade=""/>
+<line x1="10" y1="63" x2="430" y2="63" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,63 L422,59 L422,67 Z" fill="currentColor"/>
+<line x1="22" y1="59" x2="22" y2="67" stroke="currentColor"/>
+<text x="22" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−2</text>
+<line x1="87.3" y1="59" x2="87.3" y2="67" stroke="currentColor"/>
+<text x="87.3" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−1</text>
+<line x1="152.7" y1="59" x2="152.7" y2="67" stroke="currentColor"/>
+<text x="152.7" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">0</text>
+<line x1="218" y1="59" x2="218" y2="67" stroke="currentColor"/>
+<text x="218" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">1</text>
+<line x1="283.3" y1="59" x2="283.3" y2="67" stroke="currentColor"/>
+<text x="283.3" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">2</text>
+<line x1="348.7" y1="59" x2="348.7" y2="67" stroke="currentColor"/>
+<text x="348.7" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">3</text>
+<line x1="414" y1="59" x2="414" y2="67" stroke="currentColor"/>
+<text x="414" y="82" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">4</text>
+<line x1="104.8" y1="59" x2="104.8" y2="67" stroke="currentColor"/>
+<text x="104.8" y="97" text-anchor="middle" font-size="11" fill="currentColor">1−√3</text>
+<line x1="250.7" y1="59" x2="250.7" y2="67" stroke="currentColor"/>
+<text x="250.7" y="97" text-anchor="middle" font-size="11" fill="currentColor">3/2</text>
+<line x1="331.2" y1="59" x2="331.2" y2="67" stroke="currentColor"/>
+<text x="331.2" y="97" text-anchor="middle" font-size="11" fill="currentColor">1+√3</text>
+<path d="M104.8,63 L104.8,47 L331.2,47 L331.2,63" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s1"/>
+<circle cx="104.8" cy="63" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="1-√3" data-in="0" data-set="s1"/>
+<circle cx="331.2" cy="63" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="1+√3" data-in="0" data-set="s1"/>
+<text x="165.7" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">① 1−√3 &lt; x &lt; 1+√3</text>
+<path d="M250.7,63 L250.7,32 L416,32" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s2"/>
+<path d="M422,32 L413,27.5 L413,36.5 Z" fill="#1f5fbf"/>
+<circle cx="250.7" cy="63" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="3/2" data-in="1" data-set="s2"/>
+<text x="381.3" y="27" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">② x ≧ 3/2</text>
+</svg>
+<!--/svg:f052g-->
+  <figcaption>図7　① 1−√3 &lt; x &lt; 1+√3 と ② x ≧ 3/2 の共通部分は 3/2 ≦ x &lt; 1+√3（1±√3 の位置は近似値で示した）</figcaption>
+</figure>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間で使う語句（すべて既習）</p>
+  <dl>
+    <dt>連立不等式</dt><dd>いくつかの不等式を組にしたもの。組にした不等式を同時に満たす \( x \) の値の範囲がその解（数Ⅰ-017）。二次不等式を含む場合も同じ。</dd>
+    <dt>共通部分</dt><dd>それぞれの不等式の解のどれにも含まれる範囲。数直線では、すべての線が重なる部分（数Ⅰ-017）。集合の記号では \( A\cap B \) と表す（数Ⅰ-022）。</dd>
+    <dt>二次不等式の解</dt><dd>グラフが \( x \) 軸より上側（\( y&gt;0 \)）や下側（\( y&lt;0 \)）にある部分の \( x \) の値の範囲（数Ⅰ-048〜050）。2つの部分に分かれることがある。</dd>
+    <dt>解はない</dt><dd>すべての不等式を同時に満たす \( x \) が存在しないこと（数Ⅰ-017）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>二次不等式を含む連立不等式も、それぞれの不等式を解き、解を1本の数直線に表して共通部分を求める（O1）。</li>
+    <li>二次不等式の解が2つの部分に分かれるとき（\( x&lt;\alpha,\ \beta&lt;x \) や \( x=a \) 以外のすべての実数）は、部分ごとに重なりを調べる。答えも2つの範囲になることがある（O1・O2）。</li>
+    <li>端の数や除かれる点は、すべての不等式に代入して確かめる。共通部分がなければ「解はない」（O2）。</li>
+    <li>\( A&lt;B&lt;C \) は \( A&lt;B \) と \( B&lt;C \) の連立不等式に直して解く。端に根号があるときは近似値で大小を確かめ、解に含まれる整数を数える（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">解き方の手順</span><p>① それぞれの不等式を解く<br>② 数直線に高さを変えて並べる<br>③ 共通部分を読み取り、端を代入して確かめる</p></div>
+  <div><span class="f-name">\( A&lt;B&lt;C \)</span><p>\( A&lt;B \) と \( B&lt;C \) の連立不等式</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。範囲を入力する問題は、1&lt;x&lt;=4 のように入力してください（≦ は &lt;= と打ってもよい。半角・全角のどちらでもよい）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>連立不等式 \( x^2-5x+4&lt;0,\ x&gt;2 \) の解はどれですか。</p>
+  <div class="choices"><button>\( x&gt;1 \)</button><button>\( 1&lt;x&lt;4 \)</button><button>\( 2\leqq x&lt;4 \)</button><button data-correct="true">\( 2&lt;x&lt;4 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( x^2-5x+4=(x-1)(x-4)&lt;0 \) より \( 1&lt;x&lt;4 \)。これと \( x&gt;2 \) の共通部分は \( 2&lt;x&lt;4 \) です。\( x&gt;1 \) は2つの解を合わせた範囲で、たとえば \( x=5 \) は \( 25-25+4=4&lt;0 \) が成り立ちません。\( 1&lt;x&lt;4 \) は \( x&gt;2 \) を見落としています（\( x=1.5 \) は \( x&gt;2 \) を満たさない）。\( 2\leqq x&lt;4 \) は、\( x&gt;2 \) に含まれない 2 を含めた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="2&lt;x≦3|3≧x&gt;2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>連立不等式 \( x^2-9\leqq 0,\ 2x-1&gt;3 \) を解きなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 2&lt;x\leqq 3 \)。\( x^2-9=(x+3)(x-3)\leqq 0 \) より \( -3\leqq x\leqq 3 \)。\( 2x-1&gt;3 \) より \( 2x&gt;4 \)、\( x&gt;2 \)。共通部分は \( 2&lt;x\leqq 3 \) です。3 は両方に含まれるので ●（\( 9-9=0\leqq 0 \)、\( 6-1=5&gt;3 \)）、2 は \( x&gt;2 \) に含まれないので ○ です。\( 2\leqq x\leqq 3 \) と答えた場合は、2 の扱いを誤っています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>連立不等式 \( x^2-x-2&gt;0,\ x^2-9&lt;0 \) の解はどれですか。</p>
+  <div class="choices"><button data-correct="true">\( -3&lt;x&lt;-1,\ 2&lt;x&lt;3 \)</button><button>\( -1&lt;x&lt;2 \)</button><button>\( -3&lt;x&lt;3 \)</button><button>\( 2&lt;x&lt;3 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( x^2-x-2=(x+1)(x-2)&gt;0 \) より \( x&lt;-1,\ 2&lt;x \)。\( x^2-9&lt;0 \) より \( -3&lt;x&lt;3 \)。部分ごとに重なりを調べると、\( -3&lt;x&lt;-1 \) と \( 2&lt;x&lt;3 \) です。\( -1&lt;x&lt;2 \) は、1つ目の不等式の解を内側（\( x^2-x-2&lt;0 \) の解）と取り違えた誤りです。\( -3&lt;x&lt;3 \) は2つ目の不等式の解だけを答えています。\( 2&lt;x&lt;3 \) は、分かれた解のうち \( x&lt;-1 \) の部分を落としています（\( x=-2 \) は \( 4+2-2=4&gt;0 \)、\( 4-9=-5&lt;0 \) で両方を満たす）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>連立不等式 \( x^2-4x+4&gt;0,\ x^2-3x\leqq 0 \) の解はどれですか。</p>
+  <div class="choices"><button>\( 0\leqq x\leqq 3 \)</button><button>解はない</button><button data-correct="true">\( 0\leqq x&lt;2,\ 2&lt;x\leqq 3 \)</button><button>\( x=2 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( x^2-4x+4=(x-2)^2&gt;0 \) の解は \( x=2 \) 以外のすべての実数、\( x^2-3x=x(x-3)\leqq 0 \) の解は \( 0\leqq x\leqq 3 \)。共通部分は \( 0\leqq x\leqq 3 \) から \( x=2 \) を除いた \( 0\leqq x&lt;2,\ 2&lt;x\leqq 3 \) です。\( 0\leqq x\leqq 3 \) は、1つ目の解を「すべての実数」とし、\( x=2 \) で \( 0&gt;0 \) が成り立たないことを見落としています。「解はない」は、1つ目の不等式を解がない不等式（\( (x-2)^2&lt;0 \)）と取り違えています。\( x=2 \) は、1つ目を \( (x-2)^2\leqq 0 \) の解と取り違えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>連立不等式 \( x^2-3x&lt;0,\ x^2-8x+15\leqq 0 \) の解はどれですか。</p>
+  <div class="choices"><button>\( x=3 \)</button><button data-correct="true">解はない</button><button>\( 0&lt;x&lt;3 \)</button><button>\( 0&lt;x\leqq 5 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( x(x-3)&lt;0 \) より \( 0&lt;x&lt;3 \)、\( (x-3)(x-5)\leqq 0 \) より \( 3\leqq x\leqq 5 \)。2つの範囲は 3 で接していますが、\( x=3 \) を1つ目に代入すると \( 9-9=0 \) で \( 0&lt;0 \) が成り立たないので、共通部分はなく「解はない」です。\( x=3 \) は、1つ目の解を \( 0\leqq x\leqq 3 \) と端を含めてしまった誤りです。\( 0&lt;x&lt;3 \) は、2つ目の解を外側の \( x\leqq 3,\ 5\leqq x \) と取り違えています。\( 0&lt;x\leqq 5 \) は2つの解を合わせた範囲です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>不等式 \( x+1&lt;x^2-1\leqq 2x+7 \) の解はどれですか。</p>
+  <div class="choices"><button>\( -6&lt;x&lt;-1,\ 2&lt;x \)</button><button data-correct="true">\( -2\leqq x&lt;-1,\ 2&lt;x\leqq 4 \)</button><button>\( -1&lt;x&lt;2 \)</button><button>\( -2\leqq x\leqq 4 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( x+1&lt;x^2-1 \) と \( x^2-1\leqq 2x+7 \) の連立不等式に直します。1つ目は \( x^2-x-2&gt;0 \)、\( (x+1)(x-2)&gt;0 \) より \( x&lt;-1,\ 2&lt;x \)。2つ目は \( x^2-2x-8\leqq 0 \)、\( (x+2)(x-4)\leqq 0 \) より \( -2\leqq x\leqq 4 \)。共通部分は \( -2\leqq x&lt;-1,\ 2&lt;x\leqq 4 \) です。\( -6&lt;x&lt;-1,\ 2&lt;x \) は、\( x+1&lt;x^2-1 \) と \( x+1&lt;2x+7 \)（\( x&gt;-6 \)）に分けた、つまり \( A \) と \( C \) を組にした誤りです。\( -1&lt;x&lt;2 \) は1つ目の解を内側と取り違えた誤り、\( -2\leqq x\leqq 4 \) は2つ目の解だけを答えた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="3|3個|3こ">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>問6の不等式 \( x+1&lt;x^2-1\leqq 2x+7 \) を満たす整数 \( x \) は何個ありますか（個数を数字で入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 3 個。解 \( -2\leqq x&lt;-1,\ 2&lt;x\leqq 4 \) に含まれる整数は \( -2 \)、3、4 です。\( x=-2 \) では \( -1&lt;3\leqq 3 \)、\( x=4 \) では \( 5&lt;15\leqq 15 \) で成り立ちます。\( -1 \) と 2 は、\( x+1&lt;x^2-1 \) が \( 0&lt;0 \)、\( 3&lt;3 \) となり成り立たないので含まれません。端の \( -2 \) や 4 を落として 2 個としたり、\( -1 \) や 2 を数えて 4 個以上としたりしないよう、端の ●・○ を確かめましょう。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2</span></div>
+  <p>太郎さんと花子さんが、連立不等式 \( x^2-x-12&lt;0,\ x^2-2x&gt;0 \) について話しています。</p>
+  <p>太郎：「1つ目は \( (x+3)(x-4)&lt;0 \) で \( -3&lt;x&lt;4 \)。2つ目は \( x(x-2)&gt;0 \) だから \( 0&lt;x&lt;2 \)。共通部分は \( 0&lt;x&lt;2 \) だね。」<br>花子：「でも、\( x=1 \) を2つ目に代入すると \( 1-2=-1 \) だよ。\( -1&gt;0 \) は成り立たないね。」</p>
+  <p>正しい説明はどれですか。</p>
+  <div class="choices">
+    <button>太郎さんの答え \( 0&lt;x&lt;2 \) で正しい。花子さんの代入の計算が誤っている。</button>
+    <button>2つ目の解は \( 0&lt;x&lt;2 \) だが、答えは2つの解を合わせた \( -3&lt;x&lt;4 \) になる。</button>
+    <button data-correct="true">2つ目の解は \( x&lt;0,\ 2&lt;x \) である。共通部分を部分ごとに調べて、答えは \( -3&lt;x&lt;0,\ 2&lt;x&lt;4 \) になる。</button>
+    <button>2つ目の解は \( x&lt;0,\ 2&lt;x \) である。共通部分は \( 2&lt;x&lt;4 \) になる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( y=x^2-2x \) のグラフは \( x=0,\ 2 \) で \( x \) 軸と交わる下に凸の放物線で、\( y&gt;0 \) となるのは外側の \( x&lt;0,\ 2&lt;x \) です。太郎さんは、\( &gt;0 \) の解を内側と取り違えました。花子さんの代入 \( 1-2=-1 \) は正しく、\( x=1 \) は解ではありません。「合わせた範囲 \( -3&lt;x&lt;4 \)」は、連立不等式の解が「両方を満たす範囲」であることに反します。「\( 2&lt;x&lt;4 \)」は、分かれた解のうち \( x&lt;0 \) の部分を落としています（\( x=-1 \) は \( 1+1-12=-10&lt;0 \)、\( 1+2=3&gt;0 \) で両方を満たす）。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>連立不等式 \( x^2-2x-1\leqq 0,\ x^2-3x+2&gt;0 \) について、次の問いに答えなさい。</p>
+  <p>(1) 連立不等式を解きなさい。端の数の大小を比べた理由も書きなさい。<br>(2) 解に含まれる整数をすべて求めなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) \( x^2-2x-1=0 \) を解の公式で解くと \( x=1\pm\sqrt{2} \) なので、1つ目の解は \( 1-\sqrt{2}\leqq x\leqq 1+\sqrt{2} \)。2つ目は \( (x-1)(x-2)&gt;0 \) より \( x&lt;1,\ 2&lt;x \)。\( 1.4&lt;\sqrt{2}&lt;1.5 \) より \( 1-\sqrt{2} \) は \( -0.5 \) と \( -0.4 \) の間、\( 1+\sqrt{2} \) は 2.4 と 2.5 の間にあるので、\( 1-\sqrt{2}&lt;1 \)、\( 2&lt;1+\sqrt{2} \)。数直線で共通部分を求めて、\( 1-\sqrt{2}\leqq x&lt;1,\ 2&lt;x\leqq 1+\sqrt{2} \)。</p>
+    <p>(2) \( 1-\sqrt{2}\leqq x&lt;1 \) に含まれる整数は 0。\( 2&lt;x\leqq 1+\sqrt{2} \) には整数は含まれない（\( 1+\sqrt{2}&lt;3 \)）。よって整数は 0 だけ。</p>
+    <p><strong>採点の観点</strong>　① 1つ目の解の端 \( 1\pm\sqrt{2} \) を正しく求め、端を含めている。② 2つ目の解を外側 \( x&lt;1,\ 2&lt;x \) としている。③ 近似値や2乗の大小で端の大小を比べた理由を書いている。④ 共通部分を2つの範囲で答え、端の ●・○（1 と 2 は含まない）が正しい。⑤ 整数を 0 だけとしている。</p>
+  </div>
+  <div class="explain">\( x=0 \) は \( -1\leqq 0 \)、\( 2&gt;0 \) で両方を満たします。\( x=1,\ 2 \) は2つ目が \( 0&gt;0 \) となり成り立ちません。\( x=-1 \) は1つ目が \( 1+2-1=2\leqq 0 \) となり成り立ちません（\( -1&lt;1-\sqrt{2} \)）。端が根号を含むときは、例題7のように近似値で大小を確かめてから数直線に並べましょう。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(3) 二次関数」の「二次不等式の解と二次関数のグラフとの関係について理解し，二次関数のグラフを用いて二次不等式の解を求めること」（ア(ウ)）と、「(1) 数と式」の「不等式の解の意味や不等式の性質について理解し，一次不等式の解を求めること」（ア(エ)）を組み合わせたもので、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。グラフで二次不等式を解き、数直線という図で共通部分を読み取るこの時間の方法は、こうした処理の土台になります。</p>
+  <p class="small">問8は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">二次不等式の活用（数Ⅰ-053）</p>
+  <p>次の時間は、\( x^2 \) の係数の符号と判別式の符号から、<strong>すべての実数 \( x \) について</strong>二次不等式が成り立つ条件を求めます。また、二次不等式を使って、条件を満たす値の範囲を求める問題も扱います。いくつかの条件を同時に満たす範囲を求めるときには、この時間の「共通部分」の考え方を使います。</p>
+  <p>この時間では、すべての実数で成り立つ条件（数Ⅰ-053）と、データを変換して二次関数とみなす考察（数Ⅰ-054）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-051　二次不等式の練習</div>
+  <div><span class="label">次の時間</span>数Ⅰ-053　二次不等式の活用</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-052「二次不等式を含む連立不等式」（学習指導要領 数学Ⅰ (3)ア(ウ)、(1)ア(エ)、解説 p.42。† 教科書で一般的な内容を含む行）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(1) 数と式、(3) 二次関数（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.42（二次関数のグラフと x 軸との位置関係から二次不等式の解を求めること）、p.37（「連立一元一次不等式を指導する場合は，数直線にそれぞれの不等式の解の集合を表し，その共通部分を求めるなど丁寧な取扱いをすることが大切である」）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>東京書籍「シラバス案 数学Ⅰ（数Ⅰ002-902）」の「２次不等式の応用」（「2 次不等式を含む連立不等式を解くことができる」）https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_su1_syllabus.pdf</li>
+    <li>東京書籍「評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）」の「２次不等式の応用」（「2 次不等式を含む連立不等式の解を求めることができる」）https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-052",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-052",
+  "title": "二次不等式を含む連立不等式",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-3", "title": "二次関数"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(3)ア(ウ)", "(1)ア(エ)"],
+  "kaisetsu_page": "42",
+  "objectives": [
+    {"id": "O1", "text": "一次不等式と二次不等式を組にした連立不等式を、それぞれの解を数直線上に表し、共通部分を求めて解くことができる。", "from": "二次不等式を含む連立不等式を、それぞれの解を数直線上に表して共通部分を求めて解くことができる（一次不等式との組）", "sections": ["sec-1"], "checks": ["q1", "q2", "q8"]},
+    {"id": "O2", "text": "二次不等式どうしを組にした連立不等式を、解が2つの範囲に分かれる場合や端の数を含むかどうかに注意して解くことができる。", "from": "二次不等式を含む連立不等式を…共通部分を求めて解くことができる（二次不等式どうしの組、端の数・共通部分がない場合）", "sections": ["sec-1", "sec-2"], "checks": ["q3", "q4", "q5", "q8", "q9"]},
+    {"id": "O3", "text": "A<B<C の形の不等式を連立不等式に直して解き、解に含まれる整数を求めることができる。", "from": "二次不等式を含む連立不等式を…解くことができる（A<B<C の形、解に含まれる整数）", "sections": ["sec-3"], "checks": ["q6", "q7", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "連立不等式", "where": "sec-1"},
+    {"term": "共通部分", "where": "sec-1"},
+    {"term": "解はない", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "二次不等式の解の意味（グラフが x 軸より上側・下側にある部分の x の範囲）", "taught_in": ["hs_math_1a/数Ⅰ-048"], "where": "review"},
+    {"concept": "x 軸と2点で交わる場合の二次不等式の解（x<α, β<x、α<x<β）", "taught_in": ["hs_math_1a/数Ⅰ-049", "hs_math_1a/数Ⅰ-051"], "where": "review"},
+    {"concept": "接する場合・共有点がない場合の二次不等式の解（x=a 以外のすべての実数、すべての実数、解はない）", "taught_in": ["hs_math_1a/数Ⅰ-050", "hs_math_1a/数Ⅰ-051"], "where": "review"},
+    {"concept": "判別式の符号とグラフと x 軸の共有点（接する・共有点がない）", "taught_in": ["hs_math_1a/数Ⅰ-047"], "where": "sec-2"},
+    {"concept": "連立不等式の解と共通部分、端の数の扱い、A<B<C の形の不等式", "taught_in": ["hs_math_1a/数Ⅰ-017"], "where": "review"},
+    {"concept": "不等式の解を数直線に表す（●・○）、不等式の性質（負の数をかけると向きが変わる）", "taught_in": ["hs_math_1a/数Ⅰ-015", "hs_math_1a/数Ⅰ-016"], "where": "review"},
+    {"concept": "一次不等式の解き方", "taught_in": ["hs_math_1a/数Ⅰ-016"], "where": "sec-1"},
+    {"concept": "二次式の因数分解（たすき掛けを含む）", "taught_in": ["hs_math_1a/数Ⅰ-005", "hs_math_1a/数Ⅰ-006"], "where": "sec-1"},
+    {"concept": "平方完成（x²+2x+3=(x+1)²+2）", "taught_in": ["hs_math_1a/数Ⅰ-034"], "where": "sec-2"},
+    {"concept": "二次方程式の解の公式", "taught_in": ["jhs_math/中3-040"], "where": "sec-3"},
+    {"concept": "平方根の大小と近似値（1.7<√3<1.8、1.4<√2<1.5）", "taught_in": ["jhs_math/中3-021", "jhs_math/中3-022"], "where": "sec-3"},
+    {"concept": "整数（解に含まれる整数を数える）", "taught_in": ["hs_math_1a/数Ⅰ-009"], "where": "sec-3"},
+    {"concept": "共通部分の記号 A∩B", "taught_in": ["hs_math_1a/数Ⅰ-022"], "where": "terms"}
+  ],
+  "out_of_scope": [
+    "すべての実数 x について二次不等式が成り立つ条件と、二次不等式を用いて条件を満たす値の範囲を求める問題（数Ⅰ-053）",
+    "データを変換して二次関数とみなす考察（数Ⅰ-054）",
+    "判別式・すべての実数で成り立つ条件などと組み合わせた総合的な問題（数Ⅰ-055）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『二次関数』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(3)ア(ウ)・(1)ア(エ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.42 二次不等式の解とグラフの関係、p.37 連立一元一次不等式の扱い（数直線に解の集合を表し共通部分を求める）"},
+    {"name": "シラバス案 数学Ⅰ（数Ⅰ002-902）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_su1_syllabus.pdf", "use": "「2次不等式を含む連立不等式を解くことができる」（教科書で扱う内容であることの確認。† の内容）"},
+    {"name": "評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）", "publisher": "東京書籍（東書Ｅネット）", "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf", "use": "「2次不等式を含む連立不等式の解を求めることができる」（† の内容）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

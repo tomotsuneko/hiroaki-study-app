@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>空間における直線と平面の位置関係｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>図形の性質</span><span>数Ａ-059</span></div>
+  <h1>空間における直線と平面の位置関係</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">立方体の辺 AB と辺 CG は交わりません。では、平行といえるでしょうか。中学校で学んだ空間の直線と平面の位置関係を振り返り、交わらない2直線の「開き具合」を表す「2直線のなす角」を新しく考えます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>空間の2直線の位置関係（交わる・平行・ねじれの位置）を、2直線が同じ平面上にあるかどうかと結び付けて説明し、立体の辺について判断できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>直線と平面の位置関係（直線が平面に含まれる・1点で交わる・平行）と、2平面の位置関係（交わる・平行）を、立体の辺や面について判断できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>2直線のなす角の意味を理解し、ねじれの位置にある2直線のなす角を、一方を平行な直線に移して求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-058）</span>作図の統合的・発展的な考察</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-059）</span>空間における直線と平面の位置関係</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-060）</span>直線と平面の垂直</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」、中学1年「平面図形」「空間図形」。この時間から、単元「図形の性質」の空間図形に入ります。中学1年の空間図形（中1-096・097）と、数学Ⅰの「空間図形の計量」（数Ⅰ-076）で使った直方体の表し方を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">中学1年で学んだ空間の直線と平面（中1-096・097）</p>
+  <ul>
+    <li>空間でも、直線は限りなく延びていて、2点を通る直線は1本に決まります（中1-075・096）。平面は限りなく広がっています。</li>
+    <li><strong>平面が1つに決まる条件</strong>（中1-096）：① 同じ直線上にない3点　② 1つの直線と、その上にない1点　③ 交わる2直線　④ 平行な2直線</li>
+    <li>空間の2直線には、交わる・平行・ねじれの位置の3つの場合があり、直線と平面、2平面にも、平行や垂直などの位置関係があります（中1-096・097）。記号 \( /\!/ \) は平行、\( \perp \) は垂直を表します（中1-076）。</li>
+  </ul>
+  <p>この時間の立方体・直方体は、数Ⅰ-076 と同じように <strong>ABCD-EFGH</strong> と表します。底面が ABCD、上の面が EFGH で、AE、BF、CG、DH が高さを表す辺です（A の真上が E、B の真上が F、…）。</p>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中1-096</span></div>
+  <p>平面が1つに<strong>決まらない</strong>ものはどれですか。</p>
+  <div class="choices">
+    <button>交わる2直線</button>
+    <button>平行な2直線</button>
+    <button data-correct="true">同じ直線上にある3点</button>
+    <button>1つの直線と、その上にない1点</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">同じ直線上にある3点を通る平面は、その直線を軸にして回すように何枚でもとれるので、1つに決まりません。交わる2直線、平行な2直線、1つの直線とその上にない1点は、どれも平面が1つに決まる条件です。「平行な2直線」を選んだ場合、平行な2直線は同じ平面上にある（平行の意味）ので、その平面が1つに決まることを確かめましょう。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中2-044</span></div>
+  <p>2直線が交わってできる4つの角のうち、1つが \( 130^\circ \) でした。残りの3つの角の大きさを、となりの角から順に並べたものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 50^\circ,\ 130^\circ,\ 50^\circ \)</button>
+    <button>\( 130^\circ,\ 130^\circ,\ 130^\circ \)</button>
+    <button>\( 50^\circ,\ 50^\circ,\ 50^\circ \)</button>
+    <button>\( 230^\circ,\ 130^\circ,\ 230^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">となり合う2つの角を合わせると一直線の角 \( 180^\circ \) なので、となりの角は \( 180^\circ-130^\circ=50^\circ \)。向かい合う角（対頂角）は等しいので（中2-044）、\( 50^\circ,\ 130^\circ,\ 50^\circ \) です。\( 50^\circ,\ 50^\circ,\ 50^\circ \) は、向かい合う角まで \( 50^\circ \) と考えた誤りで、向かい合う角はもとの角と同じ \( 130^\circ \) です。4つとも等しくなるのは、2直線が垂直に交わるときだけです。\( 230^\circ \) は \( 360^\circ-130^\circ \) で、となりの角ではありません。この時間は、この4つの角のうち \( 90^\circ \) 以下のほうを使います。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中2-060・中2-072</span></div>
+  <p>正方形 ABCD で、対角線 AC と辺 AB のつくる角 \( \angle\mathrm{BAC} \) の大きさはどれですか。</p>
+  <div class="choices">
+    <button>\( 90^\circ \)</button>
+    <button data-correct="true">\( 45^\circ \)</button>
+    <button>\( 30^\circ \)</button>
+    <button>\( 60^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">△ABC は \( \mathrm{AB}=\mathrm{BC} \)、\( \angle\mathrm{B}=90^\circ \) の直角二等辺三角形です。底角は等しく（中2-060）、内角の和は \( 180^\circ \) なので、\( \angle\mathrm{BAC}=(180^\circ-90^\circ)\div2=45^\circ \) です。\( 90^\circ \) は \( \angle\mathrm{ABC} \)、\( 30^\circ \)・\( 60^\circ \) は 30°・60° の直角三角形（中3-101）と混同した値です。この時間は、正方形の面の対角線と辺がつくる \( 45^\circ \)、正三角形の \( 60^\circ \) を使います。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">空間の平行線の性質（この時間で使う約束）</p>
+  <p>空間で、1つの直線 \( \ell \) に平行な2直線 \( m \)、\( n \) は平行です（\( m /\!/ \ell \)、\( n /\!/ \ell \) ならば \( m /\!/ n \)）。たとえば立方体で、\( \mathrm{BF} /\!/ \mathrm{AE} \)、\( \mathrm{DH} /\!/ \mathrm{AE} \) なので \( \mathrm{BF} /\!/ \mathrm{DH} \) です。平面の上では明らかに見えるこの性質は、空間でも成り立ちます。中学校で立体を観察して気付くことがある性質で、このページでは証明しません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：交わらない2本の辺は「垂直」といえる？</h2>
+<div class="box think">
+  <p class="box-title">立方体の形の箱（学習用の架空の箱）</p>
+  <p>立方体 ABCD-EFGH の形の箱があります。</p>
+  <ul>
+    <li>① 辺 AB と辺 CG は交わりません。AB と CG は平行でしょうか。</li>
+    <li>② AB と CG の「開き具合」は何度と考えるのがよいでしょうか。AB と CG は「垂直」といえるでしょうか。</li>
+    <li>③ 辺 AB と、上の面の対角線 FH ではどうでしょうか。</li>
+  </ul>
+  <p>予想してから読み進めましょう。①は「3 空間の2直線の位置関係」の例題1で、②③は「5 2直線のなす角」の例題3で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="空間の2直線の位置関係"><span class="num">3</span>空間の2直線の位置関係</h2>
+<p>平面の上では、異なる2直線は「交わる」か「平行」かのどちらかでした。空間には、もう1つの場合があります。</p>
+<div class="box point">
+  <p class="box-title">空間の2直線の位置関係</p>
+  <p>空間の2直線が同じ平面上にあって交わらないとき、2直線は<strong>平行</strong>であるといい、\( \ell /\!/ m \) と書きます。交わらず、平行でもない2直線は、<strong>ねじれの位置</strong>にあるといいます（中1-096）。</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>位置関係</th><th>共有点</th><th>2直線が同じ平面上にあるか</th></tr>
+    <tr><td>1点で交わる</td><td>1個</td><td>ある</td></tr>
+    <tr><td>平行</td><td>なし</td><td>ある</td></tr>
+    <tr><td>ねじれの位置</td><td>なし</td><td>ない</td></tr>
+  </table>
+  </div>
+</div>
+<p>表の右の列が成り立つ理由を確かめます。交わる2直線や平行な2直線は、それらを含む平面が1つに決まります（「前回までの確認」の条件③④）。逆に、2直線が同じ平面上にあれば、その平面の上で考えて、交わるか平行かのどちらかです。したがって、「2直線がねじれの位置にある」ことと「2直線は同じ平面上にない」ことは同じです。ねじれの位置かどうかは、「2直線を両方含む平面があるか」で判断できます。</p>
+<figure>
+  <div class="fig-row">
+<!--svg:f059b-->
+<svg viewBox="0 0 190 165" width="190" role="img" aria-label="平面 α の上で、直線 ℓ と直線 m が1点で交わっている模式図" data-fig="f059b1" data-yaw="18.000000" data-elev="32.000000" data-s="30.410280" data-ox="95.000000" data-oy="91.500000">
+<polygon points="50.3,122.9 166,103 139.7,60.1 24,80" fill="#8a99a8" fill-opacity="0.12" stroke="none" data-sheet="α" data-p3="-2.000000,-1.400000,0.000000;2.000000,-1.400000,0.000000;2.000000,1.400000,0.000000;-2.000000,1.400000,0.000000"/>
+<line x1="50.3" y1="122.9" x2="166" y2="103" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁1" data-p3="-2.000000,-1.400000,0.000000;2.000000,-1.400000,0.000000" data-hidden="0"/>
+<line x1="166" y1="103" x2="139.7" y2="60.1" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁2" data-p3="2.000000,-1.400000,0.000000;2.000000,1.400000,0.000000" data-hidden="0"/>
+<line x1="139.7" y1="60.1" x2="24" y2="80" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁3" data-p3="2.000000,1.400000,0.000000;-2.000000,1.400000,0.000000" data-hidden="0"/>
+<line x1="24" y1="80" x2="50.3" y2="122.9" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁4" data-p3="-2.000000,1.400000,0.000000;-2.000000,-1.400000,0.000000" data-hidden="0"/>
+<line x1="57.2" y1="113.3" x2="132.8" y2="69.7" stroke="#1f5fbf" stroke-width="2" data-seg="ℓ" data-p3="-1.600000,-0.900000,0.000000;1.600000,0.900000,0.000000" data-hidden="0"/>
+<line x1="42.7" y1="84.4" x2="147.3" y2="98.6" stroke="#1e8e5a" stroke-width="2" data-seg="m" data-p3="-1.500000,0.950000,0.000000;1.500000,-0.950000,0.000000" data-hidden="0"/>
+<text x="140.8" y="69.7" text-anchor="middle" font-size="14" fill="#1f5fbf" font-style="italic">ℓ</text>
+<text x="156.3" y="104.6" text-anchor="middle" font-size="14" fill="#1e8e5a" font-style="italic">m</text>
+<text x="34" y="96" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">α</text>
+<text x="8" y="15" text-anchor="start" font-size="12" fill="currentColor">(i) 交わる</text>
+</svg>
+<svg viewBox="0 0 190 165" width="190" role="img" aria-label="平面 α の上に、平行な直線 ℓ と直線 m がある模式図" data-fig="f059b2" data-yaw="18.000000" data-elev="32.000000" data-s="30.410280" data-ox="95.000000" data-oy="91.500000">
+<polygon points="50.3,122.9 166,103 139.7,60.1 24,80" fill="#8a99a8" fill-opacity="0.12" stroke="none" data-sheet="α" data-p3="-2.000000,-1.400000,0.000000;2.000000,-1.400000,0.000000;2.000000,1.400000,0.000000;-2.000000,1.400000,0.000000"/>
+<line x1="50.3" y1="122.9" x2="166" y2="103" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁1" data-p3="-2.000000,-1.400000,0.000000;2.000000,-1.400000,0.000000" data-hidden="0"/>
+<line x1="166" y1="103" x2="139.7" y2="60.1" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁2" data-p3="2.000000,-1.400000,0.000000;2.000000,1.400000,0.000000" data-hidden="0"/>
+<line x1="139.7" y1="60.1" x2="24" y2="80" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁3" data-p3="2.000000,1.400000,0.000000;-2.000000,1.400000,0.000000" data-hidden="0"/>
+<line x1="24" y1="80" x2="50.3" y2="122.9" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁4" data-p3="-2.000000,1.400000,0.000000;-2.000000,-1.400000,0.000000" data-hidden="0"/>
+<line x1="52.9" y1="111.5" x2="146.5" y2="86.9" stroke="#1f5fbf" stroke-width="2" data-seg="ℓ" data-p3="-1.700000,-0.750000,0.000000;1.700000,-0.250000,0.000000" data-hidden="0"/>
+<line x1="42.5" y1="94.6" x2="136.2" y2="70" stroke="#1e8e5a" stroke-width="2" data-seg="m" data-p3="-1.700000,0.350000,0.000000;1.700000,0.850000,0.000000" data-hidden="0"/>
+<text x="155.5" y="91.9" text-anchor="middle" font-size="14" fill="#1f5fbf" font-style="italic">ℓ</text>
+<text x="146.2" y="75" text-anchor="middle" font-size="14" fill="#1e8e5a" font-style="italic">m</text>
+<text x="34" y="96" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">α</text>
+<text x="8" y="15" text-anchor="start" font-size="12" fill="currentColor">(ii) 平行</text>
+</svg>
+<svg viewBox="0 0 190 165" width="190" role="img" aria-label="平面 α の上に直線 ℓ があり、直線 m は α と ℓ 上にない点 P で交わっている模式図。ℓ と m は同じ平面上にない（ねじれの位置）。α の下にある m の部分は破線" data-fig="f059b3" data-yaw="18.000000" data-elev="32.000000" data-s="30.410280" data-ox="95.000000" data-oy="95.288924">
+<polygon points="50.3,126.7 166,106.8 139.7,63.9 24,83.8" fill="#8a99a8" fill-opacity="0.12" stroke="none" data-sheet="α" data-p3="-2.000000,-1.400000,0.000000;2.000000,-1.400000,0.000000;2.000000,1.400000,0.000000;-2.000000,1.400000,0.000000"/>
+<line x1="50.3" y1="126.7" x2="166" y2="106.8" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁1" data-p3="-2.000000,-1.400000,0.000000;2.000000,-1.400000,0.000000" data-hidden="0"/>
+<line x1="166" y1="106.8" x2="139.7" y2="63.9" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁2" data-p3="2.000000,-1.400000,0.000000;2.000000,1.400000,0.000000" data-hidden="0"/>
+<line x1="139.7" y1="63.9" x2="24" y2="83.8" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁3" data-p3="2.000000,1.400000,0.000000;-2.000000,1.400000,0.000000" data-hidden="0"/>
+<line x1="24" y1="83.8" x2="50.3" y2="126.7" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁4" data-p3="-2.000000,1.400000,0.000000;-2.000000,-1.400000,0.000000" data-hidden="0"/>
+<line x1="52.4" y1="114.5" x2="145.1" y2="88.4" stroke="#1f5fbf" stroke-width="2" data-seg="ℓ" data-p3="-1.700000,-0.700000,0.000000;1.700000,-0.100000,0.000000" data-hidden="0"/>
+<line x1="111.1" y1="103.1" x2="102.4" y2="81.3" stroke="#1e8e5a" stroke-width="2" stroke-dasharray="4 3" data-seg="m" data-p3="0.850000,0.900000,-1.000000;0.500000,0.750000,0.000000" data-hidden="1"/>
+<line x1="102.4" y1="81.3" x2="92.4" y2="56.3" stroke="#1e8e5a" stroke-width="2" data-seg="m" data-p3="0.500000,0.750000,0.000000;0.097500,0.577500,1.150000" data-hidden="0"/>
+<circle cx="102.4" cy="81.3" r="2.6" fill="#1e8e5a" data-pt="P" data-x3="0.500000" data-y3="0.750000" data-z3="0.000000"/>
+<text x="112.4" y="77.3" text-anchor="middle" font-size="12" fill="#1e8e5a">P</text>
+<text x="154.1" y="93.4" text-anchor="middle" font-size="14" fill="#1f5fbf" font-style="italic">ℓ</text>
+<text x="100.4" y="60.3" text-anchor="middle" font-size="14" fill="#1e8e5a" font-style="italic">m</text>
+<text x="34" y="99.8" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">α</text>
+<text x="8" y="15" text-anchor="start" font-size="12" fill="currentColor">(iii) ねじれの位置</text>
+</svg><!--/svg:f059b-->
+  </div>
+  <figcaption>図1　空間の2直線 \( \ell \)（青）と \( m \)（緑）。(i)・(ii) は2直線を含む平面（灰の板）がある。(iii) の \( m \) は、\( \ell \) を含む平面と \( \ell \) 上にない1点で交わり、\( \ell \) と同じ平面上にない。板の後ろにある部分は破線（学習用に作成した模式図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題1（立方体の辺の位置関係。導入の問い①の答え）</p>
+  <p>立方体 ABCD-EFGH で、辺 AB と (1) 交わる辺、(2) 平行な辺、(3) ねじれの位置にある辺を、すべて答えなさい。辺はそれを含む直線として考えます。</p>
+  <div class="step">着眼点：辺 AB 以外の辺は11本あります。まず、端の点 A または B を通るかどうかで分けます。</div>
+  <div class="step">(1) A を通る辺 AD、AE と、B を通る辺 BC、BF は、AB と交わります（4本）。</div>
+  <div class="step">(2) 残りの7本のうち、AB と同じ平面上にあるものを探します。DC は面 ABCD 上、EF は面 ABFE 上にあり、AB と交わらないので平行です。HG は AB と同じ面の上にはありませんが、面 DCGH の向かい合う辺として DC と平行で、DC は AB と平行なので、「前回までの確認」の約束から \( \mathrm{AB} /\!/ \mathrm{HG} \) です。AB と HG は長方形 ABGH（図2の色を付けた部分）の上にあります（3本）。</div>
+  <div class="step">(3) 残りの CG、DH、EH、FG の4本は、AB と同じ平面上にありません。たとえば CG：AB と C を含む平面は平面 ABCD ですが、G はこの平面上にないので、AB と CG を両方含む平面はありません。よってねじれの位置です（4本）。</div>
+  <div class="step">答え：(1) AD、AE、BC、BF　(2) DC、EF、HG　(3) CG、DH、EH、FG。確かめ：\( 4+3+4=11 \) 本。導入の問い①の答え：AB と CG は平行ではなく、ねじれの位置にあります。</div>
+</div>
+<figure>
+<!--svg:f059a-->
+<svg viewBox="0 0 250 220" width="250" role="img" aria-label="立方体 ABCD-EFGH の見取図。辺 AB を青の太線で示し、長方形 ABGH に色を付けた。見えない辺 BC、CD、CG は破線" data-fig="f059a" data-yaw="30.000000" data-elev="20.000000" data-s="56.862572" data-ox="104.186854" data-oy="190.000000" data-solid="立方体" data-faces="ABCD EFGH ABFE BCGF CDHG DAEH">
+<polygon points="104.2,190 202.7,170.6 145.8,30 47.3,49.4" fill="#b7791f" fill-opacity="0.16" stroke="none" data-fill="ABGH" data-p3="0.000000,0.000000,0.000000;2.000000,0.000000,0.000000;2.000000,2.000000,2.000000;0.000000,2.000000,2.000000"/>
+<line x1="104.2" y1="190" x2="202.7" y2="170.6" stroke="#1f5fbf" stroke-width="3.0" data-edge="AB" data-hidden="0"/>
+<line x1="104.2" y1="190" x2="47.3" y2="156.3" stroke="currentColor" stroke-width="1.6" data-edge="AD" data-hidden="0"/>
+<line x1="104.2" y1="190" x2="104.2" y2="83.1" stroke="currentColor" stroke-width="1.6" data-edge="AE" data-hidden="0"/>
+<line x1="202.7" y1="170.6" x2="145.8" y2="136.9" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="BC" data-hidden="1"/>
+<line x1="202.7" y1="170.6" x2="202.7" y2="63.7" stroke="currentColor" stroke-width="1.6" data-edge="BF" data-hidden="0"/>
+<line x1="145.8" y1="136.9" x2="47.3" y2="156.3" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="CD" data-hidden="1"/>
+<line x1="145.8" y1="136.9" x2="145.8" y2="30" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="CG" data-hidden="1"/>
+<line x1="47.3" y1="156.3" x2="47.3" y2="49.4" stroke="currentColor" stroke-width="1.6" data-edge="DH" data-hidden="0"/>
+<line x1="104.2" y1="83.1" x2="202.7" y2="63.7" stroke="currentColor" stroke-width="1.6" data-edge="EF" data-hidden="0"/>
+<line x1="104.2" y1="83.1" x2="47.3" y2="49.4" stroke="currentColor" stroke-width="1.6" data-edge="EH" data-hidden="0"/>
+<line x1="202.7" y1="63.7" x2="145.8" y2="30" stroke="currentColor" stroke-width="1.6" data-edge="FG" data-hidden="0"/>
+<line x1="145.8" y1="30" x2="47.3" y2="49.4" stroke="currentColor" stroke-width="1.6" data-edge="GH" data-hidden="0"/>
+<circle cx="104.2" cy="190" r="2.4" fill="currentColor" data-pt="A" data-x3="0.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="101.2" y="210.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A</text>
+<circle cx="202.7" cy="170.6" r="2.4" fill="currentColor" data-pt="B" data-x3="2.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="213.8" y="184.1" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">B</text>
+<circle cx="145.8" cy="136.9" r="2.4" fill="currentColor" data-pt="C" data-x3="2.000000" data-y3="2.000000" data-z3="0.000000"/>
+<text x="154" y="153.8" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">C</text>
+<circle cx="47.3" cy="156.3" r="2.4" fill="currentColor" data-pt="D" data-x3="0.000000" data-y3="2.000000" data-z3="0.000000"/>
+<text x="35" y="168" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">D</text>
+<circle cx="104.2" cy="83.1" r="2.4" fill="currentColor" data-pt="E" data-x3="0.000000" data-y3="0.000000" data-z3="2.000000"/>
+<text x="96" y="75.3" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">E</text>
+<circle cx="202.7" cy="63.7" r="2.4" fill="currentColor" data-pt="F" data-x3="2.000000" data-y3="0.000000" data-z3="2.000000"/>
+<text x="215" y="61.1" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">F</text>
+<circle cx="145.8" cy="30" r="2.4" fill="currentColor" data-pt="G" data-x3="2.000000" data-y3="2.000000" data-z3="2.000000"/>
+<text x="148.8" y="18.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">G</text>
+<circle cx="47.3" cy="49.4" r="2.4" fill="currentColor" data-pt="H" data-x3="0.000000" data-y3="2.000000" data-z3="2.000000"/>
+<text x="36.2" y="45" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">H</text>
+</svg><!--/svg:f059a-->
+  <figcaption>図2　立方体 ABCD-EFGH。辺 AB は青の太線。色を付けた長方形 ABGH の上に AB と HG がある。見えない辺は灰の破線（学習用に作成した図）</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 「交わらない2直線は平行」と考える：空間では、交わらない2直線には平行の場合とねじれの位置の場合があります。平行かどうかは、2直線を含む平面があるかで確かめます。<br>② 「同じ面の上にないから平行ではない」と考える：例題1の AB と HG のように、立体の面の上になくても、2直線を含む平面（長方形 ABGH）があり交わらなければ平行です。<br>③ 見取図の上で線が交わって見えるから「交わる」と考える：見取図は空間の図形を平面に写したものなので、ねじれの位置にある2直線を延ばすと、図の上では交わって見えることがあります。共有点があるかは、空間で考えます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="直線と平面、2平面の位置関係"><span class="num">4</span>直線と平面、2平面の位置関係</h2>
+<p>平面は平らで限りなく広がっているので、直線上の2点が平面上にあれば、その直線全体が平面に含まれます。したがって、直線と平面の共有点は「なし」「1個」「無数（直線全体）」のどれかになります。また、異なる2平面が交わるとき、その交わりは直線になります（中1-097）。この直線を2平面の<strong>交線</strong>といいます。</p>
+<div class="box point">
+  <p class="box-title">直線と平面、2平面の位置関係</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th></th><th>位置関係</th><th>共有点</th></tr>
+    <tr><td rowspan="3">直線 \( \ell \) と平面 \( \alpha \)</td><td>\( \ell \) は \( \alpha \) に含まれる</td><td>無数（\( \ell \) 全体）</td></tr>
+    <tr><td>1点で交わる</td><td>1個</td></tr>
+    <tr><td>平行（\( \ell /\!/ \alpha \)）</td><td>なし</td></tr>
+    <tr><td rowspan="2">2平面 \( \alpha \)、\( \beta \)</td><td>交わる</td><td>1本の直線（交線）</td></tr>
+    <tr><td>平行（\( \alpha /\!/ \beta \)）</td><td>なし</td></tr>
+  </table>
+  </div>
+  <p>直線と平面が交わる場合のうち、直線が平面に垂直な場合、2平面が交わる場合のうち垂直に交わる場合は、中学校でも学びました（中1-097）。直線と平面の垂直は、次の時間（数Ａ-060）で詳しく扱います。</p>
+</div>
+<figure>
+  <div class="fig-row">
+<!--svg:f059c-->
+<svg viewBox="0 0 190 165" width="190" role="img" aria-label="直線 ℓ が平面 α に含まれている模式図" data-fig="f059c1" data-yaw="18.000000" data-elev="32.000000" data-s="30.410280" data-ox="95.000000" data-oy="91.500000">
+<polygon points="50.3,122.9 166,103 139.7,60.1 24,80" fill="#8a99a8" fill-opacity="0.12" stroke="none" data-sheet="α" data-p3="-2.000000,-1.400000,0.000000;2.000000,-1.400000,0.000000;2.000000,1.400000,0.000000;-2.000000,1.400000,0.000000"/>
+<line x1="50.3" y1="122.9" x2="166" y2="103" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁1" data-p3="-2.000000,-1.400000,0.000000;2.000000,-1.400000,0.000000" data-hidden="0"/>
+<line x1="166" y1="103" x2="139.7" y2="60.1" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁2" data-p3="2.000000,-1.400000,0.000000;2.000000,1.400000,0.000000" data-hidden="0"/>
+<line x1="139.7" y1="60.1" x2="24" y2="80" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁3" data-p3="2.000000,1.400000,0.000000;-2.000000,1.400000,0.000000" data-hidden="0"/>
+<line x1="24" y1="80" x2="50.3" y2="122.9" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁4" data-p3="-2.000000,1.400000,0.000000;-2.000000,-1.400000,0.000000" data-hidden="0"/>
+<line x1="54.4" y1="108.7" x2="134.7" y2="72.8" stroke="#1f5fbf" stroke-width="2" data-seg="ℓ" data-p3="-1.600000,-0.600000,0.000000;1.600000,0.700000,0.000000" data-hidden="0"/>
+<text x="143.7" y="77.8" text-anchor="middle" font-size="14" fill="#1f5fbf" font-style="italic">ℓ</text>
+<text x="34" y="96" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">α</text>
+<text x="8" y="15" text-anchor="start" font-size="12" fill="currentColor">(i) 含まれる</text>
+</svg>
+<svg viewBox="0 0 190 165" width="190" role="img" aria-label="直線 ℓ が平面 α と1点 Q で交わっている模式図。α の下にある部分は破線" data-fig="f059c2" data-yaw="18.000000" data-elev="32.000000" data-s="30.410280" data-ox="95.000000" data-oy="95.115850">
+<polygon points="50.3,126.5 166,106.6 139.7,63.7 24,83.6" fill="#8a99a8" fill-opacity="0.12" stroke="none" data-sheet="α" data-p3="-2.000000,-1.400000,0.000000;2.000000,-1.400000,0.000000;2.000000,1.400000,0.000000;-2.000000,1.400000,0.000000"/>
+<line x1="50.3" y1="126.5" x2="166" y2="106.6" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁1" data-p3="-2.000000,-1.400000,0.000000;2.000000,-1.400000,0.000000" data-hidden="0"/>
+<line x1="166" y1="106.6" x2="139.7" y2="63.7" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁2" data-p3="2.000000,-1.400000,0.000000;2.000000,1.400000,0.000000" data-hidden="0"/>
+<line x1="139.7" y1="63.7" x2="24" y2="83.6" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁3" data-p3="2.000000,1.400000,0.000000;-2.000000,1.400000,0.000000" data-hidden="0"/>
+<line x1="24" y1="83.6" x2="50.3" y2="126.5" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁4" data-p3="-2.000000,1.400000,0.000000;-2.000000,-1.400000,0.000000" data-hidden="0"/>
+<line x1="94.8" y1="121.2" x2="95.2" y2="118.8" stroke="#1f5fbf" stroke-width="2" data-seg="ℓ" data-p3="-0.037500,-0.090000,-0.950000;-0.017769,-0.074215,-0.871076" data-hidden="0"/>
+<line x1="95.2" y1="118.8" x2="99.8" y2="92.6" stroke="#1f5fbf" stroke-width="2" stroke-dasharray="4 3" data-seg="ℓ" data-p3="-0.017769,-0.074215,-0.871076;0.200000,0.100000,0.000000" data-hidden="1"/>
+<line x1="99.8" y1="92.6" x2="106.3" y2="56.5" stroke="#1f5fbf" stroke-width="2" data-seg="ℓ" data-p3="0.200000,0.100000,0.000000;0.500000,0.340000,1.200000" data-hidden="0"/>
+<circle cx="99.8" cy="92.6" r="2.6" fill="#1f5fbf" data-pt="Q" data-x3="0.200000" data-y3="0.100000" data-z3="0.000000"/>
+<text x="115.3" y="60.5" text-anchor="middle" font-size="14" fill="#1f5fbf" font-style="italic">ℓ</text>
+<text x="34" y="99.6" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">α</text>
+<text x="8" y="15" text-anchor="start" font-size="12" fill="currentColor">(ii) 1点で交わる</text>
+</svg>
+<svg viewBox="0 0 190 165" width="190" role="img" aria-label="直線 ℓ が平面 α の上にあり、α と共有点をもたない（平行な）模式図" data-fig="f059c3" data-yaw="18.000000" data-elev="32.000000" data-s="30.410280" data-ox="95.000000" data-oy="95.103447">
+<polygon points="50.3,126.5 166,106.6 139.7,63.7 24,83.6" fill="#8a99a8" fill-opacity="0.12" stroke="none" data-sheet="α" data-p3="-2.000000,-1.400000,0.000000;2.000000,-1.400000,0.000000;2.000000,1.400000,0.000000;-2.000000,1.400000,0.000000"/>
+<line x1="50.3" y1="126.5" x2="166" y2="106.6" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁1" data-p3="-2.000000,-1.400000,0.000000;2.000000,-1.400000,0.000000" data-hidden="0"/>
+<line x1="166" y1="106.6" x2="139.7" y2="63.7" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁2" data-p3="2.000000,-1.400000,0.000000;2.000000,1.400000,0.000000" data-hidden="0"/>
+<line x1="139.7" y1="63.7" x2="24" y2="83.6" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁3" data-p3="2.000000,1.400000,0.000000;-2.000000,1.400000,0.000000" data-hidden="0"/>
+<line x1="24" y1="83.6" x2="50.3" y2="126.5" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁4" data-p3="-2.000000,1.400000,0.000000;-2.000000,-1.400000,0.000000" data-hidden="0"/>
+<line x1="56.8" y1="111" x2="135.1" y2="82.3" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="2 3" data-seg="ℓの影" data-p3="-1.500000,-0.550000,0.000000;1.500000,0.350000,0.000000" data-hidden="0" data-style="dash"/>
+<line x1="56.8" y1="85.2" x2="56.8" y2="111" stroke="#8a99a8" stroke-width="1.0" stroke-dasharray="2 3" data-seg="ℓ縦1" data-p3="-1.500000,-0.550000,1.000000;-1.500000,-0.550000,0.000000" data-hidden="0" data-style="dash"/>
+<line x1="135.1" y1="56.5" x2="135.1" y2="82.3" stroke="#8a99a8" stroke-width="1.0" stroke-dasharray="2 3" data-seg="ℓ縦2" data-p3="1.500000,0.350000,1.000000;1.500000,0.350000,0.000000" data-hidden="0" data-style="dash"/>
+<line x1="56.8" y1="85.2" x2="135.1" y2="56.5" stroke="#1f5fbf" stroke-width="2" data-seg="ℓ" data-p3="-1.500000,-0.550000,1.000000;1.500000,0.350000,1.000000" data-hidden="0"/>
+<text x="144.1" y="60.5" text-anchor="middle" font-size="14" fill="#1f5fbf" font-style="italic">ℓ</text>
+<text x="34" y="99.6" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">α</text>
+<text x="8" y="15" text-anchor="start" font-size="12" fill="currentColor">(iii) 平行</text>
+</svg>
+<svg viewBox="0 0 190 170" width="190" role="img" aria-label="平面 α と平面 β が交わり、交わりが1本の直線（交線、緑）になっている模式図。ほかの板に隠れる縁は破線" data-fig="f059c4" data-yaw="18.000000" data-elev="32.000000" data-s="29.626041" data-ox="93.169010" data-oy="93.410169">
+<polygon points="53.3,130 166,110.6 136.7,62.8 24,82.2" fill="#8a99a8" fill-opacity="0.12" stroke="none" data-sheet="α" data-p3="-2.000000,-1.800000,0.000000;2.000000,-1.800000,0.000000;2.000000,1.400000,0.000000;-2.000000,1.400000,0.000000"/>
+<polygon points="48.1,116.2 138.3,100.7 138.3,58 48.1,73.5" fill="#1f5fbf" fill-opacity="0.08" stroke="none" data-sheet="β" data-p3="-1.600000,0.000000,-0.600000;1.600000,0.000000,-0.600000;1.600000,0.000000,1.100000;-1.600000,0.000000,1.100000"/>
+<line x1="53.3" y1="130" x2="166" y2="110.6" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁1" data-p3="-2.000000,-1.800000,0.000000;2.000000,-1.800000,0.000000" data-hidden="0"/>
+<line x1="166" y1="110.6" x2="138.3" y2="65.3" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁2" data-p3="2.000000,-1.800000,0.000000;2.000000,1.231074,0.000000" data-hidden="0"/>
+<line x1="138.3" y1="65.3" x2="136.7" y2="62.8" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3" data-seg="α縁2" data-p3="2.000000,1.231074,0.000000;2.000000,1.400000,0.000000" data-hidden="1"/>
+<line x1="136.7" y1="62.8" x2="48.1" y2="78.1" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3" data-seg="α縁3" data-p3="2.000000,1.400000,0.000000;-1.145112,1.400000,0.000000" data-hidden="1"/>
+<line x1="48.1" y1="78.1" x2="24" y2="82.2" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁3" data-p3="-1.145112,1.400000,0.000000;-2.000000,1.400000,0.000000" data-hidden="0"/>
+<line x1="24" y1="82.2" x2="53.3" y2="130" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁4" data-p3="-2.000000,1.400000,0.000000;-2.000000,-1.800000,0.000000" data-hidden="0"/>
+<line x1="48.1" y1="116.2" x2="138.3" y2="100.7" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3" data-seg="β縁1" data-p3="-1.600000,0.000000,-0.600000;1.600000,0.000000,-0.600000" data-hidden="1"/>
+<line x1="138.3" y1="100.7" x2="138.3" y2="85.6" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3" data-seg="β縁2" data-p3="1.600000,0.000000,-0.600000;1.600000,0.000000,0.000000" data-hidden="1"/>
+<line x1="138.3" y1="85.6" x2="138.3" y2="58" stroke="#8a99a8" stroke-width="1.2" data-seg="β縁2" data-p3="1.600000,0.000000,0.000000;1.600000,0.000000,1.100000" data-hidden="0"/>
+<line x1="138.3" y1="58" x2="48.1" y2="73.5" stroke="#8a99a8" stroke-width="1.2" data-seg="β縁3" data-p3="1.600000,0.000000,1.100000;-1.600000,0.000000,1.100000" data-hidden="0"/>
+<line x1="48.1" y1="73.5" x2="48.1" y2="101.2" stroke="#8a99a8" stroke-width="1.2" data-seg="β縁4" data-p3="-1.600000,0.000000,1.100000;-1.600000,0.000000,0.000000" data-hidden="0"/>
+<line x1="48.1" y1="101.2" x2="48.1" y2="116.2" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3" data-seg="β縁4" data-p3="-1.600000,0.000000,0.000000;-1.600000,0.000000,-0.600000" data-hidden="1"/>
+<line x1="48.1" y1="101.2" x2="138.3" y2="85.6" stroke="#1e8e5a" stroke-width="2.2" data-seg="交線" data-p3="-1.600000,0.000000,0.000000;1.600000,0.000000,0.000000" data-hidden="0"/>
+<text x="34" y="98.2" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">α</text>
+<text x="58.1" y="87.5" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">β</text>
+<text x="8" y="15" text-anchor="start" font-size="12" fill="currentColor">(iv) 2平面が交わる</text>
+</svg>
+<svg viewBox="0 0 190 170" width="190" role="img" aria-label="平面 β が平面 α の上にあり、共有点をもたない（平行な）模式図。β に隠れる α の縁は破線" data-fig="f059c5" data-yaw="18.000000" data-elev="32.000000" data-s="34.090001" data-ox="95.000000" data-oy="104.118486">
+<polygon points="49.3,143.5 166,123.4 140.7,82.1 24,102.2" fill="#8a99a8" fill-opacity="0.12" stroke="none" data-sheet="α" data-p3="-1.800000,-1.200000,-0.300000;1.800000,-1.200000,-0.300000;1.800000,1.200000,-0.300000;-1.800000,1.200000,-0.300000"/>
+<polygon points="49.3,105.9 166,85.8 140.7,44.5 24,64.6" fill="#1f5fbf" fill-opacity="0.08" stroke="none" data-sheet="β" data-p3="-1.800000,-1.200000,1.000000;1.800000,-1.200000,1.000000;1.800000,1.200000,1.000000;-1.800000,1.200000,1.000000"/>
+<line x1="49.3" y1="143.5" x2="166" y2="123.4" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁1" data-p3="-1.800000,-1.200000,-0.300000;1.800000,-1.200000,-0.300000" data-hidden="0"/>
+<line x1="166" y1="123.4" x2="145.2" y2="89.4" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁2" data-p3="1.800000,-1.200000,-0.300000;1.800000,0.778611,-0.300000" data-hidden="0"/>
+<line x1="145.2" y1="89.4" x2="140.7" y2="82.1" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3" data-seg="α縁2" data-p3="1.800000,0.778611,-0.300000;1.800000,1.200000,-0.300000" data-hidden="1"/>
+<line x1="140.7" y1="82.1" x2="44.8" y2="98.6" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3" data-seg="α縁3" data-p3="1.800000,1.200000,-0.300000;-1.157110,1.200000,-0.300000" data-hidden="1"/>
+<line x1="44.8" y1="98.6" x2="24" y2="102.2" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁3" data-p3="-1.157110,1.200000,-0.300000;-1.800000,1.200000,-0.300000" data-hidden="0"/>
+<line x1="24" y1="102.2" x2="49.3" y2="143.5" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁4" data-p3="-1.800000,1.200000,-0.300000;-1.800000,-1.200000,-0.300000" data-hidden="0"/>
+<line x1="49.3" y1="105.9" x2="166" y2="85.8" stroke="#8a99a8" stroke-width="1.2" data-seg="β縁1" data-p3="-1.800000,-1.200000,1.000000;1.800000,-1.200000,1.000000" data-hidden="0"/>
+<line x1="166" y1="85.8" x2="140.7" y2="44.5" stroke="#8a99a8" stroke-width="1.2" data-seg="β縁2" data-p3="1.800000,-1.200000,1.000000;1.800000,1.200000,1.000000" data-hidden="0"/>
+<line x1="140.7" y1="44.5" x2="24" y2="64.6" stroke="#8a99a8" stroke-width="1.2" data-seg="β縁3" data-p3="1.800000,1.200000,1.000000;-1.800000,1.200000,1.000000" data-hidden="0"/>
+<line x1="24" y1="64.6" x2="49.3" y2="105.9" stroke="#8a99a8" stroke-width="1.2" data-seg="β縁4" data-p3="-1.800000,1.200000,1.000000;-1.800000,-1.200000,1.000000" data-hidden="0"/>
+<text x="154" y="118.4" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">α</text>
+<text x="34" y="80.6" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">β</text>
+<text x="8" y="15" text-anchor="start" font-size="12" fill="currentColor">(v) 2平面が平行</text>
+</svg><!--/svg:f059c-->
+  </div>
+  <figcaption>図3　直線と平面、2平面の位置関係。(i)〜(iii) は直線 \( \ell \)（青）と平面 \( \alpha \)、(iv)・(v) は2平面 \( \alpha \)、\( \beta \)。(iii) の灰の点線は、\( \ell \) の真下の影と高さを表す線。(iv) の緑の線は交線。板の後ろにある部分は破線（学習用に作成した模式図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題2（立方体の辺・面の位置関係）</p>
+  <p>立方体 ABCD-EFGH で、次の問いに答えなさい。(1) 平面 ABCD と平行な辺をすべて答えなさい。(2) 直線 FH と平面 ABCD の位置関係を答えなさい。(3) 平面 BFHD と平面 ABCD の交線を答えなさい。</p>
+  <div class="step">着眼点：平面 ABCD（底面）と平面 EFGH（上の面）は平行で、共有点がありません。</div>
+  <div class="step">(1) 上の面の辺 EF、FG、GH、HE は、平面 EFGH 上にあるので平面 ABCD と共有点がなく、平行です。底面の辺は平面 ABCD に含まれ、AE、BF、CG、DH は平面 ABCD と1点で交わります。答え：EF、FG、GH、HE。</div>
+  <div class="step">(2) FH は上の面の対角線で、平面 EFGH に含まれます。平面 EFGH と平面 ABCD は共有点をもたないので、FH と平面 ABCD も共有点をもちません。答え：平行（\( \mathrm{FH} /\!/ \) 平面 ABCD）。</div>
+  <div class="step">(3) 平面 BFHD と平面 ABCD は、どちらも B と D を通ります。2平面の交わりは直線なので、交線は B と D を通る直線です。答え：直線 BD。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 平面に含まれる直線を「平行」と答える：例題2の辺 AB は平面 ABCD と共有点が無数にあるので、「含まれる」です。平行は共有点が<strong>ない</strong>場合です。<br>② 「平行な2平面の上にある直線どうしは平行」と考える：底面の辺 AB と上の面の辺 FG は、平行な2平面の上にありますが、例題1のとおりねじれの位置です。平行な2平面の上の直線どうしは共有点をもちませんが、平行とは限りません。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="2直線のなす角"><span class="num">5</span>2直線のなす角</h2>
+<p>2直線が交わると、4つの角ができます。確認2のように、となり合う角の和は \( 180^\circ \) で、向かい合う角は等しいので、4つの角は \( \theta \) と \( 180^\circ-\theta \) の2種類です。このうち \( 90^\circ \) 以下のほうで、2直線の開き具合を表します。</p>
+<div class="box point">
+  <p class="box-title">2直線のなす角</p>
+  <p>(ア) 2直線が交わるとき、できる角のうち \( 90^\circ \) 以下のものを、2直線の<strong>なす角</strong>といいます。</p>
+  <p>(イ) 2直線 \( \ell \)、\( m \) がねじれの位置にあるとき、空間の1点 O を通り \( \ell \)、\( m \) に平行な直線 \( \ell' \)、\( m' \) を引くと、\( \ell' \) と \( m' \) は O で交わります。\( \ell' \) と \( m' \) のなす角を、\( \ell \) と \( m \) の<strong>なす角</strong>といいます。O をどこにとっても、なす角は同じ大きさになります（このページでは証明しません）。O を \( \ell \) 上にとれば、\( \ell' \) は \( \ell \) そのものになり、\( m \) に平行な直線を1本引くだけで求められます。</p>
+  <p>(ウ) 2直線 \( \ell \)、\( m \) のなす角が \( 90^\circ \) のとき、\( \ell \) と \( m \) は<strong>垂直</strong>であるといい、\( \ell \perp m \) と書きます。ねじれの位置にある2直線でも、垂直であることがあります。</p>
+  <p class="small">なす角を \( 90^\circ \) 以下の角で表すことと、平行な2直線のなす角は考えないことは、このページでの決め方です（述べ方は教科書でも確かめよう）。</p>
+</div>
+<figure>
+<!--svg:f059e-->
+<svg viewBox="0 0 280 200" width="280" role="img" aria-label="平面 α の上の直線 ℓ と、α の上方にあって ℓ とねじれの位置にある直線 m。ℓ 上の点 O を通り m に平行な直線 m′ を α の上に引き、ℓ と m′ のなす角 θ に橙の弧を付けた模式図" data-fig="f059e" data-yaw="14.000000" data-elev="28.000000" data-s="48.073114" data-ox="133.572188" data-oy="126.358762">
+<polygon points="56.6,167.9 243.1,146.1 210.6,84.8 24,106.6" fill="#8a99a8" fill-opacity="0.12" stroke="none" data-sheet="α" data-p3="-2.000000,-1.400000,0.000000;2.000000,-1.400000,0.000000;2.000000,1.400000,0.000000;-2.000000,1.400000,0.000000"/>
+<line x1="56.6" y1="167.9" x2="243.1" y2="146.1" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁1" data-p3="-2.000000,-1.400000,0.000000;2.000000,-1.400000,0.000000" data-hidden="0"/>
+<line x1="243.1" y1="146.1" x2="210.6" y2="84.8" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁2" data-p3="2.000000,-1.400000,0.000000;2.000000,1.400000,0.000000" data-hidden="0"/>
+<line x1="210.6" y1="84.8" x2="24" y2="106.6" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁3" data-p3="2.000000,1.400000,0.000000;-2.000000,1.400000,0.000000" data-hidden="0"/>
+<line x1="24" y1="106.6" x2="56.6" y2="167.9" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁4" data-p3="-2.000000,1.400000,0.000000;-2.000000,-1.400000,0.000000" data-hidden="0"/>
+<line x1="55.4" y1="147.1" x2="256" y2="123.7" stroke="#1f5fbf" stroke-width="2" data-seg="ℓ" data-p3="-1.800000,-0.500000,0.000000;2.500000,-0.500000,0.000000" data-hidden="0"/>
+<line x1="88.1" y1="152.6" x2="134.8" y2="100.6" stroke="#1e8e5a" stroke-width="1.8" stroke-dasharray="5 3" data-seg="m'" data-p3="-1.200000,-0.900000,0.000000;0.300000,1.100000,0.000000" data-hidden="0" data-style="dash"/>
+<line x1="195.5" y1="148.7" x2="245.9" y2="92.5" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="2 3" data-seg="mの影" data-p3="1.010000,-1.270000,0.000000;2.630000,0.890000,0.000000" data-hidden="0" data-style="dash"/>
+<line x1="195.5" y1="106.2" x2="195.5" y2="148.7" stroke="#8a99a8" stroke-width="1.0" stroke-dasharray="2 3" data-seg="m縦1" data-p3="1.010000,-1.270000,1.000000;1.010000,-1.270000,0.000000" data-hidden="0" data-style="dash"/>
+<line x1="245.9" y1="50.1" x2="245.9" y2="92.5" stroke="#8a99a8" stroke-width="1.0" stroke-dasharray="2 3" data-seg="m縦2" data-p3="2.630000,0.890000,1.000000;2.630000,0.890000,0.000000" data-hidden="0" data-style="dash"/>
+<line x1="195.5" y1="106.2" x2="245.9" y2="50.1" stroke="#1e8e5a" stroke-width="2" data-seg="m" data-p3="1.010000,-1.270000,1.000000;2.630000,0.890000,1.000000" data-hidden="0"/>
+<circle cx="97.4" cy="142.2" r="2.6" fill="currentColor" data-pt="O" data-x3="-0.900000" data-y3="-0.500000" data-z3="0.000000"/>
+<polyline points="123.1,139.2 122.8,138.8 122.5,138.3 122.1,137.8 121.8,137.4 121.4,137 120.9,136.5 120.4,136.1 119.9,135.7 119.3,135.3 118.8,134.9 118.1,134.5 117.5,134.1 116.8,133.8 116.1,133.4 115.4,133.1 114.6,132.8 113.8,132.5 113,132.2 112.2,131.9 111.3,131.7 110.4,131.4 109.5,131.2 108.6,131 107.7,130.8" fill="none" stroke="#b7791f" stroke-width="1.5" data-arc="θ" data-deg="53.130102"/>
+<text x="93.4" y="157.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">O</text>
+<text x="127.5" y="133.1" text-anchor="middle" font-size="13" fill="#b7791f" font-style="italic">θ</text>
+<text x="265" y="128.7" text-anchor="middle" font-size="14" fill="#1f5fbf" font-style="italic">ℓ</text>
+<text x="123.8" y="97.6" text-anchor="middle" font-size="14" fill="#1e8e5a" font-style="italic">m′</text>
+<text x="253.9" y="48.1" text-anchor="middle" font-size="14" fill="#1e8e5a" font-style="italic">m</text>
+<text x="68.6" y="161.9" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">α</text>
+</svg><!--/svg:f059e-->
+  <figcaption>図4　ねじれの位置にある2直線 \( \ell \)（青）と \( m \)（緑）。\( \ell \) 上の点 O を通り \( m \) に平行な直線 \( m' \)（緑の破線）を引くと、\( \ell \) と \( m' \) は O で交わる。橙の弧の角 \( \theta \) が \( \ell \) と \( m \) のなす角。\( m \) は平面 \( \alpha \) の上方にあり、灰の点線は \( m \) の真下の影と高さを表す線（学習用に作成した模式図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題3（導入の問い②③の答え）</p>
+  <p>立方体 ABCD-EFGH で、(1) 直線 AB と直線 CG のなす角、(2) 直線 AB と直線 FH のなす角を求めなさい。</p>
+  <div class="step">着眼点：AB 上の点 B を通り、もう一方の直線に平行な直線を、立方体の辺や対角線の中から探します。</div>
+  <div class="step">(1) CG は辺 BF と平行です（どちらも面 BCGF の向かい合う辺）。よって AB と CG のなす角は、AB と BF のなす角 \( \angle\mathrm{ABF} \) で、面 ABFE は正方形なので \( 90^\circ \) です。AB と CG は垂直（\( \mathrm{AB}\perp\mathrm{CG} \)）です。</div>
+  <div class="step">(2) 「前回までの確認」の約束から \( \mathrm{BF} /\!/ \mathrm{DH} \) で、\( \mathrm{BF}=\mathrm{DH} \) なので、四角形 BFHD は1組の対辺が平行で長さが等しく、平行四辺形です（中2-069）。よって \( \mathrm{FH} /\!/ \mathrm{BD} \) で、AB と FH のなす角は \( \angle\mathrm{ABD} \) です。BD は正方形 ABCD の対角線なので、確認3と同じく \( \angle\mathrm{ABD}=45^\circ \) です。</div>
+  <div class="step">答え：(1) \( 90^\circ \)（垂直）　(2) \( 45^\circ \)。導入の問いの答え：AB と CG はねじれの位置にあり、なす角は \( 90^\circ \) なので垂直といえます。AB と FH もねじれの位置にあり、なす角は \( 45^\circ \) です（図5）。</div>
+</div>
+<figure>
+  <div class="fig-row">
+<!--svg:f059f-->
+<svg viewBox="0 0 210 222" width="210" role="img" aria-label="立方体 ABCD-EFGH。辺 AB（青）と辺 CG（緑、見えない辺なので破線）。CG に平行な辺 BF を橙の破線で示し、角 ABF に直角の印" data-fig="f059f1" data-yaw="30.000000" data-elev="20.000000" data-s="53.439709" data-ox="85.439709" data-oy="197.184371" data-solid="立方体" data-faces="ABCD EFGH ABFE BCGF CDHG DAEH" data-skip-edges="BF">
+<line x1="85.4" y1="197.2" x2="178" y2="178.9" stroke="#1f5fbf" stroke-width="3.0" data-edge="AB" data-hidden="0"/>
+<line x1="85.4" y1="197.2" x2="32" y2="165.5" stroke="currentColor" stroke-width="1.6" data-edge="AD" data-hidden="0"/>
+<line x1="85.4" y1="197.2" x2="85.4" y2="96.8" stroke="currentColor" stroke-width="1.6" data-edge="AE" data-hidden="0"/>
+<line x1="178" y1="178.9" x2="124.6" y2="147.2" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="BC" data-hidden="1"/>
+<line x1="124.6" y1="147.2" x2="32" y2="165.5" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="CD" data-hidden="1"/>
+<line x1="124.6" y1="147.2" x2="124.6" y2="46.8" stroke="#1e8e5a" stroke-width="2.6" stroke-dasharray="4 3" data-edge="CG" data-hidden="1"/>
+<line x1="32" y1="165.5" x2="32" y2="65.1" stroke="currentColor" stroke-width="1.6" data-edge="DH" data-hidden="0"/>
+<line x1="85.4" y1="96.8" x2="178" y2="78.5" stroke="currentColor" stroke-width="1.6" data-edge="EF" data-hidden="0"/>
+<line x1="85.4" y1="96.8" x2="32" y2="65.1" stroke="currentColor" stroke-width="1.6" data-edge="EH" data-hidden="0"/>
+<line x1="178" y1="78.5" x2="124.6" y2="46.8" stroke="currentColor" stroke-width="1.6" data-edge="FG" data-hidden="0"/>
+<line x1="124.6" y1="46.8" x2="32" y2="65.1" stroke="currentColor" stroke-width="1.6" data-edge="GH" data-hidden="0"/>
+<line x1="178" y1="178.9" x2="178" y2="78.5" stroke="#b7791f" stroke-width="2.4" stroke-dasharray="5 3" data-seg="BF" data-p3="2.000000,0.000000,0.000000;2.000000,0.000000,2.000000" data-hidden="0" data-style="dash"/>
+<polyline points="165,181.5 165,167.4 178,164.8" fill="none" stroke="currentColor" stroke-width="1.2" data-right="∠ABF"/>
+<circle cx="85.4" cy="197.2" r="2.4" fill="currentColor" data-pt="A" data-x3="0.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="82.4" y="217.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A</text>
+<circle cx="178" cy="178.9" r="2.4" fill="currentColor" data-pt="B" data-x3="2.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="189.1" y="192.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">B</text>
+<circle cx="124.6" cy="147.2" r="2.4" fill="currentColor" data-pt="C" data-x3="2.000000" data-y3="2.000000" data-z3="0.000000"/>
+<text x="132.8" y="164.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">C</text>
+<circle cx="32" cy="165.5" r="2.4" fill="currentColor" data-pt="D" data-x3="0.000000" data-y3="2.000000" data-z3="0.000000"/>
+<text x="19.7" y="177.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">D</text>
+<circle cx="85.4" cy="96.8" r="2.4" fill="currentColor" data-pt="E" data-x3="0.000000" data-y3="0.000000" data-z3="2.000000"/>
+<text x="77.2" y="88.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">E</text>
+<circle cx="178" cy="78.5" r="2.4" fill="currentColor" data-pt="F" data-x3="2.000000" data-y3="0.000000" data-z3="2.000000"/>
+<text x="190.3" y="75.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">F</text>
+<circle cx="124.6" cy="46.8" r="2.4" fill="currentColor" data-pt="G" data-x3="2.000000" data-y3="2.000000" data-z3="2.000000"/>
+<text x="127.6" y="35.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">G</text>
+<circle cx="32" cy="65.1" r="2.4" fill="currentColor" data-pt="H" data-x3="0.000000" data-y3="2.000000" data-z3="2.000000"/>
+<text x="20.9" y="60.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">H</text>
+<text x="8" y="15" text-anchor="start" font-size="12" fill="currentColor">(i) AB と CG</text>
+<text x="204" y="15" text-anchor="end" font-size="12" fill="currentColor">∠ABF = 90°</text>
+</svg>
+<svg viewBox="0 0 210 222" width="210" role="img" aria-label="立方体 ABCD-EFGH。辺 AB（青）と上の面の対角線 FH（緑）。FH に平行な底面の対角線 BD を橙の破線で示し、角 ABD に弧" data-fig="f059f2" data-yaw="30.000000" data-elev="20.000000" data-s="53.439709" data-ox="85.439709" data-oy="197.184371" data-solid="立方体" data-faces="ABCD EFGH ABFE BCGF CDHG DAEH">
+<line x1="85.4" y1="197.2" x2="178" y2="178.9" stroke="#1f5fbf" stroke-width="3.0" data-edge="AB" data-hidden="0"/>
+<line x1="85.4" y1="197.2" x2="32" y2="165.5" stroke="currentColor" stroke-width="1.6" data-edge="AD" data-hidden="0"/>
+<line x1="85.4" y1="197.2" x2="85.4" y2="96.8" stroke="currentColor" stroke-width="1.6" data-edge="AE" data-hidden="0"/>
+<line x1="178" y1="178.9" x2="124.6" y2="147.2" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="BC" data-hidden="1"/>
+<line x1="178" y1="178.9" x2="178" y2="78.5" stroke="currentColor" stroke-width="1.6" data-edge="BF" data-hidden="0"/>
+<line x1="124.6" y1="147.2" x2="32" y2="165.5" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="CD" data-hidden="1"/>
+<line x1="124.6" y1="147.2" x2="124.6" y2="46.8" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="CG" data-hidden="1"/>
+<line x1="32" y1="165.5" x2="32" y2="65.1" stroke="currentColor" stroke-width="1.6" data-edge="DH" data-hidden="0"/>
+<line x1="85.4" y1="96.8" x2="178" y2="78.5" stroke="currentColor" stroke-width="1.6" data-edge="EF" data-hidden="0"/>
+<line x1="85.4" y1="96.8" x2="32" y2="65.1" stroke="currentColor" stroke-width="1.6" data-edge="EH" data-hidden="0"/>
+<line x1="178" y1="78.5" x2="124.6" y2="46.8" stroke="currentColor" stroke-width="1.6" data-edge="FG" data-hidden="0"/>
+<line x1="124.6" y1="46.8" x2="32" y2="65.1" stroke="currentColor" stroke-width="1.6" data-edge="GH" data-hidden="0"/>
+<line x1="178" y1="78.5" x2="32" y2="65.1" stroke="#1e8e5a" stroke-width="2.6" data-seg="FH" data-p3="2.000000,0.000000,2.000000;0.000000,2.000000,2.000000" data-hidden="0"/>
+<line x1="178" y1="178.9" x2="32" y2="165.5" stroke="#b7791f" stroke-width="2.4" stroke-dasharray="4 3" data-seg="BD" data-p3="2.000000,0.000000,0.000000;0.000000,2.000000,0.000000" data-hidden="1" data-style="dash"/>
+<polyline points="143.3,185.8 142.7,185.4 142.1,185 141.5,184.6 141,184.2 140.5,183.7 140,183.3 139.6,182.9 139.3,182.5 139,182 138.7,181.6 138.5,181.1 138.3,180.7 138.1,180.3 138,179.8 137.9,179.4 137.9,178.9 137.9,178.5 138,178 138.1,177.6 138.3,177.1 138.5,176.7 138.7,176.2 139,175.8 139.3,175.4" fill="none" stroke="#b7791f" stroke-width="1.5" data-arc="∠ABD" data-deg="45.000000"/>
+<circle cx="85.4" cy="197.2" r="2.4" fill="currentColor" data-pt="A" data-x3="0.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="82.4" y="217.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A</text>
+<circle cx="178" cy="178.9" r="2.4" fill="currentColor" data-pt="B" data-x3="2.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="189.1" y="192.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">B</text>
+<circle cx="124.6" cy="147.2" r="2.4" fill="currentColor" data-pt="C" data-x3="2.000000" data-y3="2.000000" data-z3="0.000000"/>
+<text x="132.8" y="164.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">C</text>
+<circle cx="32" cy="165.5" r="2.4" fill="currentColor" data-pt="D" data-x3="0.000000" data-y3="2.000000" data-z3="0.000000"/>
+<text x="19.7" y="177.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">D</text>
+<circle cx="85.4" cy="96.8" r="2.4" fill="currentColor" data-pt="E" data-x3="0.000000" data-y3="0.000000" data-z3="2.000000"/>
+<text x="77.2" y="88.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">E</text>
+<circle cx="178" cy="78.5" r="2.4" fill="currentColor" data-pt="F" data-x3="2.000000" data-y3="0.000000" data-z3="2.000000"/>
+<text x="190.3" y="75.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">F</text>
+<circle cx="124.6" cy="46.8" r="2.4" fill="currentColor" data-pt="G" data-x3="2.000000" data-y3="2.000000" data-z3="2.000000"/>
+<text x="127.6" y="35.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">G</text>
+<circle cx="32" cy="65.1" r="2.4" fill="currentColor" data-pt="H" data-x3="0.000000" data-y3="2.000000" data-z3="2.000000"/>
+<text x="20.9" y="60.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">H</text>
+<text x="204" y="15" text-anchor="end" font-size="12" fill="#b7791f">∠ABD = 45°</text>
+<text x="8" y="15" text-anchor="start" font-size="12" fill="currentColor">(ii) AB と FH</text>
+</svg><!--/svg:f059f-->
+  </div>
+  <figcaption>図5　例題3。(i) CG（緑）を平行な BF（橙の破線）に移すと、AB（青）とのなす角は \( \angle\mathrm{ABF}=90^\circ \)。(ii) FH（緑）を平行な BD（橙の破線）に移すと、なす角は \( \angle\mathrm{ABD}=45^\circ \)。見えない辺は灰の破線（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題4（面の対角線どうしのなす角）</p>
+  <p>立方体 ABCD-EFGH で、面 ABFE の対角線 AF と、底面 ABCD の対角線 BD のなす角を求めなさい。</p>
+  <div class="step">着眼点：AF と BD はねじれの位置にあります。AF 上の点を通り BD に平行な直線を探します。</div>
+  <div class="step">例題3(2)で確かめたとおり \( \mathrm{BD} /\!/ \mathrm{FH} \) です。FH は AF 上の点 F を通るので、AF と BD のなす角は、AF と FH のなす角 \( \angle\mathrm{AFH} \) です。</div>
+  <div class="step">△AFH の3辺 AF、FH、HA は、どれも立方体の面の対角線なので長さが等しく、△AFH は正三角形です。よって \( \angle\mathrm{AFH}=60^\circ \)。</div>
+  <div class="step">答え：\( 60^\circ \)。見取図では △AFH は正三角形に見えませんが、実際の長さで判断します（図6）。</div>
+</div>
+<figure>
+<!--svg:f059g-->
+<svg viewBox="0 0 240 220" width="240" role="img" aria-label="立方体 ABCD-EFGH。面の対角線 AF（青）と底面の対角線 BD（緑、見えないので破線）。BD に平行な FH を橙の破線で示し、正三角形 AFH に色を付け、角 AFH に 60° の弧" data-fig="f059g" data-yaw="30.000000" data-elev="20.000000" data-s="56.862572" data-ox="99.186854" data-oy="190.000000" data-solid="立方体" data-faces="ABCD EFGH ABFE BCGF CDHG DAEH">
+<polygon points="99.2,190 197.7,63.7 42.3,49.4" fill="#b7791f" fill-opacity="0.16" stroke="none" data-fill="AFH" data-p3="0.000000,0.000000,0.000000;2.000000,0.000000,2.000000;0.000000,2.000000,2.000000"/>
+<line x1="99.2" y1="190" x2="197.7" y2="170.6" stroke="currentColor" stroke-width="1.6" data-edge="AB" data-hidden="0"/>
+<line x1="99.2" y1="190" x2="42.3" y2="156.3" stroke="currentColor" stroke-width="1.6" data-edge="AD" data-hidden="0"/>
+<line x1="99.2" y1="190" x2="99.2" y2="83.1" stroke="currentColor" stroke-width="1.6" data-edge="AE" data-hidden="0"/>
+<line x1="197.7" y1="170.6" x2="140.8" y2="136.9" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="BC" data-hidden="1"/>
+<line x1="197.7" y1="170.6" x2="197.7" y2="63.7" stroke="currentColor" stroke-width="1.6" data-edge="BF" data-hidden="0"/>
+<line x1="140.8" y1="136.9" x2="42.3" y2="156.3" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="CD" data-hidden="1"/>
+<line x1="140.8" y1="136.9" x2="140.8" y2="30" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="CG" data-hidden="1"/>
+<line x1="42.3" y1="156.3" x2="42.3" y2="49.4" stroke="currentColor" stroke-width="1.6" data-edge="DH" data-hidden="0"/>
+<line x1="99.2" y1="83.1" x2="197.7" y2="63.7" stroke="currentColor" stroke-width="1.6" data-edge="EF" data-hidden="0"/>
+<line x1="99.2" y1="83.1" x2="42.3" y2="49.4" stroke="currentColor" stroke-width="1.6" data-edge="EH" data-hidden="0"/>
+<line x1="197.7" y1="63.7" x2="140.8" y2="30" stroke="currentColor" stroke-width="1.6" data-edge="FG" data-hidden="0"/>
+<line x1="140.8" y1="30" x2="42.3" y2="49.4" stroke="currentColor" stroke-width="1.6" data-edge="GH" data-hidden="0"/>
+<line x1="99.2" y1="190" x2="197.7" y2="63.7" stroke="#1f5fbf" stroke-width="2.6" data-seg="AF" data-p3="0.000000,0.000000,0.000000;2.000000,0.000000,2.000000" data-hidden="0"/>
+<line x1="197.7" y1="170.6" x2="42.3" y2="156.3" stroke="#1e8e5a" stroke-width="2.4" stroke-dasharray="4 3" data-seg="BD" data-p3="2.000000,0.000000,0.000000;0.000000,2.000000,0.000000" data-hidden="1"/>
+<line x1="197.7" y1="63.7" x2="42.3" y2="49.4" stroke="#b7791f" stroke-width="2.4" stroke-dasharray="5 3" data-seg="FH" data-p3="2.000000,0.000000,2.000000;0.000000,2.000000,2.000000" data-hidden="0" data-style="dash"/>
+<line x1="99.2" y1="190" x2="42.3" y2="49.4" stroke="#b7791f" stroke-width="1.6" data-seg="AH" data-p3="0.000000,0.000000,0.000000;0.000000,2.000000,2.000000" data-hidden="0"/>
+<polyline points="182,83.8 181.2,83.1 180.4,82.5 179.6,81.8 178.9,81 178.2,80.2 177.5,79.4 176.9,78.6 176.3,77.7 175.7,76.8 175.2,75.9 174.8,74.9 174.4,74 174,73 173.7,72 173.4,71 173.1,69.9 173,68.9 172.8,67.8 172.7,66.8 172.7,65.7 172.7,64.6 172.7,63.6 172.8,62.5 173,61.4" fill="none" stroke="#b7791f" stroke-width="1.5" data-arc="∠AFH" data-deg="60.000000"/>
+<circle cx="99.2" cy="190" r="2.4" fill="currentColor" data-pt="A" data-x3="0.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="96.2" y="210.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A</text>
+<circle cx="197.7" cy="170.6" r="2.4" fill="currentColor" data-pt="B" data-x3="2.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="208.8" y="184.1" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">B</text>
+<circle cx="140.8" cy="136.9" r="2.4" fill="currentColor" data-pt="C" data-x3="2.000000" data-y3="2.000000" data-z3="0.000000"/>
+<text x="149" y="153.8" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">C</text>
+<circle cx="42.3" cy="156.3" r="2.4" fill="currentColor" data-pt="D" data-x3="0.000000" data-y3="2.000000" data-z3="0.000000"/>
+<text x="30" y="168" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">D</text>
+<circle cx="99.2" cy="83.1" r="2.4" fill="currentColor" data-pt="E" data-x3="0.000000" data-y3="0.000000" data-z3="2.000000"/>
+<text x="91" y="75.3" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">E</text>
+<circle cx="197.7" cy="63.7" r="2.4" fill="currentColor" data-pt="F" data-x3="2.000000" data-y3="0.000000" data-z3="2.000000"/>
+<text x="210" y="61.1" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">F</text>
+<circle cx="140.8" cy="30" r="2.4" fill="currentColor" data-pt="G" data-x3="2.000000" data-y3="2.000000" data-z3="2.000000"/>
+<text x="143.8" y="18.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">G</text>
+<circle cx="42.3" cy="49.4" r="2.4" fill="currentColor" data-pt="H" data-x3="0.000000" data-y3="2.000000" data-z3="2.000000"/>
+<text x="31.2" y="45" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">H</text>
+<text x="172.4" y="90" text-anchor="middle" font-size="12" fill="#b7791f">60°</text>
+</svg><!--/svg:f059g-->
+  <figcaption>図6　例題4。AF（青）と BD（緑。底面の上にあり見えないので破線）。BD を平行な FH（橙の破線）に移すと、△AFH（色を付けた部分）は正三角形で、なす角は \( 60^\circ \)（学習用に作成した図）</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① なす角を \( 90^\circ \) より大きくとる：交わってできる角が \( 135^\circ \) なら、なす角はその補角の \( 45^\circ \) です。<br>② 見取図の上で角度を測る：見取図の角は実際の角と違って見えます。平行な直線に移して、実際の長さや形が分かる三角形・四角形で考えます。<br>③ 「1つの直線に垂直な2直線は平行」と考える：平面の上では正しいのですが、空間では正しくありません。立方体で \( \mathrm{AB}\perp\mathrm{AD} \)、\( \mathrm{AB}\perp\mathrm{AE} \) ですが、AD と AE は A で交わります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>平面の決定</dt><dd>同じ直線上にない3点、1つの直線とその上にない1点、交わる2直線、平行な2直線のどれかが与えられると、それを含む平面が1つに決まる（中1-096）。</dd>
+    <dt>平行（空間の2直線）</dt><dd>同じ平面上にあって交わらない2直線。\( \ell /\!/ m \)。</dd>
+    <dt>ねじれの位置</dt><dd>交わらず、平行でもない2直線の位置関係。2直線が同じ平面上にないことと同じ。</dd>
+    <dt>直線と平面の平行</dt><dd>直線と平面が共有点をもたないこと。\( \ell /\!/ \alpha \)。</dd>
+    <dt>2平面の平行・交線</dt><dd>2平面が共有点をもたないとき平行（\( \alpha /\!/ \beta \)）。交わるときの交わりの直線が交線。</dd>
+    <dt>2直線のなす角</dt><dd>交わる2直線では、できる角のうち 90° 以下のもの。ねじれの位置では、1点を通りそれぞれに平行な2直線をひいてできる角で考える。</dd>
+    <dt>垂直（空間の2直線）</dt><dd>なす角が 90° であること。\( \ell \perp m \)。ねじれの位置でもよい。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>空間の2直線は、交わる・平行・ねじれの位置のどれか。交わる・平行なら同じ平面上にあり、ねじれの位置なら同じ平面上にない（O1）。</li>
+    <li>直線と平面は、含まれる（共有点が無数）・1点で交わる・平行（共有点なし）のどれか。2平面は、交わる（交わりは交線）・平行のどちらか。平行な2平面の上の直線どうしは、平行とは限らない（O2）。</li>
+    <li>2直線のなす角は 90° 以下の角。ねじれの位置なら、一方の直線上の点を通り他方に平行な直線を引いて求める。なす角が 90° なら垂直（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">ねじれの位置の見分け方</span><p>2直線を両方含む平面がないことと、2直線がねじれの位置にあることは同じ</p></div>
+  <div><span class="f-name">なす角の求め方</span><p>平行な直線に移して交わらせる → できた角のうち \( 90^\circ \) 以下のもの</p></div>
+  <div><span class="f-name">空間の平行線</span><p>\( m /\!/ \ell \)、\( n /\!/ \ell \) ならば \( m /\!/ n \)（垂直では成り立たない）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。立方体 ABCD-EFGH、直方体 ABCD-EFGH は、この時間の表し方（底面 ABCD、AE が高さの辺）とします。三角柱 ABC-DEF は、底面が △ABC、上の面が △DEF で、AD、BE、CF が側面の辺（A の真上が D、B の真上が E、C の真上が F）、側面はすべて長方形とします。辺はそれを含む直線として考えます。角の入力問題は数字だけを入力してください（° を付けてもかまいません）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>三角柱 ABC-DEF で、辺 AB とねじれの位置にある辺は何本ありますか。</p>
+  <div class="choices">
+    <button>4本</button>
+    <button data-correct="true">3本</button>
+    <button>5本</button>
+    <button>1本</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">AB と交わる辺は AC、BC、AD、BE の4本、平行な辺は DE の1本です。残りの CF、DF、EF の3本は、どれも AB と同じ平面上にないので、ねじれの位置です（\( 4+1+3=8 \)）。4本は、交わらない辺（平行な DE とねじれの位置の3本）をすべて数えた誤りです。5本は、AB を含む側面 ABED の上にない辺（AC、BC、CF、DF、EF）を数えた誤りで、底面の AC、BC は A、B で AB と交わります。1本は平行な辺の数です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>直方体 ABCD-EFGH で、辺 AB と平行な面をすべて挙げたものはどれですか。</p>
+  <div class="choices">
+    <button>面 EFGH</button>
+    <button>面 ABCD、面 ABFE</button>
+    <button>面 BCGF、面 ADHE</button>
+    <button data-correct="true">面 EFGH、面 DCGH</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">AB は面 ABCD と面 ABFE に含まれます。面 EFGH は面 ABCD と向かい合う平行な面、面 DCGH は面 ABFE と向かい合う平行な面なので、どちらも AB と共有点をもたず、AB と平行です。「面 EFGH」だけでは、面 DCGH が抜けています（上下の面だけを考えた誤り）。面 ABCD、面 ABFE は AB を含む面で、平行ではありません（よくある間違い①）。面 BCGF、面 ADHE は、それぞれ B、A で AB と交わります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>底面が正方形 ABCD で、4つの側面 OAB、OBC、OCD、ODA がすべて正三角形の四角錐 O-ABCD があります。直線 OA と直線 BC のなす角はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 60^\circ \)</button>
+    <button>\( 90^\circ \)</button>
+    <button>\( 45^\circ \)</button>
+    <button>\( 120^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">OA と BC は交わらず、平行でもないので、ねじれの位置にあります。BC は AD と平行（正方形の向かい合う辺）なので、OA と BC のなす角は、OA と AD のなす角 \( \angle\mathrm{OAD} \) です。△OAD は正三角形なので \( 60^\circ \) です。\( 120^\circ \) は、2直線が交わってできる角のうち \( 90^\circ \) より大きいほう（\( 180^\circ-60^\circ \)）をとった誤りです。\( 90^\circ \) は、ねじれの位置にある2直線は垂直だと考えたか、底面の角 \( \angle\mathrm{DAB} \) と混同した値、\( 45^\circ \) は正方形の対角線と辺の角と混同した値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1</span></div>
+  <p>空間の異なる直線について、つねに正しいものはどれですか。</p>
+  <div class="choices">
+    <button>交わらない2直線は平行である。</button>
+    <button>1つの直線に垂直な2直線は平行である。</button>
+    <button data-correct="true">1つの直線に平行な2直線は平行である。</button>
+    <button>ねじれの位置にある2直線を両方含む平面がある。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">1つの直線に平行な2直線が平行であることは、この時間の約束（「前回までの確認」）です。「交わらない2直線は平行」は、ねじれの位置の場合があるので誤り（立方体の AB と CG）。「1つの直線に垂直な2直線は平行」は、立方体で \( \mathrm{AB}\perp\mathrm{AD} \)、\( \mathrm{AB}\perp\mathrm{AE} \) なのに AD と AE は交わるので誤り。ねじれの位置にある2直線は同じ平面上にないので、両方を含む平面はありません。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="60|60°|60度">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>直方体 ABCD-EFGH で、\( \mathrm{AB}=1 \)、\( \mathrm{BC}=\sqrt{3} \)、\( \mathrm{AE}=2 \) です。直線 AC と直線 GH のなす角は何度ですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 60°。GH は DC と平行で、DC は AB と平行なので \( \mathrm{GH} /\!/ \mathrm{AB} \) です。AC と GH のなす角は \( \angle\mathrm{BAC} \) です。△ABC は \( \angle\mathrm{B}=90^\circ \)、\( \mathrm{AB}=1 \)、\( \mathrm{BC}=\sqrt{3} \) の直角三角形なので、\( \mathrm{AC}=2 \) で、3辺の比が \( 1:\sqrt{3}:2 \) となり \( \angle\mathrm{BAC}=60^\circ \) です（中3-101）。30° と答えた場合は \( \angle\mathrm{ACB} \) を求めていて、GH を BC と平行と取り違えています。AE の長さは使いません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2</span></div>
+  <p>直方体 ABCD-EFGH で、平面 AFH と平行な直線はどれですか。</p>
+  <div class="choices">
+    <button>直線 EG</button>
+    <button data-correct="true">直線 BD</button>
+    <button>直線 FH</button>
+    <button>直線 AC</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">四角形 BFHD は平行四辺形なので（例題3(2) と同じ理由）、\( \mathrm{BD} /\!/ \mathrm{FH} \) です。BD が平面 AFH と共有点をもつとすると、その点は平面 BFHD と平面 AFH の両方の上にあるので、2平面の交線 FH の上にあります。ところが BD と FH は平行で交わらないので、BD と平面 AFH は共有点をもたず、平行です。EG は上の面の上で FH と交わり（2本の対角線の交点）、E は平面 AFH 上にないので、EG は平面 AFH と1点で交わります。FH は平面 AFH に含まれます。AC は A で平面 AFH と交わります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O1・O3</span></div>
+  <p>太郎さんと花子さんが、三角柱 ABC-DEF（底面 ABC は \( \angle\mathrm{BAC}=90^\circ \)、\( \mathrm{AB}=\mathrm{AC} \) の直角二等辺三角形）の辺について話しています。</p>
+  <p>太郎：「\( \mathrm{AD}\perp\mathrm{AB} \) で、\( \mathrm{AD}\perp\mathrm{EF} \) だよね。AD に垂直な2本だから、AB と EF は平行だね。」<br>花子：「平面の上ならそうだけど、空間ではどうかな。AB と EF の位置関係となす角を調べてみようよ。」</p>
+  <p>AB と EF について正しいものはどれですか。</p>
+  <div class="choices">
+    <button>平行である。</button>
+    <button>1点で交わり、なす角は \( 45^\circ \) である。</button>
+    <button data-correct="true">ねじれの位置にあり、なす角は \( 45^\circ \) である。</button>
+    <button>ねじれの位置にあり、なす角は \( 90^\circ \) である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">AB と EF を両方含む平面があるとすると、その平面は A、B、E を通るので側面 ABED です。ところが F は平面 ABED 上にないので、そのような平面はなく、AB と EF はねじれの位置にあります。EF は BC と平行（側面 BCFE は長方形）なので、なす角は \( \angle\mathrm{ABC} \) で、直角二等辺三角形の底角なので \( 45^\circ \) です。太郎さんの2つの垂直は正しい（\( \mathrm{AD}\perp\mathrm{AB} \) は長方形 ABED の角。AD は BE と平行で、\( \mathrm{BE}\perp\mathrm{EF} \) は長方形 BCFE の角）のですが、「垂直な2本だから平行」は平面の上の性質で、空間では成り立ちません（例題4の後の「よくある間違い」③）。「1点で交わる」は、見取図で延ばした線が交わって見えることによる誤りです。\( 90^\circ \) は、AD に垂直な2本どうしも垂直だと考えたか、\( \angle\mathrm{BAC} \) と取り違えた値です。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O3</span></div>
+  <p>立方体 ABCD-EFGH で、底面の対角線 AC と上の面の対角線 FH の位置関係を答えなさい。また、AC と FH のなす角を求め、求め方を説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　AC は平面 ABCD 上、FH は平面 EFGH 上にあり、この2平面は平行なので AC と FH は交わらない。次に、\( \mathrm{BF} /\!/ \mathrm{DH} \)、\( \mathrm{BF}=\mathrm{DH} \) より四角形 BFHD は平行四辺形なので \( \mathrm{FH} /\!/ \mathrm{BD} \)。もし \( \mathrm{AC} /\!/ \mathrm{FH} \) なら、1つの直線 FH に平行な2直線として \( \mathrm{AC} /\!/ \mathrm{BD} \) となるが、AC と BD は交わるので平行ではない。よって AC と FH は交わらず平行でもないので、ねじれの位置にある。AC と FH のなす角は、AC と BD のなす角に等しい。AC と BD は正方形 ABCD の対角線で、正方形の対角線は垂直に交わる（中2-073）ので、なす角は \( 90^\circ \)。答え：ねじれの位置、なす角 \( 90^\circ \)（\( \mathrm{AC}\perp\mathrm{FH} \)）。</p>
+    <p><strong>採点の観点</strong>　① 交わらないこと（平行な2平面の上にある）と、平行でないこと（平行なら AC と BD が平行になる）から、ねじれの位置と判断している。② FH を平行な直線 BD に移す根拠（平行四辺形 BFHD）を書いている。③ 正方形の対角線が垂直に交わることから \( 90^\circ \) を導いている。</p>
+  </div>
+  <div class="explain">見取図では AC と FH は直角に見えないことがありますが、平行な BD に移すと、同じ正方形の中の2本の対角線の角として考えられます。AC と FH のように、平行な2平面の上にある直線どうしは、ねじれの位置にあっても垂直になることがあります。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O2</span></div>
+  <p>空間の異なる2平面 \( \alpha \)、\( \beta \) について、つねに正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( \alpha /\!/ \beta \) ならば、\( \alpha \) 上の直線と \( \beta \) 上の直線は平行である。</button>
+    <button>直線 \( \ell \) が \( \alpha \) にも \( \beta \) にも平行ならば、\( \alpha /\!/ \beta \) である。</button>
+    <button>\( \alpha \) と \( \beta \) が交わるならば、\( \alpha \) 上の直線と \( \beta \) 上の直線は交わる。</button>
+    <button data-correct="true">\( \alpha /\!/ \beta \) ならば、\( \alpha \) 上の直線と \( \beta \) 上の直線は、平行かねじれの位置にある。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \alpha /\!/ \beta \) なら \( \alpha \) と \( \beta \) に共有点がないので、\( \alpha \) 上の直線と \( \beta \) 上の直線も共有点をもたず、平行かねじれの位置のどちらかです。1つ目は、立方体の底面の AB と上の面の FG がねじれの位置なので誤り（「よくある間違い」の例）。2つ目は、立方体の辺 DC が平面 ABFE にも平面 EFGH にも平行なのに、平面 ABFE と平面 EFGH は EF で交わるので誤り。3つ目は、平面 ABCD 上の AB と平面 BCGF 上の CG が、2平面が交わっていてもねじれの位置にあるので誤りです。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(1) 図形の性質」のア(ウ)「空間図形に関する基本的な性質について理解すること」に関わり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。立体の中の直線や平面の関係を、平面の図形（平行四辺形、正三角形など）に置きかえて考えるこの時間の方法は、空間図形の問題の基本になります。</p>
+  <p class="small">問7は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">直線と平面の垂直（数Ａ-060）</p>
+  <p>次の時間は、直線が平面に垂直であることを、この時間の「なす角」を使って「平面上のすべての直線と垂直」と言い表し、平面上の交わる2直線に垂直なら平面に垂直であること（直線と平面が垂直になる条件）を証明します。さらに、三垂線の定理を学び、空間図形の性質を考察します。</p>
+  <p>この時間では、直線と平面の垂直の詳しい扱い（数Ａ-060）、多面体（数Ａ-061）、2つの平面のなす角は扱っていません。空間の点を座標で表したりベクトルで考えたりする方法は、数学Ｃで学ぶ内容です。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-058　作図の統合的・発展的な考察</div>
+  <div><span class="label">次の時間</span>数Ａ-060　直線と平面の垂直</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-059「空間における直線と平面の位置関係」（学習指導要領 数学Ａ (1)ア(ウ)、解説 p.90。† 解説の数学Ａの項に明記がなく教科書で扱われている内容を含む行）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(1) 図形の性質 ア(ウ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.90（数学Ａ：「２直線や２平面の位置関係や直線と平面の位置関係に関する基本的な性質を理解できるようにする」。2直線のなす角の明記はない＝†）、p.119（数学Ｃの項：「数学Ａ」で「(1) 図形の性質」を学習している場合には「空間における直線や平面の位置関係やなす角，多面体などについて」取り扱っている）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>中学校学習指導要領（平成29年告示）解説 数学編 p.79-80（平面が決定される条件、ねじれの位置、直線と平面・2平面の位置関係、「二つの平面の交わりは直線である」、「一つの直線に平行な二つの直線は平行であることや，一つの直線に垂直な二つの直線は空間では平行とは限らないことなどにも気付かせる」）（文部科学省）https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf</li>
+    <li>東京書籍「シラバス案 数学Ａ（数学Ａ Standard、数Ａ002-902）」の「３節 空間図形　１ 直線と平面」（「空間における2直線・2平面の位置関係やなす角，及び平面の決定条件などについて理解する」）https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_sua_syllabus.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「直線と平面」（「空間における2直線の位置関係やなす角を理解している」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・図はこのページのために作成したものです（出典を示したものを除く）。立方体の形の箱は学習用の架空の箱です。図は空間の座標から計算して描いた見取図・模式図です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-059",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-059",
+  "title": "空間における直線と平面の位置関係",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-2", "title": "図形の性質"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ウ)"],
+  "kaisetsu_page": "90",
+  "objectives": [
+    {"id": "O1", "text": "空間の2直線の位置関係（交わる・平行・ねじれの位置）を、2直線が同じ平面上にあるかどうかと結び付けて説明し、立体の辺について判断できる。", "from": "空間における2直線（交わる・平行・ねじれの位置）…の位置関係…を理解する", "sections": ["sec-1"], "checks": ["q1", "q4", "q7", "q8", "q9"]},
+    {"id": "O2", "text": "直線と平面の位置関係（直線が平面に含まれる・1点で交わる・平行）と、2平面の位置関係（交わる・平行）を、立体の辺や面について判断できる。", "from": "2平面、直線と平面の位置関係…を理解する", "sections": ["sec-2"], "checks": ["q2", "q6", "q9"]},
+    {"id": "O3", "text": "2直線のなす角の意味を理解し、ねじれの位置にある2直線のなす角を、一方を平行な直線に移して求めることができる。", "from": "2直線のなす角の意味を理解する", "sections": ["sec-3"], "checks": ["q3", "q5", "q7", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "平面の決定", "where": "review"},
+    {"term": "平行（空間の2直線）", "where": "sec-1"},
+    {"term": "ねじれの位置", "where": "sec-1"},
+    {"term": "直線と平面の平行", "where": "sec-2"},
+    {"term": "2平面の平行・交線", "where": "sec-2"},
+    {"term": "2直線のなす角", "where": "sec-3"},
+    {"term": "垂直（空間の2直線）", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "平面が1つに決まる条件、空間の2直線の位置関係（交わる・平行・ねじれの位置）", "taught_in": ["jhs_math/中1-096"], "gap": false, "where": "review"},
+    {"concept": "直線と平面、2平面の位置関係（平行・垂直）と、2平面の交わりは直線であること", "taught_in": ["jhs_math/中1-097"], "gap": false, "where": "sec-2"},
+    {"concept": "直線・線分と2点間の距離（2点を通る直線）", "taught_in": ["jhs_math/中1-075"], "gap": false, "where": "review"},
+    {"concept": "平行・垂直の記号 // ⊥", "taught_in": ["jhs_math/中1-076"], "gap": false, "where": "review"},
+    {"concept": "直方体 ABCD-EFGH の表し方（底面 ABCD、AE が高さの辺）", "taught_in": ["hs_math_1a/数Ⅰ-076"], "gap": false, "where": "review"},
+    {"concept": "対頂角は等しい（交わる2直線の4つの角）", "taught_in": ["jhs_math/中2-044"], "gap": false, "where": "review"},
+    {"concept": "二等辺三角形の底角、三角形の内角の和（正方形の対角線と辺の角 45°）", "taught_in": ["jhs_math/中2-060", "jhs_math/中2-048"], "gap": false, "where": "review"},
+    {"concept": "正方形の定義（長方形・ひし形・正方形）", "taught_in": ["jhs_math/中2-072"], "gap": false, "where": "review"},
+    {"concept": "平行四辺形になるための条件（1組の対辺が平行で長さが等しい）", "taught_in": ["jhs_math/中2-069"], "gap": false, "where": "sec-3"},
+    {"concept": "正方形の対角線は垂直に交わる", "taught_in": ["jhs_math/中2-073"], "gap": false, "where": "quiz"},
+    {"concept": "30°・60° の直角三角形の辺の比", "taught_in": ["jhs_math/中3-101"], "gap": false, "where": "quiz"},
+    {"concept": "角柱・角錐（確認問題の三角柱・四角錐）", "taught_in": ["jhs_math/中1-092"], "gap": false, "where": "quiz"},
+    {"concept": "空間で、1つの直線に平行な2直線は平行である（中学校の解説に「気付かせる」とあるが、地図の中1-096・097 の要点には明記がない）", "taught_in": [], "gap": true, "where": "supp-1"}
+  ],
+  "out_of_scope": [
+    "直線と平面の垂直の定義の言い直し、直線と平面が垂直になる条件、三垂線の定理（数Ａ-060）",
+    "多面体・正多面体（数Ａ-061）",
+    "2つの平面のなす角（地図のどの行の要点にもない。東京書籍のシラバス案・評価規準例の『数学Ａ Standard』には「2平面のなす角」がある）",
+    "空間座標・空間ベクトルによる考察（数学Ｃ）"
+  ],
+  "selection_reason": "数学Ａ 単元『図形の性質』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(1)ア(ウ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.90 2直線・2平面・直線と平面の位置関係（数学Ａの項）、p.119 数学Ａで「なす角」を扱っていること（数学Ｃの項）（保存本文：sources/text/hs_kaisetsu_math.txt）"},
+    {"name": "中学校学習指導要領（平成29年告示）解説 数学編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf", "use": "p.79-80 平面の決定、ねじれの位置、直線と平面・2平面の位置関係、空間の平行線の性質（保存本文：sources/text/jhs_kaisetsu_math.txt）"},
+    {"name": "シラバス案 数学Ａ（数学Ａ Standard、数Ａ002-902）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_sua_syllabus.pdf", "use": "「空間における2直線・2平面の位置関係やなす角，及び平面の決定条件などについて理解する」（† の内容が教科書で扱われることの確認。写し：sources/text/ts_ma_16704_syllabus.txt）"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "「空間における2直線の位置関係やなす角を理解している」（保存本文：sources/text/suken_syllabus_suakai.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

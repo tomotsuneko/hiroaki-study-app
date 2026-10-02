@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>acx²+(ad+bc)x+bd の因数分解｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.widget .w-in { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 6px 0; }
+.widget .w-in input { width: 4.5em; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+.widget td.hit { font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>数と式</span><span>数Ⅰ-006</span></div>
+  <h1>acx²+(ad+bc)x+bd の因数分解</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">\( 2x^2+7x+3 \) を因数分解できるでしょうか。中学校で学んだ「積が 3、和が 7 になる2数」を探す方法では、答えが見つかりません。\( x^2 \) の係数が 1 でない二次式は、展開の公式を逆にたどり、係数の組合せを探して因数分解します。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>展開の公式 (ax+b)(cx+d)=acx²+(ad+bc)x+bd を逆に見て、x² の係数・x の係数・定数項が a、b、c、d のどの組合せで決まるかを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>たすき掛けで係数の組合せを見つけ、x の二次式を (ax+b)(cx+d) の形に因数分解することができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>定数項や x の係数が負の場合、共通因数がある場合、x² の係数が負の場合も含めて、組合せを絞り込み、展開して確かめながら因数分解することができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-005）</span>共通因数と公式による因数分解</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-006）</span>acx²+(ad+bc)x+bd の因数分解</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-007）</span>いろいろな因数分解</div>
+</div>
+<p class="small">前提となる単元：中学3年「簡単な多項式」「正の数の平方根」、中学1年「一元一次方程式」。同じ単元の数Ⅰ-003（\( (ax+b)(cx+d) \) の展開）と数Ⅰ-005（中学校で学んだ公式による因数分解）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、\( (ax+b)(cx+d) \) の展開（数Ⅰ-003）、中学校で学んだ公式による因数分解（数Ⅰ-005）、整数の積の符号と約数（中1-012・中1-021）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-003</span></div>
+  <p>\( (2x+3)(x+4) \) を展開した式はどれですか。</p>
+  <div class="choices">
+    <button>\( 2x^2+7x+12 \)</button>
+    <button data-correct="true">\( 2x^2+11x+12 \)</button>
+    <button>\( 2x^2+8x+12 \)</button>
+    <button>\( x^2+11x+12 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">公式 \( (ax+b)(cx+d)=acx^2+(ad+bc)x+bd \) で \( a=2,\ b=3,\ c=1,\ d=4 \) とすると、\( x^2 \) の係数は \( ac=2 \)、\( x \) の係数は \( ad+bc=2\times 4+3\times 1=11 \)、定数項は \( bd=12 \) です。\( 2x^2+7x+12 \) は \( x \) の係数を \( 3+4 \) とした誤りで、\( (x+a)(x+b) \) の公式を、\( x^2 \) の係数が 1 でない式にそのまま使っています。\( 2x^2+8x+12 \) は \( 2x\times 4 \) だけを数え、\( 3\times x \) を落としています。\( x^2+11x+12 \) は \( 2x\times x=2x^2 \) の係数 2 を落としています。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-005</span></div>
+  <p>\( x^2-x-6 \) を因数分解した式はどれですか。</p>
+  <div class="choices">
+    <button>\( (x-2)(x+3) \)</button>
+    <button>\( (x+1)(x-6) \)</button>
+    <button data-correct="true">\( (x+2)(x-3) \)</button>
+    <button>\( (x-1)(x+6) \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">積が \( -6 \)、和が \( -1 \) になる2数は \( 2 \) と \( -3 \) なので、\( (x+2)(x-3) \) です。展開すると \( x^2-3x+2x-6=x^2-x-6 \) で、もとの式に戻ります。\( (x-2)(x+3) \) は展開すると \( x^2+x-6 \) で、符号が逆です。\( (x+1)(x-6) \) は和が \( -5 \)（\( x^2-5x-6 \)）、\( (x-1)(x+6) \) は和が \( 5 \)（\( x^2+5x-6 \)）で、積だけを合わせて和を確かめていません。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中1-012・中1-021</span></div>
+  <p>積が \( -4 \) になる2つの整数の組を、順番を考えずにすべて挙げたものはどれですか。</p>
+  <div class="choices">
+    <button>「\( 1 \) と \( 4 \)」「\( 2 \) と \( 2 \)」</button>
+    <button>「\( 1 \) と \( -4 \)」「\( 2 \) と \( -2 \)」</button>
+    <button>「\( -1 \) と \( -4 \)」「\( -2 \) と \( -2 \)」</button>
+    <button data-correct="true">「\( 1 \) と \( -4 \)」「\( -1 \) と \( 4 \)」「\( 2 \) と \( -2 \)」</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">積が負になるのは、2数が異符号のときです（中1-012）。4 の正の約数は 1、2、4 なので（中1-021）、組は「1 と −4」「−1 と 4」「2 と −2」の3組です。「1 と −4」「2 と −2」だけでは、符号を入れかえた「−1 と 4」が抜けています（「2 と −2」は入れかえても同じ組です）。「1 と 4」「2 と 2」や「−1 と −4」「−2 と −2」は、どれも積が \( +4 \) です。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">長方形の面積で式の積を表す</p>
+  <p>縦 \( m \)、横 \( n \) の長方形の面積は \( mn \) です（小学校で学ぶ面積の公式。中学1年（中1-029）では、図形の面積を文字式で表しました）。辺の長さが \( x+3 \) のような式でも同じように考え、長方形を縦と横に区切ると、区切った部分の面積の和が展開した式になります。この時間は、導入と図2でこの見方を使います。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：タイルを並べて長方形を作れるか</h2>
+<div class="box think">
+  <p class="box-title">12枚のタイルで長方形を作る</p>
+  <p>1辺が \( x \) の正方形のタイル（面積 \( x^2 \)）が2枚、縦 1・横 \( x \) の長方形のタイル（面積 \( x \)）が7枚、1辺が 1 の正方形のタイル（面積 1）が3枚あります（図1。\( x \) は 1 より大きい数とします）。</p>
+<figure>
+<!--svg:f006a-->
+<svg viewBox="0 0 380 110" width="380" role="img" aria-label="1辺 x の正方形のタイル2枚、縦1・横 x の長方形のタイル7枚、1辺1の正方形のタイル3枚">
+<rect x="16" y="30" width="48" height="48" fill="#1f5fbf" fill-opacity="0.16" stroke="currentColor" stroke-width="1.2"/>
+<text x="40" y="59" text-anchor="middle" font-size="13" fill="currentColor">x²</text>
+<rect x="72" y="30" width="48" height="48" fill="#1f5fbf" fill-opacity="0.16" stroke="currentColor" stroke-width="1.2"/>
+<text x="96" y="59" text-anchor="middle" font-size="13" fill="currentColor">x²</text>
+<rect x="140" y="30" width="16" height="48" fill="#1f5fbf" fill-opacity="0.1" stroke="currentColor" stroke-width="1.2"/>
+<text x="148" y="58" text-anchor="middle" font-size="11" fill="currentColor">x</text>
+<rect x="162" y="30" width="16" height="48" fill="#1f5fbf" fill-opacity="0.1" stroke="currentColor" stroke-width="1.2"/>
+<text x="170" y="58" text-anchor="middle" font-size="11" fill="currentColor">x</text>
+<rect x="184" y="30" width="16" height="48" fill="#1f5fbf" fill-opacity="0.1" stroke="currentColor" stroke-width="1.2"/>
+<text x="192" y="58" text-anchor="middle" font-size="11" fill="currentColor">x</text>
+<rect x="206" y="30" width="16" height="48" fill="#1f5fbf" fill-opacity="0.1" stroke="currentColor" stroke-width="1.2"/>
+<text x="214" y="58" text-anchor="middle" font-size="11" fill="currentColor">x</text>
+<rect x="228" y="30" width="16" height="48" fill="#1f5fbf" fill-opacity="0.1" stroke="currentColor" stroke-width="1.2"/>
+<text x="236" y="58" text-anchor="middle" font-size="11" fill="currentColor">x</text>
+<rect x="250" y="30" width="16" height="48" fill="#1f5fbf" fill-opacity="0.1" stroke="currentColor" stroke-width="1.2"/>
+<text x="258" y="58" text-anchor="middle" font-size="11" fill="currentColor">x</text>
+<rect x="272" y="30" width="16" height="48" fill="#1f5fbf" fill-opacity="0.1" stroke="currentColor" stroke-width="1.2"/>
+<text x="280" y="58" text-anchor="middle" font-size="11" fill="currentColor">x</text>
+<rect x="306" y="62" width="16" height="16" fill="#1f5fbf" fill-opacity="0.04" stroke="currentColor" stroke-width="1.2"/>
+<text x="314" y="74" text-anchor="middle" font-size="10" fill="currentColor">1</text>
+<rect x="328" y="62" width="16" height="16" fill="#1f5fbf" fill-opacity="0.04" stroke="currentColor" stroke-width="1.2"/>
+<text x="336" y="74" text-anchor="middle" font-size="10" fill="currentColor">1</text>
+<rect x="350" y="62" width="16" height="16" fill="#1f5fbf" fill-opacity="0.04" stroke="currentColor" stroke-width="1.2"/>
+<text x="358" y="74" text-anchor="middle" font-size="10" fill="currentColor">1</text>
+<text x="40" y="24" text-anchor="middle" font-size="11" fill="currentColor">x</text>
+<text x="148" y="24" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<text x="135" y="58" text-anchor="end" font-size="11" fill="currentColor">x</text>
+<text x="314" y="56" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<text x="68" y="100" text-anchor="middle" font-size="12" fill="currentColor">x²（2枚）</text>
+<text x="214" y="100" text-anchor="middle" font-size="12" fill="currentColor">x（7枚）</text>
+<text x="336" y="100" text-anchor="middle" font-size="12" fill="currentColor">1（3枚）</text>
+</svg>
+<!--/svg:f006a-->
+  <figcaption>図1　導入のタイル。大きい正方形（\( x^2 \)）2枚、長方形（\( x \)）7枚、小さい正方形（1）3枚。長方形のタイルは縦に置いた様子</figcaption>
+</figure>
+  <p>12枚すべてを、すき間も重なりもなく並べて1つの長方形を作ります。長方形の面積は \( 2x^2+7x+3 \) です。縦と横の長さを \( x \) の式で表すと、それぞれどうなるでしょうか。</p>
+  <p>面積の式を「縦×横」の形に表すことは、\( 2x^2+7x+3 \) を因数分解することと同じです。答えは「たすき掛けの手順」の例題1で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="展開の公式を逆に読む"><span class="num">3</span>展開の公式を逆に読む</h2>
+<p>数Ⅰ-003 では、分配法則から次の公式を導きました。</p>
+$$ \begin{aligned} &amp;(ax+b)(cx+d)\\ &amp;=acx^2+(ad+bc)x+bd \end{aligned} $$
+<p>左辺から右辺へ変形するのが展開、右辺から左辺へ変形するのが因数分解です。図2は、\( (x+3)(2x+1) \) を、縦 \( x+3 \)、横 \( 2x+1 \) の長方形の面積とみたものです（補足「長方形の面積で式の積を表す」）。4つの部分の面積を合わせると \( 2x^2+x+6x+3=2x^2+7x+3 \) になり、導入の12枚のタイルがちょうど並びます。</p>
+<figure>
+<!--svg:f006b-->
+<svg viewBox="0 0 319.6 174" width="319.6" role="img" aria-label="縦 x+3、横 2x+1 の長方形を、横を 2x と 1、縦を x と 3 に区切った図。x² の部分2つ、x の部分7つ、1 の部分3つに分かれ、面積は 2x²+7x+3">
+<rect x="64" y="40" width="140" height="120" fill="#1f5fbf" fill-opacity="0.0" stroke="currentColor" stroke-width="1.6"/>
+<line x1="184" y1="40" x2="184" y2="160" stroke="currentColor" stroke-width="1.6"/>
+<line x1="64" y1="100" x2="204" y2="100" stroke="currentColor" stroke-width="1.6"/>
+<rect x="64" y="40" width="120" height="60" fill="#1f5fbf" fill-opacity="0.16"/>
+<rect x="184" y="40" width="20" height="60" fill="#1f5fbf" fill-opacity="0.08"/>
+<rect x="64" y="100" width="120" height="60" fill="#1f5fbf" fill-opacity="0.08"/>
+<line x1="124" y1="40" x2="124" y2="160" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="64" y1="120" x2="204" y2="120" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="64" y1="140" x2="204" y2="140" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="94" y="75" text-anchor="middle" font-size="13" fill="currentColor">x²</text>
+<text x="154" y="75" text-anchor="middle" font-size="13" fill="currentColor">x²</text>
+<text x="194" y="74" text-anchor="middle" font-size="11" fill="currentColor">x</text>
+<text x="94" y="114" text-anchor="middle" font-size="11" fill="currentColor">x</text>
+<text x="94" y="134" text-anchor="middle" font-size="11" fill="currentColor">x</text>
+<text x="94" y="154" text-anchor="middle" font-size="11" fill="currentColor">x</text>
+<text x="154" y="114" text-anchor="middle" font-size="11" fill="currentColor">x</text>
+<text x="154" y="134" text-anchor="middle" font-size="11" fill="currentColor">x</text>
+<text x="154" y="154" text-anchor="middle" font-size="11" fill="currentColor">x</text>
+<text x="194" y="114" text-anchor="middle" font-size="10" fill="currentColor">1</text>
+<text x="194" y="134" text-anchor="middle" font-size="10" fill="currentColor">1</text>
+<text x="194" y="154" text-anchor="middle" font-size="10" fill="currentColor">1</text>
+<text x="124" y="32" text-anchor="middle" font-size="12" fill="currentColor">2x</text>
+<text x="194" y="32" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<text x="56" y="74" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<text x="56" y="134" text-anchor="end" font-size="12" fill="currentColor">3</text>
+<text x="134" y="16" text-anchor="middle" font-size="12" fill="currentColor">横 2x+1</text>
+<text x="34" y="104" text-anchor="end" font-size="12" fill="currentColor">縦</text>
+<text x="34" y="120" text-anchor="end" font-size="12" fill="currentColor">x+3</text>
+<text x="222" y="62" text-anchor="start" font-size="12" fill="currentColor">x²：2枚</text>
+<text x="222" y="86" text-anchor="start" font-size="12" fill="currentColor">x：1＋6＝7枚</text>
+<text x="222" y="110" text-anchor="start" font-size="12" fill="currentColor">1：3枚</text>
+<text x="222" y="134" text-anchor="start" font-size="12" fill="currentColor">面積 2x²+7x+3</text>
+</svg>
+<!--/svg:f006b-->
+  <figcaption>図2　\( (x+3)(2x+1) \) を長方形の面積とみた図。点線はタイルの区切り。\( x^2 \) の部分が2枚、\( x \) の部分が \( 1+6=7 \) 枚、1 の部分が3枚</figcaption>
+</figure>
+
+<h3>係数と a、b、c、d の対応</h3>
+<p>公式の右辺の<strong>係数</strong>（文字に掛けられている数。中1-032・数Ⅰ-001）と<strong>定数項</strong>（文字を含まない項。中3-010・数Ⅰ-001）が、\( a,\ b,\ c,\ d \) からどう決まるかを表にします。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>展開した式の部分</th><th>\( a,\ b,\ c,\ d \) との関係</th><th>図2の例（\( a=1,\ b=3,\ c=2,\ d=1 \)）</th></tr>
+  <tr><td>\( x^2 \) の係数</td><td>\( ac \)（\( x \) の係数どうしの積）</td><td>\( 1\times 2=2 \)</td></tr>
+  <tr><td>定数項</td><td>\( bd \)（定数項どうしの積）</td><td>\( 3\times 1=3 \)</td></tr>
+  <tr><td>\( x \) の係数</td><td>\( ad+bc \)（斜めに組み合わせた2つの積の和）</td><td>\( 1\times 1+3\times 2=7 \)</td></tr>
+</table>
+</div>
+<div class="box point"><p class="box-title">因数分解で探すもの</p><p>\( px^2+qx+r \) を \( (ax+b)(cx+d) \) の形に因数分解するには、\( ac=p \)、\( bd=r \)、\( ad+bc=q \) の3つを同時に満たす整数 \( a,\ b,\ c,\ d \) を探します。\( ac=p \) と \( bd=r \) は「掛けて \( p \)」「掛けて \( r \)」なので、候補を書き出せます。その候補の中から、\( ad+bc \) が \( q \) になる組を選びます。</p></div>
+<p>\( p=1 \) のときは \( a=c=1 \) とできるので \( ad+bc=d+b \) となり、「積が \( r \)、和が \( q \) になる2数」を探す中学校の方法（数Ⅰ-005）になります。中学校の方法は、この時間の方法の特別な場合です。</p>
+<div class="box caution"><p class="box-title">よくある間違い：x の係数を b+d とする</p><p>\( x^2 \) の係数が 1 でないとき、\( x \) の係数は \( b+d \) とは限らず、\( ad+bc \) です。たとえば \( (x+3)(2x+1) \) の \( x \) の係数は \( 3+1=4 \) ではなく、\( 1\times 1+3\times 2=7 \) です。導入の \( 2x^2+7x+3 \) で「積が 3、和が 7 になる2数」が見つからなかったのは、このためです。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="たすき掛けの手順"><span class="num">4</span>たすき掛けの手順</h2>
+<p>\( ac=p,\ bd=r,\ ad+bc=q \) を満たす組は、図3のように数を2段に並べると見通しよく探せます。斜めに掛けた積 \( bc \) と \( ad \) を右に書き、その和が \( x \) の係数になるかを調べます。このように、交わる2本の斜めの線で掛けて組合せを調べる方法を<strong>たすき掛け</strong>といいます（教科書によって「たすきがけ」とも書きます）。</p>
+<figure>
+  <div class="fig-row">
+<!--svg:f006c-->
+<svg viewBox="0 0 250 164" width="250" role="img" aria-label="たすき掛けの一般の形。上の段に a と b、下の段に c と d。斜めに掛けた bc と ad を右に書き、下に ac、bd、ad+bc">
+<text x="42" y="18" text-anchor="middle" font-size="11" fill="currentColor">x の係数</text>
+<text x="108" y="18" text-anchor="middle" font-size="11" fill="currentColor">定数項</text>
+<text x="196" y="18" text-anchor="middle" font-size="11" fill="currentColor">斜めの積</text>
+<text x="42" y="50" text-anchor="middle" font-size="15" fill="currentColor">a</text>
+<text x="108" y="50" text-anchor="middle" font-size="15" fill="currentColor">b</text>
+<text x="42" y="90" text-anchor="middle" font-size="15" fill="currentColor">c</text>
+<text x="108" y="90" text-anchor="middle" font-size="15" fill="currentColor">d</text>
+<line x1="54" y1="46" x2="96" y2="80" stroke="currentColor" stroke-width="1.4"/>
+<line x1="96" y1="46" x2="54" y2="80" stroke="currentColor" stroke-width="1.4"/>
+<text x="146" y="50" text-anchor="middle" font-size="13" fill="currentColor">→</text>
+<text x="146" y="90" text-anchor="middle" font-size="13" fill="currentColor">→</text>
+<text x="196" y="50" text-anchor="middle" font-size="14" fill="currentColor">bc</text>
+<text x="196" y="90" text-anchor="middle" font-size="14" fill="currentColor">ad</text>
+<line x1="16" y1="102" x2="236" y2="102" stroke="currentColor" stroke-width="1.2"/>
+<text x="42" y="128" text-anchor="middle" font-size="14" fill="currentColor">ac</text>
+<text x="108" y="128" text-anchor="middle" font-size="14" fill="currentColor">bd</text>
+<text x="196" y="128" text-anchor="middle" font-size="14" fill="currentColor">ad+bc</text>
+<text x="126" y="154" text-anchor="middle" font-size="12" fill="currentColor">(ax+b)(cx+d) と横に読む</text>
+</svg>
+<svg viewBox="0 0 250 164" width="250" role="img" aria-label="2x²+7x+3 のたすき掛け。上の段 1 と 3、下の段 2 と 1。斜めの積 6 と 1 の和が 7">
+<text x="42" y="18" text-anchor="middle" font-size="11" fill="currentColor">x の係数</text>
+<text x="108" y="18" text-anchor="middle" font-size="11" fill="currentColor">定数項</text>
+<text x="196" y="18" text-anchor="middle" font-size="11" fill="currentColor">斜めの積</text>
+<text x="42" y="50" text-anchor="middle" font-size="15" fill="currentColor">1</text>
+<text x="108" y="50" text-anchor="middle" font-size="15" fill="currentColor">3</text>
+<text x="42" y="90" text-anchor="middle" font-size="15" fill="currentColor">2</text>
+<text x="108" y="90" text-anchor="middle" font-size="15" fill="currentColor">1</text>
+<line x1="54" y1="46" x2="96" y2="80" stroke="currentColor" stroke-width="1.4"/>
+<line x1="96" y1="46" x2="54" y2="80" stroke="currentColor" stroke-width="1.4"/>
+<text x="146" y="50" text-anchor="middle" font-size="13" fill="currentColor">→</text>
+<text x="146" y="90" text-anchor="middle" font-size="13" fill="currentColor">→</text>
+<text x="196" y="50" text-anchor="middle" font-size="14" fill="currentColor">3×2＝6</text>
+<text x="196" y="90" text-anchor="middle" font-size="14" fill="currentColor">1×1＝1</text>
+<line x1="16" y1="102" x2="236" y2="102" stroke="currentColor" stroke-width="1.2"/>
+<text x="42" y="128" text-anchor="middle" font-size="14" fill="currentColor">2</text>
+<text x="108" y="128" text-anchor="middle" font-size="14" fill="currentColor">3</text>
+<text x="196" y="128" text-anchor="middle" font-size="14" fill="currentColor">7</text>
+<text x="126" y="154" text-anchor="middle" font-size="12" fill="currentColor">(x+3)(2x+1)</text>
+</svg>
+<!--/svg:f006c-->
+  </div>
+  <figcaption>図3　たすき掛けの図。左（画面が狭いときは上）は一般の形、右（または下）は \( 2x^2+7x+3 \) の場合。上の段から \( ax+b \)、下の段から \( cx+d \) を横に読む</figcaption>
+</figure>
+<div class="box point"><p class="box-title">たすき掛けの手順</p>
+<ol>
+  <li>\( x^2 \) の係数 \( p \) を2数の積 \( a\times c \) に分け、左の列に縦に書く（\( p \) が正なら、\( a,\ c \) は正の数だけを考えればよい）。</li>
+  <li>定数項 \( r \) を2数の積 \( b\times d \) に分け、中の列に書く。</li>
+  <li>斜めに掛けた \( b\times c \) と \( a\times d \) を右の列に書き、和が \( q \) になるかを調べる。</li>
+  <li>合う組が見つかったら、横に読んで \( (ax+b)(cx+d) \) とし、展開して確かめる。</li>
+</ol></div>
+
+<div class="box example worked">
+  <p class="box-title">例題1（導入の答え）</p>
+  <p>\( 2x^2+7x+3 \) を因数分解しなさい。</p>
+  <div class="step">ステップ1（\( x^2 \) の係数を分ける）：\( 2=1\times 2 \) なので、左の列に 1 と 2 を書きます（\( a=1,\ c=2 \)）。</div>
+  <div class="step">ステップ2（定数項を分ける）：係数がすべて正なので、\( b,\ d \) も正の数で考えます（符号の決め方は「符号に注意して組合せを絞り込む」で詳しく扱います）。\( 3=1\times 3=3\times 1 \) の2通りを試します。</div>
+  <div class="step">ステップ3（斜めに掛けて和を調べる）：\( b=1,\ d=3 \) のとき \( ad+bc=1\times 3+1\times 2=5 \) で、7 になりません。\( b=3,\ d=1 \) のとき \( ad+bc=1\times 1+3\times 2=7 \) で、合います（図3の右）。</div>
+  <div class="step">ステップ4（横に読んで確かめる）：上の段から \( x+3 \)、下の段から \( 2x+1 \)。\( (x+3)(2x+1)=2x^2+x+6x+3=2x^2+7x+3 \) で、もとの式に戻ります。</div>
+  <div class="step">答え：\( 2x^2+7x+3=(x+3)(2x+1) \)。導入の問いの答えは、縦 \( x+3 \)、横 \( 2x+1 \) の長方形です（縦と横を入れかえてもよい。図2）。</div>
+</div>
+
+<div class="box example worked">
+  <p class="box-title">例題2（定数項の分け方が多い場合）</p>
+  <p>\( 3x^2+10x+8 \) を因数分解しなさい。</p>
+  <div class="step">ステップ1：\( 3=1\times 3 \) なので \( a=1,\ c=3 \)。</div>
+  <div class="step">ステップ2：\( 8=1\times 8=2\times 4=4\times 2=8\times 1 \)（係数がすべて正なので正の数だけ）。\( a \) と \( c \) が違うので、\( b \) と \( d \) を入れかえると \( ad \) と \( bc \) が変わります。4通りとも調べます。</div>
+  <div class="step">ステップ3：
+    <div class="table-wrap"><table>
+      <tr><th>\( b \)</th><th>\( d \)</th><th>\( ad \)</th><th>\( bc \)</th><th>\( ad+bc \)</th></tr>
+      <tr><td>1</td><td>8</td><td>8</td><td>3</td><td>11</td></tr>
+      <tr><td>2</td><td>4</td><td>4</td><td>6</td><td>10（合う）</td></tr>
+      <tr><td>4</td><td>2</td><td>2</td><td>12</td><td>14</td></tr>
+      <tr><td>8</td><td>1</td><td>1</td><td>24</td><td>25</td></tr>
+    </table></div></div>
+  <div class="step">ステップ4：\( b=2,\ d=4 \) を横に読んで \( (x+2)(3x+4) \)。展開すると \( 3x^2+4x+6x+8=3x^2+10x+8 \)。</div>
+  <div class="step">答え：\( 3x^2+10x+8=(x+2)(3x+4) \)</div>
+</div>
+<p>例題2では、\( (b,\ d)=(2,\ 4) \) なら 10、入れかえた \( (4,\ 2) \) なら 14 でした。\( a \) と \( c \) が違うときは、\( b \) と \( d \) を入れかえた組は別の組合せです。</p>
+
+<h3>操作して確かめよう：組合せを全部調べる</h3>
+<div class="widget" id="w1">
+  <p>\( px^2+qx+r \) の \( p,\ q,\ r \) に整数を入れて「調べる」を押すと、\( ac=p \)（\( a,\ c \) は正の数）と \( bd=r \) を満たすすべての組合せについて \( ad+bc \) を計算し、表にします。✓ の行が \( ad+bc=q \) となる組合せです。</p>
+  <div class="w-in">
+    <label for="w1-p">p（\( x^2 \) の係数）</label><input type="text" id="w1-p" value="3" inputmode="numeric">
+    <label for="w1-q">q（\( x \) の係数）</label><input type="text" id="w1-q" value="10" inputmode="numeric">
+    <label for="w1-r">r（定数項）</label><input type="text" id="w1-r" value="8" inputmode="numeric">
+    <button type="button" id="w1-go">調べる</button>
+  </div>
+  <p class="w-out" id="w1-out" aria-live="polite">「調べる」を押すと、ここに結果が出ます（最初は例題2の \( 3x^2+10x+8 \) が入っています）。</p>
+  <div class="table-wrap" id="w1-table"></div>
+  <p class="small">表には、符号の手がかりで除ける組（たとえば係数がすべて正のときの、\( b,\ d \) がともに負の組）も含めて、すべての組を出します。同じ因数分解を2回数えないように、\( a&lt;c \) の組（\( a=c \) のときは \( b\leqq d \) の組）だけを表にしています。p は 1〜36、r は −36〜36（0 以外）、q は −99〜99 の整数を入れてください。</p>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：図を縦に読む</p><p>たすき掛けの図から因数を書くときは<strong>横</strong>に読みます。例題2で見つけた組を図3の形に書くと、上の段が 1、2、下の段が 3、4 です。これを縦に読んで \( (x+3)(2x+4) \) とすると、展開して \( 2x^2+10x+12 \) となり、もとの式になりません。最後に展開して確かめる習慣をつけましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="符号と組合せの絞り込み"><span class="num">5</span>符号に注意して組合せを絞り込む</h2>
+<p>定数項や \( x \) の係数が負のときは、\( b,\ d \) の符号も考えます。\( a,\ c \) を正の数にしておくと、\( b,\ d \) の符号は次のように決まります。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>定数項 \( r \)</th><th>\( x \) の係数 \( q \)</th><th>\( b \) と \( d \) の符号</th><th>理由</th></tr>
+  <tr><td>正</td><td>正</td><td>ともに正</td><td>\( bd&gt;0 \) なので同符号。ともに負なら \( ad+bc \) も負になる</td></tr>
+  <tr><td>正</td><td>負</td><td>ともに負</td><td>同符号で、\( ad+bc \) が負になるのは、ともに負のとき</td></tr>
+  <tr><td>負</td><td>正・負どちらでも</td><td>異符号（一方が正、他方が負）</td><td>\( bd&lt;0 \) だから</td></tr>
+</table>
+</div>
+<div class="box point"><p class="box-title">もとの式に共通因数がなければ、因数の中にもない</p><p>もとの式の係数 \( p,\ q,\ r \) に共通因数がないとき、\( ax+b \) の \( a \) と \( b \)、\( cx+d \) の \( c \) と \( d \) にも共通因数はありません。たとえば \( ax+b=2x+2 \) なら \( 2(x+1) \) となり、展開した式の係数はすべて 2 の倍数になってしまうからです。この手がかりで、試す組合せを減らせます。</p></div>
+
+<div class="box example worked">
+  <p class="box-title">例題3（定数項が負）</p>
+  <p>\( 6x^2-x-2 \) を因数分解しなさい。</p>
+  <div class="step">ステップ1（分け方の候補）：\( 6=1\times 6=2\times 3 \)。定数項 \( -2 \) は負なので \( b,\ d \) は異符号で、\( (b,\ d)=(1,\ -2),\ (-1,\ 2),\ (2,\ -1),\ (-2,\ 1) \) の4通りです。</div>
+  <div class="step">ステップ2（絞り込み）：係数 6、−1、−2 に共通因数はないので、\( 6x-2 \)、\( 6x+2 \)、\( 2x+2 \)、\( 2x-2 \) のように共通因数をもつ因数ができる組は除きます。残るのは次の4組です。
+    <div class="table-wrap"><table>
+      <tr><th>\( a \)</th><th>\( c \)</th><th>\( b \)</th><th>\( d \)</th><th>因数の候補</th><th>\( ad+bc \)</th></tr>
+      <tr><td>1</td><td>6</td><td>2</td><td>−1</td><td>\( x+2,\ 6x-1 \)</td><td>\( -1+12=11 \)</td></tr>
+      <tr><td>1</td><td>6</td><td>−2</td><td>1</td><td>\( x-2,\ 6x+1 \)</td><td>\( 1-12=-11 \)</td></tr>
+      <tr><td>2</td><td>3</td><td>1</td><td>−2</td><td>\( 2x+1,\ 3x-2 \)</td><td>\( -4+3=-1 \)（合う）</td></tr>
+      <tr><td>2</td><td>3</td><td>−1</td><td>2</td><td>\( 2x-1,\ 3x+2 \)</td><td>\( 4-3=1 \)</td></tr>
+    </table></div></div>
+  <div class="step">ステップ3（確かめ）：\( (2x+1)(3x-2)=6x^2-4x+3x-2=6x^2-x-2 \)。</div>
+  <div class="step">答え：\( 6x^2-x-2=(2x+1)(3x-2) \)</div>
+</div>
+<p>表の最後の行は \( ad+bc=1 \) で、求める \( -1 \) と符号だけが違います。\( b \) と \( d \) の符号を両方とも入れかえると、\( bd \) は変わらず \( ad+bc \) の符号だけが変わります。符号だけが違う組が出たら、両方の符号を入れかえれば正しい組になります。</p>
+
+<div class="box example worked">
+  <p class="box-title">例題4（x² の係数が負）</p>
+  <p>\( -3x^2+5x+2 \) を因数分解しなさい。</p>
+  <div class="step">ステップ1：\( x^2 \) の係数が負なので、まず \( -1 \) でくくります。\( -3x^2+5x+2=-(3x^2-5x-2) \)。</div>
+  <div class="step">ステップ2：\( 3x^2-5x-2 \) で \( a=1,\ c=3 \)。定数項が負なので \( b,\ d \) は異符号。\( ad+bc=d+3b \) を調べると、\( (b,\ d)=(1,\ -2) \) で 1、\( (-1,\ 2) \) で −1、\( (2,\ -1) \) で 5、\( (-2,\ 1) \) で −5（合う）。</div>
+  <div class="step">ステップ3：\( 3x^2-5x-2=(x-2)(3x+1) \)。展開すると \( 3x^2+x-6x-2 \) で、確かに戻ります。</div>
+  <div class="step">答え：\( -3x^2+5x+2=-(x-2)(3x+1) \)。\( -(x-2)=2-x \) なので、\( (2-x)(3x+1) \) と書いてもかまいません。</div>
+</div>
+
+<div class="box example worked">
+  <p class="box-title">例題5（共通因数がある）</p>
+  <p>\( 4x^2+10x+4 \) を因数分解しなさい。</p>
+  <div class="step">ステップ1：係数 4、10、4 の共通因数 2 を、まずくくり出します（数Ⅰ-005）。\( 4x^2+10x+4=2(2x^2+5x+2) \)。</div>
+  <div class="step">ステップ2：\( 2x^2+5x+2 \) で \( a=1,\ c=2 \)、\( b,\ d \) は正。\( (b,\ d)=(1,\ 2) \) で \( ad+bc=2+2=4 \)、\( (2,\ 1) \) で \( 1+4=5 \)（合う）。よって \( 2x^2+5x+2=(x+2)(2x+1) \)。</div>
+  <div class="step">答え：\( 4x^2+10x+4=2(x+2)(2x+1) \)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：共通因数を残す・書き忘れる</p><p>くくり出さずにたすき掛けをすると、\( (2x+4)(2x+1) \) のような答えになることがあります。展開すればもとの式に戻りますが、\( 2x+4=2(x+2) \) がまだ因数分解できるので、最後まで因数分解したことになりません。反対に、くくり出した 2 を書き忘れて \( (x+2)(2x+1) \) とすると、もとの式の半分の \( 2x^2+5x+2 \) になってしまいます。</p></div>
+
+<h3>どの組合せでも合わないとき</h3>
+<p>\( 2x^2+3x+2 \) では、\( a=1,\ c=2 \)、\( b,\ d \) は正で、\( (b,\ d)=(1,\ 2) \) なら \( ad+bc=4 \)、\( (2,\ 1) \) なら 5 となり、3 になりません。このように、符号と分け方をすべて調べても合わないときは、係数が整数の1次式の積には因数分解できません。係数の範囲を広げた因数分解は、数学Ⅱ（数Ⅱ-017）で学びます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>よくある誤り</th><th>直し方</th></tr>
+  <tr><td>\( x \) の係数を \( b+d \) とする</td><td>\( x \) の係数は \( ad+bc \)。斜めに掛けて足す</td></tr>
+  <tr><td>\( b \) と \( d \) を入れかえた組を調べない</td><td>\( a \) と \( c \) が違うときは、入れかえた組も調べる</td></tr>
+  <tr><td>たすき掛けの図を縦に読む</td><td>横に読み、展開して確かめる</td></tr>
+  <tr><td>\( b,\ d \) の符号の組合せを間違える</td><td>定数項が負なら異符号、正なら \( x \) の係数と同じ符号</td></tr>
+  <tr><td>共通因数を残す・書き忘れる</td><td>最初に共通因数をくくり出し、答えに書き添える</td></tr>
+  <tr><td>\( x^2 \) の係数が負のまま始めて混乱する</td><td>先に \( -1 \) でくくる</td></tr>
+</table>
+</div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>たすき掛け</dt><dd>二次式 \( px^2+qx+r \) を \( (ax+b)(cx+d) \) の形に因数分解するとき、\( a,\ c \) と \( b,\ d \) を2段に並べ、斜めに掛けた積の和 \( ad+bc \) が \( q \) になる組を探す方法。教科書によって「たすきがけ」とも書く。</dd>
+    <dt>因数分解</dt><dd>1つの整式を、いくつかの整式の積の形に表すこと（中3-009・数Ⅰ-005）。展開の逆の変形。</dd>
+    <dt>因数</dt><dd>積をつくっているそれぞれの式（中3-009・数Ⅰ-005）。\( (x+3)(2x+1) \) の \( x+3 \) と \( 2x+1 \)。</dd>
+    <dt>係数</dt><dd>項の中で、文字に掛けられている数（中1-032・数Ⅰ-001）。\( 2x^2 \) の係数は 2。</dd>
+    <dt>定数項</dt><dd>文字を含まない項（中3-010・数Ⅰ-001）。\( 2x^2+7x+3 \) の定数項は 3。</dd>
+    <dt>共通因数</dt><dd>すべての項に共通な因数（数Ⅰ-005）。因数分解では最初にくくり出す。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>\( (ax+b)(cx+d)=acx^2+(ad+bc)x+bd \) なので、\( x^2 \) の係数は \( ac \)、定数項は \( bd \)、\( x \) の係数は \( ad+bc \)（O1）。</li>
+    <li>\( px^2+qx+r \) の因数分解は、\( ac=p \)、\( bd=r \)、\( ad+bc=q \) を満たす整数を探すこと。たすき掛けの図で、斜めの積の和を調べる（O2）。</li>
+    <li>見つかった組は横に読み、展開して確かめる（O2・O3）。</li>
+    <li>\( a,\ c \) を正の数にしたとき、定数項が負なら \( b,\ d \) は異符号、正なら \( x \) の係数と同じ符号。もとの式に共通因数がなければ、因数の中にも共通因数はない（O3）。</li>
+    <li>共通因数は最初にくくり出し、\( x^2 \) の係数が負なら \( -1 \) でくくってから始める（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">展開と因数分解</span>$$ \begin{aligned} &amp;acx^2+(ad+bc)x+bd\\ &amp;=(ax+b)(cx+d) \end{aligned} $$</div>
+  <div><span class="f-name">たすき掛けで確かめること</span><p>\( ac=p \)（左の列の積）、\( bd=r \)（中の列の積）、\( ad+bc=q \)（斜めの積の和）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。式を入力する問題は、\( x^2 \) を x^2 または x² と入力してください（例：(x+3)(2x+5)）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>\( (ax+b)(cx+d) \) を展開したときの \( x \) の係数はどれですか。</p>
+  <div class="choices"><button>\( b+d \)</button><button>\( ab+cd \)</button><button data-correct="true">\( ad+bc \)</button><button>\( ac+bd \)</button></div>
+  <span class="result"></span>
+  <div class="explain">分配法則で展開すると \( acx^2+adx+bcx+bd \) となり、\( x \) の項は \( ax\times d \) と \( b\times cx \) の2つなので、係数は \( ad+bc \) です。\( b+d \) は \( a=c=1 \) のとき（中学校の公式）には正しいですが、たとえば \( (x+3)(2x+1) \) では \( b+d=4 \)、\( x \) の係数は 7 で、一般には成り立ちません。\( ab+cd \) は同じ因数の中の数どうしを掛けた誤りで、たすき掛けの図を横に掛けています。\( ac+bd \) は \( x^2 \) の係数と定数項を足したもので、\( x \) の係数ではありません。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="(x+1)(2x+3)|(2x+3)(x+1)">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>\( 2x^2+5x+3 \) を因数分解しなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( (x+1)(2x+3) \)。\( 2=1\times 2 \) から \( a=1,\ c=2 \)、係数がすべて正なので \( b,\ d \) は正です。\( b=1,\ d=3 \) のとき \( ad+bc=3+2=5 \) で合います。展開すると \( 2x^2+3x+2x+3=2x^2+5x+3 \)。\( b=3,\ d=1 \) では \( 1+6=7 \) で合いません。\( (x+3)(2x+1) \) と答えた場合は、展開すると \( 2x^2+7x+3 \) で、\( b \) と \( d \) を入れかえた組を選んでいます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>\( 3x^2+7x+2 \) を因数分解した式はどれですか。</p>
+  <div class="choices"><button data-correct="true">\( (x+2)(3x+1) \)</button><button>\( (3x+2)(x+1) \)</button><button>\( (x+1)(x+6) \)</button><button>\( (3x-1)(x-2) \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( 3=1\times 3 \) から \( a=1,\ c=3 \)。\( 2=2\times 1 \) として \( b=2,\ d=1 \) のとき \( ad+bc=1\times 1+2\times 3=7 \) で合い、\( (x+2)(3x+1)=3x^2+x+6x+2 \) です。\( (3x+2)(x+1) \) は展開すると \( 3x^2+5x+2 \) で、積の 3 と 2 は合っていても、斜めの積の和を確かめていません。\( (x+1)(x+6) \) は、\( x^2 \) の係数と定数項の積 \( 3\times 2=6 \) を使って中学校の方法を当てはめたもので、展開すると \( x^2+7x+6 \) になり、\( x^2 \) の係数が合いません。\( (3x-1)(x-2) \) は \( 3x^2-7x+2 \) で、\( x \) の係数の符号が逆です（係数がすべて正なら \( b,\ d \) はともに正）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>\( 6x^2+x-12 \) を因数分解した式はどれですか。</p>
+  <div class="choices"><button>\( (2x-3)(3x+4) \)</button><button>\( (6x-4)(x+3) \)</button><button>\( (2x+3)(3x+4) \)</button><button data-correct="true">\( (2x+3)(3x-4) \)</button></div>
+  <span class="result"></span>
+  <div class="explain">係数 6、1、−12 に共通因数はないので、因数の中にも共通因数はありません。定数項が負なので \( b,\ d \) は異符号です。\( a=2,\ c=3 \)、\( b=3,\ d=-4 \) のとき \( ad+bc=2\times(-4)+3\times 3=1 \) で合い、\( (2x+3)(3x-4)=6x^2-8x+9x-12=6x^2+x-12 \) です。\( (2x-3)(3x+4) \) は \( b,\ d \) の符号を両方とも逆にした組で、\( ad+bc=8-9=-1 \)、展開すると \( 6x^2-x-12 \) です。\( (6x-4)(x+3) \) は、\( 6x-4=2(3x-2) \) が共通因数 2 をもつのでありえない組で、展開すると \( 6x^2+14x-12 \) です。\( (2x+3)(3x+4) \) は定数項の符号を考えておらず、\( 6x^2+17x+12 \) になります。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="-(x-2)(2x+3)|-(2x+3)(x-2)|(2-x)(2x+3)|(2x+3)(2-x)|(-x+2)(2x+3)|(2x+3)(-x+2)|(x-2)(-2x-3)|(-2x-3)(x-2)|−(x−2)(2x+3)|−(2x+3)(x−2)|(2−x)(2x+3)|(2x+3)(2−x)|(−x+2)(2x+3)|(2x+3)(−x+2)|(x−2)(−2x−3)|(−2x−3)(x−2)">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>\( -2x^2+x+6 \) を因数分解しなさい（例：-(x+1)(2x-3) のように入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( -(x-2)(2x+3) \)（\( (2-x)(2x+3) \) なども可）。まず \( -1 \) でくくって \( -(2x^2-x-6) \)。\( 2x^2-x-6 \) で \( a=1,\ c=2 \)、定数項が負なので \( b,\ d \) は異符号です。\( ad+bc=d+2b \) が \( -1 \) になるのは \( b=-2,\ d=3 \) のときで、\( 3-4=-1 \)。\( (x-2)(2x+3)=2x^2+3x-4x-6=2x^2-x-6 \) です。前の \( - \) を書き忘れて \( (x-2)(2x+3) \) とすると、\( 2x^2-x-6 \) になってしまいます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>\( 6x^2-9x-6 \) を最後まで因数分解した式はどれですか。</p>
+  <div class="choices"><button>\( (3x-6)(2x+1) \)</button><button data-correct="true">\( 3(x-2)(2x+1) \)</button><button>\( (x-2)(2x+1) \)</button><button>\( 3(x+2)(2x-1) \)</button></div>
+  <span class="result"></span>
+  <div class="explain">係数 6、−9、−6 の共通因数 3 をくくり出すと \( 3(2x^2-3x-2) \)。\( 2x^2-3x-2 \) は \( a=1,\ c=2 \)、\( b=-2,\ d=1 \) で \( ad+bc=1-4=-3 \) となり、\( (x-2)(2x+1) \) です。よって \( 3(x-2)(2x+1) \)。\( (3x-6)(2x+1) \) は展開するともとの式に戻りますが、\( 3x-6=3(x-2) \) がまだ因数分解できるので、最後まで因数分解していません。\( (x-2)(2x+1) \) はくくり出した 3 を書き忘れていて、\( 2x^2-3x-2 \) にしかなりません。\( 3(x+2)(2x-1) \) は \( b,\ d \) の符号を両方とも逆にした組で、展開すると \( 6x^2+9x-6 \) です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>次の式のうち、係数が整数の1次式の積に因数分解<strong>できない</strong>ものはどれですか。</p>
+  <div class="choices"><button>\( 2x^2+5x+2 \)</button><button>\( 3x^2-x-2 \)</button><button data-correct="true">\( 2x^2+3x+2 \)</button><button>\( 2x^2-x-1 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( 2x^2+3x+2 \) は、係数がすべて正なので \( b,\ d \) は正、\( a=1,\ c=2 \) です。\( (b,\ d)=(1,\ 2) \) で \( ad+bc=4 \)、\( (2,\ 1) \) で 5 となり、どちらも 3 になりません。ほかの式は、\( 2x^2+5x+2=(x+2)(2x+1) \)、\( 3x^2-x-2=(x-1)(3x+2) \)、\( 2x^2-x-1=(x-1)(2x+1) \) と因数分解できます（展開して確かめよう）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2</span></div>
+  <p>太郎さんと花子さんが、\( 6x^2+7x+2 \) の因数分解について話しています。</p>
+  <p>太郎：「\( x^2 \) の係数を \( 1\times 6 \)、定数項を \( 1\times 2 \) と \( 2\times 1 \) に分けて試したけれど、\( ad+bc \) は 8 と 13 で、7 にならなかったよ。だから、この式は因数分解できないね。」<br>花子：「本当にそうかな。」</p>
+  <p>花子さんの考えとして正しいものはどれですか。</p>
+  <div class="choices">
+    <button>定数項が正なので \( b \) と \( d \) は異符号にすべきで、太郎さんは符号の試し方を間違えている。</button>
+    <button data-correct="true">\( x^2 \) の係数 6 は \( 2\times 3 \) とも分けられる。その組合せがまだ残っているので、因数分解できないとは決められない。実際、\( (2x+1)(3x+2) \) と因数分解できる。</button>
+    <button>\( b \) と \( d \) を入れかえた組をまだ調べていないので、入れかえれば見つかる。</button>
+    <button>\( 1\times 6 \) で合わなければ \( 2\times 3 \) でも合わないので、太郎さんの結論は正しい。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">太郎さんの計算は、\( a=1,\ c=6 \) で \( (b,\ d)=(1,\ 2) \) なら \( 1\times 2+1\times 6=8 \)、\( (2,\ 1) \) なら \( 1\times 1+2\times 6=13 \) で正しいのですが、\( 6=2\times 3 \) の分け方を調べていません。\( a=2,\ c=3,\ b=1,\ d=2 \) なら \( ad+bc=4+3=7 \) で合い、\( (2x+1)(3x+2)=6x^2+4x+3x+2 \) です。「異符号にすべき」は誤りで、定数項が正なら \( b,\ d \) は同符号です。「入れかえれば見つかる」は、太郎さんがすでに \( 1\times 2 \) と \( 2\times 1 \) の両方を調べているので当たりません。「\( 2\times 3 \) でも合わない」は、分け方ごとに \( ad+bc \) が変わることを見落としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1</span></div>
+  <p>\( k \) は正の整数とします。\( 3x^2+kx+4 \) が、係数が整数の1次式の積 \( (ax+b)(cx+d) \) に因数分解できるような \( k \) の値をすべて挙げたものはどれですか。</p>
+  <div class="choices"><button>\( k=4,\ 5 \)</button><button>\( k=7,\ 8 \)</button><button>\( k=\pm 7,\ \pm 8,\ \pm 13 \)</button><button data-correct="true">\( k=7,\ 8,\ 13 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( 3=1\times 3 \) から \( a=1,\ c=3 \)。定数項 4 が正で \( k \) も正なので、\( b,\ d \) はともに正です。\( 4=1\times 4=2\times 2=4\times 1 \) の3通りについて \( k=ad+bc=d+3b \) を計算すると、\( 4+3=7 \)、\( 2+6=8 \)、\( 1+12=13 \)。よって \( k=7,\ 8,\ 13 \)。「7、8」は \( (b,\ d)=(1,\ 4) \) と \( (4,\ 1) \) を同じ組とみて、入れかえを調べていません（\( a \) と \( c \) が違うので別の組です）。「4、5」は \( k \) を \( b+d \) とした誤りです。「\( \pm 7 \) …」は \( b,\ d \) をともに負にした組も含めたもので、そのとき \( k \) は負になり、\( k \) が正という条件に合いません。</div>
+</div>
+
+<div class="q" data-type="open" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O2・O3</span></div>
+  <p>(1) \( 5x^2-7x-6 \) を因数分解しなさい。　(2) 二次方程式 \( 5x^2-7x-6=0 \) を解きなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) \( 5=1\times 5 \) から \( a=1,\ c=5 \)。定数項が負なので \( b,\ d \) は異符号。\( ad+bc=d+5b \) が \( -7 \) になる組を探すと、\( b=-2,\ d=3 \) のとき \( 3-10=-7 \)。よって \( 5x^2-7x-6=(x-2)(5x+3) \)。確かめ：\( 5x^2+3x-10x-6=5x^2-7x-6 \)。</p>
+    <p>(2) (1) より \( (x-2)(5x+3)=0 \)。「\( AB=0 \) ならば \( A=0 \) または \( B=0 \)」（中3-041）から、\( x-2=0 \) または \( 5x+3=0 \)。よって \( x=2,\ -\dfrac{3}{5} \)。</p>
+    <p><strong>採点の観点</strong>　① 定数項の符号から \( b,\ d \) を異符号とし、\( ad+bc \) を正しく計算している。② 展開してもとの式に戻ることを確かめている。③ (2) で2つの因数それぞれを 0 として、2つの解を求めている。</p>
+  </div>
+  <div class="explain">\( 5x+3=0 \) から \( 5x=-3 \)、\( x=-\dfrac{3}{5} \) です。\( x=-\dfrac{5}{3} \) と答えるのは、\( 5x=-3 \) の両辺を 5 で割るところで、割る数と割られる数を取り違えた誤りです。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(1) 数と式」の「二次の乗法公式及び因数分解の公式の理解を深めること」（ア(ウ)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。因数分解は、二次方程式の解と二次関数のグラフの共有点を求めるとき（数Ⅰ-046）など、この後の単元で式を処理する基本の技能になります。</p>
+  <p class="small">問8は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">いろいろな因数分解（数Ⅰ-007）</p>
+  <p>次の時間は、2種類以上の文字を含む式や複雑な式を、一つの文字に着目して次数の高い順に整理したり、式の一部を置き換えたりして因数分解します。整理した結果が \( px^2+qx+r \) の形になれば、この時間のたすき掛けがそのまま使えます。</p>
+  <p>この時間では、2種類以上の文字を含む式や置き換えを使う因数分解（数Ⅰ-007）、三次式の因数分解（数学Ⅱ、数Ⅱ-002）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-005　共通因数と公式による因数分解</div>
+  <div><span class="label">次の時間</span>数Ⅰ-007　いろいろな因数分解</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-006「acx²+(ad+bc)x+bd の因数分解」（学習指導要領 数学Ⅰ (1)ア(ウ)、解説 p.37。† 教科書で一般的な内容を含む行）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(1) 数と式（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.36-37「二次の乗法公式及び因数分解の公式の理解を深める…」（新たな公式は \( (ax+b)(cx+d)=acx^2+(ad+bc)x+bd \) のみで、三次の乗法公式は数学Ⅱで扱うことの確認）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>東京書籍「評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）」の「因数分解」（「たすき掛けを含む因数分解をすることができる」）https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf</li>
+    <li>東京書籍「編修趣意書 数Ⅰ002-904『改訂版 数学Ⅰ Essence』」（たすき掛けの方法による因数分解を、試行錯誤して数を見つけていく例から扱うことの確認）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-4.pdf</li>
+    <li>新興出版社啓林館「編修趣意書 数Ⅰ061-904『新編数学Ⅰ 改訂版』」（\( (ax+b)(cx+d) \) の形への因数分解（たすき掛け）を、いくつかの組合せを試した後に見つける形で記述していることの確認）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-13.pdf</li>
+    <li>数研出版「編修趣意書 数Ⅰ104-906『改訂版 新 高校の数学Ⅰ』」（「たすきがけの因数分解」という表記の確認）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-19.pdf</li>
+    <li>小学校学習指導要領（平成29年告示）第2章第3節 算数 第4学年「正方形及び長方形の面積の計算による求め方について理解すること」（補足の面積の公式が小学校の内容であることの確認。中学校学習指導要領（平成29年告示）の冊子に収録）（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_02.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  /*combos-begin*/
+  function combos(p, r) {
+    var rows = [];
+    var ar = Math.abs(r);
+    for (var a = 1; a <= p; a++) {
+      if (p % a !== 0) continue;
+      var c = p / a;
+      if (a > c) continue;
+      for (var m = 1; m <= ar; m++) {
+        if (ar % m !== 0) continue;
+        [m, -m].forEach(function (b) {
+          var d = r / b;
+          if (a === c && b > d) return;
+          rows.push({ a: a, b: b, c: c, d: d, ad: a * d, bc: b * c, s: a * d + b * c });
+        });
+      }
+    }
+    return rows;
+  }
+  function gcd(x, y) {
+    x = Math.abs(x); y = Math.abs(y);
+    while (y) { var t = x % y; x = y; y = t; }
+    return x;
+  }
+  /*combos-end*/
+  var MINUS = "\u2212";
+  function num(n) { return n < 0 ? MINUS + (-n) : String(n); }
+  function lin(a, b) { return "(" + (a === 1 ? "" : a) + "x" + (b < 0 ? MINUS + (-b) : "+" + b) + ")"; }
+  function quad(p, q, r) {
+    var s = (p === 1 ? "" : String(p)) + "x²";
+    if (q !== 0) s += (q < 0 ? MINUS : "+") + (Math.abs(q) === 1 ? "" : Math.abs(q)) + "x";
+    return s + (r < 0 ? MINUS : "+") + Math.abs(r);
+  }
+  function toInt(v) {
+    var s = String(v || "").normalize("NFKC").replace(/\s+/g, "").replace(/[\u2212\u2012\u2013\u2014\u2015\uFF0D]/g, "-");
+    return /^[+-]?\d+$/.test(s) ? parseInt(s, 10) : null;
+  }
+  function report(p, q, r) {
+    if (p === null || q === null || r === null) return { msg: "p、q、r には整数を入れてください。", rows: [] };
+    if (p < 1 || p > 36) return { msg: "p（x² の係数）は 1 から 36 までの整数にしてください。x² の係数が負のときは、先に " + MINUS + "1 でくくってから入力します。", rows: [] };
+    if (r === 0) return { msg: "r＝0 のときは、どの項にも x があるので、x を共通因数としてくくり出します（たすき掛けは使いません）。", rows: [] };
+    if (Math.abs(r) > 36 || Math.abs(q) > 99) return { msg: "r は " + MINUS + "36〜36、q は " + MINUS + "99〜99 の範囲の整数にしてください。", rows: [] };
+    var rows = combos(p, r);
+    var hits = rows.filter(function (o) { return o.s === q; });
+    var msg = quad(p, q, r) + " について、組合せは " + rows.length + " 通り。";
+    if (hits.length) {
+      msg += "ad+bc＝" + num(q) + " となる組は " + hits.length + " 通りで、" + hits.map(function (o) { return quad(p, q, r) + "＝" + lin(o.a, o.b) + lin(o.c, o.d); }).join("、") + "（展開して確かめよう）。";
+    } else {
+      msg += "ad+bc＝" + num(q) + " となる組はありません。係数が整数の1次式の積には因数分解できません。";
+    }
+    var g = gcd(gcd(p, q), r);
+    if (g > 1) msg += "なお、p、q、r には共通因数 " + g + " があります。先にくくり出すと組合せが少なくなり、最後まで因数分解した形になります。";
+    return { msg: msg, rows: rows, q: q };
+  }
+  function table(res) {
+    if (!res.rows.length) return "";
+    var h = "<table><tr><th>a</th><th>c</th><th>b</th><th>d</th><th>ad</th><th>bc</th><th>ad+bc</th><th>判定</th></tr>";
+    res.rows.forEach(function (o) {
+      var ok = o.s === res.q;
+      h += "<tr><td>" + o.a + "</td><td>" + o.c + "</td><td>" + num(o.b) + "</td><td>" + num(o.d) + "</td><td>" + num(o.ad) + "</td><td>" + num(o.bc) + "</td><td" + (ok ? " class=\"hit\"" : "") + ">" + num(o.s) + "</td><td>" + (ok ? "✓" : "") + "</td></tr>";
+    });
+    return h + "</table>";
+  }
+  var pEl = document.getElementById("w1-p"), qEl = document.getElementById("w1-q"), rEl = document.getElementById("w1-r");
+  var out = document.getElementById("w1-out"), tbl = document.getElementById("w1-table"), go = document.getElementById("w1-go");
+  if (!pEl || !qEl || !rEl || !out || !tbl || !go) return;
+  function run() {
+    var res = report(toInt(pEl.value), toInt(qEl.value), toInt(rEl.value));
+    out.textContent = res.msg;
+    tbl.innerHTML = table(res);
+  }
+  go.addEventListener("click", run);
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-006",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-006",
+  "title": "acx²+(ad+bc)x+bd の因数分解",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-1", "title": "数と式"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ウ)"],
+  "kaisetsu_page": "37",
+  "objectives": [
+    {"id": "O1", "text": "展開の公式 (ax+b)(cx+d)=acx²+(ad+bc)x+bd を逆に見て、x² の係数・x の係数・定数項が a、b、c、d のどの組合せで決まるかを説明できる。", "from": "新たな乗法公式を逆に用い", "sections": ["sec-1"], "checks": ["q1", "q9"]},
+    {"id": "O2", "text": "たすき掛けで係数の組合せを見つけ、x の二次式を (ax+b)(cx+d) の形に因数分解することができる。", "from": "係数の組合せを見つけて（たすき掛け）x の二次式を (ax+b)(cx+d) の形に因数分解できる", "sections": ["sec-2"], "checks": ["q2", "q3", "q8", "q10"]},
+    {"id": "O3", "text": "定数項や x の係数が負の場合、共通因数がある場合、x² の係数が負の場合も含めて、組合せを絞り込み、展開して確かめながら因数分解することができる。", "from": "「係数の組合せを見つけて」のうち、符号と共通因数による組合せの絞り込みと、展開による確かめ", "sections": ["sec-3"], "checks": ["q4", "q5", "q6", "q7", "q10"]}
+  ],
+  "key_terms": [
+    {"term": "たすき掛け", "where": "sec-2"},
+    {"term": "係数", "where": "sec-1"},
+    {"term": "定数項", "where": "sec-1"},
+    {"term": "共通因数", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "(ax+b)(cx+d)=acx²+(ad+bc)x+bd による展開", "taught_in": ["hs_math_1a/数Ⅰ-003"], "where": "review"},
+    {"concept": "共通因数のくくり出しと、中学校の公式 x²+(a+b)x+ab などによる因数分解", "taught_in": ["hs_math_1a/数Ⅰ-005", "jhs_math/中3-009", "jhs_math/中3-010"], "where": "review"},
+    {"concept": "因数・因数分解の意味", "taught_in": ["jhs_math/中3-009", "hs_math_1a/数Ⅰ-005"], "where": "terms"},
+    {"concept": "項と係数", "taught_in": ["jhs_math/中1-032", "hs_math_1a/数Ⅰ-001"], "where": "sec-1"},
+    {"concept": "定数項", "taught_in": ["jhs_math/中3-010", "hs_math_1a/数Ⅰ-001"], "where": "sec-1"},
+    {"concept": "次数（x の二次式）", "taught_in": ["hs_math_1a/数Ⅰ-001"], "where": "sec-1"},
+    {"concept": "分配法則による多項式の乗法（展開して確かめる）", "taught_in": ["hs_math_1a/数Ⅰ-002", "jhs_math/中3-003"], "where": "sec-2"},
+    {"concept": "2数の積の符号（異符号の積は負）", "taught_in": ["jhs_math/中1-012"], "where": "review"},
+    {"concept": "整数の約数", "taught_in": ["jhs_math/中1-021"], "where": "review"},
+    {"concept": "AB=0 ならば A=0 または B=0 を用いて二次方程式を解く（問10）", "taught_in": ["jhs_math/中3-041"], "where": "quiz"},
+    {"concept": "一次方程式を解く（問10の 5x+3=0）", "taught_in": ["jhs_math/中1-047"], "where": "quiz"},
+    {"concept": "長方形の面積＝縦×横と、図形の面積を文字式で表すこと（面積の公式そのものは小学校の内容）", "taught_in": ["jhs_math/中1-029"], "gap": false, "where": "supp-1"}
+  ],
+  "out_of_scope": [
+    "2種類以上の文字を含む式、式の一部を置き換える因数分解（数Ⅰ-007）",
+    "展開と因数分解の型を混ぜた練習（数Ⅰ-008）",
+    "三次式の因数分解（数Ⅱ-002）",
+    "係数の範囲を広げた二次式の因数分解（数Ⅱ-017）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『数と式』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(1)ア(ウ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.36-37 二次の乗法公式・因数分解の扱い（新たな公式は (ax+b)(cx+d) のみ、三次は数学Ⅱ）"},
+    {"name": "評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）", "publisher": "東京書籍（東書Ｅネット）", "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf", "use": "たすき掛けを含む因数分解が教科書で扱われることの確認（† の内容）"},
+    {"name": "編修趣意書 数Ⅰ002-904『改訂版 数学Ⅰ Essence』", "publisher": "東京書籍（文部科学省掲載）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-4.pdf", "use": "たすき掛けの方法による因数分解の扱い（試行錯誤して数を見つける）"},
+    {"name": "編修趣意書 数Ⅰ061-904『新編数学Ⅰ 改訂版』", "publisher": "新興出版社啓林館（文部科学省掲載）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-13.pdf", "use": "(ax+b)(cx+d) の形への因数分解（たすき掛け）の記述"},
+    {"name": "編修趣意書 数Ⅰ104-906『改訂版 新 高校の数学Ⅰ』", "publisher": "数研出版（文部科学省掲載）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-19.pdf", "use": "「たすきがけ」という表記の確認（語句欄）"},
+    {"name": "小学校学習指導要領（平成29年告示）第2章第3節 算数（中学校学習指導要領（平成29年告示）の冊子に収録）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_02.pdf", "use": "第4学年「正方形及び長方形の面積の計算による求め方」（補足 supp-1 の面積の公式が小学校の内容であることの確認）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>気柱の振動（開管・閉管）｜物理基礎</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+  .fig-line { stroke: currentColor; stroke-width: 1.6; fill: none; }
+  .fig-thin { stroke: currentColor; stroke-width: 1; fill: none; opacity: .45; }
+  .fig-wall { stroke: currentColor; stroke-width: 5; }
+  .fig-env { stroke: #1f6fd1; stroke-width: 2.2; fill: none; }
+  .fig-acc { stroke: #d9480f; stroke-width: 2; fill: none; }
+  .fig-acc-fill { fill: #d9480f; }
+  .fig-water { fill: #7fb8ea; opacity: .35; }
+  .fig-text { fill: currentColor; font-size: 13px; }
+  .fig-small { fill: currentColor; font-size: 11.5px; }
+  .fig-node { fill: #d9480f; }
+  .w-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 6px 0; font-size: .92rem; }
+  .w-row select { font: inherit; padding: 3px 6px; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>物理基礎</span><span>波</span><span>物基-053</span></div>
+  <h1>気柱の振動（開管・閉管）</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">リコーダーやフルートは、管の中の空気そのものが振動して音を出す楽器です。管の長さや、管の端が開いているか閉じているかで、出る音の高さはどう決まるのでしょうか。弦の振動で学んだ定在波の考え方を、目に見えない空気の振動に当てはめてみましょう。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>気柱にできる定在波を、閉じた端が変位の節、開いた端が変位の腹になることから説明し、固有振動のようすを図で表すことができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>開管の固有振動の波長（λ＝2L／n）と振動数を、気柱の長さから求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>閉管の固有振動の波長（λ＝4L／(2n−1)）と振動数を求め、閉管では基本振動の奇数倍の振動数の振動だけが起こることを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>気柱の共鳴を音源の振動数と固有振動数の一致として説明し、開口端補正の意味を知って、共鳴する気柱の長さから音の波長や音の速さを求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（物基-052）</span>実験：気柱の共鳴</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>気柱の振動（開管・閉管）</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（物基-054）</span>音波の性質：反射・共振・共鳴</div>
+</div>
+<p class="small">前提となる単元：中学1年 第1分野(1) 身近な物理現象（音の性質）、第2分野(2) 大地の成り立ちと変化（地震の揺れの伝わり方）。同じ単元の 物基-046（波の基本式）、物基-047（横波と縦波）、物基-049（固定端・自由端での反射）、物基-050（定在波）、物基-051（弦の固有振動）、物基-052（気柱の共鳴の実験）の内容を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、定在波・弦の固有振動・波の基本式を使います。小問で確かめましょう。また、固定端では端が<strong>節</strong>、自由端では端が<strong>腹</strong>になること（物基-049・物基-050）も思い出しておきましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：物基-050</span></div>
+  <p>定在波（定常波）で、隣り合う節と節の間隔は波長の何倍ですか。</p>
+  <div class="choices">
+    <button>4分の1倍</button>
+    <button data-correct="true">2分の1倍</button>
+    <button>1倍</button>
+    <button>2倍</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">隣り合う節の間隔は半波長（λ／2）です。腹と節は交互に等間隔で並ぶので、<strong>腹と隣の節の間隔は λ／4</strong> になります。この「λ／4」がこの時間の閉管で大活躍します。4分の1倍は腹と節の間隔、1倍は節を一つ飛ばした間隔と混同した答えです。2倍は、波長と節の間隔の関係を逆にした（波長が節の間隔の半分だと考えた）答えです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：物基-051</span></div>
+  <p>長さ 0.60 m の弦の両端を固定して2倍振動させました。この振動の波長はいくらですか。</p>
+  <div class="choices">
+    <button>0.30 m</button>
+    <button data-correct="true">0.60 m</button>
+    <button>1.20 m</button>
+    <button>2.40 m</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">両端が節の弦では、弦の長さに半波長が n 個入るので \( \lambda = \dfrac{2L}{n} = \dfrac{2 \times 0.60}{2} = 0.60 \) m です。1.20 m は基本振動（n＝1）の波長、0.30 m は L を n で割っただけで2を掛け忘れた値、2.40 m は 4L を計算した値です。</div>
+</div>
+<div class="q" data-type="input" id="r3" data-accept="680|680Hz|680ヘルツ">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：物基-046・中1-064</span></div>
+  <p>空気中の音の速さを 340 m/s とします。波長 0.50 m の音の振動数は何 Hz ですか（数値で）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">波の基本式 \( v = f\lambda \) より \( f = \dfrac{v}{\lambda} = \dfrac{340}{0.50} = 680 \) Hz。この時間は、音の速さを <strong>V＝340 m/s</strong>（室温程度の空気中のおよその値。中1-064）として計算します。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">縦波を横波のように表す（横波表示）</p>
+  <p>音は空気の<strong>縦波</strong>です。物基-047 で触れたように、縦波も横波と同じように媒質の変位をグラフで表せます。縦波では媒質が波の進む向きに沿って振動するので、そのまま描くと変位の大きさや向きが読み取りにくくなります。そこで、各点の変位を90°回して、<strong>右向きの変位は上向きに、左向きの変位は下向きに</strong>描きます。これを縦波の<strong>横波表示</strong>といいます（図S）。</p>
+  <p>この時間の気柱の図は、すべて横波表示です。図の山や谷は、空気が上下に揺れることではなく、<strong>管の軸に沿った空気の変位</strong>の大きさと向きを表しています。なお、変位が「上向き→下向き」に変わる位置が<strong>密</strong>、「下向き→上向き」に変わる位置が<strong>疎</strong>になります。</p>
+  <figure>
+    <svg viewBox="0 0 440 232" role="img" aria-label="図S：縦波の媒質の各点のつり合いの位置、ある瞬間の位置、それを横波表示にした図。右向きの変位を上向きに描く。">
+      <defs>
+        <marker id="s-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="3.5" markerHeight="3.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="fig-acc-fill"/></marker>
+      </defs>
+      <text x="40" y="22" class="fig-small">つり合いの位置</text>
+      <g class="fig-line">
+        <circle cx="40" cy="40" r="4"/><circle cx="70" cy="40" r="4"/><circle cx="100" cy="40" r="4"/><circle cx="130" cy="40" r="4"/><circle cx="160" cy="40" r="4"/><circle cx="190" cy="40" r="4"/><circle cx="220" cy="40" r="4"/><circle cx="250" cy="40" r="4"/><circle cx="280" cy="40" r="4"/><circle cx="310" cy="40" r="4"/><circle cx="340" cy="40" r="4"/><circle cx="370" cy="40" r="4"/><circle cx="400" cy="40" r="4"/>
+      </g>
+      <g class="fig-thin" stroke-dasharray="2 3">
+        <line x1="40" y1="46" x2="40" y2="95"/><line x1="70" y1="46" x2="70" y2="95"/><line x1="100" y1="46" x2="100" y2="95"/><line x1="130" y1="46" x2="130" y2="95"/><line x1="160" y1="46" x2="160" y2="95"/><line x1="190" y1="46" x2="190" y2="95"/><line x1="220" y1="46" x2="220" y2="95"/><line x1="250" y1="46" x2="250" y2="95"/><line x1="280" y1="46" x2="280" y2="95"/><line x1="310" y1="46" x2="310" y2="95"/><line x1="340" y1="46" x2="340" y2="95"/><line x1="370" y1="46" x2="370" y2="95"/><line x1="400" y1="46" x2="400" y2="95"/>
+      </g>
+      <text x="40" y="74" class="fig-small">ある瞬間の位置（矢印は変位）</text>
+      <g fill="currentColor">
+        <circle cx="40" cy="95" r="4"/><circle cx="76" cy="95" r="4"/><circle cx="110.4" cy="95" r="4"/><circle cx="142" cy="95" r="4"/><circle cx="170.4" cy="95" r="4"/><circle cx="196" cy="95" r="4"/><circle cx="220" cy="95" r="4"/><circle cx="244" cy="95" r="4"/><circle cx="269.6" cy="95" r="4"/><circle cx="298" cy="95" r="4"/><circle cx="329.6" cy="95" r="4"/><circle cx="364" cy="95" r="4"/><circle cx="400" cy="95" r="4"/>
+      </g>
+      <g class="fig-acc" marker-end="url(#s-arr)">
+        <line x1="100" y1="106" x2="110.4" y2="106"/><line x1="130" y1="106" x2="142" y2="106"/><line x1="160" y1="106" x2="170.4" y2="106"/>
+        <line x1="280" y1="106" x2="269.6" y2="106"/><line x1="310" y1="106" x2="298" y2="106"/><line x1="340" y1="106" x2="329.6" y2="106"/>
+      </g>
+      <text x="220" y="124" text-anchor="middle" class="fig-text">密</text>
+      <text x="40" y="124" text-anchor="middle" class="fig-text">疎</text>
+      <text x="400" y="124" text-anchor="middle" class="fig-text">疎</text>
+      <text x="40" y="142" class="fig-small">横波表示（右向きの変位 → 上向き、左向きの変位 → 下向きに描く）</text>
+      <line x1="30" y1="180" x2="410" y2="180" class="fig-thin"/>
+      <path d="M40 180 L50 174.8 L60 169.7 L70 165 L80 160.7 L90 157 L100 154 L110 151.8 L120 150.5 L130 150 L140 150.5 L150 151.8 L160 154 L170 157 L180 160.7 L190 165 L200 169.7 L210 174.8 L220 180 L230 185.2 L240 190.3 L250 195 L260 199.3 L270 203 L280 206 L290 208.2 L300 209.5 L310 210 L320 209.5 L330 208.2 L340 206 L350 203 L360 199.3 L370 195 L380 190.3 L390 185.2 L400 180" class="fig-env"/>
+      <g class="fig-acc" marker-end="url(#s-arr)">
+        <line x1="130" y1="180" x2="130" y2="152"/><line x1="310" y1="180" x2="310" y2="208"/>
+      </g>
+      <text x="136" y="170" class="fig-small">右向き → 上</text>
+      <text x="316" y="196" class="fig-small">左向き → 下</text>
+    </svg>
+    <figcaption>図S　縦波の横波表示（変位は見やすいように縦に2.5倍に拡大して描いている）</figcaption>
+  </figure>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：管をふさぐと音はどう変わる？</h2>
+<div class="box think">
+  <p class="box-title">予想してみよう</p>
+  <p>同じ長さのストロー（両端が開いた細い管）を2本用意し、1本はそのまま、もう1本は下の端を指でふさいで、上の端に息を吹きかけて鳴らします。ふさいだほうの音は、ふさがないほうと比べて高くなるでしょうか、低くなるでしょうか。</p>
+  <p>また、試験管に水を入れて口を吹くと音が出ます。水を増やしていくと、音の高さはどう変わるでしょうか。どちらも予想してから読み進めましょう。答えは本編の「閉管の固有振動」の節で分かります。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="気柱の定在波"><span class="num">3</span>気柱の定在波：管の端で空気はどう動く？</h2>
+<p>管の中の空気の柱を<strong>気柱</strong>といいます。管の口で音を鳴らすと、音波（空気の縦波）が管の中を進み、管の端で反射します。進む波と反射して戻る波が重なり合うと、物基-050 で学んだように、気柱には<strong>定在波</strong>ができます。</p>
+<h3>閉じた端は「節」、開いた端は「腹」</h3>
+<p><strong>閉じた端（閉口端）</strong>では、壁に接している空気は壁の向こうへ動けません。変位はいつも 0 なので、<span class="em">閉じた端は変位の節</span>になります。これは固定端での反射と同じです。</p>
+<p><strong>開いた端（開口端）</strong>では、管の中の空気は外の空気とつながっていて、自由に動けます。そのため<span class="em">開いた端は変位の腹</span>になり、自由端での反射と同じように考えられます（正確には、腹は管口よりわずかに外側にできます。これは本編の最後の節で扱います）。</p>
+<figure>
+  <svg viewBox="0 0 460 236" role="img" aria-label="図1：左端が開き右端が閉じた管の基本振動。上は空気の往復運動の大きさを両向き矢印で表し、開いた端で最大、閉じた端で0。下は横波表示で、開いた端が腹、閉じた端が節。">
+    <defs>
+      <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="2.6" markerHeight="2.6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="fig-acc-fill"/></marker>
+    </defs>
+    <text x="60" y="30" text-anchor="middle" class="fig-small">開いた端</text>
+    <text x="400" y="30" text-anchor="middle" class="fig-small">閉じた端</text>
+    <line x1="60" y1="40" x2="400" y2="40" class="fig-line"/>
+    <line x1="60" y1="100" x2="400" y2="100" class="fig-line"/>
+    <line x1="400" y1="38" x2="400" y2="102" class="fig-wall"/>
+    <g class="fig-acc" marker-start="url(#a1)" marker-end="url(#a1)">
+      <line x1="46" y1="70" x2="74" y2="70"/><line x1="80.2" y1="70" x2="107.8" y2="70"/><line x1="114.7" y1="70" x2="141.3" y2="70"/><line x1="149.5" y1="70" x2="174.5" y2="70"/><line x1="184.7" y1="70" x2="207.3" y2="70"/><line x1="220.1" y1="70" x2="239.9" y2="70"/><line x1="255.8" y1="70" x2="272.2" y2="70"/><line x1="291.6" y1="70" x2="304.4" y2="70"/>
+    </g>
+    <g class="fig-acc"><line x1="327.7" y1="70" x2="336.3" y2="70"/><line x1="363.8" y1="70" x2="368.2" y2="70"/></g>
+    <circle cx="392" cy="70" r="3" class="fig-node"/>
+    <text x="230" y="118" text-anchor="middle" class="fig-small">空気の往復運動の大きさ（矢印の長さ）。閉じた端では動けない</text>
+    <line x1="40" y1="160" x2="420" y2="160" class="fig-thin"/>
+    <path d="M60 120 L77 120.1 L94 120.5 L111 121.1 L128 122 L145 123 L162 124.4 L179 125.9 L196 127.6 L213 129.6 L230 131.7 L247 134 L264 136.5 L281 139.1 L298 141.8 L315 144.7 L332 147.6 L349 150.7 L366 153.7 L383 156.9 L400 160" class="fig-env"/>
+    <path d="M60 200 L77 199.9 L94 199.5 L111 198.9 L128 198 L145 197 L162 195.6 L179 194.1 L196 192.4 L213 190.4 L230 188.3 L247 186 L264 183.5 L281 180.9 L298 178.2 L315 175.3 L332 172.4 L349 169.3 L366 166.3 L383 163.1 L400 160" class="fig-env" stroke-dasharray="6 4"/>
+    <line x1="400" y1="118" x2="400" y2="202" class="fig-wall"/>
+    <text x="52" y="164" text-anchor="end" class="fig-text">腹</text>
+    <circle cx="400" cy="160" r="4" class="fig-node"/>
+    <text x="412" y="150" class="fig-text">節</text>
+    <text x="230" y="226" text-anchor="middle" class="fig-small">横波表示（実線と破線は、半周期ずれた2つの瞬間）　L ＝ λ／4</text>
+  </svg>
+  <figcaption>図1　閉管の基本振動（上：空気の動き、下：横波表示）。開いた端が腹、閉じた端が節。</figcaption>
+</figure>
+<div class="box point">
+  <p class="box-title">気柱の定在波の決まり</p>
+  <p><strong>閉じた端＝変位の節、開いた端＝変位の腹。</strong>これに「腹と節は交互に並ぶ」「隣り合う節の間隔は λ／2」「腹と隣の節の間隔は λ／4」を組み合わせれば、どんな気柱の定在波も描けます。</p>
+</div>
+<h3>固有振動と固有振動数</h3>
+<p>弦と同じように、気柱も、長さと端の条件で決まる特定の振動のしかたでしか定在波をつくれません。この振動を気柱の<strong>固有振動</strong>、その振動数を<strong>固有振動数</strong>といいます。振動数の最も小さいものが<strong>基本振動</strong>、その整数倍の振動数をもつものが<strong>倍振動</strong>（2倍振動、3倍振動、…）です（物基-051）。</p>
+<h4>もう一歩：変位の節で起きていること</h4>
+<p>変位の節では空気は動きませんが、その両側の空気が互いに近づいたり（密）遠ざかったり（疎）をくり返します。そのため、<strong>変位の節では空気の密度（圧力）の変化が最も大きく</strong>、変位の腹では密度の変化がほとんどありません。閉管の底は、空気は動かないのに圧力は大きく変わっている場所です（この密度・圧力の変化の話は、教科書によっては「参考」として扱われます）。</p>
+<div class="box caution">
+  <p class="box-title">よくある間違い</p>
+  <p>①「閉じた端は空気が壁にぶつかって大きく振動するので腹」→ 誤り。壁に接した空気は壁より先へ動けないので、変位は 0（節）です。大きく変わるのは圧力のほうです。</p>
+  <p>②「図の山と谷のように、空気が管の中で上下に揺れる」→ 誤り。図は横波表示です。空気は管の軸に沿って左右（管の長さの向き）に往復しています。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="開管の固有振動"><span class="num">4</span>開管の固有振動：半波長が整数個入る</h2>
+<p>両端が開いた管を<strong>開管</strong>といいます。開管では両端がどちらも腹になります。腹と腹の間隔は半波長の整数倍なので、気柱の長さ L には<strong>半波長がちょうど整数個</strong>入ります（図2）。</p>
+<figure>
+  <svg viewBox="0 0 520 292" role="img" aria-label="図2：開管の固有振動。上から基本振動（L＝λ／2、節1つ）、2倍振動（L＝λ、節2つ）、3倍振動（L＝3λ／2、節3つ）。両端は腹。">
+    <g class="fig-thin"><line x1="60" y1="20" x2="380" y2="20"/><line x1="60" y1="80" x2="380" y2="80"/><line x1="60" y1="115" x2="380" y2="115"/><line x1="60" y1="175" x2="380" y2="175"/><line x1="60" y1="210" x2="380" y2="210"/><line x1="60" y1="270" x2="380" y2="270"/></g>
+    <path d="M60 24 L68 24.1 L76 24.3 L84 24.7 L92 25.3 L100 26 L108 26.8 L116 27.8 L124 29 L132 30.2 L140 31.6 L148 33.1 L156 34.7 L164 36.4 L172 38.2 L180 40.1 L188 42 L196 43.9 L204 45.9 L212 48 L220 50 L228 52 L236 54.1 L244 56.1 L252 58 L260 59.9 L268 61.8 L276 63.6 L284 65.3 L292 66.9 L300 68.4 L308 69.8 L316 71 L324 72.2 L332 73.2 L340 74 L348 74.7 L356 75.3 L364 75.7 L372 75.9 L380 76" class="fig-env"/>
+    <path d="M60 76 L68 75.9 L76 75.7 L84 75.3 L92 74.7 L100 74 L108 73.2 L116 72.2 L124 71 L132 69.8 L140 68.4 L148 66.9 L156 65.3 L164 63.6 L172 61.8 L180 59.9 L188 58 L196 56.1 L204 54.1 L212 52 L220 50 L228 48 L236 45.9 L244 43.9 L252 42 L260 40.1 L268 38.2 L276 36.4 L284 34.7 L292 33.1 L300 31.6 L308 30.2 L316 29 L324 27.8 L332 26.8 L340 26 L348 25.3 L356 24.7 L364 24.3 L372 24.1 L380 24" class="fig-env" stroke-dasharray="6 4"/>
+    <circle cx="220" cy="50" r="4" class="fig-node"/>
+    <path d="M60 119 L68 119.3 L76 120.3 L84 121.8 L92 124 L100 126.6 L108 129.7 L116 133.2 L124 137 L132 140.9 L140 145 L148 149.1 L156 153 L164 156.8 L172 160.3 L180 163.4 L188 166 L196 168.2 L204 169.7 L212 170.7 L220 171 L228 170.7 L236 169.7 L244 168.2 L252 166 L260 163.4 L268 160.3 L276 156.8 L284 153 L292 149.1 L300 145 L308 140.9 L316 137 L324 133.2 L332 129.7 L340 126.6 L348 124 L356 121.8 L364 120.3 L372 119.3 L380 119" class="fig-env"/>
+    <path d="M60 171 L68 170.7 L76 169.7 L84 168.2 L92 166 L100 163.4 L108 160.3 L116 156.8 L124 153 L132 149.1 L140 145 L148 140.9 L156 137 L164 133.2 L172 129.7 L180 126.6 L188 124 L196 121.8 L204 120.3 L212 119.3 L220 119 L228 119.3 L236 120.3 L244 121.8 L252 124 L260 126.6 L268 129.7 L276 133.2 L284 137 L292 140.9 L300 145 L308 149.1 L316 153 L324 156.8 L332 160.3 L340 163.4 L348 166 L356 168.2 L364 169.7 L372 170.7 L380 171" class="fig-env" stroke-dasharray="6 4"/>
+    <circle cx="140" cy="145" r="4" class="fig-node"/><circle cx="300" cy="145" r="4" class="fig-node"/>
+    <path d="M60 214 L68 214.7 L76 216.8 L84 220.2 L92 224.7 L100 230.1 L108 235.9 L116 242 L124 248 L132 253.6 L140 258.4 L148 262.2 L156 264.7 L164 265.9 L172 265.7 L180 264 L188 261 L196 256.9 L204 251.8 L212 246.1 L220 240 L228 233.9 L236 228.2 L244 223.1 L252 219 L260 216 L268 214.3 L276 214.1 L284 215.3 L292 217.8 L300 221.6 L308 226.4 L316 232 L324 238 L332 244.1 L340 249.9 L348 255.3 L356 259.8 L364 263.2 L372 265.3 L380 266" class="fig-env"/>
+    <path d="M60 266 L68 265.3 L76 263.2 L84 259.8 L92 255.3 L100 249.9 L108 244.1 L116 238 L124 232 L132 226.4 L140 221.6 L148 217.8 L156 215.3 L164 214.1 L172 214.3 L180 216 L188 219 L196 223.1 L204 228.2 L212 233.9 L220 240 L228 246.1 L236 251.8 L244 256.9 L252 261 L260 264 L268 265.7 L276 265.9 L284 264.7 L292 262.2 L300 258.4 L308 253.6 L316 248 L324 242 L332 235.9 L340 230.1 L348 224.7 L356 220.2 L364 216.8 L372 214.7 L380 214" class="fig-env" stroke-dasharray="6 4"/>
+    <circle cx="113.3" cy="240" r="4" class="fig-node"/><circle cx="220" cy="240" r="4" class="fig-node"/><circle cx="326.7" cy="240" r="4" class="fig-node"/>
+    <text x="396" y="46" class="fig-text">基本振動</text><text x="396" y="64" class="fig-text">L ＝ λ／2</text>
+    <text x="396" y="141" class="fig-text">2倍振動</text><text x="396" y="159" class="fig-text">L ＝ λ</text>
+    <text x="396" y="236" class="fig-text">3倍振動</text><text x="396" y="254" class="fig-text">L ＝ 3λ／2</text>
+    <text x="60" y="288" text-anchor="middle" class="fig-small">腹</text><text x="380" y="288" text-anchor="middle" class="fig-small">腹</text>
+  </svg>
+  <figcaption>図2　開管の固有振動（横波表示。●は節、両端は腹。細線は管の壁）</figcaption>
+</figure>
+<p>図2から、基本振動では \( L = \dfrac{\lambda_1}{2} \)、2倍振動では \( L = \lambda_2 \)、3倍振動では \( L = \dfrac{3\lambda_3}{2} \) です。一般に \( L = n \times \dfrac{\lambda}{2} \) なので、次の式が成り立ちます。</p>
+$$ \lambda_n = \frac{2L}{n}, \qquad f_n = \frac{V}{\lambda_n} = \frac{nV}{2L} = n f_1 \qquad (n = 1,\ 2,\ 3,\ \dots) $$
+<p class="small">L：気柱の長さ〔m〕、V：音の速さ〔m/s〕、λ：波長〔m〕、f：振動数〔Hz〕</p>
+<p>開管では、基本振動の<strong>整数倍の振動数の振動がすべて</strong>起こります。式の形は両端が節の弦（物基-051）と同じです。端が「両端とも節」でも「両端とも腹」でも、半波長が整数個入るという点は同じだからです。</p>
+<div class="table-wrap"><table>
+  <tr><th>開管 L＝0.50 m、V＝340 m/s</th><th>気柱の長さと波長</th><th>波長</th><th>振動数</th></tr>
+  <tr><td>基本振動（n＝1）</td><td>L＝λ／2</td><td>1.00 m</td><td>340 Hz</td></tr>
+  <tr><td>2倍振動（n＝2）</td><td>L＝λ</td><td>0.50 m</td><td>680 Hz</td></tr>
+  <tr><td>3倍振動（n＝3）</td><td>L＝3λ／2</td><td>0.33 m</td><td>1020 Hz</td></tr>
+</table></div>
+<div class="box example worked">
+  <p class="box-title">例題1　開管の固有振動数</p>
+  <p>長さ 0.34 m の開管があります。音の速さを 340 m/s として、基本振動と2倍振動の振動数を求めなさい。</p>
+  <div class="step">ステップ1：開管は両端が腹。基本振動では、腹と腹の間に節が1つだけあり、\( L = \dfrac{\lambda_1}{2} \)（図2のいちばん上）。</div>
+  <div class="step">ステップ2：\( \lambda_1 = 2L = 2 \times 0.34 = 0.68 \) m。\( f_1 = \dfrac{V}{\lambda_1} = \dfrac{340}{0.68} = 500 \) Hz。</div>
+  <div class="step">ステップ3：2倍振動は \( f_2 = 2f_1 = 1000 \) Hz（\( \lambda_2 = L = 0.34 \) m から \( 340 \div 0.34 = 1000 \) Hz としても同じ）。<br>答え：基本振動 500 Hz、2倍振動 1000 Hz。</div>
+</div>
+<div class="box caution">
+  <p class="box-title">よくある間違い</p>
+  <p>開管の基本振動を「L＝λ」としてしまう誤りがよくあります。両端が腹なので、腹から腹まで（間に節が1つ）が半波長です。図を描いて、L に λ／2 が何個入るかを数えましょう。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="閉管の固有振動"><span class="num">5</span>閉管の固有振動：奇数倍の振動だけが起こる</h2>
+<p>一端が閉じた管を<strong>閉管</strong>といいます。閉管では閉じた端が節、開いた端が腹です。腹と節の間隔は λ／4 なので、気柱の長さ L には<strong>λ／4 がちょうど奇数個</strong>入ります（図3）。</p>
+<figure>
+  <svg viewBox="0 0 520 292" role="img" aria-label="図3：左端が開き右端が閉じた閉管の固有振動。上から基本振動（L＝λ／4）、3倍振動（L＝3λ／4）、5倍振動（L＝5λ／4）。開いた端は腹、閉じた端は節。">
+    <g class="fig-thin"><line x1="60" y1="20" x2="380" y2="20"/><line x1="60" y1="80" x2="380" y2="80"/><line x1="60" y1="115" x2="380" y2="115"/><line x1="60" y1="175" x2="380" y2="175"/><line x1="60" y1="210" x2="380" y2="210"/><line x1="60" y1="270" x2="380" y2="270"/></g>
+    <g class="fig-wall"><line x1="380" y1="18" x2="380" y2="82"/><line x1="380" y1="113" x2="380" y2="177"/><line x1="380" y1="208" x2="380" y2="272"/></g>
+    <path d="M60 24 L76 24.1 L92 24.3 L108 24.7 L124 25.3 L140 26 L156 26.8 L172 27.8 L188 29 L204 30.2 L220 31.6 L236 33.1 L252 34.7 L268 36.4 L284 38.2 L300 40.1 L316 42 L332 43.9 L348 45.9 L364 48 L380 50" class="fig-env"/>
+    <path d="M60 76 L76 75.9 L92 75.7 L108 75.3 L124 74.7 L140 74 L156 73.2 L172 72.2 L188 71 L204 69.8 L220 68.4 L236 66.9 L252 65.3 L268 63.6 L284 61.8 L300 59.9 L316 58 L332 56.1 L348 54.1 L364 52 L380 50" class="fig-env" stroke-dasharray="6 4"/>
+    <circle cx="380" cy="50" r="4" class="fig-node"/>
+    <path d="M60 119 L68 119.2 L76 119.7 L84 120.6 L92 121.8 L100 123.4 L108 125.2 L116 127.4 L124 129.7 L132 132.3 L140 135.1 L148 137.9 L156 140.9 L164 144 L172 147 L180 150.1 L188 153 L196 155.9 L204 158.6 L212 161.1 L220 163.4 L228 165.4 L236 167.2 L244 168.6 L252 169.7 L260 170.5 L268 170.9 L276 171 L284 170.7 L292 170 L300 169 L308 167.7 L316 166 L324 164.1 L332 161.9 L340 159.4 L348 156.8 L356 154 L364 151.1 L372 148.1 L380 145" class="fig-env"/>
+    <path d="M60 171 L68 170.8 L76 170.3 L84 169.4 L92 168.2 L100 166.6 L108 164.8 L116 162.6 L124 160.3 L132 157.7 L140 154.9 L148 152.1 L156 149.1 L164 146 L172 143 L180 139.9 L188 137 L196 134.1 L204 131.4 L212 128.9 L220 126.6 L228 124.6 L236 122.8 L244 121.4 L252 120.3 L260 119.5 L268 119.1 L276 119 L284 119.3 L292 120 L300 121 L308 122.3 L316 124 L324 125.9 L332 128.1 L340 130.6 L348 133.2 L356 136 L364 138.9 L372 141.9 L380 145" class="fig-env" stroke-dasharray="6 4"/>
+    <circle cx="166.7" cy="145" r="4" class="fig-node"/><circle cx="380" cy="145" r="4" class="fig-node"/>
+    <path d="M60 214 L68 214.5 L76 216 L84 218.4 L92 221.6 L100 225.6 L108 230.1 L116 234.9 L124 240 L132 245.1 L140 249.9 L148 254.4 L156 258.4 L164 261.6 L172 264 L180 265.5 L188 266 L196 265.5 L204 264 L212 261.6 L220 258.4 L228 254.4 L236 249.9 L244 245.1 L252 240 L260 234.9 L268 230.1 L276 225.6 L284 221.6 L292 218.4 L300 216 L308 214.5 L316 214 L324 214.5 L332 216 L340 218.4 L348 221.6 L356 225.6 L364 230.1 L372 234.9 L380 240" class="fig-env"/>
+    <path d="M60 266 L68 265.5 L76 264 L84 261.6 L92 258.4 L100 254.4 L108 249.9 L116 245.1 L124 240 L132 234.9 L140 230.1 L148 225.6 L156 221.6 L164 218.4 L172 216 L180 214.5 L188 214 L196 214.5 L204 216 L212 218.4 L220 221.6 L228 225.6 L236 230.1 L244 234.9 L252 240 L260 245.1 L268 249.9 L276 254.4 L284 258.4 L292 261.6 L300 264 L308 265.5 L316 266 L324 265.5 L332 264 L340 261.6 L348 258.4 L356 254.4 L364 249.9 L372 245.1 L380 240" class="fig-env" stroke-dasharray="6 4"/>
+    <circle cx="124" cy="240" r="4" class="fig-node"/><circle cx="252" cy="240" r="4" class="fig-node"/><circle cx="380" cy="240" r="4" class="fig-node"/>
+    <text x="396" y="46" class="fig-text">基本振動</text><text x="396" y="64" class="fig-text">L ＝ λ／4</text>
+    <text x="396" y="141" class="fig-text">3倍振動</text><text x="396" y="159" class="fig-text">L ＝ 3λ／4</text>
+    <text x="396" y="236" class="fig-text">5倍振動</text><text x="396" y="254" class="fig-text">L ＝ 5λ／4</text>
+    <text x="60" y="288" text-anchor="middle" class="fig-small">腹（開いた端）</text><text x="380" y="288" text-anchor="middle" class="fig-small">節（閉じた端）</text>
+  </svg>
+  <figcaption>図3　閉管の固有振動（横波表示。●は節。右端が閉じた端、左端が開いた端）</figcaption>
+</figure>
+<p>図3から、基本振動では \( L = \dfrac{\lambda}{4} \)、次は \( L = \dfrac{3\lambda}{4} \)、その次は \( L = \dfrac{5\lambda}{4} \) です。一般に \( L = (2n-1) \times \dfrac{\lambda}{4} \) なので、</p>
+$$ \lambda = \frac{4L}{2n-1}, \qquad f = \frac{V}{\lambda} = \frac{(2n-1)V}{4L} \qquad (n = 1,\ 2,\ 3,\ \dots) $$
+<p>ここで n は<strong>振動数の小さいほうから数えた順番</strong>で、振動数は基本振動の (2n−1) 倍、つまり <strong>1倍・3倍・5倍…の奇数倍</strong>になります。閉管では2倍振動や4倍振動は起こりません。偶数倍の振動では L に半波長が整数個入ることになり、両端が「ともに腹」か「ともに節」になってしまって、「一方が節・他方が腹」という閉管の条件を満たせないからです。</p>
+<div class="table-wrap"><table>
+  <tr><th>閉管 L＝0.50 m、V＝340 m/s</th><th>気柱の長さと波長</th><th>波長</th><th>振動数</th></tr>
+  <tr><td>基本振動（n＝1）</td><td>L＝λ／4</td><td>2.00 m</td><td>170 Hz</td></tr>
+  <tr><td>3倍振動（n＝2）</td><td>L＝3λ／4</td><td>0.67 m</td><td>510 Hz</td></tr>
+  <tr><td>5倍振動（n＝3）</td><td>L＝5λ／4</td><td>0.40 m</td><td>850 Hz</td></tr>
+</table></div>
+<div class="box point">
+  <p class="box-title">導入の答え</p>
+  <p>同じ長さ 0.50 m で比べると、開管の基本振動数は 340 Hz、閉管は 170 Hz で、<strong>閉管の基本振動数は開管の2分の1</strong>です（開口端補正を考えないとき）。ストローの端をふさぐと、およそ半分の振動数の低い音になります。また、水を入れた試験管は水面が閉じた端の閉管です。水を増やすと気柱が短くなって λ＝4L が短くなるので、\( f = \dfrac{V}{4L} \) が大きくなり、音は高くなります。</p>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2　閉管の固有振動数</p>
+  <p>長さ 0.25 m の閉管があります。音の速さを 340 m/s として、基本振動の振動数と、その次に振動数が小さい2つの固有振動の振動数を求めなさい。</p>
+  <div class="step">ステップ1：閉じた端が節、開いた端が腹なので、基本振動では \( L = \dfrac{\lambda_1}{4} \)。\( \lambda_1 = 4L = 4 \times 0.25 = 1.00 \) m。</div>
+  <div class="step">ステップ2：\( f_1 = \dfrac{V}{\lambda_1} = \dfrac{340}{1.00} = 340 \) Hz。</div>
+  <div class="step">ステップ3：閉管で起こるのは奇数倍の振動だけなので、次は3倍振動 \( 3 \times 340 = 1020 \) Hz、その次は5倍振動 \( 5 \times 340 = 1700 \) Hz。2倍の 680 Hz の振動は起こらない。<br>答え：340 Hz、1020 Hz、1700 Hz。</div>
+</div>
+<div class="box caution">
+  <p class="box-title">よくある間違い</p>
+  <p>①式の n を「n倍振動」と読み違える誤り。閉管で n＝2 は「2倍振動」ではなく、<strong>3倍振動</strong>（2番目の固有振動）です。「○倍振動」と問われたら、振動数が基本振動の何倍かで考えましょう。</p>
+  <p>②閉管の基本振動を「L＝λ／2」とする誤り。開いた端（腹）から閉じた端（節）までは λ／4 です。</p>
+</div>
+<div class="widget" id="air-widget">
+  <p><strong>動かして確かめよう：気柱の固有振動</strong>　管の種類・振動の順番・長さを変えて、空気の動き（上）と横波表示（下）を見比べましょう。粒が集まるところ（密）と広がるところ（疎）が、どの位置にできるかにも注目します。</p>
+  <div class="w-row"><label for="aw-type">管の種類</label>
+    <select id="aw-type"><option value="open">開管（両端が開いている）</option><option value="closed">閉管（右端が閉じている）</option></select></div>
+  <div class="w-row"><label for="aw-m">振動の順番</label><input type="range" id="aw-m" min="1" max="4" step="1" value="1"><output id="aw-m-out">基本振動</output></div>
+  <div class="w-row"><label for="aw-L">気柱の長さ L</label><input type="range" id="aw-L" min="0.2" max="1" step="0.01" value="0.5"><output id="aw-L-out">0.50 m</output></div>
+  <div class="w-row"><label><input type="checkbox" id="aw-anim" checked> 空気の動きを動かす（実際の振動よりずっとゆっくり表示）</label></div>
+  <svg id="aw-svg" viewBox="0 0 600 262" role="img" aria-label="操作できる図：気柱の固有振動。上は管の中の空気の粒の動き、下は横波表示の定在波。">
+    <g id="aw-tube"></g><g id="aw-dots"></g><g id="aw-wave"></g>
+  </svg>
+  <p id="aw-text" aria-live="polite"></p>
+  <p class="small">図の横の長さは 1.00 m＝500 目盛りの縮尺で、L に比例して描いています。音の速さは 340 m/s としています。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="共鳴と開口端補正"><span class="num">6</span>共鳴と開口端補正：実験データから音の速さを求める</h2>
+<h3>気柱の共鳴</h3>
+<p>管口の近くで振動数 f の音を鳴らすと、f が気柱の固有振動数のどれかと一致したときに、気柱の定在波が大きく成長して管が大きく鳴ります。これが<strong>気柱の共鳴</strong>です（物基-052 の実験）。固有振動数と同じ振動数の振動を受けて大きく振動する現象（共振・共鳴）は、次の時間（物基-054）でさらに学びます。</p>
+<p>気柱共鳴管（水面の高さで気柱の長さを変えられる閉管）で、振動数 f のおんさを鳴らしながら水面を下げていくと、気柱が長くなるにつれて、ある長さ L₁、L₂、L₃、… で共鳴が起こります。音源の振動数が一定なので波長 λ も一定で、気柱の長さのほうを変えて「λ／4 が奇数個入る」条件に合わせていることになります。</p>
+<h3>開口端補正</h3>
+<p>実際の気柱では、開いた端の腹は管口ぴったりではなく、<strong>管口よりわずかに外側</strong>にできます。このずれ Δ を<strong>開口端補正</strong>といいます。開口端補正は管の太さなどによって決まり、同じ管では一定とみなして扱います。</p>
+<p>開口端補正を考えると、閉管の基本振動では \( L + \Delta = \dfrac{\lambda}{4} \)、開管では両端に補正が入って \( L + 2\Delta = \dfrac{\lambda}{2} \) になります。このため、長さ L から計算した \( \dfrac{V}{4L} \) より、実際の閉管の基本振動数はわずかに小さくなります。</p>
+<figure>
+  <svg viewBox="0 0 460 400" role="img" aria-label="図4：気柱共鳴管の1回目と2回目の共鳴。左は水面までの長さ L1＝16.0 cm で、腹から水面まで λ／4。右は L2＝50.0 cm で、腹から水面まで 3λ／4。腹は管口より Δ だけ上にある。L2−L1 は λ／2。">
+    <defs>
+      <marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>
+    </defs>
+    <text x="230" y="16" text-anchor="middle" class="fig-small">振動数 500 Hz のおんさを管口に近づける</text>
+    <g class="fig-line"><path d="M120 24 L120 44 Q130 52 140 44 L140 24"/><path d="M320 24 L320 44 Q330 52 340 44 L340 24"/></g>
+    <rect x="111" y="148" width="38" height="230" class="fig-water"/>
+    <rect x="311" y="335" width="38" height="43" class="fig-water"/>
+    <g class="fig-line"><line x1="110" y1="60" x2="110" y2="379"/><line x1="150" y1="60" x2="150" y2="379"/><line x1="110" y1="379" x2="150" y2="379"/><line x1="310" y1="60" x2="310" y2="379"/><line x1="350" y1="60" x2="350" y2="379"/><line x1="310" y1="379" x2="350" y2="379"/></g>
+    <line x1="110" y1="148" x2="150" y2="148" class="fig-line"/><line x1="310" y1="335" x2="350" y2="335" class="fig-line"/>
+    <text x="130" y="262" text-anchor="middle" class="fig-small">水</text><text x="330" y="362" text-anchor="middle" class="fig-small">水</text>
+    <path d="M146 54.5 L145.9 62.3 L145.5 70.1 L144.8 77.9 L143.9 85.7 L142.7 93.5 L141.3 101.2 L139.7 109 L138 116.8 L136.1 124.6 L134.1 132.4 L132.1 140.2 L130 148" class="fig-env"/>
+    <path d="M114 54.5 L114.1 62.3 L114.5 70.1 L115.2 77.9 L116.1 85.7 L117.3 93.5 L118.7 101.2 L120.3 109 L122 116.8 L123.9 124.6 L125.9 132.4 L127.9 140.2 L130 148" class="fig-env" stroke-dasharray="6 4"/>
+    <path d="M346 54.5 L345.8 63.9 L345.2 73.2 L344.3 82.5 L342.9 91.9 L341.3 101.2 L339.4 110.6 L337.3 120 L334.9 129.3 L332.5 138.7 L330 148 L327.5 157.3 L325.1 166.7 L322.7 176.1 L320.6 185.4 L318.7 194.8 L317.1 204.1 L315.7 213.4 L314.8 222.8 L314.2 232.2 L314 241.5 L314.2 250.8 L314.8 260.2 L315.7 269.6 L317.1 278.9 L318.7 288.2 L320.6 297.6 L322.7 306.9 L325.1 316.3 L327.5 325.6 L330 335" class="fig-env"/>
+    <path d="M314 54.5 L314.2 63.9 L314.8 73.2 L315.7 82.5 L317.1 91.9 L318.7 101.2 L320.6 110.6 L322.7 120 L325.1 129.3 L327.5 138.7 L330 148 L332.5 157.3 L334.9 166.7 L337.3 176.1 L339.4 185.4 L341.3 194.8 L342.9 204.1 L344.3 213.4 L345.2 222.8 L345.8 232.2 L346 241.5 L345.8 250.8 L345.2 260.2 L344.3 269.6 L342.9 278.9 L341.3 288.2 L339.4 297.6 L337.3 306.9 L334.9 316.3 L332.5 325.6 L330 335" class="fig-env" stroke-dasharray="6 4"/>
+    <circle cx="130" cy="148" r="4" class="fig-node"/><circle cx="330" cy="148" r="4" class="fig-node"/><circle cx="330" cy="335" r="4" class="fig-node"/>
+    <line x1="96" y1="54.5" x2="364" y2="54.5" class="fig-acc" stroke-dasharray="3 3"/>
+    <line x1="60" y1="60" x2="364" y2="60" class="fig-thin" stroke-dasharray="2 2"/>
+    <text x="92" y="50" text-anchor="end" class="fig-small">腹の位置</text>
+    <text x="92" y="72" text-anchor="end" class="fig-small">管口</text>
+    <text x="232" y="47" text-anchor="middle" class="fig-small">Δ（開口端補正）＝ 1.0 cm</text>
+    <g class="fig-line" marker-start="url(#a4)" marker-end="url(#a4)"><line x1="172" y1="61" x2="172" y2="147"/><line x1="378" y1="61" x2="378" y2="334"/><line x1="292" y1="149" x2="292" y2="334"/></g>
+    <text x="178" y="100" class="fig-text">L₁ ＝ 16.0 cm</text>
+    <text x="178" y="118" class="fig-small">（腹から水面まで λ／4）</text>
+    <text x="384" y="196" class="fig-text">L₂ ＝</text>
+    <text x="384" y="214" class="fig-text">50.0 cm</text>
+    <text x="286" y="238" text-anchor="end" class="fig-text">L₂ − L₁</text>
+    <text x="286" y="256" text-anchor="end" class="fig-text">＝ λ／2</text>
+    <text x="130" y="396" text-anchor="middle" class="fig-small">1回目の共鳴</text>
+    <text x="330" y="396" text-anchor="middle" class="fig-small">2回目の共鳴</text>
+  </svg>
+  <figcaption>図4　気柱共鳴管の共鳴（学習用の架空のデータ：f＝500 Hz、L₁＝16.0 cm、L₂＝50.0 cm、Δ＝1.0 cm。縦方向は実際の比率で描いた横波表示。●は節）</figcaption>
+</figure>
+<p>図4のように、1回目と2回目の共鳴の長さの差 \( L_2 - L_1 \) は、ちょうど半波長 \( \dfrac{\lambda}{2} \) です。この引き算では Δ が消えるので、波長は \( \lambda = 2(L_2 - L_1) \) で求めるのが確実です。</p>
+<div class="box experiment">
+  <p class="box-title">実験：共鳴する気柱の長さから音の速さと開口端補正を求める（物基-052 の結果の整理）</p>
+  <p><strong>目的</strong>　振動数の分かっているおんさを使い、共鳴する気柱の長さから、音の波長・音の速さ・開口端補正を求める。</p>
+  <p><strong>方法</strong></p>
+  <ol>
+    <li>気柱共鳴管に水を入れ、水だめ（ゴム管で管とつながった水の容器）を上下させて、水面を管口の近くまで上げる。</li>
+    <li>おんさを専用のハンマー（ゴム球）でたたいて鳴らし、管口に近づける。</li>
+    <li>水面を少しずつ下げ、音が最も大きく聞こえる水面の位置を探して、管口からの距離 L₁ を読む。</li>
+    <li>さらに水面を下げ、2回目に共鳴する位置 L₂ を読む。</li>
+    <li>同じ測定を数回くり返して平均する。音の速さは気温によって少し変わるので、気温も記録しておく。</li>
+  </ol>
+  <p><strong>結果の読み取り</strong>（学習用の架空のデータ）</p>
+  <div class="table-wrap"><table>
+    <tr><th>おんさの振動数 f</th><th>1回目の共鳴 L₁</th><th>2回目の共鳴 L₂</th></tr>
+    <tr><td>500 Hz</td><td>16.0 cm</td><td>50.0 cm</td></tr>
+  </table></div>
+  <p><strong>安全のために</strong>　ガラス管はスタンドにしっかり固定し、倒したりぶつけたりしない（割れたときは素手で触らず、先生に知らせる）。こぼれた水はすぐにふき取る（滑る・電気器具をぬらす原因になる）。おんさは硬い物でたたかない（おんさを傷めないため）。耳のすぐ近くで大きな音を長く聞き続けない。</p>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3　共鳴の実験データを読む</p>
+  <p>上の実験の結果（f＝500 Hz、L₁＝16.0 cm、L₂＝50.0 cm）から、(1) 音の波長、(2) 音の速さ、(3) 開口端補正、(4) 3回目に共鳴が起こる気柱の長さ、を求めなさい。</p>
+  <div class="step">ステップ1：共鳴する長さの差は半波長。\( \dfrac{\lambda}{2} = L_2 - L_1 = 50.0 - 16.0 = 34.0 \) cm より、\( \lambda = 68.0 \) cm ＝ 0.680 m。</div>
+  <div class="step">ステップ2：\( V = f\lambda = 500 \times 0.680 = 340 \) m/s。</div>
+  <div class="step">ステップ3：1回目の共鳴では腹から水面までが λ／4。\( L_1 + \Delta = \dfrac{\lambda}{4} = 17.0 \) cm より \( \Delta = 17.0 - 16.0 = 1.0 \) cm。</div>
+  <div class="step">ステップ4：共鳴は半波長ごとに起こるので \( L_3 = L_2 + \dfrac{\lambda}{2} = 50.0 + 34.0 = 84.0 \) cm。<br>答え：(1) 0.680 m　(2) 340 m/s　(3) 1.0 cm　(4) 84.0 cm</div>
+</div>
+<div class="box caution">
+  <p class="box-title">よくある間違い</p>
+  <p>1回目の共鳴だけを使って「L₁＝λ／4」とし、λ＝4L₁＝64.0 cm とすると、開口端補正の分だけ波長を短く見積もり、音の速さも 500×0.640＝320 m/s と小さく出てしまいます。開口端補正があるときは、共鳴する長さの差を使いましょう。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>気柱</dt><dd>管の中の空気の柱。管の中を進む音波とその反射波が重なって定在波ができる。</dd>
+    <dt>開管</dt><dd>両端が開いた管。両端が変位の腹になり、λ＝2L／n。基本振動の整数倍の振動がすべて起こる。</dd>
+    <dt>閉管</dt><dd>一端が閉じた管。閉じた端が変位の節、開いた端が腹になり、λ＝4L／(2n−1)。基本振動の奇数倍の振動だけが起こる。</dd>
+    <dt>開口端補正</dt><dd>開いた端の腹が管口よりわずかに外側にできることによるずれ Δ。閉管の基本振動では L＋Δ＝λ／4。</dd>
+    <dt>固有振動・固有振動数</dt><dd>気柱の長さと端の条件で決まる特有の振動のしかたと、その振動数。</dd>
+    <dt>基本振動・倍振動</dt><dd>振動数の最も小さい固有振動と、その整数倍の振動数をもつ固有振動（2倍振動・3倍振動など）。</dd>
+    <dt>変位の腹・節</dt><dd>定在波で最も大きく振動する点と、全く振動しない点。気柱では空気の変位についていう。</dd>
+    <dt>気柱の共鳴</dt><dd>音源の振動数が気柱の固有振動数と一致したとき、気柱が大きく振動して音が大きく鳴る現象。</dd>
+    <dt>横波表示</dt><dd>縦波の変位を90°回して、横波のように描く表し方。右向きの変位を上向きに描く。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>気柱には、管の端で反射した音波との重ね合わせで定在波ができる。閉じた端は変位の節、開いた端は変位の腹（O1）。</li>
+    <li>開管：L に半波長が n 個入る。λ＝2L／n、f＝nV／(2L)。基本振動の整数倍の振動がすべて起こる（O2）。</li>
+    <li>閉管：L に λ／4 が奇数個入る。λ＝4L／(2n−1)、f＝(2n−1)V／(4L)。奇数倍の振動だけが起こり、同じ長さなら基本振動数は開管の半分（O3）。</li>
+    <li>音源の振動数が固有振動数と一致すると気柱が共鳴する。開いた端の腹は管口より Δ（開口端補正）だけ外側にある。共鳴する長さの差 L₂−L₁＝λ／2 を使うと Δ が消える（O4）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">開管（両端が腹）</span>$$ \lambda_n = \frac{2L}{n},\quad f_n = \frac{nV}{2L} $$</div>
+  <div><span class="f-name">閉管（閉じた端が節、開いた端が腹）</span>$$ \lambda = \frac{4L}{2n-1},\quad f = \frac{(2n-1)V}{4L} $$</div>
+  <div><span class="f-name">共鳴管の実験（開口端補正 Δ）</span>$$ L_1 + \Delta = \frac{\lambda}{4},\quad L_2 - L_1 = \frac{\lambda}{2} $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。音の速さは特に断りのない限り 340 m/s とし、開口端補正は問題文にない限り考えない。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>閉管の気柱に定在波ができているとき、閉じた端と開いた端は、それぞれ空気の変位の腹・節のどちらになりますか。</p>
+  <div class="choices">
+    <button>閉じた端：腹　開いた端：節</button>
+    <button data-correct="true">閉じた端：節　開いた端：腹</button>
+    <button>閉じた端：節　開いた端：節</button>
+    <button>閉じた端：腹　開いた端：腹</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">閉じた端では空気が壁より先へ動けないので変位は 0（節）、開いた端では空気が自由に動けるので腹です。「閉じた端が腹」は、壁の近くで圧力が大きく変わることと変位とを混同した誤りです。両端が節（または腹）になるのは、弦（両端が節）や開管（両端が腹）の場合です。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="200|200Hz|200ヘルツ">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>長さ 0.85 m の開管の基本振動の振動数は何 Hz ですか（数値で）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">開管の基本振動は L＝λ／2 なので、\( \lambda = 2L = 1.70 \) m。\( f = \dfrac{340}{1.70} = 200 \) Hz。100 Hz と答えた人は閉管の式（λ＝4L）を使っています。400 Hz と答えた人は L＝λ としています。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="500|500Hz|500ヘルツ">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>長さ 0.17 m の閉管の基本振動の振動数は何 Hz ですか（数値で）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">閉管の基本振動は L＝λ／4 なので、\( \lambda = 4L = 0.68 \) m。\( f = \dfrac{340}{0.68} = 500 \) Hz。1000 Hz は開管の式（λ＝2L）を使った値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>ある閉管の基本振動数は 200 Hz です。この閉管で起こりうる固有振動の振動数を、次から一つ選びなさい。</p>
+  <div class="choices">
+    <button>300 Hz</button>
+    <button>400 Hz</button>
+    <button>800 Hz</button>
+    <button data-correct="true">600 Hz</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">閉管では基本振動の奇数倍（200 Hz、600 Hz、1000 Hz、…）だけが起こります。600 Hz は3倍振動です。400 Hz・800 Hz は偶数倍（2倍・4倍）なので閉管では起こりません（開管なら起こります）。300 Hz は整数倍ですらありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2・O3</span></div>
+  <p>長さの等しい開管と閉管があります。閉管の基本振動数は、開管の基本振動数の何倍ですか。</p>
+  <div class="choices">
+    <button data-correct="true">2分の1倍</button>
+    <button>4分の1倍</button>
+    <button>2倍</button>
+    <button>4倍</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">開管の基本振動は λ＝2L、閉管は λ＝4L。閉管の波長は2倍なので、振動数 f＝V／λ は2分の1倍です。2倍と答えた人は、波長と振動数の反比例の関係を逆にしています。4分の1倍は、開管の基本振動を「L＝λ」（λ＝L）としてしまった場合の値で、4倍はさらにそれを逆にした値です。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="340|340m/s|3.4×10^2|3.4×10²|3.4×10^2m/s">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O4</span></div>
+  <p>振動数 850 Hz のおんさを気柱共鳴管の管口で鳴らし、水面を下げながら気柱の長さ L と音の大きさの関係を調べたところ、下のグラフのようになりました（学習用の架空のデータ）。グラフから共鳴する長さを読み取り、このときの音の速さを求めなさい（単位 m/s、数値で）。</p>
+  <figure>
+    <svg viewBox="0 0 460 252" role="img" aria-label="問6のグラフ：横軸は気柱の長さ0から40センチメートル、縦軸は音の大きさ（相対値）。L＝9.4センチメートルと29.4センチメートルで鋭い山がある。">
+      <g class="fig-thin">
+        <line x1="97.5" y1="30" x2="97.5" y2="210"/><line x1="145" y1="30" x2="145" y2="210"/><line x1="192.5" y1="30" x2="192.5" y2="210"/><line x1="240" y1="30" x2="240" y2="210"/><line x1="287.5" y1="30" x2="287.5" y2="210"/><line x1="335" y1="30" x2="335" y2="210"/><line x1="382.5" y1="30" x2="382.5" y2="210"/><line x1="430" y1="30" x2="430" y2="210"/>
+      </g>
+      <g class="fig-line"><line x1="50" y1="210" x2="436" y2="210"/><line x1="50" y1="210" x2="50" y2="24"/></g>
+      <g class="fig-small" text-anchor="middle">
+        <text x="50" y="226">0</text><text x="97.5" y="226">5</text><text x="145" y="226">10</text><text x="192.5" y="226">15</text><text x="240" y="226">20</text><text x="287.5" y="226">25</text><text x="335" y="226">30</text><text x="382.5" y="226">35</text><text x="430" y="226">40</text>
+      </g>
+      <text x="240" y="246" text-anchor="middle" class="fig-small">気柱の長さ L〔cm〕</text>
+      <text x="18" y="120" text-anchor="middle" class="fig-small" transform="rotate(-90 18 120)">音の大きさ（相対値）</text>
+      <path d="M50 198.1 L59.5 197.7 L69 197.1 L78.5 196.3 L88 195 L97.5 192.7 L107 188.4 L110.8 185.5 L112.7 183.6 L114.6 181.3 L116.5 178.6 L118.4 175.1 L120.3 170.9 L122.2 165.5 L124.1 158.6 L126 149.8 L127.9 138.3 L129.8 123.4 L131.7 104.5 L133.6 81.8 L135.5 57.5 L137.4 37.5 L139.3 29.5 L141.2 37.5 L143.1 57.5 L145 81.7 L146.9 104.5 L148.8 123.3 L150.7 138.2 L152.6 149.7 L154.5 158.5 L156.4 165.4 L158.3 170.8 L160.2 175 L162.1 178.4 L164 181.2 L165.9 183.4 L167.8 185.3 L173.5 189.3 L183 193 L192.5 194.9 L202 196 L211.5 196.6 L221 197 L230.5 197.2 L240 197.2 L249.5 197.1 L259 196.8 L268.5 196.2 L278 195.2 L287.5 193.5 L297 190 L300.8 187.6 L302.7 186.1 L304.6 184.2 L306.5 182 L308.4 179.2 L310.3 175.7 L312.2 171.3 L314.1 165.7 L316 158.4 L317.9 149 L319.8 136.8 L321.7 121.3 L323.6 102.7 L325.5 82.8 L327.4 66.4 L329.3 59.8 L331.2 66.4 L333.1 82.8 L335 102.7 L336.9 121.3 L338.8 136.8 L340.7 149 L342.6 158.5 L344.5 165.7 L346.4 171.3 L348.3 175.7 L350.2 179.2 L352.1 182 L354 184.3 L355.9 186.2 L357.8 187.7 L363.5 191 L373 194 L382.5 195.6 L392 196.5 L401.5 197.1 L411 197.4 L420.5 197.5 L430 197.6" class="fig-env"/>
+      <g class="fig-acc" stroke-dasharray="4 3"><line x1="139.3" y1="30" x2="139.3" y2="210"/><line x1="329.3" y1="60" x2="329.3" y2="210"/></g>
+      <text x="145" y="22" class="fig-small">L＝9.4 cm</text>
+      <text x="335" y="52" class="fig-small">L＝29.4 cm</text>
+    </svg>
+    <figcaption>問6の図　気柱の長さと音の大きさ（学習用の架空のデータ）</figcaption>
+  </figure>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">山の位置が共鳴する長さで、L₁＝9.4 cm、L₂＝29.4 cm。\( \dfrac{\lambda}{2} = 29.4 - 9.4 = 20.0 \) cm より \( \lambda = 40.0 \) cm ＝ 0.400 m。\( V = f\lambda = 850 \times 0.400 = 340 \) m/s。L₁ だけを使って λ＝4×9.4＝37.6 cm とすると、V＝約 320 m/s と小さく出てしまいます（開口端補正の分）。なお、開口端補正は \( \Delta = \dfrac{\lambda}{4} - L_1 = 10.0 - 9.4 = 0.6 \) cm です。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="49.4|49.4cm">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O4</span></div>
+  <p>問6の実験で水面をさらに下げていくと、3回目の共鳴が起こるのは気柱の長さが何 cm のときですか（数値で）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">共鳴は半波長（20.0 cm）ごとに起こるので、\( L_3 = L_2 + \dfrac{\lambda}{2} = 29.4 + 20.0 = 49.4 \) cm。「L₃＝5L₁＝47.0 cm」とすると、開口端補正を無視した誤りになります（正しくは \( L_3 + \Delta = \dfrac{5\lambda}{4} \)）。</div>
+</div>
+
+<div class="q" data-type="input" id="q8" data-accept="0.90|0.9|0.90m|0.9m|90cm">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2・O3</span></div>
+  <p>長さ 0.60 m の開管 A の基本振動の振動数と、閉管 B の3倍振動の振動数が等しくなりました。閉管 B の長さは何 m ですか（数値で）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">A の基本振動数は \( \dfrac{V}{2 \times 0.60} \)。B の3倍振動（L＝3λ／4）の振動数は \( \dfrac{3V}{4L_B} \)。等しいとおくと \( \dfrac{3}{4L_B} = \dfrac{1}{1.20} \) より \( L_B = 0.90 \) m（振動数はどちらも約 283 Hz）。「3倍振動」を閉管の式の n＝3（実際は5倍振動）と読み違えると 1.50 m という誤った答えになります。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O3</span></div>
+  <p>試験管に水を入れて口を吹くと音が出ます。水を増やすほど音が高くなる理由を、気柱にできる定在波の端の条件と、波長・振動数の関係を用いて説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model"><p><strong>解答例</strong>　試験管の中の気柱は、水面が閉じた端（変位の節）、口が開いた端（変位の腹）の閉管である。基本振動では気柱の長さ L が波長の4分の1なので λ＝4L となる。水を増やすと L が短くなり、λ も短くなる。音の速さ V は変わらないので、振動数 f＝V／λ＝V／(4L) は大きくなり、音が高くなる。</p><p><strong>採点の観点</strong>　①水面が節・口が腹の閉管であることを示している　②基本振動で L＝λ／4（λ＝4L）であることを示している　③音の速さが一定で f＝V／λ から振動数を判断している　④L が短くなると振動数が大きくなる（音が高くなる）と結論している。</p></div>
+  <div class="explain">「水が増えると空気が少なくなるから高くなる」だけでは、定在波の条件と波長・振動数の関係を使った説明になりません。端の条件 → 波長 → 振動数、の順につなげることが大切です。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="choice" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O4</span></div>
+  <p>長さ L の閉管の基本振動数を、開口端補正を考えずに \( \dfrac{V}{4L} \) と計算しました。開口端補正 Δ を考えると、実際の基本振動数はこの値と比べてどうなりますか。</p>
+  <div class="choices">
+    <button>大きくなる</button>
+    <button>変わらない</button>
+    <button data-correct="true">小さくなる</button>
+    <button>Δ の大きさによって大きくも小さくもなる</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">腹が管口より Δ だけ外側にできるので、実際には \( L + \Delta = \dfrac{\lambda}{4} \) で、波長は 4L より長くなります。音の速さは同じなので振動数は \( \dfrac{V}{4(L+\Delta)} \) となり、\( \dfrac{V}{4L} \) より小さくなります（例：L＝0.50 m、Δ＝0.010 m なら 170 Hz が約 167 Hz）。Δ は正の量なので、大きくなることはなく、Δ の大きさで向きが変わることもありません。「変わらない」は、腹が管口より外にずれて波長が長くなることを見落とした答えです。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（出題科目『物理基礎／化学基礎／生物基礎／地学基礎』の出題範囲「物理基礎」）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、『物理基礎／化学基礎／生物基礎／地学基礎』は「物理基礎」「化学基礎」「生物基礎」「地学基礎」の4つを出題範囲とし、そのうち2つを選択解答する（配点は各50点）とされています。この時間の内容は科目「物理基礎」の内容（学習指導要領 (2)ア(ア)㋑ 音と振動）なので、出題範囲「物理基礎」に含まれます。</p>
+  <p>令和9年度の問題作成方針は、この出題科目について「基本的な概念や原理・法則の理解を問う問題とともに，日常生活や社会の身近な課題等について科学的に探究する問題や，得られたデータを整理する過程などにおいて数学的な手法等を用いる問題などを含めて検討する」としています。この時間で学んだ、楽器や試験管の音を定在波で説明すること、共鳴実験のデータから波長や音の速さを求める手順は、この方針に書かれた力に結び付く学習です（実際の出題の形式や分量を示すものではありません）。</p>
+  <p>個別試験（大学ごとの試験）の出題範囲は大学によって異なるため、志望する大学の募集要項で確かめてください。また、科目「物理」では、この内容をもとに音の干渉やドップラー効果（物理-058〜物理-061）を学びます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">音波の性質：反射・共振・共鳴（物基-054）</p>
+  <p>この時間は、気柱の共鳴を「音源の振動数＝気柱の固有振動数」として扱いました。次の時間は、おんさどうしの共鳴や物体の共振など、<strong>固有振動数と同じ振動数の振動を受けて大きく振動する現象</strong>を一般的にとらえ、音波の反射も学びます。その次の 物基-055 では、振動数がわずかに違う2つの音が重なって生じるうなりを学びます。</p>
+  <p class="small">この時間では扱わないこと：共振・共鳴の一般的な説明と音波の反射（物基-054）、うなり（物基-055）、音の干渉（物理-058）。開口端補正の大きさを管の太さから求める式は扱いません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>物基-052　実験：気柱の共鳴</div>
+  <div><span class="label">次の時間</span>物基-054　音波の性質：反射・共振・共鳴</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_butsuri/物基-053「気柱の振動（開管・閉管）」（学習指導要領 (2)ア(ア)㋑、解説 p.54-55）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第5節 理科 第2款 第2「物理基礎」2(2)ア(ア)㋑・3(2)イ（文部科学省）<a href="https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf">https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</a></li>
+    <li>高等学校学習指導要領（平成30年告示）解説 理科編 理数編 p.54-55「㋑ 音と振動について」（文部科学省）<a href="https://www.mext.go.jp/content/20250311-mxt_kyoiku02-100002620_05.pdf">https://www.mext.go.jp/content/20250311-mxt_kyoiku02-100002620_05.pdf</a></li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項（独立行政法人大学入試センター）<a href="https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00017382.pdf">https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00017382.pdf</a></li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針（独立行政法人大学入試センター）「5．理科」<a href="https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00005361.pdf">https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00005361.pdf</a></li>
+    <li>東京書籍『改訂 物理基礎』シラバス案（令和8年度用）：語句（開管・閉管・開口端補正）が教科書本文で扱われることの確認 <a href="https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108430/rika_16738_syllabus.pdf">https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108430/rika_16738_syllabus.pdf</a></li>
+  </ul>
+  <p>作成：2026-09-29　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。実験の数値とグラフは学習用の架空のデータです。音の速さは室温程度の空気中のおよその値 340 m/s を用いています。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var V = 340, X0 = 50, SC = 500, YT = 26, YB = 106, YW = 186, AMP = 44, DMAX = 7;
+  var NS = "http://www.w3.org/2000/svg";
+  var svg = document.getElementById("aw-svg");
+  if (!svg) return;
+  var typeIn = document.getElementById("aw-type");
+  var mIn = document.getElementById("aw-m");
+  var LIn = document.getElementById("aw-L");
+  var animIn = document.getElementById("aw-anim");
+  var gT = document.getElementById("aw-tube");
+  var gD = document.getElementById("aw-dots");
+  var gW = document.getElementById("aw-wave");
+  var mOut = document.getElementById("aw-m-out");
+  var LOut = document.getElementById("aw-L-out");
+  var txt = document.getElementById("aw-text");
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) animIn.checked = false;
+  var dots = [], curve = null, st = null, raf = null, t0 = null;
+
+  function el(name, attrs, parent) {
+    var e = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function label(x, y, s, anchor, parent) {
+    var t = el("text", { x: x, y: y, "text-anchor": anchor || "middle", "class": "fig-small" }, parent);
+    t.textContent = s;
+  }
+  function params() {
+    var closed = typeIn.value === "closed";
+    var m = parseInt(mIn.value, 10);
+    var L = parseFloat(LIn.value);
+    var mult = closed ? 2 * m - 1 : m;
+    var lam = (closed ? 4 : 2) * L / mult;
+    return { closed: closed, mult: mult, L: L, lam: lam, f: V / lam, k: 2 * Math.PI / (lam * SC), len: L * SC };
+  }
+  function amp(x) { return Math.cos(st.k * (x - X0)); }
+  function fix2(x) { return (Math.round(x * 100 + 1e-9) / 100).toFixed(2); }
+  function build() {
+    st = params();
+    var xe = X0 + st.len;
+    gT.textContent = ""; gD.textContent = ""; gW.textContent = "";
+    el("line", { x1: X0, y1: YT, x2: xe, y2: YT, "class": "fig-line" }, gT);
+    el("line", { x1: X0, y1: YB, x2: xe, y2: YB, "class": "fig-line" }, gT);
+    if (st.closed) el("line", { x1: xe, y1: YT - 2, x2: xe, y2: YB + 2, "class": "fig-wall" }, gT);
+    label(X0, YT - 8, "開いた端");
+    label(xe, YT - 8, st.closed ? "閉じた端" : "開いた端");
+    dots = [];
+    for (var x = X0 + 5; x < xe; x += 10) {
+      for (var r = 0; r < 5; r++) {
+        dots.push({ x: x, c: el("circle", { cx: x, cy: YT + 12 + r * 14, r: 2.6, fill: "currentColor" }, gD) });
+      }
+    }
+    el("line", { x1: X0 - 10, y1: YW, x2: xe + 10, y2: YW, "class": "fig-thin" }, gW);
+    var up = [], dn = [];
+    for (var i = 0; i <= 120; i++) {
+      var xx = X0 + st.len * i / 120, a = amp(xx);
+      up.push(xx.toFixed(1) + " " + (YW - AMP * a).toFixed(1));
+      dn.push(xx.toFixed(1) + " " + (YW + AMP * a).toFixed(1));
+    }
+    el("path", { d: "M" + up.join(" L"), "class": "fig-thin" }, gW);
+    el("path", { d: "M" + dn.join(" L"), "class": "fig-thin" }, gW);
+    curve = el("path", { d: "", "class": "fig-env" }, gW);
+    if (st.closed) el("line", { x1: xe, y1: YW - AMP - 4, x2: xe, y2: YW + AMP + 4, "class": "fig-wall" }, gW);
+    for (var j = 0; j < 12; j++) {
+      var xn = X0 + (Math.PI / 2 + j * Math.PI) / st.k;
+      if (xn > xe + 0.5) break;
+      el("circle", { cx: xn, cy: YW, r: 4, "class": "fig-node" }, gW);
+      label(xn, YW + AMP + 20, "節");
+    }
+    label(X0, YW + AMP + 20, "腹");
+    if (!st.closed) label(xe, YW + AMP + 20, "腹");
+    var name = st.mult === 1 ? "基本振動" : st.mult + "倍振動";
+    mOut.textContent = name;
+    LOut.textContent = st.L.toFixed(2) + " m";
+    var q = st.closed ? 4 : 2;
+    var rel = "L ＝ " + (st.mult === 1 ? "" : st.mult) + "λ／" + q;
+    var fr = Math.round(st.f);
+    var fs = (Math.abs(st.f - fr) > 0.05 ? "約 " : "") + fr + " Hz";
+    var lamExpr = q + "L" + (st.mult === 1 ? "" : "／" + st.mult);
+    txt.textContent = (st.closed ? "閉管" : "開管") + "・" + name + "：" + rel + " より λ ＝ " + lamExpr +
+      " ＝ " + fix2(st.lam) + " m、f ＝ V／λ ＝ " + fs + "（V ＝ 340 m/s）";
+    draw(0);
+  }
+  function draw(phase) {
+    var c = Math.cos(phase);
+    dots.forEach(function (d) { d.c.setAttribute("cx", (d.x + DMAX * amp(d.x) * c).toFixed(2)); });
+    var pts = [];
+    for (var i = 0; i <= 120; i++) {
+      var xx = X0 + st.len * i / 120;
+      pts.push(xx.toFixed(1) + " " + (YW - AMP * amp(xx) * c).toFixed(1));
+    }
+    curve.setAttribute("d", "M" + pts.join(" L"));
+  }
+  function loop(ts) {
+    if (!animIn.checked) { raf = null; draw(0); return; }
+    if (t0 === null) t0 = ts;
+    draw(Math.PI * (ts - t0) / 1000);
+    raf = window.requestAnimationFrame(loop);
+  }
+  function start() {
+    if (animIn.checked && raf === null) { t0 = null; raf = window.requestAnimationFrame(loop); }
+    if (!animIn.checked) draw(0);
+  }
+  typeIn.addEventListener("change", build);
+  mIn.addEventListener("input", build);
+  LIn.addEventListener("input", build);
+  animIn.addEventListener("change", start);
+  build();
+  start();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_butsuri/物基-053",
+  "map": "hs_butsuri",
+  "rid": "物基-053",
+  "title": "気柱の振動（開管・閉管）",
+  "subject": "物理基礎",
+  "unit": {
+    "ref": "hs_butsuri:物基-6",
+    "title": "波"
+  },
+  "exam": {
+    "共通テスト": "○",
+    "個別試験": ""
+  },
+  "basis": [
+    "(2)ア(ア)㋑"
+  ],
+  "kaisetsu_page": "54-55",
+  "objectives": [
+    {
+      "id": "O1",
+      "text": "気柱にできる定在波を、閉じた端が変位の節、開いた端が変位の腹になることから説明し、固有振動のようすを図で表すことができる。",
+      "from": "両端が開いた管（開管）と一端が閉じた管（閉管）について、気柱にできる定在波と固有振動を理解し",
+      "sections": [
+        "sec-1"
+      ],
+      "checks": [
+        "q1",
+        "q9"
+      ]
+    },
+    {
+      "id": "O2",
+      "text": "開管の固有振動の波長（λ＝2L／n）と振動数を、気柱の長さから求めることができる。",
+      "from": "気柱の長さから固有振動の波長（開管 λ＝2L／n、…）と振動数を求めることができる",
+      "sections": [
+        "sec-2"
+      ],
+      "checks": [
+        "q2",
+        "q5",
+        "q8"
+      ]
+    },
+    {
+      "id": "O3",
+      "text": "閉管の固有振動の波長（λ＝4L／(2n−1)）と振動数を求め、閉管では基本振動の奇数倍の振動数の振動だけが起こることを説明できる。",
+      "from": "気柱の長さから固有振動の波長（…、閉管 λ＝4L／(2n−1)）と振動数を求めることができる",
+      "sections": [
+        "sec-3"
+      ],
+      "checks": [
+        "q3",
+        "q4",
+        "q5",
+        "q8",
+        "q9"
+      ]
+    },
+    {
+      "id": "O4",
+      "text": "気柱の共鳴を音源の振動数と固有振動数の一致として説明し、開口端補正の意味を知って、共鳴する気柱の長さから音の波長や音の速さを求めることができる。",
+      "from": "管口の腹が管の外側にわずかにずれること（開口端補正）を知る。（あわせて解説 p.54「気柱の共鳴と音源の振動数とを関連付けて理解させる」）",
+      "sections": [
+        "sec-4"
+      ],
+      "checks": [
+        "q6",
+        "q7",
+        "q10"
+      ]
+    }
+  ],
+  "key_terms": [
+    {
+      "term": "開管",
+      "where": "sec-2"
+    },
+    {
+      "term": "閉管",
+      "where": "sec-3"
+    },
+    {
+      "term": "開口端補正",
+      "where": "sec-4"
+    },
+    {
+      "term": "気柱",
+      "where": "sec-1"
+    },
+    {
+      "term": "固有振動",
+      "where": "sec-1"
+    },
+    {
+      "term": "気柱の共鳴",
+      "where": "sec-4"
+    }
+  ],
+  "prerequisites": [
+    {
+      "concept": "定在波（腹と節が交互に並び、隣り合う節の間隔は半波長）",
+      "taught_in": [
+        "hs_butsuri/物基-050"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "固定端・自由端での反射（端が節・腹になる）",
+      "taught_in": [
+        "hs_butsuri/物基-049"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "弦の固有振動・基本振動・倍振動（λ＝2L／n）",
+      "taught_in": [
+        "hs_butsuri/物基-051"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "波の基本式 v＝fλ",
+      "taught_in": [
+        "hs_butsuri/物基-046"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "音は空気中を伝わる縦波で、密と疎が伝わる",
+      "taught_in": [
+        "hs_butsuri/物基-047",
+        "jhs_rika1/中1-063"
+      ],
+      "where": "supp-1"
+    },
+    {
+      "concept": "空気中の音の速さ（室温程度で約340 m/s）",
+      "taught_in": [
+        "jhs_rika1/中1-064"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "振動数（Hz）と音の高さの関係",
+      "taught_in": [
+        "jhs_rika1/中1-066",
+        "jhs_rika1/中1-065"
+      ],
+      "where": "intro"
+    },
+    {
+      "concept": "気柱共鳴管による共鳴の実験",
+      "taught_in": [
+        "hs_butsuri/物基-052"
+      ],
+      "where": "sec-4"
+    },
+    {
+      "concept": "縦波の横波表示（媒質の変位を90°回して描く方法）",
+      "taught_in": [
+        "hs_butsuri/物基-047"
+      ],
+      "gap": false,
+      "where": "supp-1"
+    }
+  ],
+  "out_of_scope": [
+    "共振・共鳴の一般的な説明と音波の反射（物基-054）",
+    "うなり（物基-055）",
+    "音の干渉（物理-058）",
+    "開口端補正の大きさを管の太さから求める式（地図の要点・解説にないため扱わない）"
+  ],
+  "selection_reason": "物理基礎の共通テスト○の学習の行のうち、①定在波・反射・縦波・弦の固有振動・v＝fλ・中学の音の知識を総合する必要があり前提が最も多い、②縦波を横波表示で描く抽象化や「閉じた端は腹」「閉管の n を n倍振動と読む」などの誤解が生じやすい、③図や動く図がないと空気の動きを想像しにくい、④開管・閉管の式の区別と開口端補正を含むデータ処理で数値の正確さが求められる、の点で最も作るのが難しいと判断した。比べた候補：物基-050 定在波（抽象的だが前提と計算が少ない）、物基-023 運動の第二法則と運動方程式（誤概念への対処は重要だが、前提が単元内に収まり動く図がなくても説明しやすい）。",
+  "sources": [
+    {
+      "name": "高等学校学習指導要領（平成30年告示）第2章第5節 理科",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf",
+      "use": "内容(2)ア(ア)㋑と内容の取扱い（作図を中心、定在波、縦波・横波、反射・共振・うなり）"
+    },
+    {
+      "name": "高等学校学習指導要領（平成30年告示）解説 理科編 理数編",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20250311-mxt_kyoiku02-100002620_05.pdf",
+      "use": "p.54-55 気柱の共鳴と音源の振動数の関連付け、気柱共鳴管・試験管の実験例"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項",
+      "publisher": "独立行政法人大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf",
+      "use": "出題科目・出題範囲・選択解答の方法"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針",
+      "publisher": "独立行政法人大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf",
+      "use": "理科『物理基礎／化学基礎／生物基礎／地学基礎』の問題作成の方針（原文の引用）"
+    },
+    {
+      "name": "東京書籍『改訂 物理基礎』シラバス案（令和8年度用）",
+      "publisher": "東京書籍",
+      "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108430/rika_16738_syllabus.pdf",
+      "use": "開管・閉管・開口端補正、気柱の変位と密度変化が本文で扱われることの確認"
+    }
+  ],
+  "version": "1.0",
+  "generated": "2026-09-29"
+}
+</script>
+</body>
+</html>

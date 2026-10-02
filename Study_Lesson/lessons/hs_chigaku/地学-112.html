@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>惑星の視運動と会合周期｜地学</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+  .fig-t { fill: currentColor; font-size: 13px; }
+  .fig-s { fill: currentColor; font-size: 11.5px; }
+  .fig-ax { stroke: currentColor; stroke-width: 1.2; fill: none; }
+  .fig-grid { stroke: currentColor; stroke-width: .6; opacity: .25; fill: none; }
+  .fig-orb { stroke: currentColor; stroke-width: 1; fill: none; opacity: .55; }
+  .fig-sight { stroke: currentColor; stroke-width: 1.1; opacity: .6; fill: none; }
+  .c-earth { fill: #1f6fd1; } .c-mars { fill: #d9480f; } .c-venus { fill: #b7791f; } .c-sun { fill: #f6b73c; }
+  .w-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 6px 0; font-size: .92rem; }
+  .w-row select { font: inherit; padding: 3px 6px; }
+  .w-read { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>地学</span><span>太陽系</span><span>地学-112</span></div>
+  <h1>惑星の視運動と会合周期</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">星座をつくる星どうしの並びは変わらないのに、惑星は星座の間を移動し、ときには逆戻りするように見えます。惑星は本当に行ったり来たりしているのでしょうか。観測している地球も動いていることに注目して、見かけの動きのしくみと、同じ並び方がくり返される周期を考えます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>星座の間を動く惑星の視運動（順行・逆行・留）が、地球と惑星がともに公転しているために生じる見かけの運動であることを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>内惑星と外惑星について、太陽・地球との位置関係によって起こる惑星現象（内合・外合・最大離角、合・衝）と、そのころの見え方を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>会合周期と地球・惑星の公転周期との関係を式で表し、会合周期や公転周期を求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（地学-111）</span>時刻と太陽暦</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>惑星の視運動と会合周期</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（地学-113）</span>ケプラーの法則とその発見過程</div>
+</div>
+<p class="small">前提となる単元：地学基礎「宇宙、太陽系と地球の誕生」（地基-5）。中学3年 第2分野(6)「地球と宇宙」の天体の日周運動・年周運動・金星の見え方、同じ単元の 地学-111（恒星日と太陽日）、数学Ⅰの三角比（正弦）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>中学3年で学んだ天体の見かけの動きと金星の見え方、前の時間の恒星日と太陽日を確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中3-096</span></div>
+  <p>金星が夕方の西の空に「よいの明星」として見えるのは、地球から見て金星が太陽のどちら側にあるときですか。</p>
+  <div class="choices">
+    <button data-correct="true">太陽の東側</button>
+    <button>太陽の西側</button>
+    <button>太陽の反対側</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">天体は日周運動で東から西へ動きます（中3-079）。太陽の東側にある天体は、太陽より遅れて沈むので、日の入り後の西の空に見えます。太陽の西側にあれば、太陽より先にのぼるので明け方の東の空（明けの明星）です。金星は地球の内側を公転するので、太陽の反対側には来ません。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中3-080・中3-081</span></div>
+  <p>毎日同じ時刻に見える星座の位置は、1か月でおよそどちら向きに何度移りますか。</p>
+  <div class="choices">
+    <button data-correct="true">東から西へ約 30°</button>
+    <button>西から東へ約 30°</button>
+    <button>東から西へ約 15°</button>
+    <button>ほとんど移らない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">地球が1年（約12か月）で太陽のまわりを 360° 公転するので、1か月で約 30° です。同じ時刻の星座は西へずれていきます（年周運動）。1時間に約 15° は日周運動の値です。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：地学-111</span></div>
+  <p>恒星日と太陽日では、どちらが長いですか。</p>
+  <div class="choices">
+    <button>恒星日の方が約4分長い</button>
+    <button data-correct="true">太陽日の方が約4分長い</button>
+    <button>同じ長さ</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">地球は1回自転する間に、公転で約 1° 進みます。そのため、太陽が再び南中するには、恒星に対して1回転したあと少し余分に自転する必要があり、太陽日の方が約4分長くなります。「動いている相手に追いつくまでの時間」を考えるこの見方は、6節の会合周期でも使います。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">補足：黄道と、天球上の「東へ動く」の意味</p>
+  <p>地球が公転するので、地球から見た太陽は、星座の間を<strong>西から東へ</strong>少しずつ動き、1年で元の位置にもどるように見えます。天球上の太陽の見かけの通り道を<strong>黄道</strong>といいます（中学3年の教科書でも扱われます）。惑星はどれもほぼ同じ平面（黄道面）上を公転しているので、天球上ではほぼ黄道に沿って動いて見えます。</p>
+  <p>北半球で南の空を向くと、左が東、右が西です。つまり天球上で「東へ動く」とは、南の空を見たときに<strong>左へ動く</strong>ことです。このページの軌道の図は、地球の北極側から見た図で、惑星はどれも<strong>反時計回り</strong>に公転しています。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：2026年秋、金星は星座の間を逆戻りする</h2>
+<div class="box think">
+  <p class="box-title">考えよう</p>
+  <p>国立天文台暦計算室の「天象」によると、2026年の金星は次のように動きます。</p>
+  <div class="table-wrap"><table>
+    <tr><th>日付（2026年）</th><th>金星の現象</th></tr>
+    <tr><td>8月15日</td><td>東方最大離角（太陽からの離角 45°53′）</td></tr>
+    <tr><td>10月2日</td><td>留</td></tr>
+    <tr><td>10月24日</td><td>内合</td></tr>
+    <tr><td>11月12日</td><td>留</td></tr>
+  </table></div>
+  <p>10月2日から11月12日までの約40日間、金星は星座の間を、ふだんとは逆の<strong>東から西へ</strong>動いて見えます。金星は公転の向きを変えたのでしょうか。また、「最大離角」「内合」「留」とはどんな位置関係のことでしょうか。予想してから本編に進みましょう。</p>
+</div>
+<p class="small">国立天文台暦計算室によると、星座の間をさまようように動くことから「惑星」という名前や、英語の planet の語源であるギリシャ語の「プラネテス」が生まれました。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="星座の間の動き"><span class="num">3</span>惑星は星座の間をどう動いて見えるか（O1）</h2>
+<p>恒星はとても遠いので、恒星どうしの並び（星座の形）は、地球が公転しても変わらないように見えます。一方、惑星は星座の間を少しずつ移動していきます。天球上での天体の見かけの動きを<strong>視運動</strong>といいます。</p>
+<div class="table-wrap"><table>
+  <tr><th>用語</th><th>星座の間での見かけの動き</th></tr>
+  <tr><td><strong>順行</strong></td><td>西から東へ動く（太陽が黄道上を動く向きと同じ）。ふだんはこの向き。</td></tr>
+  <tr><td><strong>逆行</strong></td><td>東から西へ逆戻りするように動く。</td></tr>
+  <tr><td><strong>留</strong></td><td>順行と逆行が入れ替わるとき、ほぼ止まって見える。</td></tr>
+</table></div>
+<p>火星について、地球と火星の軌道を同じ平面上の円とみなし、NASA の公転周期（地球 365.26 日、火星 686.98 日）を使って、地球から見た火星の方向を計算すると図1のようになります。火星が太陽の反対側に来る<strong>衝</strong>（5節）のころに逆行が起こります。</p>
+<figure>
+  <svg viewBox="0 0 640 300" role="img" aria-label="横軸は衝からの日数（マイナス150日からプラス150日）、縦軸は天球上の方向の変化（東向きを正、マイナス45度からプラス45度）。火星の方向は、はじめ東へ進む順行、衝の約36日前の留で向きを変え、衝をはさむ約73日間は西へ戻る逆行、衝の約36日後の留から再び順行する。">
+    <rect x="259.4" y="30" width="121.2" height="220" fill="#d9480f" opacity=".08"/>
+    <line class="fig-grid" x1="70" y1="213.3" x2="570" y2="213.3"/><line class="fig-grid" x1="70" y1="176.7" x2="570" y2="176.7"/>
+    <line class="fig-grid" x1="70" y1="140" x2="570" y2="140"/><line class="fig-grid" x1="70" y1="103.3" x2="570" y2="103.3"/>
+    <line class="fig-grid" x1="70" y1="66.7" x2="570" y2="66.7"/><line class="fig-grid" x1="70" y1="30" x2="570" y2="30"/>
+    <line class="fig-grid" x1="153.3" y1="30" x2="153.3" y2="250"/><line class="fig-grid" x1="236.7" y1="30" x2="236.7" y2="250"/>
+    <line class="fig-grid" x1="320" y1="30" x2="320" y2="250"/><line class="fig-grid" x1="403.3" y1="30" x2="403.3" y2="250"/>
+    <line class="fig-grid" x1="486.7" y1="30" x2="486.7" y2="250"/><line class="fig-grid" x1="570" y1="30" x2="570" y2="250"/>
+    <line class="fig-ax" x1="70" y1="30" x2="70" y2="250"/><line class="fig-ax" x1="70" y1="250" x2="570" y2="250"/>
+    <path d="M70.0,237.7 L78.3,230.1 L86.7,222.7 L95.0,215.4 L103.3,208.2 L111.7,201.1 L120.0,194.1 L128.3,187.3 L136.7,180.7 L145.0,174.2 L153.3,168.0 L161.7,162.0 L170.0,156.2 L178.3,150.7 L186.7,145.5 L195.0,140.7 L203.3,136.2 L211.7,132.2 L220.0,128.7 L228.3,125.7 L236.7,123.4 L245.0,121.7 L253.3,120.7 L261.7,120.6 L270.0,121.2 L278.3,122.7 L286.7,124.9 L295.0,127.9 L303.3,131.6 L311.7,135.7 L320.0,140.0 L328.3,144.3 L336.7,148.4 L345.0,152.1 L353.3,155.1 L361.7,157.3 L370.0,158.8 L378.3,159.4 L386.7,159.3 L395.0,158.3 L403.3,156.6 L411.7,154.3 L420.0,151.3 L428.3,147.8 L436.7,143.8 L445.0,139.3 L453.3,134.5 L461.7,129.3 L470.0,123.8 L478.3,118.0 L486.7,112.0 L495.0,105.8 L503.3,99.3 L511.7,92.7 L520.0,85.9 L528.3,78.9 L536.7,71.8 L545.0,64.6 L553.3,57.3 L561.7,49.9 L570.0,42.3" stroke="#d9480f" stroke-width="2.6" fill="none"/>
+    <circle cx="259.4" cy="120.5" r="4.5" fill="#d9480f"/><circle cx="380.6" cy="159.5" r="4.5" fill="#d9480f"/>
+    <circle cx="320" cy="140" r="4" fill="none" stroke="#d9480f" stroke-width="2"/>
+    <text class="fig-s" x="259.4" y="108" text-anchor="middle">留</text>
+    <text class="fig-s" x="380.6" y="178" text-anchor="middle">留</text>
+    <text class="fig-s" x="330" y="134">衝</text>
+    <text class="fig-t" x="150" y="118" text-anchor="middle">順行</text>
+    <text class="fig-t" x="320" y="232" text-anchor="middle">逆行（約73日）</text>
+    <text class="fig-t" x="500" y="150" text-anchor="middle">順行</text>
+    <text class="fig-s" x="62" y="254" text-anchor="end">−45</text><text class="fig-s" x="62" y="217.3" text-anchor="end">−30</text>
+    <text class="fig-s" x="62" y="180.7" text-anchor="end">−15</text><text class="fig-s" x="62" y="144" text-anchor="end">0</text>
+    <text class="fig-s" x="62" y="107.3" text-anchor="end">15</text><text class="fig-s" x="62" y="70.7" text-anchor="end">30</text>
+    <text class="fig-s" x="62" y="34" text-anchor="end">45</text>
+    <text class="fig-s" x="70" y="268" text-anchor="middle">−150</text><text class="fig-s" x="153.3" y="268" text-anchor="middle">−100</text>
+    <text class="fig-s" x="236.7" y="268" text-anchor="middle">−50</text><text class="fig-s" x="320" y="268" text-anchor="middle">0</text>
+    <text class="fig-s" x="403.3" y="268" text-anchor="middle">50</text><text class="fig-s" x="486.7" y="268" text-anchor="middle">100</text>
+    <text class="fig-s" x="570" y="268" text-anchor="middle">150</text>
+    <text class="fig-s" x="320" y="290" text-anchor="middle">衝からの日数〔日〕</text>
+    <text class="fig-s" x="20" y="140" transform="rotate(-90 20 140)" text-anchor="middle">天球上の方向の変化〔°〕（東向きが＋）</text>
+  </svg>
+  <figcaption>図1　地球から見た火星の方向の変化（円軌道のモデルによる計算）。0 は衝のときの方向。留は衝の約36日前と約36日後、逆行は約73日間で、その間に約16°西へ戻ります。黄道からの南北のずれは考えていません。</figcaption>
+</figure>
+<p>実際の火星でも、国立天文台暦計算室の天象では、2027年1月12日に留、2月20日に衝、4月3日に留となり、逆行はおよそ81日間です。モデルの約73日とずれるのは、実際の軌道が円から少しずれていて、公転の速さも一定ではないことなどによります（軌道の形と速さは次の時間 地学-113 のケプラーの法則で扱います）。</p>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>逆行している間も、惑星は公転の向きを変えていません。すべての惑星は同じ向きに公転し続けています。逆行は、<strong>地球から見た方向</strong>が一時的に戻って見える<strong>見かけの動き</strong>です。また、日周運動（1日で東から西へ）と、星座の間の順行・逆行（何週間もかけての動き）を混同しないようにしましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="なぜ逆行するのか"><span class="num">4</span>なぜ逆行して見えるのか：追い越しの見かけ（O1）</h2>
+<p>太陽に近い惑星ほど公転周期が短く、1日に進む角度が大きくなります（NASA の公転周期から計算）。</p>
+<div class="table-wrap"><table>
+  <tr><th>惑星</th><th>軌道の半径（天文単位）</th><th>公転周期</th><th>1日に進む角度（360°÷公転周期）</th></tr>
+  <tr><td>金星</td><td>0.723</td><td>224.7 日</td><td>約 1.60°</td></tr>
+  <tr><td>地球</td><td>1</td><td>365.26 日</td><td>約 0.986°</td></tr>
+  <tr><td>火星</td><td>1.524</td><td>686.98 日</td><td>約 0.524°</td></tr>
+</table></div>
+<p class="small">1天文単位は太陽と地球の平均距離。1日（単位時間）に進む角度を角速度といい、「物理」でも学びます。</p>
+<p>火星が衝のころ、内側を速く回る地球が、外側をゆっくり回る火星を<strong>追い越します</strong>。高速道路で遅い車を追い越すとき、遠くの山を背景にすると、その車が一時的に後ろへ下がっていくように見えるのと同じです。図2で確かめましょう。</p>
+<figure>
+  <svg viewBox="0 0 640 404" role="img" aria-label="左の図は太陽を中心に、30日ごとの地球と火星の位置1から7と、地球から見た火星の方向の線を示す。右の図は地球の位置を1か所にそろえて、方向だけを比べたもの。1から3は東（左）へ、3から5は西（右）へ戻り、5から7は再び東へ向かう。">
+    <defs><marker id="m-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+    <text class="fig-t" x="170" y="20" text-anchor="middle">（左）太陽を中心に見た位置</text>
+    <text class="fig-t" x="480" y="20" text-anchor="middle">（右）地球の位置をそろえた向き</text>
+    <path class="fig-orb" d="M60,330 A110,110 0 0,1 280,330"/>
+    <path class="fig-orb" d="M2.4,330 A167.6,167.6 0 0,1 337.6,330"/>
+    <circle cx="170" cy="330" r="9" class="c-sun"/><text class="fig-s" x="170" y="352" text-anchor="middle">太陽</text>
+    <g class="fig-sight">
+      <line x1="280.0" y1="327.5" x2="301.0" y2="146.5"/><line x1="264.4" y1="273.6" x2="251.8" y2="117.2"/>
+      <line x1="224.3" y1="234.3" x2="206.0" y2="99.3"/><line x1="170.0" y1="220.0" x2="170.0" y2="92.4"/>
+      <line x1="115.7" y1="234.3" x2="134.0" y2="99.3"/><line x1="75.6" y1="273.6" x2="88.2" y2="117.2"/>
+      <line x1="60.0" y1="327.5" x2="39.0" y2="146.5"/>
+    </g>
+    <g class="c-earth">
+      <circle cx="280.0" cy="327.5" r="4.5"/><circle cx="264.4" cy="273.6" r="4.5"/><circle cx="224.3" cy="234.3" r="4.5"/>
+      <circle cx="170.0" cy="220.0" r="4.5"/><circle cx="115.7" cy="234.3" r="4.5"/><circle cx="75.6" cy="273.6" r="4.5"/>
+      <circle cx="60.0" cy="327.5" r="4.5"/>
+    </g>
+    <g class="c-mars">
+      <circle cx="292.9" cy="216.0" r="4.5"/><circle cx="257.4" cy="187.0" r="4.5"/><circle cx="215.4" cy="168.7" r="4.5"/>
+      <circle cx="170.0" cy="162.4" r="4.5"/><circle cx="124.6" cy="168.7" r="4.5"/><circle cx="82.6" cy="187.0" r="4.5"/>
+      <circle cx="47.1" cy="216.0" r="4.5"/>
+    </g>
+    <g class="fig-s">
+      <text x="301.0" y="140" text-anchor="middle">1</text><text x="251.8" y="111" text-anchor="middle">2</text>
+      <text x="206.0" y="93" text-anchor="middle">3</text><text x="170.0" y="86" text-anchor="middle">4</text>
+      <text x="134.0" y="93" text-anchor="middle">5</text><text x="88.2" y="111" text-anchor="middle">6</text>
+      <text x="39.0" y="140" text-anchor="middle">7</text>
+      <text x="290" y="342" text-anchor="middle">1</text><text x="276" y="286" text-anchor="middle">2</text>
+      <text x="236" y="250" text-anchor="middle">3</text><text x="182" y="236" text-anchor="middle">4</text>
+      <text x="104" y="250" text-anchor="middle">5</text><text x="64" y="286" text-anchor="middle">6</text>
+      <text x="50" y="342" text-anchor="middle">7</text>
+    </g>
+    <text class="fig-s" x="170" y="380" text-anchor="middle">●青：地球　●赤：火星（30日ごと、4 が衝）</text>
+    <text class="fig-s" x="170" y="396" text-anchor="middle">どちらも反時計回り（1→7 の向き）に公転</text>
+    <g class="fig-sight">
+      <line x1="480" y1="360" x2="493.8" y2="240.8"/><line x1="480" y1="360" x2="468.3" y2="215.5"/>
+      <line x1="480" y1="360" x2="457.2" y2="191.5"/><line x1="480" y1="360" x2="480.0" y2="165.0"/>
+      <line x1="480" y1="360" x2="509.4" y2="142.0"/><line x1="480" y1="360" x2="499.7" y2="115.8"/>
+      <line x1="480" y1="360" x2="448.9" y2="91.8"/>
+    </g>
+    <polyline points="493.8,240.8 468.3,215.5 457.2,191.5 480.0,165.0 509.4,142.0 499.7,115.8 448.9,91.8" fill="none" stroke="#d9480f" stroke-width="2" stroke-dasharray="5 3"/>
+    <g class="c-mars">
+      <circle cx="493.8" cy="240.8" r="4"/><circle cx="468.3" cy="215.5" r="4"/><circle cx="457.2" cy="191.5" r="4"/>
+      <circle cx="480.0" cy="165.0" r="4"/><circle cx="509.4" cy="142.0" r="4"/><circle cx="499.7" cy="115.8" r="4"/>
+      <circle cx="448.9" cy="91.8" r="4"/>
+    </g>
+    <g class="fig-s">
+      <text x="505" y="245">1</text><text x="455" y="215">2</text><text x="444" y="191">3</text><text x="487" y="162">4</text>
+      <text x="520" y="143">5</text><text x="510" y="112">6</text><text x="436" y="89">7</text>
+    </g>
+    <circle cx="480" cy="360" r="5" class="c-earth"/><text class="fig-s" x="492" y="372">地球</text>
+    <text class="fig-s" x="410" y="60">← 東</text><text class="fig-s" x="530" y="60">西 →</text>
+    <text class="fig-s" x="560" y="200" text-anchor="middle">3→4→5</text>
+    <text class="fig-s" x="560" y="216" text-anchor="middle">西へ戻る</text>
+    <text class="fig-s" x="560" y="232" text-anchor="middle">＝逆行</text>
+  </svg>
+  <figcaption>図2　（左）30日ごとの地球（青）と火星（赤）の位置と、地球から見た火星の方向（円軌道のモデル）。（右）地球の位置を1か所にそろえて向きだけを比べた図。線の長さは時間の順が分かるように変えてあり、向きは計算値です。1→3 は東へ（順行）、3→5 は西へ（逆行）、5→7 は再び東へ（順行）。</figcaption>
+</figure>
+<p>内惑星の場合は逆に、内側を速く回る<strong>内惑星が地球を追い越す</strong>とき、つまり<strong>内合</strong>のころに逆行します。円軌道のモデルで計算すると金星の逆行は約42日間で、導入の2026年の実際の値（10月2日〜11月12日の41日間）とほぼ一致します。</p>
+<div class="widget" id="w-retro">
+  <p><strong>操作できる図：追い越しと見かけの動き</strong></p>
+  <div class="w-row">
+    <label for="rv-planet">惑星</label>
+    <select id="rv-planet"><option value="mars">火星（外惑星）</option><option value="venus">金星（内惑星）</option></select>
+    <button type="button" id="rv-play">再生</button>
+  </div>
+  <div class="w-row"><label for="rv-day">日数</label><input type="range" id="rv-day" min="-150" max="150" step="1" value="-120"><output id="rv-day-out"></output></div>
+  <svg viewBox="0 0 640 330" role="img" aria-label="左は北極側から見た太陽・地球・惑星の位置と、地球から惑星への視線。右上は南の空を見たときの星座の帯の上での惑星の位置（左が東）と、5日ごとの足あと。右下は方向の変化のグラフと現在の点。">
+    <defs><clipPath id="rv-clip"><rect x="0" y="0" width="322" height="330"/></clipPath></defs>
+    <g clip-path="url(#rv-clip)">
+      <circle cx="160" cy="165" r="85" class="fig-orb"/>
+      <circle id="rv-orbit" cx="160" cy="165" r="129.5" class="fig-orb" stroke-dasharray="4 3"/>
+      <circle cx="160" cy="165" r="9" class="c-sun"/>
+      <line id="rv-sight" x1="0" y1="0" x2="0" y2="0" stroke="#d9480f" stroke-width="1.4" opacity=".75"/>
+      <circle id="rv-earth" cx="0" cy="0" r="6" class="c-earth"/>
+      <circle id="rv-pl" cx="0" cy="0" r="6" class="c-mars"/>
+    </g>
+    <text class="fig-s" x="8" y="18">北極側から見た図（反時計回りに公転）</text>
+    <text class="fig-s" x="8" y="322">●青：地球　●：惑星　線：地球から見た方向</text>
+    <text class="fig-s" x="335" y="30">星座の帯（南の空を見たとき）</text>
+    <rect x="335" y="40" width="290" height="60" fill="#0f1b2a" rx="6"/>
+    <g id="rv-stars" fill="#dfe8f5"></g>
+    <g id="rv-trail"></g>
+    <circle id="rv-mark" cx="480" cy="70" r="6" fill="#ff7a45" stroke="#fff" stroke-width="1.2"/>
+    <text class="fig-s" x="335" y="116">← 東</text><text class="fig-s" x="625" y="116" text-anchor="end">西 →</text>
+    <line class="fig-ax" x1="345" y1="140" x2="345" y2="300"/><line class="fig-ax" x1="345" y1="300" x2="625" y2="300"/>
+    <line class="fig-grid" x1="345" y1="220" x2="625" y2="220"/><line class="fig-grid" x1="485" y1="140" x2="485" y2="300"/>
+    <path id="rv-curve" d="" stroke="#d9480f" stroke-width="2" fill="none"/>
+    <circle id="rv-dot" cx="485" cy="220" r="5" fill="#d9480f"/>
+    <text class="fig-s" x="350" y="152">方向の変化（東が上）</text>
+    <text class="fig-s" x="625" y="316" text-anchor="end">日数 →</text>
+  </svg>
+  <p class="w-read" id="rv-read"></p>
+  <p class="small">地球と惑星の軌道を同じ平面上の円とし、NASA の公転周期で計算したモデルです。0 日は火星なら衝、金星なら内合です。</p>
+</div>
+<div class="box point"><p class="box-title">逆行が起こるとき</p><p>逆行は、<strong>地球が外惑星を追い越すとき（衝のころ）</strong>と、<strong>内惑星が地球を追い越すとき（内合のころ）</strong>に起こる見かけの運動です。留〜衝〜留、留〜内合〜留の間が逆行です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="惑星現象"><span class="num">5</span>太陽・地球との位置関係と惑星現象（O2）</h2>
+<p>地球より内側を公転する水星・金星を<strong>内惑星</strong>、外側を公転する火星・木星・土星・天王星・海王星を<strong>外惑星</strong>といいます。地球から見た太陽と惑星の位置関係には名前がついています。図3は、地球の位置を固定して描いた図です。</p>
+<figure>
+  <svg viewBox="0 0 480 412" role="img" aria-label="太陽を中心に金星と火星の軌道を描き、地球を下に固定した図。金星は太陽と地球の間で内合、太陽の向こう側で外合、地球からの視線が軌道に接する左の点で東方最大離角、右の点で西方最大離角。火星は太陽の向こう側で合、地球の外側の反対方向で衝。最大離角のとき、太陽と金星を結ぶ線と地球と金星を結ぶ線は直角で、離角は約46度。">
+    <text class="fig-s" x="240" y="18" text-anchor="middle">地球から太陽の方を見たとき：左が東、右が西</text>
+    <circle cx="240" cy="230" r="152.4" class="fig-orb"/>
+    <circle cx="240" cy="230" r="100" class="fig-orb" stroke-dasharray="3 4" opacity=".35"/>
+    <circle cx="240" cy="230" r="72.3" class="fig-orb"/>
+    <line x1="240" y1="330" x2="240" y2="230" class="fig-sight" stroke-dasharray="4 3"/>
+    <line x1="240" y1="330" x2="73.6" y2="171.2" class="fig-sight"/>
+    <line x1="240" y1="330" x2="406.4" y2="171.2" class="fig-sight"/>
+    <line x1="240" y1="230" x2="190.1" y2="282.3" class="fig-sight" opacity=".4"/>
+    <line x1="240" y1="230" x2="289.9" y2="282.3" class="fig-sight" opacity=".4"/>
+    <polyline points="195.6,276.5 201.4,282.1 195.8,287.8" fill="none" stroke="currentColor" stroke-width="1"/>
+    <polyline points="284.4,276.5 278.6,282.1 284.2,287.8" fill="none" stroke="currentColor" stroke-width="1"/>
+    <path d="M240,304 A26,26 0 0,0 221.2,312.0" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <text class="fig-s" x="226" y="326" text-anchor="end">46.3°</text>
+    <circle cx="240" cy="230" r="11" class="c-sun"/><text class="fig-s" x="256" y="234">太陽</text>
+    <circle cx="240" cy="330" r="6" class="c-earth"/><text class="fig-s" x="252" y="346">地球（固定）</text>
+    <g class="c-venus">
+      <circle cx="240" cy="302.3" r="5"/><circle cx="240" cy="157.7" r="5"/>
+      <circle cx="190.1" cy="282.3" r="5"/><circle cx="289.9" cy="282.3" r="5"/>
+    </g>
+    <g class="c-mars"><circle cx="240" cy="382.4" r="5"/><circle cx="240" cy="77.6" r="5"/></g>
+    <text class="fig-s" x="246" y="299">内合</text>
+    <text class="fig-s" x="248" y="150">外合（太陽の向こう側）</text>
+    <text class="fig-s" x="184" y="302" text-anchor="end">東方最大離角</text>
+    <text class="fig-s" x="184" y="316" text-anchor="end">（夕方・西の空）</text>
+    <text class="fig-s" x="296" y="302">西方最大離角</text>
+    <text class="fig-s" x="296" y="316">（明け方・東の空）</text>
+    <text class="fig-s" x="250" y="400">衝（太陽と反対側・真夜中に南中）</text>
+    <text class="fig-s" x="250" y="72">合（太陽の向こう側）</text>
+    <polygon points="167.7,237 163.7,229 171.7,229" class="c-venus"/>
+    <polygon points="87.6,223 83.6,231 91.6,231" class="c-mars"/>
+  </svg>
+  <figcaption>図3　地球の位置を固定して描いた惑星現象の位置関係（北極側から見た図。軌道は円とし、金星の軌道 0.723、火星の軌道 1.524 天文単位の比で描いた）。▲は地球を固定したときの惑星の動きで、金星は反時計回り、火星は時計回り。金星の最大離角のとき、太陽−金星と地球−金星の線は直角になります。</figcaption>
+</figure>
+<div class="table-wrap"><table>
+  <tr><th>惑星</th><th>現象</th><th>位置関係（地球から見て）</th><th>そのころの見え方</th></tr>
+  <tr><td rowspan="4">内惑星</td><td><strong>内合</strong></td><td>太陽と同じ方向で、太陽より近く（太陽と地球の間）</td><td>太陽の方向にあり見えない。地球に最も近い。逆行のころ。</td></tr>
+  <tr><td><strong>外合</strong></td><td>太陽と同じ方向で、太陽の向こう側</td><td>太陽の方向にあり見えない。</td></tr>
+  <tr><td><strong>東方最大離角</strong></td><td>太陽の東側に最も離れて見える</td><td>夕方、西の空（金星はよいの明星）。</td></tr>
+  <tr><td><strong>西方最大離角</strong></td><td>太陽の西側に最も離れて見える</td><td>明け方、東の空（金星は明けの明星）。</td></tr>
+  <tr><td rowspan="2">外惑星</td><td><strong>合</strong></td><td>太陽と同じ方向で、太陽の向こう側</td><td>太陽の光がまぶしく見えない。</td></tr>
+  <tr><td><strong>衝</strong></td><td>太陽とちょうど反対の方向</td><td>真夜中ごろ南中し、ほぼ一晩中見える。地球に最も近づき明るい。逆行のころ。</td></tr>
+</table></div>
+<p class="small">用語の定義と見え方は国立天文台暦計算室「こよみ用語解説」「暦Wiki」による。</p>
+<p>地球を固定して見ると、1日に進む角度が地球より大きい金星は太陽のまわりを<strong>反時計回り</strong>に、小さい火星は<strong>時計回り</strong>に動いて見えます（図3の▲）。そのため現象は、金星では 外合 → 東方最大離角 → 内合 → 西方最大離角 → 外合、火星では 合 → 衝 → 合 の順に起こります。国立天文台の資料でも、金星は 2026年1月7日 外合、8月15日 東方最大離角、10月24日 内合、2027年1月4日 西方最大離角、8月12日 外合 の順です。</p>
+<h3>最大離角の大きさ</h3>
+<p>最大離角のとき、地球からの視線は内惑星の軌道に<strong>接して</strong>います。円の接線は半径に垂直なので、太陽−内惑星−地球の角は直角です。地球と太陽の距離を 1、内惑星の軌道半径を a（天文単位）、最大離角を θ とすると、直角三角形から</p>
+$$ \sin\theta = \frac{a}{1} = a $$
+<div class="box example worked">
+  <p class="box-title">例題1　金星の最大離角</p>
+  <p>金星の軌道半径を 0.723 天文単位とし、軌道を円とみなします。金星の最大離角は何度ですか。</p>
+  <div class="step">ステップ1：最大離角では太陽−金星−地球が直角三角形になり、斜辺は太陽−地球（1 天文単位）。</div>
+  <div class="step">ステップ2：\( \sin\theta = 0.723 \)。三角比の表や計算機で θ を求めると \( \theta \approx 46.3^\circ \)。</div>
+  <div class="step">答え：約 <strong>46.3°</strong>。国立天文台の値（2026年8月15日の東方最大離角 45°53′ ≒ 45.9°）とほぼ一致します。</div>
+</div>
+<p>内惑星は太陽から最大離角より大きく離れて見えることがないので、真夜中に見えることはありません。</p>
+<div class="box think">
+  <p class="box-title">考えよう</p>
+  <p>水星の軌道半径は 0.387 天文単位で、円とみなすと最大離角は約 22.8° です。ところが国立天文台の天象では、2026年の水星の最大離角は 18°07′ から 27°49′ までばらついています。2025〜2027年の金星の最大離角（45.9°〜47.2°）がほぼ一定なのと比べて、なぜ水星はこれほどばらつくのでしょうか。次の時間の「楕円軌道」がヒントです。</p>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>「東方最大離角」なのに見えるのは<strong>西の空</strong>です。「東方」は天球上で<strong>太陽の東側</strong>にあるという意味で、地平線の方角ではありません。太陽の東側にある金星は太陽より遅れて沈むので、日の入り後の西の空に見えます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="会合周期"><span class="num">6</span>会合周期と公転周期の関係（O3）</h2>
+<p>惑星が内合（外惑星なら衝や合）になってから、次に同じ現象が起こるまでの期間を<strong>会合周期</strong>といいます。太陽・地球・惑星が同じ並び方にもどるまでの期間です。公転周期（恒星に対して太陽のまわりを1周する期間）とは違うことに注意しましょう。</p>
+<h3>追いかけっこで考える</h3>
+<p>地球の公転周期を E、惑星の公転周期を P とします（単位をそろえる）。1日に進む角度は、地球が \( \dfrac{360^\circ}{E} \)、惑星が \( \dfrac{360^\circ}{P} \) です。ある内合（または衝）から S 日後に、速い方が遅い方より<strong>ちょうど1周（360°）多く</strong>回ったとき、同じ並び方にもどります。</p>
+<figure>
+  <svg viewBox="0 0 640 290" role="img" aria-label="横軸は日数0から800日、縦軸は公転で回った角度0から800度。地球の直線は火星の直線より傾きが大きく、約780日で両者の差がちょうど360度になる。">
+    <line class="fig-grid" x1="70" y1="200.5" x2="570" y2="200.5"/><line class="fig-grid" x1="70" y1="151" x2="570" y2="151"/>
+    <line class="fig-grid" x1="70" y1="101.5" x2="570" y2="101.5"/><line class="fig-grid" x1="70" y1="52" x2="570" y2="52"/>
+    <line class="fig-grid" x1="195" y1="30" x2="195" y2="250"/><line class="fig-grid" x1="320" y1="30" x2="320" y2="250"/>
+    <line class="fig-grid" x1="445" y1="30" x2="445" y2="250"/><line class="fig-grid" x1="570" y1="30" x2="570" y2="250"/>
+    <line class="fig-ax" x1="70" y1="30" x2="70" y2="250"/><line class="fig-ax" x1="70" y1="250" x2="570" y2="250"/>
+    <line x1="70" y1="250" x2="570.0" y2="33.2" stroke="#1f6fd1" stroke-width="2.4"/>
+    <line x1="70" y1="250" x2="570.0" y2="134.7" stroke="#d9480f" stroke-width="2.4" stroke-dasharray="7 4"/>
+    <line x1="557.5" y1="38.6" x2="557.5" y2="137.6" stroke="currentColor" stroke-width="1.4"/>
+    <line x1="551" y1="38.6" x2="564" y2="38.6" stroke="currentColor" stroke-width="1.4"/><line x1="551" y1="137.6" x2="564" y2="137.6" stroke="currentColor" stroke-width="1.4"/>
+    <line x1="557.5" y1="137.6" x2="557.5" y2="250" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
+    <text class="fig-s" x="545" y="92" text-anchor="end">差がちょうど 360°</text>
+    <text class="fig-s" x="557.5" y="282" text-anchor="middle">約780日</text>
+    <text class="fig-s" x="300" y="112" style="fill:#1f6fd1">地球（実線）</text>
+    <text class="fig-s" x="360" y="200" style="fill:#d9480f">火星（破線）</text>
+    <text class="fig-s" x="62" y="254" text-anchor="end">0</text><text class="fig-s" x="62" y="204.5" text-anchor="end">180</text>
+    <text class="fig-s" x="62" y="155" text-anchor="end">360</text><text class="fig-s" x="62" y="105.5" text-anchor="end">540</text>
+    <text class="fig-s" x="62" y="56" text-anchor="end">720</text>
+    <text class="fig-s" x="70" y="266" text-anchor="middle">0</text><text class="fig-s" x="195" y="266" text-anchor="middle">200</text>
+    <text class="fig-s" x="320" y="266" text-anchor="middle">400</text><text class="fig-s" x="445" y="266" text-anchor="middle">600</text>
+    <text class="fig-s" x="20" y="140" transform="rotate(-90 20 140)" text-anchor="middle">衝から回った角度〔°〕</text>
+    <text class="fig-s" x="320" y="282" text-anchor="middle">衝からの日数〔日〕</text>
+  </svg>
+  <figcaption>図4　衝から地球と火星が公転で回った角度（傾きは1日に進む角度）。差が 360° になったとき、再び衝になる。</figcaption>
+</figure>
+<p>内惑星（\( P &lt; E \)）では、惑星の方が速いので</p>
+$$ \frac{360^\circ}{P}\,S - \frac{360^\circ}{E}\,S = 360^\circ \quad\Longrightarrow\quad \frac{1}{S} = \frac{1}{P} - \frac{1}{E} $$
+<p>外惑星（\( P &gt; E \)）では、地球の方が速いので</p>
+$$ \frac{1}{S} = \frac{1}{E} - \frac{1}{P} $$
+<p>年を単位にすると E＝1 なので、内惑星は \( \dfrac{1}{S}=\dfrac{1}{P}-1 \)、外惑星は \( \dfrac{1}{S}=1-\dfrac{1}{P} \) と書けます。</p>
+<div class="box example worked">
+  <p class="box-title">例題2　金星の会合周期</p>
+  <p>金星の公転周期を 224.7 日、地球の公転周期を 365.26 日とします。金星の会合周期は何日ですか。</p>
+  <div class="step">ステップ1：金星は内惑星なので \( \dfrac{1}{S} = \dfrac{1}{P} - \dfrac{1}{E} \)。</div>
+  <div class="step">ステップ2：\( \dfrac{1}{224.7} - \dfrac{1}{365.26} = 0.0044504 - 0.0027378 = 0.0017126 \)</div>
+  <div class="step">ステップ3：\( S = \dfrac{1}{0.0017126} \approx 583.9 \) 日</div>
+  <div class="step">答え：約 <strong>583.9 日</strong>（約 1.60 年、約1年7か月）。国立天文台も金星の満ち欠けの周期を 583.9 日としています。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3　火星の会合周期と、その逆算</p>
+  <p>(1) 火星の公転周期を 686.98 日とすると、会合周期は何日ですか。(2) 会合周期が 398.88 日の外惑星（木星）の公転周期は何日ですか。</p>
+  <div class="step">(1) 外惑星なので \( \dfrac{1}{S} = \dfrac{1}{365.26} - \dfrac{1}{686.98} = 0.0027378 - 0.0014556 = 0.0012822 \)、\( S \approx 780 \) 日（約 2.14 年）。NASA の値は 779.94 日です。</div>
+  <div class="step">(2) 式を P について解くと \( \dfrac{1}{P} = \dfrac{1}{E} - \dfrac{1}{S} = 0.00273778 - 0.00250702 = 0.00023076 \)。近い2つの数の差をとるので、途中の値のけたを多めに残します（0.0002308 まで丸めると、答えが 1 日ずれます）。</div>
+  <div class="step">答え：(1) 約 <strong>780 日</strong>　(2) \( P = \dfrac{1}{0.00023076} \approx \) <strong>4334 日</strong>（約 11.9 年。NASA の値は 4332.589 日で、ずれは地球の公転周期を 365.26 日に丸めたことなどによる）</div>
+</div>
+<p>実際の間隔は、会合周期のまわりで少し変わります。国立天文台の天象では、金星の内合は 2025年3月23日と 2026年10月24日（間隔 580 日）、外合は 2026年1月7日と 2027年8月12日（582 日）、火星の衝は 2025年1月16日と 2027年2月20日（765 日）です。会合周期の式は、円軌道を一定の速さで回ると考えた<strong>平均の周期</strong>を与えます。</p>
+<div class="box point"><p class="box-title">外惑星の会合周期が最も長いのは火星</p><p>外惑星は遠いものほど1日に進む角度が小さく、地球はほぼ1年で追いつきます。そのため、木星（約 399 日）や土星（約 378 日）の会合周期は1年より少し長いだけです。公転周期が地球に近い火星は、地球がなかなか追いつけないので、会合周期が約 780 日と外惑星で最も長くなります。</p></div>
+<div class="box think">
+  <p class="box-title">考えよう：時計の長針と短針</p>
+  <p>長針は1時間で1周、短針は12時間で1周します。0時に重なった2本の針が次に重なるのは何時間後でしょうか。会合周期と同じ式 \( \dfrac{1}{S}=\dfrac{1}{1}-\dfrac{1}{12} \) から \( S=\dfrac{12}{11} \) 時間＝約1時間5分27秒です。前の時間の太陽日と恒星日の関係も、同じ形の式で表せます。</p>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 引き算の順を逆にして S が負になる → 内惑星は \( \frac{1}{P}-\frac{1}{E} \)、外惑星は \( \frac{1}{E}-\frac{1}{P} \)。どちらも「速い方 − 遅い方」です。<br>② 単位をそろえない → 日と年を混ぜない。<br>③ 最後に逆数をとり忘れる → 求めた値は \( \frac{1}{S} \) です。<br>④ 「遠い惑星ほど会合周期も長い」→ 外惑星では遠いほど会合周期は1年に近づきます。<br>⑤ 途中の値を早く丸めすぎる → 公転周期が長い惑星では \( \frac{1}{E} \) と \( \frac{1}{S} \) が近い値になり、差がとても小さくなるので、途中の値は5〜6けた残します（例題3(2)）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>視運動</dt><dd>天球上での天体の見かけの動き。</dd>
+    <dt>順行</dt><dd>惑星が星座の間を西から東へ動くこと。ふだんの向き。</dd>
+    <dt>逆行</dt><dd>惑星が星座の間を東から西へ逆戻りするように動くこと。外惑星は衝のころ、内惑星は内合のころに起こる。</dd>
+    <dt>留</dt><dd>順行と逆行が入れ替わるとき、惑星が星座の間でほぼ止まって見えること。</dd>
+    <dt>内惑星</dt><dd>地球より内側を公転する惑星（水星・金星）。</dd>
+    <dt>外惑星</dt><dd>地球より外側を公転する惑星（火星・木星・土星・天王星・海王星）。</dd>
+    <dt>内合・外合</dt><dd>内惑星が太陽と同じ方向に来るとき。太陽より近くを通るのが内合、向こう側が外合。</dd>
+    <dt>最大離角（東方最大離角・西方最大離角）</dt><dd>内惑星が太陽から最も離れて見えるとき。太陽の東側なら東方（夕方の西の空）、西側なら西方（明け方の東の空）。円軌道では sin θ＝a。</dd>
+    <dt>合・衝</dt><dd>外惑星が太陽と同じ方向に来るのが合、太陽とちょうど反対の方向に来るのが衝。</dd>
+    <dt>会合周期</dt><dd>内合や衝など、太陽・地球・惑星の同じ並び方がくり返される周期。公転周期 P・地球の公転周期 E と \( \frac{1}{S}=\left|\frac{1}{P}-\frac{1}{E}\right| \) の関係がある。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>惑星はふだん星座の間を西から東へ順行し、衝（外惑星）や内合（内惑星）のころに留をはさんで東から西へ逆行する。（O1）</li>
+    <li>逆行は、地球が外惑星を追い越すとき、内惑星が地球を追い越すときに、地球から見た方向が一時的に戻る見かけの運動で、惑星が公転の向きを変えるのではない。（O1）</li>
+    <li>内惑星は内合・外合・東方最大離角（夕方の西の空）・西方最大離角（明け方の東の空）、外惑星は合・衝（真夜中に南中、一晩中見える）。最大離角は円軌道で sin θ＝a（金星 約 46°）。（O2）</li>
+    <li>会合周期 S は、速い方が遅い方より1周多く回るまでの期間。内惑星 1/S＝1/P−1/E、外惑星 1/S＝1/E−1/P。金星 約 584 日、火星 約 780 日。（O3）</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">内惑星の会合周期</span>$$ \frac{1}{S}=\frac{1}{P}-\frac{1}{E} $$</div>
+  <div><span class="f-name">外惑星の会合周期</span>$$ \frac{1}{S}=\frac{1}{E}-\frac{1}{P} $$</div>
+  <div><span class="f-name">内惑星の最大離角（円軌道）</span>$$ \sin\theta = a\ \text{（a は天文単位）} $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示します。軌道は円とみなし、地球の公転周期は 1 年（365.26 日）とします。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>惑星の「順行」の説明として正しいものを選びましょう。</p>
+  <div class="choices">
+    <button>1日の間に、惑星が東からのぼって西へ沈む動き。</button>
+    <button data-correct="true">惑星が星座の間を西から東へ動いていくこと。</button>
+    <button>惑星が星座の間を東から西へ動いていくこと。</button>
+    <button>惑星が太陽のまわりを時計回りに公転すること。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">順行は、星座（恒星）を背景にした西から東への動きで、太陽が黄道上を動く向きと同じです。1つ目は地球の自転による日周運動で、別の現象です。3つ目は逆行です。惑星は北極側から見てどれも反時計回りに公転していて、順行・逆行は公転の向きのことではありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>金星が東方最大離角のころ、金星はいつ、どの方角の空に見えますか。</p>
+  <div class="choices">
+    <button>明け方、東の空</button>
+    <button data-correct="true">夕方、西の空</button>
+    <button>真夜中、南の空</button>
+    <button>夕方、東の空</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">東方最大離角は、金星が天球上で太陽の東側に最も離れるときです。太陽より遅れて沈むので、日の入り後の西の空に見えます（よいの明星）。「東方」だから東の空、と考えるのは典型的な誤りです。内惑星は真夜中には見えません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>外惑星が衝のころの見え方として正しいものを選びましょう。</p>
+  <div class="choices">
+    <button>太陽と同じ方向にあるので、一晩中見えない。</button>
+    <button>夕方の西の空に低く見え、すぐに沈む。</button>
+    <button data-correct="true">真夜中ごろに南中し、ほぼ一晩中見える。地球に最も近づき明るい。</button>
+    <button>明け方の東の空にだけ見える。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">衝は、外惑星が太陽とちょうど反対の方向に来るときです。太陽が沈むころにのぼり、真夜中に南中し、明け方に沈みます。地球と外惑星が太陽の同じ側に並ぶので距離が最も近く、明るく見えます。1つ目は合のころの説明です。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="1.6|1.6年|1.63|1.63年|約1.6年|約1.6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>公転周期が 0.62 年の内惑星の会合周期は何年ですか。小数第1位まで答えましょう。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">内惑星なので \( \dfrac{1}{S} = \dfrac{1}{0.62} - 1 = 1.613 - 1 = 0.613 \)、\( S \approx 1.63 \) 年 ≒ <strong>1.6 年</strong>。引き算を逆にすると負になるので気づけます。0.62 年と答えた人は、公転周期と会合周期を混同しています。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="5|5年|5.0|5.0年">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>ある外惑星の会合周期は 1.25 年です。この惑星の公転周期は何年ですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">外惑星なので \( \dfrac{1}{S} = 1 - \dfrac{1}{P} \) を P について解くと \( \dfrac{1}{P} = 1 - \dfrac{1}{1.25} = 1 - 0.8 = 0.2 \)、<strong>P＝5 年</strong>。会合周期が1年に近いほど、公転周期は長くなります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O1</span></div>
+  <p>火星が星座の間を逆行して見えるのは、どの現象の前後ですか。</p>
+  <div class="choices">
+    <button>合の前後</button>
+    <button data-correct="true">衝の前後</button>
+    <button>東方最大離角の前後</button>
+    <button>1年中いつでも少しずつ</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">地球が内側から火星を追い越すのは、太陽・地球・火星がこの順に一直線に並ぶ衝のころです（図1・図2）。合のころは、地球と火星が太陽をはさんで反対側にあり、追い越しが起こらないので順行します。最大離角は内惑星の現象です。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="0.5|0.50|1/2|0.5天文単位|0.5au">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O2</span></div>
+  <p>地球から見たある内惑星の最大離角は 30° でした。軌道を円とみなすと、この惑星の軌道半径は何天文単位ですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">最大離角では太陽−惑星−地球が直角になり、\( \sin\theta = a \)。\( a = \sin 30^\circ = \) <strong>0.5 天文単位</strong>。cos や tan を使った人は、直角の位置（惑星のところ）と斜辺（太陽−地球）を確かめましょう。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2・O3</span></div>
+  <p>金星の軌道半径を 0.723 天文単位、会合周期を 584 日とし、軌道を円とみなします。金星が東方最大離角になってから内合になるまでは、およそ何日ですか。必要なら \( \cos 43.7^\circ = 0.723 \) を使いましょう。</p>
+  <div class="choices">
+    <button>約 27 日</button>
+    <button data-correct="true">約 71 日</button>
+    <button>約 146 日</button>
+    <button>約 221 日</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">地球を固定して見ると、金星は会合周期 584 日で太陽のまわりを 360° 回ります（図3）。東方最大離角のとき、太陽から見た「地球の方向」と「金星の方向」の間の角は、直角三角形から \( \cos\alpha = 0.723 \)、α＝43.7°。内合ではこの角が 0° になるので、かかる日数は \( 584 \times \dfrac{43.7}{360} \approx 71 \) 日。国立天文台の資料（2026年8月15日 → 10月24日＝70 日）とよく合います。221 日は外合から東方最大離角までの日数、146 日は角を 90° として考えた値です。27 日は、会合周期の代わりに金星の公転周期 224.7 日を使った値（\( 224.7 \times \dfrac{43.7}{360} \)）で、その間に地球も公転していることを見落としています。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1</span></div>
+  <p>火星が衝のころに星座の間を逆行して見える理由を、地球と火星の公転の速さの違いと、地球から見た火星の方向の変化に触れて説明しましょう。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model"><p><strong>解答例</strong>　地球は火星より内側を公転していて、1日に進む角度が大きい（公転周期が短い）。衝のころは、地球が内側から火星を追い越すので、地球から見た火星の方向が、背景の星座に対して一時的に西へ戻っていく。このため、火星は公転の向きを変えていないのに、星座の間を東から西へ逆行して見える。</p><p><strong>採点の観点</strong>　①地球の方が速く公転する（1日に進む角度が大きい・公転周期が短い）ことを書いている。②衝のころに地球が火星を追い越すことを書いている。③地球から見た方向が西へ戻る「見かけの運動」であり、火星の公転の向きが変わるのではないことを書いている。</p></div>
+  <div class="explain">図2の右のように、地球の位置をそろえて方向だけを比べると、3→4→5 で方向が西へ戻ることが分かります。高速道路で遅い車を追い越すとき、遠くの山に対してその車が後ろへ下がって見えるのと同じです。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="choice" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O3</span></div>
+  <p>火星・木星・土星のうち、会合周期が最も長いものはどれですか。また、その理由として正しいものを選びましょう。</p>
+  <div class="choices">
+    <button>土星。太陽から最も遠く、公転周期が最も長いから。</button>
+    <button>木星。質量が最も大きいから。</button>
+    <button data-correct="true">火星。公転周期が地球に最も近く、地球が火星に追いつくまでに時間がかかるから。</button>
+    <button>3つとも同じ。外惑星の会合周期はすべて1年だから。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \dfrac{1}{S} = \dfrac{1}{E} - \dfrac{1}{P} \) で、P が大きいほど \( \dfrac{1}{P} \) は 0 に近づき、S は 1 年に近づきます。火星 約 780 日、木星 約 399 日、土星 約 378 日です。「遠いほど長い」は公転周期の性質で、会合周期には当てはまりません。質量は会合周期に関係しません。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（出題科目『地学』）</p>
+  <p>令和9年度の共通テスト実施要項では、理科は『物理基礎／化学基礎／生物基礎／地学基礎』『物理』『化学』『生物』『地学』の5科目から最大2科目を選択して解答します（1科目選択は60分・100点）。『地学』には出題範囲の特記がなく、学習指導要領の「地学」の内容が範囲です。このコマは「地学」の内容 (4)ア(ア)㋑ に当たります。</p>
+  <p>問題作成方針は『地学』などについて、「基本的な概念や原理・法則の理解を問う問題とともに，観察，実験，調査の結果などを数学的な手法等を活用して分析し解釈する力を問う問題や，受験者にとって既知ではないものも含めた資料などに示された事物・現象を分析的・総合的に考察する力を問う問題などを含めて検討する。その際，基礎を付した科目の内容との関連も考慮する」としています。惑星現象の日付の資料から会合周期と比べること、図から見かけの動きを考えることは、この方針に関わる学習です（具体的な出題形式を示すものではありません）。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">ケプラーの法則とその発見過程（地学-113）</p>
+  <p>この時間は、軌道を円とみなし、惑星が一定の速さで公転すると考えました。しかし、火星の衝の間隔（765 日）が会合周期（約 780 日）とずれたり、水星の最大離角がばらついたりすることから、実際の軌道は円からずれていることが分かります。次の時間は、惑星の軌道が楕円であること、面積速度が一定であること、公転周期と軌道の大きさの関係（ケプラーの法則）を学びます。</p>
+  <p class="small">この時間では扱わないこと：ケプラーの法則（地学-113）、観測資料を使って公転軌道上の位置と視運動の関係を調べる探究（地学-114）、会合周期とケプラーの第三法則を組み合わせた計算（地学-115）、太陽系天体の表面のようすなどの特徴（地学-116）。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>地学-111　時刻と太陽暦</div>
+  <div><span class="label">次の時間</span>地学-113　ケプラーの法則とその発見過程</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_chigaku/地学-112「惑星の視運動と会合周期」（学習指導要領 地学 (4)ア(ア)㋑、内容の取扱い(2)エ、解説 p.176）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第5節 理科「地学」、同解説 理科編 理数編（文部科学省）：https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf 、https://www.mext.go.jp/content/20250311-mxt_kyoiku02-100002620_05.pdf</li>
+    <li>語句（順行・逆行・留・内惑星・外惑星・東方最大離角・西方最大離角・内合・外合・合・衝・会合周期）：『高等学校 地学 改訂版』（地学061-901）指導計画・評価規準（新興出版社啓林館）</li>
+    <li>国立天文台暦計算室「天象 長期版」（2025〜2027年）：https://eco2.mtk.nao.ac.jp/cgi-bin/koyomi/cande/phenomena_fy.cgi ／「こよみ用語解説 天象」：https://eco2.mtk.nao.ac.jp/koyomi/faq/phenomena.html ／「暦Wiki 惑星/留」「暦Wiki 惑星/合と衝」：https://eco.mtk.nao.ac.jp/koyomi/wiki/</li>
+    <li>国立天文台「月が金星に接近、金星が最大光度（2026年9月）」（金星のこよみ、583.9 日）：https://www.nao.ac.jp/astro/sky/2026/09-topics02.html</li>
+    <li>NASA「Planetary Fact Sheet」と各惑星の Fact Sheet（公転周期・会合周期・軌道長半径）：https://nssdc.gsfc.nasa.gov/planetary/factsheet/</li>
+    <li>黄道：学校図書『中学校 科学 3』Web版（令和7年度用）：https://r7-kagaku.gakuto-plus.jp/3-4/2-3/3p201/</li>
+    <li>大学入試センター「令和9年度大学入学者選抜に係る大学入学共通テスト実施要項」「同 問題作成方針」</li>
+  </ul>
+  <p>作成：2026-09-29　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。図1〜図4と操作できる図は、軌道を同じ平面上の円とみなしたモデルによる計算です。計算の検算：tools/worker/lesson_hs_chigaku_地学-112_verify.py</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var E = 365.256;
+  var PL = {
+    mars: { r: 1.52366, P: 686.980, name: "火星", ev: "衝", cls: "c-mars", range: 45 },
+    venus: { r: 0.72333, P: 224.701, name: "金星", ev: "内合", cls: "c-venus", range: 120 }
+  };
+  var CX = 160, CY = 165, SC = 85, STRIP_C = 480, GX0 = 345, GX1 = 625, GY0 = 300, GY1 = 140;
+  var $ = function (id) { return document.getElementById(id); };
+  var sel = $("rv-planet"), sl = $("rv-day"), out = $("rv-day-out"), play = $("rv-play");
+  if (!sel || !sl) return;
+  function pos(r, p, t) {
+    var th = (90 + 360 * t / p) * Math.PI / 180;
+    return [r * Math.cos(th), r * Math.sin(th)];
+  }
+  function dirDeg(pl, t) {
+    var e = pos(1, E, t), q = pos(pl.r, pl.P, t);
+    return Math.atan2(q[1] - e[1], q[0] - e[0]) * 180 / Math.PI;
+  }
+  function rel(pl, t) {
+    var d = dirDeg(pl, t) - dirDeg(pl, 0);
+    while (d > 180) d -= 360;
+    while (d <= -180) d += 360;
+    return d;
+  }
+  function elong(pl, t) {
+    var e = pos(1, E, t), q = pos(pl.r, pl.P, t);
+    var sx = -e[0], sy = -e[1], vx = q[0] - e[0], vy = q[1] - e[1];
+    var c = (sx * vx + sy * vy) / Math.hypot(sx, sy) / Math.hypot(vx, vy);
+    var a = Math.acos(Math.max(-1, Math.min(1, c))) * 180 / Math.PI;
+    return { deg: a, east: (sx * vy - sy * vx) > 0 };
+  }
+  // 星座の帯の星（決まった並び）
+  var stars = $("rv-stars"), seed = 7;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  for (var i = 0; i < 38; i++) {
+    var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    c.setAttribute("cx", (340 + rnd() * 280).toFixed(1));
+    c.setAttribute("cy", (45 + rnd() * 50).toFixed(1));
+    c.setAttribute("r", (0.6 + rnd() * 1.3).toFixed(2));
+    stars.appendChild(c);
+  }
+  function sx(pl, d) { return STRIP_C - d * 140 / pl.range; }
+  function gx(t) { return GX0 + (t + 150) / 300 * (GX1 - GX0); }
+  function gy(pl, d) { return 220 - d / pl.range * 80; }
+  function drawCurve(pl) {
+    var s = "";
+    for (var t = -150; t <= 150; t += 2) s += (t === -150 ? "M" : " L") + gx(t).toFixed(1) + "," + gy(pl, rel(pl, t)).toFixed(1);
+    $("rv-curve").setAttribute("d", s);
+    $("rv-orbit").setAttribute("r", (pl.r * SC).toFixed(1));
+    $("rv-pl").setAttribute("class", pl.cls);
+  }
+  function draw() {
+    var pl = PL[sel.value], t = Number(sl.value);
+    var e = pos(1, E, t), q = pos(pl.r, pl.P, t);
+    var ex = CX + SC * e[0], ey = CY - SC * e[1], qx = CX + SC * q[0], qy = CY - SC * q[1];
+    $("rv-earth").setAttribute("cx", ex.toFixed(1)); $("rv-earth").setAttribute("cy", ey.toFixed(1));
+    $("rv-pl").setAttribute("cx", qx.toFixed(1)); $("rv-pl").setAttribute("cy", qy.toFixed(1));
+    var L = Math.hypot(qx - ex, qy - ey);
+    $("rv-sight").setAttribute("x1", ex.toFixed(1)); $("rv-sight").setAttribute("y1", ey.toFixed(1));
+    $("rv-sight").setAttribute("x2", (ex + (qx - ex) / L * 420).toFixed(1));
+    $("rv-sight").setAttribute("y2", (ey + (qy - ey) / L * 420).toFixed(1));
+    var d = rel(pl, t);
+    $("rv-mark").setAttribute("cx", sx(pl, d).toFixed(1));
+    var tr = $("rv-trail"), html = "";
+    for (var k = -150; k < t; k += 5) {
+      html += '<circle cx="' + sx(pl, rel(pl, k)).toFixed(1) + '" cy="70" r="2.2" fill="#ff9f6e" opacity=".7"/>';
+    }
+    tr.innerHTML = html;
+    $("rv-dot").setAttribute("cx", gx(t).toFixed(1)); $("rv-dot").setAttribute("cy", gy(pl, d).toFixed(1));
+    var rate = rel(pl, t + 0.5) - rel(pl, t - 0.5);
+    var move = Math.abs(rate) < 0.04 ? "留の近く（ほぼ止まって見える）" : (rate > 0 ? "順行（西から東へ）" : "逆行（東から西へ）");
+    var el = elong(pl, t);
+    out.textContent = pl.ev + "から " + (t > 0 ? "+" : "") + t + " 日";
+    var side = (el.deg < 0.5 || el.deg > 179.5) ? "" : "（太陽の" + (el.east ? "東" : "西") + "側）";
+    $("rv-read").textContent = pl.name + "：見かけの動きは " + move + "。太陽からの離角は " + el.deg.toFixed(1) + "°" + side + "。";
+  }
+  sel.addEventListener("change", function () { drawCurve(PL[sel.value]); draw(); });
+  sl.addEventListener("input", draw);
+  var timer = null;
+  play.addEventListener("click", function () {
+    if (timer) { clearInterval(timer); timer = null; play.textContent = "再生"; return; }
+    play.textContent = "停止";
+    timer = setInterval(function () {
+      var v = Number(sl.value) + 2;
+      if (v > 150) v = -150;
+      sl.value = String(v);
+      draw();
+    }, 60);
+  });
+  drawCurve(PL[sel.value]);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_chigaku/地学-112",
+  "map": "hs_chigaku",
+  "rid": "地学-112",
+  "title": "惑星の視運動と会合周期",
+  "subject": "地学",
+  "unit": {
+    "ref": "hs_chigaku:地学-11",
+    "title": "太陽系"
+  },
+  "exam": {
+    "共通テスト": "○",
+    "個別試験": ""
+  },
+  "basis": [
+    "(4)ア(ア)㋑",
+    "取扱い(2)エ"
+  ],
+  "kaisetsu_page": "176",
+  "objectives": [
+    {
+      "id": "O1",
+      "text": "星座の間を動く惑星の視運動（順行・逆行・留）が、地球と惑星がともに公転しているために生じる見かけの運動であることを説明できる。",
+      "from": "星座の間を動く惑星の視運動…を理解し",
+      "sections": [
+        "sec-1",
+        "sec-2"
+      ],
+      "checks": [
+        "q1",
+        "q6",
+        "q9"
+      ]
+    },
+    {
+      "id": "O2",
+      "text": "内惑星と外惑星について、太陽・地球との位置関係によって起こる惑星現象（内合・外合・最大離角、合・衝）と、そのころの見え方を説明できる。",
+      "from": "太陽・地球との位置関係によって起こる惑星現象を理解し",
+      "sections": [
+        "sec-3"
+      ],
+      "checks": [
+        "q2",
+        "q3",
+        "q7",
+        "q8"
+      ]
+    },
+    {
+      "id": "O3",
+      "text": "会合周期と地球・惑星の公転周期との関係を式で表し、会合周期や公転周期を求めることができる。",
+      "from": "会合周期と地球・惑星の公転周期との関係を式で表すことができる。",
+      "sections": [
+        "sec-4"
+      ],
+      "checks": [
+        "q4",
+        "q5",
+        "q8",
+        "q10"
+      ]
+    }
+  ],
+  "key_terms": [
+    {
+      "term": "順行",
+      "where": "sec-1"
+    },
+    {
+      "term": "逆行",
+      "where": "sec-1"
+    },
+    {
+      "term": "内惑星",
+      "where": "sec-3"
+    },
+    {
+      "term": "外惑星",
+      "where": "sec-3"
+    },
+    {
+      "term": "最大離角",
+      "where": "sec-3"
+    }
+  ],
+  "prerequisites": [
+    {
+      "concept": "内惑星（金星）の見え方：太陽の東側で夕方の西の空、西側で明け方の東の空",
+      "taught_in": [
+        "jhs_rika3/中3-096"
+      ],
+      "where": "r1"
+    },
+    {
+      "concept": "天体の日周運動（東から西へ、1時間に約15°）",
+      "taught_in": [
+        "jhs_rika3/中3-079"
+      ],
+      "where": "r1"
+    },
+    {
+      "concept": "星座の年周運動と地球の公転",
+      "taught_in": [
+        "jhs_rika3/中3-080",
+        "jhs_rika3/中3-081"
+      ],
+      "where": "r2"
+    },
+    {
+      "concept": "恒星日と太陽日の違い（動く相手に追いつくまでの時間の考え方）",
+      "taught_in": [
+        "hs_chigaku/地学-111"
+      ],
+      "where": "r3"
+    },
+    {
+      "concept": "太陽系の構造と惑星の並び",
+      "taught_in": [
+        "jhs_rika3/中3-090",
+        "hs_chigaku/地基-039"
+      ],
+      "where": "sec-3"
+    },
+    {
+      "concept": "観測者が動くことによって生じる見かけの現象（視差・相対運動）",
+      "taught_in": [
+        "hs_chigaku/地学-110"
+      ],
+      "where": "sec-2"
+    },
+    {
+      "concept": "正弦 sin の定義と角の求め方",
+      "taught_in": [
+        "hs_math_1a/数Ⅰ-058",
+        "hs_math_1a/数Ⅰ-059"
+      ],
+      "where": "sec-3"
+    },
+    {
+      "concept": "1日に進む角度（角速度＝360°÷公転周期）",
+      "taught_in": [
+        "hs_butsuri/物理-024"
+      ],
+      "where": "sec-2"
+    },
+    {
+      "concept": "黄道（太陽が天球上を西から東へ動く見かけの通り道）と、天球上の東西の向き",
+      "taught_in": [
+        "jhs_rika3/中3-081"
+      ],
+      "gap": false,
+      "where": "supp-1"
+    }
+  ],
+  "out_of_scope": [
+    "ケプラーの法則（楕円軌道・面積速度一定・公転周期と軌道長半径の関係）とその発見過程（地学-113）",
+    "観測資料を使って公転軌道上の位置と視運動の関係を考察する探究（地学-114）",
+    "会合周期とケプラーの第三法則を組み合わせた計算問題（地学-115）",
+    "惑星・衛星・小惑星・彗星などの特徴（地学-116）",
+    "年周視差・年周光行差（地学-110）",
+    "金星の満ち欠けと見かけの大きさの詳細（中3-096 で既習。ここでは確認のみ）"
+  ],
+  "selection_reason": "地学で最も作るのが難しいコマとして選んだ。比べた候補は、地学-029 初動分布と断層運動（押し波・引き波の分布から発震機構を判別する立体的な思考）と、地学-124 恒星の半径（等級・シュテファン・ボルツマンの法則を組み合わせた計算）。本コマは、地球と惑星がともに動く相対運動という抽象的な内容で、「東方最大離角なのに西の空」「逆行＝公転の向きが変わる」など誤解が多い。軌道の図と天球上の見かけの動きを正確な比率で対応させる図や操作が欠かせず、中学の天体・金星、地学-111 の恒星日、数学Ⅰの三角比、物理の角速度にまたがる前提があり、会合周期の式と実際の惑星現象の日付（国立天文台）を照合する正確さが求められ、共通テスト『地学』の計算・資料問題にも直結する。",
+  "sources": [
+    {
+      "name": "高等学校学習指導要領（平成30年告示）第2章第5節 理科「地学」",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf",
+      "use": "内容 (4)ア(ア)㋑ と内容の取扱い(2)エ（視運動及びケプラーの法則を扱う）"
+    },
+    {
+      "name": "高等学校学習指導要領（平成30年告示）解説 理科編 理数編",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20250311-mxt_kyoiku02-100002620_05.pdf",
+      "use": "p.176：惑星現象・会合周期を取り上げる、公転軌道上の運動と視運動は同じ現象を異なる視点から見ている、コンピュータシミュレーションの活用"
+    },
+    {
+      "name": "『高等学校 地学 改訂版』（地学061-901）指導計画・評価規準",
+      "publisher": "新興出版社啓林館",
+      "url": "https://www.shinko-keirin.co.jp/keirinkan/kou/kou_wp/wp-content/uploads/2026/04/%E6%8C%87%E5%B0%8E%E8%A8%88%E7%94%BB%E3%83%BB%E8%A9%95%E4%BE%A1%E8%A6%8F%E6%BA%96%E5%9C%B0%E5%AD%A6061-901.xlsx",
+      "use": "教科書レベルの語句（順行・逆行・留・内惑星・外惑星・東方最大離角・西方最大離角・内合・外合・合・衝・会合周期）の確認"
+    },
+    {
+      "name": "天象 長期版（2025・2026・2027年）",
+      "publisher": "国立天文台暦計算室",
+      "url": "https://eco2.mtk.nao.ac.jp/cgi-bin/koyomi/cande/phenomena_fy.cgi",
+      "use": "金星・火星・水星の合・衝・最大離角・留の日付と離角"
+    },
+    {
+      "name": "こよみ用語解説 天象／暦Wiki 惑星/留・合と衝",
+      "publisher": "国立天文台暦計算室",
+      "url": "https://eco2.mtk.nao.ac.jp/koyomi/faq/phenomena.html",
+      "use": "留・合・最大離角・衝の定義と見え方、順行・逆行、「惑星」の名前の由来"
+    },
+    {
+      "name": "月が金星に接近、金星が最大光度（2026年9月）",
+      "publisher": "国立天文台",
+      "url": "https://www.nao.ac.jp/astro/sky/2026/09-topics02.html",
+      "use": "金星のこよみ（2026〜2027年）と満ち欠けの周期 583.9 日"
+    },
+    {
+      "name": "Planetary Fact Sheet／Venus・Mars・Jupiter Fact Sheet",
+      "publisher": "NASA Goddard Space Flight Center",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+      "use": "公転周期（金星 224.701 日、地球 365.256 日、火星 686.980 日、木星 4332.589 日）、会合周期、軌道長半径、離心率"
+    },
+    {
+      "name": "中学校 科学 3（令和7年度用）Web版 p.201",
+      "publisher": "学校図書",
+      "url": "https://r7-kagaku.gakuto-plus.jp/3-4/2-3/3p201/",
+      "use": "黄道（太陽が星座の間を西から東へ動く見かけの通り道）が中学の教科書で扱われていることの確認"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・問題作成方針",
+      "publisher": "大学入試センター",
+      "url": "https://www.dnc.ac.jp/",
+      "use": "出題科目・選択方法・試験時間と配点、『地学』の問題作成方針の原文"
+    }
+  ],
+  "version": "1.0",
+  "generated": "2026-09-29"
+}
+</script>
+</body>
+</html>

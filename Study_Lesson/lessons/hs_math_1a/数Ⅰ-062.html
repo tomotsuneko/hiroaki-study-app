@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>90°−A の三角比｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>図形と計量</span><span>数Ⅰ-062</span></div>
+  <h1>90°−A の三角比</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">三角比表を見ると、\( \sin 20^\circ \) と \( \cos 70^\circ \) はどちらも 0.3420 です。偶然でしょうか。直角三角形の2つの鋭角の関係から理由を考え、三角比の値を求めることに役立てます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>直角三角形の2つの鋭角が \( A \) と \( 90^\circ-A \) であることから、\( \sin(90^\circ-A)=\cos A \)、\( \cos(90^\circ-A)=\sin A \)、\( \tan(90^\circ-A)=\dfrac{1}{\tan A} \) が成り立つ理由を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>これらの関係を用いて、三角比を 45° 以下の角の三角比で表したり、三角比表の値や式の値を求めたりすることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-061）</span>三角比の相互関係</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-062）</span>90°−A の三角比</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-063）</span>三角比の鈍角への拡張</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」「三平方の定理」。同じ単元の数Ⅰ-058（正弦・余弦・正接）、数Ⅰ-059（三角比表）、数Ⅰ-061（三角比の相互関係）を使います。この時間の角 \( A \) は、直角三角形の鋭角（\( 0^\circ&lt;A&lt;90^\circ \)）です。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、三角比の定義（数Ⅰ-058）、三角形の内角の和（中2-048）、三角比の相互関係（数Ⅰ-061）を使います。3問で確かめましょう。辺の名前は、\( \angle\mathrm{C}=90^\circ \) の直角三角形 ABC で \( a=\mathrm{BC} \)、\( b=\mathrm{CA} \)、\( c=\mathrm{AB} \) とします。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-058</span></div>
+  <p>\( \angle\mathrm{C}=90^\circ \) の直角三角形 ABC で、\( \sin A \) を表すものはどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{b}{c} \)</button>
+    <button data-correct="true">\( \dfrac{a}{c} \)</button>
+    <button>\( \dfrac{a}{b} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sin A \) は「斜辺 \( c \) に対する、角 A と向かい合う辺 \( a=\mathrm{BC} \) の比」で \( \dfrac{a}{c} \) です。\( \dfrac{b}{c} \) は角 A をはさむ斜辺でない辺 \( b \) を使った \( \cos A \)、\( \dfrac{a}{b} \) は \( \tan A \) です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中2-048</span></div>
+  <p>\( \angle\mathrm{C}=90^\circ \) の直角三角形 ABC で、\( \angle\mathrm{A}=A \) と書くとき、\( \angle\mathrm{B} \) の大きさはどれですか。</p>
+  <div class="choices">
+    <button>\( 180^\circ-A \)</button>
+    <button>\( A \)</button>
+    <button data-correct="true">\( 90^\circ-A \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">三角形の内角の和は 180° なので、\( \angle\mathrm{B}=180^\circ-90^\circ-A=90^\circ-A \) です。\( 180^\circ-A \) は直角の 90° を引き忘れた誤りです。\( \angle\mathrm{B}=A \) となるのは、直角二等辺三角形（\( A=45^\circ \)）のときだけです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-061</span></div>
+  <p>\( A \) は鋭角で \( \cos A=\dfrac{4}{5} \) のとき、\( \sin A \) の値はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \dfrac{3}{5} \)</button>
+    <button>\( \dfrac{1}{5} \)</button>
+    <button>\( \dfrac{9}{25} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sin^2A+\cos^2A=1 \)（\( \sin^2A \) は \( (\sin A)^2 \) のこと。数Ⅰ-061）より \( \sin^2A=1-\dfrac{16}{25}=\dfrac{9}{25} \)。\( A \) は鋭角で \( \sin A&gt;0 \) なので \( \sin A=\dfrac{3}{5} \) です。\( \dfrac{1}{5} \) は \( 1-\dfrac{4}{5} \) と2乗せずに引いた誤り、\( \dfrac{9}{25} \) は \( \sin^2A \) の値で、平方根をとり忘れています。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：三角比表に同じ数が並んでいる？</h2>
+<div class="box think">
+  <p class="box-title">表1を見比べてみよう</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>角</th><th>\( \sin \)</th><th>\( \cos \)</th><th>\( \tan \)</th></tr>
+    <tr><td>10°</td><td>0.1736</td><td>0.9848</td><td>0.1763</td></tr>
+    <tr><td>20°</td><td>0.3420</td><td>0.9397</td><td>0.3640</td></tr>
+    <tr><td>35°</td><td>0.5736</td><td>0.8192</td><td>0.7002</td></tr>
+    <tr><td>55°</td><td>0.8192</td><td>0.5736</td><td>1.4281</td></tr>
+    <tr><td>70°</td><td>0.9397</td><td>0.3420</td><td>2.7475</td></tr>
+    <tr><td>80°</td><td>0.9848</td><td>0.1736</td><td>5.6713</td></tr>
+  </table>
+  </div>
+  <p class="small">表1　三角比表の一部（数Ⅰ-059 で学んだ表と同じく、値は小数第5位を四捨五入して小数第4位まで）。</p>
+  <p>① \( \sin 20^\circ \) と \( \cos 70^\circ \)、\( \sin 70^\circ \) と \( \cos 20^\circ \) は同じ値です。ほかにも同じ値の組を探してみましょう。どんな角の組で同じになっているでしょうか。</p>
+  <p>② \( \tan 20^\circ\times\tan 70^\circ \) を表の値で計算すると \( 0.3640\times2.7475=1.00009 \) で、ほぼ 1 です。これも偶然でしょうか。</p>
+  <p>答えは「3 直角三角形の2つの鋭角」の「導入の問いの答え」で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="直角三角形の2つの鋭角"><span class="num">3</span>直角三角形の2つの鋭角</h2>
+<p>\( \angle\mathrm{C}=90^\circ \) の直角三角形 ABC で、\( \angle\mathrm{A}=A \) とします。三角形の内角の和は 180° なので（中2-048）、もう1つの鋭角は \( \angle\mathrm{B}=180^\circ-90^\circ-A=90^\circ-A \) です。つまり、<strong>直角三角形の2つの鋭角は、いつも \( A \) と \( 90^\circ-A \) の組</strong>になっています。</p>
+<p>数Ⅰ-058 では、sin・cos・tan を「角と向かい合う辺」「角をはさむ斜辺でない辺」「斜辺」で定めました。この時間では、角をはさむ斜辺でない辺を短く<strong>となりの辺</strong>と呼びます（このページでの呼び方）。三角比は「どの角から見るか」で、向かい合う辺ととなりの辺が入れかわります。</p>
+<p>角 A から見ると、向かい合う辺は \( a=\mathrm{BC} \)、となりの辺は \( b=\mathrm{CA} \) です。角 B から見ると、向かい合う辺は \( b=\mathrm{CA} \)、となりの辺は \( a=\mathrm{BC} \) です。斜辺はどちらから見ても \( c=\mathrm{AB} \) です（図1）。</p>
+<figure>
+  <div class="fig-row">
+<!--svg:f062a-->
+<svg viewBox="0 0 384 200" width="384" role="img" aria-label="角 C が直角の直角三角形 ABC を2通りに置いた図。左は角 A を左下に置き、向かい合う辺 a、となりの辺 b、斜辺 c。右は裏返して角 B（90°−A）を左下に置き、向かい合う辺が b、となりの辺が a になる" data-fig="f062a" data-map="-0.17,2.09,-0.22,0.96,0,0,170">
+<polygon points="28.9,163.2 168.2,163.2 168.2,65.7" fill="#1f5fbf" fill-opacity="0.06" stroke="currentColor" stroke-width="1.8"/>
+<path d="M158.2,163.2 L158.2,153.2 L168.2,153.2" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<path d="M56.9,163.2 L56.8,160.8 L56.5,158.3 L55.9,156 L55.2,153.6 L54.3,151.4 L53.1,149.2 L51.8,147.1" fill="none" stroke="#c0392b" stroke-width="1.6" data-angle="A"/>
+<path d="M148.5,79.5 L149.8,81.1 L151.2,82.7 L152.7,84.1 L154.4,85.4 L156.2,86.5 L158,87.4 L159.9,88.2 L161.9,88.9 L164,89.3 L166.1,89.6 L168.2,89.7" fill="none" stroke="#1f5fbf" stroke-width="1.6" data-angle="B"/>
+<text x="69" y="154.6" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">A</text>
+<text x="140.3" y="102.3" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf">90°−A</text>
+<text x="22.9" y="177.2" text-anchor="end" font-size="13" font-weight="700" fill="currentColor">A</text>
+<text x="174.2" y="177.2" text-anchor="start" font-size="13" font-weight="700" fill="currentColor">C</text>
+<text x="174.2" y="63.7" text-anchor="start" font-size="13" font-weight="700" fill="currentColor">B</text>
+<text x="98.5" y="180.2" text-anchor="middle" font-size="13" font-style="italic" fill="currentColor">b</text>
+<text x="176.2" y="118.4" text-anchor="start" font-size="13" font-style="italic" fill="currentColor">a</text>
+<text x="88.5" y="106.4" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">c</text>
+<polygon points="248.2,163.2 345.7,163.2 345.7,23.9" fill="#1f5fbf" fill-opacity="0.06" stroke="currentColor" stroke-width="1.8"/>
+<path d="M335.7,163.2 L335.7,153.2 L345.7,153.2" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<path d="M276.2,163.2 L276.1,160.8 L275.8,158.3 L275.2,156 L274.5,153.6 L273.6,151.4 L272.4,149.2 L271.1,147.1 L269.6,145.2 L268,143.4 L266.2,141.8 L264.3,140.3" fill="none" stroke="#1f5fbf" stroke-width="1.6" data-angle="B"/>
+<path d="M331.9,43.6 L333.7,44.7 L335.6,45.7 L337.5,46.5 L339.5,47.1 L341.5,47.6 L343.6,47.9 L345.7,47.9" fill="none" stroke="#c0392b" stroke-width="1.6" data-angle="A"/>
+<text x="298.6" y="148.1" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf">90°−A</text>
+<text x="334.9" y="62.3" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">A</text>
+<text x="242.2" y="177.2" text-anchor="end" font-size="13" font-weight="700" fill="currentColor">B</text>
+<text x="351.7" y="177.2" text-anchor="start" font-size="13" font-weight="700" fill="currentColor">C</text>
+<text x="351.7" y="21.9" text-anchor="start" font-size="13" font-weight="700" fill="currentColor">A</text>
+<text x="297" y="180.2" text-anchor="middle" font-size="13" font-style="italic" fill="currentColor">a</text>
+<text x="353.7" y="97.6" text-anchor="start" font-size="13" font-style="italic" fill="currentColor">b</text>
+<text x="287" y="85.6" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">c</text>
+</svg>
+<!--/svg:f062a-->
+  </div>
+  <figcaption>図1　左：角 A から見た直角三角形 ABC。右：同じ三角形を裏返して、角 B を左下に置いたもの。角 B（\( 90^\circ-A \)）から見ると、向かい合う辺は \( b \)、となりの辺は \( a \) になる（図は \( A=35^\circ \) でかいた）</figcaption>
+</figure>
+<p>数Ⅰ-058 の定義にしたがって、角 A と角 B の三角比を並べると、表2のようになります。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>角</th><th>\( \sin \)（向かい合う辺／斜辺）</th><th>\( \cos \)（となりの辺／斜辺）</th><th>\( \tan \)（向かい合う辺／となりの辺）</th></tr>
+  <tr><td>\( A \)</td><td>\( \sin A=\dfrac{a}{c} \)</td><td>\( \cos A=\dfrac{b}{c} \)</td><td>\( \tan A=\dfrac{a}{b} \)</td></tr>
+  <tr><td>\( B=90^\circ-A \)</td><td>\( \sin B=\dfrac{b}{c} \)</td><td>\( \cos B=\dfrac{a}{c} \)</td><td>\( \tan B=\dfrac{b}{a} \)</td></tr>
+</table>
+</div>
+<p class="small">表2　角 A と角 \( B=90^\circ-A \) の三角比。同じ分数が、sin と cos を入れかえた位置に現れる。</p>
+<p>表2の上の行と下の行を比べると、\( \sin B=\dfrac{b}{c}=\cos A \)、\( \cos B=\dfrac{a}{c}=\sin A \) です。また \( \tan B=\dfrac{b}{a} \) は \( \tan A=\dfrac{a}{b} \) の分母と分子を入れかえたもの（逆数）なので、\( \tan B=\dfrac{1}{\tan A} \) です。\( B=90^\circ-A \) を代入すると、次の関係が得られます。</p>
+<div class="box point"><p class="box-title">90°−A の三角比（\( 0^\circ&lt;A&lt;90^\circ \)）</p>
+$$ \sin(90^\circ-A)=\cos A,\qquad \cos(90^\circ-A)=\sin A,\qquad \tan(90^\circ-A)=\dfrac{1}{\tan A} $$
+<p>「\( 90^\circ-A \) の sin は A の cos、\( 90^\circ-A \) の cos は A の sin。tan は逆数」と覚えます。\( \tan A\times\tan(90^\circ-A)=1 \) と書いても同じです。</p></div>
+
+<h3>特別な角で確かめる</h3>
+<p>数Ⅰ-058 で求めた 30°・45°・60° の三角比で確かめましょう。\( 60^\circ=90^\circ-30^\circ \) です。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>関係</th><th>左辺</th><th>右辺</th></tr>
+  <tr><td>\( \sin 60^\circ=\cos 30^\circ \)</td><td>\( \dfrac{\sqrt{3}}{2} \)</td><td>\( \dfrac{\sqrt{3}}{2} \)</td></tr>
+  <tr><td>\( \cos 60^\circ=\sin 30^\circ \)</td><td>\( \dfrac{1}{2} \)</td><td>\( \dfrac{1}{2} \)</td></tr>
+  <tr><td>\( \tan 60^\circ=\dfrac{1}{\tan 30^\circ} \)</td><td>\( \sqrt{3} \)</td><td>\( \dfrac{1}{\frac{1}{\sqrt{3}}}=\sqrt{3} \)</td></tr>
+</table>
+</div>
+<p>\( 45^\circ \) では \( 90^\circ-45^\circ=45^\circ \) なので、関係は \( \sin 45^\circ=\cos 45^\circ \)（どちらも \( \dfrac{1}{\sqrt{2}} \)）、\( \tan 45^\circ\times\tan 45^\circ=1 \) となります。\( \tan 45^\circ=1 \) と合っています。</p>
+
+<div class="box example" id="intro-answer">
+  <p class="box-title">導入の問いの答え</p>
+  <p>① 同じ値になっていたのは、\( 20^\circ \) と \( 70^\circ \)、\( 10^\circ \) と \( 80^\circ \)、\( 35^\circ \) と \( 55^\circ \) のように、<strong>和が 90° になる角の組</strong>です。\( 70^\circ=90^\circ-20^\circ \) なので \( \cos 70^\circ=\sin 20^\circ \)、\( \sin 70^\circ=\cos 20^\circ \) です。偶然ではありません。</p>
+  <p>② \( \tan 70^\circ=\dfrac{1}{\tan 20^\circ} \) なので、\( \tan 20^\circ\times\tan 70^\circ \) は正確には 1 です。表の値で 1.00009 になったのは、表の値が四捨五入した値だからです。</p>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p>
+<ul>
+  <li><strong>sin をかけ算のように分ける</strong>：\( \sin(90^\circ-A) \) は「角 \( 90^\circ-A \) の正弦」で、sin と \( (90^\circ-A) \) のかけ算ではありません。かっこを分配することはできません。たとえば \( \sin 60^\circ=\dfrac{\sqrt{3}}{2} \) は、\( 2\times\sin 30^\circ=1 \) とは違います。</li>
+  <li><strong>sin と cos を入れかえ忘れる</strong>：\( \cos(90^\circ-A)=\cos A \) とする誤りです。\( A=30^\circ \) なら \( \cos 60^\circ=\dfrac{1}{2} \)、\( \cos 30^\circ=\dfrac{\sqrt{3}}{2} \) で違います。</li>
+  <li><strong>tan も同じ値だと思う</strong>：\( \tan(90^\circ-A)=\tan A \) は誤りです。\( \tan 60^\circ=\sqrt{3} \)、\( \tan 30^\circ=\dfrac{1}{\sqrt{3}} \) のように、逆数になります。</li>
+</ul></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="関係を使って値を求める"><span class="num">4</span>関係を使って三角比の値を求める</h2>
+<h3>45° より大きい角を 45° 以下の角で表す</h3>
+<p>\( 45^\circ&lt;A&lt;90^\circ \) なら \( 0^\circ&lt;90^\circ-A&lt;45^\circ \) です。したがって、鋭角の三角比は、いつでも 45° 以下の角の三角比で表せます。</p>
+<div class="box example worked">
+  <p class="box-title">例題1</p>
+  <p>次の三角比を、45° 以下の角の三角比で表しなさい。(1) \( \sin 70^\circ \)　(2) \( \cos 65^\circ \)　(3) \( \tan 80^\circ \)</p>
+  <div class="step">着目：90° から引いた角を求める。\( 90^\circ-70^\circ=20^\circ \)、\( 90^\circ-65^\circ=25^\circ \)、\( 90^\circ-80^\circ=10^\circ \)。</div>
+  <div class="step">(1) \( 70^\circ=90^\circ-20^\circ \) なので、\( \sin 70^\circ=\sin(90^\circ-20^\circ)=\cos 20^\circ \)。</div>
+  <div class="step">(2) \( \cos 65^\circ=\cos(90^\circ-25^\circ)=\sin 25^\circ \)。</div>
+  <div class="step">(3) \( \tan 80^\circ=\tan(90^\circ-10^\circ)=\dfrac{1}{\tan 10^\circ} \)。</div>
+  <div class="step">答え：(1) \( \cos 20^\circ \)　(2) \( \sin 25^\circ \)　(3) \( \dfrac{1}{\tan 10^\circ} \)</div>
+</div>
+
+<h3>三角比表の値と組み合わせる</h3>
+<div class="box example worked">
+  <p class="box-title">例題2</p>
+  <p>表1の 10°・35° の行の値だけを使って、\( \cos 80^\circ \) と \( \tan 55^\circ \) の値を求めなさい（小数第5位を四捨五入する。表の値は近似値なので「≒」（ほぼ等しい）で書く）。</p>
+  <div class="step">着目：\( 80^\circ=90^\circ-10^\circ \)、\( 55^\circ=90^\circ-35^\circ \)。</div>
+  <div class="step">\( \cos 80^\circ=\sin 10^\circ\fallingdotseq0.1736 \)。</div>
+  <div class="step">\( \tan 55^\circ=\dfrac{1}{\tan 35^\circ}\fallingdotseq\dfrac{1}{0.7002}=1.428163\cdots \) なので、およそ 1.4282。</div>
+  <div class="step">答え：\( \cos 80^\circ\fallingdotseq0.1736 \)、\( \tan 55^\circ \) はおよそ 1.4282</div>
+</div>
+<div class="box caution"><p class="box-title">注意：表の値の逆数は、最後のけたがずれることがある</p><p>表1の \( \tan 55^\circ \) は 1.4281 ですが、例題2で求めた値は 1.4282 です。表の \( \tan 35^\circ\fallingdotseq0.7002 \) は四捨五入した値なので、その逆数を計算すると、最後のけたが表の値と 1 ずれることがあります。sin と cos の入れかえ（\( \cos 80^\circ=\sin 10^\circ \)）では、同じ数を読むだけなので、このずれは起きません。</p></div>
+<p class="small">\( \fallingdotseq \) は「ほぼ等しい」ことを表す記号です（数Ⅰ-059 と同じく、表の近似値にはこの記号を使います）。</p>
+
+<h3>式の値を求める</h3>
+<div class="box example worked">
+  <p class="box-title">例題3</p>
+  <p>次の式の値を求めなさい。(1) \( \sin^2 20^\circ+\sin^2 70^\circ \)　(2) \( \tan 25^\circ\tan 65^\circ \)　(3) \( \sin 50^\circ-\cos 40^\circ \)</p>
+  <div class="step">(1) 着目：\( 70^\circ=90^\circ-20^\circ \)。\( \sin 70^\circ=\cos 20^\circ \) なので、\( \sin^2 20^\circ+\sin^2 70^\circ=\sin^2 20^\circ+\cos^2 20^\circ=1 \)（数Ⅰ-061 の \( \sin^2A+\cos^2A=1 \)）。</div>
+  <div class="step">(2) 着目：\( 65^\circ=90^\circ-25^\circ \)。\( \tan 65^\circ=\dfrac{1}{\tan 25^\circ} \) なので、\( \tan 25^\circ\tan 65^\circ=\tan 25^\circ\times\dfrac{1}{\tan 25^\circ}=1 \)。</div>
+  <div class="step">(3) 着目：\( 50^\circ=90^\circ-40^\circ \)。\( \sin 50^\circ=\cos 40^\circ \) なので、\( \sin 50^\circ-\cos 40^\circ=0 \)。</div>
+  <div class="step">答え：(1) 1　(2) 1　(3) 0</div>
+</div>
+<p>表1や三角比表の値を使わなくても、角の組に気づけば正確な値が求められます。</p>
+
+<h3>1つの三角比の値から、90°−A の三角比を求める</h3>
+<div class="box example worked">
+  <p class="box-title">例題4</p>
+  <p>\( A \) は鋭角で \( \sin A=0.6 \) のとき、\( \cos(90^\circ-A) \) と \( \sin(90^\circ-A) \) の値を求めなさい。</p>
+  <div class="step">着目：\( \cos(90^\circ-A)=\sin A \)、\( \sin(90^\circ-A)=\cos A \)。</div>
+  <div class="step">\( \cos(90^\circ-A)=\sin A=0.6 \)。</div>
+  <div class="step">\( \cos^2A=1-0.6^2=0.64 \)、\( A \) は鋭角で \( \cos A&gt;0 \) なので \( \cos A=0.8 \)（数Ⅰ-061）。よって \( \sin(90^\circ-A)=0.8 \)。</div>
+  <div class="step">答え：\( \cos(90^\circ-A)=0.6 \)、\( \sin(90^\circ-A)=0.8 \)</div>
+</div>
+<div class="box point"><p class="box-title">使い方の手順</p><p>① 角を「90° からいくつ引いた角か」と見る。② sin と cos を入れかえ、tan は逆数にする。③ 必要なら、相互関係（数Ⅰ-061）や三角比表を使って値を求める。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">5</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>正弦・余弦・正接</dt><dd>\( \angle\mathrm{C}=90^\circ \) の直角三角形 ABC で \( \sin A=\dfrac{a}{c} \)、\( \cos A=\dfrac{b}{c} \)、\( \tan A=\dfrac{a}{b} \)（数Ⅰ-058）。まとめて三角比という。</dd>
+    <dt>90°−A の三角比</dt><dd>\( 0^\circ&lt;A&lt;90^\circ \) のとき、\( \sin(90^\circ-A)=\cos A \)、\( \cos(90^\circ-A)=\sin A \)、\( \tan(90^\circ-A)=\dfrac{1}{\tan A} \)。直角三角形のもう1つの鋭角が \( 90^\circ-A \) であることから導かれる。</dd>
+    <dt>逆数</dt><dd>2つの数の積が 1 になるとき、一方を他方の逆数という。\( \tan(90^\circ-A) \) は \( \tan A \) の逆数。</dd>
+    <dt>三角比表</dt><dd>角の大きさと三角比の値を対応させた表（数Ⅰ-059）。この時間の表1は、その一部を小数第4位まで示したもの。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">6</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>直角三角形の2つの鋭角は \( A \) と \( 90^\circ-A \)。角 B から見ると向かい合う辺ととなりの辺が入れかわるので、\( \sin(90^\circ-A)=\cos A \)、\( \cos(90^\circ-A)=\sin A \)、\( \tan(90^\circ-A)=\dfrac{1}{\tan A} \) が成り立つ（O1）。</li>
+    <li>45° より大きい鋭角の三角比は、45° 以下の角の三角比で表せる（O2）。</li>
+    <li>三角比表の値と組み合わせて値を求められる。逆数を計算すると、最後のけたが表の値とずれることがある（O2）。</li>
+    <li>和が 90° の角の組に気づくと、\( \sin^2 20^\circ+\sin^2 70^\circ=1 \) のような式の値が正確に求められる（O1・O2）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">90°−A の三角比（\( 0^\circ&lt;A&lt;90^\circ \)）</span>
+    <p>\( \sin(90^\circ-A)=\cos A \)<br>\( \cos(90^\circ-A)=\sin A \)<br>\( \tan(90^\circ-A)=\dfrac{1}{\tan A} \)</p></div>
+  <div><span class="f-name">相互関係（数Ⅰ-061）</span>
+    <p>\( \sin^2A+\cos^2A=1 \)<br>\( \tan A=\dfrac{\sin A}{\cos A} \)<br>\( 1+\tan^2A=\dfrac{1}{\cos^2A} \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">7</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。この節の角はすべて鋭角です。小数は 0.3584、分数は 3/7 のように入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>\( 0^\circ&lt;A&lt;90^\circ \) のとき、\( \cos(90^\circ-A) \) と等しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( \cos A \)</button>
+    <button>\( \dfrac{1}{\cos A} \)</button>
+    <button data-correct="true">\( \sin A \)</button>
+    <button>\( \dfrac{1}{\sin A} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">角 \( 90^\circ-A \) から見ると、となりの辺は \( a \) で、\( \cos(90^\circ-A)=\dfrac{a}{c}=\sin A \) です。\( \cos A \) は sin と cos を入れかえ忘れた誤りです。\( \dfrac{1}{\cos A} \) と \( \dfrac{1}{\sin A} \) は、tan の「逆数になる」という決まりを cos にも当てはめた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>\( \sin 80^\circ \) を 45° 以下の角の三角比で表したものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \cos 10^\circ \)</button>
+    <button>\( \sin 10^\circ \)</button>
+    <button>\( \dfrac{1}{\sin 10^\circ} \)</button>
+    <button>\( \dfrac{1}{\cos 10^\circ} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 80^\circ=90^\circ-10^\circ \) なので \( \sin 80^\circ=\sin(90^\circ-10^\circ)=\cos 10^\circ \) です（表1でもどちらも 0.9848）。\( \sin 10^\circ \) は角だけを変えて sin のままにした誤り（表1では 0.1736 で違う値）です。\( \dfrac{1}{\sin 10^\circ} \)・\( \dfrac{1}{\cos 10^\circ} \) は、tan の決まりを sin に当てはめた誤りで、どちらも 1 より大きく、\( \sin 80^\circ \)（1 より小さい）と等しくなりません。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="0.7002|.7002">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>\( \tan 55^\circ\fallingdotseq1.4281 \) とします。この値だけを使って \( \tan 35^\circ \) の値を求め、小数第5位を四捨五入して小数第4位まで答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 0.7002。\( 35^\circ=90^\circ-55^\circ \) なので \( \tan 35^\circ=\dfrac{1}{\tan 55^\circ}\fallingdotseq\dfrac{1}{1.4281}=0.700231\cdots \)、四捨五入して 0.7002 です（表1の値と一致します）。1.4281 と答えた場合は、\( \tan(90^\circ-A)=\tan A \) と考えています。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="1">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>\( \sin^2 35^\circ+\sin^2 55^\circ \) の値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 1。\( 55^\circ=90^\circ-35^\circ \) なので \( \sin 55^\circ=\cos 35^\circ \)。よって \( \sin^2 35^\circ+\sin^2 55^\circ=\sin^2 35^\circ+\cos^2 35^\circ=1 \) です。表1の値で計算すると \( 0.5736^2+0.8192^2=1.0001056 \) で、四捨五入のためにぴったり 1 にはなりません。正確な値を求めるときは、表の値ではなく関係を使います。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="4/5|0.8">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>\( A \) は鋭角で \( \sin A=\dfrac{3}{5} \) のとき、\( \sin(90^\circ-A) \) の値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{4}{5} \)。\( \sin(90^\circ-A)=\cos A \) で、\( \cos^2A=1-\dfrac{9}{25}=\dfrac{16}{25} \)、\( A \) は鋭角なので \( \cos A=\dfrac{4}{5} \) です。\( \dfrac{3}{5} \) と答えた場合は、\( \sin(90^\circ-A)=\sin A \) と sin と cos を入れかえ忘れています（\( \dfrac{3}{5} \) になるのは \( \cos(90^\circ-A) \) です）。\( \dfrac{2}{5} \) と答えた場合は、\( 1-\sin A \) のように 1 から引いています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O1</span></div>
+  <p>\( \angle\mathrm{C}=90^\circ \) の直角三角形 ABC で、\( \cos A \) と等しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( \sin A \)</button>
+    <button>\( \cos B \)</button>
+    <button>\( \tan B \)</button>
+    <button data-correct="true">\( \sin B \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \cos A=\dfrac{b}{c} \)、\( \sin B=\dfrac{\mathrm{CA}}{\mathrm{AB}}=\dfrac{b}{c} \) で等しくなります（\( B=90^\circ-A \)）。\( \sin A=\dfrac{a}{c} \) と \( \cos B=\dfrac{a}{c} \) は互いに等しい組で、\( \cos A \) とは違います（\( a=b \) のときだけ一致）。\( \tan B=\dfrac{b}{a} \) は \( \dfrac{1}{\tan A} \) と等しい値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O2</span></div>
+  <p>花子さんの持っている三角比表は、0° から 45° までの角だけが載ったもの（学習用に作った架空の表）です。そこには \( \sin 18^\circ\fallingdotseq0.3090 \)、\( \cos 18^\circ\fallingdotseq0.9511 \) とあります。</p>
+  <p>花子：「\( \sin 72^\circ \) が知りたいのに、表に 72° がないよ。」<br>太郎：「90° からいくつ引いた角かを考えれば、この表で求められるよ。」</p>
+  <p>\( \sin 72^\circ \) の値として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>0.3090</button>
+    <button data-correct="true">0.9511</button>
+    <button>0.6910</button>
+    <button>0.0489</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 72^\circ=90^\circ-18^\circ \) なので \( \sin 72^\circ=\cos 18^\circ\fallingdotseq0.9511 \) です。0.3090 は \( \sin 18^\circ \) をそのまま使い、sin と cos を入れかえ忘れた誤りです。0.6910 は \( 1-\sin 18^\circ \)、0.0489 は \( 1-\cos 18^\circ \) で、「90° から引く」ことを「1 から引く」ことと取り違えています。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2</span></div>
+  <p>\( 0^\circ&lt;A&lt;90^\circ \) のとき、\( \sin A\cos(90^\circ-A)+\cos A\sin(90^\circ-A) \) の値を求めなさい。どの関係を使ったかも書きなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　\( \cos(90^\circ-A)=\sin A \)、\( \sin(90^\circ-A)=\cos A \) より、与えられた式は \( \sin A\cdot\sin A+\cos A\cdot\cos A=\sin^2A+\cos^2A \)。相互関係 \( \sin^2A+\cos^2A=1 \) より、値は 1。</p>
+    <p><strong>採点の観点</strong>　① \( \cos(90^\circ-A)=\sin A \) と \( \sin(90^\circ-A)=\cos A \) を正しく使っている。② \( \sin^2A+\cos^2A \) の形にまとめている。③ 相互関係から値 1 を求めている。</p>
+  </div>
+  <div class="explain">\( A \) にどんな鋭角を入れても値は 1 です。たとえば \( A=30^\circ \) なら \( \dfrac{1}{2}\cdot\dfrac{1}{2}+\dfrac{\sqrt{3}}{2}\cdot\dfrac{\sqrt{3}}{2}=\dfrac{1}{4}+\dfrac{3}{4}=1 \) となり、確かめられます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O2</span></div>
+  <p>\( \sin^2 1^\circ+\sin^2 2^\circ+\sin^2 3^\circ+\cdots+\sin^2 88^\circ+\sin^2 89^\circ \)（1° から 89° まで、1° ごとの 89 個の和）の値はどれですか。</p>
+  <div class="choices">
+    <button>44</button>
+    <button>45</button>
+    <button data-correct="true">\( \dfrac{89}{2} \)</button>
+    <button>89</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sin(90^\circ-k^\circ)=\cos k^\circ \) より、\( \sin^2 k^\circ+\sin^2(90-k)^\circ=\sin^2 k^\circ+\cos^2 k^\circ=1 \) です。\( k=1,\ 2,\ \cdots,\ 44 \) の 44 組（1° と 89°、2° と 88°、…、44° と 46°）の和が \( 44 \)、残りの \( \sin^2 45^\circ=\left(\dfrac{1}{\sqrt{2}}\right)^2=\dfrac{1}{2} \) を加えて \( \dfrac{89}{2} \) です。44 は真ん中の \( \sin^2 45^\circ \) を数え忘れた誤り、45 は \( \sin^2 45^\circ \) を 1 とした誤り、89 は 89 個の項をそれぞれ 1 と考えて組にしなかった誤りです。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">8</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲について特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲とする」とされています。この時間の内容は、数学Ⅰ「(2) 図形と計量」の「鋭角の三角比の意味と相互関係について理解すること」（ア(ア)）に当たり、出題範囲に含まれます。学習指導要領解説は、鋭角の三角比の基本的な相互関係の例として \( \sin A=\cos(90^\circ-A) \)、\( \cos A=\sin(90^\circ-A) \) を挙げています（p.39）。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めています。表の値と図形の関係を結び付けて考えるこの時間の内容は、そうした処理の土台になります。</p>
+  <p class="small">問7は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">9</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">三角比の鈍角への拡張（数Ⅰ-063）</p>
+  <p>ここまでの三角比は直角三角形の辺の比で定めたので、角は鋭角（\( 0^\circ&lt;A&lt;90^\circ \)）に限られていました。次の時間は、座標平面上の点 P の座標が \( (\alpha\cos\theta,\ \alpha\sin\theta) \) と表されることに着目して、鈍角や 0°、90°、180° の三角比を定めます。そのとき、この時間の関係がどうなるかは、数Ⅰ-064（180°−A の三角比）と数Ⅰ-067（三角比の練習）で確かめます。</p>
+  <p>この時間では、鈍角の三角比（数Ⅰ-063）、\( 180^\circ-A \) の三角比（数Ⅰ-064）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-061　三角比の相互関係</div>
+  <div><span class="label">次の時間</span>数Ⅰ-063　三角比の鈍角への拡張</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-062「90°−A の三角比」（学習指導要領 数学Ⅰ (2)ア(ア)、解説 p.39）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(2) 図形と計量（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.39（鋭角の三角比についての相互関係として sin A＝cos(90°−A)、cos A＝sin(90°−A) などを挙げ、三角比の値のいずれか一つが決まれば他の値を計算して求められることを理解させる）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>東京書籍「シラバス案 数学Ⅰ（改訂版 数学Ⅰ Standard、数Ⅰ002-902）」の「三角比の相互関係」（「三角比の相互関係や 90°−A の三角比について理解し，それらを活用することができる」）https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_su1_syllabus.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。表1の三角比の値は計算で求め、小数第5位を四捨五入したものです。問7の「45° までの三角比表」は学習用に作った架空の表です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-062",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-062",
+  "title": "90°−A の三角比",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-4", "title": "図形と計量"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(ア)"],
+  "kaisetsu_page": "39",
+  "objectives": [
+    {"id": "O1", "text": "直角三角形の2つの鋭角が \\( A \\) と \\( 90^\\circ-A \\) であることから、\\( \\sin(90^\\circ-A)=\\cos A \\)、\\( \\cos(90^\\circ-A)=\\sin A \\)、\\( \\tan(90^\\circ-A)=\\dfrac{1}{\\tan A} \\) が成り立つ理由を説明できる。", "from": "sin(90°−A)=cos A、cos(90°−A)=sin A、tan(90°−A)=1/tan A の関係を理解し", "sections": ["sec-1"], "checks": ["q1", "q6", "q8", "q9"]},
+    {"id": "O2", "text": "これらの関係を用いて、三角比を 45° 以下の角の三角比で表したり、三角比表の値や式の値を求めたりすることができる。", "from": "三角比の値を求めることに用いることができる", "sections": ["sec-2"], "checks": ["q2", "q3", "q4", "q5", "q7", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "90°−A の三角比", "where": "sec-1"},
+    {"term": "逆数", "where": "sec-1"},
+    {"term": "三角比表", "where": "intro"}
+  ],
+  "prerequisites": [
+    {"concept": "直角三角形の辺の比としての正弦・余弦・正接（sin A=a/c、cos A=b/c、tan A=a/b）", "taught_in": ["hs_math_1a/数Ⅰ-058"], "where": "review"},
+    {"concept": "30°・45°・60° の三角比の値", "taught_in": ["hs_math_1a/数Ⅰ-058"], "where": "sec-1"},
+    {"concept": "三角比表（小数第4位までの値）の読み方", "taught_in": ["hs_math_1a/数Ⅰ-059"], "where": "intro"},
+    {"concept": "三角比の相互関係 sin²A+cos²A=1 など（sin²A は (sin A)² のこと）", "taught_in": ["hs_math_1a/数Ⅰ-061"], "where": "review"},
+    {"concept": "三角形の内角の和は 180°", "taught_in": ["jhs_math/中2-048"], "where": "review"},
+    {"concept": "分母に根号を含む数の計算（1/(1/√3)=√3 など）", "taught_in": ["jhs_math/中3-026", "hs_math_1a/数Ⅰ-014"], "where": "sec-1"},
+    {"concept": "図形を裏返しても辺の長さと角の大きさは変わらない（対称移動。移動して重なる図形は合同で、対応する辺や角は等しい）", "taught_in": ["jhs_math/中1-079", "jhs_math/中2-052"], "where": "sec-1"}
+  ],
+  "out_of_scope": [
+    "鈍角や 0°・90°・180° の三角比の定義（数Ⅰ-063）",
+    "180°−A の三角比（数Ⅰ-064）",
+    "0°≦θ≦180° の範囲での相互関係（数Ⅰ-065）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『図形と計量』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(2)ア(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.39 鋭角の三角比の相互関係（sin A＝cos(90°−A)、cos A＝sin(90°−A) など）"},
+    {"name": "シラバス案 数学Ⅰ（改訂版 数学Ⅰ Standard、数Ⅰ002-902）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_su1_syllabus.pdf", "use": "「三角比の相互関係や90°−Aの三角比について理解し，それらを活用することができる」（保存本文：sources/text/ts_m1_16704_syllabus.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

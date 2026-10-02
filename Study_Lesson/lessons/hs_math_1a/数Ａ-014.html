@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>組分け｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-014</span></div>
+  <h1>組分け</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">6人を2人ずつ3つのペアに分ける方法は何通りでしょう。ペアに「A組・B組・C組」のような名前があるときとないときで、答えは変わるでしょうか。組合せを使って、組分けの総数を求めます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>組に区別がある場合に、各組に入るものを残りの中から順に組合せで選び、積の法則を用いて組分けの総数を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>組に区別がない場合に、区別があるとして求めた総数を、同じ分け方を重複して数えた回数（同じ人数の組の入れかえ方 \( k! \) 通り）で割って求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>組の人数がすべて異なる場合や一部だけ同じ場合、組に役割がある場合などについて、組の区別の有無が総数に影響するかを判断して求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-013）</span>組合せの活用（図形）</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-014）</span>組分け</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-015）</span>同じものを含む順列</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。同じ単元の数Ａ-004〜013（和の法則・積の法則、順列と階乗、円順列、重複順列、組合せ \( {}_n\mathrm{C}_r \)）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">組合せ・積の法則・階乗</p>
+  <p>異なる \( n \) 個から \( r \) 個を、順番を考えずに選ぶ選び方の総数が \( {}_n\mathrm{C}_r \) です（数Ａ-011）。2つのことを続けて行うとき、1つ目の方法のそれぞれに対して2つ目の方法が同じ数ずつあれば、総数は積で求められます（積の法則、数Ａ-005）。異なる \( k \) 個を1列に並べる方法は \( k! \) 通りです（数Ａ-007）。</p>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-011</span></div>
+  <p>7人から3人を選ぶ方法は何通りですか。</p>
+  <div class="choices">
+    <button>\( 210 \) 通り</button>
+    <button data-correct="true">\( 35 \) 通り</button>
+    <button>\( 21 \) 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( {}_7\mathrm{C}_3=\dfrac{7\cdot6\cdot5}{3\cdot2\cdot1}=35 \) 通り。\( 210 \) は \( {}_7\mathrm{P}_3 \) で、選んだ3人の順番まで区別しています。\( 21 \) は \( {}_7\mathrm{C}_2 \) で、選ぶ人数を取り違えています。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-005・011</span></div>
+  <p>8人から委員を3人選び、<strong>残りの</strong>5人から係を2人選ぶ方法は何通りですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 560 \) 通り</button>
+    <button>\( 1568 \) 通り</button>
+    <button>\( 66 \) 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">委員の選び方 \( {}_8\mathrm{C}_3=56 \) 通りのそれぞれに対して、係の選び方が残りの5人から \( {}_5\mathrm{C}_2=10 \) 通りずつあるので、積の法則で \( 56\times10=560 \) 通り。\( 1568 \) は係も8人全員から \( {}_8\mathrm{C}_2=28 \) 通りと数えた値（\( 56\times28 \)）で、委員と係を兼ねる選び方まで入っています。\( 66 \) は \( 56+10 \) と足した誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-007</span></div>
+  <p>3つのグループに、A、B、C の3つの名前を1つずつ付ける方法は何通りですか。</p>
+  <div class="choices">
+    <button>\( 3 \) 通り</button>
+    <button>\( 27 \) 通り</button>
+    <button data-correct="true">\( 6 \) 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">名前 A、B、C を3つのグループに1つずつ並べて付けるので、\( 3!=3\cdot2\cdot1=6 \) 通り。\( 3 \) はグループの数のまま、\( 27 \) は \( 3^3 \) で、同じ名前を何回も付けてよい重複順列（数Ａ-010）として数えています。この \( 3!=6 \) が、この時間の「4 組に区別がない場合」で使う数です。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：コートを決めるか、ペアだけか</h2>
+<div class="box think">
+  <p class="box-title">6人を2人ずつのペアに</p>
+  <p>体育の授業で、a、b、c、d、e、f の6人が2人ずつ3つのペアに分かれて練習します。</p>
+  <ul>
+    <li>① ペアを A、B、C の3つのコートに割り当てる場合（どのコートに入るかまで決める）、分け方は何通りでしょうか。</li>
+    <li>② コートは決めず、ペアの作り方だけを考える場合は何通りでしょうか。</li>
+  </ul>
+  <p>同じ6人を2人ずつに分けるのに、①と②の答えは同じでしょうか。予想してから読み進めましょう。①は「3 組に区別がある場合」、②は「4 組に区別がない場合」で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="組に区別がある場合"><span class="num">3</span>組に区別がある場合</h2>
+<p>導入の①のように、コート A、B、C に入る組を、それぞれ A組・B組・C組と呼びます。組に名前があるので、「a・b が A組、c・d が B組」と「a・b が B組、c・d が A組」は<strong>違う分け方</strong>です。このとき、組に<strong>区別がある</strong>といいます。</p>
+<p>6人を A組・B組・C組に2人ずつ分けます。まず A組の2人を6人から選びます。次に B組の2人を、<strong>残りの</strong>4人から選びます。最後に C組には残りの2人が入ります。</p>
+<figure>
+<!--svg:f014a-->
+<svg viewBox="0 0 400 186" width="400" role="img" aria-label="6人を A組・B組・C組に2人ずつ分ける手順。A組の2人を6人から選ぶ6C2＝15通り、B組の2人を残り4人から選ぶ4C2＝6通り、C組の2人を残り2人から選ぶ2C2＝1通り。積の法則で 15×6×1＝90 通り">
+<rect x="9" y="30" width="110" height="88" rx="8" fill="#1f5fbf" fill-opacity="0.10" stroke="#1f5fbf" stroke-width="2" data-step="1"/>
+<text x="64" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">A組に2人</text>
+<text x="64" y="76" text-anchor="middle" font-size="13" fill="currentColor">残り6人から選ぶ</text>
+<text x="64" y="104" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor" data-val="15">₆C₂ = 15</text>
+<line x1="123" y1="74.0" x2="139" y2="74.0" stroke="currentColor" stroke-width="1.6"/>
+<polygon points="141,74.0 134,70.0 134,78.0" fill="currentColor"/>
+<rect x="145" y="30" width="110" height="88" rx="8" fill="#1e8e5a" fill-opacity="0.10" stroke="#1e8e5a" stroke-width="2" data-step="2"/>
+<text x="200" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="#1e8e5a">B組に2人</text>
+<text x="200" y="76" text-anchor="middle" font-size="13" fill="currentColor">残り4人から選ぶ</text>
+<text x="200" y="104" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor" data-val="6">₄C₂ = 6</text>
+<line x1="259" y1="74.0" x2="275" y2="74.0" stroke="currentColor" stroke-width="1.6"/>
+<polygon points="277,74.0 270,70.0 270,78.0" fill="currentColor"/>
+<rect x="281" y="30" width="110" height="88" rx="8" fill="#b7791f" fill-opacity="0.10" stroke="#b7791f" stroke-width="2" data-step="3"/>
+<text x="336" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="#b7791f">C組に2人</text>
+<text x="336" y="76" text-anchor="middle" font-size="13" fill="currentColor">残り2人から選ぶ</text>
+<text x="336" y="104" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor" data-val="1">₂C₂ = 1</text>
+<text x="200" y="158" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor" data-prod="90">積の法則：15 × 6 × 1 = 90（通り）</text>
+</svg>
+<!--/svg:f014a-->
+  <figcaption>図1　A組 → B組 → C組の順に、残りの人の中から選ぶ。A組の選び方のそれぞれに対して B組の選び方が同じ数ずつあるので、積の法則（数Ａ-005）で総数を求める</figcaption>
+</figure>
+<p><strong>導入の問い①の答え</strong>：\( {}_6\mathrm{C}_2\times{}_4\mathrm{C}_2\times{}_2\mathrm{C}_2=15\times6\times1=90 \) 通りです。</p>
+<div class="box point"><p class="box-title">組に区別がある組分け</p>
+<p>\( n \) 人を A組 \( p \) 人、B組 \( q \) 人、C組 \( r \) 人（\( p+q+r=n \)）に分ける方法は</p>
+$$ {}_n\mathrm{C}_p\times{}_{n-p}\mathrm{C}_q\times{}_r\mathrm{C}_r $$
+<p>通りです（\( {}_r\mathrm{C}_r=1 \)）。どの組から選び始めても、総数は同じになります。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題1（人数の違う A・B・C の組）</p>
+  <p>9人を、A組4人、B組3人、C組2人に分ける方法は何通りですか。</p>
+  <div class="step">着眼点：組に名前があるので、組に区別がある組分けです。A組 → B組 → C組の順に、残りの人から選びます。</div>
+  <div class="step">A組の4人：\( {}_9\mathrm{C}_4=126 \) 通り。B組の3人を残りの5人から：\( {}_5\mathrm{C}_3=10 \) 通り。C組は残りの2人：\( {}_2\mathrm{C}_2=1 \) 通り。</div>
+  <div class="step">積の法則で \( 126\times10\times1=1260 \)。答え 1260 通り。</div>
+  <div class="step">確かめ：C組 → B組 → A組の順に選ぶと \( {}_9\mathrm{C}_2\times{}_7\mathrm{C}_3\times{}_4\mathrm{C}_4=36\times35\times1=1260 \) で一致します。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（区別がある場合）</p><p>① 毎回、全員の中から選ぶ：\( {}_9\mathrm{C}_4\times{}_9\mathrm{C}_3\times{}_9\mathrm{C}_2 \) とすると、同じ人が2つの組に入る選び方まで数えてしまいます。2つ目からは<strong>残りの人</strong>から選びます。<br>② 選び方を足す：\( {}_9\mathrm{C}_4+{}_5\mathrm{C}_3+{}_2\mathrm{C}_2 \) は誤りです。A組と B組の選び方は<strong>両方</strong>続けて行うので、積の法則です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="組に区別がない場合"><span class="num">4</span>組に区別がない場合</h2>
+<p>導入の②では、コートを決めずにペアの作り方だけを考えます。組に名前がないので、組を入れかえても同じ分け方です。このとき、組に<strong>区別がない</strong>といいます。</p>
+<p>区別がある場合の 90 通りの中で、同じペアの作り方が何回数えられているかを調べます。ペアの作り方「a・b、c・d、e・f」は、区別がある場合には次の6通りとして数えられています。</p>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>A組</th><th>B組</th><th>C組</th></tr>
+  <tr><td>1</td><td>a・b</td><td>c・d</td><td>e・f</td></tr>
+  <tr><td>2</td><td>a・b</td><td>e・f</td><td>c・d</td></tr>
+  <tr><td>3</td><td>c・d</td><td>a・b</td><td>e・f</td></tr>
+  <tr><td>4</td><td>c・d</td><td>e・f</td><td>a・b</td></tr>
+  <tr><td>5</td><td>e・f</td><td>a・b</td><td>c・d</td></tr>
+  <tr><td>6</td><td>e・f</td><td>c・d</td><td>a・b</td></tr>
+</table>
+</div>
+<p>これは3つのペアに A、B、C の名前を付ける方法の数 \( 3!=6 \) 通り（確認3）です。どのペアの作り方も同じように 6 回ずつ数えられているので、区別がない場合の総数は 90 を 6 で割って求められます。</p>
+<p><strong>導入の問い②の答え</strong>：\( 90\div3!=90\div6=15 \) 通りです。①と②は同じではなく、①は②の \( 3! \) 倍です。</p>
+<h3>別の見方で確かめる</h3>
+<p>a と組む人を決めると、5通りあります。残りの4人のうち、アルファベット順で最初の人と組む人を決めると、3通りあります。残りの2人で最後のペアが決まります。積の法則で \( 5\times3\times1=15 \) 通りとなり、一致します。</p>
+<div class="box point"><p class="box-title">組に区別がない組分け</p>
+<p>（区別があるとして求めた総数）÷（同じ人数の組の入れかえ方）</p>
+<p>同じ人数の組が \( k \) 組あれば、それらを入れかえる \( k! \) 通りが同じ分け方になるので、\( k! \) で割ります。数Ａ-011 で \( {}_n\mathrm{P}_r={}_n\mathrm{C}_r\times r! \) から \( {}_n\mathrm{C}_r \) を求めたときや、数Ａ-009 の円順列で同じ並びを何回数えたかを考えたときと同じく、「1つの分け方を何回ずつ数えたか」で割る考え方です。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題2（3人ずつ3組、区別なし）</p>
+  <p>9人を3人ずつ3つの組に分ける方法は何通りですか。</p>
+  <div class="step">着眼点：組に名前がないので、区別がない組分けです。まず区別があるとして数え、重複して数えた回数で割ります。</div>
+  <div class="step">A組・B組・C組と区別があるとすると、\( {}_9\mathrm{C}_3\times{}_6\mathrm{C}_3\times{}_3\mathrm{C}_3=84\times20\times1=1680 \) 通り。</div>
+  <div class="step">3組とも3人なので、組の名前の付け方 \( 3!=6 \) 通りが同じ分け方になります。</div>
+  <div class="step">\( 1680\div6=280 \)。答え 280 通り。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（区別がない場合）</p><p>① 割り忘れる：区別がないのに 1680 通りと答えると、同じ分け方を6回ずつ数えたままです。<br>② 組の数で割る：3組を入れかえる方法は \( 3 \) 通りではなく \( 3!=6 \) 通りです。\( 1680\div3=560 \) は誤りです。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="人数の違う組・役割のある組"><span class="num">5</span>人数の違う組・役割のある組</h2>
+<p>組に名前がなくても、人数が違えば組は区別できます。9人を4人・3人・2人の3組に分けるとき、「4人の組」と「3人の組」を入れかえると人数が変わってしまい、同じ分け方にはなりません。重複して数えることがないので割らず、例題1と同じ 1260 通りです。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（人数が一部だけ同じ組、区別なし）</p>
+  <p>8人を4人・2人・2人の3つの組に分ける方法は何通りですか。</p>
+  <div class="step">着眼点：組に名前はありませんが、4人の組は人数で区別できます。入れかえて同じになるのは、2人の組どうしだけです。</div>
+  <div class="step">区別があるとすると、4人の組 \( {}_8\mathrm{C}_4=70 \) 通り、2人の組の一方 \( {}_4\mathrm{C}_2=6 \) 通り、残りの2人 \( {}_2\mathrm{C}_2=1 \) 通りで、\( 70\times6\times1=420 \) 通り。</div>
+  <div class="step">2人の組2つを入れかえる \( 2!=2 \) 通りが同じ分け方なので、\( 420\div2=210 \)。答え 210 通り。</div>
+</div>
+<p>また、組に名前がなくても、<strong>役割</strong>が違う組（たとえば「受付」と「会計」）は、入れかえると別の分担になるので、区別がある組です。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>9人の分け方</th><th>同じ人数の組（入れかえて同じになる組）</th><th>総数</th></tr>
+  <tr><td>A組4人・B組3人・C組2人</td><td>なし（名前で区別）</td><td>\( 1260 \)</td></tr>
+  <tr><td>4人・3人・2人（名前なし）</td><td>なし（人数で区別）</td><td>\( 1260 \)</td></tr>
+  <tr><td>A組3人・B組3人・C組3人</td><td>なし（名前で区別）</td><td>\( 1680 \)</td></tr>
+  <tr><td>3人・3人・3人（名前なし）</td><td>3組 → \( 3! \) で割る</td><td>\( 1680\div3!=280 \)</td></tr>
+</table>
+</div>
+<div class="box point"><p class="box-title">組の区別を判断する手順</p>
+<ol>
+  <li>組に名前や役割があるか → あれば区別がある（割らない）。</li>
+  <li>名前も役割もなければ、同じ人数の組がいくつあるかを調べる → \( k \) 組あれば \( k! \) で割る。</li>
+  <li>人数がすべて違えば、人数で区別できるので割らない。</li>
+</ol></div>
+<div class="box think"><p class="box-title">人数を決めずに分けるとき</p><p>6人を A、B の2つの部屋に分ける方法は、0人の部屋があってもよいなら、1人ずつ部屋を選ぶ重複順列で \( 2^6=64 \) 通りです（数Ａ-010）。人数を決めずに組に分けるときは、このように重複順列で考えることも、組の人数ごとに場合を分けて組合せで数えることもできます。確認問題の問7で、2つの方法を比べてみましょう。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い（人数・役割）</p><p>① 人数がすべて違うのに \( 3! \) で割る：4人・3人・2人の組は人数で区別できます。<br>② 同じ人数の組が一部だけなのに、組の数全体で \( 3! \) で割る：4人・2人・2人なら、入れかえて同じになるのは2人の組2つだけなので \( 2! \) で割ります。<br>③ 役割が違う組を、人数が同じだからといって割る：受付2人と会計2人は入れかえると別の分担です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>組分け</dt><dd>いくつかのものを、決められた人数（個数）ずつの組に分けること。</dd>
+    <dt>組に区別がある</dt><dd>組に名前や役割があり、組を入れかえると別の分け方になること。残りの中から順に組合せで選び、積の法則で求める。</dd>
+    <dt>組に区別がない</dt><dd>組を入れかえても同じ分け方とみること。区別があるとして求めた総数を、同じ人数の組の入れかえ方 \( k! \) で割る。</dd>
+    <dt>組合せ</dt><dd>異なる \( n \) 個から \( r \) 個を、順番を考えずに選ぶ選び方。総数は \( {}_n\mathrm{C}_r \)（数Ａ-011）。</dd>
+    <dt>階乗</dt><dd>\( k!=k(k-1)\cdots2\cdot1 \)。異なる \( k \) 個を1列に並べる方法の数（数Ａ-007）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>組に区別がある組分けは、各組に入るものを残りの中から順に組合せで選び、積の法則でかける。6人を A・B・C組に2人ずつ分けると \( 15\times6\times1=90 \) 通り（O1）。</li>
+    <li>組に区別がない組分けは、区別があるとして求めた総数を、同じ人数の組の入れかえ方 \( k! \) で割る。6人を2人ずつ3組に分けると \( 90\div3!=15 \) 通り（O2）。</li>
+    <li>人数がすべて違えば割らない。一部だけ同じなら、その組の数の階乗で割る。役割がある組は区別がある（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">区別がある（A組 \( p \) 人・B組 \( q \) 人・C組 \( r \) 人）</span>$$ {}_n\mathrm{C}_p\times{}_{n-p}\mathrm{C}_q\times{}_r\mathrm{C}_r $$</div>
+  <div><span class="f-name">区別がない</span><p>（区別があるとした総数）÷ \( k! \)（\( k \) は同じ人数の組の数）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。答えは 48 のように数だけを入力してください（「48通り」としてもかまいません）。</p>
+
+<div class="q" data-type="input" id="q1" data-accept="56|56通り">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>8人を、A組3人と B組5人に分ける方法は何通りですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 56 通り。A組の3人を選ぶと \( {}_8\mathrm{C}_3=56 \) 通りで、B組は残りの5人に決まります（\( {}_5\mathrm{C}_5=1 \)）。3136 と答えた場合は、B組も8人全員から選んで \( {}_8\mathrm{C}_3\times{}_8\mathrm{C}_5=56\times56 \) としています。112 と答えた場合は、組に区別があることを表そうとして \( 2! \) をかけていますが、A組・B組と決めて選んだ時点で区別は数えに入っています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>8人を4人ずつ2つの組に分ける方法は何通りですか。組に名前はありません。</p>
+  <div class="choices"><button>\( 70 \) 通り</button><button data-correct="true">\( 35 \) 通り</button><button>\( 140 \) 通り</button></div>
+  <span class="result"></span>
+  <div class="explain">区別があるとすると \( {}_8\mathrm{C}_4\times{}_4\mathrm{C}_4=70 \) 通り。2組とも4人で名前がないので、2組を入れかえる \( 2!=2 \) 通りが同じ分け方になり、\( 70\div2=35 \) 通りです。\( 70 \) は割り忘れ、\( 140 \) は \( 2! \) で割るところをかけた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O1</span></div>
+  <p>異なる12冊の本を、A、B、C の3人に4冊ずつ分ける方法は何通りですか。</p>
+  <div class="choices"><button>\( 5775 \) 通り</button><button>\( 566 \) 通り</button><button data-correct="true">\( 34650 \) 通り</button><button>\( 531441 \) 通り</button></div>
+  <span class="result"></span>
+  <div class="explain">本を受け取る A、B、C は別の人なので、組に区別がある組分けです。\( {}_{12}\mathrm{C}_4\times{}_8\mathrm{C}_4\times{}_4\mathrm{C}_4=495\times70\times1=34650 \) 通り。\( 5775 \) は \( 3! \) で割った値で、人を区別しない場合の数です。\( 566 \) は \( 495+70+1 \) と足した誤りです。\( 531441 \) は \( 3^{12} \) で、1冊ずつ3人のだれかに配る重複順列（数Ａ-010）ですが、4冊ずつという条件を使っていません。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="15400|15400通り|15,400|15,400通り">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>12人を3人ずつ4つの組に分ける方法は何通りですか。組に名前はありません。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 15400 通り。区別があるとすると \( {}_{12}\mathrm{C}_3\times{}_9\mathrm{C}_3\times{}_6\mathrm{C}_3\times{}_3\mathrm{C}_3=220\times84\times20\times1=369600 \) 通り。4組とも3人なので \( 4!=24 \) で割り、\( 369600\div24=15400 \) 通りです。369600 と答えた場合は割り忘れ、92400 と答えた場合は \( 4! \) ではなく組の数 4 で割っています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>10人を5人・3人・2人の3つの組に分ける方法は何通りですか。組に名前はありません。</p>
+  <div class="choices"><button>\( 420 \) 通り</button><button>\( 1260 \) 通り</button><button>\( 1360800 \) 通り</button><button data-correct="true">\( 2520 \) 通り</button></div>
+  <span class="result"></span>
+  <div class="explain">人数がすべて違うので、組は人数で区別でき、割りません。\( {}_{10}\mathrm{C}_5\times{}_5\mathrm{C}_3\times{}_2\mathrm{C}_2=252\times10\times1=2520 \) 通りです。\( 420 \) は \( 3! \) で割った値、\( 1260 \) は \( 2! \) で割った値で、どちらも同じ人数の組がないのに割っています。\( 1360800 \) は \( {}_{10}\mathrm{C}_5\times{}_{10}\mathrm{C}_3\times{}_{10}\mathrm{C}_2 \) で、毎回全員から選んでいます。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="105|105通り">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>7人を2人・2人・3人の3つの組に分ける方法は何通りですか。組に名前はありません。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 105 通り。区別があるとすると \( {}_7\mathrm{C}_2\times{}_5\mathrm{C}_2\times{}_3\mathrm{C}_3=21\times10\times1=210 \) 通り。入れかえて同じになるのは2人の組2つだけなので \( 2! \) で割り、\( 210\div2=105 \) 通りです。210 と答えた場合は割り忘れ、35 と答えた場合は3人の組まで含めて \( 3! \) で割っています。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="31|31通り">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O2・O3</span></div>
+  <p>6人を2つのグループに分けます。どちらのグループにも1人以上が入り、グループに名前はありません（人数は決めません）。分け方は何通りですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 31 通り。<br>方法1（重複順列）：グループを A、B と区別すると、6人それぞれが A か B を選ぶので \( 2^6=64 \) 通り（数Ａ-010）。このうち全員が A、全員が B の2通りは、一方のグループが0人なので除いて \( 64-2=62 \) 通り。A と B を入れかえても同じ分け方なので \( 2!=2 \) で割り、\( 62\div2=31 \) 通り。<br>方法2（人数で場合を分ける）：1人と5人は \( {}_6\mathrm{C}_1=6 \) 通り、2人と4人は \( {}_6\mathrm{C}_2=15 \) 通り、3人と3人は \( {}_6\mathrm{C}_3\div2!=20\div2=10 \) 通り。和の法則で \( 6+15+10=31 \) 通り。<br>62 と答えた場合はグループを区別したまま、64 と答えた場合はさらに0人のグループを除き忘れ、32 と答えた場合は \( 64\div2 \) で0人のグループを除き忘れています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O3</span></div>
+  <p>文化祭のクラスの係を決めます（学習用の架空の場面）。7人を、受付3人、会計2人、案内2人に分けます。</p>
+  <p>太郎：「会計と案内はどちらも2人だから、\( 2! \) で割ればいいね。」<br>花子：「でも、会計と案内は仕事が違うよ。」</p>
+  <p>分け方の総数と考え方として正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 210 \) 通り。会計と案内は役割が違い、2人の組どうしを入れかえると別の分担になるので、\( {}_7\mathrm{C}_3\times{}_4\mathrm{C}_2\times{}_2\mathrm{C}_2 \) を割らずに答える。</button>
+    <button>\( 105 \) 通り。会計と案内は同じ人数なので、\( {}_7\mathrm{C}_3\times{}_4\mathrm{C}_2\times{}_2\mathrm{C}_2 \) を \( 2! \) で割る。</button>
+    <button>\( 35 \) 通り。受付の3人を選べば、残りの4人の分担は自然に決まる。</button>
+    <button>\( 15435 \) 通り。受付・会計・案内をそれぞれ7人から選ぶので \( {}_7\mathrm{C}_3\times{}_7\mathrm{C}_2\times{}_7\mathrm{C}_2 \) となる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">役割が違う組は区別がある組です。\( {}_7\mathrm{C}_3\times{}_4\mathrm{C}_2\times{}_2\mathrm{C}_2=35\times6\times1=210 \) 通り。\( 105 \) は太郎さんの考えで、役割のある組を区別のない組とみて割っています。\( 35 \) は受付の選び方 \( {}_7\mathrm{C}_3 \) だけで、残りの4人を会計と案内に分ける \( {}_4\mathrm{C}_2=6 \) 通りを落としています。\( 15435 \) は毎回7人全員から選んでいて、1人が2つの係を兼ねる選び方まで数えています。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>a、b を含む8人を、4人ずつ2つの組に分けます。組に名前はありません。</p>
+  <p>(1) a と b が同じ組に入る分け方は何通りですか。<br>(2) 組に名前がないのに、(1) では \( 2! \) で割らなくてよい理由を説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) a と b が入る組の残り2人を、a、b 以外の6人から選ぶと \( {}_6\mathrm{C}_2=15 \) 通り。もう一方の組は残りの4人に決まるので、15 通り。（別解：分け方は全部で \( {}_8\mathrm{C}_4\div2!=35 \) 通り。a と b が別の組になるのは、a の組の残り3人を b 以外の6人から選ぶ \( {}_6\mathrm{C}_3=20 \) 通り。\( 35-20=15 \) 通り。）</p>
+    <p>(2) 2つの組は「a と b がいる組」と「いない組」として区別できるので、組を入れかえると同じ分け方にはならず、同じ分け方を2回数えることがないから。</p>
+    <p><strong>採点の観点</strong>　① a・b の組の残りの人を、a・b 以外から選んでいる。② 2つの組が a・b の有無で区別できることを理由にしている。③ 別解では全体の数を \( 2! \) で割って求めている。</p>
+  </div>
+  <div class="explain">30 と答えた場合は、2つの組を区別して、a・b が「1つ目の組」に入る場合と「2つ目の組」に入る場合を別々に数えています（\( 15\times2 \)）。組に名前がないので、a・b のいる組の決め方は1通りです。(2) は、「同じ人数の組でも、入れかえて同じにならなければ割らない」という判断の手順（「5 人数の違う組・役割のある組」）と同じ考え方です。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(イ)「具体的な事象を基に順列及び組合せの意味を理解し，順列の総数や組合せの総数を求めること」とイ(ア)「事象の構造などに着目し，場合の数を求める方法を多面的に考察すること」に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。係の分担（問8）のように、場面の条件から組の区別があるかを判断することが、組分けの総数を正しく求める出発点になります。</p>
+  <p class="small">問8は日常の場面と会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">同じものを含む順列（数Ａ-015）</p>
+  <p>次の時間は、同じものを含む順列の総数 \( \dfrac{n!}{p!\,q!\,r!} \) を、組合せの考えを用いたり公式を導く過程を振り返ったりして求めます。この時間の「6人を A組・B組・C組に2人ずつ分ける 90 通り」は、6人に A、A、B、B、C、C の札を1枚ずつ配る方法と同じです。次の時間に、この 90 通りを別の見方で求め直します。</p>
+  <p>この時間では、区別のないもの（同じ種類の果物など）をいくつかに分ける方法は扱っていません。数研出版の『改訂版 数学Ａ』では「研究」として扱われている内容です（重複組合せ）。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-013　組合せの活用（図形）</div>
+  <div><span class="label">次の時間</span>数Ａ-015　同じものを含む順列</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-014「組分け」（学習。学習指導要領 数学Ａ (2)ア(イ)・イ(ア)、解説 p.93。† 教科書で一般的な内容を含む行）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率 ア(イ)・イ(ア)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.93（具体的な事象の場合の数を整理して順列・組合せの総数の求め方を導くこと。組分けの明記はない）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「組合せ」（「組分けの総数を求めることができる」。重複組合せは p.39〜40「研究」。† の内容と範囲の境界）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>教科書編修趣意書 数学Ａ（数研出版。文部科学省公開）：数Ａ104-901「決められた人数に組分けする問題など応用的な問題も扱った」https://www.mext.go.jp/content/20250415-ope_dev03-000041678-34.pdf、数Ａ104-903「組分けの総数（36 ページ）組合せの考え方の応用として，例題で取り上げた」https://www.mext.go.jp/content/20250415-ope_dev03-000041678-36.pdf、数Ａ104-905「組分けの問題や最短の道順の総数を求める問題などの，代表的な標準問題を扱った」https://www.mext.go.jp/content/20250415-ope_dev03-000041678-38.pdf（† の内容の確認）</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題はこのページのために作成したものです（出典を示したものを除く）。問8の係の分担は学習用の架空の場面です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-014",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-014",
+  "title": "組分け",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(イ)", "(2)イ(ア)"],
+  "kaisetsu_page": "93",
+  "objectives": [
+    {"id": "O1", "text": "組に区別がある場合に、各組に入るものを残りの中から順に組合せで選び、積の法則を用いて組分けの総数を求めることができる。", "from": "いくつかのものを組に分ける方法の総数を、組に区別がある場合…に分けて、組合せを用いて求めることができる", "sections": ["sec-1"], "checks": ["q1", "q3", "q8"]},
+    {"id": "O2", "text": "組に区別がない場合に、区別があるとして求めた総数を、同じ分け方を重複して数えた回数（同じ人数の組の入れかえ方 \\( k! \\) 通り）で割って求めることができる。", "from": "いくつかのものを組に分ける方法の総数を、…組に区別が…ない場合に分けて、組合せを用いて求めることができる", "sections": ["sec-2"], "checks": ["q2", "q4", "q7", "q9"]},
+    {"id": "O3", "text": "組の人数がすべて異なる場合や一部だけ同じ場合、組に役割がある場合などについて、組の区別の有無が総数に影響するかを判断して求めることができる。", "from": "組に区別がある場合とない場合に分けて（根拠コード イ(ア)「事象の構造などに着目し，場合の数を求める方法を多面的に考察すること」）", "sections": ["sec-3"], "checks": ["q5", "q6", "q7", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "組分け", "where": "sec-1"},
+    {"term": "組に区別がある", "where": "sec-1"},
+    {"term": "組に区別がない", "where": "sec-2"},
+    {"term": "組合せ", "where": "review"},
+    {"term": "階乗", "where": "review"}
+  ],
+  "prerequisites": [
+    {"concept": "組合せの意味と総数 nCr", "taught_in": ["hs_math_1a/数Ａ-011"], "gap": false, "where": "review"},
+    {"concept": "nPr=nCr×r!（同じものを r! 回ずつ数えたので割る）", "taught_in": ["hs_math_1a/数Ａ-011"], "gap": false, "where": "sec-2"},
+    {"concept": "積の法則", "taught_in": ["hs_math_1a/数Ａ-005"], "gap": false, "where": "review"},
+    {"concept": "和の法則（問7の場合分け）", "taught_in": ["hs_math_1a/数Ａ-004"], "gap": false, "where": "quiz"},
+    {"concept": "階乗 n! と、n 個のものをすべて並べる順列", "taught_in": ["hs_math_1a/数Ａ-007"], "gap": false, "where": "review"},
+    {"concept": "順列 nPr（確認1の誤答の説明）", "taught_in": ["hs_math_1a/数Ａ-006"], "gap": false, "where": "review"},
+    {"concept": "円順列（回転して一致するものを同じとみて割る見方）", "taught_in": ["hs_math_1a/数Ａ-009"], "gap": false, "where": "sec-2"},
+    {"concept": "重複順列 n^r と、ものを組や部屋に分ける場合への利用", "taught_in": ["hs_math_1a/数Ａ-010"], "gap": false, "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "同じものを含む順列 n!/(p!q!r!)（数Ａ-015）",
+    "区別のないものを分ける方法（重複組合せ。数研出版『改訂版 数学Ａ』では「研究」扱いで、地図の行なし）",
+    "組分けを用いた確率（数Ａ-020 以降）"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(イ)・イ(ア)の事項（入試へのつながりの引用）"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.93 順列・組合せの扱い（組分けの明記がないことの確認）"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "「組分けの総数を求めることができる」（† の内容）、重複組合せが「研究」であること（範囲の境界）"},
+    {"name": "教科書編修趣意書 数学Ａ（数研出版 数Ａ104-901・903・905）", "publisher": "文部科学省公開", "url": "https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html", "use": "組分けの問題を本文の例題などで扱うことの確認（† の内容）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

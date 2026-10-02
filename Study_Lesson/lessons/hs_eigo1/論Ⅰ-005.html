@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>序論・本論・結論と展開の工夫｜論理・表現Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="../assets/lesson.js"></script>
+<style>
+.en-cell { font-family: Georgia, "Times New Roman", serif; }
+#essay-body, .indent-body { counter-reset: para; }
+#essay-body p, .indent-body p { text-indent: 1.6em; margin: 8px 0; }
+#essay-body p::before { counter-increment: para; content: "［" counter(para) "］"; font-family: var(--font); font-size: .78em; color: var(--muted); margin-right: .3em; }
+#essay.show-sig .sig { background: var(--primary-weak); border-bottom: 2px solid var(--primary); font-weight: 700; }
+#essay.show-fo .fact { text-decoration: underline; text-underline-offset: 3px; }
+#essay.show-fo .fact::after { content: "［事実］"; font-family: var(--font); font-size: .72em; color: var(--example); font-weight: 700; }
+#essay.show-fo .opin { text-decoration: underline wavy; text-underline-offset: 3px; }
+#essay.show-fo .opin::after { content: "［意見］"; font-family: var(--font); font-size: .72em; color: var(--caution); font-weight: 700; }
+.toggles { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+.toggles button[aria-pressed="true"] { background: var(--primary); color: #fff; }
+.indent-body p[data-label]::before { content: attr(data-label); font-family: var(--font); font-weight: 700; font-size: .85em; color: var(--muted); margin-right: .3em; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>論理・表現Ⅰ</span><span>論理の構成や展開と効果的な表現</span><span>論Ⅰ-005</span></div>
+  <h1>序論・本論・結論と展開の工夫</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">長い英文でも、書き手の主張がどこにあり、各段落が何のためにあるのかが分かれば、ずっと読みやすくなります。書くときも、その「設計図」を知っていれば読み手に伝わる文章を組み立てられます。この時間は、複数の段落から成る英文の骨組みと、段落どうしのつながり、展開の工夫を学びます。</p>
+  <p class="small"><span class="speak-controls">読み上げの速さ <select id="speak-rate" aria-label="読み上げの速さ"><option value="0.75">ゆっくり</option><option value="0.9" selected>ふつう</option><option value="1.05">はやい</option></select></span>　英文の横の「▶ 聞く」を押すと、ブラウザの読み上げ機能で音声が流れます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>説明文や論証文の序論・本論・結論が、それぞれ主題（書き手の主張）を示す、理由や根拠・具体例で支える、主張を言い換えてまとめる、という役割をもつことを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>つながりを示す語句と各段落のトピック・センテンスを手がかりに、段落相互の関係（主張と理由、順序・追加、例示、対比、まとめ）を捉えることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>展開部分で、異なるアイディアを例示しながら比較する工夫と、事実と意見を分けて述べる工夫を、文章の中で見分けることができる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>結論などで主張を異なる表現で言い換えて印象付ける工夫を知り、言い換えた文を見つけたり、自分で書いたりできる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（論Ⅰ-004）</span>段落の構成（トピック・センテンスと支持文）</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（論Ⅰ-005）</span>序論・本論・結論と展開の工夫</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（論Ⅰ-006）</span>話すときの効果的な表現（発表とやり取り）</div>
+</div>
+<p class="small">前提となる単元：中学校3年「話すこと［発表］」「書くこと」。前の時間の「一つの段落の構成」を、この時間は「複数の段落から成る文章の構成」へ広げます。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、前の時間（論Ⅰ-004）のトピック・センテンス、英語コミュニケーションⅠ（英Ⅰ-052）の事実と意見の区別、国語で学んだ文章の構成の型を使います。3問で確かめましょう。英語コミュニケーションⅠは並行して学ぶ科目なので、まだ学んでいない内容があれば、各問の解説と本編の説明で確かめてから進みましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：論Ⅰ-004・英Ⅰ-083</span></div>
+  <p class="en-cell">Walking to school has many good points. First, it is good exercise. Also, it does not cost any money. You can enjoy the changing seasons, too. <button class="speak" data-text="Walking to school has many good points. First, it is good exercise. Also, it does not cost any money. You can enjoy the changing seasons, too.">▶ 聞く</button></p>
+  <p>この段落のトピック・センテンス（段落の主題を述べる文）はどれですか。</p>
+  <div class="choices">
+    <button class="en-cell" data-correct="true">Walking to school has many good points.</button>
+    <button class="en-cell">First, it is good exercise.</button>
+    <button class="en-cell">Also, it does not cost any money.</button>
+    <button class="en-cell">You can enjoy the changing seasons, too.</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">1文目が「徒歩通学には良い点が多い」という段落の主題を述べ、残りの3文がその良い点を1つずつ挙げて支えています（サポーティング・センテンス）。First, Also, too は、支える内容を並べるときの目印です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：英Ⅰ-052</span></div>
+  <p>次のうち、<strong>意見</strong>を述べた文はどれですか。</p>
+  <div class="choices">
+    <button class="en-cell">Our school has about 800 students.</button>
+    <button class="en-cell">The school festival is held in September.</button>
+    <button class="en-cell" data-correct="true">Our school festival is the most exciting event of the year.</button>
+    <button class="en-cell">There are 30 students in my class.</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">the most exciting（いちばんわくわくする）は書き手の感じ方・評価なので意見です。人数や開催月は調べて確かめられるので事実です。事実か意見かは、「確かめられるか」「評価の語（exciting, important, should など）があるか」で見分けます。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：国語 中2-022・現国-026</span></div>
+  <p>国語で学んだ文章の構成の型のうち、中心となる考え（主張）を文章の<strong>初めと終わりの両方</strong>に置く型はどれですか。</p>
+  <div class="choices">
+    <button>頭括型</button>
+    <button>尾括型</button>
+    <button data-correct="true">双括型</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">頭括型は冒頭、尾括型は終わり、双括型は冒頭と終わりの両方に中心となる考えを置きます。この時間に学ぶ英語の論証文の序論・本論・結論は、主張を序論で述べ、結論でもう一度述べ直すので、双括型に近い形です。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">補足：英語の文章では、段落の区切りをどう示すのか</p>
+  <p>英語の文章では、段落の始まりを次のどちらかで示すのが一般的です。①段落の最初の行を少し右に下げて書き始める（字下げ）。②段落と段落の間を1行空ける。このページの英文は①の書き方にしています。</p>
+  <div class="passage en indent-body">
+    <p>This is the first paragraph. It has one main idea.</p>
+    <p>This is the second paragraph. Its first line starts a little to the right.</p>
+  </div>
+  <p>英文を読むときは、まず字下げや行空きで段落の数を数え、「いくつのまとまりから成る文章か」をつかみましょう。英語の段落は多くの場合、書き手が伝えたい一つの主張とそれを支える部分から成ります（英Ⅰ-078）。つまり、段落の数は、文章の中の「言いたいことのまとまり」の数の目安になります。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：同じ材料でも、並べ方で伝わり方が変わる</h2>
+<p>「授業ではタブレットだけでなく、紙のノートも使い続けるべきだ」という意見文を英語で書くために、2人の生徒が設計図（メモ）を作りました。使っている材料はまったく同じです。</p>
+<div class="table-wrap"><table>
+  <tr><th></th><th>設計図A</th><th>設計図B</th></tr>
+  <tr><td>1つ目の段落</td><td>タブレットなら黒板の写真が一瞬で撮れる。ノートは手で書くので時間がかかるが、大事な点を選ぶことになる。</td><td>紙のノートも使い続けるべきだ（主張）。理由は2つある。</td></tr>
+  <tr><td>2つ目の段落</td><td>クラスで調査したら、40人中26人が「手で書くと覚えやすい」と答えた。</td><td>理由1：タブレットとノートは得意なことが違う（写真と手書きの例で比べる）。</td></tr>
+  <tr><td>3つ目の段落</td><td>だから、紙のノートも使い続けるべきだと思う。</td><td>理由2：多くの生徒が「手で書くと覚えやすい」と感じている（クラスの調査）。</td></tr>
+  <tr><td>4つ目の段落</td><td>（なし）</td><td>まとめ：紙のノートは、今も教室に必要だ（主張を別の言葉で）。</td></tr>
+</table></div>
+<div class="box think">
+  <p class="box-title">考えよう</p>
+  <p>英語の読み手にとって、書き手の言いたいことがすぐに分かるのはどちらの設計図でしょうか。それはなぜでしょうか。設計図Bの1つ目と4つ目の段落は、同じことを2回言っているように見えますが、むだでしょうか。</p>
+  <p class="small">答えは本編の3〜6で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="序論・本論・結論の役割"><span class="num">3</span>序論・本論・結論：それぞれの段落の役割</h2>
+<p>解説は「説明文や論証文では，序論・本論・結論の構成に従って書かれていることが多く」と述べています（高等学校学習指導要領解説 外国語編 英語編 p.92）。論証文とは、問題について自分の意見を明確にし、理由付けや具体例などの証拠でその意見を支える文章でした（論Ⅰ-003・英Ⅰ-055。解説 p.46）。導入の設計図Bを、実際の英文にしたものを読んでみましょう。</p>
+<div class="passage en" id="essay">
+  <p><strong>Paper Notebooks Still Have a Place</strong> <button class="speak" data-target="#essay-body">▶ 聞く（全文）</button></p>
+  <div class="toggles">
+    <button type="button" data-toggle="show-sig" aria-pressed="false">つながりを示す語句に印を付ける</button>
+    <button type="button" data-toggle="show-fo" aria-pressed="false">［3］の事実・意見に印を付ける</button>
+  </div>
+  <div id="essay-body">
+    <p id="e-p1">At our school, every student has a tablet. Some people say that we do not need paper notebooks anymore. I do not agree. <span class="sig">In my opinion,</span> students should keep using paper notebooks along with tablets. <span class="sig">I have two reasons.</span></p>
+    <p id="e-p2"><span class="sig">First,</span> tablets and paper notebooks are good at different things. <span class="sig">For example,</span> with a tablet, you can take a photo of the blackboard in a second. <span class="sig">On the other hand,</span> with a notebook, you have to write the notes yourself. This takes more time, <span class="sig">but</span> it makes you choose the important points. Choosing the important points is a kind of thinking.</p>
+    <p id="e-p3"><span class="sig">Second,</span> many students feel that writing by hand helps them remember. <span class="fact">Last month, our class did a survey.</span> <span class="fact">Twenty-six of the forty students said that they remember things better when they write them by hand.</span> <span class="fact">This is only one class,</span> <span class="opin"><span class="sig">but</span> I think the result is important.</span> <span class="opin">We should listen to how students feel.</span></p>
+    <p id="e-p4"><span class="sig">In conclusion,</span> tablets are useful, <span class="sig">but</span> they cannot do everything. Writing notes by hand gives us time to choose the important points, and many students feel that it helps them remember. <span class="sig">For these reasons,</span> I believe that paper notebooks still have a place in our classrooms.</p>
+  </div>
+  <span class="src">このページのために作成した文章です。［3］の調査は学習用の架空のものです。</span>
+</div>
+<p class="small">語句：along with ～ ～と一緒に／in a second あっという間に／survey 調査／have a place 居場所がある、必要とされる</p>
+<p>4つの段落は、次のような役割に分かれています。</p>
+<div class="table-wrap"><table>
+  <tr><th>部分</th><th>段落</th><th>役割</th><th>この文章での内容</th></tr>
+  <tr><td><strong>序論</strong></td><td>［1］</td><td>話題を示し、文章全体の主題（書き手の主張）を述べる。本論の予告をすることもある。</td><td>タブレットがあってもノートは必要か → 紙のノートも使い続けるべきだ。理由は2つ。</td></tr>
+  <tr><td><strong>本論</strong></td><td>［2］［3］</td><td>主張を支える理由・根拠・具体例を述べる。ふつう1つの段落に1つの理由で、段落の最初にトピック・センテンスを置く。</td><td>［2］理由1：得意なことが違う　［3］理由2：多くの生徒が手書きで覚えやすいと感じている</td></tr>
+  <tr><td><strong>結論</strong></td><td>［4］</td><td>本論の要点をまとめ、主張を別の表現で述べ直して締めくくる。</td><td>紙のノートは今も教室に必要とされている。</td></tr>
+</table></div>
+<figure>
+  <svg viewBox="0 0 640 360" role="img" aria-label="左は一つの段落の構成で、上からトピック・センテンス（段落の主題を述べる）、サポーティング・センテンス（主題を支える理由・例）、結論の文（主題をまとめ直す）。右は複数の段落から成る文章の構成で、上から序論（話題と全体の主題）、本論1（理由1）、本論2（理由2）、結論（主張の言い換え・まとめ）。左右の対応する部分を点線の矢印で結ぶ。右端には結論から序論へ戻る矢印があり、同じ主張を別の表現で、と書かれている">
+    <defs><marker id="ah-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+    <text x="135" y="30" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">一つの段落（論Ⅰ-004）</text>
+    <text x="445" y="30" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">複数の段落から成る文章（この時間）</text>
+    <rect x="20" y="45" width="230" height="50" rx="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <text x="135" y="66" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">トピック・センテンス</text>
+    <text x="135" y="84" text-anchor="middle" font-size="11.5" fill="currentColor">段落の主題を述べる</text>
+    <rect x="20" y="105" width="230" height="120" rx="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <text x="135" y="158" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">サポーティング・センテンス</text>
+    <text x="135" y="178" text-anchor="middle" font-size="11.5" fill="currentColor">主題を支える理由・例</text>
+    <rect x="20" y="235" width="230" height="50" rx="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <text x="135" y="256" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">結論の文</text>
+    <text x="135" y="274" text-anchor="middle" font-size="11.5" fill="currentColor">主題をまとめ直す</text>
+    <rect x="330" y="45" width="230" height="50" rx="8" fill="none" stroke="currentColor" stroke-width="2.2"/>
+    <text x="445" y="66" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">序論</text>
+    <text x="445" y="84" text-anchor="middle" font-size="11.5" fill="currentColor">話題と全体の主題（主張）</text>
+    <rect x="330" y="105" width="230" height="55" rx="8" fill="none" stroke="currentColor" stroke-width="2.2"/>
+    <text x="445" y="126" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">本論1</text>
+    <text x="445" y="145" text-anchor="middle" font-size="11.5" fill="currentColor">理由1・根拠・具体例</text>
+    <rect x="330" y="170" width="230" height="55" rx="8" fill="none" stroke="currentColor" stroke-width="2.2"/>
+    <text x="445" y="191" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">本論2</text>
+    <text x="445" y="210" text-anchor="middle" font-size="11.5" fill="currentColor">理由2・根拠・具体例</text>
+    <rect x="330" y="235" width="230" height="50" rx="8" fill="none" stroke="currentColor" stroke-width="2.2"/>
+    <text x="445" y="256" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">結論</text>
+    <text x="445" y="274" text-anchor="middle" font-size="11.5" fill="currentColor">主張の言い換え・まとめ</text>
+    <line x1="252" y1="70" x2="326" y2="70" stroke="currentColor" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#ah-c)"/>
+    <line x1="252" y1="165" x2="326" y2="165" stroke="currentColor" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#ah-c)"/>
+    <line x1="252" y1="260" x2="326" y2="260" stroke="currentColor" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#ah-c)"/>
+    <path d="M562,260 H600 V70 H566" fill="none" stroke="currentColor" stroke-width="1.6" marker-end="url(#ah-c)"/>
+    <text x="615" y="165" text-anchor="middle" font-size="11.5" fill="currentColor" transform="rotate(90 615 165)">同じ主張を別の表現で</text>
+    <text x="445" y="304" text-anchor="middle" font-size="11" fill="currentColor">（本論の各段落にもトピック・センテンスがある）</text>
+    <text x="320" y="340" text-anchor="middle" font-size="12.5" fill="currentColor">段落の中の組み立てが、文章全体の組み立てと同じ形になっている</text>
+  </svg>
+  <figcaption>図1　一つの段落の構成（左）と、複数の段落から成る文章の構成（右）の対応。左の「結論の文」（結論文）は、主題文・支持文・結論文から成る段落の例として英語コミュニケーションⅠ（英Ⅰ-083）で扱う</figcaption>
+</figure>
+<p>図1のように、「一つの段落の中の組み立て」（トピック・センテンス → サポーティング・センテンス → まとめの結論の文）が、この時間は「段落どうしの組み立て」（序論 → 本論 → 結論）に大きくなっています。英語では序論・本論・結論を introduction・body・conclusion と呼びます。</p>
+<div class="box point"><p class="box-title">主張は「序論」で述べ、「結論」でもう一度述べ直す</p><p>解説は、複数の段落から成る論証文では「全体のテーマや要点を述べる主題が重要な位置を占める」とし（p.92）、段落ごとの役割を「主題を含む序論，根拠や具体例を含む本論，主題の言い換えや全体の要約をしている結論」と説明しています（p.63–64、英語コミュニケーションⅡの書くこと）。つまり、英語の論証文では、書き手の主張（主題）は多くの場合、最初の段落で述べられ、最後の段落で言い換えられます。<strong>序論と結論を先に読めば、書き手の主張と理由の要点がつかめます。</strong>段落の最初と最後の文から概要を推測する読み方（英Ⅰ-053）を、文章全体に広げたものです。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p>
+  <p>① <strong>最後まで読まないと主張が分からないと思い込む</strong>：設計図Aのように主張を最後に一度だけ書くと、読み手は何のための具体例かが分からないまま読み進めることになります。英語の論証文では、主張を序論に置くのが基本の形です。</p>
+  <p>② <strong>本論の具体例を主張と取り違える</strong>：［2］の with a tablet, you can take a photo … は理由1を支える例であって、書き手の主張ではありません。例は For example などの後に来ることが多いです。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="段落どうしの関係"><span class="num">4</span>段落どうしの関係をつかむ</h2>
+<p>解説は、段落の構成には「一つの段落内での文の構成と，複数の段落における段落相互の関係の両方が考えられる」としています（p.92）。国語でも段落相互の関係（中1-049、中2-021）を学びました。英語では、<strong>つながりを示す語句</strong>と<strong>各段落のトピック・センテンス</strong>が、段落どうしの関係を読み取る手がかりになります。上の英文で「つながりを示す語句に印を付ける」を押して確かめましょう。</p>
+<figure>
+  <svg viewBox="0 0 640 325" role="img" aria-label="上に［1］序論：主張（紙のノートも使い続けるべき）。その下の左に［2］本論：理由1（得意なことの違い、比較・例示）、右に［3］本論：理由2（多くの生徒が手書きで覚えやすい、事実から意見）。［2］と［3］から［1］へ「支える」矢印があり、それぞれ First, と Second, の語句が添えられている。一番下に［4］結論：主張の言い換え（紙のノートは今も教室に必要）。［4］と［1］は点線の両向きの矢印で結ばれ、同じ主張を言い換え、と書かれている">
+    <defs><marker id="ah-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+    <rect x="195" y="15" width="250" height="60" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="320" y="38" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">［1］序論：主張</text>
+    <text x="320" y="60" text-anchor="middle" font-size="12" fill="currentColor">紙のノートも使い続けるべき</text>
+    <rect x="20" y="130" width="270" height="70" rx="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <text x="155" y="153" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">［2］本論：理由1</text>
+    <text x="155" y="172" text-anchor="middle" font-size="12" fill="currentColor">得意なことの違い</text>
+    <text x="155" y="190" text-anchor="middle" font-size="11.5" fill="currentColor">（比較・例示）</text>
+    <rect x="350" y="130" width="270" height="70" rx="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <text x="485" y="153" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">［3］本論：理由2</text>
+    <text x="485" y="172" text-anchor="middle" font-size="12" fill="currentColor">多くの生徒が手書きで覚えやすい</text>
+    <text x="485" y="190" text-anchor="middle" font-size="11.5" fill="currentColor">（事実 → 意見）</text>
+    <rect x="195" y="250" width="250" height="60" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="320" y="273" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">［4］結論：主張の言い換え</text>
+    <text x="320" y="295" text-anchor="middle" font-size="12" fill="currentColor">紙のノートは今も教室に必要</text>
+    <line x1="155" y1="128" x2="268" y2="78" stroke="currentColor" stroke-width="1.6" marker-end="url(#ah-d)"/>
+    <line x1="485" y1="128" x2="372" y2="78" stroke="currentColor" stroke-width="1.6" marker-end="url(#ah-d)"/>
+    <text x="30" y="110" font-size="12.5" font-family="Georgia, serif" fill="currentColor">First,</text>
+    <text x="72" y="110" font-size="12" fill="currentColor">（理由1）</text>
+    <text x="224" y="124" font-size="12" fill="currentColor">支える</text>
+    <text x="610" y="110" text-anchor="end" font-size="12" fill="currentColor">（理由2）</text>
+    <text x="548" y="110" text-anchor="end" font-size="12.5" font-family="Georgia, serif" fill="currentColor">Second,</text>
+    <text x="416" y="124" text-anchor="end" font-size="12" fill="currentColor">支える</text>
+    <line x1="320" y1="248" x2="320" y2="78" stroke="currentColor" stroke-width="1.6" stroke-dasharray="6 4" marker-start="url(#ah-d)" marker-end="url(#ah-d)"/>
+    <text x="328" y="224" font-size="12" fill="currentColor">同じ主張を</text>
+    <text x="328" y="240" font-size="12" fill="currentColor">言い換え</text>
+  </svg>
+  <figcaption>図2　上の英文の段落どうしの関係。本論の2つの段落が序論の主張を支え、結論が主張を言い換えて締めくくる</figcaption>
+</figure>
+<div class="table-wrap"><table>
+  <tr><th>段落どうしの関係</th><th>つながりを示す語句の例</th><th>読み取れること</th></tr>
+  <tr><td>順序・列挙</td><td class="en-cell">First, … / Second, … / Another point is that …</td><td>主張を支える理由を順に並べている</td></tr>
+  <tr><td>追加</td><td class="en-cell">In addition, … / Also, …</td><td>同じ方向の情報を付け加えている</td></tr>
+  <tr><td>例示</td><td class="en-cell">For example, … / For instance, …</td><td>直前の考えを具体例で説明している</td></tr>
+  <tr><td>対比</td><td class="en-cell">On the other hand, … / However, …</td><td>別の面や反対の考えと比べている</td></tr>
+  <tr><td>結果</td><td class="en-cell">As a result, …</td><td>前の内容から生じた結果を述べている</td></tr>
+  <tr><td>まとめ・結論</td><td class="en-cell">In conclusion, … / For these reasons, …</td><td>全体をまとめ、主張を述べ直している</td></tr>
+</table></div>
+<p class="small">first of all・on the other hand は中学校（中2-010、中3-008）、in addition・as a result・in my opinion は英語コミュニケーションⅠ（英Ⅰ-014）で学ぶ慣用表現です。In conclusion・For example などは、解説がディスカッションや発表の表現の例にも挙げています（p.95–96, 98–99）。</p>
+<div class="box example worked">
+  <p class="box-title">例題1　［3］の段落は、［1］とどんな関係？</p>
+  <div class="step">ステップ1：段落の最初のつながりの語句を見る。Second, → 「2つ目」。［1］の I have two reasons. と結び付き、<strong>2つ目の理由</strong>だと予想できる。</div>
+  <div class="step">ステップ2：トピック・センテンスを読む。many students feel that writing by hand helps them remember（多くの生徒が、手で書くと覚えやすいと感じている）。</div>
+  <div class="step">ステップ3：［1］の主張（紙のノートも使い続けるべき）と照らす。手で書く良さを述べているので、主張を<strong>支える理由</strong>になっている。答え：［3］は［1］の主張を支える2つ目の理由。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p>
+  <p>① <strong>つながりの語句だけで決めてしまう</strong>：語句がない段落もあります。そのときはトピック・センテンスの内容を主張と照らして、理由なのか、例なのか、まとめなのかを判断します。</p>
+  <p>② <strong>段落の中の but を段落どうしの対比と取り違える</strong>：［2］の This takes more time, but … の but は文の中の対比で、段落どうしの関係を示しているのではありません。段落どうしの関係は、主に段落の最初の語句とトピック・センテンスで判断します。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="展開の工夫：比較・事実と意見"><span class="num">5</span>展開の工夫①：例を挙げて比べる、事実と意見を分ける</h2>
+<p>解説は、展開部分（本論）の工夫として、「異なるアイディアを例示しながら比較したり，事実と意見を分けて述べたり，自分の主張を異なる表現で印象付けたりすること」を挙げています（p.92）。この節では前の2つを、上の英文の［2］と［3］で見ていきます。</p>
+<h3>工夫1：異なるアイディアを、例を挙げながら比べる（［2］）</h3>
+<div class="table-wrap"><table>
+  <tr><th></th><th>タブレット</th><th>紙のノート</th></tr>
+  <tr><td>具体例</td><td class="en-cell">you can take a photo of the blackboard in a second</td><td class="en-cell">you have to write the notes yourself</td></tr>
+  <tr><td>比べて分かること</td><td>速く、手間がかからない</td><td>時間はかかるが、大事な点を選ぶことになる＝考える</td></tr>
+  <tr><td>つながりの語句</td><td class="en-cell">For example,</td><td class="en-cell">On the other hand,</td></tr>
+</table></div>
+<p>書き手は、2つを具体的な場面で並べて見せています。読み手は自分でも比べられるので、「ノートにはタブレットにない良さがある」という理由に納得しやすくなります。<strong>比べるときは、同じ観点（ここでは「授業の内容を記録するとき」）で並べる</strong>のがこつです。</p>
+<h3>工夫2：事実を示してから、意見を述べる（［3］）</h3>
+<p>上の英文で「［3］の事実・意見に印を付ける」を押してみましょう。［3］では、まず確かめられる事実（調査をした、40人中26人がこう答えた）を示し、その後で書き手の考え（結果は大切だ、生徒の感じ方に耳を傾けるべきだ）を述べています。</p>
+<div class="box example worked">
+  <p class="box-title">例題2　［3］の文を事実と意見に分けよう</p>
+  <div class="step">ステップ1：確かめられるかどうか。Last month, our class did a survey. と Twenty-six of the forty students said that … は、調査の記録で確かめられる → <strong>事実</strong>（40人中26人は65％）。</div>
+  <div class="step">ステップ2：評価の語があるかどうか。I think the result is important. の important、We should listen … の should は書き手の考え → <strong>意見</strong>。</div>
+  <div class="step">ステップ3：並び方の効果を考える。事実 → 意見の順なので、読み手は「何を根拠にそう考えたのか」が分かる。This is only one class,（1クラスだけの調査だ）と事実の限界も正直に示しており、意見が言い過ぎにならないようにしている。なお、段落の最初の文 Second, many students feel that … はこの段落のトピック・センテンス（理由2）なので、印は付けていない。後ろの事実は、この理由を支えるために置かれている。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p>
+  <p>① <strong>「〜と答えた」の中身まで事実だと思う</strong>：Twenty-six of the forty students said that they remember things better … で事実なのは「26人がそう答えた」ことです。「手で書くと覚えやすい」そのものは、生徒の感じ方です。</p>
+  <p>② <strong>数字があれば事実だと決めつける</strong>：数字が入っていても、<span class="en-cell">I think 70 percent of students would agree.</span>（7割の生徒が賛成するだろうと思う）のような文は、書き手の予想なので意見です。「確かめられるか」「書き手の評価か」で判断しましょう。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="主張を別の表現で印象付ける"><span class="num">6</span>展開の工夫②：主張を別の表現で述べ直して印象付ける</h2>
+<p>導入の「考えよう」で、設計図Bの1つ目と4つ目の段落は同じことを2回言っているように見えました。実は、これが3つ目の工夫「自分の主張を異なる表現で印象付ける」です。同じ言葉をくり返すのではなく、<strong>別の語句や文の形で述べ直す</strong>ことで、主張が読み手の記憶に残ります。</p>
+<div class="table-wrap"><table>
+  <tr><th>序論［1］の主張</th><th>結論［4］の述べ直し</th><th>変えたところ</th></tr>
+  <tr><td class="en-cell">students should keep using paper notebooks along with tablets</td><td class="en-cell">paper notebooks still have a place in our classrooms</td><td>主語を students から paper notebooks に、keep using を still have a place（今も必要とされている）に言い換えた</td></tr>
+</table></div>
+<p>さらに結論では、<span class="en-cell">tablets are useful, but they cannot do everything</span> と本論の要点（得意なことの違い、手で書く良さ）を短くまとめてから、For these reasons, で主張に戻っています。言い換えは、中身を変えずに言い方を変えること（英Ⅰ-088「言い換える」働き）です。</p>
+<div class="box example worked">
+  <p class="box-title">例題3　主張を正しく言い換えているのはどれ？</p>
+  <p>序論の主張：<span class="en-cell">I think our school should have a longer lunch break.</span>（学校の昼休みをもっと長くすべきだと思う。）</p>
+  <p class="en-cell">(a) A longer lunch break would make our school life better.<br>(b) Our school should stop all afternoon classes.<br>(c) Lunch is important.</p>
+  <div class="step">ステップ1：主張の中身を確かめる。「昼休みを長くすべきだ」＝何を（昼休み）、どうする（長くする）。</div>
+  <div class="step">ステップ2：(b) は「午後の授業をすべてやめる」で、主張が別のもの（しかも極端）に変わっている。(c) は「昼食は大切」で、何をどうすべきかが消えている。</div>
+  <div class="step">ステップ3：答え (a)。「長い昼休みは学校生活をより良くするだろう」と主語と言い方を変えながら、「昼休みを長くすべき」という中身は保っている。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p><strong>言い換えのつもりで主張を強めたり弱めたりする</strong>：×tablets are useless（タブレットは役に立たない）は、序論の「ノートもタブレットと一緒に使う」とは違う主張です。述べ直すときは、序論の主張と中身がずれていないか、必ず見比べましょう。</p></div>
+<h3>活動：意見文の設計図を作り、序論と結論の文を書く</h3>
+<p>テーマ：<strong>Is it better for you to study at the library or at home?</strong>（あなたにとって、図書館と家のどちらで勉強する方がよいか）について、4段落の設計図を作り、序論と結論の文を英語で書きます。本論の段落を英文で書き上げるのは、段落を書く時間（論Ⅰ-060 など）で行います。</p>
+<ol>
+  <li><strong>立場を決める</strong>：図書館か家かを選び、序論の主張を1文で書く（In my opinion, … . I have two reasons.）。</li>
+  <li><strong>本論の設計</strong>：理由を2つ決め、それぞれのトピック・センテンスを英語で書く（First, … / Second, …）。</li>
+  <li><strong>展開の工夫を選ぶ</strong>：理由1は2つの場所を例を挙げて比べる（For example, … On the other hand, …）、理由2は確かめられる事実を示してから意見を述べる、というメモを日本語で書く。</li>
+  <li><strong>結論を書く</strong>：理由を短くまとめ、主張を序論とは別の表現で述べ直す（In conclusion, … For these reasons, …）。</li>
+  <li><strong>読み合う</strong>：ペアで設計図を交換し、下のルーブリックで互いに確かめ、よい点と直す点を1つずつ伝える。</li>
+</ol>
+<div class="table-wrap"><table>
+  <tr><th>観点</th><th>A（よくできた）</th><th>B（おおむねできた）</th><th>C（もう一歩）</th></tr>
+  <tr><td>序論の主張</td><td>立場がはっきりした1文で、理由の数の予告もある</td><td>立場は分かるが、予告がない</td><td>立場があいまい</td></tr>
+  <tr><td>本論と段落の関係</td><td>2つの理由がそれぞれ主張を支え、First／Second で関係が分かる</td><td>理由はあるが、一方が主張とのつながりが弱い</td><td>理由が1つしかない、または主張と関係がない</td></tr>
+  <tr><td>展開の工夫</td><td>比較と例、事実と意見の工夫を両方計画できている</td><td>どちらか一方を計画できている</td><td>工夫が計画されていない</td></tr>
+  <tr><td>結論の述べ直し</td><td>理由のまとめがあり、主張を中身を変えずに別の表現で述べ直している</td><td>主張を述べ直しているが、序論と同じ文のくり返し</td><td>結論で主張が変わっている、または結論がない</td></tr>
+</table></div>
+<div class="box example">
+  <p class="box-title">解答例（設計図）</p>
+  <p><strong>序論</strong>　<span class="en-cell">In my opinion, studying at the library is better for me than studying at home. I have two reasons.</span></p>
+  <p><strong>本論1</strong>　<span class="en-cell">First, the library helps me focus.</span>（比較と例：家ではスマートフォンやテレビを見てしまう ⇔ 図書館では周りの人が静かに勉強している）</p>
+  <p><strong>本論2</strong>　<span class="en-cell">Second, the library has many useful books.</span>（事実 → 意見：自分の町の図書館にある参考書・辞書・問題集の種類や冊数を調べて書く → 調べ物をしながら勉強するのに便利な場所だと思う）</p>
+  <p><strong>結論</strong>　<span class="en-cell">In conclusion, the library gives me a quiet place and useful books. For these reasons, I believe I can study better there than at home.</span> <button class="speak" data-text="In my opinion, studying at the library is better for me than studying at home. I have two reasons. In conclusion, the library gives me a quiet place and useful books. For these reasons, I believe I can study better there than at home.">▶ 序論と結論を聞く</button></p>
+  <p class="small">序論の studying at the library is better for me than studying at home を、結論では I can study better there than at home と主語と言い方を変えて述べ直しています。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>序論・本論・結論</dt><dd>説明文や論証文によく見られる文章全体の構成。序論で話題と主題（主張）を示し、本論で理由・根拠・具体例を述べ、結論で主張を述べ直してまとめる。英語では introduction・body・conclusion。</dd>
+    <dt>主題</dt><dd>文章全体のテーマや要点。論証文では書き手の主張にあたり、ふつう序論で述べられる。</dd>
+    <dt>段落相互の関係</dt><dd>段落どうしのつながり方。主張と理由、順序・追加、例示、対比、まとめなど。つながりを示す語句とトピック・センテンスが手がかりになる。</dd>
+    <dt>つながりを示す語句</dt><dd>First, / Second, / In addition, / For example, / On the other hand, / In conclusion, / For these reasons, など、文や段落の関係を示す語句。</dd>
+    <dt>比較（例示しながら比べる）</dt><dd>異なるアイディアを、同じ観点で具体例を挙げて並べ、違いを示す展開の工夫。</dd>
+    <dt>事実と意見</dt><dd>事実は調べて確かめられること、意見は書き手の考えや評価（I think, important, should など）。事実を示してから意見を述べると、根拠が分かりやすい。</dd>
+    <dt>主張の言い換え</dt><dd>同じ主張を、中身を変えずに別の語句や文の形で述べ直すこと。結論などで主張を読み手に印象付ける。</dd>
+    <dt>論証文</dt><dd>問題について自分の意見を明確にし、理由付けや具体例などの証拠を用いてその意見を支える文章（解説 p.46。論Ⅰ-003・英Ⅰ-055 で学習）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>（O1）説明文や論証文は、序論（主題・主張を示す）→ 本論（理由・根拠・具体例で支える）→ 結論（主張を述べ直してまとめる）で組み立てられることが多い。一つの段落の組み立てが、文章全体に大きくなった形。</li>
+    <li>（O2）段落どうしの関係は、段落の最初のつながりを示す語句（First, / For example, / On the other hand, / In conclusion, など）とトピック・センテンスで捉える。語句がなければ内容を主張と照らす。</li>
+    <li>（O3）本論では、異なるアイディアを同じ観点で例を挙げて比べたり、事実を示してから意見を述べたりして、主張に説得力をもたせる。</li>
+    <li>（O4）結論では、主張を中身を変えずに別の表現で述べ直して印象付ける。序論と結論を先に読めば、書き手の主張がつかめる。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">序論</span><p class="en-cell">In my opinion, … . I have two reasons.</p></div>
+  <div><span class="f-name">本論</span><p class="en-cell">First, … . For example, … . On the other hand, … .<br>Second, … .（事実 → 意見）</p></div>
+  <div><span class="f-name">結論</span><p class="en-cell">In conclusion, … . For these reasons, …（主張の言い換え）.</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示します。問8・問9は聞く力を練習する問題で、実際の入試の出題形式を示すものではありません。</p>
+<p>問1〜問7は、次の意見文について答えます。段落の順番が入れ替えてあります。</p>
+<div class="passage en" id="clean">
+  <p><strong>Cleaning Time Should Stay</strong> <button class="speak" data-target="#clean-body">▶ 聞く（この順番で）</button></p>
+  <div id="clean-body" class="indent-body">
+    <p data-label="（ア）">Second, cleaning helps us work as a team. In my class, five students clean the room together in about fifteen minutes because each person has a different job. On the other hand, when one person tries to do everything alone, it takes much longer, and that person gets tired.</p>
+    <p data-label="（イ）">At our school, students clean their classrooms and hallways every day. Some people say that students should use this time for studying instead. I do not agree. I believe that cleaning is an important part of school life, for two reasons.</p>
+    <p data-label="（ウ）">In conclusion, cleaning teaches us responsibility and teamwork. That is why cleaning time should stay in our school day.</p>
+    <p data-label="（エ）">First, cleaning teaches us responsibility. When we clean the place we use every day, we learn to take care of it. For example, after I started cleaning the hallway, I stopped leaving trash there.</p>
+  </div>
+  <span class="src">このページのために作成した文章です。</span>
+</div>
+<p class="small">語句：hallway 廊下／instead 代わりに／responsibility 責任感／take care of ～ ～を大切にする／trash ごみ／teamwork チームワーク</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>序論にあたる段落はどれですか。</p>
+  <div class="choices"><button>（ア）</button><button data-correct="true">（イ）</button><button>（ウ）</button><button>（エ）</button></div>
+  <span class="result"></span>
+  <div class="explain">（イ）は話題（毎日の掃除）と反対の考え（その時間を勉強に使うべき）を示した上で、I believe that cleaning is an important part of school life という主張と、for two reasons という本論の予告を述べています。（ア）（エ）は Second, / First, で始まる理由、（ウ）は In conclusion, で始まるまとめです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>（ウ）の段落の役割として最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>新しい3つ目の理由を付け加えている。</button>
+    <button>1つ目の理由の具体例をくわしく説明している。</button>
+    <button data-correct="true">2つの理由を短くまとめ、主張を別の表現で述べ直している。</button>
+    <button>反対の考えを紹介している。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">（ウ）の1文目 cleaning teaches us responsibility and teamwork は、（エ）の責任感と（ア）のチームワークという2つの理由のまとめです。2文目 cleaning time should stay in our school day は、序論の主張を別の表現で述べ直しています。新しい理由や具体例は加えていません。反対の考えは（イ）にあります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>（ア）〜（エ）を正しい順番に並べたものはどれですか。</p>
+  <div class="choices"><button>（エ）→（ア）→（イ）→（ウ）</button><button data-correct="true">（イ）→（エ）→（ア）→（ウ）</button><button>（イ）→（ア）→（エ）→（ウ）</button><button>（ウ）→（エ）→（ア）→（イ）</button></div>
+  <span class="result"></span>
+  <div class="explain">序論（イ）で主張と for two reasons を示し、First,（エ）→ Second,（ア）と理由を順に述べ、In conclusion,（ウ）でまとめます。1番目は理由から始まり、主張と予告のある（イ）が3番目に来るので、何のための理由かが後まで分かりません。3番目は First と Second の順が逆です。4番目は結論から始まっており、最後の（イ）で初めて話題が示される不自然な順番です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>（ア）の段落は、（イ）の段落とどんな関係にありますか。</p>
+  <div class="choices"><button>（イ）の主張に反論している。</button><button>（イ）の内容を最後にまとめている。</button><button>（イ）で示した反対の考えを支えている。</button><button data-correct="true">（イ）の主張を支える2つ目の理由を述べている。</button></div>
+  <span class="result"></span>
+  <div class="explain">段落の最初の Second, と、トピック・センテンス cleaning helps us work as a team（掃除はチームで協力する力を育てる）から、（イ）の「掃除は学校生活の大切な一部だ」を支える2つ目の理由だと分かります。段落の中の On the other hand は、分担する場合と一人でする場合を比べるための語句で、（イ）への反論ではありません。全体のまとめは In conclusion, で始まる（ウ）の役割です。また、（イ）の反対の考え（掃除の時間を勉強に使うべき）を支える内容は、（ア）にはありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>（ア）の段落で、書き手が使っている展開の工夫はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">みんなで分担する場合と、一人で全部する場合を、具体的に比べている。</button>
+    <button>事実だけを並べ、書き手の考えは述べていない。</button>
+    <button>序論の主張を別の表現で述べ直している。</button>
+    <button>反対の考えを紹介してから反論している。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">自分のクラスの例（5人で分担して約15分）と、On the other hand の後の一人で全部する場合を並べて比べています。2番目：1文目 cleaning helps us work as a team は書き手の考えです。3番目は（ウ）の働き、4番目は（イ）で反対の考えを紹介していますが、（ア）の工夫ではありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>（エ）の段落で、書き手が理由を支えるために挙げた<strong>自分の体験（事実）</strong>はどれですか。</p>
+  <div class="choices">
+    <button class="en-cell">First, cleaning teaches us responsibility.</button>
+    <button class="en-cell">When we clean the place we use every day, we learn to take care of it.</button>
+    <button class="en-cell" data-correct="true">For example, after I started cleaning the hallway, I stopped leaving trash there.</button>
+    <button class="en-cell">That is why cleaning time should stay in our school day.</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">For example, の後の文は、書き手が実際に経験したこと（廊下の掃除を始めてから、そこにごみを置かなくなった）で、理由を支える具体例です。1番目はトピック・センテンス（書き手の考え）、2番目はそれを一般的に説明した考え、4番目は（ウ）の結論の文です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O4</span></div>
+  <p>序論の主張 <span class="en-cell">I believe that cleaning is an important part of school life</span> を、別の表現で述べ直している文はどれですか。</p>
+  <div class="choices">
+    <button class="en-cell">In conclusion, cleaning teaches us responsibility and teamwork.</button>
+    <button class="en-cell" data-correct="true">That is why cleaning time should stay in our school day.</button>
+    <button class="en-cell">Some people say that students should use this time for studying instead.</button>
+    <button class="en-cell">When one person tries to do everything alone, it takes much longer.</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「掃除は学校生活の大切な一部だ」を、「掃除の時間は学校の1日の中に残すべきだ」と、主語（cleaning → cleaning time）と言い方を変えて述べ直しています。1番目は2つの理由のまとめで、主張そのものではありません。3番目は書き手が反対する考え、4番目は本論（ア）の比較の一部です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2</span></div>
+  <p>生徒のスピーチを聞き、質問に答えましょう。まず1回だけ聞いて答え、分からなければもう一度聞きましょう（英文は答えた後に解説で確かめられます）。</p>
+  <p><button class="speak" data-text="Good morning, everyone. Today, I want to talk about breakfast. I believe that every student should eat breakfast before coming to school. I have two reasons. First, breakfast gives us energy for the morning. For example, when I skip breakfast, I often feel sleepy in the first class. Second, breakfast is a good time to talk with our families. At breakfast, my family and I share our plans for the day. In conclusion, breakfast is good for our bodies and for our time with our families. So, please don't skip breakfast tomorrow. Thank you.">▶ スピーチを聞く</button></p>
+  <p class="en-cell">Question: What is the speaker's main point?</p>
+  <div class="choices">
+    <button class="en-cell">Students should talk with their families more.</button>
+    <button class="en-cell">Students often feel sleepy in the first class.</button>
+    <button class="en-cell" data-correct="true">Every student should eat breakfast before school.</button>
+    <button class="en-cell">Families should share their plans every morning.</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">
+    <p>序論の I believe that every student should eat breakfast before coming to school が主張で、結論の please don't skip breakfast tomorrow（明日は朝食を抜かないで）で述べ直されています。1番目と4番目は理由2の内容、2番目は理由1の具体例（話し手自身の体験）で、主張を支える部分です。</p>
+    <p class="en-cell small">Script — Good morning, everyone. Today, I want to talk about breakfast. I believe that every student should eat breakfast before coming to school. I have two reasons. First, breakfast gives us energy for the morning. For example, when I skip breakfast, I often feel sleepy in the first class. Second, breakfast is a good time to talk with our families. At breakfast, my family and I share our plans for the day. In conclusion, breakfast is good for our bodies and for our time with our families. So, please don't skip breakfast tomorrow. Thank you.</p>
+  </div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>問8のスピーチは、どのような順番で組み立てられていますか。</p>
+  <div class="choices">
+    <button>具体例 → 主張 → 理由 → 感想</button>
+    <button>反対の考え → 反論 → 主張</button>
+    <button>理由1 → 理由2 → 最後に初めて主張</button>
+    <button data-correct="true">主張 → 理由1と具体例 → 理由2と具体例 → 理由のまとめと主張の述べ直し</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">I believe that …（主張）→ I have two reasons. → First, …, For example, …（理由1と話し手の体験）→ Second, …, At breakfast, my family and I …（理由2と家族の例）→ In conclusion, …（2つの理由のまとめ）→ please don't skip breakfast（主張の述べ直し）という序論・本論・結論の構成です。聞くときも、First・Second・In conclusion が話の区切りの目印になります。1番目（具体例から始まる）、2番目（反対の考えから始まる）、3番目（最後に初めて主張を述べる）は、このスピーチが I believe that … という主張から始まり、反対の考えも紹介していない点で合いません。</div>
+</div>
+
+<div class="q" data-type="open" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O1・O4</span></div>
+  <p>次の設計図をもとに、①序論の文（主張と、理由が2つあることの予告）と、②結論の文（2つの理由を短くまとめ、主張を序論とは別の表現で述べ直す）を、それぞれ英語で書きましょう。設計図の日本語を1文ずつ訳すのではなく、序論と結論の役割に合う文を自分で組み立てます。</p>
+  <div class="table-wrap"><table>
+    <tr><th>主張</th><td>修学旅行（school trip）では、自由行動の時間（free time）をもっと増やすべきだ。</td></tr>
+    <tr><th>理由1</th><td>自分たちで計画を立てる力がつく。</td></tr>
+    <tr><th>理由2</th><td>興味のある場所をじっくり見学できる。</td></tr>
+  </table></div>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　① <span class="en-cell">In my opinion, school trips should include more free time. I have two reasons.</span>　② <span class="en-cell">In conclusion, free time helps us learn to plan by ourselves, and it lets us visit places we are interested in. For these reasons, I believe students should have more chances to decide what to do on school trips.</span></p>
+    <p><strong>採点の観点</strong>　①で立場（自由行動を増やすべき）がはっきりし、理由の数の予告がある。②で2つの理由を短くまとめている。②の最後の文が、①と同じ中身を別の表現で述べ直している（should include more free time → should have more chances to decide what to do）。②で新しい理由を加えたり、主張を変えたりしていない。</p>
+  </div>
+  <div class="explain">結論で ①と同じ文をそのままくり返すと、言い換えの工夫にはなりません。また、×We should stop all group activities on school trips. のように述べ直すと、「自由行動を増やす」から「団体行動をやめる」に主張が変わってしまいます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○：論理・表現Ⅰは出題範囲。問われるのはリーディングとリスニング</p>
+  <p>令和9年度の実施要項は、『英語』を「英語コミュニケーションⅠ」「英語コミュニケーションⅡ」及び「論理・表現Ⅰ」を出題範囲とし、【リーディング】と【リスニング】を出題するとしています。実施要項が示す出題はこの二つで、英文を書く試験は示されていません。この時間に学んだ文章の構成の知識は、読んだり聞いたりするときに使えます。</p>
+  <p>問題作成方針は、「情報や考えなどの概要や要点，詳細，話し手や書き手の意図などを的確に理解する力」と、「理解した情報や考えを整理したり，何をどのように取り上げるかなどを判断したりする力」を重視するとしています。<strong>序論・本論・結論の役割と段落どうしの関係が分かれば、複数の段落から成る文章やまとまった話の中で、主張（要点）と、それを支える理由や例とを整理して捉えやすくなります。</strong></p>
+  <p class="small">このページの確認問題は、構成を捉える力を練習するためのもので、実際の出題形式を示すものではありません。個別試験：基準とする大学が未指定のため、このページでは扱いを示していません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">話すときの効果的な表現（発表とやり取り）（論Ⅰ-006）</p>
+  <p>次の時間は、話すときの表現を学びます。解説は、話し言葉は書き言葉に比べて「情報を繰り返したり，要約したりすることが多い」としています（p.92）。この時間の「主張を別の表現で述べ直す」工夫は、発表でキーワードを繰り返したり、最後に要点をまとめたりする表現につながります。</p>
+  <p>この時間では扱わず、ほかの時間で扱うこと：目的に応じた論理の構成（スピーチ・ディベートなど、論Ⅰ-002）、理由の列挙・原因と結果による展開の方法（論Ⅰ-058）、一つの段落の意見文を書くこと（論Ⅰ-060）。複数の段落から成る文章を実際に書くことは、英語コミュニケーションⅡ（英Ⅱ-108・英Ⅱ-109・英Ⅱ-112）や論理・表現Ⅱ（論Ⅱ-056）で扱います。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>論Ⅰ-004　段落の構成（トピック・センテンスと支持文）</div>
+  <div><span class="label">次の時間</span>論Ⅰ-006　話すときの効果的な表現（発表とやり取り）</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_eigo1/論Ⅰ-005「序論・本論・結論と展開の工夫」（学習指導要領 論理・表現Ⅰ 2 内容 (1)ア(ア)、解説 p.92）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第8節 外国語、文部科学省（https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf）：論理・表現Ⅰ 2 内容 (1)ア(ア) 目的や場面，状況などに応じた論理の構成や展開</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 外国語編 英語編、文部科学省（https://www.mext.go.jp/content/1407073_09_1_2.pdf）：p.92（序論・本論・結論、段落相互の関係、展開部分の工夫）、p.46（論証文、事実と意見）、p.52（日本語と英語の段落）、p.63–64（英語コミュニケーションⅡの複数の段落の文章）、p.95–96・98–99（ディスカッション・発表の定型表現）</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・問題作成方針、大学入試センター（https://www.dnc.ac.jp/）：『英語』の出題範囲、問題作成の方針</li>
+  </ul>
+  <p>作成：2026-09-29　版：1.1（2026-09-29 クロスチェックによる改修）　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。英文・問題・調査の数値はこのページのために作成したものです（調査は学習用の架空のもの）。読み上げはブラウザの音声合成機能を使うため、発音や強勢は実際の話し手と異なる場合があります。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var essay = document.getElementById("essay");
+  if (!essay) return;
+  essay.querySelectorAll("button[data-toggle]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var on = essay.classList.toggle(b.getAttribute("data-toggle"));
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  });
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_eigo1/論Ⅰ-005",
+  "map": "hs_eigo1",
+  "rid": "論Ⅰ-005",
+  "title": "序論・本論・結論と展開の工夫",
+  "subject": "論理・表現Ⅰ",
+  "unit": {"ref": "hs_eigo1:論Ⅰ-1", "title": "論理の構成や展開と効果的な表現"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ア)"],
+  "kaisetsu_page": "92",
+  "objectives": [
+    {"id": "O1", "text": "説明文や論証文の序論・本論・結論が、それぞれ主題（書き手の主張）を示す、理由や根拠・具体例で支える、主張を言い換えてまとめる、という役割をもつことを説明できる。", "from": "序論・本論・結論の構成", "sections": ["sec-1"], "checks": ["q1", "q2", "q8", "q10"]},
+    {"id": "O2", "text": "つながりを示す語句と各段落のトピック・センテンスを手がかりに、段落相互の関係（主張と理由、順序・追加、例示、対比、まとめ）を捉えることができる。", "from": "段落相互の関係を理解し", "sections": ["sec-2"], "checks": ["q3", "q4", "q8", "q9"]},
+    {"id": "O3", "text": "展開部分で、異なるアイディアを例示しながら比較する工夫と、事実と意見を分けて述べる工夫を、文章の中で見分けることができる。", "from": "展開部分で異なるアイディアを例示しながら比較する、事実と意見を分けて述べる", "sections": ["sec-3"], "checks": ["q5", "q6", "q9"]},
+    {"id": "O4", "text": "結論などで主張を異なる表現で言い換えて印象付ける工夫を知り、言い換えた文を見つけたり、自分で書いたりできる。", "from": "主張を異なる表現で印象付けるなどの工夫を知る。", "sections": ["sec-4"], "checks": ["q7", "q10"]}
+  ],
+  "key_terms": [
+    {"term": "序論・本論・結論", "where": "sec-1"},
+    {"term": "段落相互の関係", "where": "sec-2"},
+    {"term": "つながりを示す語句", "where": "sec-2"},
+    {"term": "事実と意見", "where": "sec-3"},
+    {"term": "主張の言い換え", "where": "sec-4"}
+  ],
+  "prerequisites": [
+    {"concept": "トピック・センテンスとサポーティング・センテンス、結論文（一つの段落の構成）", "taught_in": ["hs_eigo1/論Ⅰ-004", "hs_eigo1/英Ⅰ-083"], "where": "review"},
+    {"concept": "英語の段落は多くの場合、一つの主張とそれを支える部分から成ること", "taught_in": ["hs_eigo1/英Ⅰ-078"], "where": "supp-1"},
+    {"concept": "説明文・論証文の違い（論証文は主張を理由や具体例で支える文章）", "taught_in": ["hs_eigo1/論Ⅰ-003", "hs_eigo1/英Ⅰ-055"], "where": "sec-1"},
+    {"concept": "事実と意見の区別", "taught_in": ["hs_eigo1/英Ⅰ-052"], "where": "review"},
+    {"concept": "序論−本論−結論、頭括型・尾括型・双括型（国語）", "taught_in": ["jhs_kokugo2/中2-022", "hs_kokugo/現国-026"], "where": "review"},
+    {"concept": "段落相互の関係（国語）", "taught_in": ["jhs_kokugo1/中1-049", "jhs_kokugo2/中2-021"], "where": "sec-2"},
+    {"concept": "順序立てて論理的に伝える慣用表現（first of all、on the other hand）", "taught_in": ["jhs_eigo2/中2-010", "jhs_eigo3/中3-008"], "where": "sec-2"},
+    {"concept": "論理的に述べるための慣用表現（in addition、in my opinion、as a result）", "taught_in": ["hs_eigo1/英Ⅰ-014"], "where": "sec-2"},
+    {"concept": "段落の最初と最後の文から概要を捉える読み方", "taught_in": ["hs_eigo1/英Ⅰ-053"], "where": "sec-1"},
+    {"concept": "言い換える働き", "taught_in": ["hs_eigo1/英Ⅰ-088"], "where": "sec-4"},
+    {"concept": "英語の文章で段落の区切りを示す書き方（字下げ・行空き）", "taught_in": [], "gap": true, "where": "supp-1"}
+  ],
+  "out_of_scope": [
+    "話すときの効果的な表現（hs_eigo1/論Ⅰ-006）",
+    "スピーチ・ディベート・ディスカッションなど目的に応じた論理の構成（hs_eigo1/論Ⅰ-002）",
+    "理由の列挙・原因と結果による展開の方法（hs_eigo1/論Ⅰ-058）",
+    "一つの段落の意見文を書くこと（hs_eigo1/論Ⅰ-060）",
+    "複数の段落から成る文章を書くこと（hs_eigo2/英Ⅱ-108・英Ⅱ-112、hs_ronhyo23/論Ⅱ-056）",
+    "段落のつながりを示す語句を用いて序論・本論・結論をつなげて書くこと（hs_eigo2/英Ⅱ-109）",
+    "つながりを示す語句に注意して文章の展開をたどって読むこと（hs_eigo2/英Ⅱ-054・英Ⅱ-077）"
+  ],
+  "selection_reason": "論理・表現Ⅰの共通テスト○の学習・活用の行から、論Ⅰ-002 目的に応じた論理の構成、論Ⅰ-058 展開の方法（理由の列挙・原因と結果）と比べて選んだ。文より大きい「段落どうしの関係」を扱う抽象度の高い内容で、図がないと理解しにくい。前提が論Ⅰ-003・004、英Ⅰ-014・052・053・078・083、中学英語の慣用表現、国語の文章構成（中2-022 など）と科目・学年をまたぎ、段落の区切りの示し方のようにどの行でも扱っていない前提がある。複数の段落を書くのは英Ⅱ・論Ⅱのため境界の扱いが難しく、リーディング・リスニングで概要・要点を捉える力に直結する。",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）第2章第8節 外国語", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "論理・表現Ⅰ 2 内容 (1)ア(ア)"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 外国語編 英語編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/1407073_09_1_2.pdf", "use": "p.92 序論・本論・結論と段落相互の関係・展開の工夫、p.46 論証文と事実・意見、p.52 日本語と英語の段落、p.63–64 複数の段落の文章（英語コミュニケーションⅡ）、p.95–99 定型表現"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "『英語』の出題範囲（論理・表現Ⅰを含む）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "『英語』で重視する力"}
+  ],
+  "version": "1.1",
+  "generated": "2026-09-29"
+}
+</script>
+</body>
+</html>

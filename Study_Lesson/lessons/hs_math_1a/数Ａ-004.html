@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>和の法則｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.dice td.mark { font-weight: 700; background: rgba(31, 95, 191, .12); }
+.dice td.mark2 { font-weight: 700; background: rgba(183, 121, 31, .16); }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-004</span></div>
+  <h1>和の法則</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">大小2個のさいころを投げて、目の和が 5 の倍数になるのは何通りでしょう。「和が 5」と「和が 10」に分けて数えて足せばよさそうですが、足してよいのはなぜでしょうか。場合を分けて足すときの決まり「和の法則」を学びます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>和の法則の意味を理解し、同時には起こらない二つの事柄の場合の数を足して求めてよい理由を、集合の要素の個数と関連付けて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>和の法則を用いて、場合を分けて場合の数を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>二つの事柄が同時に起こることがあるかを確かめ、同時に起こる場合は重なりを除いて場合の数を求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-003）</span>数え上げの原則と樹形図</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-004）</span>和の法則</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-005）</span>積の法則</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。この時間は特に、和集合の要素の個数（数Ａ-002）と、分類・整理や表による数え上げ（数Ａ-003）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、和集合の要素の個数（数Ａ-002）と、表による数え上げ（数Ａ-003）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-002</span></div>
+  <p>\( A\cap B=\emptyset \)（共通部分がない）で、\( n(A)=7 \)、\( n(B)=5 \) のとき、\( n(A\cup B) \) はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 12 \)</button>
+    <button>\( 35 \)</button>
+    <button>\( 2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">共通部分がないので \( n(A\cup B)=n(A)+n(B)=7+5=12 \) です。\( 35 \) は \( 7\times5 \) とかけた誤り、\( 2 \) は \( 7-5 \) と引いた誤りです。（記号 \( \emptyset \) はこのページでの空集合の書き方で、数Ａ-002 と同じです。）</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-003</span></div>
+  <p>大小2個のさいころを同時に投げるとき、目の和が 4 になる場合は何通りですか。</p>
+  <div class="choices">
+    <button>2 通り</button>
+    <button data-correct="true">3 通り</button>
+    <button>4 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">（大, 小）＝（1, 3）、（2, 2）、（3, 1）の 3 通りです。2 通りは大小を区別せず「1 と 3」「2 と 2」とした誤り、4 通りは（2, 2）を2回数えた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-002</span></div>
+  <p>\( n(A)=10 \)、\( n(B)=8 \)、\( n(A\cap B)=3 \) のとき、\( n(A\cup B) \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 18 \)</button>
+    <button data-correct="true">\( 15 \)</button>
+    <button>\( 21 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( n(A\cup B)=n(A)+n(B)-n(A\cap B)=10+8-3=15 \) です。\( 18 \) は共通部分を引き忘れた誤り、\( 21 \) は引くところを足した誤りです。「同時に起こることがある場合」の節で使います。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：分けて足してよい？</h2>
+<div class="box think">
+  <p class="box-title">目の和が 5 の倍数</p>
+  <p>大小2個のさいころを同時に投げるとき、目の和が 5 の倍数になる場合は何通りあるでしょうか。</p>
+  <p>太郎：「目の和は 2 から 12 までだから、5 の倍数は 5 と 10 だけ。和が 5 が 4 通り、和が 10 が 3 通りで、合わせて 7 通りだね。」<br>花子：「足してよいのはどうしてかな。かけて 12 通りにはならないの？」</p>
+  <p>答えは「和の法則」の節の例題1で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="和の法則"><span class="num">3</span>和の法則：同時には起こらない事柄は足す</h2>
+<p>数Ａ-002 で、共通部分がない2つの集合では \( n(A\cup B)=n(A)+n(B) \) となることを学びました。これを「事柄の起こり方」の言葉に言いかえたものが、和の法則です。</p>
+<div class="formula-card">
+  <div><span class="f-name">和の法則</span><p>2つの事柄 \( A \)、\( B \) は同時には起こらないとする。\( A \) の起こり方が \( m \) 通り、\( B \) の起こり方が \( n \) 通りあるとき、\( A \) または \( B \) の起こる場合の数は \( m+n \) 通りである。</p></div>
+</div>
+<p>起こりうる場合全体を全体集合と考え、事柄 \( A \) が起こる場合の集合も同じ記号 \( A \)、事柄 \( B \) が起こる場合の集合を \( B \) で表します。「\( A \) と \( B \) が同時には起こらない」ことは、\( A \) と \( B \) に共通の要素がない、つまり \( A\cap B=\emptyset \) ということです。「\( A \) または \( B \) が起こる」場合の集合は \( A\cup B \) なので、数Ａ-002 の式から \( n(A\cup B)=n(A)+n(B)=m+n \) となります。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の答え）</p>
+  <p>大小2個のさいころを同時に投げるとき、目の和が 5 の倍数になる場合は何通りありますか。</p>
+  <div class="step">ステップ1（着目：目の和がとる値）：目の和は 2 から 12 までなので、5 の倍数になるのは和が 5 のときと 10 のときだけです。</div>
+  <div class="step">ステップ2（着目：2つの場合は同時に起こるか）：1回投げたときの目の和は1つの値なので、和が 5 になることと 10 になることは同時には起こりません。</div>
+  <div class="step">ステップ3：表1より、和が 5 は 4 通り、和が 10 は 3 通り。和の法則より \( 4+3=7 \)。答え 7 通り。</div>
+</div>
+<div class="table-wrap">
+<table class="dice" id="t-dice5">
+  <tr><th>大＼小</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr>
+  <tr><th>1</th><td>2</td><td>3</td><td>4</td><td class="mark">5 ●</td><td>6</td><td>7</td></tr>
+  <tr><th>2</th><td>3</td><td>4</td><td class="mark">5 ●</td><td>6</td><td>7</td><td>8</td></tr>
+  <tr><th>3</th><td>4</td><td class="mark">5 ●</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+  <tr><th>4</th><td class="mark">5 ●</td><td>6</td><td>7</td><td>8</td><td>9</td><td class="mark2">10 ▲</td></tr>
+  <tr><th>5</th><td>6</td><td>7</td><td>8</td><td>9</td><td class="mark2">10 ▲</td><td>11</td></tr>
+  <tr><th>6</th><td>7</td><td>8</td><td>9</td><td class="mark2">10 ▲</td><td>11</td><td>12</td></tr>
+</table>
+</div>
+<p class="small">表1　大小2個のさいころの目の和。●は和が 5（4 通り）、▲は和が 10（3 通り）。●と▲が同じますに重なることはない。</p>
+<figure>
+<!--svg:f004a-->
+<svg viewBox="0 0 360 232" width="360" role="img" aria-label="大小2個のさいころの目の出方全体を長方形 U とした図。目の和が 5 になる出方の集合 A（4 通り）と、目の和が 10 になる出方の集合 B（3 通り）は離れた2つの円で、重なる部分がない。和が 5 の倍数になる出方は 4+3=7 通り" data-fig="f004a">
+<text x="180" y="14" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">大小2個のさいころの目の出方（全部で 36 通り）</text>
+<rect x="12" y="22" width="336" height="176" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<path d="M47,114 A58,58 0 1,1 163,114 A58,58 0 1,1 47,114 Z" fill="none" stroke="currentColor" stroke-width="1.6" data-circle="A" data-cx="105" data-cy="114" data-r="58"/>
+<path d="M197,114 A58,58 0 1,1 313,114 A58,58 0 1,1 197,114 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="7 3" data-circle="B" data-cx="255" data-cy="114" data-r="58"/>
+<text x="105" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">A：和が 5</text>
+<text x="255" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">B：和が 10</text>
+<text x="24" y="40" text-anchor="start" font-size="15" font-weight="700" font-style="italic" fill="currentColor">U</text>
+<text x="105" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">4 通り</text>
+<text x="255" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">3 通り</text>
+<text x="180" y="218" text-anchor="middle" font-size="12" fill="currentColor">A と B は同時には起こらない → 4＋3＝7（通り）</text>
+</svg>
+<!--/svg:f004a-->
+  <figcaption>図1　和が 5 になる場合と、和が 10 になる場合は重ならない（共通部分がない）ので、場合の数を足してよい</figcaption>
+</figure>
+<p>花子さんの「かけて 12 通り」は誤りです。\( 4\times3=12 \) は、「和が 5 になる出方」と「和が 10 になる出方」を1つずつ選んで組にする方法の数で、この問題とは別のものを数えています。かけ算で数える場合は、次の時間（数Ａ-005）に学びます。</p>
+<p>3つ以上の事柄でも、<strong>どの2つも同時には起こらない</strong>なら、それぞれの場合の数を足せます。数Ａ-003 の例題1で、200 円の払い方を 100 円硬貨が 2 枚・1 枚・0 枚の場合に分けて \( 1+3+5=9 \) 通りとしたのも、和の法則を使ったことになります（100 円硬貨の枚数が同時に2つの値になることはありません）。</p>
+<div class="box point"><p class="box-title">ポイント：足す前に「同時に起こらないか」を確かめる</p><p>和の法則で足してよいのは、分けた場合どうしが同時には起こらない（重なりがない）ときです。「または」で場合を分けたら、まずそれぞれの場合が重ならないかを確かめます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="場合を分けて数える"><span class="num">4</span>場合を分けて数える</h2>
+<p>求めたい場合を、同時には起こらないいくつかの場合に分けて数え、和の法則で合わせます。分け方は、数Ａ-003 の「あるものに着目して分類・整理する」と同じです。</p>
+<div class="box example worked">
+  <p class="box-title">例題2（目の差）</p>
+  <p>大小2個のさいころを同時に投げるとき、目の差（大きい方から小さい方を引いた数）が 3 以上になる場合は何通りありますか。</p>
+  <div class="step">ステップ1（着目：差の値で分ける）：差が 3 以上になるのは、差が 3、4、5 のときです。差は1つの値なので、これらは同時には起こりません。</div>
+  <div class="step">ステップ2：差が 3 になるのは（1, 4）、（2, 5）、（3, 6）、（4, 1）、（5, 2）、（6, 3）の 6 通り。差が 4 は（1, 5）、（2, 6）、（5, 1）、（6, 2）の 4 通り。差が 5 は（1, 6）、（6, 1）の 2 通り。</div>
+  <div class="step">ステップ3：和の法則より \( 6+4+2=12 \)。答え 12 通り。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（各位の数字の和）</p>
+  <p>3けたの整数のうち、各位の数字の和が 3 になるものは何個ありますか。</p>
+  <div class="step">ステップ1（着目：百の位の数字で分ける）：百の位は 0 でないので、1、2、3 のどれかです。百の位の数字は1つなので、これらは同時には起こりません。</div>
+  <div class="step">ステップ2：百の位が 1 のとき、十の位と一の位の和は 2 で、102、111、120 の 3 個。百の位が 2 のとき和は 1 で、201、210 の 2 個。百の位が 3 のとき和は 0 で、300 の 1 個。</div>
+  <div class="step">ステップ3：和の法則より \( 3+2+1=6 \)。答え 6 個。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：「または」で分けたのにかけ算をする</p><p>例題2で \( 6\times4\times2 \) とかけるのは誤りです。差が 3 になる場合と 4 になる場合は「どちらか一方が起こる」もので、組にするものではありません。場合を「または」で分けたときは足します。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="同時に起こるとき"><span class="num">5</span>同時に起こることがある場合</h2>
+<p>2つの事柄が同時に起こることがあると、場合の数をそのまま足すと重なった分を2回数えてしまいます。</p>
+<div class="box example worked">
+  <p class="box-title">例題4（少なくとも一方が 1）</p>
+  <p>大小2個のさいころを同時に投げるとき、少なくとも一方の目が 1 になる場合は何通りありますか。</p>
+  <div class="step">ステップ1（着目：同時に起こるか）：「大の目が 1」は 6 通り、「小の目が 1」も 6 通りです。ところが（1, 1）は両方に当てはまるので、2つの事柄は同時に起こることがあります。</div>
+  <div class="step">ステップ2（方法1：重なりを引く）：大の目が 1 の場合の集合を \( A \)、小の目が 1 の場合の集合を \( B \) とすると、\( n(A\cup B)=n(A)+n(B)-n(A\cap B)=6+6-1=11 \)（数Ａ-002）。</div>
+  <div class="step">ステップ3（方法2：重ならないように分け直す）：「大の目が 1」（6 通り）と「大の目が 1 でなく、小の目が 1」（（2, 1）〜（6, 1）の 5 通り）に分けると、この2つは同時には起こらないので、和の法則より \( 6+5=11 \)。答え 11 通り。</div>
+</div>
+<figure>
+<!--svg:f004b-->
+<svg viewBox="0 0 360 250" width="360" role="img" aria-label="大小2個のさいころの目の出方全体を U とした図。大の目が 1 の出方の集合 A（6 通り）と、小の目が 1 の出方の集合 B（6 通り）は、（1, 1）の 1 通りだけ重なる。A だけ 5 通り、重なり 1 通り、B だけ 5 通り、どちらでもない 25 通り" data-fig="f004b">
+<text x="180" y="14" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">大小2個のさいころ（個数で表した図）</text>
+<rect x="12" y="40" width="336" height="176" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<path d="M72,132 A66,66 0 1,1 204,132 A66,66 0 1,1 72,132 Z" fill="none" stroke="currentColor" stroke-width="1.6" data-circle="A" data-cx="138" data-cy="132" data-r="66"/>
+<path d="M156,132 A66,66 0 1,1 288,132 A66,66 0 1,1 156,132 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="7 3" data-circle="B" data-cx="222" data-cy="132" data-r="66"/>
+<text x="100" y="34" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">A：大の目が 1（6 通り）</text>
+<text x="260" y="34" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">B：小の目が 1（6 通り）</text>
+<text x="24" y="58" text-anchor="start" font-size="15" font-weight="700" font-style="italic" fill="currentColor">U</text>
+<text x="108.3" y="136" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">5</text>
+<text x="180" y="136" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">1</text>
+<text x="251.7" y="136" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">5</text>
+<text x="314" y="180" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">25</text>
+<text x="108.3" y="176" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">①</text>
+<text x="180" y="178" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">②</text>
+<text x="251.7" y="176" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">③</text>
+<text x="288" y="202" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">④</text>
+<text x="180" y="236" text-anchor="middle" font-size="12" fill="currentColor">重なり（1, 1）を引く → 6＋6－1＝11（通り）</text>
+</svg>
+<!--/svg:f004b-->
+  <figcaption>図2　「大の目が 1」と「小の目が 1」は（1, 1）で重なる。そのまま足すと（1, 1）を2回数える</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い：重なりがあるのに足すだけにする</p><p>例題4で \( 6+6=12 \) とするのは、（1, 1）を2回数えた誤りです。表で確かめると、大の目が 1 の行と小の目が 1 の列は、（1, 1）のますで交わっています。和の法則の条件「同時には起こらない」を満たしているかを、必ず確かめましょう。</p></div>
+<div class="box point"><p class="box-title">ポイント：重なりがあるときの2つの方法</p><p>① 数Ａ-002 の式 \( n(A\cup B)=n(A)+n(B)-n(A\cap B) \) で、重なりを1回引く。② 重ならないように場合を分け直してから、和の法則で足す。どちらでも同じ答えになるので、一方で求めてもう一方で確かめると安心です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>和の法則</dt><dd>2つの事柄 \( A \)、\( B \) が同時には起こらないとき、\( A \) の起こり方が \( m \) 通り、\( B \) の起こり方が \( n \) 通りなら、\( A \) または \( B \) の起こる場合の数は \( m+n \) 通り。3つ以上でも、どの2つも同時に起こらなければ足せる。</dd>
+    <dt>同時には起こらない</dt><dd>2つの事柄の起こる場合の集合に共通の要素がないこと（\( A\cap B=\emptyset \)）。</dd>
+    <dt>場合の数</dt><dd>ある事柄の起こり方の総数（数Ａ-003）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>同時には起こらない2つの事柄では、起こる場合の集合に共通の要素がないので、数Ａ-002 の式から \( n(A\cup B)=n(A)+n(B) \)。これが和の法則で、「\( A \) または \( B \)」の場合の数は \( m+n \) 通り（O1）。</li>
+    <li>目の和・差の値、百の位の数字などに着目して、同時には起こらない場合に分けて数え、足し合わせる。「または」で分けたらかけない（O2）。</li>
+    <li>同時に起こることがあるときは、重なりを1回引くか、重ならないように分け直してから足す（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">和の法則</span><p>同時には起こらない事柄 \( A \)（\( m \) 通り）、\( B \)（\( n \) 通り）について、\( A \) または \( B \) の起こる場合の数は \( m+n \) 通り</p></div>
+  <div><span class="f-name">集合で表すと</span>$$ A\cap B=\emptyset\ \text{ならば}\quad n(A\cup B)=n(A)+n(B) $$</div>
+  <div><span class="f-name">重なりがあるとき</span>$$ n(A\cup B)=n(A)+n(B)-n(A\cap B) $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。入力問題は数字だけで答えてください（「通り」「個」を付けてもよい）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>学習用に作成した架空の例です。ある店のランチは、肉料理が 4 種類、魚料理が 3 種類あり、このうちどれか1品を選びます。選び方は何通りですか。</p>
+  <div class="choices">
+    <button>12 通り</button>
+    <button>4 通り</button>
+    <button data-correct="true">7 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">選ぶ1品は肉料理か魚料理のどちらかで、1品が同時に肉料理でも魚料理でもあることはありません。和の法則より \( 4+3=7 \) 通りです。12 通りは \( 4\times3 \) で、肉料理と魚料理を1品ずつ組にする方法の数を求めた誤り、4 通りは種類の多い肉料理だけを数えた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="6|6通り">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>大小2個のさいころを同時に投げるとき、目の和が 4 以下になる場合は何通りありますか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 6。目の和が 2、3、4 の場合に分けると、それぞれ 1 通り、2 通り、3 通りで、これらは同時には起こりません。和の法則より \( 1+2+3=6 \) 通りです。3 と答えた場合は、和が 4 の場合だけを数えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>1個のさいころを1回投げます。次の2つの事柄の組のうち、同時には起こらない（和の法則でそのまま足してよい）ものはどれですか。</p>
+  <div class="choices">
+    <button>「偶数の目が出る」と「3 の倍数の目が出る」</button>
+    <button>「3 以下の目が出る」と「3 以上の目が出る」</button>
+    <button>「奇数の目が出る」と「素数の目が出る」</button>
+    <button data-correct="true">「1 の目が出る」と「6 の目が出る」</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">1回投げて出る目は1つなので、1 の目と 6 の目が同時に出ることはありません。偶数と 3 の倍数は 6 の目で、3 以下と 3 以上は 3 の目で、奇数と素数は 3 と 5 の目で、同時に起こります。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="20|20通り">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>大小2個のさいころを同時に投げるとき、目の差（大きい方から小さい方を引いた数）が 2 以上になる場合は何通りありますか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 20。差が 2、3、4、5 の場合に分けると、8 通り、6 通り、4 通り、2 通りで、和の法則より \( 8+6+4+2=20 \) 通りです。差が 0（ぞろ目）の 6 通りと差が 1 の 10 通りを全体の 36 通りから引いて \( 36-16=20 \) と確かめることもできます（数Ａ-001 の補集合の考え方）。10 と答えた場合は、大の目が小の目より大きい場合だけを数えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>100 円硬貨、50 円硬貨、10 円硬貨を使って、ちょうど 250 円を払う方法は何通りですか。使わない硬貨があってもよいものとします。</p>
+  <div class="choices">
+    <button>48 通り</button>
+    <button data-correct="true">12 通り</button>
+    <button>9 通り</button>
+    <button>6 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">100 円硬貨の枚数で分けます。2 枚のとき残り 50 円で 50 円硬貨は 1、0 枚の 2 通り、1 枚のとき残り 150 円で 3〜0 枚の 4 通り、0 枚のとき残り 250 円で 5〜0 枚の 6 通り。これらは同時には起こらないので \( 2+4+6=12 \) 通りです。48 通りは \( 2\times4\times6 \) とかけた誤り、9 通りは 50 円硬貨を使わない払い方（各場合の 0 枚）を数え落とした誤り、6 通りは 100 円硬貨を使わない場合だけを数えた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="12|12通り">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>大小2個のさいころを同時に投げるとき、「目の和が 4 の倍数になる」または「同じ目（ぞろ目）が出る」場合は何通りありますか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 12。目の和が 4 の倍数になるのは 9 通り（数Ａ-003 の例題6）、ぞろ目は 6 通り。ぞろ目のうち（2, 2）、（4, 4）、（6, 6）の 3 通りは和も 4 の倍数なので、2つの事柄は同時に起こることがあります。\( 9+6-3=12 \) 通りです。15 と答えた場合は、重なりの 3 通りを2回数えています。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="15|15個">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O2</span></div>
+  <p>3けたの整数のうち、各位の数字の和が 5 になるものは何個ありますか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 15。百の位の数字で分けます。百の位が 1 のとき、十の位と一の位の和は 4 で 5 個（04、13、22、31、40）。同じように、百の位が 2 なら 4 個、3 なら 3 個、4 なら 2 個、5 なら 1 個。和の法則より \( 5+4+3+2+1=15 \) 個です。百の位を 0 から考えると、2けた以下の数（05 など）まで数えてしまい、21 個と誤ります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O3</span></div>
+  <p>学習用に作成した架空の場面です。修学旅行の自由行動で、X市の見学先を1か所選びます。しおりには「寺社」の一覧に 4 か所、「博物館・資料館」の一覧に 3 か所がのっていますが、「X市歴史館」は両方の一覧にのっています。</p>
+  <p>花子：「\( 4+3=7 \) か所から選べるね。」<br>太郎：「でも、歴史館は両方の一覧にのっているよ。」</p>
+  <p>見学先の選び方は何通りですか。</p>
+  <div class="choices">
+    <button data-correct="true">6 通り</button>
+    <button>7 通り</button>
+    <button>11 通り</button>
+    <button>12 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「寺社の一覧から選ぶ」と「博物館・資料館の一覧から選ぶ」は、歴史館を選ぶときに同時に当てはまるので、和の法則をそのまま使えません。重なりの 1 か所を引いて \( 4+3-1=6 \) 通りです。7 通りは花子さんの計算で、歴史館を2回数えています。12 通りは \( 4\times3 \) とかけた誤り、11 通りはさらに重なりを引いた \( 4\times3-1 \) の誤りです。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O3</span></div>
+  <p>大小2個のさいころを同時に投げるとき、少なくとも一方の目が 6 になる場合の数を、「大の目が 6 は 6 通り、小の目が 6 も 6 通りだから、和の法則で 12 通り」とするのは誤りです。誤りである理由を、和の法則の条件と集合の言葉を使って説明し、正しい場合の数を求めなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　和の法則は、2つの事柄が同時には起こらない（起こる場合の集合の共通部分が空集合である）ときに使える。大の目が 6 の場合の集合を \( A \)、小の目が 6 の場合の集合を \( B \) とすると、（6, 6）は \( A \) にも \( B \) にも入るので \( A\cap B \) は空集合でなく、12 通りでは（6, 6）を2回数えている。正しくは \( n(A\cup B)=6+6-1=11 \) 通り。（「大の目が 6」の 6 通りと「大の目が 6 でなく小の目が 6」の 5 通りに分ければ、同時には起こらないので和の法則で \( 6+5=11 \) 通り。）</p>
+    <p><strong>採点の観点</strong>　① 和の法則の条件（同時には起こらない）を書いている。② 2つの事柄が（6, 6）で同時に起こること（共通部分があること）を指摘している。③ 重なりを引くか分け直して、11 通りを求めている。</p>
+  </div>
+  <div class="explain">例題4と同じ考え方です。「少なくとも一方」という言葉が出てきたら、重なり（両方が当てはまる場合）がないかを確かめましょう。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(ア)「集合の要素の個数に関する基本的な関係や和の法則，積の法則などの数え上げの原則について理解すること」に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求め、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。場合を同時に起こらないように分けて数え、足し合わせるこの時間の考え方は、その土台になります。</p>
+  <p class="small">問1・問8は日常の場面や会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">積の法則（数Ａ-005）</p>
+  <p>導入で花子さんが計算した \( 4\times3=12 \) は、この問題の答えではありませんでした。では、かけ算で場合の数を求めるのはどんなときでしょう。次の時間は、2つの事柄を組み合わせて起こる場合の数を求める「積の法則」を学び、大小2個のさいころの目の出方 36 通りや、72 の正の約数の個数などを求めます。</p>
+  <p>この時間では、積の法則（数Ａ-005）と、並べ方の総数を求める順列（数Ａ-006）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-003　数え上げの原則と樹形図</div>
+  <div><span class="label">次の時間</span>数Ａ-005　積の法則</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-004「和の法則」（学習指導要領 数学Ａ (2)ア(ア)、解説 p.92-93）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率 ア(ア)（「和の法則，積の法則などの数え上げの原則」）（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.92-93（集合の要素の個数に関する基本的な関係や和の法則、積の法則などの数え上げの原則、n(A∪B) の公式と共通部分がない場合）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「場合の数」（和の法則と積の法則の利用場面を理解し、事象に応じて使い分けて場合の数を求めること）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。問1のランチ、問8の修学旅行と「X市歴史館」は学習用の架空の場面です。空集合の記号は、このページでは \( \emptyset \) と書いています。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-004",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-004",
+  "title": "和の法則",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(ア)"],
+  "kaisetsu_page": "92-93",
+  "objectives": [
+    {"id": "O1", "text": "和の法則の意味を理解し、同時には起こらない二つの事柄の場合の数を足して求めてよい理由を、集合の要素の個数と関連付けて説明できる。", "from": "同時には起こらない二つの事柄について、…和の法則", "sections": ["sec-1"], "checks": ["q1", "q8", "q9"]},
+    {"id": "O2", "text": "和の法則を用いて、場合を分けて場合の数を求めることができる。", "from": "起こる場合の数を和の法則を用いて求めることができる", "sections": ["sec-2"], "checks": ["q2", "q4", "q5", "q7"]},
+    {"id": "O3", "text": "二つの事柄が同時に起こることがあるかを確かめ、同時に起こる場合は重なりを除いて場合の数を求めることができる。", "from": "同時には起こらない二つの事柄について（和の法則を使う条件の確認）", "sections": ["sec-3"], "checks": ["q3", "q6", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "和の法則", "where": "sec-1"},
+    {"term": "同時には起こらない", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "和集合の要素の個数 n(A∪B)=n(A)+n(B)−n(A∩B)、A∩B=∅ のとき n(A∪B)=n(A)+n(B)", "taught_in": ["hs_math_1a/数Ａ-002"], "where": "review"},
+    {"concept": "分類・整理、表による数え上げ（大小2個のさいころ）", "taught_in": ["hs_math_1a/数Ａ-003", "jhs_math/中2-082"], "where": "review"},
+    {"concept": "空集合（記号 ∅ はこのページでの書き方）", "taught_in": ["hs_math_1a/数Ⅰ-022"], "where": "sec-1"},
+    {"concept": "補集合の要素の個数（全体から引く）", "taught_in": ["hs_math_1a/数Ａ-001"], "where": "q4"},
+    {"concept": "素数", "taught_in": ["jhs_math/中1-020"], "where": "q3"}
+  ],
+  "out_of_scope": [
+    "積の法則（数Ａ-005）",
+    "順列と nPr（数Ａ-006）"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(ア)の事項（和の法則の語）"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.92-93 和の法則・積の法則などの数え上げの原則、要素の個数の公式"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "和の法則と積の法則の利用場面の理解と使い分け"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

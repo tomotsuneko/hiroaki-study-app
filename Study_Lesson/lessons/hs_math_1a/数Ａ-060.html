@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>直線と平面の垂直｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.proof ol { margin: 4px 0 4px 1.2em; }
+.proof .tag { font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>図形の性質</span><span>数Ａ-060</span></div>
+  <h1>直線と平面の垂直</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">床に立てた棒が床に垂直かどうかは、何方向から確かめれば分かるでしょうか。直線と平面が垂直になる条件を証明し、3本の垂線の関係（三垂線の定理）を使って、立体の中の垂直や距離を考えます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>直線と平面が垂直であることの意味と、平面上の交わる2直線に垂直ならば平面に垂直であること（直線と平面が垂直になる条件）を理解し、垂直であることの証明に用いることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>三垂線の定理の内容を理解し、合同な三角形や三平方の定理を用いて、成り立つ理由を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>直線と平面の垂直や三垂線の定理を用いて、正四面体や直方体などの中の垂直な直線や、点と直線の距離を考察し、求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-059）</span>空間における直線と平面の位置関係</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-060）</span>直線と平面の垂直</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-061）</span>多面体</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」、中学1年「平面図形」「空間図形」。前の時間（数Ａ-059）の2直線のなす角と、中学2年の三角形の合同条件、中学3年の三平方の定理を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">この時間に使う既習事項</p>
+  <ul>
+    <li><strong>2直線のなす角と垂直</strong>（数Ａ-059）：2直線のなす角は \( 90^\circ \) 以下の角で、ねじれの位置なら一方を平行な直線に移して求める。なす角が \( 90^\circ \) のとき垂直（\( \ell\perp m \)）で、ねじれの位置でもよい。</li>
+    <li><strong>点と平面の距離</strong>（中1-098）：点 P から平面に垂直に引いた線分 PH の長さ。<strong>点と直線の距離</strong>（中1-076）：点から直線に垂直に引いた線分の長さ。</li>
+    <li><strong>三角形の合同条件</strong>（中2-053）、<strong>二等辺三角形の性質</strong>（中2-060・061）、<strong>三平方の定理とその逆</strong>（中3-097・100）。</li>
+  </ul>
+  <p>立方体・直方体 ABCD-EFGH は、前の時間と同じく底面 ABCD、AE が高さの辺とします。正四面体は、数Ⅰ-076 と同じく「4つの面がすべて合同な正三角形である三角錐」です。</p>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-059</span></div>
+  <p>立方体 ABCD-EFGH で、直線 AE と直線 BC のなす角はどれですか。</p>
+  <div class="choices">
+    <button>なす角は考えない（交わらないから）</button>
+    <button>\( 45^\circ \)</button>
+    <button data-correct="true">\( 90^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">AE と BC はねじれの位置にあります。BC を平行な AD に移すと、なす角は \( \angle\mathrm{EAD}=90^\circ \)（正方形 ADHE の角）です。ねじれの位置の2直線にもなす角を考えます（前の時間）。\( 45^\circ \) は面の対角線と辺の角と混同しています。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中3-100</span></div>
+  <p>3辺が \( \mathrm{PQ}=5 \)、\( \mathrm{QR}=12 \)、\( \mathrm{PR}=13 \) の △PQR について、正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \angle\mathrm{Q}=90^\circ \) の直角三角形である。</button>
+    <button>\( \angle\mathrm{R}=90^\circ \) の直角三角形である。</button>
+    <button>\( \angle\mathrm{P}=90^\circ \) の直角三角形である。</button>
+    <button>直角三角形ではない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 5^2+12^2=25+144=169=13^2 \) なので、\( \mathrm{PQ}^2+\mathrm{QR}^2=\mathrm{PR}^2 \) です。三平方の定理の逆（中3-100）より、いちばん長い辺 PR と向かい合う \( \angle\mathrm{Q} \) が直角です。\( \angle\mathrm{R} \) や \( \angle\mathrm{P} \) は、直角と向かい合う辺がいちばん長い辺（斜辺）になることを取り違えています。この時間は、三平方の定理の逆を使って直角を示します。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中2-061</span></div>
+  <p>\( \mathrm{AB}=\mathrm{AC} \) の二等辺三角形 ABC で、辺 BC の中点を M とします。\( \angle\mathrm{AMB} \) の大きさはどれですか。</p>
+  <div class="choices">
+    <button>\( 60^\circ \)</button>
+    <button>辺の長さによって変わる</button>
+    <button data-correct="true">\( 90^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">△ABM と △ACM は、\( \mathrm{AB}=\mathrm{AC} \)、\( \mathrm{BM}=\mathrm{CM} \)、AM が共通なので合同（3辺）です。よって \( \angle\mathrm{AMB}=\angle\mathrm{AMC} \) で、2つの和が \( 180^\circ \) なので \( 90^\circ \) です（頂角の二等分線は底辺を垂直に二等分する、中2-061）。辺の長さによらず \( 90^\circ \) です。\( 60^\circ \) は正三角形の内角と混同しています。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：棒が床に垂直かを確かめるには</h2>
+<div class="box think">
+  <p class="box-title">床に立てた棒（学習用の架空の場面）</p>
+  <p>平らな床に立てた棒が、床に垂直かどうかを、直角の三角定規を床と棒に当てて確かめます。</p>
+  <ul>
+    <li>① 1方向から当てて直角なら、棒は床に垂直といえるでしょうか。</li>
+    <li>② 何方向から当てて直角であることを確かめれば、垂直といえるでしょうか。</li>
+  </ul>
+  <p>予想してから読み進めましょう。「3 直線と平面が垂直になる条件」の中の「導入の問いの答え」で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="直線と平面が垂直になる条件"><span class="num">3</span>直線と平面が垂直になる条件</h2>
+<p>中学校では、直線 \( \ell \) が平面 \( \alpha \) と点 O で交わり、O を通る \( \alpha \) 上のすべての直線と垂直であるとき、\( \ell \) と \( \alpha \) は垂直であると考えました（中1-097）。前の時間のなす角を使うと、O を通らない \( \alpha \) 上の直線 \( k \) についても、O を通り \( k \) に平行な \( \alpha \) 上の直線を考えれば、\( \ell \) と \( k \) のなす角は \( 90^\circ \) です。そこで、次のように言い表します。</p>
+<div class="box point">
+  <p class="box-title">直線と平面の垂直</p>
+  <p>直線 \( \ell \) が平面 \( \alpha \) 上のすべての直線と垂直であるとき、\( \ell \) は \( \alpha \) に<strong>垂直</strong>であるといい、\( \ell\perp\alpha \) と書きます。点 P を通り \( \alpha \) に垂直な直線と \( \alpha \) との交点 H を、P から \( \alpha \) に下ろした<strong>垂線の足</strong>といい、線分 PH の長さが点 P と平面 \( \alpha \) の距離です（中1-098）。</p>
+</div>
+<p>「すべての直線」を1本ずつ調べることはできません。次の性質があれば、2本を調べるだけですみます。</p>
+<div class="box point">
+  <p class="box-title">直線と平面が垂直になる条件</p>
+  <p>直線 \( \ell \) が、平面 \( \alpha \) 上の<strong>交わる2直線</strong> \( m \)、\( n \) に垂直ならば、\( \ell\perp\alpha \) です。</p>
+</div>
+<div class="box example proof">
+  <p class="box-title">証明（\( \ell \) が \( m \)、\( n \) の交点 O を通る場合）</p>
+  <p><span class="tag">仮定</span>　直線 \( \ell \) と、平面 \( \alpha \) 上の2直線 \( m \)、\( n \) が点 O で交わり、\( \ell\perp m \)、\( \ell\perp n \)。<br><span class="tag">結論</span>　O を通る \( \alpha \) 上のどの直線 \( k \) についても \( \ell\perp k \)（したがって \( \ell\perp\alpha \)）。</p>
+  <p>準備：\( k \) が \( m \)、\( n \) と異なるとします。\( \alpha \) の上で、\( m \)、\( n \)、\( k \) とそれぞれ点 B、C、D で交わる直線を、D が線分 BC 上にあるように引きます。\( \ell \) 上に、O について反対側に \( \mathrm{OP}=\mathrm{OP'} \) となる2点 P、P′ をとります（図1）。</p>
+  <ol>
+    <li>△OBP と △OBP′ で、\( \mathrm{OP}=\mathrm{OP'} \)、\( \angle\mathrm{BOP}=\angle\mathrm{BOP'}=90^\circ \)（\( \ell\perp m \)）、OB は共通。2辺とその間の角がそれぞれ等しいので合同（中2-053）。よって \( \mathrm{BP}=\mathrm{BP'} \)。</li>
+    <li>同じように、\( \ell\perp n \) から \( \mathrm{CP}=\mathrm{CP'} \)。</li>
+    <li>△PBC と △P′BC で、①、② と BC が共通であることから、3辺がそれぞれ等しいので合同。よって \( \angle\mathrm{PBC}=\angle\mathrm{P'BC} \)。D は線分 BC 上にあるので \( \angle\mathrm{PBD}=\angle\mathrm{P'BD} \)。</li>
+    <li>△PBD と △P′BD で、\( \mathrm{PB}=\mathrm{P'B} \)（①）、\( \angle\mathrm{PBD}=\angle\mathrm{P'BD} \)（③）、BD は共通なので合同。よって \( \mathrm{PD}=\mathrm{P'D} \)。</li>
+    <li>△POD と △P′OD で、\( \mathrm{OP}=\mathrm{OP'} \)、\( \mathrm{PD}=\mathrm{P'D} \)（④）、OD は共通なので合同。よって \( \angle\mathrm{POD}=\angle\mathrm{P'OD} \)。P、O、P′ は一直線上にあるので、この2つの角の和は \( 180^\circ \) で、\( \angle\mathrm{POD}=90^\circ \)。すなわち \( \ell\perp k \)。</li>
+    <li>\( k \) は O を通る \( \alpha \) 上のどの直線でもよいので、\( \ell \) は O を通る \( \alpha \) 上のすべての直線と垂直です。O を通らない直線も、平行な直線に移せばなす角は同じなので、\( \ell\perp\alpha \)。（証明終わり）</li>
+  </ol>
+</div>
+<figure>
+<!--svg:f060a-->
+<svg viewBox="0 0 320 300" width="320" role="img" aria-label="平面 α と、α と点 O で交わる直線 ℓ（青）。α 上の O を通る直線 m、n（緑）と k（橙）。α 上の直線が m、n、k と B、C、D で交わる。ℓ 上の点 P、P′ は O について反対側にあり OP=OP′。P、P′ と B、C、D を結ぶ線分（灰）。α の下にある部分は破線" data-fig="f060a" data-yaw="32.000000" data-elev="34.000000" data-s="46.995628" data-ox="149.536618" data-oy="164.952650">
+<polygon points="130.6,227.3 294,170.3 189.4,76.7 26,133.7" fill="#8a99a8" fill-opacity="0.12" stroke="none" data-sheet="α" data-p3="-1.600000,-1.800000,0.000000;2.500000,-1.800000,0.000000;2.500000,2.400000,0.000000;-1.600000,2.400000,0.000000"/>
+<line x1="130.6" y1="227.3" x2="294" y2="170.3" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁1" data-p3="-1.600000,-1.800000,0.000000;2.500000,-1.800000,0.000000" data-hidden="0"/>
+<line x1="294" y1="170.3" x2="189.4" y2="76.7" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁2" data-p3="2.500000,-1.800000,0.000000;2.500000,2.400000,0.000000" data-hidden="0"/>
+<line x1="189.4" y1="76.7" x2="26" y2="133.7" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁3" data-p3="2.500000,2.400000,0.000000;-1.600000,2.400000,0.000000" data-hidden="0"/>
+<line x1="26" y1="133.7" x2="130.6" y2="227.3" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁4" data-p3="-1.600000,2.400000,0.000000;-1.600000,-1.800000,0.000000" data-hidden="0"/>
+<line x1="85.3" y1="167" x2="270" y2="161.2" stroke="#1e8e5a" stroke-width="2" data-seg="m" data-p3="-1.200000,0.660000,0.000000;2.250000,-1.237500,0.000000" data-hidden="0"/>
+<line x1="174.9" y1="202.6" x2="110.6" y2="107.3" stroke="#1e8e5a" stroke-width="2" data-seg="n" data-p3="-0.300000,-1.500000,0.000000;0.460000,2.300000,0.000000" data-hidden="0"/>
+<line x1="124.1" y1="201.7" x2="191.9" y2="103.7" stroke="#b7791f" stroke-width="2" data-seg="k" data-p3="-1.200000,-0.900000,0.000000;2.000000,1.500000,0.000000" data-hidden="0"/>
+<line x1="235.2" y1="162.3" x2="125.8" y2="129.9" stroke="#8a99a8" stroke-width="1.3" data-seg="BC" data-p3="1.600000,-0.880000,0.000000;0.280000,1.400000,0.000000" data-hidden="0"/>
+<line x1="149.5" y1="112.4" x2="235.2" y2="162.3" stroke="#8a99a8" stroke-width="1.1" data-seg="PB" data-p3="0.000000,0.000000,1.350000;1.600000,-0.880000,0.000000" data-hidden="0"/>
+<line x1="149.5" y1="217.6" x2="235.2" y2="162.3" stroke="#8a99a8" stroke-width="1.1" stroke-dasharray="4 3" data-seg="P'B" data-p3="0.000000,0.000000,-1.350000;1.600000,-0.880000,0.000000" data-hidden="1"/>
+<line x1="149.5" y1="112.4" x2="125.8" y2="129.9" stroke="#8a99a8" stroke-width="1.1" data-seg="PC" data-p3="0.000000,0.000000,1.350000;0.280000,1.400000,0.000000" data-hidden="0"/>
+<line x1="149.5" y1="217.6" x2="125.8" y2="129.9" stroke="#8a99a8" stroke-width="1.1" stroke-dasharray="4 3" data-seg="P'C" data-p3="0.000000,0.000000,-1.350000;0.280000,1.400000,0.000000" data-hidden="1"/>
+<line x1="149.5" y1="112.4" x2="165.6" y2="141.7" stroke="#8a99a8" stroke-width="1.1" data-seg="PD" data-p3="0.000000,0.000000,1.350000;0.760367,0.570275,0.000000" data-hidden="0"/>
+<line x1="149.5" y1="217.6" x2="165.6" y2="141.7" stroke="#8a99a8" stroke-width="1.1" stroke-dasharray="4 3" data-seg="P'D" data-p3="0.000000,0.000000,-1.350000;0.760367,0.570275,0.000000" data-hidden="1"/>
+<line x1="149.5" y1="227.3" x2="149.5" y2="220.7" stroke="#1f5fbf" stroke-width="2.2" data-seg="ℓ" data-p3="0.000000,0.000000,-1.600000;0.000000,0.000000,-1.431658" data-hidden="0"/>
+<line x1="149.5" y1="220.7" x2="149.5" y2="165" stroke="#1f5fbf" stroke-width="2.2" stroke-dasharray="4 3" data-seg="ℓ" data-p3="0.000000,0.000000,-1.431658;0.000000,0.000000,0.000000" data-hidden="1"/>
+<line x1="149.5" y1="165" x2="149.5" y2="96.8" stroke="#1f5fbf" stroke-width="2.2" data-seg="ℓ" data-p3="0.000000,0.000000,0.000000;0.000000,0.000000,1.750000" data-hidden="0"/>
+<polyline points="149.5,156.4 159.9,156.1 159.9,164.6" fill="none" stroke="currentColor" stroke-width="1.2" data-right="ℓ⊥m"/>
+<polyline points="149.5,156.4 145.9,151 145.9,159.5" fill="none" stroke="currentColor" stroke-width="1.2" data-right="ℓ⊥n"/>
+<circle cx="149.5" cy="165" r="2.6" fill="currentColor" data-pt="O" data-x3="0.000000" data-y3="0.000000" data-z3="0.000000"/>
+<circle cx="149.5" cy="112.4" r="2.6" fill="#1f5fbf" data-pt="P" data-x3="0.000000" data-y3="0.000000" data-z3="1.350000"/>
+<circle cx="149.5" cy="217.6" r="2.6" fill="#1f5fbf" data-pt="P'" data-x3="0.000000" data-y3="0.000000" data-z3="-1.350000"/>
+<circle cx="235.2" cy="162.3" r="2.6" fill="currentColor" data-pt="B" data-x3="1.600000" data-y3="-0.880000" data-z3="0.000000"/>
+<circle cx="125.8" cy="129.9" r="2.6" fill="currentColor" data-pt="C" data-x3="0.280000" data-y3="1.400000" data-z3="0.000000"/>
+<circle cx="165.6" cy="141.7" r="2.6" fill="currentColor" data-pt="D" data-x3="0.760367" data-y3="0.570275" data-z3="0.000000"/>
+<text x="136.5" y="171" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">O</text>
+<text x="137.5" y="116.4" text-anchor="middle" font-size="13" fill="#1f5fbf" font-weight="700">P</text>
+<text x="135.5" y="221.6" text-anchor="middle" font-size="13" fill="#1f5fbf" font-weight="700">P′</text>
+<text x="237.2" y="179.3" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">B</text>
+<text x="113.8" y="131.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">C</text>
+<text x="177.6" y="153.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">D</text>
+<text x="159.5" y="100.8" text-anchor="middle" font-size="14" fill="#1f5fbf" font-style="italic">ℓ</text>
+<text x="279" y="166.2" text-anchor="middle" font-size="14" fill="#1e8e5a" font-style="italic">m</text>
+<text x="119.6" y="109.3" text-anchor="middle" font-size="14" fill="#1e8e5a" font-style="italic">n</text>
+<text x="199.9" y="105.7" text-anchor="middle" font-size="14" fill="#b7791f" font-style="italic">k</text>
+<text x="40" y="147.7" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">α</text>
+</svg><!--/svg:f060a-->
+  <figcaption>図1　証明の図。直線 \( \ell \)（青）は平面 \( \alpha \) と O で交わり、\( \alpha \) 上の \( m \)、\( n \)（緑）に垂直。\( k \)（橙）は O を通る \( \alpha \) 上の直線。灰の線は合同な三角形をつくる線分で、\( \alpha \) の下にある部分は破線（学習用に作成した模式図）</figcaption>
+</figure>
+<p class="small">\( \ell \) が \( m \)、\( n \) の交点を通らない場合：\( \ell\perp m \)、\( \ell\perp n \) なら、\( \ell \) は \( \alpha \) と1点で交わります（もし \( \ell \) が \( \alpha \) に含まれるか平行なら、\( \alpha \) 上に \( \ell \) と平行な直線があり、それが \( \alpha \) の上で交わる2直線 \( m \)、\( n \) の両方に垂直になります。平面の上で1つの直線に垂直な2直線は平行なので、\( m \) と \( n \) が交わることに反します）。その交点を通り \( m \)、\( n \) に平行な \( \alpha \) 上の2直線を考えれば、なす角は変わらないので、上の証明が使えます。</p>
+<p><strong>導入の問いの答え</strong>：① いえません。たとえば立方体 ABCD-EFGH の面の対角線 AF は、底面の辺 AD と垂直です（AD は面 ABFE 上の交わる2直線 AB、AE に垂直なので、上の条件から \( \mathrm{AD}\perp \) 平面 ABFE で、AF はこの平面上の直線）。ところが AF と底面の辺 AB のなす角は \( 45^\circ \) なので、AF は底面に垂直ではありません。② 棒の根元を通る、床の上の<strong>交わる2本の直線</strong>（2方向）で直角を確かめれば十分です。2方向が同じ直線の向きにならないようにします。</p>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 平面上の1本の直線と垂直なだけで「平面に垂直」とする：導入の問い①の AF のように、平面上の1本の直線と垂直でも、平面に垂直とは限りません。<br>② 平面上の<strong>平行な</strong>2直線と垂直なだけで「平面に垂直」とする：AF は AD とも、AD に平行な BC とも垂直ですが、底面に垂直ではありません。条件の2直線は「交わる」ことが必要です。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題1（正四面体のねじれの位置にある辺）</p>
+  <p>正四面体 ABCD で、\( \mathrm{AB}\perp\mathrm{CD} \) であることを証明しなさい。</p>
+  <div class="step">着眼点：AB と CD はねじれの位置にあります。CD に垂直な平面で、AB を含むものを見つけます。辺 CD の中点を M とし、平面 ABM を考えます（図2）。</div>
+  <div class="step"><span class="tag">仮定</span>　ABCD は正四面体（4つの面は合同な正三角形）。M は辺 CD の中点。<br><span class="tag">結論</span>　\( \mathrm{AB}\perp\mathrm{CD} \)</div>
+  <div class="step">① △ACD は \( \mathrm{AC}=\mathrm{AD} \) の二等辺三角形で、M は底辺 CD の中点なので、確認3と同じく \( \mathrm{AM}\perp\mathrm{CD} \)。② 同じように、△BCD で \( \mathrm{BM}\perp\mathrm{CD} \)。</div>
+  <div class="step">③ CD は、平面 ABM 上の交わる2直線 AM、BM に垂直なので、直線と平面が垂直になる条件より、\( \mathrm{CD}\perp \) 平面 ABM。</div>
+  <div class="step">④ AB は平面 ABM 上の直線なので、\( \mathrm{CD}\perp\mathrm{AB} \)。（証明終わり）</div>
+</div>
+<figure>
+<!--svg:f060b-->
+<svg viewBox="0 0 250 230" width="250" role="img" aria-label="正四面体 ABCD と辺 CD の中点 M。CD を青、AM と BM を緑、AB を橙で示し、三角形 ABM に色を付けた。見えない辺と線分は破線" data-fig="f060b" data-yaw="-24.000000" data-elev="17.000000" data-s="92.654933" data-ox="40.355507" data-oy="183.963268" data-solid="正四面体" data-faces="BCD ACD ABC ABD">
+<polygon points="146.8,36 190.3,152.1 125,195" fill="#b7791f" fill-opacity="0.16" stroke="none" data-fill="ABM" data-p3="1.000000,0.577350,1.632993;1.000000,1.732051,0.000000;1.000000,0.000000,0.000000"/>
+<line x1="146.8" y1="36" x2="190.3" y2="152.1" stroke="#b7791f" stroke-width="2.4" data-edge="AB" data-hidden="0"/>
+<line x1="146.8" y1="36" x2="40.4" y2="184" stroke="currentColor" stroke-width="1.6" data-edge="AC" data-hidden="0"/>
+<line x1="146.8" y1="36" x2="209.6" y2="206" stroke="currentColor" stroke-width="1.6" data-edge="AD" data-hidden="0"/>
+<line x1="190.3" y1="152.1" x2="40.4" y2="184" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="BC" data-hidden="1"/>
+<line x1="190.3" y1="152.1" x2="209.6" y2="206" stroke="currentColor" stroke-width="1.6" data-edge="BD" data-hidden="0"/>
+<line x1="40.4" y1="184" x2="209.6" y2="206" stroke="#1f5fbf" stroke-width="2.6" data-edge="CD" data-hidden="0"/>
+<line x1="146.8" y1="36" x2="125" y2="195" stroke="#1e8e5a" stroke-width="2" data-seg="AM" data-p3="1.000000,0.577350,1.632993;1.000000,0.000000,0.000000" data-hidden="0"/>
+<line x1="190.3" y1="152.1" x2="125" y2="195" stroke="#1e8e5a" stroke-width="2" stroke-dasharray="4 3" data-seg="BM" data-p3="1.000000,1.732051,0.000000;1.000000,0.000000,0.000000" data-hidden="1"/>
+<polyline points="139.4,196.9 141.5,181.3 127.1,179.4" fill="none" stroke="currentColor" stroke-width="1.2" data-right="CD⊥AM"/>
+<circle cx="40.4" cy="184" r="2.4" fill="currentColor" data-pt="C" data-x3="0.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="27.6" y="192.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">C</text>
+<circle cx="209.6" cy="206" r="2.4" fill="currentColor" data-pt="D" data-x3="2.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="218.8" y="220.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">D</text>
+<circle cx="190.3" cy="152.1" r="2.4" fill="currentColor" data-pt="B" data-x3="1.000000" data-y3="1.732051" data-z3="0.000000"/>
+<text x="203.9" y="158.6" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">B</text>
+<circle cx="146.8" cy="36" r="2.4" fill="currentColor" data-pt="A" data-x3="1.000000" data-y3="0.577350" data-z3="1.632993"/>
+<text x="146.8" y="24.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A</text>
+<circle cx="125" cy="195" r="2.6" fill="#1e8e5a" data-pt="M" data-x3="1.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="125" y="211" text-anchor="middle" font-size="13" fill="#1e8e5a" font-weight="700">M</text>
+</svg><!--/svg:f060b-->
+  <figcaption>図2　正四面体 ABCD と辺 CD の中点 M。CD（青）は AM、BM（緑）に垂直で、平面 ABM（色を付けた部分）に垂直。AB は橙。見えない辺は灰の破線（学習用に作成した図）</figcaption>
+</figure>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="三垂線の定理"><span class="num">4</span>三垂線の定理</h2>
+<p>平面 \( \alpha \) と、\( \alpha \) 上の直線 \( \ell \)、\( \ell \) 上の点 Q、\( \alpha \) 上にあって \( \ell \) 上にない点 O、\( \alpha \) 上にない点 P を考えます（図3）。3本の線分 PO、OQ、PQ と直線 \( \ell \) の垂直について、次のことが成り立ちます。</p>
+<div class="box point">
+  <p class="box-title">三垂線の定理</p>
+  <p>(1) \( \mathrm{PO}\perp\alpha \)、\( \mathrm{OQ}\perp\ell \) ならば、\( \mathrm{PQ}\perp\ell \)<br>(2) \( \mathrm{PO}\perp\alpha \)、\( \mathrm{PQ}\perp\ell \) ならば、\( \mathrm{OQ}\perp\ell \)<br>(3) \( \mathrm{PQ}\perp\ell \)、\( \mathrm{OQ}\perp\ell \)、\( \mathrm{PO}\perp\mathrm{OQ} \) ならば、\( \mathrm{PO}\perp\alpha \)</p>
+  <p class="small">このページでは、(1)〜(3) をまとめて<strong>三垂線の定理</strong>とよびます。述べ方は教科書でも確かめよう。</p>
+</div>
+<figure>
+<!--svg:f060c-->
+<svg viewBox="0 0 290 250" width="290" role="img" aria-label="平面 α 上の直線 ℓ と ℓ 上の点 Q、α 上の点 O、α 上にない点 P。PO（青）は α に垂直、OQ（緑）は ℓ に垂直、PQ（橙）も ℓ に垂直。ℓ 上の R、S は QR=QS となる点で、PR、PS、OR、OS を灰の線で結んである" data-fig="f060c" data-yaw="-25.000000" data-elev="24.000000" data-s="47.921561" data-ox="145.000000" data-oy="146.122103">
+<polygon points="24,164 189,195.3 266,128.2 101,96.9" fill="#8a99a8" fill-opacity="0.12" stroke="none" data-sheet="α" data-p3="-1.900000,-1.900000,0.000000;1.900000,-1.900000,0.000000;1.900000,1.900000,0.000000;-1.900000,1.900000,0.000000"/>
+<line x1="24" y1="164" x2="189" y2="195.3" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁1" data-p3="-1.900000,-1.900000,0.000000;1.900000,-1.900000,0.000000" data-hidden="0"/>
+<line x1="189" y1="195.3" x2="266" y2="128.2" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁2" data-p3="1.900000,-1.900000,0.000000;1.900000,1.900000,0.000000" data-hidden="0"/>
+<line x1="266" y1="128.2" x2="101" y2="96.9" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁3" data-p3="1.900000,1.900000,0.000000;-1.900000,1.900000,0.000000" data-hidden="0"/>
+<line x1="101" y1="96.9" x2="24" y2="164" stroke="#8a99a8" stroke-width="1.2" data-seg="α縁4" data-p3="-1.900000,1.900000,0.000000;-1.900000,-1.900000,0.000000" data-hidden="0"/>
+<line x1="147.6" y1="185.3" x2="220.5" y2="121.7" stroke="currentColor" stroke-width="2.2" data-seg="ℓ" data-p3="0.900000,-1.800000,0.000000;0.900000,1.800000,0.000000" data-hidden="0"/>
+<line x1="105.9" y1="68.7" x2="159.8" y2="174.7" stroke="#8a99a8" stroke-width="1.1" data-seg="PR" data-p3="-0.900000,0.000000,1.600000;0.900000,-1.200000,0.000000" data-hidden="0"/>
+<line x1="105.9" y1="68.7" x2="208.4" y2="132.3" stroke="#8a99a8" stroke-width="1.1" data-seg="PS" data-p3="-0.900000,0.000000,1.600000;0.900000,1.200000,0.000000" data-hidden="0"/>
+<line x1="105.9" y1="138.7" x2="159.8" y2="174.7" stroke="#8a99a8" stroke-width="1.1" data-seg="OR" data-p3="-0.900000,0.000000,0.000000;0.900000,-1.200000,0.000000" data-hidden="0"/>
+<line x1="105.9" y1="138.7" x2="208.4" y2="132.3" stroke="#8a99a8" stroke-width="1.1" data-seg="OS" data-p3="-0.900000,0.000000,0.000000;0.900000,1.200000,0.000000" data-hidden="0"/>
+<line x1="105.9" y1="68.7" x2="105.9" y2="138.7" stroke="#1f5fbf" stroke-width="2.2" data-seg="PO" data-p3="-0.900000,0.000000,1.600000;-0.900000,0.000000,0.000000" data-hidden="0"/>
+<line x1="105.9" y1="138.7" x2="184.1" y2="153.5" stroke="#1e8e5a" stroke-width="2.2" data-seg="OQ" data-p3="-0.900000,0.000000,0.000000;0.900000,0.000000,0.000000" data-hidden="0"/>
+<line x1="105.9" y1="68.7" x2="184.1" y2="153.5" stroke="#b7791f" stroke-width="2.2" data-seg="PQ" data-p3="-0.900000,0.000000,1.600000;0.900000,0.000000,0.000000" data-hidden="0"/>
+<polyline points="105.9,130 114.6,131.6 114.6,140.4" fill="none" stroke="currentColor" stroke-width="1.2" data-right="PO⊥OQ"/>
+<polyline points="175.4,151.9 179.5,148.4 188.1,150" fill="none" stroke="currentColor" stroke-width="1.2" data-right="OQ⊥ℓ"/>
+<polyline points="177.6,146.5 181.6,143 188.1,150" fill="none" stroke="currentColor" stroke-width="1.2" data-right="PQ⊥ℓ"/>
+<circle cx="105.9" cy="68.7" r="2.6" fill="#1f5fbf" data-pt="P" data-x3="-0.900000" data-y3="0.000000" data-z3="1.600000"/>
+<circle cx="105.9" cy="138.7" r="2.6" fill="currentColor" data-pt="O" data-x3="-0.900000" data-y3="0.000000" data-z3="0.000000"/>
+<circle cx="184.1" cy="153.5" r="2.6" fill="currentColor" data-pt="Q" data-x3="0.900000" data-y3="0.000000" data-z3="0.000000"/>
+<circle cx="159.8" cy="174.7" r="2.6" fill="#8a99a8" data-pt="R" data-x3="0.900000" data-y3="-1.200000" data-z3="0.000000"/>
+<circle cx="208.4" cy="132.3" r="2.6" fill="#8a99a8" data-pt="S" data-x3="0.900000" data-y3="1.200000" data-z3="0.000000"/>
+<text x="94.9" y="70.7" text-anchor="middle" font-size="13" fill="#1f5fbf" font-weight="700">P</text>
+<text x="93.9" y="150.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">O</text>
+<text x="197.1" y="163.5" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">Q</text>
+<text x="145.8" y="177.7" text-anchor="middle" font-size="13" fill="#8a99a8" font-weight="700">R</text>
+<text x="201.4" y="123.3" text-anchor="middle" font-size="13" fill="#8a99a8" font-weight="700">S</text>
+<text x="229.5" y="119.7" text-anchor="middle" font-size="14" fill="currentColor" font-style="italic">ℓ</text>
+<text x="38" y="157" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">α</text>
+</svg><!--/svg:f060c-->
+  <figcaption>図3　三垂線の定理。PO（青）は平面 \( \alpha \) に垂直、OQ（緑）と PQ（橙）は直線 \( \ell \) に垂直。R、S は証明で使う \( \ell \) 上の点（\( \mathrm{QR}=\mathrm{QS} \)）で、灰の線は証明で使う線分（学習用に作成した模式図）</figcaption>
+</figure>
+<div class="box example proof">
+  <p class="box-title">証明（三垂線の定理 (1)）</p>
+  <p><span class="tag">仮定</span>　\( \mathrm{PO}\perp\alpha \)、\( \mathrm{OQ}\perp\ell \)<br><span class="tag">結論</span>　\( \mathrm{PQ}\perp\ell \)</p>
+  <ol>
+    <li>\( \ell \) 上に、Q からの距離が等しい2点 R、S をとる（\( \mathrm{QR}=\mathrm{QS} \)、図3）。</li>
+    <li>\( \alpha \) の上で、△OQR と △OQS は、\( \mathrm{QR}=\mathrm{QS} \)、\( \angle\mathrm{OQR}=\angle\mathrm{OQS}=90^\circ \)（\( \mathrm{OQ}\perp\ell \)）、OQ が共通なので合同（2辺とその間の角）。よって \( \mathrm{OR}=\mathrm{OS} \)。</li>
+    <li>\( \mathrm{PO}\perp\alpha \) なので、PO は \( \alpha \) 上の直線 OR、OS と垂直（垂直の意味）。△POR、△POS は O が直角の直角三角形なので、三平方の定理より \( \mathrm{PR}^2=\mathrm{PO}^2+\mathrm{OR}^2 \)、\( \mathrm{PS}^2=\mathrm{PO}^2+\mathrm{OS}^2 \)。② より \( \mathrm{PR}=\mathrm{PS} \)。</li>
+    <li>△PQR と △PQS は、\( \mathrm{PR}=\mathrm{PS} \)、\( \mathrm{QR}=\mathrm{QS} \)、PQ が共通なので合同（3辺）。よって \( \angle\mathrm{PQR}=\angle\mathrm{PQS} \)。R、Q、S は一直線上にあるので、この2つの角の和は \( 180^\circ \) で、\( \angle\mathrm{PQR}=90^\circ \)。すなわち \( \mathrm{PQ}\perp\ell \)。（証明終わり）</li>
+  </ol>
+</div>
+<div class="box example proof">
+  <p class="box-title">証明（三垂線の定理 (2)）</p>
+  <p><span class="tag">仮定</span>　\( \mathrm{PO}\perp\alpha \)、\( \mathrm{PQ}\perp\ell \)<br><span class="tag">結論</span>　\( \mathrm{OQ}\perp\ell \)</p>
+  <ol>
+    <li>(1) と同じように \( \ell \) 上に \( \mathrm{QR}=\mathrm{QS} \) となる2点 R、S をとる。△PQR と △PQS は、\( \mathrm{QR}=\mathrm{QS} \)、\( \angle\mathrm{PQR}=\angle\mathrm{PQS}=90^\circ \)（\( \mathrm{PQ}\perp\ell \)）、PQ が共通なので合同。よって \( \mathrm{PR}=\mathrm{PS} \)。</li>
+    <li>\( \mathrm{PO}\perp\alpha \) より、三平方の定理で \( \mathrm{OR}^2=\mathrm{PR}^2-\mathrm{PO}^2 \)、\( \mathrm{OS}^2=\mathrm{PS}^2-\mathrm{PO}^2 \)。① より \( \mathrm{OR}=\mathrm{OS} \)。</li>
+    <li>△OQR と △OQS は、\( \mathrm{OR}=\mathrm{OS} \)、\( \mathrm{QR}=\mathrm{QS} \)、OQ が共通なので合同（3辺）。よって \( \angle\mathrm{OQR}=\angle\mathrm{OQS} \)。R、Q、S は一直線上にあるので、この2つの角の和は \( 180^\circ \) で、\( \angle\mathrm{OQR}=90^\circ \)。すなわち \( \mathrm{OQ}\perp\ell \)。（証明終わり）</li>
+  </ol>
+  <p class="small">(3) の証明は、確認問題の問9で考えます。(1)・(2) と同じように \( \ell \) 上に点をとり、三平方の定理（と、その逆）を使います。</p>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：PO⊥α を確かめずに (1) を使う</p><p>(1)・(2) は \( \mathrm{PO}\perp\alpha \) が仮定です。たとえば立方体 ABCD-EFGH で、\( \alpha \) を底面、\( \ell \) を直線 BC、Q を B、O を A とすると \( \mathrm{OQ}\perp\ell \)（\( \mathrm{AB}\perp\mathrm{BC} \)）です。ここで P を A の真上ではない頂点 G にとると、PO（GA）は底面に垂直ではなく、PQ（GB）と \( \ell \)（BC）のなす角は、正方形 BCGF の対角線と辺の角で \( 45^\circ \) です。垂直にはなりません。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="三垂線の定理を使って考察する"><span class="num">5</span>三垂線の定理を使って考察する</h2>
+<p>三垂線の定理 (1) は、平面の外の点 P から平面上の直線 \( \ell \) までの距離を求めるのに使えます。P から平面に下ろした垂線の足 O を通り、平面の上で \( \ell \) に垂直な直線を引けば、その交点 Q が P から \( \ell \) に下ろした垂線の足になり、\( \mathrm{PQ}=\sqrt{\mathrm{PO}^2+\mathrm{OQ}^2} \) です。</p>
+<div class="box example worked">
+  <p class="box-title">例題2（直方体の頂点と対角線の距離）</p>
+  <p>直方体 ABCD-EFGH で、\( \mathrm{AB}=3 \)、\( \mathrm{AD}=4 \)、\( \mathrm{AE}=1 \) です。頂点 A から上の面の対角線 FH を含む直線に垂線 AK を引くとき、AK の長さと △AFH の面積を求めなさい。</p>
+  <div class="step">着眼点：AE は上の面 EFGH に垂直です（AE は上の面の交わる2直線 EF、EH に垂直）。上の面の上で E から FH に垂線 EK を引けば、三垂線の定理 (1)（P を A、O を E、\( \ell \) を直線 FH、Q を K とする）から \( \mathrm{AK}\perp\mathrm{FH} \) となるので、K が A から FH に下ろした垂線の足です（図4）。</div>
+  <div class="step">上の面の直角三角形 EFH で \( \mathrm{EF}=3 \)、\( \mathrm{EH}=4 \)、\( \mathrm{FH}=\sqrt{3^2+4^2}=5 \)。△EFH の面積を2通りに表すと \( \dfrac{1}{2}\cdot3\cdot4=\dfrac{1}{2}\cdot5\cdot\mathrm{EK} \) より \( \mathrm{EK}=\dfrac{12}{5} \)。</div>
+  <div class="step">\( \mathrm{AE}\perp \) 上の面より \( \mathrm{AE}\perp\mathrm{EK} \)。直角三角形 AEK で \( \mathrm{AK}=\sqrt{\mathrm{AE}^2+\mathrm{EK}^2}=\sqrt{1+\dfrac{144}{25}}=\sqrt{\dfrac{169}{25}}=\dfrac{13}{5} \)。</div>
+  <div class="step">\( \triangle\mathrm{AFH}=\dfrac{1}{2}\cdot\mathrm{FH}\cdot\mathrm{AK}=\dfrac{1}{2}\cdot5\cdot\dfrac{13}{5}=\dfrac{13}{2} \)。答え：\( \mathrm{AK}=\dfrac{13}{5} \)、\( \triangle\mathrm{AFH}=\dfrac{13}{2} \)。</div>
+</div>
+<figure>
+<!--svg:f060d-->
+<svg viewBox="0 0 280 230" width="280" role="img" aria-label="直方体 ABCD-EFGH（AB=3、AD=4、AE=1）。上の面の対角線 FH と、E から FH に引いた垂線 EK（緑）、A と K を結ぶ AK（橙、内部を通るので破線）。辺 AE は青" data-fig="f060d" data-yaw="32.000000" data-elev="24.000000" data-s="47.171618" data-ox="129.988597" data-oy="187.339617" data-solid="直方体" data-faces="ABCD EFGH ABFE BCGF CDHG DAEH">
+<line x1="130" y1="187.3" x2="250" y2="156.8" stroke="currentColor" stroke-width="1.6" data-edge="AB" data-hidden="0"/>
+<line x1="130" y1="187.3" x2="30" y2="122.3" stroke="currentColor" stroke-width="1.6" data-edge="AD" data-hidden="0"/>
+<line x1="130" y1="187.3" x2="130" y2="144.2" stroke="#1f5fbf" stroke-width="2.6" data-edge="AE" data-hidden="0"/>
+<line x1="250" y1="156.8" x2="150" y2="91.8" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="BC" data-hidden="1"/>
+<line x1="250" y1="156.8" x2="250" y2="113.7" stroke="currentColor" stroke-width="1.6" data-edge="BF" data-hidden="0"/>
+<line x1="150" y1="91.8" x2="30" y2="122.3" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="CD" data-hidden="1"/>
+<line x1="150" y1="91.8" x2="150" y2="48.7" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="CG" data-hidden="1"/>
+<line x1="30" y1="122.3" x2="30" y2="79.2" stroke="currentColor" stroke-width="1.6" data-edge="DH" data-hidden="0"/>
+<line x1="130" y1="144.2" x2="250" y2="113.7" stroke="currentColor" stroke-width="1.6" data-edge="EF" data-hidden="0"/>
+<line x1="130" y1="144.2" x2="30" y2="79.2" stroke="currentColor" stroke-width="1.6" data-edge="EH" data-hidden="0"/>
+<line x1="250" y1="113.7" x2="150" y2="48.7" stroke="currentColor" stroke-width="1.6" data-edge="FG" data-hidden="0"/>
+<line x1="150" y1="48.7" x2="30" y2="79.2" stroke="currentColor" stroke-width="1.6" data-edge="GH" data-hidden="0"/>
+<line x1="250" y1="113.7" x2="30" y2="79.2" stroke="currentColor" stroke-width="2.0" data-seg="FH" data-p3="3.000000,0.000000,1.000000;0.000000,4.000000,1.000000" data-hidden="0"/>
+<line x1="130" y1="144.2" x2="170.8" y2="101.3" stroke="#1e8e5a" stroke-width="2.2" data-seg="EK" data-p3="0.000000,0.000000,1.000000;1.920000,1.440000,1.000000" data-hidden="0"/>
+<line x1="130" y1="187.3" x2="170.8" y2="101.3" stroke="#b7791f" stroke-width="2.2" stroke-dasharray="4 3" data-seg="AK" data-p3="0.000000,0.000000,0.000000;1.920000,1.440000,1.000000" data-hidden="1"/>
+<polyline points="158.5,99.4 153.7,104.4 166,106.3" fill="none" stroke="currentColor" stroke-width="1.2" data-right="EK⊥FH"/>
+<circle cx="130" cy="187.3" r="2.4" fill="currentColor" data-pt="A" data-x3="0.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="128.5" y="207.5" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A</text>
+<circle cx="250" cy="156.8" r="2.4" fill="currentColor" data-pt="B" data-x3="3.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="262.9" y="165.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">B</text>
+<circle cx="150" cy="91.8" r="2.4" fill="currentColor" data-pt="C" data-x3="3.000000" data-y3="4.000000" data-z3="0.000000"/>
+<text x="154.1" y="81.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">C</text>
+<circle cx="30" cy="122.3" r="2.4" fill="currentColor" data-pt="D" data-x3="0.000000" data-y3="4.000000" data-z3="0.000000"/>
+<text x="16.1" y="127.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">D</text>
+<circle cx="130" cy="144.2" r="2.4" fill="currentColor" data-pt="E" data-x3="0.000000" data-y3="0.000000" data-z3="1.000000"/>
+<text x="125.9" y="163.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">E</text>
+<circle cx="250" cy="113.7" r="2.4" fill="currentColor" data-pt="F" data-x3="3.000000" data-y3="0.000000" data-z3="1.000000"/>
+<text x="263.9" y="117.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">F</text>
+<circle cx="150" cy="48.7" r="2.4" fill="currentColor" data-pt="G" data-x3="3.000000" data-y3="4.000000" data-z3="1.000000"/>
+<text x="151.5" y="37.6" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">G</text>
+<circle cx="30" cy="79.2" r="2.4" fill="currentColor" data-pt="H" data-x3="0.000000" data-y3="4.000000" data-z3="1.000000"/>
+<text x="17.1" y="79.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">H</text>
+<circle cx="170.8" cy="101.3" r="2.6" fill="#b7791f" data-pt="K" data-x3="1.920000" data-y3="1.440000" data-z3="1.000000"/>
+<text x="174.8" y="93.3" text-anchor="middle" font-size="13" fill="#b7791f" font-weight="700">K</text>
+</svg><!--/svg:f060d-->
+  <figcaption>図4　直方体 ABCD-EFGH（AB=3、AD=4、AE=1）。AE（青）は上の面に垂直、EK（緑）と AK（橙）は FH に垂直。AK は直方体の内部を通るので破線（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題3（正四面体の垂線の足）</p>
+  <p>正四面体 ABCD の頂点 A から平面 BCD に下ろした垂線の足を H とします。H は △BCD の重心（数Ａ-039）であることを証明しなさい。</p>
+  <div class="step"><span class="tag">仮定</span>　ABCD は正四面体、\( \mathrm{AH}\perp \) 平面 BCD。<br><span class="tag">結論</span>　H は △BCD の3本の中線の交点（重心）。</div>
+  <div class="step">① 辺 CD の中点を M とすると、例題1の①と同じく \( \mathrm{AM}\perp\mathrm{CD} \)。</div>
+  <div class="step">② \( \mathrm{AH}\perp \) 平面 BCD、\( \mathrm{AM}\perp\mathrm{CD} \) なので、三垂線の定理 (2)（P を A、O を H、\( \ell \) を直線 CD、Q を M とする）より \( \mathrm{HM}\perp\mathrm{CD} \)。（H は直線 CD 上にありません。もし CD 上にあれば、平面 ACD の上で A から CD に引ける垂線は1本なので H は M と一致し、\( \mathrm{AM}\perp \) 平面 BCD から \( \angle\mathrm{AMB}=90^\circ \) となります。すると三平方の定理から \( \mathrm{AB}^2=\mathrm{AM}^2+\mathrm{BM}^2 \) のはずですが、\( \mathrm{AM}=\mathrm{BM}=\dfrac{\sqrt{3}}{2}\mathrm{AB} \)（中3-101）より右辺は \( \dfrac{3}{2}\mathrm{AB}^2 \) で、合いません。）</div>
+  <div class="step">③ 平面 BCD の上で、M を通り CD に垂直な直線は1本だけで、正三角形 BCD の中線 BM は CD に垂直なので、H は直線 BM 上にある（図5）。</div>
+  <div class="step">④ 辺 BC の中点を N として同じように考えると、H は直線 DN 上にもある。よって H は中線 BM と DN の交点で、△BCD の重心である。（証明終わり）</div>
+</div>
+<figure>
+<!--svg:f060e-->
+<svg viewBox="0 0 250 230" width="250" role="img" aria-label="正四面体 ABCD と、頂点 A から平面 BCD に下ろした垂線 AH（青）。辺 CD の中点 M と A を結ぶ AM（橙）、H と M を結ぶ HM（緑）。H は中線 BM（灰）の上にある。内部の線と見えない辺は破線" data-fig="f060e" data-yaw="-24.000000" data-elev="17.000000" data-s="92.654933" data-ox="40.355507" data-oy="183.963268" data-solid="正四面体" data-faces="BCD ACD ABC ABD">
+<line x1="146.8" y1="36" x2="190.3" y2="152.1" stroke="currentColor" stroke-width="1.6" data-edge="AB" data-hidden="0"/>
+<line x1="146.8" y1="36" x2="40.4" y2="184" stroke="currentColor" stroke-width="1.6" data-edge="AC" data-hidden="0"/>
+<line x1="146.8" y1="36" x2="209.6" y2="206" stroke="currentColor" stroke-width="1.6" data-edge="AD" data-hidden="0"/>
+<line x1="190.3" y1="152.1" x2="40.4" y2="184" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="BC" data-hidden="1"/>
+<line x1="190.3" y1="152.1" x2="209.6" y2="206" stroke="currentColor" stroke-width="1.6" data-edge="BD" data-hidden="0"/>
+<line x1="40.4" y1="184" x2="209.6" y2="206" stroke="currentColor" stroke-width="1.6" data-edge="CD" data-hidden="0"/>
+<line x1="190.3" y1="152.1" x2="125" y2="195" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-seg="BM" data-p3="1.000000,1.732051,0.000000;1.000000,0.000000,0.000000" data-hidden="1"/>
+<line x1="146.8" y1="36" x2="125" y2="195" stroke="#b7791f" stroke-width="2.2" data-seg="AM" data-p3="1.000000,0.577350,1.632993;1.000000,0.000000,0.000000" data-hidden="0"/>
+<line x1="146.8" y1="180.7" x2="125" y2="195" stroke="#1e8e5a" stroke-width="2.2" stroke-dasharray="4 3" data-seg="HM" data-p3="1.000000,0.577350,0.000000;1.000000,0.000000,0.000000" data-hidden="1"/>
+<line x1="146.8" y1="36" x2="146.8" y2="180.7" stroke="#1f5fbf" stroke-width="2.2" stroke-dasharray="4 3" data-seg="AH" data-p3="1.000000,0.577350,1.632993;1.000000,0.577350,0.000000" data-hidden="1"/>
+<polyline points="139.4,196.9 145.8,192.6 131.4,190.8" fill="none" stroke="currentColor" stroke-width="1.2" data-right="HM⊥CD"/>
+<polyline points="146.8,167.4 141.1,171.1 141.1,184.4" fill="none" stroke="currentColor" stroke-width="1.2" data-right="AH⊥HM"/>
+<circle cx="40.4" cy="184" r="2.4" fill="currentColor" data-pt="C" data-x3="0.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="27.6" y="192.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">C</text>
+<circle cx="209.6" cy="206" r="2.4" fill="currentColor" data-pt="D" data-x3="2.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="218.8" y="220.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">D</text>
+<circle cx="190.3" cy="152.1" r="2.4" fill="currentColor" data-pt="B" data-x3="1.000000" data-y3="1.732051" data-z3="0.000000"/>
+<text x="203.9" y="158.6" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">B</text>
+<circle cx="146.8" cy="36" r="2.4" fill="currentColor" data-pt="A" data-x3="1.000000" data-y3="0.577350" data-z3="1.632993"/>
+<text x="146.8" y="24.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A</text>
+<circle cx="125" cy="195" r="2.6" fill="#1e8e5a" data-pt="M" data-x3="1.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="125" y="211" text-anchor="middle" font-size="13" fill="#1e8e5a" font-weight="700">M</text>
+<circle cx="146.8" cy="180.7" r="2.6" fill="#1f5fbf" data-pt="H" data-x3="1.000000" data-y3="0.577350" data-z3="0.000000"/>
+<text x="157.8" y="184.7" text-anchor="middle" font-size="13" fill="#1f5fbf" font-weight="700">H</text>
+</svg><!--/svg:f060e-->
+  <figcaption>図5　正四面体 ABCD と、A から平面 BCD に下ろした垂線 AH（青）。AM（橙）と HM（緑）はどちらも CD に垂直で、H は中線 BM 上にある。立体の内部と見えない辺は破線（学習用に作成した図）</figcaption>
+</figure>
+<p>正三角形では、中線 BM は辺 CD の垂直二等分線でもある（中2-061）ので、重心は外心（数Ａ-037）と一致します。数Ⅰ-076 では、合同な直角三角形を使って H が △BCD の外接円の中心であることを示しました。三垂線の定理を使っても、同じ点にたどりつきます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>示したいこと</th><th>使う性質</th><th>この時間の例</th></tr>
+  <tr><td>ねじれの位置の2直線が垂直</td><td>一方の直線に垂直な平面で、他方を含むものを見つける（直線と平面が垂直になる条件）</td><td>例題1</td></tr>
+  <tr><td>平面の外の点から平面上の直線までの距離</td><td>平面への垂線の足から、平面の上で垂線を引く（三垂線の定理 (1)）</td><td>例題2</td></tr>
+  <tr><td>平面への垂線の足の位置</td><td>平面上の直線への垂線から足の位置をしぼる（三垂線の定理 (2)）</td><td>例題3</td></tr>
+</table>
+</div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>直線と平面の垂直</dt><dd>直線 \( \ell \) が平面 \( \alpha \) 上のすべての直線と垂直であること。\( \ell\perp\alpha \)。</dd>
+    <dt>垂線の足</dt><dd>点 P を通り平面（直線）に垂直な直線と、その平面（直線）との交点。</dd>
+    <dt>点と平面の距離</dt><dd>点 P から平面に下ろした垂線の足を H とするときの、線分 PH の長さ（中1-098）。</dd>
+    <dt>直線と平面が垂直になる条件</dt><dd>直線 \( \ell \) が平面 \( \alpha \) 上の交わる2直線に垂直ならば \( \ell\perp\alpha \)。</dd>
+    <dt>三垂線の定理</dt><dd>\( \alpha \) 上の直線 \( \ell \)、\( \ell \) 上の点 Q、\( \alpha \) 上の点 O、\( \alpha \) 外の点 P について、(1) PO⊥α、OQ⊥ℓ ならば PQ⊥ℓ　(2) PO⊥α、PQ⊥ℓ ならば OQ⊥ℓ　(3) PQ⊥ℓ、OQ⊥ℓ、PO⊥OQ ならば PO⊥α（このページでの述べ方）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>\( \ell\perp\alpha \) は「\( \ell \) が \( \alpha \) 上のすべての直線と垂直」。確かめるには、\( \alpha \) 上の交わる2直線に垂直であることを示せばよい（1本や平行な2本では足りない）（O1）。</li>
+    <li>三垂線の定理 (1)〜(3) は、合同な三角形と三平方の定理（とその逆）で示せる（O2）。</li>
+    <li>ねじれの位置の2直線の垂直は「一方に垂直な平面で他方を含むもの」を探し、平面外の点から平面上の直線までの距離は三垂線の定理 (1) で垂線の足を見つけて求める（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">直線と平面が垂直になる条件</span><p>\( m \)、\( n \) が \( \alpha \) 上の交わる2直線で、\( \ell\perp m \)、\( \ell\perp n \) ならば \( \ell\perp\alpha \)</p></div>
+  <div><span class="f-name">三垂線の定理 (1)</span><p>\( \mathrm{PO}\perp\alpha \)、\( \mathrm{OQ}\perp\ell \) ならば \( \mathrm{PQ}\perp\ell \)。このとき \( \mathrm{PQ}=\sqrt{\mathrm{PO}^2+\mathrm{OQ}^2} \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。立方体・直方体 ABCD-EFGH は底面 ABCD、AE が高さの辺とします。根号を含む答えは、\( \sqrt{5} \) なら √5、\( 3\sqrt{7} \) なら 3√7 と入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>直線 \( \ell \) が平面 \( \alpha \) に垂直であるといえるのはどれですか。</p>
+  <div class="choices">
+    <button>\( \ell \) が \( \alpha \) 上の1つの直線に垂直である。</button>
+    <button>\( \ell \) が \( \alpha \) 上の平行な2直線に垂直である。</button>
+    <button>\( \ell \) が \( \alpha \) と1点で交わる。</button>
+    <button data-correct="true">\( \ell \) が \( \alpha \) 上の交わる2直線に垂直である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">直線と平面が垂直になる条件は「平面上の交わる2直線に垂直」です。1つの直線や平行な2直線に垂直なだけでは、立方体の面の対角線 AF（AD・BC に垂直だが底面に垂直でない）のように、平面に垂直とはいえません。1点で交わるだけでは、傾いて交わる場合もあります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1・O3</span></div>
+  <p>立方体 ABCD-EFGH で、平面 BFHD に垂直な直線はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">直線 AC</button>
+    <button>直線 AG</button>
+    <button>直線 AE</button>
+    <button>直線 AB</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">AC は、正方形 ABCD の対角線として BD と垂直に交わります。また BF は底面に垂直（BF は底面上の交わる2直線 AB、BC に垂直）なので、底面上の AC と垂直です。BD と BF は平面 BFHD 上の交わる2直線なので、\( \mathrm{AC}\perp \) 平面 BFHD です。AE は BF と平行で平面 BFHD と交わらないので、垂直ではありません（平行）。AG は立方体の対角線で、平面 BFHD 上の直線 BF とのなす角が \( 90^\circ \) になりません（BF に平行な CG に移すと \( \angle\mathrm{AGC} \) で、直角三角形 ACG の直角でない角です）。AB は BD とのなす角が \( 45^\circ \) です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>平面 \( \alpha \) 上に直線 \( \ell \) と、\( \ell \) 上にない点 O があり、O から \( \ell \) に下ろした垂線の足を Q とすると \( \mathrm{OQ}=3 \) です。\( \alpha \) 上にない点 P が \( \mathrm{PO}\perp\alpha \)、\( \mathrm{PO}=4 \) を満たすとき、点 P と直線 \( \ell \) の距離はどれですか。</p>
+  <div class="choices">
+    <button>\( 7 \)</button>
+    <button>\( 4 \)</button>
+    <button data-correct="true">\( 5 \)</button>
+    <button>\( \sqrt{7} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \mathrm{PO}\perp\alpha \)、\( \mathrm{OQ}\perp\ell \) なので、三垂線の定理 (1) より \( \mathrm{PQ}\perp\ell \) です。よって P と \( \ell \) の距離は PQ で、直角三角形 POQ で \( \mathrm{PQ}=\sqrt{4^2+3^2}=5 \) です。7 は長さをそのまま足した値、4 は PO（P と平面の距離）を答えた値、\( \sqrt{7} \) は \( \sqrt{4^2-3^2} \) と引いた値で、斜辺は PQ です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1・O3</span></div>
+  <p>正四角錐 O-ABCD（底面 ABCD は正方形、\( \mathrm{OA}=\mathrm{OB}=\mathrm{OC}=\mathrm{OD} \)）で、直線 OA と直線 BD のなす角はどれですか。</p>
+  <div class="choices">
+    <button>\( 60^\circ \)</button>
+    <button data-correct="true">\( 90^\circ \)</button>
+    <button>\( 45^\circ \)</button>
+    <button>辺の長さによって変わる</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">底面の対角線の交点を K とします。K は BD の中点で、\( \mathrm{OB}=\mathrm{OD} \) なので △OBD は二等辺三角形で \( \mathrm{OK}\perp\mathrm{BD} \)（確認3）。また \( \mathrm{AC}\perp\mathrm{BD} \)（正方形の対角線）。BD は平面 OAC 上の交わる2直線 OK、AC に垂直なので \( \mathrm{BD}\perp \) 平面 OAC で、OA はこの平面上の直線なので \( \mathrm{BD}\perp\mathrm{OA} \) です。辺の長さによらず \( 90^\circ \) です。\( 60^\circ \) は側面が正三角形のときの角と、\( 45^\circ \) は正方形の対角線と辺の角と混同しています。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="√6|ルート6|root6|√(6)">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>1辺の長さが 2 の立方体 ABCD-EFGH で、頂点 F と直線 AC の距離を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \sqrt{6} \)。FB は底面に垂直です。底面の上で B から AC に垂線を引くと、その足は正方形の対角線の交点 K で、\( \mathrm{BK}=\sqrt{2} \)（対角線 \( 2\sqrt{2} \) の半分）。三垂線の定理 (1) より \( \mathrm{FK}\perp\mathrm{AC} \) なので、求める距離は \( \mathrm{FK}=\sqrt{\mathrm{FB}^2+\mathrm{BK}^2}=\sqrt{4+2}=\sqrt{6} \) です。確かめ：△ACF は1辺 \( 2\sqrt{2} \) の正三角形で、高さは \( 2\sqrt{2}\cdot\dfrac{\sqrt{3}}{2}=\sqrt{6} \)。\( 2\sqrt{2} \) と答えた場合は FA（F と A の距離）、\( \sqrt{2} \) は BK、2 は FB を答えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2</span></div>
+  <p>平面 \( \alpha \) 上の直線 \( \ell \)、\( \ell \) 上の点 Q、\( \alpha \) 上にあって \( \ell \) 上にない点 O、\( \alpha \) 上にない点 P について、\( \mathrm{PQ}\perp\ell \)、\( \mathrm{OQ}\perp\ell \) です。さらにどの条件が加われば、\( \mathrm{PO}\perp\alpha \) といえますか。</p>
+  <div class="choices">
+    <button>\( \mathrm{PQ}\perp\mathrm{OQ} \)</button>
+    <button>\( \mathrm{PQ}=\mathrm{OQ} \)</button>
+    <button data-correct="true">\( \mathrm{PO}\perp\mathrm{OQ} \)</button>
+    <button>\( \mathrm{PO}\perp\mathrm{PQ} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">三垂線の定理 (3) より、\( \mathrm{PO}\perp\mathrm{OQ} \) が加われば \( \mathrm{PO}\perp\alpha \) です。逆に \( \mathrm{PO}\perp\alpha \) なら PO は OQ と垂直なので、△POQ は \( \angle\mathrm{O}=90^\circ \) の直角三角形で、いちばん長い辺は斜辺 PQ です。\( \mathrm{PQ}\perp\mathrm{OQ} \)（\( \angle\mathrm{Q}=90^\circ \)）や \( \mathrm{PO}\perp\mathrm{PQ} \)（\( \angle\mathrm{P}=90^\circ \)）では三角形の中に直角が2つでき、\( \mathrm{PQ}=\mathrm{OQ} \) では斜辺 PQ と OQ が等しくなるので、どれも \( \mathrm{PO}\perp\alpha \) と両立しません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O1・O3</span></div>
+  <p>太郎さんと花子さんが、立方体 ABCD-EFGH の対角線 AG と平面 BDE について話しています。</p>
+  <p>太郎：「GC は底面に垂直だから \( \mathrm{BD}\perp\mathrm{GC} \)。底面の上で \( \mathrm{BD}\perp\mathrm{AC} \) だから、BD は平面 ACG に垂直で、\( \mathrm{AG}\perp\mathrm{BD} \) だね。」<br>花子：「それだけで AG が平面 BDE に垂直といえるかな。ほかに何を確かめればいいか考えてみよう。」</p>
+  <p>\( \mathrm{AG}\perp \) 平面 BDE を示すのに、\( \mathrm{AG}\perp\mathrm{BD} \) のほかに確かめればよいことはどれですか。</p>
+  <div class="choices">
+    <button>AG が直線 FH に垂直であること</button>
+    <button>AG が平面 BDE と1点で交わること</button>
+    <button>何も確かめなくてよい</button>
+    <button data-correct="true">AG が直線 BE に垂直であること</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">BD と BE は平面 BDE 上の交わる2直線なので、\( \mathrm{AG}\perp\mathrm{BD} \)、\( \mathrm{AG}\perp\mathrm{BE} \) を示せば \( \mathrm{AG}\perp \) 平面 BDE です。\( \mathrm{AG}\perp\mathrm{BE} \) は、太郎さんと同じ考え方で示せます。GF は面 ABFE に垂直なので \( \mathrm{BE}\perp\mathrm{GF} \)、正方形 ABFE の対角線どうしなので \( \mathrm{BE}\perp\mathrm{AF} \)。よって BE は平面 AFG に垂直で、\( \mathrm{BE}\perp\mathrm{AG} \) です。FH は BD と平行で、平行な2直線に垂直なだけでは足りません（よくある間違い②）。1点で交わることは、垂直であることの根拠になりません。1本の直線 BD に垂直なだけでは平面に垂直とはいえないので、「何も確かめなくてよい」は誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q8" data-accept="12√2|12ルート2|12root2|12*√2|12×√2|√288">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O3</span></div>
+  <p>\( \mathrm{AB}=\mathrm{AC}=5 \)、\( \mathrm{BC}=6 \) の二等辺三角形 ABC が平面 \( \alpha \) 上にあります。\( \alpha \) 上にない点 P が \( \mathrm{PA}\perp\alpha \)、\( \mathrm{PA}=4 \) を満たすとき、△PBC の面積を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 12\sqrt{2} \)。BC の中点を M とすると \( \mathrm{AM}\perp\mathrm{BC} \)（二等辺三角形）で、\( \mathrm{AM}=\sqrt{5^2-3^2}=4 \)。\( \mathrm{PA}\perp\alpha \)、\( \mathrm{AM}\perp\mathrm{BC} \) なので、三垂線の定理 (1) より \( \mathrm{PM}\perp\mathrm{BC} \) で、PM が △PBC の高さです。\( \mathrm{PM}=\sqrt{4^2+4^2}=4\sqrt{2} \)、\( \triangle\mathrm{PBC}=\dfrac{1}{2}\cdot6\cdot4\sqrt{2}=12\sqrt{2} \)。12 と答えた場合は、高さを AM（=4）として △ABC の面積を求めています。\( 24\sqrt{2} \) は \( \dfrac{1}{2} \) を忘れた値です。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2</span></div>
+  <p>三垂線の定理 (3)「\( \mathrm{PQ}\perp\ell \)、\( \mathrm{OQ}\perp\ell \)、\( \mathrm{PO}\perp\mathrm{OQ} \) ならば \( \mathrm{PO}\perp\alpha \)」を証明しなさい。（ヒント：\( \ell \) 上に Q と異なる点 R をとり、\( \mathrm{PR}^2 \) を2通りに表す。）</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　\( \ell \) 上に Q と異なる点 R をとる。\( \mathrm{PQ}\perp\ell \) より △PQR は Q が直角なので \( \mathrm{PR}^2=\mathrm{PQ}^2+\mathrm{QR}^2 \)。\( \mathrm{PO}\perp\mathrm{OQ} \) より \( \mathrm{PQ}^2=\mathrm{PO}^2+\mathrm{OQ}^2 \)。\( \mathrm{OQ}\perp\ell \) より \( \mathrm{OR}^2=\mathrm{OQ}^2+\mathrm{QR}^2 \)。よって \( \mathrm{PR}^2=\mathrm{PO}^2+\mathrm{OQ}^2+\mathrm{QR}^2=\mathrm{PO}^2+\mathrm{OR}^2 \)。三平方の定理の逆より \( \angle\mathrm{POR}=90^\circ \)、すなわち \( \mathrm{PO}\perp\mathrm{OR} \)。OQ と OR は O で交わる \( \alpha \) 上の2直線（R は直線 OQ 上にない）で、PO はその両方に垂直なので、直線と平面が垂直になる条件より \( \mathrm{PO}\perp\alpha \)。（証明終わり）</p>
+    <p><strong>採点の観点</strong>　① 3つの直角三角形で三平方の定理を正しく使っている。② \( \mathrm{PR}^2=\mathrm{PO}^2+\mathrm{OR}^2 \) から、三平方の定理の<strong>逆</strong>であることを明らかにして \( \angle\mathrm{POR}=90^\circ \) を導いている。③ 交わる2直線 OQ、OR に垂直であることから、条件を使って \( \mathrm{PO}\perp\alpha \) を結論している。</p>
+  </div>
+  <div class="explain">R が直線 OQ 上にないのは、OQ と \( \ell \) が Q だけで交わり、R は Q と異なる \( \ell \) 上の点だからです。この証明では、三平方の定理の逆を「直角である」ことを示すために使っています（逆を根拠に「直角でない」と論じてはいません）。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(1) 図形の性質」のア(ウ)「空間図形に関する基本的な性質について理解すること」とイ(ア)「図形の構成要素間の関係や既に学習した図形の性質に着目し，図形の新たな性質を見いだし，その性質について論理的に考察したり説明したりすること」に関わり、出題範囲に含まれます。三垂線の定理という名前と内容は、学習指導要領の解説の数学Ａの項には明記がありません（†）。東京書籍『改訂版 数学Ａ Advanced』のシラバス案には「三垂線の定理」の名前があります。このページで確かめたほかの資料（同社『数学Ａ Standard』のシラバス案、数研出版『改訂版 数学Ａ』のシラバス・観点別評価規準例）にはこの名前がないので、扱いは教科書によって違う可能性があります。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。空間の垂直や距離を、平面の直角三角形や合同な三角形に置きかえて処理するこの時間の方法は、数学Ⅰの空間図形の計量（数Ⅰ-076）とも結び付きます。</p>
+  <p class="small">問7は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">多面体（数Ａ-061）</p>
+  <p>次の時間は、多面体や正多面体の頂点・辺・面の数を調べ、その間に成り立つ関係（オイラーの多面体定理）を見いだします。この時間の正四面体も、正多面体の1つです。</p>
+  <p>この時間では、多面体の頂点・辺・面の数（数Ａ-061）と、立体を平面で切ってできる図形の考察（数Ａ-062）は扱っていません。2つの平面のなす角、空間の点を座標やベクトルで表す方法（数学Ｃ）も扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-059　空間における直線と平面の位置関係</div>
+  <div><span class="label">次の時間</span>数Ａ-061　多面体</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-060「直線と平面の垂直」（学習指導要領 数学Ａ (1)ア(ウ)・イ(ア)、解説 p.90。† 解説の数学Ａの項に明記がなく教科書で扱われている内容を含む行）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(1) 図形の性質 ア(ウ)・イ(ア)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.90（数学Ａ：「２直線や２平面の位置関係や直線と平面の位置関係に関する基本的な性質を理解できるようにするとともに，これらの性質を図形の考察に活用できるようにする」。直線と平面が垂直になる条件・三垂線の定理の明記はない＝†）、p.118-119（数学Ｃの項：ベクトルを用いた空間図形の考察の例「正四面体 OABC において，OA⊥BC を示す」）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>中学校学習指導要領（平成29年告示）解説 数学編 p.79-80（直線が平面に垂直な場合は「直線が平面との交点を通るその平面上の全ての直線と垂直であること」、「直線が平面と垂直であるかどうかを調べるには，平面上の交わる２直線に垂直であることを調べればよい」）（文部科学省）https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf</li>
+    <li>東京書籍「シラバス案 数学Ａ（改訂版 数学Ａ Advanced、数Ａ002-901）」の「３節 空間図形　１ 直線と平面」（「空間における直線と平面の基本的な性質について理解する。また，直線と平面の垂直条件，三垂線の定理について理解する」）https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16703_sua_syllabus.pdf</li>
+    <li>東京書籍「シラバス案 数学Ａ（数学Ａ Standard、数Ａ002-902）」の「２ 直線と平面の垂直」（「空間における直線と平面の位置関係が垂直である場合について考察することができる」）https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_sua_syllabus.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「直線と平面」（「空間における直線と平面が垂直になるための条件を，正四面体に当てはめて考察することができる」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・図はこのページのために作成したものです（出典を示したものを除く）。床に立てた棒は学習用の架空の場面です。図は空間の座標から計算して描いた見取図・模式図です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-060",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-060",
+  "title": "直線と平面の垂直",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-2", "title": "図形の性質"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ウ)", "(1)イ(ア)"],
+  "kaisetsu_page": "90",
+  "objectives": [
+    {"id": "O1", "text": "直線と平面が垂直であることの意味と、平面上の交わる2直線に垂直ならば平面に垂直であること（直線と平面が垂直になる条件）を理解し、垂直であることの証明に用いることができる。", "from": "直線と平面が垂直になる条件を理解し", "sections": ["sec-1"], "checks": ["q1", "q2", "q4", "q7"]},
+    {"id": "O2", "text": "三垂線の定理の内容を理解し、合同な三角形や三平方の定理を用いて、成り立つ理由を説明できる。", "from": "三垂線の定理を用いて", "sections": ["sec-2"], "checks": ["q3", "q6", "q9"]},
+    {"id": "O3", "text": "直線と平面の垂直や三垂線の定理を用いて、正四面体や直方体などの中の垂直な直線や、点と直線の距離を考察し、求めることができる。", "from": "三垂線の定理を用いて空間図形の性質を考察できる", "sections": ["sec-1", "sec-3"], "checks": ["q2", "q4", "q5", "q7", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "直線と平面の垂直", "where": "sec-1"},
+    {"term": "垂線の足", "where": "sec-1"},
+    {"term": "点と平面の距離", "where": "sec-1"},
+    {"term": "直線と平面が垂直になる条件", "where": "sec-1"},
+    {"term": "三垂線の定理", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "2直線のなす角と、空間の2直線の垂直（ねじれの位置を含む）", "taught_in": ["hs_math_1a/数Ａ-059"], "gap": false, "where": "review"},
+    {"concept": "空間の平行線の性質（1つの直線に平行な2直線は平行）", "taught_in": ["hs_math_1a/数Ａ-059"], "gap": false, "where": "sec-1"},
+    {"concept": "直線と平面の垂直（交点を通る平面上のすべての直線と垂直）", "taught_in": ["jhs_math/中1-097"], "gap": false, "where": "sec-1"},
+    {"concept": "点と平面の距離（垂線の長さ）", "taught_in": ["jhs_math/中1-098"], "gap": false, "where": "review"},
+    {"concept": "点と直線の距離", "taught_in": ["jhs_math/中1-076"], "gap": false, "where": "review"},
+    {"concept": "三角形の合同条件（3辺、2辺とその間の角）", "taught_in": ["jhs_math/中2-053"], "gap": false, "where": "review"},
+    {"concept": "二等辺三角形の底角・頂角の二等分線は底辺を垂直に二等分する", "taught_in": ["jhs_math/中2-060", "jhs_math/中2-061"], "gap": false, "where": "review"},
+    {"concept": "三平方の定理とその逆", "taught_in": ["jhs_math/中3-097", "jhs_math/中3-100"], "gap": false, "where": "review"},
+    {"concept": "正方形の対角線は垂直に交わる", "taught_in": ["jhs_math/中2-073"], "gap": false, "where": "sec-3"},
+    {"concept": "正四面体（4つの面がすべて合同な正三角形である三角錐）", "taught_in": ["jhs_math/中1-092", "hs_math_1a/数Ⅰ-076"], "gap": false, "where": "review"},
+    {"concept": "三角形の重心（中線の交点）・外心", "taught_in": ["hs_math_1a/数Ａ-039", "hs_math_1a/数Ａ-037"], "gap": false, "where": "sec-3"},
+    {"concept": "面積を2通りに表して長さを求める", "taught_in": ["hs_math_1a/数Ⅰ-075"], "gap": false, "where": "sec-3"},
+    {"concept": "平面の上で、1つの直線に垂直な2直線は平行／直線上の点を通る垂線は1本", "taught_in": ["jhs_math/中1-076", "jhs_math/中1-084"], "gap": false, "where": "sec-1"}
+  ],
+  "out_of_scope": [
+    "多面体・正多面体と頂点・辺・面の数（数Ａ-061）",
+    "立体を平面で切ってできる立体、球と方べきの定理（数Ａ-062）",
+    "2つの平面のなす角（地図のどの行の要点にもない）",
+    "空間座標・空間ベクトルによる考察（数学Ｃ。解説の数学Ｃの項では、ベクトルで正四面体の OA⊥BC を示す例が挙げられている）"
+  ],
+  "selection_reason": "数学Ａ 単元『図形の性質』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(1)ア(ウ)・イ(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.90 直線と平面の位置関係の性質を考察に活用すること（数学Ａの項。垂直条件・三垂線の定理の明記はない）、p.118-119 正四面体 OABC で OA⊥BC を示す例（数学Ｃの項）（保存本文：sources/text/hs_kaisetsu_math.txt）"},
+    {"name": "中学校学習指導要領（平成29年告示）解説 数学編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf", "use": "p.79-80 直線が平面に垂直であることの意味と、交わる2直線に垂直かを調べればよいこと（保存本文：sources/text/jhs_kaisetsu_math.txt）"},
+    {"name": "シラバス案 数学Ａ（改訂版 数学Ａ Advanced、数Ａ002-901）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16703_sua_syllabus.pdf", "use": "「直線と平面の垂直条件，三垂線の定理について理解する」（† の内容と定理の名前が教科書で扱われることの確認。写し：sources/text/ts_ma_16703_syllabus.txt）"},
+    {"name": "シラバス案 数学Ａ（数学Ａ Standard、数Ａ002-902）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_sua_syllabus.pdf", "use": "「空間における直線と平面の位置関係が垂直である場合について考察することができる」（写し：sources/text/ts_ma_16704_syllabus.txt）"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "「空間における直線と平面が垂直になるための条件を，正四面体に当てはめて考察することができる」（保存本文：sources/text/suken_syllabus_suakai.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

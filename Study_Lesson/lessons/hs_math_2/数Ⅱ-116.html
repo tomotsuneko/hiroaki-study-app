@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>定積分の定義と面積｜数学Ⅱ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+  .widget .readout td:nth-child(2) { font-family: var(--mono); text-align: right; }
+  .widget .ctrl { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; }
+  svg text { font-family: var(--font); }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅱ</span><span>微分・積分の考え</span><span>数Ⅱ-116</span></div>
+  <h1>定積分の定義と面積</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">放物線のような曲線で囲まれた部分の面積は、長方形や三角形の公式だけでは求められません。ところが、前の時間に学んだ「微分の逆」の計算（不定積分）を使うと、この面積がすっきり求まります。微分と面積は、なぜつながっているのでしょうか。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>不定積分の1つ \(F(x)\) を用いて定積分 \(\int_a^b f(x)dx=F(b)-F(a)\) を定め、その値が積分定数の選び方によらないことを説明して、定積分の値を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>\(f(x)\geqq 0\) の区間で、グラフと \(x\) 軸、2直線 \(x=a\)、\(x=t\) で囲まれた部分の面積 \(S(t)\) について、\(S'(t)=f(t)\) が成り立つ理由を、細い帯を長方形ではさみ、幅を 0 に近づける様子（極限の直観的な理解）から説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>\(S'(t)=f(t)\) から \(S(b)=F(b)-F(a)\) を導いて定積分が面積を表すことを理解し、\(f(x)\geqq 0\) のときのグラフと \(x\) 軸、2直線で囲まれた部分の面積を定積分で求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅱ-115）</span>不定積分の計算</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>定積分の定義と面積</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅱ-117）</span>定積分の計算</div>
+</div>
+<p class="small">前提となる単元：数学Ⅰ「二次関数」、数学Ⅱ「いろいろな式」「図形と方程式」。同じ単元の「微分係数と導関数」（数Ⅱ-098〜101）と「不定積分」（数Ⅱ-114・115）を直接使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、<strong>不定積分</strong>（数Ⅱ-114・115）、<strong>導関数の定義と極限</strong>（数Ⅱ-098・100）、<strong>関数の増加</strong>（数Ⅱ-104）を組み合わせて使います。小問で確かめてから進みましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅱ-115</span></div>
+  <p>不定積分 \(\int (3x^2-4x+1)\,dx\) を求めたものとして正しいものはどれですか。（\(C\) は積分定数）</p>
+  <div class="choices">
+    <button>\(6x-4+C\)</button>
+    <button data-correct="true">\(x^3-2x^2+x+C\)</button>
+    <button>\(x^3-2x^2+x\)</button>
+    <button>\(3x^3-4x^2+x+C\)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\((x^n)' = nx^{n-1}\) の逆を考えて、\(x^2\) の不定積分は \(\frac{x^3}{3}\)、\(x\) の不定積分は \(\frac{x^2}{2}\) です。よって \(3\cdot\frac{x^3}{3}-4\cdot\frac{x^2}{2}+x+C=x^3-2x^2+x+C\)。\(6x-4+C\) は微分してしまった誤り、\(C\) のないものは積分定数の書き忘れ、\(3x^3-\cdots\) は次数を上げたのに係数を割っていない誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅱ-098・100</span></div>
+  <p>\(f(x)=x^2\) のとき \(\dfrac{f(x+h)-f(x)}{h}=2x+h\) です。導関数 \(f'(x)=\displaystyle\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}\) はどれですか。</p>
+  <div class="choices">
+    <button>\(2x+h\)</button>
+    <button data-correct="true">\(2x\)</button>
+    <button>\(x^2\)</button>
+    <button>\(0\)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\(h\) を 0 に限りなく近づけると \(2x+h\) は \(2x\) に近づくので \(f'(x)=2x\)。\(2x+h\) は極限をとる前の「平均変化率」のまま、\(x^2\) はもとの関数 \(f(x)\) のまま、\(0\) は \(h\) だけでなく \(2x+h\) 全体が 0 に近づくと考えた誤りです。この時間は、面積について同じ形の極限 \(\displaystyle\lim_{h\to 0}\frac{S(t+h)-S(t)}{h}\) を考えます。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅱ-114</span></div>
+  <p>\(F(x)\) と \(G(x)\) がどちらも \(f(x)\) の不定積分（\(F'(x)=G'(x)=f(x)\)）であるとき、\(G(x)-F(x)\) について正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">定数である（\(G(x)=F(x)+C\) と表せる）</button>
+    <button>必ず 0 である</button>
+    <button>\(x\) の一次式である</button>
+    <button>決まらない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\(f(x)\) の不定積分は、1つを \(F(x)\) とするとすべて \(F(x)+C\) の形で表されます（数Ⅱ-114）。つまり、導関数が等しい2つの関数の差は定数です。0 とは限りません（例：\(x^2\) と \(x^2+5\)）。\(G(x)-F(x)\) を微分すると \(f(x)-f(x)=0\) なので、傾きをもつ一次式にはならず、「決まらない」わけでもありません。この事実を本編の「5 定積分は面積を表す」で使います。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">補足：両側からはさまれた量の極限</p>
+  <p>\(h\) を 0 に近づけるとき、ある量 \(A\) がいつも2つの量 \(m\)、\(M\) の間にあり（\(m\leqq A\leqq M\)）、\(m\) と \(M\) がどちらも同じ値 \(c\) に近づくならば、間にはさまれた \(A\) も \(c\) に近づきます。数学Ⅱでは、この事実を図やグラフで直観的に認めて使います（数学Ⅲで「はさみうちの原理」として改めて学びます：数Ⅲ-012）。</p>
+  <p>また、\(f(x)\) が多項式のとき、\(h\to 0\) で \(f(t+h)\) は \(f(t)\) に近づきます。数Ⅱ-098 で、\(h\) を含む式の極限を \(h=0\) を代入した値として求めたのと同じ考えです。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：放物線の下の面積はいくつ？</h2>
+<figure>
+  <svg viewBox="0 0 340 250" role="img" aria-label="放物線 y=x の2乗、x 軸、直線 x=1 で囲まれた部分に色を付けた図。1辺1の正方形と、直線 y=x を斜辺とする直角三角形も点線でかいてある。">
+    <path d="M50 215 L54 214.9 L58 214.6 L62 214.1 L66 213.4 L70 212.5 L74 211.4 L78 210.1 L82 208.6 L86 206.9 L90 205 L94 202.9 L98 200.6 L102 198.1 L106 195.4 L110 192.5 L114 189.4 L118 186.1 L122 182.6 L126 178.9 L130 175 L134 170.9 L138 166.6 L142 162.1 L146 157.4 L150 152.5 L154 147.4 L158 142.1 L162 136.6 L166 130.9 L170 125 L174 118.9 L178 112.6 L182 106.1 L186 99.4 L190 92.5 L194 85.4 L198 78.1 L202 70.6 L206 62.9 L210 55 L210 215 L50 215 Z" fill="#1f5fbf" fill-opacity="0.2"/>
+    <rect x="50" y="55" width="160" height="160" fill="none" stroke="currentColor" stroke-dasharray="4 4" stroke-opacity="0.6"/>
+    <line x1="50" y1="215" x2="210" y2="55" stroke="currentColor" stroke-dasharray="6 4"/>
+    <line x1="40" y1="215" x2="262" y2="215" stroke="currentColor"/>
+    <line x1="50" y1="232" x2="50" y2="14" stroke="currentColor"/>
+    <path d="M50 215 L54 214.9 L58 214.6 L61.9 214.1 L65.9 213.4 L69.9 212.5 L73.9 211.4 L77.9 210.1 L81.9 208.7 L85.8 207 L89.8 205.1 L93.8 203 L97.8 200.7 L101.8 198.2 L105.8 195.6 L109.7 192.7 L113.7 189.6 L117.7 186.4 L121.7 182.9 L125.7 179.2 L129.6 175.4 L133.6 171.3 L137.6 167 L141.6 162.6 L145.6 157.9 L149.6 153.1 L153.5 148 L157.5 142.7 L161.5 137.3 L165.5 131.6 L169.5 125.8 L173.4 119.8 L177.4 113.5 L181.4 107.1 L185.4 100.4 L189.4 93.6 L193.4 86.5 L197.3 79.3 L201.3 71.9 L205.3 64.2 L209.3 56.4 L213.3 48.4 L217.3 40.2 L221.2 31.7 L225.2 23.1 L229.2 14.3" fill="none" stroke="#1f5fbf" stroke-width="2.2"/>
+    <text x="38" y="230" font-size="13" fill="currentColor">O</text>
+    <text x="206" y="232" font-size="13" fill="currentColor">1</text>
+    <text x="36" y="60" font-size="13" fill="currentColor">1</text>
+    <text x="264" y="219" font-size="13" fill="currentColor">x</text>
+    <text x="55" y="20" font-size="13" fill="currentColor">y</text>
+    <text x="234" y="30" font-size="13" fill="#1f5fbf">y＝x²</text>
+    <text x="98" y="128" font-size="13" fill="currentColor">y＝x</text>
+    <text x="176" y="192" font-size="16" fill="currentColor">？</text>
+  </svg>
+  <figcaption>図1　放物線 \(y=x^2\)、\(x\) 軸、直線 \(x=1\) で囲まれた部分（色の部分）。点線は1辺1の正方形と、直線 \(y=x\) を斜辺とする直角三角形。</figcaption>
+</figure>
+<div class="box think">
+  <p class="box-title">色の部分の面積を予想しよう</p>
+  <p>\(0\leqq x\leqq 1\) では \(x^2\leqq x\) なので、放物線は直線 \(y=x\) より下にあります。だから色の部分の面積は、直角三角形の面積 \(\frac{1}{2}\) より小さいはずです。では、ちょうどいくつでしょう。\(\frac{1}{3}\)？\(\frac{1}{4}\)？　それとも分数では表せない数でしょうか。</p>
+  <p>曲線の部分があるので、長方形や三角形の公式は使えません。本編の最後（5 定積分は面積を表す）で、不定積分を使ってこの面積を正確に求めます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="定積分の定義"><span class="num">3</span>定積分の定義：\(F(b)-F(a)\) という値</h2>
+<p>まず、面積のことはいったん脇に置いて、新しい記号と計算を約束します。</p>
+<p>関数 \(f(x)\) の不定積分の1つを \(F(x)\) とします。2つの数 \(a\)、\(b\) に対して、差 \(F(b)-F(a)\) を \(f(x)\) の <strong>\(a\) から \(b\) までの定積分</strong> といい、次のように書きます。</p>
+$$ \int_a^b f(x)\,dx=\Bigl[\,F(x)\,\Bigr]_a^b=F(b)-F(a) $$
+<p>\(a\) を<span class="em">下端</span>、\(b\) を<span class="em">上端</span>といい、定積分を求めることを「\(f(x)\) を \(a\) から \(b\) まで<strong>積分する</strong>」といいます。\(a&lt;b\) のとき、区間 \(a\leqq x\leqq b\) を<span class="em">積分区間</span>といいます。記号 \(\Bigl[\,F(x)\,\Bigr]_a^b\) は「\(F(b)-F(a)\) を計算する」という意味の書き方です。</p>
+
+<h3>積分定数 \(C\) はどうなる？</h3>
+<p>不定積分には積分定数 \(C\) の分だけ選び方がありました（確認3）。どれを選んでも、定積分の値は変わりません。</p>
+$$ \bigl\{F(b)+C\bigr\}-\bigl\{F(a)+C\bigr\}=F(b)-F(a) $$
+<p>\(C\) は引き算で打ち消し合うからです。そこで、定積分の計算ではふつう \(C=0\) の不定積分を使います。</p>
+<div class="box point"><p class="box-title">定積分は「数」</p><p>定積分 \(\int_a^b f(x)\,dx\) は、\(F(b)-F(a)\) という1つの数です。\(x\) は計算の途中にだけ現れる文字なので、別の文字にかえて \(\int_a^b f(t)\,dt\) と書いても同じ値です。この性質は、数Ⅱ-118 で \(\int_a^x f(t)\,dt\) のような式を考えるときに使います。</p></div>
+
+<div class="box example worked">
+  <p class="box-title">例題1</p>
+  <p>定積分 \(\int_1^3 x^2\,dx\) を求めなさい。</p>
+  <div class="step">ステップ1：不定積分の1つを選ぶ。\(x^2\) の不定積分の1つは \(\frac{x^3}{3}\)（\(C=0\) とした）。</div>
+  <div class="step">ステップ2：上端の値から下端の値を引く。\(\displaystyle\int_1^3 x^2\,dx=\Bigl[\frac{x^3}{3}\Bigr]_1^3=\frac{3^3}{3}-\frac{1^3}{3}=\frac{27}{3}-\frac{1}{3}\)</div>
+  <div class="step">ステップ3：答え　\(\dfrac{26}{3}\)</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2</p>
+  <p>定積分 \(\int_{-1}^{2}(3x^2-2x+1)\,dx\) を求めなさい。</p>
+  <div class="step">ステップ1：\(F(x)=x^3-x^2+x\) とおく（\(F'(x)=3x^2-2x+1\) を確かめておく）。</div>
+  <div class="step">ステップ2：\(F(2)=8-4+2=6\)、\(F(-1)=(-1)^3-(-1)^2+(-1)=-1-1-1=-3\)</div>
+  <div class="step">ステップ3：\(F(2)-F(-1)=6-(-3)=9\)。答え　\(9\)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p>
+  <ul>
+    <li><strong>引く順序</strong>：\(F(b)-F(a)\)（上端 − 下端）です。逆にすると符号が反対になります。</li>
+    <li><strong>かっこを付けずに引く</strong>：\(F(a)\) が負や複数の項のときは、\(F(b)-\{F(a)\}\) とかっこごと引きます。例題2で \(6-(-3)\) を \(6-3\) としないこと。</li>
+    <li><strong>負の数の累乗</strong>：\((-1)^2=1\) なので \(-(-1)^2=-1\)、\((-1)^3=-1\) です。下端が負の数のときは特に注意しましょう。</li>
+  </ul>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="面積 S(t) の導関数"><span class="num">4</span>面積 \(S(t)\) を微分すると \(f(t)\) になる</h2>
+<p>次に、面積の話に戻ります。区間 \(a\leqq x\leqq b\) で \(f(x)\geqq 0\) であるとします。\(a\leqq t\leqq b\) を満たす \(t\) に対して、<strong>\(y=f(x)\) のグラフ、\(x\) 軸、2直線 \(x=a\)、\(x=t\) で囲まれた部分の面積</strong>を \(S(t)\) とします（図2）。</p>
+<figure>
+  <svg viewBox="0 0 400 240" role="img" aria-label="曲線 y=f(x) の下で、x=a から x=t までの部分に色を付け、その面積を S(t) とした図。x=b には点線が引いてある。">
+    <path d="M95 122.5 L98.4 120.8 L101.9 119.1 L105.3 117.4 L108.8 115.7 L112.2 114.1 L115.6 112.5 L119.1 110.9 L122.5 109.4 L125.9 107.9 L129.4 106.4 L132.8 104.9 L136.2 103.5 L139.7 102.1 L143.1 100.7 L146.6 99.3 L150 98 L153.4 96.7 L156.9 95.4 L160.3 94.2 L163.8 93 L167.2 91.8 L170.6 90.6 L174.1 89.5 L177.5 88.4 L180.9 87.3 L184.4 86.2 L187.8 85.2 L191.2 84.2 L194.7 83.2 L198.1 82.3 L201.6 81.4 L205 80.5 L208.4 79.6 L211.9 78.8 L215.3 78 L218.8 77.2 L222.2 76.5 L225.6 75.7 L229.1 75 L232.5 74.4 L232.5 210 L95 210 Z" fill="#1f5fbf" fill-opacity="0.2" stroke="#1f5fbf" stroke-width="1"/>
+    <line x1="30" y1="210" x2="392" y2="210" stroke="currentColor"/>
+    <line x1="40" y1="222" x2="40" y2="16" stroke="currentColor"/>
+    <path d="M56.5 143.8 L61.9 140.6 L67.3 137.5 L72.7 134.4 L78.1 131.4 L83.5 128.5 L89 125.6 L94.4 122.8 L99.8 120.1 L105.2 117.4 L110.6 114.8 L116 112.3 L121.4 109.9 L126.8 107.5 L132.2 105.2 L137.6 102.9 L143 100.7 L148.4 98.6 L153.8 96.5 L159.3 94.6 L164.7 92.6 L170.1 90.8 L175.5 89 L180.9 87.3 L186.3 85.7 L191.7 84.1 L197.1 82.6 L202.5 81.1 L207.9 79.8 L213.3 78.5 L218.8 77.2 L224.2 76 L229.6 74.9 L235 73.9 L240.4 72.9 L245.8 72 L251.2 71.2 L256.6 70.4 L262 69.7 L267.4 69.1 L272.8 68.6 L278.2 68.1 L283.6 67.6 L289.1 67.3 L294.5 67 L299.9 66.8 L305.3 66.6 L310.7 66.5 L316.1 66.5 L321.5 66.5 L326.9 66.7 L332.3 66.8 L337.7 67.1 L343.1 67.4 L348.6 67.8 L354 68.3 L359.4 68.8 L364.8 69.4 L370.2 70 L375.6 70.7 L381 71.5" fill="none" stroke="currentColor" stroke-width="2"/>
+    <line x1="342.5" y1="210" x2="342.5" y2="67.4" stroke="currentColor" stroke-dasharray="5 4"/>
+    <text x="91" y="227" font-size="13" fill="currentColor">a</text>
+    <text x="229" y="227" font-size="13" fill="currentColor">t</text>
+    <text x="339" y="227" font-size="13" fill="currentColor">b</text>
+    <text x="28" y="226" font-size="13" fill="currentColor">O</text>
+    <text x="384" y="226" font-size="13" fill="currentColor">x</text>
+    <text x="45" y="22" font-size="13" fill="currentColor">y</text>
+    <text x="146" y="165" font-size="15" fill="currentColor">S(t)</text>
+    <text x="300" y="52" font-size="13" fill="currentColor">y＝f(x)</text>
+    <text x="240" y="196" font-size="12" fill="currentColor">← t を動かすと S(t) が変わる</text>
+  </svg>
+  <figcaption>図2　面積 \(S(t)\)（曲線は学習用の模式図）。左端 \(x=a\) は固定し、右端 \(x=t\) を動かす。\(S(t)\) は \(t\) の関数で、\(S(a)=0\)。</figcaption>
+</figure>
+<p>右端 \(t\) を決めると面積が1つに決まるので、\(S(t)\) は \(t\) の関数です（\(t\) を右へ動かすと面積は増えます）。また、\(t=a\) のときは幅が 0 なので \(S(a)=0\) です。この関数 \(S(t)\) を微分すると何になるかを調べます。</p>
+
+<h3>具体例で確かめる（\(a=0\) の場合）</h3>
+<p>グラフが直線なら、\(S(t)\) は長方形・三角形・台形の面積の公式で求められます。</p>
+<div class="table-wrap"><table>
+  <tr><th>\(f(x)\)</th><th>囲まれた図形</th><th>面積 \(S(t)\)</th><th>\(S'(t)\)</th></tr>
+  <tr><td>\(2\)</td><td>縦 2、横 \(t\) の長方形</td><td>\(2t\)</td><td>\(2\)</td></tr>
+  <tr><td>\(2x\)</td><td>底辺 \(t\)、高さ \(2t\) の三角形</td><td>\(\frac{1}{2}\cdot t\cdot 2t=t^2\)</td><td>\(2t\)</td></tr>
+  <tr><td>\(x+1\)</td><td>上底 1、下底 \(t+1\)、高さ \(t\) の台形（図3）</td><td>\(\frac{1}{2}\{1+(t+1)\}t=\frac{1}{2}t^2+t\)</td><td>\(t+1\)</td></tr>
+</table></div>
+<figure>
+  <svg viewBox="0 0 320 230" role="img" aria-label="直線 y=x+1、x 軸、y 軸、直線 x=t で囲まれた台形。左の辺の長さは 1、右の辺の長さは t+1。">
+    <polygon points="40,200 40,155 200,65 200,200" fill="#1f5fbf" fill-opacity="0.2" stroke="#1f5fbf"/>
+    <line x1="30" y1="200" x2="302" y2="200" stroke="currentColor"/>
+    <line x1="40" y1="212" x2="40" y2="12" stroke="currentColor"/>
+    <line x1="16" y1="168.5" x2="280" y2="20" stroke="currentColor" stroke-width="2"/>
+    <text x="28" y="214" font-size="13" fill="currentColor">O</text>
+    <text x="196" y="216" font-size="13" fill="currentColor">t</text>
+    <text x="294" y="216" font-size="13" fill="currentColor">x</text>
+    <text x="45" y="18" font-size="13" fill="currentColor">y</text>
+    <text x="46" y="183" font-size="13" fill="currentColor">1</text>
+    <text x="206" y="138" font-size="13" fill="currentColor">t＋1</text>
+    <text x="104" y="172" font-size="14" fill="currentColor">S(t)</text>
+    <text x="240" y="80" font-size="13" fill="currentColor">y＝x＋1</text>
+  </svg>
+  <figcaption>図3　\(f(x)=x+1\) のときの \(S(t)\)（台形。縦と横の目盛りの幅が異なる模式図）。\(S(t)=\frac{1}{2}t^2+t\) を微分すると \(t+1=f(t)\)。</figcaption>
+</figure>
+<p>どの場合も、<strong>\(S'(t)\) は \(f(t)\) と一致</strong>しています。これは偶然でしょうか。</p>
+
+<h3>一般の場合：細い帯を長方形ではさむ</h3>
+<p>\(h&gt;0\) とし、\(t\) が \(t+h\) まで増えたときの面積の増加を \(\Delta S=S(t+h)-S(t)\) とします。\(\Delta S\) は、\(t\leqq x\leqq t+h\) の部分の<strong>細い帯の面積</strong>です。</p>
+<p>この区間で \(f(x)\) が増加しているとすると、帯は「高さ \(f(t)\)、幅 \(h\) の長方形」を含み、「高さ \(f(t+h)\)、幅 \(h\) の長方形」に含まれます（下の操作できる図の実線の枠と点線の枠）。したがって</p>
+$$ f(t)\,h\leqq \Delta S\leqq f(t+h)\,h $$
+<p>\(h&gt;0\) で各辺を割ると</p>
+$$ f(t)\leqq \frac{S(t+h)-S(t)}{h}\leqq f(t+h) $$
+<p>\(h\) を 0 に近づけると、右端の \(f(t+h)\) は \(f(t)\) に近づきます。間にはさまれた \(\frac{S(t+h)-S(t)}{h}\) も \(f(t)\) に近づきます（補足：両側からはさまれた量の極限。数学Ⅱでは、この極限を図や下の操作できる図で直観的に確かめて使います）。\(h&lt;0\) のときも、帯 \(t+h\leqq x\leqq t\) で同じように考えると同じ結論になります。よって</p>
+$$ S'(t)=\lim_{h\to 0}\frac{S(t+h)-S(t)}{h}=f(t) $$
+<p class="small">\(f(x)\) が減少している区間では不等号の向きが逆（\(f(t+h)h\leqq\Delta S\leqq f(t)h\)）になるだけで、同じ結論になります。増加と減少が入れかわる区間でも、帯の中での \(f(x)\) の最小値と最大値ではさめば同じように考えられます。</p>
+
+<div class="widget" id="w-strip">
+  <p><strong>操作してみよう</strong>　\(f(x)=\frac{1}{2}x^2+1\)、\(a=0\) のとき（\(S(t)=\frac{t^3}{6}+t\)）。\(h\) を小さくすると、\(\Delta S\div h\) が \(f(t)\) に近づく様子を見よう。</p>
+  <div class="ctrl">
+    <label for="w-t">\(t\) の値：<output id="w-t-out">1.0</output></label>
+    <input type="range" id="w-t" min="0.2" max="2.2" step="0.1" value="1">
+    <label for="w-h">帯の幅 \(h\)：<output id="w-h-out">0.5</output></label>
+    <input type="range" id="w-h" min="0" max="5" step="1" value="1" aria-label="帯の幅 h（1、0.5、0.2、0.1、0.01、0.001）">
+  </div>
+  <svg id="w-svg" viewBox="0 0 420 300" role="img" aria-label="y=x の2乗の半分に1を加えた曲線の下で、0 から t までの面積 S(t) と、t から t+h までの細い帯を示す図。帯を内側の長方形（高さ f(t)）と外側の長方形（高さ f(t+h)）ではさんでいる。">
+    <path id="w-area" fill="#1f5fbf" fill-opacity="0.18"/>
+    <path id="w-band" fill="#b7791f" fill-opacity="0.4"/>
+    <rect id="w-lo" fill="none" stroke="#1e8e5a" stroke-width="2"/>
+    <rect id="w-hi" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="5 3"/>
+    <line x1="30" y1="272" x2="414" y2="272" stroke="currentColor"/>
+    <line x1="40" y1="284" x2="40" y2="18" stroke="currentColor"/>
+    <path id="w-curve" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="28" y="288" font-size="13" fill="currentColor">O</text>
+    <text x="406" y="288" font-size="13" fill="currentColor">x</text>
+    <text x="45" y="24" font-size="13" fill="currentColor">y</text>
+    <text id="w-tl" y="288" font-size="13" fill="currentColor">t</text>
+    <text x="60" y="36" font-size="12" fill="#1e8e5a">実線の枠：内側の長方形（高さ f(t)）</text>
+    <text x="60" y="54" font-size="12" fill="#c0392b">点線の枠：外側の長方形（高さ f(t＋h)）</text>
+    <text x="60" y="72" font-size="12" fill="currentColor">濃い色の帯：ΔS＝S(t＋h)−S(t)</text>
+  </svg>
+  <div class="table-wrap"><table class="readout">
+    <tr><th>量</th><th>値</th></tr>
+    <tr><td>内側の長方形 \(f(t)\,h\)</td><td id="w-v-lo"></td></tr>
+    <tr><td>帯の面積 \(\Delta S=S(t+h)-S(t)\)</td><td id="w-v-ds"></td></tr>
+    <tr><td>外側の長方形 \(f(t+h)\,h\)</td><td id="w-v-hi"></td></tr>
+    <tr><td>\(\Delta S\div h\)</td><td id="w-v-q"></td></tr>
+    <tr><td>\(f(t)\)</td><td id="w-v-f"></td></tr>
+  </table></div>
+</div>
+<p>たとえば \(t=1\)（\(f(1)=1.5\)）では、\(h=0.1\)、\(0.01\)、\(0.001\) のとき \(\Delta S\div h\) は順に \(1.55167\)、\(1.50502\)、\(1.50050\)（小数第6位を四捨五入）となり、\(f(1)=1.5\) に近づいていきます。</p>
+<div class="box point"><p class="box-title">\(S'(t)=f(t)\) の意味</p><p>面積 \(S(t)\) の増え方の速さ（\(t\) についての変化率）は、そのときの右端の高さ \(f(t)\) に等しい。細い帯は、幅が小さいほど「高さ \(f(t)\) の長方形」に近づくからです。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>\(S(t)\) の変数は \(t\) で、\(x\) は図形をかくための横軸の文字です。\(S'(t)=f(t)\) は「\(S\) を \(t\) で微分すると、\(f(x)\) の \(x\) に \(t\) を代入した値になる」という意味です。\(S(t)\) を \(x\) で微分する、\(S'(t)=f(x)\) と書く、などと混同しないようにしましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="定積分は面積を表す"><span class="num">5</span>定積分は面積を表す</h2>
+<p>「4」の結果 \(S'(t)=f(t)\) は、「\(S(t)\) は \(f(t)\) の不定積分の1つである」ということです。ここから「3」で定めた定積分とつながります。</p>
+<div class="box example worked">
+  <p class="box-title">導き方（\(S(b)=F(b)-F(a)\)）</p>
+  <p>\(f(x)\) の不定積分の1つを \(F(x)\) とします。面積 \(S(b)\) を \(F\) で表しましょう。</p>
+  <div class="step">ステップ1：\(S(t)\) も \(F(t)\) も \(f(t)\) の不定積分なので、差は定数（確認3）。\(S(t)=F(t)+C\) と表せる。</div>
+  <div class="step">ステップ2：\(t=a\) のとき \(S(a)=0\) だから \(0=F(a)+C\)、つまり \(C=-F(a)\)。よって \(S(t)=F(t)-F(a)\)。</div>
+  <div class="step">ステップ3：\(t=b\) とすると、求める面積は \(S(b)=F(b)-F(a)=\int_a^b f(x)\,dx\)。</div>
+</div>
+<div class="box point"><p class="box-title">定積分と面積</p><p>区間 \(a\leqq x\leqq b\) で \(f(x)\geqq 0\) のとき、\(y=f(x)\) のグラフ、\(x\) 軸、2直線 \(x=a\)、\(x=b\) で囲まれた部分の面積 \(S\) は</p>
+$$ S=\int_a^b f(x)\,dx $$
+<p>また、\(x=t\) までの面積は \(S(t)=\int_a^t f(x)\,dx\) と表せます。</p></div>
+
+<h3>確かめと、導入の答え</h3>
+<p><strong>公式で求められる図形で確かめる。</strong>図3の台形で \(t=2\) とすると、台形の公式では \(\frac{1}{2}(1+3)\times 2=4\)。定積分では \(\int_0^2(x+1)\,dx=\Bigl[\frac{x^2}{2}+x\Bigr]_0^2=2+2=4\) で、一致します。</p>
+<p><strong>導入の答え。</strong>放物線 \(y=x^2\)、\(x\) 軸、直線 \(x=1\) で囲まれた部分の面積は</p>
+$$ \int_0^1 x^2\,dx=\Bigl[\frac{x^3}{3}\Bigr]_0^1=\frac{1}{3} $$
+<p>予想どおり三角形の \(\frac{1}{2}\) より小さく、ちょうど \(\frac{1}{3}\) でした。1辺1の正方形は、放物線によって面積 \(\frac{1}{3}\) と \(\frac{2}{3}\) の部分に分けられることになります。</p>
+
+<figure>
+  <svg viewBox="0 0 340 245" role="img" aria-label="放物線 y=−x の2乗+2x+3 と x 軸、y 軸、直線 x=2 で囲まれた部分に色を付けた図。頂点は (1, 4)。">
+    <path d="M104 78 L107 73.6 L110 69.4 L113 65.5 L116 61.8 L119 58.3 L122 55.1 L125 52 L128 49.2 L131 46.6 L134 44.2 L137 42.1 L140 40.2 L143 38.5 L146 37 L149 35.8 L152 34.8 L155 34 L158 33.4 L161 33.1 L164 33 L167 33.1 L170 33.4 L173 34 L176 34.8 L179 35.8 L182 37 L185 38.5 L188 40.2 L191 42.1 L194 44.2 L197 46.6 L200 49.2 L203 52 L206 55 L209 58.3 L212 61.8 L215 65.5 L218 69.4 L221 73.6 L224 78 L224 213 L104 213 Z" fill="#1f5fbf" fill-opacity="0.2" stroke="#1f5fbf" stroke-width="1"/>
+    <line x1="20" y1="213" x2="332" y2="213" stroke="currentColor"/>
+    <line x1="104" y1="240" x2="104" y2="12" stroke="currentColor"/>
+    <path d="M35 241 L39.3 227.4 L43.6 214.2 L47.9 201.5 L52.2 189.2 L56.5 177.5 L60.8 166.1 L65.1 155.3 L69.4 144.9 L73.7 134.9 L78 125.4 L82.3 116.4 L86.6 107.9 L90.9 99.8 L95.2 92.2 L99.5 85 L103.8 78.3 L108.1 72.1 L112.4 66.3 L116.7 61 L121 56.1 L125.3 51.7 L129.6 47.8 L133.9 44.3 L138.2 41.3 L142.5 38.8 L146.8 36.7 L151.1 35.1 L155.4 33.9 L159.7 33.2 L164 33 L168.3 33.2 L172.6 33.9 L176.9 35.1 L181.2 36.7 L185.5 38.8 L189.8 41.3 L194.1 44.3 L198.4 47.8 L202.7 51.7 L207 56.1 L211.3 61 L215.6 66.3 L219.9 72.1 L224.2 78.3 L228.5 85 L232.8 92.2 L237.1 99.8 L241.4 107.9 L245.7 116.4 L250 125.5 L254.3 134.9 L258.6 144.9 L262.9 155.3 L267.2 166.1 L271.5 177.5 L275.8 189.2 L280.1 201.5 L284.4 214.2 L288.7 227.4 L293 241" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="92" y="228" font-size="13" fill="currentColor">O</text>
+    <text x="220" y="229" font-size="13" fill="currentColor">2</text>
+    <text x="22" y="229" font-size="13" fill="currentColor">−1</text>
+    <text x="291" y="229" font-size="13" fill="currentColor">3</text>
+    <text x="326" y="229" font-size="13" fill="currentColor">x</text>
+    <text x="109" y="18" font-size="13" fill="currentColor">y</text>
+    <text x="92" y="82" font-size="13" fill="currentColor">3</text>
+    <text x="168" y="26" font-size="12" fill="currentColor">(1, 4)</text>
+    <text x="156" y="150" font-size="15" fill="currentColor">S</text>
+    <text x="232" y="66" font-size="12" fill="currentColor">y＝−x²＋2x＋3</text>
+  </svg>
+  <figcaption>図4　例題3の図形。区間 \(0\leqq x\leqq 2\) でグラフは \(x\) 軸より上にある。</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題3</p>
+  <p>放物線 \(y=-x^2+2x+3\)、\(x\) 軸、\(y\) 軸、直線 \(x=2\) で囲まれた部分の面積 \(S\) を求めなさい。</p>
+  <div class="step">ステップ1：区間で \(f(x)\geqq 0\) かを確かめる。\(-x^2+2x+3=-(x-1)^2+4\) だから、\(0\leqq x\leqq 2\) での最小値は端の \(x=0,\ 2\) のときの 3 で、常に正（図4）。</div>
+  <div class="step">ステップ2：面積を定積分で表す。\(S=\displaystyle\int_0^2(-x^2+2x+3)\,dx\)</div>
+  <div class="step">ステップ3：\(S=\Bigl[-\frac{x^3}{3}+x^2+3x\Bigr]_0^2=-\frac{8}{3}+4+6=\dfrac{22}{3}\)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：どんな定積分でも面積になる？</p><p>定積分がそのまま面積になるのは、区間で \(f(x)\geqq 0\) のときです。たとえば \(\int_0^1(x-1)\,dx=\Bigl[\frac{x^2}{2}-x\Bigr]_0^1=-\frac{1}{2}\) は負の数で、面積ではありません（\(0\leqq x\leqq 1\) で \(y=x-1\) のグラフは \(x\) 軸より下にあります）。だから例題3のステップ1のように、まずグラフが \(x\) 軸より上にあるかを確かめます。\(x\) 軸より下にある部分の面積の求め方は数Ⅱ-120 で学びます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>定積分</dt><dd>\(f(x)\) の不定積分の1つ \(F(x)\) を用いて定める値 \(F(b)-F(a)\)。記号 \(\int_a^b f(x)\,dx\) で表す。積分定数の選び方によらない1つの数。</dd>
+    <dt>下端・上端</dt><dd>定積分 \(\int_a^b f(x)\,dx\) の \(a\) を下端、\(b\) を上端という。</dd>
+    <dt>積分区間</dt><dd>\(a&lt;b\) のとき、定積分 \(\int_a^b f(x)\,dx\) の区間 \(a\leqq x\leqq b\)。</dd>
+    <dt>積分する</dt><dd>定積分を求めること。「\(f(x)\) を \(a\) から \(b\) まで積分する」という。</dd>
+    <dt>\(\Bigl[\,F(x)\,\Bigr]_a^b\)</dt><dd>\(F(b)-F(a)\) を表す記号。</dd>
+    <dt>面積 \(S(t)\)</dt><dd>この時間で、\(y=f(x)\)（\(f(x)\geqq 0\)）のグラフ、\(x\) 軸、2直線 \(x=a\)、\(x=t\) で囲まれた部分の面積を \(t\) の関数とみたもの。\(S(a)=0\)、\(S'(t)=f(t)\) を満たす。</dd>
+    <dt>不定積分・積分定数（既習）</dt><dd>\(F'(x)=f(x)\) のとき \(\int f(x)\,dx=F(x)+C\)。\(C\) を積分定数という（数Ⅱ-114）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>（O1）\(f(x)\) の不定積分の1つを \(F(x)\) として、\(\int_a^b f(x)\,dx=\Bigl[F(x)\Bigr]_a^b=F(b)-F(a)\) を定積分という。積分定数は打ち消し合うので、値は \(F\) の選び方によらない。計算は「上端の値 − 下端の値」を、かっこを付けて行う。</li>
+    <li>（O2）\(f(x)\geqq 0\) の区間で、\(x=a\) から \(x=t\) までの面積 \(S(t)\) は \(S'(t)=f(t)\) を満たす。理由は、細い帯の面積 \(\Delta S\) が \(f(t)h\) と \(f(t+h)h\) の間にはさまれ、\(h\to 0\) で \(\frac{\Delta S}{h}\to f(t)\) となるから。</li>
+    <li>（O3）\(S(t)\) は \(f(t)\) の不定積分の1つで \(S(a)=0\) だから \(S(t)=F(t)-F(a)\)。よって面積は \(\int_a^b f(x)\,dx\)。ただし定積分がそのまま面積になるのは \(f(x)\geqq 0\) のときで、まずグラフが \(x\) 軸より上にあるかを確かめる。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">定積分の定義</span>$$ \int_a^b f(x)\,dx=\Bigl[F(x)\Bigr]_a^b=F(b)-F(a) $$</div>
+  <div><span class="f-name">面積の関数の導関数（\(f(x)\geqq 0\)）</span>$$ S'(t)=f(t),\quad S(a)=0 $$</div>
+  <div><span class="f-name">定積分と面積（\(a\leqq x\leqq b\) で \(f(x)\geqq 0\)）</span>$$ S=\int_a^b f(x)\,dx $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>定積分 \(\int_1^2 3x^2\,dx\) の値はどれですか。</p>
+  <div class="choices"><button>\(8\)</button><button data-correct="true">\(7\)</button><button>\(21\)</button><button>\(-7\)</button></div>
+  <span class="result"></span>
+  <div class="explain">\(3x^2\) の不定積分の1つは \(x^3\) なので \(\Bigl[x^3\Bigr]_1^2=8-1=7\)。\(8\) は上端の値 \(F(2)\) だけで下端の値を引き忘れた誤り、\(21\) は不定積分を \(3x^3\) として \(24-3\) とした誤り（係数を3で割っていない）、\(-7\) は \(F(1)-F(2)\) と逆に引いた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="12">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>定積分 \(\int_0^3(2x+1)\,dx\) の値を求めなさい（半角の数字で入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">\(\Bigl[x^2+x\Bigr]_0^3=(9+3)-(0+0)=12\)。下端が 0 でも「下端の値を引く」手順は省略せずに確かめましょう（この場合は \(F(0)=0\)）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問3</span><span class="q-obj">O1</span></div>
+  <p>ゆいさんとけんさんが、定積分 \(\int_0^3 x^2\,dx\) を計算しています。</p>
+  <p>ゆい：「\(x^2\) の不定積分の1つとして \(\frac{x^3}{3}\) を使ったら、答えは 9 になったよ。」<br>けん：「ぼくは \(\frac{x^3}{3}+5\) を使ったんだ。答えが変わってしまうのかな。」</p>
+  <p>2人の会話について正しいものを選びなさい。</p>
+  <div class="choices">
+    <button>けんさんの方法では \(9+5=14\) になる。</button>
+    <button data-correct="true">けんさんの方法でも 9 になる。\(F(3)\) と \(F(0)\) の両方に 5 が加わり、引き算で打ち消し合うから。</button>
+    <button>けんさんの方法では \(9+10=19\) になる。</button>
+    <button>定積分では積分定数を必ず 0 にしなければ、正しい値が求められない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\(\Bigl(\frac{27}{3}+5\Bigr)-\Bigl(0+5\Bigr)=9\)。積分定数は上端の値にも下端の値にも同じだけ加わるので、差をとると消えます。「14」は下端の値を引き忘れた場合、「19」は下端で 5 を引くべきところを加えた場合の値です。積分定数を 0 にするのは計算を簡単にするためで、必ずそうしなければならないわけではありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>\(x\geqq 0\) で \(f(x)\geqq 0\) である関数 \(f(x)\) について、\(y=f(x)\) のグラフ、\(x\) 軸、\(y\) 軸、直線 \(x=t\)（\(t&gt;0\)）で囲まれた部分の面積が \(S(t)=t^3+2t\) でした。\(f(x)\) はどれですか。</p>
+  <div class="choices">
+    <button>\(f(x)=\frac{x^4}{4}+x^2\)</button>
+    <button>\(f(x)=6x\)</button>
+    <button data-correct="true">\(f(x)=3x^2+2\)</button>
+    <button>\(f(x)=x^3+2x\)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\(S'(t)=f(t)\) なので \(f(t)=3t^2+2\)、つまり \(f(x)=3x^2+2\)（\(S(0)=0\) も満たしています）。\(\frac{x^4}{4}+x^2\) は \(S\) を積分してしまった誤り、\(6x\) は2回微分した誤り、\(x^3+2x\) は面積の式をそのまま高さと取り違えた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>\(f(x)\geqq 0\) で、区間 \(t\leqq x\leqq t+h\)（\(h&gt;0\)）において \(f(x)\) が増加しているとき、\(\Delta S=S(t+h)-S(t)\) について常に成り立つものはどれですか。</p>
+  <div class="choices">
+    <button>\(f(t+h)h\leqq\Delta S\leqq f(t)h\)</button>
+    <button>\(\Delta S=f(t)h\)</button>
+    <button>\(\Delta S\leqq f(t)h\)</button>
+    <button data-correct="true">\(f(t)h\leqq\Delta S\leqq f(t+h)h\)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">増加しているので、帯の中の高さは左端の \(f(t)\) 以上、右端の \(f(t+h)\) 以下です。帯は高さ \(f(t)\) の長方形を含み、高さ \(f(t+h)\) の長方形に含まれます。\(f(t+h)h\leqq\Delta S\leqq f(t)h\) は減少している場合の不等式です。\(\Delta S=f(t)h\) は、帯の上側が曲線なので一般には成り立ちません（\(h\) が小さいとき近い値になるだけです）。\(\Delta S\leqq f(t)h\) は不等号の向きが逆で、帯は高さ \(f(t)\) の長方形を含むので \(\Delta S\geqq f(t)h\) です。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>放物線 \(y=x^2+1\)、\(x\) 軸、2直線 \(x=-1\)、\(x=2\) で囲まれた部分の面積を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">\(x^2+1&gt;0\) なのでグラフは常に \(x\) 軸より上にあり、面積は定積分に等しくなります。\(\Bigl[\frac{x^3}{3}+x\Bigr]_{-1}^{2}=\Bigl(\frac{8}{3}+2\Bigr)-\Bigl(-\frac{1}{3}-1\Bigr)=\frac{14}{3}+\frac{4}{3}=6\)。下端の値 \(-\frac{4}{3}\) を引くときの符号に注意しましょう。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>\(a&lt;b\) とします。定積分 \(\int_a^b f(x)\,dx\) が、\(y=f(x)\) のグラフ、\(x\) 軸、2直線 \(x=a\)、\(x=b\) で囲まれた部分の面積に等しいといえるのは、どのような場合ですか。</p>
+  <div class="choices">
+    <button>\(f(a)\geqq 0\) かつ \(f(b)\geqq 0\) のとき</button>
+    <button>定積分の値が正のとき</button>
+    <button data-correct="true">区間 \(a\leqq x\leqq b\) で常に \(f(x)\geqq 0\) のとき</button>
+    <button>\(f(x)\) が二次関数のとき</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">面積が \(S(b)=F(b)-F(a)\) になることは、区間全体で \(f(x)\geqq 0\) として導きました。両端だけ正でも途中で負になることがあります（例：\(f(x)=x^2-2x+\frac{1}{2}\) は \(f(0)=f(2)=\frac{1}{2}\) ですが \(f(1)=-\frac{1}{2}\) で、\(\int_0^2 f(x)\,dx=-\frac{1}{3}\)）。値が正でも面積とは限りません（例：\(\int_0^3(x-1)\,dx=\frac{3}{2}\) ですが、囲まれた部分の面積は \(\frac{1}{2}+2=\frac{5}{2}\)）。関数の種類は関係ありません。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2・O3</span></div>
+  <p>\(t&gt;0\) とし、放物線 \(y=x^2\)、\(x\) 軸、直線 \(x=t\) で囲まれた部分の面積を \(S(t)\) とします（\(S(0)=0\) とします）。</p>
+  <p>(1) \(h&gt;0\) のとき、\(t^2h\leqq S(t+h)-S(t)\leqq (t+h)^2h\) が成り立つ理由を、図形を用いて説明しなさい。<br>(2) (1) を用いて \(S'(t)=t^2\) を示しなさい。ただし、\(h&lt;0\) の場合も同様に示せることは認めてよいものとします。<br>(3) \(S(t)\) を求め、導入の問いの答え \(S(1)\) を求めなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) \(S(t+h)-S(t)\) は、\(t\leqq x\leqq t+h\) の部分（放物線の下の細い帯）の面積である。\(x\geqq 0\) で \(y=x^2\) は増加するから、この区間で \(t^2\leqq x^2\leqq (t+h)^2\)。よって帯は、横 \(h\)・縦 \(t^2\) の長方形を含み、横 \(h\)・縦 \((t+h)^2\) の長方形に含まれる。面積を比べて \(t^2h\leqq S(t+h)-S(t)\leqq (t+h)^2h\)。</p>
+    <p>(2) \(h&gt;0\) で割ると \(t^2\leqq\dfrac{S(t+h)-S(t)}{h}\leqq (t+h)^2\)。\(h\) を正の値のまま 0 に近づけると \((t+h)^2\to t^2\) だから、間にはさまれた \(\dfrac{S(t+h)-S(t)}{h}\) も \(t^2\) に近づく。\(h&lt;0\) の場合も同様なので \(S'(t)=\displaystyle\lim_{h\to 0}\frac{S(t+h)-S(t)}{h}=t^2\)。</p>
+    <p>(3) \(S(t)\) は \(t^2\) の不定積分の1つだから \(S(t)=\frac{t^3}{3}+C\)。\(S(0)=0\) より \(C=0\)。よって \(S(t)=\frac{t^3}{3}\)、\(S(1)=\frac{1}{3}\)。</p>
+    <p><strong>採点の観点</strong>　(1) 関数が増加すること（区間での高さの範囲）と、長方形との包含関係の両方を述べている。(2) \(h&gt;0\) で割って不等号の向きを保ち、両側が同じ値に近づくことから結論している。(3) \(S(0)=0\) を用いて積分定数を決めている。</p>
+  </div>
+  <div class="explain">(1) で「帯 ≒ 長方形」とだけ書くのは不十分です。等号ではなく不等式ではさむことが、(2) で極限を決める根拠になります。(3) で \(C\) を決めずに \(S(t)=\frac{t^3}{3}+C\) のままにする誤りが多いので、\(S(0)=0\)（幅 0 の面積）を必ず使いましょう。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="input" id="q9" data-accept="3|a=3">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O3</span></div>
+  <p>放物線 \(y=x^2+1\)、\(x\) 軸、\(y\) 軸、直線 \(x=a\)（\(a&gt;0\)）で囲まれた部分の面積が 12 となるような \(a\) の値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">\(x^2+1&gt;0\) なので、面積は \(\int_0^a(x^2+1)\,dx=\frac{a^3}{3}+a\)。これが 12 に等しいから \(a^3+3a-36=0\)。\(a=3\) を代入すると \(27+9-36=0\) なので、因数定理（数Ⅱ-020）より \((a-3)(a^2+3a+12)=0\)。\(a^2+3a+12=\bigl(a+\frac{3}{2}\bigr)^2+\frac{39}{4}&gt;0\) だから、\(a=3\)。面積を \(a\) の式で表す（O3）ことと、定積分の計算（O1）、高次方程式の解き方（数Ⅱ-021）を組み合わせる問題です。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（数学②『数学Ⅱ，数学Ｂ，数学Ｃ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、数学②『数学Ⅱ，数学Ｂ，数学Ｃ』（70分・100点）について、「出題範囲について特記がない場合，出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲とする」としています。特記は数学Ｂ・数学Ｃの4項目から3項目を選択解答することについてだけで、数学Ⅱには特記がありません。したがって、数学Ⅱ「微分・積分の考え」に含まれるこの時間の内容は出題範囲に含まれます。</p>
+  <p>同年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、題材の例として「教科書等では扱われていない数学の定理等を既習の知識等を活用しながら導くことのできるような題材」を挙げています。この時間のように、既習の事実（導関数の定義、不定積分）を組み合わせて新しい事実（定積分が面積を表すこと）を導く考え方は、この方針の趣旨とつながります。なお、これは出題の形式や頻度を示すものではありません。</p>
+  <p>個別試験（各大学の試験）は、学習内容マップでは大学を指定していません（空欄）。出題範囲は、志望する大学の入学者選抜要項で確かめましょう。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">定積分の計算（数Ⅱ-117）</p>
+  <p>次の時間は、この時間に定めた \(F(b)-F(a)\) をもとに、定積分の性質（定数倍・和・差の性質、上端と下端を入れかえると符号が変わること、積分区間をつなげられることなど）を導き、計算を工夫します。この時間では、それらの性質は使わずに、定義どおり「上端の値 − 下端の値」で計算しました。</p>
+  <p>その後、面積 \(S(t)\) の考えを面積から切り離して「\(\int_a^x f(t)\,dt\) を \(x\) で微分すると \(f(x)\) になる」ことを確かめ（数Ⅱ-118）、細い長方形の面積の和が一定の値に近づく様子から定積分の意味を見直し（数Ⅱ-119）、グラフが \(x\) 軸の下側にある場合や2つのグラフの間の面積を求めます（数Ⅱ-120・121）。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅱ-115　不定積分の計算</div>
+  <div><span class="label">次の時間</span>数Ⅱ-117　定積分の計算</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_2/数Ⅱ-116「定積分の定義と面積」（学習指導要領 数学Ⅱ (5)ア(ウ)・イ(ウ)、解説 p.66）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学 第2款 第2 数学Ⅱ（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.64-66（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf　… 「区間a≦x≦b で f(x)≧0 のとき，…面積を S(t) とすると，S′(t)=f(t) であることが分かり，定積分が面積を表していることを導くことができる」（p.66）、内容の取扱い(1)（積分は二次までの関数を中心、極限は直観的に理解）</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項（大学入試センター）・令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針（大学入試センター）</li>
+  </ul>
+  <p>作成：2026-09-29　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。計算の答えは tools/worker/lesson_hs_math_2_数Ⅱ-116_verify.py で検算しています。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  const svg = document.getElementById("w-svg");
+  if (!svg) return;
+  const f = (x) => x * x / 2 + 1;
+  const S = (t) => t * t * t / 6 + t;
+  const X = (x) => 40 + 115 * x;
+  const Y = (y) => 272 - 38 * y;
+  const H = [1, 0.5, 0.2, 0.1, 0.01, 0.001];
+  const tIn = document.getElementById("w-t");
+  const hIn = document.getElementById("w-h");
+  const el = (id) => document.getElementById(id);
+  const r1 = (v) => v.toFixed(1);
+  function curve(x0, x1, n) {
+    let d = "";
+    for (let i = 0; i <= n; i++) {
+      const x = x0 + (x1 - x0) * i / n;
+      d += (i ? " L" : "M") + r1(X(x)) + " " + r1(Y(f(x)));
+    }
+    return d;
+  }
+  function region(x0, x1, n) {
+    return curve(x0, x1, n) + " L" + r1(X(x1)) + " " + r1(Y(0)) + " L" + r1(X(x0)) + " " + r1(Y(0)) + " Z";
+  }
+  function setRect(id, x, w, top) {
+    const r = el(id);
+    r.setAttribute("x", r1(X(x)));
+    r.setAttribute("width", Math.max(115 * w, 0.6).toFixed(2));
+    r.setAttribute("y", r1(Y(top)));
+    r.setAttribute("height", r1(38 * top));
+  }
+  el("w-curve").setAttribute("d", curve(0, 3.2, 64));
+  function draw() {
+    const t = parseFloat(tIn.value);
+    const h = H[parseInt(hIn.value, 10)];
+    el("w-t-out").textContent = t.toFixed(1);
+    el("w-h-out").textContent = String(h);
+    el("w-area").setAttribute("d", region(0, t, 60));
+    el("w-band").setAttribute("d", region(t, t + h, 20));
+    setRect("w-lo", t, h, f(t));
+    setRect("w-hi", t, h, f(t + h));
+    const tl = el("w-tl");
+    tl.setAttribute("x", r1(X(t) - 3));
+    const dS = S(t + h) - S(t);
+    el("w-v-lo").textContent = (f(t) * h).toFixed(6);
+    el("w-v-ds").textContent = dS.toFixed(6);
+    el("w-v-hi").textContent = (f(t + h) * h).toFixed(6);
+    el("w-v-q").textContent = (dS / h).toFixed(5);
+    el("w-v-f").textContent = f(t).toFixed(5);
+  }
+  tIn.addEventListener("input", draw);
+  hIn.addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_2/数Ⅱ-116",
+  "map": "hs_math_2",
+  "rid": "数Ⅱ-116",
+  "title": "定積分の定義と面積",
+  "subject": "数学Ⅱ",
+  "unit": {
+    "ref": "hs_math_2:Ⅱ-5",
+    "title": "微分・積分の考え"
+  },
+  "exam": {
+    "共通テスト": "○",
+    "個別試験": ""
+  },
+  "basis": [
+    "(5)ア(ウ)",
+    "(5)イ(ウ)"
+  ],
+  "kaisetsu_page": "66",
+  "objectives": [
+    {
+      "id": "O1",
+      "text": "不定積分の1つ \\(F(x)\\) を用いて定積分 \\(\\int_a^b f(x)dx=F(b)-F(a)\\) を定め、その値が積分定数の選び方によらないことを説明して、定積分の値を求めることができる。",
+      "from": "f(x) の不定積分の1つを F(x) とするとき ∫ₐᵇ f(x)dx=F(b)−F(a) と定積分を定め",
+      "sections": [
+        "sec-1"
+      ],
+      "checks": [
+        "q1",
+        "q2",
+        "q3",
+        "q9"
+      ]
+    },
+    {
+      "id": "O2",
+      "text": "\\(f(x)\\geqq 0\\) の区間で、グラフと \\(x\\) 軸、2直線 \\(x=a\\)、\\(x=t\\) で囲まれた部分の面積 \\(S(t)\\) について、\\(S'(t)=f(t)\\) が成り立つ理由を、細い帯を長方形ではさみ、幅を 0 に近づける様子（極限の直観的な理解）から説明できる。",
+      "from": "f(x)≧0 の区間で面積 S(t) が S′(t)=f(t) を満たす」と「S′(t)=f(t) を導く際に必要となる極限は、直観的に理解する",
+      "sections": [
+        "sec-2"
+      ],
+      "checks": [
+        "q4",
+        "q5",
+        "q8"
+      ]
+    },
+    {
+      "id": "O3",
+      "text": "\\(S'(t)=f(t)\\) から \\(S(b)=F(b)-F(a)\\) を導いて定積分が面積を表すことを理解し、\\(f(x)\\geqq 0\\) のときのグラフと \\(x\\) 軸、2直線で囲まれた部分の面積を定積分で求めることができる。",
+      "from": "ことから、定積分が面積を表すことを理解する",
+      "sections": [
+        "sec-3"
+      ],
+      "checks": [
+        "q6",
+        "q7",
+        "q8",
+        "q9"
+      ]
+    }
+  ],
+  "key_terms": [
+    {
+      "term": "定積分",
+      "where": "sec-1"
+    },
+    {
+      "term": "下端",
+      "where": "sec-1"
+    },
+    {
+      "term": "上端",
+      "where": "sec-1"
+    },
+    {
+      "term": "積分区間",
+      "where": "sec-1"
+    },
+    {
+      "term": "面積 S(t)",
+      "where": "sec-2"
+    }
+  ],
+  "prerequisites": [
+    {
+      "concept": "不定積分の意味と積分定数（F′(x)=f(x) のとき ∫f(x)dx=F(x)+C）、導関数が等しい2つの関数の差は定数であること",
+      "taught_in": [
+        "hs_math_2/数Ⅱ-114"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "定数倍・和・差の不定積分の計算（二次までの多項式関数）",
+      "taught_in": [
+        "hs_math_2/数Ⅱ-115"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "極限値の直観的な理解と記号 lim、導関数の定義",
+      "taught_in": [
+        "hs_math_2/数Ⅱ-098",
+        "hs_math_2/数Ⅱ-100"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "関数の増加・減少（増加する区間では t≦x≦t+h で f(t)≦f(x)≦f(t+h)）",
+      "taught_in": [
+        "hs_math_2/数Ⅱ-104"
+      ],
+      "where": "sec-2"
+    },
+    {
+      "concept": "二次関数の平方完成と値の範囲（区間でグラフが x 軸より上にあるかの確認）",
+      "taught_in": [
+        "hs_math_1a/数Ⅰ-034",
+        "hs_math_1a/数Ⅰ-048"
+      ],
+      "where": "sec-3"
+    },
+    {
+      "concept": "長方形・三角形・台形の面積の公式（小学校で学習。文字式で面積を表すことは中学1年）",
+      "taught_in": [
+        "jhs_math/中1-029"
+      ],
+      "where": "sec-2"
+    },
+    {
+      "concept": "因数定理と高次方程式の解法（確認問題 問9）",
+      "taught_in": [
+        "hs_math_2/数Ⅱ-020",
+        "hs_math_2/数Ⅱ-021"
+      ],
+      "where": "quiz"
+    },
+    {
+      "concept": "両側からはさまれた量の極限（m≦A≦M で m、M が同じ値に近づけば A もその値に近づく）。数学Ⅱでは直観的に扱う（はさみうちの原理は数Ⅲ-012）",
+      "taught_in": [
+        "hs_math_3/数Ⅲ-012"
+      ],
+      "gap": true,
+      "where": "supp-1"
+    }
+  ],
+  "out_of_scope": [
+    "定積分の性質（定数倍・和・差、上端と下端の入れかえ、積分区間の分割）（数Ⅱ-117）",
+    "x の関数 ∫ₐˣ f(t)dt の微分と定積分で表された関数（数Ⅱ-118）",
+    "区分求積法の考えによる定積分の意味（数Ⅱ-119）",
+    "グラフが x 軸の下側にある部分の面積、放物線と x 軸で囲まれた図形の面積（数Ⅱ-120）",
+    "2つのグラフで囲まれた図形の面積（数Ⅱ-121）",
+    "三次以上の関数や指数・三角関数などの積分（数学Ⅲ）"
+  ],
+  "selection_reason": "数学Ⅱで最も作るのが難しいコマとして選んだ。①抽象度：無関係に見える「微分の逆演算（不定積分）」と「面積」を S′(t)=f(t) で結び付ける論証で、変数 t と x の混同、定積分を常に面積とみなす誤解が生じやすい。②前提：極限（数Ⅱ-098）、導関数（数Ⅱ-100）、増加（数Ⅱ-104）、不定積分（数Ⅱ-114・115）と単元内の広い範囲に加え、はさみうちの考えが地図のどの行にもない（はざま）。③図・操作：帯の面積を長方形ではさむ様子は、t と h を動かす図がないと理解しにくい。④正確さ：F(b)−F(a) の符号・かっこ、f(x)≧0 の条件。⑤入試：共通テスト数学②の出題範囲（○）で、面積の問題の土台。比べた候補：数Ⅱ-098「極限値と微分係数」（抽象的だが前提が平均変化率に限られる）、数Ⅱ-110「方程式の実数解の個数」（入試で頻出だが既習の手順の組合せで、新しい概念が少ない）。",
+  "sources": [
+    {
+      "name": "高等学校学習指導要領（平成30年告示）第2章第4節 数学 第2款 第2 数学Ⅱ",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf",
+      "use": "内容(5)ア(ウ)・イ(ウ)、内容の取扱い(1)、用語・記号（極限値、lim）"
+    },
+    {
+      "name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf",
+      "use": "p.64-66：面積 S(t) と S′(t)=f(t) による定積分の導入、扱う関数の程度、区分求積法の位置づけ"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項",
+      "publisher": "独立行政法人大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf",
+      "use": "数学②の出題範囲と試験時間・配点"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針",
+      "publisher": "独立行政法人大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf",
+      "use": "数学の問題作成の方針（入試へのつながり）"
+    }
+  ],
+  "version": "1.0",
+  "generated": "2026-09-29"
+}
+</script>
+</body>
+</html>

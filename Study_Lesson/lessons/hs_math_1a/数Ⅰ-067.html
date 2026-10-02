@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三角比の練習｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>図形と計量</span><span>数Ⅰ-067</span></div>
+  <h1>三角比の練習</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">演習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">三角比の問題は、「定義から値を求める」「90°−A・180°−A で角を直す」「相互関係で別の値を求める」「値から角を求める」のどれかに当たることがほとんどです。問題を見て型を見分け、符号と答えの個数に注意して、計算を確実にしましょう。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>直角三角形の辺の比や半円上の点の座標から、0°〜180° の角の三角比の値を正しく求めることができる（型A）。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>\( 90^\circ-A \)・\( 180^\circ-A \) の関係を用いて、三角比を鋭角や 45° 以下の角の三角比に直し、値や式の値を求めることができる（型B）。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>相互関係を用いて、三角比の値の1つから他の値を、\( \theta \) が鋭角か鈍角かに注意して求めることができる（型C）。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>\( 0^\circ\leqq\theta\leqq180^\circ \) で三角比の値を満たす角を、半円上の点の位置からすべて求めることができる（型D）。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-066）</span>三角比の値と角</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-067）</span>三角比の練習</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-068）</span>正弦定理</div>
+</div>
+<p class="small">範囲：数Ⅰ-057〜066（三角比の定義、三角比表、相互関係、\( 90^\circ-A \)・\( 180^\circ-A \) の三角比、鈍角への拡張、三角比の値と角）。新しい内容は扱わず、学んだ型を見分けて使う練習をします。三角比で辺の長さを求める計算（数Ⅰ-060）と、正接で傾斜を比べること（数Ⅰ-057）は、この時間の型には入れていません（辺の長さの計算は、数Ⅰ-068 以降の三角形の計量や数Ⅰ-077 の測量で使います）。前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」「三平方の定理」。「型A〜型D」はこのページでの呼び方です。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：範囲の要点の総整理</h2>
+<p>この時間の範囲の要点を、学んだコマとともにまとめます。</p>
+<div class="formula-card">
+  <div><span class="f-name">定義（数Ⅰ-058・063）</span>
+    <p>\( \angle\mathrm{C}=90^\circ \)：\( \sin A=\dfrac{a}{c} \)、\( \cos A=\dfrac{b}{c} \)、\( \tan A=\dfrac{a}{b} \)<br>半径 \( \alpha \) の半円上の点 \( \mathrm{P}(x,\ y) \)、\( \angle\mathrm{AOP}=\theta \)：\( \sin\theta=\dfrac{y}{\alpha} \)、\( \cos\theta=\dfrac{x}{\alpha} \)、\( \tan\theta=\dfrac{y}{x} \)（\( \tan 90^\circ \) は定めない）</p></div>
+  <div><span class="f-name">相互関係（数Ⅰ-061・065）</span>
+    <p>関係1：\( \tan\theta=\dfrac{\sin\theta}{\cos\theta} \)<br>関係2：\( \sin^2\theta+\cos^2\theta=1 \)<br>関係3：\( 1+\tan^2\theta=\dfrac{1}{\cos^2\theta} \)</p></div>
+  <div><span class="f-name">90°−A（数Ⅰ-062、\( 0^\circ&lt;A&lt;90^\circ \)）</span>
+    <p>\( \sin(90^\circ-A)=\cos A \)<br>\( \cos(90^\circ-A)=\sin A \)<br>\( \tan(90^\circ-A)=\dfrac{1}{\tan A} \)</p></div>
+  <div><span class="f-name">180°−A（数Ⅰ-064）</span>
+    <p>\( \sin(180^\circ-A)=\sin A \)<br>\( \cos(180^\circ-A)=-\cos A \)<br>\( \tan(180^\circ-A)=-\tan A \)</p></div>
+  <div><span class="f-name">符号（数Ⅰ-063）</span>
+    <p>\( \sin\theta\geqq0 \)（いつも）<br>鋭角：\( \cos\theta&gt;0 \)、\( \tan\theta&gt;0 \)<br>鈍角：\( \cos\theta&lt;0 \)、\( \tan\theta&lt;0 \)</p></div>
+  <div><span class="f-name">値から角（数Ⅰ-066）</span>
+    <p>\( \sin\theta=k \)：直線 \( y=k \) との交点（\( 0&lt;k&lt;1 \) なら2つ）<br>\( \cos\theta=k \)：直線 \( x=k \) との交点（\( -1\leqq k\leqq1 \) なら1つ）<br>\( \tan\theta=k \)：\( \dfrac{y}{x}=k \) となる点（\( k\neq0 \) なら1つ）</p></div>
+</div>
+<div class="table-wrap">
+<table>
+  <tr><th>\( \theta \)</th><th>0°</th><th>30°</th><th>45°</th><th>60°</th><th>90°</th><th>120°</th><th>135°</th><th>150°</th><th>180°</th></tr>
+  <tr><th>\( \sin\theta \)</th><td>\( 0 \)</td><td>\( \dfrac{1}{2} \)</td><td>\( \dfrac{1}{\sqrt{2}} \)</td><td>\( \dfrac{\sqrt{3}}{2} \)</td><td>\( 1 \)</td><td>\( \dfrac{\sqrt{3}}{2} \)</td><td>\( \dfrac{1}{\sqrt{2}} \)</td><td>\( \dfrac{1}{2} \)</td><td>\( 0 \)</td></tr>
+  <tr><th>\( \cos\theta \)</th><td>\( 1 \)</td><td>\( \dfrac{\sqrt{3}}{2} \)</td><td>\( \dfrac{1}{\sqrt{2}} \)</td><td>\( \dfrac{1}{2} \)</td><td>\( 0 \)</td><td>\( -\dfrac{1}{2} \)</td><td>\( -\dfrac{1}{\sqrt{2}} \)</td><td>\( -\dfrac{\sqrt{3}}{2} \)</td><td>\( -1 \)</td></tr>
+  <tr><th>\( \tan\theta \)</th><td>\( 0 \)</td><td>\( \dfrac{1}{\sqrt{3}} \)</td><td>\( 1 \)</td><td>\( \sqrt{3} \)</td><td>なし</td><td>\( -\sqrt{3} \)</td><td>\( -1 \)</td><td>\( -\dfrac{1}{\sqrt{3}} \)</td><td>\( 0 \)</td></tr>
+</table>
+</div>
+<p class="small">表1　主な角の三角比（数Ⅰ-058・063）。\( \dfrac{1}{\sqrt{2}}=\dfrac{\sqrt{2}}{2} \)、\( \dfrac{1}{\sqrt{3}}=\dfrac{\sqrt{3}}{3} \)。「なし」は値を定めないことを表す。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-062・064</span></div>
+  <p>\( \cos(90^\circ-A) \) と \( \cos(180^\circ-A) \) を表したものの組はどれですか（\( 0^\circ&lt;A&lt;90^\circ \)）。</p>
+  <div class="choices">
+    <button>\( \cos(90^\circ-A)=\cos A \)、\( \cos(180^\circ-A)=-\cos A \)</button>
+    <button data-correct="true">\( \cos(90^\circ-A)=\sin A \)、\( \cos(180^\circ-A)=-\cos A \)</button>
+    <button>\( \cos(90^\circ-A)=\sin A \)、\( \cos(180^\circ-A)=\cos A \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 90^\circ-A \) では sin と cos が入れかわり、\( 180^\circ-A \) では cos の符号が反対になります。1つ目は \( 90^\circ-A \) で入れかえ忘れ、3つ目は \( 180^\circ-A \) で符号を変え忘れています（\( A=30^\circ \) なら \( \cos 150^\circ=-\dfrac{\sqrt{3}}{2} \) で、\( \cos 30^\circ \) と符号が反対）。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-065</span></div>
+  <p>\( 0^\circ\leqq\theta\leqq180^\circ \) で、ある三角比の値から \( \cos\theta \) を求めると「正と負の2通り」になることがあるのは、どの値が分かっているときですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \sin\theta \)（\( 0&lt;\sin\theta&lt;1 \)）</button>
+    <button>\( \tan\theta \)（\( \tan\theta\neq0 \)）</button>
+    <button>どの値でも必ず2通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sin\theta \) は鋭角でも鈍角でも正なので、\( 0&lt;\sin\theta&lt;1 \) なら \( \theta \) は2つあり、\( \cos\theta \) は正と負の2通りです。\( \tan\theta \) が分かれば、その符号で鋭角か鈍角かが決まるので1通りです。「必ず2通り」は誤りで、\( \cos\theta \) から \( \sin\theta \) を求めると1通りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-066</span></div>
+  <p>\( 0^\circ\leqq\theta\leqq180^\circ \) で \( \cos\theta=k \)（\( -1\leqq k\leqq1 \)）を満たす \( \theta \) はいくつありますか。</p>
+  <div class="choices">
+    <button>\( k \) によって 2 つのときと 1 つのときがある</button>
+    <button>いつも 2 つ</button>
+    <button data-correct="true">いつも 1 つ</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">直線 \( x=k \) と単位円の上半分の交点は、\( -1\leqq k\leqq1 \) ならいつも1つです。2つになることがあるのは \( \sin\theta=k \)（直線 \( y=k \) との交点）のほうです。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：どの型か見分けよう</h2>
+<div class="box think">
+  <p class="box-title">この4問、何に着目する？</p>
+  <p>(ア) \( \angle\mathrm{C}=90^\circ \)、\( \mathrm{BC}=1 \)、\( \mathrm{AC}=2 \) の直角三角形 ABC で、\( \cos A \) の値<br>(イ) \( \cos 160^\circ \) を 45° 以下の角の三角比で表す<br>(ウ) \( \tan\theta=-3 \)（\( 0^\circ\leqq\theta\leqq180^\circ \)）のときの \( \cos\theta \) の値<br>(エ) \( \sin\theta=\dfrac{\sqrt{3}}{2} \)（\( 0^\circ\leqq\theta\leqq180^\circ \)）を満たす \( \theta \)</p>
+  <p>解き始める前に、それぞれ「何が分かっていて、何を求めるのか」「使う関係は何か」「答えは何個か」を予想しましょう。答えは、(ア) が「3 型A」の例題1、(イ) が「4 型B」の例題3、(ウ) が「5 型C」の例題7、(エ) が「6 型D」の例題8で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="型A 定義から値を求める"><span class="num">3</span>型A：定義から三角比の値を求める</h2>
+<h3>型を見分ける手掛かり</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>問題の様子</th><th>着目すること・使う方法</th><th>学んだコマ</th></tr>
+  <tr><td>直角三角形の辺の長さが分かっている</td><td>斜辺・角と向かい合う辺・角をはさむ斜辺でない辺を確かめ、足りない辺は三平方の定理で求める</td><td>数Ⅰ-058（三平方の定理は中3-099）</td></tr>
+  <tr><td>鈍角の三角比、半円上の点の座標</td><td>計算しやすい半径の半円上の点 P をとり、座標を半径で割る（tan は \( \dfrac{y}{x} \)）</td><td>数Ⅰ-063</td></tr>
+  <tr><td>0°・90°・180° の三角比</td><td>単位円上の点 \( (1,\ 0) \)、\( (0,\ 1) \)、\( (-1,\ 0) \)</td><td>数Ⅰ-063</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題1（直角三角形）＝導入の (ア)</p>
+  <p>\( \angle\mathrm{C}=90^\circ \)、\( \mathrm{BC}=1 \)、\( \mathrm{AC}=2 \) の直角三角形 ABC で、\( \sin A \)、\( \cos A \)、\( \tan A \) の値を求めなさい。</p>
+  <div class="step">着目：斜辺 AB が分からないので、三平方の定理で \( \mathrm{AB}=\sqrt{1^2+2^2}=\sqrt{5} \)。角 A と向かい合う辺は BC、角 A をはさむ斜辺でない辺は AC。</div>
+  <div class="step">\( \sin A=\dfrac{\mathrm{BC}}{\mathrm{AB}}=\dfrac{1}{\sqrt{5}}=\dfrac{\sqrt{5}}{5} \)、\( \cos A=\dfrac{\mathrm{AC}}{\mathrm{AB}}=\dfrac{2}{\sqrt{5}}=\dfrac{2\sqrt{5}}{5} \)、\( \tan A=\dfrac{\mathrm{BC}}{\mathrm{AC}}=\dfrac{1}{2} \)。</div>
+  <div class="step">答え：\( \sin A=\dfrac{\sqrt{5}}{5} \)、\( \cos A=\dfrac{2\sqrt{5}}{5} \)、\( \tan A=\dfrac{1}{2} \)</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（鈍角、0°・90°・180°）</p>
+  <p>次の値を求めなさい。(1) \( \sin 120^\circ \)、\( \cos 150^\circ \)、\( \tan 135^\circ \)　(2) \( \sin 0^\circ \)、\( \cos 90^\circ \)、\( \tan 180^\circ \)</p>
+  <div class="step">(1) 着目：半径 2 で 120° の点は \( (-1,\ \sqrt{3}) \)、150° の点は \( (-\sqrt{3},\ 1) \)、半径 \( \sqrt{2} \) で 135° の点は \( (-1,\ 1) \)。\( \sin 120^\circ=\dfrac{\sqrt{3}}{2} \)、\( \cos 150^\circ=\dfrac{-\sqrt{3}}{2}=-\dfrac{\sqrt{3}}{2} \)、\( \tan 135^\circ=\dfrac{1}{-1}=-1 \)。</div>
+  <div class="step">(2) 着目：単位円で 0° の点は \( (1,\ 0) \)、90° は \( (0,\ 1) \)、180° は \( (-1,\ 0) \)。\( \sin 0^\circ=0 \)、\( \cos 90^\circ=0 \)、\( \tan 180^\circ=\dfrac{0}{-1}=0 \)。</div>
+  <div class="step">答え：(1) \( \dfrac{\sqrt{3}}{2} \)、\( -\dfrac{\sqrt{3}}{2} \)、\( -1 \)　(2) \( 0 \)、\( 0 \)、\( 0 \)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型A）</p>
+<ul>
+  <li><strong>辺を取り違える</strong>：例題1で \( \sin A=\dfrac{\mathrm{AC}}{\mathrm{AB}} \) とする誤り。角 A と向かい合う辺は BC です。</li>
+  <li><strong>座標を半径で割らない</strong>：半径 2 の点 \( (-1,\ \sqrt{3}) \) から \( \cos 120^\circ=-1 \) とする誤り。正しくは \( -\dfrac{1}{2} \) です。</li>
+  <li><strong>\( \tan 90^\circ \) に値を書く</strong>：\( \tan 90^\circ \) は値を定めません。</li>
+</ul></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="型B 90°−A・180°−A で直す"><span class="num">4</span>型B：90°−A・180°−A の関係で角を直す</h2>
+<h3>型を見分ける手掛かり</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>問題の様子</th><th>着目すること・使う方法</th><th>学んだコマ</th></tr>
+  <tr><td>鈍角の三角比を鋭角で表す・三角比表で求める</td><td>180° から引いて鋭角にする。sin はそのまま、cos・tan は符号が反対</td><td>数Ⅰ-064</td></tr>
+  <tr><td>45° より大きい鋭角を 45° 以下で表す</td><td>90° から引く。sin と cos を入れかえ、tan は逆数</td><td>数Ⅰ-062</td></tr>
+  <tr><td>式の中に、和が 90° や 180° の角の組がある</td><td>どちらかの角にそろえてから計算する</td><td>数Ⅰ-062・064</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（45° 以下の角で表す）＝導入の (イ)</p>
+  <p>次の三角比を 45° 以下の角の三角比で表しなさい。(1) \( \cos 160^\circ \)　(2) \( \sin 125^\circ \)</p>
+  <div class="step">(1) 着目：鈍角なので、まず 180° から引く。\( \cos 160^\circ=-\cos 20^\circ \)。20° は 45° 以下なので、ここで終わり。</div>
+  <div class="step">(2) 着目：\( \sin 125^\circ=\sin 55^\circ \)。55° は 45° より大きいので、\( 55^\circ=90^\circ-35^\circ \) と見て \( \sin 55^\circ=\cos 35^\circ \)。</div>
+  <div class="step">答え：(1) \( -\cos 20^\circ \)　(2) \( \cos 35^\circ \)</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（三角比表を使う）</p>
+  <p>三角比表によると \( \sin 25^\circ\fallingdotseq0.4226 \)、\( \cos 25^\circ\fallingdotseq0.9063 \) です（\( \fallingdotseq \) は「ほぼ等しい」。数Ⅰ-059）。(1) \( \cos 155^\circ \)　(2) \( \sin 115^\circ \) の値を求めなさい。</p>
+  <div class="step">(1) \( \cos 155^\circ=-\cos 25^\circ\fallingdotseq-0.9063 \)</div>
+  <div class="step">(2) 着目：\( \sin 115^\circ=\sin 65^\circ \)。表に 65° はないが、\( 65^\circ=90^\circ-25^\circ \) なので \( \sin 65^\circ=\cos 25^\circ \)。よって \( \sin 115^\circ=\cos 25^\circ\fallingdotseq0.9063 \)。</div>
+  <div class="step">答え：(1) −0.9063　(2) 0.9063（どちらも表の値による近似値）</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5（式の値）</p>
+  <p>\( \sin 35^\circ-\cos 55^\circ+\cos 145^\circ+\sin 125^\circ \) の値を求めなさい。</p>
+  <div class="step">着目：35° と 55° は和が 90°、145° と 125° は 180° から引くと 35° と 55°。すべて 35° の三角比にそろえる。</div>
+  <div class="step">\( \cos 55^\circ=\sin 35^\circ \)、\( \cos 145^\circ=-\cos 35^\circ \)、\( \sin 125^\circ=\sin 55^\circ=\cos 35^\circ \)。</div>
+  <div class="step">与えられた式 \( =\sin 35^\circ-\sin 35^\circ-\cos 35^\circ+\cos 35^\circ=0 \)。答え：0</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型B）</p>
+<ul>
+  <li><strong>2つの関係を混ぜる</strong>：\( \sin(180^\circ-A)=\cos A \) や \( \cos(180^\circ-A)=-\sin A \) とする誤り。sin と cos を入れかえるのは \( 90^\circ-A \) のときだけです。</li>
+  <li><strong>符号を変え忘れる</strong>：\( \cos 160^\circ=\cos 20^\circ \) とすると、鈍角の cos が正になってしまいます。</li>
+  <li><strong>sin の符号まで変える</strong>：\( \sin 125^\circ=-\sin 55^\circ \) とする誤り。鈍角の sin は正です。</li>
+</ul></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="型C 相互関係で別の値を求める"><span class="num">5</span>型C：相互関係で別の値を求める</h2>
+<h3>型を見分ける手掛かり</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>分かっている値</th><th>使う関係</th><th>答えの個数</th><th>学んだコマ</th></tr>
+  <tr><td>\( \sin\theta \)（条件なし、\( 0&lt;\sin\theta&lt;1 \)）</td><td>関係2 で \( \cos^2\theta \)</td><td>鋭角・鈍角の2通り</td><td>数Ⅰ-065</td></tr>
+  <tr><td>\( \sin\theta \)（「鈍角」などの条件あり）</td><td>関係2、条件で符号を決める</td><td>1通り</td><td>数Ⅰ-065</td></tr>
+  <tr><td>\( \cos\theta \)</td><td>関係2 で \( \sin^2\theta \)（\( \sin\theta\geqq0 \)）</td><td>1通り</td><td>数Ⅰ-061・065</td></tr>
+  <tr><td>\( \tan\theta \)（\( \neq0 \)）</td><td>関係3 で \( \cos^2\theta \)、符号は tan と同じ</td><td>1通り</td><td>数Ⅰ-061・065</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題6（sin θ から、条件なし）</p>
+  <p>\( 0^\circ\leqq\theta\leqq180^\circ \) で \( \sin\theta=\dfrac{5}{13} \) のとき、\( \cos\theta \) と \( \tan\theta \) の値を求めなさい。</p>
+  <div class="step">着目：条件がないので、鋭角と鈍角の2通りを考える。</div>
+  <div class="step">関係2 より \( \cos^2\theta=1-\dfrac{25}{169}=\dfrac{144}{169} \)、\( \cos\theta=\pm\dfrac{12}{13} \)。</div>
+  <div class="step">答え：\( \theta \) が鋭角のとき \( \cos\theta=\dfrac{12}{13} \)、\( \tan\theta=\dfrac{5}{12} \)。\( \theta \) が鈍角のとき \( \cos\theta=-\dfrac{12}{13} \)、\( \tan\theta=-\dfrac{5}{12} \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題7（tan θ から）＝導入の (ウ)</p>
+  <p>\( 0^\circ\leqq\theta\leqq180^\circ \) で \( \tan\theta=-3 \) のとき、\( \cos\theta \) と \( \sin\theta \) の値を求めなさい。</p>
+  <div class="step">着目：\( \tan\theta&lt;0 \) なので \( \theta \) は鈍角、\( \cos\theta&lt;0 \)。</div>
+  <div class="step">関係3 より \( \dfrac{1}{\cos^2\theta}=1+(-3)^2=10 \)、\( \cos^2\theta=\dfrac{1}{10} \)、\( \cos\theta=-\dfrac{1}{\sqrt{10}}=-\dfrac{\sqrt{10}}{10} \)。</div>
+  <div class="step">関係1 より \( \sin\theta=\tan\theta\cos\theta=(-3)\times\left(-\dfrac{1}{\sqrt{10}}\right)=\dfrac{3}{\sqrt{10}}=\dfrac{3\sqrt{10}}{10} \)。</div>
+  <div class="step">確かめ：\( \sin^2\theta+\cos^2\theta=\dfrac{9}{10}+\dfrac{1}{10}=1 \)。答え：\( \cos\theta=-\dfrac{\sqrt{10}}{10} \)、\( \sin\theta=\dfrac{3\sqrt{10}}{10} \)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型C）</p>
+<ul>
+  <li><strong>sin θ から cos θ を1つだけ答える</strong>：条件がなければ、鈍角の場合（負の値）も答えます。</li>
+  <li><strong>cos θ から sin θ を ± で答える</strong>：0°≦θ≦180° では \( \sin\theta\geqq0 \) です。</li>
+  <li><strong>2乗や平方根を忘れる</strong>：\( \cos\theta=1-\sin\theta \) や、\( \cos^2\theta \) の値のまま答える誤り（数Ⅰ-061 と同じ注意）。</li>
+</ul></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="型D 値から角を求める"><span class="num">6</span>型D：三角比の値を満たす角を求める</h2>
+<h3>型を見分ける手掛かり</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>式</th><th>半円上で探すもの</th><th>角の個数</th><th>学んだコマ</th></tr>
+  <tr><td>\( \sin\theta=k \)</td><td>直線 \( y=k \) との交点</td><td>\( 0&lt;k&lt;1 \)：2つ（\( \theta \) と \( 180^\circ-\theta \)）、\( k=1 \)：1つ、\( k=0 \)：2つ（0°、180°）</td><td>数Ⅰ-066</td></tr>
+  <tr><td>\( \cos\theta=k \)</td><td>直線 \( x=k \) との交点</td><td>\( -1\leqq k\leqq1 \)：1つ</td><td>数Ⅰ-066</td></tr>
+  <tr><td>\( \tan\theta=k \)</td><td>\( \dfrac{y}{x}=k \) となる点</td><td>\( k\neq0 \)：1つ、\( k=0 \)：2つ</td><td>数Ⅰ-066</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題8＝導入の (エ)</p>
+  <p>\( 0^\circ\leqq\theta\leqq180^\circ \) のとき、次の式を満たす \( \theta \) を求めなさい。(1) \( \sin\theta=\dfrac{\sqrt{3}}{2} \)　(2) \( \cos\theta=-\dfrac{1}{2} \)　(3) \( \tan\theta=-1 \)</p>
+  <div class="step">(1) 着目：sin は2つ。直線 \( y=\dfrac{\sqrt{3}}{2} \) との交点 \( \left(\pm\dfrac{1}{2},\ \dfrac{\sqrt{3}}{2}\right) \) から 60° と 120°。</div>
+  <div class="step">(2) 着目：cos は1つ。直線 \( x=-\dfrac{1}{2} \) との交点 \( \left(-\dfrac{1}{2},\ \dfrac{\sqrt{3}}{2}\right) \) から 120°。</div>
+  <div class="step">(3) 着目：tan は1つで、負なので鈍角。点 \( (-1,\ 1) \) から \( 180^\circ-45^\circ=135^\circ \)。</div>
+  <div class="step">答え：(1) \( \theta=60^\circ,\ 120^\circ \)　(2) \( \theta=120^\circ \)　(3) \( \theta=135^\circ \)</div>
+</div>
+<figure>
+  <div class="fig-row">
+<!--svg:f067a-->
+<svg viewBox="0 0 196 150" width="196" role="img" aria-label="単位円の上半分と直線 y=√3/2。交点は2つで、θ=60° と θ=120°" data-fig="f067a1" data-map="-1.42,1.42,-0.3,1.45,4,22,66">
+<text x="98" y="14" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">sin θ=√3/2</text>
+<defs><marker id="ar-f067a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<line x1="4" y1="117.7" x2="191.4" y2="117.7" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f067a1)"/>
+<line x1="97.7" y1="137.5" x2="97.7" y2="22" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f067a1)"/>
+<text x="189.4" y="133.7" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">x</text>
+<text x="90.7" y="32" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">y</text>
+<text x="92.7" y="132.7" text-anchor="end" font-size="12" font-style="italic" fill="currentColor">O</text>
+<path d="M163.7,117.7 L163.7,115.4 L163.6,113.1 L163.4,110.8 L163.1,108.5 L162.7,106.2 L162.3,104 L161.8,101.7 L161.2,99.5 L160.5,97.3 L159.7,95.1 L158.9,93 L158,90.9 L157,88.8 L156,86.7 L154.9,84.7 L153.7,82.7 L152.4,80.8 L151.1,78.9 L149.7,77.1 L148.3,75.3 L146.8,73.5 L145.2,71.9 L143.6,70.2 L141.9,68.7 L140.1,67.1 L138.4,65.7 L136.5,64.3 L134.6,63 L132.7,61.7 L130.7,60.5 L128.7,59.4 L126.7,58.4 L124.6,57.4 L122.4,56.5 L120.3,55.7 L118.1,54.9 L115.9,54.3 L113.7,53.7 L111.4,53.1 L109.2,52.7 L106.9,52.3 L104.6,52.1 L102.3,51.9 L100,51.7 L97.7,51.7 L95.4,51.7 L93.1,51.9 L90.8,52.1 L88.5,52.3 L86.3,52.7 L84,53.1 L81.8,53.7 L79.5,54.3 L77.3,54.9 L75.1,55.7 L73,56.5 L70.9,57.4 L68.8,58.4 L66.7,59.4 L64.7,60.5 L62.7,61.7 L60.8,63 L58.9,64.3 L57.1,65.7 L55.3,67.1 L53.6,68.7 L51.9,70.2 L50.2,71.9 L48.7,73.5 L47.2,75.3 L45.7,77.1 L44.3,78.9 L43,80.8 L41.7,82.7 L40.6,84.7 L39.4,86.7 L38.4,88.8 L37.4,90.9 L36.5,93 L35.7,95.1 L35,97.3 L34.3,99.5 L33.7,101.7 L33.2,104 L32.7,106.2 L32.4,108.5 L32.1,110.8 L31.9,113.1 L31.8,115.4 L31.7,117.7" fill="none" stroke="currentColor" stroke-width="1.6" data-circle="1.0"/>
+<line x1="163.7" y1="114.7" x2="163.7" y2="120.7" stroke="currentColor"/>
+<text x="163.7" y="132.7" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="1">1</text>
+<line x1="31.7" y1="114.7" x2="31.7" y2="120.7" stroke="currentColor"/>
+<text x="31.7" y="132.7" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="-1">−1</text>
+<line x1="10.6" y1="60.5" x2="184.8" y2="60.5" stroke="#1e8e5a" stroke-width="1.5" stroke-dasharray="5 3" data-line="y"/>
+<line x1="97.7" y1="117.7" x2="130.7" y2="60.5" stroke="#1f5fbf" stroke-width="2.0"/>
+<circle cx="130.7" cy="60.5" r="4" fill="#1f5fbf" data-deg="60" data-r="1"/>
+<line x1="97.7" y1="117.7" x2="64.7" y2="60.5" stroke="#b7791f" stroke-width="2.0"/>
+<circle cx="64.7" cy="60.5" r="4" fill="#b7791f" data-deg="120" data-r="1"/>
+<text x="136.7" y="76.5" text-anchor="start" font-size="11" font-weight="700" fill="#1f5fbf">60°</text>
+<text x="58.7" y="76.5" text-anchor="end" font-size="11" font-weight="700" fill="#b7791f">120°</text>
+</svg>
+<svg viewBox="0 0 196 150" width="196" role="img" aria-label="単位円の上半分と直線 x=−1/2。交点は1つで、θ=120°" data-fig="f067a2" data-map="-1.42,1.42,-0.3,1.45,4,22,66">
+<text x="98" y="14" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">cos θ=−1/2</text>
+<defs><marker id="ar-f067a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<line x1="4" y1="117.7" x2="191.4" y2="117.7" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f067a2)"/>
+<line x1="97.7" y1="137.5" x2="97.7" y2="22" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f067a2)"/>
+<text x="189.4" y="133.7" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">x</text>
+<text x="90.7" y="32" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">y</text>
+<text x="92.7" y="132.7" text-anchor="end" font-size="12" font-style="italic" fill="currentColor">O</text>
+<path d="M163.7,117.7 L163.7,115.4 L163.6,113.1 L163.4,110.8 L163.1,108.5 L162.7,106.2 L162.3,104 L161.8,101.7 L161.2,99.5 L160.5,97.3 L159.7,95.1 L158.9,93 L158,90.9 L157,88.8 L156,86.7 L154.9,84.7 L153.7,82.7 L152.4,80.8 L151.1,78.9 L149.7,77.1 L148.3,75.3 L146.8,73.5 L145.2,71.9 L143.6,70.2 L141.9,68.7 L140.1,67.1 L138.4,65.7 L136.5,64.3 L134.6,63 L132.7,61.7 L130.7,60.5 L128.7,59.4 L126.7,58.4 L124.6,57.4 L122.4,56.5 L120.3,55.7 L118.1,54.9 L115.9,54.3 L113.7,53.7 L111.4,53.1 L109.2,52.7 L106.9,52.3 L104.6,52.1 L102.3,51.9 L100,51.7 L97.7,51.7 L95.4,51.7 L93.1,51.9 L90.8,52.1 L88.5,52.3 L86.3,52.7 L84,53.1 L81.8,53.7 L79.5,54.3 L77.3,54.9 L75.1,55.7 L73,56.5 L70.9,57.4 L68.8,58.4 L66.7,59.4 L64.7,60.5 L62.7,61.7 L60.8,63 L58.9,64.3 L57.1,65.7 L55.3,67.1 L53.6,68.7 L51.9,70.2 L50.2,71.9 L48.7,73.5 L47.2,75.3 L45.7,77.1 L44.3,78.9 L43,80.8 L41.7,82.7 L40.6,84.7 L39.4,86.7 L38.4,88.8 L37.4,90.9 L36.5,93 L35.7,95.1 L35,97.3 L34.3,99.5 L33.7,101.7 L33.2,104 L32.7,106.2 L32.4,108.5 L32.1,110.8 L31.9,113.1 L31.8,115.4 L31.7,117.7" fill="none" stroke="currentColor" stroke-width="1.6" data-circle="1.0"/>
+<line x1="163.7" y1="114.7" x2="163.7" y2="120.7" stroke="currentColor"/>
+<text x="163.7" y="132.7" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="1">1</text>
+<line x1="31.7" y1="114.7" x2="31.7" y2="120.7" stroke="currentColor"/>
+<text x="31.7" y="132.7" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="-1">−1</text>
+<line x1="64.7" y1="132.2" x2="64.7" y2="27.9" stroke="#1e8e5a" stroke-width="1.5" stroke-dasharray="5 3" data-line="x"/>
+<line x1="97.7" y1="117.7" x2="64.7" y2="60.5" stroke="#b7791f" stroke-width="2.0"/>
+<circle cx="64.7" cy="60.5" r="4" fill="#b7791f" data-deg="120" data-r="1"/>
+<text x="70.7" y="76.5" text-anchor="start" font-size="11" font-weight="700" fill="#b7791f">120°</text>
+</svg>
+<svg viewBox="0 0 196 150" width="196" role="img" aria-label="単位円の上半分で y/x=−1 となる点は1つで、θ=135°" data-fig="f067a3" data-map="-1.42,1.42,-0.3,1.45,4,22,66">
+<text x="98" y="14" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">tan θ=−1</text>
+<defs><marker id="ar-f067a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<line x1="4" y1="117.7" x2="191.4" y2="117.7" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f067a3)"/>
+<line x1="97.7" y1="137.5" x2="97.7" y2="22" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f067a3)"/>
+<text x="189.4" y="133.7" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">x</text>
+<text x="90.7" y="32" text-anchor="end" font-size="13" font-style="italic" fill="currentColor">y</text>
+<text x="92.7" y="132.7" text-anchor="end" font-size="12" font-style="italic" fill="currentColor">O</text>
+<path d="M163.7,117.7 L163.7,115.4 L163.6,113.1 L163.4,110.8 L163.1,108.5 L162.7,106.2 L162.3,104 L161.8,101.7 L161.2,99.5 L160.5,97.3 L159.7,95.1 L158.9,93 L158,90.9 L157,88.8 L156,86.7 L154.9,84.7 L153.7,82.7 L152.4,80.8 L151.1,78.9 L149.7,77.1 L148.3,75.3 L146.8,73.5 L145.2,71.9 L143.6,70.2 L141.9,68.7 L140.1,67.1 L138.4,65.7 L136.5,64.3 L134.6,63 L132.7,61.7 L130.7,60.5 L128.7,59.4 L126.7,58.4 L124.6,57.4 L122.4,56.5 L120.3,55.7 L118.1,54.9 L115.9,54.3 L113.7,53.7 L111.4,53.1 L109.2,52.7 L106.9,52.3 L104.6,52.1 L102.3,51.9 L100,51.7 L97.7,51.7 L95.4,51.7 L93.1,51.9 L90.8,52.1 L88.5,52.3 L86.3,52.7 L84,53.1 L81.8,53.7 L79.5,54.3 L77.3,54.9 L75.1,55.7 L73,56.5 L70.9,57.4 L68.8,58.4 L66.7,59.4 L64.7,60.5 L62.7,61.7 L60.8,63 L58.9,64.3 L57.1,65.7 L55.3,67.1 L53.6,68.7 L51.9,70.2 L50.2,71.9 L48.7,73.5 L47.2,75.3 L45.7,77.1 L44.3,78.9 L43,80.8 L41.7,82.7 L40.6,84.7 L39.4,86.7 L38.4,88.8 L37.4,90.9 L36.5,93 L35.7,95.1 L35,97.3 L34.3,99.5 L33.7,101.7 L33.2,104 L32.7,106.2 L32.4,108.5 L32.1,110.8 L31.9,113.1 L31.8,115.4 L31.7,117.7" fill="none" stroke="currentColor" stroke-width="1.6" data-circle="1.0"/>
+<line x1="163.7" y1="114.7" x2="163.7" y2="120.7" stroke="currentColor"/>
+<text x="163.7" y="132.7" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="1">1</text>
+<line x1="31.7" y1="114.7" x2="31.7" y2="120.7" stroke="currentColor"/>
+<text x="31.7" y="132.7" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="-1">−1</text>
+<line x1="97.7" y1="117.7" x2="51.1" y2="71" stroke="#b7791f" stroke-width="2.0"/>
+<line x1="51.1" y1="117.7" x2="51.1" y2="71" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3"/>
+<circle cx="51.1" cy="71" r="4" fill="#b7791f" data-deg="135" data-r="1"/>
+<text x="59.1" y="67" text-anchor="start" font-size="11" font-weight="700" fill="#b7791f">135°</text>
+</svg>
+<!--/svg:f067a-->
+  </div>
+  <figcaption>図1　例題8の3つの探し方（単位円の上半分）。左：直線 \( y=\dfrac{\sqrt{3}}{2} \) との交点は2つ（60°、120°）。中央：直線 \( x=-\dfrac{1}{2} \) との交点は1つ（120°）。右：\( \dfrac{y}{x}=-1 \) となる点は1つ（135°）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題9（条件のある場合）</p>
+  <p>\( 0^\circ\leqq\theta\leqq180^\circ \) で、\( \sin\theta=\dfrac{1}{2} \) かつ \( \cos\theta&lt;0 \) を満たす \( \theta \) を求めなさい。</p>
+  <div class="step">着目：\( \sin\theta=\dfrac{1}{2} \) を満たすのは 30° と 150°。</div>
+  <div class="step">\( \cos\theta&lt;0 \) なのは鈍角の 150° だけ。</div>
+  <div class="step">答え：\( \theta=150^\circ \)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型D）</p>
+<ul>
+  <li><strong>sin で鈍角の答えを落とす</strong>：\( \sin\theta=\dfrac{\sqrt{3}}{2} \) で 60° だけを答える誤り。</li>
+  <li><strong>cos や tan でも2つ答える</strong>：\( \cos\theta=-\dfrac{1}{2} \) で「60°, 120°」とする誤り。cos・tan は（\( \tan\theta=0 \) を除き）1つです。</li>
+  <li><strong>範囲外の角を答える</strong>：\( 210^\circ \) や \( -30^\circ \) は 0°〜180° の外です。</li>
+</ul></div>
+</section>
+
+<section class="card">
+<h2 id="sec-5" data-toc="型を見分ける手順"><span class="num">7</span>型を見分ける手順</h2>
+<div class="box point"><p class="box-title">三角比の問題を解く手順</p>
+<p>① 何が分かっていて、何を求めるのかを書き出す（辺の長さ・角・三角比の値）。<br>② 求めるものが「値」か「角」かで、型A〜C か型D かを決める。<br>③ 角が鈍角なら \( 180^\circ-A \)、45° より大きい鋭角を直すなら \( 90^\circ-A \)（型B）。<br>④ 三角比の値から別の値を求めるなら相互関係（型C）。sin から cos・tan を求めるときは2通りに注意し、問題の条件で決める。<br>⑤ 符号（鈍角の cos・tan は負、sin はいつも 0 以上）と答えの個数を確かめる。</p></div>
+<div class="table-wrap">
+<table>
+  <tr><th>型</th><th>見分ける手掛かり</th><th>注意すること</th><th>練習した場所</th></tr>
+  <tr><td>A</td><td>辺の長さ、半円上の点の座標、特別な角</td><td>座標は半径で割る。\( \tan 90^\circ \) は定めない</td><td>例題1・2、問1・2・9・12</td></tr>
+  <tr><td>B</td><td>鈍角や 45° より大きい鋭角、和が 90°・180° の角の組</td><td>sin・cos の入れかえは 90°−A だけ。180°−A は cos・tan の符号</td><td>例題3〜5、問3・6・11・13</td></tr>
+  <tr><td>C</td><td>三角比の値が1つ分かっていて、別の値を求める</td><td>sin からは2通り、cos・tan からは1通り</td><td>例題6・7、問5・8・14</td></tr>
+  <tr><td>D</td><td>三角比の値から角を求める</td><td>sin は2つのことがある。範囲は 0°〜180°</td><td>例題8・9、問4・7・10・14</td></tr>
+</table>
+</div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">8</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間で使う語句（すべて既習）</p>
+  <dl>
+    <dt>正弦・余弦・正接（三角比）</dt><dd>直角三角形の辺の比（数Ⅰ-058）。0°≦θ≦180° では半円上の点の座標で定める（数Ⅰ-063）。</dd>
+    <dt>三角比の相互関係</dt><dd>関係1 \( \tan\theta=\dfrac{\sin\theta}{\cos\theta} \)、関係2 \( \sin^2\theta+\cos^2\theta=1 \)、関係3 \( 1+\tan^2\theta=\dfrac{1}{\cos^2\theta} \)（数Ⅰ-061・065）。</dd>
+    <dt>90°−A・180°−A の三角比</dt><dd>\( \sin(90^\circ-A)=\cos A \) など（数Ⅰ-062）、\( \sin(180^\circ-A)=\sin A \) など（数Ⅰ-064）。</dd>
+    <dt>三角比表</dt><dd>角と三角比の値の表（数Ⅰ-059）。値は近似値なので「≒」で書く。</dd>
+    <dt>単位円</dt><dd>原点 O を中心とする半径 1 の円（数Ⅰ-063）。上半分の点は \( (\cos\theta,\ \sin\theta) \)。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">9</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>型A：直角三角形なら辺の比、0°〜180° の角なら半円上の点の座標を半径で割る。0°・90°・180° は単位円の点で考え、\( \tan 90^\circ \) は定めない（O1）。</li>
+    <li>型B：鈍角は 180° から引き（sin はそのまま、cos・tan は符号が反対）、45° より大きい鋭角は 90° から引く（sin と cos を入れかえ、tan は逆数）（O2）。</li>
+    <li>型C：sin（\( 0&lt;\sin\theta&lt;1 \)）から cos・tan を求めるときは鋭角・鈍角の2通り。cos からは1通り（\( \sin\theta\geqq0 \)）、tan（\( \tan\theta\neq0 \)）からも1通りで、tan の符号で鋭角か鈍角かが分かる（O3）。</li>
+    <li>型D：sin は直線 \( y=k \)、cos は直線 \( x=k \)、tan は \( \dfrac{y}{x}=k \) の点で角を探す。sin では2つになることがある（\( \tan\theta=0 \) も 0° と 180° の2つ）（O4）。</li>
+    <li>最後に、符号と答えの個数、0°〜180° の範囲を確かめる（O1〜O4）。</li>
+  </ul>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">10</span>確認問題</h2>
+<p class="small">型を混ぜた問題です。基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）と型を示す。\( \theta \) はとくに断らない限り \( 0^\circ\leqq\theta\leqq180^\circ \)。根号は √ を使い −1/√5 のように、角が2つあるときは 50°,130° のように「,」で区切って入力してください（° は省いてもよい）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1（型A）</span></div>
+  <p>\( \angle\mathrm{C}=90^\circ \)、\( \mathrm{BC}=5 \)、\( \mathrm{CA}=12 \)、\( \mathrm{AB}=13 \) の直角三角形 ABC で、\( \sin A \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{12}{13} \)</button>
+    <button data-correct="true">\( \dfrac{5}{13} \)</button>
+    <button>\( \dfrac{5}{12} \)</button>
+    <button>\( \dfrac{13}{5} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">角 A と向かい合う辺は BC なので \( \sin A=\dfrac{\mathrm{BC}}{\mathrm{AB}}=\dfrac{5}{13} \) です。\( \dfrac{12}{13} \) は角 A をはさむ斜辺でない辺 CA を使った \( \cos A \)、\( \dfrac{5}{12} \) は斜辺の代わりに CA で割った \( \tan A \)、\( \dfrac{13}{5} \) は分母と分子を逆にした誤りです（sin は 1 より大きくならない）。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="-1/√2|-√2/2|-(√2)/2|-√(2)/2|-1/(√2)">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1（型A）</span></div>
+  <p>\( \cos 135^\circ \) の値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( -\dfrac{1}{\sqrt{2}}\left(=-\dfrac{\sqrt{2}}{2}\right) \)。半径 \( \sqrt{2} \) の半円で 135° の点は \( (-1,\ 1) \) なので、\( \cos 135^\circ=\dfrac{-1}{\sqrt{2}} \) です。\( \dfrac{1}{\sqrt{2}} \) と答えた場合は \( x \) 座標が負であることを、\( -1 \) と答えた場合は半径で割ることを落としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2（型B）</span></div>
+  <p>\( \sin 110^\circ \) を 45° 以下の角の三角比で表したものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \cos 20^\circ \)</button>
+    <button>\( -\cos 20^\circ \)</button>
+    <button>\( \sin 20^\circ \)</button>
+    <button>\( -\sin 20^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sin 110^\circ=\sin(180^\circ-70^\circ)=\sin 70^\circ \)、\( 70^\circ=90^\circ-20^\circ \) なので \( \sin 70^\circ=\cos 20^\circ \) です。\( -\cos 20^\circ \) は sin の符号まで変えた誤り（鈍角の sin は正）、\( \sin 20^\circ \) は \( 90^\circ-A \) で sin と cos を入れかえ忘れた誤り、\( -\sin 20^\circ \) は両方の誤りが重なったものです。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="45°,135°|45,135|135°,45°|135,45|θ=45°,135°|θ=45,135|θ=135°,45°|θ=45°,θ=135°|θ=135°,θ=45°">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問4</span><span class="q-obj">O4（型D）</span></div>
+  <p>\( \sin\theta=\dfrac{1}{\sqrt{2}} \) を満たす \( \theta \) をすべて求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 45°、135°。直線 \( y=\dfrac{1}{\sqrt{2}} \) と単位円の上半分の交点は \( \left(\pm\dfrac{1}{\sqrt{2}},\ \dfrac{1}{\sqrt{2}}\right) \) の2つです。45° だけと答えた場合は、鈍角の 135° を落としています。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="√5/3|(√5)/3|√(5)/3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問5</span><span class="q-obj">O3（型C）</span></div>
+  <p>\( \cos\theta=-\dfrac{2}{3} \) のとき、\( \sin\theta \) の値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{\sqrt{5}}{3} \)。関係2 より \( \sin^2\theta=1-\dfrac{4}{9}=\dfrac{5}{9} \)、\( \sin\theta\geqq0 \) なので \( \sin\theta=\dfrac{\sqrt{5}}{3} \) です。\( -\dfrac{\sqrt{5}}{3} \) と答えた場合は、cos が負なので sin も負と考えています（0°≦θ≦180° の sin は 0 以上）。\( \dfrac{1}{3} \) と答えた場合は、\( 1-\dfrac{2}{3} \) と2乗せずに引いています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2（型B）</span></div>
+  <p>\( \cos 20^\circ+\cos 80^\circ+\cos 100^\circ+\cos 160^\circ \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( 2\cos 20^\circ+2\cos 80^\circ \)</button>
+    <button>\( 2\cos 80^\circ \)</button>
+    <button data-correct="true">\( 0 \)</button>
+    <button>\( 2\cos 20^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \cos 100^\circ=\cos(180^\circ-80^\circ)=-\cos 80^\circ \)、\( \cos 160^\circ=-\cos 20^\circ \) なので、式は \( \cos 20^\circ+\cos 80^\circ-\cos 80^\circ-\cos 20^\circ=0 \) です。\( 2\cos 20^\circ+2\cos 80^\circ \) は2つとも符号を変え忘れた場合、\( 2\cos 80^\circ \) は \( \cos 100^\circ \) の符号だけ変え忘れた場合、\( 2\cos 20^\circ \) は \( \cos 160^\circ \) の符号だけ変え忘れた場合の値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O4（型D）</span></div>
+  <p>\( \tan\theta=\dfrac{1}{\sqrt{3}} \) を満たす \( \theta \) はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 30^\circ \)</button>
+    <button>\( 150^\circ \)</button>
+    <button>\( 60^\circ \)</button>
+    <button>\( 30^\circ,\ 150^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \tan\theta&gt;0 \) なので鋭角。\( \dfrac{y}{x}=\dfrac{1}{\sqrt{3}} \) となる点 \( (\sqrt{3},\ 1) \)（半径 2）から \( \theta=30^\circ \) です。150° は \( \tan 150^\circ=-\dfrac{1}{\sqrt{3}} \) で符号が違います。60° は \( \tan 60^\circ=\sqrt{3} \) と取り違えた誤り、「30°, 150°」は sin のように2つあると考えた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問8</span><span class="q-obj">O3（型C）</span></div>
+  <p>\( \tan\theta=-\sqrt{2} \) のとき、\( (\cos\theta,\ \sin\theta) \) の組はどれですか。</p>
+  <div class="choices">
+    <button>\( \left(\dfrac{\sqrt{3}}{3},\ -\dfrac{\sqrt{6}}{3}\right) \)</button>
+    <button>\( \left(-\dfrac{\sqrt{3}}{3},\ -\dfrac{\sqrt{6}}{3}\right) \)</button>
+    <button>\( \left(-\dfrac{1}{3},\ \dfrac{\sqrt{2}}{3}\right) \)</button>
+    <button data-correct="true">\( \left(-\dfrac{\sqrt{3}}{3},\ \dfrac{\sqrt{6}}{3}\right) \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">関係3 より \( \dfrac{1}{\cos^2\theta}=1+2=3 \)、\( \cos^2\theta=\dfrac{1}{3} \)。\( \tan\theta&lt;0 \) なので鈍角で \( \cos\theta=-\dfrac{1}{\sqrt{3}}=-\dfrac{\sqrt{3}}{3} \)。関係1 より \( \sin\theta=\tan\theta\cos\theta=(-\sqrt{2})\times\left(-\dfrac{1}{\sqrt{3}}\right)=\dfrac{\sqrt{6}}{3} \) です。\( \left(\dfrac{\sqrt{3}}{3},\ -\dfrac{\sqrt{6}}{3}\right) \) は cos と sin の符号を逆にした誤り（sin は負にならない）、\( \left(-\dfrac{\sqrt{3}}{3},\ -\dfrac{\sqrt{6}}{3}\right) \) は sin も負とした誤り、\( \left(-\dfrac{1}{3},\ \dfrac{\sqrt{2}}{3}\right) \) は \( \cos^2\theta=\dfrac{1}{3} \) の平方根をとり忘れて \( \cos\theta=-\dfrac{1}{3} \) とした誤りです（\( \dfrac{1}{9}+\dfrac{2}{9}\neq1 \)）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問9</span><span class="q-obj">O1（型A）</span></div>
+  <p>\( \sin 90^\circ+\cos 180^\circ+\tan 180^\circ \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( 2 \)</button>
+    <button data-correct="true">\( 0 \)</button>
+    <button>\( -1 \)</button>
+    <button>\( 1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">単位円で 90° の点は \( (0,\ 1) \)、180° の点は \( (-1,\ 0) \) なので、\( \sin 90^\circ=1 \)、\( \cos 180^\circ=-1 \)、\( \tan 180^\circ=\dfrac{0}{-1}=0 \)。和は \( 1-1+0=0 \) です。2 は \( \cos 180^\circ=1 \) とした場合、\( -1 \) は \( \sin 90^\circ=0 \) と cos と取り違えた場合、1 は \( \cos 180^\circ=0 \) とした場合の値です。</div>
+</div>
+
+<div class="q" data-type="input" id="q10" data-accept="120°|120|θ=120°|θ=120">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問10</span><span class="q-obj">O4（型D）</span></div>
+  <p>\( 2\cos\theta+1=0 \) を満たす \( \theta \) を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 120°。\( \cos\theta=-\dfrac{1}{2} \) で、直線 \( x=-\dfrac{1}{2} \) と半円の交点は1つ、\( \theta=120^\circ \) です。60° と答えた場合は符号を、150° と答えた場合は \( \cos 150^\circ=-\dfrac{\sqrt{3}}{2} \) と取り違えています。「60°, 120°」のように2つ答えるのも誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q11" data-accept="-0.7660|-.7660|-0.766">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問11</span><span class="q-obj">O2（型B）</span></div>
+  <p>三角比表によると \( \sin 40^\circ\fallingdotseq0.6428 \)、\( \cos 40^\circ\fallingdotseq0.7660 \) です。この値を使って、\( \cos 140^\circ \) の値を小数第4位まで答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は −0.7660。\( \cos 140^\circ=-\cos 40^\circ\fallingdotseq-0.7660 \) です。0.7660 と答えた場合は符号を変え忘れ、−0.6428 と答えた場合は sin の値と取り違えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q12">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問12</span><span class="q-obj">O1（型A）</span></div>
+  <p>数Ⅰ-063 のクレーン（支点 O から長さ 10 m の腕 OP。前方を \( x \) 軸の正の向き、真上を \( y \) 軸の正の向きとし、腕と前方の向きがつくる角を \( \theta \) とする学習用の単純なモデル）で、腕の先 P が支点の 6 m 後ろ、高さ 8 m の位置にありました。\( \tan\theta \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{4}{3} \)</button>
+    <button>\( -\dfrac{3}{4} \)</button>
+    <button data-correct="true">\( -\dfrac{4}{3} \)</button>
+    <button>\( -\dfrac{3}{5} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">P の座標は \( (-6,\ 8) \)（後ろなので \( x \) 座標は負）、\( \mathrm{OP}=\sqrt{36+64}=10 \) です。\( \tan\theta=\dfrac{y}{x}=\dfrac{8}{-6}=-\dfrac{4}{3} \)。\( \dfrac{4}{3} \) は後ろ（\( x \) 座標が負）であることを落とした誤り、\( -\dfrac{3}{4} \) は \( \dfrac{x}{y} \) と逆にした誤り、\( -\dfrac{3}{5} \) は \( \cos\theta=\dfrac{-6}{10} \) と取り違えた値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q13">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問13</span><span class="q-obj">O2（型B）</span></div>
+  <p>△ABC の内角を \( A \)、\( B \)、\( C \) とします。どんな三角形でもいつも成り立つ式はどれですか。</p>
+  <div class="choices">
+    <button>\( \cos(A+B)=\cos C \)</button>
+    <button>\( \tan(A+B)=\tan C \)</button>
+    <button>\( \sin(A+B)=\cos C \)</button>
+    <button data-correct="true">\( \sin(A+B)=\sin C \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">内角の和は 180° なので \( A+B=180^\circ-C \)。\( \sin(A+B)=\sin(180^\circ-C)=\sin C \) です。cos は \( \cos(A+B)=-\cos C \) で符号が反対です（\( C=90^\circ \) のときだけ両辺が 0 で一致）。tan も \( \tan(A+B)=-\tan C \) で、さらに \( C=90^\circ \) では値を定めません。\( \sin(A+B)=\cos C \) は \( 90^\circ-A \) の関係と混ぜた誤りです（\( C=60^\circ \) なら \( \sin 120^\circ=\dfrac{\sqrt{3}}{2} \)、\( \cos 60^\circ=\dfrac{1}{2} \)）。</div>
+</div>
+
+<div class="q" data-type="open" id="q14">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問14</span><span class="q-obj">O3・O4（型C・型D）</span></div>
+  <p>\( \sin\theta=\dfrac{4}{5} \) とします。(1) \( \theta \) が鋭角の場合と鈍角の場合について、\( \cos\theta \) と \( \tan\theta \) の値を求めなさい。(2) 三角比表に \( \sin 53^\circ\fallingdotseq0.7986 \)、\( \sin 54^\circ\fallingdotseq0.8090 \) とあります。(1) のそれぞれの \( \theta \) は、整数の角でおよそ何度ですか。理由も書きなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) 関係2 より \( \cos^2\theta=1-\dfrac{16}{25}=\dfrac{9}{25} \)。鋭角のとき \( \cos\theta=\dfrac{3}{5} \)、\( \tan\theta=\dfrac{4}{5}\div\dfrac{3}{5}=\dfrac{4}{3} \)。鈍角のとき \( \cos\theta=-\dfrac{3}{5} \)、\( \tan\theta=-\dfrac{4}{3} \)。</p>
+    <p>(2) \( \dfrac{4}{5}=0.8 \)。表の値との差は \( 0.8-0.7986=0.0014 \)、\( 0.8090-0.8=0.0090 \) で、53° のほうが近い。よって鋭角の \( \theta \) はおよそ 53°。鈍角の \( \theta \) は \( \sin(180^\circ-\theta)=\sin\theta \) より、およそ \( 180^\circ-53^\circ=127^\circ \)。</p>
+    <p><strong>採点の観点</strong>　① 鋭角・鈍角の2通りに分け、cos・tan の符号を正しく決めている。② 表の値との差を小数第4位まで計算して近いほうを選んでいる（数Ⅰ-059 の方法）。③ 鈍角の角を \( 180^\circ-\theta \) の関係から求めている。</p>
+  </div>
+  <div class="explain">鈍角の角を「53° の符号を変えて −53°」とするのは誤りで、0°〜180° の範囲にありません。sin の値が等しいのは \( \theta \) と \( 180^\circ-\theta \) です。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">11</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲について特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲とする」とされています。この時間の内容は、数学Ⅰ「(2) 図形と計量」の「鋭角の三角比の意味と相互関係について理解すること」（ア(ア)）と「三角比を鈍角まで拡張する意義を理解し，鋭角の三角比の値を用いて鈍角の三角比の値を求める方法を理解すること」（ア(イ)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求め、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。問題の型を見分け、図（半円）や表（三角比表）を使い分けて処理するこの時間の練習は、そうした処理の土台になります。</p>
+  <p class="small">問12は日常の場面を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">12</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">正弦定理（数Ⅰ-068）</p>
+  <p>次の時間は、三角形に外接する円をかき、円周上の点について \( \sin A=\sin A'=\dfrac{a}{2R} \) が成り立つことを見いだして、正弦定理 \( \dfrac{a}{\sin A}=\dfrac{b}{\sin B}=\dfrac{c}{\sin C}=2R \)（\( R \) は外接円の半径）を導きます。A が鈍角の場合には、この範囲で学んだ \( \sin(180^\circ-A)=\sin A \)（数Ⅰ-064）を使います。円周角の定理（中3-087〜089）も振り返っておきましょう。</p>
+  <p>この時間では、正弦定理・余弦定理（数Ⅰ-068〜072）、三角形の面積（数Ⅰ-073）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-066　三角比の値と角</div>
+  <div><span class="label">次の時間</span>数Ⅰ-068　正弦定理</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-067「三角比の練習」（学習指導要領 数学Ⅰ (2)ア(ア)・ア(イ)、解説 p.38-39）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(2) 図形と計量（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.38-39（鋭角の三角比の意味と相互関係、三角比の鈍角への拡張、三角比表・情報機器の利用）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>東京書籍「シラバス案 数学Ⅰ（改訂版 数学Ⅰ Standard、数Ⅰ002-902）」の「三角比の相互関係」「三角比と座標」「拡張した三角比の相互関係」https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_su1_syllabus.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。三角比表の値は計算で求め、小数第5位を四捨五入したものです。クレーンの場面は学習用に単純化したモデルです。「型A〜型D」はこのページでの呼び方です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-067",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-067",
+  "title": "三角比の練習",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-4", "title": "図形と計量"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(ア)", "(2)ア(イ)"],
+  "kaisetsu_page": "38-39",
+  "objectives": [
+    {"id": "O1", "text": "直角三角形の辺の比や半円上の点の座標から、0°〜180° の角の三角比の値を正しく求めることができる（型A）。", "from": "三角比の定義…を用いて、0°〜180° の角の三角比の値…を求める問題を解き", "sections": ["sec-1", "sec-5"], "checks": ["q1", "q2", "q9", "q12"]},
+    {"id": "O2", "text": "\\( 90^\\circ-A \\)・\\( 180^\\circ-A \\) の関係を用いて、三角比を鋭角や 45° 以下の角の三角比に直し、値や式の値を求めることができる（型B）。", "from": "90°−A・180°−A の関係を用いて、0°〜180° の角の三角比の値…を求める問題を解き", "sections": ["sec-2", "sec-5"], "checks": ["q3", "q6", "q11", "q13"]},
+    {"id": "O3", "text": "相互関係を用いて、三角比の値の1つから他の値を、\\( \\theta \\) が鋭角か鈍角かに注意して求めることができる（型C）。", "from": "相互関係…を用いて、…三角比の値…を求める問題を解き、計算を確実にする", "sections": ["sec-3", "sec-5"], "checks": ["q5", "q8", "q14"]},
+    {"id": "O4", "text": "\\( 0^\\circ\\leqq\\theta\\leqq180^\\circ \\) で三角比の値を満たす角を、半円上の点の位置からすべて求めることができる（型D）。", "from": "三角比の値を満たす角を求める問題を解き", "sections": ["sec-4", "sec-5"], "checks": ["q4", "q7", "q10", "q14"]}
+  ],
+  "key_terms": [
+    {"term": "正弦・余弦・正接（三角比）", "where": "sec-1"},
+    {"term": "三角比の相互関係", "where": "sec-3"},
+    {"term": "90°−A・180°−A の三角比", "where": "sec-2"},
+    {"term": "三角比表", "where": "sec-2"},
+    {"term": "単位円", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "直角三角形の辺の比としての三角比、30°・45°・60° の値", "taught_in": ["hs_math_1a/数Ⅰ-058"], "where": "review"},
+    {"concept": "三角比表の値（近似値は ≒ で書く）と、差を比べて近い角を選ぶこと", "taught_in": ["hs_math_1a/数Ⅰ-059"], "where": "sec-2"},
+    {"concept": "鋭角の相互関係（関係1〜3）と sin²A の書き方", "taught_in": ["hs_math_1a/数Ⅰ-061"], "where": "review"},
+    {"concept": "90°−A の三角比", "taught_in": ["hs_math_1a/数Ⅰ-062"], "where": "review"},
+    {"concept": "0°≦θ≦180° の三角比の定義（半円上の点、単位円）と符号、0°・90°・180° の三角比", "taught_in": ["hs_math_1a/数Ⅰ-063"], "where": "review"},
+    {"concept": "180°−A の三角比", "taught_in": ["hs_math_1a/数Ⅰ-064"], "where": "review"},
+    {"concept": "0°≦θ≦180° での相互関係（sin θ から cos θ は2通り）", "taught_in": ["hs_math_1a/数Ⅰ-065"], "where": "review"},
+    {"concept": "三角比の値を満たす角（半円と直線 y=k・x=k の交点）", "taught_in": ["hs_math_1a/数Ⅰ-066"], "where": "review"},
+    {"concept": "三平方の定理（直角三角形の辺の長さ）", "taught_in": ["jhs_math/中3-097", "jhs_math/中3-099"], "where": "sec-1"},
+    {"concept": "三角形の内角の和は 180°", "taught_in": ["jhs_math/中2-048"], "where": "quiz"},
+    {"concept": "分母の有理化", "taught_in": ["jhs_math/中3-026", "hs_math_1a/数Ⅰ-014"], "where": "sec-1"}
+  ],
+  "out_of_scope": [
+    "正弦定理（数Ⅰ-068・069）、余弦定理（数Ⅰ-070・071）、三角形の面積（数Ⅰ-073）",
+    "三角比を含む不等式や2次の形の方程式、三角比を含む式の値（sin θ+cos θ から sin θ cos θ を求めるなど）（教科書によっては発展。啓林館『深進数学Ⅰ』・東京書籍『改訂版 数学Ⅰ Advanced』の編修趣意書の発展的な学習内容）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『図形と計量』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(2)ア(ア)・ア(イ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.38-39 鋭角の三角比の相互関係、鈍角への拡張、三角比表の利用"},
+    {"name": "シラバス案 数学Ⅰ（改訂版 数学Ⅰ Standard、数Ⅰ002-902）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_su1_syllabus.pdf", "use": "三角比の相互関係・90°−A、三角比と座標（0°≦θ≦180° の三角比の値から角を求める）、拡張した三角比の相互関係・180°−θ（保存本文：sources/text/ts_m1_16704_syllabus.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

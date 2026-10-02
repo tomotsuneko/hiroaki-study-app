@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>独立な試行の確率｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-026</span></div>
+  <h1>独立な試行の確率</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">硬貨を投げてから、さいころを投げます。硬貨の結果は、さいころの目の出方に影響しません。このように結果が互いに影響し合わない試行では、確率どうしをかけて確率を求められます。その理由と使い方を学びます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>2つの試行の結果が互いに影響を及ぼし合わないとき、それらの試行は独立であるということを理解し、試行が独立かどうかを判断できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>独立な試行 \( S \)、\( T \) で「\( S \) では \( A \) が起こり、\( T \) では \( B \) が起こる」という事象 \( C \) の確率が \( P(C)=P(A)P(B) \)（確率の乗法定理）となることを、場合の数を数えて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>\( P(C)=P(A)P(B) \) を用いて、排反な場合に分けたり余事象を考えたりしながら、独立な試行の確率を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>3つ以上の独立な試行についても、確率の乗法定理を用いて確率を求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-025）</span>確率の練習</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-026）</span>独立な試行の確率</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-027）</span>反復試行の確率</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。この時間は特に、試行と事象（数Ａ-018）、積の法則（数Ａ-005）、排反な事象の確率（数Ａ-022）、余事象の確率（数Ａ-024）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">積の法則（数Ａ-005）・排反（数Ａ-022）・余事象（数Ａ-024）</p>
+  <p>数Ａ-018 では、同じ条件のもとで繰り返すことができ、結果が偶然によって決まる実験や観察を<strong>試行</strong>、試行の結果として起こる事柄を<strong>事象</strong>と呼びました。数Ａ-005 の積の法則、数Ａ-022 の排反な事象の確率 \( P(A\cup B)=P(A)+P(B) \)、数Ａ-024 の余事象の確率 \( P(\overline{A})=1-P(A) \) を、この時間も使います。</p>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-005・中2-082</span></div>
+  <p>1枚の硬貨と1個のさいころを同時に投げるとき、硬貨の表裏とさいころの目の出方は、全部で何通りですか。</p>
+  <div class="choices">
+    <button>8 通り</button>
+    <button data-correct="true">12 通り</button>
+    <button>36 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">硬貨の2通りのそれぞれに、さいころの目が6通りずつあるので、積の法則より \( 2\times6=12 \) 通りです。8 通りは \( 2+6 \) と足した誤り、36 通りは2つのさいころ（\( 6\times6 \)）と取り違えた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-022</span></div>
+  <p>1個のさいころを1回投げる試行で、「1の目が出る」と「偶数の目が出る」は、互いに排反ですか。</p>
+  <div class="choices">
+    <button data-correct="true">排反である（同時には起こらない）</button>
+    <button>排反でない（同時に起こることがある）</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">1 は偶数ではないので、2つの事象は同時に起こりません。排反は「1つの試行の中の2つの事象が同時に起こらない」ことで、この時間の「独立」（2つの試行の結果が影響し合わない）とは別のことです（「3 独立な試行とは」で比べます）。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-024</span></div>
+  <p>硬貨を3回投げるとき、「少なくとも1回は表が出る」の余事象はどれですか。</p>
+  <div class="choices">
+    <button>3回とも表が出る</button>
+    <button>ちょうど1回だけ表が出る</button>
+    <button data-correct="true">1回も表が出ない（3回とも裏が出る）</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「少なくとも1回」の余事象は「1回も起こらない」です。「3回とも表」は、余事象を「すべて起こる」と取り違えた誤りです。「ちょうど1回だけ表」は「少なくとも1回は表」に含まれる場合の一つで、余事象ではありません。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：硬貨とさいころのゲーム</h2>
+<div class="box think">
+  <p class="box-title">表が出て、しかも3の倍数</p>
+  <p>文化祭のゲームで、1枚の硬貨を投げてから1個のさいころを投げます。硬貨が表で、しかもさいころの目が3の倍数のとき景品がもらえます。</p>
+  <p>太郎：「表の確率が \( \dfrac{1}{2} \)、3の倍数の確率が \( \dfrac{1}{3} \) だから、足して \( \dfrac{5}{6} \) かな。」<br>花子：「両方とも起こらないといけないのに、どちらか一方の確率より大きくなるのは変じゃない？」</p>
+  <p><strong>景品がもらえる確率はいくつでしょうか。</strong>答えは「4 独立な試行の確率」の例題1で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="独立な試行とは"><span class="num">3</span>独立な試行とは</h2>
+<p>硬貨を投げる試行と、さいころを投げる試行を考えます。硬貨が表でも裏でも、さいころの目の出方は変わりません。このように、2つの試行の結果が互いに影響を及ぼし合わないとき、これらの試行は<strong>独立</strong>であるといいます。独立な2つの試行を<strong>独立な試行</strong>といいます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>2つの試行</th><th>独立か</th><th>理由</th></tr>
+  <tr><td>1個のさいころを2回続けて投げる</td><td>独立</td><td>1回目の目は、2回目の目の出方に影響しない</td></tr>
+  <tr><td>1枚の硬貨を投げ、次に1個のさいころを投げる</td><td>独立</td><td>硬貨の結果は、さいころの目の出方に影響しない</td></tr>
+  <tr><td>袋から玉を1個取り出し、<strong>もとに戻してから</strong>もう1個取り出す</td><td>独立</td><td>戻すので、2回目も袋の中身は1回目と同じ</td></tr>
+  <tr><td>袋から玉を1個取り出し、<strong>戻さずに</strong>もう1個取り出す</td><td>独立でない</td><td>1回目に取り出した玉の色によって、2回目の袋の中身（確率）が変わる</td></tr>
+</table>
+</div>
+<p class="small">表1　試行が独立かどうかの判断。玉やくじは「戻すか、戻さないか」を問題文で必ず確かめる</p>
+<p>戻さずに続けて取り出すような、前の結果によって後の確率が変わる場合は、数Ａ-028・029 で学びます。</p>
+<div class="box caution"><p class="box-title">よくある間違い：「独立」と「排反」を混同する</p><p><strong>排反</strong>は、1つの試行の中の2つの<strong>事象</strong>が同時に起こらないこと（数Ａ-022）です。<strong>独立</strong>は、2つの<strong>試行</strong>の結果が互いに影響し合わないことです。たとえば硬貨とさいころの試行は独立で、「硬貨が表」と「さいころが6」は両方同時に起こることがあります。排反な事象の確率は<strong>足し</strong>、独立な試行の確率は次の節のように<strong>かけ</strong>ます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="独立な試行の確率"><span class="num">4</span>独立な試行の確率（確率の乗法定理）</h2>
+<p>硬貨を投げる試行を \( S \)、さいころを投げる試行を \( T \) とします。\( S \) で表が出る事象を \( A \)、\( T \) で3の倍数の目が出る事象を \( B \) とし、「\( S \) では \( A \) が起こり、\( T \) では \( B \) が起こる」という事象を \( C \) とします。</p>
+<figure>
+<!--svg:f026a-->
+<svg viewBox="0 0 360 200" width="360" role="img" aria-label="硬貨の表裏（縦2行）とさいころの目1〜6（横6列）の12通りの格子。表の行（A、青の実線）と3の倍数の列（B、緑の破線）の両方に入る、表と3、表と6の2マスが斜線（C）" data-fig="f026a">
+<defs><pattern id="f026a-h" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#1f5fbf" stroke-width="2" stroke-opacity="0.8"/></pattern></defs>
+<text x="210" y="16" text-anchor="middle" font-size="12" fill="currentColor">さいころの目</text>
+<text x="34" y="93" text-anchor="middle" font-size="12" fill="currentColor">硬貨</text>
+<text x="110" y="38" text-anchor="middle" font-size="14" fill="currentColor">1</text>
+<text x="150" y="38" text-anchor="middle" font-size="14" fill="currentColor">2</text>
+<text x="190" y="38" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">3</text>
+<text x="230" y="38" text-anchor="middle" font-size="14" fill="currentColor">4</text>
+<text x="270" y="38" text-anchor="middle" font-size="14" fill="currentColor">5</text>
+<text x="310" y="38" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">6</text>
+<text x="74" y="73" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">表</text>
+<rect x="90" y="48" width="40" height="40" fill="none" stroke="currentColor" stroke-width="0.8" data-coin="表" data-die="1"/>
+<rect x="130" y="48" width="40" height="40" fill="none" stroke="currentColor" stroke-width="0.8" data-coin="表" data-die="2"/>
+<rect x="170" y="48" width="40" height="40" fill="url(#f026a-h)" stroke="currentColor" stroke-width="0.8" data-coin="表" data-die="3" data-c="1"/>
+<rect x="210" y="48" width="40" height="40" fill="none" stroke="currentColor" stroke-width="0.8" data-coin="表" data-die="4"/>
+<rect x="250" y="48" width="40" height="40" fill="none" stroke="currentColor" stroke-width="0.8" data-coin="表" data-die="5"/>
+<rect x="290" y="48" width="40" height="40" fill="url(#f026a-h)" stroke="currentColor" stroke-width="0.8" data-coin="表" data-die="6" data-c="1"/>
+<text x="74" y="113" text-anchor="middle" font-size="14" fill="currentColor">裏</text>
+<rect x="90" y="88" width="40" height="40" fill="none" stroke="currentColor" stroke-width="0.8" data-coin="裏" data-die="1"/>
+<rect x="130" y="88" width="40" height="40" fill="none" stroke="currentColor" stroke-width="0.8" data-coin="裏" data-die="2"/>
+<rect x="170" y="88" width="40" height="40" fill="none" stroke="currentColor" stroke-width="0.8" data-coin="裏" data-die="3"/>
+<rect x="210" y="88" width="40" height="40" fill="none" stroke="currentColor" stroke-width="0.8" data-coin="裏" data-die="4"/>
+<rect x="250" y="88" width="40" height="40" fill="none" stroke="currentColor" stroke-width="0.8" data-coin="裏" data-die="5"/>
+<rect x="290" y="88" width="40" height="40" fill="none" stroke="currentColor" stroke-width="0.8" data-coin="裏" data-die="6"/>
+<rect x="88" y="46" width="244" height="44" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-event="A"/>
+<rect x="173" y="51" width="34" height="74" fill="none" stroke="#1e8e5a" stroke-width="2" stroke-dasharray="5 3" data-event="B" data-die="3"/>
+<rect x="293" y="51" width="34" height="74" fill="none" stroke="#1e8e5a" stroke-width="2" stroke-dasharray="5 3" data-event="B" data-die="6"/>
+<text x="20" y="154" font-size="12" fill="currentColor">A：硬貨が表（青の実線）　B：3の倍数（緑の破線）</text>
+<text x="20" y="174" font-size="12" fill="currentColor">C（斜線）：12通りのうち 1×2＝2通り</text>
+</svg>
+<!--/svg:f026a-->
+  <figcaption>図1　硬貨（縦）とさいころ（横）の結果の組 12 通り。表の行（\( A \)）は2行のうち1行、3の倍数の列（\( B \)）は6列のうち2列。斜線の \( C \) は、その両方に入る \( 1\times2=2 \) 通り</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の答え）</p>
+  <p>1枚の硬貨を投げてから1個のさいころを投げるとき、硬貨は表で、さいころは3の倍数の目が出る確率を求めなさい。</p>
+  <div class="step">着目1（全体を数える）：硬貨の2通りのそれぞれに、さいころの6通りずつ。積の法則より \( 2\times6=12 \) 通りで、どれも同様に確からしい。</div>
+  <div class="step">着目2（\( C \) を数える）：表は1通り、3の倍数は3と6の2通りなので、\( C \) は \( 1\times2=2 \) 通り（図1の斜線）。</div>
+  <div class="step">着目3：\( P(C)=\dfrac{2}{12}=\dfrac{1}{6} \)。答え \( \dfrac{1}{6} \)。</div>
+  <div class="step">気づき：\( P(A)=\dfrac{1}{2} \)、\( P(B)=\dfrac{2}{6}=\dfrac{1}{3} \) で、\( P(A)\times P(B)=\dfrac{1}{2}\times\dfrac{1}{3}=\dfrac{1}{6} \) は \( P(C) \) と等しくなっています。太郎さんの \( \dfrac{5}{6} \) は確率を足した誤りで、両方が起こる確率が一方の確率より大きくなることはありません。</div>
+</div>
+<p>これは偶然ではありません。一般に、試行 \( S \) の結果が \( m \) 通りでどれも同様に確からしく、そのうち事象 \( A \) が起こるのが \( a \) 通り、試行 \( T \) の結果が \( n \) 通りでどれも同様に確からしく、そのうち事象 \( B \) が起こるのが \( b \) 通りとします。\( S \)、\( T \) が独立なとき、結果の組は積の法則で \( mn \) 通りあり、どれも同様に確からしいと考えられます。そのうち \( C \) が起こるのは \( ab \) 通りなので、</p>
+$$ P(C)=\frac{ab}{mn}=\frac{a}{m}\times\frac{b}{n}=P(A)\times P(B) $$
+<div class="formula-card">
+  <div><span class="f-name">独立な試行の確率（確率の乗法定理）</span>$$ P(C)=P(A)P(B) $$<p class="small">\( S \)、\( T \) が独立な試行で、\( C \) が「\( S \) では \( A \) が起こり、\( T \) では \( B \) が起こる」という事象のとき。</p></div>
+</div>
+<p>学習指導要領解説は、この式を「確率の乗法定理」と呼んでいます。数Ａ-029 では、前の結果によって後の確率が変わる場合にも使える、より一般的な形の乗法定理を学びます。</p>
+<div class="box caution"><p class="box-title">よくある間違い：独立でないのにかける</p><p>赤玉3個・白玉2個の袋から、玉を<strong>戻さずに</strong>2回取り出すとき、2回とも白玉である確率を \( \dfrac{2}{5}\times\dfrac{2}{5} \) とするのは誤りです。1回目に白玉を取り出すと、2回目の袋の中身が変わります。\( \dfrac{2}{5}\times\dfrac{2}{5}=\dfrac{4}{25} \) は、玉を<strong>戻す</strong>場合（独立な試行）の確率です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="乗法定理を使って求める"><span class="num">5</span>乗法定理を使って確率を求める</h2>
+<div class="box example worked">
+  <p class="box-title">例題2（2つの袋）</p>
+  <p>袋A には赤玉2個と白玉3個、袋B には赤玉4個と白玉2個が入っています。袋A、袋B から1個ずつ玉を取り出すとき、2個が同じ色である確率を求めなさい。</p>
+  <div class="step">着目1（独立か）：袋A から取り出す試行と、袋B から取り出す試行は、互いに影響しないので独立です。</div>
+  <div class="step">着目2（排反な場合に分ける）：「同じ色」は「2個とも赤」と「2個とも白」で、互いに排反です。</div>
+  <div class="step">着目3（それぞれ乗法定理）：2個とも赤は \( \dfrac{2}{5}\times\dfrac{4}{6}=\dfrac{8}{30} \)、2個とも白は \( \dfrac{3}{5}\times\dfrac{2}{6}=\dfrac{6}{30} \)。</div>
+  <div class="step">着目4（足す）：\( \dfrac{8}{30}+\dfrac{6}{30}=\dfrac{14}{30}=\dfrac{7}{15} \)。答え \( \dfrac{7}{15} \)。</div>
+</div>
+<p>確率を樹形図の枝に書くと、かける・足すの関係が見やすくなります。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（的当て）</p>
+  <p>a さんと b さんが1回ずつ的をねらいます。的に当たる確率は、a さんが 0.7、b さんが 0.6 とし、2人の結果は互いに影響しないとします（学習用に仮定した確率）。次の確率を求めなさい。<br>(1) 2人とも当たる　(2) ちょうど1人だけ当たる　(3) 少なくとも1人は当たる</p>
+  <div class="step">(1)（着目：独立なのでかける）：\( 0.7\times0.6=0.42 \)。</div>
+  <div class="step">(2)（着目：排反な2つの場合に分ける）：a だけ当たるのは \( 0.7\times0.4=0.28 \)、b だけ当たるのは \( 0.3\times0.6=0.18 \)。足して \( 0.28+0.18=0.46 \)。</div>
+  <div class="step">(3)（着目：余事象）：余事象「2人ともはずれる」は \( 0.3\times0.4=0.12 \)。\( 1-0.12=0.88 \)。</div>
+  <div class="step">確かめ：(1) と (2) を足しても \( 0.42+0.46=0.88 \) で、(3) と一致します。</div>
+</div>
+<figure>
+<!--svg:f026b-->
+<svg viewBox="0 0 420 252" width="420" role="img" aria-label="例題3の樹形図。a が当たる0.7・はずれる0.3、それぞれのあとに b が当たる0.6・はずれる0.4。右端に積 0.42、0.28、0.18、0.12。ちょうど1人だけ当たるのは 0.28 と 0.18 の道筋" data-fig="f026b">
+<circle cx="12" cy="120" r="3" fill="currentColor"/>
+<line x1="16" y1="120" x2="92" y2="60" stroke="#1f5fbf" stroke-width="1.8" data-p="0.7"/>
+<text x="40" y="86" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf" data-branch="0.7">0.7</text>
+<text x="96" y="64.5" font-size="13" fill="currentColor">a 当たり</text>
+<line x1="156" y1="60" x2="222" y2="30" stroke="#1f5fbf" stroke-width="1.8" data-p="0.6"/>
+<text x="177" y="41" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf" data-branch="0.6">0.6</text>
+<text x="226" y="34.5" font-size="13" fill="currentColor">b 当たり</text>
+<text x="286" y="34.5" font-size="13" fill="currentColor" data-leaf="0.42">0.7×0.6＝0.42</text>
+<line x1="156" y1="60" x2="222" y2="90" stroke="#b7791f" stroke-width="1.8" stroke-dasharray="5 3" data-p="0.4"/>
+<text x="177" y="89" text-anchor="middle" font-size="13" font-weight="700" fill="#b7791f" data-branch="0.4">0.4</text>
+<text x="226" y="94.5" font-size="13" fill="currentColor">b はずれ</text>
+<text x="286" y="94.5" font-size="13" fill="currentColor" data-leaf="0.28">0.7×0.4＝0.28</text>
+<text x="398" y="94.5" font-size="13" fill="currentColor" data-star="1">★</text>
+<line x1="16" y1="120" x2="92" y2="180" stroke="#b7791f" stroke-width="1.8" stroke-dasharray="5 3" data-p="0.3"/>
+<text x="40" y="164" text-anchor="middle" font-size="13" font-weight="700" fill="#b7791f" data-branch="0.3">0.3</text>
+<text x="96" y="184.5" font-size="13" fill="currentColor">a はずれ</text>
+<line x1="156" y1="180" x2="222" y2="150" stroke="#1f5fbf" stroke-width="1.8" data-p="0.6"/>
+<text x="177" y="161" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf" data-branch="0.6">0.6</text>
+<text x="226" y="154.5" font-size="13" fill="currentColor">b 当たり</text>
+<text x="286" y="154.5" font-size="13" fill="currentColor" data-leaf="0.18">0.3×0.6＝0.18</text>
+<text x="398" y="154.5" font-size="13" fill="currentColor" data-star="1">★</text>
+<line x1="156" y1="180" x2="222" y2="210" stroke="#b7791f" stroke-width="1.8" stroke-dasharray="5 3" data-p="0.4"/>
+<text x="177" y="209" text-anchor="middle" font-size="13" font-weight="700" fill="#b7791f" data-branch="0.4">0.4</text>
+<text x="226" y="214.5" font-size="13" fill="currentColor">b はずれ</text>
+<text x="286" y="214.5" font-size="13" fill="currentColor" data-leaf="0.12">0.3×0.4＝0.12</text>
+<text x="8" y="244" font-size="11" fill="currentColor">青の実線＝当たる　橙の破線＝はずれる　★＝ちょうど1人だけ当たる</text>
+</svg>
+<!--/svg:f026b-->
+  <figcaption>図2　例題3の樹形図。枝に確率（青の実線＝当たる、橙の破線＝はずれる）、右端にその道筋の確率（枝の確率の積）。★がちょうど1人だけ当たる場合</figcaption>
+</figure>
+<div class="box point"><p class="box-title">かけるか、足すか</p><p>「\( S \) で〜、<strong>かつ</strong> \( T \) で〜」のように独立な試行の結果がそろう場合は、確率を<strong>かけ</strong>ます。「〜<strong>または</strong>〜」のように互いに排反な場合に分けたときは、それぞれの確率を<strong>足し</strong>ます。「少なくとも」は余事象を考えます。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：「ちょうど1人」で一方の場合だけを数える</p><p>例題3(2)で、a だけ当たる \( 0.7\times0.4=0.28 \) だけを答えるのは誤りです。b だけ当たる場合 \( 0.18 \) もあります。また、\( 0.7\times0.6 \) のように「もう一方がはずれる確率」をかけ忘れると、「2人とも当たる」確率になってしまいます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="3つ以上の独立な試行"><span class="num">6</span>3つ以上の独立な試行</h2>
+<p>3つ以上の試行でも、どの試行の結果もほかの試行の結果に影響しないとき、それぞれの試行で決めた事象がすべて起こる確率は、それぞれの確率の積になります。3つの独立な試行で、それぞれ事象 \( A \)、\( B \)、\( D \) が起こる確率は \( P(A)P(B)P(D) \) です。</p>
+<div class="box example worked">
+  <p class="box-title">例題4（さいころを3回）</p>
+  <p>1個のさいころを3回投げるとき、1回目は偶数、2回目は3の倍数、3回目は6の目が出る確率を求めなさい。</p>
+  <div class="step">着目1（独立か）：さいころを投げる3回の試行は独立です。</div>
+  <div class="step">着目2（かける）：\( \dfrac{3}{6}\times\dfrac{2}{6}\times\dfrac{1}{6}=\dfrac{1}{36} \)。答え \( \dfrac{1}{36} \)。</div>
+  <div class="step">確かめ（数える）：目の出方は \( 6\times6\times6=216 \) 通り、条件に合うのは \( 3\times2\times1=6 \) 通りで、\( \dfrac{6}{216}=\dfrac{1}{36} \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5（少なくとも1回）</p>
+  <p>1個のさいころを3回投げるとき、少なくとも1回は1の目が出る確率を求めなさい。</p>
+  <div class="step">着目1（余事象）：余事象は「3回とも1以外の目」です。</div>
+  <div class="step">着目2（独立なのでかける）：\( \dfrac{5}{6}\times\dfrac{5}{6}\times\dfrac{5}{6}=\dfrac{125}{216} \)。</div>
+  <div class="step">着目3：\( 1-\dfrac{125}{216}=\dfrac{91}{216} \)。答え \( \dfrac{91}{216} \)。</div>
+</div>
+<p>数Ａ-024 では、目の出方を数えて \( 1-\dfrac{5^3}{6^3} \) と求めました。独立な試行の確率を使うと、同じ値を \( 1-\left(\dfrac{5}{6}\right)^3 \) と確率のかけ算で求められます。</p>
+<div class="box caution"><p class="box-title">よくある間違い：「少なくとも1回」で確率を足す</p><p>例題5を \( \dfrac{1}{6}+\dfrac{1}{6}+\dfrac{1}{6}=\dfrac{1}{2} \) とするのは誤りです。「1回目に1」「2回目に1」「3回目に1」は同時に起こることがある（互いに排反でない）ので、確率をそのまま足すことはできません。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>独立（独立な試行）</dt><dd>2つの試行の結果が互いに影響を及ぼし合わないとき、それらの試行は独立であるという。3つ以上でも、どの試行の結果もほかに影響しないとき独立という。</dd>
+    <dt>確率の乗法定理（独立な試行の場合）</dt><dd>独立な試行 \( S \)、\( T \) で、「\( S \) では \( A \) が起こり、\( T \) では \( B \) が起こる」事象 \( C \) について \( P(C)=P(A)P(B) \)。より一般的な形は数Ａ-029 で学ぶ。</dd>
+    <dt>排反</dt><dd>1つの試行の中の2つの事象が同時には起こらないこと（数Ａ-022）。独立とは別のことで、排反な場合の確率は足す。</dd>
+    <dt>余事象</dt><dd>「\( A \) が起こらない」という事象 \( \overline{A} \)。\( P(\overline{A})=1-P(A) \)（数Ａ-024）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>2つの試行の結果が互いに影響を及ぼし合わないとき、試行は独立。玉やくじは「戻す」なら独立、「戻さない」なら独立でない（O1）。</li>
+    <li>独立な試行 \( S \)、\( T \) で「\( S \) では \( A \)、\( T \) では \( B \)」の確率は \( P(C)=P(A)P(B) \)。結果の組を積の法則で数えると \( \dfrac{ab}{mn}=\dfrac{a}{m}\times\dfrac{b}{n} \) となるから（O2）。</li>
+    <li>「かつ」はかけ、互いに排反な場合に分けたら足し、「少なくとも」は余事象を考える（O3）。</li>
+    <li>3つ以上の独立な試行でも、それぞれの確率をかける（O4）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">独立な試行の確率（確率の乗法定理）</span>$$ P(C)=P(A)P(B) $$</div>
+  <div><span class="f-name">3つの独立な試行</span>$$ P(A)P(B)P(D) $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。確率の入力は、それ以上約分できない分数（2/7 など）で答えてください。小数で表せるときは小数でもかまいません。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>次のうち、2つの試行が<strong>独立でない</strong>ものはどれですか。</p>
+  <div class="choices">
+    <button>1個のさいころを2回続けて投げる。</button>
+    <button>1枚の硬貨を投げ、次に1個のさいころを投げる。</button>
+    <button>くじを1本引き、もとに戻してから、もう1本引く。</button>
+    <button data-correct="true">くじを1本引き、もとに戻さずに、もう1本引く。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">戻さずに引くと、1本目が当たりかはずれかによって、2本目を引くときの残りのくじ（当たりの本数）が変わるので、2つの試行は独立ではありません。さいころを2回投げる、硬貨とさいころを投げる、戻してから引く、の3つは、前の結果が後の結果に影響しないので独立です。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="1/3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>1枚の硬貨を投げてから1個のさいころを投げるとき、硬貨は裏で、さいころは4以下の目が出る確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{1}{3} \)。2つの試行は独立なので \( \dfrac{1}{2}\times\dfrac{4}{6}=\dfrac{4}{12}=\dfrac{1}{3} \)。数えて確かめると、12 通りのうち（裏、1〜4）の4通りです。\( \dfrac{7}{6} \)（\( =\dfrac{1}{2}+\dfrac{4}{6} \)）と足すと 1 を超えてしまいます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>赤玉4個と白玉3個が入った袋から玉を1個取り出し、色を見て<strong>もとに戻して</strong>から、もう1個取り出します。2回とも白玉である確率はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \dfrac{9}{49} \)</button>
+    <button>\( \dfrac{1}{7} \)</button>
+    <button>\( \dfrac{6}{7} \)</button>
+    <button>\( \dfrac{3}{7} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">戻すので2回の試行は独立で、\( \dfrac{3}{7}\times\dfrac{3}{7}=\dfrac{9}{49} \)。\( \dfrac{1}{7} \)（\( =\dfrac{3}{7}\times\dfrac{2}{6} \)）は、戻さない場合として2回目を残り6個で考えた値です。\( \dfrac{6}{7} \) は \( \dfrac{3}{7}+\dfrac{3}{7} \) と足した誤り、\( \dfrac{3}{7} \) は1回分の確率のままで、2回とも白であることを考えていません。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="0.44|11/25">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>a さんと b さんが1回ずつ的をねらいます。的に当たる確率は、a さんが 0.8、b さんが 0.6 とし、2人の結果は互いに影響しないとします（学習用に仮定した確率）。ちょうど1人だけが当たる確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 0.44。a だけ当たる \( 0.8\times0.4=0.32 \) と、b だけ当たる \( 0.2\times0.6=0.12 \) は互いに排反なので、\( 0.32+0.12=0.44 \)。0.32 だけ答えた場合は、b だけ当たる場合を落としています。0.48（\( =0.8\times0.6 \)）は2人とも当たる確率です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>問4の2人について、少なくとも1人は当たる確率はどれですか。</p>
+  <div class="choices">
+    <button>\( 1.4 \)</button>
+    <button>\( 0.48 \)</button>
+    <button data-correct="true">\( 0.92 \)</button>
+    <button>\( 0.08 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">余事象「2人ともはずれる」は \( 0.2\times0.4=0.08 \) なので、\( 1-0.08=0.92 \)。確かめ：2人とも当たる 0.48 と、ちょうど1人 0.44（問4）を足しても 0.92 です。\( 1.4 \)（\( =0.8+0.6 \)）は足した誤りで、確率は 1 を超えません。\( 0.48 \) は2人とも当たる確率、\( 0.08 \) は余事象の確率のままです。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="8/27">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O4</span></div>
+  <p>1個のさいころを3回投げるとき、3回とも3以上の目が出る確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{8}{27} \)。3回の試行は独立で、1回に3以上の目が出る確率は \( \dfrac{4}{6}=\dfrac{2}{3} \) なので、\( \dfrac{2}{3}\times\dfrac{2}{3}\times\dfrac{2}{3}=\dfrac{8}{27} \)。数えて確かめると \( \dfrac{4\times4\times4}{216}=\dfrac{64}{216}=\dfrac{8}{27} \)。\( 3\times\dfrac{2}{3}=2 \) のように足すと 1 を超えます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3・O4</span></div>
+  <p>a、b、c の3人が、それぞれ1問ずつ別々にクイズに答えます。正解する確率は a が \( \dfrac{1}{2} \)、b が \( \dfrac{2}{3} \)、c が \( \dfrac{3}{4} \) とし、3人の結果は互いに影響しないとします（学習用に仮定した確率）。ちょうど2人が正解する確率はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{1}{4} \)</button>
+    <button data-correct="true">\( \dfrac{11}{24} \)</button>
+    <button>\( \dfrac{1}{12} \)</button>
+    <button>\( \dfrac{29}{24} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">ちょうど2人の正解は、「a・b が正解で c が不正解」「a・c が正解で b が不正解」「b・c が正解で a が不正解」の3つの排反な場合です。\( \dfrac{1}{2}\cdot\dfrac{2}{3}\cdot\dfrac{1}{4}+\dfrac{1}{2}\cdot\dfrac{1}{3}\cdot\dfrac{3}{4}+\dfrac{1}{2}\cdot\dfrac{2}{3}\cdot\dfrac{3}{4}=\dfrac{2}{24}+\dfrac{3}{24}+\dfrac{6}{24}=\dfrac{11}{24} \)。\( \dfrac{1}{4} \)（\( =\dfrac{1}{2}\cdot\dfrac{2}{3}\cdot\dfrac{3}{4} \)）は3人とも正解の確率、\( \dfrac{1}{12} \) は「a・b が正解で c が不正解」の1つの場合だけ、\( \dfrac{29}{24} \)（\( =\dfrac{1}{2}\cdot\dfrac{2}{3}+\dfrac{1}{2}\cdot\dfrac{3}{4}+\dfrac{2}{3}\cdot\dfrac{3}{4} \)）は残りの1人が不正解である確率をかけ忘れた誤りで、1 を超えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2</span></div>
+  <p>どの目が出ることも同様に確からしいさいころを投げる遊びで、花子さんと太郎さんが話しています。</p>
+  <p>花子：「3回続けて6の目が出たよ。こんなに続いたから、次は6が出にくいはず。」<br>太郎：「4回続けて6が出る確率はとても小さいよね。」</p>
+  <p>4回目に6の目が出る確率についての説明として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>4回続けて6の目が出る確率は \( \frac{1}{6^4}=\frac{1}{1296} \) なので、4回目に6の目が出る確率は \( \frac{1}{1296} \) である。</button>
+    <button>6回投げれば6の目は1回出るはずなので、すでに3回出た後の4回目に6の目が出る確率は 0 である。</button>
+    <button data-correct="true">さいころを投げる試行は互いに独立なので、前の3回の結果によらず、4回目に6の目が出る確率は \( \frac{1}{6} \) である。</button>
+    <button>3回続けて6の目が出たので、4回目に6の目が出る確率は \( 1-\frac{3}{6}=\frac{1}{2} \) に減っている。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">さいころを投げる試行は独立なので、前の結果は次の目の出方に影響せず、4回目に6の目が出る確率は \( \dfrac{1}{6} \) のままです。\( \dfrac{1}{1296} \) は「投げる前に、4回続けて6が出る」確率で、3回出た後の4回目だけの確率ではありません。「6回で1回出るはず」という考えは、数Ａ-024 の問8で確かめたように誤りです。\( 1-\dfrac{3}{6} \) は、出た回数の分だけ確率が減るとした誤りで、根拠がありません。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>袋X には赤玉3個と白玉1個、袋Y には赤玉2個と白玉3個が入っています。袋X、袋Y から1個ずつ玉を取り出します。</p>
+  <p>(1) 確率の乗法定理を使って、2個が同じ色である確率を求めなさい。<br>(2) (1) の答えを、玉を区別して場合の数を数える方法で確かめなさい。また、この場面で乗法定理が成り立つ理由を説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) 2つの試行は独立。「2個とも赤」と「2個とも白」は互いに排反なので、\( \dfrac{3}{4}\times\dfrac{2}{5}+\dfrac{1}{4}\times\dfrac{3}{5}=\dfrac{6}{20}+\dfrac{3}{20}=\dfrac{9}{20} \)。</p>
+    <p>(2) 玉を区別すると、取り出し方は袋X の4通りのそれぞれに袋Y の5通りずつで \( 4\times5=20 \) 通り（積の法則）。2個とも赤は \( 3\times2=6 \) 通り、2個とも白は \( 1\times3=3 \) 通りで、\( \dfrac{6+3}{20}=\dfrac{9}{20} \) となり一致する。2個とも赤の確率は \( \dfrac{3\times2}{4\times5}=\dfrac{3}{4}\times\dfrac{2}{5} \) と、分母・分子をそれぞれの袋の通り数の積に分けられるので、袋X の確率と袋Y の確率の積になる。</p>
+    <p><strong>採点の観点</strong>　① 同じ色を「2個とも赤」「2個とも白」の排反な場合に分けている。② 各場合を確率の積で求め、和を \( \dfrac{9}{20} \) としている。③ 20通りの数え上げで確かめ、\( \dfrac{3\times2}{4\times5}=\dfrac{3}{4}\times\dfrac{2}{5} \) のように積の法則と結び付けて理由を説明している。</p>
+  </div>
+  <div class="explain">2つの試行が独立なので、組の総数も条件に合う組の数も積の法則で数えられ、確率が積に分かれます。戻さずに続けて取り出す場合はこの分け方ができません（数Ａ-029）。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(エ)「独立な試行の意味を理解し，独立な試行の確率を求めること」に当たり、出題範囲に含まれます。学習指導要領解説は、独立な試行 \( S \)、\( T \) で「試行 \( S \) では事象 \( A \) が起こり，試行 \( T \) では事象 \( B \) が起こるという事象 \( C \)」の確率が \( P(C)=P(A)P(B) \)（確率の乗法定理）となることを用いて、「様々な独立な試行の確率を求めることができるようにする」としています。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。</p>
+  <p class="small">問4・問5・問8は日常の場面や会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">反復試行の確率（数Ａ-027）</p>
+  <p>次の時間は、さいころを何回も投げるように同じ試行を繰り返すとき、ある事象がちょうど \( r \) 回起こる確率を、この時間の独立な試行の確率と組合せを用いて求めます。例題5のような「3回とも」「少なくとも1回」に加えて、「3回のうちちょうど2回」のような確率を考えます。</p>
+  <p>この時間では、ちょうど \( r \) 回起こる確率の式（数Ａ-027）、戻さずに続けて取り出すときのように前の結果で後の確率が変わる場合の確率（条件付き確率 数Ａ-028、乗法定理 数Ａ-029）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-025　確率の練習</div>
+  <div><span class="label">次の時間</span>数Ａ-027　反復試行の確率</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-026「独立な試行の確率」（学習指導要領 数学Ａ (2)ア(エ)、解説 p.94）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率 ア(エ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.94（独立な試行は二つの試行の結果がお互いに影響を及ぼし合わない試行のこと、\( P(C)=P(A)P(B) \)（確率の乗法定理）、条件付き確率の式を「一般的な確率の乗法定理」と呼ぶこと）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「独立な試行の確率」（「試行が独立か，独立でないかを判断できる」「3つ以上の独立な試行を行うとき，その結果として起こる事象の確率について考察することができる」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。例題3・問4・問5・問7の確率は学習用に仮定した値です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-026",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-026",
+  "title": "独立な試行の確率",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(エ)"],
+  "kaisetsu_page": "94",
+  "objectives": [
+    {"id": "O1", "text": "2つの試行の結果が互いに影響を及ぼし合わないとき、それらの試行は独立であるということを理解し、試行が独立かどうかを判断できる。", "from": "二つの試行の結果が互いに影響を及ぼし合わない独立な試行の意味を理解し", "sections": ["sec-1"], "checks": ["q1", "q8"]},
+    {"id": "O2", "text": "独立な試行 \\( S \\)、\\( T \\) で「\\( S \\) では \\( A \\) が起こり、\\( T \\) では \\( B \\) が起こる」という事象 \\( C \\) の確率が \\( P(C)=P(A)P(B) \\)（確率の乗法定理）となることを、場合の数を数えて説明できる。", "from": "P(C)=P(A)P(B)（確率の乗法定理）", "sections": ["sec-2"], "checks": ["q2", "q8", "q9"]},
+    {"id": "O3", "text": "\\( P(C)=P(A)P(B) \\) を用いて、排反な場合に分けたり余事象を考えたりしながら、独立な試行の確率を求めることができる。", "from": "P(C)=P(A)P(B)（確率の乗法定理）を用いて確率を求めることができる", "sections": ["sec-3"], "checks": ["q3", "q4", "q5", "q7", "q9"]},
+    {"id": "O4", "text": "3つ以上の独立な試行についても、確率の乗法定理を用いて確率を求めることができる。", "from": "3つ以上の独立な試行にも用いる", "sections": ["sec-4"], "checks": ["q6", "q7"]}
+  ],
+  "key_terms": [
+    {"term": "独立", "where": "sec-1"},
+    {"term": "独立な試行", "where": "sec-1"},
+    {"term": "確率の乗法定理", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "試行・事象の意味", "taught_in": ["hs_math_1a/数Ａ-018"], "where": "review"},
+    {"concept": "根元事象が同様に確からしいときの確率 P(A)=n(A)/n(U)", "taught_in": ["hs_math_1a/数Ａ-018", "jhs_math/中2-080"], "where": "sec-2"},
+    {"concept": "積の法則", "taught_in": ["hs_math_1a/数Ａ-005"], "where": "review"},
+    {"concept": "硬貨とさいころ・2つのさいころの確率（区別して数える）", "taught_in": ["jhs_math/中2-082", "hs_math_1a/数Ａ-020"], "where": "review"},
+    {"concept": "排反な事象と、排反な事象の確率 P(A∪B)=P(A)+P(B)", "taught_in": ["hs_math_1a/数Ａ-022"], "where": "review"},
+    {"concept": "余事象の確率 P(Ā)=1−P(A)、「少なくとも1つ」の余事象", "taught_in": ["hs_math_1a/数Ａ-024"], "where": "review"},
+    {"concept": "仮定した確率・小数で表した確率（相対度数を確率とみる考え方）", "taught_in": ["hs_math_1a/数Ａ-019", "jhs_math/中1-117"], "where": "sec-3"},
+    {"concept": "樹形図で起こりうる場合を整理する", "taught_in": ["jhs_math/中2-081", "hs_math_1a/数Ａ-003"], "where": "sec-3"},
+    {"concept": "同じ数の積を累乗で表す（6^4、(5/6)^3）", "taught_in": ["jhs_math/中1-013"], "where": "sec-4"}
+  ],
+  "out_of_scope": [
+    "反復試行の確率 nCr p^r(1−p)^(n−r)（数Ａ-027）",
+    "戻さずに続けて取り出すなど、前の結果で後の確率が変わる場合（条件付き確率 数Ａ-028、乗法定理 P(A∩B)=P(A)P_A(B) 数Ａ-029）"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(エ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.94 独立な試行の意味、P(C)=P(A)P(B)（確率の乗法定理）、一般的な確率の乗法定理の呼び方"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "独立かどうかの判断、3つ以上の独立な試行を扱うことの確認"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

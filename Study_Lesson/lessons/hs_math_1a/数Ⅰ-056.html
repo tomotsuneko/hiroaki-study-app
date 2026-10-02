@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単元末演習（二次関数）｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>二次関数</span><span>数Ⅰ-056</span></div>
+  <h1>単元末演習（二次関数）</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">演習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">単元「二次関数」のまとめの演習です。グラフと平行移動、最大・最小、二次関数の決定、二次方程式・二次不等式とグラフの4つの型の問題を解き、単元の基本事項が身に付いているかを確かめます。どの型でも、最初に平方完成して<strong>グラフの形と頂点</strong>を思い浮かべることが出発点です。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>二次関数を平方完成して軸・頂点・凸の向きを求め、グラフの平行移動や対称移動を頂点の移動や x、y の置き換えで表すことができる（型A）。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>定義域に注意して、頂点と定義域の両端の値を比べて二次関数の最大値・最小値を求め、場面の問題に活用することができる（型B）。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>頂点・軸や通る点などの条件に応じて式の形を選び、二次関数を決定することができる（型C）。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>二次方程式・二次不等式の解を、グラフと x 軸の共有点や位置関係と関連付けて求めることができる（型D）。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-055）</span>二次関数の総合演習（方程式・不等式との関連）</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-056）</span>単元末演習（二次関数）</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-057）</span>三角比の必要性と正接（単元「図形と計量」）</div>
+</div>
+<p class="small">この時間は新しい内容を学ばず、単元「二次関数」（数Ⅰ-031〜055）の内容を練習します。「型A〜D」はこのページでの呼び方で、数Ⅰ-042・051・055 の「型A〜D」とは別の分け方です。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：単元の要点と公式の総整理</h2>
+<div class="formula-card">
+  <div><span class="f-name">① グラフ（数Ⅰ-032〜036）</span><p>\( y=ax^2+bx+c \) を平方完成して \( y=a(x-p)^2+q \) の形にすると、軸は直線 \( x=p \)、頂点は \( (p,\ q) \)。\( a&gt;0 \) なら下に凸、\( a&lt;0 \) なら上に凸。\( y \) 軸との交点は \( (0,\ c) \)。</p></div>
+  <div><span class="f-name">② 平行移動・対称移動（数Ⅰ-038）</span><p>\( x \) 軸方向に \( p \)、\( y \) 軸方向に \( q \) の平行移動：頂点が \( p,\ q \) だけ動く（式では \( x\to x-p,\ y\to y-q \)）。<br>\( x \) 軸に関して対称：\( y\to -y \)。\( y \) 軸に関して対称：\( x\to -x \)。原点に関して対称：\( x\to -x,\ y\to -y \)。</p></div>
+  <div><span class="f-name">③ 最大・最小（数Ⅰ-039〜043）</span><p>\( x \) がすべての実数：下に凸なら頂点で最小・最大値はない、上に凸なら頂点で最大・最小値はない。<br>定義域が限られるとき：軸が定義域の内側か外側かを見て、頂点と両端の値を比べる。場面の問題では、変数のとりうる値の範囲を先に求める。</p></div>
+  <div><span class="f-name">④ 二次関数の決定（数Ⅰ-044・045）</span><p>頂点・軸の条件 → \( y=a(x-p)^2+q \) とおく。通る3点 → \( y=ax^2+bx+c \) とおき、連立三元一次方程式を解く。</p></div>
+  <div><span class="f-name">⑤ 方程式とグラフ（数Ⅰ-046・047）</span><p>\( x \) 軸との共有点の \( x \) 座標は \( ax^2+bx+c=0 \) の実数解。\( D=b^2-4ac \) が正・0・負で、共有点は2個・1個（接する）・0個。</p></div>
+  <div><span class="f-name">⑥ 不等式とグラフ（数Ⅰ-048〜055）</span><p>\( &gt;0 \) の解はグラフが \( x \) 軸より上側、\( &lt;0 \) の解は下側の部分の \( x \) の範囲。\( a&gt;0 \)、\( \alpha&lt;\beta \) なら \( &gt;0 \) → \( x&lt;\alpha,\ \beta&lt;x \)、\( &lt;0 \) → \( \alpha&lt;x&lt;\beta \)。\( a\neq 0 \) のとき、すべての実数で \( &gt;0 \) ⇔ \( a&gt;0 \) かつ \( D&lt;0 \)。</p></div>
+</div>
+<p class="small">①〜⑥は、このページの中での番号です。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-033</span></div>
+  <p>\( y=-(x+1)^2+4 \) のグラフの頂点はどれですか。</p>
+  <div class="choices">
+    <button>\( (1,\ 4) \)</button>
+    <button data-correct="true">\( (-1,\ 4) \)</button>
+    <button>\( (-1,\ -4) \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">かっこの中が 0 になるのは \( x=-1 \) なので、頂点は \( (-1,\ 4) \) です。\( (1,\ 4) \) は \( x \) 座標の符号の誤りです。\( y \) 座標は式に書かれた符号のまま \( +4 \) なので、\( (-1,\ -4) \) も誤りです。\( x^2 \) の係数が負なので上に凸ですが、頂点の位置は変わりません。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-039</span></div>
+  <p>\( x \) がすべての実数をとるとき、\( y=2(x-1)^2-3 \) の最大値・最小値について正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( x=-1 \) で最小値 \( -3 \)、最大値はない</button>
+    <button>\( x=1 \) で最大値 \( -3 \)、最小値はない</button>
+    <button data-correct="true">\( x=1 \) で最小値 \( -3 \)、最大値はない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x^2 \) の係数 2 は正なので下に凸で、頂点 \( (1,\ -3) \) で最小になります。最大値はありません。「\( x=-1 \)」は頂点の \( x \) 座標の符号の誤り、「最大値 \( -3 \)」は凸の向きの取り違えです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-048・049</span></div>
+  <p>二次不等式 \( x^2-x-2&lt;0 \) の解はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( -1&lt;x&lt;2 \)</button>
+    <button>\( x&lt;-1,\ 2&lt;x \)</button>
+    <button>\( -2&lt;x&lt;1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x^2-x-2=(x+1)(x-2) \) なので、グラフは \( x \) 軸と \( x=-1,\ 2 \) で交わります。\( &lt;0 \) の解は下側の部分で \( -1&lt;x&lt;2 \)。\( x&lt;-1,\ 2&lt;x \) は \( &gt;0 \) の解、\( -2&lt;x&lt;1 \) は \( (x-1)(x+2) \) と因数分解を誤った場合です。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：どの型か見分けよう</h2>
+<div class="box think">
+  <p class="box-title">4つの問題</p>
+  <p>(ア) 放物線 \( y=x^2-6x+5 \) を、\( x \) 軸方向に \( -2 \)、\( y \) 軸方向に 3 だけ平行移動した放物線の式を求めなさい。<br>
+  (イ) 二次関数 \( y=x^2-4x+1 \)（\( 0\leqq x\leqq 5 \)）の最大値と最小値を求めなさい。<br>
+  (ウ) グラフが3点 \( (0,\ 3) \)、\( (1,\ 0) \)、\( (3,\ 0) \) を通る二次関数を求めなさい。<br>
+  (エ) 二次不等式 \( 2x^2-3x-2\geqq 0 \) を解きなさい。</p>
+  <p>解き始める前に、それぞれ「何を求める問題か」「どの式の形を使うか」を予想しましょう。答えは、(ア) が「3 型A」の例題1、(イ) が「4 型B」の例題3、(ウ) が「5 型C」の例題6、(エ) が「6 型D」の例題7で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="型A：グラフと平行移動・対称移動"><span class="num">3</span>型A：グラフと平行移動・対称移動</h2>
+<p>グラフの問題は、まず平方完成して頂点と凸の向きを求めます（①）。平行移動は頂点の移動で考え、対称移動は \( x,\ y \) の置き換えで式を求めて、頂点の移動で確かめます（②）。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（型A：導入の (ア)）</p>
+  <p>放物線 \( y=x^2-6x+5 \) を、\( x \) 軸方向に \( -2 \)、\( y \) 軸方向に 3 だけ平行移動した放物線の式を求めなさい。</p>
+  <div class="step">着眼点：平行移動では形（\( x^2 \) の係数）は変わらず、頂点だけが動く。</div>
+  <div class="step">\( y=x^2-6x+5=(x-3)^2-4 \) より、頂点は \( (3,\ -4) \)。</div>
+  <div class="step">移動後の頂点は \( (3+(-2),\ -4+3)=(1,\ -1) \)。\( x^2 \) の係数は 1 のまま。</div>
+  <div class="step">答え：<span data-ans="ex1">\( y=(x-1)^2-1 \)</span>（展開すると \( y=x^2-2x \)）</div>
+  <div class="step">確かめ（置き換え）：\( x \) を \( x+2 \)、\( y \) を \( y-3 \) に置き換えると、\( y-3=(x+2)^2-6(x+2)+5 \)、\( y=x^2-2x \) となり一致します。</div>
+</div>
+<figure>
+<!--svg:f056a-->
+<svg viewBox="0 0 420 270" width="420" role="img" aria-label="放物線 y=x²−6x+5（破線、頂点 (3, −4)）と、それを x 軸方向に −2、y 軸方向に 3 だけ平行移動した放物線 y=x²−2x（実線、頂点 (1, −1)）。頂点の移動を矢印で示す" data-fig="f056a" data-frame="28 18 370 226 -1.4 6.2 -5.0 6.0"><defs><clipPath id="clip-f056a"><rect x="28" y="18" width="370" height="226"/></clipPath></defs>
+<line x1="22" y1="141.3" x2="406" y2="141.3" stroke="currentColor" stroke-width="1"/>
+<polygon points="407,141.3 399,137.8 399,144.8" fill="currentColor"/>
+<text x="404" y="134.3" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="96.2" y1="250" x2="96.2" y2="10" stroke="currentColor" stroke-width="1"/>
+<polygon points="96.2,9 92.7,17 99.7,17" fill="currentColor"/>
+<text x="103.2" y="19" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="92.2" y="154.3" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="144.8" y1="138.3" x2="144.8" y2="144.3" stroke="currentColor"/>
+<text x="144.8" y="155.3" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="242.2" y1="138.3" x2="242.2" y2="144.3" stroke="currentColor"/>
+<text x="242.2" y="155.3" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="339.6" y1="138.3" x2="339.6" y2="144.3" stroke="currentColor"/>
+<text x="339.6" y="155.3" text-anchor="middle" font-size="11" fill="currentColor">5</text>
+<line x1="93.2" y1="223.5" x2="99.2" y2="223.5" stroke="currentColor"/>
+<text x="91.2" y="227.5" text-anchor="end" font-size="11" fill="currentColor">−4</text>
+<line x1="93.2" y1="161.8" x2="99.2" y2="161.8" stroke="currentColor"/>
+<text x="91.2" y="165.8" text-anchor="end" font-size="11" fill="currentColor">−1</text>
+<line x1="93.2" y1="79.6" x2="99.2" y2="79.6" stroke="currentColor"/>
+<text x="91.2" y="83.6" text-anchor="end" font-size="11" fill="currentColor">3</text>
+<path d="M115.6,84.6 L118,89.7 L120.3,94.7 L122.7,99.6 L125,104.5 L127.4,109.2 L129.8,113.8 L132.1,118.4 L134.5,122.8 L136.8,127.2 L139.2,131.4 L141.5,135.6 L143.9,139.6 L146.2,143.6 L148.6,147.5 L150.9,151.2 L153.3,154.9 L155.6,158.5 L158,162 L160.3,165.4 L162.7,168.6 L165,171.8 L167.4,174.9 L169.8,177.9 L172.1,180.9 L174.5,183.7 L176.8,186.4 L179.2,189 L181.5,191.5 L183.9,194 L186.2,196.3 L188.6,198.5 L190.9,200.7 L193.3,202.7 L195.6,204.7 L198,206.5 L200.3,208.3 L202.7,209.9 L205,211.5 L207.4,213 L209.8,214.3 L212.1,215.6 L214.5,216.8 L216.8,217.9 L219.2,218.9 L221.5,219.7 L223.9,220.5 L226.2,221.2 L228.6,221.8 L230.9,222.4 L233.3,222.8 L235.6,223.1 L238,223.3 L240.3,223.4 L242.7,223.5 L245.1,223.4 L247.4,223.2 L249.8,223 L252.1,222.6 L254.5,222.2 L256.8,221.6 L259.2,221 L261.5,220.2 L263.9,219.4 L266.2,218.5 L268.6,217.4 L270.9,216.3 L273.3,215.1 L275.6,213.8 L278,212.4 L280.3,210.8 L282.7,209.2 L285.1,207.5 L287.4,205.7 L289.8,203.9 L292.1,201.9 L294.5,199.8 L296.8,197.6 L299.2,195.3 L301.5,193 L303.9,190.5 L306.2,187.9 L308.6,185.3 L310.9,182.5 L313.3,179.7 L315.6,176.7 L318,173.7 L320.3,170.5 L322.7,167.3 L325.1,164 L327.4,160.5 L329.8,157 L332.1,153.4 L334.5,149.7 L336.8,145.9 L339.2,142 L341.5,138 L343.9,133.9 L346.2,129.7 L348.6,125.4 L350.9,121 L353.3,116.5 L355.6,111.9 L358,107.2 L360.4,102.5 L362.7,97.6 L365.1,92.6 L367.4,87.6 L369.8,82.4 L372.1,77.2 L374.5,71.8 L376.8,66.4 L379.2,60.8 L381.5,55.2 L383.9,49.5 L386.2,43.6 L388.6,37.7 L390.9,31.7 L393.3,25.6 L395.6,19.4 L398,13.1" fill="none" stroke="#8a99a8" stroke-width="2" stroke-dasharray="6 4" data-f="1 -6 5" clip-path="url(#clip-f056a)"/>
+<path d="M28,43.5 L29.9,47.4 L31.9,51.2 L33.8,55 L35.8,58.7 L37.7,62.4 L39.7,66 L41.6,69.5 L43.6,72.9 L45.5,76.3 L47.5,79.6 L49.4,82.9 L51.4,86.1 L53.3,89.2 L55.3,92.3 L57.2,95.3 L59.2,98.2 L61.1,101 L63.1,103.8 L65,106.6 L66.9,109.2 L68.9,111.8 L70.8,114.3 L72.8,116.8 L74.7,119.2 L76.7,121.5 L78.6,123.8 L80.6,126 L82.5,128.2 L84.5,130.2 L86.4,132.2 L88.4,134.2 L90.3,136 L92.3,137.9 L94.2,139.6 L96.2,141.3 L98.1,142.9 L100.1,144.4 L102,145.9 L103.9,147.3 L105.9,148.7 L107.8,150 L109.8,151.2 L111.7,152.3 L113.7,153.4 L115.6,154.4 L117.6,155.4 L119.5,156.3 L121.5,157.1 L123.4,157.8 L125.4,158.5 L127.3,159.2 L129.3,159.7 L131.2,160.2 L133.2,160.6 L135.1,161 L137.1,161.3 L139,161.5 L140.9,161.7 L142.9,161.8 L144.8,161.8 L146.8,161.8 L148.7,161.7 L150.7,161.5 L152.6,161.3 L154.6,161 L156.5,160.6 L158.5,160.2 L160.4,159.7 L162.4,159.2 L164.3,158.5 L166.3,157.8 L168.2,157.1 L170.2,156.3 L172.1,155.4 L174.1,154.4 L176,153.4 L177.9,152.3 L179.9,151.2 L181.8,150 L183.8,148.7 L185.7,147.3 L187.7,145.9 L189.6,144.4 L191.6,142.9 L193.5,141.3 L195.5,139.6 L197.4,137.9 L199.4,136 L201.3,134.2 L203.3,132.2 L205.2,130.2 L207.2,128.2 L209.1,126 L211.1,123.8 L213,121.5 L214.9,119.2 L216.9,116.8 L218.8,114.3 L220.8,111.8 L222.7,109.2 L224.7,106.6 L226.6,103.8 L228.6,101 L230.5,98.2 L232.5,95.3 L234.4,92.3 L236.4,89.2 L238.3,86.1 L240.3,82.9 L242.2,79.6 L244.2,76.3 L246.1,72.9 L248.1,69.5 L250,66 L251.9,62.4 L253.9,58.7 L255.8,55 L257.8,51.2 L259.7,47.4 L261.7,43.5" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-f="1 -2 0" clip-path="url(#clip-f056a)"/>
+<circle cx="242.2" cy="223.5" r="4.5" fill="#8a99a8" data-xy="3 -4"/>
+<circle cx="144.8" cy="161.8" r="4.5" fill="#1f5fbf" data-xy="1 -1"/>
+<line x1="235.2" y1="218.5" x2="152.8" y2="165.8" stroke="#b7791f" stroke-width="1.8"/>
+<path d="M152.8,165.8 l9,-1 l-4,7 Z" fill="#b7791f"/>
+<text x="383.4" y="46.7" text-anchor="end" font-size="11" fill="#8a99a8">移動前</text>
+<text x="32.9" y="50.9" text-anchor="start" font-size="11" fill="#1f5fbf">移動後</text>
+</svg>
+<!--/svg:f056a-->
+  <figcaption>図1　\( y=x^2-6x+5 \)（破線）と、それを平行移動した \( y=x^2-2x \)（実線）。頂点 \( (3,\ -4) \) が \( (1,\ -1) \) に移る（矢印）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題2（型A：対称移動）</p>
+  <p>放物線 \( y=2x^2+4x+1 \) を \( x \) 軸に関して対称移動した放物線の式を求めなさい。</p>
+  <div class="step">着眼点：\( x \) 軸に関して対称移動すると、\( y \) 座標の符号が変わる。式では \( y \) を \( -y \) に置き換える。</div>
+  <div class="step">\( -y=2x^2+4x+1 \) より \( y=-2x^2-4x-1 \)。</div>
+  <div class="step">確かめ（頂点）：もとの式は \( y=2(x+1)^2-1 \) で頂点 \( (-1,\ -1) \)、下に凸。求めた式は \( y=-2(x+1)^2+1 \) で頂点 \( (-1,\ 1) \)、上に凸。頂点が \( x \) 軸について対称な位置に移り、凸の向きが逆になっています。</div>
+  <div class="step">答え：<span data-ans="ex2">\( y=-2x^2-4x-1 \)</span></div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型A）</p><p>① 頂点の \( x \) 座標の符号：\( (x-3)^2 \) の頂点の \( x \) 座標は 3 です。\( -3 \) としないように、「かっこの中が 0 になる \( x \)」を求めます。<br>② 置き換えの符号：平行移動では、点は \( +p \) 動きますが、式では \( x \) を \( x-p \) に置き換えます。例題1で \( x \) を \( x-2 \) に置き換えると、\( x \) 軸方向に \( +2 \) の移動になってしまいます。<br>③ \( -y=\cdots \) の両辺に \( -1 \) をかけるとき、一部の項だけ符号を変える：例題2で \( y=-2x^2+4x+1 \) とする誤りです。すべての項の符号を変えます。</p></div>
+<h3>型を見分ける手掛かり</h3>
+<p>「頂点・軸を求めよ」「平行移動・対称移動した放物線の式」→ 型A。平方完成して頂点を求め、頂点の移動で答えを確かめる。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="型B：最大・最小とその活用"><span class="num">4</span>型B：最大・最小とその活用</h2>
+<p>最大値・最小値の問題では、平方完成して頂点を求めたら、定義域を確かめます（③）。定義域が限られていれば、軸が内側か外側かを見て、頂点と両端の値を比べます。場面の問題では、変数のとりうる値の範囲を先に決めます。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（型B：導入の (イ)）</p>
+  <p>二次関数 \( y=x^2-4x+1 \)（\( 0\leqq x\leqq 5 \)）の最大値と最小値を求めなさい。</p>
+  <div class="step">\( y=(x-2)^2-3 \)。下に凸で、軸 \( x=2 \) は定義域 \( 0\leqq x\leqq 5 \) の内側にある。</div>
+  <div class="step">頂点：\( x=2 \) のとき \( y=-3 \)。両端：\( x=0 \) のとき \( y=1 \)、\( x=5 \) のとき \( y=25-20+1=6 \)。</div>
+  <div class="step">着眼点：軸が内側なので頂点で最小。最大は両端のうち値の大きい方（軸から遠い \( x=5 \)）。</div>
+  <div class="step">答え：<span data-ans="ex3">\( x=5 \) で最大値 6、\( x=2 \) で最小値 \( -3 \)</span></div>
+</div>
+<figure>
+<!--svg:f056b-->
+<svg viewBox="0 0 420 270" width="420" role="img" aria-label="二次関数 y=x²−4x+1 のグラフ。定義域 0≦x≦5 の部分を実線で示し、左端 (0, 1)、右端 (5, 6)、頂点 (2, −3) に点を打つ。最大は右端 (5, 6)、最小は頂点 (2, −3)" data-fig="f056b" data-frame="28 18 370 226 -1.0 6.0 -4.5 7.5"><defs><clipPath id="clip-f056b"><rect x="28" y="18" width="370" height="226"/></clipPath></defs>
+<line x1="22" y1="159.2" x2="406" y2="159.2" stroke="currentColor" stroke-width="1"/>
+<polygon points="407,159.2 399,155.8 399,162.8" fill="currentColor"/>
+<text x="404" y="152.2" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="80.9" y1="250" x2="80.9" y2="10" stroke="currentColor" stroke-width="1"/>
+<polygon points="80.9,9 77.4,17 84.4,17" fill="currentColor"/>
+<text x="87.9" y="19" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="76.9" y="172.2" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="186.6" y1="156.2" x2="186.6" y2="162.2" stroke="currentColor"/>
+<text x="186.6" y="173.2" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="345.1" y1="156.2" x2="345.1" y2="162.2" stroke="currentColor"/>
+<text x="345.1" y="173.2" text-anchor="middle" font-size="11" fill="currentColor">5</text>
+<line x1="77.9" y1="215.8" x2="83.9" y2="215.8" stroke="currentColor"/>
+<text x="75.9" y="219.8" text-anchor="end" font-size="11" fill="currentColor">−3</text>
+<line x1="77.9" y1="140.4" x2="83.9" y2="140.4" stroke="currentColor"/>
+<text x="75.9" y="144.4" text-anchor="end" font-size="11" fill="currentColor">1</text>
+<line x1="77.9" y1="46.2" x2="83.9" y2="46.2" stroke="currentColor"/>
+<text x="75.9" y="50.2" text-anchor="end" font-size="11" fill="currentColor">6</text>
+<path d="M49.1,88.4 L51.7,93.2 L54.3,97.9 L56.9,102.5 L59.5,107 L62.1,111.4 L64.7,115.7 L67.3,119.9 L69.9,124 L72.5,128.1 L75.1,132 L77.7,135.9 L80.3,139.7 L82.9,143.3 L85.5,146.9 L88.1,150.4 L90.7,153.8 L93.3,157.1 L95.9,160.4 L98.5,163.5 L101.1,166.5 L103.7,169.5 L106.3,172.3 L108.9,175.1 L111.5,177.8 L114.1,180.4 L116.7,182.9 L119.3,185.3 L121.9,187.6 L124.5,189.8 L127.1,191.9 L129.7,194 L132.3,195.9 L134.9,197.8 L137.5,199.5 L140.1,201.2 L142.7,202.8 L145.3,204.3 L147.9,205.7 L150.5,207 L153.1,208.2 L155.7,209.3 L158.3,210.4 L160.9,211.3 L163.5,212.2 L166.1,212.9 L168.7,213.6 L171.3,214.2 L173.9,214.7 L176.5,215.1 L179.1,215.4 L181.7,215.6 L184.3,215.7 L186.9,215.7 L189.5,215.7 L192.1,215.5 L194.7,215.3 L197.3,215 L199.9,214.6 L202.5,214 L205.1,213.4 L207.7,212.7 L210.3,212 L212.9,211.1 L215.5,210.1 L218.1,209.1 L220.7,207.9 L223.3,206.7 L225.9,205.3 L228.5,203.9 L231.1,202.4 L233.7,200.8 L236.3,199.1 L238.9,197.3 L241.5,195.4 L244.1,193.5 L246.7,191.4 L249.3,189.3 L251.8,187 L254.4,184.7 L257,182.3 L259.6,179.8 L262.2,177.1 L264.8,174.5 L267.4,171.7 L270,168.8 L272.6,165.8 L275.2,162.8 L277.8,159.6 L280.4,156.4 L283,153 L285.6,149.6 L288.2,146.1 L290.8,142.5 L293.4,138.8 L296,135 L298.6,131.1 L301.2,127.1 L303.8,123.1 L306.4,118.9 L309,114.7 L311.6,110.3 L314.2,105.9 L316.8,101.4 L319.4,96.8 L322,92.1 L324.6,87.3 L327.2,82.4 L329.8,77.4 L332.4,72.4 L335,67.2 L337.6,62 L340.2,56.6 L342.8,51.2 L345.4,45.7 L348,40.1 L350.6,34.4 L353.2,28.6 L355.8,22.7 L358.4,16.7 L361,10.7" fill="none" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="4 4" data-f="1 -4 1" clip-path="url(#clip-f056b)"/>
+<path d="M80.9,140.4 L83.5,144.1 L86.1,147.8 L88.8,151.3 L91.4,154.7 L94.1,158.1 L96.7,161.3 L99.4,164.5 L102,167.5 L104.6,170.5 L107.3,173.4 L109.9,176.2 L112.6,178.8 L115.2,181.4 L117.9,183.9 L120.5,186.3 L123.1,188.6 L125.8,190.8 L128.4,193 L131.1,195 L133.7,196.9 L136.4,198.8 L139,200.5 L141.6,202.1 L144.3,203.7 L146.9,205.2 L149.6,206.5 L152.2,207.8 L154.9,209 L157.5,210.1 L160.1,211 L162.8,211.9 L165.4,212.7 L168.1,213.4 L170.7,214.1 L173.4,214.6 L176,215 L178.6,215.3 L181.3,215.6 L183.9,215.7 L186.6,215.8 L189.2,215.7 L191.9,215.6 L194.5,215.3 L197.1,215 L199.8,214.6 L202.4,214.1 L205.1,213.4 L207.7,212.7 L210.4,211.9 L213,211 L215.6,210.1 L218.3,209 L220.9,207.8 L223.6,206.5 L226.2,205.2 L228.9,203.7 L231.5,202.1 L234.1,200.5 L236.8,198.8 L239.4,196.9 L242.1,195 L244.7,193 L247.4,190.8 L250,188.6 L252.6,186.3 L255.3,183.9 L257.9,181.4 L260.6,178.8 L263.2,176.2 L265.9,173.4 L268.5,170.5 L271.1,167.5 L273.8,164.5 L276.4,161.3 L279.1,158.1 L281.7,154.7 L284.4,151.3 L287,147.8 L289.6,144.1 L292.3,140.4 L294.9,136.6 L297.6,132.7 L300.2,128.7 L302.9,124.6 L305.5,120.4 L308.1,116.1 L310.8,111.7 L313.4,107.3 L316.1,102.7 L318.7,98 L321.4,93.3 L324,88.4 L326.6,83.5 L329.3,78.5 L331.9,73.3 L334.6,68.1 L337.2,62.8 L339.9,57.4 L342.5,51.9 L345.1,46.2" fill="none" stroke="#1f5fbf" stroke-width="3" data-f="1 -4 1" clip-path="url(#clip-f056b)"/>
+<circle cx="80.9" cy="140.4" r="4.5" fill="#1f5fbf" data-xy="0 1"/>
+<circle cx="345.1" cy="46.2" r="4.5" fill="#1f5fbf" data-xy="5 6"/>
+<circle cx="186.6" cy="215.8" r="4.5" fill="#c0392b" data-xy="2 -3"/>
+<line x1="345.1" y1="46.2" x2="345.1" y2="159.2" stroke="#b7791f" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="337.1" y="42.2" text-anchor="end" font-size="11" fill="#c0392b">最大 (5, 6)</text>
+<text x="194.6" y="229.8" text-anchor="start" font-size="11" fill="#1e8e5a">最小 (2, −3)</text>
+</svg>
+<!--/svg:f056b-->
+  <figcaption>図2　\( y=x^2-4x+1 \)（\( 0\leqq x\leqq 5 \)）のグラフ。定義域の部分を実線で示す。最小は頂点 \( (2,\ -3) \)、最大は右端 \( (5,\ 6) \)</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題4（型B：場面の問題）</p>
+  <p>長さ 24 m のロープで、まっすぐな壁を1辺とする長方形の囲いを作ります（壁の側にはロープを使いません）。壁と垂直な辺の長さを \( x \) m とするとき、囲いの面積 \( S \) m² の最大値と、そのときの \( x \) の値を求めなさい。</p>
+  <div class="step">壁と平行な辺の長さは \( 24-2x \) m。長さは正なので \( x&gt;0 \) かつ \( 24-2x&gt;0 \)、つまり \( 0&lt;x&lt;12 \)。</div>
+  <div class="step">\( S=x(24-2x)=-2x^2+24x=-2(x-6)^2+72 \)。上に凸で、軸 \( x=6 \) は範囲 \( 0&lt;x&lt;12 \) の内側にある。</div>
+  <div class="step">答え：<span data-ans="ex4">\( x=6 \) のとき最大値 72</span>（壁と垂直な辺 6 m、壁と平行な辺 12 m で、面積 72 m²）</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型B）</p><p>① 両端の片方しか計算しない：例題3で左端 \( x=0 \) だけを見て「最大値 1」とする誤りです。軸が内側のときは、両端の値を両方とも計算して比べます。<br>② 範囲を確かめずに頂点を答える：頂点が範囲の外にあるときは、頂点の値は答えになりません。場面の問題では、条件をすべて不等式に表して範囲を求めてから考えます。<br>③ 凸の向きを確かめない：例題4は \( x^2 \) の係数が負なので、頂点で <strong>最大</strong> です。</p></div>
+<h3>型を見分ける手掛かり</h3>
+<p>「最大値・最小値を求めよ」「最も大きく（小さく）なるのは」→ 型B。定義域（場面の問題では変数のとりうる値の範囲）を必ず確かめる。軸が文字を含むときは、最小値（下に凸）は軸が定義域の左の外・内側・右の外のどれかで場合を分ける（数Ⅰ-041・042、問14）。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="型C：二次関数の決定"><span class="num">5</span>型C：二次関数の決定</h2>
+<p>条件から二次関数の式を求めるときは、条件に合う式の形を選びます（④）。頂点や軸が分かれば \( y=a(x-p)^2+q \)、通る3点だけが分かっていれば \( y=ax^2+bx+c \) とおきます。</p>
+<div class="box example worked">
+  <p class="box-title">例題5（型C：頂点と通る1点）</p>
+  <p>頂点が \( (1,\ -2) \) で、点 \( (3,\ 6) \) を通る放物線をグラフとする二次関数を求めなさい。</p>
+  <div class="step">着眼点：頂点が分かっているので \( y=a(x-1)^2-2 \) とおく（未知数は \( a \) だけ）。</div>
+  <div class="step">点 \( (3,\ 6) \) を通るので \( 6=a(3-1)^2-2 \)、\( 4a=8 \)、\( a=2 \)。</div>
+  <div class="step">答え：<span data-ans="ex5">\( y=2(x-1)^2-2 \)</span>（展開すると \( y=2x^2-4x \)）</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題6（型C：導入の (ウ)）</p>
+  <p>グラフが3点 \( (0,\ 3) \)、\( (1,\ 0) \)、\( (3,\ 0) \) を通る二次関数を求めなさい。</p>
+  <div class="step">着眼点：頂点も軸も分からないので \( y=ax^2+bx+c \) とおき、3点を代入する。</div>
+  <div class="step">\( (0,\ 3) \)：\( c=3 \)。\( (1,\ 0) \)：\( a+b+c=0 \)。\( (3,\ 0) \)：\( 9a+3b+c=0 \)。</div>
+  <div class="step">\( c=3 \) を代入して \( a+b=-3 \)、\( 9a+3b=-3 \)（\( 3a+b=-1 \)）。差をとって \( 2a=2 \)、\( a=1 \)、\( b=-4 \)。</div>
+  <div class="step">答え：<span data-ans="ex6">\( y=x^2-4x+3 \)</span></div>
+  <div class="step">確かめ：\( x=1 \) のとき \( 1-4+3=0 \)、\( x=3 \) のとき \( 9-12+3=0 \)。グラフは \( x \) 軸と \( (1,\ 0) \)、\( (3,\ 0) \) で交わり、⑤ のとおり \( x^2-4x+3=0 \) の解は \( x=1,\ 3 \) です。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型C）</p><p>① 頂点の符号：頂点 \( (1,\ -2) \) を \( y=a(x+1)^2-2 \) とする誤りです。\( x-p \) の \( p \) に 1 を入れます。<br>② 頂点の座標を代入する：\( y=a(x-1)^2-2 \) に頂点 \( (1,\ -2) \) を代入しても \( -2=-2 \) となり、\( a \) は決まりません。代入するのは頂点以外の点です。<br>③ \( x \) と \( y \) の取り違え：点 \( (3,\ 0) \) で \( x=0 \)、\( y=3 \) を代入すると、\( c=3 \) と同じ式になってしまいます。</p></div>
+<h3>型を見分ける手掛かり</h3>
+<p>「〜を満たす二次関数を求めよ」→ 型C。条件に「頂点」「軸」「最大値・最小値」があれば \( y=a(x-p)^2+q \)、通る3点だけなら \( y=ax^2+bx+c \)。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="型D：二次方程式・二次不等式とグラフ"><span class="num">6</span>型D：二次方程式・二次不等式とグラフ</h2>
+<p>二次方程式・二次不等式は、グラフと \( x \) 軸の位置関係で考えます（⑤⑥）。境目の数は二次方程式の解なので、因数分解か解の公式で求めます。</p>
+<div class="box example worked">
+  <p class="box-title">例題7（型D：導入の (エ)）</p>
+  <p>二次不等式 \( 2x^2-3x-2\geqq 0 \) を解きなさい。</p>
+  <div class="step">\( 2x^2-3x-2=(2x+1)(x-2) \) より、グラフは \( x \) 軸と \( x=-\dfrac{1}{2},\ 2 \) で交わる（図3）。</div>
+  <div class="step">着眼点：\( x^2 \) の係数は正（下に凸）。\( \geqq 0 \) は \( x \) 軸より上側と \( x \) 軸上の部分なので、2点の外側で、端を含む。</div>
+  <div class="step">答え：<span data-ans="ex7">\( x\leqq -\dfrac{1}{2},\ 2\leqq x \)</span></div>
+</div>
+<figure>
+<!--svg:f056c-->
+<svg viewBox="0 0 420 302" width="420" role="img" aria-label="上は y=2x²−3x−2 のグラフ。下に凸で、x 軸と点 (−1/2, 0)、(2, 0) で交わる（緑の点）。x 軸より上側にある x&amp;lt;−1/2 と 2&amp;lt;x の部分を青の実線、下側を橙の破線で示す。下は同じ目盛りの数直線で、2x²−3x−2≧0 の解 x≦−1/2, 2≦x を、−1/2 と 2 に黒丸をかいた線で示す" data-fig="f056c" data-frame="28 18 370 200 -2.2 3.8 -4.0 8.0"><defs><clipPath id="clip-f056c"><rect x="28" y="18" width="370" height="200"/></clipPath></defs>
+<line x1="22" y1="151.3" x2="406" y2="151.3" stroke="currentColor" stroke-width="1"/>
+<polygon points="407,151.3 399,147.8 399,154.8" fill="currentColor"/>
+<text x="404" y="144.3" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="163.7" y1="224" x2="163.7" y2="10" stroke="currentColor" stroke-width="1"/>
+<polygon points="163.7,9 160.2,17 167.2,17" fill="currentColor"/>
+<text x="170.7" y="19" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="159.7" y="164.3" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="132.8" y1="148.3" x2="132.8" y2="154.3" stroke="currentColor"/>
+<text x="132.8" y="165.3" text-anchor="middle" font-size="11" fill="currentColor">−1/2</text>
+<line x1="225.3" y1="148.3" x2="225.3" y2="154.3" stroke="currentColor"/>
+<text x="225.3" y="165.3" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="287" y1="148.3" x2="287" y2="154.3" stroke="currentColor"/>
+<text x="287" y="165.3" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="348.7" y1="148.3" x2="348.7" y2="154.3" stroke="currentColor"/>
+<text x="348.7" y="165.3" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="160.7" y1="184.7" x2="166.7" y2="184.7" stroke="currentColor"/>
+<text x="158.7" y="188.7" text-anchor="end" font-size="11" fill="currentColor">−2</text>
+<line x1="160.7" y1="101.3" x2="166.7" y2="101.3" stroke="currentColor"/>
+<text x="158.7" y="105.3" text-anchor="end" font-size="11" fill="currentColor">3</text>
+<line x1="160.7" y1="51.3" x2="166.7" y2="51.3" stroke="currentColor"/>
+<text x="158.7" y="55.3" text-anchor="end" font-size="11" fill="currentColor">6</text>
+<path d="M65,19.3 L66.7,23.6 L68.4,27.8 L70.1,32 L71.8,36.2 L73.5,40.2 L75.2,44.3 L76.9,48.3 L78.6,52.2 L80.3,56.1 L82,59.9 L83.7,63.7 L85.4,67.4 L87,71.1 L88.7,74.7 L90.4,78.3 L92.1,81.8 L93.8,85.3 L95.5,88.7 L97.2,92.1 L98.9,95.4 L100.6,98.7 L102.3,101.9 L104,105.1 L105.7,108.2 L107.4,111.3 L109.1,114.3 L110.8,117.3 L112.5,120.2 L114.2,123.1 L115.9,125.9 L117.6,128.7 L119.3,131.4 L121,134.1 L122.7,136.7 L124.4,139.2 L126.1,141.8 L127.7,144.2 L129.4,146.6 L131.1,149 L132.8,151.3" fill="none" stroke="#1f5fbf" stroke-width="3" data-f="2 -3 -2" clip-path="url(#clip-f056c)"/>
+<path d="M132.8,151.3 L135.4,154.7 L138,158 L140.5,161.2 L143.1,164.3 L145.7,167.2 L148.2,170.1 L150.8,172.8 L153.4,175.4 L156,177.9 L158.5,180.3 L161.1,182.5 L163.7,184.7 L166.2,186.7 L168.8,188.6 L171.4,190.4 L173.9,192.1 L176.5,193.6 L179.1,195.1 L181.7,196.4 L184.2,197.6 L186.8,198.7 L189.4,199.7 L191.9,200.6 L194.5,201.3 L197.1,202 L199.6,202.5 L202.2,202.9 L204.8,203.2 L207.3,203.4 L209.9,203.4 L212.5,203.4 L215.1,203.2 L217.6,202.9 L220.2,202.5 L222.8,202 L225.3,201.3 L227.9,200.6 L230.5,199.7 L233,198.7 L235.6,197.6 L238.2,196.4 L240.8,195.1 L243.3,193.6 L245.9,192.1 L248.5,190.4 L251,188.6 L253.6,186.7 L256.2,184.7 L258.7,182.5 L261.3,180.3 L263.9,177.9 L266.4,175.4 L269,172.8 L271.6,170.1 L274.2,167.2 L276.7,164.3 L279.3,161.2 L281.9,158 L284.4,154.7 L287,151.3" fill="none" stroke="#b7791f" stroke-width="2.5" stroke-dasharray="6 4" data-f="2 -3 -2" clip-path="url(#clip-f056c)"/>
+<path d="M287,151.3 L288.9,148.8 L290.7,146.2 L292.6,143.6 L294.4,140.9 L296.2,138.1 L298.1,135.3 L299.9,132.4 L301.8,129.4 L303.7,126.4 L305.5,123.3 L307.4,120.2 L309.2,117 L311.1,113.8 L312.9,110.5 L314.8,107.1 L316.6,103.7 L318.4,100.2 L320.3,96.6 L322.2,93 L324,89.3 L325.9,85.6 L327.7,81.8 L329.6,78 L331.4,74.1 L333.2,70.1 L335.1,66.1 L336.9,62 L338.8,57.8 L340.7,53.6 L342.5,49.3 L344.4,45 L346.2,40.6 L348.1,36.2 L349.9,31.7 L351.8,27.1 L353.6,22.5 L355.5,17.8 L357.3,13 L359.2,8.2 L361,3.3" fill="none" stroke="#1f5fbf" stroke-width="3" data-f="2 -3 -2" clip-path="url(#clip-f056c)"/>
+<circle cx="132.8" cy="151.3" r="4.5" fill="#1e8e5a" data-xy="-1/2 0"/>
+<circle cx="287" cy="151.3" r="4.5" fill="#1e8e5a" data-xy="2 0"/>
+<text x="391.8" y="201.3" text-anchor="end" font-size="11" fill="currentColor">y=2x²−3x−2</text>
+<text x="8" y="248" text-anchor="start" font-size="12" font-weight="700" fill="currentColor">2x²−3x−2 ≧ 0 の解：x ≦ −1/2, 2 ≦ x</text>
+<line x1="16" y1="278" x2="414" y2="278" stroke="currentColor" stroke-width="1.2"/>
+<path d="M414,278 L406,274 L406,282 Z" fill="currentColor"/>
+<line x1="40.3" y1="274" x2="40.3" y2="282" stroke="currentColor"/>
+<text x="40.3" y="297" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−2</text>
+<line x1="102" y1="274" x2="102" y2="282" stroke="currentColor"/>
+<text x="102" y="297" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">−1</text>
+<line x1="163.7" y1="274" x2="163.7" y2="282" stroke="currentColor"/>
+<text x="163.7" y="297" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">0</text>
+<line x1="225.3" y1="274" x2="225.3" y2="282" stroke="currentColor"/>
+<text x="225.3" y="297" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">1</text>
+<line x1="287" y1="274" x2="287" y2="282" stroke="currentColor"/>
+<text x="287" y="297" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">2</text>
+<line x1="348.7" y1="274" x2="348.7" y2="282" stroke="currentColor"/>
+<text x="348.7" y="297" text-anchor="middle" font-size="12" fill="currentColor" data-nl="1">3</text>
+<line x1="132.8" y1="274" x2="132.8" y2="282" stroke="currentColor"/>
+<text x="132.8" y="297" text-anchor="middle" font-size="11" fill="currentColor">−1/2</text>
+<path d="M18,262 L132.8,262 L132.8,278" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s1"/>
+<path d="M12,262 L21,257.5 L21,266.5 Z" fill="#1f5fbf"/>
+<circle cx="132.8" cy="278" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="-1/2" data-in="1" data-set="s1"/>
+<path d="M287,278 L287,262 L400,262" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="s1"/>
+<path d="M406,262 L397,257.5 L397,266.5 Z" fill="#1f5fbf"/>
+<circle cx="287" cy="278" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="2" data-in="1" data-set="s1"/>
+</svg>
+<!--/svg:f056c-->
+  <figcaption>図3　\( y=2x^2-3x-2 \) のグラフ（\( x \) 軸より上側は青の実線、下側は橙の破線、緑の●は \( x \) 軸との共有点）。\( y\geqq 0 \) となるのは \( x \) 軸より上側と \( x \) 軸上の点で、下の数直線の \( x\leqq -\frac{1}{2},\ 2\leqq x \)（●は端を含む）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題8（型D：解の公式を使う場合）</p>
+  <p>二次不等式 \( x^2-4x+1&lt;0 \) を解きなさい。</p>
+  <div class="step">着眼点：左辺は整数の範囲で因数分解できないので、方程式 \( x^2-4x+1=0 \) を解の公式で解く。</div>
+  <div class="step">\( x=\dfrac{4\pm\sqrt{16-4}}{2}=\dfrac{4\pm 2\sqrt{3}}{2}=2\pm\sqrt{3} \)。</div>
+  <div class="step">下に凸で \( &lt;0 \) なので、2点の間。</div>
+  <div class="step">答え：<span data-ans="ex8">\( 2-\sqrt{3}&lt;x&lt;2+\sqrt{3} \)</span></div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型D）</p><p>① 間と外側の取り違え：例題7で \( -\dfrac{1}{2}\leqq x\leqq 2 \) と答えると、\( x=0 \) で \( -2\geqq 0 \) となり成り立ちません。グラフをかいて上側か下側かを確かめます。<br>② \( 2x+1=0 \) の解：\( x=-\dfrac{1}{2} \) です。\( x=\dfrac{1}{2} \) や \( x=-1 \) としないようにします。<br>③ 約分の誤り：\( \dfrac{4\pm 2\sqrt{3}}{2} \) を \( 2\pm 2\sqrt{3} \) とする誤りです。分子の両方の項を 2 でわります。</p></div>
+<h3>型を見分ける手掛かり</h3>
+<p>「方程式を解け」「共有点」「不等式を解け」「すべての実数で成り立つ」→ 型D。グラフと \( x \) 軸の共有点（境目）を求め、上側・下側で答える。共有点の個数や定数の範囲は判別式で調べる（数Ⅰ-055 の型A・型B で練習した問題）。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-5" data-toc="単元の問題の型"><span class="num">7</span>単元の問題の型と、練習した場所</h2>
+<div class="box point"><p class="box-title">この単元の問題の型と、練習した場所</p>
+<div class="table-wrap">
+<table>
+  <tr><th>型</th><th>見分ける手掛かり</th><th>まずすること</th><th>練習した場所</th></tr>
+  <tr><td>A</td><td>頂点・軸、平行移動・対称移動</td><td>平方完成して頂点と凸の向きを求める</td><td>数Ⅰ-032〜038、例題1・2、問1・4・5</td></tr>
+  <tr><td>B</td><td>最大値・最小値</td><td>頂点と定義域（変数のとりうる値の範囲）を確かめる</td><td>数Ⅰ-039〜043、例題3・4、問2・6・7・14</td></tr>
+  <tr><td>C</td><td>〜を満たす二次関数を求めよ</td><td>条件に合う式の形を選ぶ</td><td>数Ⅰ-044・045、例題5・6、問8・9</td></tr>
+  <tr><td>D</td><td>方程式・不等式、共有点</td><td>境目（共有点の \( x \) 座標）を求め、上側・下側を見る</td><td>数Ⅰ-046〜055、例題7・8、問3・10・11・12</td></tr>
+</table>
+</div>
+<p>問13は、型B（最小値を文字で表す）と型D（その値の正負とグラフと \( x \) 軸の位置関係）を組み合わせた問題です。問14は、型B のうち軸が文字を含む場合（軸が定義域の外にある場合を含む）の問題です。</p></div>
+<div class="box think"><p class="box-title">どの型でも共通の手順</p><p>① 平方完成して、頂点と凸の向きを確かめる → ② 何を求める問題か（式・最大最小・解）を見て型を決める → ③ グラフをかいて、定義域や \( x \) 軸との位置関係を確かめる → ④ 答えが条件に合うか（代入・端・符号）を確かめる。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">8</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この単元の主な語句（すべて既習）</p>
+  <dl>
+    <dt>平方完成</dt><dd>\( ax^2+bx+c \) を \( a(x-p)^2+q \) の形に変形すること（数Ⅰ-034）。</dd>
+    <dt>軸・頂点</dt><dd>放物線の対称の軸と、軸と放物線の交点。\( y=a(x-p)^2+q \) の軸は直線 \( x=p \)、頂点は \( (p,\ q) \)（数Ⅰ-033）。</dd>
+    <dt>平行移動・対称移動</dt><dd>グラフを一定の向きに一定の距離だけ動かすこと、直線や点に関して対称な位置に移すこと（数Ⅰ-032・038）。</dd>
+    <dt>定義域</dt><dd>関数で、\( x \) のとりうる値の範囲（数Ⅰ-031）。</dd>
+    <dt>最大値・最小値</dt><dd>定義域の中で、関数がとる値のうち最も大きい値・最も小さい値（数Ⅰ-039）。</dd>
+    <dt>判別式</dt><dd>\( ax^2+bx+c=0 \) の \( D=b^2-4ac \)。符号でグラフと \( x \) 軸の共有点の個数が分かる（数Ⅰ-047）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">9</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>型A：平方完成して頂点と凸の向きを求める。平行移動は頂点の移動、対称移動は \( x,\ y \) の置き換えで、頂点の移動で確かめる（O1）。</li>
+    <li>型B：定義域を確かめ、軸が内側か外側かを見て頂点と両端の値を比べる。場面の問題は変数のとりうる値の範囲から（O2）。</li>
+    <li>型C：頂点・軸の条件なら \( y=a(x-p)^2+q \)、通る3点なら \( y=ax^2+bx+c \) とおく（O3）。</li>
+    <li>型D：境目は二次方程式の解（共有点の \( x \) 座標）。上側・下側と端の等号で答える（O4）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">型A</span><p>\( y=a(x-p)^2+q \)：頂点 \( (p,\ q) \)</p></div>
+  <div><span class="f-name">型B</span><p>頂点と両端の値を比べる</p></div>
+  <div><span class="f-name">型C</span><p>頂点・軸 → \( a(x-p)^2+q \)、3点 → \( ax^2+bx+c \)</p></div>
+  <div><span class="f-name">型D</span><p>境目＝\( ax^2+bx+c=0 \) の解</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">10</span>確認問題</h2>
+<p class="small">型を混ぜて出題します。基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。範囲を入力する問題は、2&lt;x&lt;=5 のように入力してください（≦ は &lt;= と打ってもよい）。分数は 15/2 のように入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1（型A）</span></div>
+  <p>\( y=-2x^2+8x-5 \) のグラフの頂点はどれですか。</p>
+  <div class="choices"><button>\( (-2,\ 3) \)</button><button>\( (2,\ -9) \)</button><button data-correct="true">\( (2,\ 3) \)</button><button>\( (2,\ -5) \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( y=-2(x^2-4x)-5=-2\{(x-2)^2-4\}-5=-2(x-2)^2+8-5=-2(x-2)^2+3 \) より、頂点は \( (2,\ 3) \) です（型A）。\( (-2,\ 3) \) は \( x \) 座標の符号の誤りです。\( (2,\ -9) \) は中かっこをはずすとき \( -4 \) に \( -2 \) をかけ忘れ、\( -4-5=-9 \) とした誤りです。\( (2,\ -5) \) は定数項 \( -5 \) を頂点の \( y \) 座標とした誤りで、\( -5 \) は \( y \) 軸との交点 \( (0,\ -5) \) の \( y \) 座標です。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2（型B）</span></div>
+  <p>二次関数 \( y=x^2+2x-1 \)（\( -3\leqq x\leqq 0 \)）の最大値を答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 2。\( y=(x+1)^2-2 \) で、軸 \( x=-1 \) は定義域の内側にあります（型B）。両端の値は \( x=-3 \) のとき \( 9-6-1=2 \)、\( x=0 \) のとき \( -1 \) なので、\( x=-3 \) で最大値 2 です（\( x=-1 \) で最小値 \( -2 \)）。\( -1 \) と答えた場合は右端だけを見ています。\( -2 \) は最小値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O4（型D）</span></div>
+  <p>\( y=x^2-6x+9 \) のグラフと \( x \) 軸の共有点について、正しいものはどれですか。</p>
+  <div class="choices"><button data-correct="true">点 \( (3,\ 0) \) で接する</button><button>点 \( (-3,\ 0) \) で接する</button><button>異なる2点で交わる</button><button>共有点をもたない</button></div>
+  <span class="result"></span>
+  <div class="explain">\( D=(-6)^2-4\cdot 1\cdot 9=0 \) なので \( x \) 軸に接します（型D）。\( x^2-6x+9=(x-3)^2=0 \) より \( x=3 \) で、接点は頂点 \( (3,\ 0) \) です。\( (-3,\ 0) \) は符号の誤りです。「異なる2点」は \( D&gt;0 \)、「共有点をもたない」は \( D&lt;0 \) のときです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1（型A）</span></div>
+  <p>放物線 \( y=x^2+4x+3 \) を、\( x \) 軸方向に 3、\( y \) 軸方向に \( -2 \) だけ平行移動した放物線の式はどれですか。</p>
+  <div class="choices"><button>\( y=x^2+10x+22 \)</button><button data-correct="true">\( y=x^2-2x-2 \)</button><button>\( y=x^2-2x+2 \)</button><button>\( y=x^2-10x+22 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( y=(x+2)^2-1 \) より頂点は \( (-2,\ -1) \)。移動後の頂点は \( (1,\ -3) \) なので \( y=(x-1)^2-3=x^2-2x-2 \) です（型A）。\( y=x^2+10x+22 \) は \( x \) 軸方向に \( -3 \) 動かして頂点を \( (-5,\ -3) \) とした誤りです。\( y=x^2-2x+2 \) は \( y \) 軸方向に \( +2 \) 動かして頂点を \( (1,\ 1) \) とした誤りです。\( y=x^2-10x+22 \) は、もとの頂点を \( (2,\ -1) \) と符号を誤って読み、\( (5,\ -3) \) に動かした誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O1（型A）</span></div>
+  <p>放物線 \( y=x^2-6x+11 \) を \( y \) 軸に関して対称移動した放物線の式はどれですか。</p>
+  <div class="choices"><button>\( y=-x^2+6x-11 \)</button><button>\( y=-x^2-6x-11 \)</button><button>\( y=x^2-6x-11 \)</button><button data-correct="true">\( y=x^2+6x+11 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( y \) 軸に関する対称移動では \( x \) を \( -x \) に置き換えます（型A）。\( y=(-x)^2-6(-x)+11=x^2+6x+11 \)。確かめ：もとの頂点 \( (3,\ 2) \) が \( (-3,\ 2) \) に移り、\( y=(x+3)^2+2=x^2+6x+11 \) と一致します。\( y=-x^2+6x-11 \) は \( x \) 軸に関する対称移動（\( y\to -y \)）、\( y=-x^2-6x-11 \) は原点に関する対称移動の式です。\( y=x^2-6x-11 \) は定数項の符号だけを変えた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2（型B）</span></div>
+  <p>二次関数 \( y=-x^2+2x+3 \)（\( -2\leqq x\leqq 2 \)）の最大値・最小値について、正しいものはどれですか。</p>
+  <div class="choices"><button>\( x=1 \) で最大値 4、\( x=2 \) で最小値 3</button><button>\( x=2 \) で最大値 3、\( x=-2 \) で最小値 \( -5 \)</button><button>\( x=1 \) で最大値 4、最小値はない</button><button data-correct="true">\( x=1 \) で最大値 4、\( x=-2 \) で最小値 \( -5 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( y=-(x-1)^2+4 \) は上に凸で、軸 \( x=1 \) は定義域の内側にあります（型B）。頂点で最大値 4。両端は \( x=-2 \) のとき \( -4-4+3=-5 \)、\( x=2 \) のとき \( -4+4+3=3 \) なので、軸から遠い \( x=-2 \) で最小値 \( -5 \) です。「\( x=2 \) で最小値 3」は右端だけを見ています。「\( x=2 \) で最大値 3」は頂点を候補に入れていません。「最小値はない」は定義域を無視して、\( x \) がすべての実数をとるときの答えにしています。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="25/2|12.5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O2（型B）</span></div>
+  <p>直角をはさむ2辺の長さの和が 10 cm の直角三角形があります。この直角三角形の面積の最大値は何 cm² ですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{25}{2} \)（12.5）cm²。直角をはさむ1辺を \( x \) cm とすると、もう1辺は \( 10-x \) cm で、\( 0&lt;x&lt;10 \)。面積は \( S=\dfrac{1}{2}x(10-x)=-\dfrac{1}{2}(x-5)^2+\dfrac{25}{2} \) で、軸 \( x=5 \) は範囲の内側にあるので、\( x=5 \) のとき最大値 \( \dfrac{25}{2} \) です（型B）。25 と答えた場合は、三角形の面積の \( \dfrac{1}{2} \) を落としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問8</span><span class="q-obj">O3（型C）</span></div>
+  <p>軸が直線 \( x=2 \) で、2点 \( (0,\ 1) \)、\( (3,\ -2) \) を通る放物線をグラフとする二次関数はどれですか。</p>
+  <div class="choices"><button data-correct="true">\( y=(x-2)^2-3 \)</button><button>\( y=-(x-2)^2+2 \)</button><button>\( y=(x+2)^2-3 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">軸が分かっているので \( y=a(x-2)^2+q \) とおきます（型C）。\( (0,\ 1) \)：\( 4a+q=1 \)、\( (3,\ -2) \)：\( a+q=-2 \)。差をとって \( 3a=3 \)、\( a=1 \)、\( q=-3 \)。\( y=-(x-2)^2+2 \) は2点の \( y \) 座標を入れかえて代入した誤りで、\( x=0 \) のとき \( -2 \) になります。\( y=(x+2)^2-3 \) は軸の符号の誤りで、\( x=0 \) のときは \( 4-3=1 \) で合いますが、\( x=3 \) のとき \( 25-3=22 \) になり、軸も \( x=-2 \) です。</div>
+</div>
+
+<div class="q" data-type="input" id="q9" data-accept="2|a=2">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問9</span><span class="q-obj">O3（型C）</span></div>
+  <p>グラフが3点 \( (-1,\ 6) \)、\( (0,\ 1) \)、\( (2,\ 3) \) を通る二次関数を \( y=ax^2+bx+c \) とするとき、\( a \) の値を答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( a=2 \)。\( (0,\ 1) \) から \( c=1 \)。\( (-1,\ 6) \)：\( a-b+1=6 \)、\( (2,\ 3) \)：\( 4a+2b+1=3 \)。整理すると \( a-b=5 \)、\( 2a+b=1 \)。足して \( 3a=6 \)、\( a=2 \)、\( b=-3 \)（型C）。求める二次関数は \( y=2x^2-3x+1 \) です。\( a=6 \) と答えた場合は、\( (-1)^2 \) を \( -1 \) として \( -a-b+1=6 \) としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q10">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問10</span><span class="q-obj">O4（型D）</span></div>
+  <p>二次不等式 \( x^2-2x-4\leqq 0 \) の解はどれですか。</p>
+  <div class="choices"><button>\( x\leqq 1-\sqrt{5},\ 1+\sqrt{5}\leqq x \)</button><button data-correct="true">\( 1-\sqrt{5}\leqq x\leqq 1+\sqrt{5} \)</button><button>\( 1-\sqrt{5}&lt;x&lt;1+\sqrt{5} \)</button><button>\( -1-\sqrt{5}\leqq x\leqq -1+\sqrt{5} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( x^2-2x-4=0 \) を解の公式で解くと \( x=\dfrac{2\pm\sqrt{4+16}}{2}=\dfrac{2\pm 2\sqrt{5}}{2}=1\pm\sqrt{5} \)。下に凸で \( \leqq 0 \) なので、2点の間で端を含み、\( 1-\sqrt{5}\leqq x\leqq 1+\sqrt{5} \) です（型D）。外側の範囲は \( \geqq 0 \) の解、端を含まない範囲は \( &lt;0 \) の解です。\( -1\pm\sqrt{5} \) は \( -b \) の符号を誤って \( \dfrac{-2\pm 2\sqrt{5}}{2} \) とした場合です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q11">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問11</span><span class="q-obj">O4（型D）</span></div>
+  <p>すべての実数 \( x \) について \( x^2+kx+4&gt;0 \) が成り立つような、定数 \( k \) の値の範囲はどれですか。</p>
+  <div class="choices"><button>\( k&lt;-4,\ 4&lt;k \)</button><button>\( -4\leqq k\leqq 4 \)</button><button data-correct="true">\( -4&lt;k&lt;4 \)</button><button>\( -2&lt;k&lt;2 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( x^2 \) の係数は正なので、条件は \( D=k^2-16&lt;0 \)、\( (k+4)(k-4)&lt;0 \) より \( -4&lt;k&lt;4 \) です（この時間の型D。数Ⅰ-053 で学び、数Ⅰ-055 では型B として練習した問題）。\( k&lt;-4,\ 4&lt;k \) は \( D&gt;0 \) を解いています。\( -4\leqq k\leqq 4 \) は \( D\leqq 0 \) で、\( k=4 \) のとき \( (x+2)^2 \) は \( x=-2 \) で 0 になります。\( -2&lt;k&lt;2 \) は \( 4ac \) の 4 を落として \( D=k^2-4 \) とした誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q12" data-accept="3&lt;x≦4|4≧x&gt;3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問12</span><span class="q-obj">O4（型D）</span></div>
+  <p>連立不等式 \( \begin{cases} x^2-4x\leqq 0 \\ x^2-2x-3&gt;0 \end{cases} \) を解きなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 3&lt;x\leqq 4 \)。\( x(x-4)\leqq 0 \) より \( 0\leqq x\leqq 4 \)、\( (x+1)(x-3)&gt;0 \) より \( x&lt;-1,\ 3&lt;x \)。共通部分は \( 3&lt;x\leqq 4 \) です（この時間の型D。数Ⅰ-052 で学び、数Ⅰ-055 では型C として練習した問題）。\( x=3 \) は2つ目で \( 9-6-3=0&gt;0 \) が成り立たないので含みません。\( x=4 \) は1つ目で \( 0\leqq 0 \)、2つ目で \( 16-8-3=5&gt;0 \) なので含みます。</div>
+</div>
+
+<div class="q" data-type="open" id="q13">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問13</span><span class="q-obj">O2・O4（型B・D の組み合わせ）</span></div>
+  <p>\( a \) を定数とし、二次関数 \( f(x)=x^2-2ax+2a+3 \) の最小値を \( m \) とします。</p>
+  <p>(1) \( m \) を \( a \) の式で表しなさい。<br>(2) \( y=f(x) \) のグラフが \( x \) 軸と共有点をもたないような \( a \) の値の範囲を求めなさい。<br>(3) \( a \) の値が変わるとき、\( m \) の最大値と、そのときの \( a \) の値を求めなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) \( f(x)=(x-a)^2-a^2+2a+3 \)。下に凸なので、\( x=a \) で最小となり、\( m=-a^2+2a+3 \)。</p>
+    <p>(2) 下に凸なので、共有点をもたないのは頂点が \( x \) 軸より上側にあるとき、つまり \( m&gt;0 \) のときである。\( -a^2+2a+3&gt;0 \)、\( a^2-2a-3&lt;0 \)、\( (a+1)(a-3)&lt;0 \) より \( -1&lt;a&lt;3 \)。</p>
+    <p>(3) \( m=-a^2+2a+3=-(a-1)^2+4 \)。\( a \) はすべての実数をとるので、\( a=1 \) のとき \( m \) は最大値 4 をとる。</p>
+    <p><strong>採点の観点</strong>　① 平方完成して頂点の \( y \) 座標を \( m \) として表している（型A・B）。② 共有点をもたない条件を、頂点の位置（\( m&gt;0 \)）または判別式（\( D&lt;0 \)）で表し、\( a \) の二次不等式を解いている（型D）。③ \( m \) を \( a \) の二次関数とみて平方完成し、最大値を求めている（型B）。</p>
+  </div>
+  <div class="explain">(2) は判別式でも解けます。\( D=(-2a)^2-4(2a+3)=4(a^2-2a-3)&lt;0 \) で、同じ \( -1&lt;a&lt;3 \) になります。\( m=-\dfrac{D}{4} \) の関係があるので、2つの方法は同じ条件を表しています。確かめ：\( a=1 \) のとき \( f(x)=x^2-2x+5=(x-1)^2+4 \) で最小値 4、\( a=3 \) のとき \( f(x)=(x-3)^2 \) で \( x \) 軸に接します。(3) で「\( x=1 \) で最大値 4」と書くと、変数を取り違えています。動いているのは \( a \) です。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="choice" id="q14">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問14</span><span class="q-obj">O2（型B：軸が文字を含む）</span></div>
+  <p>\( a \) を定数とします。二次関数 \( y=x^2-2ax+1 \)（\( 0\leqq x\leqq 2 \)）の最小値を、\( a \) の値で場合を分けて表したものとして正しいものはどれですか。</p>
+  <div class="choices"><button>\( a \) の値によらず \( -a^2+1 \)</button><button>\( a&lt;0 \) のとき \( -4a+5 \)、\( 0\leqq a\leqq 2 \) のとき \( -a^2+1 \)、\( a&gt;2 \) のとき 1</button><button data-correct="true">\( a&lt;0 \) のとき 1、\( 0\leqq a\leqq 2 \) のとき \( -a^2+1 \)、\( a&gt;2 \) のとき \( -4a+5 \)</button><button>\( a&lt;1 \) のとき \( -4a+5 \)、\( a\geqq 1 \) のとき 1</button></div>
+  <span class="result"></span>
+  <div class="explain">\( y=(x-a)^2-a^2+1 \) で、下に凸、軸は直線 \( x=a \) です（型B）。軸と定義域 \( 0\leqq x\leqq 2 \) の位置関係で場合を分けます（数Ⅰ-041・042）。\( a&lt;0 \)（軸が定義域の左の外）のとき、定義域では \( y \) は増加するので、左端 \( x=0 \) で最小値 1。\( 0\leqq a\leqq 2 \)（軸が内側）のとき、頂点 \( x=a \) で最小値 \( -a^2+1 \)。\( a&gt;2 \)（軸が右の外）のとき、定義域では \( y \) は減少するので、右端 \( x=2 \) で最小値 \( 4-4a+1=-4a+5 \)。「\( a \) の値によらず \( -a^2+1 \)」は、頂点が定義域に入らないときも頂点の値を答えています（たとえば \( a=3 \) では頂点の \( x=3 \) は定義域の外で、\( -a^2+1=-8 \) という値はとりません）。左端と右端を入れかえた選択肢は、軸が左の外にあるとき軸に近い左端で最小になることを取り違えています（\( a=-1 \) なら \( x=0 \) で 1、\( x=2 \) で 9）。「\( a&lt;1 \) のとき \( -4a+5 \)、\( a\geqq 1 \) のとき 1」は、定義域の中央 \( x=1 \) と軸の位置で分ける<strong>最大値</strong>の場合分けです。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">11</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(3) 二次関数」の「二次関数の最大値や最小値を求めること」（ア(イ)）と、「二次方程式の解と二次関数のグラフとの関係について理解すること。また，二次不等式の解と二次関数のグラフとの関係について理解し，二次関数のグラフを用いて二次不等式の解を求めること」（ア(ウ)）などに当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。式を平方完成してグラフの形と頂点を読み取り、グラフをもとに最大・最小や不等式の解を求めるこの単元の内容は、こうした処理の基本になります。</p>
+  <p class="small">問13・問14は練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">12</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">三角比の必要性と正接（数Ⅰ-057）</p>
+  <p>次の時間から単元「図形と計量」に入ります。階段やエスカレータの踏面と蹴上げから傾斜を考え、直角三角形の辺の比と角の大きさとの関係として、正接（tan）を導入する意味を学びます。</p>
+  <p>この時間では、新しい内容は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-055　二次関数の総合演習（方程式・不等式との関連）</div>
+  <div><span class="label">次の時間</span>数Ⅰ-057　三角比の必要性と正接</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-056「単元末演習（二次関数）」（演習。学習指導要領 数学Ⅰ (3)ア(イ)・ア(ウ)、解説 p.41-43）。範囲の各行 hs_math_1a/数Ⅰ-031〜055 の要点</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(3) 二次関数 ア(イ)・ア(ウ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.41-43（一般の二次関数とグラフ、二次関数の最大値・最小値と具体的な事象での活用、二次方程式・二次不等式の解とグラフとの関係）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題はこのページのために作成したものです（出典を示したものを除く）。ロープの囲いの場面は、学習用に作成した架空のものです。「型A〜D」はこのページでの呼び方です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-056",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-056",
+  "title": "単元末演習（二次関数）",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-3", "title": "二次関数"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(3)ア(イ)", "(3)ア(ウ)"],
+  "kaisetsu_page": "41-43",
+  "objectives": [
+    {"id": "O1", "text": "二次関数を平方完成して軸・頂点・凸の向きを求め、グラフの平行移動や対称移動を頂点の移動や x、y の置き換えで表すことができる（型A）。", "from": "二次関数のグラフと平行移動", "sections": ["sec-1"], "checks": ["q1", "q4", "q5"]},
+    {"id": "O2", "text": "定義域に注意して、頂点と定義域の両端の値を比べて二次関数の最大値・最小値を求め、場面の問題に活用することができる（型B）。", "from": "最大・最小とその活用", "sections": ["sec-2"], "checks": ["q2", "q6", "q7", "q13", "q14"]},
+    {"id": "O3", "text": "頂点・軸や通る点などの条件に応じて式の形を選び、二次関数を決定することができる（型C）。", "from": "二次関数の決定", "sections": ["sec-3"], "checks": ["q8", "q9"]},
+    {"id": "O4", "text": "二次方程式・二次不等式の解を、グラフと x 軸の共有点や位置関係と関連付けて求めることができる（型D）。", "from": "二次方程式・二次不等式とグラフの関係の問題を解き、単元の基本事項を身に付けているかを確かめる", "sections": ["sec-4", "sec-5"], "checks": ["q3", "q10", "q11", "q12", "q13"]}
+  ],
+  "key_terms": [
+    {"term": "平方完成", "where": "sec-1"},
+    {"term": "軸・頂点", "where": "sec-1"},
+    {"term": "平行移動・対称移動", "where": "sec-1"},
+    {"term": "定義域", "where": "sec-2"},
+    {"term": "最大値・最小値", "where": "sec-2"},
+    {"term": "判別式", "where": "sec-4"}
+  ],
+  "prerequisites": [
+    {"concept": "定義域・値域と関数の値", "taught_in": ["hs_math_1a/数Ⅰ-031"], "where": "review"},
+    {"concept": "y=a(x−p)²+q のグラフの軸・頂点と凸の向き、平方完成", "taught_in": ["hs_math_1a/数Ⅰ-032", "hs_math_1a/数Ⅰ-033", "hs_math_1a/数Ⅰ-034", "hs_math_1a/数Ⅰ-035", "hs_math_1a/数Ⅰ-036"], "where": "review"},
+    {"concept": "グラフの平行移動と対称移動（x、y の置き換え）", "taught_in": ["hs_math_1a/数Ⅰ-038"], "where": "review"},
+    {"concept": "最大値・最小値（すべての実数、定義域が限られた場合、場面の問題）", "taught_in": ["hs_math_1a/数Ⅰ-039", "hs_math_1a/数Ⅰ-040", "hs_math_1a/数Ⅰ-042", "hs_math_1a/数Ⅰ-043"], "where": "review"},
+    {"concept": "二次関数の決定（頂点・軸の条件、3点を通る）", "taught_in": ["hs_math_1a/数Ⅰ-044", "hs_math_1a/数Ⅰ-045"], "where": "review"},
+    {"concept": "二次方程式の解とグラフ、判別式と共有点の個数", "taught_in": ["hs_math_1a/数Ⅰ-046", "hs_math_1a/数Ⅰ-047"], "where": "review"},
+    {"concept": "二次不等式の解とグラフ、連立不等式、すべての実数で成り立つ条件", "taught_in": ["hs_math_1a/数Ⅰ-048", "hs_math_1a/数Ⅰ-049", "hs_math_1a/数Ⅰ-050", "hs_math_1a/数Ⅰ-052", "hs_math_1a/数Ⅰ-053"], "where": "review"},
+    {"concept": "文字を含む二次関数の最大・最小と平方完成（問13・問14。問14は軸と定義域の位置関係で場合を分ける）", "taught_in": ["hs_math_1a/数Ⅰ-041", "hs_math_1a/数Ⅰ-042", "hs_math_1a/数Ⅰ-055"], "where": "quiz"}
+  ],
+  "out_of_scope": [
+    "新しい内容（単元末演習の行のため、数Ⅰ-031〜055 の内容の練習だけを扱う）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『二次関数』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(3)ア(イ)・ア(ウ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.41-43 二次関数のグラフ、最大値・最小値、二次方程式・二次不等式の解とグラフとの関係"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

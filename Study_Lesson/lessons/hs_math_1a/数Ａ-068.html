@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>復習：期待値と意思決定｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>復習（予備時間）</span><span>数Ａ-068</span></div>
+  <h1>復習：期待値と意思決定</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">復習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">数Ａ-030〜033 で学んだ期待値と、期待値・確率に基づく判断を整理します。値と確率の表から期待値を求め、値段やほかの案と比べて、仮定のもとでどちらが有利かを根拠を添えて判断する力を確かにします。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>変量のとる値とその確率を表にまとめ、確率の合計が 1 になることを確かめて、期待値を「値×確率」の和として求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>期待値を値段・予算・ほかの案の期待値と比べ、仮定した確率のもとでどの選択が有利かを、根拠を示して判断することができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>確率や賞金の値を変えたときの期待値の変化を調べて判断が変わる条件を求め、判断の根拠と、仮定や期待値の意味による限界を説明することができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-067）</span>復習：独立な試行と条件付き確率</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-068）</span>復習：期待値と意思決定</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-069）</span>復習：三角形の性質</div>
+</div>
+<p class="small">範囲：単元「場合の数と確率」のうち期待値と判断（数Ａ-030〜033）。この時間は単元「復習（予備時間）」の1コマで、新しい内容は扱いません。問題は範囲のページの例題・確認問題と単元末演習（数Ａ-034）と同じものを使わず、数値や場面を変えています。各問の「復習するなら数Ａ-0xx」は、その型を学んだコマです。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：範囲の要点の一覧</h2>
+<p>数Ａ-030〜033 で学んだ要点を、学んだコマとともに並べます。</p>
+<div class="formula-card">
+  <div><span class="f-name">① 期待値（数Ａ-030）</span>
+    <p>変量（試行の結果で値が決まる量。このページでの説明）のとる値 \( x_1,\ \cdots,\ x_n \) とその確率 \( p_1,\ \cdots,\ p_n \)（\( p_1+\cdots+p_n=1 \)）について \( x_1p_1+x_2p_2+\cdots+x_np_n \)。1回あたりの平均の見込みを表すと考えられる</p></div>
+  <div><span class="f-name">② 期待値を求める手順（数Ａ-030）</span>
+    <p>① 値をすべて挙げる ② それぞれの確率を求める（数え上げ・組合せ・反復試行・乗法定理など）③ 確率の合計が 1 になるか確かめる ④「値×確率」の和を計算する</p></div>
+  <div><span class="f-name">③ 期待値を用いた意思決定（数Ａ-031）</span>
+    <p>樹形図の枝の確率をかけて各場合の確率を求め、案ごとの利益の期待値を比べる。確率の値を変えると期待値は一次関数として変わり、選ぶ案が変わる確率の値を求められる</p></div>
+  <div><span class="f-name">④ 面積比による確率と期待値（数Ａ-032）</span>
+    <p>どの位置も同様に確からしいとき、確率は（その区画の面積）÷（全体の面積）、おうぎ形なら（中心角の合計）÷ 360°。期待値を予算などの条件と比べて、設定が妥当かを判断する</p></div>
+  <div><span class="f-name">⑤ 確率に基づく判断（数Ａ-033）</span>
+    <p>多数の観察の相対度数を確率とみなす。主張と反対の確率を仮定し、実際の結果（またはそれより主張に有利な結果）の確率を求める。とても起こりにくければ「主張は妥当だと判断してよさそう」、そうでなければ「この結果からは、主張が妥当だとは判断できない」</p></div>
+  <div><span class="f-name">⑥ 判断の述べ方（数Ａ-031・032）</span>
+    <p>「（仮定）のもとで、（期待値など）は〜で、（案）が最も大きい（条件を満たす）。したがって〜」。「必ずもうかる」「正しい」とは言わない</p></div>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中1-111・数Ａ-030</span></div>
+  <p>あるゲームを10回行ったときの得点は、0点が4回、10点が5回、50点が1回でした。得点の平均値はどれですか。</p>
+  <div class="choices">
+    <button>20 点</button>
+    <button data-correct="true">10 点</button>
+    <button>100 点</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">平均値は（値×度数）の合計÷度数の合計で、\( \dfrac{0\times4+10\times5+50\times1}{10}=\dfrac{100}{10}=10 \)（点）です。相対度数を使って \( 0\times0.4+10\times0.5+50\times0.1=10 \) としても同じ値になり、この相対度数を確率に置きかえたものが期待値です（数Ａ-030）。20 点は \( (0+10+50)\div3 \) で、度数（回数）の違いを考えずに値だけを平均した誤り、100 点は合計のまま度数の合計で割り忘れた値です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-029</span></div>
+  <p>赤玉2個と白玉6個が入った袋から、玉を1個ずつ2回取り出します。取り出した玉は戻しません。2個とも赤玉である確率はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{1}{16} \)</button>
+    <button>\( \dfrac{1}{32} \)</button>
+    <button data-correct="true">\( \dfrac{1}{28} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">1個目が赤 \( \dfrac{2}{8} \)、1個目が赤だったとき残り7個（赤1個）から2個目が赤 \( \dfrac{1}{7} \) なので、乗法定理で \( \dfrac{2}{8}\times\dfrac{1}{7}=\dfrac{1}{28} \) です。\( \dfrac{1}{16} \) は \( \left(\dfrac{2}{8}\right)^2 \) で、玉を戻す（独立な試行）とした誤り、\( \dfrac{1}{32} \) は \( \dfrac{2}{8}\times\dfrac{1}{8} \) で、2個目の分母をもとの個数 8 のままにした誤りです（数Ａ-029 のよくある間違い）。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-033</span></div>
+  <p>あるさいころについて「1の目が出やすい」という主張を調べるため、12回投げたところ、1の目は3回出ました。1の目が出る確率を \( \dfrac{1}{6} \) と仮定して、12回のうち1の目が3回以上出る確率を求めると、約 0.3226（小数第5位を四捨五入）でした。判断として適切なものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">仮定のもとでも十分に起こりうることなので、この結果からは、主張が妥当だとは判断できない。</button>
+    <button>12回なら2回出るはずが3回出たので、1の目が出やすいことが証明された。</button>
+    <button>求めた確率が 1 より小さいので、主張は妥当だと判断してよさそうだ。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">主張と反対の「1の目が出る確率は \( \dfrac{1}{6} \)」を仮定し、実際の結果（3回）またはそれより主張に有利な結果（4回以上）が起こる確率を求めると約 0.3226 で、3回に1回ほどは起こります。とても起こりにくいとは言えないので、「この結果からは、主張が妥当だとは判断できない」と述べます（数Ａ-033、数Ⅰ-089・090 の判断の言い方）。2つ目は「確率どおりの回数がちょうど起こる」と考えた誤りで、「証明された」とも言いません。3つ目について、確率はいつも 1 以下なので、1 より小さいことは判断の根拠になりません。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：平均していくら？どちらが有利？</h2>
+<div class="box think">
+  <p class="box-title">この4問、何に着目する？</p>
+  <p>(ア) 赤玉2個と白玉3個が入った袋から2個を同時に取り出し、赤玉1個につき 100 円をもらえます。もらえる金額の期待値は？<br>
+  (イ) 1回目に成功すると2回目に挑戦できるゲームで、1回目に成功する確率は 0.6、1回目に成功したとき2回目に成功する確率は 0.5 です（学習用に仮定した確率）。得点の期待値は？<br>
+  (ウ) イベントを屋外と屋内のどちらで行うか。天気の確率と利益の見込みから、どちらの案の期待値が大きいか。晴れの確率がいくつより大きければ屋外の方がよいか。<br>
+  (エ) ルーレットの1等の賞金を、1回あたりの賞金の期待値が予算から決めた上限以下になるように決めるには？</p>
+  <p>解き始める前に、それぞれ「値と確率の表をどう作るか」「何と比べて判断するか」を予想しましょう。答えは、(ア) と (イ) が「3 期待値を求める」の例題1・例題2、(ウ) が「4 期待値を比べて判断する」の例題3、(エ) が「5 値を変えて調べ、判断の限界を考える」の例題4で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="期待値を求める"><span class="num">3</span>期待値を求める</h2>
+<p>変量のとる値とその値をとる確率の積の和が期待値でした（数Ａ-030）。平均値の「値×相対度数」の相対度数を確率に置きかえたもので、試行を何回も繰り返したときの1回あたりの平均の見込みを表すと考えられます。期待値を求めるときは、値ごとの確率を、これまでに学んだ方法で求めます。</p>
+<h3>対比表：変量と確率の求め方</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>変量の例</th><th>確率の求め方</th><th>学んだコマ</th></tr>
+  <tr><td>さいころの目、硬貨の表の枚数</td><td>数え上げ、組合せ</td><td>数Ａ-030</td></tr>
+  <tr><td>玉・くじを同時に取り出したときの個数</td><td>組合せ</td><td>数Ａ-020・030・034</td></tr>
+  <tr><td>何回かの試行で事象が起こった回数</td><td>反復試行</td><td>数Ａ-027・034</td></tr>
+  <tr><td>当たりが出るまでの回数、段階のあるゲーム</td><td>乗法定理</td><td>数Ａ-029・030</td></tr>
+  <tr><td>ルーレットや的の区画</td><td>面積比（中心角の比）</td><td>数Ａ-032</td></tr>
+  <tr><td>記録から確率をみなす場面</td><td>相対度数</td><td>数Ａ-033</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題1（値と確率の表を作る）＝導入の (ア)</p>
+  <p>赤玉2個と白玉3個が入った袋から2個を同時に取り出し、取り出した赤玉1個につき 100 円をもらえます。もらえる金額の期待値を求めなさい。</p>
+  <div class="step">着目：もらえる金額は 0 円・100 円・200 円のどれかです。5個の玉を区別すると、取り出し方は \( {}_5\mathrm{C}_2=10 \)（通り）で同様に確からしいです。</div>
+  <div class="step">値と確率の表：赤0個は \( {}_3\mathrm{C}_2=3 \)、赤1個は \( 2\times3=6 \)、赤2個は \( {}_2\mathrm{C}_2=1 \)（通り）。確率は \( \dfrac{3}{10} \)、\( \dfrac{6}{10} \)、\( \dfrac{1}{10} \) で、合計は 1 です。</div>
+  <div class="step">値×確率の和：\( 0\times\dfrac{3}{10}+100\times\dfrac{6}{10}+200\times\dfrac{1}{10}=60+20=80 \)。答え：<span data-ans="ex1">80 円</span></div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（乗法定理で確率を求める）＝導入の (イ)</p>
+  <p>1回目に成功すると2回目に挑戦できるゲームがあります。1回目に成功する確率は 0.6、1回目に成功したとき2回目に成功する確率は 0.5 です（学習用に仮定した確率）。1回目に失敗したら 0 点、1回目に成功して2回目に失敗したら 100 点、2回とも成功したら 300 点です。得点の期待値を求めなさい。</p>
+  <div class="step">着目：「1回目に成功したとき」の 0.5 は条件付きの確率なので、乗法定理でかけて各場合の確率を求めます（数Ａ-029）。</div>
+  <div class="step">値と確率：0 点は 0.4、100 点は \( 0.6\times0.5=0.3 \)、300 点は \( 0.6\times0.5=0.3 \)。合計は \( 0.4+0.3+0.3=1 \) です。</div>
+  <div class="step">値×確率の和：\( 0\times0.4+100\times0.3+300\times0.3=30+90=120 \)。答え：<span data-ans="ex2">120 点</span></div>
+</div>
+<div class="box caution"><p class="box-title">つまずきやすい点（期待値を求める）</p>
+<p>(1) 確率を考えずに値だけを平均する。例題1で \( (0+100+200)\div3=100 \)（円）とするのは誤りです（数Ａ-030）。<br>
+(2) 値ごとの「値×確率」の一部を足し忘れる（1等の分だけを期待値と考えるなど）。はずれの 0 円も含めて、すべての値を挙げます（数Ａ-032）。<br>
+(3) 確率の合計を確かめない。合計が 1 にならなければ、値の挙げ忘れや確率の誤りがあります（数Ａ-030）。<br>
+(4) 期待値を「1回で必ずもらえる額」と考える。期待値は1回あたりの平均の見込みで、1回の試行で実際に出る値とは限りません（数Ａ-030・034）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="期待値を比べて判断する"><span class="num">4</span>期待値を比べて判断する</h2>
+<p>期待値を値段・予算・ほかの案の期待値と比べると、仮定した確率のもとで、何回も繰り返したときに平均してどちらが有利かの見込みが分かります（数Ａ-030〜032）。判断は「（仮定）のもとで、期待値は〜で、（案）が最も大きい」と根拠を添えて述べ、「必ずもうかる」「正しい」とは言いません（数Ａ-031）。</p>
+<h3>対比表：比べる相手と判断の例</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>比べる相手</th><th>判断の例</th><th>学んだコマ</th></tr>
+  <tr><td>1回の値段（参加費）</td><td>賞金の期待値が値段より小さければ、何回も参加すると1回あたり平均してその差だけ少なくなる見込み</td><td>数Ａ-030</td></tr>
+  <tr><td>ほかの案の期待値</td><td>仮定した確率のもとで、利益の期待値が最も大きい案を選ぶ</td><td>数Ａ-031</td></tr>
+  <tr><td>予算などの条件</td><td>期待値が条件（〜円以下など）を満たすかで、設定が妥当かを判断する</td><td>数Ａ-032</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（案の期待値を比べる）＝導入の (ウ)</p>
+  <p>あるクラブが、イベントを屋外と屋内のどちらで行うかを考えています。当日の天気は晴れか雨のどちらかで、晴れの確率を 0.6、雨の確率を 0.4 と仮定します（学習用に仮定した確率）。利益の見込みは次の表のとおりです（学習用に作成した架空の値）。(1) それぞれの案の利益の期待値を求めて比べなさい。(2) 晴れの確率を \( p \) とすると、晴れの確率がいくつより大きいとき屋外の期待値の方が大きくなりますか。</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>案</th><th>晴れ</th><th>雨</th></tr>
+    <tr><td>屋外</td><td>50000 円</td><td>10000 円</td></tr>
+    <tr><td>屋内</td><td>32000 円</td><td>28000 円</td></tr>
+  </table>
+  </div>
+  <div class="step">(1) 屋外：\( 50000\times0.6+10000\times0.4=30000+4000=34000 \)（円）。屋内：\( 32000\times0.6+28000\times0.4=19200+11200=30400 \)（円）。屋外の方が 3600 円大きい。</div>
+  <div class="step">(2) 雨の確率は \( 1-p \) なので、屋外は \( 50000p+10000(1-p)=40000p+10000 \)、屋内は \( 32000p+28000(1-p)=4000p+28000 \)（円）。</div>
+  <div class="step">2つが等しくなるのは \( 40000p+10000=4000p+28000 \)、\( 36000p=18000 \) より \( p=\dfrac{1}{2} \)。図1のように、\( p \) が \( \dfrac{1}{2} \) より大きいと屋外の直線が上にあります。</div>
+  <div class="step">判断：「晴れ 0.6・雨 0.4 という仮定のもとで、利益の期待値は屋外 34000 円、屋内 30400 円で屋外が大きい。晴れの確率が \( \dfrac{1}{2} \) より大きければ屋外の期待値の方が大きいので、予報が多少変わっても屋外がよいと考えられる」。答え：<span data-ans="ex3">(1) 屋外 34000 円、屋内 30400 円　(2) \( p=\dfrac{1}{2} \) より大きいとき</span></div>
+</div>
+<figure>
+<!--svg:f068a-->
+<svg viewBox="0 0 440 290" width="440" role="img" aria-label="晴れの確率 p を横軸、利益の期待値（円）を縦軸にしたグラフ。屋外の案は青の実線で 40000p＋10000、屋内の案は緑の破線で 4000p＋28000。2本の直線は p＝1/2 で交わり、そのときの期待値はどちらも 30000 円（赤の点と縦の点線）。p が 1/2 より大きいと屋外、小さいと屋内の方が大きい。p＝0.6 のとき、屋外は 34000 円（青の点）、屋内は 30400 円（緑の点）" data-fig="f068a">
+<line x1="64" y1="252" x2="420" y2="252" stroke="#8a99a8" stroke-width="0.6" stroke-opacity="0.5" data-gy="0"/>
+<text x="58" y="256" text-anchor="end" font-size="10" fill="currentColor">0</text>
+<line x1="64" y1="206.4" x2="420" y2="206.4" stroke="#8a99a8" stroke-width="0.6" stroke-opacity="0.5" data-gy="10000"/>
+<text x="58" y="210.4" text-anchor="end" font-size="10" fill="currentColor">10000</text>
+<line x1="64" y1="160.8" x2="420" y2="160.8" stroke="#8a99a8" stroke-width="0.6" stroke-opacity="0.5" data-gy="20000"/>
+<text x="58" y="164.8" text-anchor="end" font-size="10" fill="currentColor">20000</text>
+<line x1="64" y1="115.2" x2="420" y2="115.2" stroke="#8a99a8" stroke-width="0.6" stroke-opacity="0.5" data-gy="30000"/>
+<text x="58" y="119.2" text-anchor="end" font-size="10" fill="currentColor">30000</text>
+<line x1="64" y1="69.6" x2="420" y2="69.6" stroke="#8a99a8" stroke-width="0.6" stroke-opacity="0.5" data-gy="40000"/>
+<text x="58" y="73.6" text-anchor="end" font-size="10" fill="currentColor">40000</text>
+<line x1="64" y1="24" x2="420" y2="24" stroke="#8a99a8" stroke-width="0.6" stroke-opacity="0.5" data-gy="50000"/>
+<text x="58" y="28" text-anchor="end" font-size="10" fill="currentColor">50000</text>
+<line x1="64" y1="252" x2="64" y2="256" stroke="currentColor" stroke-width="1"/>
+<text x="64" y="268" text-anchor="middle" font-size="10" fill="currentColor">0</text>
+<line x1="135.2" y1="252" x2="135.2" y2="256" stroke="currentColor" stroke-width="1"/>
+<text x="135.2" y="268" text-anchor="middle" font-size="10" fill="currentColor">0.2</text>
+<line x1="206.4" y1="252" x2="206.4" y2="256" stroke="currentColor" stroke-width="1"/>
+<text x="206.4" y="268" text-anchor="middle" font-size="10" fill="currentColor">0.4</text>
+<line x1="277.6" y1="252" x2="277.6" y2="256" stroke="currentColor" stroke-width="1"/>
+<text x="277.6" y="268" text-anchor="middle" font-size="10" fill="currentColor">0.6</text>
+<line x1="348.8" y1="252" x2="348.8" y2="256" stroke="currentColor" stroke-width="1"/>
+<text x="348.8" y="268" text-anchor="middle" font-size="10" fill="currentColor">0.8</text>
+<line x1="420" y1="252" x2="420" y2="256" stroke="currentColor" stroke-width="1"/>
+<text x="420" y="268" text-anchor="middle" font-size="10" fill="currentColor">1</text>
+<line x1="64" y1="252" x2="428" y2="252" stroke="currentColor" stroke-width="1.2"/>
+<line x1="64" y1="252" x2="64" y2="14" stroke="currentColor" stroke-width="1.2"/>
+<text x="420" y="284" text-anchor="end" font-size="11" fill="currentColor">晴れの確率 p</text>
+<text x="60" y="12" text-anchor="start" font-size="11" fill="currentColor">利益の期待値（円）</text>
+<line x1="64" y1="206.4" x2="420" y2="24" stroke="#1f5fbf" stroke-width="2.2" data-line="屋外" data-v0="10000" data-v1="50000"/>
+<line x1="64" y1="124.3" x2="420" y2="106.1" stroke="#1e8e5a" stroke-width="2.2" stroke-dasharray="7 4" data-line="屋内" data-v0="28000" data-v1="32000"/>
+<text x="359.5" y="42" text-anchor="end" font-size="11" fill="#1f5fbf">屋外 40000p＋10000</text>
+<text x="71.1" y="145.3" text-anchor="start" font-size="11" fill="#1e8e5a">屋内 4000p＋28000</text>
+<line x1="242" y1="24" x2="242" y2="252" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="2 3" data-cross="0.5"/>
+<circle cx="242" cy="115.2" r="4" fill="#c0392b" data-pt="交点" data-p="0.5" data-v="30000"/>
+<text x="236" y="101.2" text-anchor="end" font-size="10" fill="#c0392b">p＝1/2 で等しい（30000 円）</text>
+<circle cx="277.6" cy="97" r="4" fill="#1f5fbf" data-pt="屋外" data-p="0.6" data-v="34000"/>
+<text x="277.6" y="81" text-anchor="middle" font-size="10" fill="#1f5fbf">34000 円</text>
+<circle cx="277.6" cy="113.4" r="4" fill="#1e8e5a" data-pt="屋内" data-p="0.6" data-v="30400"/>
+<text x="285.6" y="129.4" text-anchor="start" font-size="10" fill="#1e8e5a">30400 円</text>
+</svg>
+<!--/svg:f068a-->
+  <figcaption>図1　晴れの確率 \( p \) と利益の期待値（例題3。学習用に作成した図）。青の実線が屋外、緑の破線が屋内で、\( p=\dfrac{1}{2} \) で入れかわる</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">つまずきやすい点（比べて判断する）</p>
+<p>(1) いちばん起こりやすい場合や、利益がいちばん大きい場合だけを見て決める。ほかの場合の利益と確率を無視しています（数Ａ-031）。<br>
+(2) 確率を使わずに、場合ごとの利益を平均する。起こりやすさの違いを無視しています（数Ａ-031）。<br>
+(3) 樹形図で、条件付きの確率（「雨のとき涼しい」確率など）をそのまま使う。根から葉まで、すべての枝の確率をかけます（数Ａ-031）。<br>
+(4) 判断の根拠を言い切りすぎる。言えるのは「仮定した確率のもとで、期待値が最も大きいのは〜」ということで、「必ずもうかる」とは言えません（数Ａ-031）。<br>
+(5) 比べる相手（値段・予算）や、確率が仮定した値であることを確かめない（数Ａ-034）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="値を変えて調べ、限界を考える"><span class="num">5</span>値を変えて調べ、判断の限界を考える</h2>
+<p>確率の値を変えると、期待値は一次関数として変わります（数Ａ-031）。案の期待値が等しくなる確率を求めると、どんな予報なら選ぶ案が変わるかが分かります（例題3）。賞金を文字で置くと、期待値が条件を満たす賞金の範囲を一次不等式で求められます（数Ａ-032）。また、期待値は1回の結果を保証しないので、損をする確率や仮定の確かさも振り返ります。</p>
+<div class="box example worked">
+  <p class="box-title">例題4（条件を満たす賞金の範囲）＝導入の (エ)</p>
+  <p>ルーレットが、1等の区画（中心角 40°）、2等の区画（中心角 80°）、はずれの区画（中心角 240°）に分かれています。どの位置を指すことも同様に確からしいと仮定します。2等の賞金を 200 円とし、1回あたりの賞金の期待値を 120 円以下にしたいとき、1等の賞金を何円以下にすればよいですか。</p>
+  <div class="step">着目：面積比（中心角の比）で確率を求めると、1等 \( \dfrac{40}{360}=\dfrac{1}{9} \)、2等 \( \dfrac{80}{360}=\dfrac{2}{9} \)、はずれ \( \dfrac{240}{360}=\dfrac{2}{3} \) です（数Ａ-032）。</div>
+  <div class="step">1等の賞金を \( x \) 円とすると、期待値は \( x\times\dfrac{1}{9}+200\times\dfrac{2}{9}+0\times\dfrac{2}{3}=\dfrac{x+400}{9} \)（円）。</div>
+  <div class="step">条件：\( \dfrac{x+400}{9}\leqq120 \) より \( x+400\leqq1080 \)、\( x\leqq680 \)。答え：<span data-ans="ex4">680 円以下</span>（ちょうど 680 円なら期待値は 120 円で、条件を満たします）</div>
+</div>
+<h3>判断を振り返る観点</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>観点</th><th>内容</th><th>学んだコマ</th></tr>
+  <tr><td>仮定した確率</td><td>予報・面積比・記録の相対度数など、確率の根拠は何か。値が変わると判断は変わるか</td><td>数Ａ-031・032</td></tr>
+  <tr><td>期待値の意味</td><td>1回あたりの平均の見込みで、1回の結果を保証しない</td><td>数Ａ-030・031</td></tr>
+  <tr><td>損をする確率</td><td>期待値が大きい案でも、損をする確率が大きいことがある</td><td>数Ａ-031</td></tr>
+  <tr><td>記録の条件</td><td>相対度数を確率とみなすときは、多数回・同じ条件の記録か</td><td>数Ａ-033</td></tr>
+</table>
+</div>
+<div class="box caution"><p class="box-title">つまずきやすい点（値を変えて調べる・判断の限界）</p>
+<p>(1) 期待値が等しくなる確率を求める一次方程式で、移項するときに符号を変え忘れる（数Ａ-031 の問4）。<br>
+(2) 期待値が予算内なら、実際の総額も必ず予算内に収まると考える。言えるのは「仮定のもとで、平均して見込まれる総額が予算以内」ということです（数Ａ-032）。<br>
+(3) 確率どおりの回数がちょうど起こると考える。確率 0.15 でも、20 日のうちちょうど3日起こるとは言えません（数Ａ-033）。<br>
+(4) 判断を言い切りすぎる。確率に基づく判断では「表示がうそだと証明された」「表示どおりだと分かった」とは言いません（数Ａ-033）。<br>
+(5) 条件の違う記録（雨の日だけの記録など）から求めた相対度数を、ほかの条件の場面の確率として使う（数Ａ-033）。</p></div>
+<div class="box point"><p class="box-title">単元をまたぐ整理：期待値と判断を支えた、ほかの単元の考え</p>
+<div class="table-wrap">
+<table>
+  <tr><th>使った場面（コマ）</th><th>使った考え</th></tr>
+  <tr><td>値ごとの度数から平均値（中1-111）</td><td>（値×度数）の和÷度数の合計。相対度数を確率に置きかえると期待値になる（数Ａ-030）</td></tr>
+  <tr><td>一次関数（中2-026・029・030）</td><td>確率を変えたときの期待値の変化を直線で表し、交点で選ぶ案が入れかわる（数Ａ-031）</td></tr>
+  <tr><td>一次不等式（数Ⅰ-015・016）</td><td>期待値が条件以下になる賞金の範囲を求める（数Ａ-032）</td></tr>
+  <tr><td>仮説検定の考え方（数Ⅰ-089・090）</td><td>主張と反対の仮定のもとで、実際の結果以上が起こる割合を調べて判断する（数Ａ-033 で確率の計算に置きかえた）</td></tr>
+</table>
+</div>
+<p>期待値を記号で表すことや、値のばらつきを分散などで調べることは、数学Ｂ「統計的な推測」で学びます（数Ａ-030・031）。</p></div>
+<div class="box point"><p class="box-title">この範囲の問題の型と、練習した場所</p>
+<div class="table-wrap">
+<table>
+  <tr><th>型（学んだコマ）</th><th>このページで練習する問題</th></tr>
+  <tr><td>値と確率の表から期待値（030）</td><td>確認1、例題1、問1・問2</td></tr>
+  <tr><td>反復試行・乗法定理で確率を求めて期待値（027・029・030）</td><td>確認2、例題2、問3・問4</td></tr>
+  <tr><td>期待値と値段を比べる（030）</td><td>問5・問10</td></tr>
+  <tr><td>案の期待値を比べて判断する（031）</td><td>例題3、問6・問9</td></tr>
+  <tr><td>確率を変えて調べる（031）</td><td>例題3、問7</td></tr>
+  <tr><td>面積比による確率と期待値、条件との比較（032）</td><td>例題4、問8</td></tr>
+  <tr><td>相対度数を確率とみなす・確率に基づく判断（033）</td><td>確認3、問9</td></tr>
+</table>
+</div></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この範囲の重要語句（すべて既習）</p>
+  <dl>
+    <dt>期待値</dt><dd>変量のとる値とその値をとる確率の積の和（「値×確率」の和）。1回あたりの平均の見込みを表すと考えられる（数Ａ-030）。</dd>
+    <dt>変量</dt><dd>さいころの目や賞金のように、試行の結果によって値が決まる量（このページでの説明。数Ａ-030 と同じ）。</dd>
+    <dt>意思決定</dt><dd>いくつかの案の中から、根拠をもとに1つを選ぶこと（このページでの説明。数Ａ-031 と同じ）。学習指導要領は「期待値を意思決定に活用」することを求めている。</dd>
+    <dt>面積比で考える確率</dt><dd>どの位置も同様に確からしいとき、（その区画の面積）÷（全体の面積）で考える確率（数Ａ-032 での言い方）。</dd>
+    <dt>確率を仮定する</dt><dd>表示や仮説をもとに確率の値を決めて考えること。判断はその仮定のもとで成り立つ（数Ａ-033）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>値と確率の表を作り、確率の合計が 1 になることを確かめて「値×確率」を足す。確率は数え上げ・組合せ・反復試行・乗法定理・面積比・相対度数で求める（O1）。</li>
+    <li>期待値を値段・予算・ほかの案と比べて判断する。「仮定した確率のもとで、期待値が最も大きいのは〜」と根拠を添え、「必ず〜」とは言わない（O2）。</li>
+    <li>確率を変えると期待値は一次関数として変わり、選ぶ案が変わる確率の値を求められる。期待値は1回の結果を保証しないので、損をする確率や、仮定・記録の条件も振り返る（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">期待値</span><p>\( x_1p_1+x_2p_2+\cdots+x_np_n \)（\( p_1+\cdots+p_n=1 \)）</p></div>
+  <div><span class="f-name">判断の述べ方</span><p>（仮定）のもとで、期待値は〜で、（案）が最も大きい（条件を満たす）</p></div>
+  <div><span class="f-name">選ぶ案が変わる確率</span><p>2つの案の期待値（確率の一次式）が等しくなる値</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">範囲（数Ａ-030〜033）全体から10問です。基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）と、復習するときに戻るコマを示します。入力問題は数字で答えます（分数で答えるときは、それ以上約分できない分数にします。小数で表せるときは小数でもかまいません）。問題の確率・金額は、学習用に仮定した値です。</p>
+
+<div class="q" data-type="input" id="q1" data-accept="68.75|275/4">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1（復習するなら数Ａ-030）</span></div>
+  <p>変量 \( x \) のとる値とその確率が次の表のとき、\( x \) の期待値を求めなさい。ただし、表の □ は、確率の合計が 1 になるように決めます。</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>\( x \) の値</th><td>0</td><td>50</td><td>200</td><td>500</td><td>計</td></tr>
+    <tr><th>確率</th><td>□</td><td>\( \dfrac{1}{4} \)</td><td>\( \dfrac{1}{8} \)</td><td>\( \dfrac{1}{16} \)</td><td>1</td></tr>
+  </table>
+  </div>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 68.75（\( \dfrac{275}{4} \)）。□ は \( 1-\dfrac{1}{4}-\dfrac{1}{8}-\dfrac{1}{16}=\dfrac{9}{16} \) です。期待値は \( 0\times\dfrac{9}{16}+50\times\dfrac{1}{4}+200\times\dfrac{1}{8}+500\times\dfrac{1}{16}=12.5+25+31.25=68.75 \) です（0 の値も表に含めますが、0 をかけるので和には影響しません）。187.5 と答えた場合は \( (0+50+200+500)\div4 \) で、確率を考えずに値だけを平均しています（数Ａ-030 のよくある間違い）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1（復習するなら数Ａ-030）</span></div>
+  <p>大小2つのさいころを同時に投げ、出た目の大きい方（同じ目ならその目）を得点とします。得点の期待値はどれですか。</p>
+  <div class="choices"><button>\( \dfrac{7}{2} \)</button><button data-correct="true">\( \dfrac{161}{36} \)</button><button>\( \dfrac{91}{18} \)</button><button>\( 7 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">得点が \( k \) になるのは、大と小の大きい方が \( k \) の出方で、\( (k,\ 1),\ \cdots,\ (k,\ k) \) と \( (1,\ k),\ \cdots,\ (k-1,\ k) \) の \( 2k-1 \) 通りです。得点 1〜6 の通り数は 1、3、5、7、9、11 で、合計は 36（確率の合計 1）。期待値は \( \dfrac{1\times1+2\times3+3\times5+4\times7+5\times9+6\times11}{36}=\dfrac{161}{36} \) です。\( \dfrac{7}{2} \) は得点 1〜6 を等しい確率とみた誤りで、1個のさいころの目の期待値と同じ値です。\( \dfrac{91}{18} \) は得点が \( k \) の出方を \( 2k \) 通りとし、\( (k,\ k) \) を2回数えた誤りで、確率の合計が \( \dfrac{42}{36} \) となって 1 を超えています（数Ａ-030 の手順③で気づけます）。\( 7 \) は2つの目の和の期待値（数Ａ-030 の例題3）と取り違えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O1（復習するなら数Ａ-027・数Ａ-030）</span></div>
+  <p>1個のさいころを2回投げ、2回とも 6 の目なら 360 円、ちょうど1回だけ 6 の目なら 36 円がもらえ、6 の目が出なければ 0 円です（学習用の架空のゲーム）。もらえる金額の期待値はどれですか。</p>
+  <div class="choices"><button>15 円</button><button>132 円</button><button>10 円</button><button data-correct="true">20 円</button></div>
+  <span class="result"></span>
+  <div class="explain">2回とも 6 の目の確率は \( \left(\dfrac{1}{6}\right)^2=\dfrac{1}{36} \)、ちょうど1回は反復試行で \( {}_2\mathrm{C}_1\times\dfrac{1}{6}\times\dfrac{5}{6}=\dfrac{10}{36} \)、6 の目が出ないのは \( \dfrac{25}{36} \) です（合計 1）。期待値は \( 360\times\dfrac{1}{36}+36\times\dfrac{10}{36}+0\times\dfrac{25}{36}=10+10=20 \)（円）です。15 円は「ちょうど1回」の確率を \( \dfrac{1}{6}\times\dfrac{5}{6}=\dfrac{5}{36} \) として、何回目に出るかの選び方 \( {}_2\mathrm{C}_1 \) をかけ忘れた誤りです（数Ａ-027 のよくある間違い）。132 円は \( (360+36+0)\div3 \) で値だけを平均した誤り、10 円は2回とも 6 の場合の分だけを答えた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="1/2|0.5|1/2回|0.5回">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1（復習するなら数Ａ-027・数Ａ-030）</span></div>
+  <p>1個のさいころを3回投げるとき、6 の目が出る回数の期待値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{1}{2} \)（0.5）。6 の目が出る回数は 0〜3 回で、確率は反復試行で求めます。0回 \( \left(\dfrac{5}{6}\right)^3=\dfrac{125}{216} \)、1回 \( {}_3\mathrm{C}_1\times\dfrac{1}{6}\times\left(\dfrac{5}{6}\right)^2=\dfrac{75}{216} \)、2回 \( {}_3\mathrm{C}_2\times\left(\dfrac{1}{6}\right)^2\times\dfrac{5}{6}=\dfrac{15}{216} \)、3回 \( \left(\dfrac{1}{6}\right)^3=\dfrac{1}{216} \)（合計 1）。期待値は \( \dfrac{0\times125+1\times75+2\times15+3\times1}{216}=\dfrac{108}{216}=\dfrac{1}{2} \) です。\( \dfrac{3}{2} \) と答えた場合は \( (0+1+2+3)\div4 \) で、確率を考えずに回数の値だけを平均しています（数Ａ-030 のよくある間違い）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2（復習するなら数Ａ-030）</span></div>
+  <p>1枚 300 円のくじが 200 本あります。1等 10000 円が1本、2等 2000 円が6本、3等 300 円が40本で、残りははずれ（0 円）です（学習用の架空の例）。このくじについての説明として正しいものはどれですか。</p>
+  <div class="choices"><button>1等の 10000 円が当たれば大きく得をするので、このくじは買う方が得である。</button><button>賞金の平均は \( (10000+2000+300+0)\div4=3075 \) 円で、値段の 300 円より大きいので、買うと得をする見込みである。</button><button data-correct="true">賞金の期待値は 170 円で、値段の 300 円より 130 円小さいので、何回も買うと1回あたり平均して 130 円ほど少なくなる見込みである。</button><button>賞金の期待値は 170 円なので、1回買えば必ず 170 円の賞金がもらえる。</button></div>
+  <span class="result"></span>
+  <div class="explain">賞金の期待値は \( 10000\times\dfrac{1}{200}+2000\times\dfrac{6}{200}+300\times\dfrac{40}{200}=50+60+60=170 \)（円）で、値段の 300 円より \( 300-170=130 \)（円）小さくなります。1つ目は、確率 \( \dfrac{1}{200} \) でしか起こらない場合だけを見ています。2つ目は、確率（本数）の違いを考えずに賞金を平均した誤りです（数Ａ-030 のよくある間違い）。4つ目は、期待値を「1回で必ずもらえる額」と考えた誤りで、1回の賞金は 10000 円・2000 円・300 円・0 円のどれかです（数Ａ-034 のよくある間違い（型E））。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2（復習するなら数Ａ-031）</span></div>
+  <p>ある売店で、弁当の仕入れ量を2つの案から選びます。当日の晴れの確率を 0.6、雨の確率を 0.4 と仮定し、利益は次のように見積もられています（学習用の架空の値）。</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>案</th><th>晴れ</th><th>雨</th></tr>
+    <tr><td>案P（少なめ）</td><td>18000 円</td><td>6000 円</td></tr>
+    <tr><td>案Q（多め）</td><td>24000 円</td><td>−1500 円</td></tr>
+  </table>
+  </div>
+  <p>利益の期待値で比べた結果として正しいものはどれですか。</p>
+  <div class="choices"><button data-correct="true">案P は 13200 円、案Q は 13800 円で、案Q の期待値の方が 600 円大きい。</button><button>案P は雨の日も損をしないので、案P の期待値の方が大きい。</button><button>晴れの日の利益で比べると、案Q の期待値の方が 6000 円大きい。</button><button>確率を使わずに平均すると、案P は 12000 円、案Q は 11250 円で、案P の期待値の方が 750 円大きい。</button></div>
+  <span class="result"></span>
+  <div class="explain">案P は \( 18000\times0.6+6000\times0.4=10800+2400=13200 \)（円）、案Q は \( 24000\times0.6+(-1500)\times0.4=14400-600=13800 \)（円）で、案Q の方が 600 円大きくなります。2つ目は、損をしないことと期待値が大きいことを取り違えています（案P は損をしませんが、期待値は案Q より小さい）。3つ目は利益がいちばん大きい場合だけを見て、雨の場合を無視しています。4つ目は確率を使わずに利益を平均した誤りです（数Ａ-031 のよくある間違い）。この問題と問7は、数Ａ-031 の問3・問4（少なめの案P と多めの案Q の比較）と同じ型で、場面と数値を変えたものです。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="5/9">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3（復習するなら数Ａ-031）</span></div>
+  <p>問6の2つの案で、晴れの確率を \( p \)（雨の確率は \( 1-p \)）とすると、利益の期待値は案P が \( 12000p+6000 \)（円）、案Q が \( 25500p-1500 \)（円）になります。2つの案の期待値が等しくなる \( p \) の値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{5}{9} \)。案P は \( 18000p+6000(1-p)=12000p+6000 \)、案Q は \( 24000p-1500(1-p)=25500p-1500 \) です。\( 12000p+6000=25500p-1500 \) より \( 13500p=7500 \)、\( p=\dfrac{5}{9} \) です。晴れの確率が \( \dfrac{5}{9} \) より大きいと案Q、小さいと案P の期待値が大きくなります（問6の 0.6 は \( \dfrac{5}{9} \) より大きいので案Q）。\( \dfrac{1}{3} \) と答えた場合は、右辺の \( -1500 \) を左辺に移すときに符号を変え忘れて、\( 13500p=6000-1500=4500 \) としています（数Ａ-031 の問4 と同じ誤り）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問8</span><span class="q-obj">O1・O2（復習するなら数Ａ-032）</span></div>
+  <p>ルーレットが、1等（中心角 45°）、2等（中心角 45°）、3等（中心角 90°）、はずれ（中心角 180°）の4つの区画に分かれています。どの位置を指すことも同様に確からしいと仮定します。賞金を1等 800 円、2等 400 円、3等 100 円とするとき、1回あたりの賞金の期待値はどれですか。</p>
+  <div class="choices"><button>150 円</button><button>325 円</button><button data-correct="true">175 円</button><button>100 円</button></div>
+  <span class="result"></span>
+  <div class="explain">確率は中心角の比で、1等 \( \dfrac{45}{360}=\dfrac{1}{8} \)、2等 \( \dfrac{1}{8} \)、3等 \( \dfrac{90}{360}=\dfrac{1}{4} \)、はずれ \( \dfrac{1}{2} \) です。期待値は \( 800\times\dfrac{1}{8}+400\times\dfrac{1}{8}+100\times\dfrac{1}{4}+0\times\dfrac{1}{2}=100+50+25=175 \)（円）です。325 円は \( (800+400+100+0)\div4 \) で、区画の数で確率を \( \dfrac{1}{4} \) ずつとした（確率を使わずに平均した）誤りです。150 円は3等の分を、100 円は2等・3等の分を足し忘れています（数Ａ-032 のよくある間違い）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3（復習するなら数Ａ-031・数Ａ-033）</span></div>
+  <p>X駅の売店で、あるパンを毎朝仕入れます。仕入れは1個 60 円、売値は1個 150 円で、売れ残りは処分します（学習用の架空の場面）。過去 100 日の記録では、1日にほしい人がいた数は、20 個の日が 30 日、30 個の日が 50 日、40 個の日が 20 日でした。仕入れた数より多くは売れません。仕入れる数を 20 個・30 個・40 個のどれにするかを考えます。</p>
+  <p>太郎：「40 個売れる日もあるから、40 個仕入れれば一番もうかるよ。」<br>花子：「記録の相対度数を確率とみなして、利益の期待値で比べてみよう。」</p>
+  <p>利益の期待値で比べた説明として、最も適切なものはどれですか。</p>
+  <div class="choices"><button data-correct="true">相対度数を確率とみなすと、利益の期待値は 20 個が 1800 円、30 個が 2250 円、40 個が 1950 円で、30 個が最も大きい。ただし、記録と同じ条件が続くと仮定したうえでの判断である。</button><button>40 個ほしい人がいた日の利益は、40 個仕入れが 3600 円で最も大きいので、40 個仕入れるのが最もよい。</button><button>20 個仕入れは売れ残りが出ず、損をする日がないので、利益の期待値も 20 個が最も大きい。</button><button>ほしい人がいた数の平均は \( (20+30+40)\div3=30 \) 個なので、30 個仕入れれば毎日 2700 円の利益が得られる。</button></div>
+  <span class="result"></span>
+  <div class="explain">確率を 0.3、0.5、0.2 とみなします。20 個仕入れると毎日 20 個売れて \( 150\times20-60\times20=1800 \)（円）。30 個仕入れると、20 個の日は \( 3000-1800=1200 \)、30 個以上の日は \( 4500-1800=2700 \) で、期待値は \( 1200\times0.3+2700\times0.5+2700\times0.2=360+1350+540=2250 \)（円）。40 個仕入れると \( 600 \)、\( 2100 \)、\( 3600 \) で、期待値は \( 600\times0.3+2100\times0.5+3600\times0.2=180+1050+720=1950 \)（円）。30 個が最も大きくなります。2つ目は利益がいちばん大きい場合だけを見ています（数Ａ-031 のよくある間違い）。3つ目は、損をしないことと期待値が大きいことを取り違えています。4つ目は回数（日数）の違いを考えずに平均した誤りで（相対度数で求めた平均は \( 20\times0.3+30\times0.5+40\times0.2=29 \) 個）、「毎日 2700 円」とも言えません。記録の相対度数を確率とみなすときは、同じ条件が続くかも確かめます（数Ａ-033）。</div>
+</div>
+
+<div class="q" data-type="open" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O2・O3（復習するなら数Ａ-030・数Ａ-031）</span></div>
+  <p>参加費がどちらも 200 円の2つのゲームがあります（学習用の架空の例）。</p>
+  <p>ゲームA：硬貨を1回投げ、表なら 400 円、裏なら 0 円がもらえる。<br>ゲームB：1 から 10 までの番号札から1枚引き、1 の札なら 2400 円、それ以外なら 0 円がもらえる。</p>
+  <p>(1) それぞれのもらえる金額の期待値を求め、参加費と比べなさい。<br>(2) 「ゲームB の期待値の方が大きいから、ゲームB に1回参加すれば必ず得をする」という考えは正しくありません。1回参加して損をする確率を求めて、その理由を説明しなさい。<br>(3) どちらのゲームを選ぶかを、期待値と損をする確率の両方にふれて説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) ゲームA の期待値は \( 400\times\dfrac{1}{2}+0\times\dfrac{1}{2}=200 \)（円）で、参加費と等しい。ゲームB の期待値は \( 2400\times\dfrac{1}{10}+0\times\dfrac{9}{10}=240 \)（円）で、参加費より 40 円大きい。(2) ゲームB に1回参加して 0 円になり損をする確率は \( \dfrac{9}{10} \) で、ゲームA の \( \dfrac{1}{2} \) より大きい。期待値は何回も参加したときの1回あたりの平均の見込みで、1回の結果を保証しないので、「必ず得をする」とは言えない。(3) 何回も参加できるなら、期待値の大きいゲームB の方が平均して有利だと考えられる。1回だけで、損をしたくないなら、損をする確率が小さいゲームA を選ぶ考え方もある。</p>
+    <p><strong>採点の観点</strong>　① (1) で期待値 200 円・240 円を「値×確率」の和で求め、参加費と比べている。② (2) で損をする確率 \( \dfrac{9}{10} \)（と \( \dfrac{1}{2} \)）を求め、期待値は1回の結果を保証しないことを書いている。③ (3) で、期待値と損をする確率の両方を根拠にして、何回参加するかなどの条件に応じた判断を書いている。</p>
+  </div>
+  <div class="explain">期待値で比べるのは「何回も繰り返したときに平均してどちらが有利か」の見込みです（数Ａ-030）。判断を振り返るときは、損をする確率など期待値以外の観点も考えます（数Ａ-031）。(3) は考え方によって答えが分かれますが、根拠（期待値・損をする確率・参加する回数）を示していることが大切です。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(ウ)「確率の意味や基本的な法則についての理解を深め，それらを用いて事象の確率や期待値を求めること」と、イ(ウ)「確率の性質などに基づいて事象の起こりやすさを判断したり，期待値を意思決定に活用したりすること」に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めています。値と確率の表を作って期待値を求め、確率を変えたときの変化をグラフで調べて判断することは、こうした処理の例と考えられます。</p>
+  <p class="small">問9は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">復習：三角形の性質（数Ａ-069）</p>
+  <p>この時間で、単元「場合の数と確率」の復習は終わりです。次の時間（数Ａ-069）からは、単元「図形の性質」の復習に入り、角の二等分線と辺の比、外心・内心・重心、チェバの定理・メネラウスの定理を用いて線分の比や面積比を求める問題に取り組みます。</p>
+  <p>この時間では、新しい内容は扱っていません。期待値を記号で表すことや、確率変数・分散は、数学Ｂ「統計的な推測」で学ぶ内容です（数Ａ-030・031）。「とても起こりにくい」とする基準を確率の値で前もって決めて判断する方法も、数学Ｂ「統計的な推測」で学びます（数Ａ-033）。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-067　復習：独立な試行と条件付き確率</div>
+  <div><span class="label">次の時間</span>数Ａ-069　復習：三角形の性質</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-068「復習：期待値と意思決定」（区分：復習。学習指導要領 数学Ａ (2)ア(ウ)・イ(ウ)）。単元「復習（予備時間）」の注。範囲の各行 hs_math_1a/数Ａ-030〜033 の要点と、それぞれの完成ページの用語・公式・よくある間違い。前後の行 hs_math_1a/数Ａ-067・069 の要点</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.94-95（期待値、確率の性質などに基づいて事象の起こりやすさを判断したり期待値を意思決定に活用したりすること）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料と、範囲の完成ページをもとに作成した学習用資料です。例題・問題・会話・記録・利益や賞金の値はこのページのために作成した架空のもので、確率は学習用に仮定した値です（出典を示したものを除く）。図1は学習用に作成した図です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-068",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-068",
+  "title": "復習：期待値と意思決定",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-3", "title": "復習（予備時間）"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(ウ)", "(2)イ(ウ)"],
+  "kaisetsu_page": "",
+  "objectives": [
+    {"id": "O1", "text": "変量のとる値とその確率を表にまとめ、確率の合計が 1 になることを確かめて、期待値を「値×確率」の和として求めることができる。", "from": "期待値を求め", "sections": ["sec-1"], "checks": ["q1", "q2", "q3", "q4", "q8"]},
+    {"id": "O2", "text": "期待値を値段・予算・ほかの案の期待値と比べ、仮定した確率のもとでどの選択が有利かを、根拠を示して判断することができる。", "from": "期待値を比べて有利な選択を判断する", "sections": ["sec-2"], "checks": ["q5", "q6", "q8", "q9", "q10"]},
+    {"id": "O3", "text": "確率や賞金の値を変えたときの期待値の変化を調べて判断が変わる条件を求め、判断の根拠と、仮定や期待値の意味による限界を説明することができる。", "from": "期待値を比べて有利な選択を判断する問題に取り組む", "sections": ["sec-3"], "checks": ["q7", "q9", "q10"]}
+  ],
+  "key_terms": [
+    {"term": "期待値", "where": "sec-1"},
+    {"term": "変量", "where": "sec-1"},
+    {"term": "意思決定", "where": "sec-2"},
+    {"term": "面積比で考える確率", "where": "sec-3"},
+    {"term": "確率を仮定する", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "期待値（値とその値をとる確率の積の和）と求める手順", "taught_in": ["hs_math_1a/数Ａ-030"], "gap": false, "where": "review"},
+    {"concept": "期待値を用いた意思決定（樹形図・案の比較・確率を変えて調べる）", "taught_in": ["hs_math_1a/数Ａ-031"], "gap": false, "where": "review"},
+    {"concept": "面積比による確率と期待値、条件と比べた妥当性の判断", "taught_in": ["hs_math_1a/数Ａ-032"], "gap": false, "where": "review"},
+    {"concept": "相対度数を確率とみなす・確率を仮定した判断とその言い方", "taught_in": ["hs_math_1a/数Ａ-033"], "gap": false, "where": "review"},
+    {"concept": "値ごとの度数から平均値を求める", "taught_in": ["jhs_math/中1-111"], "gap": false, "where": "review"},
+    {"concept": "組合せを用いた確率", "taught_in": ["hs_math_1a/数Ａ-020"], "gap": false, "where": "sec-1"},
+    {"concept": "反復試行の確率", "taught_in": ["hs_math_1a/数Ａ-027"], "gap": false, "where": "sec-1"},
+    {"concept": "条件付き確率と乗法定理", "taught_in": ["hs_math_1a/数Ａ-028", "hs_math_1a/数Ａ-029"], "gap": false, "where": "sec-1"},
+    {"concept": "一次関数の式とグラフ", "taught_in": ["jhs_math/中2-026", "jhs_math/中2-029", "jhs_math/中2-030"], "gap": false, "where": "sec-2"},
+    {"concept": "一元一次方程式を移項して解く", "taught_in": ["jhs_math/中1-044", "jhs_math/中1-047"], "gap": false, "where": "sec-2"},
+    {"concept": "一次不等式を解く", "taught_in": ["hs_math_1a/数Ⅰ-015", "hs_math_1a/数Ⅰ-016"], "gap": false, "where": "sec-3"},
+    {"concept": "おうぎ形の面積が中心角に比例すること", "taught_in": ["jhs_math/中1-089"], "gap": false, "where": "sec-3"},
+    {"concept": "相対度数・頻度確率", "taught_in": ["jhs_math/中1-112", "hs_math_1a/数Ａ-019"], "gap": false, "where": "sec-3"},
+    {"concept": "仮説検定の考え方と判断の言い方", "taught_in": ["hs_math_1a/数Ⅰ-089", "hs_math_1a/数Ⅰ-090"], "gap": false, "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "期待値を記号で表すこと、確率変数・分散（数学Ｂ「統計的な推測」。数Ａ-030・031 と同じ）",
+    "基準を確率の値で前もって決めて判断すること（数学Ｂ「統計的な推測」。数Ａ-033 と同じ）",
+    "三角形の性質の復習（数Ａ-069）"
+  ],
+  "selection_reason": "数学Ａ 単元『復習（予備時間）』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(ウ)・イ(ウ)の事項（入試へのつながりの引用）"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.94-95 期待値、期待値を意思決定に活用すること"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>空間図形の計量｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>図形と計量</span><span>数Ⅰ-076</span></div>
+  <h1>空間図形の計量</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">活用</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">立体の高さや、立体の中の角の大きさは、見取図のままでは測れません。立体の中に三角形を見つけて平面に描き直せば、三角比や正弦定理・余弦定理が使えます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>空間図形の中から計量に使う三角形を見いだし、その三角形を平面に描き直して、辺の長さや角の大きさを書き込むことができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>直方体や正四面体の中の三角形に余弦定理や面積の公式を用いて、辺の長さ・角の大きさ・面積を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>正四面体の高さと体積を、底面の三角形の外接円の半径（正弦定理）と三平方の定理を用いて求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-075）</span>平面図形の計量</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-076）</span>空間図形の計量</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-077）</span>三角比の日常の事象への活用</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」「三平方の定理」。中学1年の空間図形（見取図、直線と平面の垂直、錐体の体積）と、この単元の正弦定理・余弦定理・三角形の面積（数Ⅰ-068〜073）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：使う既習事項</h2>
+<p>この時間は、中学で学んだ直方体の対角線の長さ（中3-105）と錐体の体積（中1-102）、正弦定理（数Ⅰ-068・069）、余弦定理（数Ⅰ-071）、三角形の面積（数Ⅰ-073）を使います。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中3-105</span></div>
+  <p>縦 2、横 2、高さ 1 の直方体の対角線（向かい合う頂点を結ぶ線分）の長さはどれですか。</p>
+  <div class="choices">
+    <button>\( \sqrt{5} \)</button>
+    <button data-correct="true">\( 3 \)</button>
+    <button>\( 9 \)</button>
+    <button>\( 5 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">三平方の定理を2回使うと、対角線の長さは \( \sqrt{2^2+2^2+1^2}=\sqrt{9}=3 \) です（中3-105）。\( \sqrt{5} \) は1つの面（2×1 の長方形）の対角線、\( 9 \) は平方根をとり忘れた値、\( 5 \) は \( 2+2+1 \) と2乗せずに足した値です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中1-102</span></div>
+  <p>底面積が 12、高さが 5 の三角錐の体積はどれですか。</p>
+  <div class="choices">
+    <button>\( 60 \)</button>
+    <button>\( 30 \)</button>
+    <button>\( 10 \)</button>
+    <button data-correct="true">\( 20 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">錐体の体積は \( \dfrac{1}{3}\times(\text{底面積})\times(\text{高さ})=\dfrac{1}{3}\cdot 12\cdot 5=20 \) です（中1-102）。\( 60 \) は \( \dfrac{1}{3} \) を忘れた柱体の体積、\( 30 \) は三角形の面積の \( \dfrac{1}{2} \) と混同した値、\( 10 \) は \( \dfrac{1}{2} \) と \( \dfrac{1}{3} \) の両方をかけた値です。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-068・069</span></div>
+  <p>1辺の長さが 6 の正三角形の外接円の半径 \( R \) はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 2\sqrt{3} \)</button>
+    <button>\( 4\sqrt{3} \)</button>
+    <button>\( \sqrt{3} \)</button>
+    <button>\( 3 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正弦定理より \( 2R=\dfrac{6}{\sin 60^\circ}=\dfrac{12}{\sqrt{3}}=4\sqrt{3} \)、\( R=2\sqrt{3} \) です。\( 4\sqrt{3} \) は \( 2R \) の値をそのまま答えた誤り、\( \sqrt{3} \) は内接円の半径 \( r \)（数Ⅰ-074）と取り違えた値、\( 3 \) は1辺の半分です。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">正四面体（中学校1年の立体の学習の確認）</p>
+  <p>4つの面がすべて合同な正三角形である三角錐を、<strong>正四面体</strong>といいます。6本の辺の長さはすべて等しくなります。どの面を底面とみても、残りの1つの頂点が頂点になる三角錐です。正四面体は、中学校1年の立体の学習で、正多面体の1つとして扱われることがあります（中1-092）。並行して学ぶ数学Ａ（数Ａ-061）でも、正多面体として詳しく扱います。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入（場面）：正四面体の容器の高さと容積</h2>
+<div class="box think">
+  <p class="box-title">机に置いた正四面体の容器</p>
+  <p>1辺の長さが 6 cm の正四面体の形をした容器（学習用の架空の容器。容器の厚さは考えない）を、1つの面を下にして机に置きます。</p>
+  <ul>
+    <li>机から上の頂点までの高さは何 cm でしょうか。高さを表す線分は容器の内部にあり、直接は測れません。</li>
+    <li>容器には何 cm³ 入るでしょうか（体積）。</li>
+  </ul>
+  <p>この問いには、「4 正四面体の高さと体積」の例題3で答えます。まず、立体の中の三角形を見つけて平面に描き直す練習をします。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="立体の中の三角形を見いだす"><span class="num">3</span>立体の中の三角形を見いだし、平面に描き直す</h2>
+<p><strong>見取図</strong>（中1-093）は立体の形をつかむのに便利ですが、長さや角は実際と違って見えます。たとえば立方体の見取図では、長さの等しい面の対角線が等しく見えないことがあります（中1-095）。そこで、計量に使う三角形を見つけたら、<strong>その三角形だけを取り出して、実際の長さと角で平面に描き直し</strong>ます。</p>
+<p>直方体 ABCD-EFGH（底面が ABCD、上の面が EFGH で、AE、BF、CG、DH が高さを表す辺）で、\( \mathrm{AB}=\mathrm{AD}=2 \)、\( \mathrm{AE}=1 \) とします。3つの頂点 B、D、E を結ぶと、立体の中に △BDE ができます。</p>
+<figure>
+  <div class="fig-row">
+<!--svg:f076a-->
+<svg viewBox="0 0 220 200" width="220" role="img" aria-label="直方体 ABCD-EFGH の見取図。AB=AD=2、AE=1。頂点 B、D、E を結んだ三角形 BDE に色を付け、見えない辺は破線">
+<text x="110" y="16" text-anchor="middle" font-size="13" fill="currentColor">見取図</text>
+<polygon points="196.1,142 23.9,134.4 93.3,97.2" fill="#b7791f" fill-opacity="0.22" stroke="currentColor" stroke-width="0" stroke-linejoin="round"/>
+<line x1="93.3" y1="157.6" x2="196.1" y2="142" stroke="currentColor" stroke-width="1.6"/>
+<line x1="93.3" y1="157.6" x2="23.9" y2="134.4" stroke="currentColor" stroke-width="1.6"/>
+<line x1="93.3" y1="157.6" x2="93.3" y2="97.2" stroke="currentColor" stroke-width="1.6"/>
+<line x1="196.1" y1="142" x2="126.7" y2="118.8" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3"/>
+<line x1="196.1" y1="142" x2="196.1" y2="81.6" stroke="currentColor" stroke-width="1.6"/>
+<line x1="126.7" y1="118.8" x2="23.9" y2="134.4" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3"/>
+<line x1="126.7" y1="118.8" x2="126.7" y2="58.4" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3"/>
+<line x1="23.9" y1="134.4" x2="23.9" y2="74" stroke="currentColor" stroke-width="1.6"/>
+<line x1="93.3" y1="97.2" x2="196.1" y2="81.6" stroke="currentColor" stroke-width="1.6"/>
+<line x1="93.3" y1="97.2" x2="23.9" y2="74" stroke="currentColor" stroke-width="1.6"/>
+<line x1="196.1" y1="81.6" x2="126.7" y2="58.4" stroke="currentColor" stroke-width="1.6"/>
+<line x1="126.7" y1="58.4" x2="23.9" y2="74" stroke="currentColor" stroke-width="1.6"/>
+<text x="89.1" y="174.4" text-anchor="middle" font-size="13" fill="currentColor">A</text>
+<text x="208.2" y="151.3" text-anchor="middle" font-size="13" fill="currentColor">B</text>
+<text x="137.6" y="130.5" text-anchor="middle" font-size="13" fill="currentColor">C</text>
+<text x="11.5" y="142.8" text-anchor="middle" font-size="13" fill="currentColor">D</text>
+<text x="208.5" y="82.3" text-anchor="middle" font-size="13" fill="currentColor">F</text>
+<text x="130.9" y="50.7" text-anchor="middle" font-size="13" fill="currentColor">G</text>
+<text x="11.8" y="73.8" text-anchor="middle" font-size="13" fill="currentColor">H</text>
+<text x="85.3" y="91.2" text-anchor="middle" font-size="13" fill="currentColor">E</text>
+<line x1="196.1" y1="142" x2="93.3" y2="97.2" stroke="#b7791f" stroke-width="2.2"/>
+<line x1="196.1" y1="142" x2="23.9" y2="134.4" stroke="#b7791f" stroke-width="2.2" stroke-dasharray="5 3"/>
+<line x1="23.9" y1="134.4" x2="93.3" y2="97.2" stroke="#b7791f" stroke-width="2.2"/>
+</svg>
+<svg viewBox="0 0 200 200" width="200" role="img" aria-label="三角形 BDE を平面に描き直した図。BE=DE=√5、BD=2√2 の二等辺三角形">
+<text x="100" y="16" text-anchor="middle" font-size="13" fill="currentColor">平面に描き直す</text>
+<polygon points="26.5,150 173.5,150 100,59.9" fill="#b7791f" fill-opacity="0.12" stroke="#b7791f" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="89.9,72.3 90.6,72.9 91.4,73.4 92.1,73.9 92.9,74.3 93.8,74.7 94.6,75 95.5,75.3 96.4,75.5 97.3,75.7 98.2,75.8 99.1,75.9 100,75.9 100.9,75.9 101.8,75.8 102.7,75.7 103.6,75.5 104.5,75.3 105.4,75 106.2,74.7 107.1,74.3 107.9,73.9 108.6,73.4 109.4,72.9 110.1,72.3" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<text x="14.4" y="159.5" text-anchor="middle" font-size="13" fill="currentColor">B</text>
+<text x="185.6" y="159.5" text-anchor="middle" font-size="13" fill="currentColor">D</text>
+<text x="100" y="51.5" text-anchor="middle" font-size="13" fill="currentColor">E</text>
+<text x="100" y="165.1" text-anchor="middle" font-size="13" fill="currentColor">2√2</text>
+<text x="50.7" y="99.3" text-anchor="middle" font-size="13" fill="currentColor">√5</text>
+<text x="149.3" y="99.3" text-anchor="middle" font-size="13" fill="currentColor">√5</text>
+</svg><!--/svg:f076a-->
+  </div>
+  <figcaption>図1　「見取図」：直方体 ABCD-EFGH の見取図（見えない辺は破線）と、立体の中の △BDE（色を付けた部分）。「平面に描き直す」：△BDE を取り出して、実際の長さで平面に描き直した図</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題1（直方体の中の三角形の角と面積）</p>
+  <p>上の直方体で、\( \cos\angle\mathrm{BED} \) の値と、△BDE の面積を求めなさい。</p>
+  <div class="step">着眼点（三角形を見いだす）：△BDE の3辺は、どれも直方体の面の対角線です。面ごとに直角三角形を見つけて、三平方の定理で長さを求めます。</div>
+  <div class="step">ステップ1（3辺の長さ）：底面 ABCD で \( \mathrm{BD}=\sqrt{2^2+2^2}=2\sqrt{2} \)。面 ABFE で \( \mathrm{BE}=\sqrt{2^2+1^2}=\sqrt{5} \)。面 ADHE で \( \mathrm{DE}=\sqrt{2^2+1^2}=\sqrt{5} \)。</div>
+  <div class="step">ステップ2（平面に描き直す）：△BDE は \( \mathrm{BE}=\mathrm{DE}=\sqrt{5} \)、\( \mathrm{BD}=2\sqrt{2} \) の二等辺三角形です（図1の「平面に描き直す」）。</div>
+  <div class="step">ステップ3（余弦定理）：\( \cos\angle\mathrm{BED}=\dfrac{\mathrm{BE}^2+\mathrm{DE}^2-\mathrm{BD}^2}{2\cdot\mathrm{BE}\cdot\mathrm{DE}}=\dfrac{5+5-8}{2\cdot 5}=\dfrac{1}{5} \)。</div>
+  <div class="step">ステップ4（面積）：\( \sin\angle\mathrm{BED}=\sqrt{1-\dfrac{1}{25}}=\dfrac{2\sqrt{6}}{5} \) より、\( \triangle\mathrm{BDE}=\dfrac{1}{2}\cdot\sqrt{5}\cdot\sqrt{5}\cdot\dfrac{2\sqrt{6}}{5}=\sqrt{6} \)。</div>
+  <div class="step">答え：\( \cos\angle\mathrm{BED}=\dfrac{1}{5} \)、\( \triangle\mathrm{BDE}=\sqrt{6} \)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：見取図の見た目で角や長さを判断する</p><p>図1の見取図では、\( \angle\mathrm{BED} \) は鈍角のように見えることがありますが、\( \cos\angle\mathrm{BED}=\dfrac{1}{5}&gt;0 \) なので鋭角です。見取図の角度や長さは、投影のしかたで変わります。必ず、三平方の定理などで実際の長さを求め、描き直した図で考えましょう。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題2（体積を2通りに表して、高さを求める）</p>
+  <p>例題1の直方体で、頂点 A から △BDE を含む平面までの距離 \( h \) を求めなさい。</p>
+  <div class="step">着眼点：三角錐 ABDE の体積を、底面を変えて2通りに表します。△ABD を底面とみると高さは AE、△BDE を底面とみると高さは \( h \) です。</div>
+  <div class="step">\( \triangle\mathrm{ABD} \) を底面とみる：\( V=\dfrac{1}{3}\cdot\left(\dfrac{1}{2}\cdot 2\cdot 2\right)\cdot 1=\dfrac{2}{3} \)。</div>
+  <div class="step">\( \triangle\mathrm{BDE} \) を底面とみる：\( V=\dfrac{1}{3}\cdot\sqrt{6}\cdot h \)。</div>
+  <div class="step">\( \dfrac{\sqrt{6}}{3}h=\dfrac{2}{3} \) より、\( h=\dfrac{2}{\sqrt{6}}=\dfrac{\sqrt{6}}{3} \)。</div>
+  <div class="step">答え：\( h=\dfrac{\sqrt{6}}{3} \)（およそ 0.82）</div>
+</div>
+<p>例題2は、前の時間（数Ⅰ-075）の「面積を2通りに表す」考え方を、体積に広げたものです。点から平面までの距離（中1-098）は、垂線を引いて測るのが難しくても、体積と面積から計算できます。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="正四面体の高さと体積"><span class="num">4</span>正四面体の高さと体積</h2>
+<p>1辺の長さが 6 の正四面体 ABCD で、頂点 A から底面 BCD に垂線 AH を引きます。高さ AH を求めるには、AH を辺にもつ三角形を見つける必要があります。</p>
+<figure>
+  <div class="fig-row">
+<!--svg:f076b-->
+<svg viewBox="0 0 200 230" width="200" role="img" aria-label="正四面体 ABCD の見取図。頂点 A から底面 BCD に引いた垂線 AH を青の破線で示す">
+<text x="100" y="16" text-anchor="middle" font-size="13" fill="currentColor">見取図</text>
+<line x1="109.4" y1="54.8" x2="23.7" y2="184.1" stroke="currentColor" stroke-width="1.6"/>
+<line x1="109.4" y1="54.8" x2="176.3" y2="195.2" stroke="currentColor" stroke-width="1.6"/>
+<line x1="109.4" y1="54.8" x2="128.1" y2="144.4" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3"/>
+<line x1="23.7" y1="184.1" x2="176.3" y2="195.2" stroke="currentColor" stroke-width="1.6"/>
+<line x1="23.7" y1="184.1" x2="128.1" y2="144.4" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3"/>
+<line x1="176.3" y1="195.2" x2="128.1" y2="144.4" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3"/>
+<text x="109.4" y="46.4" text-anchor="middle" font-size="13" fill="currentColor">A</text>
+<text x="11.9" y="194" text-anchor="middle" font-size="13" fill="currentColor">B</text>
+<text x="186.7" y="207.5" text-anchor="middle" font-size="13" fill="currentColor">C</text>
+<text x="141.1" y="148.8" text-anchor="middle" font-size="13" fill="currentColor">D</text>
+<line x1="109.4" y1="54.8" x2="109.4" y2="174.5" stroke="#1f5fbf" stroke-width="1.8" stroke-dasharray="5 3"/>
+<circle cx="109.4" cy="174.5" r="3" fill="currentColor"/>
+<text x="118.4" y="186.5" text-anchor="middle" font-size="13" fill="currentColor">H</text>
+</svg>
+<svg viewBox="0 0 190 230" width="190" role="img" aria-label="底面の正三角形 BCD（1辺 6）と外接円。中心 H から頂点までの距離は 2√3">
+<text x="95" y="16" text-anchor="middle" font-size="13" fill="currentColor">底面 BCD</text>
+<circle cx="95" cy="125" r="76.2" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4"/>
+<polygon points="29,163.1 161,163.1 95,48.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+<line x1="95" y1="125" x2="29" y2="163.1" stroke="#7b3fa0" stroke-width="1.6"/>
+<circle cx="95" cy="125" r="3" fill="currentColor"/>
+<text x="95" y="117" text-anchor="middle" font-size="13" fill="currentColor">H</text>
+<text x="18.6" y="173.7" text-anchor="middle" font-size="13" fill="currentColor">B</text>
+<text x="171.4" y="173.7" text-anchor="middle" font-size="13" fill="currentColor">C</text>
+<text x="95" y="41.3" text-anchor="middle" font-size="13" fill="currentColor">D</text>
+<text x="69.4" y="161.1" text-anchor="middle" font-size="12" fill="#7b3fa0">2√3</text>
+<text x="95" y="179.1" text-anchor="middle" font-size="12" fill="currentColor">6</text>
+</svg>
+<svg viewBox="0 0 170 230" width="170" role="img" aria-label="直角三角形 ABH。AB=6、HB=2√3、AH=2√6、角AHB は直角">
+<text x="85" y="16" text-anchor="middle" font-size="13" fill="currentColor">△ABH</text>
+<polygon points="50,190 140.1,190 50,62.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+<line x1="50" y1="62.6" x2="50" y2="190" stroke="#1f5fbf" stroke-width="2.2" stroke-dasharray="5 3"/>
+<polyline points="58,190 58,182 50,182" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<text x="43.1" y="204.3" text-anchor="middle" font-size="13" fill="currentColor">H</text>
+<text x="150.3" y="200.8" text-anchor="middle" font-size="13" fill="currentColor">B</text>
+<text x="46.5" y="55.7" text-anchor="middle" font-size="13" fill="currentColor">A</text>
+<text x="95" y="204.2" text-anchor="middle" font-size="12" fill="currentColor">2√3</text>
+<text x="103.5" y="124.5" text-anchor="middle" font-size="12" fill="currentColor">6</text>
+<text x="44" y="126.3" text-anchor="end" font-size="12" fill="#1f5fbf">2√6</text>
+</svg><!--/svg:f076b-->
+  </div>
+  <figcaption>図2　「見取図」：正四面体 ABCD の見取図と、頂点 A から底面 BCD に引いた垂線 AH（青の破線）。「底面 BCD」：底面 △BCD を平面に描き直した図（H は外接円の中心）。「△ABH」：△ABH を平面に描き直した図（\( \angle\mathrm{AHB}=90^\circ \)）</figcaption>
+</figure>
+<p><strong>H はどこにあるか</strong>：AH は底面に垂直なので、底面上の直線 HB、HC、HD のどれとも垂直です（中1-097）。すると、△ABH、△ACH、△ADH は、斜辺が \( \mathrm{AB}=\mathrm{AC}=\mathrm{AD}=6 \) で、他の1辺 AH が共通の直角三角形なので、合同です（直角三角形の合同条件、中2-064）。よって \( \mathrm{HB}=\mathrm{HC}=\mathrm{HD} \) となり、<strong>H は △BCD の外接円の中心</strong>で、HB は外接円の半径 \( R \) です。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（導入の答え：正四面体の高さと体積）</p>
+  <p>1辺の長さが 6 の正四面体 ABCD の高さ AH と、体積 \( V \) を求めなさい。</p>
+  <div class="step">ステップ1（底面の三角形：正弦定理）：△BCD の外接円の半径は、正弦定理より \( 2\mathrm{HB}=\dfrac{6}{\sin 60^\circ}=4\sqrt{3} \)、\( \mathrm{HB}=2\sqrt{3} \)（確認3）。</div>
+  <div class="step">ステップ2（△ABH：三平方の定理）：\( \angle\mathrm{AHB}=90^\circ \) なので、\( \mathrm{AH}=\sqrt{\mathrm{AB}^2-\mathrm{HB}^2}=\sqrt{36-12}=\sqrt{24}=2\sqrt{6} \)。</div>
+  <div class="step">ステップ3（底面積）：\( \triangle\mathrm{BCD}=\dfrac{1}{2}\cdot 6\cdot 6\cdot\sin 60^\circ=9\sqrt{3} \)。</div>
+  <div class="step">ステップ4（体積）：\( V=\dfrac{1}{3}\cdot 9\sqrt{3}\cdot 2\sqrt{6}=6\sqrt{18}=18\sqrt{2} \)。</div>
+  <div class="step">答え：\( \mathrm{AH}=2\sqrt{6} \)、\( V=18\sqrt{2} \)。導入の容器（1辺 6 cm）では、高さはおよそ 4.9 cm、容積はおよそ 25.5 cm³ です（\( \sqrt{6}=2.449\cdots \)、\( \sqrt{2}=1.414\cdots \)）。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① HB を辺の半分の 3 や、正三角形の高さ \( 3\sqrt{3} \) としてしまう：H は3つの頂点から等しい距離にある点（外接円の中心）なので、HB は外接円の半径 \( 2\sqrt{3} \) です。<br>② 三平方の定理で足してしまう（\( \sqrt{36+12} \)）：斜辺は AB なので、\( \mathrm{AH}^2=\mathrm{AB}^2-\mathrm{HB}^2 \) です。<br>③ 錐体の体積の \( \dfrac{1}{3} \) を忘れる（中1-102）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="立体の中の角の大きさ"><span class="num">5</span>立体の中の角の大きさ</h2>
+<p>正四面体の2つの面 ACD と BCD の「開き具合」を調べます。辺 CD の中点を M とすると、AM と BM はどちらも正三角形の中線で、CD に垂直です（二等辺三角形の頂角の二等分線の性質、中2-061）。そこで \( \angle\mathrm{AMB} \) の大きさを、2つの面の開き具合の目安として求めます。</p>
+<figure>
+<!--svg:f076c-->
+<svg viewBox="0 0 300 236" width="300" role="img" aria-label="正四面体の中の三角形 AMB を平面に描き直した図。AM=BM=3√3、AB=6。A から BM に引いた垂線の足 H は BM を 2:1 に分ける">
+<polygon points="72.1,190 227.9,190 124,43" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+<line x1="124" y1="43" x2="124" y2="190" stroke="#1f5fbf" stroke-width="1.8" stroke-dasharray="5 3"/>
+<polyline points="132,190 132,182 124,182" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<polyline points="90.1,190 90,189.1 90,188.2 89.8,187.2 89.7,186.3 89.5,185.4 89.2,184.5 88.9,183.7 88.6,182.8 88.2,182 87.7,181.2 87.3,180.4 86.8,179.6 86.2,178.9 85.6,178.2 85,177.5 84.3,176.8 83.6,176.2 82.9,175.6 82.2,175.1 81.4,174.6 80.6,174.1 79.8,173.7 78.9,173.4 78.1,173" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<text x="61.4" y="202.4" text-anchor="middle" font-size="14" fill="currentColor">M</text>
+<text x="239.3" y="201.3" text-anchor="middle" font-size="14" fill="currentColor">B</text>
+<text x="121.8" y="35.1" text-anchor="middle" font-size="14" fill="currentColor">A</text>
+<text x="124" y="207" text-anchor="middle" font-size="13" fill="currentColor">H</text>
+<text x="79.5" y="114.5" text-anchor="middle" font-size="13" fill="currentColor">3√3</text>
+<text x="184.9" y="114.8" text-anchor="middle" font-size="13" fill="currentColor">6</text>
+<text x="177" y="224" text-anchor="middle" font-size="13" fill="currentColor">3√3</text>
+<text x="98" y="207" text-anchor="middle" font-size="12" fill="#8a99a8">√3</text>
+<text x="176" y="207" text-anchor="middle" font-size="12" fill="#8a99a8">2√3</text>
+</svg><!--/svg:f076c-->
+  <figcaption>図3　正四面体 ABCD（1辺 6）の中の △AMB を平面に描き直した図（M は辺 CD の中点）。\( \mathrm{AM}=\mathrm{BM}=3\sqrt{3} \)、\( \mathrm{AB}=6 \)。H は BM 上にあり、\( \mathrm{BH}:\mathrm{HM}=2:1 \)</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題4（正四面体の中の角）</p>
+  <p>1辺 6 の正四面体 ABCD で、辺 CD の中点を M とします。\( \cos\angle\mathrm{AMB} \) の値を求め、三角比表を使って \( \angle\mathrm{AMB} \) のおよその大きさを求めなさい。</p>
+  <div class="step">ステップ1（三角形を見いだす）：AM は正三角形 ACD の中線で、\( \mathrm{AM}=6\sin 60^\circ=3\sqrt{3} \)（中3-101 の 30°・60° の直角三角形でも同じ）。同じように \( \mathrm{BM}=3\sqrt{3} \)、\( \mathrm{AB}=6 \)。</div>
+  <div class="step">ステップ2（余弦定理）：\( \cos\angle\mathrm{AMB}=\dfrac{27+27-36}{2\cdot 3\sqrt{3}\cdot 3\sqrt{3}}=\dfrac{18}{54}=\dfrac{1}{3} \)。</div>
+  <div class="step">ステップ3（三角比表）：\( \dfrac{1}{3}=0.3333\cdots \) は、\( \cos 70^\circ=0.3420 \) と \( \cos 71^\circ=0.3256 \) の間にあります。差は \( 0.3420-0.3333=0.0087 \)、\( 0.3333-0.3256=0.0077 \) なので、71° の方が近くなります。</div>
+  <div class="step">答え：\( \cos\angle\mathrm{AMB}=\dfrac{1}{3} \)、\( \angle\mathrm{AMB} \) はおよそ \( 71^\circ \)（コンピュータで求めると 70.53…°）</div>
+</div>
+<div class="box think"><p class="box-title">振り返り：別の三角形でも確かめる</p><p>例題3の H は △BCD の外接円の中心で、正三角形では中線 BM 上にあり、\( \mathrm{BH}=2\sqrt{3} \)、\( \mathrm{HM}=\mathrm{BM}-\mathrm{BH}=3\sqrt{3}-2\sqrt{3}=\sqrt{3} \) です。直角三角形 AHM で \( \cos\angle\mathrm{AMH}=\dfrac{\mathrm{HM}}{\mathrm{AM}}=\dfrac{\sqrt{3}}{3\sqrt{3}}=\dfrac{1}{3} \) となり、例題4と一致します。同じ立体の中の別の三角形で同じ値が出ることは、計算の確かめになります。</p></div>
+<div class="table-wrap">
+<table>
+  <tr><th>求めるもの</th><th>見いだす三角形</th><th>使う定理・公式</th><th>この時間の例</th></tr>
+  <tr><td>立体の中の線分・角</td><td>面の対角線などでできる三角形</td><td>三平方の定理 → 余弦定理</td><td>例題1・例題4</td></tr>
+  <tr><td>高さ（点と平面の距離）</td><td>高さを1辺にもつ直角三角形</td><td>正弦定理（外接円の半径）→ 三平方の定理</td><td>例題3</td></tr>
+  <tr><td>高さ（別の方法）</td><td>同じ三角錐の別の底面</td><td>体積を2通りに表す</td><td>例題2</td></tr>
+  <tr><td>体積</td><td>底面の三角形</td><td>面積の公式 → \( \dfrac{1}{3}\times \)底面積\( \times \)高さ</td><td>例題3</td></tr>
+</table>
+</div>
+<p class="small">空間図形の性質は、数学Ａ「(1) 図形の性質」でも扱います（解説は「互いの内容の関連に配慮すること」としています）。直線と平面が垂直になる条件などは、数学Ａ（数Ａ-059・060）で詳しく学びます。</p>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>見取図</dt><dd>立体の形が分かるようにかいた図（中1-093）。長さや角は実際と違って見えるので、計量では三角形を取り出して描き直す。</dd>
+    <dt>平面に描き直す</dt><dd>立体の中に見いだした三角形を、実際の辺の長さと角で平面上にかくこと。三角比・正弦定理・余弦定理が使えるようになる。</dd>
+    <dt>正四面体</dt><dd>4つの面がすべて合同な正三角形である三角錐（中学校1年の立体の学習で扱われることがあり、数Ａ-061 で正多面体として学ぶ）。頂点から底面に引いた垂線の足は、底面の正三角形の外接円の中心。</dd>
+    <dt>体積を2通りに表す</dt><dd>同じ三角錐の体積を、底面を変えて表し、等しいとおくこと。点と平面の距離（高さ）を求めるのに使う。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>見取図の見た目で判断せず、計量に使う三角形を見いだして平面に描き直し、長さと角を書き込む（O1）。</li>
+    <li>直方体の中の三角形は、面の対角線を三平方の定理で求めてから、余弦定理・面積の公式を使う（O2）。</li>
+    <li>正四面体の高さは、底面の外接円の半径（正弦定理）と三平方の定理で求め、体積は \( \dfrac{1}{3}\times \)底面積\( \times \)高さ。1辺 6 なら高さ \( 2\sqrt{6} \)、体積 \( 18\sqrt{2} \)（O3）。</li>
+    <li>点と平面の距離は、体積を2通りに表して求めることもできる（O2）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">正四面体（1辺 \( a \)）の高さ</span><p>\( R=\dfrac{a}{2\sin 60^\circ} \)、高さ \( =\sqrt{a^2-R^2} \)</p></div>
+  <div><span class="f-name">錐体の体積（中1-102）</span><p>\( V=\dfrac{1}{3}\times(\text{底面積})\times(\text{高さ}) \)</p></div>
+  <div><span class="f-name">立体の中の角</span><p>三平方の定理で3辺 → 余弦定理で余弦</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。根号を含む答えは、根号の中をできるだけ小さい自然数にし、分母に根号を含まない形で、\( 5\sqrt{3} \) なら 5√3、\( \dfrac{\sqrt{10}}{2} \) なら √10/2 と入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>立方体 ABCD-EFGH で、3つの頂点 B、D、E を結んだ △BDE の \( \angle\mathrm{DBE} \) の大きさはどれですか。</p>
+  <div class="choices"><button>\( 90^\circ \)</button><button>\( 45^\circ \)</button><button data-correct="true">\( 60^\circ \)</button><button>\( 120^\circ \)</button></div>
+  <span class="result"></span>
+  <div class="explain">BD、BE、DE はどれも立方体の面（正方形）の対角線なので長さが等しく、△BDE は正三角形です。よって \( \angle\mathrm{DBE}=60^\circ \) です。見取図では直角や鈍角に見えることがありますが、三角形を取り出して描き直すと正三角形と分かります。\( 90^\circ \) と \( 120^\circ \) は見取図の見た目で判断した誤り、\( 45^\circ \) は正方形の対角線と辺のなす角と混同した誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="2√3|2ルート3|2root3|2*√3|2×√3|√12">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>1辺の長さが 2 の立方体 ABCD-EFGH で、△BDE の面積を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 2\sqrt{3} \)。面の対角線の長さは \( 2\sqrt{2} \) で、△BDE は1辺 \( 2\sqrt{2} \) の正三角形です（問1）。面積は \( \dfrac{1}{2}\cdot 2\sqrt{2}\cdot 2\sqrt{2}\cdot\sin 60^\circ=4\cdot\dfrac{\sqrt{3}}{2}=2\sqrt{3} \) です。\( 4\sqrt{3} \) と答えた場合は \( \dfrac{1}{2} \) を忘れています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>1辺の長さが 6 の正四面体 ABCD で、頂点 A から底面 BCD に引いた垂線 AH の長さはどれですか。</p>
+  <div class="choices"><button data-correct="true">\( 2\sqrt{6} \)</button><button>\( 3\sqrt{3} \)</button><button>\( 2\sqrt{3} \)</button><button>\( 4\sqrt{3} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( \mathrm{HB}=2\sqrt{3} \)（△BCD の外接円の半径）なので、\( \mathrm{AH}=\sqrt{36-12}=2\sqrt{6} \) です（例題3）。\( 3\sqrt{3} \) は HB を辺の半分の 3 として \( \sqrt{36-9}=\sqrt{27} \) とした値で、正三角形の高さ（中線の長さ）とも同じ値です。\( 2\sqrt{3} \) は HB の長さそのもの、\( 4\sqrt{3} \) は三平方の定理で足して \( \sqrt{36+12}=\sqrt{48} \) とした値です。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="18√2|18ルート2|18root2|18*√2|18×√2|V=18√2">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>1辺の長さが 6 の正四面体の体積を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 18\sqrt{2} \)。底面積 \( 9\sqrt{3} \)、高さ \( 2\sqrt{6} \) より \( V=\dfrac{1}{3}\cdot 9\sqrt{3}\cdot 2\sqrt{6}=6\sqrt{18}=18\sqrt{2} \) です（例題3）。\( 54\sqrt{2} \) は \( \dfrac{1}{3} \) を忘れた値、\( 36\sqrt{2} \) は底面積の \( \dfrac{1}{2} \) を忘れた値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>1辺の長さが 3 の正四面体の体積はどれですか。</p>
+  <div class="choices"><button>\( \dfrac{27\sqrt{2}}{4} \)</button><button>\( \dfrac{27}{8} \)</button><button>\( \dfrac{9\sqrt{2}}{2} \)</button><button data-correct="true">\( \dfrac{9\sqrt{2}}{4} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">底面の外接円の半径は \( R=\dfrac{3}{2\sin 60^\circ}=\sqrt{3} \)、高さは \( \sqrt{9-3}=\sqrt{6} \)、底面積は \( \dfrac{1}{2}\cdot 3\cdot 3\cdot\sin 60^\circ=\dfrac{9\sqrt{3}}{4} \)。\( V=\dfrac{1}{3}\cdot\dfrac{9\sqrt{3}}{4}\cdot\sqrt{6}=\dfrac{9\sqrt{2}}{4} \) です。\( \dfrac{27\sqrt{2}}{4} \) は \( \dfrac{1}{3} \) を忘れた値、\( \dfrac{9\sqrt{2}}{2} \) は底面積の \( \dfrac{1}{2} \) を忘れた値です。\( \dfrac{27}{8} \) は HB を辺の半分 \( \dfrac{3}{2} \) として高さを \( \sqrt{9-\dfrac{9}{4}}=\dfrac{3\sqrt{3}}{2} \) とした値です。1辺 6 の場合（\( 18\sqrt{2} \)）と比べると、相似比 \( 1:2 \) なので体積比は \( 1:8 \)（中3-080）で、\( 18\sqrt{2}\div 8=\dfrac{9\sqrt{2}}{4} \) と一致します。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O1・O2</span></div>
+  <p>直方体 ABCD-EFGH（底面 ABCD）で \( \mathrm{AB}=4 \)、\( \mathrm{AD}=3 \)、\( \mathrm{AE}=3 \) です。\( \cos\angle\mathrm{CAF} \) の値はどれですか。</p>
+  <div class="choices"><button>\( \dfrac{32}{25} \)</button><button data-correct="true">\( \dfrac{16}{25} \)</button><button>\( \dfrac{3\sqrt{2}}{10} \)</button><button>\( -\dfrac{16}{25} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">△CAF の3辺は面の対角線です。\( \mathrm{AC}=\sqrt{4^2+3^2}=5 \)（底面）、\( \mathrm{AF}=\sqrt{4^2+3^2}=5 \)（面 ABFE）、\( \mathrm{CF}=\sqrt{3^2+3^2}=3\sqrt{2} \)（面 BCGF）。余弦定理より \( \cos\angle\mathrm{CAF}=\dfrac{25+25-18}{2\cdot 5\cdot 5}=\dfrac{32}{50}=\dfrac{16}{25} \) です。\( \dfrac{32}{25} \) は分母の 2 を落とした値で、1 より大きいので余弦の値としてありえません。\( \dfrac{3\sqrt{2}}{10} \) は \( \angle\mathrm{AFC} \) の余弦（\( \dfrac{25+18-25}{2\cdot 5\cdot 3\sqrt{2}} \)）で、角を取り違えています。\( -\dfrac{16}{25} \) は符号の誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="2√3/3|(2√3)/3|2ルート3/3|2root3/3|2√3÷3|h=2√3/3">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O2</span></div>
+  <p>1辺の長さが 2 の立方体 ABCD-EFGH で、頂点 A から △BDE を含む平面までの距離 \( h \) を求めなさい（問2の結果を使ってよい）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{2\sqrt{3}}{3} \)。三角錐 ABDE の体積は、△ABD を底面とみると高さは AE なので \( \dfrac{1}{3}\cdot\left(\dfrac{1}{2}\cdot 2\cdot 2\right)\cdot 2=\dfrac{4}{3} \)。△BDE（面積 \( 2\sqrt{3} \)）を底面とみると \( \dfrac{1}{3}\cdot 2\sqrt{3}\cdot h \)。等しいとおいて \( h=\dfrac{4}{2\sqrt{3}}=\dfrac{2}{\sqrt{3}}=\dfrac{2\sqrt{3}}{3} \) です（例題2と同じ方法）。\( 2\sqrt{3} \) と答えた場合は、△ABD を底面とした体積だけ \( \dfrac{1}{3} \) を忘れて 4 としています。\( \dfrac{\sqrt{6}}{3} \) は例題2の直方体（高さ 1）の値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O3</span></div>
+  <p>太郎さんと花子さんが、正四面体 ABCD の頂点 A から底面 BCD に引いた垂線の足 H について話しています。</p>
+  <p>太郎：「H は底面の正三角形の真ん中にあるはずだよ。」<br>花子：「『真ん中』だけでは根拠にならないよ。H が △BCD の外接円の中心だと言える理由を説明できる？」</p>
+  <p>H が △BCD の外接円の中心であることの説明として正しいものはどれですか。</p>
+  <div class="choices"><button>見取図をかくと、H が △BCD の中央に見えるから。</button><button>AH が、頂点 A から底面までの線分の中でいちばん長いから。</button><button data-correct="true">△ABH、△ACH、△ADH は、斜辺が等しく AH が共通の直角三角形で合同なので、\( \mathrm{HB}=\mathrm{HC}=\mathrm{HD} \) となるから。</button><button>H は辺 CD の中点で、CD を直径とする円の中心だから。</button></div>
+  <span class="result"></span>
+  <div class="explain">AH は底面に垂直なので \( \angle\mathrm{AHB}=\angle\mathrm{AHC}=\angle\mathrm{AHD}=90^\circ \)。斜辺 \( \mathrm{AB}=\mathrm{AC}=\mathrm{AD} \) と共通の辺 AH から、直角三角形の合同条件（斜辺と他の1辺、中2-064）で3つの三角形は合同になり、\( \mathrm{HB}=\mathrm{HC}=\mathrm{HD} \) です（例題3の前の説明）。見取図の見た目は根拠になりません。AH は A から底面までの線分の中でいちばん<strong>短い</strong>線分です（点と平面の距離、中1-098）。H は辺 CD の中点ではありません（中点 M は図3のとおり BM 上の別の点です）。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O2・O3</span></div>
+  <p>1辺の長さが 6 の正四面体 ABCD で、辺 CD の中点を M とします。</p>
+  <p>(1) \( \cos\angle\mathrm{AMB} \) の値を求めなさい。　(2) △AMB の面積を求めなさい。　(3) 頂点 A から直線 BM に引いた垂線の長さを求め、例題3の高さ AH と比べなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) \( \mathrm{AM}=\mathrm{BM}=6\sin 60^\circ=3\sqrt{3} \)、\( \mathrm{AB}=6 \)。余弦定理より \( \cos\angle\mathrm{AMB}=\dfrac{27+27-36}{2\cdot 27}=\dfrac{1}{3} \)。</p>
+    <p>(2) \( \sin\angle\mathrm{AMB}=\sqrt{1-\dfrac{1}{9}}=\dfrac{2\sqrt{2}}{3} \)。\( \triangle\mathrm{AMB}=\dfrac{1}{2}\cdot 3\sqrt{3}\cdot 3\sqrt{3}\cdot\dfrac{2\sqrt{2}}{3}=9\sqrt{2} \)。</p>
+    <p>(3) 垂線の長さを \( k \) とすると、\( \triangle\mathrm{AMB}=\dfrac{1}{2}\cdot\mathrm{BM}\cdot k \) より \( 9\sqrt{2}=\dfrac{3\sqrt{3}}{2}k \)、\( k=\dfrac{18\sqrt{2}}{3\sqrt{3}}=\dfrac{6\sqrt{2}}{\sqrt{3}}=2\sqrt{6} \)。例題3の高さ AH と等しい。</p>
+    <p><strong>採点の観点</strong>　① 正三角形の中線の長さを求め、△AMB を平面に描き直して余弦定理を使っている。② 正弦を求めて面積を計算している。③ 面積を2通りに表して垂線の長さを求め、AH と比べている。</p>
+  </div>
+  <div class="explain">(3) の値が AH と等しいのは、H が中線 BM 上にあり（例題4の振り返り）、A から直線 BM に引いた垂線が、A から底面に引いた垂線 AH と同じ線分になるからです。違う三角形から同じ高さが出たことで、例題3の答えを確かめたことにもなります。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(2) 図形と計量」の「図形の構成要素間の関係に着目し，日常の事象や社会の事象などを数学的に捉え，問題を解決したり，解決の過程を振り返って事象の数学的な特徴や他の事象との関係を考察したりすること」（イ(イ)）に関わり、出題範囲に含まれます。解説は、この事項について「平面図形や簡単な空間図形の計量を取り扱う」としています。</p>
+  <p>令和9年度の問題作成方針は、数学について「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。立体の中の三角形を平面の図に描き直して処理するこの時間の方法は、こうした処理の例です。</p>
+  <p class="small">問8・問9は練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">三角比の日常の事象への活用（数Ⅰ-077）</p>
+  <p>次の時間は、建造物や山、太陽などを見込む角度や、直接測定できない2地点間の距離を、見いだした三角形の三角比を使って求め、結果をもとの事象に即して解釈します。この時間の「三角形を見いだし、描き直す」考え方を、日常の場面で使います。</p>
+  <p>この時間では、日常の事象への活用（数Ⅰ-077）と、空間における直線と平面の位置関係の詳しい扱い（数Ａ-059・060）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-075　平面図形の計量</div>
+  <div><span class="label">次の時間</span>数Ⅰ-077　三角比の日常の事象への活用</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-076「空間図形の計量」（活用。学習指導要領 数学Ⅰ (2)イ(イ)、解説 p.40）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(2) 図形と計量 イ(イ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.40「三角比や正弦定理，余弦定理などの活用場面として，平面図形や簡単な空間図形の計量を取り扱う」「空間図形については『数学Ａ』の『(1) 図形の性質』でも取り扱うので，互いの内容の関連に配慮することも大切である」（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「空間図形への応用」（「三角比を利用して，正四面体などの体積を求めることができる（応用例題7）」「空間図形への応用において，適当な三角形に着目して考察することができる」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>東京書籍「令和7年度用『新編 新しい数学』年間指導計画・学習指導計画例（略案）」1年（「多面体の意味」「正多面体の意味とその種類」。中1-092 の出典）https://ten.tokyo-shoseki.co.jp/text/chu/list/keikaku/</li>
+    <li>日本文教出版「令和7年度版『中学数学』年間指導計画案」1年（「角錐・多面体、正多面体」。中1-092 の出典）https://www.nichibun-g.co.jp/textbooks/c-sugaku/download/r7/r7_c-sugaku_nenkei1.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題はこのページのために作成したものです（出典を示したものを除く）。正四面体の容器は、厚さを考えない学習用の架空の容器です。三角比表の値は小数第4位までの値です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-076",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-076",
+  "title": "空間図形の計量",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-4", "title": "図形と計量"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)イ(イ)"],
+  "kaisetsu_page": "40",
+  "objectives": [
+    {"id": "O1", "text": "空間図形の中から計量に使う三角形を見いだし、その三角形を平面に描き直して、辺の長さや角の大きさを書き込むことができる。", "from": "簡単な空間図形の中に三角形を見いだし", "sections": ["sec-1", "sec-3"], "checks": ["q1", "q6", "q8", "q9"]},
+    {"id": "O2", "text": "直方体や正四面体の中の三角形に余弦定理や面積の公式を用いて、辺の長さ・角の大きさ・面積を求めることができる。", "from": "三角比や正弦定理・余弦定理を用いて、…辺の長さ・角の大きさ…を求めることができる", "sections": ["sec-1", "sec-3"], "checks": ["q2", "q6", "q7", "q9"]},
+    {"id": "O3", "text": "正四面体の高さと体積を、底面の三角形の外接円の半径（正弦定理）と三平方の定理を用いて求めることができる。", "from": "正四面体の高さや体積など、…体積を求めることができる", "sections": ["sec-2"], "checks": ["q3", "q4", "q5", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "見取図", "where": "sec-1"},
+    {"term": "平面に描き直す", "where": "sec-1"},
+    {"term": "正四面体", "where": "supp-1"},
+    {"term": "体積を2通りに表す", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "見取図と、見取図では長さや角が実際と違って見えること", "taught_in": ["jhs_math/中1-093", "jhs_math/中1-095"], "gap": false, "where": "sec-1"},
+    {"concept": "直線と平面の垂直（平面に垂直な直線は、平面上の交点を通る直線に垂直）", "taught_in": ["jhs_math/中1-097"], "gap": false, "where": "sec-2"},
+    {"concept": "点と平面の距離、立体の高さ", "taught_in": ["jhs_math/中1-098"], "gap": false, "where": "sec-1"},
+    {"concept": "錐体の体積＝(1/3)×底面積×高さ", "taught_in": ["jhs_math/中1-102"], "gap": false, "where": "review"},
+    {"concept": "直角三角形の合同条件（斜辺と他の1辺）", "taught_in": ["jhs_math/中2-064"], "gap": false, "where": "sec-2"},
+    {"concept": "二等辺三角形の頂角の二等分線は底辺を垂直に二等分する", "taught_in": ["jhs_math/中2-061"], "gap": false, "where": "sec-3"},
+    {"concept": "三平方の定理と、直方体の対角線・錐体の高さ", "taught_in": ["jhs_math/中3-097", "jhs_math/中3-105", "jhs_math/中3-106"], "gap": false, "where": "review"},
+    {"concept": "30°・60° の直角三角形の辺の比（正三角形の高さ）", "taught_in": ["jhs_math/中3-101"], "gap": false, "where": "sec-3"},
+    {"concept": "相似な立体の体積比は相似比の3乗", "taught_in": ["jhs_math/中3-080"], "gap": false, "where": "quiz"},
+    {"concept": "正弦定理と外接円の半径", "taught_in": ["hs_math_1a/数Ⅰ-068", "hs_math_1a/数Ⅰ-069"], "gap": false, "where": "review"},
+    {"concept": "余弦定理（3辺から角）と三角比の相互関係", "taught_in": ["hs_math_1a/数Ⅰ-071", "hs_math_1a/数Ⅰ-065"], "gap": false, "where": "sec-1"},
+    {"concept": "三角形の面積の公式 S=(1/2)bc sin A", "taught_in": ["hs_math_1a/数Ⅰ-073"], "gap": false, "where": "sec-1"},
+    {"concept": "三角比表で角を読む", "taught_in": ["hs_math_1a/数Ⅰ-059"], "gap": false, "where": "sec-3"},
+    {"concept": "正四面体（4つの面が合同な正三角形の三角錐）。中学校1年の正多面体の学習（中1-092）で扱われることがあり、並行して学ぶ数学Ａの数Ａ-061 で正多面体として詳しく扱う", "taught_in": ["jhs_math/中1-092"], "gap": false, "where": "supp-1"}
+  ],
+  "out_of_scope": [
+    "建造物や山などの日常の事象への活用（数Ⅰ-077）",
+    "空間における直線と平面の位置関係、直線と平面が垂直になる条件の詳しい扱い（数Ａ-059・数Ａ-060）",
+    "正多面体の性質（数Ａ-061）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『図形と計量』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(2)イ(イ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.40 簡単な空間図形の計量を活用場面として扱うこと、空間図形は数学Ａでも扱うこと"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "正四面体などの体積（応用例題7）、適当な三角形に着目した考察"},
+    {"name": "令和7年度用『新編 新しい数学』年間指導計画・学習指導計画例（略案）1年", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/chu/list/keikaku/", "use": "「正多面体の意味とその種類」を扱うこと（中1-092 の出典。補足 supp-1）"},
+    {"name": "令和7年度版『中学数学』年間指導計画案 1年", "publisher": "日本文教出版", "url": "https://www.nichibun-g.co.jp/textbooks/c-sugaku/download/r7/r7_c-sugaku_nenkei1.pdf", "use": "「多面体、正多面体」を扱うこと（中1-092 の出典。補足 supp-1）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

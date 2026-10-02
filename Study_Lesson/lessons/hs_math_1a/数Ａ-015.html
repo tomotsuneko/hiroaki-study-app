@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>同じものを含む順列｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-015</span></div>
+  <h1>同じものを含む順列</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">a、a、a、b、b の5枚のカードを1列に並べる方法は何通りでしょう。5枚だから \( 5!=120 \) 通り、としてよいでしょうか。同じものを含むときの並べ方を、組合せの考えと、区別して数えてから割る考えの2通りで求めます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>同じものを含む順列の総数を、同じものを置く位置の選び方と対応させ、組合せ \( {}_n\mathrm{C}_p\times{}_{n-p}\mathrm{C}_q \) を用いて求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>同じものを区別して並べた \( n! \) 通りの中で、1つの並べ方が \( p!\,q!\,r! \) 回ずつ数えられていることから公式 \( \dfrac{n!}{p!\,q!\,r!} \) を導き、導く過程でどのような見方をしたかを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>同じものを含む順列の公式を用いて、文字や数字の並べ方の総数を、両端や隣り合いなどの条件がある場合も含めて求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-014）</span>組分け</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-015）</span>同じものを含む順列</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-016）</span>最短経路の数</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。同じ単元の数Ａ-001〜014（補集合の要素の個数、数え上げの原則、順列と階乗、条件のある順列、円順列、組合せ、組分け）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">階乗・組合せ・組分け</p>
+  <p>異なる \( n \) 個のものをすべて1列に並べる方法は \( n! \) 通りです（数Ａ-007）。異なる \( n \) 個から \( r \) 個を選ぶ組合せの総数は \( {}_n\mathrm{C}_r=\dfrac{{}_n\mathrm{P}_r}{r!} \) で（数Ａ-011）、\( {}_n\mathrm{P}_r=\dfrac{n!}{(n-r)!} \)（数Ａ-007）を使うと \( {}_n\mathrm{C}_r=\dfrac{n!}{r!\,(n-r)!} \) とも表せます。前の時間（数Ａ-014）は、組に区別がある組分けを、残りの中から順に組合せで選んで求めました。</p>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-007</span></div>
+  <p>\( 5! \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( 15 \)</button>
+    <button data-correct="true">\( 120 \)</button>
+    <button>\( 3125 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 5!=5\cdot4\cdot3\cdot2\cdot1=120 \)。\( 15 \) は \( 5+4+3+2+1 \) と足した誤り、\( 3125 \) は \( 5^5 \) で、同じものを何回選んでもよい重複順列（数Ａ-010）の数です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-011</span></div>
+  <p>\( {}_5\mathrm{C}_3 \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( 60 \)</button>
+    <button>\( 125 \)</button>
+    <button data-correct="true">\( 10 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( {}_5\mathrm{C}_3=\dfrac{5\cdot4\cdot3}{3\cdot2\cdot1}=10 \)。\( 60 \) は \( {}_5\mathrm{P}_3 \) で \( 3! \) で割り忘れた値、\( 125 \) は \( 5^3 \) です。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-014</span></div>
+  <p>6人を A組2人、B組2人、C組2人に分ける方法は何通りですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 90 \) 通り</button>
+    <button>\( 15 \) 通り</button>
+    <button>\( 720 \) 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">組に区別があるので \( {}_6\mathrm{C}_2\times{}_4\mathrm{C}_2\times{}_2\mathrm{C}_2=15\times6\times1=90 \) 通り（数Ａ-014）。\( 15 \) は \( 3! \) で割った、組に区別がない場合の数です。\( 720 \) は \( 6! \) で、6人を1列に並べる数です。この 90 通りは、この時間の「3 文字を置く位置を選ぶ」で別の見方で出てきます。</div>
+</div>
+<div class="box review" id="rev-zero">
+  <p class="box-title">数字を並べて整数をつくるとき（数Ａ-008）</p>
+  <p>数字を並べて \( n \) けたの整数をつくるとき、いちばん左の位（最高位）に 0 は置きません（数Ａ-008 の例題2）。たとえば 0、1、1、2、2 を並べた「01122」は、5けたの整数ではなく、4けたの整数 1122 を表すことになるからです。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：5枚のカードは 120 通り？</h2>
+<div class="box think">
+  <p class="box-title">見分けのつかないカード</p>
+  <p>a、a、a、b、b の5枚のカードがあります。同じ文字のカードは見分けがつきません。</p>
+  <ul>
+    <li>5枚を1列に並べる方法は何通りでしょうか。</li>
+    <li>「5枚を並べるのだから \( 5!=120 \) 通り」という考えは正しいでしょうか。正しくないなら、どこがおかしいのでしょうか。</li>
+  </ul>
+  <p>1つ目の問いは「3 文字を置く位置を選ぶ（組合せの考え）」で、2つ目の問いは「4 区別して数えてから割る（公式を導く）」で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="位置を選ぶ（組合せ）"><span class="num">3</span>文字を置く位置を選ぶ（組合せの考え）</h2>
+<p>5枚を並べる場所を、左から 1、2、3、4、5 の位置とします。a を置く3つの位置を決めると、残りの2つの位置には b が入るので、並べ方が1つ決まります。逆に、並べ方を1つ決めると、a のある位置が決まります。つまり、並べ方と「a を置く3つの位置の選び方」は<strong>1対1に対応</strong>します（数Ａ-003、数Ａ-013）。</p>
+<p>a を置く位置の選び方は、5つの位置から3つを選ぶ組合せなので \( {}_5\mathrm{C}_3=10 \) 通りです。</p>
+<figure>
+<!--svg:f015a-->
+<svg viewBox="0 0 400 222" width="400" role="img" aria-label="a、a、a、b、b の5文字の並べ方10通り。1から5の位置のうち a を置く3つの位置を選ぶと並べ方が1つ決まる。a の位置は青で塗った">
+<text x="72" y="32" text-anchor="middle" font-size="11" fill="#8a99a8">1</text>
+<text x="99" y="32" text-anchor="middle" font-size="11" fill="#8a99a8">2</text>
+<text x="126" y="32" text-anchor="middle" font-size="11" fill="#8a99a8">3</text>
+<text x="153" y="32" text-anchor="middle" font-size="11" fill="#8a99a8">4</text>
+<text x="180" y="32" text-anchor="middle" font-size="11" fill="#8a99a8">5</text>
+<text x="8" y="32" font-size="11" fill="#8a99a8">位置</text>
+<text x="272" y="32" text-anchor="middle" font-size="11" fill="#8a99a8">1</text>
+<text x="299" y="32" text-anchor="middle" font-size="11" fill="#8a99a8">2</text>
+<text x="326" y="32" text-anchor="middle" font-size="11" fill="#8a99a8">3</text>
+<text x="353" y="32" text-anchor="middle" font-size="11" fill="#8a99a8">4</text>
+<text x="380" y="32" text-anchor="middle" font-size="11" fill="#8a99a8">5</text>
+<text x="208" y="32" font-size="11" fill="#8a99a8">位置</text>
+<text x="8" y="59" font-size="12" fill="currentColor" data-row="1" data-pos="1,2,3">1・2・3</text>
+<rect x="60" y="42" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="72" y="59" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="87" y="42" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="99" y="59" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="114" y="42" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="126" y="59" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="141" y="42" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="153" y="59" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="168" y="42" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="180" y="59" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<text x="8" y="93" font-size="12" fill="currentColor" data-row="2" data-pos="1,2,4">1・2・4</text>
+<rect x="60" y="76" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="72" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="87" y="76" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="99" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="114" y="76" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="126" y="93" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="141" y="76" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="153" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="168" y="76" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="180" y="93" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<text x="8" y="127" font-size="12" fill="currentColor" data-row="3" data-pos="1,2,5">1・2・5</text>
+<rect x="60" y="110" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="72" y="127" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="87" y="110" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="99" y="127" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="114" y="110" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="126" y="127" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="141" y="110" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="153" y="127" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="168" y="110" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="180" y="127" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<text x="8" y="161" font-size="12" fill="currentColor" data-row="4" data-pos="1,3,4">1・3・4</text>
+<rect x="60" y="144" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="72" y="161" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="87" y="144" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="99" y="161" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="114" y="144" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="126" y="161" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="141" y="144" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="153" y="161" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="168" y="144" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="180" y="161" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<text x="8" y="195" font-size="12" fill="currentColor" data-row="5" data-pos="1,3,5">1・3・5</text>
+<rect x="60" y="178" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="72" y="195" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="87" y="178" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="99" y="195" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="114" y="178" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="126" y="195" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="141" y="178" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="153" y="195" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="168" y="178" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="180" y="195" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<text x="208" y="59" font-size="12" fill="currentColor" data-row="6" data-pos="1,4,5">1・4・5</text>
+<rect x="260" y="42" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="272" y="59" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="287" y="42" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="299" y="59" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="314" y="42" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="326" y="59" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="341" y="42" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="353" y="59" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="368" y="42" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="380" y="59" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<text x="208" y="93" font-size="12" fill="currentColor" data-row="7" data-pos="2,3,4">2・3・4</text>
+<rect x="260" y="76" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="272" y="93" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="287" y="76" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="299" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="314" y="76" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="326" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="341" y="76" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="353" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="368" y="76" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="380" y="93" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<text x="208" y="127" font-size="12" fill="currentColor" data-row="8" data-pos="2,3,5">2・3・5</text>
+<rect x="260" y="110" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="272" y="127" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="287" y="110" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="299" y="127" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="314" y="110" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="326" y="127" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="341" y="110" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="353" y="127" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="368" y="110" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="380" y="127" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<text x="208" y="161" font-size="12" fill="currentColor" data-row="9" data-pos="2,4,5">2・4・5</text>
+<rect x="260" y="144" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="272" y="161" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="287" y="144" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="299" y="161" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="314" y="144" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="326" y="161" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="341" y="144" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="353" y="161" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="368" y="144" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="380" y="161" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<text x="208" y="195" font-size="12" fill="currentColor" data-row="10" data-pos="3,4,5">3・4・5</text>
+<rect x="260" y="178" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="272" y="195" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="287" y="178" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="299" y="195" text-anchor="middle" font-size="14" font-weight="400" fill="currentColor">b</text>
+<rect x="314" y="178" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="326" y="195" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="341" y="178" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="353" y="195" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+<rect x="368" y="178" width="24" height="24" rx="3" fill="#1f5fbf" fill-opacity="0.18" stroke="#1f5fbf" stroke-width="1.8"/>
+<text x="380" y="195" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">a</text>
+</svg>
+<!--/svg:f015a-->
+  <figcaption>図1　a、a、a、b、b の並べ方 10 通り。左の数は a を置いた位置（青）。残りの位置には b が入る</figcaption>
+</figure>
+<p><strong>導入の1つ目の問いの答え</strong>：並べ方は 10 通りです。</p>
+<h3>3種類の文字のとき</h3>
+<p>a、a、a、b、b、c の6文字を並べるときは、まず a を置く位置を6つから3つ選び（\( {}_6\mathrm{C}_3=20 \) 通り）、次に b を置く位置を残りの3つから2つ選びます（\( {}_3\mathrm{C}_2=3 \) 通り）。c は最後に残った1つの位置に決まります。積の法則で \( 20\times3\times1=60 \) 通りです。</p>
+<div class="box point"><p class="box-title">位置を選ぶ考え（組合せ）</p>
+<p>\( n \) 個のうち、a が \( p \) 個、b が \( q \) 個、c が \( r \) 個（\( p+q+r=n \)）のとき、並べ方の総数は</p>
+$$ {}_n\mathrm{C}_p\times{}_{n-p}\mathrm{C}_q\times{}_r\mathrm{C}_r $$
+<p>これは前の時間（数Ａ-014）の、組に区別がある組分けと同じ式です。\( n \) 個の位置を「a の組（\( p \) 個）・b の組（\( q \) 個）・c の組（\( r \) 個）」に分けていると考えられます。確認3の 90 通りは、A、A、B、B、C、C の6枚の札を6人に1枚ずつ配る方法の数と同じです。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題1（7文字の並べ方）</p>
+  <p>a、a、b、b、b、c、c の7文字を1列に並べる方法は何通りですか。</p>
+  <div class="step">着眼点：a の位置、b の位置、c の位置の順に、残りの位置から選びます。</div>
+  <div class="step">a を置く位置：7つから2つで \( {}_7\mathrm{C}_2=21 \) 通り。b を置く位置：残りの5つから3つで \( {}_5\mathrm{C}_3=10 \) 通り。c は残りの2つの位置に決まります（\( {}_2\mathrm{C}_2=1 \) 通り）。</div>
+  <div class="step">積の法則で \( 21\times10\times1=210 \)。答え 210 通り。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="区別して数えてから割る"><span class="num">4</span>区別して数えてから割る（公式を導く）</h2>
+<p>導入の「\( 5!=120 \) 通り」は、5枚がすべて違うカードのときの数です。同じ文字のカードに番号を付けて \( a_1 \)、\( a_2 \)、\( a_3 \)、\( b_1 \)、\( b_2 \) と区別すると、並べ方は \( 5!=120 \) 通りになります。番号を消すと同じになる並べ方が、何通りずつあるかを調べます。</p>
+<h3>小さい場合で調べる：a、a、b</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>番号を消した並べ方</th><th>区別した並べ方</th><th>個数</th></tr>
+  <tr><td>a a b</td><td>\( a_1a_2b \)、\( a_2a_1b \)</td><td>2</td></tr>
+  <tr><td>a b a</td><td>\( a_1ba_2 \)、\( a_2ba_1 \)</td><td>2</td></tr>
+  <tr><td>b a a</td><td>\( ba_1a_2 \)、\( ba_2a_1 \)</td><td>2</td></tr>
+  <tr><td>計 3 通り</td><td>計 \( 3!=6 \) 通り</td><td></td></tr>
+</table>
+</div>
+<p>どの並べ方も、\( a_1 \) と \( a_2 \) の入れかえ \( 2!=2 \) 通りずつ数えられています。したがって、並べ方は \( 3!\div2!=3 \) 通りです。</p>
+<h3>a、a、a、b、b のとき</h3>
+<p>番号を消した並べ方を1つ、たとえば「a a b a b」をとります。a のある3つの位置に \( a_1 \)、\( a_2 \)、\( a_3 \) を入れる方法が \( 3! \) 通り、b のある2つの位置に \( b_1 \)、\( b_2 \) を入れる方法が \( 2! \) 通りあるので、区別した並べ方は \( 3!\times2!=12 \) 通りあります。どの並べ方も同じく 12 通りずつ数えられているので、</p>
+$$ (\text{並べ方の数})\times3!\times2!=5! \quad\text{より}\quad (\text{並べ方の数})=\frac{5!}{3!\,2!}=\frac{120}{12}=10 $$
+<p>となり、「3 文字を置く位置を選ぶ」で求めた 10 通りと一致します。</p>
+<p><strong>導入の2つ目の問いの答え</strong>：120 通りは、同じ文字のカードを区別して数えた数です。1つの並べ方を \( 3!\times2!=12 \) 回ずつ数えているので、正しい並べ方の数は \( 120\div12=10 \) 通りです。</p>
+<div class="formula-card"><div><span class="f-name">同じものを含む順列</span><p>\( n \) 個のうち、同じものがそれぞれ \( p \) 個、\( q \) 個、\( r \) 個（\( p+q+r=n \)）のとき、並べ方の総数は</p>$$ \frac{n!}{p!\,q!\,r!} $$</div></div>
+<p>組合せで求めた式と一致することも、式で確かめられます。</p>
+$$ {}_n\mathrm{C}_p\times{}_{n-p}\mathrm{C}_q=\frac{n!}{p!\,(n-p)!}\times\frac{(n-p)!}{q!\,r!}=\frac{n!}{p!\,q!\,r!} $$
+<p>（\( n-p=q+r \) なので、\( {}_{n-p}\mathrm{C}_q=\dfrac{(n-p)!}{q!\,r!} \) です。）</p>
+<div class="box point"><p class="box-title">公式を導いた過程を振り返る</p>
+<p>この時間は2つの見方で公式を導きました。</p>
+<ol>
+  <li><strong>位置を選ぶ</strong>：同じものを置く位置の選び方と並べ方を1対1に対応させた（数Ａ-013 の、図形と点や線の選び方の対応と同じ見方）。</li>
+  <li><strong>区別して数えてから割る</strong>：すべて区別して \( n! \) 通りと数え、1つの並べ方を何回ずつ数えたかで割った。</li>
+</ol>
+<p>2の見方は、これまでにも使っています。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>時間</th><th>区別して数えたもの</th><th>1つを何回ずつ数えたか</th></tr>
+  <tr><td>数Ａ-009 円順列</td><td>1列に並べる \( n! \) 通り</td><td>回転して一致する \( n \) 通り</td></tr>
+  <tr><td>数Ａ-011 組合せ</td><td>順列 \( {}_n\mathrm{P}_r \) 通り</td><td>選んだ \( r \) 個の並べ方 \( r! \) 通り</td></tr>
+  <tr><td>数Ａ-014 区別のない組分け</td><td>組に区別があるとした数</td><td>同じ人数の組の入れかえ \( k! \) 通り</td></tr>
+  <tr><td>数Ａ-015 同じものを含む順列</td><td>すべて区別した \( n! \) 通り</td><td>同じものどうしの入れかえ \( p!\,q!\,r! \) 通り</td></tr>
+</table>
+</div></div>
+<div class="box example worked">
+  <p class="box-title">例題2（6けたの整数）</p>
+  <p>6個の数字 1、1、1、2、2、3 をすべて並べてできる6けたの整数は何個ありますか。</p>
+  <div class="step">着眼点：0 を含まないので、どの並べ方も6けたの整数になります。1 が3個、2 が2個、3 が1個の、同じものを含む順列です。</div>
+  <div class="step">\( \dfrac{6!}{3!\,2!\,1!}=\dfrac{720}{6\times2\times1}=60 \)。</div>
+  <div class="step">確かめ（位置を選ぶ）：\( {}_6\mathrm{C}_3\times{}_3\mathrm{C}_2=20\times3=60 \)。答え 60 個。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（公式）</p><p>① 同じものも区別して \( n! \) と答える：導入の 120 通りのように、同じ並べ方を何回も数えています。<br>② 階乗でなく個数で割る：\( \dfrac{5!}{3\times2}=20 \) は誤りです。a どうしの入れかえは \( 3 \) 通りではなく \( 3!=6 \) 通りです。<br>③ 1個しかないもの（例題2の 3）は \( 1!=1 \) なので、割っても割らなくても同じです。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="条件のある並べ方"><span class="num">5</span>条件のある並べ方</h2>
+<p>両端や隣り合いの条件があるときも、数Ａ-008 の条件のある順列と同じく、条件のある部分を先に決めてから、残りを同じものを含む順列として数えます。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（両端が決まっている）</p>
+  <p>a、a、a、b、b、c の6文字を1列に並べるとき、両端が a になる並べ方は何通りですか。</p>
+  <div class="step">着眼点：両端に a を1つずつ置きます。a は区別がないので、両端の置き方は1通りです。</div>
+  <div class="step">間の4つの位置に、残りの a、b、b、c を並べます：\( \dfrac{4!}{1!\,2!\,1!}=12 \)。</div>
+  <div class="step">答え 12 通り。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（同じものが隣り合う）</p>
+  <p>a、a、a、b、b、c の6文字を1列に並べるとき、2つの b が隣り合う並べ方は何通りですか。</p>
+  <div class="step">着眼点：隣り合う2つの b を、ひとまとまりの「bb」とみます（数Ａ-008 の隣り合う条件と同じ考え方）。</div>
+  <div class="step">a、a、a、bb、c の5つを並べると考えて \( \dfrac{5!}{3!}=20 \)。</div>
+  <div class="step">b どうしは区別がないので、まとまりの中の並べ方は1通りです。答え 20 通り。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5（0 を含む数字）</p>
+  <p>5枚のカード 0、1、1、2、2 をすべて並べてできる5けたの整数は何個ありますか。</p>
+  <div class="step">着眼点：最高位に 0 は置けません（前回までの確認、数Ａ-008）。全体から、最高位が 0 の並べ方を除きます（数Ａ-001 の補集合の考え）。</div>
+  <div class="step">5枚の並べ方は全部で \( \dfrac{5!}{2!\,2!}=30 \) 通り。このうち最高位が 0 のものは、残りの 1、1、2、2 を並べる \( \dfrac{4!}{2!\,2!}=6 \) 通り。</div>
+  <div class="step">\( 30-6=24 \)。答え 24 個。</div>
+  <div class="step">確かめ：最高位が 1 のとき残り 0、1、2、2 で \( \dfrac{4!}{2!}=12 \) 通り、最高位が 2 のときも 12 通り。\( 12+12=24 \) で一致します。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（条件のある並べ方）</p><p>① 両端の a を \( 2! \) 通りとする：a どうしは区別がないので、両端の置き方は1通りです。<br>② まとめた「bb」の中を \( 2! \) 通りとする：b どうしは区別がないので1通りです（区別できるものをまとめたときだけ、中の並べ方をかけます）。<br>③ 0 を含むとき、最高位が 0 の並べ方を除き忘れる。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>同じものを含む順列</dt><dd>同じものを含むいくつかのものを1列に並べる並べ方。\( n \) 個のうち同じものがそれぞれ \( p \) 個、\( q \) 個、\( r \) 個（\( p+q+r=n \)）のとき、総数は \( \dfrac{n!}{p!\,q!\,r!}={}_n\mathrm{C}_p\times{}_{n-p}\mathrm{C}_q \)。</dd>
+    <dt>階乗</dt><dd>\( n!=n(n-1)\cdots2\cdot1 \)。異なる \( n \) 個をすべて並べる方法の数（数Ａ-007）。</dd>
+    <dt>組合せ</dt><dd>異なる \( n \) 個から \( r \) 個を、順番を考えずに選ぶ選び方。総数は \( {}_n\mathrm{C}_r \)（数Ａ-011）。</dd>
+    <dt>1対1の対応</dt><dd>並べ方と「同じものを置く位置の選び方」のように、一方の1つに他方の1つがちょうど対応し、どちらにも余るものがないこと（数Ａ-003）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>同じものを置く位置の選び方と並べ方は1対1に対応し、総数は \( {}_n\mathrm{C}_p\times{}_{n-p}\mathrm{C}_q \)（組に区別がある組分けと同じ式）（O1）。</li>
+    <li>すべて区別すると \( n! \) 通りで、1つの並べ方を \( p!\,q!\,r! \) 回ずつ数えているので、総数は \( \dfrac{n!}{p!\,q!\,r!} \)。「区別して数え、何回ずつ数えたかで割る」見方は、円順列・組合せ・区別のない組分けと共通（O2）。</li>
+    <li>両端や隣り合いの条件は先に処理し、残りを同じものを含む順列で数える。同じものをまとめたときは中の並べ方は1通り。0 を含む数字は最高位の 0 を除く（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">同じものを含む順列（\( p+q+r=n \)）</span>$$ \frac{n!}{p!\,q!\,r!}={}_n\mathrm{C}_p\times{}_{n-p}\mathrm{C}_q $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。答えは 240 のように数だけを入力してください（「240通り」「240個」としてもかまいません）。</p>
+
+<div class="q" data-type="input" id="q1" data-accept="105|105通り">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O2</span></div>
+  <p>a、a、a、a、b、b、c の7文字を1列に並べる方法は何通りですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 105 通り。\( \dfrac{7!}{4!\,2!\,1!}=\dfrac{5040}{24\times2\times1}=105 \)。5040 と答えた場合は、同じ文字も区別して \( 7! \) としています。630 と答えた場合は、\( \dfrac{7!}{4\times2} \) と、階乗でなく個数で割っています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>白玉3個と赤玉4個を1列に並べる方法は何通りですか。同じ色の玉は区別しません。</p>
+  <div class="choices"><button>\( 5040 \) 通り</button><button data-correct="true">\( 35 \) 通り</button><button>\( 210 \) 通り</button><button>\( 840 \) 通り</button></div>
+  <span class="result"></span>
+  <div class="explain">白玉を置く位置を7つから3つ選ぶと並べ方が1つ決まるので、\( {}_7\mathrm{C}_3=35 \) 通り（\( \dfrac{7!}{3!\,4!}=35 \) でも同じ）。\( 5040 \) は \( 7! \) で玉をすべて区別しています。\( 210 \) は \( {}_7\mathrm{P}_3 \) で、白玉を置く位置に順番を付けています。\( 840 \) は \( \dfrac{7!}{3!} \) で、赤玉どうしの入れかえ \( 4! \) で割り忘れています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O1</span></div>
+  <p>a、a、b、b、c、c の6文字を1列に並べる方法は何通りですか。</p>
+  <div class="choices"><button data-correct="true">\( 90 \) 通り</button><button>\( 720 \) 通り</button><button>\( 15 \) 通り</button><button>\( 120 \) 通り</button></div>
+  <span class="result"></span>
+  <div class="explain">a の位置 \( {}_6\mathrm{C}_2=15 \) 通り、b の位置を残り4つから \( {}_4\mathrm{C}_2=6 \) 通り、c は残りに決まるので \( 15\times6\times1=90 \) 通り（\( \dfrac{6!}{2!\,2!\,2!}=90 \)）。確認3の組分けと同じ数です。\( 720 \) は \( 6! \) で区別しています。\( 15 \) はさらに \( 3! \) で割った値で、区別のない組分けと混同しています（a、b、c は違う文字なので、a の位置と b の位置を入れかえると違う並べ方です）。\( 120 \) は \( \dfrac{6!}{2+2+2} \) と、階乗の積でなく個数の和で割っています。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="560|560個|560通り">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>8個の数字 1、1、2、2、2、3、3、3 をすべて並べてできる8けたの整数は何個ありますか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 560 個。0 を含まないので、どの並べ方も8けたの整数です。\( \dfrac{8!}{2!\,3!\,3!}=\dfrac{40320}{2\times6\times6}=560 \)。40320 と答えた場合は \( 8! \) のままで、2240 と答えた場合は \( \dfrac{8!}{2\times3\times3} \) と個数で割っています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>a、a、a、b、b、c、c の7文字を1列に並べるとき、両端が c になる並べ方は何通りですか。</p>
+  <div class="choices"><button>\( 210 \) 通り</button><button>\( 20 \) 通り</button><button>\( 120 \) 通り</button><button data-correct="true">\( 10 \) 通り</button></div>
+  <span class="result"></span>
+  <div class="explain">両端に c を1つずつ置く方法は、c どうしに区別がないので1通り。間の5つの位置に a、a、a、b、b を並べて \( \dfrac{5!}{3!\,2!}=10 \) 通りです。\( 210 \) は条件を使わない全体の数 \( \dfrac{7!}{3!\,2!\,2!} \) です。\( 20 \) は、両端の c の置き方を \( 2! \) 通りとして \( 2\times10 \) とした値です（\( \dfrac{5!}{3!} \) と b どうしの入れかえで割り忘れても同じ 20 になります）。\( 120 \) は間の5文字を区別して \( 5! \) としています。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="12|12通り">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>a、a、b、b、b、c の6文字を1列に並べるとき、3つの b がすべて隣り合う並べ方は何通りですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 12 通り。3つの b をひとまとまり「bbb」とみて、a、a、bbb、c の4つを並べると \( \dfrac{4!}{2!}=12 \) 通り。b どうしは区別がないので、まとまりの中は1通りです。72 と答えた場合は、まとまりの中を \( 3!=6 \) 通りとしてかけています。60 と答えた場合は、隣り合う条件を使わない全体の数 \( \dfrac{6!}{2!\,3!} \) です。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="18|18個|18通り">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>5枚のカード 0、0、1、1、2 をすべて並べてできる5けたの整数は何個ありますか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 18 個。並べ方は全部で \( \dfrac{5!}{2!\,2!}=30 \) 通り。このうち最高位が 0 のものは、残りの 0、1、1、2 を並べる \( \dfrac{4!}{2!}=12 \) 通りなので、\( 30-12=18 \) 個です。確かめ：最高位が 1 のとき残り 0、0、1、2 で \( \dfrac{4!}{2!}=12 \) 通り、最高位が 2 のとき残り 0、0、1、1 で \( \dfrac{4!}{2!\,2!}=6 \) 通り、\( 12+6=18 \)。30 と答えた場合は最高位が 0 のものを除き忘れ、12 と答えた場合は除く方の数を答えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2</span></div>
+  <p>a、a、a、b、b、b の6文字の並べ方を、2人が別の方法で求めました。</p>
+  <p>花子：「a を置く3つの位置を6つから選ぶから、\( {}_6\mathrm{C}_3=20 \) 通り。」<br>太郎：「全部区別すると \( 6! \) 通り。a どうし、b どうしの入れかえで割って \( \dfrac{6!}{3!\,3!}=20 \) 通り。」</p>
+  <p>2人の答えが一致することについて、正しい説明はどれですか。</p>
+  <div class="choices">
+    <button>2人の答えが一致したのは偶然で、文字の個数を変えると一致しなくなる。</button>
+    <button>太郎さんの式は、b の位置は a の位置が決まれば決まるので、\( \dfrac{6!}{3!}=120 \) 通りとするべきである。</button>
+    <button data-correct="true">\( {}_6\mathrm{C}_3=\dfrac{6!}{3!\,3!} \) が成り立つので一致する。a の位置を選ぶ数え方と、すべて区別した \( 6! \) 通りを同じ並べ方の重複 \( 3!\times3! \) 回で割る数え方は、同じ並べ方の集まりを数えている。</button>
+    <button>花子さんの式は、a を置く位置に順番があるので \( {}_6\mathrm{P}_3=120 \) 通りとするべきである。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( {}_6\mathrm{C}_3=\dfrac{6!}{3!\,3!}=20 \) で、一般に \( {}_n\mathrm{C}_p=\dfrac{n!}{p!\,(n-p)!} \) なので、文字の個数を変えても2つの方法はいつも一致します（「4 区別して数えてから割る」の式の確かめ）。偶然とする説明は誤りです。\( \dfrac{6!}{3!}=120 \) は、b どうしの入れかえ \( 3! \) で割り忘れています。b の位置が自動的に決まるのは「位置を選ぶ」方法の話で、すべて区別した \( 6! \) 通りの中では b どうしの入れかえも重複して数えています。\( {}_6\mathrm{P}_3=120 \) は、同じ a どうしの並び順まで区別しています。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>a、a、a、b、b、c の6文字を1列に並べます。</p>
+  <p>(1) c が2つの b のどちらよりも左にある並べ方は何通りですか。<br>(2) (1) の求め方を、同じものを含む順列の考えを使って説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) 20 通り。</p>
+    <p>(2) c と2つの b の3文字を、区別のない同じ文字 ○ とみて、a、a、a、○、○、○ を並べると \( \dfrac{6!}{3!\,3!}=20 \) 通り。どの並べ方でも、3つの ○ の位置に左から c、b、b と入れれば条件を満たす並べ方が1つだけでき、逆に条件を満たす並べ方の c と b を ○ に戻すと1つの並べ方になる。このように1対1に対応するので 20 通り。</p>
+    <p><strong>採点の観点</strong>　① 順序が決まっている c、b、b を同じもの ○ とみている。② a、a、a、○、○、○ の並べ方を \( \dfrac{6!}{3!\,3!} \) で求めている。③ ○ に c、b、b を入れる方法が1通りであること（1対1の対応）を説明している。</p>
+  </div>
+  <div class="explain">全体の並べ方は \( \dfrac{6!}{3!\,2!\,1!}=60 \) 通りです。c と2つの b の3つの位置だけを見ると、c が「いちばん左・真ん中・いちばん右」のどこにあるかで3つの場合に分かれ、どの場合も同じ数ずつあるので、\( 60\div3=20 \) 通りと考えることもできます。60 と答えた場合は条件を使っていません。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(イ)「具体的な事象を基に順列及び組合せの意味を理解し，順列の総数や組合せの総数を求めること」に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「解決過程を振り返り，得られた結果を意味づけたり，活用したり，統合的・発展的に考察したりすることなどを求める」としています。2つの求め方が一致する理由を考える（問8）ことは、解決の過程を振り返ることの練習になります。</p>
+  <p class="small">問8は2人の考えを比べる練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">最短経路の数（数Ａ-016）</p>
+  <p>次の時間は、碁盤の目のような道を遠回りせずに進む道順（最短経路）の数を、この時間の同じものを含む順列や組合せと1対1に対応付けて求めます。たとえば、右へ1区画進むことを → 、上へ1区画進むことを ↑ で表すと、道順は → と ↑ の並べ方になります。特定の地点を通る場合・通らない場合も扱います。</p>
+  <p>この時間では、同じものを含むものを円形に並べる方法は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-014　組分け</div>
+  <div><span class="label">次の時間</span>数Ａ-016　最短経路の数</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-015「同じものを含む順列」（学習。学習指導要領 数学Ａ (2)ア(イ)、解説 p.93）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率 ア(イ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.93「円順列，重複順列，同じものを含む順列などを取り扱う場合の指導に当たっても，公式を導く過程を振り返らせどのような見方や考え方をしたのかを確認して」（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「組合せ」（「同じものを含む順列の総数を求めることができる」「同じものを含む順列を，組合せで考察することができる」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題はこのページのために作成したものです（出典を示したものを除く）。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-015",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-015",
+  "title": "同じものを含む順列",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(イ)"],
+  "kaisetsu_page": "93",
+  "objectives": [
+    {"id": "O1", "text": "同じものを含む順列の総数を、同じものを置く位置の選び方と対応させ、組合せ \\( {}_n\\mathrm{C}_p\\times{}_{n-p}\\mathrm{C}_q \\) を用いて求めることができる。", "from": "同じものを含む順列の総数 n!/(p!q!r!) を、組合せの考えを用いたり…して求めることができる", "sections": ["sec-1"], "checks": ["q2", "q3", "q8"]},
+    {"id": "O2", "text": "同じものを区別して並べた \\( n! \\) 通りの中で、1つの並べ方が \\( p!\\,q!\\,r! \\) 回ずつ数えられていることから公式 \\( \\dfrac{n!}{p!\\,q!\\,r!} \\) を導き、導く過程でどのような見方をしたかを説明できる。", "from": "同じものを含む順列の総数 n!/(p!q!r!) を、…公式を導く過程を振り返ったりして求めることができる", "sections": ["sec-2"], "checks": ["q1", "q4", "q8", "q9"]},
+    {"id": "O3", "text": "同じものを含む順列の公式を用いて、文字や数字の並べ方の総数を、両端や隣り合いなどの条件がある場合も含めて求めることができる。", "from": "同じものを含む順列の総数 n!/(p!q!r!) を…求めることができる", "sections": ["sec-3"], "checks": ["q5", "q6", "q7", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "同じものを含む順列", "where": "sec-2"},
+    {"term": "階乗", "where": "review"},
+    {"term": "組合せ", "where": "review"},
+    {"term": "1対1の対応", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "階乗 n! と、n 個のものをすべて並べる順列、nPr=n!/(n−r)!", "taught_in": ["hs_math_1a/数Ａ-007"], "gap": false, "where": "review"},
+    {"concept": "組合せ nCr=nPr/r!", "taught_in": ["hs_math_1a/数Ａ-011"], "gap": false, "where": "review"},
+    {"concept": "組に区別がある組分け（残りの中から順に組合せで選ぶ）", "taught_in": ["hs_math_1a/数Ａ-014"], "gap": false, "where": "review"},
+    {"concept": "1対1に対応付けて数える（数え上げの原則）、図形と選び方の対応", "taught_in": ["hs_math_1a/数Ａ-003", "hs_math_1a/数Ａ-013"], "gap": false, "where": "sec-1"},
+    {"concept": "積の法則", "taught_in": ["hs_math_1a/数Ａ-005"], "gap": false, "where": "sec-1"},
+    {"concept": "条件のある順列（両端・隣り合うものをまとめる）", "taught_in": ["hs_math_1a/数Ａ-008"], "gap": false, "where": "sec-3"},
+    {"concept": "円順列（回転して一致するものを同じとみる）", "taught_in": ["hs_math_1a/数Ａ-009"], "gap": false, "where": "sec-2"},
+    {"concept": "重複順列 n^r（確認1の誤答の説明）", "taught_in": ["hs_math_1a/数Ａ-010"], "gap": false, "where": "review"},
+    {"concept": "補集合の要素の個数 n(Ā)=n(U)−n(A)（全体から除いて数える）", "taught_in": ["hs_math_1a/数Ａ-001"], "gap": false, "where": "sec-3"},
+    {"concept": "数字を並べて整数をつくるとき最高位に 0 を置かないこと（数Ａ-008 の例題2で扱う。数Ａ-010 と同じ出どころ。数Ａ-008 の要点には明記がない）", "taught_in": ["hs_math_1a/数Ａ-008"], "gap": false, "where": "rev-zero"}
+  ],
+  "out_of_scope": [
+    "最短経路の数（数Ａ-016）",
+    "同じものを含むものを円形に並べる方法（地図の行なし）",
+    "順列・組合せを用いた確率（数Ａ-020）"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(イ)の事項（入試へのつながりの引用）"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.93 同じものを含む順列の公式を導く過程を振り返る扱い"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "同じものを含む順列を組合せで考察する扱いの確認"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

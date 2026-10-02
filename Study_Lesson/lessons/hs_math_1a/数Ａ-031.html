@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>期待値を用いた意思決定｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.widget .w-row { display: flex; flex-wrap: wrap; gap: 4px 18px; align-items: center; margin: 4px 0; }
+.widget .w-row output { display: inline-block; min-width: 2.6em; font-weight: 700; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-031</span></div>
+  <h1>期待値を用いた意思決定</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">活用</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">1週間後のイベントに向けて、アイスクリームを何個仕入れればよいでしょうか。晴れるか雨になるかは前もって分かりません。この時間は、天気の確率と売上の見込みから期待値を求め、確率の値を変えると期待値や判断がどう変わるかも調べて、仕入れ量を決めます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>イベントに向けたアイスクリームの仕入れの場面を、天気と気温の確率を書き込んだ樹形図に表し、乗法定理を用いてそれぞれの場合の確率を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>天気の確率と、想定される売上・利益から、仕入れ量の案ごとに期待値を求めて比べることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>確率の値を変えて期待値の変化を調べ、どの確率が期待値に大きく影響するかや、選ぶ案が変わる確率の値を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>期待値の比較と確率を変えて調べた結果をもとに仕入れ量を判断し、その根拠と、仮定に基づく判断であることを説明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-030）</span>期待値</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-031）</span>期待値を用いた意思決定</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-032）</span>面積比による確率と期待値</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。同じ単元の数Ａ-021・022（確率の基本性質、排反な事象の確率）、数Ａ-028・029（条件付き確率、乗法定理）、数Ａ-030（期待値）と、中学2年の一次関数を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：使う既習事項</h2>
+<p>この時間は、次の4つを組み合わせて使います。3問で確かめましょう。</p>
+<div class="formula-card">
+  <div><span class="f-name">① 確率の乗法定理（数Ａ-029）</span><p>\( P(A\cap B)=P(A)P_A(B) \)。確率を書き込んだ樹形図では、枝をたどって確率をかけると、その道筋の確率になる。</p></div>
+  <div><span class="f-name">② 排反な事象の確率（数Ａ-021・022）</span><p>樹形図の別々の道筋は同時には起こらない（互いに排反）。すべての道筋の確率を足すと、全事象の確率 1 になる。</p></div>
+  <div><span class="f-name">③ 期待値（数Ａ-030）</span><p>変量（試行の結果によって値が決まる量）のとる値と、その値をとる確率の積の和（「値×確率」の和）。1回あたりの平均の見込みを表すと考えられる。数Ａ-030 の式 \( x_1p_1+\cdots+x_np_n \) と同じものだが、このページでは \( p_1 \)〜\( p_3 \) を天気の確率に使うので、期待値は言葉の式で書く。</p></div>
+  <div><span class="f-name">④ 一次関数（中2-026・029・030）</span><p>\( y=ax+b \) のグラフは直線で、\( x \) が 1 増えると \( y \) は \( a \) だけ増える（傾き）。</p></div>
+</div>
+<p class="small">①〜④は、このページの中での番号です。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-029</span></div>
+  <p>ある町で、ある日が晴れる確率を 0.6、晴れた日に最高気温が 30℃以上になる確率を 0.5 とします（学習用の値）。この日が晴れて、しかも最高気温が 30℃以上になる確率はどれですか。</p>
+  <div class="choices">
+    <button>0.5</button>
+    <button>1.1</button>
+    <button data-correct="true">0.3</button>
+    <button>0.1</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「晴れる」が起こったときに「30℃以上」が起こる確率が 0.5 なので、乗法定理より \( 0.6\times0.5=0.3 \) です。0.5 は「晴れたときの」確率のままで、晴れる確率をかけていません。1.1 は確率を足した誤りで、確率は 1 をこえません。0.1 は引いた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-030</span></div>
+  <p>1回引くと、確率 \( \dfrac{1}{5} \) で 500 円、確率 \( \dfrac{2}{5} \) で 100 円、残りの確率で 0 円がもらえるくじがあります。もらえる金額の期待値はどれですか。</p>
+  <div class="choices">
+    <button>200 円</button>
+    <button data-correct="true">140 円</button>
+    <button>600 円</button>
+    <button>100 円</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 500\times\dfrac{1}{5}+100\times\dfrac{2}{5}+0\times\dfrac{2}{5}=100+40+0=140 \)（円）。200 円は3つの金額を確率を使わずに平均した値（\( 600\div3 \)）、600 円は確率をかけずに金額を足した値、100 円は 100 円がもらえる場合を落とした値です。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中2-030</span></div>
+  <p>一次関数 \( y=24000x+3000 \) で、\( x \) の値が 0.1 増えると、\( y \) の値はどれだけ増えますか。</p>
+  <div class="choices">
+    <button>24000</button>
+    <button>3000</button>
+    <button>5400</button>
+    <button data-correct="true">2400</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">傾き（変化の割合）が 24000 なので、\( x \) が 0.1 増えると \( y \) は \( 24000\times0.1=2400 \) 増えます。24000 は \( x \) が 1 増えたときの増え方、3000 は切片、5400 は \( x=0.1 \) のときの \( y \) の値（\( 2400+3000 \)）です。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：何個仕入れればよい？</h2>
+<div class="box think">
+  <p class="box-title">屋外イベントのアイスクリーム</p>
+  <p>X市で1週間後に開かれる屋外のイベントに、ある店がアイスクリームを出店します（学習用に作成した架空の場面です）。アイスクリームはイベントの前日までにまとめて仕入れ、売れ残っても返品できません。仕入れ量の案は次の3つです。</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>案</th><td>案A</td><td>案B</td><td>案C</td></tr>
+    <tr><th>仕入れる個数</th><td>200 個</td><td>300 個</td><td>400 個</td></tr>
+  </table>
+  </div>
+  <p>晴れて暑ければたくさん売れますが、雨で涼しければあまり売れず、多く仕入れるほど売れ残りが出やすくなります。</p>
+  <ul>
+    <li>① どの案がよいと思いますか。予想してみよう。</li>
+    <li>② 天気予報が変わったら、選ぶ案は変わるでしょうか。</li>
+  </ul>
+  <p>①は「4 期待値を求めて案を比べる」の例題3で、②は「5 確率の値を変えて期待値の変化を調べる」の例題4のあとで答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="仮定を置いて樹形図に表す"><span class="num">3</span>場面を数学の問題にする：仮定を置いて樹形図に表す</h2>
+<p>天気や売れ方は前もって分からないので、このままでは計算できません。そこで、次のように<strong>仮定</strong>を置いて場面を単純化します。数値はすべて学習用に作成した架空の値です。</p>
+<ol>
+  <li>イベントの日の天気を「晴れ」「曇り」「雨」の3通り、気温を「暑い」「涼しい」の2通りに分けて考える。</li>
+  <li>天気の確率と、その天気のときに暑くなる確率・涼しくなる確率を、下の表のように決める。</li>
+  <li>6つの場合のそれぞれで売れる見込みの個数を、図1の右端の列のように見積もる。</li>
+  <li>アイスクリームは1個 300 円で売り、仕入れ値は1個 120 円とする。実際に売れる数は「売れる見込みの個数」と「仕入れた個数」のうち小さい方で、売れ残りは 0 円とする。</li>
+</ol>
+<div class="table-wrap">
+<table>
+  <tr><th>天気</th><th>天気の確率</th><th>その天気のとき暑い</th><th>その天気のとき涼しい</th></tr>
+  <tr><td>晴れ</td><td>\( p_1=0.5 \)</td><td>\( q_1=0.6 \)</td><td>\( q_2=0.4 \)</td></tr>
+  <tr><td>曇り</td><td>\( p_2=0.3 \)</td><td>\( q_3=0.4 \)</td><td>\( q_4=0.6 \)</td></tr>
+  <tr><td>雨</td><td>\( p_3=0.2 \)</td><td>\( q_5=0.2 \)</td><td>\( q_6=0.8 \)</td></tr>
+</table>
+</div>
+<p>このページでは、解説の図にならって、天気の確率を \( p_1,\ p_2,\ p_3 \)、気温の確率を \( q_1 \)〜\( q_6 \) で表します。\( q_1 \) は「晴れたときに暑くなる確率」で、晴れという事象が起こったときの<strong>条件付き確率</strong>（数Ａ-028）です。\( p_1+p_2+p_3=1 \)、\( q_1+q_2=1 \) などが成り立つように決めてあります。</p>
+<figure>
+<div class="fig-scroll">
+<!--svg:f031a-->
+<svg viewBox="0 0 560 376" width="560" role="img" aria-label="アイスクリームの仕入れの樹形図。天気（晴れ 0.5、曇り 0.3、雨 0.2）に分かれ、それぞれ気温（暑い・涼しい）に分かれる。右端に、その場合の確率（天気の確率×気温の確率）と売れる見込みの個数を示す">
+<text x="150" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">天気</text>
+<text x="308" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">気温</text>
+<text x="404" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">その場合の確率</text>
+<text x="522" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">売れる見込み</text>
+<circle cx="22" cy="178" r="4" fill="currentColor"/>
+<line x1="26" y1="178" x2="124" y2="66" stroke="currentColor" data-edge="root 晴れ"/>
+<text x="49" y="116" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf" data-p="1 0.5">p<tspan baseline-shift="sub" font-size="9">1</tspan>＝0.5</text>
+<text x="150" y="70" text-anchor="middle" font-size="13" fill="currentColor">晴れ</text>
+<line x1="172" y1="66" x2="290" y2="38" stroke="currentColor" data-edge="晴れ 暑い"/>
+<text x="223" y="43" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1e8e5a" data-q="1 0.6">q<tspan baseline-shift="sub" font-size="8.5">1</tspan>＝0.6</text>
+<text x="294" y="42" font-size="12.5" fill="currentColor">暑い</text>
+<text x="352" y="42" font-size="12.5" fill="currentColor" data-leaf="1 0.5 0.6 0.30">0.5×0.6＝0.30</text>
+<text x="522" y="42" text-anchor="middle" font-size="12.5" fill="currentColor" data-d="1 400">400個</text>
+<line x1="172" y1="66" x2="290" y2="94" stroke="currentColor" data-edge="晴れ 涼しい"/>
+<text x="223" y="97" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1e8e5a" data-q="2 0.4">q<tspan baseline-shift="sub" font-size="8.5">2</tspan>＝0.4</text>
+<text x="294" y="98" font-size="12.5" fill="currentColor">涼しい</text>
+<text x="352" y="98" font-size="12.5" fill="currentColor" data-leaf="2 0.5 0.4 0.20">0.5×0.4＝0.20</text>
+<text x="522" y="98" text-anchor="middle" font-size="12.5" fill="currentColor" data-d="2 250">250個</text>
+<line x1="26" y1="178" x2="124" y2="178" stroke="currentColor" data-edge="root 曇り"/>
+<text x="75" y="166" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf" data-p="2 0.3">p<tspan baseline-shift="sub" font-size="9">2</tspan>＝0.3</text>
+<text x="150" y="182" text-anchor="middle" font-size="13" fill="currentColor">曇り</text>
+<line x1="172" y1="178" x2="290" y2="150" stroke="currentColor" data-edge="曇り 暑い"/>
+<text x="223" y="155" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1e8e5a" data-q="3 0.4">q<tspan baseline-shift="sub" font-size="8.5">3</tspan>＝0.4</text>
+<text x="294" y="154" font-size="12.5" fill="currentColor">暑い</text>
+<text x="352" y="154" font-size="12.5" fill="currentColor" data-leaf="3 0.3 0.4 0.12">0.3×0.4＝0.12</text>
+<text x="522" y="154" text-anchor="middle" font-size="12.5" fill="currentColor" data-d="3 300">300個</text>
+<line x1="172" y1="178" x2="290" y2="206" stroke="currentColor" data-edge="曇り 涼しい"/>
+<text x="223" y="209" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1e8e5a" data-q="4 0.6">q<tspan baseline-shift="sub" font-size="8.5">4</tspan>＝0.6</text>
+<text x="294" y="210" font-size="12.5" fill="currentColor">涼しい</text>
+<text x="352" y="210" font-size="12.5" fill="currentColor" data-leaf="4 0.3 0.6 0.18">0.3×0.6＝0.18</text>
+<text x="522" y="210" text-anchor="middle" font-size="12.5" fill="currentColor" data-d="4 200">200個</text>
+<line x1="26" y1="178" x2="124" y2="290" stroke="currentColor" data-edge="root 雨"/>
+<text x="49" y="250" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf" data-p="3 0.2">p<tspan baseline-shift="sub" font-size="9">3</tspan>＝0.2</text>
+<text x="150" y="294" text-anchor="middle" font-size="13" fill="currentColor">雨</text>
+<line x1="172" y1="290" x2="290" y2="262" stroke="currentColor" data-edge="雨 暑い"/>
+<text x="223" y="267" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1e8e5a" data-q="5 0.2">q<tspan baseline-shift="sub" font-size="8.5">5</tspan>＝0.2</text>
+<text x="294" y="266" font-size="12.5" fill="currentColor">暑い</text>
+<text x="352" y="266" font-size="12.5" fill="currentColor" data-leaf="5 0.2 0.2 0.04">0.2×0.2＝0.04</text>
+<text x="522" y="266" text-anchor="middle" font-size="12.5" fill="currentColor" data-d="5 150">150個</text>
+<line x1="172" y1="290" x2="290" y2="318" stroke="currentColor" data-edge="雨 涼しい"/>
+<text x="223" y="321" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1e8e5a" data-q="6 0.8">q<tspan baseline-shift="sub" font-size="8.5">6</tspan>＝0.8</text>
+<text x="294" y="322" font-size="12.5" fill="currentColor">涼しい</text>
+<text x="352" y="322" font-size="12.5" fill="currentColor" data-leaf="6 0.2 0.8 0.16">0.2×0.8＝0.16</text>
+<text x="522" y="322" text-anchor="middle" font-size="12.5" fill="currentColor" data-d="6 100">100個</text>
+<text x="8" y="352" font-size="11" fill="currentColor">青の数＝天気の確率 p₁〜p₃　緑の数＝その天気のときの気温の確率 q₁〜q₆</text>
+<text x="8" y="368" font-size="11" fill="currentColor">その場合の確率＝枝をたどって確率をかけたもの（乗法定理）。6つの確率の和は 1</text>
+</svg>
+<!--/svg:f031a-->
+</div>
+  <figcaption>図1　仕入れの場面の樹形図（学習用の架空の値）。枝の数は確率、右端は6つの場合のそれぞれの確率と売れる見込みの個数</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題1（6つの場合の確率）</p>
+  <p>イベントの日が「晴れで暑い」確率と「雨で涼しい」確率を求めなさい。また、6つの場合の確率の和が 1 になることを確かめなさい。</p>
+  <div class="step">着眼点：「晴れで暑い」は「晴れ」と「暑い」がともに起こる事象です。\( q_1 \) は晴れたときの確率なので、乗法定理（①）で \( p_1 \) と \( q_1 \) をかけます。</div>
+  <div class="step">ステップ1：「晴れで暑い」確率は \( p_1q_1=0.5\times0.6=0.30 \)。</div>
+  <div class="step">ステップ2：「雨で涼しい」確率は \( p_3q_6=0.2\times0.8=0.16 \)。</div>
+  <div class="step">ステップ3：同じようにして、6つの場合の確率は 0.30、0.20、0.12、0.18、0.04、0.16 です。6つの場合は同時には起こらず（排反）、合わせると起こりうるすべての場合になるので（②）、和は \( 0.30+0.20+0.12+0.18+0.04+0.16=1 \) です。</div>
+  <div class="step">答え：晴れで暑い確率は 0.30、雨で涼しい確率は 0.16。6つの確率の和は 1 になる。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：条件付きの確率をそのまま使う</p><p>「雨で涼しい確率」を \( q_6=0.8 \) とするのは誤りです。0.8 は「雨のとき」という条件のもとでの確率で、雨になること自体の確率 \( p_3=0.2 \) が入っていません。樹形図では、根から葉まで<strong>すべての枝の確率をかけ</strong>ます。足して \( 0.2+0.8=1.0 \) としないようにしましょう。</p></div>
+<div class="box source">
+  <p class="box-title">確率の値はどう決める？（天気予報の降水確率）</p>
+  <p>このページの \( p_1 \)〜\( p_3 \) は学習用に仮定した値です。実際に決めるときは、天気予報や過去の記録を参考にすることが考えられます。気象庁の予報用語では、週間天気予報は「発表日翌日から７日先までの天気、気温などの予報」で、府県週間天気予報は日ごとの天気・降水確率・気温などを伝えるとされています。</p>
+  <p>また、<strong>降水確率</strong>は「予報区内で一定の時間内に降水量にして１mm以上の雨または雪の降る確率（％）の平均値」で、「降水確率30％とは、30％という予報が100回発表されたとき、その内のおよそ30回は１mm以上の降水があるという意味であり、降水量を予報するものではない」と説明されています（気象庁「予報用語 予報の名称に関する用語」、2026年10月2日取得）。同じ予報が出た多くの回のうち、どのくらいの割合で降るかという説明で、数Ａ-019 の頻度確率の見方に近いと考えられます。</p>
+  <p class="small">降水確率は「1mm 以上の雨または雪が降るかどうか」の確率なので、天気を3通りに分けたこのページの雨の確率 \( p_3 \) と同じものではありません。記録の相対度数を確率とみなして判断することは、数Ａ-033 で扱います。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="期待値を求めて案を比べる"><span class="num">4</span>期待値を求めて案を比べる</h2>
+<p>このページでは、店の<strong>利益</strong>を（売上額）−（仕入れの代金）とします。利益は天気と気温（試行の結果）によって値が決まるので、数Ａ-030 の変量にあたります。仕入れの代金は、案A が \( 120\times200=24000 \) 円、案B が \( 120\times300=36000 \) 円、案C が \( 120\times400=48000 \) 円です。利益は天気と気温によって変わるので、確率とあわせて期待値（③）で比べます。</p>
+<div class="box example worked">
+  <p class="box-title">例題2（案B の売上額と利益の期待値）</p>
+  <p>案B（300 個仕入れる）について、売上額の期待値と、利益の期待値を求めなさい。</p>
+  <div class="step">着眼点：まず6つの場合ごとに、売れる数・売上額・利益を表にします。売れる数は「売れる見込み」と「仕入れた 300 個」の小さい方です。</div>
+  <div class="step">ステップ1：表にまとめます。
+  <div class="table-wrap">
+  <table id="t031b">
+    <tr><th>場合</th><th>確率</th><th>売れる数（個）</th><th>売上額（円）</th><th>利益（円）</th></tr>
+    <tr><td>晴れ・暑い</td><td>0.30</td><td>300</td><td>90000</td><td>54000</td></tr>
+    <tr><td>晴れ・涼しい</td><td>0.20</td><td>250</td><td>75000</td><td>39000</td></tr>
+    <tr><td>曇り・暑い</td><td>0.12</td><td>300</td><td>90000</td><td>54000</td></tr>
+    <tr><td>曇り・涼しい</td><td>0.18</td><td>200</td><td>60000</td><td>24000</td></tr>
+    <tr><td>雨・暑い</td><td>0.04</td><td>150</td><td>45000</td><td>9000</td></tr>
+    <tr><td>雨・涼しい</td><td>0.16</td><td>100</td><td>30000</td><td>−6000</td></tr>
+  </table>
+  </div></div>
+  <div class="step">ステップ2：売上額の期待値は、\( 90000\times0.30+75000\times0.20+90000\times0.12+60000\times0.18+45000\times0.04+30000\times0.16 \)<br>\( =27000+15000+10800+10800+1800+4800=70200 \)（円）。</div>
+  <div class="step">ステップ3：利益の期待値は、\( 54000\times0.30+39000\times0.20+54000\times0.12+24000\times0.18+9000\times0.04+(-6000)\times0.16 \)<br>\( =16200+7800+6480+4320+360-960=34200 \)（円）。</div>
+  <div class="step">確かめ：どの場合の利益も、売上額から同じ 36000 円を引いたものです。6つの確率の和は 1 なので、利益の期待値は \( 70200-36000=34200 \)（円）と一致します。</div>
+  <div class="step">答え：売上額の期待値は 70200 円、利益の期待値は 34200 円。</div>
+</div>
+<p>期待値 34200 円は、イベントの日に必ず 34200 円の利益が出るという意味ではありません。実際の利益は6つの場合のどれかの値（−6000 円から 54000 円まで）になります。期待値は、同じ条件のイベントを何回も行ったと考えたときの、1回あたりの利益の平均の見込みと考えることができます。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（3つの案を比べる：導入の問い①の答え）</p>
+  <p>案A・案B・案C の利益の期待値を求め、期待値が最も大きい案を答えなさい。</p>
+  <div class="step">着眼点：例題2と同じように、案ごとに6つの場合の利益を求めます。売れる数は、案A なら「売れる見込み」と 200 個の小さい方、案C なら 400 個の小さい方です。</div>
+  <div class="step">ステップ1：6つの場合の利益を表にまとめます。
+  <div class="table-wrap">
+  <table id="t031c">
+    <tr><th>場合</th><th>確率</th><th>案A（円）</th><th>案B（円）</th><th>案C（円）</th></tr>
+    <tr><td>晴れ・暑い</td><td>0.30</td><td>36000</td><td>54000</td><td>72000</td></tr>
+    <tr><td>晴れ・涼しい</td><td>0.20</td><td>36000</td><td>39000</td><td>27000</td></tr>
+    <tr><td>曇り・暑い</td><td>0.12</td><td>36000</td><td>54000</td><td>42000</td></tr>
+    <tr><td>曇り・涼しい</td><td>0.18</td><td>36000</td><td>24000</td><td>12000</td></tr>
+    <tr><td>雨・暑い</td><td>0.04</td><td>21000</td><td>9000</td><td>−3000</td></tr>
+    <tr><td>雨・涼しい</td><td>0.16</td><td>6000</td><td>−6000</td><td>−18000</td></tr>
+    <tr><th>利益の期待値</th><td></td><td>30600</td><td>34200</td><td>31200</td></tr>
+  </table>
+  </div></div>
+  <div class="step">ステップ2：案A は、晴れ・曇りの4つの場合はどれも 200 個売り切れて 36000 円です。期待値は \( 36000\times(0.30+0.20+0.12+0.18)+21000\times0.04+6000\times0.16=28800+840+960=30600 \)（円）。</div>
+  <div class="step">ステップ3：案C は、\( 72000\times0.30+27000\times0.20+42000\times0.12+12000\times0.18+(-3000)\times0.04+(-18000)\times0.16 \)<br>\( =21600+5400+5040+2160-120-2880=31200 \)（円）。</div>
+  <div class="step">答え：利益の期待値は 案A 30600 円、案B 34200 円、案C 31200 円で、仮定した確率のもとでは<span data-ans="intro1">案B（300 個）の期待値が最も大きい</span>。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：確率を使わずに決める</p><p>① いちばん起こりやすい場合（晴れ・暑い、確率 0.30）だけを見て、そのとき利益が最も大きい案C を選ぶ：ほかの場合（確率の合計 0.70）の利益を無視しています。案C は雨のとき損が大きくなります。<br>② 6つの場合の利益を確率を使わずに平均する（案A 28500 円、案B 29000 円、案C 22000 円）：起こりやすさの違いを無視しています。期待値は、それぞれの利益に<strong>その場合の確率</strong>をかけて足します。<br>③ 期待値を「必ず得られる利益」と考える：1回のイベントの利益は6つの場合のどれかになります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="確率を変えて調べる"><span class="num">5</span>確率の値を変えて期待値の変化を調べる</h2>
+<p>例題3の確率は仮定した値なので、天気予報が変われば期待値も変わります。解説は、図1のような図をかき、確率の値を変えながら売上の期待値の変化や、どの確率が期待値に最も影響があるかを調べることを例に挙げています。ここでは利益の期待値で調べます。</p>
+<h3>晴れの確率を変えると</h3>
+<p>曇りの確率は \( p_2=0.3 \) のままにして、晴れの確率 \( p_1 \) を変えます。雨の確率は \( p_3=1-0.3-p_1=0.7-p_1 \) なので、\( p_1 \) は 0 から 0.7 までの値をとります。\( q_1 \)〜\( q_6 \) は変えません。</p>
+<div class="box example worked">
+  <p class="box-title">例題4（期待値を晴れの確率の式で表す）</p>
+  <p>案B の利益の期待値を \( p_1 \) の式で表しなさい。</p>
+  <div class="step">着眼点：同じ天気の2つの場合をまとめます。晴れの2つの場合の確率は \( 0.6p_1 \)、\( 0.4p_1 \) です（乗法定理）。</div>
+  <div class="step">ステップ1（晴れ）：\( 54000\times0.6p_1+39000\times0.4p_1=(32400+15600)p_1=48000p_1 \)。</div>
+  <div class="step">ステップ2（曇り）：\( 0.3\times(54000\times0.4+24000\times0.6)=0.3\times36000=10800 \)。</div>
+  <div class="step">ステップ3（雨）：\( (0.7-p_1)\times\{9000\times0.2+(-6000)\times0.8\}=(0.7-p_1)\times(-3000)=-2100+3000p_1 \)。</div>
+  <div class="step">ステップ4：合計すると \( 48000p_1+10800-2100+3000p_1=51000p_1+8700 \)。\( p_1=0.5 \) を代入すると \( 25500+8700=34200 \) で、例題2の答えと一致します。</div>
+  <div class="step">答え：案B の利益の期待値は \( 51000p_1+8700 \)（円）。同じようにすると、案A は \( 27000p_1+17100 \)（円）、案C は \( 69000p_1-3300 \)（円）。</div>
+</div>
+<p>どの案の期待値も \( p_1 \) の一次関数なので、グラフは直線になります（④）。</p>
+<figure>
+<div class="fig-scroll">
+<!--svg:f031b-->
+<svg viewBox="0 0 560 330" width="560" role="img" aria-label="晴れの確率 p1（曇りの確率は 0.3 のまま、雨の確率は 0.7−p1）を横軸、利益の期待値を縦軸にとったグラフ。案A・B・C の期待値はどれも直線になる。p1 が 0.35 より小さいと A、0.35 から 2/3 の間は B、2/3 より大きいと C の期待値が最も大きい" data-frame="78 58 536 272 0 7/10 -6000 48000">
+<line x1="78" y1="272" x2="78" y2="277" stroke="currentColor"/>
+<text x="78" y="290" text-anchor="middle" font-size="11" fill="currentColor">0</text>
+<line x1="143.4" y1="272" x2="143.4" y2="277" stroke="currentColor"/>
+<text x="143.4" y="290" text-anchor="middle" font-size="11" fill="currentColor">0.1</text>
+<line x1="208.9" y1="272" x2="208.9" y2="277" stroke="currentColor"/>
+<text x="208.9" y="290" text-anchor="middle" font-size="11" fill="currentColor">0.2</text>
+<line x1="274.3" y1="272" x2="274.3" y2="277" stroke="currentColor"/>
+<text x="274.3" y="290" text-anchor="middle" font-size="11" fill="currentColor">0.3</text>
+<line x1="339.7" y1="272" x2="339.7" y2="277" stroke="currentColor"/>
+<text x="339.7" y="290" text-anchor="middle" font-size="11" fill="currentColor">0.4</text>
+<line x1="405.1" y1="272" x2="405.1" y2="277" stroke="currentColor"/>
+<text x="405.1" y="290" text-anchor="middle" font-size="11" fill="currentColor">0.5</text>
+<line x1="470.6" y1="272" x2="470.6" y2="277" stroke="currentColor"/>
+<text x="470.6" y="290" text-anchor="middle" font-size="11" fill="currentColor">0.6</text>
+<line x1="536" y1="272" x2="536" y2="277" stroke="currentColor"/>
+<text x="536" y="290" text-anchor="middle" font-size="11" fill="currentColor">0.7</text>
+<line x1="73" y1="248.2" x2="536" y2="248.2" stroke="#8a99a8" stroke-opacity="0.35" stroke-width="0.8"/>
+<text x="70" y="252.2" text-anchor="end" font-size="11" fill="currentColor">0</text>
+<line x1="73" y1="208.6" x2="536" y2="208.6" stroke="#8a99a8" stroke-opacity="0.35" stroke-width="0.8"/>
+<text x="70" y="212.6" text-anchor="end" font-size="11" fill="currentColor">10000</text>
+<line x1="73" y1="169" x2="536" y2="169" stroke="#8a99a8" stroke-opacity="0.35" stroke-width="0.8"/>
+<text x="70" y="173" text-anchor="end" font-size="11" fill="currentColor">20000</text>
+<line x1="73" y1="129.3" x2="536" y2="129.3" stroke="#8a99a8" stroke-opacity="0.35" stroke-width="0.8"/>
+<text x="70" y="133.3" text-anchor="end" font-size="11" fill="currentColor">30000</text>
+<line x1="73" y1="89.7" x2="536" y2="89.7" stroke="#8a99a8" stroke-opacity="0.35" stroke-width="0.8"/>
+<text x="70" y="93.7" text-anchor="end" font-size="11" fill="currentColor">40000</text>
+<line x1="78" y1="272" x2="546" y2="272" stroke="currentColor"/>
+<line x1="78" y1="272" x2="78" y2="54" stroke="currentColor"/>
+<text x="546" y="322" text-anchor="end" font-size="12" fill="currentColor">晴れの確率 p₁</text>
+<text x="8" y="46" text-anchor="start" font-size="12" fill="currentColor">利益の期待値（円）</text>
+<line x1="307" y1="143" x2="307" y2="272" stroke="#8a99a8" stroke-dasharray="3 3"/>
+<text x="307" y="266" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" data-cross="7/20">0.35</text>
+<line x1="514.2" y1="79" x2="514.2" y2="272" stroke="#8a99a8" stroke-dasharray="3 3"/>
+<text x="514.2" y="266" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" data-cross="2/3">2/3</text>
+<line x1="405.1" y1="58" x2="405.1" y2="272" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="2 3"/>
+<text x="409.1" y="66" font-size="11" fill="#c0392b">仮定した値 p₁＝0.5</text>
+<line x1="78" y1="180.5" x2="536" y2="105.6" stroke="#1f5fbf" stroke-width="2.6" data-line="A 27000 17100"/>
+<text x="84" y="174.5" font-size="12" font-weight="700" fill="#1f5fbf">A</text>
+<circle cx="405.1" cy="127" r="4" fill="#1f5fbf" data-xy="1/2 30600"/>
+<line x1="78" y1="213.7" x2="536" y2="72.3" stroke="#1e8e5a" stroke-width="2.6" stroke-dasharray="7 4" data-line="B 51000 8700"/>
+<text x="84" y="207.7" font-size="12" font-weight="700" fill="#1e8e5a">B</text>
+<circle cx="405.1" cy="112.7" r="4" fill="#1e8e5a" data-xy="1/2 34200"/>
+<line x1="78" y1="261.3" x2="536" y2="69.9" stroke="#b7791f" stroke-width="2.6" stroke-dasharray="10 3 2 3" data-line="C 69000 -3300"/>
+<text x="84" y="255.3" font-size="12" font-weight="700" fill="#b7791f">C</text>
+<circle cx="405.1" cy="124.6" r="4" fill="#b7791f" data-xy="1/2 31200"/>
+<circle cx="307" cy="143" r="3.5" fill="#8a99a8" data-xy="7/20 26550"/>
+<circle cx="514.2" cy="79" r="3.5" fill="#8a99a8" data-xy="2/3 42700"/>
+<line x1="86" y1="16" x2="114" y2="16" stroke="#1f5fbf" stroke-width="2.6"/>
+<text x="120" y="20" font-size="12" fill="currentColor">案A（200個）</text>
+<line x1="236" y1="16" x2="264" y2="16" stroke="#1e8e5a" stroke-width="2.6" stroke-dasharray="7 4"/>
+<text x="270" y="20" font-size="12" fill="currentColor">案B（300個）</text>
+<line x1="386" y1="16" x2="414" y2="16" stroke="#b7791f" stroke-width="2.6" stroke-dasharray="10 3 2 3"/>
+<text x="420" y="20" font-size="12" fill="currentColor">案C（400個）</text>
+<text x="192.5" y="304" text-anchor="middle" font-size="11" fill="currentColor" data-region="A が最大">A が最大</text>
+<text x="410.6" y="304" text-anchor="middle" font-size="11" fill="currentColor" data-region="B が最大">B が最大</text>
+<text x="525.1" y="304" text-anchor="middle" font-size="11" fill="currentColor" data-region="C">C</text>
+</svg>
+<!--/svg:f031b-->
+</div>
+  <figcaption>図2　晴れの確率 \( p_1 \) と利益の期待値（曇りの確率は 0.3、\( q_1 \)〜\( q_6 \) は表の値のまま）。灰色の●は2つの案の期待値が等しくなる点、赤の点線は仮定した値 \( p_1=0.5 \)</figcaption>
+</figure>
+<p>2つの案の期待値が等しくなる \( p_1 \) は、一次方程式を解いて求めます。</p>
+<ul>
+  <li>案A と案B：\( 27000p_1+17100=51000p_1+8700 \) より \( 24000p_1=8400 \)、\( p_1=0.35 \)。</li>
+  <li>案B と案C：\( 51000p_1+8700=69000p_1-3300 \) より \( 18000p_1=12000 \)、\( p_1=\dfrac{2}{3} \)。</li>
+</ul>
+<p>したがって、<span data-ans="intro2">\( p_1 \) が 0.35 より小さいと案A、0.35 より大きく \( \dfrac{2}{3} \) より小さいと案B、\( \dfrac{2}{3} \) より大きいと案C の期待値が最も大きくなり、天気予報が変わると選ぶ案が変わることがあります</span>（導入の問い②の答え）。\( p_1=0.35 \) のときは案A と案B、\( p_1=\dfrac{2}{3} \) のときは案B と案C の期待値が等しくなります。傾きが大きい案C ほど、晴れの確率の変化の影響を大きく受けます。</p>
+
+<h3>どの確率が期待値に大きく影響するか</h3>
+<p>案B について、確率を 0.1 ずつ変えたときの利益の期待値の変化を調べると、次のようになります（ほかの確率はもとの値のまま）。</p>
+<div class="table-wrap">
+<table id="t031s">
+  <tr><th>確率の変え方</th><th>期待値の変化（円）</th></tr>
+  <tr><td>雨の確率 \( p_3 \) を 0.1 減らし、晴れの確率 \( p_1 \) を 0.1 増やす</td><td>＋5100</td></tr>
+  <tr><td>雨の確率 \( p_3 \) を 0.1 減らし、曇りの確率 \( p_2 \) を 0.1 増やす</td><td>＋3900</td></tr>
+  <tr><td>曇りの確率 \( p_2 \) を 0.1 減らし、晴れの確率 \( p_1 \) を 0.1 増やす</td><td>＋1200</td></tr>
+  <tr><td>晴れのとき暑くなる確率 \( q_1 \) を 0.1 増やす（\( q_2 \) は 0.1 減る）</td><td>＋750</td></tr>
+  <tr><td>曇りのとき暑くなる確率 \( q_3 \) を 0.1 増やす（\( q_4 \) は 0.1 減る）</td><td>＋900</td></tr>
+  <tr><td>雨のとき暑くなる確率 \( q_5 \) を 0.1 増やす（\( q_6 \) は 0.1 減る）</td><td>＋300</td></tr>
+</table>
+</div>
+<p>たとえば \( q_1 \) を 0.1 増やすと、確率 \( 0.5\times0.1=0.05 \) の分が「晴れ・涼しい（39000 円）」から「晴れ・暑い（54000 円）」に移るので、期待値は \( 0.05\times(54000-39000)=750 \)（円）増えます。雨の確率を晴れに 0.1 移すと、例題4の傾きのとおり \( 51000\times0.1=5100 \)（円）増えます。</p>
+<p>この例では、天気の確率（とくに晴れと雨の確率）の方が、気温の確率 \( q \) よりも期待値に大きく影響します。\( q \) を変えたときの変化には、その天気の確率 \( p \)（1 より小さい数）がかかるので、小さくなりやすいからです。</p>
+
+<h3>確率をいろいろ変えて調べよう</h3>
+<p>下の部品で、天気の確率 \( p_1,\ p_2 \)（\( p_3=1-p_1-p_2 \)）と、それぞれの天気のときに暑くなる確率 \( q_1,\ q_3,\ q_5 \)（\( q_2=1-q_1 \) など）を変えてみましょう。グラフは、\( p_2 \) と \( q \) を今の値にしたまま、\( p_1 \) だけを 0 から \( 1-p_2 \) まで変えたときの3つの案の期待値です。</p>
+<div class="widget" id="w31">
+  <div class="w-row">
+    <span><label for="w31-p1">晴れ \( p_1 \)：</label><input type="range" id="w31-p1" min="0" max="20" step="1" value="10"> <output id="w31-p1v" for="w31-p1">0.50</output></span>
+    <span><label for="w31-p2">曇り \( p_2 \)：</label><input type="range" id="w31-p2" min="0" max="20" step="1" value="6"> <output id="w31-p2v" for="w31-p2">0.30</output></span>
+    <span>雨 \( p_3 \)：<output id="w31-p3v">0.20</output></span>
+  </div>
+  <div class="w-row">
+    <span><label for="w31-q1">晴れのとき暑い \( q_1 \)：</label><input type="range" id="w31-q1" min="0" max="10" step="1" value="6"> <output id="w31-q1v" for="w31-q1">0.6</output></span>
+    <span><label for="w31-q3">曇りのとき暑い \( q_3 \)：</label><input type="range" id="w31-q3" min="0" max="10" step="1" value="4"> <output id="w31-q3v" for="w31-q3">0.4</output></span>
+    <span><label for="w31-q5">雨のとき暑い \( q_5 \)：</label><input type="range" id="w31-q5" min="0" max="10" step="1" value="2"> <output id="w31-q5v" for="w31-q5">0.2</output></span>
+  </div>
+  <div class="fig-scroll"><svg id="w31-svg" viewBox="0 0 520 300" width="520" role="img" aria-label="横軸を晴れの確率、縦軸を利益の期待値とし、案A・B・C の期待値の直線と、今の確率での期待値の点を示すグラフ"></svg></div>
+  <p class="w-out" id="w31-out" aria-live="polite">晴れ 0.50、曇り 0.30、雨 0.20、q₁＝0.6、q₃＝0.4、q₅＝0.2 のとき、利益の期待値は 案A 30600 円、案B 34200 円、案C 31200 円で、最も大きいのは 案B。損をする確率は 案A 0、案B 0.16、案C 0.2。</p>
+  <p class="small">\( p_1,\ p_2 \) は 0.05 刻み、\( q \) は 0.1 刻みです。\( p_1+p_2 \) が 1 をこえないよう、曇りの確率 \( p_2 \) の上限は \( 1-p_1 \) に変わります。グラフの灰色の部分は \( p_1+p_2 \) が 1 をこえる範囲で、直線をかきません。売れる見込みの個数・売値・仕入れ値は変えません。</p>
+</div>
+<div class="box think"><p class="box-title">確かめよう</p><p>① \( p_2=0.3 \) のまま \( p_1 \) を 0.30 と 0.40 にすると、最も期待値が大きい案はどう変わりますか。<br>② \( q_1 \) を 0 から 1 まで動かしたときと、\( p_1 \) を 0.3 から 0.7 まで動かしたときで、案B の期待値の変化の大きさを比べよう。<br>③ 案C の期待値が最も大きくなるのは、どんな予報のときですか。</p></div>
+<p>①は図2のとおり、0.30 では案A、0.40 では案B が最も大きくなります。②は、\( q_1 \) を 0 から 1 まで動かすと案B の期待値は 7500 円変わり（\( 0.5\times15000 \)）、\( p_1 \) を 0.3 から 0.7 まで動かすと 20400 円変わります（\( 51000\times0.4 \)）。③は、晴れの確率が高く雨の確率が低い予報のときです。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="仕入れ量を判断し、振り返る"><span class="num">6</span>仕入れ量を判断し、振り返る</h2>
+<p>期待値を比べた結果と、確率を変えて調べた結果を合わせて、仕入れ量を判断します。判断は、何を仮定して、どんな値を比べたのかという<strong>根拠</strong>を添えて述べます。</p>
+<div class="box point"><p class="box-title">判断の述べ方（このページでの型）</p><p>「（仮定した確率と売れる見込み）のもとで、利益の期待値は（案ごとの値）で、（案）が最も大きい。さらに（確率を変えて調べた結果）。したがって（案）を選ぶ。」</p></div>
+<div class="box example worked">
+  <p class="box-title">例題5（判断を述べる）</p>
+  <p>例題3・例題4の結果をもとに、仕入れ量の判断とその根拠を述べなさい。</p>
+  <div class="step">着眼点：期待値の比較（例題3）と、晴れの確率を変えたときの結果（例題4）の両方を根拠にします。</div>
+  <div class="step">答え：「晴れ 0.5・曇り 0.3・雨 0.2 などの仮定のもとで、利益の期待値は案A 30600 円、案B 34200 円、案C 31200 円で、案B が最も大きい。曇りの確率が 0.3 のままなら、晴れの確率が 0.35 から \( \dfrac{2}{3} \) までの間では案B の期待値が最も大きいので、予報が多少変わっても案B がよいと考えられる。したがって、300 個仕入れる。」</div>
+</div>
+<h3>判断を振り返る</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>観点</th><th>考えること</th></tr>
+  <tr><td>① 仮定した値</td><td>確率も売れる見込みも見積もった値。新しい予報や記録が出たら、計算し直す（イベントの前日に予報が変われば、図2や部品で確かめる）。</td></tr>
+  <tr><td>② 期待値の意味</td><td>期待値は平均の見込みで、1回のイベントの利益は6つの場合のどれかになる。案B でも「雨・涼しい」なら −6000 円になる。</td></tr>
+  <tr><td>③ 期待値以外の観点</td><td>損をする（利益が負になる）確率は、案A が 0、案B が 0.16（雨・涼しい）、案C が 0.20（雨の2つの場合）。損を避けたい事情があれば、期待値が少し小さくても案A を選ぶという考え方もある。</td></tr>
+  <tr><td>④ 単純化</td><td>天気を3通り、気温を2通りに分け、売れ残りを 0 円とした。分け方や売れ残りの扱いを変えると、結果も変わりうる。</td></tr>
+</table>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：判断の根拠を言い切りすぎる</p><p>「案B なら必ずもうかる」「案B が正しい」とは言えません。言えるのは「仮定した確率のもとで、利益の期待値が最も大きいのは案B」ということです。確率や見込みの値が違えば、判断も変わりえます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>期待値</dt><dd>変量のとる値と、その値をとる確率の積の和（「値×確率」の和。数Ａ-030）。1回あたりの平均の見込みを表すと考えられる。この時間は利益の期待値で案を比べた。</dd>
+    <dt>意思決定</dt><dd>いくつかの案の中から、根拠をもとに1つを選ぶこと（このページでの説明）。学習指導要領は「期待値を意思決定に活用」することを求めている。</dd>
+    <dt>仮定（単純化）</dt><dd>場面を計算できる形にするために置く決めごと（例：天気を3通りに分ける、確率を 0.5 とする）。判断は仮定のもとで成り立つ。</dd>
+    <dt>条件付き確率</dt><dd>事象 \( A \) が起こったときに事象 \( B \) が起こる確率 \( P_A(B) \)（数Ａ-028）。この時間の \( q_1 \)〜\( q_6 \) は、天気が決まったときの気温の条件付き確率。</dd>
+    <dt>確率の乗法定理</dt><dd>\( P(A\cap B)=P(A)P_A(B) \)（数Ａ-029）。樹形図の各場合の確率は \( p\times q \)。</dd>
+    <dt>利益</dt><dd>このページでは（売上額）−（仕入れの代金）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>天気 → 気温の樹形図に確率を書き込み、枝をたどって確率をかけると（乗法定理）、それぞれの場合の確率になる。6つの場合の確率の和は 1（O1）。</li>
+    <li>案ごとに6つの場合の利益を表にし、（利益）×（その場合の確率）を足して期待値を求めて比べる。この例の仮定では案B（34200 円）が最大（O2）。</li>
+    <li>1つの確率を変えると期待値は一次関数として変わる。選ぶ案が変わる確率の値（0.35、\( \dfrac{2}{3} \)）や、影響の大きい確率（この例では晴れと雨の確率）を調べられる（O3）。</li>
+    <li>判断は「仮定のもとで期待値が最も大きい」と根拠を添えて述べ、仮定した値・期待値の意味・損をする確率なども振り返る（O4）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">樹形図の各場合の確率</span>$$ (\text{天気の確率})\times(\text{その天気のときの気温の確率})=p\times q $$</div>
+  <div><span class="f-name">期待値</span>$$ (\text{値})\times(\text{確率})\ \text{をすべての場合について足した和} $$</div>
+  <div><span class="f-name">利益（このページ）</span>$$ (\text{売上額})-(\text{仕入れの代金}) $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。場面の問題を中心に出題します。各問に対応するねらい（O番号）を示す。問1〜問5の数値は、問ごとに断りのない限り、学習用の架空の値です。数を入力する問題は、単位を付けずに数だけを入力してもかまいません。</p>
+<p>問1〜問4は次の場面です。Y町の夏祭りでかき氷を売る店があります（学習用に作成した架空の場面）。当日の天気を晴れ・雨の2通り、気温を暑い・涼しいの2通りに分けて、晴れる確率を 0.6、雨の確率を 0.4、晴れたときに暑くなる確率を 0.7、雨のときに暑くなる確率を 0.25 と仮定します。</p>
+
+<div class="q" data-type="input" id="q1" data-accept="0.1|1/10|0.10">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>当日が「雨で暑い」確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 0.1。雨のときに暑くなる確率 0.25 は「雨のとき」という条件付きの確率なので、雨の確率 0.4 をかけて \( 0.4\times0.25=0.1 \) です（乗法定理）。0.25 と答えた場合は、雨の確率をかけ忘れています。0.65 と答えた場合は、確率を足しています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>かき氷を多めに仕入れる案Q の利益は、晴れ・暑いで 30000 円、晴れ・涼しいで 15000 円、雨・暑いで 12000 円、雨・涼しいで −6000 円と見積もられています。4つの場合の確率は、晴れ・暑い 0.42、晴れ・涼しい 0.18、雨・暑い 0.1、雨・涼しい 0.3 です。案Q の利益の期待値はどれですか。</p>
+  <div class="choices">
+    <button>12750 円</button>
+    <button>18300 円</button>
+    <button data-correct="true">14700 円</button>
+    <button>30000 円</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 30000\times0.42+15000\times0.18+12000\times0.1+(-6000)\times0.3=12600+2700+1200-1800=14700 \)（円）。12750 円は4つの利益を確率を使わずに平均した値（\( 51000\div4 \)）、18300 円は損失の −6000 円を +6000 円として計算した値、30000 円はいちばん起こりやすい場合（晴れ・暑い）の利益です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>少なめに仕入れる案P の利益は、晴れ・暑いで 15000 円、晴れ・涼しいで 15000 円、雨・暑いで 15000 円、雨・涼しいで 7000 円と見積もられています。問2の案Q と、利益の期待値で比べた結果として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>案P の方が 250 円大きい。</button>
+    <button data-correct="true">案Q の方が 2100 円大きい。</button>
+    <button>案Q の方が 15000 円大きい。</button>
+    <button>案P の方が大きい。案P は損をする場合がないから。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">案P の期待値は \( 15000\times(0.42+0.18+0.1)+7000\times0.3=10500+2100=12600 \)（円）で、案Q の 14700 円より 2100 円小さくなります。「案P が 250 円大きい」は、4つの利益を確率を使わずに平均して比べた結果（案P 13000 円、案Q 12750 円）です。「案Q が 15000 円大きい」は、晴れ・暑いの利益（30000 円と 15000 円）だけで比べています。損をする場合があるかどうかは期待値とは別の観点で、損をしないからといって期待値が大きいとは限りません。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="0.5|1/2|0.50">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>晴れる確率を \( p \)（雨の確率は \( 1-p \)）とし、暑くなる確率は問題文の値のままとします。このとき利益の期待値は、案Q が \( 27000p-1500 \)（円）、案P が \( 6000p+9000 \)（円）になります。2つの案の期待値が等しくなる \( p \) の値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 0.5。\( 27000p-1500=6000p+9000 \) より \( 21000p=10500 \)、\( p=0.5 \)。\( p \) が 0.5 より大きいと案Q、小さいと案P の期待値が大きくなります（\( p=0.6 \) では問3のとおり案Q）。案Q の式は、晴れの2つの場合が \( (30000\times0.7+15000\times0.3)p=25500p \)、雨の2つの場合が \( \{12000\times0.25+(-6000)\times0.75\}(1-p)=-1500(1-p) \) で、合わせて \( 27000p-1500 \) です。\( \dfrac{5}{14} \)（およそ 0.36）と答えた場合は、左辺の \( -1500 \) を右辺に移すときに符号を変え忘れて、\( 21000p=9000-1500=7500 \) としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>本文の場面（図1の確率と売れる見込み）で、案C を選ぶとします。次の確率の変え方のうち、案C の利益の期待値が最も大きく増えるものはどれですか（ほかの確率はもとの値のまま）。</p>
+  <div class="choices">
+    <button>晴れのとき暑くなる確率 \( q_1 \) を 0.1 増やす</button>
+    <button>曇りのとき暑くなる確率 \( q_3 \) を 0.1 増やす</button>
+    <button>雨のとき暑くなる確率 \( q_5 \) を 0.1 増やす</button>
+    <button data-correct="true">雨の確率 \( p_3 \) を 0.1 減らし、晴れの確率 \( p_1 \) を 0.1 増やす</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">案C の期待値は \( 69000p_1-3300 \)（例題4）なので、雨から晴れへ 0.1 移すと \( 69000\times0.1=6900 \)（円）増えます。\( q_1 \) を 0.1 増やすと、確率 0.05 の分が晴れ・涼しい（27000 円）から晴れ・暑い（72000 円）に移り \( 0.05\times45000=2250 \)（円）、\( q_3 \) は \( 0.03\times(42000-12000)=900 \)（円）、\( q_5 \) は \( 0.02\times\{-3000-(-18000)\}=300 \)（円）増えるだけです。気温の確率の変化には天気の確率がかかるので、影響が小さくなります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問6</span><span class="q-obj">O4</span></div>
+  <p>本文の場面について、太郎さんと花子さんが話しています。</p>
+  <p>太郎：「晴れて暑い場合がいちばん起こりやすいし、そのとき案C は 72000 円ももうかるよ。案C にしよう。」<br>花子：「でも、雨のときのことも考えないといけないよね。」</p>
+  <p>本文の仮定のもとで、判断とその根拠として最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">利益の期待値は案B が 34200 円で最も大きい。曇りの確率が 0.3 のままなら、晴れの確率が 0.35 から 2/3 の間は案B が最大なので、予報が多少変わっても案B がよいと考えられる。</button>
+    <button>晴れ・暑いの確率 0.30 が6つの場合の中で最も大きく、そのとき利益が最も大きいのは案C（72000 円）なので、案C の期待値が最も大きい。</button>
+    <button>利益の期待値は案B が 34200 円で最も大きいので、案B を選べば、イベントの日の利益は必ず 34200 円になる。</button>
+    <button>期待値は確率によらず決まるので、天気予報が変わっても計算し直す必要はなく、いつでも案B を選べばよい。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">期待値で比べると案B が最大で、晴れの確率を変えて調べた結果も合わせて根拠にしています。案C の期待値は 31200 円で、晴れ・暑い以外の場合（確率 0.70）では案C の利益は小さくなり、雨では損になります。期待値は平均の見込みで、1回の利益は6つの場合のどれかになるので「必ず 34200 円」とは言えません。期待値は確率を使って計算するので、予報（確率）が変われば変わります。<br><span class="small">この会話文の問題は練習用に作成したもので、実際の入試の出題形式を示すものではありません。</span></div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O2・O3</span></div>
+  <p>本文の場面で、イベントの前日に予報が変わり、晴れ 0.7、曇り 0.2、雨 0.1 と仮定し直すことにしました（\( q_1 \)〜\( q_6 \) と売れる見込みは変わりません）。利益の期待値が最も大きい案と、その期待値はどれですか。</p>
+  <div class="choices">
+    <button>案C、45000 円</button>
+    <button>案B、29000 円</button>
+    <button data-correct="true">案C、41100 円</button>
+    <button>案A、33300 円</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">天気ごとにまとめると、案C は晴れ \( 72000\times0.6+27000\times0.4=54000 \)、曇り \( 42000\times0.4+12000\times0.6=24000 \)、雨 \( (-3000)\times0.2+(-18000)\times0.8=-15000 \) なので、\( 54000\times0.7+24000\times0.2+(-15000)\times0.1=41100 \)（円）。同じように案B は \( 48000\times0.7+36000\times0.2+(-3000)\times0.1=40500 \)、案A は \( 36000\times0.7+36000\times0.2+9000\times0.1=33300 \) で、案C が最大です。45000 円は、曇りの確率を 0.3 のままにした図2のグラフを \( p_1=0.7 \)（雨の確率 0）で読んだ値です。29000 円は案B の6つの利益を確率を使わずに平均した値、33300 円は損をしない案A の期待値で、最大ではありません。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2・O4</span></div>
+  <p>本文の場面で、予報が「晴れ 0.2、曇り 0.3、雨 0.5」に変わったとします（\( q_1 \)〜\( q_6 \) と売れる見込みは変わりません）。案A・案B・案C の利益の期待値を求め、どの案を選ぶかを、期待値と損をする確率を根拠にして説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　天気ごとにまとめた値（案A は晴れ 36000・曇り 36000・雨 9000、案B は 48000・36000・−3000、案C は 54000・24000・−15000）を使うと、利益の期待値は 案A が \( 36000\times0.2+36000\times0.3+9000\times0.5=22500 \)（円）、案B が \( 48000\times0.2+36000\times0.3+(-3000)\times0.5=18900 \)（円）、案C が \( 54000\times0.2+24000\times0.3+(-15000)\times0.5=10500 \)（円）で、案A が最も大きい。損をする確率は、案A が 0、案B が \( 0.5\times0.8=0.4 \)、案C が 0.5 である。期待値でも損をする確率でも案A がよいので、この仮定のもとでは案A（200 個）を選ぶ。</p>
+    <p><strong>採点の観点</strong>　① 3つの案の期待値を、各場合の確率（\( p\times q \)）と利益から正しく求めている。② 期待値を比べて案を選んでいる。③ 損をする確率など期待値以外の根拠にも触れ、仮定のもとでの判断であることが分かる書き方になっている。</p>
+  </div>
+  <div class="explain">晴れの確率 0.2 は、図2で案A が最大になる範囲（0.35 より小さい）に入っています（曇りの確率は 0.3 のまま）。雨が多い予報では、多く仕入れる案ほど売れ残りによる損が大きくなります。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のイ(ウ)「確率の性質などに基づいて事象の起こりやすさを判断したり，期待値を意思決定に活用したりすること」に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。場面に仮定を置いて確率と期待値で表し、結果を振り返るこの時間の流れは、こうした過程の練習になります。</p>
+  <p class="small">問2〜問8は日常の場面を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">面積比による確率と期待値（数Ａ-032）</p>
+  <p>次の時間は、ルーレットで1等・2等・3等が出る確率を面積比で考え、各賞の賞金を決めて期待値を計算し、賞金の設定が妥当かを判断します。この時間と同じように、期待値を判断の根拠に使います。</p>
+  <p>この時間では、記録の相対度数を確率とみなして判断すること（数Ａ-033）は扱っていません。また、期待値を記号で表すことや、値のばらつきを分散などで調べることは、数学Ｂ「統計的な推測」で学びます。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-030　期待値</div>
+  <div><span class="label">次の時間</span>数Ａ-032　面積比による確率と期待値</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-031「期待値を用いた意思決定」（活用。学習指導要領 数学Ａ (2)イ(ウ)、解説 p.94-95）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率 イ(ウ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.94-95「確率の性質などに基づいて事象の起こりやすさを判断したり，期待値を意思決定に活用したりすること」（アイスクリームの仕入れの例、\( p_1 \)〜\( p_3 \)・\( q_1 \)〜\( q_6 \) の値を変えて売上の期待値の変化や影響の大きい確率を調べる例）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>気象庁「予報用語 予報の名称に関する用語」（降水確率、週間天気予報、府県週間天気予報）https://www.jma.go.jp/jma/kishou/know/yougo_hp/yoho.html（2026年10月2日取得）</li>
+    <li>教科書編修趣意書 数学Ａ（数研出版 数Ａ104-902：身近な確率の例としての天気予報の降水確率、期待値を用いて損得などを判断する場面。東京書籍 数Ａ002-903：期待値を用いた意思決定の題材。文部科学省公開）https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「期待値」（結果が不確実な状況でどの選択が有利かを判断する基準として期待値を用いること）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題はこのページのために作成したものです（出典を示したものを除く）。X市・Y町のイベント、天気と気温の確率、売れる見込みの個数、売値・仕入れ値、利益の見積もりは、すべて学習用に作成した架空のものです。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var DEMAND = [400, 250, 300, 200, 150, 100];
+  var PRICE = 300, COST = 120;
+  var PLANS = [
+    { name: "A", n: 200, col: "#1f5fbf", dash: "" },
+    { name: "B", n: 300, col: "#1e8e5a", dash: "7 4" },
+    { name: "C", n: 400, col: "#b7791f", dash: "10 3 2 3" }
+  ];
+  var ids = ["w31-p1", "w31-p2", "w31-q1", "w31-q3", "w31-q5"];
+  var el = {};
+  for (var i = 0; i < ids.length; i++) {
+    el[ids[i]] = document.getElementById(ids[i]);
+    if (!el[ids[i]]) return;
+  }
+  var svg = document.getElementById("w31-svg");
+  var out = document.getElementById("w31-out");
+  if (!svg || !out) return;
+  var L = 66, R = 500, T = 36, B = 250, YMIN = -20000, YMAX = 75000;
+  function X(p) { return L + p * (R - L); }
+  function Y(v) { return B - (v - YMIN) / (YMAX - YMIN) * (B - T); }
+  function r1(v) { return Math.round(v * 10) / 10; }
+  function profit(n, d) { return PRICE * Math.min(n, d) - COST * n; }
+  function d2(k) { var s = String(k * 5); while (s.length < 3) s = "0" + s; return s.slice(0, -2) + "." + s.slice(-2); }
+  function d1(k) { return k === 10 ? "1.0" : "0." + k; }
+  function dec200(k) {
+    var s = String(k * 5);
+    while (s.length < 4) s = "0" + s;
+    var t = s.slice(0, -3) + "." + s.slice(-3);
+    t = t.replace(/0+$/, "").replace(/\.$/, "");
+    return t;
+  }
+  function yen(v) { return v < 0 ? "−" + String(-v) : String(v); }
+  function intOf(id) { return parseInt(el[id].value, 10); }
+  function draw() {
+    var p1 = intOf("w31-p1");
+    el["w31-p2"].max = String(20 - p1);
+    var p2 = Math.min(intOf("w31-p2"), 20 - p1);
+    el["w31-p2"].value = String(p2);
+    var p3 = 20 - p1 - p2;
+    var q = [intOf("w31-q1"), intOf("w31-q3"), intOf("w31-q5")];
+    var qq = [q[0], 10 - q[0], q[1], 10 - q[1], q[2], 10 - q[2]];
+    var pp = [p1, p2, p3];
+    document.getElementById("w31-p1v").textContent = d2(p1);
+    document.getElementById("w31-p2v").textContent = d2(p2);
+    document.getElementById("w31-p3v").textContent = d2(p3);
+    document.getElementById("w31-q1v").textContent = d1(q[0]);
+    document.getElementById("w31-q3v").textContent = d1(q[1]);
+    document.getElementById("w31-q5v").textContent = d1(q[2]);
+    var pmax = (20 - p2) / 20;
+    var h = [];
+    h.push('<rect x="' + L + '" y="' + T + '" width="' + (R - L) + '" height="' + (B - T) + '" fill="none" stroke="currentColor" stroke-opacity="0.3"/>');
+    if (pmax < 1) {
+      h.push('<rect x="' + r1(X(pmax)) + '" y="' + T + '" width="' + r1(R - X(pmax)) + '" height="' + (B - T) + '" fill="#8a99a8" fill-opacity="0.22" data-off="' + pmax + '"/>');
+    }
+    var k, v;
+    for (k = 0; k <= 10; k += 2) {
+      h.push('<line x1="' + r1(X(k / 10)) + '" y1="' + B + '" x2="' + r1(X(k / 10)) + '" y2="' + (B + 5) + '" stroke="currentColor"/>');
+      h.push('<text x="' + r1(X(k / 10)) + '" y="' + (B + 18) + '" text-anchor="middle" font-size="11" fill="currentColor">' + (k === 0 ? "0" : (k === 10 ? "1" : "0." + k)) + '</text>');
+    }
+    for (v = -20000; v <= 60000; v += 20000) {
+      h.push('<line x1="' + (L - 4) + '" y1="' + r1(Y(v)) + '" x2="' + R + '" y2="' + r1(Y(v)) + '" stroke="#8a99a8" stroke-opacity="' + (v === 0 ? 0.9 : 0.35) + '" stroke-width="' + (v === 0 ? 1.2 : 0.8) + '"/>');
+      h.push('<text x="' + (L - 7) + '" y="' + r1(Y(v) + 4) + '" text-anchor="end" font-size="11" fill="currentColor">' + yen(v) + '</text>');
+    }
+    h.push('<text x="' + R + '" y="' + (B + 36) + '" text-anchor="end" font-size="12" fill="currentColor">晴れの確率 p₁</text>');
+    h.push('<text x="4" y="' + (T - 22) + '" font-size="12" fill="currentColor">利益の期待値（円）</text>');
+    var res = [];
+    for (var j = 0; j < PLANS.length; j++) {
+      var pl = PLANS[j];
+      var pr = DEMAND.map(function (d) { return profit(pl.n, d); });
+      var w = [0, 0, 0];
+      for (var t = 0; t < 3; t++) w[t] = qq[2 * t] * pr[2 * t] + qq[2 * t + 1] * pr[2 * t + 1];
+      var e = (p1 * w[0] + p2 * w[1] + p3 * w[2]) / 200;
+      var e0 = (p2 * w[1] + (20 - p2) * w[2]) / 200;
+      var e1 = ((20 - p2) * w[0] + p2 * w[1]) / 200;
+      var loss = 0;
+      for (var s = 0; s < 6; s++) if (pr[s] < 0) loss += pp[Math.floor(s / 2)] * qq[s];
+      res.push({ name: pl.name, e: e, loss: loss });
+      var da = pl.dash ? ' stroke-dasharray="' + pl.dash + '"' : "";
+      if (pmax > 0) {
+        h.push('<line x1="' + r1(X(0)) + '" y1="' + r1(Y(e0)) + '" x2="' + r1(X(pmax)) + '" y2="' + r1(Y(e1)) + '" stroke="' + pl.col + '" stroke-width="2.4"' + da + ' data-line="' + pl.name + ' ' + e0 + ' ' + e1 + '"/>');
+      }
+      h.push('<circle cx="' + r1(X(p1 / 20)) + '" cy="' + r1(Y(e)) + '" r="4.5" fill="' + pl.col + '" data-pt="' + pl.name + ' ' + (p1 / 20) + ' ' + e + '"/>');
+      h.push('<line x1="' + (L + 6 + j * 120) + '" y1="' + (T - 8) + '" x2="' + (L + 30 + j * 120) + '" y2="' + (T - 8) + '" stroke="' + pl.col + '" stroke-width="2.4"' + da + '/>');
+      h.push('<text x="' + (L + 35 + j * 120) + '" y="' + (T - 4) + '" font-size="12" fill="currentColor">案' + pl.name + '（' + pl.n + '個）</text>');
+    }
+    h.push('<line x1="' + r1(X(p1 / 20)) + '" y1="' + T + '" x2="' + r1(X(p1 / 20)) + '" y2="' + B + '" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="2 3"/>');
+    svg.innerHTML = h.join("");
+    var best = Math.max(res[0].e, res[1].e, res[2].e);
+    var names = res.filter(function (r) { return r.e === best; }).map(function (r) { return "案" + r.name; });
+    out.textContent = "晴れ " + d2(p1) + "、曇り " + d2(p2) + "、雨 " + d2(p3) + "、q₁＝" + d1(q[0]) + "、q₃＝" + d1(q[1]) + "、q₅＝" + d1(q[2])
+      + " のとき、利益の期待値は 案A " + yen(res[0].e) + " 円、案B " + yen(res[1].e) + " 円、案C " + yen(res[2].e) + " 円で、最も大きいのは "
+      + (names.length > 1 ? names.join("と") + "（同じ値）" : names[0]) + "。損をする確率は 案A " + dec200(res[0].loss) + "、案B " + dec200(res[1].loss) + "、案C " + dec200(res[2].loss) + "。";
+  }
+  for (var m = 0; m < ids.length; m++) el[ids[m]].addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-031",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-031",
+  "title": "期待値を用いた意思決定",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)イ(ウ)"],
+  "kaisetsu_page": "94-95",
+  "objectives": [
+    {"id": "O1", "text": "イベントに向けたアイスクリームの仕入れの場面を、天気と気温の確率を書き込んだ樹形図に表し、乗法定理を用いてそれぞれの場合の確率を求めることができる。", "from": "イベントに向けてアイスクリームをどのくらい仕入れるかを考える場面で、天気の確率と売上から", "sections": ["sec-1"], "checks": ["q1"]},
+    {"id": "O2", "text": "天気の確率と、想定される売上・利益から、仕入れ量の案ごとに期待値を求めて比べることができる。", "from": "天気の確率と売上から期待値を求め", "sections": ["sec-2"], "checks": ["q2", "q3", "q7", "q8"]},
+    {"id": "O3", "text": "確率の値を変えて期待値の変化を調べ、どの確率が期待値に大きく影響するかや、選ぶ案が変わる確率の値を求めることができる。", "from": "確率の値を変えて期待値の変化を調べて", "sections": ["sec-3"], "checks": ["q4", "q5", "q7"]},
+    {"id": "O4", "text": "期待値の比較と確率を変えて調べた結果をもとに仕入れ量を判断し、その根拠と、仮定に基づく判断であることを説明できる。", "from": "仕入れ量を判断できる", "sections": ["sec-4"], "checks": ["q6", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "期待値", "where": "sec-2"},
+    {"term": "意思決定", "where": "terms"},
+    {"term": "条件付き確率", "where": "sec-1"},
+    {"term": "確率の乗法定理", "where": "sec-1"},
+    {"term": "降水確率", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "確率の乗法定理 P(A∩B)=P(A)P_A(B) と、確率を書き込んだ樹形図", "taught_in": ["hs_math_1a/数Ａ-029"], "gap": false, "where": "review"},
+    {"concept": "条件付き確率 P_A(B) の意味", "taught_in": ["hs_math_1a/数Ａ-028"], "gap": false, "where": "sec-1"},
+    {"concept": "全事象の確率が 1、排反な事象の確率の和", "taught_in": ["hs_math_1a/数Ａ-021", "hs_math_1a/数Ａ-022"], "gap": false, "where": "review"},
+    {"concept": "期待値（値とその値をとる確率の積の和）", "taught_in": ["hs_math_1a/数Ａ-030"], "gap": false, "where": "review"},
+    {"concept": "樹形図で起こりうる場合を整理する", "taught_in": ["jhs_math/中2-081", "hs_math_1a/数Ａ-003"], "gap": false, "where": "sec-1"},
+    {"concept": "一次関数の意味・グラフ・傾き（変化の割合）", "taught_in": ["jhs_math/中2-026", "jhs_math/中2-029", "jhs_math/中2-030"], "gap": false, "where": "review"},
+    {"concept": "一元一次方程式を移項して解く", "taught_in": ["jhs_math/中1-044", "jhs_math/中1-047"], "gap": false, "where": "sec-3"},
+    {"concept": "頻度確率（相対度数が近づく値としての確率）", "taught_in": ["hs_math_1a/数Ａ-019", "jhs_math/中1-117"], "gap": false, "where": "sec-1"}
+  ],
+  "out_of_scope": [
+    "面積比による確率と期待値（数Ａ-032）",
+    "データの相対度数を確率とみなした判断（数Ａ-033）",
+    "期待値を記号で表すこと、確率変数・分散（数学Ｂ「統計的な推測」）"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)イ(ウ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.94-95 イ(ウ)の扱い（アイスクリームの仕入れの例、p1〜p3・q1〜q6 を変えて期待値の変化を調べる例）"},
+    {"name": "予報用語 予報の名称に関する用語", "publisher": "気象庁", "url": "https://www.jma.go.jp/jma/kishou/know/yougo_hp/yoho.html", "use": "降水確率・週間天気予報・府県週間天気予報の説明（2026-10-02 取得、sources/text/jma_yougo_yoho.txt に該当行を保存）"},
+    {"name": "教科書編修趣意書 数学Ａ（数研出版 数Ａ104-902、東京書籍 数Ａ002-903）", "publisher": "文部科学省公開", "url": "https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html", "use": "天気予報の降水確率、期待値を用いて損得などを判断する場面、期待値を用いた意思決定の題材が教科書で扱われることの確認"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "「期待値」の評価規準（どの選択が有利かを判断する基準として期待値を用いる）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

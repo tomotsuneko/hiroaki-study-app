@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>血糖濃度の調節と自律神経｜生物基礎</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="../assets/lesson.js"></script>
+<style>
+  .flow-legend { font-size: .85rem; color: var(--muted); }
+  .flow-legend span { white-space: nowrap; margin-right: 1em; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>生物基礎</span><span>神経系と内分泌系による調節</span><span>生基-037</span></div>
+  <h1>血糖濃度の調節と自律神経</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">朝ごはんを抜いた日の3時間目も、長距離走のゴール前も、血液中のグルコースの濃度（血糖濃度）は大きくは下がりません。体のどこが変化に気付き、どんな「連絡網」で肝臓に指令が届くのでしょうか。前の時間に学んだインスリン・グルカゴンに、自律神経とほかのホルモンを加えて、調節の全体像を組み立てます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>血糖濃度を上げるホルモン（グルカゴン・アドレナリン・糖質コルチコイド）と下げるホルモン（インスリン）について、分泌する内分泌腺と、肝臓などでの働きを区別して説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>血糖濃度の上昇・低下を間脳の視床下部が感知し、自律神経（副交感神経・交感神経）や脳下垂体を通じてホルモンの分泌を調節する経路を、図を使って説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>血糖調節に関わる自律神経とホルモンの働きを示す資料（実験の結果）を読み取り、内分泌系とともに自律神経系が働くことで血糖濃度が一定の範囲に保たれていることを説明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（生基-036）</span>インスリン・グルカゴンと血糖濃度</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>血糖濃度の調節と自律神経</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（生基-038）</span>糖尿病と血液凝固</div>
+</div>
+<p class="small">前提となる単元：中学校理科 第2分野「生物の体のつくりと働き」（消化・吸収、血液の循環、腎臓と肝臓の働き、刺激と反応）。同じ単元の生基-031〜036（自律神経系、ホルモンと内分泌系、血糖濃度とインスリン）。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、次の3つの既習事項を組み合わせて使います。小問で確かめてから進みましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：生基-036</span></div>
+  <p>健康な人が食事をして血糖濃度が上がると、その後、血液中のインスリン濃度はどう変化しましたか。</p>
+  <div class="choices">
+    <button data-correct="true">増加する（血糖濃度が下がると、しだいに元に戻る）</button>
+    <button>減少する</button>
+    <button>ほとんど変化しない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">食後に血糖濃度が上がると、それを追うようにインスリン濃度が上がり、血糖濃度が下がるとインスリン濃度も下がります（生基-036 の資料）。インスリンは血糖濃度を下げるホルモンです。「減少する」はグルカゴンの変化と取り違えています。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：生基-031・生基-033</span></div>
+  <p>運動しているときや緊張しているときに主に働き、心臓の拍動を促進する神経はどれですか。</p>
+  <div class="choices">
+    <button>副交感神経</button>
+    <button data-correct="true">交感神経</button>
+    <button>運動神経</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">自律神経系は意識とは無関係に働き、交感神経と副交感神経があります（生基-031）。活動するときや緊張したときに働くのが交感神経で、拍動を促進します。副交感神経は休息しているときに働き、拍動を抑制します（生基-033）。運動神経は自律神経ではなく、意識して体を動かすときに筋肉へ指令を伝える神経です（中学校）。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：生基-034</span></div>
+  <p>ホルモン分泌の中枢として働き、自律神経系の中枢でもある間脳の部分はどこですか。</p>
+  <div class="choices">
+    <button>小脳</button>
+    <button>延髄</button>
+    <button data-correct="true">視床下部</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">間脳の視床下部は、ホルモン分泌の中枢として働き、自律神経系の中枢としても働きます。ホルモンの分泌量は、その働きの結果によって調節されます（フィードバック、生基-034）。この時間は、視床下部が血糖濃度の変化を感知して、神経とホルモンの両方に指令を出すことを学びます。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">補足：グルコースは肝臓で「グリコーゲン」としてたくわえられる</p>
+  <p>中学校では、肝臓が栄養分をたくわえることを学びました（中2-059）。血液中のグルコース（ブドウ糖）が多いとき、肝臓ではグルコースがたくさんつながった<strong>グリコーゲン</strong>という物質がつくられてたくわえられます。血液中のグルコースが減ると、グリコーゲンが分解されてグルコースに戻り、血液中に出ていきます。筋肉もグリコーゲンをたくわえます。</p>
+  <p>名前が似ていますが、<strong>グリコーゲン＝たくわえられる物質</strong>、<strong>グルカゴン＝ホルモン</strong>です。</p>
+</div>
+<div class="box supplement" id="supp-2">
+  <p class="box-title">補足：視床下部の下にある「脳下垂体」</p>
+  <p>間脳の視床下部の下には、<strong>脳下垂体</strong>という内分泌腺がつながっています。脳下垂体は視床下部からの指令を受けて、ほかの内分泌腺に働きかけるホルモンなどを分泌します。脳下垂体には前葉と後葉があり、この時間に出てくるのは<strong>前葉</strong>です。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：長く運動しても血糖濃度が下がりすぎないのはなぜ？</h2>
+<p>運動を続けると、筋肉は血液からグルコースを取り込んで呼吸に使います。それでも健康な人の血糖濃度は、およそ 0.1％（血液 100 mL あたり約 100 mg）前後の一定の範囲に保たれます。血液中のグルコースは全身の細胞のエネルギー源なので、血糖濃度が下がりすぎると、脳などの働きに影響が出るとされています（詳しくは教科書で確かめよう）。</p>
+<div class="box think">
+  <p class="box-title">予想してみよう</p>
+  <p>① 血糖濃度が下がったことに、体のどこが気付くのでしょうか。</p>
+  <p>② 前の時間に学んだグルカゴンのほかに、血糖濃度を上げるしくみはあるでしょうか。神経は関わっているでしょうか。</p>
+  <p class="small">ヒント：運動中や緊張したとき、心臓の拍動を速めたのは何でしたか（確認2）。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="血糖濃度を変えるホルモン"><span class="num">3</span>血糖濃度を変えるホルモンと、それを出す場所</h2>
+<p>血糖濃度を変えるホルモンの多くは、<strong>肝臓</strong>に働きます。肝臓は、グルコースをグリコーゲンとしてたくわえたり（合成）、グリコーゲンを分解してグルコースを血液中に出したり（分解）する、いわば「グルコースの貯金箱」です。どちらの向きに進めるかを、ホルモンが切り替えています。</p>
+<figure>
+  <svg viewBox="0 0 600 300" role="img" aria-label="肝臓でのグルコースとグリコーゲンの出し入れの模式図。インスリンは血液中のグルコースからグリコーゲンの合成と、筋肉などの細胞への取り込みを促進する。グルカゴンとアドレナリンはグリコーゲンの分解を促進する。糖質コルチコイドはタンパク質などから糖をつくる反応を促進する。">
+    <defs>
+      <marker id="m37b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f5fbf"/></marker>
+      <marker id="m37r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/></marker>
+    </defs>
+    <rect x="20" y="14" width="180" height="40" rx="8" fill="none" stroke="currentColor"/>
+    <text x="110" y="39" text-anchor="middle" font-size="14" fill="currentColor">筋肉などの細胞</text>
+    <rect x="20" y="112" width="180" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="110" y="140" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">血液中のグルコース</text>
+    <text x="110" y="160" text-anchor="middle" font-size="13" fill="currentColor">（血糖）</text>
+    <rect x="20" y="244" width="180" height="40" rx="8" fill="none" stroke="currentColor"/>
+    <text x="110" y="269" text-anchor="middle" font-size="14" fill="currentColor">タンパク質など</text>
+    <line x1="110" y1="112" x2="110" y2="58" stroke="#1f5fbf" stroke-width="2.5" marker-end="url(#m37b)"/>
+    <text x="120" y="80" font-size="12" fill="#1f5fbf">インスリンが</text>
+    <text x="120" y="96" font-size="12" fill="#1f5fbf">取り込みを促進</text>
+    <line x1="110" y1="244" x2="110" y2="180" stroke="#c0392b" stroke-width="2.5" marker-end="url(#m37r)"/>
+    <text x="120" y="206" font-size="12" fill="#c0392b">糖質コルチコイドが</text>
+    <text x="120" y="222" font-size="12" fill="#c0392b">糖をつくる反応を促進</text>
+    <rect x="260" y="20" width="320" height="260" rx="18" fill="none" stroke="#9a5b00" stroke-width="2"/>
+    <text x="278" y="46" font-size="15" font-weight="700" fill="#9a5b00">肝臓</text>
+    <rect x="420" y="112" width="140" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="490" y="140" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">グリコーゲン</text>
+    <text x="490" y="160" text-anchor="middle" font-size="11.5" fill="currentColor">（たくわえる形）</text>
+    <line x1="200" y1="128" x2="420" y2="128" stroke="#1f5fbf" stroke-width="2.5" marker-end="url(#m37b)"/>
+    <text x="340" y="118" text-anchor="middle" font-size="12.5" fill="#1f5fbf">合成を促進：インスリン</text>
+    <line x1="420" y1="160" x2="200" y2="160" stroke="#c0392b" stroke-width="2.5" marker-end="url(#m37r)"/>
+    <text x="372" y="196" text-anchor="middle" font-size="12.5" fill="#c0392b">分解を促進：グルカゴン・アドレナリン</text>
+    <text x="290" y="238" font-size="12" fill="currentColor">血糖濃度が高いとき：グリコーゲンをつくる</text>
+    <text x="290" y="258" font-size="12" fill="currentColor">血糖濃度が低いとき：グリコーゲンを分解する</text>
+  </svg>
+  <figcaption>図1　肝臓を中心としたグルコースの出し入れ（模式図）。青の矢印は血糖濃度を下げる向き、赤の矢印は上げる向き。</figcaption>
+</figure>
+<p>血糖濃度に関わる主なホルモンを表にまとめます。すい臓の中には、内分泌細胞が島のように集まった<strong>ランゲルハンス島</strong>があり、その中の<strong>A細胞</strong>がグルカゴンを、<strong>B細胞</strong>がインスリンを分泌します（A細胞は、教科書によっては「参考」の図などで扱われます）。腎臓の上にある<strong>副腎</strong>は、内側の<strong>髄質</strong>と外側の<strong>皮質</strong>で、別のホルモンを分泌します。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>ホルモン</th><th>分泌する内分泌腺（細胞）</th><th>主な働き</th><th>血糖濃度</th></tr>
+  <tr><td><strong>インスリン</strong></td><td>すい臓のランゲルハンス島の B細胞</td><td>肝臓や筋肉などの細胞にグルコースを取り込ませ、肝臓でグリコーゲンの合成を促進する</td><td>下げる</td></tr>
+  <tr><td><strong>グルカゴン</strong></td><td>すい臓のランゲルハンス島の A細胞</td><td>肝臓でグリコーゲンの分解を促進する</td><td>上げる</td></tr>
+  <tr><td><strong>アドレナリン</strong></td><td>副腎髄質</td><td>肝臓などでグリコーゲンの分解を促進する（心臓の拍動も促進する：生基-033）</td><td>上げる</td></tr>
+  <tr><td><strong>糖質コルチコイド</strong></td><td>副腎皮質</td><td>タンパク質などから糖（グルコース）をつくる反応を促進する</td><td>上げる</td></tr>
+</table>
+</div>
+<div class="box point"><p class="box-title">下げるのは1つ、上げるのは複数</p><p>血糖濃度を<strong>下げる</strong>ホルモンは<span class="em">インスリンだけ</span>です。一方、<strong>上げる</strong>ホルモンはグルカゴン・アドレナリン・糖質コルチコイドなど複数あります。「下がりすぎると困るので、下がったときに備えるしくみが何重にも用意されている」と考えると覚えやすくなります。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>「インスリンはグルコースを分解して減らす」は誤りです。インスリンは、グルコースを<strong>細胞に取り込ませる</strong>ことと、肝臓で<strong>グリコーゲンにしてたくわえさせる</strong>ことで、血液中のグルコースを減らします。グルコースそのものがなくなるわけではありません（取り込まれたグルコースは呼吸などに使われます）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="自律神経が関わる経路"><span class="num">4</span>自律神経はどう関わる？――高血糖のとき・低血糖のとき</h2>
+<p>血糖濃度の変化は、主に2か所で感知されます。1つは<strong>間脳の視床下部</strong>で、血液が運ぶグルコースの濃度の変化を感知し、<strong>自律神経</strong>とホルモンの両方を使って指令を出します。もう1つは<strong>すい臓のランゲルハンス島</strong>で、A細胞・B細胞は血糖濃度の変化を<strong>直接</strong>感知してホルモンの分泌量を変えます。</p>
+<h3>血糖濃度が上がったとき（食後など）</h3>
+<figure>
+  <svg viewBox="0 0 600 350" role="img" aria-label="高血糖のときの調節経路。血糖濃度の上昇を視床下部とすい臓のB細胞が感知する。視床下部からは副交感神経がB細胞に働き、B細胞がインスリンを分泌する。インスリンは血液で運ばれ、肝臓でグリコーゲンの合成を、筋肉など全身の細胞でグルコースの取り込みを促進し、血糖濃度が下がる。">
+    <defs>
+      <marker id="m37k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+      <marker id="m37b2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f5fbf"/></marker>
+    </defs>
+    <rect x="20" y="16" width="170" height="40" rx="8" fill="none" stroke="#1f5fbf" stroke-width="2"/>
+    <text x="105" y="41" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">血糖濃度が上がる</text>
+    <rect x="300" y="16" width="180" height="40" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="390" y="41" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">間脳の視床下部</text>
+    <line x1="190" y1="36" x2="298" y2="36" stroke="currentColor" stroke-width="2" stroke-dasharray="2 4" marker-end="url(#m37k)"/>
+    <text x="244" y="28" text-anchor="middle" font-size="12" fill="currentColor">感知</text>
+    <path d="M105,56 V152 H298" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="2 4" marker-end="url(#m37k)"/>
+    <text x="118" y="142" font-size="12" fill="currentColor">B細胞が直接感知</text>
+    <rect x="300" y="126" width="180" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="390" y="148" text-anchor="middle" font-size="13" fill="currentColor">すい臓（ランゲルハンス島）</text>
+    <text x="390" y="168" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">B細胞</text>
+    <line x1="390" y1="56" x2="390" y2="124" stroke="currentColor" stroke-width="2.5" marker-end="url(#m37k)"/>
+    <text x="400" y="96" font-size="12.5" fill="currentColor">副交感神経</text>
+    <path d="M390,178 V212 H175 V244" fill="none" stroke="#1f5fbf" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#m37b2)"/>
+    <path d="M390,212 H450 V244" fill="none" stroke="#1f5fbf" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#m37b2)"/>
+    <text x="282" y="204" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf">インスリン</text>
+    <rect x="60" y="246" width="230" height="46" rx="8" fill="none" stroke="currentColor"/>
+    <text x="175" y="265" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">肝臓</text>
+    <text x="175" y="284" text-anchor="middle" font-size="12" fill="currentColor">グリコーゲンの合成を促進</text>
+    <rect x="320" y="246" width="260" height="46" rx="8" fill="none" stroke="currentColor"/>
+    <text x="450" y="265" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">筋肉など全身の細胞</text>
+    <text x="450" y="284" text-anchor="middle" font-size="12" fill="currentColor">グルコースの取り込みを促進</text>
+    <text x="300" y="318" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">→ 血糖濃度が下がり、一定の範囲に戻る</text>
+    <text x="300" y="342" text-anchor="middle" font-size="11.5" fill="currentColor">実線＝神経による伝達　破線＝ホルモン（血液で運ばれる）　点線＝血糖濃度の変化を感知</text>
+  </svg>
+  <figcaption>図2　血糖濃度が上がったときの調節（模式図）</figcaption>
+</figure>
+<p>食後に血糖濃度が上がると、B細胞が直接それを感知してインスリンを分泌します。同時に視床下部も上昇を感知し、<strong>副交感神経</strong>を通じて B細胞にインスリンの分泌を促します。インスリンは血液で全身に運ばれ、肝臓でのグリコーゲンの合成や、細胞へのグルコースの取り込みを促進します。こうして血糖濃度が下がります。</p>
+
+<h3>血糖濃度が下がったとき（空腹時・運動時など）</h3>
+<figure>
+  <svg viewBox="0 0 600 420" role="img" aria-label="低血糖のときの調節経路。血糖濃度の低下を視床下部とすい臓のA細胞が感知する。視床下部からは交感神経がすい臓のA細胞と副腎髄質に働き、A細胞はグルカゴンを、副腎髄質はアドレナリンを分泌し、どちらも肝臓でグリコーゲンの分解を促進する。また視床下部はホルモンで脳下垂体前葉に働きかけ、脳下垂体前葉のホルモンが副腎皮質に働いて糖質コルチコイドが分泌され、タンパク質などから糖をつくる反応が促進される。その結果、血糖濃度が上がる。">
+    <defs>
+      <marker id="m37k2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+      <marker id="m37r2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/></marker>
+    </defs>
+    <rect x="20" y="16" width="170" height="40" rx="8" fill="none" stroke="#c0392b" stroke-width="2"/>
+    <text x="105" y="41" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b">血糖濃度が下がる</text>
+    <rect x="300" y="16" width="180" height="40" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="390" y="41" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">間脳の視床下部</text>
+    <line x1="190" y1="36" x2="298" y2="36" stroke="currentColor" stroke-width="2" stroke-dasharray="2 4" marker-end="url(#m37k2)"/>
+    <text x="244" y="28" text-anchor="middle" font-size="12" fill="currentColor">感知</text>
+    <line x1="60" y1="56" x2="60" y2="126" stroke="currentColor" stroke-width="2" stroke-dasharray="2 4" marker-end="url(#m37k2)"/>
+    <text x="68" y="84" font-size="12" fill="currentColor">A細胞が</text>
+    <text x="68" y="100" font-size="12" fill="currentColor">直接感知</text>
+    <path d="M340,56 V96 H150 V126" fill="none" stroke="currentColor" stroke-width="2.5" marker-end="url(#m37k2)"/>
+    <path d="M290,96 V126" fill="none" stroke="currentColor" stroke-width="2.5" marker-end="url(#m37k2)"/>
+    <text x="226" y="88" text-anchor="middle" font-size="12.5" fill="currentColor">交感神経</text>
+    <line x1="440" y1="56" x2="440" y2="126" stroke="currentColor" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#m37k2)"/>
+    <text x="448" y="96" font-size="12" fill="currentColor">ホルモン</text>
+    <rect x="20" y="128" width="170" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="105" y="150" text-anchor="middle" font-size="12.5" fill="currentColor">すい臓（ランゲルハンス島）</text>
+    <text x="105" y="170" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">A細胞</text>
+    <rect x="215" y="128" width="150" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="290" y="160" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">副腎髄質</text>
+    <rect x="400" y="128" width="180" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="490" y="160" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">脳下垂体前葉</text>
+    <line x1="490" y1="180" x2="490" y2="224" stroke="currentColor" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#m37k2)"/>
+    <text x="498" y="207" font-size="12" fill="currentColor">ホルモン</text>
+    <rect x="400" y="226" width="180" height="44" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="490" y="254" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">副腎皮質</text>
+    <line x1="105" y1="180" x2="105" y2="314" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#m37r2)"/>
+    <text x="113" y="250" font-size="13" font-weight="700" fill="#c0392b">グルカゴン</text>
+    <line x1="290" y1="180" x2="290" y2="314" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#m37r2)"/>
+    <text x="298" y="250" font-size="13" font-weight="700" fill="#c0392b">アドレナリン</text>
+    <line x1="490" y1="270" x2="490" y2="314" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#m37r2)"/>
+    <text x="482" y="298" text-anchor="end" font-size="13" font-weight="700" fill="#c0392b">糖質コルチコイド</text>
+    <rect x="40" y="316" width="280" height="48" rx="8" fill="none" stroke="currentColor"/>
+    <text x="180" y="336" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">肝臓</text>
+    <text x="180" y="355" text-anchor="middle" font-size="12" fill="currentColor">グリコーゲンの分解を促進</text>
+    <rect x="340" y="316" width="240" height="48" rx="8" fill="none" stroke="currentColor"/>
+    <text x="460" y="336" text-anchor="middle" font-size="12.5" fill="currentColor">タンパク質などから</text>
+    <text x="460" y="355" text-anchor="middle" font-size="12.5" fill="currentColor">糖をつくる反応を促進</text>
+    <text x="300" y="390" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b">→ 血糖濃度が上がり、一定の範囲に戻る</text>
+    <text x="300" y="412" text-anchor="middle" font-size="11.5" fill="currentColor">実線＝神経による伝達　破線＝ホルモン（血液で運ばれる）　点線＝血糖濃度の変化を感知</text>
+  </svg>
+  <figcaption>図3　血糖濃度が下がったときの調節（模式図）</figcaption>
+</figure>
+<p>血糖濃度が下がると、A細胞が直接それを感知してグルカゴンを分泌します。視床下部も低下を感知し、次の2つの道筋で血糖濃度を上げる指令を出します。</p>
+<ul>
+  <li><strong>自律神経の道筋（速い）</strong>：<strong>交感神経</strong>を通じて副腎髄質に働き、<strong>アドレナリン</strong>を分泌させます。交感神経はすい臓の A細胞にも働き、グルカゴンの分泌を促します（この経路は、教科書によっては図に示されていません）。どちらのホルモンも肝臓のグリコーゲンの分解を促進します。</li>
+  <li><strong>ホルモンの道筋（ゆっくり・持続的）</strong>：視床下部がホルモンで<strong>脳下垂体前葉</strong>に働きかけ、脳下垂体前葉から出るホルモンが<strong>副腎皮質</strong>に働いて、<strong>糖質コルチコイド</strong>を分泌させます。糖質コルチコイドは、タンパク質などから糖をつくる反応を促進します。</li>
+</ul>
+<div class="box point"><p class="box-title">神経が「ホルモンの蛇口」を開け閉めする</p><p>血糖濃度の調節では、自律神経が肝臓に直接命令するのではなく、<span class="em">自律神経が内分泌腺（すい臓・副腎髄質）に働いてホルモンの分泌量を変え</span>、そのホルモンが血液で運ばれて肝臓などに働きます。副交感神経は下げる向き（インスリン）、交感神経は上げる向き（アドレナリン・グルカゴン）に働きます。血糖濃度が元の範囲に戻ると、変化の感知が弱まり、ホルモンの分泌も元に戻ります（フィードバック）。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題1　経路を順にたどる</p>
+  <p>空腹が続いて血糖濃度が下がったとき、「自律神経を通る経路」で肝臓のグリコーゲンが分解されるまでを、順に並べなさい。</p>
+  <div class="step">ステップ1：変化を感知するのはどこか → 間脳の<strong>視床下部</strong>。</div>
+  <div class="step">ステップ2：上げる向きに働く自律神経はどちらか → 活動するときに働く<strong>交感神経</strong>（副交感神経は下げる向き）。</div>
+  <div class="step">ステップ3：交感神経が働きかける内分泌腺と、分泌されるホルモン → <strong>副腎髄質</strong>から<strong>アドレナリン</strong>（すい臓の A細胞からグルカゴンも）。</div>
+  <div class="step">ステップ4：答え　血糖濃度の低下 → 視床下部 → 交感神経 → 副腎髄質 → アドレナリン（血液で運ばれる）→ 肝臓でグリコーゲンの分解 → 血糖濃度が上がる。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>「副交感神経がインスリンを分泌する」は誤りです。インスリンを分泌するのは<strong>すい臓の B細胞</strong>で、副交感神経は B細胞に<strong>分泌を促す</strong>だけです。同じように、アドレナリンを分泌するのは交感神経ではなく<strong>副腎髄質</strong>です。「どこが感知し、何が伝え、どこが分泌し、どこに働くか」を分けて考えましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="資料で確かめる（実験）"><span class="num">5</span>資料で確かめる：副腎髄質を除くと、低血糖からの回復はどうなるか</h2>
+<p>「交感神経 → 副腎髄質 → アドレナリン」の道筋は、本当に血糖濃度を上げるのに役立っているのでしょうか。動物を使った実験の結果（資料）から確かめます。</p>
+<div class="box experiment">
+  <p class="box-title">実験：低血糖からの回復と副腎髄質（学習用の架空のデータ）</p>
+  <p><strong>目的</strong>　インスリンを注射して血糖濃度を下げたとき、血糖濃度が元に戻る過程に副腎髄質（アドレナリン）が関わっているかを調べる。</p>
+  <p><strong>方法</strong>　同じ系統・同じ週齢のラットを同じ時間絶食させ、4つの群に分ける。副腎髄質を取り除く群と、取り除かない群をつくる（取り除かない群にも、切開して縫い合わせるだけの同じ手術の操作をして、手術による負担をそろえる）。それぞれに、インスリン溶液または生理食塩水を同じ量注射し、30分ごとに血糖濃度を測定する。</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>群</th><th>副腎髄質</th><th>注射したもの</th><th>ねらい</th></tr>
+    <tr><td>A</td><td>あり（切開の操作のみ）</td><td>生理食塩水</td><td>対照（手術と注射の操作だけの影響を見る）</td></tr>
+    <tr><td>B</td><td>あり（切開の操作のみ）</td><td>インスリン</td><td>インスリンの影響を見る</td></tr>
+    <tr><td>C</td><td>除去</td><td>インスリン</td><td>副腎髄質がないときの回復を見る</td></tr>
+    <tr><td>D</td><td>除去</td><td>生理食塩水</td><td>対照（副腎髄質がないことだけの影響を見る）</td></tr>
+  </table>
+  </div>
+  <p><strong>条件をそろえたもの</strong>　ラットの系統・週齢・絶食時間、注射する液の量と時刻、測定の方法、飼育室の温度。各群とも複数匹の平均値で比べる。</p>
+  <p><strong>結果</strong>（血糖濃度、単位 mg/100 mL、各群の平均値）</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>注射からの時間（分）</th><th>0</th><th>30</th><th>60</th><th>90</th><th>120</th></tr>
+    <tr><th>A 髄質あり＋生理食塩水</th><td>92</td><td>91</td><td>92</td><td>91</td><td>92</td></tr>
+    <tr><th>B 髄質あり＋インスリン</th><td>92</td><td>52</td><td>64</td><td>79</td><td>89</td></tr>
+    <tr><th>C 副腎髄質除去＋インスリン</th><td>91</td><td>46</td><td>52</td><td>62</td><td>74</td></tr>
+    <tr><th>D 副腎髄質除去＋生理食塩水</th><td>91</td><td>90</td><td>91</td><td>91</td><td>90</td></tr>
+  </table>
+  </div>
+</div>
+<figure>
+<!--GEN:fig-exp-->
+<svg viewBox="0 0 560 330" role="img" aria-label="注射後の血糖濃度の変化。生理食塩水を注射した群AとDはほぼ90から92で一定。インスリンを注射した群Bは30分後に52まで下がり、120分後に89まで戻る。副腎髄質を除いてインスリンを注射した群Cは30分後に46まで下がり、120分後も74までしか戻らない。">
+<line x1="70" y1="20" x2="70" y2="280" stroke="currentColor"/>
+<line x1="70" y1="280" x2="530" y2="280" stroke="currentColor"/>
+<text x="62" y="284" text-anchor="end" font-size="12" fill="currentColor">40</text>
+<line x1="70" y1="236.7" x2="530" y2="236.7" stroke="currentColor" stroke-opacity=".12"/>
+<text x="62" y="240.7" text-anchor="end" font-size="12" fill="currentColor">50</text>
+<line x1="70" y1="193.3" x2="530" y2="193.3" stroke="currentColor" stroke-opacity=".12"/>
+<text x="62" y="197.3" text-anchor="end" font-size="12" fill="currentColor">60</text>
+<line x1="70" y1="150" x2="530" y2="150" stroke="currentColor" stroke-opacity=".12"/>
+<text x="62" y="154" text-anchor="end" font-size="12" fill="currentColor">70</text>
+<line x1="70" y1="106.7" x2="530" y2="106.7" stroke="currentColor" stroke-opacity=".12"/>
+<text x="62" y="110.7" text-anchor="end" font-size="12" fill="currentColor">80</text>
+<line x1="70" y1="63.3" x2="530" y2="63.3" stroke="currentColor" stroke-opacity=".12"/>
+<text x="62" y="67.3" text-anchor="end" font-size="12" fill="currentColor">90</text>
+<line x1="70" y1="20" x2="530" y2="20" stroke="currentColor" stroke-opacity=".12"/>
+<text x="62" y="24" text-anchor="end" font-size="12" fill="currentColor">100</text>
+<line x1="70" y1="280" x2="70" y2="285" stroke="currentColor"/>
+<text x="70" y="299" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="185" y1="280" x2="185" y2="285" stroke="currentColor"/>
+<text x="185" y="299" text-anchor="middle" font-size="12" fill="currentColor">30</text>
+<line x1="300" y1="280" x2="300" y2="285" stroke="currentColor"/>
+<text x="300" y="299" text-anchor="middle" font-size="12" fill="currentColor">60</text>
+<line x1="415" y1="280" x2="415" y2="285" stroke="currentColor"/>
+<text x="415" y="299" text-anchor="middle" font-size="12" fill="currentColor">90</text>
+<line x1="530" y1="280" x2="530" y2="285" stroke="currentColor"/>
+<text x="530" y="299" text-anchor="middle" font-size="12" fill="currentColor">120</text>
+<text x="300" y="316" text-anchor="middle" font-size="12.5" fill="currentColor">注射してからの時間（分）</text>
+<text x="18" y="150" text-anchor="middle" font-size="12.5" fill="currentColor" transform="rotate(-90 18 150)">血糖濃度（mg/100 mL）</text>
+<polyline points="70,54.7 185,59 300,54.7 415,59 530,54.7" fill="none" stroke="#5b6b7c" stroke-width="2.4"/>
+<circle cx="70" cy="54.7" r="5" fill="#fff" stroke="#5b6b7c" stroke-width="2"/>
+<circle cx="185" cy="59" r="5" fill="#fff" stroke="#5b6b7c" stroke-width="2"/>
+<circle cx="300" cy="54.7" r="5" fill="#fff" stroke="#5b6b7c" stroke-width="2"/>
+<circle cx="415" cy="59" r="5" fill="#fff" stroke="#5b6b7c" stroke-width="2"/>
+<circle cx="530" cy="54.7" r="5" fill="#fff" stroke="#5b6b7c" stroke-width="2"/>
+<polyline points="70,59 185,63.3 300,59 415,59 530,63.3" fill="none" stroke="#5b6b7c" stroke-width="2.4" stroke-dasharray="6 4"/>
+<path d="M70,53 L76,59 L70,65 L64,59 z" fill="#fff" stroke="#5b6b7c" stroke-width="2"/>
+<path d="M185,57.3 L191,63.3 L185,69.3 L179,63.3 z" fill="#fff" stroke="#5b6b7c" stroke-width="2"/>
+<path d="M300,53 L306,59 L300,65 L294,59 z" fill="#fff" stroke="#5b6b7c" stroke-width="2"/>
+<path d="M415,53 L421,59 L415,65 L409,59 z" fill="#fff" stroke="#5b6b7c" stroke-width="2"/>
+<path d="M530,57.3 L536,63.3 L530,69.3 L524,63.3 z" fill="#fff" stroke="#5b6b7c" stroke-width="2"/>
+<polyline points="70,54.7 185,228 300,176 415,111 530,67.7" fill="none" stroke="#1f5fbf" stroke-width="2.4"/>
+<rect x="65" y="49.7" width="10" height="10" fill="#1f5fbf"/>
+<rect x="180" y="223" width="10" height="10" fill="#1f5fbf"/>
+<rect x="295" y="171" width="10" height="10" fill="#1f5fbf"/>
+<rect x="410" y="106" width="10" height="10" fill="#1f5fbf"/>
+<rect x="525" y="62.7" width="10" height="10" fill="#1f5fbf"/>
+<polyline points="70,59 185,254 300,228 415,184.7 530,132.7" fill="none" stroke="#c0392b" stroke-width="2.4" stroke-dasharray="8 4"/>
+<path d="M70,53 L76,64 L64,64 z" fill="#c0392b"/>
+<path d="M185,248 L191,259 L179,259 z" fill="#c0392b"/>
+<path d="M300,222 L306,233 L294,233 z" fill="#c0392b"/>
+<path d="M415,178.7 L421,189.7 L409,189.7 z" fill="#c0392b"/>
+<path d="M530,126.7 L536,137.7 L524,137.7 z" fill="#c0392b"/>
+<line x1="340" y1="228" x2="366" y2="228" stroke="#5b6b7c" stroke-width="2.4"/>
+<circle cx="353" cy="228" r="5" fill="#fff" stroke="#5b6b7c" stroke-width="2"/>
+<text x="372" y="232" font-size="12" fill="#5b6b7c">A 髄質あり＋生理食塩水</text>
+<line x1="340" y1="243" x2="366" y2="243" stroke="#5b6b7c" stroke-width="2.4" stroke-dasharray="6 4"/>
+<path d="M353,237 L359,243 L353,249 L347,243 z" fill="#fff" stroke="#5b6b7c" stroke-width="2"/>
+<text x="372" y="247" font-size="12" fill="#5b6b7c">D 髄質除去＋生理食塩水</text>
+<line x1="340" y1="258" x2="366" y2="258" stroke="#1f5fbf" stroke-width="2.4"/>
+<rect x="348" y="253" width="10" height="10" fill="#1f5fbf"/>
+<text x="372" y="262" font-size="12" fill="#1f5fbf">B 髄質あり＋インスリン</text>
+<line x1="340" y1="273" x2="366" y2="273" stroke="#c0392b" stroke-width="2.4" stroke-dasharray="8 4"/>
+<path d="M353,267 L359,278 L347,278 z" fill="#c0392b"/>
+<text x="372" y="277" font-size="12" fill="#c0392b">C 髄質除去＋インスリン</text>
+</svg>
+<!--/GEN:fig-exp-->
+  <figcaption>図4　実験の結果（学習用の架空のデータ）。線の種類と印の形でも群を区別している。</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題2　結果を「1か所だけ違う組」で比べて読み取る</p>
+  <p>表と図4から、どの群とどの群を比べると何が分かるかを考えなさい。</p>
+  <div class="step">ステップ1：<strong>A と B</strong>（違いはインスリンだけ）　B は30分後に 52 まで下がった → インスリンは血糖濃度を下げる。その後 B は 120 分後に 89 まで戻った → 体には血糖濃度を<strong>上げる</strong>しくみが働いている。</div>
+  <div class="step">ステップ2：<strong>A と D</strong>（違いは副腎髄質の有無だけ。どちらも同じ手術の操作を受け、生理食塩水を注射）　どの時刻も差は 2 以内 → 副腎髄質を除いても、低血糖にしていないときの血糖濃度はほとんど変わらない。だから C の結果の違いを「もともと血糖濃度が低かったから」とは考えにくい。</div>
+  <div class="step">ステップ3：<strong>B と C</strong>（違いは副腎髄質の有無だけ）　C は 30 分後に 46 まで下がり、30→120 分の上昇量は C が 74 − 46 ＝ 28、B が 89 − 52 ＝ 37 → 副腎髄質がないと回復が遅い。<strong>副腎髄質（アドレナリン）は血糖濃度を上げるのに関わっている</strong>。</div>
+  <div class="step">ステップ4：<strong>C だけを見る</strong>　副腎髄質がなくても 46 から 74 まで回復している → 副腎髄質以外にも上げるしくみ（A細胞のグルカゴン、副腎皮質の糖質コルチコイドなど）がある。副腎髄質のアドレナリンは交感神経の指令で分泌されるので、この結果は、<strong>内分泌系とともに自律神経系が血糖濃度の維持に働いている</strong>ことを支持する。</div>
+</div>
+<div class="box caution"><p class="box-title">読み取りの注意</p><p>「C は回復が遅い」から「血糖濃度を上げるのはアドレナリンだけだ」と結論するのは言い過ぎです（C も回復しています）。また、この実験だけでは「交感神経が副腎髄質に働いていること」そのものは確かめていません。それを確かめるには、交感神経の働きだけを変えた群を別に比べる必要があります（確認問題の問8）。結論は、比べた条件の違いが示す範囲にとどめましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="神経とホルモンの連携・誤解"><span class="num">6</span>神経とホルモンの連携と、よくある誤解</h2>
+<p>血糖濃度の調節では、神経系と内分泌系が役割を分けながら協力しています。生基-034 で学んだ「神経系は速く、内分泌系は持続的」という特徴が、ここでも生きています。</p>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>自律神経（神経系）</th><th>ホルモン（内分泌系）</th></tr>
+  <tr><th>伝わり方</th><td>神経を通って、つながっている器官に直接伝わる</td><td>血液で全身に運ばれ、そのホルモンを受け取る標的器官に働く</td></tr>
+  <tr><th>速さ・続き方</th><td>速いが、効果は短い</td><td>比較的ゆっくりだが、効果が持続する</td></tr>
+  <tr><th>血糖調節での役目</th><td>視床下部の指令をすい臓・副腎髄質にすばやく伝え、ホルモンの分泌量を変える</td><td>肝臓や全身の細胞に働いて、グルコースの出し入れを実際に変える</td></tr>
+</table>
+</div>
+<h3>誤解を直そう</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>よくある誤解</th><th>正しくは</th></tr>
+  <tr><td>グルカゴンは肝臓にたくわえられる物質だ</td><td>たくわえられるのは<strong>グリコーゲン</strong>。グルカゴンは A細胞が分泌する<strong>ホルモン</strong>で、グリコーゲンの分解を促進する。</td></tr>
+  <tr><td>副交感神経がインスリンを出す／交感神経がアドレナリンを出す</td><td>分泌するのは B細胞・副腎髄質。自律神経はそれらの内分泌腺に<strong>分泌を促す</strong>。</td></tr>
+  <tr><td>交感神経は体を興奮させるので、血糖濃度を下げる</td><td>交感神経は活動に備える向きに働き、アドレナリンやグルカゴンの分泌を促して血糖濃度を<strong>上げる</strong>。</td></tr>
+  <tr><td>血糖濃度はいつも同じ値に固定されている</td><td>食後には上がり、空腹時や運動時には下がろうとする。調節によって<strong>一定の範囲</strong>に戻される（生基-036 の資料）。</td></tr>
+  <tr><td>血糖濃度の調節はホルモンだけで行われ、神経は関係ない</td><td>視床下部が自律神経を通じてホルモンの分泌を調節しており、<strong>神経系と内分泌系の両方</strong>が働く（例題2）。</td></tr>
+</table>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：上げるしくみと下げるしくみの数</p><p>「インスリンが足りなくても、代わりに血糖濃度を下げるホルモンがある」と考えるのは誤りです。下げる向きに働くホルモンはインスリンだけなので、インスリンが十分に働かないと血糖濃度が高いままになります。これが次の時間に学ぶ糖尿病につながります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>血糖濃度</dt><dd>血液中のグルコース（ブドウ糖）の濃度。健康な人ではおよそ 0.1％ 前後の範囲に保たれる。</dd>
+    <dt>グリコーゲン</dt><dd>多数のグルコースがつながった物質。肝臓や筋肉にたくわえられ、分解されるとグルコースに戻る。</dd>
+    <dt>ランゲルハンス島（A細胞・B細胞）</dt><dd>すい臓の中で内分泌細胞が島状に集まった部分。A細胞はグルカゴン、B細胞はインスリンを分泌する。どちらも血糖濃度の変化を直接感知する。</dd>
+    <dt>インスリン</dt><dd>B細胞が分泌するホルモン。細胞へのグルコースの取り込みと肝臓でのグリコーゲンの合成を促進し、血糖濃度を下げる。血糖濃度を下げるホルモンはこれだけ。</dd>
+    <dt>グルカゴン</dt><dd>A細胞が分泌するホルモン。肝臓でグリコーゲンの分解を促進し、血糖濃度を上げる。</dd>
+    <dt>副腎（髄質・皮質）</dt><dd>腎臓の上にある内分泌腺。内側の髄質からアドレナリン、外側の皮質から糖質コルチコイドなどが分泌される。</dd>
+    <dt>アドレナリン</dt><dd>副腎髄質が分泌するホルモン。交感神経の指令で分泌が増え、肝臓でグリコーゲンの分解を促進して血糖濃度を上げる。</dd>
+    <dt>糖質コルチコイド</dt><dd>副腎皮質が分泌するホルモン。脳下垂体前葉のホルモンによって分泌が促され、タンパク質などから糖をつくる反応を促進して血糖濃度を上げる。</dd>
+    <dt>視床下部</dt><dd>間脳の一部。自律神経系とホルモン分泌の中枢で、血糖濃度の変化を感知する。</dd>
+    <dt>脳下垂体（前葉）</dt><dd>視床下部の下にある内分泌腺。視床下部の指令を受けて、ほかの内分泌腺に働くホルモンなどを分泌する。</dd>
+    <dt>交感神経・副交感神経</dt><dd>自律神経。血糖調節では、交感神経が副腎髄質・A細胞に働いて血糖濃度を上げる向きに、副交感神経が B細胞に働いて下げる向きに働く。</dd>
+    <dt>フィードバック</dt><dd>働きの結果が、元の働きの強さを調節すること。血糖濃度が元の範囲に戻ると、ホルモンの分泌も元に戻る。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>血糖濃度を下げるホルモンはインスリン（B細胞）だけ。上げるホルモンはグルカゴン（A細胞）・アドレナリン（副腎髄質）・糖質コルチコイド（副腎皮質）など複数ある。多くは肝臓のグリコーゲンの合成・分解を切り替える。（O1）</li>
+    <li>血糖濃度の変化は視床下部とランゲルハンス島が感知する。高血糖では副交感神経が B細胞に、低血糖では交感神経が副腎髄質と A細胞に働き、視床下部は脳下垂体前葉を通じて副腎皮質にも働きかける。（O2）</li>
+    <li>自律神経は内分泌腺に働いてホルモンの分泌量を変え、ホルモンが血液で運ばれて肝臓などに働く。神経系（速い）と内分泌系（持続的）が協力して、血糖濃度を一定の範囲に保つ。（O2・O3）</li>
+    <li>資料は「1か所だけ条件が違う組」を比べて読む。副腎髄質を除くと低血糖からの回復が遅れるが回復はする → アドレナリンは関わるが、ほかのしくみもある。（O3）</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">高血糖のとき（下げる）</span><p>視床下部 →（副交感神経）→ すい臓 B細胞 → インスリン → 肝臓：グリコーゲン合成／細胞：グルコース取り込み</p></div>
+  <div><span class="f-name">低血糖のとき（上げる）</span><p>視床下部 →（交感神経）→ 副腎髄質 → アドレナリン／A細胞 → グルカゴン → 肝臓：グリコーゲン分解<br>視床下部 → 脳下垂体前葉 → 副腎皮質 → 糖質コルチコイド → タンパク質などから糖</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。問6〜8 は「資料で確かめる」の実験（架空のデータ）を使う。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>インスリンを分泌する細胞はどれですか。</p>
+  <div class="choices"><button>すい臓のランゲルハンス島の A細胞</button><button data-correct="true">すい臓のランゲルハンス島の B細胞</button><button>副腎髄質の細胞</button><button>脳下垂体前葉の細胞</button></div>
+  <span class="result"></span>
+  <div class="explain">インスリンは B細胞、グルカゴンは A細胞が分泌します。副腎髄質はアドレナリン、脳下垂体前葉は副腎皮質に働くホルモンなどを分泌します。A と B を取り違えやすいので、「B細胞は血糖を下げる（インスリン）」と結び付けて覚えましょう。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>次のうち、血糖濃度を<strong>上げる</strong>働きをもたないホルモンはどれですか。</p>
+  <div class="choices"><button>グルカゴン</button><button>アドレナリン</button><button>糖質コルチコイド</button><button data-correct="true">インスリン</button></div>
+  <span class="result"></span>
+  <div class="explain">インスリンは血糖濃度を下げる唯一のホルモンです。グルカゴンとアドレナリンは肝臓でグリコーゲンの分解を、糖質コルチコイドはタンパク質などから糖をつくる反応を促進して、血糖濃度を上げます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>血糖濃度が下がったとき、視床下部からの指令を副腎髄質に伝え、アドレナリンの分泌を促す神経はどれですか。</p>
+  <div class="choices"><button data-correct="true">交感神経</button><button>副交感神経</button><button>感覚神経</button><button>運動神経</button></div>
+  <span class="result"></span>
+  <div class="explain">血糖濃度を上げる向きに働くのは交感神経です。副交感神経は B細胞に働いてインスリンの分泌を促す、下げる向きの神経です。感覚神経・運動神経は自律神経ではありません。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="グリコーゲン">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1</span></div>
+  <p>肝臓で、多数のグルコースがつながった形でたくわえられ、グルカゴンやアドレナリンの働きで分解される物質の名前をカタカナで答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">答えはグリコーゲンです。「グルカゴン」と答えた人は、ホルモン（グルカゴン）とたくわえられる物質（グリコーゲン）を取り違えています。インスリンはグリコーゲンの合成を、グルカゴン・アドレナリンは分解を促進します。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>食後に血糖濃度が上がったとき、神経を通る経路で血糖濃度が下がるまでの順として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>視床下部 → 交感神経 → 副腎髄質 → インスリン → 肝臓</button>
+    <button data-correct="true">視床下部 → 副交感神経 → すい臓の B細胞 → インスリン → 肝臓・筋肉などの細胞</button>
+    <button>視床下部 → 副交感神経 → インスリン（神経から分泌）→ すい臓</button>
+    <button>すい臓の A細胞 → 副交感神経 → 視床下部 → インスリン → 肝臓</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">高血糖を感知した視床下部は、副交感神経を通じてすい臓の B細胞にインスリンの分泌を促します。インスリンは血液で運ばれ、肝臓でのグリコーゲンの合成や細胞へのグルコースの取り込みを促進します。1つ目は交感神経・副腎髄質（上げる向きの経路）と混ざっています。3つ目は「神経がインスリンを分泌する」誤りです。4つ目は感知と指令の向きが逆で、しかも A細胞はインスリンではなくグルカゴンを分泌する細胞です。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="37|37mg|37mg/100mL|37mg/100ml">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>実験の表で、群 B（副腎髄質あり＋インスリン）の血糖濃度は、注射30分後から120分後までに何 mg/100 mL 上昇しましたか。数値で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span><span class="small">mg/100 mL</span></div>
+  <div class="explain">30分後が 52、120分後が 89 なので、89 − 52 ＝ 37（mg/100 mL）です。0分からの変化（92 → 89 で −3）と混同しないようにしましょう。同じように計算すると群 C は 74 − 46 ＝ 28 で、C のほうが回復が小さいことが数値でも確かめられます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>実験の結果から判断できることとして、最も適当なものはどれですか。</p>
+  <div class="choices">
+    <button>副腎髄質を除くと、生理食塩水を注射しただけでも血糖濃度が大きく下がる。</button>
+    <button data-correct="true">副腎髄質は低血糖からの回復に関わるが、副腎髄質がなくても血糖濃度を上げるしくみが働いている。</button>
+    <button>血糖濃度を上げるのはアドレナリンだけで、グルカゴンは働いていない。</button>
+    <button>インスリンは副腎髄質に働いて、アドレナリンの分泌を止めることで血糖濃度を下げる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">B と C（違いは副腎髄質だけ）の比較で C の回復が遅いので、副腎髄質は回復に関わります。一方、C も 46 から 74 まで回復しているので、ほかのしくみも働いています。1つ目は A と D の比較（差は2以内）に反します。3つ目は C が回復していることと矛盾し、グルカゴンを測っていないので「働いていない」とも言えません。4つ目は、この実験では調べていない内容です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2・O3</span></div>
+  <p>次に、「交感神経の働きが低血糖からの回復に関わるか」を調べたい。群 B（副腎髄質あり＋インスリン）と比べる群として、最も適当なものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">副腎髄質とすい臓につながる交感神経を切断し、ほかの条件は群 B と同じにしてインスリンを同じ量注射した群</button>
+    <button>交感神経を切断し、インスリンの代わりに生理食塩水を注射した群</button>
+    <button>手術をせず、インスリンの量を2倍にして注射した群</button>
+    <button>交感神経を切断し、絶食させずにインスリンを注射した群</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">調べたい条件（交感神経の働き）<strong>だけ</strong>を群 B と変えた群が必要です。2つ目は交感神経と注射の中身の2つが、4つ目は交感神経と絶食の2つが違うので、差の原因を1つに決められません。3つ目は交感神経の働きを変えていません。群 B も切開して縫い合わせる操作を受けているので、1つ目の群と比べれば「手術の操作そのもの」の影響もそろえられます。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>健康な人が90分間、軽い運動を続けたときの血液中の値を調べた（学習用の架空のデータ。運動開始時を 100 とした相対値）。</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>運動開始からの時間（分）</th><th>0</th><th>30</th><th>60</th><th>90</th></tr>
+    <tr><th>血糖濃度</th><td>100</td><td>98</td><td>97</td><td>96</td></tr>
+    <tr><th>インスリン濃度</th><td>100</td><td>70</td><td>55</td><td>45</td></tr>
+    <tr><th>グルカゴン濃度</th><td>100</td><td>130</td><td>160</td><td>190</td></tr>
+    <tr><th>アドレナリン濃度</th><td>100</td><td>200</td><td>300</td><td>380</td></tr>
+  </table>
+  </div>
+  <p>筋肉がグルコースを使い続けているのに血糖濃度がほとんど変わらない理由を、表の3つのホルモンの変化と、自律神経の働きに触れて100字程度で説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model"><p><strong>解答例</strong>　血糖濃度の低下を視床下部が感知し、交感神経を通じて副腎髄質のアドレナリンとすい臓A細胞のグルカゴンの分泌が増えて、肝臓でグリコーゲンの分解が進む。一方、インスリンの分泌は減るので、血糖濃度はほぼ一定に保たれる。（105字）</p><p><strong>採点の観点</strong>　①グルカゴン・アドレナリンの増加を、肝臓のグリコーゲン分解（グルコースの放出）と結び付けている。②インスリンの減少を書いている。③交感神経が副腎髄質（や A細胞）に働くことに触れている。④視床下部が血糖濃度の低下を感知することに触れている（あればよい）。</p></div>
+  <div class="explain">90分で血糖濃度は 4％ しか下がっていないのに、グルカゴンは 1.9 倍、アドレナリンは 3.8 倍に増え、インスリンは半分以下（45）に減っています。上げるホルモンが増え、下げるホルモンが減る――この組合せで血糖濃度が保たれています。「アドレナリンが筋肉にグルコースを与える」のように、ホルモンが直接グルコースになるかのように書くのは誤りです。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（出題科目『物理基礎／化学基礎／生物基礎／地学基礎』の出題範囲「生物基礎」）</p>
+  <p>令和9年度の大学入学共通テスト実施要項では、『物理基礎／化学基礎／生物基礎／地学基礎』は「物理基礎」「化学基礎」「生物基礎」「地学基礎」の4つを出題範囲とし、そのうち2つを選択解答する（配点は各50点）とされています。このコマの内容は「生物基礎」の範囲（学習指導要領 (2)ア(ア)㋑ 体内環境の維持の仕組み）に含まれます。</p>
+  <p>同じ年度の問題作成方針は、この出題科目について「基本的な概念や原理・法則の理解を問う問題とともに，日常生活や社会の身近な課題等について科学的に探究する問題や，得られたデータを整理する過程などにおいて数学的な手法等を用いる問題などを含めて検討する」としています。このコマでいえば、ホルモンと自律神経の経路の理解（概念）と、条件を変えた実験の結果の比較（データの整理）の両方が関わります。具体的な出題の形式は、方針からは決まりません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">糖尿病と血液凝固（生基-038）</p>
+  <p>この時間の図2・図3のうち、血糖濃度を<strong>下げる</strong>道筋はインスリンの1本だけでした。次の時間は、身近な疾患の例として、インスリンの分泌不足によって血糖濃度が高いままになる<strong>糖尿病</strong>に触れます。また、失血を防いで体内環境を保つ<strong>血液凝固</strong>にも触れます。</p>
+  <p class="small">この時間では扱わないこと：糖尿病の原因と症状（生基-038）、血液凝固（生基-038）、ホルモンが標的細胞の受容体に結合するしくみ（「生物」生物-038）。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>生基-036　インスリン・グルカゴンと血糖濃度</div>
+  <div><span class="label">次の時間</span>生基-038　糖尿病と血液凝固</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_seibutsu/生基-037「血糖濃度の調節と自律神経」（学習指導要領 (2)ア(ア)㋑、解説 p.122）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第5節 理科 第2款 第6「生物基礎」2(2)ア(ア)㋑「体内環境の維持の仕組み」・3 内容の取扱い（文部科学省）<a href="https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf">https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</a></li>
+    <li>高等学校学習指導要領（平成30年告示）解説 理科編 理数編 p.121-122（文部科学省）<a href="https://www.mext.go.jp/content/20250311-mxt_kyoiku02-100002620_05.pdf">https://www.mext.go.jp/content/20250311-mxt_kyoiku02-100002620_05.pdf</a></li>
+    <li>語句の確認：啓林館『高等学校 生物基礎 改訂版』指導計画・評価規準（血糖濃度の調節の語句欄）<a href="https://www.shinko-keirin.co.jp/keirinkan/kou/kou_wp/wp-content/uploads/2025/05/生基061-901指導計画・評価規準.xlsx">https://www.shinko-keirin.co.jp/keirinkan/kou/kou_wp/wp-content/uploads/2025/05/生基061-901指導計画・評価規準.xlsx</a>、第一学習社『改訂 生物基礎＋改訂 生物』ダイジェスト版（内分泌腺の図、章末問題）<a href="https://www.daiichi-g.co.jp/pr/tb/contents/catalog/88733H_改訂生物基礎＋改訂生物ダイジェスト版.pdf">https://www.daiichi-g.co.jp/pr/tb/contents/catalog/88733H_改訂生物基礎＋改訂生物ダイジェスト版.pdf</a>、東京書籍『改訂 生物基礎』シラバス案 <a href="https://ten.tokyo-shoseki.co.jp/text/hs/rika/data/rika_16742_syllabus.pdf">https://ten.tokyo-shoseki.co.jp/text/hs/rika/data/rika_16742_syllabus.pdf</a></li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項（大学入試センター）<a href="https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00017382.pdf">https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00017382.pdf</a>、同 問題作成方針 <a href="https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00005361.pdf">https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00005361.pdf</a></li>
+  </ul>
+  <p>作成：2026-09-29　版：1.0　このページは学習指導要領と同解説、公的資料・教科書会社の公開資料をもとに作成した学習用資料です。実験と資料の数値は、既知の傾向に合わせてこのページのために作成した架空のデータです。例文・問題もこのページのために作成したものです。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_seibutsu/生基-037",
+  "map": "hs_seibutsu",
+  "rid": "生基-037",
+  "title": "血糖濃度の調節と自律神経",
+  "subject": "生物基礎",
+  "unit": {
+    "ref": "hs_seibutsu:生基5",
+    "title": "神経系と内分泌系による調節"
+  },
+  "exam": {
+    "共通テスト": "○",
+    "個別試験": ""
+  },
+  "basis": [
+    "(2)ア(ア)㋑"
+  ],
+  "kaisetsu_page": "122",
+  "objectives": [
+    {
+      "id": "O1",
+      "text": "血糖濃度を上げるホルモン（グルカゴン・アドレナリン・糖質コルチコイド）と下げるホルモン（インスリン）について、分泌する内分泌腺と、肝臓などでの働きを区別して説明できる。",
+      "from": "血糖濃度を下げるインスリン（すい臓のランゲルハンス島のB細胞が分泌）と、上げるグルカゴン・アドレナリン・糖質コルチコイド（後の二つは副腎が分泌）の働きを整理する。肝臓ではグルコースがグリコーゲンとしてたくわえられ、分解されてグルコースに戻ることにも触れる。",
+      "sections": [
+        "sec-1",
+        "sec-4"
+      ],
+      "checks": [
+        "q1",
+        "q2",
+        "q4"
+      ]
+    },
+    {
+      "id": "O2",
+      "text": "血糖濃度の上昇・低下を間脳の視床下部が感知し、自律神経（副交感神経・交感神経）や脳下垂体を通じてホルモンの分泌を調節する経路を、図を使って説明できる。",
+      "from": "血糖調節に関わる自律神経とホルモンの働き",
+      "sections": [
+        "sec-2",
+        "sec-4"
+      ],
+      "checks": [
+        "q3",
+        "q5",
+        "q8",
+        "q9"
+      ]
+    },
+    {
+      "id": "O3",
+      "text": "血糖調節に関わる自律神経とホルモンの働きを示す資料（実験の結果）を読み取り、内分泌系とともに自律神経系が働くことで血糖濃度が一定の範囲に保たれていることを説明できる。",
+      "from": "血糖調節に関わる自律神経とホルモンの働きを示す資料から、内分泌系とともに自律神経系の働きによって血糖濃度が維持されていることを理解する。",
+      "sections": [
+        "sec-3",
+        "sec-4"
+      ],
+      "checks": [
+        "q6",
+        "q7",
+        "q8",
+        "q9"
+      ]
+    }
+  ],
+  "key_terms": [
+    {
+      "term": "血糖濃度",
+      "where": "sec-1"
+    },
+    {
+      "term": "グリコーゲン",
+      "where": "supp-1"
+    },
+    {
+      "term": "ランゲルハンス島",
+      "where": "sec-1"
+    },
+    {
+      "term": "A細胞",
+      "where": "sec-1"
+    },
+    {
+      "term": "B細胞",
+      "where": "sec-1"
+    },
+    {
+      "term": "インスリン",
+      "where": "sec-1"
+    },
+    {
+      "term": "グルカゴン",
+      "where": "sec-1"
+    },
+    {
+      "term": "副腎髄質",
+      "where": "sec-1"
+    },
+    {
+      "term": "副腎皮質",
+      "where": "sec-1"
+    },
+    {
+      "term": "アドレナリン",
+      "where": "sec-1"
+    },
+    {
+      "term": "糖質コルチコイド",
+      "where": "sec-1"
+    },
+    {
+      "term": "視床下部",
+      "where": "sec-2"
+    },
+    {
+      "term": "脳下垂体",
+      "where": "supp-2"
+    },
+    {
+      "term": "交感神経",
+      "where": "sec-2"
+    },
+    {
+      "term": "副交感神経",
+      "where": "sec-2"
+    },
+    {
+      "term": "フィードバック",
+      "where": "sec-2"
+    },
+    {
+      "term": "副腎",
+      "where": "sec-1"
+    }
+  ],
+  "prerequisites": [
+    {
+      "concept": "食後の血糖濃度とインスリン濃度の変化、インスリン・グルカゴンの働きの概要",
+      "taught_in": [
+        "hs_seibutsu/生基-036"
+      ],
+      "where": "r1"
+    },
+    {
+      "concept": "自律神経系（交感神経・副交感神経）の働き",
+      "taught_in": [
+        "hs_seibutsu/生基-031",
+        "hs_seibutsu/生基-033"
+      ],
+      "where": "r2"
+    },
+    {
+      "concept": "視床下部がホルモン分泌の中枢であること、ホルモンと標的器官、フィードバック、神経系と内分泌系の速さ・持続の違い",
+      "taught_in": [
+        "hs_seibutsu/生基-034"
+      ],
+      "where": "r3"
+    },
+    {
+      "concept": "血糖濃度が体内環境の一つとして一定の範囲に保たれること",
+      "taught_in": [
+        "hs_seibutsu/生基-035"
+      ],
+      "where": "intro"
+    },
+    {
+      "concept": "デンプンが消化されてブドウ糖（グルコース）として吸収され、血液で運ばれること",
+      "taught_in": [
+        "jhs_rika2/中2-053",
+        "jhs_rika2/中2-054"
+      ],
+      "where": "supp-1"
+    },
+    {
+      "concept": "肝臓が栄養分をたくわえる働き",
+      "taught_in": [
+        "jhs_rika2/中2-059"
+      ],
+      "where": "supp-1"
+    },
+    {
+      "concept": "脳下垂体（視床下部の下にあり、その指令でホルモンを分泌する内分泌腺。前葉と後葉）",
+      "taught_in": [
+        "hs_seibutsu/生基-034"
+      ],
+      "gap": false,
+      "where": "supp-2"
+    },
+    {
+      "concept": "対照実験（調べる条件以外をそろえて比べる）",
+      "taught_in": [
+        "jhs_rika2/中2-041",
+        "hs_seibutsu/生基-001"
+      ],
+      "where": "sec-3"
+    }
+  ],
+  "out_of_scope": [
+    "糖尿病の原因と症状（生基-038）",
+    "血液凝固（生基-038）",
+    "食事前後の血糖濃度・インスリン濃度の資料の分析そのもの（生基-036）",
+    "ホルモンが標的細胞の受容体に結合するしくみ（生物-038）",
+    "腎臓による水分・塩類の調節（学習指導要領の範囲外として地図では扱わない）"
+  ],
+  "selection_reason": "生物基礎の候補として、生基-020（細胞周期とDNAの分配：時期の長さの計算があるが、解説は細胞周期を「触れる」程度とする）、生基-043（体液性免疫と細胞性免疫：細胞の種類が多いが、解説は「免疫応答の概要」とする）と比べて選んだ。生基-037 は学習指導要領の事項そのもの（体内環境の維持を自律神経と関連付けて理解する）で「理解」の程度が求められ、単元内の6行（自律神経系・拍動の調節・ホルモンと視床下部・血糖濃度・インスリン）と中学校（消化・肝臓）の既習を統合する。感知→神経→内分泌腺→ホルモン→標的器官の複数経路を向きと名称まで正確に図示する必要があり、グルカゴン／グリコーゲン、交感／副交感の向きなど誤解が多く、共通テストの範囲（○）で資料問題にもなりやすい。",
+  "sources": [
+    {
+      "name": "高等学校学習指導要領（平成30年告示）第2章第5節 理科",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf",
+      "use": "生物基礎 (2)ア(ア)㋑ と内容の取扱い（血糖濃度の調節機構を取り上げる）"
+    },
+    {
+      "name": "高等学校学習指導要領（平成30年告示）解説 理科編 理数編",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20250311-mxt_kyoiku02-100002620_05.pdf",
+      "use": "p.121-122：体内環境の維持を自律神経と関連付ける資料の例、内分泌系は神経系に比べて持続的"
+    },
+    {
+      "name": "高等学校 生物基礎 改訂版 指導計画・評価規準（生基061-901）",
+      "publisher": "啓林館",
+      "url": "https://www.shinko-keirin.co.jp/keirinkan/kou/kou_wp/wp-content/uploads/2025/05/生基061-901指導計画・評価規準.xlsx",
+      "use": "語句の確認（ランゲルハンス島、B細胞、グリコーゲン、アドレナリン、糖質コルチコイド、グルカゴン、下垂体（脳下垂体）、副腎、受容体、フィードバック）"
+    },
+    {
+      "name": "高等学校 改訂 生物基礎＋改訂 生物 ダイジェスト版",
+      "publisher": "第一学習社",
+      "url": "https://www.daiichi-g.co.jp/pr/tb/contents/catalog/88733H_改訂生物基礎＋改訂生物ダイジェスト版.pdf",
+      "use": "語句の確認（A細胞・B細胞、副腎の髄質・皮質、脳下垂体の前葉・後葉、視床下部＝自律神経系や内分泌系の中枢、章末問題の視床下部・すい臓・髄質・グルカゴン・インスリン・糖質コルチコイド）"
+    },
+    {
+      "name": "改訂 生物基礎 シラバス案（生基002-901）",
+      "publisher": "東京書籍",
+      "url": "https://ten.tokyo-shoseki.co.jp/text/hs/rika/data/rika_16742_syllabus.pdf",
+      "use": "血糖濃度の調節の節の構成（血糖濃度を調節するしくみ、調節に関わるホルモン）、交感神経・副交感神経、視床下部"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項",
+      "publisher": "大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf",
+      "use": "出題科目『物理基礎／化学基礎／生物基礎／地学基礎』の選択解答と配点"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針",
+      "publisher": "大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf",
+      "use": "理科（基礎科目）の問題作成の方針の引用"
+    }
+  ],
+  "version": "1.0",
+  "generated": "2026-09-29"
+}
+</script>
+</body>
+</html>

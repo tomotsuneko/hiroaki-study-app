@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単元末演習（図形と計量）｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>図形と計量</span><span>数Ⅰ-078</span></div>
+  <h1>単元末演習（図形と計量）</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">演習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">単元「図形と計量」のまとめの演習です。三角比の値と相互関係、正弦定理・余弦定理、三角形の面積と内接円の半径、平面図形・空間図形の計量の4つの型の問題を解き、単元の基本事項が身に付いているかを確かめます。どの型でも、最初に<strong>図をかいて、分かっている辺と角を書き込む</strong>ことが出発点です。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>三角比の定義・相互関係と、90°−A・180°−A の関係を用いて、0° から 180° までの角の三角比の値や、三角比の値を満たす角を求めることができる（型A）。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>分かっている辺と角の組合せに応じて正弦定理・余弦定理を選び、三角形の辺の長さ・角の大きさ・外接円の半径を求めることができる（型B）。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>2辺とその間の角や3辺から三角形の面積を求め、内接円の半径を求めることができる（型C）。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>平面図形・空間図形や日常の場面の中に三角形を見いだし、辺の長さ・角の大きさ・面積・体積を求めることができる（型D）。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-077）</span>三角比の日常の事象への活用</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-078）</span>単元末演習（図形と計量）</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-079）</span>統計的探究プロセスとデータの整理（単元「データの分析」）</div>
+</div>
+<p class="small">この時間は新しい内容を学ばず、単元「図形と計量」（数Ⅰ-057〜077）の内容を練習します。「型A〜D」はこのページでの呼び方で、数Ⅰ-067 の「型A〜D」（三角比の値の求め方による分け方）や数Ⅰ-072 の「型A〜D」（三角形の条件による分け方）とは別の分け方です。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：単元の要点と公式の総整理</h2>
+<div class="formula-card">
+  <div><span class="f-name">① 三角比の定義（数Ⅰ-058・063）</span><p>\( \angle\mathrm{C}=90^\circ \) の直角三角形で \( \sin A=\dfrac{a}{c} \)、\( \cos A=\dfrac{b}{c} \)、\( \tan A=\dfrac{a}{b} \)。半径 \( \alpha \) の半円上の点 \( \mathrm{P}(x,\ y) \) では \( \sin\theta=\dfrac{y}{\alpha} \)、\( \cos\theta=\dfrac{x}{\alpha} \)、\( \tan\theta=\dfrac{y}{x} \)（\( 0^\circ\leqq\theta\leqq180^\circ \)。\( \tan 90^\circ \) は定めない）。</p></div>
+  <div><span class="f-name">② 相互関係（数Ⅰ-061・065）</span><p>\( \sin^2\theta+\cos^2\theta=1 \)、\( \tan\theta=\dfrac{\sin\theta}{\cos\theta} \)、\( 1+\tan^2\theta=\dfrac{1}{\cos^2\theta} \)。鈍角では \( \cos\theta&lt;0 \)、\( \tan\theta&lt;0 \)。</p></div>
+  <div><span class="f-name">③ 90°−A・180°−A（数Ⅰ-062・064）</span><p>\( \sin(90^\circ-A)=\cos A \)、\( \cos(90^\circ-A)=\sin A \)。\( \sin(180^\circ-A)=\sin A \)、\( \cos(180^\circ-A)=-\cos A \)、\( \tan(180^\circ-A)=-\tan A \)。</p></div>
+  <div><span class="f-name">④ 正弦定理（数Ⅰ-068・069）</span><p>\( \dfrac{a}{\sin A}=\dfrac{b}{\sin B}=\dfrac{c}{\sin C}=2R \)。\( a:b:c=\sin A:\sin B:\sin C \)。</p></div>
+  <div><span class="f-name">⑤ 余弦定理（数Ⅰ-070・071）</span><p>\( a^2=b^2+c^2-2bc\cos A \)、\( \cos A=\dfrac{b^2+c^2-a^2}{2bc} \)。\( a^2 \) と \( b^2+c^2 \) の大小で A は鋭角・直角・鈍角。</p></div>
+  <div><span class="f-name">⑥ 面積・内接円（数Ⅰ-073・074）</span><p>\( S=\dfrac{1}{2}bc\sin A \)、\( S=\dfrac{1}{2}r(a+b+c) \)。</p></div>
+  <div><span class="f-name">⑦ 図形の計量（数Ⅰ-075〜077）</span><p>三角形に分ける・三角形を見いだして平面に描き直す。面積や体積を2通りに表す。錐体の体積 \( \dfrac{1}{3}\times(\text{底面積})\times(\text{高さ}) \)。</p></div>
+</div>
+<p class="small">①〜⑦は、このページの中での番号です。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-058</span></div>
+  <p>\( \tan 60^\circ \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{\sqrt{3}}{3} \)</button>
+    <button data-correct="true">\( \sqrt{3} \)</button>
+    <button>\( \dfrac{\sqrt{3}}{2} \)</button>
+    <button>\( \dfrac{1}{2} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">30°・60°・90° の直角三角形の辺の比 \( 1:2:\sqrt{3} \) より、\( \tan 60^\circ=\dfrac{\sqrt{3}}{1}=\sqrt{3} \) です。\( \dfrac{\sqrt{3}}{3} \) は \( \tan 30^\circ \)、\( \dfrac{\sqrt{3}}{2} \) は \( \sin 60^\circ \)、\( \dfrac{1}{2} \) は \( \cos 60^\circ \) です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-064</span></div>
+  <p>\( \cos 150^\circ \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{\sqrt{3}}{2} \)</button>
+    <button>\( -\dfrac{1}{2} \)</button>
+    <button>\( \dfrac{1}{2} \)</button>
+    <button data-correct="true">\( -\dfrac{\sqrt{3}}{2} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \cos(180^\circ-A)=-\cos A \) より \( \cos 150^\circ=-\cos 30^\circ=-\dfrac{\sqrt{3}}{2} \) です。\( \dfrac{\sqrt{3}}{2} \) は符号の誤り、\( -\dfrac{1}{2} \) は \( \cos 120^\circ \)、\( \dfrac{1}{2} \) は \( \sin 150^\circ \) です。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-072</span></div>
+  <p>2辺とその間の角が分かっている三角形で、残りの辺の長さを求めるときに使うのはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">余弦定理</button>
+    <button>正弦定理</button>
+    <button>三平方の定理</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">2辺とその間の角から残りの辺を求めるのは余弦定理 \( a^2=b^2+c^2-2bc\cos A \) です（数Ⅰ-072 の型B）。正弦定理は、辺とその向かいの角の組が1つ分かっているときに使います。三平方の定理は直角三角形だけで使え、余弦定理で \( A=90^\circ \) とした場合にあたります。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：どの型か見分けよう</h2>
+<div class="box think">
+  <p class="box-title">4つの問題</p>
+  <p>(ア) \( 0^\circ\leqq\theta\leqq180^\circ \)、\( \sin\theta=\dfrac{1}{3} \) のとき、\( \cos\theta \) と \( \tan\theta \) の値を求めなさい。<br>
+  (イ) △ABC で \( A=45^\circ \)、\( B=60^\circ \)、\( a=2\sqrt{2} \) のとき、\( b \) と外接円の半径 \( R \) を求めなさい。<br>
+  (ウ) 3辺の長さが 3、5、7 の三角形の面積と、内接円の半径を求めなさい。<br>
+  (エ) 1辺の長さが \( 2\sqrt{3} \) の正四面体の体積を求めなさい。</p>
+  <p>解き始める前に、それぞれ「何が分かっていて、何を求めるのか」「どの公式を使うか」を予想しましょう。答えは、(ア) が「3 型A」の例題1、(イ) が「4 型B」の例題3、(ウ) が「5 型C」の例題5、(エ) が「6 型D」の例題7で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="型A：三角比の値と相互関係"><span class="num">3</span>型A：三角比の値と相互関係</h2>
+<p>三角比の値の問題は、まず角が鋭角か鈍角かを確かめます（②の符号）。90°−A・180°−A の関係（③）で、鋭角の三角比、さらに 45° 以下の角の三角比に直せます。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（型A：導入の (ア)）</p>
+  <p>\( 0^\circ\leqq\theta\leqq180^\circ \)、\( \sin\theta=\dfrac{1}{3} \) のとき、\( \cos\theta \) と \( \tan\theta \) の値を求めなさい。</p>
+  <div class="step">着眼点：\( \sin\theta \) の値だけでは、\( \theta \) が鋭角か鈍角かが決まりません。\( \cos\theta \) は2通りになります（数Ⅰ-065）。</div>
+  <div class="step">\( \cos^2\theta=1-\sin^2\theta=1-\dfrac{1}{9}=\dfrac{8}{9} \) より \( \cos\theta=\pm\dfrac{2\sqrt{2}}{3} \)。</div>
+  <div class="step">\( \theta \) が鋭角のとき \( \cos\theta=\dfrac{2\sqrt{2}}{3} \)、\( \tan\theta=\dfrac{\sin\theta}{\cos\theta}=\dfrac{1}{2\sqrt{2}}=\dfrac{\sqrt{2}}{4} \)。</div>
+  <div class="step">\( \theta \) が鈍角のとき \( \cos\theta=-\dfrac{2\sqrt{2}}{3} \)、\( \tan\theta=-\dfrac{\sqrt{2}}{4} \)。</div>
+  <div class="step">答え：<span>\( \cos\theta=\dfrac{2\sqrt{2}}{3} \)、\( \tan\theta=\dfrac{\sqrt{2}}{4} \)、または \( \cos\theta=-\dfrac{2\sqrt{2}}{3} \)、\( \tan\theta=-\dfrac{\sqrt{2}}{4} \)</span>（複号同順で書いてもよい）</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（型A：三角比の値を満たす角）</p>
+  <p>\( 0^\circ\leqq\theta\leqq180^\circ \) のとき、(1) \( 2\sin\theta=\sqrt{3} \)、(2) \( \sqrt{2}\cos\theta+1=0 \) を満たす \( \theta \) を求めなさい。</p>
+  <div class="step">着眼点：単位円の上半分（半円周上の点 \( (\cos\theta,\ \sin\theta) \)）で考えます（数Ⅰ-063・066）。正弦は \( y \) 座標、余弦は \( x \) 座標です。</div>
+  <div class="step">(1) \( \sin\theta=\dfrac{\sqrt{3}}{2} \)。直線 \( y=\dfrac{\sqrt{3}}{2} \) と半円の交点は2つあるので、\( \theta=60^\circ,\ 120^\circ \)。</div>
+  <div class="step">(2) \( \cos\theta=-\dfrac{1}{\sqrt{2}} \)。直線 \( x=-\dfrac{1}{\sqrt{2}} \) と半円の交点は1つなので、\( \theta=135^\circ \)。</div>
+  <div class="step">答え：(1) \( \theta=60^\circ,\ 120^\circ \)　(2) \( \theta=135^\circ \)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型A）</p><p>① \( \sin\theta \) から \( \cos\theta \) を求めるとき、鈍角の場合（負の値）を落とす。ただし、三角形の角が分かっている問題（鋭角三角形など）では、条件に合う方だけを答えます。<br>② \( \sin\theta=k \)（\( 0&lt;k&lt;1 \)）を満たす角を1つだけ答える。\( \theta \) と \( 180^\circ-\theta \) の2つがあります。余弦の値を満たす角は 0°〜180° で1つです。<br>③ \( \cos(180^\circ-A)=\cos A \) と符号を変え忘れる。正弦は符号が変わらず、余弦・正接は変わります。<br>④ \( \tan\theta \) の値から \( 1+\tan^2\theta=\dfrac{1}{\cos^2\theta} \) で \( \cos\theta \) を求めるとき、符号を落とす：\( 0^\circ&lt;\theta&lt;180^\circ \) では \( \sin\theta&gt;0 \) なので、\( \cos\theta \) の符号は \( \tan\theta \) と同じです（数Ⅰ-065、問15）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="型B：正弦定理・余弦定理"><span class="num">4</span>型B：正弦定理・余弦定理</h2>
+<p>三角形の問題は、分かっている辺と角の組合せで使う定理が決まります（数Ⅰ-072）。辺とその向かいの角の組が分かれば正弦定理（④）、2辺とその間の角や3辺なら余弦定理（⑤）です。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（型B：導入の (イ)、1辺と2角）</p>
+  <p>△ABC で \( A=45^\circ \)、\( B=60^\circ \)、\( a=2\sqrt{2} \) のとき、\( b \) と外接円の半径 \( R \) を求めなさい。</p>
+  <div class="step">着眼点：辺 \( a \) とその向かいの角 A の組が分かるので、正弦定理です。</div>
+  <div class="step">\( \dfrac{b}{\sin 60^\circ}=\dfrac{2\sqrt{2}}{\sin 45^\circ} \) より \( b=\dfrac{2\sqrt{2}\cdot\frac{\sqrt{3}}{2}}{\frac{\sqrt{2}}{2}}=2\sqrt{3} \)。</div>
+  <div class="step">\( 2R=\dfrac{a}{\sin A}=\dfrac{2\sqrt{2}}{\frac{\sqrt{2}}{2}}=4 \) より \( R=2 \)。</div>
+  <div class="step">確かめ：\( a:b=2\sqrt{2}:2\sqrt{3}=\sqrt{2}:\sqrt{3} \) は \( \sin 45^\circ:\sin 60^\circ=\dfrac{\sqrt{2}}{2}:\dfrac{\sqrt{3}}{2} \) と等しく、\( a:b=\sin A:\sin B \) が成り立っています。</div>
+  <div class="step">答え：<span>\( b=2\sqrt{3} \)、\( R=2 \)</span></div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（型B：2辺とその間にない角）</p>
+  <p>△ABC で \( A=30^\circ \)、\( a=\sqrt{2} \)、\( b=2 \) のとき、\( c \) を求めなさい。</p>
+  <div class="step">着眼点：角 A をはさむ辺は \( b \) と \( c \) なので、A の向かいの辺 \( a \) について余弦定理を書くと、\( c \) の二次方程式になります（数Ⅰ-071）。</div>
+  <div class="step">\( (\sqrt{2})^2=2^2+c^2-2\cdot 2\cdot c\cos 30^\circ \) より \( 2=4+c^2-2\sqrt{3}c \)、\( c^2-2\sqrt{3}c+2=0 \)。</div>
+  <div class="step">解の公式より \( c=\sqrt{3}\pm\sqrt{3-2}=\sqrt{3}\pm 1 \)。どちらも正なので、条件を満たす三角形は2つあります（図1）。</div>
+  <div class="step">答え：<span>\( c=\sqrt{3}+1 \) または \( c=\sqrt{3}-1 \)</span></div>
+</div>
+<figure>
+<!--svg:f078a-->
+<svg viewBox="0 0 300 236" width="300" role="img" aria-label="AC=2、角A=30° の三角形。C を中心とする半径 √2 の円が、A から引いた半直線と2点 B1、B2 で交わり、三角形 AB1C と AB2C の2つができる">
+<circle cx="152.6" cy="123" r="91.9" fill="none" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="2 3"/>
+<polygon points="40,188 87.6,188 152.6,123" fill="#1e8e5a" fill-opacity="0.1" stroke="currentColor" stroke-width="0" stroke-linejoin="round"/>
+<line x1="27" y1="188" x2="254.5" y2="188" stroke="currentColor" stroke-width="1.6"/>
+<line x1="40" y1="188" x2="152.6" y2="123" stroke="currentColor" stroke-width="1.6"/>
+<line x1="152.6" y1="123" x2="87.6" y2="188" stroke="#1e8e5a" stroke-width="1.8"/>
+<line x1="152.6" y1="123" x2="217.6" y2="188" stroke="#7b3fa0" stroke-width="1.8" stroke-dasharray="6 3"/>
+<polyline points="66,188 66,187.4 66,186.9 65.9,186.3 65.9,185.7 65.8,185.2 65.8,184.6 65.7,184 65.6,183.5 65.5,182.9 65.4,182.4 65.3,181.8 65.1,181.3 65,180.7 64.8,180.2 64.6,179.6 64.4,179.1 64.2,178.6 64,178.1 63.8,177.5 63.6,177 63.3,176.5 63.1,176 62.8,175.5 62.5,175" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<text x="77.9" y="184" text-anchor="middle" font-size="12" fill="#b7791f">30°</text>
+<circle cx="40" cy="188" r="3" fill="currentColor"/>
+<text x="30" y="202" text-anchor="middle" font-size="13" fill="currentColor">A</text>
+<circle cx="152.6" cy="123" r="3" fill="currentColor"/>
+<text x="152.6" y="114" text-anchor="middle" font-size="13" fill="currentColor">C</text>
+<circle cx="87.6" cy="188" r="3" fill="#1e8e5a"/>
+<text x="87.6" y="206" text-anchor="middle" font-size="13" fill="#1e8e5a">B₁</text>
+<circle cx="217.6" cy="188" r="3" fill="#7b3fa0"/>
+<text x="217.6" y="206" text-anchor="middle" font-size="13" fill="#7b3fa0">B₂</text>
+<text x="90.5" y="150" text-anchor="middle" font-size="13" fill="currentColor">2</text>
+<text x="134.1" y="165.5" text-anchor="middle" font-size="12" fill="currentColor">√2</text>
+<text x="199.1" y="157.5" text-anchor="middle" font-size="12" fill="currentColor">√2</text>
+</svg><!--/svg:f078a-->
+  <figcaption>図1　例題4：\( \mathrm{AC}=2 \)、\( A=30^\circ \) で、C を中心とする半径 \( \sqrt{2} \) の円（点線）が、A から引いた半直線と2点 \( \mathrm{B_1} \)、\( \mathrm{B_2} \) で交わる。\( \mathrm{AB_1}=\sqrt{3}-1 \)（緑の三角形）、\( \mathrm{AB_2}=\sqrt{3}+1 \)（紫の破線の辺）。数Ⅰ-069 の図2と同じ三角形</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い（型B）</p><p>① 正弦定理で、向かい合わない辺と角を組にする（\( \dfrac{a}{\sin B} \) など）。<br>② \( 2R \) の値をそのまま \( R \) と答える。<br>③ 2辺とその間にない角で、解を1つだけ答える。二次方程式の<strong>正の解の個数</strong>が三角形の個数です（数Ⅰ-071・072）。<br>④ 3辺から角を求めた後、鋭角・鈍角を確かめない：\( \cos A&lt;0 \) なら A は鈍角です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="型C：面積と内接円の半径"><span class="num">5</span>型C：三角形の面積と内接円の半径</h2>
+<p>面積は「2辺とその間の角」がそろえば \( S=\dfrac{1}{2}bc\sin A \)（⑥）。3辺なら、余弦定理で余弦 → 相互関係で正弦 → 面積の順です。内接円の半径は \( r=\dfrac{2S}{a+b+c} \) で求めます。</p>
+<div class="box example worked">
+  <p class="box-title">例題5（型C：導入の (ウ)）</p>
+  <p>3辺の長さが 3、5、7 の三角形の面積 \( S \) と、内接円の半径 \( r \) を求めなさい。</p>
+  <div class="step">着眼点：長さ 7 の辺の向かいの角を C とすると、余弦の値が簡単になりそうです（\( 7^2=49 \) と \( 3^2+5^2=34 \) の差が大きい）。</div>
+  <div class="step">\( \cos C=\dfrac{3^2+5^2-7^2}{2\cdot 3\cdot 5}=\dfrac{-15}{30}=-\dfrac{1}{2} \) より \( C=120^\circ \)（鈍角三角形）。</div>
+  <div class="step">\( S=\dfrac{1}{2}\cdot 3\cdot 5\cdot\sin 120^\circ=\dfrac{15\sqrt{3}}{4} \)。</div>
+  <div class="step">\( r=\dfrac{2S}{a+b+c}=\dfrac{2}{15}\cdot\dfrac{15\sqrt{3}}{4}=\dfrac{\sqrt{3}}{2} \)。</div>
+  <div class="step">答え：<span>\( S=\dfrac{15\sqrt{3}}{4} \)、\( r=\dfrac{\sqrt{3}}{2} \)</span>（参考：外接円の半径は \( R=\dfrac{7}{2\sin 120^\circ}=\dfrac{7\sqrt{3}}{3} \)。\( r \) と \( R \) を区別しよう）</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題6（型C：面積から角を求める）</p>
+  <p>△ABC で \( b=4 \)、\( c=5 \)、面積が \( 5\sqrt{2} \) のとき、A を求めなさい。</p>
+  <div class="step">着眼点：面積の公式に代入すると \( \sin A \) の方程式になります（数Ⅰ-073 の例題3）。</div>
+  <div class="step">\( 5\sqrt{2}=\dfrac{1}{2}\cdot 4\cdot 5\sin A=10\sin A \) より \( \sin A=\dfrac{\sqrt{2}}{2} \)。</div>
+  <div class="step">答え：<span>\( A=45^\circ \) または \( A=135^\circ \)</span>（どちらの三角形も条件を満たす）</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型C）</p><p>① \( \dfrac{1}{2} \) を忘れる（面積も、内接円の関係式も）。<br>② 3辺から面積を求めるとき、余弦の値をそのまま面積の公式に入れる。<br>③ 内接円の半径 \( r \)（面積から）と外接円の半径 \( R \)（正弦定理から）を取り違える。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="型D：平面図形・空間図形の計量"><span class="num">6</span>型D：平面図形・空間図形の計量</h2>
+<p>三角形でない図形や立体は、<strong>三角形に分ける・三角形を見いだして平面に描き直す</strong>ことで、型B・型C の方法が使えるようになります（⑦）。日常の場面も、場面を図に表して三角形を見いだします（数Ⅰ-077）。</p>
+<div class="box example worked">
+  <p class="box-title">例題7（型D：導入の (エ)、正四面体の体積）</p>
+  <p>1辺の長さが \( 2\sqrt{3} \) の正四面体 ABCD の高さ AH と体積 \( V \) を求めなさい。</p>
+  <div class="step">着眼点：H は底面 △BCD の外接円の中心です（数Ⅰ-076）。\( \mathrm{HB}=R \) を正弦定理で求め、直角三角形 ABH で三平方の定理を使います。</div>
+  <div class="step">\( 2\mathrm{HB}=\dfrac{2\sqrt{3}}{\sin 60^\circ}=4 \) より \( \mathrm{HB}=2 \)。\( \mathrm{AH}=\sqrt{(2\sqrt{3})^2-2^2}=\sqrt{8}=2\sqrt{2} \)。</div>
+  <div class="step">底面積 \( =\dfrac{1}{2}\cdot 2\sqrt{3}\cdot 2\sqrt{3}\cdot\sin 60^\circ=3\sqrt{3} \)。\( V=\dfrac{1}{3}\cdot 3\sqrt{3}\cdot 2\sqrt{2}=2\sqrt{6} \)。</div>
+  <div class="step">答え：<span>\( \mathrm{AH}=2\sqrt{2} \)、\( V=2\sqrt{6} \)</span></div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題8（型D：円に内接する四角形）</p>
+  <p>円に内接する四角形 ABCD で、\( \mathrm{AB}=5 \)、\( \mathrm{BC}=3 \)、\( \mathrm{CD}=3 \)、\( \mathrm{DA}=8 \) です。対角線 AC の長さと、四角形の面積 \( S \) を求めなさい。</p>
+  <div class="step">着眼点：向かい合う角の和は 180° なので \( \cos D=-\cos B \)（数Ⅰ-075）。AC² を △ABC と △ACD で2通りに表します。</div>
+  <div class="step">\( \mathrm{AC}^2=25+9-30\cos B=9+64-48\cos D=73+48\cos B \)。\( 34-30\cos B=73+48\cos B \) より \( 78\cos B=-39 \)、\( \cos B=-\dfrac{1}{2} \)、\( B=120^\circ \)、\( D=60^\circ \)。</div>
+  <div class="step">\( \mathrm{AC}^2=34+15=49 \) より \( \mathrm{AC}=7 \)。</div>
+  <div class="step">\( S=\dfrac{1}{2}\cdot 5\cdot 3\cdot\sin 120^\circ+\dfrac{1}{2}\cdot 3\cdot 8\cdot\sin 60^\circ=\dfrac{15\sqrt{3}}{4}+6\sqrt{3}=\dfrac{39\sqrt{3}}{4} \)。</div>
+  <div class="step">答え：<span>\( \mathrm{AC}=7 \)、\( S=\dfrac{39\sqrt{3}}{4} \)</span></div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型D）</p><p>① 見取図の見た目で角や長さを判断する：三角形を取り出し、実際の長さで描き直します。<br>② 錐体の体積の \( \dfrac{1}{3} \) を忘れる。<br>③ 円に内接する四角形で \( \cos D=\cos B \) とする（\( \cos B \) が 1 を超えるなどの不自然な値になる）。<br>④ 日常の場面で、目の高さや単純化した仮定を振り返らない（数Ⅰ-077）。</p></div>
+<div class="box point"><p class="box-title">この単元の問題の型と、練習した場所</p>
+<div class="table-wrap">
+<table>
+  <tr><th>型</th><th>見分ける手掛かり</th><th>まずすること</th><th>練習した場所</th></tr>
+  <tr><td>A</td><td>三角比の値、値を満たす角</td><td>鋭角か鈍角か（符号）を確かめる</td><td>数Ⅰ-057〜067、例題1・2、問1・2・3・15</td></tr>
+  <tr><td>B</td><td>三角形の辺・角・外接円の半径</td><td>分かっている辺と角の組合せから定理を選ぶ</td><td>数Ⅰ-068〜072、例題3・4、問4・6・7・8</td></tr>
+  <tr><td>C</td><td>三角形の面積・内接円の半径</td><td>2辺とその間の角をそろえる</td><td>数Ⅰ-073・074、例題5・6、問5・9・15</td></tr>
+  <tr><td>D</td><td>四角形・二等分線・立体・日常の場面</td><td>三角形に分ける、見いだして描き直す</td><td>数Ⅰ-075〜077、例題7・8、問10〜14</td></tr>
+</table>
+</div>
+<p>型A の中の分け方（定義から値、90°−A・180°−A、相互関係、値を満たす角）は数Ⅰ-067 の型A〜D です。問1 は数Ⅰ-067 の型B、問2・問15 は型C、問3 は型D にあたります。型B の中の分け方（1辺と2角、2辺とその間の角、3辺、2辺とその間にない角）は、数Ⅰ-072 の型A〜D です。問4 は数Ⅰ-072 の型A、問6 は型B、問7 は型C（正弦の比）、問8 は型D にあたります。</p></div>
+<div class="box think"><p class="box-title">どの型でも共通の手順</p><p>① 図をかき、分かっている辺と角を書き込む → ② 何を求める問題かを見て型を決める → ③ 必要なら三角形に分ける・描き直す → ④ 答えが条件に合うか（三角形の角の和、辺の長さの正負、\( \sin \) や \( \cos \) の範囲、場面の意味）を確かめる。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この単元の主な語句（すべて既習）</p>
+  <dl>
+    <dt>正弦・余弦・正接</dt><dd>\( \sin \)、\( \cos \)、\( \tan \)。直角三角形の辺の比として定義し（数Ⅰ-057・058）、半円上の点の座標で 0°〜180° に拡張した（数Ⅰ-063）。</dd>
+    <dt>三角比の相互関係</dt><dd>\( \sin^2\theta+\cos^2\theta=1 \) など（数Ⅰ-061・065）。</dd>
+    <dt>正弦定理</dt><dd>\( \dfrac{a}{\sin A}=\dfrac{b}{\sin B}=\dfrac{c}{\sin C}=2R \)（数Ⅰ-068）。</dd>
+    <dt>余弦定理</dt><dd>\( a^2=b^2+c^2-2bc\cos A \)（数Ⅰ-070）。三平方の定理を一般の三角形に拡張したもの。</dd>
+    <dt>三角形の決定条件</dt><dd>3辺、2辺とその間の角、1辺とその両端の角（数Ⅰ-071）。</dd>
+    <dt>外接円・内接円</dt><dd>3つの頂点を通る円（半径 \( R \)）、3辺に接する円（半径 \( r \)）（数Ⅰ-068・074）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>型A：鋭角か鈍角かを確かめ、相互関係と 90°−A・180°−A の関係で値を求める。\( \sin\theta \) から \( \cos\theta \) は2通り、\( \sin\theta=k \) を満たす角は2つ。\( \tan\theta \) からは \( 1+\tan^2\theta=\dfrac{1}{\cos^2\theta} \) で、\( \cos\theta \) の符号は \( \tan\theta \) と同じ（O1）。</li>
+    <li>型B：辺とその向かいの角の組 → 正弦定理、2辺とその間の角・3辺 → 余弦定理。2辺とその間にない角は、正の解の個数で三角形の個数を判断する（O2）。</li>
+    <li>型C：\( S=\dfrac{1}{2}bc\sin A \)、3辺なら余弦 → 正弦 → 面積。\( r=\dfrac{2S}{a+b+c} \)（O3）。</li>
+    <li>型D：三角形に分ける・見いだして描き直す。面積や体積を2通りに表す。日常の場面は結果を解釈する（O4）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">型A</span><p>\( \sin^2\theta+\cos^2\theta=1 \)、\( \cos(180^\circ-\theta)=-\cos\theta \)</p></div>
+  <div><span class="f-name">型B</span><p>\( \dfrac{a}{\sin A}=2R \)、\( a^2=b^2+c^2-2bc\cos A \)</p></div>
+  <div><span class="f-name">型C</span><p>\( S=\dfrac{1}{2}bc\sin A=\dfrac{1}{2}r(a+b+c) \)</p></div>
+  <div><span class="f-name">型D</span><p>三角形に分ける・描き直す、\( V=\dfrac{1}{3}Sh \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">型を混ぜて出題します。基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）と型を示す。根号を含む答えは、根号の中をできるだけ小さい自然数にして、\( \sqrt{19} \) なら √19 または ルート19 と入力してください。角は 105 のように数だけを入力してもかまいません。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1（型A）</span></div>
+  <p>三角比表で \( \sin 50^\circ=0.7660 \)、\( \cos 50^\circ=0.6428 \) です。\( \cos 140^\circ \) の値はどれですか。</p>
+  <div class="choices"><button>\( 0.7660 \)</button><button data-correct="true">\( -0.7660 \)</button><button>\( -0.6428 \)</button><button>\( 0.6428 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( \cos 140^\circ=\cos(180^\circ-40^\circ)=-\cos 40^\circ \)、さらに \( \cos 40^\circ=\cos(90^\circ-50^\circ)=\sin 50^\circ \) なので、\( \cos 140^\circ=-\sin 50^\circ=-0.7660 \) です（型A）。\( 0.7660 \) は 180°−A の符号の変化を忘れた値です。\( \pm 0.6428 \) は \( \cos 40^\circ \) を \( \cos 50^\circ \) と取り違えた値です（\( \cos 140^\circ=-\cos 40^\circ \) で、\( 50^\circ \) ではありません）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1（型A）</span></div>
+  <p>\( 0^\circ\leqq\theta\leqq180^\circ \)、\( \sin\theta=\dfrac{3}{5} \) のとき、\( \cos\theta \) の値として正しいものはどれですか。</p>
+  <div class="choices"><button>\( \dfrac{4}{5} \) だけ</button><button>\( -\dfrac{4}{5} \) だけ</button><button>\( \pm\dfrac{\sqrt{10}}{5} \)</button><button data-correct="true">\( \dfrac{4}{5} \) または \( -\dfrac{4}{5} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( \cos^2\theta=1-\dfrac{9}{25}=\dfrac{16}{25} \) より \( \cos\theta=\pm\dfrac{4}{5} \)。\( \theta \) が鋭角なら \( \dfrac{4}{5} \)、鈍角なら \( -\dfrac{4}{5} \) で、条件に鋭角・鈍角の指定がないので両方です（型A、例題1）。「だけ」の2つは一方を落としています。\( \pm\dfrac{\sqrt{10}}{5} \) は \( \sin\theta \) を2乗せずに \( 1-\dfrac{3}{5}=\dfrac{2}{5} \) とした値です。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="120|120°|θ=120|θ=120°">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O1（型A）</span></div>
+  <p>\( 0^\circ\leqq\theta\leqq180^\circ \) で \( 2\cos\theta+1=0 \) を満たす \( \theta \) を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \theta=120^\circ \)。\( \cos\theta=-\dfrac{1}{2} \) で、単位円の上半分と直線 \( x=-\dfrac{1}{2} \) の交点は1つです（型A、例題2）。60° は符号を落とした答え、「60° と 120°」は正弦のように2つあると考えた答えです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問4</span><span class="q-obj">O2（型B）</span></div>
+  <p>△ABC で \( a=4 \)、\( A=45^\circ \)、\( B=60^\circ \) のとき、\( b \) と外接円の半径 \( R \) の組として正しいものはどれですか。</p>
+  <div class="choices"><button data-correct="true">\( b=2\sqrt{6} \)、\( R=2\sqrt{2} \)</button><button>\( b=\dfrac{4\sqrt{6}}{3} \)、\( R=\dfrac{4\sqrt{3}}{3} \)</button><button>\( b=2\sqrt{6} \)、\( R=4\sqrt{2} \)</button><button>\( b=2\sqrt{3} \)、\( R=2\sqrt{2} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">正弦定理より \( b=\dfrac{a\sin B}{\sin A}=\dfrac{4\cdot\frac{\sqrt{3}}{2}}{\frac{\sqrt{2}}{2}}=\dfrac{4\sqrt{3}}{\sqrt{2}}=2\sqrt{6} \)、\( 2R=\dfrac{a}{\sin A}=\dfrac{4}{\frac{\sqrt{2}}{2}}=4\sqrt{2} \) より \( R=2\sqrt{2} \) です（型B、例題3）。\( b=\dfrac{4\sqrt{6}}{3} \)、\( R=\dfrac{4\sqrt{3}}{3} \) の組は、辺 \( a \) を向かい合わない角 B と組にした誤りです（\( b=\dfrac{a\sin A}{\sin B} \)、\( 2R=\dfrac{a}{\sin B}=\dfrac{8\sqrt{3}}{3} \)）。\( R=4\sqrt{2} \) は \( 2R \) の値をそのまま \( R \) と答えた誤りです。\( b=2\sqrt{3} \) は \( a\sin B \) で、\( \sin A \) で割り忘れた値です。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="12|S=12">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問5</span><span class="q-obj">O3（型C）</span></div>
+  <p>△ABC で \( b=6 \)、\( c=8 \)、\( A=150^\circ \) のとき、面積 \( S \) を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 12。\( S=\dfrac{1}{2}\cdot 6\cdot 8\cdot\sin 150^\circ=24\cdot\dfrac{1}{2}=12 \) です（型C）。24 は \( \dfrac{1}{2} \) を忘れた値、\( -12\sqrt{3} \) は余弦 \( \cos 150^\circ=-\dfrac{\sqrt{3}}{2} \) を使った値で、面積が負になることはありません。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="√21|ルート21|root21|a=√21|√(21)">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2（型B）</span></div>
+  <p>△ABC で \( b=4 \)、\( c=5 \)、\( A=60^\circ \) のとき、\( a \) を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \sqrt{21} \)。余弦定理より \( a^2=16+25-2\cdot 4\cdot 5\cos 60^\circ=41-20=21 \)、\( a&gt;0 \) より \( a=\sqrt{21} \) です（型B）。\( \sqrt{61} \) は \( -2bc\cos A \) の符号を誤った値、\( \sqrt{41} \) はその項を落とした値、21 は平方根をとり忘れた値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O2（型B）</span></div>
+  <p>△ABC で \( \sin A:\sin B:\sin C=3:7:8 \) です。正しいものはどれですか。</p>
+  <div class="choices"><button>\( B=60^\circ \) で、鋭角三角形</button><button data-correct="true">\( B=60^\circ \) で、鈍角三角形</button><button>\( B=120^\circ \) で、鈍角三角形</button><button>\( B=70^\circ \) で、鋭角三角形</button></div>
+  <span class="result"></span>
+  <div class="explain">\( a:b:c=\sin A:\sin B:\sin C=3:7:8 \)（数Ⅰ-069）なので、正の数 \( k \) で \( a=3k \)、\( b=7k \)、\( c=8k \) と表せます。\( \cos B=\dfrac{c^2+a^2-b^2}{2ca}=\dfrac{64k^2+9k^2-49k^2}{2\cdot 8k\cdot 3k}=\dfrac{24k^2}{48k^2}=\dfrac{1}{2} \) より \( B=60^\circ \)。三角形の形は最も長い辺 \( c \) の向かいの角 C で判断し、\( c^2=64k^2&gt;a^2+b^2=58k^2 \) なので C は鈍角、鈍角三角形です（型B、数Ⅰ-071）。「\( B=60^\circ \) で、鋭角三角形」は、最も長い辺の向かいの角でない B だけで形を判断した誤りです。\( B=120^\circ \) は分子の符号を逆にした誤り、\( B=70^\circ \) は正弦の比を角の比として \( 180^\circ\times\dfrac{7}{18} \) とした誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問8</span><span class="q-obj">O2（型B）</span></div>
+  <p>△ABC で \( A=45^\circ \)、\( a=\sqrt{5} \)、\( b=2\sqrt{2} \) のとき、\( c \) の値として正しいものはどれですか。</p>
+  <div class="choices"><button>\( c=3 \) だけ</button><button data-correct="true">\( c=1 \) または \( c=3 \)</button><button>\( c=1 \) だけ</button><button>\( c=-1 \) または \( c=-3 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">A の向かいの辺 \( a \) について余弦定理を書くと、\( 5=8+c^2-2\cdot 2\sqrt{2}\cdot c\cos 45^\circ=8+c^2-4c \)、\( c^2-4c+3=0 \)、\( (c-1)(c-3)=0 \)。正の解が2つなので、三角形は2つあり、\( c=1 \) または \( c=3 \) です（型B、例題4）。一方だけの答えは、もう一方の三角形を落としています。\( -1 \)、\( -3 \) は因数分解の符号を誤った値で、辺の長さは正です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問9</span><span class="q-obj">O3（型C）</span></div>
+  <p>3辺の長さが 5、7、8 の三角形の面積 \( S \) と内接円の半径 \( r \) の組として正しいものはどれですか。</p>
+  <div class="choices"><button>\( S=20\sqrt{3} \)、\( r=2\sqrt{3} \)</button><button>\( S=10\sqrt{3} \)、\( r=\dfrac{\sqrt{3}}{2} \)</button><button>\( S=10\sqrt{3} \)、\( r=\dfrac{7\sqrt{3}}{3} \)</button><button data-correct="true">\( S=10\sqrt{3} \)、\( r=\sqrt{3} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">長さ 7 の辺の向かいの角を A とすると \( \cos A=\dfrac{25+64-49}{2\cdot 5\cdot 8}=\dfrac{1}{2} \)、\( A=60^\circ \)。\( S=\dfrac{1}{2}\cdot 5\cdot 8\cdot\sin 60^\circ=10\sqrt{3} \)、\( r=\dfrac{2S}{a+b+c}=\dfrac{20\sqrt{3}}{20}=\sqrt{3} \) です（型C、数Ⅰ-074 の例題1）。\( S=20\sqrt{3} \) の組は面積の \( \dfrac{1}{2} \) を忘れています。\( r=\dfrac{\sqrt{3}}{2} \) は \( r=\dfrac{S}{a+b+c} \) と2倍を忘れた値、\( \dfrac{7\sqrt{3}}{3} \) は外接円の半径 \( R=\dfrac{7}{2\sin 60^\circ} \) です。</div>
+</div>
+
+<div class="q" data-type="input" id="q10" data-accept="3|AD=3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問10</span><span class="q-obj">O4（型D）</span></div>
+  <p>△ABC で \( \mathrm{AB}=12 \)、\( \mathrm{AC}=4 \)、\( \angle\mathrm{A}=120^\circ \) とし、\( \angle\mathrm{A} \) の二等分線と辺 BC の交点を D とします。AD の長さを求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 3。\( \mathrm{AD}=x \) とすると、\( \triangle\mathrm{ABC}=\triangle\mathrm{ABD}+\triangle\mathrm{ADC} \) より \( \dfrac{1}{2}\cdot 12\cdot 4\sin 120^\circ=\dfrac{1}{2}\cdot 12x\sin 60^\circ+\dfrac{1}{2}\cdot 4x\sin 60^\circ \)。左辺 \( 12\sqrt{3} \)、右辺 \( 4\sqrt{3}x \) より \( x=3 \) です（型D、数Ⅰ-075）。6 と答えた場合は、左辺の \( \dfrac{1}{2} \) を忘れています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q11">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問11</span><span class="q-obj">O4（型D）</span></div>
+  <p>円に内接する四角形 ABCD で、\( \mathrm{AB}=8 \)、\( \mathrm{BC}=15 \)、\( \mathrm{CD}=7 \)、\( \mathrm{DA}=8 \) です。対角線 AC の長さはどれですか。</p>
+  <div class="choices"><button data-correct="true">\( 13 \)</button><button>\( 17 \)</button><button>\( \sqrt{409} \)</button><button>\( 169 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( \cos D=-\cos B \) より、\( \mathrm{AC}^2=64+225-240\cos B=49+64+112\cos B \)。\( 289-240\cos B=113+112\cos B \) から \( 352\cos B=176 \)、\( \cos B=\dfrac{1}{2} \)。\( \mathrm{AC}^2=289-120=169 \)、\( \mathrm{AC}=13 \) です（型D、例題8）。17 は \( -2\cdot\mathrm{AB}\cdot\mathrm{BC}\cos B \) の項を落とした値（\( \sqrt{289} \)）、\( \sqrt{409} \) は \( \cos B=-\dfrac{1}{2} \) と符号を誤った値（\( 289+120 \)）、169 は平方根をとり忘れた値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q12">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問12</span><span class="q-obj">O4（型D）</span></div>
+  <p>直方体 ABCD-EFGH（底面 ABCD、AE が高さ）で \( \mathrm{AB}=2 \)、\( \mathrm{AD}=1 \)、\( \mathrm{AE}=1 \) です。\( \cos\angle\mathrm{DBE} \) の値はどれですか。</p>
+  <div class="choices"><button>\( \dfrac{3}{5} \)</button><button>\( \dfrac{\sqrt{10}}{10} \)</button><button data-correct="true">\( \dfrac{4}{5} \)</button><button>\( \dfrac{8}{5} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">面の対角線を三平方の定理で求めると、\( \mathrm{BD}=\sqrt{4+1}=\sqrt{5} \)、\( \mathrm{BE}=\sqrt{4+1}=\sqrt{5} \)、\( \mathrm{DE}=\sqrt{1+1}=\sqrt{2} \)。△BDE を描き直して余弦定理を使うと \( \cos\angle\mathrm{DBE}=\dfrac{5+5-2}{2\cdot\sqrt{5}\cdot\sqrt{5}}=\dfrac{4}{5} \) です（型D、数Ⅰ-076）。\( \dfrac{3}{5} \) は \( \sin\angle\mathrm{DBE} \) の値、\( \dfrac{\sqrt{10}}{10} \) は \( \angle\mathrm{BDE} \) の余弦（\( \dfrac{5+2-5}{2\sqrt{5}\sqrt{2}} \)）で角を取り違えています。\( \dfrac{8}{5} \) は分母の 2 を落とした値で、1 より大きいので余弦の値としてありえません。</div>
+</div>
+
+<div class="q" data-type="open" id="q13">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問13</span><span class="q-obj">O4・O2（型D・型B）</span></div>
+  <p>1辺の長さが 4 の正四面体 ABCD で、頂点 A から底面 BCD に引いた垂線を AH、辺 CD の中点を M とします。</p>
+  <p>(1) HB の長さと AH の長さを求めなさい。　(2) 正四面体の体積 \( V \) を求めなさい。　(3) \( \cos\angle\mathrm{AMB} \) の値を求めなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) H は △BCD の外接円の中心なので、正弦定理より \( 2\mathrm{HB}=\dfrac{4}{\sin 60^\circ}=\dfrac{8}{\sqrt{3}} \)、\( \mathrm{HB}=\dfrac{4}{\sqrt{3}}=\dfrac{4\sqrt{3}}{3} \)。\( \mathrm{AH}=\sqrt{16-\dfrac{16}{3}}=\sqrt{\dfrac{32}{3}}=\dfrac{4\sqrt{6}}{3} \)。</p>
+    <p>(2) 底面積は \( \dfrac{1}{2}\cdot 4\cdot 4\cdot\sin 60^\circ=4\sqrt{3} \)。\( V=\dfrac{1}{3}\cdot 4\sqrt{3}\cdot\dfrac{4\sqrt{6}}{3}=\dfrac{16\sqrt{18}}{9}=\dfrac{16\sqrt{2}}{3} \)。</p>
+    <p>(3) \( \mathrm{AM}=\mathrm{BM}=4\sin 60^\circ=2\sqrt{3} \)、\( \mathrm{AB}=4 \)。余弦定理より \( \cos\angle\mathrm{AMB}=\dfrac{12+12-16}{2\cdot 2\sqrt{3}\cdot 2\sqrt{3}}=\dfrac{8}{24}=\dfrac{1}{3} \)。</p>
+    <p><strong>採点の観点</strong>　① H が外接円の中心であることを使い、正弦定理で HB を求めている。② 三平方の定理で AH、錐体の体積の式で \( V \) を求めている。③ △AMB を平面に描き直し、余弦定理で余弦を求めている。</p>
+  </div>
+  <div class="explain">(3) の値は1辺の長さによらず \( \dfrac{1}{3} \) で、数Ⅰ-076 の例題4（1辺 6）と同じです。正四面体はどれも相似なので、角の大きさは変わりません。体積は1辺 6 のとき \( 18\sqrt{2} \) で、相似比 \( 4:6=2:3 \) から体積比 \( 8:27 \)、\( 18\sqrt{2}\times\dfrac{8}{27}=\dfrac{16\sqrt{2}}{3} \) とも一致します。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="choice" id="q14">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問14</span><span class="q-obj">O4・O2（型D：日常の場面）</span></div>
+  <p>太郎さんと花子さんは、川の幅を求めようとしています（学習用の架空の場面）。手前の岸の2地点 A、B は 50 m 離れていて、向こう岸の木 C について \( \angle\mathrm{CAB}=30^\circ \)、\( \angle\mathrm{CBA}=120^\circ \) でした。岸は2本の平行な直線とみなし、木 C は向こう岸の上、A、B は手前の岸の上にあるとします。</p>
+  <p>太郎：「\( \angle\mathrm{ACB}=30^\circ \) だから、△ABC は二等辺三角形で \( \mathrm{BC}=50 \) m だね。」<br>花子：「川の幅は、C から直線 AB までの距離だね。」</p>
+  <p>川の幅に最も近いものはどれですか（\( \sqrt{3}=1.732 \) とする）。</p>
+  <div class="choices"><button>25.0 m</button><button data-correct="true">43.3 m</button><button>50.0 m</button><button>86.6 m</button></div>
+  <span class="result"></span>
+  <div class="explain">\( \angle\mathrm{ACB}=180^\circ-30^\circ-120^\circ=30^\circ=\angle\mathrm{CAB} \) なので \( \mathrm{BC}=\mathrm{AB}=50 \) m（正弦定理でも \( \mathrm{BC}=\dfrac{50\sin 30^\circ}{\sin 30^\circ}=50 \)）。C から直線 AB に垂線 CH を引くと、H は AB を B の側に延ばした直線上にあり、\( \angle\mathrm{CBH}=180^\circ-120^\circ=60^\circ \)。\( \mathrm{CH}=50\sin 60^\circ=25\sqrt{3}\fallingdotseq 43.3 \) m です（型D、数Ⅰ-077）。25.0 m は \( 50\sin 30^\circ \) で角を取り違えた値、50.0 m は BC の長さで、川の幅（岸に垂直な距離）ではありません。86.6 m は \( \mathrm{AC}=\dfrac{50\sin 120^\circ}{\sin 30^\circ}=50\sqrt{3} \) の長さです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q15">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問15</span><span class="q-obj">O1・O3（型A・型C）</span></div>
+  <p>△ABC で \( \mathrm{AB}=4 \)、\( \mathrm{AC}=5 \)、\( \tan A=-2 \) です。\( \cos A \) の値と △ABC の面積 \( S \) の組として正しいものはどれですか。</p>
+  <div class="choices"><button>\( \cos A=\dfrac{\sqrt{5}}{5} \)、\( S=4\sqrt{5} \)</button><button>\( \cos A=-\dfrac{1}{5} \)、\( S=4 \)</button><button data-correct="true">\( \cos A=-\dfrac{\sqrt{5}}{5} \)、\( S=4\sqrt{5} \)</button><button>\( \cos A=-\dfrac{\sqrt{5}}{5} \)、\( S=2\sqrt{5} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( 1+\tan^2A=\dfrac{1}{\cos^2A} \)（数Ⅰ-061・065）より \( \cos^2A=\dfrac{1}{1+4}=\dfrac{1}{5} \)。\( \tan A&lt;0 \) なので A は鈍角で \( \cos A&lt;0 \)、\( \cos A=-\dfrac{1}{\sqrt{5}}=-\dfrac{\sqrt{5}}{5} \)。\( \sin A=\tan A\cos A=(-2)\times\left(-\dfrac{\sqrt{5}}{5}\right)=\dfrac{2\sqrt{5}}{5} \)（三角形の角なので正になることも確かめる）。\( S=\dfrac{1}{2}\cdot 4\cdot 5\cdot\dfrac{2\sqrt{5}}{5}=4\sqrt{5} \) です（型A・型C）。\( \cos A=\dfrac{\sqrt{5}}{5} \) の組は、鈍角では余弦が負になることを落としています（面積は同じ値になりますが、\( \cos A \) が誤り）。\( \cos A=-\dfrac{1}{5} \)、\( S=4 \) の組は、\( \cos^2A=\dfrac{1}{5} \) の平方根をとり忘れ、\( \sin A=-2\times\left(-\dfrac{1}{5}\right)=\dfrac{2}{5} \) として面積を求めた値です。\( S=2\sqrt{5} \) は、面積の公式に正弦の代わりに余弦の大きさ \( \dfrac{\sqrt{5}}{5} \) を入れた値です。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(2) 図形と計量」の「正弦定理や余弦定理について三角形の決定条件や三平方の定理と関連付けて理解し，三角形の辺の長さや角の大きさなどを求めること」（ア(ウ)）と「図形の構成要素間の関係に着目し，日常の事象や社会の事象などを数学的に捉え，問題を解決したり，解決の過程を振り返って事象の数学的な特徴や他の事象との関係を考察したりすること」（イ(イ)）などに当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求め、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。図をかいて三角形を見いだし、型に応じて定理を選ぶこの単元の内容は、こうした処理の基本になります。</p>
+  <p class="small">問13〜問15は練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">統計的探究プロセスとデータの整理（数Ⅰ-079）</p>
+  <p>次の時間から単元「データの分析」に入ります。問題・計画・データ・分析・結論からなる統計的探究プロセスを確かめ、中学校で学んだ平均値・中央値・最頻値・四分位範囲などの統計量や、ヒストグラム・箱ひげ図などのグラフを、どのようなデータにどのような目的で用いるかを整理します。</p>
+  <p>この時間では、新しい内容は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-077　三角比の日常の事象への活用</div>
+  <div><span class="label">次の時間</span>数Ⅰ-079　統計的探究プロセスとデータの整理</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-078「単元末演習（図形と計量）」（演習。学習指導要領 数学Ⅰ (2)ア(ウ)・イ(イ)、解説 p.38-40）。範囲の各行 hs_math_1a/数Ⅰ-057〜077 の要点。次の時間 hs_math_1a/数Ⅰ-079 の要点</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(2) 図形と計量 ア(ア)〜(ウ)・イ(ア)(イ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.38-40（鋭角の三角比、鈍角への拡張、正弦定理・余弦定理、平面図形・空間図形の計量と日常の事象への活用）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題はこのページのために作成したものです（出典を示したものを除く）。川の場面と寸法は、学習用に作成した架空のものです。「型A〜D」はこのページでの呼び方です。三角比表の値は小数第4位までの値です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-078",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-078",
+  "title": "単元末演習（図形と計量）",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-4", "title": "図形と計量"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(ウ)", "(2)イ(イ)"],
+  "kaisetsu_page": "38-40",
+  "objectives": [
+    {"id": "O1", "text": "三角比の定義・相互関係と、90°−A・180°−A の関係を用いて、0° から 180° までの角の三角比の値や、三角比の値を満たす角を求めることができる（型A）。", "from": "三角比の値と相互関係", "sections": ["sec-1"], "checks": ["q1", "q2", "q3", "q15"]},
+    {"id": "O2", "text": "分かっている辺と角の組合せに応じて正弦定理・余弦定理を選び、三角形の辺の長さ・角の大きさ・外接円の半径を求めることができる（型B）。", "from": "正弦定理・余弦定理", "sections": ["sec-2"], "checks": ["q4", "q6", "q7", "q8", "q13", "q14"]},
+    {"id": "O3", "text": "2辺とその間の角や3辺から三角形の面積を求め、内接円の半径を求めることができる（型C）。", "from": "三角形の面積と内接円の半径", "sections": ["sec-3"], "checks": ["q5", "q9", "q15"]},
+    {"id": "O4", "text": "平面図形・空間図形や日常の場面の中に三角形を見いだし、辺の長さ・角の大きさ・面積・体積を求めることができる（型D）。", "from": "平面図形・空間図形の計量の問題を解き、単元の基本事項を身に付けているかを確かめる", "sections": ["sec-4"], "checks": ["q10", "q11", "q12", "q13", "q14"]}
+  ],
+  "key_terms": [
+    {"term": "正弦・余弦・正接", "where": "sec-1"},
+    {"term": "三角比の相互関係", "where": "sec-1"},
+    {"term": "正弦定理", "where": "sec-2"},
+    {"term": "余弦定理", "where": "sec-2"},
+    {"term": "三角形の決定条件", "where": "sec-2"},
+    {"term": "外接円・内接円", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "三角比の定義と 30°・45°・60° の値、三角比表", "taught_in": ["hs_math_1a/数Ⅰ-057", "hs_math_1a/数Ⅰ-058", "hs_math_1a/数Ⅰ-059"], "gap": false, "where": "review"},
+    {"concept": "三角比の相互関係（鋭角・鈍角）", "taught_in": ["hs_math_1a/数Ⅰ-061", "hs_math_1a/数Ⅰ-065"], "gap": false, "where": "review"},
+    {"concept": "90°−A・180°−A の三角比、鈍角への拡張", "taught_in": ["hs_math_1a/数Ⅰ-062", "hs_math_1a/数Ⅰ-063", "hs_math_1a/数Ⅰ-064"], "gap": false, "where": "review"},
+    {"concept": "三角比の値を満たす角（半円周上の点）", "taught_in": ["hs_math_1a/数Ⅰ-066", "hs_math_1a/数Ⅰ-067"], "gap": false, "where": "sec-1"},
+    {"concept": "正弦定理と外接円の半径、a:b:c=sin A:sin B:sin C", "taught_in": ["hs_math_1a/数Ⅰ-068", "hs_math_1a/数Ⅰ-069"], "gap": false, "where": "review"},
+    {"concept": "余弦定理と、鋭角・鈍角の判定、三角形の決定条件、2辺とその間にない角", "taught_in": ["hs_math_1a/数Ⅰ-070", "hs_math_1a/数Ⅰ-071", "hs_math_1a/数Ⅰ-072"], "gap": false, "where": "review"},
+    {"concept": "三角形の面積の公式と、3辺から面積を求める手順", "taught_in": ["hs_math_1a/数Ⅰ-073"], "gap": false, "where": "review"},
+    {"concept": "内接円の半径と面積の関係", "taught_in": ["hs_math_1a/数Ⅰ-074"], "gap": false, "where": "review"},
+    {"concept": "平面図形の計量（四角形、角の二等分線、円に内接する四角形）", "taught_in": ["hs_math_1a/数Ⅰ-075"], "gap": false, "where": "sec-4"},
+    {"concept": "空間図形の計量（正四面体、直方体の中の三角形）", "taught_in": ["hs_math_1a/数Ⅰ-076"], "gap": false, "where": "sec-4"},
+    {"concept": "日常の事象への活用（測量）", "taught_in": ["hs_math_1a/数Ⅰ-060", "hs_math_1a/数Ⅰ-077"], "gap": false, "where": "quiz"},
+    {"concept": "二次方程式を因数分解・解の公式で解く", "taught_in": ["jhs_math/中3-040", "jhs_math/中3-041"], "gap": false, "where": "sec-2"},
+    {"concept": "相似な立体の体積比", "taught_in": ["jhs_math/中3-080"], "gap": false, "where": "quiz"}
+  ],
+  "out_of_scope": [
+    "新しい内容（単元末演習の行のため、数Ⅰ-057〜077 の内容の練習だけを扱う）",
+    "単元「データの分析」の内容（数Ⅰ-079〜）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『図形と計量』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(2)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.38-40 図形と計量の各事項"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

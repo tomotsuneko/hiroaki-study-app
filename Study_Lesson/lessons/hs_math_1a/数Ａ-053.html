@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>方べきの定理（接線を含む場合）｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.proof ol { margin: 4px 0 4px 1.2em; }
+.proof .tag { font-weight: 700; }
+.widget .w-row { margin: 4px 0; }
+.widget .w-row input[type=range] { width: 220px; max-width: 100%; vertical-align: middle; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>図形の性質</span><span>数Ａ-053</span></div>
+  <h1>方べきの定理（接線を含む場合）</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">前の時間の方べきの定理では、点 P を通る2本の直線が、どちらも円と2点で交わっていました。その1本が円に接すると、2つの交点は1つに重なります。そのとき、等式はどう変わるでしょうか。また、等式から「4点が同じ円周上にある」と言えるでしょうか。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>円外の点 P から引いた接線 PT と、P を通り円と2点 A、B で交わる直線について、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \) が成り立つことを、接線と弦のつくる角と三角形の相似を用いて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \) を用いて、線分の長さを求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>方べきの定理の逆を理解し、それを用いて4点が同じ円周上にあることを示すことができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-052）</span>方べきの定理</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-053）</span>方べきの定理（接線を含む場合）</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-054）</span>2つの円の位置関係と共通接線</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」、中学1年「平面図形」「空間図形」。この時間は、接線の長さ（数Ａ-050）、接線と弦のつくる角（数Ａ-051）、方べきの定理（数Ａ-052）と、中学3年の三角形の相似条件（中3-067）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">この時間に使うこと（中1-085、中3-067・104、数Ａ-050〜052）</p>
+  <ul>
+    <li><strong>接線と接点</strong>（中1-085）：円と直線がただ1点を共有するとき、直線は円に<strong>接する</strong>といい、その直線を<strong>接線</strong>、共有する点を<strong>接点</strong>といいます。円の接線は、接点を通る半径に垂直です。</li>
+    <li><strong>接線の長さ</strong>（数Ａ-050）：円の外部の点 P から円に2本の接線を引くと、P から2つの接点までの長さは等しくなります。</li>
+    <li><strong>接線と弦のつくる角</strong>（数Ａ-051）：円の接線と、接点を通る弦とのつくる角は、その角の内部にある弧に対する円周角に等しくなります。</li>
+    <li><strong>方べきの定理</strong>（数Ａ-052）：円の2つの弦 AB、CD、またはそれらの延長どうしが点 P で交わるとき、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)。</li>
+    <li><strong>三角形の相似条件</strong>（中3-067）：「2組の角がそれぞれ等しい」「2組の辺の比とその間の角がそれぞれ等しい」「3組の辺の比がすべて等しい」のどれかが成り立てば、2つの三角形は相似です。</li>
+  </ul>
+  <p>この時間も、線分の長さの積を \( \mathrm{PA}\cdot\mathrm{PB} \)（PA と PB の積）と書きます。比例式 \( a:b=c:d \) からは \( ad=bc \) が導けます（中1-054）。</p>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-052</span></div>
+  <p>図のように、円の外部の点 P を通る2本の直線が、円と A、B および C、D で交わっています。\( \mathrm{PA}=3 \)、\( \mathrm{AB}=9 \)、\( \mathrm{PC}=4 \) のとき、PD の長さはどれですか。</p>
+  <figure>
+<!--svg:f053r-->
+<svg viewBox="0 0 249 192" width="249" role="img" aria-label="円の外部の点 P を通る2本の直線が、円とそれぞれ A、B と C、D で交わっている図。PA=3、AB=9、PC=4" data-fig="f053r" data-s="17.000000" data-ox="24.260192" data-oy="105.579704">
+<circle cx="151.8" cy="97" r="77" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円" data-cx="7.500000" data-cy="0.504688" data-r="4.528213"/>
+<line x1="24.3" y1="105.6" x2="238.5" y2="105.6" stroke="currentColor" stroke-width="1.6" data-seg="PB"/>
+<line x1="24.3" y1="105.6" x2="159.6" y2="14.3" stroke="currentColor" stroke-width="1.6" data-seg="PD"/>
+<circle cx="24.26" cy="105.58" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P" data-x="0.000000" data-y="0.000000"/>
+<circle cx="75.26" cy="105.58" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="3.000000" data-y="0.000000"/>
+<circle cx="228.26" cy="105.58" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="12.000000" data-y="0.000000"/>
+<circle cx="80.63" cy="67.55" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="3.316150" data-y="2.236772"/>
+<circle cx="151.10" cy="20.02" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="D" data-x="7.461338" data-y="5.032736"/>
+<text x="12" y="114.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">P</text>
+<text x="68.8" y="121" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="234.8" y="121" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="74.1" y="60.5" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="143.6" y="13.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<text x="49.8" y="118.5" text-anchor="middle" font-size="13" fill="currentColor">3</text>
+<text x="45.7" y="80.5" text-anchor="middle" font-size="13" fill="currentColor">4</text>
+<text x="151.8" y="118.5" text-anchor="middle" font-size="13" fill="currentColor">9</text>
+</svg>
+<!--/svg:f053r-->
+    <figcaption>確認1の図　円の外部の点 P を通る2本の直線（学習用に作成した図）</figcaption>
+  </figure>
+  <div class="choices">
+    <button>16</button>
+    <button>11</button>
+    <button data-correct="true">9</button>
+    <button>5</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \mathrm{PB}=3+9=12 \) で、方べきの定理より \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)、\( 3\times12=4\times\mathrm{PD} \)、\( \mathrm{PD}=9 \) です。16 は \( \mathrm{PA}:\mathrm{PB}=\mathrm{PC}:\mathrm{PD} \)（\( 3:12=4:\mathrm{PD} \)）と比の式にした誤りです。11 は「和が等しい」（\( 3+12=4+\mathrm{PD} \)）と考えた値です。5 は \( \mathrm{CD}=9-4 \) で、PD ではなく CD を答えています。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-051</span></div>
+  <p>点 T で円に接する直線と、T を通る弦 TA のつくる角が \( 50^\circ \) で、その角の内部に弧 TA があります。弧 TA を除いた円周上の点 B について、\( \angle\mathrm{TBA} \) の大きさはどれですか。</p>
+  <div class="choices">
+    <button>\( 100^\circ \)</button>
+    <button data-correct="true">\( 50^\circ \)</button>
+    <button>\( 130^\circ \)</button>
+    <button>\( 40^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">接線と弦のつくる角は、その角の内部にある弧 TA に対する円周角 \( \angle\mathrm{TBA} \) に等しいので \( 50^\circ \) です。\( 100^\circ \) は弧 TA に対する中心角で、円周角はその半分です。\( 130^\circ \) は \( 180^\circ-50^\circ \)、\( 40^\circ \) は \( 90^\circ-50^\circ \) で、どちらも等しくなる角を取り違えています。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中1-085・中3-104</span></div>
+  <p>半径 20 の円 O の外部に、\( \mathrm{PO}=25 \) となる点 P があります。P から円に引いた接線の接点を T とするとき、接線の長さ PT はどれですか。</p>
+  <div class="choices">
+    <button>5</button>
+    <button>45</button>
+    <button>\( 5\sqrt{41} \)</button>
+    <button data-correct="true">15</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">接線は接点を通る半径に垂直なので、\( \angle\mathrm{OTP}=90^\circ \) の直角三角形 OTP で、三平方の定理より \( \mathrm{PT}^2=25^2-20^2=225 \)、\( \mathrm{PT}=15 \) です。5 は \( 25-20 \)、45 は \( 25+20 \) で、長さをそのまま引いたり足したりしています。\( 5\sqrt{41} \) は \( \sqrt{25^2+20^2} \) で、PO を斜辺にしていません。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：接線の長さは、交わる直線から分かる？</h2>
+<div class="box think">
+  <p class="box-title">接線の長さを、別の直線の長さから求める</p>
+  <p>円の外部の点 P から円に接線を引き、接点を T とします。P を通る別の直線が円と2点 A、B（A のほうが P に近い）で交わり、\( \mathrm{PA}=4 \)、\( \mathrm{AB}=5 \) です（「4 線分の長さを求める」の図2）。</p>
+  <ul>
+    <li>① PT の長さは、PA と AB から決まるでしょうか。決まるなら、いくつでしょうか。</li>
+    <li>② 前の時間の \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) は、直線 PCD が円に接して C と D が重なったときにも使えるでしょうか。</li>
+  </ul>
+  <p>予想してから読み進めましょう。②は「3 接線を含む場合の方べきの定理」で、①は「4 線分の長さを求める」の例題1で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="接線を含む場合の方べきの定理"><span class="num">3</span>接線を含む場合の方べきの定理</h2>
+<p>前の時間（数Ａ-052）の方べきの定理で、点 P が円の外部にある場合を考えます。P を通る直線を P のまわりに回していくと、円との2つの交点は近づいていき、直線が円に接するところで1つの点（接点）に重なります。このとき、2つの長さの積は「接線の長さの2乗」になると予想できます。</p>
+<h3>操作して確かめよう：直線を回しても PA·PB は変わらない</h3>
+<p>半径 6 の円の中心 O から 10 離れた点 P を通る直線を、つまみで回します。直線 PO とのなす角を変えると、円と交わる2点 A、B の位置が変わります。PA と PB の積を、接線の長さ PT（確認3と同じく三平方の定理で \( \sqrt{10^2-6^2}=8 \)）の2乗と比べましょう。</p>
+<div class="widget" id="w1">
+  <div class="w-row"><label for="w1-k">直線 PO とのなす角：</label><input type="range" id="w1-k" min="0" max="37" step="1" value="10" aria-describedby="w1-out"></div>
+  <div><svg id="w1-svg" viewBox="0 0 340 220" width="340" role="img" aria-label="円と、円の外部の点 P を通る直線。直線と円の交点 A、B と、接点 T、接線 PT（青の破線）を示す"></svg></div>
+  <p class="w-out" id="w1-out" aria-live="polite">直線 PO とのなす角 10°：PA ≒ 4.10、PB ≒ 15.59、PA·PB ≒ 64.00（PT² = 64）。角を変えても PA·PB は変わりません。</p>
+  <p class="small">紫の破線＝円、実線＝P を通る直線、青の破線＝接線 PT、緑の点＝接点 T。つまみを右端にすると、直線が円に接します。長さは小数第3位を四捨五入した値で、積は四捨五入する前の値から計算しています。（スクリプトが動かない場合は、図1と例題4で同じことを確かめられます）</p>
+</div>
+<p>つまみを右端にすると、A と B は接点 T に重なり、\( \mathrm{PA}=\mathrm{PB}=\mathrm{PT} \) です。ほかの位置でも積は \( 64=\mathrm{PT}^2 \) のままでした。この予想が、どんな円・どんな直線でも成り立つことを証明します。</p>
+<figure>
+<!--svg:f053a-->
+<svg viewBox="0 0 292 218" width="292" role="img" aria-label="円 O の外部の点 P から引いた接線 PT と、P を通り円と2点 A、B で交わる直線。△PTA を青、△PBT を橙で塗ってある。∠PTA と ∠PBT に同じ橙の弧1本、共通な ∠P に弧2本" data-fig="f053a" data-s="15.000000" data-ox="180.000000" data-oy="110.000000">
+<polygon points="30,110 126,38 91.1,124.1" fill="#1f5fbf" fill-opacity="0.1" stroke="none" data-region="PTA"/>
+<polygon points="30,110 253.7,161.6 126,38" fill="#b7791f" fill-opacity="0.1" stroke="none" data-region="PBT"/>
+<circle cx="180" cy="110" r="90" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円O" data-cx="0.000000" data-cy="0.000000" data-r="6.000000"/>
+<line x1="30" y1="110" x2="162" y2="11" stroke="#1f5fbf" stroke-width="1.8" data-seg="PT"/>
+<line x1="30" y1="110" x2="277.1" y2="167" stroke="currentColor" stroke-width="1.6" data-seg="PB"/>
+<line x1="126" y1="38" x2="91.1" y2="124.1" stroke="currentColor" stroke-width="1.6" data-seg="TA"/>
+<line x1="126" y1="38" x2="253.7" y2="161.6" stroke="currentColor" stroke-width="1.6" data-seg="TB"/>
+<path d="M119.2,54.7 A18,18 0 0 1 111.6,48.8" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="T,P,A" data-mark="1"/>
+<path d="M232.3,156.7 A22,22 0 0 1 237.9,146.3" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="B,P,T" data-mark="1"/>
+<path d="M50.8,94.4 A26,26 0 0 1 55.3,115.8 M53.7,92.2 A29.6,29.6 0 0 1 58.8,116.7" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="P,T,A" data-mark="2"/>
+<circle cx="180.00" cy="110.00" r="3.2" fill="#7b3fa0" stroke="#7b3fa0" stroke-width="1.4" data-pt="O" data-x="0.000000" data-y="0.000000"/>
+<circle cx="30.00" cy="110.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P" data-x="-10.000000" data-y="0.000000"/>
+<circle cx="126.00" cy="38.00" r="3.2" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="1.4" data-pt="T" data-x="-3.600000" data-y="4.800000"/>
+<circle cx="91.11" cy="124.11" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="-5.925814" data-y="-0.940600"/>
+<circle cx="253.71" cy="161.65" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="4.913754" data-y="-3.443112"/>
+<text x="186" y="124.3" text-anchor="middle" font-size="13" fill="#7b3fa0" font-weight="700">O</text>
+<text x="17" y="114.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">P</text>
+<text x="119.5" y="30.9" text-anchor="middle" font-size="14" fill="#1e8e5a" font-weight="700">T</text>
+<text x="85.6" y="140.1" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="257.1" y="178.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+</svg>
+<!--/svg:f053a-->
+  <figcaption>図1　円 O の外部の点 P から引いた接線 PT（青）と、P を通り円と A、B で交わる直線。△PTA（青の塗り）と △PBT（橙の塗り）で、橙の弧1本の角（\( \angle\mathrm{PTA} \) と \( \angle\mathrm{PBT} \)）は等しく、弧2本の \( \angle\mathrm{P} \) は共通（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example proof">
+  <p class="box-title">証明（接線を含む場合の方べきの定理）</p>
+  <p><span class="tag">仮定</span>　P は円の外部の点で、直線 PT は T を接点とする円の接線。P を通る直線が円と2点 A、B で交わり、A は P と B の間にある。<br><span class="tag">結論</span>　\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \)</p>
+  <p>T と A、T と B を結び、△PTA と △PBT に着目する（図1）。</p>
+  <ol>
+    <li>\( \angle\mathrm{TPA}=\angle\mathrm{BPT} \)（共通な角）。</li>
+    <li>接線 TP と弦 TA のつくる角 \( \angle\mathrm{PTA} \) は、その角の内部にある弧 TA に対する円周角 \( \angle\mathrm{TBA} \) に等しい（接線と弦のつくる角、数Ａ-051）。A は線分 PB 上にあるので \( \angle\mathrm{TBA}=\angle\mathrm{PBT} \)。よって \( \angle\mathrm{PTA}=\angle\mathrm{PBT} \)。</li>
+    <li>①、② より、2組の角がそれぞれ等しいので、△PTA∽△PBT（中3-067）。</li>
+    <li>相似な三角形の対応する辺の比は等しいので、\( \mathrm{PT}:\mathrm{PB}=\mathrm{PA}:\mathrm{PT} \)。</li>
+    <li>④ より \( \mathrm{PT}\cdot\mathrm{PT}=\mathrm{PB}\cdot\mathrm{PA} \)、すなわち \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \)。（証明終わり）</li>
+  </ol>
+</div>
+<div class="box point">
+  <p class="box-title">方べきの定理（接線を含む場合）</p>
+  <p>円の外部の点 P から円に引いた接線の接点を T とする。P を通る直線が円と2点 A、B で交わるとき</p>
+  $$ \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 $$
+  <p>前の時間の方べきの定理とあわせると、P を通り円と2点で交わる直線が何本あっても、2つの交点までの長さの積はどれも \( \mathrm{PT}^2 \) に等しくなります（\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD}=\mathrm{PT}^2 \)）。P から引ける接線は2本ありますが、その長さは等しい（数Ａ-050）ので、どちらの接線を使っても同じです。</p>
+</div>
+<p><strong>導入の問い②の答え</strong>：使えます。直線 PCD が円に接して C と D が接点 T に重なると、\( \mathrm{PC}\cdot\mathrm{PD} \) は \( \mathrm{PT}\cdot\mathrm{PT}=\mathrm{PT}^2 \) になり、上の証明のとおり \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \) が成り立ちます。ただし、「重なる」と考えるのは見通しを立てるためで、成り立つ理由は上の証明（相似）です。</p>
+<div class="box caution"><p class="box-title">よくある間違い：相似な三角形の頂点の対応</p><p>「△PTA∽△PTB」と書くと、T と T、A と B が対応することになり、比が \( \mathrm{PT}:\mathrm{PT} \) となって式が作れません。等しい角は \( \angle\mathrm{PTA}=\angle\mathrm{PBT} \) なので、T と B が対応し、残りの A と T が対応します。等しい角の頂点どうしを同じ順に並べて △PTA∽△PBT と書き、対応する辺 \( \mathrm{PT}\leftrightarrow\mathrm{PB} \)、\( \mathrm{PA}\leftrightarrow\mathrm{PT} \) から比を作ります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="線分の長さを求める"><span class="num">4</span>線分の長さを求める</h2>
+<p>\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \) を使うと、3つの長さ PA、PB（または AB）、PT のうち2つから、残りの1つが求められます。PB は P から遠い方の交点までの長さで、\( \mathrm{PB}=\mathrm{PA}+\mathrm{AB} \) です。</p>
+<figure>
+<!--svg:f053b-->
+<svg viewBox="0 0 257 185" width="257" role="img" aria-label="円の外部の点 P から引いた接線 PT と、P を通り円と A、B で交わる直線。PA=4、AB=5、PT の長さは未知" data-fig="f053b" data-s="22.000000" data-ox="24.368183" data-oy="137.900000">
+<circle cx="167.4" cy="89.5" r="73.3" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円" data-cx="6.500000" data-cy="2.200000" data-r="3.330165"/>
+<line x1="24.4" y1="137.9" x2="145.7" y2="4.4" stroke="#1f5fbf" stroke-width="1.8" data-seg="PT"/>
+<line x1="24.4" y1="137.9" x2="240" y2="137.9" stroke="currentColor" stroke-width="1.6" data-seg="PB"/>
+<circle cx="24.37" cy="137.90" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P" data-x="0.000000" data-y="0.000000"/>
+<circle cx="112.37" cy="137.90" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="4.000000" data-y="0.000000"/>
+<circle cx="222.37" cy="137.90" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="9.000000" data-y="0.000000"/>
+<circle cx="113.15" cy="40.22" r="3.2" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="1.4" data-pt="T" data-x="4.035715" data-y="4.439933"/>
+<text x="12.2" y="146.5" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">P</text>
+<text x="109" y="154.7" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="228.9" y="153.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="108.7" y="32.2" text-anchor="middle" font-size="14" fill="#1e8e5a" font-weight="700">T</text>
+<text x="68.4" y="150.8" text-anchor="middle" font-size="13" fill="currentColor">4</text>
+<text x="167.4" y="150.8" text-anchor="middle" font-size="13" fill="currentColor">5</text>
+<text x="59.9" y="84.9" text-anchor="middle" font-size="13" fill="#1f5fbf">?</text>
+</svg>
+<!--/svg:f053b-->
+  <figcaption>図2　\( \mathrm{PA}=4 \)、\( \mathrm{AB}=5 \) のときの接線 PT（青）。PT の長さを求める（例題1。学習用に作成した図で、長さの比は正しくかいてある）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の問い①の答え）</p>
+  <p>図2で \( \mathrm{PA}=4 \)、\( \mathrm{AB}=5 \) のとき、接線の長さ PT を求めなさい。</p>
+  <div class="step">着眼点：使うのは PA と <strong>PB</strong> です。\( \mathrm{PB}=\mathrm{PA}+\mathrm{AB}=4+5=9 \)。</div>
+  <div class="step">方べきの定理（接線を含む場合）より \( \mathrm{PT}^2=\mathrm{PA}\cdot\mathrm{PB}=4\times9=36 \)。</div>
+  <div class="step">\( \mathrm{PT}&gt;0 \) なので \( \mathrm{PT}=6 \)。答え：\( \mathrm{PT}=6 \)。PT は PA と AB から決まり、6 です。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（接線の長さから弦の長さ）</p>
+  <p>円の外部の点 P から引いた接線の長さが \( \mathrm{PT}=10 \) で、P を通る直線が円と A、B（A のほうが P に近い）で交わり、\( \mathrm{PA}=5 \) です。弦 AB の長さを求めなさい。</p>
+  <div class="step">着眼点：\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \) から、まず PB を求めます。\( 5\cdot\mathrm{PB}=10^2=100 \)、\( \mathrm{PB}=20 \)。</div>
+  <div class="step">\( \mathrm{AB}=\mathrm{PB}-\mathrm{PA}=20-5=15 \)。答え：\( \mathrm{AB}=15 \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（二次方程式になる場合）</p>
+  <p>\( \mathrm{PT}=12 \)、\( \mathrm{AB}=7 \) のとき、PA の長さを求めなさい（A のほうが P に近い）。</p>
+  <div class="step">着眼点：分からない長さを文字で表します。\( \mathrm{PA}=x \) とおくと \( \mathrm{PB}=x+7 \) で、\( x&gt;0 \)。</div>
+  <div class="step">\( x(x+7)=12^2 \) より \( x^2+7x-144=0 \)。因数分解すると \( (x+16)(x-9)=0 \)（中3-041）なので、\( x=-16,\ 9 \)。</div>
+  <div class="step">\( x&gt;0 \) なので \( x=9 \)。確かめ：\( 9\times16=144=12^2 \)。答え：\( \mathrm{PA}=9 \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（中心を通る直線で確かめる）</p>
+  <p>半径 7 の円 O の外部に \( \mathrm{PO}=25 \) となる点 P があります。直線 PO が円と交わる2点を A、B（A のほうが P に近い）とするとき、\( \mathrm{PA}\cdot\mathrm{PB} \) と \( \mathrm{PT}^2 \) をそれぞれ求めて比べなさい（T は P から引いた接線の接点）。</p>
+  <div class="step">着眼点：A、B は直線 PO 上で O から 7 の点です。\( \mathrm{PA}=25-7=18 \)、\( \mathrm{PB}=25+7=32 \) なので、\( \mathrm{PA}\cdot\mathrm{PB}=18\times32=576 \)。</div>
+  <div class="step">接線は接点を通る半径に垂直（中1-085）なので、直角三角形 OTP で三平方の定理より \( \mathrm{PT}^2=25^2-7^2=576 \)（\( \mathrm{PT}=24 \)、中3-104）。</div>
+  <div class="step">どちらも 576 で、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \) が成り立っています。中心を通る直線では \( \mathrm{PA}\cdot\mathrm{PB}=(\mathrm{PO}-r)(\mathrm{PO}+r)=\mathrm{PO}^2-r^2 \) で（\( r \) は半径）、これは三平方の定理で求めた \( \mathrm{PT}^2 \) と同じ式です。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① PB のかわりに AB を使う：例題1で \( \mathrm{PT}^2=\mathrm{PA}\cdot\mathrm{AB}=4\times5=20 \) とすると、\( \mathrm{PT}=2\sqrt{5} \) となり誤りです。積をとるのは P から2つの交点までの長さ PA と PB です。<br>② 2乗を忘れる：\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT} \) とすると、例題1で PT が 36 になります。接線の場合、2つの交点が重なって「PT と PT の積」になるので、\( \mathrm{PT}^2 \) です。<br>③ 二次方程式の負の解を残す：例題3の \( x=-16 \) は長さとして適しません。解を求めたら、問題の条件（長さは正）に合うかを確かめます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="方べきの定理の逆"><span class="num">5</span>方べきの定理の逆</h2>
+<p>方べきの定理は「4点 A、B、C、D が同じ円周上にあるならば \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)」と読めます。仮定と結論を入れかえた<strong>逆</strong>（中2-063）「\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) ならば4点は同じ円周上にある」も、点の位置の条件をつければ成り立ちます。これを<strong>方べきの定理の逆</strong>といいます。</p>
+<div class="box point">
+  <p class="box-title">方べきの定理の逆</p>
+  <p>2つの線分 AB と CD、または線分 AB の延長と線分 CD の延長が点 P で交わるとき、</p>
+  $$ \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD}\ \text{ならば、4点 A、B、C、D は1つの円周上にある。} $$
+  <p class="small">「P が線分 AB 上にも線分 CD 上にもある」か「P が線分 AB の延長上にも線分 CD の延長上にもある」かのどちらかの場合です。A、B、C、D は P と異なる点で、直線 AB と直線 CD は別の直線とします。</p>
+</div>
+<p class="small">「方べきの定理の逆」は学習指導要領の解説には書かれていませんが、教科書の本文で扱われる内容です（数研出版のシラバス・観点別評価規準例に「方べきの定理の逆を理解し，それを用いて図形の性質を証明することができる」とあります）。</p>
+<p>P が2本の線分の延長上にある場合を証明します。証明の最後に、四角形が円に内接するための条件（数Ａ-049）を使います。</p>
+<figure>
+<!--svg:f053c-->
+<svg viewBox="0 0 219 151" width="219" role="img" aria-label="点 P で交わる2本の直線上に A、B と C、D があり、PA·PB=PC·PD。△PAC を青、△PDB を橙で塗ってある。∠PAC と ∠PDB に同じ橙の弧。4点 A、B、D、C を通る円を紫の破線で示す" data-fig="f053c" data-s="21.000000" data-ox="26.148331" data-oy="100.215012">
+<polygon points="26.1,100.2 89.1,100.2 92.3,48.5" fill="#1f5fbf" fill-opacity="0.1" stroke="none" data-region="PAC"/>
+<polygon points="26.1,100.2 125.4,22.6 194.1,100.2" fill="#b7791f" fill-opacity="0.1" stroke="none" data-region="PDB"/>
+<circle cx="141.6" cy="77.5" r="57.2" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円" data-cx="5.500000" data-cy="1.081667" data-r="2.723968"/>
+<line x1="26.1" y1="100.2" x2="208.8" y2="100.2" stroke="currentColor" stroke-width="1.6" data-seg="PB"/>
+<line x1="26.1" y1="100.2" x2="137" y2="13.6" stroke="currentColor" stroke-width="1.6" data-seg="PD"/>
+<line x1="89.1" y1="100.2" x2="92.3" y2="48.5" stroke="currentColor" stroke-width="1.6" data-seg="AC"/>
+<line x1="125.4" y1="22.6" x2="194.1" y2="100.2" stroke="currentColor" stroke-width="1.6" data-seg="DB"/>
+<path d="M74.1,100.2 A15,15 0 0 1 90.1,85.2" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="A,P,C" data-mark="1"/>
+<path d="M135.4,33.9 A15,15 0 0 1 113.6,31.9" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="D,P,B" data-mark="1"/>
+<circle cx="26.15" cy="100.22" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P" data-x="0.000000" data-y="0.000000"/>
+<circle cx="89.15" cy="100.22" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="3.000000" data-y="0.000000"/>
+<circle cx="194.15" cy="100.22" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="8.000000" data-y="0.000000"/>
+<circle cx="92.34" cy="48.50" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="3.152043" data-y="2.462646"/>
+<circle cx="125.44" cy="22.64" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="D" data-x="4.728065" data-y="3.693969"/>
+<text x="13.9" y="108.9" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">P</text>
+<text x="82.6" y="115.7" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="202.5" y="114.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="83.1" y="43.5" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="121" y="14.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+</svg>
+<!--/svg:f053c-->
+  <figcaption>図3　P が線分 AB の延長と線分 CD の延長の交点で、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)（\( 3\times8=4\times6 \)）。△PAC（青の塗り）と △PDB（橙の塗り）は相似で、橙の弧の \( \angle\mathrm{PAC} \) と \( \angle\mathrm{PDB} \) は等しい。紫の破線は4点 A、B、D、C を通る円（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example proof">
+  <p class="box-title">証明（方べきの定理の逆：P が延長上にある場合）</p>
+  <p><span class="tag">仮定</span>　P は線分 AB の延長と線分 CD の延長の交点で、A は P と B の間、C は P と D の間にある。\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)。<br><span class="tag">結論</span>　4点 A、B、C、D は1つの円周上にある。</p>
+  <ol>
+    <li>仮定の等式の両辺を \( \mathrm{PC}\cdot\mathrm{PB} \) でわると \( \dfrac{\mathrm{PA}}{\mathrm{PC}}=\dfrac{\mathrm{PD}}{\mathrm{PB}} \)、すなわち \( \mathrm{PA}:\mathrm{PC}=\mathrm{PD}:\mathrm{PB} \)。</li>
+    <li>△PAC と △PDB で、\( \angle\mathrm{APC}=\angle\mathrm{DPB} \)（共通な角）。</li>
+    <li>①、② より、2組の辺の比とその間の角がそれぞれ等しいので、△PAC∽△PDB（中3-067）。</li>
+    <li>対応する角は等しいので \( \angle\mathrm{PAC}=\angle\mathrm{PDB} \)。</li>
+    <li>四角形 ABDC で、\( \angle\mathrm{PAC} \) は頂点 A の外角、\( \angle\mathrm{PDB}=\angle\mathrm{CDB} \) は、頂点 A の内角 \( \angle\mathrm{CAB} \) の対角である頂点 D の内角。④ より、1つの外角が、それと隣り合う内角の対角に等しい。</li>
+    <li>⑤ より、四角形 ABDC は円に内接する（四角形が円に内接するための条件、数Ａ-049）。よって、4点 A、B、C、D は1つの円周上にある。（証明終わり）</li>
+  </ol>
+</div>
+<p>P が2本の線分の上にある場合（弦どうしが円の内部で交わる形）も、同じように △PAC と △PDB の相似から証明できます。共通な角のかわりに対頂角を使い、最後は円周角の定理の逆（中3-091）を使います（確認問題の問9）。</p>
+<div class="box example worked">
+  <p class="box-title">例題5（方べきの定理の逆を使う）</p>
+  <p>△ABC で \( \mathrm{AB}=8 \)、\( \mathrm{AC}=6 \) です。辺 AB 上に \( \mathrm{AD}=3 \) となる点 D、辺 AC 上に \( \mathrm{AE}=4 \) となる点 E をとります（図4）。</p>
+  <p>(1) 4点 B、C、E、D は1つの円周上にあることを示しなさい。<br>(2) \( \angle\mathrm{ACB}=80^\circ \) のとき、\( \angle\mathrm{ADE} \) の大きさを求めなさい。</p>
+  <div class="step">着眼点：A は線分 DB の延長上にも、線分 EC の延長上にもあります。方べきの定理の逆の P を A、2本の線分を DB と EC とみます。</div>
+  <div class="step">(1) \( \mathrm{AD}\cdot\mathrm{AB}=3\times8=24 \)、\( \mathrm{AE}\cdot\mathrm{AC}=4\times6=24 \) なので \( \mathrm{AD}\cdot\mathrm{AB}=\mathrm{AE}\cdot\mathrm{AC} \)。方べきの定理の逆より、4点 D、B、E、C は1つの円周上にある。</div>
+  <div class="step">(2) (1) より四角形 DBCE は円に内接する。円に内接する四角形の1つの外角は、それと隣り合う内角の対角に等しい（数Ａ-048）。\( \angle\mathrm{ADE} \) は頂点 D の外角で、隣り合う内角 \( \angle\mathrm{BDE} \) の対角は \( \angle\mathrm{ECB}=\angle\mathrm{ACB} \) なので、\( \angle\mathrm{ADE}=80^\circ \)。</div>
+</div>
+<figure>
+<!--svg:f053d-->
+<svg viewBox="0 0 224 170" width="224" role="img" aria-label="三角形 ABC の辺 AB 上に AD=3 の点 D、辺 AC 上に AE=4 の点 E。AB=8、AC=6。4点 B、C、E、D を通る円を紫の破線で示す。∠ADE と ∠ACB に同じ橙の弧" data-fig="f053d" data-s="21.000000" data-ox="22.316335" data-oy="129.008423">
+<circle cx="137.8" cy="86" r="67.9" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円" data-cx="5.500000" data-cy="2.048020" data-r="3.231778"/>
+<line x1="22.3" y1="129" x2="190.3" y2="129" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="190.3" y1="129" x2="99.9" y2="29.7" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="99.9" y1="29.7" x2="22.3" y2="129" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="85.3" y1="129" x2="74" y2="62.8" stroke="currentColor" stroke-width="1.6" data-seg="DE"/>
+<path d="M71.3,129 A14,14 0 0 1 83,115.2" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="D,A,E" data-mark="1"/>
+<path d="M109.3,40.1 A14,14 0 0 1 91.3,40.8" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="C,A,B" data-mark="1"/>
+<circle cx="22.32" cy="129.01" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="0.000000" data-y="0.000000"/>
+<circle cx="190.32" cy="129.01" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="8.000000" data-y="0.000000"/>
+<circle cx="99.89" cy="29.72" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="3.693969" data-y="4.728065"/>
+<circle cx="85.32" cy="129.01" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="D" data-x="3.000000" data-y="0.000000"/>
+<circle cx="74.03" cy="62.82" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="E" data-x="2.462646" data-y="3.152043"/>
+<text x="11.1" y="139.7" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="199.5" y="142.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="98.8" y="21" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="82" y="145.8" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<text x="61.8" y="62.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">E</text>
+<text x="53.8" y="141.9" text-anchor="middle" font-size="13" fill="currentColor">3</text>
+<text x="38.7" y="92.4" text-anchor="middle" font-size="13" fill="currentColor">4</text>
+</svg>
+<!--/svg:f053d-->
+  <figcaption>図4　例題5の △ABC。\( \mathrm{AD}\cdot\mathrm{AB}=\mathrm{AE}\cdot\mathrm{AC}=24 \) なので、4点 B、C、E、D は1つの円周上にあり（紫の破線）、橙の弧の \( \angle\mathrm{ADE} \) と \( \angle\mathrm{ACB} \) は等しい（学習用に作成した図。角は \( 80^\circ \) 前後でかいてある）</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 等しくないときに「方べきの定理の逆より、同じ円周上にない」と書く：逆は「等しいならば同じ円周上」で、等しくないときのことは述べていません。たとえば例題5で \( \mathrm{AE}=5 \) なら \( \mathrm{AE}\cdot\mathrm{AC}=30 \) で 24 と等しくありません。このときは「4点が同じ円周上にあれば、方べきの定理より積は等しいはず。等しくないので、同じ円周上にない」と、方べきの定理の<strong>対偶</strong>（数Ⅰ-027）で説明します。<br>② P の位置の条件を確かめない：P が一方の線分の上にあり、もう一方では延長上にある場合は、積が等しくても使えません（円の内部の点と外部の点が同時になることはないから）。<br>③ 線分の長さを取り違える：例題5で \( \mathrm{AD}\cdot\mathrm{DB}=3\times5 \) と \( \mathrm{AE}\cdot\mathrm{EC}=4\times2 \) を比べるのは誤りです。比べるのは、P（ここでは A）から各点までの長さの積です。</p></div>
+<div class="box point">
+  <p class="box-title">4点が同じ円周上にあることを示す方法</p>
+  <p>・角を使う：1つの線分を、その線分を含む直線について同じ側にある2点から見込む角（数Ａ-047 で決めた言い方）が等しい（円周角の定理の逆、中3-091・数Ａ-047）、または四角形の対角の和が \( 180^\circ \)・1つの外角が隣り合う内角の対角に等しい（四角形が円に内接するための条件、数Ａ-049）<br>・長さを使う：2直線の交点 P について \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)（方べきの定理の逆、この時間）<br>角が分かっているときは角を使う方法、長さが分かっているときは方べきの定理の逆が使いやすい方法です。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>方べきの定理（接線を含む場合）</dt><dd>円の外部の点 P から引いた接線の接点を T とし、P を通る直線が円と2点 A、B で交わるとき、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \)。</dd>
+    <dt>方べきの定理の逆</dt><dd>2つの線分 AB と CD、または線分 AB の延長と線分 CD の延長が点 P で交わるとき、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) ならば、4点 A、B、C、D は1つの円周上にある。</dd>
+    <dt>接線・接点</dt><dd>円とただ1点を共有する直線が接線、共有する点が接点。接線は接点を通る半径に垂直（中1-085）。</dd>
+    <dt>接線の長さ</dt><dd>円の外部の点から接点までの長さ。1つの点から引いた2本の接線の長さは等しい（数Ａ-050）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>円の外部の点 P から引いた接線 PT と、P を通り円と A、B で交わる直線について \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \)。証明は、接線と弦のつくる角から △PTA∽△PBT を示す（O1）。</li>
+    <li>長さを求めるときは \( \mathrm{PB}=\mathrm{PA}+\mathrm{AB} \) に注意し、分からない長さを文字でおいて二次方程式を解くこともある。解は長さとして正のものを選ぶ（O2）。</li>
+    <li>\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) ならば4点は同じ円周上にある（方べきの定理の逆）。P が2本の線分の上にある場合か、2本の延長上にある場合に使う。等しくないときに「同じ円周上にない」と言う根拠は、方べきの定理の対偶（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">方べきの定理（接線を含む場合）</span>
+  <p>\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \)（T は接点、\( \mathrm{PB}=\mathrm{PA}+\mathrm{AB} \)）</p></div>
+  <div><span class="f-name">方べきの定理の逆</span>
+  <p>\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) ならば A、B、C、D は1つの円周上（P は2本の線分の上、または2本の延長上）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。どの問題でも、A は B より P に近い点とする。入力問題は数字だけを入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O2</span></div>
+  <p>円の外部の点 P から引いた接線の接点を T とします。P を通る直線が円と A、B で交わり、\( \mathrm{PA}=2 \)、\( \mathrm{AB}=6 \) のとき、PT の長さはどれですか。</p>
+  <div class="choices">
+    <button>\( 2\sqrt{3} \)</button>
+    <button>5</button>
+    <button data-correct="true">4</button>
+    <button>16</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \mathrm{PB}=2+6=8 \) で、\( \mathrm{PT}^2=\mathrm{PA}\cdot\mathrm{PB}=2\times8=16 \)、\( \mathrm{PT}=4 \) です。\( 2\sqrt{3} \) は \( \mathrm{PA}\cdot\mathrm{AB}=12 \) から求めた値で、PB のかわりに AB を使っています。5 は PA と PB の平均 \( (2+8)\div2 \) で、積の関係を使っていません。16 は \( \mathrm{PT}^2 \) の値で、PT を求めるのを忘れています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>図1で \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \) を証明するとき、△PTA と相似な三角形を、頂点の対応を正しく書いたものはどれですか。</p>
+  <div class="choices">
+    <button>△PTB</button>
+    <button data-correct="true">△PBT</button>
+    <button>△BPT</button>
+    <button>△TBA</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">共通な \( \angle\mathrm{P} \) と、接線と弦のつくる角から \( \angle\mathrm{PTA}=\angle\mathrm{PBT} \) なので、P と P、T と B、A と T が対応し、△PTA∽△PBT です。△PTB と書くと T と T、A と B が対応することになり、等しい角の対応と合いません。△BPT は P と B を対応させていますが、\( \angle\mathrm{P} \) と \( \angle\mathrm{B} \) は等しくありません。△TBA は \( \angle\mathrm{P} \) を含まない三角形で、共通な角が使えません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>点 P で交わる2本の直線の一方に A、B が、もう一方に C、D があり、P は線分 AB の延長上にも線分 CD の延長上にもあります（A は P と B の間、C は P と D の間）。4点 A、B、C、D が1つの円周上にあると言えるのはどれですか。</p>
+  <div class="choices">
+    <button>\( \mathrm{PA}=4,\ \mathrm{AB}=6,\ \mathrm{PC}=3,\ \mathrm{CD}=8 \)</button>
+    <button>\( \mathrm{PA}=4,\ \mathrm{AB}=4,\ \mathrm{PC}=3,\ \mathrm{CD}=3 \)</button>
+    <button data-correct="true">\( \mathrm{PA}=4,\ \mathrm{AB}=5,\ \mathrm{PC}=3,\ \mathrm{CD}=9 \)</button>
+    <button>\( \mathrm{PA}=4,\ \mathrm{AB}=8,\ \mathrm{PC}=3,\ \mathrm{CD}=6 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">3つ目は \( \mathrm{PB}=4+5=9 \)、\( \mathrm{PD}=3+9=12 \) で \( \mathrm{PA}\cdot\mathrm{PB}=36=\mathrm{PC}\cdot\mathrm{PD} \) なので、方べきの定理の逆より同じ円周上にあります。1つ目は \( \mathrm{PA}\cdot\mathrm{AB}=24=\mathrm{PC}\cdot\mathrm{CD} \) ですが、比べるべき \( \mathrm{PA}\cdot\mathrm{PB}=4\times10=40 \) と \( \mathrm{PC}\cdot\mathrm{PD}=3\times11=33 \) は等しくありません（PB のかわりに AB を使う誤り）。2つ目は \( \mathrm{PA}\cdot\mathrm{PD}=4\times6=24 \) と \( \mathrm{PC}\cdot\mathrm{PB}=3\times8=24 \) が等しいのですが、これは別の直線上の長さどうしをかけた組で、\( \mathrm{PA}\cdot\mathrm{PB}=32 \)、\( \mathrm{PC}\cdot\mathrm{PD}=18 \) は等しくありません。4つ目は \( \mathrm{PA}:\mathrm{PB}=4:12 \)、\( \mathrm{PC}:\mathrm{PD}=3:9 \) で比は等しいのですが、積は \( 48 \) と \( 27 \) です。積が等しくない3つは、方べきの定理の対偶より、4点は同じ円周上にありません。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="6|PA=6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>円の外部の点 P から引いた接線の長さが \( \mathrm{PT}=12 \) で、P を通る直線が円と A、B で交わり、\( \mathrm{AB}=18 \) です。PA の長さを求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 6。\( \mathrm{PA}=x \) とおくと \( \mathrm{PB}=x+18 \)、\( x(x+18)=144 \)、\( x^2+18x-144=0 \)、\( (x+24)(x-6)=0 \)。\( x&gt;0 \) より \( x=6 \)（確かめ：\( 6\times24=144 \)）。8 と答えた場合は \( \mathrm{PA}\cdot\mathrm{AB}=144 \)（\( 144\div18 \)）としていて、PB のかわりに AB を使っています。\( -24 \) は長さとして適さない解です。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="21|CD=21">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O1・O2</span></div>
+  <p>円の外部の点 P から引いた接線の長さが \( \mathrm{PT}=14 \) です。P を通る2本の直線が、円とそれぞれ A、B と C、D で交わり、\( \mathrm{PA}=4 \)、\( \mathrm{PC}=7 \) です（C は D より P に近い）。CD の長さを求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 21。\( \mathrm{PC}\cdot\mathrm{PD}=\mathrm{PT}^2 \) より \( 7\cdot\mathrm{PD}=196 \)、\( \mathrm{PD}=28 \)、\( \mathrm{CD}=28-7=21 \) です（PA を使うなら \( \mathrm{PB}=196\div4=49 \) で \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD}=196 \) となり、同じ結果です）。28 と答えた場合は、PD を答えたか、\( \mathrm{PC}\cdot\mathrm{CD}=196 \) として PD のかわりに CD を使っています。積をとるのは、P から同じ直線上の2つの交点までの長さ（接線なら PT と PT）です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2</span></div>
+  <p>円 O の外部の点 P から引いた接線の長さが \( \mathrm{PT}=20 \) です。直線 PO が円と交わる2点を A、B とすると \( \mathrm{PA}=8 \) でした。円 O の半径はどれですか。</p>
+  <div class="choices">
+    <button>25</button>
+    <button>42</button>
+    <button>50</button>
+    <button data-correct="true">21</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \) より \( 8\cdot\mathrm{PB}=400 \)、\( \mathrm{PB}=50 \)。AB は直線 PO 上の弦なので直径で、\( \mathrm{AB}=50-8=42 \)、半径は 21 です。25 は \( \mathrm{PB}\div2 \) で、PB を直径と取り違えています。42 は直径 AB を半径と取り違えています。50 は PB をそのまま答えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>線分 AB と線分 CD が点 P で交わり（P は両方の線分の上にある）、\( \mathrm{PA}=4 \)、\( \mathrm{PB}=3 \)、\( \mathrm{PC}=2 \)、\( \mathrm{PD}=5 \) です。4点 A、B、C、D について正しい説明はどれですか。</p>
+  <div class="choices">
+    <button>\( \mathrm{PA}\cdot\mathrm{PB}\neq\mathrm{PC}\cdot\mathrm{PD} \) なので、方べきの定理の逆より、4点は同じ円周上にない。</button>
+    <button>\( \mathrm{PA}+\mathrm{PB}=\mathrm{PC}+\mathrm{PD} \) なので、4点は同じ円周上にある。</button>
+    <button data-correct="true">4点が同じ円周上にあれば方べきの定理より \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) のはずだが、\( 12\neq10 \) なので、4点は同じ円周上にない。</button>
+    <button>積が等しくないときは何も分からないので、4点が同じ円周上にあるかどうかは決まらない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \mathrm{PA}\cdot\mathrm{PB}=12 \)、\( \mathrm{PC}\cdot\mathrm{PD}=10 \) で等しくありません。「同じ円周上にない」と言える根拠は、方べきの定理（同じ円周上にあれば積は等しい）の対偶です。1つ目は結論は合っていますが、逆は「積が等しいならば同じ円周上」としか述べていないので、根拠になりません。2つ目は和が等しいことを使っていて、方べきの定理とは関係がありません。4つ目は、方べきの定理の対偶を使えば決まることを見落としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2</span></div>
+  <p>太郎さんと花子さんが、展望台から海を見て話しています。</p>
+  <p>太郎：「高さ 100 m の展望台からだと、水平線まで何 km くらいあるのかな。」<br>花子：「地球を半径 6400 km の球とみなして、目の高さを地表から 100 m とすると、図5のように、目の位置 P から地球に引いた接線の接点 T が水平線にあたるよ。光はまっすぐ進むとして、PT を求めてみよう。」</p>
+  <figure>
+<!--svg:f053e-->
+<svg viewBox="0 0 272 222" width="272" role="img" aria-label="地球を円で表した模式図。中心 O、半径 R。地表の点 H の真上、高さ h の点 P から引いた接線が地表に接する点 T。OT と PT は垂直。高さは誇張してかいてある" data-fig="f053e" data-s="22.000000" data-ox="132.800000" data-oy="170.000000">
+<circle cx="132.8" cy="170" r="110" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="地球" data-cx="0.000000" data-cy="0.000000" data-r="5.000000"/>
+<line x1="132.8" y1="24.8" x2="224.6" y2="103.9" stroke="#1f5fbf" stroke-width="1.8" data-seg="PT"/>
+<line x1="132.8" y1="24.8" x2="132.8" y2="170" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3" data-seg="PO"/>
+<line x1="132.8" y1="170" x2="204.6" y2="86.7" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="4 3" data-seg="OT"/>
+<path d="M198.5,81.4 L193.3,87.5 L199.4,92.7" fill="none" stroke="currentColor" stroke-width="1.2" data-right="T,P,O"/>
+<circle cx="132.80" cy="170.00" r="3.2" fill="#7b3fa0" stroke="#7b3fa0" stroke-width="1.4" data-pt="O" data-x="0.000000" data-y="0.000000"/>
+<circle cx="132.80" cy="24.80" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P" data-x="0.000000" data-y="6.600000"/>
+<circle cx="132.80" cy="60.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="H" data-x="0.000000" data-y="5.000000"/>
+<circle cx="204.60" cy="86.67" r="3.2" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="1.4" data-pt="T" data-x="3.263736" data-y="3.787879"/>
+<text x="121.5" y="178" text-anchor="middle" font-size="13" fill="#7b3fa0" font-weight="700">O</text>
+<text x="120" y="26.7" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">P</text>
+<text x="124.4" y="73.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">H</text>
+<text x="216.8" y="86.4" text-anchor="middle" font-size="14" fill="#1e8e5a" font-weight="700">T</text>
+<text x="123.8" y="46.3" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">h</text>
+<text x="123.8" y="124.4" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">R</text>
+</svg>
+<!--/svg:f053e-->
+    <figcaption>図5　地球を円で表した模式図。P は地表の点 H の真上の目の位置、T は接点（学習用に単純化したモデル。高さ h は誇張してかいてある）</figcaption>
+  </figure>
+  <p>直線 PO が地球の表面と交わる点は、P に近い方が H、遠い方が H の反対側の点です。PT はおよそいくらですか。</p>
+  <div class="choices">
+    <button>およそ 25 km</button>
+    <button>およそ 1280 km</button>
+    <button>およそ 1136 km</button>
+    <button data-correct="true">およそ 36 km</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( h=100\ \mathrm{m}=0.1\ \mathrm{km} \) で、直線 PO は P から近い順に H と反対側の点を通るので、2つの交点までの長さは \( h \) と \( h+2\times6400 \)（km）。方べきの定理（接線を含む場合）より \( \mathrm{PT}^2=0.1\times12800.1=1280.01 \)、\( \mathrm{PT}=\sqrt{1280.01}\fallingdotseq35.8 \) で、およそ 36 km です（\( 35^2=1225 \)、\( 36^2=1296 \) なので 35 と 36 の間で 36 に近い）。およそ 25 km は遠い方の交点までを \( h+6400 \)（半径）とした誤りで、直径の \( 2\times6400 \) を使います。およそ 1280 km は \( \mathrm{PT}^2 \) の値で、平方根をとり忘れています。およそ 1136 km は高さを 100（m）のまま、半径を 6400（km）のままにして \( \mathrm{PT}^2=100\times(100+12800) \) と計算した誤りで、単位をそろえていません。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O3</span></div>
+  <p>線分 AB と線分 CD が点 P で交わり、P は両方の線分の上にあります（P は A、B、C、D と異なる点）。\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) ならば4点 A、B、C、D は1つの円周上にあることを証明しなさい。仮定と結論を書き、使った性質を示すこと。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　仮定：線分 AB と線分 CD は、両方の線分の上の点 P で交わり、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)。結論：A、B、C、D は1つの円周上にある。<br>
+    仮定の等式の両辺を \( \mathrm{PC}\cdot\mathrm{PB} \) でわると \( \mathrm{PA}:\mathrm{PC}=\mathrm{PD}:\mathrm{PB} \)。△PAC と △PDB で、対頂角は等しいので \( \angle\mathrm{APC}=\angle\mathrm{DPB} \)（中2-044）。2組の辺の比とその間の角がそれぞれ等しいので △PAC∽△PDB。対応する角は等しいので \( \angle\mathrm{PAC}=\angle\mathrm{PDB} \)。P は線分 AB 上、線分 DC 上にあるので、これは \( \angle\mathrm{BAC}=\angle\mathrm{BDC} \) である。2本の線分 AB、CD が交わっているので、A と D は直線 BC について同じ側にある。円周角の定理の逆より、4点 A、B、C、D は1つの円周上にある。（証明終わり）</p>
+    <p><strong>採点の観点</strong>　① 仮定と結論を書いている。② 等式を比の形 \( \mathrm{PA}:\mathrm{PC}=\mathrm{PD}:\mathrm{PB} \) に直している。③ 対頂角を根拠に、2組の辺の比とその間の角で相似を示している（頂点の対応が正しい）。④ \( \angle\mathrm{BAC}=\angle\mathrm{BDC} \) と、A、D が直線 BC について同じ側にあることから、円周角の定理の逆を使っている。⑤ 結びに「（証明終わり）」がある。</p>
+  </div>
+  <div class="explain">本文の「P が延長上にある場合」の証明と比べると、共通な角が対頂角に、最後の根拠が「四角形が円に内接するための条件」から「円周角の定理の逆」に変わります。円周角の定理の逆を使うときは、2点が同じ側にあることを確かめます（数Ａ-047）。△PAC ∽ △PDB の代わりに △PAD ∽ △PCB を使っても、\( \angle\mathrm{PAD}=\angle\mathrm{PCB} \)（\( \angle\mathrm{BAD}=\angle\mathrm{BCD} \)）から同じように証明できます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(1) 図形の性質」のア(イ)「円に関する基本的な性質について理解すること」に関わり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。方べきの定理は、円と直線が関わる図形で、長さの関係を見つけたり、4点が同じ円周上にあることを示したりするときに使います。</p>
+  <p class="small">問8は会話と日常の場面を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">2つの円の位置関係と共通接線（数Ａ-054）</p>
+  <p>次の時間は、2つの円の半径と中心間の距離の関係から、2つの円の位置関係（離れている・外接する・2点で交わる・内接する・一方が他方の内部にある）を判断し、2つの円に共通な接線の長さを求めます。接線は接点を通る半径に垂直であること（中1-085）と三平方の定理を、この時間に続いて使います。</p>
+  <p>この時間では、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \) から「直線 PT が円に接する」ことを導く形の逆は扱っていません。球に対して方べきの定理を考えることは数Ａ-062 で扱います。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-052　方べきの定理</div>
+  <div><span class="label">次の時間</span>数Ａ-054　2つの円の位置関係と共通接線</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-053「方べきの定理（接線を含む場合）」（学習指導要領 数学Ａ (1)ア(イ)、解説 p.90。† 主な語句「方べきの定理の逆」は数研出版のシラバスで確認）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(1) 図形の性質（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.90（円の性質の扱い、「方べきの定理及び 2 円の位置関係やそれらの共通接線の性質などについて理解できるようにする」）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「６．方べきの定理」（「方べきの定理を利用して，線分の長さを求めたり，図形の性質を証明したりできる」「方べきの定理の逆を理解し，それを用いて図形の性質を証明することができる」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>東京書籍『改訂版 数学A Advanced』（数A002-901）編修趣意書（「点と円の関係として接線の長さと方べきの定理を一連の流れで取り上げ」）（文部科学省の教科書編修趣意書の一覧）https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・図はこのページのために作成したものです（出典を示したものを除く）。問8の地球の半径 6400 km は問題のために与えた値で、地球を球、光の進み方を直線とみなした学習用のモデルです。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var svg = document.getElementById("w1-svg");
+  var sl = document.getElementById("w1-k");
+  var out = document.getElementById("w1-out");
+  if (!svg || !sl || !out) return;
+  var R = 6, PO = 10, SC = 13, OX = 222, OY = 118, KT = 37;
+  var BLUE = "#1f5fbf", GREEN = "#1e8e5a", PURPLE = "#7b3fa0";
+  function X(x) { return OX + SC * x; }
+  function Y(y) { return OY - SC * y; }
+  function r1(v) { return String(Math.round(v * 10) / 10); }
+  function r2(v) { var s = (Math.round(v * 100) / 100).toFixed(2); return s === "-0.00" ? "0.00" : s; }
+  function dot(h, x, y, nm, c) {
+    h.push('<circle cx="' + r1(X(x)) + '" cy="' + r1(Y(y)) + '" r="3.4" fill="' + c + '" stroke="' + c + '" stroke-width="1.2" data-pt="' + nm + '" data-x="' + x.toFixed(6) + '" data-y="' + y.toFixed(6) + '"/>');
+  }
+  function label(h, x, y, nm, c, dx, dy) {
+    h.push('<text x="' + r1(X(x) + dx) + '" y="' + r1(Y(y) - dy + 5) + '" text-anchor="middle" font-size="14" font-weight="700" fill="' + c + '" data-label="' + nm + '">' + nm + '</text>');
+  }
+  function draw() {
+    var k = parseInt(sl.value, 10);
+    var tangent = (k >= KT);
+    var th = tangent ? Math.asin(R / PO) : k * Math.PI / 180;
+    var ux = Math.cos(th), uy = Math.sin(th);
+    var pm = PO * Math.cos(th);
+    var hh = tangent ? 0 : Math.sqrt(R * R - PO * PO * Math.sin(th) * Math.sin(th));
+    var pa = pm - hh, pb = pm + hh;
+    var px = -PO, py = 0, tx = -3.6, ty = 4.8;
+    var nx = uy, ny = -ux;
+    var h = [];
+    h.push('<circle cx="' + r1(X(0)) + '" cy="' + r1(Y(0)) + '" r="' + r1(SC * R) + '" fill="none" stroke="' + PURPLE + '" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円" data-cx="0" data-cy="0" data-r="' + R + '"/>');
+    h.push('<line x1="' + r1(X(px)) + '" y1="' + r1(Y(py)) + '" x2="' + r1(X(tx + 0.8 * 2)) + '" y2="' + r1(Y(ty + 0.6 * 2)) + '" stroke="' + BLUE + '" stroke-width="1.6" stroke-dasharray="5 3" data-seg="PT"/>');
+    var e = pb + 1.2;
+    h.push('<line x1="' + r1(X(px)) + '" y1="' + r1(Y(py)) + '" x2="' + r1(X(px + e * ux)) + '" y2="' + r1(Y(py + e * uy)) + '" stroke="currentColor" stroke-width="1.6" data-seg="PB"/>');
+    dot(h, px, py, "P", "currentColor");
+    label(h, px, py, "P", "currentColor", -12, 0);
+    dot(h, tx, ty, "T", GREEN);
+    label(h, tx, ty, "T", GREEN, -0.6 * 15, 0.8 * 15);
+    var txt;
+    if (tangent) {
+      txt = "直線は円に接しています（A と B が接点 T に重なった）。PA = PB = PT = 8 で、PA·PB = PT² = 64 です。";
+    } else {
+      var ax = px + pa * ux, ay = py + pa * uy, bx = px + pb * ux, by = py + pb * uy;
+      dot(h, ax, ay, "A", "currentColor");
+      dot(h, bx, by, "B", "currentColor");
+      label(h, ax, ay, "A", "currentColor", nx * 15, ny * 15);
+      label(h, bx, by, "B", "currentColor", nx * 15, ny * 15);
+      txt = "直線 PO とのなす角 " + k + "°：PA ≒ " + r2(pa) + "、PB ≒ " + r2(pb) + "、PA·PB ≒ " + r2(pa * pb) + "（PT² = 64）。角を変えても PA·PB は変わりません。";
+    }
+    svg.innerHTML = h.join("");
+    out.textContent = txt;
+  }
+  sl.addEventListener("input", draw);
+  sl.addEventListener("change", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-053",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-053",
+  "title": "方べきの定理（接線を含む場合）",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-2", "title": "図形の性質"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(イ)"],
+  "kaisetsu_page": "90",
+  "objectives": [
+    {"id": "O1", "text": "円外の点 P から引いた接線 PT と、P を通り円と2点 A、B で交わる直線について、\\( \\mathrm{PA}\\cdot\\mathrm{PB}=\\mathrm{PT}^2 \\) が成り立つことを、接線と弦のつくる角と三角形の相似を用いて説明できる。", "from": "円外の点 P から引いた接線 PT と、P を通り円と2点 A、B で交わる直線について PA·PB=PT² を理解し", "sections": ["sec-1"], "checks": ["q2", "q5", "q8"]},
+    {"id": "O2", "text": "\\( \\mathrm{PA}\\cdot\\mathrm{PB}=\\mathrm{PT}^2 \\) を用いて、線分の長さを求めることができる。", "from": "線分の長さを求めることができる", "sections": ["sec-2"], "checks": ["q1", "q4", "q5", "q6", "q8"]},
+    {"id": "O3", "text": "方べきの定理の逆を理解し、それを用いて4点が同じ円周上にあることを示すことができる。", "from": "方べきの定理の逆を用いて4点が同じ円周上にあることを示す。主な語句：方べきの定理の逆", "sections": ["sec-3"], "checks": ["q3", "q7", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "方べきの定理の逆", "where": "sec-3"},
+    {"term": "方べきの定理（接線を含む場合）", "where": "sec-1"},
+    {"term": "接線・接点", "where": "review"},
+    {"term": "接線の長さ", "where": "review"}
+  ],
+  "prerequisites": [
+    {"concept": "方べきの定理 PA·PB=PC·PD（2つの弦またはその延長どうしが点 P で交わるとき）", "taught_in": ["hs_math_1a/数Ａ-052"], "gap": false, "where": "review"},
+    {"concept": "接線と弦のつくる角（その角の内部にある弧に対する円周角に等しい）", "taught_in": ["hs_math_1a/数Ａ-051"], "gap": false, "where": "review"},
+    {"concept": "円外の点から引いた2本の接線の長さは等しい", "taught_in": ["hs_math_1a/数Ａ-050"], "gap": false, "where": "review"},
+    {"concept": "接する・接線・接点、円の接線は接点を通る半径に垂直", "taught_in": ["jhs_math/中1-085"], "gap": false, "where": "review"},
+    {"concept": "三角形の相似条件（2組の角、2組の辺の比とその間の角）", "taught_in": ["jhs_math/中3-067"], "gap": false, "where": "review"},
+    {"concept": "相似な図形の対応する辺の比・角", "taught_in": ["jhs_math/中3-064"], "gap": false, "where": "sec-1"},
+    {"concept": "比例式 a:b=c:d から ad=bc", "taught_in": ["jhs_math/中1-054"], "gap": false, "where": "review"},
+    {"concept": "円外の点から引いた接線の長さを三平方の定理で求める", "taught_in": ["jhs_math/中3-104", "jhs_math/中3-099"], "gap": false, "where": "review"},
+    {"concept": "因数分解による二次方程式の解き方", "taught_in": ["jhs_math/中3-041"], "gap": false, "where": "sec-2"},
+    {"concept": "仮定と結論、逆", "taught_in": ["jhs_math/中2-055", "jhs_math/中2-063"], "gap": false, "where": "sec-3"},
+    {"concept": "円に内接する四角形の性質（1つの外角はそれと隣り合う内角の対角に等しい）", "taught_in": ["hs_math_1a/数Ａ-048"], "gap": false, "where": "sec-3"},
+    {"concept": "四角形が円に内接するための条件", "taught_in": ["hs_math_1a/数Ａ-049"], "gap": false, "where": "sec-3"},
+    {"concept": "円周角の定理の逆（2点が同じ側にあることの確認）", "taught_in": ["jhs_math/中3-091", "hs_math_1a/数Ａ-047"], "gap": false, "where": "sec-3"},
+    {"concept": "対頂角は等しい", "taught_in": ["jhs_math/中2-044"], "gap": false, "where": "quiz"},
+    {"concept": "対偶", "taught_in": ["hs_math_1a/数Ⅰ-027"], "gap": false, "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "2つの円の位置関係と共通接線（数Ａ-054）",
+    "球に対して方べきの定理を適用する考察（数Ａ-062）",
+    "PA·PB=PT² ならば直線 PT が円に接する、という形の逆（このページでは扱わない）",
+    "座標を用いた円の方程式・点と円の関係（数学Ⅱの内容）"
+  ],
+  "selection_reason": "数学Ａ 単元『図形の性質』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(1)ア(イ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.90 円の性質の扱い（方べきの定理及び2円の位置関係やそれらの共通接線の性質）（保存本文：sources/text/hs_kaisetsu_math.txt）"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "† 方べきの定理の逆を教科書の本文で扱うことの確認（地図の S18。保存本文：sources/text/suken_syllabus_suakai.txt）"},
+    {"name": "教科書編修趣意書 数学Ａ『改訂版 数学A Advanced』（数A002-901）", "publisher": "東京書籍（文部科学省公開）", "url": "https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html", "use": "接線の長さと方べきの定理を一連の流れで扱うことの確認（保存本文：sources/text/hensyu_東京書籍_数A002-901.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

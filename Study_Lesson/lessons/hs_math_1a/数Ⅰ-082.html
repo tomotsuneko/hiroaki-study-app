@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>変量の変換と平均値・分散｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+table.data td, table.data th { text-align: center; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>データの分析</span><span>数Ⅰ-082</span></div>
+  <h1>変量の変換と平均値・分散</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">全員の得点に3点ずつ加えたら、平均値は3点上がります。では、標準偏差はどうなるでしょう。2倍したら？　データの値をまとめて一次式で変換したときの、平均値・分散・標準偏差の変わり方を調べ、計算の工夫に使います。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>変量 x のすべての値に同じ数を足したり、同じ数を掛けたりしたときの平均値・分散・標準偏差の変化を、具体的なデータで調べて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>y=ax+b のとき、y の平均値が ax̄+b、分散が a² 倍、標準偏差が |a| 倍になることを、偏差の変化から説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>変量の変換を利用して、平均値や分散を見通しよく計算できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-081）</span>分散と標準偏差</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-082）</span>変量の変換と平均値・分散</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-083）</span>外れ値</div>
+</div>
+<p class="small">前提となる単元：中学1年「データの分布／不確定な事象の起こりやすさ」、中学2年「データの分布（四分位範囲と箱ひげ図）」。同じ単元の数Ⅰ-081（分散・標準偏差とその求め方）、数学Ⅰ「数と式」の数Ⅰ-013（\( \sqrt{a^2}=|a| \)）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>前の時間（数Ⅰ-081）に学んだ偏差・分散・標準偏差と、\( \sqrt{a^2}=|a| \)（数Ⅰ-013）を使います。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-081</span></div>
+  <p>5個の値 4, 6, 7, 8, 10 の平均値・分散・標準偏差の組はどれですか。</p>
+  <div class="choices">
+    <button>平均値 7、分散 20、標準偏差 \( \sqrt{20} \)</button>
+    <button data-correct="true">平均値 7、分散 4、標準偏差 2</button>
+    <button>平均値 7、分散 2、標準偏差 4</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">偏差は \( -3,\ -1,\ 0,\ 1,\ 3 \)、2乗の和は 20、分散は \( 20\div5=4 \)、標準偏差は \( \sqrt4=2 \) です（数Ⅰ-081 の例題1）。分散 20 は個数で割り忘れています。分散 2・標準偏差 4 は、分散と標準偏差を取り違えています。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-013</span></div>
+  <p>\( \sqrt{(-3)^2} \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( -3 \)</button>
+    <button>9</button>
+    <button data-correct="true">3</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sqrt{(-3)^2}=\sqrt9=3 \) です。一般に \( \sqrt{a^2}=|a| \) で、根号の値は 0 以上です。\( -3 \) は「根号と2乗が打ち消し合う」と考えた誤り、9 は根号をとり忘れています。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-080・数Ⅰ-081</span></div>
+  <p>偏差について、正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">偏差は（値）−（平均値）で、偏差の和はいつも 0 になる。</button>
+    <button>偏差は（平均値）−（値）で、いつも 0 以上になる。</button>
+    <button>偏差の2乗の和を個数で割ったものが標準偏差である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">偏差 \( x_k-\overline{x} \) は、平均値より小さい値では負になります。偏差の和はいつも 0 です（数Ⅰ-080）。偏差の2乗の和を個数で割ったものは分散で、標準偏差はその正の平方根です。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：3点足すと？　2倍すると？</h2>
+<div class="box think">
+  <p class="box-title">小テストの得点の調整（学習用の架空のデータ）</p>
+  <p>5人の小テストの得点 \( x \)（点）は 4, 6, 7, 8, 10 で、平均値 7 点、標準偏差 2 点でした（確認1）。先生は、次の2通りの成績のつけ方を考えています。</p>
+  <p>案1：提出物の点として、全員に 3 点ずつ加える（\( x+3 \)）。<br>案2：小テストを重視して、得点を 2 倍する（\( 2x \)）。</p>
+  <p><strong>それぞれ、平均値と標準偏差はいくつになるでしょうか。</strong>「平均値が3点上がるなら、標準偏差も3点上がる？」と予想した人は、本編で確かめましょう。答えは「3 足す・掛けるで何が変わるか」の例題1で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="足す・掛けるで何が変わるか"><span class="num">3</span>足す・掛けるで何が変わるか</h2>
+<p>得点や身長のように、データとして集める量を文字 \( x \) などで表したものを、このページでは<strong>変量</strong>と呼びます。変量 \( x \) の値 \( x_1,\ x_2,\ \cdots,\ x_n \) のそれぞれを、同じ式で別の値に直すことを<strong>変量の変換</strong>といいます。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の問いの答え）</p>
+  <p>導入の得点 \( x \)：4, 6, 7, 8, 10 について、案1の \( x+3 \) と案2の \( 2x \) の平均値・分散・標準偏差を求めなさい。</p>
+  <div class="step">着目：変換した値と、その偏差を表にします。
+  <div class="table-wrap"><table class="data">
+    <tr><th>\( x \)</th><td>4</td><td>6</td><td>7</td><td>8</td><td>10</td><th>平均値</th></tr>
+    <tr><th>\( x \) の偏差</th><td>−3</td><td>−1</td><td>0</td><td>1</td><td>3</td><td>—</td></tr>
+    <tr><th>\( x+3 \)</th><td>7</td><td>9</td><td>10</td><td>11</td><td>13</td><td>10</td></tr>
+    <tr><th>\( x+3 \) の偏差</th><td>−3</td><td>−1</td><td>0</td><td>1</td><td>3</td><td>—</td></tr>
+    <tr><th>\( 2x \)</th><td>8</td><td>12</td><td>14</td><td>16</td><td>20</td><td>14</td></tr>
+    <tr><th>\( 2x \) の偏差</th><td>−6</td><td>−2</td><td>0</td><td>2</td><td>6</td><td>—</td></tr>
+  </table></div></div>
+  <div class="step">案1（\( x+3 \)）：平均値は \( 7+3=10 \)。偏差は \( x \) の偏差と同じなので、分散は 4、標準偏差は 2 のまま変わりません。</div>
+  <div class="step">案2（\( 2x \)）：平均値は \( 2\times7=14 \)。偏差がすべて2倍になるので、偏差の2乗は \( 2^2=4 \) 倍、分散は \( (36+4+0+4+36)\div5=16 \)（\( 4\times4 \)）、標準偏差は \( \sqrt{16}=4 \)（\( 2\times2 \)）です。</div>
+  <div class="step">答え：<span data-ans="intro">案1は平均値 10 点・標準偏差 2 点（変わらない）、案2は平均値 14 点・標準偏差 4 点（2倍）</span>。分散は案1で 4（変わらない）、案2で 16（4倍）です。</div>
+</div>
+<figure>
+<div class="fig-scroll">
+<!--svg:f082a-->
+<svg viewBox="0 0 560 242" width="560" role="img" aria-label="x は4、6、7、8、10で平均値7、平均値±標準偏差は5から9。x+3 は7、9、10、11、13で平均値10、8から12。2x は8、12、14、16、20で平均値14、10から18" data-fig="f082a">
+<line x1="64" y1="64" x2="542" y2="64" stroke="currentColor" stroke-width="1"/>
+<line x1="70" y1="64" x2="70" y2="68" stroke="currentColor" stroke-width="1"/>
+<text x="70" y="80" text-anchor="middle" font-size="11" fill="currentColor">0</text>
+<line x1="112.4" y1="64" x2="112.4" y2="68" stroke="currentColor" stroke-width="1"/>
+<text x="112.4" y="80" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="154.7" y1="64" x2="154.7" y2="68" stroke="currentColor" stroke-width="1"/>
+<text x="154.7" y="80" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="197.1" y1="64" x2="197.1" y2="68" stroke="currentColor" stroke-width="1"/>
+<text x="197.1" y="80" text-anchor="middle" font-size="11" fill="currentColor">6</text>
+<line x1="239.5" y1="64" x2="239.5" y2="68" stroke="currentColor" stroke-width="1"/>
+<text x="239.5" y="80" text-anchor="middle" font-size="11" fill="currentColor">8</text>
+<line x1="281.8" y1="64" x2="281.8" y2="68" stroke="currentColor" stroke-width="1"/>
+<text x="281.8" y="80" text-anchor="middle" font-size="11" fill="currentColor">10</text>
+<line x1="324.2" y1="64" x2="324.2" y2="68" stroke="currentColor" stroke-width="1"/>
+<text x="324.2" y="80" text-anchor="middle" font-size="11" fill="currentColor">12</text>
+<line x1="366.5" y1="64" x2="366.5" y2="68" stroke="currentColor" stroke-width="1"/>
+<text x="366.5" y="80" text-anchor="middle" font-size="11" fill="currentColor">14</text>
+<line x1="408.9" y1="64" x2="408.9" y2="68" stroke="currentColor" stroke-width="1"/>
+<text x="408.9" y="80" text-anchor="middle" font-size="11" fill="currentColor">16</text>
+<line x1="451.3" y1="64" x2="451.3" y2="68" stroke="currentColor" stroke-width="1"/>
+<text x="451.3" y="80" text-anchor="middle" font-size="11" fill="currentColor">18</text>
+<line x1="493.6" y1="64" x2="493.6" y2="68" stroke="currentColor" stroke-width="1"/>
+<text x="493.6" y="80" text-anchor="middle" font-size="11" fill="currentColor">20</text>
+<line x1="536" y1="64" x2="536" y2="68" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="80" text-anchor="middle" font-size="11" fill="currentColor">22</text>
+<circle cx="154.7" cy="57.5" r="5.5" fill="#1f5fbf" data-dot="4 0"/>
+<circle cx="197.1" cy="57.5" r="5.5" fill="#1f5fbf" data-dot="6 0"/>
+<circle cx="218.3" cy="57.5" r="5.5" fill="#1f5fbf" data-dot="7 0"/>
+<circle cx="239.5" cy="57.5" r="5.5" fill="#1f5fbf" data-dot="8 0"/>
+<circle cx="281.8" cy="57.5" r="5.5" fill="#1f5fbf" data-dot="10 0"/>
+<line x1="175.9" y1="12" x2="260.6" y2="12" stroke="#c0392b" stroke-width="4" data-band="5.000000 9.000000"/>
+<line x1="175.9" y1="6" x2="175.9" y2="18" stroke="#c0392b" stroke-width="1.5"/>
+<line x1="260.6" y1="6" x2="260.6" y2="18" stroke="#c0392b" stroke-width="1.5"/>
+<line x1="218.3" y1="20" x2="218.3" y2="64" stroke="#b7791f" stroke-width="1.5" stroke-dasharray="5 3" data-mean="7"/>
+<text x="222.3" y="30" text-anchor="start" font-size="11" fill="#b7791f">平均値 7</text>
+<text x="56" y="58" text-anchor="end" font-size="12" font-weight="700" fill="currentColor">x</text>
+<line x1="64" y1="138" x2="542" y2="138" stroke="currentColor" stroke-width="1"/>
+<line x1="70" y1="138" x2="70" y2="142" stroke="currentColor" stroke-width="1"/>
+<text x="70" y="154" text-anchor="middle" font-size="11" fill="currentColor">0</text>
+<line x1="112.4" y1="138" x2="112.4" y2="142" stroke="currentColor" stroke-width="1"/>
+<text x="112.4" y="154" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="154.7" y1="138" x2="154.7" y2="142" stroke="currentColor" stroke-width="1"/>
+<text x="154.7" y="154" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="197.1" y1="138" x2="197.1" y2="142" stroke="currentColor" stroke-width="1"/>
+<text x="197.1" y="154" text-anchor="middle" font-size="11" fill="currentColor">6</text>
+<line x1="239.5" y1="138" x2="239.5" y2="142" stroke="currentColor" stroke-width="1"/>
+<text x="239.5" y="154" text-anchor="middle" font-size="11" fill="currentColor">8</text>
+<line x1="281.8" y1="138" x2="281.8" y2="142" stroke="currentColor" stroke-width="1"/>
+<text x="281.8" y="154" text-anchor="middle" font-size="11" fill="currentColor">10</text>
+<line x1="324.2" y1="138" x2="324.2" y2="142" stroke="currentColor" stroke-width="1"/>
+<text x="324.2" y="154" text-anchor="middle" font-size="11" fill="currentColor">12</text>
+<line x1="366.5" y1="138" x2="366.5" y2="142" stroke="currentColor" stroke-width="1"/>
+<text x="366.5" y="154" text-anchor="middle" font-size="11" fill="currentColor">14</text>
+<line x1="408.9" y1="138" x2="408.9" y2="142" stroke="currentColor" stroke-width="1"/>
+<text x="408.9" y="154" text-anchor="middle" font-size="11" fill="currentColor">16</text>
+<line x1="451.3" y1="138" x2="451.3" y2="142" stroke="currentColor" stroke-width="1"/>
+<text x="451.3" y="154" text-anchor="middle" font-size="11" fill="currentColor">18</text>
+<line x1="493.6" y1="138" x2="493.6" y2="142" stroke="currentColor" stroke-width="1"/>
+<text x="493.6" y="154" text-anchor="middle" font-size="11" fill="currentColor">20</text>
+<line x1="536" y1="138" x2="536" y2="142" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="154" text-anchor="middle" font-size="11" fill="currentColor">22</text>
+<circle cx="218.3" cy="131.5" r="5.5" fill="#1f5fbf" data-dot="7 0"/>
+<circle cx="260.6" cy="131.5" r="5.5" fill="#1f5fbf" data-dot="9 0"/>
+<circle cx="281.8" cy="131.5" r="5.5" fill="#1f5fbf" data-dot="10 0"/>
+<circle cx="303" cy="131.5" r="5.5" fill="#1f5fbf" data-dot="11 0"/>
+<circle cx="345.4" cy="131.5" r="5.5" fill="#1f5fbf" data-dot="13 0"/>
+<line x1="239.5" y1="86" x2="324.2" y2="86" stroke="#c0392b" stroke-width="4" data-band="8.000000 12.000000"/>
+<line x1="239.5" y1="80" x2="239.5" y2="92" stroke="#c0392b" stroke-width="1.5"/>
+<line x1="324.2" y1="80" x2="324.2" y2="92" stroke="#c0392b" stroke-width="1.5"/>
+<line x1="281.8" y1="94" x2="281.8" y2="138" stroke="#b7791f" stroke-width="1.5" stroke-dasharray="5 3" data-mean="10"/>
+<text x="285.8" y="104" text-anchor="start" font-size="11" fill="#b7791f">平均値 10</text>
+<text x="56" y="132" text-anchor="end" font-size="12" font-weight="700" fill="currentColor">x+3</text>
+<line x1="64" y1="212" x2="542" y2="212" stroke="currentColor" stroke-width="1"/>
+<line x1="70" y1="212" x2="70" y2="216" stroke="currentColor" stroke-width="1"/>
+<text x="70" y="228" text-anchor="middle" font-size="11" fill="currentColor">0</text>
+<line x1="112.4" y1="212" x2="112.4" y2="216" stroke="currentColor" stroke-width="1"/>
+<text x="112.4" y="228" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="154.7" y1="212" x2="154.7" y2="216" stroke="currentColor" stroke-width="1"/>
+<text x="154.7" y="228" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="197.1" y1="212" x2="197.1" y2="216" stroke="currentColor" stroke-width="1"/>
+<text x="197.1" y="228" text-anchor="middle" font-size="11" fill="currentColor">6</text>
+<line x1="239.5" y1="212" x2="239.5" y2="216" stroke="currentColor" stroke-width="1"/>
+<text x="239.5" y="228" text-anchor="middle" font-size="11" fill="currentColor">8</text>
+<line x1="281.8" y1="212" x2="281.8" y2="216" stroke="currentColor" stroke-width="1"/>
+<text x="281.8" y="228" text-anchor="middle" font-size="11" fill="currentColor">10</text>
+<line x1="324.2" y1="212" x2="324.2" y2="216" stroke="currentColor" stroke-width="1"/>
+<text x="324.2" y="228" text-anchor="middle" font-size="11" fill="currentColor">12</text>
+<line x1="366.5" y1="212" x2="366.5" y2="216" stroke="currentColor" stroke-width="1"/>
+<text x="366.5" y="228" text-anchor="middle" font-size="11" fill="currentColor">14</text>
+<line x1="408.9" y1="212" x2="408.9" y2="216" stroke="currentColor" stroke-width="1"/>
+<text x="408.9" y="228" text-anchor="middle" font-size="11" fill="currentColor">16</text>
+<line x1="451.3" y1="212" x2="451.3" y2="216" stroke="currentColor" stroke-width="1"/>
+<text x="451.3" y="228" text-anchor="middle" font-size="11" fill="currentColor">18</text>
+<line x1="493.6" y1="212" x2="493.6" y2="216" stroke="currentColor" stroke-width="1"/>
+<text x="493.6" y="228" text-anchor="middle" font-size="11" fill="currentColor">20</text>
+<line x1="536" y1="212" x2="536" y2="216" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="228" text-anchor="middle" font-size="11" fill="currentColor">22</text>
+<circle cx="239.5" cy="205.5" r="5.5" fill="#1f5fbf" data-dot="8 0"/>
+<circle cx="324.2" cy="205.5" r="5.5" fill="#1f5fbf" data-dot="12 0"/>
+<circle cx="366.5" cy="205.5" r="5.5" fill="#1f5fbf" data-dot="14 0"/>
+<circle cx="408.9" cy="205.5" r="5.5" fill="#1f5fbf" data-dot="16 0"/>
+<circle cx="493.6" cy="205.5" r="5.5" fill="#1f5fbf" data-dot="20 0"/>
+<line x1="281.8" y1="160" x2="451.3" y2="160" stroke="#c0392b" stroke-width="4" data-band="10.000000 18.000000"/>
+<line x1="281.8" y1="154" x2="281.8" y2="166" stroke="#c0392b" stroke-width="1.5"/>
+<line x1="451.3" y1="154" x2="451.3" y2="166" stroke="#c0392b" stroke-width="1.5"/>
+<line x1="366.5" y1="168" x2="366.5" y2="212" stroke="#b7791f" stroke-width="1.5" stroke-dasharray="5 3" data-mean="14"/>
+<text x="370.5" y="178" text-anchor="start" font-size="11" fill="#b7791f">平均値 14</text>
+<text x="56" y="206" text-anchor="end" font-size="12" font-weight="700" fill="currentColor">2x</text>
+</svg>
+<!--/svg:f082a-->
+</div>
+  <figcaption>図1　\( x \)、\( x+3 \)、\( 2x \) の値を積み上げた図。破線は平均値、太い横線は平均値±標準偏差。\( x+3 \) は全体が右に3ずれるだけで広がりは同じ、\( 2x \) は広がりが2倍になる</figcaption>
+</figure>
+<div class="box point"><p class="box-title">足すと「位置」だけ、掛けると「広がり」も変わる</p><p>全員に同じ数を足すと、すべての値が同じだけずれるので、平均値も同じだけずれますが、各値と平均値の差（偏差）は変わりません。だから分散・標準偏差は変わりません。<br>全員に同じ数を掛けると、偏差もその数倍になるので、分散は（その数の2乗）倍、標準偏差はその数倍になります。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：「平均値が3上がれば、標準偏差も3上がる」</p><p>標準偏差は、値が平均値のまわりにどれだけ広がっているかを表します。全員が3点ずつ上がっても、互いの差や平均値との差は変わらないので、広がりは変わりません（図1）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="y=ax+b の場合"><span class="num">4</span>一般に \( y=ax+b \) と変換すると</h2>
+<p>\( a,\ b \) を定数として、変量 \( x \) の各値を \( y_k=ax_k+b \)（\( k=1,\ 2,\ \cdots,\ n \)）と変換した新しい変量を \( y \) とします。\( x \) の平均値・分散・標準偏差を \( \overline{x},\ s_x^2,\ s_x \)、\( y \) のものを \( \overline{y},\ s_y^2,\ s_y \) と書きます。</p>
+<div class="box example worked">
+  <p class="box-title">例題2（平均値・分散・標準偏差の関係を示す）</p>
+  <p>\( \overline{y}=a\overline{x}+b \)、\( s_y^2=a^2s_x^2 \)、\( s_y=|a|s_x \) を示しなさい。</p>
+  <div class="step">平均値：\( \overline{y}=\dfrac{(ax_1+b)+\cdots+(ax_n+b)}{n}=\dfrac{a(x_1+\cdots+x_n)+nb}{n}=a\overline{x}+b \)</div>
+  <div class="step">偏差（着目）：\( y_k-\overline{y}=(ax_k+b)-(a\overline{x}+b)=a(x_k-\overline{x}) \)。\( b \) は消え、偏差は \( a \) 倍になります。</div>
+  <div class="step">分散：偏差の2乗は \( a^2(x_k-\overline{x})^2 \) なので、その平均は \( s_y^2=a^2s_x^2 \)。</div>
+  <div class="step">標準偏差：\( s_y=\sqrt{a^2s_x^2}=\sqrt{a^2}\,s_x=|a|s_x \)（\( \sqrt{a^2}=|a| \)、数Ⅰ-013）（証明終わり）</div>
+</div>
+<div class="box point"><p class="box-title">変量の変換と平均値・分散・標準偏差（\( y=ax+b \)）</p>
+<p>\( \overline{y}=a\overline{x}+b \)　　\( s_y^2=a^2s_x^2 \)（分散は \( a^2 \) 倍）　　\( s_y=|a|s_x \)（標準偏差は \( |a| \) 倍）</p>
+<p>\( b \) は平均値だけに影響し、分散・標準偏差には影響しません。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：\( a \) が負のとき標準偏差を \( a \) 倍する</p><p>\( y=-2x+30 \) のとき、標準偏差を \( -2 \) 倍すると負になってしまいます。標準偏差は 0 以上なので \( |a|=2 \) 倍です。分散は \( a^2=(-2)^2=4 \) 倍です。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題3（\( a \) が負の場合）</p>
+  <p>あるゲームでは、持ち点 30 点からミス1回ごとに 2 点引かれます。5人のミスの回数 \( x \)（回）は 1, 2, 2, 3, 7 でした（学習用の架空のデータ）。得点 \( y=30-2x \) の平均値・分散・標準偏差を求めなさい。標準偏差は小数第3位を四捨五入しなさい。</p>
+  <div class="step">\( x \) について（\( \overline{x^2} \) は2乗の平均値。数Ⅰ-081 と同じ書き方です）：\( \overline{x}=15\div5=3 \)、\( \overline{x^2}=(1+4+4+9+49)\div5=13.4 \)、\( s_x^2=13.4-3^2=4.4 \)、\( s_x=\sqrt{4.4}\fallingdotseq2.10 \)。</div>
+  <div class="step">着目：\( y=-2x+30 \) なので \( a=-2,\ b=30 \)。</div>
+  <div class="step">\( \overline{y}=-2\times3+30=24 \)（点）、\( s_y^2=(-2)^2\times4.4=17.6 \)、\( s_y=|-2|\times\sqrt{4.4}=\sqrt{17.6}\fallingdotseq4.20 \)（点）。</div>
+  <div class="step">確かめ：\( y \) の値は 28, 26, 26, 24, 16 で、平均値は \( 120\div5=24 \)。偏差は \( 4,\ 2,\ 2,\ 0,\ -8 \) で、分散は \( (16+4+4+0+64)\div5=17.6 \)。一致します。</div>
+</div>
+<p>下の部品で、\( a \) と \( b \) を変えて確かめましょう。\( x \) は例題3のミスの回数 1, 2, 2, 3, 7（\( \overline{x}=3 \)、\( s_x^2=4.4 \)、\( s_x\fallingdotseq2.10 \)）です。</p>
+<div class="widget" id="w82">
+  <label for="w82-a">\( a \)：</label>
+  <input type="range" id="w82-a" min="-4" max="4" step="1" value="-4" aria-label="a（−2から2まで0.5刻み）">
+  <output id="w82-av" for="w82-a">−2.0</output>
+  　<label for="w82-b">\( b \)：</label>
+  <input type="range" id="w82-b" min="-5" max="5" step="1" value="5" aria-label="b（−5から5まで1刻み）">
+  <output id="w82-bv" for="w82-b">5</output>
+  <div class="fig-scroll"><svg id="w82-svg" viewBox="0 0 560 210" width="560" role="img" aria-label="上の段は x の値、下の段は y=ax+b の値を数直線の上に積み上げた図。破線は平均値、太い横線は平均値±標準偏差"></svg></div>
+  <p class="w-out" id="w82-out" aria-live="polite">y = −2.0x + 5 の値：3.0, 1.0, 1.0, −1.0, −9.0。平均値 −1.0（= −2.0×3 + 5）、分散 17.60（4.40 の a² = 4.00 倍）、標準偏差 ≒ 4.20（s_x の |a| = 2.0 倍）</p>
+  <p class="small">\( a \) は −2 から 2 まで 0.5 刻み、\( b \) は −5 から 5 まで 1 刻み。標準偏差は小数第3位を四捨五入して「≒」を付けています（\( a=0 \) のときだけ 0）。</p>
+</div>
+<p>\( b \) を動かすと下の段は左右に平行にずれるだけで、太い横線の長さ（広がり）は変わりません。\( a \) の絶対値を大きくすると広がり、\( a \) を負にすると並び方が左右逆になりますが、広がりは \( |a| \) で決まります。</p>
+<p class="small">変量の変換は、教科書によっては「研究」として扱われています（数研出版・啓林館の編修趣意書など。数研出版の編修趣意書は「研究」を「本文の内容に関連するやや程度の高い内容」と説明しています）。本文の節として扱う教科書もあります（東京書籍『数学Ⅰ Advanced』の評価規準例）。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="計算に活用する"><span class="num">5</span>変量の変換を計算に活用する</h2>
+<p>値が大きいデータは、そのまま2乗すると計算が大変です。基準の値を引いたり、共通の数で割ったりして小さな値に直してから計算し、最後に \( y=ax+b \) の関係でもとに戻すと、見通しよく計算できます。</p>
+<div class="box example worked">
+  <p class="box-title">例題4（基準の値を引く）</p>
+  <p>5人の身長 \( x \)（cm）が 166, 169, 170, 173, 177 です（学習用の架空のデータ）。平均値・分散・標準偏差を求めなさい。標準偏差は小数第3位を四捨五入しなさい。</p>
+  <div class="step">着目：170 の近くに集まっているので、\( u=x-170 \) と変換します。\( u \)：\( -4,\ -1,\ 0,\ 3,\ 7 \)</div>
+  <div class="step">\( \overline{u}=(-4-1+0+3+7)\div5=1 \)、\( \overline{u^2}=(16+1+0+9+49)\div5=15 \)、\( s_u^2=15-1^2=14 \)</div>
+  <div class="step">もとに戻す：\( x=u+170 \)（\( a=1,\ b=170 \)）なので、\( \overline{x}=1+170=171 \)（cm）、\( s_x^2=s_u^2=14 \)、\( s_x=\sqrt{14}\fallingdotseq3.74 \)（cm）。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5（基準の値を引いて、共通の数で割る）</p>
+  <p>ある商品の5店での価格 \( x \)（円）が 1020, 1040, 1050, 1070, 1120 です（学習用の架空のデータ）。平均値と分散を求めなさい。</p>
+  <div class="step">着目：どの値も 10 の倍数で、1050 の近くです。\( u=\dfrac{x-1050}{10} \) とすると、\( u \)：\( -3,\ -1,\ 0,\ 2,\ 7 \)。逆に \( x=10u+1050 \)（\( a=10,\ b=1050 \)）です。</div>
+  <div class="step">\( \overline{u}=(-3-1+0+2+7)\div5=1 \)、\( \overline{u^2}=(9+1+0+4+49)\div5=12.6 \)、\( s_u^2=12.6-1^2=11.6 \)</div>
+  <div class="step">もとに戻す：\( \overline{x}=10\times1+1050=1060 \)（円）、\( s_x^2=10^2\times11.6=1160 \)（標準偏差は \( \sqrt{1160}\fallingdotseq34.06 \) 円）。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：もとに戻すとき分散に \( a \) を1回だけ掛ける</p><p>例題5で \( s_x^2=10\times11.6=116 \) とするのは誤りです。分散は \( a^2=100 \) 倍です。標準偏差なら \( |a|=10 \) 倍で、\( 10\times\sqrt{11.6}=\sqrt{1160} \) になります。また、平均値に戻すときは \( b \) を足し忘れないようにします。</p></div>
+<p>単位を換えるのも変量の変換です。例題4の身長をメートルで表すと \( z=\dfrac{x}{100} \) なので、平均値は 1.71 m、分散は \( \dfrac{14}{100^2}=0.0014 \)（m²）、標準偏差は約 0.0374 m です。</p>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>変量</dt><dd>得点や身長のように、データとして集める量を文字 \( x \) などで表したもの（このページでの説明）。</dd>
+    <dt>変量の変換</dt><dd>変量 \( x \) の各値を、同じ式（\( y=ax+b \) など）で別の値に直すこと。</dd>
+    <dt>\( y=ax+b \) のときの関係</dt><dd>\( \overline{y}=a\overline{x}+b \)、\( s_y^2=a^2s_x^2 \)、\( s_y=|a|s_x \)。\( b \) は散らばりに影響しない。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>すべての値に同じ数を足すと、平均値はその数だけ変わり、偏差は変わらないので分散・標準偏差は変わらない。同じ数を掛けると、偏差もその数倍になる（O1）。</li>
+    <li>\( y=ax+b \) のとき、偏差は \( y_k-\overline{y}=a(x_k-\overline{x}) \) となり、\( \overline{y}=a\overline{x}+b \)、\( s_y^2=a^2s_x^2 \)、\( s_y=|a|s_x \)（O2）。</li>
+    <li>基準の値を引いたり共通の数で割ったりして小さな値に直し、計算してから \( y=ax+b \) の関係でもとに戻すと、見通しよく計算できる。分散は \( a^2 \) 倍で戻す（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">平均値</span>$$ \overline{y}=a\overline{x}+b $$</div>
+  <div><span class="f-name">分散</span>$$ s_y^2=a^2s_x^2 $$</div>
+  <div><span class="f-name">標準偏差</span>$$ s_y=|a|s_x $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。問題のデータはすべて学習用の架空のデータです。数を入力する問題は、半角・全角のどちらで入力してもかまいません。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>あるデータのすべての値に 5 を足しました。平均値と分散はどうなりますか。</p>
+  <div class="choices">
+    <button>平均値も分散も 5 増える。</button>
+    <button data-correct="true">平均値は 5 増え、分散は変わらない。</button>
+    <button>平均値は変わらず、分散は 25 増える。</button>
+    <button>平均値は 5 増え、分散は 25 倍になる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( y=x+5 \)（\( a=1,\ b=5 \)）なので \( \overline{y}=\overline{x}+5 \)、\( s_y^2=1^2\times s_x^2=s_x^2 \) です。偏差が変わらないので分散は変わりません。「分散も 5 増える」は、足した数が散らばりにも影響すると考えた誤りです。「25 増える」「25 倍」は、足した 5 を掛けた数と取り違えて2乗した誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>変量 \( x \) を \( y=3x \) と変換すると、分散は何倍になりますか。</p>
+  <div class="choices"><button>3倍</button><button>6倍</button><button>変わらない</button><button data-correct="true">9倍</button></div>
+  <span class="result"></span>
+  <div class="explain">偏差が 3 倍になり、偏差の2乗は \( 3^2=9 \) 倍になるので、分散は 9 倍です。3 倍になるのは標準偏差です。6 倍は \( 3\times2 \) と、2乗を「2を掛ける」と取り違えた誤りです。変わらないのは、すべての値に同じ数を足したときです。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="8">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>変量 \( x \) の標準偏差が 4 です。\( y=-2x+1 \) とするとき、\( y \) の標準偏差を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 8。\( s_y=|-2|\times4=8 \) です。\( -8 \) は \( a=-2 \) をそのまま掛けた誤りで、標準偏差は負になりません。7 は \( |-2\times4+1| \) と \( b \) まで使った誤りです（\( b \) は標準偏差に影響しません）。64 は \( y \) の分散 \( (-2)^2\times4^2 \) で、標準偏差ではありません。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="14">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>変量 \( x \) の平均値が 12 です。\( y=-3x+50 \) とするとき、\( y \) の平均値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 14。\( \overline{y}=-3\times12+50=-36+50=14 \) です。86 は \( 3\times12+50 \) と \( a \) の符号を落とした誤り、\( -36 \) は \( b \) を足し忘れた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="57|57kg">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>5人の体重 \( x \)（kg）が 52, 55, 57, 58, 63 です。\( u=x-55 \) と変換して、\( x \) の平均値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 57 kg。\( u \) は \( -3,\ 0,\ 2,\ 3,\ 8 \) で、\( \overline{u}=10\div5=2 \)。\( x=u+55 \) なので \( \overline{x}=2+55=57 \)（kg）です。2 と答えるのは、\( u \) の平均値のまま 55 を足して戻し忘れた誤りです。53 は \( 55-2 \) と、戻すときに引いてしまった誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>通学時間（分）のデータの分散が 9（分²）でした。同じデータを秒で表すと、標準偏差は何秒になりますか。</p>
+  <div class="choices"><button>3 秒</button><button data-correct="true">180 秒</button><button>540 秒</button><button>32400 秒</button></div>
+  <span class="result"></span>
+  <div class="explain">秒で表すと \( y=60x \) です。分での標準偏差は \( \sqrt9=3 \)（分）なので、秒では \( 60\times3=180 \)（秒）です。3 秒は単位を換えても標準偏差が変わらないと考えた誤りです。540 は分散 9 に 60 を掛けた値、32400 は秒で表したときの分散 \( 60^2\times9 \)（秒²）で、標準偏差ではありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O2</span></div>
+  <p>変量 \( x \) を \( y=-x \) と変換したとき、正しいものはどれですか（\( x \) の平均値は 0 でなく、\( x \) の値はすべて等しくはないとします）。</p>
+  <div class="choices">
+    <button>標準偏差は \( -1 \) 倍になる。</button>
+    <button>分散は \( -1 \) 倍になる。</button>
+    <button>平均値は変わらない。</button>
+    <button data-correct="true">標準偏差は変わらない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( a=-1 \) なので \( s_y=|-1|s_x=s_x \)、\( s_y^2=(-1)^2s_x^2=s_x^2 \) で、標準偏差も分散も変わりません。並び方が左右逆になるだけで、広がりは同じです。標準偏差・分散を \( -1 \) 倍すると負になり誤りです。平均値は \( \overline{y}=-\overline{x} \) で、\( \overline{x}\neq0 \) なので変わります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2・O3</span></div>
+  <p>あるテストの得点 \( x \)（点）は、平均値 55 点、標準偏差 10 点でした。成績をつけるために得点を調整します。</p>
+  <p>太郎：「全員に 10 点足してから 1.2 倍しよう。」<br>花子：「先に 1.2 倍してから 10 点足す方法もあるね。結果は同じかな。」</p>
+  <p>2つの方法で調整した得点について、正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">どちらの方法でも標準偏差は 12 点になるが、平均値は太郎さんの方法で 78 点、花子さんの方法で 76 点と異なる。</button>
+    <button>どちらの方法でも、平均値は 76 点、標準偏差は 22 点になる。</button>
+    <button>足し算は平均値にも標準偏差にも影響しないので、どちらの方法でも平均値は 66 点、標準偏差は 12 点になる。</button>
+    <button>どちらの方法でも、平均値は 78 点、標準偏差は 12 点になる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">太郎さんの方法は \( y=1.2(x+10)=1.2x+12 \) なので、\( \overline{y}=1.2\times55+12=78 \)、\( s_y=1.2\times10=12 \)。花子さんの方法は \( y=1.2x+10 \) なので、\( \overline{y}=1.2\times55+10=76 \)、\( s_y=12 \)。標準偏差は \( |a|=1.2 \) だけで決まり、どちらも 12 点ですが、平均値は \( b \) が違うので異なります。標準偏差 22 点は \( 1.2\times10+10 \) と \( b \) まで足した誤りです。平均値 66 点は \( 1.2\times55 \) だけを計算し、足した点（太郎さんの方法では 12 点分、花子さんの方法では 10 点）を平均値に反映しなかった誤りです（足し算は標準偏差には影響しませんが、平均値には影響します）。「どちらも 78 点」は、2つの方法の式の違い（\( b=12 \) と \( b=10 \)）を見落としています。<br><span class="small">この会話文の問題は練習用に作成したもので、実際の入試の出題形式を示すものではありません。</span></div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>5個の値 497, 498, 500, 503, 507 の平均値と分散を、\( u=x-500 \) と変換して求めなさい。また、\( u \) の分散と \( x \) の分散が等しくなる理由を、偏差を使って説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　\( u \)：\( -3,\ -2,\ 0,\ 3,\ 7 \)。\( \overline{u}=5\div5=1 \)、\( \overline{u^2}=(9+4+0+9+49)\div5=14.2 \)、\( s_u^2=14.2-1^2=13.2 \)。\( x=u+500 \) なので、\( \overline{x}=1+500=501 \)、分散は \( s_x^2=s_u^2=13.2 \)。</p>
+    <p>理由：\( x_k=u_k+500 \)、\( \overline{x}=\overline{u}+500 \) なので、\( x_k-\overline{x}=u_k-\overline{u} \) となり、偏差がすべて等しい。分散は偏差の2乗の平均なので、等しくなる。</p>
+    <p><strong>採点の観点</strong>　① \( u \) の平均値と分散を正しく求めている。② \( \overline{x}=\overline{u}+500 \) と戻している。③ 偏差が変わらないことを式で示して、分散が等しい理由を述べている。</p>
+  </div>
+  <div class="explain">定義の式で確かめると、\( x \) の偏差は \( -4,\ -3,\ -1,\ 2,\ 6 \) で、2乗の和 \( 16+9+1+4+36=66 \)、\( 66\div5=13.2 \) です。基準の値を引いても偏差は変わらないので、小さい値で計算できます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(4) データの分析」の「分散，標準偏差，散布図及び相関係数の意味やその用い方を理解すること」（ア(ア)）に関わり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。値を変換して計算を見通しよくすることは、目的に応じた処理の工夫の例です。</p>
+  <p class="small">問8・問9は会話や架空のデータを題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">外れ値（数Ⅰ-083）</p>
+  <p>次の時間は、ほかの値から極端にかけ離れた値（外れ値）を、四分位範囲を使った基準で見つけ、箱ひげ図に表します。外れ値が平均値や標準偏差に与える影響と、外れ値の背景を探る意義も考えます。</p>
+  <p>この時間では、外れ値（数Ⅰ-083）や、2つの変量の関係（散布図・相関係数、数Ⅰ-084・085）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-081　分散と標準偏差</div>
+  <div><span class="label">次の時間</span>数Ⅰ-083　外れ値</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-082「変量の変換と平均値・分散」（学習。学習指導要領 数学Ⅰ (4)ア(ア)、解説 p.44。† 教科書で一般的な内容を含む行）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(4) データの分析 ア(ア)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.44（分散及び標準偏差の扱い）、p.48（Σは「数学Ｂ」で取り扱う）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「４．分散と標準偏差」（「変量の変換によって，平均値や標準偏差がどのように変化するかを考察することができ，それらの性質を活用して平均値や分散を見通しよく計算することができる」p.190〜192 研究）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>数研出版「編修趣意書 数Ⅰ104-903『改訂版 高等学校 数学Ⅰ』」（本文外の「研究」に「変量の変換（183〜184ページ）」）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-16.pdf</li>
+    <li>新興出版社啓林館「編修趣意書 数Ⅰ061-901『α数学Ⅰ』」（「変量の変換については、研究として扱い」）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-10.pdf、同社「深進数学Ⅰ」「爽解数学Ⅰ」年間指導計画（「研究／変量の変換」。同社「高等学校 数学 サポート資料」https://www.shinko-keirin.co.jp/keirinkan/kou/math/support/ に掲載）</li>
+    <li>東京書籍「評価規準例 改訂版 数学Ⅰ Advanced（数Ⅰ002-901）」の「５ 分散，標準偏差の性質」（「変量を変換した際に平均値，分散，標準偏差がどのように変化するかを考察し，それらの性質を利用することができる」）https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16703_su1_hyoka.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。このページのデータ（小テストの得点、ミスの回数、身長、価格、体重、通学時間、テストの得点など）は、すべて学習用に作成した架空のデータです。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var XS = [1, 2, 2, 3, 7];                      // x̄=3、s_x²=4.4
+  var sa = document.getElementById("w82-a");
+  var sb = document.getElementById("w82-b");
+  var av = document.getElementById("w82-av");
+  var bv = document.getElementById("w82-bv");
+  var svg = document.getElementById("w82-svg");
+  var out = document.getElementById("w82-out");
+  if (!sa || !sb || !svg) return;
+  var MINUS = "\u2212";
+  function sg(s) { return s.replace("-", MINUS); }
+  function tenths(v10) {                          // v10/10 を小数1桁で（v10 は整数）
+    var neg = v10 < 0; v10 = Math.abs(v10);
+    return (neg ? MINUS : "") + Math.floor(v10 / 10) + "." + (v10 % 10);
+  }
+  function hundredths(v100) {                     // v100/100 を小数2桁で（v100 は 0 以上の整数）
+    var f = String(v100 % 100); if (f.length < 2) f = "0" + f;
+    return Math.floor(v100 / 100) + "." + f;
+  }
+  var X = function (v) { return 40 + (v + 20) * 12; };     // −20..20 → x=40..520
+  function draw() {
+    var k = parseInt(sa.value, 10);               // a = k/2
+    var b = parseInt(sb.value, 10);
+    var ys10 = XS.map(function (x) { return 5 * k * x + 10 * b; });   // y×10
+    var mean10 = 15 * k + 10 * b;                 // ȳ×10 = (3a+b)×10
+    var var100 = 110 * k * k;                     // s_y²×100 = 4.4×(k/2)²×100
+    var sd100 = Math.round(Math.sqrt(11000 * k * k));   // s_y×100 = |k|√1.1×100
+    var a2_100 = 25 * k * k;                      // a²×100
+    var h = [];
+    [[100, XS, "x"], [190, null, "y"]].forEach(function (row) {
+      var base = row[0];
+      h.push('<line x1="30" y1="' + base + '" x2="530" y2="' + base + '" stroke="currentColor"/>');
+      for (var t = -20; t <= 20; t += 5) {
+        h.push('<line x1="' + X(t) + '" y1="' + base + '" x2="' + X(t) + '" y2="' + (base + 4) + '" stroke="currentColor"/>');
+        h.push('<text x="' + X(t) + '" y="' + (base + 16) + '" text-anchor="middle" font-size="10" fill="currentColor">' + sg(String(t)) + '</text>');
+      }
+      h.push('<text x="22" y="' + (base - 6) + '" text-anchor="end" font-size="12" font-weight="700" fill="currentColor">' + row[2] + '</text>');
+    });
+    var seen = {};
+    XS.forEach(function (x) {
+      var c = seen[x] || 0; seen[x] = c + 1;
+      h.push('<circle cx="' + X(x).toFixed(1) + '" cy="' + (94 - c * 11) + '" r="4.5" fill="#1f5fbf" data-v="x ' + x + '"/>');
+    });
+    seen = {};
+    ys10.forEach(function (y10) {
+      var c = seen[y10] || 0; seen[y10] = c + 1;
+      h.push('<circle cx="' + X(y10 / 10).toFixed(1) + '" cy="' + (184 - c * 11) + '" r="4.5" fill="#7b3fa0" data-v="y ' + (y10 / 10) + '"/>');
+    });
+    var sdx = Math.sqrt(4.4), sdy = Math.sqrt(1.1) * Math.abs(k);
+    [[100, 3, sdx, "x"], [190, mean10 / 10, sdy, "y"]].forEach(function (r) {
+      var base = r[0], m = r[1], s = r[2];
+      h.push('<line x1="' + X(m).toFixed(1) + '" y1="' + (base - 44) + '" x2="' + X(m).toFixed(1) + '" y2="' + base + '" stroke="#b7791f" stroke-width="1.5" stroke-dasharray="5 3" data-mean="' + r[3] + ' ' + m + '"/>');
+      if (s > 0) {
+        var a1 = X(m - s).toFixed(1), a2 = X(m + s).toFixed(1);
+        h.push('<line x1="' + a1 + '" y1="' + (base - 50) + '" x2="' + a2 + '" y2="' + (base - 50) + '" stroke="#c0392b" stroke-width="4" data-band="' + r[3] + '"/>');
+      }
+    });
+    svg.innerHTML = h.join("");
+    var aTxt = tenths(5 * k);
+    if (av) av.textContent = aTxt;
+    if (bv) bv.textContent = sg(String(b));
+    var bTxt = b < 0 ? " " + MINUS + " " + Math.abs(b) : " + " + b;
+    out.textContent = "y = " + aTxt + "x" + bTxt + " の値：" + ys10.map(tenths).join(", ") +
+      "。平均値 " + tenths(mean10) + "（= " + aTxt + "×3" + bTxt + "）、分散 " + hundredths(var100) +
+      "（4.40 の a² = " + hundredths(a2_100) + " 倍）、標準偏差 " + (k === 0 ? "0" : "≒ " + hundredths(sd100)) +
+      "（s_x の |a| = " + tenths(Math.abs(5 * k)) + " 倍）";
+  }
+  sa.addEventListener("input", draw);
+  sb.addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-082",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-082",
+  "title": "変量の変換と平均値・分散",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-5", "title": "データの分析"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(4)ア(ア)"],
+  "kaisetsu_page": "44",
+  "objectives": [
+    {"id": "O1", "text": "変量 x のすべての値に同じ数を足したり、同じ数を掛けたりしたときの平均値・分散・標準偏差の変化を、具体的なデータで調べて説明できる。", "from": "変量 x を y=ax+b と一次式で変換したとき…を調べ", "sections": ["intro", "sec-1"], "checks": ["q1", "q8"]},
+    {"id": "O2", "text": "y=ax+b のとき、y の平均値が ax̄+b、分散が a² 倍、標準偏差が |a| 倍になることを、偏差の変化から説明できる。", "from": "平均値が ax̄+b、分散が a² 倍、標準偏差が |a| 倍になること", "sections": ["sec-2"], "checks": ["q2", "q3", "q4", "q7", "q8", "q9"]},
+    {"id": "O3", "text": "変量の変換を利用して、平均値や分散を見通しよく計算できる。", "from": "計算に活用できる", "sections": ["sec-3"], "checks": ["q5", "q6", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "変量", "where": "sec-1"},
+    {"term": "変量の変換", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "偏差・分散・標準偏差の定義と、分散＝（2乗の平均値）−（平均値の2乗）", "taught_in": ["hs_math_1a/数Ⅰ-081"], "gap": false, "where": "review"},
+    {"concept": "偏差の和はいつも 0", "taught_in": ["hs_math_1a/数Ⅰ-080"], "gap": false, "where": "review"},
+    {"concept": "√(a²)=|a|", "taught_in": ["hs_math_1a/数Ⅰ-013"], "gap": false, "where": "review"},
+    {"concept": "絶対値 |a|", "taught_in": ["hs_math_1a/数Ⅰ-012"], "gap": false, "where": "sec-2"},
+    {"concept": "文字式の計算（同じ文字の項をまとめる、分配法則）", "taught_in": ["jhs_math/中1-033", "jhs_math/中1-035"], "gap": false, "where": "sec-2"}
+  ],
+  "out_of_scope": [
+    "データの標準化や偏差値（一部の教科書で「発展」。地図の単元の注のとおり載せない）",
+    "外れ値（数Ⅰ-083）",
+    "2つの変量の共分散・相関係数（数Ⅰ-085）",
+    "Σ を使った書き方（数学Ｂで扱う）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『データの分析』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(4)ア(ア)の事項（入試へのつながりの引用）"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.44 分散・標準偏差の扱い、p.48 Σは数学Ｂで扱う"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "変量の変換による平均値・標準偏差の変化と計算への活用（p.190〜192 研究。† の内容と sec-2 の注記の根拠）"},
+    {"name": "編修趣意書 数Ⅰ104-903『改訂版 高等学校 数学Ⅰ』", "publisher": "数研出版（文部科学省掲載）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-16.pdf", "use": "本文外の「研究」として「変量の変換（183〜184ページ）」を扱うこと（sec-2 の注記の根拠。保存本文：sources/text/hensyu_数研出版_数Ⅰ104-903.txt）"},
+    {"name": "編修趣意書 数Ⅰ061-901『α数学Ⅰ』", "publisher": "新興出版社啓林館（文部科学省掲載）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-10.pdf", "use": "「変量の変換については、研究として扱い」（sec-2 の注記の根拠。保存本文：sources/text/hensyu_新興出版社啓林館_数Ⅰ061-901.txt）"},
+    {"name": "深進数学Ⅰ・爽解数学Ⅰ 年間指導計画", "publisher": "新興出版社啓林館", "url": "https://www.shinko-keirin.co.jp/keirinkan/kou/math/support/", "use": "「研究／変量の変換」（sec-2 の注記の根拠。保存本文：sources/text/kr_m1_shinshin_keikaku.txt・kr_m1_soukai_keikaku.txt）"},
+    {"name": "評価規準例 改訂版 数学Ⅰ Advanced（数Ⅰ002-901）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16703_su1_hyoka.pdf", "use": "本文の節「５ 分散，標準偏差の性質」で変量の変換を扱うこと（保存本文：sources/text/ts_m1_16703_hyoka.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

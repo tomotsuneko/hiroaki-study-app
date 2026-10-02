@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>復習：データの分析（外れ値・仮説検定・質的データ）｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>復習（予備時間）</span><span>数Ⅰ-106</span></div>
+  <h1>復習：データの分析（外れ値・仮説検定・質的データ）</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">復習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">データから結論を述べるときは、外れ値の扱い、何を 1 とみた割合か、相関と因果の違い、偶然で説明できるかに注意しました。この時間は数Ⅰ-083・086〜090 の要点を4つにまとめ直します。数学Ⅰの最後のコマです。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>四分位範囲の1.5倍の基準で外れ値を判定し、外れ値を区別した箱ひげ図を読み、背景を探る意義や異常値との区別を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>二次元表で何を 1 とみた割合かを確かめ、層別した箱ひげ図も用いて、質的データを含むデータを分析し、結論を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>相関があっても因果関係があるとは断定できないことを、別の要因などの可能性を挙げて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>仮説検定の考え方を用いて、半々の仮定のもとでの実験の相対度数や平均から 2s・3s 離れた値を基準に主張の妥当性を判断し、判断の過程を批判的に考察できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-105）</span>復習：データの分析（分散・標準偏差・相関係数）</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-106）</span>復習：データの分析（外れ値・仮説検定・質的データ）</div>
+  <div class="arrow">→</div>
+  <div><span class="label">この後</span>数学Ⅰのまとめ（この時間が数学Ⅰの最後のコマ）</div>
+</div>
+<p class="small">範囲：単元「データの分析」のうち、数Ⅰ-083・086〜090 と、単元末演習（数Ⅰ-091）の同じ型。この時間は単元「復習（予備時間）」の1コマで、新しい内容は扱いません。問題は単元末演習（数Ⅰ-091）や範囲の例題と同じものを使わず、データを変えています。データはすべて学習用の架空のデータで、X市などの地名・団体も架空です。各問の「復習するなら数Ⅰ-0xx」は、その型を学んだコマです。\( Q_1 \)・\( Q_3 \) は第1四分位数・第3四分位数を表す、このページでの書き方です。四分位数は数Ⅰ-079 の約束で求め、百分率は小数第1位まで、標準偏差は小数第2位まで、近似値は「≒」で書きます。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：範囲の要点の一覧</h2>
+<p>数Ⅰ-083・086〜090 で学んだ要点を、学んだコマとともに並べます。</p>
+<div class="formula-card">
+  <div><span class="f-name">外れ値（数Ⅰ-083）</span>
+    <p>\( Q_1-1.5\times(Q_3-Q_1) \) 以下、または \( Q_3+1.5\times(Q_3-Q_1) \) 以上の値（このページでは「下の境界」「上の境界」）<br>すぐに除かず背景を探る。測定ミス・入力ミスなど原因が分かっている値は異常値として区別する</p></div>
+  <div><span class="f-name">相関と因果（数Ⅰ-086）</span>
+    <p>相関があっても、因果関係があるとは断定できない（別の要因・向きが逆・偶然の可能性）<br>結論は「〜ほど〜の傾向がある」のように述べる</p></div>
+  <div><span class="f-name">二次元表（数Ⅰ-087）</span>
+    <p>割合は行の計・列の計・全体の計のどれを 1 とみたかで変わる。「〜のうち」の「〜」が 1 とみる量<br>割合と度数を関連付け、別の観点で集計し直して確かめる</p></div>
+  <div><span class="f-name">層別（数Ⅰ-088）</span>
+    <p>結果（量的データ）を、関わっていそうな要因（質的データ）で分けて、箱ひげ図を並べて比べる。記録は要因と紐付けて集める</p></div>
+  <div><span class="f-name">仮説検定の考え方：実験（数Ⅰ-089）</span>
+    <p>主張と反対の「半々」を仮定し、コインを投げる実験を多数回行って、実際の結果以上になる回数の相対度数を求める</p></div>
+  <div><span class="f-name">仮説検定の考え方：判断と批判的考察（数Ⅰ-090）</span>
+    <p>相対度数 \( p \) を「起こりえないこと」の尺度にする。実験結果の平均値＋2s・平均値＋3s も基準にする（基準は結果を見る前に決める）<br>「主張は妥当だと判断してよさそう」「この結果からは、主張が妥当だとは判断できない」と述べ、判断の過程を見直す</p></div>
+  <div><span class="f-name">単元末演習（数Ⅰ-091）</span>
+    <p>数Ⅰ-091 の型A のうち二次元表・層別、型C（外れ値）、型D のうち相関と因果、型E（仮説検定の考え方）を見分けて解く</p></div>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-083</span></div>
+  <p>外れ値の基準で、1.5倍するのはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">四分位範囲</button>
+    <button>範囲</button>
+    <button>中央値</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">1.5倍するのは四分位範囲 \( Q_3-Q_1 \) です。下の境界は \( Q_1 \) から、上の境界は \( Q_3 \) から測ります（数Ⅰ-083）。範囲や中央値に1.5倍を掛けるのは、よくある間違いです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-087</span></div>
+  <p>二次元表で「A に当てはまる人のうち、B に当てはまる人の割合」を求めるとき、1 とみる量はどれですか。</p>
+  <div class="choices">
+    <button>B に当てはまる人の人数</button>
+    <button data-correct="true">A に当てはまる人の人数</button>
+    <button>全体の人数</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「〜のうち」の「〜」が 1 とみる量です（数Ⅰ-087）。ここでは A に当てはまる人の人数（A の行や列の計）で割ります。B の人数で割ると「B のうち A の割合」、全体で割ると「全体のうち A でも B でもある人の割合」になります。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-090</span></div>
+  <p>実験結果の平均値が 12、標準偏差が 2.5 のとき、平均値＋2s の値はどれですか。</p>
+  <div class="choices">
+    <button>24</button>
+    <button data-correct="true">17</button>
+    <button>14.5</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">平均値に標準偏差の2倍を足して \( 12+2\times2.5=17 \) です（数Ⅰ-090）。24 は「2s」を平均値の2倍と取り違えた誤り、14.5 は標準偏差を1倍しか足していない誤りです。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：その結論、言い切ってよい？</h2>
+<div class="box think">
+  <p class="box-title">この4問、何に着目する？</p>
+  <p>(ア) 12人の1か月の自主練習の回数に、1人だけ 27 回の人がいた。外れ値といえるか。<br>
+  (イ) 朝の読書と図書館の利用の二次元表で、「朝の読書をしている人のうち、図書館を利用する人」の割合はいくつか。<br>
+  (ウ) 2つの量に正の相関があるとき、「一方を増やせば、他方も増える」といえるか。<br>
+  (エ) 24人中18人が新しい本の並べ方を選んだ。「新しい並べ方の方が探しやすいと感じる人が多い」といえるか。</p>
+  <p>それぞれ「何を基準に判断するか」を予想しましょう。答えは、(ア) が「3 外れ値」の例題1、(イ) が「4 二次元表と層別」の例題2、(ウ) が「5 相関と因果」の例題4、(エ) が「6 仮説検定の考え方」の例題5で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="外れ値"><span class="num">3</span>外れ値：基準で見つけ、背景を探る</h2>
+<p>ほかの値から極端にかけ離れた値を外れ値といい、第1四分位数より四分位範囲の1.5倍以上小さい値や、第3四分位数より四分位範囲の1.5倍以上大きい値を外れ値とみなしました（数Ⅰ-083）。外れ値は平均値や標準偏差を大きく動かしますが、中央値や四分位範囲はあまり動かしません。</p>
+<h3>対比表：外れ値と異常値（数Ⅰ-083）</h3>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>外れ値</th><th>異常値</th></tr>
+  <tr><td>どんな値か</td><td>基準で見つけた、ほかから大きく離れた値</td><td>測定ミス・入力ミスなど、原因が分かっている値</td></tr>
+  <tr><td>扱い</td><td>すぐに除かず、なぜその値になったのか背景を探る</td><td>正しい値が分かれば直して分析する</td></tr>
+  <tr><td>例</td><td>正しく記録された、1人だけ飛び抜けて多い販売台数</td><td>52.4 kg を 524 kg と打ち間違えた値</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題1（外れ値の判定と扱い）＝導入の (ア)</p>
+  <p>X高校のある部の12人の1か月の自主練習の回数（回）は、小さい順に 6, 8, 9, 10, 10, 11, 12, 12, 13, 14, 15, 27 でした（学習用の架空のデータ）。外れ値があるかを調べ、外れ値を区別した箱ひげ図に表しなさい。また、27 回の記録をどう扱えばよいかを考えなさい。</p>
+  <div class="step">着目1（四分位数）：12個なので、小さい方の6個 6, 8, 9, 10, 10, 11 と大きい方の6個 12, 12, 13, 14, 15, 27 に分けます（数Ⅰ-079 の約束）。\( Q_1=(9+10)\div2=9.5 \)、\( Q_3=(13+14)\div2=13.5 \)、中央値は \( (11+12)\div2=11.5 \) です。</div>
+  <div class="step">着目2（境界）：四分位範囲は \( 13.5-9.5=4 \)、その1.5倍は \( 1.5\times4=6 \)。下の境界は \( 9.5-6=3.5 \)、上の境界は \( 13.5+6=19.5 \) です。</div>
+  <div class="step">判定：3.5 以下の値はなく（最小値 6）、19.5 以上の値は 27 だけです。外れ値を区別した箱ひげ図では、左のひげは 6、右のひげは境界の内側の最大値 15 までにし、27 をひげの外に × でかきます（図1）。</div>
+  <div class="step">扱い：まず記録が正しいか（数え間違いや入力ミスでないか）を確かめます。ミスなら異常値として正しい値に直し、正しい記録なら外れ値として残し、その人の練習の工夫などの背景を探ります（数Ⅰ-083）。</div>
+  <div class="step">答え：<span data-ans="ex1">27 回は外れ値（上の境界 19.5 以上）</span>。すぐに除かず、記録を確かめてから背景を探ります。</div>
+</div>
+<figure>
+<!--svg:f106a-->
+<svg viewBox="0 0 420 150" width="420" role="img" aria-label="例題1の外れ値を区別した箱ひげ図。第1四分位数 9.5、中央値 11.5、第3四分位数 13.5。左のひげは 6、右のひげは 15 まで。下の境界 3.5 と上の境界 19.5 を赤の破線で示し、上の境界以上の 27 を赤の × で示す" data-fig="f106a">
+<line x1="68.5" y1="30" x2="68.5" y2="106" stroke="#c0392b" stroke-width="1.4" stroke-dasharray="5 4" data-bound="7/2"/>
+<text x="68.5" y="24" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">3.5</text>
+<line x1="244.5" y1="30" x2="244.5" y2="106" stroke="#c0392b" stroke-width="1.4" stroke-dasharray="5 4" data-bound="39/2"/>
+<text x="244.5" y="24" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">19.5</text>
+<line x1="96" y1="70" x2="134.5" y2="70" stroke="#1f5fbf" stroke-width="1.6"/>
+<line x1="178.5" y1="70" x2="195" y2="70" stroke="#1f5fbf" stroke-width="1.6"/>
+<line x1="96" y1="65" x2="96" y2="75" stroke="#1f5fbf" stroke-width="1.6"/>
+<line x1="195" y1="65" x2="195" y2="75" stroke="#1f5fbf" stroke-width="1.6"/>
+<rect x="134.5" y="60" width="44" height="20" fill="#1f5fbf" fill-opacity="0.12" stroke="#1f5fbf" stroke-width="1.8" data-box="ex1" data-five="6 19/2 23/2 27/2 15"/>
+<line x1="156.5" y1="60" x2="156.5" y2="80" stroke="#1f5fbf" stroke-width="2.4"/>
+<path d="M322,65 L332,75 M322,75 L332,65" stroke="#c0392b" stroke-width="2.2" fill="none" data-out="27"/>
+<text x="327" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">27</text>
+<text x="64.5" y="44" text-anchor="end" font-size="11" fill="#c0392b">下の境界</text>
+<text x="248.5" y="44" text-anchor="start" font-size="11" fill="#c0392b">上の境界</text>
+<text x="362" y="98" text-anchor="end" font-size="11" font-weight="700" fill="#c0392b">×：外れ値</text>
+<line x1="26" y1="116" x2="364" y2="116" stroke="currentColor" stroke-width="1"/>
+<line x1="30" y1="116" x2="30" y2="120" stroke="currentColor" stroke-width="1"/>
+<text x="30" y="132" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="0">0</text>
+<line x1="85" y1="116" x2="85" y2="120" stroke="currentColor" stroke-width="1"/>
+<text x="85" y="132" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="5">5</text>
+<line x1="140" y1="116" x2="140" y2="120" stroke="currentColor" stroke-width="1"/>
+<text x="140" y="132" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="10">10</text>
+<line x1="195" y1="116" x2="195" y2="120" stroke="currentColor" stroke-width="1"/>
+<text x="195" y="132" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="15">15</text>
+<line x1="250" y1="116" x2="250" y2="120" stroke="currentColor" stroke-width="1"/>
+<text x="250" y="132" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="20">20</text>
+<line x1="305" y1="116" x2="305" y2="120" stroke="currentColor" stroke-width="1"/>
+<text x="305" y="132" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="25">25</text>
+<line x1="360" y1="116" x2="360" y2="120" stroke="currentColor" stroke-width="1"/>
+<text x="360" y="132" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="30">30</text>
+<text x="370" y="132" text-anchor="start" font-size="11" fill="currentColor">（回）</text>
+</svg>
+<!--/svg:f106a-->
+  <figcaption>図1　例題1 の外れ値を区別した箱ひげ図（学習用の架空のデータから作成）。赤の破線は下の境界 3.5 と上の境界 19.5、× は外れ値</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">つまずきやすい点（外れ値）</p>
+<p>(1) 1.5倍を中央値や範囲に掛けてしまう。掛けるのは四分位範囲です（数Ⅰ-083）。<br>
+(2) 境界を中央値から測ってしまう。下の境界は \( Q_1 \) から、上の境界は \( Q_3 \) から測ります（数Ⅰ-083）。<br>
+(3) 片側だけ調べる。小さい側（下の境界以下）も確かめます（数Ⅰ-083）。<br>
+(4) 「外れ値＝間違った値」と思い込む。外れ値は、実際に起きた珍しい値のこともあります（数Ⅰ-083）。<br>
+(5) 外れ値をすぐに除く・異常値と同じに扱う。原因が分かっている測定ミス・入力ミスが異常値です（数Ⅰ-091）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="二次元表と層別"><span class="num">4</span>二次元表と層別：質的データを分析する</h2>
+<p>質的データどうしの関係は、二次元表（クロス集計表）に整理しました（数Ⅰ-087）。結果が量的データのときは、関わっていそうな要因（質的データ）で分けて箱ひげ図を並べて比べました（層別、数Ⅰ-088）。</p>
+<h3>対比表：二次元表と層別した箱ひげ図（単元をまたぐ整理）</h3>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>二次元表（数Ⅰ-087）</th><th>層別した箱ひげ図（数Ⅰ-088）</th></tr>
+  <tr><td>結果のデータ</td><td>質的データ（合格・不合格など）</td><td>量的データ（回数・販売数など）</td></tr>
+  <tr><td>要因のデータ</td><td>質的データ</td><td>質的データ</td></tr>
+  <tr><td>比べ方</td><td>何を 1 とみた割合かを確かめて比べる</td><td>要因ごとに箱ひげ図を並べ、中央値・箱・ひげを比べる</td></tr>
+  <tr><td>注意すること</td><td>度数も確かめる。別の観点で集計し直すと、全体と逆の傾向が見えることもある</td><td>分けた後のデータの数。層別できるように、記録を要因と紐付けて集める</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（二次元表と割合）＝導入の (イ)</p>
+  <p>X高校の1・2年生 160人について、朝の読書の時間に本を読んでいるか（あり・なし）と、昼休みに図書館を利用するか（する・しない）を調べました（学習用の架空のデータ）。(1) 朝の読書ありの人のうち図書館を利用する人の割合と、朝の読書なしの人のうち図書館を利用する人の割合 (2) 全体のうち、朝の読書あり・図書館を利用する人の割合 を、百分率で求めなさい。</p>
+  <div class="table-wrap">
+  <table id="t106-cross">
+    <tr><th>度数（人）</th><th>図書館を利用する</th><th>利用しない</th><th>計</th></tr>
+    <tr><th>朝の読書 あり</th><td>52</td><td>28</td><td>80</td></tr>
+    <tr><th>朝の読書 なし</th><td>24</td><td>56</td><td>80</td></tr>
+    <tr><th>計</th><td>76</td><td>84</td><td>160</td></tr>
+  </table>
+  </div>
+  <div class="step">着目：「〜のうち」の「〜」が 1 とみる量です（数Ⅰ-087）。(1) は行の計（80人）、(2) は全体の計（160人）で割ります。</div>
+  <div class="step">(1) 朝の読書あり：\( 52\div80=0.65 \) で 65.0％。朝の読書なし：\( 24\div80=0.3 \) で 30.0％。</div>
+  <div class="step">(2) \( 52\div160=0.325 \) で 32.5％。</div>
+  <div class="step">答え：<span data-ans="ex2">(1) 65.0％ と 30.0％　(2) 32.5％</span>。同じ 52人でも、何を 1 とみるかで割合が変わります。この表から分かるのは「朝の読書ありの人の方が、図書館を利用する割合が高い傾向」までで、「朝の読書をすれば図書館を利用するようになる」とはいえません（数Ⅰ-086）。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（層別した箱ひげ図）</p>
+  <p>X市の移動販売車の20日間の1日の販売数（個）を、天気（晴れ・雨）で層別して箱ひげ図に表しました（図2、学習用の架空のデータ）。分かることを説明しなさい。</p>
+  <div class="step">着目1（全体）：中央値 49 個、四分位範囲 \( 62-40.5=21.5 \)（個）で、散らばりが大きくなっています。</div>
+  <div class="step">着目2（層別）：晴れは中央値 62 個・四分位範囲 \( 66-58=8 \)、雨は中央値 40.5 個・四分位範囲 \( 45-35=10 \)。晴れの第1四分位数 58 個は、雨の最大値 50 個より大きくなっています。</div>
+  <div class="step">着目3（理由）：全体の散らばりが大きかったのは、多く売れる晴れの日と少ない雨の日が混ざっていたためと考えられます。天気と販売数を紐付けて記録していたので、層別できました（数Ⅰ-088）。</div>
+  <div class="step">答え：<span data-ans="ex3">このデータでは、晴れの日の方が多く売れると見込める</span>。ただし各10日の記録からの見込みで、いつもそうなるとは限りません。</div>
+</div>
+<figure>
+<!--svg:f106b-->
+<svg viewBox="0 0 440 190" width="440" role="img" aria-label="例題3の層別した箱ひげ図。上から全体20日（最小値30、第1四分位数40.5、中央値49、第3四分位数62、最大値72）、晴れの10日（48、58、62、66、72）、雨の10日（30、35、40.5、45、50）" data-fig="f106b">
+<line x1="125" y1="40" x2="185.9" y2="40" stroke="#8a99a8" stroke-width="1.6"/>
+<line x1="310.6" y1="40" x2="368.6" y2="40" stroke="#8a99a8" stroke-width="1.6"/>
+<line x1="125" y1="35" x2="125" y2="45" stroke="#8a99a8" stroke-width="1.6"/>
+<line x1="368.6" y1="35" x2="368.6" y2="45" stroke="#8a99a8" stroke-width="1.6"/>
+<rect x="185.9" y="30" width="124.7" height="20" fill="#8a99a8" fill-opacity="0.12" stroke="#8a99a8" stroke-width="1.8" data-box="全体（20日）" data-five="30 81/2 49 62 72"/>
+<line x1="235.2" y1="30" x2="235.2" y2="50" stroke="#8a99a8" stroke-width="2.4"/>
+<text x="90" y="44" text-anchor="end" font-size="11" font-weight="700" fill="#8a99a8">全体（20日）</text>
+<line x1="229.4" y1="90" x2="287.4" y2="90" stroke="#b7791f" stroke-width="1.6"/>
+<line x1="333.8" y1="90" x2="368.6" y2="90" stroke="#b7791f" stroke-width="1.6"/>
+<line x1="229.4" y1="85" x2="229.4" y2="95" stroke="#b7791f" stroke-width="1.6"/>
+<line x1="368.6" y1="85" x2="368.6" y2="95" stroke="#b7791f" stroke-width="1.6"/>
+<rect x="287.4" y="80" width="46.4" height="20" fill="#b7791f" fill-opacity="0.12" stroke="#b7791f" stroke-width="1.8" data-box="晴れ（10日）" data-five="48 58 62 66 72"/>
+<line x1="310.6" y1="80" x2="310.6" y2="100" stroke="#b7791f" stroke-width="2.4"/>
+<text x="90" y="94" text-anchor="end" font-size="11" font-weight="700" fill="#b7791f">晴れ（10日）</text>
+<line x1="125" y1="140" x2="154" y2="140" stroke="#1f5fbf" stroke-width="1.6"/>
+<line x1="212" y1="140" x2="241" y2="140" stroke="#1f5fbf" stroke-width="1.6"/>
+<line x1="125" y1="135" x2="125" y2="145" stroke="#1f5fbf" stroke-width="1.6"/>
+<line x1="241" y1="135" x2="241" y2="145" stroke="#1f5fbf" stroke-width="1.6"/>
+<rect x="154" y="130" width="58" height="20" fill="#1f5fbf" fill-opacity="0.12" stroke="#1f5fbf" stroke-width="1.8" data-box="雨（10日）" data-five="30 35 81/2 45 50"/>
+<line x1="185.9" y1="130" x2="185.9" y2="150" stroke="#1f5fbf" stroke-width="2.4"/>
+<text x="90" y="144" text-anchor="end" font-size="11" font-weight="700" fill="#1f5fbf">雨（10日）</text>
+<line x1="92" y1="162" x2="390" y2="162" stroke="currentColor" stroke-width="1"/>
+<line x1="96" y1="162" x2="96" y2="166" stroke="currentColor" stroke-width="1"/>
+<text x="96" y="178" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="25">25</text>
+<line x1="125" y1="162" x2="125" y2="166" stroke="currentColor" stroke-width="1"/>
+<text x="125" y="178" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="30">30</text>
+<line x1="154" y1="162" x2="154" y2="166" stroke="currentColor" stroke-width="1"/>
+<text x="154" y="178" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="35">35</text>
+<line x1="183" y1="162" x2="183" y2="166" stroke="currentColor" stroke-width="1"/>
+<text x="183" y="178" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="40">40</text>
+<line x1="212" y1="162" x2="212" y2="166" stroke="currentColor" stroke-width="1"/>
+<text x="212" y="178" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="45">45</text>
+<line x1="241" y1="162" x2="241" y2="166" stroke="currentColor" stroke-width="1"/>
+<text x="241" y="178" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="50">50</text>
+<line x1="270" y1="162" x2="270" y2="166" stroke="currentColor" stroke-width="1"/>
+<text x="270" y="178" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="55">55</text>
+<line x1="299" y1="162" x2="299" y2="166" stroke="currentColor" stroke-width="1"/>
+<text x="299" y="178" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="60">60</text>
+<line x1="328" y1="162" x2="328" y2="166" stroke="currentColor" stroke-width="1"/>
+<text x="328" y="178" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="65">65</text>
+<line x1="357" y1="162" x2="357" y2="166" stroke="currentColor" stroke-width="1"/>
+<text x="357" y="178" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="70">70</text>
+<line x1="386" y1="162" x2="386" y2="166" stroke="currentColor" stroke-width="1"/>
+<text x="386" y="178" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="75">75</text>
+<text x="396" y="178" text-anchor="start" font-size="11" fill="currentColor">（個）</text>
+</svg>
+<!--/svg:f106b-->
+  <figcaption>図2　移動販売車の1日の販売数を、天気で層別した箱ひげ図（学習用の架空のデータから作成）。いちばん上の「全体」は層別する前の20日</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">つまずきやすい点（二次元表と層別）</p>
+<p>(1) 1 とみる量を取り違える。「合格した人のうち〜」なら合格した人の人数で割ります（数Ⅰ-087）。<br>
+(2) 割合だけを比べて、度数を見ない。もとにする人数が少ないと、数人の違いで割合が大きく変わります（数Ⅰ-087）。<br>
+(3) 全体の割合だけで結論づける。ほかに影響しそうな観点でも分けて、割合と度数の両方を確かめます（数Ⅰ-087）。<br>
+(4) 中央値だけで決める。箱の位置と長さ、ひげの範囲も比べます（数Ⅰ-088）。<br>
+(5) 条件ごとの平均値だけを記録する。1回ごとの記録を、要因と紐付けたまま残します（数Ⅰ-088）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="相関と因果"><span class="num">5</span>相関と因果：傾向と原因を区別する</h2>
+<p>相関は「データにそういう傾向が見られる」こと、因果関係は「一方を変えると他方が変わる」ことでした（数Ⅰ-086）。相関があっても、因果関係があるとは断定できません。</p>
+<h3>対比表：相関と因果関係（数Ⅰ-086）</h3>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>相関（相関関係）</th><th>因果関係</th></tr>
+  <tr><td>意味</td><td>一方が増加すると他方も増加する（減少する）傾向がデータに見られる</td><td>一方を変えると、それが原因となって他方が結果として変わる</td></tr>
+  <tr><td>言い方</td><td>「〜が大きいほど、〜が大きい（小さい）傾向がある」</td><td>「〜すれば、〜になる」</td></tr>
+  <tr><td>散布図・相関係数から</td><td>いえる</td><td>相関だけからはいえない</td></tr>
+  <tr><td>相関があっても因果とは限らない主な場合</td><td colspan="2">① 別の要因が両方に関係している　② 向きが逆　③ データが少なく、偶然そう見えた（数Ⅰ-086 での整理）</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（別の要因を考える）＝導入の (ウ)</p>
+  <p>X市の地区ごとに、コンビニエンスストアの数と、1年間の交通事故の件数を調べると、正の相関（\( r\fallingdotseq0.8 \)）がありました（学習用の架空の値）。「コンビニエンスストアが増えると、交通事故が増える」といえるでしょうか。</p>
+  <div class="step">着目1（データからいえること）：コンビニエンスストアが多い地区ほど、交通事故の件数が多い傾向がある（正の相関がある）といえます。</div>
+  <div class="step">着目2（別の要因）：たとえば人口が多く、人や車の行き来が多い地区ほど、店の数も多く、交通事故も起こりやすいと考えられます。人口や交通量は、両方に関係している別の要因の可能性があります。</div>
+  <div class="step">答え：<span data-ans="ex4">相関はあるが、コンビニエンスストアの数が原因で交通事故が増えるという因果関係があるとは断定できない</span>。いえるのは「コンビニエンスストアが多い地区ほど、交通事故の件数が多い傾向がある」までです。</div>
+</div>
+<div class="box caution"><p class="box-title">つまずきやすい点（相関と因果）</p>
+<p>(1) 相関係数が大きいから因果関係があると考える。\( r \) がどれほど 1 に近くても、どちらが原因かや別の要因の影響は、相関係数からは分かりません（数Ⅰ-086）。<br>
+(2) グループの平均の差を「効果」と読む。2つのグループには、調べた要因のほかにも違いがあるかもしれません（数Ⅰ-086）。<br>
+(3) 相関を因果関係と言いかえる。「〜ほど〜の傾向がある」と述べます（数Ⅰ-091）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="仮説検定の考え方"><span class="num">6</span>仮説検定の考え方：偶然で説明できるか</h2>
+<p>主張の妥当性を判断するために、主張と反対の「半々」を仮定し、その仮定のもとで実際の結果がどのくらい起こるかを、コインを投げる実験で調べました（数Ⅰ-089）。実験の相対度数を「起こりえないこと」の尺度にし、平均から 2s・3s 離れた値も基準にしました（数Ⅰ-090）。</p>
+<h3>対比表：2つの判断の方法（数Ⅰ-090）</h3>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>相対度数を使う</th><th>平均から 2s・3s 離れた値を使う</th></tr>
+  <tr><td>求めるもの</td><td>実際の結果以上になった回数 ÷ 実験の回数（\( p \)）</td><td>実験結果の平均値 \( \overline{x} \) と標準偏差 \( s \)、\( \overline{x}+2s \)・\( \overline{x}+3s \)</td></tr>
+  <tr><td>「起こりえないこと」とみるとき</td><td>\( p \) がとても小さい</td><td>実際の結果が \( \overline{x}+2s \)（または \( \overline{x}+3s \)）以上</td></tr>
+  <tr><td>注意すること</td><td>実験をやり直すと少し変わる。回数を多くする</td><td>3s の方が厳しい基準。基準は結果を見る前に決めておく</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5（仮説検定の考え方で判断する）＝導入の (エ)</p>
+  <p>X市の図書館が本棚の新しい並べ方を考え、来館者24人に今の並べ方と見比べてもらったところ、24人中18人が「新しい並べ方の方が本を探しやすい」と答えました（X市と数値は学習用の架空の設定です）。調べる前に「平均から 2s 離れた値を基準にする」と決めていました。「新しい並べ方の方が探しやすいと感じる人が多い」といえるかを、次の実験結果を使って判断しなさい。</p>
+  <div class="box source"><p class="box-title">どちらと答えるかは半々と仮定し、コインを24回投げる実験を1000回行った結果（このページでの実験結果。乱数の種を固定したコンピュータの実験）</p>
+  <div class="table-wrap">
+  <table id="t106-exp">
+    <tr><th>表の枚数</th><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
+    <tr><th>回数</th><td>1</td><td>7</td><td>24</td><td>38</td><td>67</td><td>119</td><td>147</td><td>169</td><td>171</td><td>106</td><td>80</td><td>39</td><td>20</td><td>8</td><td>3</td><td>1</td></tr>
+  </table>
+  </div>
+  <p class="small">4枚以下・21枚以上は0回。合計 1000 回。表の枚数の平均値は 12.049 枚、標準偏差は約 2.38 枚です（値ごとの度数から求めた値。数Ⅰ-090）。</p></div>
+  <div class="step">着目1（仮定と実験）：主張と反対に「どちらと答えるかは半々」と仮定します。1人の回答をコイン1回（表＝新しい並べ方）に置き換え、24人の調査をコインを24回投げることに置き換えます（数Ⅰ-089）。</div>
+  <div class="step">着目2（相対度数）：18枚以上だったのは \( 8+3+1=12 \)（回）なので、相対度数は \( p=12\div1000=0.012 \) です。</div>
+  <div class="step">着目3（基準）：新しい並べ方を選ぶ人が多いかを調べるので、平均より大きい側を考えます。平均値＋2s \( \fallingdotseq12.049+2\times2.38=16.809 \)、平均値＋3s \( \fallingdotseq12.049+3\times2.38=19.189 \) で、それぞれ約 16.8、約 19.2 です（図3）。</div>
+  <div class="step">着目4（判断）：18 は前もって決めた基準の平均値＋2s（約 16.8）以上なので、「起こりえないこと」とみなします。半々の仮定のもとではめったに起こらない結果で、偶然だけでは説明しにくいと考えます。</div>
+  <div class="step">答え：<span data-ans="ex5">新しい並べ方の方が探しやすいと感じる人が多いと判断してよさそうである</span>。ただし「証明された」わけではありません。また、18 は平均値＋3s（約 19.2）より小さいので、もし 3s を基準にしていたら「起こりえないこと」とはいえませんでした。</div>
+  <div class="step">批判的考察：24人の選び方（来館した時間帯や曜日のかたより）、「新しいもの」というだけで選ばれやすくなった可能性、実験をやり直すと相対度数が少し変わることなどを見直します（数Ⅰ-090）。</div>
+</div>
+<figure>
+<!--svg:f106c-->
+<svg viewBox="0 0 440 250" width="440" role="img" aria-label="例題5の実験結果のヒストグラム。コインを24回投げる実験を1000回行い、表の枚数ごとの回数を柱で表した。18枚以上の柱（12回）を赤の斜線で示す。平均値 12.049 を橙の実線、平均値＋2s（約 16.8）を赤の破線、平均値＋3s（約 19.2）を赤の一点鎖線で示す" data-fig="f106c">
+<defs><pattern id="hatch-f106c" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="#c0392b" stroke-width="2"/></pattern></defs>
+<line x1="46" y1="200" x2="46" y2="20" stroke="currentColor" stroke-width="1"/>
+<line x1="43" y1="200" x2="46" y2="200" stroke="currentColor" stroke-width="1"/>
+<text x="40" y="204" text-anchor="end" font-size="10" fill="currentColor">0</text>
+<line x1="43" y1="157.5" x2="46" y2="157.5" stroke="currentColor" stroke-width="1"/>
+<text x="40" y="161.5" text-anchor="end" font-size="10" fill="currentColor">50</text>
+<line x1="43" y1="115" x2="46" y2="115" stroke="currentColor" stroke-width="1"/>
+<text x="40" y="119" text-anchor="end" font-size="10" fill="currentColor">100</text>
+<line x1="43" y1="72.5" x2="46" y2="72.5" stroke="currentColor" stroke-width="1"/>
+<text x="40" y="76.5" text-anchor="end" font-size="10" fill="currentColor">150</text>
+<line x1="43" y1="30" x2="46" y2="30" stroke="currentColor" stroke-width="1"/>
+<text x="40" y="34" text-anchor="end" font-size="10" fill="currentColor">200</text>
+<text x="40" y="12" text-anchor="start" font-size="11" fill="currentColor">度数（回）</text>
+<rect x="35.7" y="200" width="20.6" height="0" fill="#1f5fbf" fill-opacity="0.3" stroke="#1f5fbf" stroke-width="1" data-k="4" data-f="0"/>
+<rect x="56.3" y="199.2" width="20.6" height="0.8" fill="#1f5fbf" fill-opacity="0.3" stroke="#1f5fbf" stroke-width="1" data-k="5" data-f="1"/>
+<rect x="76.8" y="194.1" width="20.6" height="6" fill="#1f5fbf" fill-opacity="0.3" stroke="#1f5fbf" stroke-width="1" data-k="6" data-f="7"/>
+<rect x="97.4" y="179.6" width="20.6" height="20.4" fill="#1f5fbf" fill-opacity="0.3" stroke="#1f5fbf" stroke-width="1" data-k="7" data-f="24"/>
+<rect x="117.9" y="167.7" width="20.6" height="32.3" fill="#1f5fbf" fill-opacity="0.3" stroke="#1f5fbf" stroke-width="1" data-k="8" data-f="38"/>
+<rect x="138.5" y="143.1" width="20.6" height="56.9" fill="#1f5fbf" fill-opacity="0.3" stroke="#1f5fbf" stroke-width="1" data-k="9" data-f="67"/>
+<rect x="159.1" y="98.9" width="20.6" height="101.1" fill="#1f5fbf" fill-opacity="0.3" stroke="#1f5fbf" stroke-width="1" data-k="10" data-f="119"/>
+<rect x="179.6" y="75" width="20.6" height="125" fill="#1f5fbf" fill-opacity="0.3" stroke="#1f5fbf" stroke-width="1" data-k="11" data-f="147"/>
+<rect x="200.2" y="56.3" width="20.6" height="143.7" fill="#1f5fbf" fill-opacity="0.3" stroke="#1f5fbf" stroke-width="1" data-k="12" data-f="169"/>
+<rect x="220.7" y="54.7" width="20.6" height="145.3" fill="#1f5fbf" fill-opacity="0.3" stroke="#1f5fbf" stroke-width="1" data-k="13" data-f="171"/>
+<rect x="241.3" y="109.9" width="20.6" height="90.1" fill="#1f5fbf" fill-opacity="0.3" stroke="#1f5fbf" stroke-width="1" data-k="14" data-f="106"/>
+<rect x="261.8" y="132" width="20.6" height="68" fill="#1f5fbf" fill-opacity="0.3" stroke="#1f5fbf" stroke-width="1" data-k="15" data-f="80"/>
+<rect x="282.4" y="166.8" width="20.6" height="33.1" fill="#1f5fbf" fill-opacity="0.3" stroke="#1f5fbf" stroke-width="1" data-k="16" data-f="39"/>
+<rect x="302.9" y="183" width="20.6" height="17" fill="#1f5fbf" fill-opacity="0.3" stroke="#1f5fbf" stroke-width="1" data-k="17" data-f="20"/>
+<rect x="323.5" y="193.2" width="20.6" height="6.8" fill="url(#hatch-f106c)" stroke="#c0392b" stroke-width="1" data-k="18" data-f="8"/>
+<rect x="344.1" y="197.4" width="20.6" height="2.5" fill="url(#hatch-f106c)" stroke="#c0392b" stroke-width="1" data-k="19" data-f="3"/>
+<rect x="364.6" y="199.2" width="20.6" height="0.8" fill="url(#hatch-f106c)" stroke="#c0392b" stroke-width="1" data-k="20" data-f="1"/>
+<rect x="385.2" y="200" width="20.6" height="0" fill="url(#hatch-f106c)" stroke="#c0392b" stroke-width="1" data-k="21" data-f="0"/>
+<line x1="44" y1="200" x2="401.4" y2="200" stroke="currentColor" stroke-width="1"/>
+<line x1="46" y1="200" x2="46" y2="204" stroke="currentColor" stroke-width="1"/>
+<text x="46" y="215" text-anchor="middle" font-size="10" fill="currentColor" data-tick="x" data-v="4">4</text>
+<line x1="87.1" y1="200" x2="87.1" y2="204" stroke="currentColor" stroke-width="1"/>
+<text x="87.1" y="215" text-anchor="middle" font-size="10" fill="currentColor" data-tick="x" data-v="6">6</text>
+<line x1="128.2" y1="200" x2="128.2" y2="204" stroke="currentColor" stroke-width="1"/>
+<text x="128.2" y="215" text-anchor="middle" font-size="10" fill="currentColor" data-tick="x" data-v="8">8</text>
+<line x1="169.3" y1="200" x2="169.3" y2="204" stroke="currentColor" stroke-width="1"/>
+<text x="169.3" y="215" text-anchor="middle" font-size="10" fill="currentColor" data-tick="x" data-v="10">10</text>
+<line x1="210.4" y1="200" x2="210.4" y2="204" stroke="currentColor" stroke-width="1"/>
+<text x="210.4" y="215" text-anchor="middle" font-size="10" fill="currentColor" data-tick="x" data-v="12">12</text>
+<line x1="251.6" y1="200" x2="251.6" y2="204" stroke="currentColor" stroke-width="1"/>
+<text x="251.6" y="215" text-anchor="middle" font-size="10" fill="currentColor" data-tick="x" data-v="14">14</text>
+<line x1="292.7" y1="200" x2="292.7" y2="204" stroke="currentColor" stroke-width="1"/>
+<text x="292.7" y="215" text-anchor="middle" font-size="10" fill="currentColor" data-tick="x" data-v="16">16</text>
+<line x1="333.8" y1="200" x2="333.8" y2="204" stroke="currentColor" stroke-width="1"/>
+<text x="333.8" y="215" text-anchor="middle" font-size="10" fill="currentColor" data-tick="x" data-v="18">18</text>
+<line x1="374.9" y1="200" x2="374.9" y2="204" stroke="currentColor" stroke-width="1"/>
+<text x="374.9" y="215" text-anchor="middle" font-size="10" fill="currentColor" data-tick="x" data-v="20">20</text>
+<text x="405.4" y="215" text-anchor="start" font-size="10" fill="currentColor">（枚）</text>
+<line x1="211.5" y1="200" x2="211.5" y2="40" stroke="#b7791f" stroke-width="1.8" data-line="mean" data-v="12049/1000"/>
+<line x1="309.3" y1="200" x2="309.3" y2="40" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="6 4" data-line="2s" data-v="16809/1000"/>
+<line x1="358.2" y1="200" x2="358.2" y2="40" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="8 3 2 3" data-line="3s" data-v="19189/1000"/>
+<text x="207.5" y="36" text-anchor="end" font-size="11" font-weight="700" fill="#b7791f">平均値</text>
+<text x="305.3" y="52" text-anchor="end" font-size="11" font-weight="700" fill="#c0392b">平均値＋2s</text>
+<text x="362.2" y="36" text-anchor="start" font-size="11" font-weight="700" fill="#c0392b">平均値＋3s</text>
+<text x="362.2" y="112" text-anchor="start" font-size="11" fill="#c0392b">斜線：</text>
+<text x="362.2" y="126" text-anchor="start" font-size="11" fill="#c0392b">18枚以上</text>
+<text x="362.2" y="140" text-anchor="start" font-size="11" fill="#c0392b">（12回）</text>
+</svg>
+<!--/svg:f106c-->
+  <figcaption>図3　例題5 の実験結果のヒストグラム（このページでの実験結果）。赤の斜線の柱は18枚以上、橙の実線は平均値、赤の破線は平均値＋2s（約 16.8）、赤の一点鎖線は平均値＋3s（約 19.2）。2s・3s は大きい側だけを示した（小さい側も考えられる）</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">つまずきやすい点（仮説検定の考え方）</p>
+<p>(1) 「半分より多いから効果がある」と割合だけで決める。偶然のばらつきを実験で調べてから判断します（数Ⅰ-089）。<br>
+(2) 「効果がある」と仮定して調べようとする。調べる仮定は「半々」の方です（数Ⅰ-089）。<br>
+(3) 「24枚以上」を「24枚ちょうど」と取り違えるように、「以上」の数え方を誤る。実際の結果以上をまとめて数えます（数Ⅰ-089）。<br>
+(4) 「2s」を平均値の2倍と取り違える・標準偏差の代わりに分散を使う。平均値に標準偏差の2倍を足します（数Ⅰ-090）。<br>
+(5) 「効果があるとは判断できない」を「効果がない」と言いかえる、相対度数がとても小さいときに「証明された」と言う（数Ⅰ-090）。<br>
+(6) 結果を見てから、主張に都合のよい基準に変える。基準は結果を見る前に決めておきます（数Ⅰ-090）。</p></div>
+<div class="box point"><p class="box-title">単元をまたぐ整理：この範囲で使った、ほかの単元の考え</p>
+<div class="table-wrap">
+<table>
+  <tr><th>この範囲の場面（コマ）</th><th>使った考え（学んだコマ）</th></tr>
+  <tr><td>外れ値の境界（数Ⅰ-083）</td><td>四分位数・四分位範囲・箱ひげ図（中2-088・中2-089）</td></tr>
+  <tr><td>外れ値は平均値を大きく動かす（数Ⅰ-083）</td><td>代表値と、極端な値の影響（中1-111）</td></tr>
+  <tr><td>相関と因果（数Ⅰ-086）</td><td>散布図（数Ⅰ-084）、相関係数（数Ⅰ-085）</td></tr>
+  <tr><td>二次元表の割合（数Ⅰ-087）</td><td>割合を含む数量（中1-029・中1-052）、相対度数（中1-112）、二次元の表（中2-082）</td></tr>
+  <tr><td>層別した箱ひげ図（数Ⅰ-088）</td><td>複数の集団を箱ひげ図で比べる（中2-091）</td></tr>
+  <tr><td>半々の仮定とコインの実験（数Ⅰ-089）</td><td>同様に確からしいことと確率（中2-079・中2-080）、多数回の試行と相対度数（中1-117）</td></tr>
+  <tr><td>平均から 2s・3s 離れた値（数Ⅰ-090）</td><td>標準偏差（数Ⅰ-081）、平均値より ±2s 以上離れた値を外れ値とする基準（数Ⅰ-083）</td></tr>
+  <tr><td>調べる人を無作為に選ぶ（数Ⅰ-090）</td><td>無作為抽出（中3-112）</td></tr>
+</table>
+</div></div>
+<div class="box point"><p class="box-title">この範囲の問題の型と、練習した場所</p>
+<div class="table-wrap">
+<table>
+  <tr><th>型（学んだコマ）</th><th>このページで練習する問題</th></tr>
+  <tr><td>外れ値の判定、外れ値を区別した箱ひげ図、背景を探る意義、異常値との区別（083）</td><td>確認1、例題1、問1・問2・問5</td></tr>
+  <tr><td>相関と因果の区別（086）</td><td>例題4、問4・問9</td></tr>
+  <tr><td>二次元表と何を 1 とみた割合か、割合と度数の関連付け（087）</td><td>確認2、例題2、問3・問9</td></tr>
+  <tr><td>層別して箱ひげ図を並べて比べる（088）</td><td>例題3、問6</td></tr>
+  <tr><td>仮説検定の考え方：半々の仮定と実験の相対度数（089）</td><td>例題5、問7・問10</td></tr>
+  <tr><td>仮説検定の考え方：2s・3s の基準、判断の言い方、批判的考察（090）</td><td>確認3、例題5、問8・問10</td></tr>
+  <tr><td>単元末演習の型A のうち二次元表・層別、型C、型D のうち相関と因果、型E（091）</td><td>問1〜問10（型を混ぜて出題）</td></tr>
+</table>
+</div></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この範囲の重要語句（すべて既習）</p>
+  <dl>
+    <dt>外れ値</dt><dd>ほかの値から極端にかけ離れた値。通常、\( Q_1-1.5\times \)（四分位範囲）以下の値と、\( Q_3+1.5\times \)（四分位範囲）以上の値（数Ⅰ-083）。</dd>
+    <dt>異常値</dt><dd>測定ミス・入力ミスなど原因が分かっている値。外れ値と区別する（数Ⅰ-083）。</dd>
+    <dt>因果関係</dt><dd>一方を変えると、それが原因となって他方が結果として変わる関係（数Ⅰ-086 での説明）。相関があっても、因果関係があるとは断定できない。</dd>
+    <dt>二次元表（クロス集計表）</dt><dd>2つの質的データを縦と横にとり、組み合わせごとの度数を漏れなく書いた表。行と列の計も書く（数Ⅰ-087）。</dd>
+    <dt>層別</dt><dd>データをある要因で分けて比べること（数Ⅰ-088）。</dd>
+    <dt>仮説検定の考え方</dt><dd>ある仮定のもとで、実際に起きた結果がどのくらい起こりやすいかを実験などで調べ、主張の妥当性を判断する考え方（数Ⅰ-089 での説明）。</dd>
+    <dt>平均から 2s・3s 離れた値の基準</dt><dd>実験結果の平均値と標準偏差 \( s \) を求め、実際の結果が平均から \( 2s \)（または \( 3s \)）以上離れていれば「起こりえないこと」とみなす基準。3s の方が厳しい（数Ⅰ-090）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>外れ値は \( Q_1-1.5\times(Q_3-Q_1) \) 以下、\( Q_3+1.5\times(Q_3-Q_1) \) 以上の値。すぐに除かず背景を探り、原因が分かっているミスは異常値として区別する（O1）。</li>
+    <li>二次元表の割合は、何を 1 とみたかを確かめ、度数も合わせて見る。量的データは要因で層別して箱ひげ図を並べて比べる（O2）。</li>
+    <li>相関があっても因果関係があるとは断定できない。別の要因・向きが逆・偶然の可能性を考え、「〜ほど〜の傾向がある」と述べる（O3）。</li>
+    <li>半々の仮定のもとでの実験の相対度数と、前もって決めた平均値＋2s・＋3s の基準で判断し、「妥当だと判断してよさそう」「この結果からは判断できない」と述べ、判断の過程を見直す（O4）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">外れ値の境界</span><p>\( Q_1-1.5\times(Q_3-Q_1) \)、\( Q_3+1.5\times(Q_3-Q_1) \)</p></div>
+  <div><span class="f-name">二次元表の割合</span><p>（比べる量）÷（1 とみる量）。行の計・列の計・全体の計のどれで割ったかを書く</p></div>
+  <div><span class="f-name">仮説検定の考え方の基準</span><p>相対度数 \( p \)、\( \overline{x}+2s \)・\( \overline{x}+3s \)（結果を見る前に決める）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">範囲（数Ⅰ-083・086〜090）全体から10問です。基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）と、復習するときに戻るコマを示します。数値を入力する問題は、整数や小数（0.25 のように）で入力し、値が2つ以上あるときは 5,9 のようにコンマで区切ってください。データはすべて学習用の架空のデータです。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1（復習するなら数Ⅰ-083）</span></div>
+  <p>あるデータの最小値は 10、第1四分位数は 24、中央値は 30、第3四分位数は 40、最大値は 70 です。大きい側の外れ値になるのは、いくつ以上の値ですか。</p>
+  <div class="choices"><button>56 以上</button><button data-correct="true">64 以上</button><button>54 以上</button><button>130 以上</button></div>
+  <span class="result"></span>
+  <div class="explain">四分位範囲は \( 40-24=16 \)、その1.5倍は \( 1.5\times16=24 \) なので、上の境界は \( 40+24=64 \) で、64 以上の値が外れ値です（数Ⅰ-083）。56 は四分位範囲を1.5倍し忘れた \( 40+16 \)。54 は中央値から測った \( 30+24 \)。130 は範囲 \( 70-10=60 \) に1.5倍を掛けた \( 40+90 \) です。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="3,38|38,3|3と38|38と3|3,38です">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1（復習するなら数Ⅰ-083）</span></div>
+  <p>11個の値 3, 15, 16, 18, 19, 20, 21, 22, 24, 25, 38 の外れ値をすべて答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 3 と 38。11個なので中央値は6番目の 20、\( Q_1 \) は小さい方の5個 3, 15, 16, 18, 19 の中央値 16、\( Q_3 \) は大きい方の5個 21, 22, 24, 25, 38 の中央値 24 です。四分位範囲 8、その1.5倍は 12 なので、下の境界は \( 16-12=4 \)、上の境界は \( 24+12=36 \)。4 以下の 3 と、36 以上の 38 が外れ値です（数Ⅰ-083）。38 だけを答えた場合は、小さい側を調べ忘れています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2（復習するなら数Ⅰ-087）</span></div>
+  <p>例題2の二次元表で、「図書館を利用する人のうち、朝の読書をしている人の割合」はどれですか。百分率は小数第2位を四捨五入しています。</p>
+  <div class="choices"><button>65.0％</button><button>32.5％</button><button>47.5％</button><button data-correct="true">68.4％</button></div>
+  <span class="result"></span>
+  <div class="explain">1 とみるのは「図書館を利用する人」の 76人なので、\( 52\div76=0.6842\cdots \) で 68.4％ です（数Ⅰ-087）。65.0％ は朝の読書ありの 80人で割った「朝の読書ありの人のうち、図書館を利用する人の割合」。32.5％ は全体の 160人で割った割合。47.5％ は図書館を利用する 76人の、全体 160人に対する割合です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問4</span><span class="q-obj">O3（復習するなら数Ⅰ-086）</span></div>
+  <p>X高校の生徒 40人で、平日の睡眠時間と朝の小テストの得点の間に正の相関（\( r\fallingdotseq0.6 \)）が見られました（学習用の架空の値）。この結果からいえることとして、最も適切なものはどれですか。</p>
+  <div class="choices"><button data-correct="true">睡眠時間が長い生徒ほど得点が高い傾向はあるが、生活のリズムなど別の要因が両方に関係している可能性もあり、因果関係があるとは断定できない。</button><button>睡眠時間を長くすれば、小テストの得点は必ず上がる。</button><button>相関係数が 1 ではないので、睡眠時間と得点には相関がない。</button><button>得点が高い生徒は、必ず睡眠時間が長い。</button></div>
+  <span class="result"></span>
+  <div class="explain">正の相関があるので「睡眠時間が長い生徒ほど得点が高い傾向」はいえますが、相関だけから因果関係は断定できません（数Ⅰ-086）。「睡眠時間を長くすれば必ず上がる」は相関を因果関係と言いかえた誤り。「相関係数が 1 ではないので相関がない」は誤りで、\( r\fallingdotseq0.6 \) は正の相関を示します。「得点が高い生徒は必ず睡眠時間が長い」は誤りで、相関は傾向であり、どの組でも成り立つわけではありません（数Ⅰ-084）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O1（復習するなら数Ⅰ-083）</span></div>
+  <p>例題1の自主練習の回数から、外れ値の 27 を除いたときの変化として正しいものはどれですか。</p>
+  <div class="choices"><button>中央値の方が平均値より大きく変わる。</button><button>外れ値を除いても、平均値も中央値も変わらない。</button><button data-correct="true">平均値は 12.25 回から約 10.9 回へ大きく変わるが、中央値は 11.5 回から 11 回へ少し変わるだけである。</button><button>外れ値は記録の誤りなので、必ず除かなければならない。</button></div>
+  <span class="result"></span>
+  <div class="explain">12人の合計は 147 なので平均値は \( 147\div12=12.25 \)、27 を除いた11人の合計は 120 なので平均値は \( 120\div11=10.90\cdots \) で約 10.9 回です。中央値は 11.5 回から、11人の6番目の 11 回に変わるだけです。外れ値は平均値を大きく動かしますが、中央値はあまり動かしません（数Ⅰ-083）。「中央値の方が大きく変わる」「どちらも変わらない」は計算と合いません。「記録の誤りなので必ず除く」は、外れ値を間違った値と思い込んだ誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2（復習するなら数Ⅰ-088）</span></div>
+  <p>図2（天気で層別した箱ひげ図）から読み取れることとして、正しいものはどれですか。</p>
+  <div class="choices"><button>雨の日の四分位範囲は、晴れの日の四分位範囲より小さい。</button><button data-correct="true">晴れの日の第1四分位数（58個）は、雨の日の最大値（50個）より大きい。</button><button>晴れの日はどの日も、雨の日のどの日より多く売れた。</button><button>全体の箱ひげ図だけで天気による違いが分かるので、層別する必要はない。</button></div>
+  <span class="result"></span>
+  <div class="explain">晴れの日の第1四分位数は 58 個、雨の日の最大値は 50 個です（数Ⅰ-088）。「雨の日の四分位範囲は小さい」は誤りで、雨は \( 45-35=10 \)、晴れは \( 66-58=8 \) です。「晴れの日はどの日も、雨のどの日より多い」は誤りで、晴れの最小値 48 個は雨の最大値 50 個より小さいです。「全体だけで分かる」は誤りで、全体の箱ひげ図では晴れと雨の違いが見えません。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="0.032|32/1000|4/125|.032">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O4（復習するなら数Ⅰ-089）</span></div>
+  <p>例題5の実験結果で、表が17枚以上だった回数の相対度数を小数で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 0.032。17枚以上は \( 20+8+3+1=32 \)（回）なので、相対度数は \( 32\div1000=0.032 \) です（数Ⅰ-089）。0.02 と答えた場合は 17枚ちょうどだけを数えた誤り、0.012 は 18枚以上と取り違えた誤り、32 は回数のまま実験の回数で割り忘れた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問8</span><span class="q-obj">O4（復習するなら数Ⅰ-090）</span></div>
+  <p>例題5で、もし調べる前に「平均から 3s 離れた値を基準にする」と決めていたとします。24人中18人という結果の判断として、最も適切なものはどれですか。</p>
+  <div class="choices"><button>18 は平均値＋3s 以上なので「起こりえないこと」であり、主張は妥当だと判断してよさそうだ。</button><button>相対度数 0.012 は小さいので、決めておいた基準に関係なく、主張は妥当だと判断してよさそうだ。</button><button>18 は平均値＋3s より小さいので、新しい並べ方は探しやすくないことが分かった。</button><button data-correct="true">18 は平均値＋3s（約 19.2）より小さいので、決めておいた基準では「起こりえないこと」とはいえず、この結果からは主張が妥当だとは判断できない。</button></div>
+  <span class="result"></span>
+  <div class="explain">平均値＋3s は約 19.2 で、18 はそれより小さいので、前もって決めた 3s の基準では「起こりえないこと」とはいえません。結論は「この結果からは、主張が妥当だとは判断できない」です（数Ⅰ-090）。「18 は平均値＋3s 以上」は大小の比べ方の誤り。「基準に関係なく妥当」は、前もって決めた基準を使っていない誤り。「探しやすくないことが分かった」は、「判断できない」を「効果がない」と言いかえた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3（復習するなら数Ⅰ-087・数Ⅰ-086）</span></div>
+  <p>太郎さんと花子さんが、X高校の1年生 200人について、運動部に入っているかと、体力テストの持久走で基準をこえたか（合格・不合格）を調べた二次元表を見ています（学習用の架空のデータ）。</p>
+  <div class="table-wrap">
+  <table id="t106-q9">
+    <tr><th>度数（人）</th><th>合格</th><th>不合格</th><th>計</th></tr>
+    <tr><th>運動部に入っている</th><td>54</td><td>18</td><td>72</td></tr>
+    <tr><th>運動部に入っていない</th><td>48</td><td>80</td><td>128</td></tr>
+    <tr><th>計</th><td>102</td><td>98</td><td>200</td></tr>
+  </table>
+  </div>
+  <p>太郎：運動部に入っている人のうち合格した人は 75.0％、入っていない人は 37.5％ だね。だから、運動部に入れば、持久走で合格できるようになるよ。<br>
+  花子：その言い方には注意がいるよ。</p>
+  <p>この表と会話についての説明として、最も適切なものはどれですか。</p>
+  <div class="choices"><button data-correct="true">運動部に入っている人の方が合格の割合が高い傾向はあるが、もともと体力のある人が運動部に入っている可能性など別の要因も考えられるので、運動部に入ることが合格の原因だとは断定できない。</button><button>合格した人のうち運動部に入っている人の割合は約 52.9％ で半分くらいなので、運動部と合格には関係がない。</button><button>割合の差が 37.5 ポイントもあるので、運動部に入ることが合格の原因だと断定できる。</button><button>運動部に入っている人と入っていない人は人数が違うので、割合で比べることはできない。</button></div>
+  <span class="result"></span>
+  <div class="explain">行の計を 1 とみると、運動部に入っている人の合格の割合は \( 54\div72=0.75 \) で 75.0％、入っていない人は \( 48\div128=0.375 \) で 37.5％ で、運動部の人の方が高い傾向があります（数Ⅰ-087）。しかし、この表は同じ人が運動部に入ったときの変化を調べたものではなく、別の要因も考えられるので、因果関係は断定できません（数Ⅰ-086）。「約 52.9％ なので関係がない」は、1 とみる量を合格した人（\( 54\div102 \)）に取り違えたうえ、比べる相手のない割合から結論を出した誤りです。「原因だと断定できる」は相関を因果関係と言いかえた誤り。「人数が違うので割合で比べられない」は誤りで、人数が違うからこそ割合で比べ、度数も合わせて確かめます。</div>
+</div>
+
+<div class="q" data-type="open" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O4（復習するなら数Ⅰ-090・数Ⅰ-089）</span></div>
+  <p>例題5と同じ図書館で、別の日の来館者24人に聞くと、24人中20人が「新しい並べ方の方が探しやすい」と答えました。調べる前に「平均から 3s 離れた値を基準にする」と決めていました。例題5の実験結果（平均値 12.049、標準偏差 約 2.38）を使って、(1) 20人以上に当たる結果の相対度数、(2) 平均から 3s 離れた値の基準による判断、(3) 結論、(4) 判断の過程について批判的に考察したこと（1つ以上）を書きなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) 表が20枚以上だったのは1000回中1回なので、相対度数は <span data-ans="q10">\( 1\div1000=0.001 \)</span>。(2) 平均値＋3s \( \fallingdotseq12.049+3\times2.38=19.189 \) で約 19.2。20 はこれ以上なので、前もって決めた基準で「起こりえないこと」とみなす。(3) 半々の仮定のもとではめったに起こらない結果で、偶然だけでは説明しにくいので、新しい並べ方の方が探しやすいと感じる人が多いと判断してよさそうである（証明されたわけではない）。(4) 24人の選び方にかたよりがないか（来館の時間帯・曜日）、新しさだけで選ばれていないか、実験をやり直すと相対度数が少し変わることを確かめる。</p>
+    <p><strong>採点の観点</strong>　① 20枚以上の回数を実験の回数で割って相対度数を求めている。② 前もって決めた 3s の基準（平均値に標準偏差の3倍を足した値）と比べている。③ 判断の強さに合った言い方（「判断してよさそう」）で結論を述べ、「証明された」と言い切っていない。④ 仮定・データの集め方・実験の回数などについて、判断の過程を見直している。</p>
+  </div>
+  <div class="explain">「20人は24人の半分より多いから妥当」と割合だけで決めるのは誤りです（数Ⅰ-089）。また、例題5（18人）では 3s の基準なら判断できませんでしたが、20人なら平均値＋3s（約 19.2）以上になります。基準は結果を見る前に決めておき、結果を見てから変えないようにします（数Ⅰ-090）。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲について特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲とする」とされています。この時間の内容は、数学Ⅰ「(4) データの分析」の「具体的な事象において仮説検定の考え方を理解すること」（ア(ウ)）、「目的に応じて複数の種類のデータを収集し，適切な統計量やグラフ，手法などを選択して分析を行い，データの傾向を把握して事象の特徴を表現すること」（イ(イ)）、「不確実な事象の起こりやすさに着目し，主張の妥当性について，実験などを通して判断したり，批判的に考察したりすること」（イ(ウ)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求め、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。表やグラフを根拠に、言える範囲で結論を述べ、その過程を見直すこの範囲の内容は、こうした処理の基本になります。</p>
+  <p class="small">問9は日常の場面と会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="数学Ⅰのまとめ"><span class="num">11</span>次の時間へ：数学Ⅰのまとめ</h2>
+<div class="box bridge">
+  <p class="box-title">数学Ⅰのまとめ（この時間が数学Ⅰの最後のコマ）</p>
+  <p>この時間（数Ⅰ-106）が数学Ⅰの最後のコマなので、ここで数学Ⅰの学習をふり返ります。数学Ⅰは次の単元からできていて、単元「復習（予備時間）」のコマで範囲ごとに復習しました。</p>
+  <div class="table-wrap">
+  <table id="t106-units">
+    <tr><th>単元</th><th>学んだコマ</th><th>復習したコマ</th></tr>
+    <tr><td>数と式</td><td>数Ⅰ-001〜020</td><td>数Ⅰ-097・数Ⅰ-098</td></tr>
+    <tr><td>集合と命題</td><td>数Ⅰ-021〜030</td><td>数Ⅰ-100</td></tr>
+    <tr><td>二次関数</td><td>数Ⅰ-031〜056</td><td>数Ⅰ-101・数Ⅰ-102</td></tr>
+    <tr><td>図形と計量</td><td>数Ⅰ-057〜078</td><td>数Ⅰ-103・数Ⅰ-104</td></tr>
+    <tr><td>データの分析</td><td>数Ⅰ-079〜091</td><td>数Ⅰ-105・数Ⅰ-106</td></tr>
+    <tr><td>課題学習</td><td>数Ⅰ-092〜096</td><td>—</td></tr>
+  </table>
+  </div>
+  <p>この時間の仮説検定の考え方は、数学Ｂの単元「統計的な推測」の数Ｂ-058 で、数学Ⅰで学んだ考え方を踏まえて、仮説検定の手順として学びます。データから言えることと言えないことを区別し、判断の過程を見直す姿勢は、その先でも使います。</p>
+  <p>この時間では、新しい内容は扱っていません。「仮説検定と反復試行の確率」は、数研出版・東京書籍の教科書で「発展」として扱われている内容なので（単元「データの分析」の注、各社の編修趣意書）、この範囲では扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-105　復習：データの分析（分散・標準偏差・相関係数）</div>
+  <div><span class="label">次の時間</span>なし（数学Ⅰの最後のコマ）</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-106「復習：データの分析（外れ値・仮説検定・質的データ）」（区分：復習。学習指導要領 数学Ⅰ (4)ア(ウ)・イ(イ)・イ(ウ)）。単元「復習（予備時間）」の注。範囲の各行 hs_math_1a/数Ⅰ-083・086〜091 の要点と、それぞれの完成ページ（データの分析のクロスチェック後の版）の用語・図の約束・よくある間違い。単元「データの分析」の注（仮説検定と反復試行の確率は載せていない）。数学Ⅰの各単元の行の範囲と、数Ｂ-058 の要点</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(4) データの分析 ア(ウ)・イ(イ)・イ(ウ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.44-48（外れ値、質的データの分析、仮説検定の考え方）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+    <li>教科書編修趣意書（発展的な学習内容の記述）：数研出版『改訂版 数学Ⅰ』（数Ⅰ104-901）206ページ「仮説検定と反復試行の確率」https://www.mext.go.jp/content/20250415-ope_dev03-000041678-14.pdf ／ 東京書籍『改訂版 数学Ⅰ Advanced』（数Ⅰ002-901）197ページ「仮説検定と反復試行の確率」https://www.mext.go.jp/content/20250415-ope_dev03-000041678-1.pdf（文部科学省公開）</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料と、範囲の完成ページをもとに作成した学習用資料です。例題・問題・データはこのページのために作成したもので、すべて学習用の架空のデータです（出典を示したものを除く）。X市・X高校は架空の地名・学校です。例題5の実験結果は、乱数の種を固定したコンピュータの実験で作った「このページでの実験結果」です。図1〜図3は学習用に作成した図です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-106",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-106",
+  "title": "復習：データの分析（外れ値・仮説検定・質的データ）",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-7", "title": "復習（予備時間）"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(4)ア(ウ)", "(4)イ(イ)", "(4)イ(ウ)"],
+  "kaisetsu_page": "",
+  "objectives": [
+    {"id": "O1", "text": "四分位範囲の1.5倍の基準で外れ値を判定し、外れ値を区別した箱ひげ図を読み、背景を探る意義や異常値との区別を説明できる。", "from": "外れ値の判断", "sections": ["sec-1"], "checks": ["q1", "q2", "q5"]},
+    {"id": "O2", "text": "二次元表で何を 1 とみた割合かを確かめ、層別した箱ひげ図も用いて、質的データを含むデータを分析し、結論を説明できる。", "from": "二次元表による質的データの分析", "sections": ["sec-2"], "checks": ["q3", "q6", "q9"]},
+    {"id": "O3", "text": "相関があっても因果関係があるとは断定できないことを、別の要因などの可能性を挙げて説明できる。", "from": "相関と因果の区別", "sections": ["sec-3"], "checks": ["q4", "q9"]},
+    {"id": "O4", "text": "仮説検定の考え方を用いて、半々の仮定のもとでの実験の相対度数や平均から 2s・3s 離れた値を基準に主張の妥当性を判断し、判断の過程を批判的に考察できる。", "from": "仮説検定の考え方による主張の妥当性の判断の問題に取り組む", "sections": ["sec-4"], "checks": ["q7", "q8", "q10"]}
+  ],
+  "key_terms": [
+    {"term": "外れ値", "where": "sec-1"},
+    {"term": "異常値", "where": "sec-1"},
+    {"term": "因果関係", "where": "sec-3"},
+    {"term": "二次元表（クロス集計表）", "where": "sec-2"},
+    {"term": "層別", "where": "sec-2"},
+    {"term": "仮説検定の考え方", "where": "sec-4"},
+    {"term": "平均から 2s・3s 離れた値の基準", "where": "sec-4"}
+  ],
+  "prerequisites": [
+    {"concept": "外れ値の基準（四分位範囲の1.5倍）、外れ値を区別した箱ひげ図、背景を探る意義、異常値との区別", "taught_in": ["hs_math_1a/数Ⅰ-083"], "gap": false, "where": "sec-1"},
+    {"concept": "相関と因果の違い、別の要因・向きが逆・偶然の可能性、結論の言い方", "taught_in": ["hs_math_1a/数Ⅰ-086"], "gap": false, "where": "sec-3"},
+    {"concept": "二次元表（クロス集計表）と、何を 1 とみた割合か、集計し直すこと", "taught_in": ["hs_math_1a/数Ⅰ-087"], "gap": false, "where": "sec-2"},
+    {"concept": "層別して箱ひげ図を並べて比べること、記録を要因と紐付けること", "taught_in": ["hs_math_1a/数Ⅰ-088"], "gap": false, "where": "sec-2"},
+    {"concept": "仮説検定の考え方：半々の仮定、コインを投げる実験、実際の結果以上の相対度数", "taught_in": ["hs_math_1a/数Ⅰ-089"], "gap": false, "where": "sec-4"},
+    {"concept": "仮説検定の考え方：相対度数と 2s・3s の基準による判断、判断の言い方、批判的考察", "taught_in": ["hs_math_1a/数Ⅰ-090"], "gap": false, "where": "sec-4"},
+    {"concept": "単元末演習の型A・型C・型D・型E", "taught_in": ["hs_math_1a/数Ⅰ-091"], "gap": false, "where": "review"},
+    {"concept": "四分位数の求め方（数Ⅰ-079 の約束）", "taught_in": ["hs_math_1a/数Ⅰ-079", "jhs_math/中2-088"], "gap": false, "where": "sec-1"},
+    {"concept": "四分位範囲と箱ひげ図、複数の集団の比較", "taught_in": ["jhs_math/中2-089", "jhs_math/中2-091"], "gap": false, "where": "sec-2"},
+    {"concept": "代表値と、極端な値の影響", "taught_in": ["jhs_math/中1-111"], "gap": false, "where": "sec-1"},
+    {"concept": "散布図と相関係数", "taught_in": ["hs_math_1a/数Ⅰ-084", "hs_math_1a/数Ⅰ-085"], "gap": false, "where": "sec-3"},
+    {"concept": "標準偏差、分散＝（2乗の平均値）−（平均値の2乗）", "taught_in": ["hs_math_1a/数Ⅰ-081"], "gap": false, "where": "sec-4"},
+    {"concept": "値ごとの度数から平均値を求める（値×度数の和÷度数の合計。中学校の教科書で扱われることがある、度数分布表の階級値と度数から平均値を求める方法と同じ計算。数Ⅰ-079・090 と同じ出どころ）", "taught_in": ["jhs_math/中1-111"], "gap": false, "where": "sec-4"},
+    {"concept": "値ごとの度数から2乗の平均値を求める（例題5 の平均値・標準偏差はページに値を示し、計算はさせない。数Ⅰ-090 と同じ gap）", "taught_in": [], "gap": true, "where": "sec-4"},
+    {"concept": "割合を含む数量・百分率", "taught_in": ["jhs_math/中1-029", "jhs_math/中1-052"], "gap": false, "where": "sec-2"},
+    {"concept": "相対度数", "taught_in": ["jhs_math/中1-112"], "gap": false, "where": "sec-2"},
+    {"concept": "二次元の表", "taught_in": ["jhs_math/中2-082"], "gap": false, "where": "sec-2"},
+    {"concept": "同様に確からしいことと確率", "taught_in": ["jhs_math/中2-079", "jhs_math/中2-080"], "gap": false, "where": "sec-4"},
+    {"concept": "多数回の試行と相対度数", "taught_in": ["jhs_math/中1-117"], "gap": false, "where": "sec-4"},
+    {"concept": "無作為に選ぶこと（無作為抽出）", "taught_in": ["jhs_math/中3-112"], "gap": false, "where": "sec-4"}
+  ],
+  "out_of_scope": [
+    "新しい内容（復習の行のため、数Ⅰ-083・086〜090 の内容の練習だけを扱う）",
+    "帰無仮説・有意水準を用いた仮説検定の手順（数Ｂ-058 以降）",
+    "仮説検定と反復試行の確率（一部の教科書が「発展」。単元「データの分析」の注のとおり載せない）",
+    "数学Ⅰの次のコマ（地図の next_id は空。数学Ⅰの最後のコマ）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『復習（予備時間）』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(4)ア(ウ)・イ(イ)・イ(ウ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.44-48 外れ値、質的データの分析、仮説検定の考え方"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"},
+    {"name": "教科書編修趣意書『改訂版 数学Ⅰ』（数Ⅰ104-901）", "publisher": "数研出版（文部科学省公開）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-14.pdf", "use": "発展的な学習内容の記述「仮説検定と反復試行の確率」（206ページ、類型2）"},
+    {"name": "教科書編修趣意書『改訂版 数学Ⅰ Advanced』（数Ⅰ002-901）", "publisher": "東京書籍（文部科学省公開）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-1.pdf", "use": "発展的な学習内容の記述「仮説検定と反復試行の確率」（197ページ、類型2）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

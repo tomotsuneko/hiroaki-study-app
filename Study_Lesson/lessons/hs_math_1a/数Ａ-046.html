@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三角形の性質の練習｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>図形の性質</span><span>数Ａ-046</span></div>
+  <h1>三角形の性質の練習</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">演習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">数Ａ-035〜045 で学んだ三角形の性質を使い分ける演習です。角の二等分線と辺の比、外心・内心・重心、チェバの定理・メネラウスの定理、面積比、三角形の成立条件、辺と角の大小のうち、どれを使うかを図と問題の言葉から見分けることが出発点です。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>内分・外分と、角の二等分線と辺の比（内角・外角）を用いて、線分の長さや比を求めることができる（型A）。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>外心・内心・重心の性質を用いて、角の大きさや線分の長さ・比、面積を求めることができる（型B）。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>チェバの定理・メネラウスの定理（逆を含む）を、求めたい比に合わせて三角形と直線を選んで用い、線分の比や面積比を求めることができる（型C）。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>問題の図と言葉から使う性質を見分け、三角形の成立条件や辺と角の大小関係も含めて、性質を組み合わせて問題を解くことができる（型D）。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-045）</span>三角形の辺と角の大小</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-046）</span>三角形の性質の練習</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-047）</span>円周角の定理とその逆の振り返り</div>
+</div>
+<p class="small">この時間は新しい内容を学ばず、数Ａ-035〜045 の内容を練習します。「型A〜D」はこのページでの呼び方です。前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」、中学1年「平面図形」「空間図形」。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：範囲の性質の総整理</h2>
+<div class="formula-card">
+  <div><span class="f-name">① 内分・外分（数Ａ-035）</span><p>AB を \( m:n \) に内分する点は AB を \( m+n \) 目盛りに分けて A から \( m \) 目盛り。外分（\( m\neq n \)）は \( m&gt;n \) なら B の側、\( m&lt;n \) なら A の側で、AB が \( |m-n| \) 目盛り分。</p></div>
+  <div><span class="f-name">② 角の二等分線と辺の比（数Ａ-036）</span><p>∠A の二等分線と辺 BC の交点 D：\( \mathrm{BD}:\mathrm{DC}=\mathrm{AB}:\mathrm{AC} \)。∠A の外角の二等分線と直線 BC の交点 E（\( \mathrm{AB}\neq\mathrm{AC} \)）：\( \mathrm{BE}:\mathrm{EC}=\mathrm{AB}:\mathrm{AC} \)（外分）。</p></div>
+  <div><span class="f-name">③ 外心 O（数Ａ-037）</span><p>3辺の垂直二等分線の交点で \( \mathrm{OA}=\mathrm{OB}=\mathrm{OC} \)（外接円の中心）。∠A が鋭角なら \( \angle\mathrm{BOC}=2\angle\mathrm{A} \)。直角三角形では斜辺の中点。</p></div>
+  <div><span class="f-name">④ 内心 I（数Ａ-038）</span><p>3つの内角の二等分線の交点で、3辺から等しい距離（内接円の中心）。\( \angle\mathrm{BIC}=90^\circ+\dfrac{1}{2}\angle\mathrm{A} \)。</p></div>
+  <div><span class="f-name">⑤ 重心 G（数Ａ-039）</span><p>3本の中線の交点で、各中線を頂点の側から \( 2:1 \) に内分する。</p></div>
+  <div><span class="f-name">⑥ チェバの定理と逆（数Ａ-040・041）</span><p>\( \dfrac{\mathrm{BP}}{\mathrm{PC}}\cdot\dfrac{\mathrm{CQ}}{\mathrm{QA}}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \)（3直線の交点は三角形の内部でも外部でも）。逆：P、Q、R が辺上にあって積が 1 なら AP、BQ、CR は1点で交わる。</p></div>
+  <div><span class="f-name">⑦ メネラウスの定理と逆（数Ａ-042・043）</span><p>\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}}=1 \)（延長上の点は1個か3個）。逆：延長上の点が1個か3個で積が 1 なら D、E、F は一直線上。</p></div>
+  <div><span class="f-name">⑧ 面積比（数Ａ-040・043）</span><p>高さが共通な三角形の面積の比は底辺の比（数Ａ-040 の性質1）。相似な三角形の面積の比は相似比の2乗（中3-078）。</p></div>
+  <div><span class="f-name">⑨ 三角形の成立条件（数Ａ-044）</span><p>\( |b-c|&lt;a&lt;b+c \)。いちばん長い辺が他の2辺の和より小さいときだけ三角形ができる（条件を満たせば三角形ができる向きは、数Ａ-044 で図と操作部品で確かめた）。</p></div>
+  <div><span class="f-name">⑩ 辺と角の大小（数Ａ-045）</span><p>辺の大小と、それに向かい合う角の大小は一致する。</p></div>
+</div>
+<p class="small">①〜⑩は、このページの中での番号です。このページでも、三角形の面積を △ABO のように表します（数Ａ-040 と同じ）。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-036</span></div>
+  <p>\( \mathrm{AB}=7 \)、\( \mathrm{AC}=3 \) の △ABC で、∠A の二等分線と辺 BC の交点を D とします。\( \mathrm{BD}:\mathrm{DC} \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 3:7 \)</button>
+    <button data-correct="true">\( 7:3 \)</button>
+    <button>\( 1:1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \mathrm{BD}:\mathrm{DC}=\mathrm{AB}:\mathrm{AC}=7:3 \) です。\( 3:7 \) は B の側と C の側を逆に対応させています（B に近いほうの辺 AB の長さが BD の側です）。\( 1:1 \) は、角の二等分線が向かい合う辺の中点を通ると考えた誤りで、それは中線です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-037・038</span></div>
+  <p>\( \angle\mathrm{A}=40^\circ \) の鋭角三角形 ABC の外心を O、内心を I とします。\( \angle\mathrm{BOC} \) と \( \angle\mathrm{BIC} \) の組として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( \angle\mathrm{BOC}=110^\circ \)、\( \angle\mathrm{BIC}=80^\circ \)</button>
+    <button>\( \angle\mathrm{BOC}=80^\circ \)、\( \angle\mathrm{BIC}=140^\circ \)</button>
+    <button data-correct="true">\( \angle\mathrm{BOC}=80^\circ \)、\( \angle\mathrm{BIC}=110^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">外心では \( \angle\mathrm{BOC}=2\times40^\circ=80^\circ \)（円周角と中心角）、内心では \( \angle\mathrm{BIC}=90^\circ+\dfrac{40^\circ}{2}=110^\circ \) です。1つ目は外心と内心を入れかえています。2つ目の \( 140^\circ \) は \( 180^\circ-40^\circ \)（∠B＋∠C）で、∠IBC＋∠ICB がその半分になることを忘れています。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：どの型か見分けよう</h2>
+<div class="box think">
+  <p class="box-title">5つの問題</p>
+  <p>(ア) AB＝8、AC＝4、BC＝6 の △ABC で、∠A の二等分線と外角の二等分線が直線 BC と交わる点の距離は？<br>
+  (イ) 鋭角三角形で ∠A＝56° のとき、外心 O と内心 I について ∠BOC と ∠BIC は？<br>
+  (ウ) △ABC の面積が 48 のとき、重心 G と辺 BC の中点 L、頂点 B がつくる三角形の面積は？<br>
+  (エ) 辺 AB の中点 R と、辺 BC を 1:3 に分ける点 P について、AP と CR の交点は AP をどんな比に分ける？<br>
+  (オ) AB＝6、CA＝4、BC＝\( x \) の三角形で、∠A がいちばん大きくなる \( x \) の範囲は？</p>
+  <p>解き始める前に、それぞれどの性質を使うかを予想しましょう。答えは、(ア) が「3 型A」の例題1、(イ)(ウ) が「4 型B」の例題2・例題3、(エ) が「5 型C」の例題4、(オ) が「6 型D・型の見分け方」の例題5で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="型A：線分の比"><span class="num">3</span>型A：内分・外分と角の二等分線</h2>
+<p>型A は、角の二等分線が向かい合う辺をどんな比に分けるか（内角なら内分、外角なら外分）を使って、線分の長さや比を求める問題です。「角の二等分線」「外角」という言葉が手掛かりです。</p>
+<figure>
+<!--svg:f046a-->
+<svg viewBox="0 0 310 164" width="310" role="img" aria-label="AB=8、AC=4、BC=6 の三角形 ABC。∠A の二等分線と辺 BC の交点 D（青）、∠A の外角の二等分線と、辺 BC を C の先に延ばした直線の交点 E（赤）" data-fig="f046a" data-s="22.000000" data-ox="23.000000" data-oy="137.513803">
+<line x1="177" y1="52.3" x2="230.9" y2="22.5" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="2 3" data-seg="BAext"/>
+<line x1="155" y1="137.5" x2="287" y2="137.5" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="2 3" data-seg="CE"/>
+<line x1="177" y1="52.3" x2="23" y2="137.5" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="23" y1="137.5" x2="155" y2="137.5" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="155" y1="137.5" x2="177" y2="52.3" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="177" y1="52.3" x2="111" y2="137.5" stroke="#b7791f" stroke-width="1.5" data-seg="AD"/>
+<line x1="177" y1="52.3" x2="287" y2="137.5" stroke="#b7791f" stroke-width="1.5" data-seg="AE"/>
+<path d="M158.6,76 A30,30 0 0 1 150.8,66.8" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="A,B,D" data-mark="1"/>
+<path d="M169.5,81.4 A30,30 0 0 1 158.6,76" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="A,D,C" data-mark="1"/>
+<path d="M188.4,46 A13,13 0 0 1 187.3,60.3 M191.5,44.3 A16.6,16.6 0 0 1 190.1,62.5" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="A,Fx,E" data-mark="2"/>
+<path d="M187.3,60.3 A13,13 0 0 1 173.8,64.9 M190.1,62.5 A16.6,16.6 0 0 1 172.8,68.4" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="A,E,C" data-mark="2"/>
+<circle cx="230.90" cy="22.49" r="0.1" fill="none" stroke="none" stroke-width="1.4" data-pt="Fx" data-x="9.450000" data-y="5.228528"/>
+<circle cx="177.00" cy="52.31" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="7.000000" data-y="3.872983"/>
+<text x="174.6" y="42.7" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="23.00" cy="137.51" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="9.8" y="146.5" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="155.00" cy="137.51" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="6.000000" data-y="0.000000"/>
+<text x="155" y="156.7" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="111.00" cy="137.51" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="D" data-x="4.000000" data-y="0.000000"/>
+<text x="111" y="156.7" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">D</text>
+<circle cx="287.00" cy="137.51" r="3.2" fill="#c0392b" stroke="#c0392b" stroke-width="1.4" data-pt="E" data-x="12.000000" data-y="0.000000"/>
+<text x="287" y="156.7" text-anchor="middle" font-size="14" fill="#c0392b" font-weight="700">E</text>
+</svg>
+<!--/svg:f046a-->
+  <figcaption>図1　AB＝8、AC＝4、BC＝6 の △ABC。∠A の二等分線と辺 BC の交点 D、∠A の外角の二等分線と辺 BC の延長の交点 E。同じ数の弧は等しい角（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題1（型A：導入の (ア)）</p>
+  <p>\( \mathrm{AB}=8 \)、\( \mathrm{AC}=4 \)、\( \mathrm{BC}=6 \) の △ABC で、∠A の二等分線と辺 BC の交点を D、∠A の外角の二等分線と直線 BC の交点を E とします。DE の長さを求めなさい。</p>
+  <div class="step">着眼点：D は BC を \( \mathrm{AB}:\mathrm{AC} \) に内分し、E は BC を \( \mathrm{AB}:\mathrm{AC} \) に外分します（②）。\( \mathrm{AB}:\mathrm{AC}=8:4=2:1 \)。</div>
+  <div class="step">D：BC を \( 2+1=3 \) 目盛りに分けると1目盛り 2 なので、\( \mathrm{BD}=4 \)、\( \mathrm{DC}=2 \)。</div>
+  <div class="step">E：\( 2&gt;1 \) なので C の側の延長上にあり、BC が \( 2-1=1 \) 目盛り分なので1目盛り 6。\( \mathrm{CE}=6 \)、\( \mathrm{BE}=12 \)（①）。</div>
+  <div class="step">答え：D と E は C をはさんで反対側にあるので \( \mathrm{DE}=\mathrm{DC}+\mathrm{CE}=2+6=8 \)。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型A）</p><p>① 外分を内分と同じ目盛りで数える：E について BC を 3 目盛りとすると \( \mathrm{CE}=2 \) になってしまいます。外分では BC は \( |m-n| \) 目盛り分です。<br>② 比の対応を逆にする：B に近い側の線分 BD には、B を端にもつ辺 AB の長さが対応します。<br>③ \( \mathrm{AB}=\mathrm{AC} \) でも外角の二等分線の交点 E があると考える：そのときは外角の二等分線が BC に平行で、E はありません（数Ａ-036）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="型B：外心・内心・重心"><span class="num">4</span>型B：外心・内心・重心</h2>
+<p>型B は、外心・内心・重心がそれぞれ何の交点で、どんな性質をもつかを使う問題です。「3頂点から等しい距離」「外接円」なら外心、「3辺から等しい距離」「内接円」「角の二等分線の交点」なら内心、「中点」「中線」なら重心です。</p>
+<div class="box example worked">
+  <p class="box-title">例題2（型B：導入の (イ)）</p>
+  <p>\( \angle\mathrm{A}=56^\circ \) の鋭角三角形 ABC の外心を O、内心を I とします。\( \angle\mathrm{BOC} \) と \( \angle\mathrm{BIC} \) を求めなさい。</p>
+  <div class="step">着眼点：外心は外接円の中心なので、∠BOC は弧 BC に対する中心角です（③）。内心では、∠IBC、∠ICB が ∠B、∠C の半分です（④）。</div>
+  <div class="step">\( \angle\mathrm{BOC}=2\angle\mathrm{A}=2\times56^\circ=112^\circ \)。</div>
+  <div class="step">\( \angle\mathrm{B}+\angle\mathrm{C}=180^\circ-56^\circ=124^\circ \) なので \( \angle\mathrm{IBC}+\angle\mathrm{ICB}=62^\circ \)。よって \( \angle\mathrm{BIC}=180^\circ-62^\circ=118^\circ \)（④の \( 90^\circ+\dfrac{56^\circ}{2} \) と同じ）。</div>
+</div>
+<figure>
+<!--svg:f046c-->
+<svg viewBox="0 0 273 212" width="273" role="img" aria-label="三角形 ABC の3本の中線 AL、BM、CN と重心 G。L、M、N は辺 BC、CA、AB の中点。三角形 GBL を薄い橙で塗ってある" data-fig="f046c" data-s="36.000000" data-ox="28.500000" data-oy="186.000000">
+<polygon points="130.5,132 28.5,186 136.5,186" fill="#b7791f" fill-opacity="0.18" stroke="none" data-region="GBL"/>
+<line x1="118.5" y1="24" x2="28.5" y2="186" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="28.5" y1="186" x2="244.5" y2="186" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="244.5" y1="186" x2="118.5" y2="24" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="118.5" y1="24" x2="136.5" y2="186" stroke="#1e8e5a" stroke-width="1.5" data-seg="AL"/>
+<line x1="28.5" y1="186" x2="181.5" y2="105" stroke="#1e8e5a" stroke-width="1.5" data-seg="BM"/>
+<line x1="244.5" y1="186" x2="73.5" y2="105" stroke="#1e8e5a" stroke-width="1.5" data-seg="CN"/>
+<path d="M82.5,181 L82.5,191" fill="none" stroke="currentColor" stroke-width="1.4" data-tick="B,L" data-mark="1"/>
+<path d="M190.5,181 L190.5,191" fill="none" stroke="currentColor" stroke-width="1.4" data-tick="L,C" data-mark="1"/>
+<circle cx="118.50" cy="24.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="2.500000" data-y="4.500000"/>
+<text x="118.5" y="15.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="28.50" cy="186.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="15.3" y="195" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="244.50" cy="186.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="6.000000" data-y="0.000000"/>
+<text x="257.7" y="195" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="136.50" cy="186.00" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="L" data-x="3.000000" data-y="0.000000"/>
+<text x="136.5" y="205.2" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">L</text>
+<circle cx="181.50" cy="105.00" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="M" data-x="4.250000" data-y="2.250000"/>
+<text x="193.6" y="102.2" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">M</text>
+<circle cx="73.50" cy="105.00" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="N" data-x="1.250000" data-y="2.250000"/>
+<text x="60.3" y="104.4" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">N</text>
+<circle cx="130.50" cy="132.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="G" data-x="2.833333" data-y="1.500000"/>
+<text x="139.4" y="119.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">G</text>
+</svg>
+<!--/svg:f046c-->
+  <figcaption>図2　△ABC の3本の中線と重心 G。L、M、N は辺 BC、CA、AB の中点（同じ数の短い線は等しい長さ）。薄い橙の部分は △GBL（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題3（型B：導入の (ウ)）</p>
+  <p>△ABC の面積が 48 です。重心を G、辺 BC の中点を L とするとき、△GBL の面積を求めなさい（図2）。</p>
+  <div class="step">着眼点：重心の比（⑤）と、高さが共通な三角形の面積の比（⑧）を順に使います。</div>
+  <div class="step">L は BC の中点なので、△ABL と △ACL は高さが共通で底辺が等しく、\( \triangle\mathrm{ABL}=48\times\dfrac{1}{2}=24 \)。</div>
+  <div class="step">G は中線 AL を \( 2:1 \) に内分するので \( \mathrm{GL}=\dfrac{1}{3}\mathrm{AL} \)。△GBL と △ABL は頂点 B を共有し、底辺 GL、AL が同じ直線上にあるので \( \triangle\mathrm{GBL}=24\times\dfrac{1}{3}=8 \)。</div>
+  <div class="step">答え：8。同じように考えると、3本の中線で分けられた6つの三角形の面積は、どれも 8（全体の \( \dfrac{1}{6} \)）です。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型B）</p><p>① 外心と内心の性質を取り違える：\( \angle\mathrm{BOC}=2\angle\mathrm{A} \)（外心）と \( \angle\mathrm{BIC}=90^\circ+\dfrac{1}{2}\angle\mathrm{A} \)（内心）を区別します。<br>② 重心の \( 2:1 \) の向きを逆にする：頂点の側が 2 です（\( \mathrm{AG}:\mathrm{GL}=2:1 \)）。<br>③ 「重心から3頂点までの距離は等しい」と考える：等しいのは外心です（重心は中線を同じ比に分けるだけ、数Ａ-039）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="型C：チェバ・メネラウス・面積比"><span class="num">5</span>型C：チェバの定理・メネラウスの定理と面積比</h2>
+<p>型C は、三角形の中の線分の交点が線分を分ける比や、面積の比を求める問題です。3本の直線が1点で交わる図ならチェバの定理、1本の直線が三角形の3辺（またはその延長）と交わる見方ができればメネラウスの定理を使います。</p>
+<figure>
+<!--svg:f046b-->
+<svg viewBox="0 0 300 212" width="300" role="img" aria-label="三角形 ABC。辺 AB の中点 R、辺 BC を 1:3 に内分する点 P。AP と CR の交点 K、直線 BK と辺 CA の交点 Q（緑の破線）" data-fig="f046b" data-s="40.000000" data-ox="30.000000" data-oy="186.000000">
+<line x1="110" y1="26" x2="30" y2="186" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="30" y1="186" x2="270" y2="186" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="270" y1="186" x2="110" y2="26" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="110" y1="26" x2="90" y2="186" stroke="#1e8e5a" stroke-width="1.6" data-seg="AP"/>
+<line x1="270" y1="186" x2="70" y2="106" stroke="#1e8e5a" stroke-width="1.6" data-seg="CR"/>
+<line x1="30" y1="186" x2="150" y2="66" stroke="#1e8e5a" stroke-width="1.4" stroke-dasharray="6 4" data-seg="BQ"/>
+<circle cx="110.00" cy="26.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="2.000000" data-y="4.000000"/>
+<text x="110" y="17.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="30.00" cy="186.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="16.8" y="195" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="270.00" cy="186.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="6.000000" data-y="0.000000"/>
+<text x="283.2" y="195" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="90.00" cy="186.00" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="P" data-x="1.500000" data-y="0.000000"/>
+<text x="90" y="205.2" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">P</text>
+<circle cx="70.00" cy="106.00" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="R" data-x="1.000000" data-y="2.000000"/>
+<text x="56.8" y="105.4" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">R</text>
+<circle cx="150.00" cy="66.00" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="Q" data-x="3.000000" data-y="3.000000"/>
+<text x="160.7" y="61.2" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">Q</text>
+<circle cx="98.57" cy="117.43" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="K" data-x="1.714286" data-y="1.714286"/>
+<text x="107.1" y="136.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">K</text>
+<text x="60" y="201.7" text-anchor="middle" font-size="13" fill="currentColor">1</text>
+<text x="180" y="201.7" text-anchor="middle" font-size="13" fill="currentColor">3</text>
+</svg>
+<!--/svg:f046b-->
+  <figcaption>図3　辺 AB の中点 R、辺 BC を \( 1:3 \) に内分する点 P。AP と CR の交点 K、直線 BK と辺 CA の交点 Q（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題4（型C：導入の (エ)）</p>
+  <p>△ABC の辺 AB の中点を R、辺 BC を \( 1:3 \) に内分する点を P とし、AP と CR の交点を K、直線 BK と辺 CA の交点を Q とします（図3）。(1) \( \mathrm{AK}:\mathrm{KP} \)　(2) \( \mathrm{CK}:\mathrm{KR} \)　(3) \( \mathrm{CQ}:\mathrm{QA} \)　(4) △KBC の面積は △ABC の何倍か、を求めなさい。</p>
+  <div class="step">(1) 着眼点：AK、KP を辺にもつ △ABP と、直線 CR を選びます（R は辺 AB 上、K は辺 PA 上、C は辺 BP の延長上）。\( \dfrac{\mathrm{AR}}{\mathrm{RB}}\cdot\dfrac{\mathrm{BC}}{\mathrm{CP}}\cdot\dfrac{\mathrm{PK}}{\mathrm{KA}}=1 \) で、\( \dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \)、\( \dfrac{\mathrm{BC}}{\mathrm{CP}}=\dfrac{4}{3} \) なので \( \dfrac{\mathrm{PK}}{\mathrm{KA}}=\dfrac{3}{4} \)。答え：\( \mathrm{AK}:\mathrm{KP}=4:3 \)。</div>
+  <div class="step">(2) △BCR と直線 AP を選びます（P は辺 BC 上、K は辺 CR 上、A は辺 RB の延長上）。\( \dfrac{\mathrm{BP}}{\mathrm{PC}}\cdot\dfrac{\mathrm{CK}}{\mathrm{KR}}\cdot\dfrac{\mathrm{RA}}{\mathrm{AB}}=1 \) で、\( \dfrac{\mathrm{BP}}{\mathrm{PC}}=\dfrac{1}{3} \)、\( \dfrac{\mathrm{RA}}{\mathrm{AB}}=\dfrac{1}{2} \) なので \( \dfrac{\mathrm{CK}}{\mathrm{KR}}=6 \)。答え：\( \mathrm{CK}:\mathrm{KR}=6:1 \)。</div>
+  <div class="step">(3) AP、BQ、CR は1点 K で交わるので、チェバの定理（⑥）より \( \dfrac{1}{3}\cdot\dfrac{\mathrm{CQ}}{\mathrm{QA}}\cdot\dfrac{1}{1}=1 \)。答え：\( \mathrm{CQ}:\mathrm{QA}=3:1 \)。</div>
+  <div class="step">(4) △KBC と △ABC は底辺 BC が共通で、高さの比は \( \mathrm{KP}:\mathrm{AP}=3:7 \)（K は AP 上、数Ａ-041 の性質）。答え：\( \dfrac{3}{7} \) 倍。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型C）</p><p>① 選んだ三角形の頂点を通る直線にメネラウスの定理を使う：(1) で △APC と直線 CR の組は、直線が頂点 C を通るので使えません。<br>② 延長上の点の比を取り違える：(1) で \( \dfrac{\mathrm{BC}}{\mathrm{CP}} \) のかわりに \( \dfrac{\mathrm{BP}}{\mathrm{PC}}=\dfrac{1}{3} \) を入れると \( \mathrm{AK}:\mathrm{KP}=1:3 \) になってしまいます。<br>③ 面積の比を線分の比の2乗にする：(4) は相似ではないので \( \dfrac{3}{7} \) 倍で、\( \dfrac{9}{49} \) ではありません。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="型D・型の見分け方"><span class="num">6</span>型D：成立条件・辺と角の大小と、型の見分け方</h2>
+<p>型D は、辺の長さの条件から三角形ができるか、どの角が大きいかを判断する問題です。「三角形ができる」「範囲」「いちばん大きい角」などの言葉が手掛かりで、⑨と⑩を組み合わせることもあります。</p>
+<div class="box example worked">
+  <p class="box-title">例題5（型D：導入の (オ)）</p>
+  <p>\( \mathrm{AB}=6 \)、\( \mathrm{CA}=4 \)、\( \mathrm{BC}=x \) の △ABC で、∠A がいちばん大きい角になるような \( x \) の値の範囲を求めなさい。</p>
+  <div class="step">着眼点：まず三角形ができる条件（⑨）、次に「∠A がいちばん大きい」を辺の条件に言いかえます（⑩）。</div>
+  <div class="step">三角形ができる条件：\( |6-4|&lt;x&lt;6+4 \) より \( 2&lt;x&lt;10 \)（この範囲なら三角形ができることは、数Ａ-044 で図と操作部品で確かめた）。</div>
+  <div class="step">∠A と向かい合う辺は BC です。数Ａ-045 の2つの性質から、∠A がいちばん大きいことと BC がいちばん長いことは同じことなので、\( x&gt;6 \) かつ \( x&gt;4 \)。よって \( x&gt;6 \)（\( x=6 \) では ∠A と ∠C が等しくなり、∠A だけがいちばん大きいとはいえない）。</div>
+  <div class="step">答え：\( 6&lt;x&lt;10 \)。</div>
+</div>
+<h3>型を見分ける手掛かり</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>問題の言葉・図</th><th>使う性質</th><th>このページの番号・型</th></tr></thead>
+  <tbody>
+    <tr><td>角の二等分線（内角・外角）と向かい合う辺</td><td>角の二等分線と辺の比（内分・外分）</td><td>②・型A</td></tr>
+    <tr><td>3頂点から等しい距離、外接円</td><td>外心（\( \angle\mathrm{BOC}=2\angle\mathrm{A} \)）</td><td>③・型B</td></tr>
+    <tr><td>3辺から等しい距離、内接円、内角の二等分線の交点</td><td>内心（\( \angle\mathrm{BIC}=90^\circ+\dfrac{1}{2}\angle\mathrm{A} \)）</td><td>④・型B</td></tr>
+    <tr><td>中点、中線</td><td>重心（\( 2:1 \)）と面積の等分</td><td>⑤・型B</td></tr>
+    <tr><td>頂点を通る3本の直線が1点で交わる</td><td>チェバの定理（逆は「1点で交わる」ことの判定）</td><td>⑥・型C</td></tr>
+    <tr><td>交点が線分を分ける比、3点が一直線上</td><td>メネラウスの定理（逆は「一直線上にある」ことの判定）</td><td>⑦・型C</td></tr>
+    <tr><td>面積の比</td><td>高さが共通なら底辺の比、相似なら相似比の2乗</td><td>⑧・型B・型C</td></tr>
+    <tr><td>三角形ができるか、辺の長さの範囲</td><td>\( |b-c|&lt;a&lt;b+c \)</td><td>⑨・型D</td></tr>
+    <tr><td>いちばん大きい角・いちばん長い辺</td><td>辺と角の大小関係</td><td>⑩・型D</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型D・見分け方）</p><p>① 角の大小の条件で等号を含める：例題5で \( 6\leqq x \) とすると、\( x=6 \) で ∠A と ∠C が等しくなります。<br>② 成立条件を確かめずに範囲を答える：例題5で \( x&gt;6 \) だけを答えると、\( x=10 \) 以上で三角形ができない場合を含めてしまいます。<br>③ 向かい合う角を取り違える：辺 BC と向かい合うのは ∠A で、BC の両端の ∠B、∠C ではありません。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この範囲の主な語句（すべて既習）</p>
+  <dl>
+    <dt>角の二等分線と辺の比</dt><dd>三角形の内角の二等分線は向かい合う辺を、その角をはさむ2辺の比に内分する。外角の二等分線は外分する（数Ａ-036）。</dd>
+    <dt>外心・内心・重心</dt><dd>3辺の垂直二等分線の交点（外接円の中心）、3つの内角の二等分線の交点（内接円の中心）、3本の中線の交点（中線を \( 2:1 \) に内分）（数Ａ-037〜039）。</dd>
+    <dt>チェバの定理・メネラウスの定理</dt><dd>三角形を1周する順に3つの比をかけると 1。チェバは3本の直線が1点で交わるとき、メネラウスは1本の直線と3辺（延長）が交わるとき（数Ａ-040〜043）。</dd>
+    <dt>面積比</dt><dd>高さが共通な三角形の面積の比は底辺の比、相似な三角形の面積の比は相似比の2乗（数Ａ-040・043）。</dd>
+    <dt>三角形が成立するための条件</dt><dd>\( |b-c|&lt;a&lt;b+c \)（数Ａ-044）。</dd>
+    <dt>辺と角の大小関係</dt><dd>辺の大小とそれに向かい合う角の大小は一致する（数Ａ-045）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>型A：角の二等分線は向かい合う辺を2辺の比に分ける（内角は内分、外角は外分）。外分では辺が \( |m-n| \) 目盛り分（O1）。</li>
+    <li>型B：外心は \( \angle\mathrm{BOC}=2\angle\mathrm{A} \)（∠A が鋭角）・3頂点から等距離、内心は \( \angle\mathrm{BIC}=90^\circ+\dfrac{1}{2}\angle\mathrm{A} \)・3辺から等距離、重心は中線を \( 2:1 \) に内分（O2）。</li>
+    <li>型C：求めたい比の線分を辺にもつ三角形と、その頂点を通らない直線を選んでメネラウスの定理。1点で交わる3直線にはチェバの定理。面積は高さが共通な三角形の比を順にかける（O3）。</li>
+    <li>型D：三角形ができる条件 \( |b-c|&lt;a&lt;b+c \) と、辺と角の大小を組み合わせる。どの性質を使うかは、問題の言葉と図から見分ける（O4）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">型A・型B</span><p>\( \mathrm{BD}:\mathrm{DC}=\mathrm{AB}:\mathrm{AC} \)、\( \angle\mathrm{BOC}=2\angle\mathrm{A} \)、\( \angle\mathrm{BIC}=90^\circ+\dfrac{1}{2}\angle\mathrm{A} \)、\( \mathrm{AG}:\mathrm{GL}=2:1 \)</p></div>
+  <div><span class="f-name">型C</span><p>\( \dfrac{\mathrm{BP}}{\mathrm{PC}}\cdot\dfrac{\mathrm{CQ}}{\mathrm{QA}}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \)、\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}}=1 \)</p></div>
+  <div><span class="f-name">型D</span><p>\( |b-c|&lt;a&lt;b+c \)、大きい辺に大きい角が向かい合う</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">型を混ぜて出題します。基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）と型を示す。長さ・角の大きさは数だけを、比は「2:1」、分数は「2/3」、範囲は「1&lt;x&lt;3」のように入力してください。</p>
+
+<div class="q" data-type="input" id="q1" data-accept="4|BD=4">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1（型A）</span></div>
+  <p>\( \mathrm{AB}=8 \)、\( \mathrm{AC}=6 \)、\( \mathrm{BC}=7 \) の △ABC で、∠A の二等分線と辺 BC の交点を D とします。BD の長さを求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 4。\( \mathrm{BD}:\mathrm{DC}=\mathrm{AB}:\mathrm{AC}=8:6=4:3 \) なので、BC を 7 目盛りに分けて \( \mathrm{BD}=7\times\dfrac{4}{7}=4 \) です。3 と答えた場合は DC を求めています（比の対応が逆）。3.5 と答えた場合は D を中点としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2（型B）</span></div>
+  <p>∠C＝90°、∠A＝35° の直角三角形 ABC の外心を O とします。∠OCB の大きさはどれですか。</p>
+  <div class="choices">
+    <button>\( 35^\circ \)</button>
+    <button>\( 70^\circ \)</button>
+    <button data-correct="true">\( 55^\circ \)</button>
+    <button>\( 45^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">直角三角形の外心は斜辺 AB の中点です（③）。\( \mathrm{OB}=\mathrm{OC} \) なので △OBC は二等辺三角形で、\( \angle\mathrm{OCB}=\angle\mathrm{OBC}=\angle\mathrm{B}=90^\circ-35^\circ=55^\circ \) です。\( 35^\circ \) は ∠OCA（＝∠A）と取り違えています。\( 70^\circ \) は \( 2\angle\mathrm{A} \) で、∠BOC を考えるときの式を使っています（∠BOC は \( 180^\circ-2\times55^\circ=70^\circ \) で、∠OCB ではありません）。\( 45^\circ \) は OC が ∠C の二等分線だと考えた誤りで、それは内心の性質です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2（型B）</span></div>
+  <p>鋭角三角形 ABC の外心を O、内心を I とします。\( \angle\mathrm{BOC}=96^\circ \) のとき、∠BIC の大きさはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 114^\circ \)</button>
+    <button>\( 96^\circ \)</button>
+    <button>\( 138^\circ \)</button>
+    <button>\( 132^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">∠A は鋭角なので、外心では \( \angle\mathrm{BOC}=2\angle\mathrm{A} \)（③）から \( \angle\mathrm{A}=96^\circ\div2=48^\circ \)。内心では \( \angle\mathrm{IBC}+\angle\mathrm{ICB}=\dfrac{1}{2}(180^\circ-48^\circ)=66^\circ \) なので、\( \angle\mathrm{BIC}=180^\circ-66^\circ=114^\circ \)（④の \( 90^\circ+24^\circ \)）です。\( 96^\circ \) は ∠BIC も ∠BOC と同じ大きさになると考えた誤りです。\( 138^\circ \) は ∠BOC の \( 96^\circ \) を ∠A とみて \( 90^\circ+\dfrac{96^\circ}{2} \) とした値です。\( 132^\circ \) は ∠B＋∠C（\( 180^\circ-48^\circ \)）の値で、これを ∠BIC と取り違えています。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="21|BM=21">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問4</span><span class="q-obj">O2（型B）</span></div>
+  <p>△ABC の重心を G、辺 CA の中点を M とします。\( \mathrm{BG}=14 \) のとき、中線 BM の長さを求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 21。G は中線 BM を \( 2:1 \) に内分するので \( \mathrm{GM}=14\div2=7 \)、\( \mathrm{BM}=14+7=21 \) です。28 と答えた場合は \( \mathrm{BG}:\mathrm{GM}=1:1 \) と考えています。42 と答えた場合は BG を中線の \( \dfrac{1}{3} \) と取り違えています（\( 2:1 \) の向きが逆）。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="6|DE=6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O1（型A）</span></div>
+  <p>\( \mathrm{AB}=9 \)、\( \mathrm{AC}=3 \)、\( \mathrm{BC}=8 \) の △ABC で、∠A の二等分線と辺 BC の交点を D、∠A の外角の二等分線と直線 BC の交点を E とします。DE の長さを求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 6。\( \mathrm{AB}:\mathrm{AC}=9:3=3:1 \)。D は BC を \( 3:1 \) に内分するので \( \mathrm{DC}=8\times\dfrac{1}{4}=2 \)。E は \( 3:1 \) に外分し、C の側の延長上にあって BC が \( 3-1=2 \) 目盛り分なので1目盛り 4、\( \mathrm{CE}=4 \)。\( \mathrm{DE}=\mathrm{DC}+\mathrm{CE}=2+4=6 \) です。4 と答えた場合は CE だけ、12 と答えた場合は BE を答えています。2 と答えた場合は、外分でも BC を4目盛りとして \( \mathrm{CE}=2 \) とし、さらに DC を足し忘れています。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="4:3|AI:IP=4:3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O1・O2（型A・型B）</span></div>
+  <p>\( \mathrm{AB}=8 \)、\( \mathrm{AC}=4 \)、\( \mathrm{BC}=9 \) の △ABC の内心を I とし、直線 AI と辺 BC の交点を P とします。\( \mathrm{AI}:\mathrm{IP} \) を求めなさい（例：2:1）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 4:3。AP は ∠A の二等分線なので \( \mathrm{BP}=9\times\dfrac{8}{12}=6 \)。BI は ∠B の二等分線で、△ABP で AI:IP を分けるので、\( \mathrm{AI}:\mathrm{IP}=\mathrm{BA}:\mathrm{BP}=8:6=4:3 \) です（②を2回）。3:4 と答えた場合は比の対応が逆です。2:1 と答えた場合は重心の比と混同しています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3（型C）</span></div>
+  <p>△ABC の辺 BC、CA 上に \( \mathrm{BP}:\mathrm{PC}=3:5 \)、\( \mathrm{CQ}:\mathrm{QA}=2:3 \) となる点 P、Q をとります。辺 AB 上の点 R について、AP、BQ、CR が1点で交わるのは、\( \mathrm{AR}:\mathrm{RB} \) がどれのときですか。</p>
+  <div class="choices">
+    <button>\( 2:5 \)</button>
+    <button data-correct="true">\( 5:2 \)</button>
+    <button>\( 10:9 \)</button>
+    <button>\( 4:1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">P、Q、R はすべて辺上にあるので、3つの比の積が 1 になるように R をとれば、チェバの定理の逆（⑥）より3本は1点で交わります。\( \dfrac{3}{5}\cdot\dfrac{2}{3}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \)、\( \dfrac{2}{5}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \) なので \( \mathrm{AR}:\mathrm{RB}=5:2 \) です。\( 2:5 \) は2つの比の積をそのまま答えた値、\( 10:9 \) は CQ:QA を \( \dfrac{3}{2} \) と逆に入れた値、\( 4:1 \) は BP:PC のかわりに \( \mathrm{BP}:\mathrm{BC}=\dfrac{3}{8} \) を入れた値（\( \dfrac{3}{8}\cdot\dfrac{2}{3}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \)）です。</div>
+</div>
+
+<div class="q" data-type="input" id="q8" data-accept="5:8|AR:RB=5:8">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問8</span><span class="q-obj">O3（型C）</span></div>
+  <p>△ABC の外部の点 K について、直線 AK、BK、CK が直線 BC、CA、AB と交わる点を P、Q、R とします。P は辺 BC を C の先に延ばした直線上にあって \( \mathrm{BP}:\mathrm{PC}=4:1 \)、Q は辺 CA 上にあって \( \mathrm{CQ}:\mathrm{QA}=2:5 \) です。\( \mathrm{AR}:\mathrm{RB} \) を求めなさい（例：2:1）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 5:8。K が三角形の外部にあっても、チェバの定理の式はそのまま成り立ちます（⑥、数Ａ-041）。\( \dfrac{4}{1}\cdot\dfrac{2}{5}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \) より \( \dfrac{\mathrm{AR}}{\mathrm{RB}}=\dfrac{5}{8} \) です（延長上の点は P と R の2個で、R は辺 AB を A の先に延ばした直線上にあります）。8:5 と答えた場合は、2つの比の積 \( \dfrac{8}{5} \) をそのまま答えています。5:6 と答えた場合は、BP:PC のかわりに \( \mathrm{BC}:\mathrm{CP}=3:1 \) を入れています（延長上の点 P と B の距離 BP を BC と取り違えています）。1:10 と答えた場合は、CQ:QA を \( \dfrac{5}{2} \) と逆に入れています。</div>
+</div>
+
+<div class="q" data-type="input" id="q9" data-accept="1/12">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問9</span><span class="q-obj">O2（型B）</span></div>
+  <p>△ABC の重心を G とし、辺 AB、AC の中点を N、M とします。△GMN の面積は △ABC の面積の何倍ですか。分数で答えなさい（例：2/3）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 1/12。辺 BC の中点を L とすると、例題3と同じように考えて \( \triangle\mathrm{GBL}=\triangle\mathrm{GCL}=\dfrac{1}{6}\,\triangle\mathrm{ABC} \) なので、\( \triangle\mathrm{GBC}=\dfrac{1}{3}\,\triangle\mathrm{ABC} \) です（⑤・⑧）。中点連結定理より \( \mathrm{NM}\,/\!/\,\mathrm{BC} \)、\( \mathrm{NM}=\dfrac{1}{2}\,\mathrm{BC} \) なので、錯角が等しく △GMN∽△GBC で、相似比は \( 1:2 \) です（数Ａ-039 の証明と同じ）。相似な三角形の面積の比は相似比の2乗（⑧）なので、\( \triangle\mathrm{GMN}=\dfrac{1}{4}\cdot\dfrac{1}{3}\,\triangle\mathrm{ABC}=\dfrac{1}{12}\,\triangle\mathrm{ABC} \) です。1/6 と答えた場合は、相似比 \( 1:2 \) を2乗せずに \( \dfrac{1}{2}\cdot\dfrac{1}{3} \) としています。1/4 と答えた場合は、△AMN（△ABC と相似比 \( 1:2 \)）と取り違えています。1/3 と答えた場合は △GBC を答えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q10">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問10</span><span class="q-obj">O3（型C）</span></div>
+  <p>△ABC の辺 AB 上に \( \mathrm{AD}:\mathrm{DB}=3:1 \) となる点 D、辺 CA 上に \( \mathrm{CF}:\mathrm{FA}=2:3 \) となる点 F をとります。直線 BC 上の点 E を次のようにとるとき、D、E、F が一直線上にあるのはどれですか。</p>
+  <div class="choices">
+    <button>\( \mathrm{BE}:\mathrm{EC}=2:1 \) で、E は辺 BC を C の先に延ばした直線上</button>
+    <button>\( \mathrm{BE}:\mathrm{EC}=1:2 \) で、E は辺 BC 上</button>
+    <button>E をどこにとっても、D、E、F は一直線上にならない</button>
+    <button data-correct="true">\( \mathrm{BE}:\mathrm{EC}=1:2 \) で、E は辺 BC を B の先に延ばした直線上</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">D、F は辺上にあるので、E が延長上にあって積が 1 になれば、メネラウスの定理の逆より一直線上にあります。\( \dfrac{3}{1}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{2}{3}=1 \) より \( \dfrac{\mathrm{BE}}{\mathrm{EC}}=\dfrac{1}{2} \)。\( \mathrm{BE}&lt;\mathrm{EC} \) なので E は B の側の延長上です。1つ目は積 \( 3\cdot\dfrac{2}{3}=2 \) をそのまま比にしています。2つ目は比は正しいのですが、E が辺上だと D、E、F の3点が辺上になり、一直線上に並びません（延長上の点は1個か3個）。3つ目は、逆を使えば E を決められることを見落としています。</div>
+</div>
+
+<div class="q" data-type="input" id="q11" data-accept="3&lt;x&lt;9|9&gt;x&gt;3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問11</span><span class="q-obj">O4（型D）</span></div>
+  <p>3辺の長さが \( x \)、8、\( 2x-1 \) である三角形ができるような \( x \) の値の範囲を求めなさい（例：1&lt;x&lt;3）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 3&lt;x&lt;9。文字を含まない辺を \( a=8 \) とすると、\( |x-(2x-1)|&lt;8&lt;x+(2x-1) \)。左は \( |1-x|&lt;8 \) で \( -7&lt;x&lt;9 \)、右は \( 8&lt;3x-1 \) で \( x&gt;3 \)。長さが正であること（\( x&gt;\dfrac{1}{2} \)）と合わせて \( 3&lt;x&lt;9 \) です。x&gt;3 と答えた場合は \( |b-c|&lt;a \) を忘れています（\( x=10 \) なら 10、8、19 で \( 10+8&lt;19 \)）。3≦x≦9 と答えた場合は等号を含めています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q12">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問12</span><span class="q-obj">O4（型D）</span></div>
+  <p>\( \mathrm{AB}=7 \)、\( \mathrm{BC}=8 \)、\( \mathrm{CA}=5 \) の △ABC で、3つの角を大きい順に並べたものはどれですか。</p>
+  <div class="choices">
+    <button>\( \angle\mathrm{B}&gt;\angle\mathrm{C}&gt;\angle\mathrm{A} \)</button>
+    <button data-correct="true">\( \angle\mathrm{A}&gt;\angle\mathrm{C}&gt;\angle\mathrm{B} \)</button>
+    <button>\( \angle\mathrm{B}&gt;\angle\mathrm{A}&gt;\angle\mathrm{C} \)</button>
+    <button>辺の長さだけでは決められない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">辺の大小は \( \mathrm{BC}&gt;\mathrm{AB}&gt;\mathrm{CA} \) で、向かい合う角は BC に ∠A、AB に ∠C、CA に ∠B なので、\( \angle\mathrm{A}&gt;\angle\mathrm{C}&gt;\angle\mathrm{B} \) です（⑩）。1つ目は大小を逆にしています。3つ目は、辺 BC と ∠B、辺 AB と ∠A のように、辺の端の頂点の角を対応させています。4つ目は、辺と角の大小関係で決められることを見落としています。</div>
+</div>
+
+<div class="q" data-type="input" id="q13" data-accept="5:3|AP:PD=5:3">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問13</span><span class="q-obj">O1・O3（型A・型C）</span></div>
+  <p>\( \mathrm{AB}:\mathrm{AC}=3:2 \) の △ABC で、∠A の二等分線と辺 BC の交点を D、辺 AC の中点を M とし、AD と BM の交点を P とします。\( \mathrm{AP}:\mathrm{PD} \) を求めなさい（例：2:1）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 5:3。角の二等分線と辺の比より \( \mathrm{BD}:\mathrm{DC}=3:2 \)。△ADC と直線 BM にメネラウスの定理を使うと（P は辺 AD 上、B は辺 DC の延長上、M は辺 CA 上）\( \dfrac{\mathrm{AP}}{\mathrm{PD}}\cdot\dfrac{\mathrm{DB}}{\mathrm{BC}}\cdot\dfrac{\mathrm{CM}}{\mathrm{MA}}=1 \)。\( \dfrac{\mathrm{DB}}{\mathrm{BC}}=\dfrac{3}{5} \)、\( \dfrac{\mathrm{CM}}{\mathrm{MA}}=1 \) なので \( \dfrac{\mathrm{AP}}{\mathrm{PD}}=\dfrac{5}{3} \) です。3:5 と答えた場合は積をそのまま答えています。2:3 と答えた場合は \( \dfrac{\mathrm{DB}}{\mathrm{BC}} \) のかわりに \( \dfrac{\mathrm{BD}}{\mathrm{DC}}=\dfrac{3}{2} \) を入れています。</div>
+</div>
+
+<div class="q" data-type="input" id="q14" data-accept="225|225cm2|225cm²">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問14</span><span class="q-obj">O3・O4（型C）</span></div>
+  <p>面積が 900 cm² の三角形 ABC の形の看板に、2本の線を引いて色分けします（学習用の架空の場面）。1本は A から辺 BC 上の点 P（\( \mathrm{BP}:\mathrm{PC}=2:1 \)）へ、もう1本は C から辺 AB の中点 N へ引き、2本は点 K で交わります。</p>
+  <p>花子：「三角形 AKN の部分を赤くぬりたいの。面積が分かれば、絵の具の量を決められるね。」<br>太郎：「どの三角形と直線にメネラウスの定理を使うかを決めれば、AK:KP が分かるよ。」</p>
+  <p>△AKN の面積は何 cm² ですか。数だけを入力してください。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 225。△ABP と直線 CN にメネラウスの定理を使うと（N は辺 AB 上、C は辺 BP の延長上、K は辺 PA 上）\( \dfrac{\mathrm{AN}}{\mathrm{NB}}\cdot\dfrac{\mathrm{BC}}{\mathrm{CP}}\cdot\dfrac{\mathrm{PK}}{\mathrm{KA}}=1\cdot\dfrac{3}{1}\cdot\dfrac{\mathrm{PK}}{\mathrm{KA}}=1 \) より \( \mathrm{AK}:\mathrm{KP}=3:1 \)。\( \triangle\mathrm{ABP}=900\times\dfrac{2}{3}=600 \)、\( \triangle\mathrm{ABK}=600\times\dfrac{3}{4}=450 \)。N は AB の中点なので \( \triangle\mathrm{AKN}=450\times\dfrac{1}{2}=225 \)（cm²）です。450 と答えた場合は △ABK を答えています。75 と答えた場合は AK:KP を \( 1:3 \) と逆にしています（\( \triangle\mathrm{ABK}=150 \)）。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(1) 図形の性質」のア(ア)「三角形に関する基本的な性質について理解すること」に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。図と問題の言葉から使う性質を見分けること（6節の表）や、看板の色分けのような場面を図形の比の問題として捉えること（問14）は、こうした過程の練習になります。</p>
+  <p class="small">問14は日常の場面と会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">円周角の定理とその逆の振り返り（数Ａ-047）</p>
+  <p>次の時間から円の性質に入ります。中学校で学んだ円周角と中心角の関係や円周角の定理の逆を振り返り、角の大きさから4点が同じ円周上にあるかを判断します。この時間の型Bで使った「外心は外接円の中心」「∠BOC＝2∠A」は、円周角と中心角の関係そのものです。</p>
+  <p>この時間では、新しい内容は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-045　三角形の辺と角の大小</div>
+  <div><span class="label">次の時間</span>数Ａ-047　円周角の定理とその逆の振り返り</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-046「三角形の性質の練習」（演習。学習指導要領 数学Ａ (1)ア(ア)、解説 p.89-90）。範囲の各行 hs_math_1a/数Ａ-035〜045 の要点。次の時間 hs_math_1a/数Ａ-047 の要点</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(1) 図形の性質（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.89-90（チェバの定理・メネラウスの定理、三角形が成立するための条件、外角の場合も含めた角の二等分線と辺の比、重心・内心・外心などの性質を用いて図形の性質を考察すること）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・図はこのページのために作成したものです（出典を示したものを除く）。問14の看板は学習用の架空の場面です。「型A〜D」と①〜⑩はこのページでの呼び方です。三角形の辺と角の大小関係（⑩）は、学習指導要領の解説に明記がなく教科書によって扱いが異なる内容です（数Ａ-045 を参照）。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-046",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-046",
+  "title": "三角形の性質の練習",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-2", "title": "図形の性質"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ア)"],
+  "kaisetsu_page": "89-90",
+  "objectives": [
+    {"id": "O1", "text": "内分・外分と、角の二等分線と辺の比（内角・外角）を用いて、線分の長さや比を求めることができる（型A）。", "from": "角の二等分線と辺の比…を用いて、線分の長さや比…を求める問題を解くことができる", "sections": ["sec-1"], "checks": ["q1", "q5", "q6", "q13"]},
+    {"id": "O2", "text": "外心・内心・重心の性質を用いて、角の大きさや線分の長さ・比、面積を求めることができる（型B）。", "from": "外心・内心・重心の性質…を用いて、線分の長さや比、面積比、角の大きさを求める問題を解くことができる", "sections": ["sec-2"], "checks": ["q2", "q3", "q4", "q6", "q9"]},
+    {"id": "O3", "text": "チェバの定理・メネラウスの定理（逆を含む）を、求めたい比に合わせて三角形と直線を選んで用い、線分の比や面積比を求めることができる（型C）。", "from": "チェバの定理・メネラウスの定理を用いて、線分の長さや比、面積比…を求める問題を解くことができる", "sections": ["sec-3"], "checks": ["q7", "q8", "q10", "q13", "q14"]},
+    {"id": "O4", "text": "問題の図と言葉から使う性質を見分け、三角形の成立条件や辺と角の大小関係も含めて、性質を組み合わせて問題を解くことができる（型D）。", "from": "…を用いて、線分の長さや比、面積比、角の大きさを求める問題を解くことができる（範囲の数Ａ-044・045 の内容を含めて型を見分ける）", "sections": ["sec-4"], "checks": ["q11", "q12", "q14"]}
+  ],
+  "key_terms": [
+    {"term": "角の二等分線と辺の比", "where": "sec-1"},
+    {"term": "外心・内心・重心", "where": "sec-2"},
+    {"term": "チェバの定理・メネラウスの定理", "where": "sec-3"},
+    {"term": "面積比", "where": "sec-3"},
+    {"term": "三角形が成立するための条件", "where": "sec-4"},
+    {"term": "辺と角の大小関係", "where": "sec-4"}
+  ],
+  "prerequisites": [
+    {"concept": "線分の内分・外分", "taught_in": ["hs_math_1a/数Ａ-035"], "gap": false, "where": "review"},
+    {"concept": "角の二等分線と辺の比（内角・外角）", "taught_in": ["hs_math_1a/数Ａ-036"], "gap": false, "where": "review"},
+    {"concept": "三角形の外心と ∠BOC＝2∠A、直角三角形の外心は斜辺の中点", "taught_in": ["hs_math_1a/数Ａ-037"], "gap": false, "where": "review"},
+    {"concept": "三角形の内心と ∠BIC＝90°＋∠A/2", "taught_in": ["hs_math_1a/数Ａ-038"], "gap": false, "where": "review"},
+    {"concept": "三角形の重心（中線を 2:1 に内分）", "taught_in": ["hs_math_1a/数Ａ-039"], "gap": false, "where": "review"},
+    {"concept": "チェバの定理と面積比と線分比の関係（性質1・性質2）", "taught_in": ["hs_math_1a/数Ａ-040"], "gap": false, "where": "review"},
+    {"concept": "チェバの定理の逆と拡張、2点から直線までの距離の比", "taught_in": ["hs_math_1a/数Ａ-041"], "gap": false, "where": "review"},
+    {"concept": "メネラウスの定理（延長上の点は1個か3個）", "taught_in": ["hs_math_1a/数Ａ-042"], "gap": false, "where": "review"},
+    {"concept": "メネラウスの定理の逆と活用（線分の比・面積の比）", "taught_in": ["hs_math_1a/数Ａ-043"], "gap": false, "where": "review"},
+    {"concept": "三角形が成立するための条件", "taught_in": ["hs_math_1a/数Ａ-044"], "gap": false, "where": "review"},
+    {"concept": "三角形の辺と角の大小関係", "taught_in": ["hs_math_1a/数Ａ-045"], "gap": false, "where": "review"},
+    {"concept": "相似比と面積比", "taught_in": ["jhs_math/中3-078"], "gap": false, "where": "review"},
+    {"concept": "二等辺三角形の底角", "taught_in": ["jhs_math/中2-060"], "gap": false, "where": "quiz"},
+    {"concept": "三角形の内角の和", "taught_in": ["jhs_math/中2-048"], "gap": false, "where": "sec-2"}
+  ],
+  "out_of_scope": [
+    "円周角の定理とその逆の振り返り（数Ａ-047）、円に内接する四角形など円の性質（数Ａ-048〜）",
+    "垂心・傍心（地図の要点にない。数研出版は垂心を「研究」、実教出版は垂心・傍心を「参考」として扱う）",
+    "座標・ベクトルを用いた交点や面積の計算（数学Ⅱ・数学Ｃの内容）",
+    "正弦定理・余弦定理を用いた計算（数Ⅰ-068〜072 の内容。このページの問題では使わない）"
+  ],
+  "selection_reason": "数学Ａ 単元『図形の性質』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(1)ア(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.89-90 三角形の性質の扱い（保存本文：sources/text/hs_kaisetsu_math.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

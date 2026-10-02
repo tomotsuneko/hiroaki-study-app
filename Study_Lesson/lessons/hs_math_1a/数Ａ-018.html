@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>試行と事象、確率の意味｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+table.dice td, table.dice th { text-align: center; min-width: 2.2em; }
+table.dice td.s7 { background: rgba(31, 95, 191, .16); font-weight: 700; }
+table.dice td.s8 { background: rgba(192, 57, 43, .13); }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-018</span></div>
+  <h1>試行と事象、確率の意味</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">さいころを投げる、くじを引くといった、結果が偶然に左右される出来事を、数学Ⅰで学んだ集合のことばで表します。そうすると、中学校で求めてきた確率を、何を数えて何で割るのかがはっきりした形で定めることができます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>試行・事象・全事象・根元事象の意味を理解し、さいころや硬貨を投げる試行について、全事象と事象を集合で表すことができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>根元事象が同様に確からしいとき、事象 \( A \) の確率を「\( A \) に含まれる根元事象の数÷全ての根元事象の数」（論理的な確率）として求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>2枚の硬貨や2つのさいころを投げる試行で、同様に確からしい根元事象を選んで全事象を決め、確率を正しく求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-017）</span>場合の数の練習</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-018）</span>試行と事象、確率の意味</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-019）</span>頻度確率と論理的な確率</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。この時間から「場合の数と確率」の確率の部分に入ります。数え方は、同じ単元の数Ａ-001〜017（要素の個数、樹形図、積の法則など）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">中学2年の確率（中2-079・中2-080・中2-082）と集合（数Ⅰ-021）</p>
+  <p>中学2年では、さいころの目の出方のように、どの場合が起こることも同じ程度に期待できるとき、それらは<strong>同様に確からしい</strong>といいました（中2-079）。そのとき、確率を「（ある事柄の起こる場合の数）÷（起こりうるすべての場合の数）」で求め、確率 \( p \) は \( 0\leqq p\leqq 1 \) であることを学びました（中2-080）。</p>
+  <p>数学Ⅰでは、ものの集まりを集合として考え、集合をつくっている一つ一つのものを要素といいました（数Ⅰ-021）。集合 \( A \) の要素の個数を \( n(A) \) で表すことは、数Ａ-001 で学びました。</p>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中2-080</span></div>
+  <p>1個のさいころを投げるとき、3以上の目が出る確率はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{1}{2} \)</button>
+    <button data-correct="true">\( \dfrac{2}{3} \)</button>
+    <button>\( \dfrac{1}{3} \)</button>
+    <button>\( 4 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">3以上の目は 3、4、5、6 の4通りで、目の出方は全部で6通りなので \( \dfrac{4}{6}=\dfrac{2}{3} \) です。\( \dfrac{1}{2} \)（\( =\dfrac{3}{6} \)）は「3以上」に3を入れずに 4、5、6 の3通りとした誤り、\( \dfrac{1}{3} \)（\( =\dfrac{2}{6} \)）は3より小さい 1、2 の目を数えた誤りです。\( 4 \) は場合の数そのもので、全体の6で割っていません。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-021・数Ａ-001</span></div>
+  <p>\( U=\{1,\ 2,\ 3,\ 4,\ 5,\ 6,\ 7,\ 8,\ 9,\ 10\} \) の部分集合で、偶数全体の集合を \( A \) とします。\( n(A) \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 10 \)</button>
+    <button>\( \{2,\ 4,\ 6,\ 8,\ 10\} \)</button>
+    <button data-correct="true">\( 5 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( A=\{2,\ 4,\ 6,\ 8,\ 10\} \) で、要素は5個なので \( n(A)=5 \) です。\( 10 \) は全体集合 \( U \) の要素の個数 \( n(U) \) です。\( \{2,\ 4,\ 6,\ 8,\ 10\} \) は集合 \( A \) そのもので、要素の「個数」ではありません。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中2-082</span></div>
+  <p>2枚の硬貨を同時に投げるとき、表と裏の出方は全部で何通りですか。</p>
+  <div class="choices">
+    <button>2通り</button>
+    <button>3通り</button>
+    <button data-correct="true">4通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">2枚の硬貨を区別すると、（表, 表）、（表, 裏）、（裏, 表）、（裏, 裏）の4通りです。「2枚とも表」「1枚が表で1枚が裏」「2枚とも裏」の3通りと考えるのは、中2-082 で注意した誤りです。2通りは、1枚の硬貨の出方です。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：和が7と和が8、起こりやすいのは？</h2>
+<div class="box think">
+  <p class="box-title">2つのさいころの目の和</p>
+  <p>2つのさいころを同時に投げて、出た目の和を考えます。</p>
+  <p>太郎：「和が7になる目の組は {1, 6}、{2, 5}、{3, 4} の3組。和が8になる組も {2, 6}、{3, 5}、{4, 4} の3組。だから、和が7と和が8は同じくらい起こりやすいはずだよ。」</p>
+  <p><strong>太郎さんの考えは正しいでしょうか。</strong>和が7になる確率と和が8になる確率を、それぞれ求めてみよう。</p>
+  <p>この問いには、「5 同様に確からしい根元事象を選ぶ」の例題3で答えます。そのために、まず試行・事象ということばと、確率の定め方を確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="試行と事象"><span class="num">3</span>試行と事象を集合で表す</h2>
+<p>さいころを投げる、硬貨を投げる、くじを引くように、同じ条件のもとで何回でも繰り返すことができ、その結果が偶然によって決まる実験や観察を<strong>試行</strong>といいます（この説明の文は、このページでの言い方です）。試行の結果として起こる事柄を<strong>事象</strong>といいます。</p>
+<p>1個のさいころを投げる試行を考えます。起こりうる結果は、1 から 6 までの目のどれか1つです。そこで、起こりうる結果全体を集合 \( U=\{1,\ 2,\ 3,\ 4,\ 5,\ 6\} \) で表します。</p>
+<ul>
+  <li>起こりうる結果全体の集合 \( U \) で表される事象を<strong>全事象</strong>といいます。全事象は、試行をすれば必ず起こる事象です。</li>
+  <li>事象は、全事象 \( U \) の部分集合で表します。たとえば「偶数の目が出る」という事象を \( A \) とすると、\( A=\{2,\ 4,\ 6\} \) です。</li>
+  <li>\( U \) のただ1つの要素からなる集合で表される事象を<strong>根元事象</strong>といいます。さいころを1個投げる試行の根元事象は \( \{1\} \)、\( \{2\} \)、…、\( \{6\} \) の6個です。</li>
+</ul>
+<figure>
+<!--svg:f018a-->
+<svg viewBox="0 0 360 200" width="360" role="img" aria-label="1個のさいころを投げる試行。長方形の全事象Uの中に1から6の目があり、偶数の2、4、6が楕円の事象Aに入っている。5を囲んだ破線の円は根元事象{5}" data-fig="f018a">
+<rect x="10" y="24" width="340" height="166" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<text x="18" y="17" text-anchor="start" font-size="12" fill="currentColor">U（全事象）</text>
+<ellipse cx="165" cy="88" rx="120" ry="38" fill="#1f5fbf" fill-opacity="0.10" stroke="#1f5fbf" stroke-width="2" data-set="A"/>
+<text x="53" y="44" text-anchor="start" font-size="13" font-weight="700" fill="#1f5fbf">A：偶数の目が出る</text>
+<text x="95" y="94" text-anchor="middle" font-size="18" fill="currentColor" data-el="2">2</text>
+<text x="165" y="94" text-anchor="middle" font-size="18" fill="currentColor" data-el="4">4</text>
+<text x="235" y="94" text-anchor="middle" font-size="18" fill="currentColor" data-el="6">6</text>
+<text x="95" y="160" text-anchor="middle" font-size="18" fill="currentColor" data-el="1">1</text>
+<text x="165" y="160" text-anchor="middle" font-size="18" fill="currentColor" data-el="3">3</text>
+<text x="235" y="160" text-anchor="middle" font-size="18" fill="currentColor" data-el="5">5</text>
+<circle cx="235" cy="154" r="16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="257" y="160" text-anchor="start" font-size="12" fill="currentColor">← 根元事象 {5}</text>
+</svg>
+<!--/svg:f018a-->
+  <figcaption>図1　1個のさいころを投げる試行。長方形が全事象 \( U \)、楕円が事象 \( A \)（偶数の目が出る）。破線の小さな円で囲んだ \( \{5\} \) は根元事象の一つ</figcaption>
+</figure>
+<p>「事象 \( A \) が起こる」とは、試行の結果が \( A \) の要素のどれかになることです。さいころを投げて 4 の目が出れば、4 は \( A \) の要素なので、事象 \( A \) は起こったことになります。</p>
+<p>結果の書き方は試行によって決めます。1枚の硬貨を2回投げる試行では、1回目と2回目の結果を順に並べて（表, 裏）のように書くと、全事象は</p>
+<p style="text-align:center">\( U=\{ \)（表, 表）, （表, 裏）, （裏, 表）, （裏, 裏）\( \} \)</p>
+<p>となり、根元事象は4個です。「1回目が表」という事象は {（表, 表）, （表, 裏）} です。</p>
+<div class="box caution"><p class="box-title">よくある間違い：事象と根元事象を混同する</p><p>「偶数の目が出る」は事象ですが、根元事象ではありません。\( \{2,\ 4,\ 6\} \) は3つの根元事象 \( \{2\} \)、\( \{4\} \)、\( \{6\} \) を合わせたものです。根元事象は、それ以上分けられない1つ1つの結果に当たります。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題1（全事象と事象を集合で表す）</p>
+  <p>1 から 5 までの数字を1つずつ書いた5枚のカードから1枚引く試行について、(1) 全事象 \( U \)、(2) 根元事象の個数、(3) 事象 \( B \)「3以下の数字を引く」を集合で表しなさい。</p>
+  <div class="step">着目1（起こりうる結果）：引いたカードの数字が結果です。(1) \( U=\{1,\ 2,\ 3,\ 4,\ 5\} \)。</div>
+  <div class="step">着目2（1つ1つの結果）：根元事象は \( \{1\} \)、\( \{2\} \)、\( \{3\} \)、\( \{4\} \)、\( \{5\} \) で、(2) 5個です。</div>
+  <div class="step">着目3（条件に合う要素）：3以下は 1、2、3 なので、(3) \( B=\{1,\ 2,\ 3\} \)。\( B \) は \( U \) の部分集合になっています。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="確率の定め方"><span class="num">4</span>確率の定め方（論理的な確率）</h2>
+<p>さいころがゆがみなく作られていれば、6つの目のどれが出ることも同じ程度に期待できます。このように、どの根元事象が起こることも同じ程度に期待できるとき、根元事象は<strong>同様に確からしい</strong>といいます（中2-079 で学んだことばを、根元事象について言い直したものです）。</p>
+<p>根元事象が同様に確からしいとき、事象 \( A \) の起こる<strong>確率</strong>を次のように定め、\( P(A) \) で表します。</p>
+$$ P(A)=\frac{n(A)}{n(U)}=\frac{\text{事象 }A\text{ に含まれる根元事象の数}}{\text{全ての根元事象の数}} $$
+<p>このように、根元事象が同様に確からしいことを基にして考える確率を、学習指導要領解説では<strong>論理的な確率</strong>と呼んでいます（解説には「古典的確率と言うこともある」とも書かれています）。中学2年の「（ある事柄の起こる場合の数）÷（起こりうるすべての場合の数）」を、集合の要素の個数で書き直したものです。</p>
+<ul>
+  <li>さいころ1個で \( A \)「偶数の目が出る」：\( n(U)=6 \)、\( n(A)=3 \) なので \( P(A)=\dfrac{3}{6}=\dfrac{1}{2} \)</li>
+  <li>図1の根元事象 \( \{5\} \)「5の目が出る」：\( P(\{5\})=\dfrac{1}{6} \)。根元事象の確率は、どれも \( \dfrac{1}{n(U)} \) です。</li>
+</ul>
+<div class="box example worked">
+  <p class="box-title">例題2（カードを1枚引く確率）</p>
+  <p>1 から 20 までの数字を1つずつ書いた20枚のカードから1枚引くとき、3の倍数のカードを引く確率を求めなさい。</p>
+  <div class="step">着目1（全事象）：どのカードを引くことも同様に確からしいとします。\( U=\{1,\ 2,\ \cdots,\ 20\} \) で \( n(U)=20 \)。</div>
+  <div class="step">着目2（事象の要素）：3の倍数を引く事象を \( A \) とすると \( A=\{3,\ 6,\ 9,\ 12,\ 15,\ 18\} \) で \( n(A)=6 \)。</div>
+  <div class="step">着目3（割る）：\( P(A)=\dfrac{6}{20}=\dfrac{3}{10} \)。答え \( \dfrac{3}{10} \)。確率の値は、それ以上約分できない分数で答えます。</div>
+</div>
+<div class="box point"><p class="box-title">確率の値の範囲</p><p>\( A \) は \( U \) の部分集合なので \( 0\leqq n(A)\leqq n(U) \) です。したがって確率は \( 0 \) 以上 \( 1 \) 以下の値になります（中2-080）。このことと、必ず起こる事象・決して起こらない事象の確率は、数Ａ-021 でまとめて確かめます。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：分母に「事象 A の数」を使う</p><p>例題2で \( \dfrac{6}{14} \)（3の倍数でないカード14枚で割る）としないように注意します。分母はいつも全事象の要素の個数 \( n(U) \) です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="同様に確からしい根元事象を選ぶ"><span class="num">5</span>同様に確からしい根元事象を選ぶ</h2>
+<p>確率の式 \( P(A)=\dfrac{n(A)}{n(U)} \) が使えるのは、根元事象が同様に確からしいときです。全事象の決め方によっては、根元事象が同様に確からしくならないことがあります。</p>
+<h3>2枚の硬貨</h3>
+<p>2枚の硬貨を同時に投げるとき、結果を「2枚とも表」「1枚が表で1枚が裏」「2枚とも裏」の3つに分けると、全事象の要素は3個です。しかし、この3つは同様に確からしくありません。2枚の硬貨を硬貨 a、硬貨 b と区別して樹形図（中2-081）にすると、次のようになります。</p>
+<figure>
+<!--svg:f018b-->
+<svg viewBox="0 0 380 200" width="380" role="img" aria-label="2枚の硬貨a、bを投げるときの樹形図。aの表と裏からそれぞれbの表と裏に枝が分かれ、結果は（表,表）（表,裏）（裏,表）（裏,裏）の4通り。（表,裏）と（裏,表）に★" data-fig="f018b">
+<text x="120" y="18" text-anchor="middle" font-size="12" fill="currentColor">硬貨 a</text>
+<text x="220" y="18" text-anchor="middle" font-size="12" fill="currentColor">硬貨 b</text>
+<text x="318" y="18" text-anchor="middle" font-size="12" fill="currentColor">結果</text>
+<text x="18" y="107" text-anchor="start" font-size="12" fill="currentColor">投げる</text>
+<line x1="58" y1="103" x2="108" y2="54" stroke="currentColor" data-edge="root-表"/>
+<text x="120" y="58" text-anchor="middle" font-size="15" fill="currentColor" data-node="a表">表</text>
+<line x1="132" y1="54" x2="208" y2="32" stroke="currentColor" data-edge="表-表"/>
+<text x="220" y="36" text-anchor="middle" font-size="15" fill="currentColor" data-node="b表">表</text>
+<text x="268" y="36" text-anchor="start" font-size="14" fill="currentColor" data-out="表表">（表, 表）</text>
+<line x1="132" y1="54" x2="208" y2="76" stroke="currentColor" data-edge="表-裏"/>
+<text x="220" y="80" text-anchor="middle" font-size="15" fill="currentColor" data-node="b裏">裏</text>
+<text x="268" y="80" text-anchor="start" font-size="14" fill="currentColor" data-out="表裏">（表, 裏）★</text>
+<line x1="58" y1="103" x2="108" y2="144" stroke="currentColor" data-edge="root-裏"/>
+<text x="120" y="148" text-anchor="middle" font-size="15" fill="currentColor" data-node="a裏">裏</text>
+<line x1="132" y1="144" x2="208" y2="122" stroke="currentColor" data-edge="裏-表"/>
+<text x="220" y="126" text-anchor="middle" font-size="15" fill="currentColor" data-node="b表">表</text>
+<text x="268" y="126" text-anchor="start" font-size="14" fill="currentColor" data-out="裏表">（裏, 表）★</text>
+<line x1="132" y1="144" x2="208" y2="166" stroke="currentColor" data-edge="裏-裏"/>
+<text x="220" y="170" text-anchor="middle" font-size="15" fill="currentColor" data-node="b裏">裏</text>
+<text x="268" y="170" text-anchor="start" font-size="14" fill="currentColor" data-out="裏裏">（裏, 裏）</text>
+</svg>
+<!--/svg:f018b-->
+  <figcaption>図2　2枚の硬貨 a、b を投げるときの樹形図。★の2つの結果が「1枚が表で1枚が裏」に当たる</figcaption>
+</figure>
+<p>区別した4つの結果は同様に確からしく、「1枚が表で1枚が裏」はそのうちの2つを合わせた事象です。したがって、その確率は \( \dfrac{2}{4}=\dfrac{1}{2} \) で、\( \dfrac{1}{3} \) ではありません。2枚の硬貨がまったく同じに見えても、実際には別々の2枚なので、区別して考えます。</p>
+<h3>2つのさいころ</h3>
+<p>2つのさいころを大・小と区別し、大の目が \( a \)、小の目が \( b \) であることを \( (a,\ b) \) と書きます。目の出方は、積の法則（数Ａ-005）により \( 6\times 6=36 \) 通りで、この36個の結果が同様に確からしい根元事象です。下の表は、それぞれの出方の目の和です。</p>
+<div class="table-wrap">
+<!--gen:t018a-->
+<table class="dice" data-gen="t018a">
+  <tr><th>大＼小</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr>
+  <tr><th>1</th><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td class="s7">★7</td></tr>
+  <tr><th>2</th><td>3</td><td>4</td><td>5</td><td>6</td><td class="s7">★7</td><td class="s8">◆8</td></tr>
+  <tr><th>3</th><td>4</td><td>5</td><td>6</td><td class="s7">★7</td><td class="s8">◆8</td><td>9</td></tr>
+  <tr><th>4</th><td>5</td><td>6</td><td class="s7">★7</td><td class="s8">◆8</td><td>9</td><td>10</td></tr>
+  <tr><th>5</th><td>6</td><td class="s7">★7</td><td class="s8">◆8</td><td>9</td><td>10</td><td>11</td></tr>
+  <tr><th>6</th><td class="s7">★7</td><td class="s8">◆8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+</table>
+<!--/gen:t018a-->
+</div>
+<p class="small">表1　大小2つのさいころの目の和。★は和が7、◆は和が8の出方（色だけでなく記号でも区別している）</p>
+<div class="box example worked">
+  <p class="box-title">例題3（導入の問いの答え）</p>
+  <p>大小2つのさいころを同時に投げるとき、目の和が7になる確率と、目の和が8になる確率を求め、どちらが起こりやすいかを答えなさい。</p>
+  <div class="step">着目1（全事象）：大小を区別した36通りが同様に確からしい根元事象です。\( n(U)=36 \)。</div>
+  <div class="step">着目2（和が7）：表1の★は \( (1,\ 6) \)、\( (2,\ 5) \)、\( (3,\ 4) \)、\( (4,\ 3) \)、\( (5,\ 2) \)、\( (6,\ 1) \) の6通り。確率は \( \dfrac{6}{36}=\dfrac{1}{6} \)。</div>
+  <div class="step">着目3（和が8）：表1の◆は \( (2,\ 6) \)、\( (3,\ 5) \)、\( (4,\ 4) \)、\( (5,\ 3) \)、\( (6,\ 2) \) の5通り。確率は \( \dfrac{5}{36} \)。</div>
+  <div class="step">答え：和が7の確率 \( \dfrac{1}{6} \)（\( =\dfrac{6}{36} \)）の方が、和が8の確率 \( \dfrac{5}{36} \) より大きいので、和が7の方が起こりやすい。太郎さんの考えは正しくありません。</div>
+</div>
+<p>太郎さんは、目の組 {1, 6} と {4, 4} を同じ1通りと数えていました。しかし {1, 6} には \( (1,\ 6) \) と \( (6,\ 1) \) の2通りの出方があり、{4, 4} は \( (4,\ 4) \) の1通りだけです。目の組は同様に確からしい根元事象になっていないので、組の数で確率を比べることはできません。</p>
+<div class="box caution"><p class="box-title">よくある間違い：「和は 2〜12 の11通り」と考える</p><p>和の値は 2 から 12 までの11種類ですが、和が2になるのは \( (1,\ 1) \) の1通り、和が7になるのは6通りで、起こりやすさが違います。「和が7の確率は \( \dfrac{1}{11} \)」とするのは、同様に確からしくない11個の結果を根元事象とした誤りです。</p></div>
+<div class="box point"><p class="box-title">確率を求める手順</p><p>① 試行を決め、同様に確からしい根元事象を選んで全事象 \( U \) を決める（同じに見えるものも区別する）。<br>② 事象 \( A \) を \( U \) の部分集合として表し、要素の個数 \( n(A) \) を数える（樹形図・表・数Ａ-001〜017 の数え方）。<br>③ \( P(A)=\dfrac{n(A)}{n(U)} \) を計算し、それ以上約分できない分数にする。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>試行</dt><dd>同じ条件のもとで繰り返すことができ、結果が偶然によって決まる実験や観察（このページでの言い方）。</dd>
+    <dt>事象</dt><dd>試行の結果として起こる事柄。全事象 \( U \) の部分集合で表す。</dd>
+    <dt>全事象</dt><dd>起こりうる結果全体の集合 \( U \) で表される事象。試行をすれば必ず起こる。</dd>
+    <dt>根元事象</dt><dd>全事象 \( U \) のただ1つの要素からなる集合で表される事象。</dd>
+    <dt>同様に確からしい</dt><dd>どの根元事象が起こることも同じ程度に期待できること（中2-079）。</dd>
+    <dt>確率 \( P(A) \)</dt><dd>根元事象が同様に確からしいとき \( P(A)=\dfrac{n(A)}{n(U)} \)。</dd>
+    <dt>論理的な確率</dt><dd>根元事象が同様に確からしいことを基に、「事象 \( A \) に含まれる根元事象の数÷全ての根元事象の数」と考える確率（学習指導要領解説の言い方）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>試行の結果全体を集合 \( U \)（全事象）で表し、事象は \( U \) の部分集合、根元事象は \( U \) の1つの要素だけの集合で表す（O1）。</li>
+    <li>根元事象が同様に確からしいとき、\( P(A)=\dfrac{n(A)}{n(U)} \)（\( A \) に含まれる根元事象の数÷全ての根元事象の数）。これを論理的な確率という（O2）。</li>
+    <li>2枚の硬貨・2つのさいころは、同じに見えても区別して数えると、根元事象が同様に確からしくなる。和が7の確率は \( \dfrac{1}{6} \)、和が8の確率は \( \dfrac{5}{36} \)（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">確率の定め方（根元事象が同様に確からしいとき）</span>$$ P(A)=\frac{n(A)}{n(U)} $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。確率を入力する問題は、2/7 のように、それ以上約分できない分数で入力してください（半角・全角のどちらでもかまいません）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>1枚の硬貨を2回投げる試行で、1回目と2回目の結果を順に並べて書くとき、全事象 \( U \) を正しく表したものはどれですか。</p>
+  <div class="choices">
+    <button>{（表, 表）, （表, 裏）, （裏, 裏）}</button>
+    <button>{表, 裏}</button>
+    <button data-correct="true">{（表, 表）, （表, 裏）, （裏, 表）, （裏, 裏）}</button>
+    <button>{（表, 裏）, （裏, 表）}</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">1回目と2回目を区別して並べると、起こりうる結果は（表, 表）、（表, 裏）、（裏, 表）、（裏, 裏）の4つです。（表, 表）、（表, 裏）、（裏, 裏）の3つだけのものは、（表, 裏）と（裏, 表）を同じとみてしまい、（裏, 表）が抜けています。{表, 裏} は1回だけ投げる試行の全事象です。{（表, 裏）, （裏, 表）} は「表と裏が1回ずつ出る」という事象で、全事象の一部（部分集合）にすぎません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>1個のさいころを投げる試行で、根元事象であるものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">「5の目が出る」</button>
+    <button>「偶数の目が出る」</button>
+    <button>「3以下の目が出る」</button>
+    <button>「1から6までのどれかの目が出る」</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「5の目が出る」は \( \{5\} \) で、全事象 \( U=\{1,\ 2,\ 3,\ 4,\ 5,\ 6\} \) のただ1つの要素からなるので根元事象です。「偶数の目が出る」は \( \{2,\ 4,\ 6\} \)、「3以下の目が出る」は \( \{1,\ 2,\ 3\} \) で、要素が3個あるので根元事象ではありません。「1から6までのどれかの目が出る」は \( U \) そのもので、全事象です。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="1/4|0.25">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>1 から 20 までの数字を1つずつ書いた20枚のカードから1枚引くとき、4の倍数のカードを引く確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{1}{4} \)。4の倍数を引く事象を \( A \) とすると \( A=\{4,\ 8,\ 12,\ 16,\ 20\} \) で \( n(A)=5 \)、\( n(U)=20 \) なので \( P(A)=\dfrac{5}{20}=\dfrac{1}{4} \)。20 を入れ忘れて \( \dfrac{4}{20}=\dfrac{1}{5} \) とする誤りや、4の倍数でない15枚で割って \( \dfrac{5}{15}=\dfrac{1}{3} \) とする誤りに注意しましょう。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="1/9">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2・O3</span></div>
+  <p>大小2つのさいころを同時に投げるとき、出る目の和が5になる確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{1}{9} \)。目の出方は \( 6\times 6=36 \) 通りで、同様に確からしい。和が5になるのは \( (1,\ 4) \)、\( (2,\ 3) \)、\( (3,\ 2) \)、\( (4,\ 1) \) の4通りなので \( \dfrac{4}{36}=\dfrac{1}{9} \)。目の組 {1, 4}、{2, 3} の2通りと数えて \( \dfrac{2}{36}=\dfrac{1}{18} \) とすると、大小の区別を忘れたことになります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>2枚の硬貨を同時に投げるとき、1枚が表で1枚が裏になる確率はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{1}{4} \)</button>
+    <button data-correct="true">\( \dfrac{1}{2} \)</button>
+    <button>\( \dfrac{1}{3} \)</button>
+    <button>\( 2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">2枚の硬貨を区別すると、同様に確からしい結果は4通りで、1枚が表で1枚が裏になるのは（表, 裏）と（裏, 表）の2通りです。確率は \( \dfrac{2}{4}=\dfrac{1}{2} \)。\( \dfrac{1}{4} \) は（表, 裏）の1通りだけを数えた誤り、\( \dfrac{1}{3} \) は「表表・表裏・裏裏」の3通りを同様に確からしいとみた誤りです。\( 2 \) は場合の数そのもので、確率は1を超えません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O1・O2</span></div>
+  <p>1個のさいころを投げる試行で、事象 \( A \) を「6の約数の目が出る」とします。\( A \) を集合で表したものと確率 \( P(A) \) の組として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( A=\{2,\ 3\} \)、\( P(A)=\dfrac{1}{3} \)</button>
+    <button>\( A=\{1,\ 2,\ 3\} \)、\( P(A)=\dfrac{1}{2} \)</button>
+    <button>\( A=\{6\} \)、\( P(A)=\dfrac{1}{6} \)</button>
+    <button data-correct="true">\( A=\{1,\ 2,\ 3,\ 6\} \)、\( P(A)=\dfrac{2}{3} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">6の約数は 1、2、3、6 なので \( A=\{1,\ 2,\ 3,\ 6\} \)、\( P(A)=\dfrac{4}{6}=\dfrac{2}{3} \) です。\( \{2,\ 3\} \) は1と6を約数に入れ忘れた誤り、\( \{1,\ 2,\ 3\} \) は6自身を入れ忘れた誤りです。\( \{6\} \) は「6の倍数の目」で、約数と倍数を取り違えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O2・O3</span></div>
+  <p>大小2つのさいころを同時に投げるゲームについて、健太さんと美咲さんが話しています。</p>
+  <p>健太：「目の差が1になるのは {1, 2}、{2, 3}、{3, 4}、{4, 5}、{5, 6} の5通り。2つの目が同じになるのは6通り。だから、同じ目になる方が起こりやすいよ。」<br>美咲：「本当かな。同様に確からしい出方で数えてみようよ。」</p>
+  <p>2つの確率を正しく比べた説明として、最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>目の差が1になる確率は \( \dfrac{5}{11} \)、同じ目になる確率は \( \dfrac{6}{11} \) なので、同じ目になる方が起こりやすい。</button>
+    <button>目の差が1になる確率は \( \dfrac{5}{36} \)、同じ目になる確率は \( \dfrac{6}{36}=\dfrac{1}{6} \) なので、同じ目になる方が起こりやすい。</button>
+    <button data-correct="true">目の差が1になる確率は \( \dfrac{10}{36}=\dfrac{5}{18} \)、同じ目になる確率は \( \dfrac{6}{36}=\dfrac{1}{6} \) なので、目の差が1になる方が起こりやすい。</button>
+    <button>目の差が1になる確率は \( \dfrac{10}{36}=\dfrac{5}{18} \)、同じ目になる確率は \( \dfrac{12}{36}=\dfrac{1}{3} \) なので、同じ目になる方が起こりやすい。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">大小を区別した36通りが同様に確からしい根元事象です。目の差が1になるのは、{1, 2} なら \( (1,\ 2) \) と \( (2,\ 1) \) のように各組に2通りずつあり、\( 5\times 2=10 \) 通り。同じ目は \( (1,\ 1) \)、…、\( (6,\ 6) \) の6通りです。よって \( \dfrac{5}{18}>\dfrac{1}{6} \) で、差が1になる方が起こりやすくなります。\( \dfrac{5}{11} \) と \( \dfrac{6}{11} \) は、健太さんの11通りを全事象とした誤り、\( \dfrac{5}{36} \) は差が1の組を大小の区別なしに数えた誤りです。\( \dfrac{12}{36} \) は、同じ目の出方まで2通りずつと数えた誤りで、\( (1,\ 1) \) は1通りしかありません。<br><span class="small">この会話文の問題は練習用に作成したもので、実際の入試の出題形式を示すものではありません。</span></div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2・O3</span></div>
+  <p>3枚の硬貨を同時に投げるとき、表がちょうど2枚出る確率について、次の考えがあります。</p>
+  <p>「表の枚数は 0枚、1枚、2枚、3枚 の4通りだから、表がちょうど2枚出る確率は \( \dfrac{1}{4} \) である。」</p>
+  <p>(1) この考えの誤りを説明しなさい。(2) 全事象と事象を集合で表して、正しい確率を求めなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) 表の枚数で分けた4つの結果は、同様に確からしくない。たとえば「表が0枚」は3枚とも裏の1通りだけだが、「表が2枚」は、どの硬貨が裏になるかで3通りある。同様に確からしくない結果を根元事象として数えたことが誤りである。</p>
+    <p>(2) 3枚の硬貨を a、b、c と区別し、a、b、c の順に結果を並べる。全事象は \( U=\{ \)表表表, 表表裏, 表裏表, 表裏裏, 裏表表, 裏表裏, 裏裏表, 裏裏裏\( \} \) で、\( n(U)=2\times2\times2=8 \)。表がちょうど2枚出る事象を \( A \) とすると、\( A=\{ \)表表裏, 表裏表, 裏表表\( \} \) で \( n(A)=3 \)。よって \( P(A)=\dfrac{3}{8} \)。</p>
+    <p><strong>採点の観点</strong>　① 4通りの結果が同様に確からしくないことを、具体的な場合の数の違いで説明している。② 3枚の硬貨を区別して8個の根元事象をとっている。③ 事象 \( A \) を正しく集合で表し、\( \dfrac{3}{8} \) を求めている。</p>
+  </div>
+  <div class="explain">表の枚数ごとの場合の数は、0枚が1通り、1枚が3通り、2枚が3通り、3枚が1通りで、合計 \( 1+3+3+1=8 \) 通りです。区別して樹形図（図2を1段のばしたもの）をかくと確かめられます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(ウ)「確率の意味や基本的な法則についての理解を深め，それらを用いて事象の確率や期待値を求めること」に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。偶然に左右される出来事を、全事象と事象の集合で表すことは、事象を数理的に捉える第一歩です。</p>
+  <p class="small">問7は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">頻度確率と論理的な確率（数Ａ-019）</p>
+  <p>この時間は、根元事象が同様に確からしいことを基にして確率を定めました（論理的な確率）。中学1年では、多数回の試行で相対度数が一定の値に近づくことから確率を考えました（中1-117）。次の時間は、さいころの1の目が出る確率 \( \dfrac{1}{6} \) の意味を、この2つの見方から振り返り、<strong>頻度確率</strong>と論理的な確率の違いを説明できるようにします。</p>
+  <p>この時間では、順列・組合せを用いた確率（数Ａ-020）、積事象・和事象と確率の基本性質（数Ａ-021）、排反な事象の確率（数Ａ-022）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-017　場合の数の練習</div>
+  <div><span class="label">次の時間</span>数Ａ-019　頻度確率と論理的な確率</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-018「試行と事象、確率の意味」（学習指導要領 数学Ａ (2)ア(ウ)、解説 p.93-94）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率 ア(ウ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.93-94（論理的な確率は、根元事象が同様に確からしいとき「事象 A に含まれる根元事象の数」÷「全ての根元事象の数」と考えるもので、古典的確率と言うこともあること。全事象 U の扱い）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>中学校学習指導要領（平成29年告示）解説 数学編 p.123-124（同様に確からしいこと、2個の硬貨の表と裏の出方を3通りと考える誤り）（文部科学省）https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「事象と確率」（試行の結果の事象を集合として表すこと、試行や事象の定義を扱うことの確認）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。試行の説明の文はこのページでの言い方で、教科書の文と同じとは限りません（教科書でも確かめよう）。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-018",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-018",
+  "title": "試行と事象、確率の意味",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(ウ)"],
+  "kaisetsu_page": "93-94",
+  "objectives": [
+    {"id": "O1", "text": "試行・事象・全事象・根元事象の意味を理解し、さいころや硬貨を投げる試行について、全事象と事象を集合で表すことができる。", "from": "試行・事象・根元事象・全事象の意味を理解し", "sections": ["sec-1"], "checks": ["q1", "q2", "q6", "q8"]},
+    {"id": "O2", "text": "根元事象が同様に確からしいとき、事象 \\( A \\) の確率を「\\( A \\) に含まれる根元事象の数÷全ての根元事象の数」（論理的な確率）として求めることができる。", "from": "根元事象が同様に確からしいとき、事象 A の確率を「A に含まれる根元事象の数÷全ての根元事象の数」（論理的な確率）として求めることができる", "sections": ["sec-2"], "checks": ["q3", "q4", "q6", "q7", "q8"]},
+    {"id": "O3", "text": "2枚の硬貨や2つのさいころを投げる試行で、同様に確からしい根元事象を選んで全事象を決め、確率を正しく求めることができる。", "from": "根元事象が同様に確からしいとき（根元事象が同様に確からしくなるように全事象をとること）", "sections": ["sec-3"], "checks": ["q4", "q5", "q7", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "試行", "where": "sec-1"},
+    {"term": "事象", "where": "sec-1"},
+    {"term": "全事象", "where": "sec-1"},
+    {"term": "根元事象", "where": "sec-1"},
+    {"term": "同様に確からしい", "where": "sec-2"},
+    {"term": "確率", "where": "sec-2"},
+    {"term": "論理的な確率", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "同様に確からしいこと", "taught_in": ["jhs_math/中2-079"], "gap": false, "where": "review"},
+    {"concept": "確率＝（ある事柄の起こる場合の数）÷（起こりうるすべての場合の数）、0≦p≦1", "taught_in": ["jhs_math/中2-080"], "gap": false, "where": "review"},
+    {"concept": "樹形図・表で起こりうる場合を漏れなく重複なく数える", "taught_in": ["jhs_math/中2-081", "hs_math_1a/数Ａ-003"], "gap": false, "where": "sec-3"},
+    {"concept": "2個の硬貨・2つのさいころの確率、2個の硬貨の出方を3通りと考える誤り", "taught_in": ["jhs_math/中2-082"], "gap": false, "where": "review"},
+    {"concept": "集合と要素、部分集合", "taught_in": ["hs_math_1a/数Ⅰ-021"], "gap": false, "where": "review"},
+    {"concept": "集合の要素の個数 n(A)", "taught_in": ["hs_math_1a/数Ａ-001"], "gap": false, "where": "review"},
+    {"concept": "積の法則（6×6、2×2×2）", "taught_in": ["hs_math_1a/数Ａ-005"], "gap": false, "where": "sec-3"},
+    {"concept": "約分", "taught_in": ["jhs_math/中1-021"], "gap": false, "where": "sec-2"}
+  ],
+  "out_of_scope": [
+    "多数回の試行の相対度数による確率（頻度確率）と論理的な確率の違い（数Ａ-019）",
+    "順列・組合せを用いた確率、区別のつかないものを区別して数えること（数Ａ-020）",
+    "積事象・和事象、空事象、確率の基本性質のまとめ（数Ａ-021）",
+    "排反な事象の確率（数Ａ-022）、余事象の確率（数Ａ-024）"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(ウ)の事項（入試へのつながりの引用）"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.93-94 論理的な確率の考え方（根元事象が同様に確からしいとき、A に含まれる根元事象の数÷全ての根元事象の数。古典的確率と言うこともある）、全事象 U"},
+    {"name": "中学校学習指導要領（平成29年告示）解説 数学編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf", "use": "p.123-124 同様に確からしいこと、2個の硬貨の出方を3通りと考える誤り"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "「事象と確率」で試行の結果の事象を集合として表すこと、試行や事象の定義を扱うことの確認"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

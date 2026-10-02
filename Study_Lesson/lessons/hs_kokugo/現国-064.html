@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>異なる形式の複数の文章を関係付けて読む｜現代の国語</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="../assets/lesson.js"></script>
+<style>
+.passage ol.lines li.hl { background: var(--point-bg); outline: 2px solid var(--point); border-radius: 4px; }
+.passage ol.lines li.hl::after { content: "　◀対応"; font-family: var(--font); font-size: .78em; font-weight: 700; color: var(--point); }
+.passage ol.lines li.hl.zure { background: var(--caution-bg); outline-color: var(--caution); }
+.passage ol.lines li.hl.zure::after { content: "　◀ずれあり"; color: var(--caution); }
+.passage .doc-title { font-weight: 700; text-align: center; margin: 0 0 8px; }
+.passage .head { font-family: var(--font); font-weight: 700; }
+.widget .btns { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.widget .btns button[aria-pressed="true"] { background: var(--primary); color: #fff; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>現代の国語</span><span>読むこと（論理的な文章・実用的な文章）</span><span>現国-064</span></div>
+  <h1>異なる形式の複数の文章を関係付けて読む</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">活用</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge">個別試験：未指定</span>
+  </div>
+  <p class="lead">市の「条例」と、それを市民向けに説明した「広報誌の記事」。同じことを書いているはずの二つの文章を並べると、片方だけを読んでいては気付けないことが見えてきます。この時間は、形式の違う文章どうしを<strong>対応付け</strong>、<strong>違いを確かめ</strong>、<strong>合わせて考える</strong>読み方を身に付けます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>条例文と解説文のような形式の異なる文章について、書き手・読み手・目的・書き方の違いを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>二つの文章で同じ内容を述べている箇所を対応付け、共通点・類似点を見つけることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>一方にしかない情報や、言い方の違いから生じる相違点・対立点（ずれ）を、根拠となる行を示して指摘できる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>対応付けた情報を関係付けて、一方の文章だけでは分からないことを推論し、根拠を示して説明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（現国-063）</span>図表を伴う文章を読む</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>異なる形式の複数の文章を関係付けて読む</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（現国-065）</span>意見文の対立点と論拠の妥当性を検討する</div>
+</div>
+<p class="small">前提となる単元：中学校第3学年「読むこと（説明的な文章）」</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、次のことを使います。</p>
+<ul>
+  <li>実用的な文章の種類：法令文や広報の文章も「実用的な文章」の一つです（現国-061）。</li>
+  <li>文章と図表の関係：断片的な情報が補い合う関係、文章が図表の解説になっている関係（現国-063、中学2年 中2-055）。</li>
+  <li>個別の情報と一般化された情報、具体と抽象の関係（現国-023、中学3年 中3-036）。</li>
+  <li>条例：都道府県や市町村などの地方公共団体が、法律の範囲内で定めるきまり（日本国憲法第94条。中学校 社会・公民的分野 公民-047）。</li>
+</ul>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：現国-061</span></div>
+  <p>次のうち、「現代の国語」でいう<strong>実用的な文章に当たらないもの</strong>はどれですか。</p>
+  <div class="choices">
+    <button>市の広報誌の記事</button>
+    <button>条例の条文（法令文）</button>
+    <button>会議の記録</button>
+    <button data-correct="true">短編小説</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">実用的な文章は、実社会で具体的な目的やねらいを達するために書かれた文章で、報道や広報の文章、会議や裁判などの記録、法令文などがあります。小説・物語・詩・短歌・俳句などの文学的な文章は、論理的な文章にも実用的な文章にも含まれません（解説 p.98、p.106）。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：現国-023・中3-036</span></div>
+  <p>Ａ「この条例で『歩きスマホ』とは、歩きながら画面を注視し、又は操作することをいう。」<br>Ｂ「駅の階段でスマホを見ながら下りていて、人とぶつかりそうになった。」<br>ＡとＢの関係として最も適当なものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">Ａは一般化された情報（定義）、Ｂはそれに当てはまる個別の情報（具体例）である。</button>
+    <button>Ａは個別の情報、Ｂはそれをまとめた一般化された情報である。</button>
+    <button>ＡとＢは互いに対立する情報である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">Ａは多くの場面に当てはまるようにまとめた一般的な決まり（定義）で、Ｂはその一つの具体的な場面です。条例文は一般化された書き方、解説文は具体的な書き方をすることが多く、この時間はこの違いを何度も使います。ＡとＢは内容が食い違っていないので「対立」ではありません。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：公民-047</span></div>
+  <p>「条例」の説明として最も適当なものはどれですか。</p>
+  <div class="choices">
+    <button>国会が定める、全国に共通するきまり</button>
+    <button data-correct="true">都道府県や市町村などの地方公共団体が定めるきまり</button>
+    <button>学校が生徒のために定めるきまり</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">中学校の公民的分野で、地方公共団体の仕組み（首長と議会）と関連付けて、条例の制定を学びました（公民-047）。この時間の資料Ⅰは、架空の「X市」の条例として作ったものです。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">法令文（条例）の読み方の基本</p>
+  <p>法令は、定められた構成に従って書かれる文章で、読み手の解釈に揺れが生じないように、語句の定義や多義的な解釈を許さない述べ方が工夫されています（解説 p.149-150。詳しくは「論理国語」で学びます）。この時間の資料Ⅰを読むために、最低限、次のことを押さえておきましょう。</p>
+  <ul>
+    <li><strong>条と見出し</strong>：内容は「第1条」「第2条」…の<strong>条</strong>ごとに分かれ、条の前の（　）に見出しがあります。資料Ⅰでは、第1条に<strong>目的</strong>、第2条に<strong>定義</strong>（語の意味と範囲の約束）が置かれています。</li>
+    <li><strong>項・号</strong>：一つの条の中を「2」「3」と区切ったまとまりを<strong>項</strong>といい（番号のない最初の段落が第1項）、(1)(2)…と並べた一つ一つを<strong>号</strong>といいます（国の法律では、号に「一」「二」…と漢数字を付けます）。資料Ⅰ第6条の「第4条第1項」は、第4条の最初の段落を指します。</li>
+    <li><strong>文末の言い方</strong>：求めることの強さは文末で書き分けられます。</li>
+  </ul>
+  <div class="table-wrap"><table>
+    <tr><th>文末の言い方</th><th>意味</th></tr>
+    <tr><td>〜しなければならない</td><td>そうすることを求める</td></tr>
+    <tr><td>〜よう努めなければならない／〜よう努めるものとする</td><td>そうするよう<strong>努力すること</strong>を求める</td></tr>
+    <tr><td>〜することができる</td><td>そうしてもよい（しなくてもよい）</td></tr>
+    <tr><td>〜の規定は、…には、適用しない</td><td>その場合には、その決まりを当てはめない</td></tr>
+  </table></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：広報誌の「禁止」と条例の言葉は同じだろうか</h2>
+<div class="box think">
+  <p class="box-title">観光客のＢさんの心配</p>
+  <p>X市の広報誌に「10月1日から、市内での歩きスマホは禁止になります」とありました。観光でX市を訪れたＢさんは「駅でスマホを見ながら歩いたら罰金を取られるのかな。そもそも市民じゃない自分にも関係あるのかな」と心配しています。</p>
+  <p>Ｂさんの疑問に答えるには、広報誌の記事と条例の条文の<strong>どちらを</strong>読めばよいでしょうか。<strong>一方だけで</strong>足りるでしょうか。予想してから先へ進みましょう。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="形式の違いを捉える"><span class="num">3</span>二つの資料を読み、形式の違いを捉える</h2>
+<p>この時間に読むのは、学習用に作成した架空の条例（資料Ⅰ）と、その条例を市民に知らせる広報誌の記事（資料Ⅱ）です。どちらも<strong>実用的な文章</strong>ですが、資料Ⅰは<strong>法令文</strong>、資料Ⅱは<strong>広報の文章</strong>で、形式が異なります。まず、行番号に注意しながら両方を読みましょう。</p>
+
+<div class="passage" id="docA">
+  <p class="doc-title">【資料Ⅰ】X市歩きながらのスマートフォン等の使用の防止に関する条例</p>
+  <ol class="lines">
+    <li>（目的）</li>
+    <li>第1条　この条例は、歩きながらのスマートフォン等の使用の防止に関し、市、市民等及び事業者の責務等を明らかにすることにより、歩行者の安全を確保し、誰もが安心して通行できるまちの実現に寄与することを目的とする。</li>
+    <li>（定義）</li>
+    <li>第2条　この条例において、次の各号に掲げる用語の意義は、それぞれ当該各号に定めるところによる。</li>
+    <li>(1)　スマートフォン等　スマートフォン、携帯電話機、タブレット端末その他これらに類する携帯用の情報通信機器をいう。</li>
+    <li>(2)　歩きスマホ　道路、駅、公園その他の公共の場所において、歩きながらスマートフォン等の画面を注視し、又は操作することをいう。</li>
+    <li>(3)　市民等　市内に住所を有する者、市内に通勤し、又は通学する者及び市内を通行する者をいう。</li>
+    <li>（市の責務）</li>
+    <li>第3条　市は、歩きスマホの防止に関する啓発その他の必要な施策を実施しなければならない。</li>
+    <li>（市民等の責務）</li>
+    <li>第4条　市民等は、歩きスマホをしないよう努めなければならない。</li>
+    <li>2　保護者は、その子どもが歩きスマホをしないよう、必要な助言を行うよう努めるものとする。</li>
+    <li>（事業者の協力）</li>
+    <li>第5条　駅、商業施設その他の多数の者が通行する施設を管理する事業者は、市が実施する歩きスマホの防止に関する施策に協力するよう努めるものとする。</li>
+    <li>（適用除外）</li>
+    <li>第6条　第4条第1項の規定は、次に掲げる場合には、適用しない。</li>
+    <li>(1)　災害その他の緊急の事態において、通報又は避難のためにスマートフォン等を使用する場合</li>
+    <li>(2)　警察官、消防職員その他の者が、職務の遂行のためにスマートフォン等を使用する場合</li>
+    <li>附　則</li>
+    <li>この条例は、令和8年10月1日から施行する。</li>
+  </ol>
+  <span class="src">学習用に作成した架空の条例（実在の自治体・条例ではありません）</span>
+</div>
+
+<div class="passage" id="docB">
+  <p class="doc-title">【資料Ⅱ】広報みどり 9月号「10月1日から『歩きスマホ防止条例』がスタートします」</p>
+  <ol class="lines">
+    <li>駅の階段や交差点で、スマホの画面を見ながら歩いている人を見かけませんか。</li>
+    <li>市には、歩きスマホが原因とみられる接触や転倒などの相談が寄せられており、その件数は2年で2倍以上に増えています（下の表）。</li>
+    <li>そこで市は、歩く人が安心して通行できるまちを目指して、「X市歩きながらのスマートフォン等の使用の防止に関する条例」をつくりました。</li>
+    <li><span class="head">■歩きスマホとは？</span></li>
+    <li>条例では、道路や駅、公園などで、歩きながらスマホやタブレットの画面を見たり操作したりすることを「歩きスマホ」としています。</li>
+    <li><span class="head">■市民の皆さんへ</span></li>
+    <li>10月1日から、市内での歩きスマホは禁止になります。</li>
+    <li>画面を見たいときは、道の端に寄って立ち止まりましょう。</li>
+    <li>保護者の方は、お子さんにも声をかけてください。</li>
+    <li><span class="head">■市の取り組み</span></li>
+    <li>市は、駅や学校へのポスターの掲示や、中学校・高校での安全教室を行います。</li>
+    <li>駅や商業施設にも、呼びかけへの協力をお願いしていきます。</li>
+    <li><span class="head">■よくある質問</span></li>
+    <li>Ｑ　立ち止まって地図を確認するのも、歩きスマホになりますか。</li>
+    <li>Ａ　なりません。歩きながら画面を見たり操作したりすることが歩きスマホです。</li>
+    <li>Ｑ　違反すると罰金がありますか。</li>
+    <li>Ａ　この条例に罰則はありません。一人ひとりの心がけで、安全なまちをつくりましょう。</li>
+    <li>Ｑ　地震のとき、避難のためにスマホで地図を見ながら歩いてもよいですか。</li>
+    <li>Ａ　災害などの緊急時に、通報や避難のために使う場合は対象外です。</li>
+  </ol>
+  <div class="table-wrap"><table>
+    <caption class="small">表　歩きスマホが原因とみられる接触・転倒などの相談件数（市に寄せられたもの）</caption>
+    <tr><th>年度</th><th>令和5年度</th><th>令和6年度</th><th>令和7年度</th></tr>
+    <tr><td>件数</td><td>18件</td><td>27件</td><td>41件</td></tr>
+  </table></div>
+  <span class="src">学習用に作成した架空の記事。表の数値も学習用の架空のデータです。</span>
+</div>
+
+<h3>形式の違いは、目的と読み手の違いから生まれる</h3>
+<p>二つの資料は、同じ条例について書いていますが、書かれ方が大きく違います。違いを表にまとめると、次のようになります。</p>
+<div class="table-wrap"><table>
+  <tr><th>観点</th><th>資料Ⅰ（条例文）</th><th>資料Ⅱ（広報誌の記事）</th></tr>
+  <tr><td>文章の種類</td><td>法令文</td><td>広報の文章</td></tr>
+  <tr><td>書き手</td><td>市（組織）</td><td>市の広報（組織）</td></tr>
+  <tr><td>読み手</td><td>市民等・保護者・事業者など、決まりの対象になる全ての人</td><td>市民（特に、ふだん条文を読まない人）</td></tr>
+  <tr><td>目的</td><td>誰が・何を・どこまで求められるかを、解釈に揺れがないように定める</td><td>条例ができたことと、その趣旨・内容を分かりやすく伝え、行動を促す</td></tr>
+  <tr><td>書き方</td><td>一般的・抽象的な言葉、定義、条ごとの構成、文末で強さを書き分ける</td><td>身近な場面、呼びかけ（〜しましょう）、見出し、Ｑ＆Ａ、表</td></tr>
+  <tr><td>読むときの注意</td><td>一語一語の意味と範囲を正確に読む</td><td>分かりやすくするための言い換えや省略で、意味が変わっていないかに注意する</td></tr>
+</table></div>
+<p>書き手が個人ではなく、市のような<strong>組織</strong>であることにも注意しましょう（解説 p.100）。同じ組織が、目的に応じて二つの形式を使い分けているのです。</p>
+<div class="box point"><p class="box-title">形式の違いは「欠点」ではなく「役割の違い」</p><p>条例文は、どんな場面にも当てはまるように<strong>一般化</strong>して書かれるため、具体的な場面が思い浮かびにくくなります。解説文は、<strong>具体化</strong>して分かりやすくする代わりに、細かい範囲や条件を省くことがあります。二つを関係付けて読むと、互いの弱いところを補い合えます。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>「解説文のほうが分かりやすいから、解説文だけ読めばよい」は誤りです。解説文は分かりやすさのために言い換えや省略をしているので、<strong>正確な範囲や求めの強さは条例文で確かめる</strong>必要があります。反対に、条例文だけでは、なぜその決まりができたのか（背景）や、具体的にどう行動すればよいのかが分かりにくいことがあります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="共通点・類似点を見つける"><span class="num">4</span>共通点・類似点を見つける：対応付けの方法</h2>
+<p>形式の違う文章を関係付けるとき、最初にするのは、<strong>同じ内容を述べている箇所どうしを結ぶこと</strong>（対応付け）です。解説は、比較したり関連付けたりする際に「相違点や対立点だけでなく，共通点や類似点などにも目を向けさせることで，推論のための基盤が整う」と述べています（解説 p.102）。いきなり違いを探すのではなく、まず「同じことを別の言葉で言っている部分」を確かめることで、本当に違う部分が浮かび上がるのです。</p>
+<h3>対応付けの手順</h3>
+<ol>
+  <li>資料Ⅱの見出しやキーワード（「市は」「保護者」「緊急時」など）を手掛かりに、資料Ⅰの<strong>条の見出し</strong>から対応する条を探す。</li>
+  <li>対応する語句を「言い換えの対」として書き出す（例：「画面を注視し、又は操作する」⇔「画面を見たり操作したりする」）。</li>
+  <li>対応がとれない部分には印を付けておく（→ 次の節で「相違点」として調べる）。</li>
+</ol>
+<figure>
+  <svg viewBox="0 0 640 650" role="img" aria-label="資料Ⅰの各条と資料Ⅱの各行の対応を線で結んだ図。実線は同じ内容、破線は対応するが言い方や範囲にずれがあるもの。資料Ⅱの1〜2行と表、8行は資料Ⅰに対応がなく、資料Ⅱの16〜17行の罰則はありませんは資料Ⅰに罰則の規定がないことと対応する。">
+    <style>
+      .bx { fill: none; stroke: currentColor; stroke-width: 1.2; }
+      .bx-dot { fill: none; stroke: currentColor; stroke-width: 1.2; stroke-dasharray: 2 3; }
+      .tx { font-size: 12.5px; fill: currentColor; }
+      .hd { font-size: 14px; font-weight: 700; fill: currentColor; }
+      .sm { font-size: 11.5px; fill: currentColor; }
+      .ln { stroke: currentColor; stroke-width: 1.6; }
+      .ln-z { stroke: currentColor; stroke-width: 1.6; stroke-dasharray: 7 5; }
+    </style>
+    <text class="hd" x="135" y="28" text-anchor="middle">資料Ⅰ（条例）</text>
+    <text class="hd" x="505" y="28" text-anchor="middle">資料Ⅱ（広報誌の記事）</text>
+    <!-- row0 y=50: Ⅱのみ -->
+    <text class="sm" x="320" y="72" text-anchor="middle">対応なし</text>
+    <rect class="bx" x="390" y="50" width="230" height="36" rx="6"/><text class="tx" x="400" y="73">1〜2行・表：相談件数（背景）</text>
+    <!-- row1 y=100 -->
+    <rect class="bx" x="20" y="100" width="230" height="36" rx="6"/><text class="tx" x="30" y="123">第1条（目的）</text>
+    <line class="ln" x1="250" y1="118" x2="390" y2="118"/>
+    <rect class="bx" x="390" y="100" width="230" height="36" rx="6"/><text class="tx" x="400" y="123">3行：安心して通行できるまち</text>
+    <!-- row2 y=150 -->
+    <rect class="bx" x="20" y="150" width="230" height="36" rx="6"/><text class="tx" x="30" y="173">第2条(1)(2)（定義）</text>
+    <line class="ln" x1="250" y1="168" x2="390" y2="168"/>
+    <rect class="bx" x="390" y="150" width="230" height="36" rx="6"/><text class="tx" x="400" y="173">5・15行：歩きスマホとは</text>
+    <!-- row3 y=200 -->
+    <rect class="bx" x="20" y="200" width="230" height="36" rx="6"/><text class="tx" x="30" y="223">第2条(3)（市民等の範囲）</text>
+    <line class="ln-z" x1="250" y1="218" x2="390" y2="218"/><text class="sm" x="320" y="211" text-anchor="middle">範囲のずれ</text>
+    <rect class="bx" x="390" y="200" width="230" height="36" rx="6"/><text class="tx" x="400" y="223">6行：「市民の皆さんへ」</text>
+    <!-- row4 y=250 -->
+    <rect class="bx" x="20" y="250" width="230" height="36" rx="6"/><text class="tx" x="30" y="273">第3条（市の責務）</text>
+    <line class="ln" x1="250" y1="268" x2="390" y2="268"/>
+    <rect class="bx" x="390" y="250" width="230" height="36" rx="6"/><text class="tx" x="400" y="273">11行：ポスター・安全教室</text>
+    <!-- row5 y=300 -->
+    <rect class="bx" x="20" y="300" width="230" height="36" rx="6"/><text class="tx" x="30" y="323">第4条第1項（努めなければならない）</text>
+    <line class="ln-z" x1="250" y1="318" x2="390" y2="318"/><text class="sm" x="320" y="311" text-anchor="middle">強さのずれ</text>
+    <rect class="bx" x="390" y="300" width="230" height="36" rx="6"/><text class="tx" x="400" y="323">7行：「禁止になります」</text>
+    <!-- row6 y=350: Ⅱのみ -->
+    <text class="sm" x="320" y="372" text-anchor="middle">対応なし</text>
+    <rect class="bx" x="390" y="350" width="230" height="36" rx="6"/><text class="tx" x="400" y="373">8行：立ち止まりましょう</text>
+    <!-- row7 y=400 -->
+    <rect class="bx" x="20" y="400" width="230" height="36" rx="6"/><text class="tx" x="30" y="423">第4条第2項（保護者）</text>
+    <line class="ln" x1="250" y1="418" x2="390" y2="418"/>
+    <rect class="bx" x="390" y="400" width="230" height="36" rx="6"/><text class="tx" x="400" y="423">9行：お子さんにも声を</text>
+    <!-- row8 y=450 -->
+    <rect class="bx" x="20" y="450" width="230" height="36" rx="6"/><text class="tx" x="30" y="473">第5条（事業者の協力）</text>
+    <line class="ln" x1="250" y1="468" x2="390" y2="468"/>
+    <rect class="bx" x="390" y="450" width="230" height="36" rx="6"/><text class="tx" x="400" y="473">12行：駅や商業施設にも協力を</text>
+    <!-- row9 y=500 -->
+    <rect class="bx-dot" x="20" y="500" width="230" height="36" rx="6"/><text class="tx" x="30" y="523">（罰則の規定は書かれていない）</text>
+    <line class="ln" x1="250" y1="518" x2="390" y2="518"/>
+    <rect class="bx" x="390" y="500" width="230" height="36" rx="6"/><text class="tx" x="400" y="523">16〜17行：罰則はありません</text>
+    <!-- row10 y=550 -->
+    <rect class="bx" x="20" y="550" width="230" height="36" rx="6"/><text class="tx" x="30" y="573">第6条（適用除外）(1)(2)</text>
+    <line class="ln" x1="250" y1="568" x2="390" y2="568"/><text class="sm" x="320" y="561" text-anchor="middle">(1)だけ</text>
+    <rect class="bx" x="390" y="550" width="230" height="36" rx="6"/><text class="tx" x="400" y="573">18〜19行：緊急時は対象外</text>
+    <!-- legend -->
+    <line class="ln" x1="40" y1="622" x2="90" y2="622"/><text class="sm" x="98" y="626">同じ内容（類似点）</text>
+    <line class="ln-z" x1="250" y1="622" x2="300" y2="622"/><text class="sm" x="308" y="626">対応するが、言い方・範囲がずれる</text>
+  </svg>
+  <figcaption>図1　資料Ⅰの条と資料Ⅱの行の対応（実線＝同じ内容、破線＝対応するがずれがある、「対応なし」＝資料Ⅱにだけある情報）</figcaption>
+</figure>
+
+<div class="widget" id="match-widget">
+  <p><strong>操作してみよう：</strong>条のボタンを押すと、資料Ⅰのその条と、対応する資料Ⅱの行に印が付きます（上の資料に戻って確かめましょう）。</p>
+  <div class="btns" role="group" aria-label="対応を表示する条">
+    <button type="button" data-key="j1">第1条</button>
+    <button type="button" data-key="j2">第2条(1)(2)</button>
+    <button type="button" data-key="j2c">第2条(3)</button>
+    <button type="button" data-key="j3">第3条</button>
+    <button type="button" data-key="j41">第4条第1項</button>
+    <button type="button" data-key="j42">第4条第2項</button>
+    <button type="button" data-key="j5">第5条</button>
+    <button type="button" data-key="j6">第6条</button>
+    <button type="button" data-key="clear">印を消す</button>
+  </div>
+  <p class="small" id="match-note" aria-live="polite">ボタンを押すと、この欄に対応の説明が出ます。</p>
+</div>
+
+<h3>言い換えの対を書き出す</h3>
+<div class="table-wrap"><table>
+  <tr><th>資料Ⅰ（条例）の言葉</th><th>資料Ⅱ（記事）の言葉</th><th>関係</th></tr>
+  <tr><td>スマートフォン、携帯電話機、タブレット端末その他これらに類する…機器（5行）</td><td>スマホやタブレット（5行）</td><td>代表的なものだけを挙げた言い換え</td></tr>
+  <tr><td>画面を注視し、又は操作する（6行）</td><td>画面を見たり操作したりする（5行・15行）</td><td>やさしい言葉への言い換え</td></tr>
+  <tr><td>誰もが安心して通行できるまちの実現（2行）</td><td>歩く人が安心して通行できるまちを目指して（3行）</td><td>ほぼ同じ内容</td></tr>
+  <tr><td>啓発その他の必要な施策（9行）</td><td>ポスターの掲示や…安全教室（11行）</td><td>一般的な言葉を具体的な取り組みで示す（具体化）</td></tr>
+  <tr><td>保護者は、…必要な助言を行うよう努める（12行）</td><td>保護者の方は、お子さんにも声をかけてください（9行）</td><td>具体的な行動への言い換え</td></tr>
+  <tr><td>災害その他の緊急の事態において、通報又は避難のために…使用する場合（17行）</td><td>災害などの緊急時に、通報や避難のために使う場合（19行）</td><td>ほぼ同じ内容</td></tr>
+</table></div>
+<p class="small">行番号は、それぞれの資料の行番号です（左の列は資料Ⅰ、中央の列は資料Ⅱ）。</p>
+
+<div class="box example worked">
+  <p class="box-title">例題1　対応する条を探し、言葉の違いを説明する</p>
+  <p>資料Ⅱの11行目「市は、駅や学校へのポスターの掲示や、中学校・高校での安全教室を行います。」は、資料Ⅰのどの条と対応しますか。また、両者の言葉にはどのような違いがありますか。</p>
+  <div class="step">ステップ1：11行目の手掛かりになる言葉を拾います。「市は」「行います」から、<strong>市が行うこと</strong>について述べた文だと分かります。</div>
+  <div class="step">ステップ2：資料Ⅰの見出しで「市」に関わる条を探すと、（市の責務）の第3条（9行目）「市は、歩きスマホの防止に関する啓発その他の必要な施策を実施しなければならない。」が見つかります。</div>
+  <div class="step">ステップ3：違いを確かめます。条例の「啓発その他の必要な施策」は、どんな取り組みにも当てはまる<strong>一般的な言葉</strong>です。記事はそれを「ポスターの掲示」「安全教室」という<strong>具体的な取り組み</strong>で示しています。</div>
+  <div class="step">答え：第3条と対応する。内容は同じ（類似点）だが、条例の一般的な言葉を、記事は具体的な取り組みに置き換えて分かりやすくしている（具体化）。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="相違点・対立点を見つける"><span class="num">5</span>相違点・対立点を見つける：一方にしかない情報と「ずれ」</h2>
+<p>対応付けができたら、次は<strong>違い</strong>を調べます。この時間は、違いを次の四つの種類に分けて考えます。種類を区別すると、その違いが「分かりやすくするための工夫」なのか、「誤解のもとになるずれ」なのかを判断しやすくなります。</p>
+<div class="table-wrap"><table>
+  <tr><th>違いの種類</th><th>内容</th><th>この資料での例</th></tr>
+  <tr><td><strong>具体化</strong></td><td>同じ内容を、一般的な言葉から具体的な場面・例に置き換える</td><td>「啓発その他の必要な施策」（Ⅰ9行）→「ポスター・安全教室」（Ⅱ11行）</td></tr>
+  <tr><td><strong>追加</strong></td><td>一方にだけある情報（背景、理由、データ、行動の呼びかけ）</td><td>相談件数の表と説明（Ⅱ2行・表）、「立ち止まりましょう」（Ⅱ8行）</td></tr>
+  <tr><td><strong>省略</strong></td><td>一方で書かれている範囲や条件が、他方では省かれている</td><td>「市民等」の範囲（Ⅰ7行）、職務で使う場合の除外（Ⅰ18行）はⅡにない</td></tr>
+  <tr><td><strong>ずれ（対立点）</strong></td><td>同じ事柄を指しているのに、求めの強さや対象の範囲が食い違う</td><td>「努めなければならない」（Ⅰ11行）⇔「禁止になります」（Ⅱ7行）<br>「市民等」（Ⅰ7行）⇔「市民の皆さんへ」（Ⅱ6行）</td></tr>
+</table></div>
+<p>具体化・追加・省略は、解説文が読み手に分かりやすく伝えるための工夫であることが多く、それ自体は問題ではありません。ただし、省略された情報が読み手の判断に必要な場合や、<strong>ずれ</strong>がある場合は、誤解が生じるおそれがあります。</p>
+<p>表の「市民等」の範囲が「省略」と「ずれ」の両方に入っているのは、記事が範囲を書いていない（省略）だけでなく、「市民の皆さんへ」という見出しで、対象が市内に住む人だけであるかのように読める言い方をしているからです（ずれ）。これに対して、職務で使う場合の除外（Ⅰ18行）は、記事に書かれていないだけで、記事の言い方と食い違ってはいません（省略だけ）。</p>
+
+<h3>表は何のために置かれているか</h3>
+<p>資料Ⅱの表（相談件数）は、2行目の「件数は2年で2倍以上に増えています」の<strong>根拠</strong>になっています。令和5年度の18件が令和7年度には41件で、2倍（36件）を超えています。文章が表の内容を説明している関係です（現国-063）。さらにこの表と2行目は、資料Ⅰの第1条が掲げる「歩行者の安全を確保し」という目的の<strong>背景</strong>を示していますが、条例そのものにはこうした背景のデータは書かれていません。ここでは、表を細かく読み取ること自体が目的ではなく、<strong>表が文章のどの部分を支えているか</strong>を捉えることが大切です。</p>
+
+<div class="box caution"><p class="box-title">よくある間違い</p><p>違いを見つけたとき、「解説文が間違っている」「条例文が分かりにくい」とすぐに決めつけないようにしましょう。まず、その違いが<strong>四つの種類のどれに当たるか</strong>を確かめます。また、「省略」を「対立」と取り違えることもよくあります。資料Ⅱが第6条(2)の職務の場合に触れていないのは省略で、内容が食い違っているわけではありません。</p></div>
+
+<div class="box example worked">
+  <p class="box-title">例題2　「ずれ」を説明する</p>
+  <p>資料Ⅱの7行目「10月1日から、市内での歩きスマホは禁止になります。」と、資料Ⅰの対応する箇所を比べ、両者の間にあるずれを説明しなさい。</p>
+  <div class="step">ステップ1：対応する箇所を探します。「10月1日から」は附則（20行目）、歩きスマホについて市民に求めていることは第4条第1項（11行目）「市民等は、歩きスマホをしないよう努めなければならない。」です。</div>
+  <div class="step">ステップ2：文末の言い方を比べます。条例は「しないよう<strong>努めなければならない</strong>」で、しないように<strong>努力すること</strong>を求めています。記事の「<strong>禁止</strong>」は、してはいけないと言い切る強い言い方です。</div>
+  <div class="step">ステップ3：記事のほかの箇所も確かめます。17行目で「この条例に罰則はありません。一人ひとりの心がけで」と述べており、記事全体としては、努力を求めるという条例の趣旨を伝えようとしていると読めます。</div>
+  <div class="step">答え：条例は歩きスマホをしないよう努力することを求めているのに対し、記事の7行目は「禁止」と言い切っており、求めの強さが条例より強く受け取られるおそれがある。17行目の「罰則はありません」と合わせて読むと、記事の趣旨は条例と大きくは食い違っていないが、7行目だけを読むと誤解が生じやすい。</div>
+</div>
+<p>このずれは、市民に強く注意を促したいという書き手（市の広報）の意図から、分かりやすく強い言葉を選んだ結果とも考えられます。書き手が<strong>なぜこのように書いたのか</strong>を考えることも、書き手の意図を解釈することにつながります（解説 p.100）。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="関係付けて推論する"><span class="num">6</span>関係付けて推論する：二つを合わせて分かること、分からないこと</h2>
+<p>対応と違いを確かめると、二つの資料の情報を<strong>組み合わせて</strong>、どちらか一方だけでは答えられない問いに答えられるようになります。このとき使うのは、条例の<strong>一般的な決まり（定義など）を、具体的な場面に当てはめる</strong>推論です。これは、一般的な前提を個別の事例に当てはめる演繹的な推論です（現国-024）。</p>
+
+<div class="box example worked">
+  <p class="box-title">例題3　二つの資料を合わせて判断する</p>
+  <p>高校生のＡさんは隣の市に住み、X市内の高校に電車で通っています。Ａさんは駅のホームを歩きながら、スマホでメッセージを打っていました。二つの資料から、Ａさんについてどのようなことが言えますか。</p>
+  <div class="step">ステップ1：Ａさんは「市民等」に当たるか。資料Ⅱは「市民の皆さんへ」（6行目）としか書いていないので、記事だけでは分かりません。資料Ⅰ第2条(3)（7行目）は「市内に通勤し、又は通学する者」を市民等に含めているので、<strong>Ａさんは市民等に当たります</strong>。</div>
+  <div class="step">ステップ2：Ａさんの行為は「歩きスマホ」に当たるか。第2条(2)（6行目）の「駅…において、歩きながら…操作すること」に当てはまります。</div>
+  <div class="step">ステップ3：適用除外に当たるか。第6条（16〜18行目）の緊急時の通報・避難や職務の場合ではないので、当たりません。</div>
+  <div class="step">ステップ4：何が求められているか。第4条第1項（11行目）により、歩きスマホを<strong>しないよう努めること</strong>が求められます。記事の8行目の呼びかけのように立ち止まって操作すれば、15行目の説明と第2条(2)の定義から、歩きスマホには当たりません。</div>
+  <div class="step">答え：Ａさんは市内に通学しているので市民等に当たり（資料Ⅰ7行目）、歩きスマホをしないよう努めることが求められる（資料Ⅰ11行目）。記事の「市民の皆さん」（資料Ⅱ6行目）だけを読むと、自分は対象外だと誤解するおそれがある。</div>
+</div>
+
+<h3>書かれていないことは、断定しない</h3>
+<p>関係付けて推論するときに大切なのは、<strong>二つの資料のどちらにも書かれていないことを、自分の知識や想像で補って断定しない</strong>ことです。例えば「自転車に乗りながらスマホを使うこと」はどうでしょうか。資料Ⅰの定義（6行目）は「歩きながら」としているので、自転車に乗りながらの使用は、この条例の「歩きスマホ」には当たりません。しかし、ほかのきまりでどう扱われるかは、この二つの資料には書かれていないので、この資料からは判断できません。</p>
+<div class="box point"><p class="box-title">異なる形式の文章を関係付けて読む手順</p>
+<ol>
+  <li><strong>形式を確かめる</strong>：それぞれの書き手・読み手・目的は何か。</li>
+  <li><strong>対応付ける</strong>：同じ内容を述べている箇所を結び、言い換えの対を確かめる（共通点・類似点）。</li>
+  <li><strong>違いを分類する</strong>：具体化・追加・省略・ずれのどれか。ずれは、条例文の言葉で確かめる（相違点・対立点）。</li>
+  <li><strong>関係付けて推論する</strong>：一般的な決まりを具体的な場面に当てはめ、根拠の行を示して説明する。</li>
+  <li><strong>限界を確かめる</strong>：どちらにも書かれていないことは断定しない。</li>
+</ol></div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>「記事に書いていないから、条例にも書いていない」「条例に書いていないから、許されている」と考えてしまうことがあります。記事には<strong>省略</strong>があるので、条例で確かめる必要があります。また、条例に書かれていないことについては、「この資料からは分からない」と答えるのが正確です。</p></div>
+<p>導入のＢさんの疑問に戻りましょう。観光客のＢさんは「市内を通行する者」として市民等に当たり（資料Ⅰ7行目）、歩きスマホをしないよう努めることが求められます（資料Ⅰ11行目）。ただし、記事の「禁止」（資料Ⅱ7行目）という言葉とは違い、条例は努力を求める書き方で、罰則もありません（資料Ⅱ17行目）。Ｂさんの疑問には、<strong>記事と条例の両方を関係付けて</strong>初めて正確に答えられるのです。</p>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>異なる形式で書かれた複数の文章</dt><dd>書かれる目的や表現方法、書式が異なる文章の組合せ。例：条例文とその趣旨を分かりやすく解説した文章。</dd>
+    <dt>実用的な文章</dt><dd>実社会で具体的な目的やねらいを達するために書かれた文章。報道や広報の文章、記録、報告書、法令文など。</dd>
+    <dt>法令文</dt><dd>法律や条例などの文章。定められた構成に従い、解釈に揺れが生じないように、定義などを工夫して書かれる。</dd>
+    <dt>条例</dt><dd>地方公共団体が定めるきまり。</dd>
+    <dt>定義</dt><dd>語の意味と範囲を決めて示すこと。資料Ⅰでは第2条。</dd>
+    <dt>共通点・類似点</dt><dd>二つの文章で同じ内容、または似た内容を述べている点。言い換えの対を確かめて見つける。</dd>
+    <dt>相違点・対立点</dt><dd>二つの文章で異なる点。一方にしかない情報（追加・省略）や、求めの強さ・範囲の食い違い（ずれ）がある。</dd>
+    <dt>具体化</dt><dd>一般的・抽象的な言葉を、具体的な場面や例に置き換えること。</dd>
+    <dt>推論</dt><dd>ある事実を基に未知の事柄を推し量ること。ここでは、条例の一般的な決まりを具体的な場面に当てはめる演繹的な推論を使う。</dd>
+    <dt>書き手の意図</dt><dd>なぜこの文章を書いたのか、なぜこのように書いたのか。書き手が組織や機関である場合もある。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>形式の違いは、目的と読み手の違いから生まれる。条例文は範囲や強さを一義的に定め、解説文は具体的に分かりやすく伝えて行動を促す。（O1）</li>
+    <li>まず対応付ける。同じ内容を述べる箇所を結び、言い換えの対を確かめると、共通点・類似点が押さえられ、推論の基盤になる。（O2）</li>
+    <li>違いは「具体化・追加・省略・ずれ」に分けて確かめる。求めの強さや範囲のずれは誤解のもとになるので、条例文の言葉で確かめる。（O3）</li>
+    <li>二つを関係付けると、一方だけでは分からないことが推論できる。根拠の行を示して説明し、どちらにも書かれていないことは断定しない。（O4）</li>
+  </ul>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示します。問題は、この時間の資料Ⅰ・資料Ⅱを使います。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>資料Ⅰと資料Ⅱの目的の違いの説明として、最も適当なものはどれですか。</p>
+  <div class="choices">
+    <button>資料Ⅰは市の考えを主張する文章で、資料Ⅱはその主張に反対する意見を述べる文章である。</button>
+    <button data-correct="true">資料Ⅰは誰に何をどこまで求めるかを揺れなく定める文章で、資料Ⅱはその内容と趣旨を分かりやすく伝えて行動を促す文章である。</button>
+    <button>資料Ⅰは具体的な場面を示して分かりやすく伝える文章で、資料Ⅱは一般的な言葉で正確に定める文章である。</button>
+    <button>資料Ⅰも資料Ⅱも、歩きスマホの危険を示すデータを報告することが主な目的である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">条例文は、定義や文末の書き分けによって、誰に何をどこまで求めるかを定めています。記事は、見出し・呼びかけ・Ｑ＆Ａを使って分かりやすく伝えています。3番目の選択肢は両者の特徴が逆です。資料Ⅱは資料Ⅰに反対しておらず（1番目）、データの報告が主な目的でもありません（4番目。表は背景を示す補助の情報です）。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="第6条|6条|6|第六条|六条|第6条第1号|第6条(1)">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>資料Ⅱの19行目「災害などの緊急時に、通報や避難のために使う場合は対象外です。」は、資料Ⅰの第何条と対応していますか。「第○条」の形で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は<strong>第6条</strong>（16〜18行目。特に17行目の第1号）です。「災害その他の緊急の事態において、通報又は避難のために…使用する場合」には第4条第1項を「適用しない」とあり、記事はそれを「対象外です」と言い換えています。見出しの（適用除外）が手掛かりになります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>資料Ⅱの9行目「保護者の方は、お子さんにも声をかけてください。」と同じ内容を述べている資料Ⅰの箇所はどれですか。</p>
+  <div class="choices">
+    <button>第3条（9行目）</button>
+    <button>第4条第1項（11行目）</button>
+    <button data-correct="true">第4条第2項（12行目）</button>
+    <button>第5条（14行目）</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">第4条第2項「保護者は、その子どもが歩きスマホをしないよう、必要な助言を行うよう努めるものとする。」の「必要な助言を行う」を、記事は「声をかけてください」という具体的な行動に言い換えています。第3条は市、第4条第1項は市民等、第5条は事業者についての決まりで、対象が違います。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>資料Ⅰには書かれているが、資料Ⅱには書かれていない情報はどれですか。</p>
+  <div class="choices">
+    <button>災害などの緊急時に、避難のために使う場合は対象外であること</button>
+    <button data-correct="true">市内に通勤・通学する人や、市内を通行する人も「市民等」に含まれること</button>
+    <button>保護者には、子どもに声をかけることが求められていること</button>
+    <button>歩きスマホが原因とみられる相談の件数が増えていること</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「市民等」の範囲は資料Ⅰ第2条(3)（7行目）にだけあり、資料Ⅱは「市民の皆さんへ」（6行目）としか書いていません（省略）。1番目は両方にあり（Ⅰ17行・Ⅱ19行）、3番目も両方にあります（Ⅰ12行・Ⅱ9行）。4番目は資料Ⅱにだけある情報（追加）で、向きが逆です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O1・O3</span></div>
+  <p>資料Ⅱの表（相談件数）の働きの説明として、最も適当なものはどれですか。</p>
+  <div class="choices">
+    <button>資料Ⅰの第2条の定義を、分かりやすく表に置き換えたものである。</button>
+    <button>資料Ⅰに定められた罰則の対象となった件数を示したものである。</button>
+    <button data-correct="true">資料Ⅱの2行目の「2年で2倍以上に増えています」の根拠であり、資料Ⅰにはない、条例の目的の背景を示す情報である。</button>
+    <button>資料Ⅱの内容とは関係がなく、読み手の関心を引くためだけに置かれている。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">表は18件（令和5年度）から41件（令和7年度）への増加を示し、2行目の説明を支えています（文章が表を説明する関係）。また、第1条の「歩行者の安全を確保し」という目的の背景を示す情報ですが、条例には書かれていません（追加）。資料Ⅰに罰則の規定はないので、2番目は誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>二つの資料を読んだ生徒の会話です。空欄に入る発言として、最も適当なものはどれですか。</p>
+  <p>生徒Ｃ「記事の7行目には『歩きスマホは禁止になります』って書いてあるね。」<br>生徒Ｄ「でも、条例の第4条第1項を読むと、［　　　］」<br>生徒Ｃ「なるほど。だから記事の17行目で『罰則はありません。一人ひとりの心がけで』と書いているんだね。」</p>
+  <div class="choices">
+    <button>「しなければならない」と書いてあって、記事と同じくらい強く求めているよ。</button>
+    <button data-correct="true">「しないよう努めなければならない」と書いてあって、しないように努力することを求める言い方だから、記事の「禁止」とは求め方の強さが違うよ。</button>
+    <button>「することができる」と書いてあって、歩きスマホをしてもよいと認めているよ。</button>
+    <button>第6条で全ての人が対象外になっているから、実際には誰にも当てはまらないよ。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">第4条第1項（11行目）は「歩きスマホをしないよう努めなければならない」で、努力を求める言い方です。これが、Ｃさんの最後の発言（17行目の罰則なし・心がけ）とつながります。1番目は文末を読み誤っています。3番目の「することができる」は資料Ⅰのどこにもありません。4番目は、第6条が緊急時と職務の場合だけを除いていること（16〜18行目）を読み落としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O4</span></div>
+  <p>二つの資料を関係付けて判断できることとして、最も適当なものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">市外から観光に来た人も、X市内の駅では歩きスマホをしないよう努めることを求められている。</button>
+    <button>自転車に乗りながらスマホを使うことも、この条例の「歩きスマホ」として、しないよう求められている。</button>
+    <button>公園で立ち止まってスマホの地図を確認することも、この条例の「歩きスマホ」に当たる。</button>
+    <button>歩きスマホをした人は、条例に基づいて罰金を払わなければならない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">第2条(3)（Ⅰ7行）は「市内を通行する者」を市民等に含め、第4条第1項（Ⅰ11行）が市民等に努力を求めているので、1番目が正解です。記事の「市民の皆さん」（Ⅱ6行）だけでは判断できません。2番目：定義は「歩きながら」（Ⅰ6行）なので当たりません。3番目：立ち止まっている場合は当たりません（Ⅰ6行、Ⅱ15行）。4番目：罰則はありません（Ⅱ17行。資料Ⅰにも罰則の規定はない）。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2・O3・O4</span></div>
+  <p>資料Ⅱの記事だけを読んだ人が誤解しやすい点を<strong>二つ</strong>挙げ、それぞれ資料Ⅰのどの条（行）で確かめられるかを、100字程度で説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　一つは7行目の「禁止」から強く禁じられると思う点だが、第4条第1項（11行目）は努力を求めている。もう一つは6行目の「市民の皆さん」から住民だけが対象と思う点だが、第2条(3)（7行目）は通学者や通行者も含む。（105字）</p>
+    <p><strong>採点の観点</strong>　①誤解しやすい点として、資料Ⅱの「禁止」（7行目）と「市民の皆さん」（6行目）の二つを、行とともに挙げている（各2点）。②それぞれを確かめる資料Ⅰの箇所（第4条第1項・11行目、第2条(3)・7行目）を示している（各2点）。③条例の内容（努力を求める／通勤・通学者や通行者を含む）を正しく説明している（各1点）。計10点。字数は多少前後してよい。</p>
+  </div>
+  <div class="explain">「職務の場合の除外（Ⅰ18行）が書かれていない」は省略ですが、一般の読み手が誤解して困る点とは言いにくいので、二つのうちの一つとしては弱い答えです。「罰則がある」は、記事の17行目に「罰則はありません」とあるので、記事だけを読んだ人が誤解しやすい点には当たりません。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（「現代の国語」は『国語』の出題範囲）</p>
+  <p>令和9年度の実施要項は、『国語』について「『現代の国語』及び『言語文化』を出題範囲とし，近代以降の文章及び古典（古文，漢文）を出題する」としています。同じ年度の問題作成方針（国語）は、近代以降の文章（論理的な文章や実用的な文章，文学的な文章）と古典を題材とし、「言葉による記録，要約，説明，論述，話合い等の言語活動を重視する」こと、また「大問ごとに一つの題材で問題を作成するだけでなく，異なる種類や分野の文章などを組み合わせた，複数の題材による問題を含めて検討する」ことを示しています。出題形式は「多肢選択式又は数値や記号等で解答する形式」です。</p>
+  <p>この時間の「形式の違う文章を対応付け、違いを分類し、関係付けて推論する」読み方は、こうした方針に沿った力です。問題作成方針は「教科書等で扱われていない資料等も扱う場合がある」とも述べているので、初めて見る形式の資料でも、この時間の手順（形式の確認→対応付け→違いの分類→推論→限界の確認）で読めるようにしておきましょう。ただし、方針はどの種類の文章が組み合わされるかまでは示していないので、条例と広報記事の組合せが出ると決めて準備する必要はありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">意見文の対立点と論拠の妥当性を検討する（現国-065）</p>
+  <p>次の時間は、条例をめぐる複数の<strong>意見文</strong>（社説や記事、信頼できるインターネット上のコメントなど）を読み、議論の対立点を捉え、それぞれの論拠の妥当性を検討して、条例のどこをどう修正すべきかを考えます。この時間に身に付けた「対応付け」と「ずれの確認」は、意見文が条例の<strong>どの条のどの言葉</strong>を問題にしているのかを確かめるときに使います。</p>
+  <p>この時間では、条例の内容がよいかどうかの評価や修正案は扱いませんでした。また、読んで解釈したことを発表したり、新聞などの別の形式に書き換えたりする活動は現国-066 で、法令文の定められた構成や一義的な表現の詳しい学習は「論理国語」（論国-089）で扱います。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>現国-063　図表を伴う文章を読む</div>
+  <div><span class="label">次の時間</span>現国-065　意見文の対立点と論拠の妥当性を検討する</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_kokugo/現国-064「異なる形式の複数の文章を関係付けて読む」（学習指導要領 C(2)イ、C(1)イ、解説 p.102）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第1節 国語 第1「現代の国語」2内容〔思考力，判断力，表現力等〕C読むこと (1)イ・(2)イ、3内容の取扱い (4)ア（文部科学省）<a href="https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf">PDF</a></li>
+    <li>高等学校学習指導要領（平成30年告示）解説 国語編 p.98-102・106（現代の国語 C読むこと・教材）、p.149-150（論理国語：法令文の構成と表現）（文部科学省）<a href="https://www.mext.go.jp/content/20250410-mxt_kyoiku01-100002620_02.pdf">PDF</a></li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・問題作成方針（独立行政法人大学入試センター）<a href="https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00017382.pdf&amp;n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%AE%9F%E6%96%BD%E8%A6%81%E9%A0%85.pdf">実施要項</a>・<a href="https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00005361.pdf&amp;n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%95%8F%E9%A1%8C%E4%BD%9C%E6%88%90%E6%96%B9%E9%87%9D.pdf">問題作成方針</a></li>
+    <li>日本国憲法 第94条（条例の制定）（e-Gov 法令検索）<a href="https://laws.e-gov.go.jp/law/321CONSTITUTION">e-Gov</a></li>
+    <li>参議院法制局「条・項・号・号の細分」（法律の項番号と号の付け方）<a href="https://houseikyoku.sangiin.go.jp/column/column021.htm">参議院法制局</a>、「努力義務規定」（「～に努めなければならない」などの規定）<a href="https://houseikyoku.sangiin.go.jp/column/column101.htm">参議院法制局</a></li>
+    <li>佐伯市「公文書作成の手引」第2節 例規文書（条例では第1項に項番号を付けず、号に（1）（2）…を付けること。「しなければならない」「することができる」の用い方）<a href="https://www.city.saiki.oita.jp/reiki/reiki_honbun/r159RG00001486.html">佐伯市例規集</a></li>
+    <li>資料Ⅰ（条例）・資料Ⅱ（広報誌の記事）と表の数値は、このページのために作成した架空のものです。</li>
+  </ul>
+  <p>作成：2026-09-29　版：1.1（2026-09-29 クロスチェックによる改修）　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var map = {
+    j1: { a: [1, 2], b: [3], z: [], note: "第1条（目的）⇔ 資料Ⅱ 3行目：「誰もが安心して通行できるまち」と「歩く人が安心して通行できるまち」はほぼ同じ内容（類似点）。" },
+    j2: { a: [3, 4, 5, 6], b: [5, 15], z: [], note: "第2条(1)(2)（定義）⇔ 資料Ⅱ 5・15行目：「画面を注視し、又は操作する」を「画面を見たり操作したりする」と言い換えている（類似点）。機器の種類は代表的なものだけに省略。" },
+    j2c: { a: [7], b: [6], z: [6], note: "第2条(3)（市民等）⇔ 資料Ⅱ 6行目：条例は通勤・通学する人や通行する人も含めるが、記事は「市民の皆さんへ」とだけ書く（範囲のずれ・省略）。" },
+    j3: { a: [8, 9], b: [11], z: [], note: "第3条（市の責務）⇔ 資料Ⅱ 11行目：「啓発その他の必要な施策」を「ポスターの掲示」「安全教室」で具体化している（類似点）。" },
+    j41: { a: [10, 11], b: [7], z: [7], note: "第4条第1項 ⇔ 資料Ⅱ 7行目：条例は「しないよう努めなければならない」（努力を求める）、記事は「禁止になります」（強さのずれ）。17行目の「罰則はありません」も合わせて読む。" },
+    j42: { a: [12], b: [9], z: [], note: "第4条第2項（保護者）⇔ 資料Ⅱ 9行目：「必要な助言を行う」を「声をかけてください」と具体的な行動に言い換えている（類似点）。" },
+    j5: { a: [13, 14], b: [12], z: [], note: "第5条（事業者の協力）⇔ 資料Ⅱ 12行目：駅や商業施設への協力のお願い（類似点）。" },
+    j6: { a: [15, 16, 17, 18], b: [18, 19], z: [], note: "第6条（適用除外）⇔ 資料Ⅱ 18〜19行目：記事は(1)の緊急時だけを取り上げ、(2)の職務の場合は省略している。" }
+  };
+  var lis = function (id) { return Array.prototype.slice.call(document.querySelectorAll("#" + id + " ol.lines > li")); };
+  var A = lis("docA"), B = lis("docB");
+  var note = document.getElementById("match-note");
+  var btns = Array.prototype.slice.call(document.querySelectorAll("#match-widget button[data-key]"));
+  function clear() {
+    A.concat(B).forEach(function (li) { li.classList.remove("hl", "zure"); });
+    btns.forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+  }
+  btns.forEach(function (b) {
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () {
+      clear();
+      var m = map[b.dataset.key];
+      if (!m) { note.textContent = "印を消しました。"; return; }
+      b.setAttribute("aria-pressed", "true");
+      m.a.forEach(function (n) { if (A[n - 1]) A[n - 1].classList.add("hl"); });
+      m.b.forEach(function (n) {
+        if (!B[n - 1]) return;
+        B[n - 1].classList.add("hl");
+        if (m.z.indexOf(n) >= 0) B[n - 1].classList.add("zure");
+      });
+      note.textContent = m.note + "（資料Ⅰ " + m.a.join("・") + "行目／資料Ⅱ " + m.b.join("・") + "行目）";
+    });
+  });
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_kokugo/現国-064",
+  "map": "hs_kokugo",
+  "rid": "現国-064",
+  "title": "異なる形式の複数の文章を関係付けて読む",
+  "subject": "現代の国語",
+  "unit": {
+    "ref": "hs_kokugo:現国-3",
+    "title": "読むこと（論理的な文章・実用的な文章）"
+  },
+  "exam": {
+    "共通テスト": "○",
+    "個別試験": ""
+  },
+  "basis": [
+    "C(2)イ",
+    "C(1)イ"
+  ],
+  "kaisetsu_page": "102",
+  "objectives": [
+    {
+      "id": "O1",
+      "text": "条例文と解説文のような形式の異なる文章について、書き手・読み手・目的・書き方の違いを説明できる。",
+      "from": "条例文とその趣旨を分かりやすく解説した文章など、異なる形式の文章を比較し",
+      "sections": [
+        "sec-1"
+      ],
+      "checks": [
+        "q1",
+        "q5"
+      ]
+    },
+    {
+      "id": "O2",
+      "text": "二つの文章で同じ内容を述べている箇所を対応付け、共通点・類似点を見つけることができる。",
+      "from": "共通点や類似点にも目を向けて",
+      "sections": [
+        "sec-2"
+      ],
+      "checks": [
+        "q2",
+        "q3",
+        "q8"
+      ]
+    },
+    {
+      "id": "O3",
+      "text": "一方にしかない情報や、言い方の違いから生じる相違点・対立点（ずれ）を、根拠となる行を示して指摘できる。",
+      "from": "相違点や対立点だけでなく",
+      "sections": [
+        "sec-3"
+      ],
+      "checks": [
+        "q4",
+        "q5",
+        "q6",
+        "q8"
+      ]
+    },
+    {
+      "id": "O4",
+      "text": "対応付けた情報を関係付けて、一方の文章だけでは分からないことを推論し、根拠を示して説明できる。",
+      "from": "情報を関係付ける",
+      "sections": [
+        "sec-4"
+      ],
+      "checks": [
+        "q7",
+        "q8"
+      ]
+    }
+  ],
+  "key_terms": [
+    {
+      "term": "異なる形式で書かれた複数の文章",
+      "where": "sec-1"
+    },
+    {
+      "term": "実用的な文章",
+      "where": "sec-1"
+    },
+    {
+      "term": "法令文",
+      "where": "supp-1"
+    },
+    {
+      "term": "条例",
+      "where": "review"
+    },
+    {
+      "term": "定義",
+      "where": "sec-1"
+    },
+    {
+      "term": "共通点・類似点",
+      "where": "sec-2"
+    },
+    {
+      "term": "相違点・対立点",
+      "where": "sec-3"
+    },
+    {
+      "term": "具体化",
+      "where": "sec-3"
+    },
+    {
+      "term": "推論",
+      "where": "sec-4"
+    },
+    {
+      "term": "書き手の意図",
+      "where": "sec-3"
+    }
+  ],
+  "prerequisites": [
+    {
+      "concept": "実用的な文章の種類（法令文・広報の文章など）",
+      "taught_in": [
+        "hs_kokugo/現国-061"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "実用的な文章の要点の把握",
+      "taught_in": [
+        "hs_kokugo/現国-062"
+      ],
+      "where": "sec-1"
+    },
+    {
+      "concept": "文章と図表の関係（補完し合う関係・文章が図表の解説になる関係）",
+      "taught_in": [
+        "hs_kokugo/現国-063",
+        "jhs_kokugo2/中2-055"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "個別の情報と一般化された情報、具体と抽象",
+      "taught_in": [
+        "hs_kokugo/現国-023",
+        "jhs_kokugo3/中3-036"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "条例とは何か（地方公共団体の定めるきまり）",
+      "taught_in": [
+        "jhs_shakai_komin/公民-047"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "複数の文章を観点を明確にして比較する",
+      "taught_in": [
+        "jhs_kokugo2/中2-059",
+        "jhs_kokugo3/中3-043"
+      ],
+      "where": "sec-2"
+    },
+    {
+      "concept": "言い換えの効果",
+      "taught_in": [
+        "hs_kokugo/現国-039"
+      ],
+      "where": "sec-2"
+    },
+    {
+      "concept": "推論の仕方（演繹的な推論）",
+      "taught_in": [
+        "hs_kokugo/現国-024"
+      ],
+      "where": "sec-4"
+    },
+    {
+      "concept": "書き手の意図の解釈（書き手が組織である場合）",
+      "taught_in": [
+        "hs_kokugo/現国-056"
+      ],
+      "where": "sec-3"
+    },
+    {
+      "concept": "法令文（条例）の構成と文末表現の読み方（条・項・号、目的・定義の条、「しなければならない」と「努めなければならない」の違い、適用除外）",
+      "taught_in": [
+        "hs_kokugo/現国-061"
+      ],
+      "gap": false,
+      "where": "supp-1"
+    }
+  ],
+  "out_of_scope": [
+    "条例をめぐる意見文の対立点・論拠の妥当性の検討と、条例の修正すべき点の指摘（現国-065）",
+    "読んで解釈したことの発表・新聞などへの書き換え（現国-066）",
+    "形式の異なる複数の文章・図表を組み合わせた問題の演習（現国-068）",
+    "法令文・契約書の定められた構成や一義的な文の組立ての詳しい学習（論理国語 論国-089・論国-092）",
+    "表やグラフの読み取りそのもの（内容の取扱い(4)ア：他教科等の指導とならないよう留意）",
+    "条例の法的な効力や罰則など法制度の内容（社会科・公民科の学習）"
+  ],
+  "selection_reason": "現代の国語の共通テスト○の学習・活用の行を比べ、①形式の違う文章の対応付け・違いの分類・推論という多段の操作で抽象度が高い、②実用的な文章の種類・図表・一般化・推論など前提が多く、法令文の読み方は地図のどの行にもない（はざま。作成時点の判断で、現在の地図では現国-061 の要点にある）、③対応関係の図がないと理解しにくい、④令和9年度問題作成方針が複数の題材による問題を示しており差がつきやすい、の点で最も難しいと判断した。比べた候補：現国-054 主張と論拠の関係を捉える（誤解は多いが単一の概念）、現国-024 推論の仕方（抽象的だが前提が少ない知識事項）。",
+  "sources": [
+    {
+      "name": "高等学校学習指導要領（平成30年告示）第2章第1節 国語",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf",
+      "use": "現代の国語 C読むこと(1)イ・(2)イ、内容の取扱い(4)ア"
+    },
+    {
+      "name": "高等学校学習指導要領（平成30年告示）解説 国語編",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20250410-mxt_kyoiku01-100002620_02.pdf",
+      "use": "p.98-102・106（異なる形式の文章、共通点・類似点と推論の基盤、書き手が組織の場合、図表の扱い）、p.149-150（法令文の構成と一義的な述べ方）"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項",
+      "publisher": "独立行政法人大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf",
+      "use": "『国語』の出題範囲"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針",
+      "publisher": "独立行政法人大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf",
+      "use": "国語の問題作成の方針（言語活動の重視、複数の題材による問題）、出題形式、教科書等で扱われていない資料"
+    },
+    {
+      "name": "日本国憲法 第94条",
+      "publisher": "デジタル庁 e-Gov 法令検索",
+      "url": "https://laws.e-gov.go.jp/law/321CONSTITUTION",
+      "use": "条例は地方公共団体が法律の範囲内で制定するきまりであること（前回までの確認）"
+    },
+    {
+      "name": "条・項・号・号の細分（法制執務コラム）",
+      "publisher": "参議院法制局",
+      "url": "https://houseikyoku.sangiin.go.jp/column/column021.htm",
+      "use": "法律では第2項以下に項番号を付け、号に漢数字を付けること（補足の囲み）"
+    },
+    {
+      "name": "努力義務規定（法制執務コラム）",
+      "publisher": "参議院法制局",
+      "url": "https://houseikyoku.sangiin.go.jp/column/column101.htm",
+      "use": "「～に努めなければならない」「～に努めるものとする」とする規定が努力義務規定と呼ばれること、罰則が規定されない例（補足の囲みの文末の表）"
+    },
+    {
+      "name": "公文書作成の手引 第2節 例規文書",
+      "publisher": "佐伯市（例規集）",
+      "url": "https://www.city.saiki.oita.jp/reiki/reiki_honbun/r159RG00001486.html",
+      "use": "条例では第1項に項番号を付けず、号に（1）（2）…を付けること（補足の囲み・資料Ⅰの書式）。「しなければならない」は義務付け、「することができる」は行為をするかしないかの裁量を与える場合などに用いること（補足の囲みの文末の表）"
+    }
+  ],
+  "version": "1.1",
+  "generated": "2026-09-29"
+}
+</script>
+</body>
+</html>

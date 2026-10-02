@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分母の有理化｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>数と式</span><span>数Ⅰ-014</span></div>
+  <h1>分母の有理化</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">\( \dfrac{1}{\sqrt{2}} \) と \( \dfrac{\sqrt{2}}{2} \) は同じ数ですが、近似値を手で計算しやすいのはどちらでしょう。分母から根号をなくす「有理化」と、それを使って式の値を楽に求める方法を学びます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>分母が \( \sqrt{a} \) の形の数について、分母と分子に同じ数をかけて、分母を有理化できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>分母が \( \sqrt{a}+\sqrt{b} \) や \( a+\sqrt{b} \) のような二項の数について、和と差の積の公式を使って分母を有理化できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>有理化した値から \( x+y \) と \( xy \) を求め、\( x^2+y^2 \) などの対称式の値を \( x+y \) と \( xy \) を使って求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-013）</span>根号を含む式の計算</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>分母の有理化</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-015）</span>不等式の解の意味と不等式の性質</div>
+</div>
+<p class="small">前提となる単元：中学3年「簡単な多項式」「正の数の平方根」、中学1年「一元一次方程式」（単元「数と式」の前提）。この時間は特に、中学3年の分母の有理化（中3-026）、乗法公式（中3-005・006）、前の時間の根号を含む式の計算（数Ⅰ-013）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、中学3年の分母の有理化（中3-026）、和と差の積（数Ⅰ-013）、\( (x+y)^2 \) の展開（中3-005）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中3-026</span></div>
+  <p>\( \dfrac{1}{\sqrt{3}} \) の分母を有理化したものはどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{1}{3} \)</button>
+    <button data-correct="true">\( \dfrac{\sqrt{3}}{3} \)</button>
+    <button>\( \dfrac{\sqrt{3}}{9} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">分母と分子に \( \sqrt{3} \) をかけて \( \dfrac{1\times\sqrt{3}}{\sqrt{3}\times\sqrt{3}}=\dfrac{\sqrt{3}}{3} \)。\( \dfrac{1}{3} \) は分母だけに \( \sqrt{3} \) をかけて値を変えてしまった誤りです。\( \dfrac{\sqrt{3}}{9} \) は \( (\sqrt{3})^2 \) を \( 3^2=9 \) とした誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-013</span></div>
+  <p>\( (\sqrt{5}+\sqrt{3})(\sqrt{5}-\sqrt{3}) \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( 8 \)</button>
+    <button>\( 16 \)</button>
+    <button data-correct="true">\( 2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">和と差の積の公式より \( (\sqrt{5})^2-(\sqrt{3})^2=5-3=2 \)。根号が消えて有理数になります。\( 8 \) は \( 5+3 \) と足した誤り、\( 16 \) は \( 5^2-3^2 \) と2乗をさらに2乗した誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中3-005</span></div>
+  <p>\( (x+y)^2 \) を展開したものはどれですか。</p>
+  <div class="choices">
+    <button>\( x^2+y^2 \)</button>
+    <button>\( x^2+xy+y^2 \)</button>
+    <button>\( 2x+2y \)</button>
+    <button data-correct="true">\( x^2+2xy+y^2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( (x+y)^2=x^2+2xy+y^2 \) です。\( x^2+y^2 \) は真ん中の項 \( 2xy \) を落とした誤り、\( x^2+xy+y^2 \) は 2 を忘れた誤り、\( 2x+2y \) は2乗を2倍と取り違えた誤りです。この展開を逆に読むと \( x^2+y^2=(x+y)^2-2xy \) となり、「5 対称式の値」で使います。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：\( \dfrac{1}{\sqrt{2}} \) の近似値を手で求めるには？</h2>
+<div class="box think">
+  <p class="box-title">2つの問い</p>
+  <p><strong>問い①</strong>　\( \sqrt{2}=1.41421\cdots \) を使って \( \dfrac{1}{\sqrt{2}} \) の近似値を手で求めるには、\( 1\div 1.41421 \) の筆算が必要です。もっと楽に求める方法はないでしょうか。</p>
+  <p><strong>問い②</strong>　\( x=\dfrac{2}{\sqrt{5}-\sqrt{3}} \)、\( y=\dfrac{2}{\sqrt{5}+\sqrt{3}} \) のとき、\( x^2+y^2 \) の値を、なるべく計算を少なくして求めるにはどうすればよいでしょうか。</p>
+  <p>問い①は「3 分母が √a のとき」で、問い②は「5 対称式の値」で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="分母が √a のとき"><span class="num">3</span>分母が √a のとき</h2>
+<p>分母に根号を含む数を、値を変えずに、分母に根号を含まない形に変形することを、<strong>分母を有理化する</strong>といいます（中3-026）。分母と分子に同じ数をかけても、分数の値は変わりません。そこで、分母が \( \sqrt{a} \) のときは、分母と分子に \( \sqrt{a} \) をかけ、\( (\sqrt{a})^2=a \) を使います。</p>
+$$ \frac{b}{\sqrt{a}}=\frac{b\times\sqrt{a}}{\sqrt{a}\times\sqrt{a}}=\frac{b\sqrt{a}}{a}\qquad(a&gt;0) $$
+<p><strong>導入の問い①の答え</strong>：\( \dfrac{1}{\sqrt{2}}=\dfrac{\sqrt{2}}{2}=1.41421\cdots\div 2=0.70710\cdots \)。2 でわるだけなので、筆算がずっと楽になります。</p>
+<div class="box point"><p class="box-title">先に根号の中を簡単にする</p><p>\( \dfrac{6}{\sqrt{12}} \) は、先に \( \sqrt{12}=2\sqrt{3} \) として \( \dfrac{6}{2\sqrt{3}}=\dfrac{3}{\sqrt{3}}=\dfrac{3\sqrt{3}}{3}=\sqrt{3} \) とすると、数が小さくて済みます。最後に約分できるかも確かめましょう。</p></div>
+
+<div class="box example worked">
+  <p class="box-title">例題1（分母が √a）</p>
+  <p>次の数の分母を有理化しなさい。　(1) \( \dfrac{4}{\sqrt{2}} \)　　(2) \( \dfrac{\sqrt{3}}{\sqrt{5}} \)　　(3) \( \dfrac{1}{\sqrt{2}}+\sqrt{8} \)（計算もする）</p>
+  <div class="step">ステップ1（(1) 着目点：分母の根号をかける）：\( \dfrac{4\sqrt{2}}{\sqrt{2}\times\sqrt{2}}=\dfrac{4\sqrt{2}}{2}=2\sqrt{2} \)（約分まで）。</div>
+  <div class="step">ステップ2（(2)）：分母と分子に \( \sqrt{5} \) をかけて \( \dfrac{\sqrt{3}\times\sqrt{5}}{5}=\dfrac{\sqrt{15}}{5} \)。</div>
+  <div class="step">ステップ3（(3) 有理化してから同じ根号をまとめる）：\( \dfrac{1}{\sqrt{2}}=\dfrac{\sqrt{2}}{2} \)、\( \sqrt{8}=2\sqrt{2} \) なので \( \dfrac{\sqrt{2}}{2}+2\sqrt{2}=\dfrac{\sqrt{2}+4\sqrt{2}}{2}=\dfrac{5\sqrt{2}}{2} \)。</div>
+  <div class="step">答え：(1) \( 2\sqrt{2} \)　(2) \( \dfrac{\sqrt{15}}{5} \)　(3) \( \dfrac{5\sqrt{2}}{2} \)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：分母だけに根号をかける</p><p>\( \dfrac{1}{\sqrt{3}} \) の分母だけに \( \sqrt{3} \) をかけて \( \dfrac{1}{3} \) とすると、値が変わってしまいます（\( \dfrac{1}{\sqrt{3}}=0.577\cdots \)、\( \dfrac{1}{3}=0.333\cdots \)）。分母と分子の<strong>両方</strong>に同じ数をかけます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="分母が二項のとき"><span class="num">4</span>分母が √a+√b や a+√b のとき</h2>
+<p>\( \dfrac{1}{\sqrt{3}+\sqrt{2}} \) の分母と分子に \( \sqrt{3}+\sqrt{2} \) をかけても、分母は \( (\sqrt{3}+\sqrt{2})^2=5+2\sqrt{6} \) となり、根号が残ります。そこで、前の時間（数Ⅰ-013）に見た「和と差の積で根号が消える」ことを使います。</p>
+$$ \frac{1}{\sqrt{3}+\sqrt{2}}=\frac{\sqrt{3}-\sqrt{2}}{(\sqrt{3}+\sqrt{2})(\sqrt{3}-\sqrt{2})}=\frac{\sqrt{3}-\sqrt{2}}{3-2}=\sqrt{3}-\sqrt{2} $$
+<div class="table-wrap">
+<table>
+  <tr><th>分母</th><th>分母と分子にかける数</th><th>かけた後の分母</th></tr>
+  <tr><td>\( \sqrt{a}+\sqrt{b} \)</td><td>\( \sqrt{a}-\sqrt{b} \)</td><td>\( a-b \)</td></tr>
+  <tr><td>\( \sqrt{a}-\sqrt{b} \)</td><td>\( \sqrt{a}+\sqrt{b} \)</td><td>\( a-b \)</td></tr>
+  <tr><td>\( a+\sqrt{b} \)</td><td>\( a-\sqrt{b} \)</td><td>\( a^2-b \)</td></tr>
+  <tr><td>\( a-\sqrt{b} \)</td><td>\( a+\sqrt{b} \)</td><td>\( a^2-b \)</td></tr>
+</table>
+</div>
+<p class="small">\( a,\ b \) は正の有理数で、\( \sqrt{a}\ne\sqrt{b} \)、\( a^2\ne b \) とする（かけた後の分母が 0 にならないため）。</p>
+
+<div class="box example worked">
+  <p class="box-title">例題2（分母が二項）</p>
+  <p>次の数の分母を有理化しなさい。　(1) \( \dfrac{4}{\sqrt{5}-1} \)　　(2) \( \dfrac{\sqrt{3}-\sqrt{2}}{\sqrt{3}+\sqrt{2}} \)</p>
+  <div class="step">ステップ1（着目点：符号だけを変えた式をかける）：(1) の分母 \( \sqrt{5}-1 \) には \( \sqrt{5}+1 \) を、(2) の分母 \( \sqrt{3}+\sqrt{2} \) には \( \sqrt{3}-\sqrt{2} \) を、分母と分子の両方にかけます。</div>
+  <div class="step">ステップ2（(1)）：\( \dfrac{4(\sqrt{5}+1)}{(\sqrt{5})^2-1^2}=\dfrac{4(\sqrt{5}+1)}{4}=\sqrt{5}+1 \)。</div>
+  <div class="step">ステップ3（(2) 分子は2乗の展開になる）：\( \dfrac{(\sqrt{3}-\sqrt{2})^2}{3-2}=(\sqrt{3})^2-2\sqrt{6}+(\sqrt{2})^2=5-2\sqrt{6} \)。</div>
+  <div class="step">答え：(1) \( \sqrt{5}+1 \)　(2) \( 5-2\sqrt{6} \)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：分母の計算で符号や2乗を誤る</p><p>\( (\sqrt{3}+\sqrt{2})(\sqrt{3}-\sqrt{2}) \) を「\( 3+2=5 \)」としたり、\( (\sqrt{5}+2)(\sqrt{5}-2) \) を「\( 5-2=3 \)」と \( 2^2 \) にし忘れたりする誤りが多く見られます。和と差の積は <strong>（前の項の2乗）−（後ろの項の2乗）</strong> です。\( (\sqrt{5})^2-2^2=5-4=1 \) となります。</p></div>
+<p class="small">解説は、有理化の対象を「分母が二項程度までの分数の形に表された数」としています。分母に根号が3つ以上ある数の有理化は、この時間は扱いません。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="対称式の値"><span class="num">5</span>対称式の値</h2>
+<p class="small">この節の内容（対称式とその値）は、教科書によって本文で扱うものと、「研究」「発展」として扱うものがあります。</p>
+<h3>対称式とは</h3>
+<p>\( x+y \)、\( xy \)、\( x^2+y^2 \) のように、\( x \) と \( y \) を入れかえても同じ式になる式を、\( x,\ y \) の<strong>対称式</strong>といいます。たとえば \( x^2+y^2 \) の \( x \) と \( y \) を入れかえると \( y^2+x^2 \) で、もとの式と同じです。一方、\( x-y \) は入れかえると \( y-x \) となり、もとの式と違うので対称式ではありません（\( (x-y)^2 \) は対称式です）。</p>
+<p>この時間に扱う2次の対称式は、\( x+y \) と \( xy \) を使って表せます。</p>
+<figure>
+<!--svg:f014a-->
+<svg viewBox="0 0 300 280" width="300" role="img" aria-label="1辺が x+y の正方形を、縦横とも x と y に分けた模式図。左上は面積 x² の正方形、右下は面積 y² の正方形、残りの2つは面積 xy の長方形で、色を付けて除く部分として示す">
+<defs><marker id="ar014a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker><marker id="ar014a-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/></marker><marker id="ar014a-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f5fbf"/></marker><marker id="ar014a-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e8e5a"/></marker><marker id="ar014a-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b7791f"/></marker><marker id="ar014a-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<rect x="50" y="40" width="126" height="126" fill="#1f5fbf" fill-opacity="0.12" stroke="currentColor" stroke-width="1.2"/>
+<rect x="176" y="166" width="84" height="84" fill="#1e8e5a" fill-opacity="0.14" stroke="currentColor" stroke-width="1.2"/>
+<rect x="176" y="40" width="84" height="126" fill="#c0392b" fill-opacity="0.18" stroke="#c0392b" stroke-width="1.5"/>
+<rect x="50" y="166" width="126" height="84" fill="#c0392b" fill-opacity="0.18" stroke="#c0392b" stroke-width="1.5"/>
+<line x1="50" y1="28" x2="176" y2="28" stroke="currentColor" stroke-width="1"/>
+<line x1="50" y1="24" x2="50" y2="32" stroke="currentColor" stroke-width="1"/>
+<line x1="176" y1="24" x2="176" y2="32" stroke="currentColor" stroke-width="1"/>
+<text x="113" y="22" text-anchor="middle" font-size="14" fill="currentColor">x</text>
+<line x1="176" y1="28" x2="260" y2="28" stroke="currentColor" stroke-width="1"/>
+<line x1="176" y1="24" x2="176" y2="32" stroke="currentColor" stroke-width="1"/>
+<line x1="260" y1="24" x2="260" y2="32" stroke="currentColor" stroke-width="1"/>
+<text x="218" y="22" text-anchor="middle" font-size="14" fill="currentColor">y</text>
+<line x1="38" y1="40" x2="38" y2="166" stroke="currentColor" stroke-width="1"/>
+<line x1="34" y1="40" x2="42" y2="40" stroke="currentColor" stroke-width="1"/>
+<line x1="34" y1="166" x2="42" y2="166" stroke="currentColor" stroke-width="1"/>
+<text x="30" y="108" text-anchor="end" font-size="14" fill="currentColor">x</text>
+<line x1="38" y1="166" x2="38" y2="250" stroke="currentColor" stroke-width="1"/>
+<line x1="34" y1="166" x2="42" y2="166" stroke="currentColor" stroke-width="1"/>
+<line x1="34" y1="250" x2="42" y2="250" stroke="currentColor" stroke-width="1"/>
+<text x="30" y="213" text-anchor="end" font-size="14" fill="currentColor">y</text>
+<text x="113" y="109" text-anchor="middle" font-size="17" font-weight="700" fill="#1f5fbf">x²</text>
+<text x="218" y="108" text-anchor="middle" font-size="15" font-weight="700" fill="#c0392b">xy</text>
+<text x="113" y="213" text-anchor="middle" font-size="15" font-weight="700" fill="#c0392b">xy</text>
+<text x="218" y="214" text-anchor="middle" font-size="17" font-weight="700" fill="#1e8e5a">y²</text>
+</svg>
+<!--/svg:f014a-->
+  <figcaption>図1　1辺が \( x+y \) の正方形の面積 \( (x+y)^2 \) から、面積 \( xy \) の長方形2つを除くと \( x^2+y^2 \) が残る（\( x,\ y \) が正の場合の模式図）</figcaption>
+</figure>
+<div class="formula-card">
+  <div><span class="f-name">2次の対称式を x+y と xy で表す</span>
+    <p>\( x^2+y^2=(x+y)^2-2xy \)<br>\( (x-y)^2=(x+y)^2-4xy \)<br>\( x^2+xy+y^2=(x+y)^2-xy \)<br>\( x^2-xy+y^2=(x+y)^2-3xy \)</p></div>
+</div>
+
+<h3>有理化した値を使って求める</h3>
+<p><strong>導入の問い②の答え</strong>：分母を有理化すると</p>
+$$ x=\frac{2(\sqrt{5}+\sqrt{3})}{5-3}=\sqrt{5}+\sqrt{3},\qquad y=\frac{2(\sqrt{5}-\sqrt{3})}{5-3}=\sqrt{5}-\sqrt{3} $$
+<p>です。\( x+y=2\sqrt{5} \)、\( xy=(\sqrt{5})^2-(\sqrt{3})^2=2 \) と、どちらも簡単な数になります。よって</p>
+$$ x^2+y^2=(x+y)^2-2xy=(2\sqrt{5})^2-2\times 2=20-4=16 $$
+<p>直接計算しても \( (\sqrt{5}+\sqrt{3})^2+(\sqrt{5}-\sqrt{3})^2=(8+2\sqrt{15})+(8-2\sqrt{15})=16 \) で一致しますが、\( x+y \) と \( xy \) を使うほうが、根号を含む式の2乗を2回計算せずに済みます。</p>
+
+<div class="box example worked">
+  <p class="box-title">例題3（対称式の値）</p>
+  <p>\( x=\dfrac{\sqrt{7}+\sqrt{3}}{\sqrt{7}-\sqrt{3}} \)、\( y=\dfrac{\sqrt{7}-\sqrt{3}}{\sqrt{7}+\sqrt{3}} \) のとき、次の値を求めなさい。　(1) \( x+y \)、\( xy \)　　(2) \( x^2+y^2 \)　　(3) \( (x-y)^2 \)</p>
+  <div class="step">ステップ1（着目点：まず有理化）：\( x=\dfrac{(\sqrt{7}+\sqrt{3})^2}{7-3}=\dfrac{10+2\sqrt{21}}{4}=\dfrac{5+\sqrt{21}}{2} \)。同じように \( y=\dfrac{5-\sqrt{21}}{2} \)。</div>
+  <div class="step">ステップ2（(1)）：\( x+y=\dfrac{10}{2}=5 \)、\( xy=\dfrac{25-21}{4}=1 \)（\( x \) と \( y \) は逆数どうしなので、有理化する前から \( xy=1 \) とも分かる）。</div>
+  <div class="step">ステップ3（(2)・(3) 公式に代入）：\( x^2+y^2=5^2-2\times 1=23 \)、\( (x-y)^2=5^2-4\times 1=21 \)。</div>
+  <div class="step">答え：(1) \( x+y=5 \)、\( xy=1 \)　(2) \( 23 \)　(3) \( 21 \)（確かめ：\( x-y=\sqrt{21} \) なので \( (x-y)^2=21 \)）</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：\( x^2+y^2=(x+y)^2 \) とする</p><p>\( (x+y)^2=x^2+2xy+y^2 \) なので、\( x^2+y^2 \) を求めるには \( 2xy \) を引く必要があります。例題3で \( 5^2=25 \) と答えると、\( 2xy=2 \) の分だけ大きくなります（図1の長方形2つ分）。</p></div>
+<p class="small">\( x+y \) と \( xy \) は<strong>基本対称式</strong>と呼ばれます。対称式と基本対称式の性質を調べる内容は、教科書によっては「研究」「発展」として扱われます。数学Ⅱ（数Ⅱ-016）では、二次方程式の2つの解について、和と積を使って対称式の値を求めます。</p>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>分母の有理化</dt><dd>分母に根号を含む数を、値を変えずに、分母に根号を含まない形に変形すること。</dd>
+    <dt>和と差の積</dt><dd>\( (a+b)(a-b)=a^2-b^2 \)。分母が二項のとき、符号を変えた式をかけると根号が消える。</dd>
+    <dt>対称式</dt><dd>\( x \) と \( y \) を入れかえても同じ式になる式。\( x+y \)、\( xy \)、\( x^2+y^2 \) など。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>分母が \( \sqrt{a} \) のときは、分母と分子に \( \sqrt{a} \) をかけて有理化する。先に根号の中を簡単にし、最後に約分する（O1）。</li>
+    <li>分母が \( \sqrt{a}+\sqrt{b} \)、\( a+\sqrt{b} \) などの二項のときは、符号を変えた式を分母と分子にかけ、和と差の積で根号を消す（O2）。</li>
+    <li>対称式は \( x \) と \( y \) を入れかえても同じ式。\( x^2+y^2=(x+y)^2-2xy \) などを使い、有理化して求めた \( x+y \)、\( xy \) から値を求める（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">有理化</span>
+    <p>\( \frac{b}{\sqrt{a}}=\frac{b\sqrt{a}}{a} \)<br>\( \frac{1}{\sqrt{a}+\sqrt{b}}=\frac{\sqrt{a}-\sqrt{b}}{a-b} \)</p></div>
+  <div><span class="f-name">対称式</span>
+    <p>\( x^2+y^2=(x+y)^2-2xy \)<br>\( (x-y)^2=(x+y)^2-4xy \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。根号は √、分数は / で入力してください（例：7√3/3）。</p>
+
+<div class="q" data-type="input" id="q1" data-accept="2√3|2√(3)">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>\( \dfrac{6}{\sqrt{3}} \) の分母を有理化し、できるだけ簡単にしなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 2\sqrt{3} \)。\( \dfrac{6\sqrt{3}}{3}=2\sqrt{3} \)。\( \dfrac{6\sqrt{3}}{3} \) のまま止めた場合は、約分を忘れています。\( 2 \) と答えた場合は、分母だけに \( \sqrt{3} \) をかけて \( \dfrac{6}{3} \) としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>\( \dfrac{1}{\sqrt{5}+2} \) の分母を有理化したものはどれですか。</p>
+  <div class="choices"><button>\( \dfrac{\sqrt{5}-2}{9} \)</button><button>\( \dfrac{\sqrt{5}-2}{3} \)</button><button data-correct="true">\( \sqrt{5}-2 \)</button><button>\( 2-\sqrt{5} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">分母と分子に \( \sqrt{5}-2 \) をかけると、分母は \( (\sqrt{5})^2-2^2=5-4=1 \) なので \( \sqrt{5}-2 \)。\( \dfrac{\sqrt{5}-2}{9} \) は分母を \( 5+4 \) と足した誤り、\( \dfrac{\sqrt{5}-2}{3} \) は \( 2^2 \) にし忘れて \( 5-2 \) とした誤りです。\( 2-\sqrt{5} \) は、\( 2-\sqrt{5} \) をかけたときの分母 \( 4-5=-1 \) の符号を落とした誤りです（正しくは \( \frac{2-\sqrt{5}}{-1}=\sqrt{5}-2 \)）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>次のうち、\( x,\ y \) の対称式はどれですか。</p>
+  <div class="choices"><button data-correct="true">\( x^2+3xy+y^2 \)</button><button>\( x^2-y^2 \)</button><button>\( x-2y \)</button><button>\( x^2+xy \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( x^2+3xy+y^2 \) は、\( x \) と \( y \) を入れかえると \( y^2+3yx+x^2 \) で、もとの式と同じです。\( x^2-y^2 \) は \( y^2-x^2 \)（符号が逆）、\( x-2y \) は \( y-2x \)、\( x^2+xy \) は \( y^2+xy \) になり、どれももとの式と違います。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="5√2/2|(5√2)/2|5/2√2|5√(2)/2">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1</span></div>
+  <p>\( \dfrac{1}{\sqrt{2}}+\sqrt{18}-\dfrac{4}{\sqrt{8}} \) を計算しなさい（7√3/3 のように入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{5\sqrt{2}}{2} \)。\( \dfrac{1}{\sqrt{2}}=\dfrac{\sqrt{2}}{2} \)、\( \sqrt{18}=3\sqrt{2} \)、\( \dfrac{4}{\sqrt{8}}=\dfrac{4}{2\sqrt{2}}=\dfrac{2}{\sqrt{2}}=\sqrt{2} \) なので、\( \left(\dfrac{1}{2}+3-1\right)\sqrt{2}=\dfrac{5\sqrt{2}}{2} \)。\( \dfrac{9\sqrt{2}}{2} \) と答えた場合は、最後の項を引かずに足しています。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="5-2√6|5−2√6|-2√6+5|−2√6+5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>\( \dfrac{\sqrt{3}-\sqrt{2}}{\sqrt{3}+\sqrt{2}} \) の分母を有理化しなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 5-2\sqrt{6} \)（例題2(2)と同じ）。分母と分子に \( \sqrt{3}-\sqrt{2} \) をかけると、分母は \( 3-2=1 \)、分子は \( (\sqrt{3}-\sqrt{2})^2=5-2\sqrt{6} \)。\( \dfrac{5-2\sqrt{6}}{5} \) と答えた場合は、分母を \( 3+2 \) と計算しています。\( \sqrt{3}-\sqrt{2} \) と答えた場合は、分母だけに \( \sqrt{3}-\sqrt{2} \) をかけ、分子にかけ忘れています（値が変わってしまう）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>\( x=\dfrac{1}{2-\sqrt{3}} \)、\( y=\dfrac{1}{2+\sqrt{3}} \) のとき、\( x^2+y^2 \) の値はどれですか。</p>
+  <div class="choices"><button>\( 16 \)</button><button>\( 12 \)</button><button>\( 15 \)</button><button data-correct="true">\( 14 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">有理化すると \( x=2+\sqrt{3} \)、\( y=2-\sqrt{3} \) なので \( x+y=4 \)、\( xy=4-3=1 \)。\( x^2+y^2=4^2-2\times 1=14 \)。\( 16 \) は \( (x+y)^2 \) のまま \( 2xy \) を引き忘れた誤り、\( 12 \) は \( 4xy \) を引いた \( (x-y)^2 \) の値、\( 15 \) は \( xy \) だけを引いた \( x^2+xy+y^2 \) の値です。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O2・O3</span></div>
+  <p>\( x=\dfrac{\sqrt{5}+1}{\sqrt{5}-1} \)、\( y=\dfrac{\sqrt{5}-1}{\sqrt{5}+1} \) のとき、\( x^2+xy+y^2 \) の値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 8 \)。\( x=\dfrac{(\sqrt{5}+1)^2}{5-1}=\dfrac{6+2\sqrt{5}}{4}=\dfrac{3+\sqrt{5}}{2} \)、\( y=\dfrac{3-\sqrt{5}}{2} \)。\( x+y=3 \)、\( xy=1 \)（逆数どうし）なので、\( x^2+xy+y^2=(x+y)^2-xy=9-1=8 \)。\( 9 \) と答えた場合は \( (x+y)^2 \) から \( xy \) を引き忘れています。\( 7 \) と答えた場合は \( x^2+y^2 \) だけを求めています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O3</span></div>
+  <p>太郎さんと花子さんが、\( x=\sqrt{6}+\sqrt{2} \)、\( y=\sqrt{6}-\sqrt{2} \) のときの \( x^2+y^2 \) の求め方について話しています。</p>
+  <p>太郎：「\( x^2 \) と \( y^2 \) をそれぞれ展開して足したよ。根号の計算が多くて大変だった。」<br>花子：「先に \( x+y=2\sqrt{6} \) と \( xy=4 \) を求めておくと、式を変形するだけで済むよ。」</p>
+  <p>花子さんの方法で \( x^2+y^2 \) を表す式と、その値の組として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( (x+y)^2-xy \)、値は 20</button>
+    <button data-correct="true">\( (x+y)^2-2xy \)、値は 16</button>
+    <button>\( (x+y)^2 \)、値は 24</button>
+    <button>\( (x+y)^2+2xy \)、値は 32</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( (x+y)^2=x^2+2xy+y^2 \) より \( x^2+y^2=(x+y)^2-2xy=(2\sqrt{6})^2-2\times 4=24-8=16 \)。太郎さんの方法でも \( (8+2\sqrt{12})+(8-2\sqrt{12})=16 \) で一致します。「\( (x+y)^2-xy \)、20」は \( x^2+xy+y^2 \) の式、「\( (x+y)^2 \)、24」は \( 2xy \) の引き忘れ、「\( (x+y)^2+2xy \)、32」は引くべき \( 2xy \) を足した誤りです。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>\( x=\dfrac{1}{\sqrt{3}-\sqrt{2}} \)、\( y=\dfrac{1}{\sqrt{3}+\sqrt{2}} \) とする。\( x^2+y^2 \) の値を、(ア) \( x,\ y \) を有理化して直接2乗して求める方法と、(イ) \( x+y \) と \( xy \) を使う方法の2通りで求め、(イ) の方法のよさを説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　有理化すると \( x=\sqrt{3}+\sqrt{2} \)、\( y=\sqrt{3}-\sqrt{2} \)。(ア) \( x^2=5+2\sqrt{6} \)、\( y^2=5-2\sqrt{6} \) より \( x^2+y^2=10 \)。(イ) \( x+y=2\sqrt{3} \)、\( xy=3-2=1 \) より \( x^2+y^2=(2\sqrt{3})^2-2\times 1=12-2=10 \)。(イ) は、根号を含む式の2乗を2回計算せず、簡単な数になる \( x+y \) と \( xy \) を1回ずつ求めるだけで済むので、計算が少なく誤りにくい。</p>
+    <p><strong>採点の観点</strong>　① \( x,\ y \) を正しく有理化している。② (ア)・(イ) のどちらでも 10 を得ている。③ (イ) のよさを「\( x+y \)、\( xy \) が簡単な数になり、計算が少ない」などの根拠で説明している。</p>
+  </div>
+  <div class="explain">\( x \) と \( y \) の分母は、互いに符号だけが違う式です。このような組では、有理化した \( x \) と \( y \) の和と積が簡単な数になりやすく、対称式の値を求めるのに役立ちます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。分母の有理化は、学習指導要領解説が数学Ⅰ「(1) 数と式」ア(ア)の「簡単な無理数の四則計算」の例として挙げている内容で、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。問8・問9のように、式の形に目を付けて計算の方法を選ぶことは、こうした処理の一つです。</p>
+  <p class="small">対称式の値は、教科書で一般的に扱われる内容です（† の印。教科書によっては「研究」「発展」として扱われます）。問8は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">不等式の解の意味と不等式の性質（数Ⅰ-015）</p>
+  <p>次の時間からは、数量の大小関係を表す不等式を学びます。不等式を満たす値の集まり（解）の意味を、数値の代入や数直線で確かめ、両辺に同じ数を足したりかけたりしたときに大小関係がどうなるか（不等式の性質）を調べます。</p>
+  <p>この時間では、分母に根号が3つ以上ある数の有理化、3次の対称式（\( x^3+y^3 \) など。単元の注にあるとおり一部の教科書が「発展」として扱う）、二次方程式の解と係数の関係を使った対称式の値（数Ⅱ-016）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-013　根号を含む式の計算</div>
+  <div><span class="label">次の時間</span>数Ⅰ-015　不等式の解の意味と不等式の性質</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-014「分母の有理化」（学習指導要領 数学Ⅰ (1)ア(ア)、解説 p.36。† 教科書で一般的な内容を含む行。語句「対称式」の出典は数研出版のシラバス）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(1) 数と式（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.36「分母が二項程度までの分数の形に表された数の分母の有理化などの簡単な無理数の四則計算ができるようにする」（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「根号を含む式の計算」（分母の有理化、対称式の値を求めるのに分母の有理化や式の変形を活用すること〔応用例題〕、対称式・基本対称式の性質〔発展〕）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>新興出版社啓林館「α数学Ⅰ（数Ⅰ061-901）」「深進数学Ⅰ（数Ⅰ061-902）」「爽解数学Ⅰ（数Ⅰ061-903）」年間指導計画（「研究[発展]／対称式と基本対称式」）https://www.shinko-keirin.co.jp/keirinkan/kou/kou_wp/wp-content/uploads/2026/04/01_アルファ数学Ⅰ（061-901）_年間指導計画.docx ほか（同社「高等学校 数学 サポート資料」https://www.shinko-keirin.co.jp/keirinkan/kou/math/support/ に掲載）</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-014",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-014",
+  "title": "分母の有理化",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-1", "title": "数と式"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ア)"],
+  "kaisetsu_page": "36",
+  "objectives": [
+    {"id": "O1", "text": "分母が \\( \\sqrt{a} \\) の形の数について、分母と分子に同じ数をかけて、分母を有理化できる。", "from": "分母が √a …のような…分数の形に表された数について、分母を有理化できる", "sections": ["sec-1"], "checks": ["q1", "q4"]},
+    {"id": "O2", "text": "分母が \\( \\sqrt{a}+\\sqrt{b} \\) や \\( a+\\sqrt{b} \\) のような二項の数について、和と差の積の公式を使って分母を有理化できる。", "from": "分母が …√a+√b のような二項程度までの分数の形に表された数について、分母を有理化できる", "sections": ["sec-2"], "checks": ["q2", "q5", "q7", "q9"]},
+    {"id": "O3", "text": "有理化した値から \\( x+y \\) と \\( xy \\) を求め、\\( x^2+y^2 \\) などの対称式の値を \\( x+y \\) と \\( xy \\) を使って求めることができる。", "from": "有理化した値を用いて x²+y² などの対称式の値を x+y、xy から求める", "sections": ["sec-3"], "checks": ["q3", "q6", "q7", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "分母の有理化", "where": "sec-1"},
+    {"term": "和と差の積", "where": "sec-2"},
+    {"term": "対称式", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "分母に根号を含む数を分母に根号を含まない形に変形する（分母が √a の場合）", "taught_in": ["jhs_math/中3-026"], "where": "review"},
+    {"concept": "和と差の積で根号が消えること、根号を含む式の乗法", "taught_in": ["hs_math_1a/数Ⅰ-013", "jhs_math/中3-006", "jhs_math/中3-028"], "where": "review"},
+    {"concept": "(x+y)² の展開", "taught_in": ["jhs_math/中3-005"], "where": "review"},
+    {"concept": "根号の中を簡単にする（√12=2√3）、同じ根号の項をまとめる", "taught_in": ["hs_math_1a/数Ⅰ-013", "jhs_math/中3-025", "jhs_math/中3-027"], "where": "sec-1"},
+    {"concept": "平方根の近似値（√2=1.41421…）", "taught_in": ["jhs_math/中3-022"], "where": "sec-1"},
+    {"concept": "根号を含む値を代入して式の値を工夫して求める", "taught_in": ["jhs_math/中3-030"], "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "分母に根号が3つ以上ある数の有理化（解説は「分母が二項程度までの分数の形に表された数の分母の有理化」）",
+    "3次の対称式（x³+y³ など。単元の注：一部の教科書が「発展」）",
+    "対称式と基本対称式の性質（教科書によっては「研究」「発展」）",
+    "二次方程式の解と係数の関係を用いた対称式の値（数Ⅱ-016）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『数と式』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(1)ア(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.36 分母が二項程度までの分数の形に表された数の分母の有理化"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "分母の有理化と対称式の値（応用例題）が教科書の学習項目であること、基本対称式の性質が発展であることの確認（† の内容）"},
+    {"name": "α数学Ⅰ・深進数学Ⅰ・爽解数学Ⅰ 年間指導計画", "publisher": "新興出版社啓林館", "url": "https://www.shinko-keirin.co.jp/keirinkan/kou/math/support/", "use": "「対称式と基本対称式」を「研究[発展]」として扱う教科書があることの確認（注記の根拠）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

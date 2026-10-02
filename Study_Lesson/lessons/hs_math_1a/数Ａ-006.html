@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>順列と nPr｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.widget .w-row { display: flex; flex-wrap: wrap; gap: 4px 18px; align-items: center; }
+.widget .w-out { font-size: .95rem; margin: 8px 0 4px; }
+.widget .w-list { font-size: .88rem; line-height: 1.6; }
+.widget .w-list div { margin: 2px 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-006</span></div>
+  <h1>順列と nPr</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">1 から 7 までの数字を書いた 7 枚のカードから 2 枚を選んで並べ、2けたの整数を作ります。全部で何個できるでしょう。並べる順序を区別して数える「順列」を学び、その総数を求める公式を導きます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>7枚のカードから2枚を選んで作る2けたの整数の総数などを、樹形図と積の法則を用いて求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>順列の意味を理解し、ある数え方が順列（異なるものから選び、並べる順序を区別する）として数えられるかを判断できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>順列の総数 \( {}_n\mathrm{P}_r \) を求める公式を導き、それを用いて順列の総数を計算できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-005）</span>積の法則</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-006）</span>順列と nPr</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-007）</span>階乗と順列の計算</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。この時間は特に、樹形図（数Ａ-003）と積の法則（数Ａ-005）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、積の法則（数Ａ-005）を使います。2問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-005</span></div>
+  <p>X 地点から Y 地点へ行く道が 3 本、Y 地点から Z 地点へ行く道が 4 本あります。X 地点から Y 地点を通って Z 地点へ行く道順は何通りですか。</p>
+  <div class="choices">
+    <button>7 通り</button>
+    <button data-correct="true">12 通り</button>
+    <button>81 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">X→Y の 3 本のそれぞれについて、Y→Z の道が 4 本ずつあるので、積の法則より \( 3\times4=12 \) 通りです。7 通りは \( 3+4 \) と足した誤り、81 通りは \( 3^4 \) と、かけ算を累乗と取り違えた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-005</span></div>
+  <p>大小2個のさいころを同時に投げるとき、大と小で異なる目が出る場合は何通りですか。</p>
+  <div class="choices">
+    <button>36 通り</button>
+    <button>15 通り</button>
+    <button data-correct="true">30 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">大の目は 6 通りで、そのそれぞれについて、小の目は大の目と違う 5 通りずつあるので、積の法則より \( 6\times5=30 \) 通りです。選べる目の中身は大の目によって変わりますが、数はいつも 5 通りなので積の法則が使えます。36 通りは目の出方の全体、15 通りは大の目が小の目より大きい場合だけを数えた誤りです。この「1つ使うと、次に選べる数が1つ減る」考え方を、この時間に使います。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：2けたの整数はいくつできる？</h2>
+<div class="box think">
+  <p class="box-title">7 枚のカードで 2けたの整数</p>
+  <p>1、2、3、4、5、6、7 の数字を1つずつ書いた 7 枚のカードがあります。このうち 2 枚を選んで左から並べ、2けたの整数を作ります。整数は全部で何個できるでしょうか。</p>
+  <p>太郎：「7 枚から 2 枚選ぶから、\( 7\times2=14 \) 個かな。」<br>花子：「十の位と一の位に同じカードは使えないよね。」</p>
+  <p>答えは「7 枚のカードで整数を作る」の節の例題1で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="7 枚のカードで整数を作る"><span class="num">3</span>7 枚のカードで整数を作る</h2>
+<p>十の位、一の位の順にカードを決めていく樹形図をかきます（図1）。十の位のカードは 1〜7 の 7 通りです。十の位が 1 のとき、一の位は残りの 2〜7 の 6 通り。十の位が 2 のとき、一の位は 1、3〜7 の 6 通りです。一の位に選べるカードの中身は十の位によって変わりますが、数はどれも 6 通りです。</p>
+<figure>
+<!--svg:f006a-->
+<svg viewBox="0 0 330 392" width="330" role="img" aria-label="7 枚のカードから十の位、一の位の順に選ぶ樹形図。十の位は 1〜7 の 7 通りで、十の位が 1 のとき一の位は 2〜7 の 6 通り（12〜17）、2 のとき 1、3〜7 の 6 通り（21、23〜27）。3〜7 のときも一の位は残りの 6 通りずつ。全部で 42 個" data-fig="f006a">
+<text x="94" y="24" text-anchor="middle" font-size="11" fill="currentColor">十の位</text>
+<text x="164" y="24" text-anchor="middle" font-size="11" fill="currentColor">一の位</text>
+<circle cx="24" cy="252.3" r="3" fill="currentColor"/>
+<line x1="26" y1="252.3" x2="86" y2="89" stroke="currentColor" stroke-width="1.2"/>
+<text x="94" y="93.5" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf" data-node="1">1</text>
+<line x1="102" y1="89" x2="156" y2="44" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="48.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="1/2">2</text>
+<line x1="174" y1="44" x2="184" y2="44" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="47.9" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">12</text>
+<line x1="102" y1="89" x2="156" y2="62" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="66.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="1/3">3</text>
+<line x1="174" y1="62" x2="184" y2="62" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="65.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">13</text>
+<line x1="102" y1="89" x2="156" y2="80" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="84.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="1/4">4</text>
+<line x1="174" y1="80" x2="184" y2="80" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="83.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">14</text>
+<line x1="102" y1="89" x2="156" y2="98" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="102.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="1/5">5</text>
+<line x1="174" y1="98" x2="184" y2="98" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="101.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">15</text>
+<line x1="102" y1="89" x2="156" y2="116" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="120.5" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="1/6">6</text>
+<line x1="174" y1="116" x2="184" y2="116" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="119.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">16</text>
+<line x1="102" y1="89" x2="156" y2="134" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="138.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="1/7">7</text>
+<line x1="174" y1="134" x2="184" y2="134" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="137.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">17</text>
+<line x1="26" y1="252.3" x2="86" y2="197" stroke="currentColor" stroke-width="1.2"/>
+<text x="94" y="201.6" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf" data-node="2">2</text>
+<line x1="102" y1="197" x2="156" y2="152" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="156.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="2/1">1</text>
+<line x1="174" y1="152" x2="184" y2="152" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="155.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">21</text>
+<line x1="102" y1="197" x2="156" y2="170" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="174.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="2/3">3</text>
+<line x1="174" y1="170" x2="184" y2="170" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="173.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">23</text>
+<line x1="102" y1="197" x2="156" y2="188" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="192.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="2/4">4</text>
+<line x1="174" y1="188" x2="184" y2="188" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="191.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">24</text>
+<line x1="102" y1="197" x2="156" y2="206" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="210.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="2/5">5</text>
+<line x1="174" y1="206" x2="184" y2="206" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="209.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">25</text>
+<line x1="102" y1="197" x2="156" y2="224" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="228.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="2/6">6</text>
+<line x1="174" y1="224" x2="184" y2="224" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="227.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">26</text>
+<line x1="102" y1="197" x2="156" y2="242" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="246.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="2/7">7</text>
+<line x1="174" y1="242" x2="184" y2="242" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="245.8" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">27</text>
+<line x1="26" y1="252.3" x2="86" y2="260" stroke="currentColor" stroke-width="1.2"/>
+<text x="94" y="264.6" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf" data-node="3">3</text>
+<line x1="102" y1="260" x2="153.5" y2="260" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="264.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="3/…">…</text>
+<line x1="176.5" y1="260" x2="184" y2="260" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="263.9" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">3□ の形が 6 個</text>
+<line x1="26" y1="252.3" x2="86" y2="278" stroke="currentColor" stroke-width="1.2"/>
+<text x="94" y="282.6" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf" data-node="4">4</text>
+<line x1="102" y1="278" x2="153.5" y2="278" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="282.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="4/…">…</text>
+<line x1="176.5" y1="278" x2="184" y2="278" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="281.9" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">4□ の形が 6 個</text>
+<line x1="26" y1="252.3" x2="86" y2="296" stroke="currentColor" stroke-width="1.2"/>
+<text x="94" y="300.6" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf" data-node="5">5</text>
+<line x1="102" y1="296" x2="153.5" y2="296" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="300.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="5/…">…</text>
+<line x1="176.5" y1="296" x2="184" y2="296" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="299.9" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">5□ の形が 6 個</text>
+<line x1="26" y1="252.3" x2="86" y2="314" stroke="currentColor" stroke-width="1.2"/>
+<text x="94" y="318.6" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf" data-node="6">6</text>
+<line x1="102" y1="314" x2="153.5" y2="314" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="318.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="6/…">…</text>
+<line x1="176.5" y1="314" x2="184" y2="314" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="317.9" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">6□ の形が 6 個</text>
+<line x1="26" y1="252.3" x2="86" y2="332" stroke="currentColor" stroke-width="1.2"/>
+<text x="94" y="336.6" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf" data-node="7">7</text>
+<line x1="102" y1="332" x2="153.5" y2="332" stroke="currentColor" stroke-width="1.2"/>
+<text x="164" y="336.6" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" data-node="7/…">…</text>
+<line x1="176.5" y1="332" x2="184" y2="332" stroke="#8a99a8" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="190" y="335.9" text-anchor="start" font-size="11" fill="currentColor" data-leaf="1">7□ の形が 6 個</text>
+<text x="8" y="358" text-anchor="start" font-size="11" fill="currentColor">十の位 7 通りのそれぞれに、一の位が残りの 6 通りずつ</text>
+<text x="8" y="374" text-anchor="start" font-size="11" fill="currentColor">→ 積の法則で 7×6＝42</text>
+</svg>
+<!--/svg:f006a-->
+  <figcaption>図1　十の位、一の位の順に選ぶ樹形図（十の位が 3〜7 の枝は省略して個数だけを示した）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の答え）</p>
+  <p>1 から 7 までの数字を書いた 7 枚のカードから 2 枚を選んで並べ、2けたの整数を作ります。整数は全部で何個できますか。</p>
+  <div class="step">ステップ1（着目：十の位の決め方）：十の位は 7 枚のどれかで 7 通り。</div>
+  <div class="step">ステップ2（着目：使ったカードは使えない）：十の位がどのカードでも、一の位は残りの 6 枚から選ぶので 6 通りずつ。</div>
+  <div class="step">ステップ3：積の法則より \( 7\times6=42 \)。答え 42 個。</div>
+</div>
+<p>3けたの整数を作るときも同じです。図2のように位ごとの枠をかくと、百の位は 7 通り、十の位は残りの 6 通り、一の位はさらに残りの 5 通りで、\( 7\times6\times5=210 \) 個できます。</p>
+<figure>
+<!--svg:f006b-->
+<svg viewBox="0 0 360 142" width="360" role="img" aria-label="百の位・十の位・一の位の3つの枠。百の位は 1〜7 の 7 通り、十の位は残りの 6 枚から 6 通り、一の位は残りの 5 枚から 5 通りで、積の法則により 7×6×5=210" data-fig="f006b">
+<text x="180" y="14" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">7 枚のカードから 3 枚を並べる（3けたの整数）</text>
+<rect x="20" y="40" width="76" height="44" rx="6" fill="#1f5fbf" fill-opacity="0.08" stroke="currentColor" stroke-width="1.4" data-slot="1" data-ways="7"/>
+<text x="58" y="34" text-anchor="middle" font-size="12" fill="currentColor">百の位</text>
+<text x="58" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">7 通り</text>
+<text x="111" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">×</text>
+<text x="58" y="102" text-anchor="middle" font-size="11" fill="currentColor">1〜7 のどれか</text>
+<rect x="126" y="40" width="76" height="44" rx="6" fill="#1f5fbf" fill-opacity="0.08" stroke="currentColor" stroke-width="1.4" data-slot="2" data-ways="6"/>
+<text x="164" y="34" text-anchor="middle" font-size="12" fill="currentColor">十の位</text>
+<text x="164" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">6 通り</text>
+<text x="217" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">×</text>
+<text x="164" y="102" text-anchor="middle" font-size="11" fill="currentColor">残りの 6 枚</text>
+<rect x="232" y="40" width="76" height="44" rx="6" fill="#1f5fbf" fill-opacity="0.08" stroke="currentColor" stroke-width="1.4" data-slot="3" data-ways="5"/>
+<text x="270" y="34" text-anchor="middle" font-size="12" fill="currentColor">一の位</text>
+<text x="270" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">5 通り</text>
+<text x="270" y="102" text-anchor="middle" font-size="11" fill="currentColor">残りの 5 枚</text>
+<text x="180" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">積の法則：7×6×5＝210（個）</text>
+</svg>
+<!--/svg:f006b-->
+  <figcaption>図2　位ごとの枠に、選べるカードの枚数を書き入れた図。1枚使うごとに、次に選べる枚数が1つ減る</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い：かける数を取り違える</p><p>導入の太郎さんの \( 7\times2=14 \) は、「選ぶ枚数の 2」をかけてしまった誤りです。\( 7\times7=49 \) とするのは、十の位に使ったカードを一の位にもう一度使えるとした誤りで、11、22 のような整数まで数えています。\( 7+6=13 \) は、かけるところを足した誤りです。樹形図の「枝が 6 本ずつ分かれる」様子を思い出しましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="順列とは"><span class="num">4</span>順列：異なるものを選んで並べる</h2>
+<p>例題1は、異なる 7 枚のカードから 2 枚を取り出して、1列に並べる方法を数えたものです。一般に、異なる \( n \) 個のものから異なる \( r \) 個を取り出して、1列に並べたものを、\( n \) 個のものから \( r \) 個取る<strong>順列</strong>といいます。その総数を記号 \( {}_n\mathrm{P}_r \) で表します（\( r \) は \( n \) 以下）。</p>
+<ul>
+  <li>7 枚のカードから 2 枚取る順列の総数（2けたの整数の個数）は \( {}_7\mathrm{P}_2=42 \)</li>
+  <li>7 枚のカードから 3 枚取る順列の総数（3けたの整数の個数）は \( {}_7\mathrm{P}_3=210 \)</li>
+</ul>
+<p>順列では、並べる順序を区別します。カード 1 と 2 を選んでも、「12」と「21」は別の整数なので、別々に数えます。並べる順序の代わりに、役割（委員長と副委員長）、順位（1位と2位）、座る席などを区別する場合も、順列として数えられます。</p>
+<div class="box example worked">
+  <p class="box-title">例題2（役割のある選び方）</p>
+  <p>部員 10 人の中から、部長・副部長・会計を1人ずつ選びます（1人が2つの役を兼ねることはしません）。選び方は何通りありますか。</p>
+  <div class="step">ステップ1（着目：順列とみなせるか）：異なる 10 人から 3 人を選び、部長・副部長・会計という役割（順序）を区別するので、10 人から 3 人取る順列です。</div>
+  <div class="step">ステップ2：部長は 10 通り、副部長は残りの 9 通り、会計はさらに残りの 8 通り。\( {}_{10}\mathrm{P}_3=10\times9\times8=720 \)。答え 720 通り。</div>
+</div>
+<div class="box point"><p class="box-title">ポイント：順列かどうかの見分け方</p><p>① 異なるものの中から選ぶ　② 同じものを2回選ばない（1枚のカード、1人の人は1回だけ）　③ 選んだものの順序（位置・役割・順位）を区別する。この3つがそろえば、\( n \) 個から \( r \) 個取る順列として \( {}_n\mathrm{P}_r \) で数えられます。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：順序を区別しない選び方まで順列で数える</p><p>10 人から「委員を 3 人選ぶ」（役割がない）場合を \( {}_{10}\mathrm{P}_3 \) で数えると、同じ3人の組を、選んだ順序の違いで何回も数えてしまいます。順序を区別しない選び方（組合せ）は、数Ａ-011 で学びます。また、同じ数字をくり返し使ってよい並べ方（数Ａ-005 の問8のダイヤル錠など）は、②を満たさないので \( {}_n\mathrm{P}_r \) では数えません（数Ａ-010 で学びます）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="nPr の公式"><span class="num">5</span>\( {}_n\mathrm{P}_r \) を求める公式</h2>
+<p>異なる \( n \) 個のものから \( r \) 個を取り出して並べるとき、1番目から順に決めていきます。</p>
+<ul>
+  <li>1番目：\( n \) 個のどれかで \( n \) 通り</li>
+  <li>2番目：1番目に使った1個を除いた残りから \( n-1 \) 通り</li>
+  <li>3番目：2個を除いた残りから \( n-2 \) 通り</li>
+  <li>\( r \) 番目：すでに \( r-1 \) 個を使ったので、残りから \( n-(r-1)=n-r+1 \) 通り</li>
+</ul>
+<p>どの段階でも、前にどれを選んだかによらず選べる個数は同じなので、積の法則をくり返し使えます。</p>
+<div class="formula-card">
+  <div><span class="f-name">順列の総数</span>$$ {}_n\mathrm{P}_r=n(n-1)(n-2)\cdots(n-r+1) $$<p class="small">\( n \) から始めて1ずつ小さくした数を、\( r \) 個かける。</p></div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（公式を使う）</p>
+  <p>(1) \( {}_4\mathrm{P}_2 \)　(2) \( {}_8\mathrm{P}_3 \)　(3) \( {}_6\mathrm{P}_4 \) の値を求めなさい。</p>
+  <div class="step">(1)（着目：かける数は 2 個）：\( {}_4\mathrm{P}_2=4\times3=12 \)。</div>
+  <div class="step">(2)（着目：8 から始めて 3 個）：\( {}_8\mathrm{P}_3=8\times7\times6=336 \)。</div>
+  <div class="step">(3)（着目：最後の数は \( 6-4+1=3 \)）：\( {}_6\mathrm{P}_4=6\times5\times4\times3=360 \)。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：かける個数が1つ多い・少ない</p><p>\( {}_8\mathrm{P}_3 \) を \( 8\times7\times6\times5 \) とするのは、最後の数を \( n-r=5 \) にしてしまった誤りで、4個並べた数になっています。かける数は \( r \) 個で、最後は \( n-r+1 \) です。迷ったら「何番目まで決めるか」を数えましょう。</p></div>
+
+<h3>操作して確かめよう</h3>
+<p>全体の個数 \( n \) と並べる個数 \( r \) を変えると、\( {}_n\mathrm{P}_r \) の式と値が表示されます。並べ方が 60 通り以下のときは、A、B、C、…の文字を並べた一覧も表示されます。先頭の文字ごとに同じ数ずつ並ぶことを確かめましょう。</p>
+<div class="widget" id="w6">
+  <div class="w-row">
+    <span><label for="w6-n">全体の個数 \( n \)：</label><input type="range" id="w6-n" min="2" max="8" step="1" value="4"> <output id="w6-nv" for="w6-n">4</output></span>
+    <span><label for="w6-r">並べる個数 \( r \)：</label><input type="range" id="w6-r" min="1" max="4" step="1" value="2"> <output id="w6-rv" for="w6-r">2</output></span>
+  </div>
+  <p class="w-out" id="w6-formula" aria-live="polite"><sub>4</sub>P<sub>2</sub> ＝ 4 × 3 ＝ 12（通り）　かける数は 2 個で、最後は 4−2＋1＝3</p>
+  <div class="w-list" id="w6-list"><div>A、B、C、D の 4 文字から 2 文字を並べた一覧（全部で 12 通り）</div><div>A で始まる（3 通り）：AB AC AD</div><div>B で始まる（3 通り）：BA BC BD</div><div>C で始まる（3 通り）：CA CB CD</div><div>D で始まる（3 通り）：DA DB DC</div></div>
+</div>
+<p class="small">一覧は、先頭の文字で分けて並べています。先頭の文字は \( n \) 通りで、そのそれぞれに残りの並べ方が同じ数ずつあることが、積の法則が使える理由です。</p>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>順列</dt><dd>異なる \( n \) 個のものから異なる \( r \) 個を取り出して、1列に並べたもの。並べる順序（位置・役割・順位）を区別する。</dd>
+    <dt>\( {}_n\mathrm{P}_r \)</dt><dd>\( n \) 個のものから \( r \) 個取る順列の総数。\( {}_n\mathrm{P}_r=n(n-1)(n-2)\cdots(n-r+1) \)（\( r \) 個の積）。</dd>
+    <dt>積の法則</dt><dd>\( A \) が \( m \) 通り、そのそれぞれについて \( B \) が \( n \) 通りずつなら、\( A \) と \( B \) がともに起こるのは \( m\times n \) 通り（数Ａ-005）。順列の公式はこれをくり返し使って導く。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>7 枚のカードで作る 2けたの整数は、十の位 7 通りのそれぞれに一の位が残りの 6 通りずつで、積の法則より \( 7\times6=42 \) 個。3けたなら \( 7\times6\times5=210 \) 個（O1）。</li>
+    <li>異なる \( n \) 個から異なる \( r \) 個を取り出して1列に並べたものが順列で、総数を \( {}_n\mathrm{P}_r \) で表す。順序・役割・順位を区別し、同じものを2回使わないときに使う（O2）。</li>
+    <li>1番目 \( n \) 通り、2番目 \( n-1 \) 通り、…、\( r \) 番目 \( n-r+1 \) 通りと積の法則をくり返して、\( {}_n\mathrm{P}_r=n(n-1)\cdots(n-r+1) \)（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">順列の総数（\( r \) 個の積）</span>$$ {}_n\mathrm{P}_r=n(n-1)(n-2)\cdots(n-r+1) $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。入力問題は数字だけで答えてください（「個」「通り」「倍」を付けてもよい）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O3</span></div>
+  <p>\( {}_6\mathrm{P}_2 \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( 12 \)</button>
+    <button data-correct="true">\( 30 \)</button>
+    <button>\( 36 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( {}_6\mathrm{P}_2=6\times5=30 \) です。\( 12 \) は \( 6\times2 \) と取る個数をかけた誤り、\( 36 \) は \( 6\times6 \) と、同じものを2回選べるとした誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="840|840通り">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O3</span></div>
+  <p>\( {}_7\mathrm{P}_4 \) の値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 840。\( {}_7\mathrm{P}_4=7\times6\times5\times4=840 \) です（最後は \( 7-4+1=4 \)）。2520 と答えた場合は \( 7\times6\times5\times4\times3 \) と、5 個かけています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>次のうち、\( {}_5\mathrm{P}_2 \) で求められるものはどれですか。</p>
+  <div class="choices">
+    <button>5 人の中から、掃除当番を 2 人選ぶ方法の数</button>
+    <button>5 種類の色から、同じ色をくり返し使ってもよいとして、左右の 2 つの旗を塗る方法の数</button>
+    <button data-correct="true">5 人の中から、班長と副班長を1人ずつ選ぶ方法の数</button>
+    <button>5 冊の本の中から、2 冊を選んでかばんに入れる方法の数</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">班長と副班長は役割が違うので、選んだ2人の順序を区別します。異なる 5 人から 2 人取る順列なので \( {}_5\mathrm{P}_2=5\times4=20 \) 通りです。掃除当番の2人とかばんに入れる2冊は、順序（役割）を区別しないので順列ではありません。旗の塗り方は同じ色をくり返し使えるので、同じものを2回選ばないという順列の条件を満たしません（\( 5\times5=25 \) 通り）。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="504|504個">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1</span></div>
+  <p>1 から 9 までの数字を1つずつ書いた 9 枚のカードから 3 枚を選んで並べ、3けたの整数を作ります。整数は全部で何個できますか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 504。百の位 9 通り、十の位は残りの 8 通り、一の位はさらに残りの 7 通りで、\( {}_9\mathrm{P}_3=9\times8\times7=504 \) 個です。729 と答えた場合は \( 9\times9\times9 \) と、同じカードを何回も使えるとしています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2・O3</span></div>
+  <p>部員 12 人の中から、部長・副部長・会計を1人ずつ選びます（兼任はしません）。選び方は何通りですか。</p>
+  <div class="choices">
+    <button>36 通り</button>
+    <button>132 通り</button>
+    <button>1728 通り</button>
+    <button data-correct="true">1320 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">役割を区別するので 12 人から 3 人取る順列で、\( {}_{12}\mathrm{P}_3=12\times11\times10=1320 \) 通りです。36 通りは \( 12\times3 \)、132 通りは \( 12\times11 \) で2つの役しか決めていない誤り、1728 通りは \( 12\times12\times12 \) で同じ人が何役も兼ねるとした誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>\( {}_{10}\mathrm{P}_4 \) を表す式はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 10\times9\times8\times7 \)</button>
+    <button>\( 10\times9\times8\times7\times6 \)</button>
+    <button>\( 4\times3\times2\times1 \)</button>
+    <button>\( 10\times4 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">10 から始めて 1 ずつ小さくした数を 4 個かけるので \( 10\times9\times8\times7 \) です（最後は \( 10-4+1=7 \)）。\( 10\times9\times8\times7\times6 \) は最後を \( 10-4=6 \) にして 5 個かけた誤り、\( 4\times3\times2\times1 \) は \( n \) と \( r \) を取り違えて 4 から始めた誤り、\( 10\times4 \) は全体の個数と取る個数をかけた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="6|6倍">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>\( {}_9\mathrm{P}_4 \) は \( {}_9\mathrm{P}_3 \) の何倍ですか。公式を使い、計算せずに理由も考えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 6。\( {}_9\mathrm{P}_3=9\times8\times7 \)、\( {}_9\mathrm{P}_4=9\times8\times7\times6 \) なので、\( {}_9\mathrm{P}_4 \) は \( {}_9\mathrm{P}_3 \) に 4番目の選び方 \( 9-4+1=6 \) 通りをかけたもので、6 倍です（\( 3024\div504=6 \)）。9 倍、4 倍、5 倍と答えた場合は、4番目に選べる個数（すでに 3 個使ったので残り 6 個）を、それぞれ \( n \)、\( r \)、\( n-r \) と取り違えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2</span></div>
+  <p>学習用に作成した架空の場面です。陸上部の部員 8 人の中から 4 人を選び、リレーの第1走者〜第4走者を決めます。</p>
+  <p>太郎：「8 人から 4 人を選ぶんだから、\( 8\times4=32 \) 通りだね。」<br>花子：「走る順番も決めるし、1人が2回走ることはないよね。」</p>
+  <p>走者の決め方は何通りですか。</p>
+  <div class="choices">
+    <button>32 通り</button>
+    <button>336 通り</button>
+    <button data-correct="true">1680 通り</button>
+    <button>4096 通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">第1走者〜第4走者という順序を区別し、同じ人は2回選ばないので、8 人から 4 人取る順列です。\( {}_8\mathrm{P}_4=8\times7\times6\times5=1680 \) 通りです。32 通りは太郎さんの計算で、取る人数 4 をかけた誤り、336 通りは \( 8\times7\times6 \) で3人分しか決めていない誤り、4096 通りは \( 8\times8\times8\times8 \) で同じ人が何回も走るとした誤りです。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O3</span></div>
+  <p>異なる \( n \) 個のものから \( r \) 個を取り出して並べる順列の総数が \( {}_n\mathrm{P}_r=n(n-1)(n-2)\cdots(n-r+1) \) となることを、積の法則を使って説明しなさい。特に、最後にかける数が \( n-r+1 \) になる理由をはっきり書きなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　1番目に並べるものは \( n \) 通り。そのそれぞれについて、2番目は1番目に使ったものを除く \( n-1 \) 通りずつ、3番目は2個を除く \( n-2 \) 通りずつある。このように、\( k \) 番目を選ぶときはすでに \( k-1 \) 個を使っているので、残りの \( n-(k-1) \) 通りずつある。\( r \) 番目では \( n-(r-1)=n-r+1 \) 通りになる。どの段階でも選べる個数は前の選び方によらず一定なので、積の法則をくり返し使って \( {}_n\mathrm{P}_r=n(n-1)(n-2)\cdots(n-r+1) \) となる。</p>
+    <p><strong>採点の観点</strong>　① 1番目から順に選べる個数が1ずつ減ることを書いている。② \( r \) 番目では \( r-1 \) 個を使っているので \( n-r+1 \) 通りであることを書いている。③ 選べる個数が前の選び方によらず一定なので積の法則が使えることを書いている。</p>
+  </div>
+  <div class="explain">図1・図2や操作部品の一覧のように、先頭（1番目）で分けると、それぞれに同じ数ずつの並べ方が続きます。これが積の法則を使える理由です。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(イ)「具体的な事象を基に順列及び組合せの意味を理解し，順列の総数や組合せの総数を求めること」と、イ(ア)「事象の構造などに着目し，場合の数を求める方法を多面的に考察すること」に当たり、出題範囲に含まれます。学習指導要領解説は、具体的な事象に関する場合の数を樹形図や表に整理して調べる方法を考察することを通して、順列・組合せの総数の求め方の公式を導くとしています。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めています。具体的な場面を樹形図で整理し、構造を見抜いて公式で処理するこの時間の考え方は、その土台になります。</p>
+  <p class="small">問8は日常の場面と会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">階乗と順列の計算（数Ａ-007）</p>
+  <p>次の時間は、階乗 \( n! \) の意味を学び、\( n \) 個のものをすべて並べる順列の総数 \( n! \) や、この時間の \( {}_n\mathrm{P}_r \) を階乗を用いて表し、計算します。操作部品で \( r \) を \( n \) と同じにしたときの「\( n \) から 1 までかける積」が、その出発点になります。</p>
+  <p>この時間では、階乗の記号と \( {}_n\mathrm{P}_r \) を階乗で表す式（数Ａ-007）、条件のある並べ方（数Ａ-008）、同じものをくり返し使う並べ方（数Ａ-010）、組合せ（数Ａ-011）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-005　積の法則</div>
+  <div><span class="label">次の時間</span>数Ａ-007　階乗と順列の計算</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-006「順列と nPr」（学習指導要領 数学Ａ (2)ア(イ)・イ(ア)、解説 p.92-93）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率 ア(イ)・イ(ア)、〔用語・記号〕nPr（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.92-93（具体的な事象に関する場合の数を樹形図や表に整理して調べる方法を考察することを通して、順列・組合せの総数の求め方の公式を導く。〔用語・記号〕nPr）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「順列」（順列の用語・記号・公式、樹形図を利用して積の法則から順列の総数を求める式を導くこと）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。問8のリレーの場面は学習用の架空の場面です。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var sn = document.getElementById("w6-n");
+  var sr = document.getElementById("w6-r");
+  if (!sn || !sr) return;
+  var outN = document.getElementById("w6-nv");
+  var outR = document.getElementById("w6-rv");
+  var outF = document.getElementById("w6-formula");
+  var outL = document.getElementById("w6-list");
+  var LETTERS = "ABCDEFGH";
+  var LIMIT = 60;
+  function perms(items, r) {
+    if (r === 0) return [""];
+    var res = [];
+    for (var i = 0; i < items.length; i++) {
+      var rest = items.slice(0, i).concat(items.slice(i + 1));
+      var tails = perms(rest, r - 1);
+      for (var j = 0; j < tails.length; j++) res.push(items[i] + tails[j]);
+    }
+    return res;
+  }
+  function draw() {
+    var n = parseInt(sn.value, 10);
+    sr.max = String(n);
+    var r = Math.min(Math.max(parseInt(sr.value, 10), 1), n);
+    sr.value = String(r);
+    if (outN) outN.textContent = String(n);
+    if (outR) outR.textContent = String(r);
+    var f = [], v = 1;
+    for (var k = 0; k < r; k++) { f.push(n - k); v *= (n - k); }
+    var html = "<sub>" + n + "</sub>P<sub>" + r + "</sub> ＝ " + f.join(" × ") + " ＝ " + v + "（通り）"
+      + "　かける数は " + r + " 個で、最後は " + n + "−" + r + "＋1＝" + (n - r + 1);
+    if (r === n) html += "（すべてを並べる場合。次の時間に階乗の記号で表し方を学びます）";
+    if (outF) outF.innerHTML = html;
+    var letters = LETTERS.slice(0, n).split("");
+    var head = letters.join("、") + " の " + n + " 文字から " + r + " 文字を並べ";
+    if (v <= LIMIT) {
+      var all = perms(letters, r);
+      var lines = ["<div>" + head + "た一覧（全部で " + all.length + " 通り）</div>"];
+      for (var i = 0; i < n; i++) {
+        var g = all.filter(function (s) { return s.charAt(0) === letters[i]; });
+        lines.push("<div>" + letters[i] + " で始まる（" + g.length + " 通り）：" + g.join(" ") + "</div>");
+      }
+      if (outL) outL.innerHTML = lines.join("");
+    } else if (outL) {
+      outL.innerHTML = "<div>" + head + "る並べ方は " + v + " 通りあるので、一覧は省略します（" + LIMIT + " 通り以下のときに表示）。先頭の文字ごとに " + (v / n) + " 通りずつです。</div>";
+    }
+  }
+  sn.addEventListener("input", draw);
+  sr.addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-006",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-006",
+  "title": "順列と nPr",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(イ)", "(2)イ(ア)"],
+  "kaisetsu_page": "92-93",
+  "objectives": [
+    {"id": "O1", "text": "7枚のカードから2枚を選んで作る2けたの整数の総数などを、樹形図と積の法則を用いて求めることができる。", "from": "1から7までの数字を書いた7枚のカードから2枚を選んで作る2桁の整数の総数などを基に", "sections": ["sec-1"], "checks": ["q4", "q8"]},
+    {"id": "O2", "text": "順列の意味を理解し、ある数え方が順列（異なるものから選び、並べる順序を区別する）として数えられるかを判断できる。", "from": "順列の意味を理解し", "sections": ["sec-2"], "checks": ["q3", "q5", "q8"]},
+    {"id": "O3", "text": "順列の総数 \\( {}_n\\mathrm{P}_r \\) を求める公式を導き、それを用いて順列の総数を計算できる。", "from": "順列の総数 nPr を求める公式を導くことができる", "sections": ["sec-3"], "checks": ["q1", "q2", "q5", "q6", "q7", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "順列", "where": "sec-2"},
+    {"term": "nPr", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "積の法則（そのそれぞれについて n 通りずつ）", "taught_in": ["hs_math_1a/数Ａ-005"], "where": "review"},
+    {"concept": "樹形図で数え上げる", "taught_in": ["hs_math_1a/数Ａ-003", "jhs_math/中2-081"], "where": "sec-1"},
+    {"concept": "同じものをくり返し使ってよい数え方（ダイヤル錠の番号）", "taught_in": ["hs_math_1a/数Ａ-005"], "where": "sec-2"}
+  ],
+  "out_of_scope": [
+    "階乗 n!、n 個すべてを並べる順列の総数 n!、nPr を階乗で表す式（数Ａ-007）",
+    "条件のある順列（数Ａ-008）、重複順列（数Ａ-010）、組合せ（数Ａ-011）"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(イ)・イ(ア)の事項、〔用語・記号〕nPr"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.92-93 樹形図や表に整理して順列・組合せの総数の公式を導く扱い、〔用語・記号〕"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "順列の用語・記号・公式、樹形図を利用して積の法則から順列の総数を求める式を導く扱い"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

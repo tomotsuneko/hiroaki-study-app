@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>平面図形の計量｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>図形と計量</span><span>数Ⅰ-075</span></div>
+  <h1>平面図形の計量</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">活用</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">四角形の花壇の面積、角の二等分線の長さ、円に内接する四角形の対角線──三角形でない図形も、三角形に分ければ、これまでに学んだ正弦定理・余弦定理・面積の公式で調べることができます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>四角形を対角線で2つの三角形に分け、余弦定理・正弦定理・面積の公式を用いて、対角線の長さ・角の大きさ・面積を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>三角形の面積を、角の二等分線で分けた2つの三角形の面積の和として表し、角の二等分線の長さを求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>円に内接する四角形で、向かい合う角の和が 180° であることと余弦定理を用いて、対角線の長さと面積を求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-074）</span>三角形の内接円と面積</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-075）</span>平面図形の計量</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-076）</span>空間図形の計量</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」「三平方の定理」。この時間は活用の時間で、同じ単元の正弦定理（数Ⅰ-068・069）、余弦定理（数Ⅰ-070・071）、三角形の面積（数Ⅰ-073・074）を図形の問題に当てはめます。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：使う既習事項</h2>
+<div class="formula-card">
+  <div><span class="f-name">① 正弦定理（数Ⅰ-068・069）</span><p>\( \dfrac{a}{\sin A}=\dfrac{b}{\sin B}=\dfrac{c}{\sin C}=2R \)（\( R \) は外接円の半径）</p></div>
+  <div><span class="f-name">② 余弦定理（数Ⅰ-070・071）</span><p>\( a^2=b^2+c^2-2bc\cos A \)、\( \cos A=\dfrac{b^2+c^2-a^2}{2bc} \)</p></div>
+  <div><span class="f-name">③ 三角形の面積（数Ⅰ-073）</span><p>\( S=\dfrac{1}{2}bc\sin A \)（2辺とその間の角）</p></div>
+  <div><span class="f-name">④ 鈍角の三角比（数Ⅰ-064）</span><p>\( \sin(180^\circ-\theta)=\sin\theta \)、\( \cos(180^\circ-\theta)=-\cos\theta \)</p></div>
+</div>
+<p class="small">①〜④は、このページの中での番号です。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-071</span></div>
+  <p>△ABD で \( \mathrm{AB}=3 \)、\( \mathrm{AD}=5 \)、\( \angle\mathrm{A}=120^\circ \) のとき、BD の長さはどれですか。</p>
+  <div class="choices">
+    <button>\( \sqrt{19} \)</button>
+    <button>\( 49 \)</button>
+    <button data-correct="true">\( 7 \)</button>
+    <button>\( \sqrt{34} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">余弦定理より \( \mathrm{BD}^2=3^2+5^2-2\cdot 3\cdot 5\cos 120^\circ=9+25+15=49 \)、\( \mathrm{BD}&gt;0 \) より \( \mathrm{BD}=7 \) です。\( \sqrt{19} \) は \( \cos 120^\circ=-\dfrac{1}{2} \) の符号を誤って \( 34-15 \) とした値、\( 49 \) は平方根をとり忘れた値（\( \mathrm{BD}^2 \)）、\( \sqrt{34} \) は \( -2bc\cos A \) の項を落とした値です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-073</span></div>
+  <p>確認1の △ABD の面積はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \dfrac{15\sqrt{3}}{4} \)</button>
+    <button>\( \dfrac{15\sqrt{3}}{2} \)</button>
+    <button>\( -\dfrac{15}{4} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \dfrac{1}{2}\cdot 3\cdot 5\cdot\sin 120^\circ=\dfrac{15}{2}\cdot\dfrac{\sqrt{3}}{2}=\dfrac{15\sqrt{3}}{4} \) です。\( \dfrac{15\sqrt{3}}{2} \) は \( \dfrac{1}{2} \) を忘れた値、\( -\dfrac{15}{4} \) は正弦の代わりに \( \cos 120^\circ=-\dfrac{1}{2} \) を使った値で、面積が負になることはありません。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中3-088</span></div>
+  <p>円 O の周上に3点 A、B、C があり、弧 BC（A を含まない方）に対する中心角 \( \angle\mathrm{BOC} \) が \( 140^\circ \) です。円周角 \( \angle\mathrm{BAC} \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 140^\circ \)</button>
+    <button>\( 40^\circ \)</button>
+    <button>\( 280^\circ \)</button>
+    <button data-correct="true">\( 70^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">円周角の定理より、円周角は同じ弧に対する中心角の半分なので \( 140^\circ\div 2=70^\circ \) です（中3-088）。\( 140^\circ \) は中心角そのもの、\( 280^\circ \) は2倍にした誤り、\( 40^\circ \) は \( 180^\circ-140^\circ \) とした誤りです。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">円に内接する四角形の向かい合う角（数学Ａの数Ａ-048 で詳しく学ぶ）</p>
+  <p>4つの頂点がすべて1つの円周上にある四角形を、<strong>円に内接する四角形</strong>といいます。円に内接する四角形 ABCD では、<strong>向かい合う角（対角）の和は 180°</strong>、つまり \( \angle\mathrm{B}+\angle\mathrm{D}=180^\circ \)、\( \angle\mathrm{A}+\angle\mathrm{C}=180^\circ \) です。</p>
+  <p>理由：円の中心を O とします。\( \angle\mathrm{B} \)（\( \angle\mathrm{ABC} \)）は、B を含まない弧 AC に対する円周角なので、その弧に対する中心角の半分です。\( \angle\mathrm{D} \) は、D を含まない弧 AC に対する円周角なので、もう一方の弧に対する中心角の半分です。2つの中心角の和は \( 360^\circ \) なので、\( \angle\mathrm{B}+\angle\mathrm{D}=\dfrac{360^\circ}{2}=180^\circ \) です（円周角の定理、中3-088）。この性質は、並行して学ぶ数学Ａ（数Ａ-048）で証明します。この時間は、数Ⅰ-064 の \( \cos(180^\circ-\theta)=-\cos\theta \) と組み合わせて、\( \cos D=-\cos B \) として使います。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入（場面）：四角形の花壇の面積</h2>
+<div class="box think">
+  <p class="box-title">四角形の花壇の面積を、測りやすい長さと角から求めたい</p>
+  <p>公園に、四角形 ABCD の形をした花壇があります（学習用の架空の花壇）。花壇の中には入れないので、まわりの4辺の長さと、頂点 A の角だけを測りました。</p>
+  <p>\( \mathrm{AB}=3 \) m、\( \mathrm{BC}=6 \) m、\( \mathrm{CD}=5 \) m、\( \mathrm{DA}=5 \) m、\( \angle\mathrm{A}=120^\circ \)</p>
+  <ul>
+    <li>四角形の面積の公式はないけれど、三角形の面積なら求められる。どう分ければよいでしょうか。</li>
+    <li>4辺の長さだけでなく、角 A も測ったのはなぜでしょうか。</li>
+  </ul>
+  <p>この問いには、「3 四角形を三角形に分ける」の例題1と、その後の「振り返り」で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="四角形を三角形に分ける"><span class="num">3</span>四角形を三角形に分ける（数学化と解決）</h2>
+<p><strong>数学化</strong>：花壇を、頂点が A、B、C、D の四角形とみます。四角形は、対角線を1本引くと2つの三角形に分かれます。対角線 BD で分けると、△ABD では2辺とその間の角（AB、AD、\( \angle\mathrm{A} \)）が分かり、△BCD では3辺（BC、CD と、△ABD から求める BD）が分かることになります。</p>
+<figure>
+<!--svg:f075a-->
+<svg viewBox="0 0 330 250" width="330" role="img" aria-label="四角形 ABCD（AB=3、BC=6、CD=5、DA=5、角A=120°）を対角線 BD（長さ 7、破線）で三角形 ABD と三角形 BCD に分けた図">
+<polygon points="130.7,215.8 60,160.2 270,160.2" fill="#1f5fbf" fill-opacity="0.1" stroke="currentColor" stroke-width="0" stroke-linejoin="round"/>
+<polygon points="60,160.2 188.6,34.2 270,160.2" fill="#b7791f" fill-opacity="0.12" stroke="currentColor" stroke-width="0" stroke-linejoin="round"/>
+<polygon points="130.7,215.8 60,160.2 188.6,34.2 270,160.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+<line x1="60" y1="160.2" x2="270" y2="160.2" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="6 4"/>
+<polyline points="118.1,205.9 119.1,204.9 120.1,203.9 121.1,203 122.3,202.2 123.5,201.5 124.8,201 126.1,200.5 127.4,200.2 128.8,199.9 130.2,199.8 131.6,199.8 133,200 134.4,200.2 135.7,200.6 137,201.1 138.3,201.7 139.5,202.4 140.6,203.3 141.7,204.2 142.6,205.2 143.5,206.2 144.3,207.4 145,208.6 145.6,209.9" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<polyline points="177.1,45.4 177.8,46 178.5,46.6 179.2,47.2 180,47.7 180.8,48.1 181.6,48.6 182.4,48.9 183.2,49.3 184.1,49.5 185,49.8 185.9,50 186.8,50.1 187.7,50.2 188.6,50.2 189.5,50.1 190.4,50.1 191.3,49.9 192.2,49.7 193.1,49.5 194,49.2 194.8,48.9 195.7,48.5 196.5,48.1 197.3,47.6" fill="none" stroke="#1e8e5a" stroke-width="1.5"/>
+<text x="125.6" y="232.7" text-anchor="middle" font-size="14" fill="currentColor">A</text>
+<text x="47.2" y="167.3" text-anchor="middle" font-size="14" fill="currentColor">B</text>
+<text x="191.6" y="26.4" text-anchor="middle" font-size="14" fill="currentColor">C</text>
+<text x="282.8" y="167.1" text-anchor="middle" font-size="14" fill="currentColor">D</text>
+<text x="88.2" y="201.6" text-anchor="middle" font-size="13" fill="currentColor">3</text>
+<text x="116.3" y="93.6" text-anchor="middle" font-size="13" fill="currentColor">6</text>
+<text x="238.4" y="95.8" text-anchor="middle" font-size="13" fill="currentColor">5</text>
+<text x="204.6" y="203.2" text-anchor="middle" font-size="13" fill="currentColor">5</text>
+<text x="165" y="154.2" text-anchor="middle" font-size="13" fill="#c0392b">BD = 7</text>
+<text x="133.8" y="194.4" text-anchor="middle" font-size="12" fill="#b7791f">120°</text>
+<text x="198" y="180.7" text-anchor="middle" font-size="12" fill="currentColor">△ABD</text>
+<text x="172.9" y="128.2" text-anchor="middle" font-size="12" fill="currentColor">△BCD</text>
+</svg><!--/svg:f075a-->
+  <figcaption>図1　四角形の花壇 ABCD を対角線 BD で △ABD と △BCD に分けた図（単位は m。長さの比と角が実際と同じになるように描いた）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の答え：花壇の面積）</p>
+  <p>四角形 ABCD で \( \mathrm{AB}=3 \)、\( \mathrm{BC}=6 \)、\( \mathrm{CD}=5 \)、\( \mathrm{DA}=5 \)、\( \angle\mathrm{A}=120^\circ \) のとき、対角線 BD の長さ、\( \cos C \) の値、四角形の面積 \( S \) を求めなさい。</p>
+  <div class="step">ステップ1（△ABD で対角線）：余弦定理②より \( \mathrm{BD}^2=3^2+5^2-2\cdot 3\cdot 5\cos 120^\circ=49 \)、よって \( \mathrm{BD}=7 \)（確認1）。</div>
+  <div class="step">ステップ2（△ABD の面積）：面積③より \( \triangle\mathrm{ABD}=\dfrac{1}{2}\cdot 3\cdot 5\cdot\sin 120^\circ=\dfrac{15\sqrt{3}}{4} \)（確認2）。</div>
+  <div class="step">ステップ3（△BCD で角）：3辺が \( \mathrm{BC}=6 \)、\( \mathrm{CD}=5 \)、\( \mathrm{BD}=7 \) なので、\( \cos C=\dfrac{6^2+5^2-7^2}{2\cdot 6\cdot 5}=\dfrac{12}{60}=\dfrac{1}{5} \)。</div>
+  <div class="step">ステップ4（△BCD の面積）：\( \sin C=\sqrt{1-\dfrac{1}{25}}=\dfrac{2\sqrt{6}}{5} \)（\( 0^\circ&lt;C&lt;180^\circ \) なので正）。\( \triangle\mathrm{BCD}=\dfrac{1}{2}\cdot 6\cdot 5\cdot\dfrac{2\sqrt{6}}{5}=6\sqrt{6} \)。</div>
+  <div class="step">答え：\( \mathrm{BD}=7 \)、\( \cos C=\dfrac{1}{5} \)、\( S=\dfrac{15\sqrt{3}}{4}+6\sqrt{6} \)。\( \sqrt{3}=1.7320\cdots \)、\( \sqrt{6}=2.4494\cdots \) より、花壇の面積はおよそ 21.2 m² です。</div>
+</div>
+<p><strong>角の大きさ</strong>：\( \cos C=\dfrac{1}{5}=0.2 \) を満たす角 C は、三角比表（数Ⅰ-059）で \( \cos 78^\circ=0.2079 \)、\( \cos 79^\circ=0.1908 \) の間にあります。0.2 との差は 0.0079 と 0.0092 なので、C はおよそ \( 78^\circ \) です（コンピュータで求めると 78.46…° です）。</p>
+<div class="box think"><p class="box-title">振り返り（導入の問い②）：なぜ角 A も測ったのか</p>
+<p>四角形は、4辺の長さだけでは形が1つに決まりません。たとえば1辺 5 の正方形を押しつぶすと、4辺の長さが同じままのひし形がいくつもでき、面積も変わります。三角形が3辺で1つに決まる（中2-053）のとは違います。そこで、対角線 BD を決めるために角 A も測りました。対角線 BD の長さを直接測っても、同じように面積が求められます。</p>
+<p>また、対角線 AC で分けると、△ABC でも △ACD でも「2辺とその間の角」や「3辺」がそろわないので、この測り方では計算できません。<strong>分かっている量がそろう三角形ができるように対角線を選ぶ</strong>ことが大切です。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 2つの三角形の面積をそれぞれ求めたあと、たし忘れる、または片方だけを答える。<br>② \( \triangle\mathrm{BCD} \) で、\( \cos C=\dfrac{1}{5} \) をそのまま面積の公式に入れる（\( \dfrac{1}{2}\cdot 6\cdot 5\cdot\dfrac{1}{5}=3 \) としてしまう）。面積の公式に入るのは \( \sin C \) です。<br>③ \( \dfrac{15\sqrt{3}}{4}+6\sqrt{6} \) を1つの根号にまとめようとする：根号の中が違う数の和はまとめられません（中3-027）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="角の二等分線の長さ"><span class="num">4</span>角の二等分線の長さを、面積の和から求める</h2>
+<p>△ABC の \( \angle\mathrm{A} \) の二等分線と辺 BC の交点を D とします。線分 AD は △ABC を △ABD と △ADC に分けるので、<strong>面積について \( \triangle\mathrm{ABC}=\triangle\mathrm{ABD}+\triangle\mathrm{ADC} \)</strong> が成り立ちます。3つの三角形の面積を、すべて「2辺とその間の角」で表すと、AD の長さについての方程式ができます。</p>
+<figure>
+<!--svg:f075b-->
+<svg viewBox="0 0 300 200" width="300" role="img" aria-label="AB=6、AC=3、角A=120° の三角形 ABC と、角A の二等分線 AD。角BAD と角DAC はどちらも 60°">
+<polygon points="82.5,165 262.5,165 37.5,87.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+<line x1="82.5" y1="165" x2="112.5" y2="113" stroke="#1f5fbf" stroke-width="2"/>
+<circle cx="112.5" cy="113" r="3" fill="currentColor"/>
+<polyline points="98.5,165 98.5,164.3 98.4,163.6 98.4,162.9 98.3,162.2 98.1,161.5 98,160.9 97.8,160.2 97.5,159.5 97.3,158.9 97,158.2 96.7,157.6 96.4,157 96,156.4 95.6,155.8 95.2,155.3 94.8,154.7 94.3,154.2 93.8,153.7 93.3,153.2 92.8,152.7 92.2,152.3 91.7,151.9 91.1,151.5 90.5,151.1" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<polyline points="90.5,151.1 89.9,150.8 89.3,150.5 88.6,150.2 88,150 87.3,149.7 86.6,149.5 86,149.4 85.3,149.2 84.6,149.1 83.9,149.1 83.2,149 82.5,149 81.8,149 81.1,149.1 80.4,149.1 79.7,149.2 79,149.4 78.4,149.5 77.7,149.7 77,150 76.4,150.2 75.7,150.5 75.1,150.8 74.5,151.1" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<polyline points="92.5,147.7 91.7,147.3 91,146.9 90.2,146.5 89.3,146.2 88.5,145.9 87.7,145.7 86.8,145.5 86,145.3 85.1,145.2 84.2,145.1 83.4,145 82.5,145 81.6,145 80.8,145.1 79.9,145.2 79,145.3 78.2,145.5 77.3,145.7 76.5,145.9 75.7,146.2 74.8,146.5 74,146.9 73.3,147.3 72.5,147.7" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<text x="71.2" y="176.4" text-anchor="middle" font-size="14" fill="currentColor">A</text>
+<text x="275.3" y="172.4" text-anchor="middle" font-size="14" fill="currentColor">B</text>
+<text x="26.2" y="85.5" text-anchor="middle" font-size="14" fill="currentColor">C</text>
+<text x="118.5" y="107.5" text-anchor="middle" font-size="14" fill="currentColor">D</text>
+<text x="172.5" y="180.1" text-anchor="middle" font-size="13" fill="currentColor">6</text>
+<text x="50.8" y="135.9" text-anchor="middle" font-size="13" fill="currentColor">3</text>
+<text x="111.6" y="154.5" text-anchor="middle" font-size="11" fill="#b7791f">60°</text>
+<text x="82.5" y="133.3" text-anchor="middle" font-size="11" fill="#b7791f">60°</text>
+<text x="113.1" y="133.6" text-anchor="middle" font-size="13" fill="#1f5fbf" font-style="italic">x</text>
+</svg><!--/svg:f075b-->
+  <figcaption>図2　\( \mathrm{AB}=6 \)、\( \mathrm{AC}=3 \)、\( \angle\mathrm{A}=120^\circ \) の △ABC と、\( \angle\mathrm{A} \) の二等分線 AD。\( \angle\mathrm{BAD}=\angle\mathrm{DAC}=60^\circ \)（同じ印の弧）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題2（角の二等分線の長さ）</p>
+  <p>△ABC で \( \mathrm{AB}=6 \)、\( \mathrm{AC}=3 \)、\( \angle\mathrm{A}=120^\circ \) とし、\( \angle\mathrm{A} \) の二等分線と辺 BC の交点を D とします。線分 AD の長さを求めなさい。</p>
+  <div class="step">着眼点：AD を \( x \) とおき、△ABD と △ADC の面積を、AD を1辺にもつ「2辺とその間の角」で表します。二等分線なので \( \angle\mathrm{BAD}=\angle\mathrm{DAC}=60^\circ \) です。</div>
+  <div class="step">\( \triangle\mathrm{ABC}=\dfrac{1}{2}\cdot 6\cdot 3\cdot\sin 120^\circ=\dfrac{9\sqrt{3}}{2} \)</div>
+  <div class="step">\( \triangle\mathrm{ABD}+\triangle\mathrm{ADC}=\dfrac{1}{2}\cdot 6\cdot x\cdot\sin 60^\circ+\dfrac{1}{2}\cdot 3\cdot x\cdot\sin 60^\circ=\dfrac{3\sqrt{3}}{2}x+\dfrac{3\sqrt{3}}{4}x=\dfrac{9\sqrt{3}}{4}x \)</div>
+  <div class="step">\( \dfrac{9\sqrt{3}}{4}x=\dfrac{9\sqrt{3}}{2} \) より \( x=2 \)。</div>
+  <div class="step">答え：\( \mathrm{AD}=2 \)</div>
+</div>
+<div class="box think"><p class="box-title">振り返り：別の方法で確かめる</p><p>中学3年で学んだ「角の二等分線と線分の比」（中3-085）より \( \mathrm{BD}:\mathrm{DC}=\mathrm{AB}:\mathrm{AC}=6:3=2:1 \) です。余弦定理より \( \mathrm{BC}^2=36+9-2\cdot 6\cdot 3\cos 120^\circ=63 \)、\( \mathrm{BC}=3\sqrt{7} \) なので、\( \mathrm{BD}=2\sqrt{7} \)。△ABD で余弦定理を使うと \( \mathrm{BD}^2=6^2+2^2-2\cdot 6\cdot 2\cos 60^\circ=36+4-12=28 \) となり、\( \mathrm{BD}=2\sqrt{7} \) と一致します。2つの方法で同じ結果が出たので、\( \mathrm{AD}=2 \) は正しいと確かめられました。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① △ABD と △ADC の面積に、もとの角 \( 120^\circ \) の正弦を使う：AD をはさむ角は、二等分した \( 60^\circ \) です。<br>② 角の二等分線を、辺 BC の中点と結ぶ線（中線）と取り違える：D は BC を \( \mathrm{AB}:\mathrm{AC} \) に分ける点で、AB と AC が等しいときを除いて中点ではありません。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="円に内接する四角形"><span class="num">5</span>円に内接する四角形の対角線と面積</h2>
+<p>4辺の長さだけでは四角形の形は決まりませんが（「3 四角形を三角形に分ける」の振り返り）、<strong>円に内接する</strong>という条件が加わると形が決まり、対角線の長さや面積も求められます。使うのは、補足の「向かい合う角の和は 180°」です。</p>
+<figure>
+<!--svg:f075c-->
+<svg viewBox="0 0 300 290" width="300" role="img" aria-label="円に内接する四角形 ABCD（AB=5、BC=8、CD=3、DA=5）と対角線 AC。角B と角D の和は 180°">
+<circle cx="150" cy="143" r="125.3" fill="none" stroke="#7b3fa0" stroke-width="1.5" stroke-dasharray="6 4"/>
+<polygon points="41.5,80.4 63.6,233.8 258.5,80.4 185.4,22.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+<line x1="41.5" y1="80.4" x2="258.5" y2="80.4" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="6 4"/>
+<polyline points="61.4,217.9 62.1,217.8 62.7,217.8 63.4,217.8 64.1,217.8 64.8,217.8 65.5,217.9 66.2,218 66.9,218.1 67.6,218.3 68.3,218.4 68.9,218.7 69.6,218.9 70.2,219.2 70.9,219.5 71.5,219.8 72.1,220.2 72.7,220.5 73.2,221 73.8,221.4 74.3,221.8 74.8,222.3 75.3,222.8 75.8,223.3 76.2,223.9" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<polyline points="170.6,28.8 171.1,30 171.8,31.3 172.6,32.4 173.5,33.5 174.5,34.5 175.5,35.4 176.7,36.2 177.9,36.9 179.1,37.5 180.4,38 181.8,38.4 183.1,38.7 184.5,38.8 185.9,38.8 187.3,38.7 188.7,38.5 190,38.1 191.4,37.7 192.6,37.1 193.9,36.4 195,35.6 196.1,34.8 197.1,33.8 198,32.7" fill="none" stroke="#1e8e5a" stroke-width="1.5"/>
+<text x="30.2" y="78.8" text-anchor="middle" font-size="14" fill="currentColor">A</text>
+<text x="54.7" y="248.1" text-anchor="middle" font-size="14" fill="currentColor">B</text>
+<text x="269.8" y="78.8" text-anchor="middle" font-size="14" fill="currentColor">C</text>
+<text x="189.1" y="15.3" text-anchor="middle" font-size="14" fill="currentColor">D</text>
+<text x="43.9" y="162.9" text-anchor="middle" font-size="13" fill="currentColor">5</text>
+<text x="168.2" y="170.7" text-anchor="middle" font-size="13" fill="currentColor">8</text>
+<text x="229.1" y="47.1" text-anchor="middle" font-size="13" fill="currentColor">3</text>
+<text x="109.2" y="45.5" text-anchor="middle" font-size="13" fill="currentColor">5</text>
+<text x="150" y="74.4" text-anchor="middle" font-size="13" fill="#c0392b">AC</text>
+</svg><!--/svg:f075c-->
+  <figcaption>図3　円に内接する四角形 ABCD（\( \mathrm{AB}=5 \)、\( \mathrm{BC}=8 \)、\( \mathrm{CD}=3 \)、\( \mathrm{DA}=5 \)）と対角線 AC。\( \angle\mathrm{B}+\angle\mathrm{D}=180^\circ \)</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題3（円に内接する四角形）</p>
+  <p>円に内接する四角形 ABCD で、\( \mathrm{AB}=5 \)、\( \mathrm{BC}=8 \)、\( \mathrm{CD}=3 \)、\( \mathrm{DA}=5 \) です。\( \cos B \)、対角線 AC の長さ、四角形 ABCD の面積 \( S \) を求めなさい。</p>
+  <div class="step">着眼点：対角線 AC は △ABC と △ACD の共通の辺です。AC² を2通りに表して等しいとおきます。円に内接するので \( D=180^\circ-B \)、\( \cos D=-\cos B \) です。</div>
+  <div class="step">△ABC で：\( \mathrm{AC}^2=5^2+8^2-2\cdot 5\cdot 8\cos B=89-80\cos B \)<br>△ACD で：\( \mathrm{AC}^2=3^2+5^2-2\cdot 3\cdot 5\cos D=34+30\cos B \)</div>
+  <div class="step">\( 89-80\cos B=34+30\cos B \) より \( 110\cos B=55 \)、\( \cos B=\dfrac{1}{2} \)。よって \( B=60^\circ \)、\( D=120^\circ \)。</div>
+  <div class="step">\( \mathrm{AC}^2=89-80\cdot\dfrac{1}{2}=49 \) より \( \mathrm{AC}=7 \)。</div>
+  <div class="step">\( S=\dfrac{1}{2}\cdot 5\cdot 8\cdot\sin 60^\circ+\dfrac{1}{2}\cdot 3\cdot 5\cdot\sin 120^\circ=10\sqrt{3}+\dfrac{15\sqrt{3}}{4}=\dfrac{55\sqrt{3}}{4} \)</div>
+  <div class="step">答え：\( \cos B=\dfrac{1}{2} \)、\( \mathrm{AC}=7 \)、\( S=\dfrac{55\sqrt{3}}{4} \)</div>
+</div>
+<div class="box think"><p class="box-title">振り返り：外接円の半径も分かる</p><p>四角形 ABCD が内接している円は、△ABC の外接円でもあります。正弦定理①より \( 2R=\dfrac{\mathrm{AC}}{\sin B}=\dfrac{7}{\frac{\sqrt{3}}{2}}=\dfrac{14}{\sqrt{3}} \)、\( R=\dfrac{7\sqrt{3}}{3} \) です。△ACD で \( 2R=\dfrac{\mathrm{AC}}{\sin D}=\dfrac{7}{\sin 120^\circ} \) としても同じ値になり、\( \sin D=\sin(180^\circ-B)=\sin B \) であることとも合っています。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：\( \cos D=\cos B \) としてしまう</p><p>向かい合う角の和が 180° なので、\( \cos D=\cos(180^\circ-B)=-\cos B \) です。符号を変え忘れて \( 89-80\cos B=34-30\cos B \) とすると、\( \cos B=\dfrac{55}{50}=\dfrac{11}{10} \) となり、1 より大きくなってしまいます。\( \cos B \) は \( -1 \) 以上 1 以下なので、計算の誤りに気付けます。一方、正弦は \( \sin D=\sin B \) で、符号は変わりません。</p></div>
+<div class="table-wrap">
+<table>
+  <tr><th>図形</th><th>分け方</th><th>使う式</th><th>この時間の例</th></tr>
+  <tr><td>四角形</td><td>対角線で2つの三角形に分ける</td><td>余弦定理で対角線 → 面積の和</td><td>例題1</td></tr>
+  <tr><td>角の二等分線</td><td>二等分線で2つの三角形に分ける</td><td>面積の和 ＝ もとの三角形の面積</td><td>例題2</td></tr>
+  <tr><td>円に内接する四角形</td><td>対角線で分け、対角の和 180° を使う</td><td>対角線の2乗を2通りに表す</td><td>例題3</td></tr>
+</table>
+</div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>対角線で三角形に分ける</dt><dd>四角形を、対角線を1本引いて2つの三角形に分けること。分かっている量（2辺とその間の角、3辺など）がそろうように対角線を選ぶ。</dd>
+    <dt>角の二等分線</dt><dd>角を2等分する直線（中1-083）。△ABC で \( \angle\mathrm{A} \) の二等分線と辺 BC の交点を D とすると \( \mathrm{BD}:\mathrm{DC}=\mathrm{AB}:\mathrm{AC} \)（中3-085）。長さ AD は面積の和から求められる。</dd>
+    <dt>円に内接する四角形</dt><dd>4つの頂点がすべて1つの円周上にある四角形。向かい合う角の和は 180°（数Ａ-048 で学ぶ。このページでは補足で説明）。</dd>
+    <dt>対角</dt><dd>四角形の向かい合う角（\( \angle\mathrm{A} \) と \( \angle\mathrm{C} \)、\( \angle\mathrm{B} \) と \( \angle\mathrm{D} \)）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>四角形は対角線で2つの三角形に分け、余弦定理で対角線を求めてから、2つの面積をたす。4辺だけでは形が決まらないので、角か対角線がもう1つ必要（O1）。</li>
+    <li>角の大きさは、余弦定理で余弦を求め、特別な角でなければ三角比表で近い角を読む（O1）。</li>
+    <li>角の二等分線 AD は、\( \triangle\mathrm{ABC}=\triangle\mathrm{ABD}+\triangle\mathrm{ADC} \) を「2辺とその間の角」で表して求める（O2）。</li>
+    <li>円に内接する四角形では \( \cos D=-\cos B \)。対角線の2乗を2通りに表して \( \cos B \) を求める（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">四角形の面積</span><p>\( S=\triangle\mathrm{ABD}+\triangle\mathrm{BCD} \)</p></div>
+  <div><span class="f-name">角の二等分線</span><p>\( \dfrac{1}{2}bc\sin A=\dfrac{1}{2}c\cdot\mathrm{AD}\sin\dfrac{A}{2}+\dfrac{1}{2}b\cdot\mathrm{AD}\sin\dfrac{A}{2} \)</p></div>
+  <div><span class="f-name">円に内接する四角形</span><p>\( B+D=180^\circ \) より \( \cos D=-\cos B \)、\( \sin D=\sin B \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。根号を含む答えは、根号の中をできるだけ小さい自然数にして、\( 3\sqrt{2} \) なら 3√2 または 3ルート2、分数は \( \dfrac{35\sqrt{3}}{4} \) なら 35√3/4 と入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>四角形 ABCD で \( \mathrm{AB}=2 \)、\( \mathrm{AD}=3 \)、\( \angle\mathrm{A}=60^\circ \) です。対角線 BD の長さはどれですか。</p>
+  <div class="choices"><button>\( \sqrt{19} \)</button><button data-correct="true">\( \sqrt{7} \)</button><button>\( 7 \)</button><button>\( \sqrt{13} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">△ABD で余弦定理より \( \mathrm{BD}^2=2^2+3^2-2\cdot 2\cdot 3\cos 60^\circ=13-6=7 \)、\( \mathrm{BD}=\sqrt{7} \) です。\( \sqrt{19} \) は \( -2bc\cos A \) の符号を誤って \( 13+6 \) とした値、\( 7 \) は平方根をとり忘れた値、\( \sqrt{13} \) は \( -2bc\cos A \) の項を落とした値（三平方の定理と同じ式にしてしまった誤り）です。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="12|12cm2|S=12">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>平行四辺形 ABCD で \( \mathrm{AB}=4 \) cm、\( \mathrm{AD}=6 \) cm、\( \angle\mathrm{A}=30^\circ \) です。対角線 BD で2つの三角形に分けて、平行四辺形の面積を求めなさい（数値だけを入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 12（cm²）。平行四辺形は対角線 BD で合同な2つの三角形（△ABD と △CDB）に分かれるので、\( S=2\times\dfrac{1}{2}\cdot 4\cdot 6\cdot\sin 30^\circ=24\cdot\dfrac{1}{2}=12 \) です。6 と答えた場合は、片方の三角形の面積だけを答えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O1</span></div>
+  <p>例題1の花壇で \( \cos C=0.2 \) でした。三角比表の値 \( \cos 78^\circ=0.2079 \)、\( \cos 79^\circ=0.1908 \)、\( \sin 12^\circ=0.2079 \) を使うと、C に最も近い整数の角はどれですか。</p>
+  <div class="choices"><button data-correct="true">\( 78^\circ \)</button><button>\( 79^\circ \)</button><button>\( 12^\circ \)</button><button>\( 102^\circ \)</button></div>
+  <span class="result"></span>
+  <div class="explain">0.2 との差は \( 0.2079-0.2=0.0079 \)、\( 0.2-0.1908=0.0092 \) で、\( \cos 78^\circ \) の方が近いので \( 78^\circ \) です。\( 79^\circ \) は差の大小を逆に読んだ誤りです。\( 12^\circ \) は正弦の表を読んだ誤りで、\( \sin 12^\circ=0.2079 \) は \( \cos 78^\circ \) と同じ値です（数Ⅰ-062 の \( \sin(90^\circ-A)=\cos A \)）。\( 102^\circ \) は \( 180^\circ-78^\circ \) で、余弦が負になる鈍角です。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="2√3|2ルート3|2root3|2*√3|2×√3|AD=2√3|√12">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>△ABC で \( \mathrm{AB}=6 \)、\( \mathrm{AC}=3 \)、\( \angle\mathrm{A}=60^\circ \) とし、\( \angle\mathrm{A} \) の二等分線と辺 BC の交点を D とします。AD の長さを求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 2\sqrt{3} \)。AD を \( x \) とすると、\( \angle\mathrm{BAD}=\angle\mathrm{DAC}=30^\circ \) なので、\( \dfrac{1}{2}\cdot 6\cdot 3\cdot\sin 60^\circ=\dfrac{1}{2}\cdot 6x\sin 30^\circ+\dfrac{1}{2}\cdot 3x\sin 30^\circ \)。左辺は \( \dfrac{9\sqrt{3}}{2} \)、右辺は \( \dfrac{9}{4}x \) なので、\( x=2\sqrt{3} \) です。右辺にも \( \sin 60^\circ \) を使うと \( x=2 \) になりますが、これは AD をはさむ角を二等分していない誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>\( \angle\mathrm{A}=90^\circ \)、\( \mathrm{AB}=3 \)、\( \mathrm{AC}=6 \) の直角三角形 ABC で、\( \angle\mathrm{A} \) の二等分線と辺 BC の交点を D とします。AD の長さはどれですか。</p>
+  <div class="choices"><button>\( 2 \)</button><button>\( 4\sqrt{2} \)</button><button data-correct="true">\( 2\sqrt{2} \)</button><button>\( \dfrac{3\sqrt{5}}{2} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">AD を \( x \) とすると、\( \dfrac{1}{2}\cdot 3\cdot 6=\dfrac{1}{2}\cdot 3x\sin 45^\circ+\dfrac{1}{2}\cdot 6x\sin 45^\circ \)。左辺は 9、右辺は \( \dfrac{9}{2}\cdot\dfrac{1}{\sqrt{2}}x \) なので、\( x=2\sqrt{2} \) です。\( 2 \) は右辺にも \( \sin 90^\circ=1 \) を使った誤り、\( 4\sqrt{2} \) は左辺の \( \dfrac{1}{2} \) を忘れて 18 とした誤りです。\( \dfrac{3\sqrt{5}}{2} \) は斜辺 \( \mathrm{BC}=3\sqrt{5} \) の半分で、BC の中点と結ぶ線（中線）の長さです。D は \( \mathrm{BD}:\mathrm{DC}=3:6 \) の点で、中点ではありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>円に内接する四角形 ABCD で、\( \mathrm{AB}=3 \)、\( \mathrm{BC}=5 \)、\( \mathrm{CD}=8 \)、\( \mathrm{DA}=3 \) です。\( \cos B \) の値はどれですか。</p>
+  <div class="choices"><button>\( \dfrac{1}{2} \)</button><button>\( \dfrac{13}{6} \)</button><button>4辺だけでは四角形の形が決まらないので求められない</button><button data-correct="true">\( -\dfrac{1}{2} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( \cos D=-\cos B \) なので、\( \mathrm{AC}^2=9+25-30\cos B=64+9+48\cos B \)。\( 34-30\cos B=73+48\cos B \) より \( 78\cos B=-39 \)、\( \cos B=-\dfrac{1}{2} \)（\( B=120^\circ \)、\( \mathrm{AC}=7 \)）です。\( \dfrac{1}{2} \) は最後の符号の誤り、\( \dfrac{13}{6} \) は \( \cos D=\cos B \) とした誤り（\( 34-30\cos B=73-48\cos B \) から \( 18\cos B=39 \)）で、1 より大きいので余弦の値としてありえません。「求められない」は、円に内接するという条件で形が決まることを使っていません。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="39√3/4|(39√3)/4|39/4√3|39ルート3/4|39root3/4|39√3÷4|S=39√3/4">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>問6の四角形 ABCD の面積を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{39\sqrt{3}}{4} \)。\( B=120^\circ \)、\( D=60^\circ \) なので、\( S=\dfrac{1}{2}\cdot 3\cdot 5\cdot\sin 120^\circ+\dfrac{1}{2}\cdot 8\cdot 3\cdot\sin 60^\circ=\dfrac{15\sqrt{3}}{4}+6\sqrt{3}=\dfrac{39\sqrt{3}}{4} \) です。\( \sin D=\sin(180^\circ-B)=\sin B \) なので、2つの三角形の正弦は同じ \( \dfrac{\sqrt{3}}{2} \) です。\( \dfrac{39\sqrt{3}}{2} \) と答えた場合は \( \dfrac{1}{2} \) を忘れています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1</span></div>
+  <p>太郎さんは、四角形の空き地（学習用の架空の空き地）の面積を求めるため、4辺の長さだけを巻き尺で測ってきました。</p>
+  <p>太郎：「4辺の長さが分かったから、余弦定理を使えば対角線も面積も計算できるね。」<br>花子：「本当に？ もう1つ何か測らないといけないんじゃない？」</p>
+  <p>花子さんの指摘についての説明として正しいものはどれですか。</p>
+  <div class="choices"><button>4辺の長さが分かれば、余弦定理で対角線の長さが1つに決まるので、太郎さんの考えで正しい。</button><button data-correct="true">四角形は4辺の長さだけでは形が決まらないので、角の大きさか対角線の長さをもう1つ測る必要がある。</button><button>4辺の長さの和に、いちばん長い辺の長さをかけて2でわれば面積になる。</button><button>どの四角形も円に内接するので、向かい合う角の和が 180° であることを使えば求められる。</button></div>
+  <span class="result"></span>
+  <div class="explain">1辺 5 の正方形を押しつぶしたひし形のように、4辺が同じでも形と面積が違う四角形があります（例題1の振り返り）。余弦定理で対角線を求めるには、三角形の「2辺とその間の角」か「3辺」が必要ですが、4辺だけではどの三角形もそろいません。周の長さに辺をかける計算は面積の公式ではありません。四角形がいつも円に内接するわけではありません（たとえば正方形でないひし形は円に内接しません。向かい合う角の和が 180° にならないからです）。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O3・O1</span></div>
+  <p>円に内接する四角形 ABCD で、\( \mathrm{AB}=7 \)、\( \mathrm{BC}=7 \)、\( \mathrm{CD}=3 \)、\( \mathrm{DA}=5 \) です。</p>
+  <p>(1) \( \cos B \) の値と、対角線 AC の長さを求めなさい。　(2) 四角形 ABCD の面積を求めなさい。　(3) この円の半径 \( R \) を求めなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) 円に内接するので \( D=180^\circ-B \)、\( \cos D=-\cos B \)。\( \mathrm{AC}^2=7^2+7^2-2\cdot 7\cdot 7\cos B=98-98\cos B \)、\( \mathrm{AC}^2=3^2+5^2-2\cdot 3\cdot 5\cos D=34+30\cos B \)。\( 98-98\cos B=34+30\cos B \) より \( 128\cos B=64 \)、\( \cos B=\dfrac{1}{2} \)。\( \mathrm{AC}^2=98-49=49 \) より \( \mathrm{AC}=7 \)。</p>
+    <p>(2) \( B=60^\circ \)、\( D=120^\circ \)。\( S=\dfrac{1}{2}\cdot 7\cdot 7\cdot\sin 60^\circ+\dfrac{1}{2}\cdot 3\cdot 5\cdot\sin 120^\circ=\dfrac{49\sqrt{3}}{4}+\dfrac{15\sqrt{3}}{4}=16\sqrt{3} \)。</p>
+    <p>(3) 円は △ABC の外接円なので、正弦定理より \( 2R=\dfrac{\mathrm{AC}}{\sin B}=\dfrac{7}{\frac{\sqrt{3}}{2}}=\dfrac{14}{\sqrt{3}} \)、\( R=\dfrac{7\sqrt{3}}{3} \)。</p>
+    <p><strong>採点の観点</strong>　① 対角の和が 180° であることから \( \cos D=-\cos B \) とし、AC² を2通りに表している。② 2つの三角形の面積をたしている。③ 四角形が内接する円を △ABC の外接円とみて、正弦定理で \( R \) を求めている。</p>
+  </div>
+  <div class="explain">(1) で \( \mathrm{AB}=\mathrm{BC}=\mathrm{AC}=7 \) となり、△ABC は正三角形です（\( B=60^\circ \) とも合っています）。(3) で △ACD を使っても \( 2R=\dfrac{7}{\sin 120^\circ} \) で同じ値です。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(2) 図形と計量」の「図形の構成要素間の関係に着目し，日常の事象や社会の事象などを数学的に捉え，問題を解決したり，解決の過程を振り返って事象の数学的な特徴や他の事象との関係を考察したりすること」（イ(イ)）に関わり、出題範囲に含まれます。円に内接する四角形の性質は数学Ａ「(1) 図形の性質」の内容です。実施要項では、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」とされています。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「解決過程を振り返り，得られた結果を意味づけたり，活用したり，統合的・発展的に考察したりすること」などを求めると述べています。この時間の「振り返り」（別の方法で確かめる、4辺だけでは形が決まらない理由を考える）は、こうした考察にあたります。</p>
+  <p class="small">問8・問9は練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">空間図形の計量（数Ⅰ-076）</p>
+  <p>次の時間は、正四面体や直方体などの簡単な空間図形の中に三角形を見いだし、三角比や正弦定理・余弦定理を用いて、高さ・角の大きさ・体積を求めます。この時間の「三角形に分ける」「分かっている量がそろう三角形を選ぶ」考え方を、立体の中で使います。</p>
+  <p>この時間では、空間図形の計量（数Ⅰ-076）と、建造物や山などの日常の事象への活用（数Ⅰ-077）は扱っていません。円に内接する四角形の性質の証明は数学Ａ（数Ａ-048）で扱います。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-074　三角形の内接円と面積</div>
+  <div><span class="label">次の時間</span>数Ⅰ-076　空間図形の計量</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-075「平面図形の計量」（活用。学習指導要領 数学Ⅰ (2)イ(イ)、解説 p.40。† 教科書で一般的な内容を含む行）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(2) 図形と計量 イ(イ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.40「三角比や正弦定理，余弦定理などの活用場面として，平面図形や簡単な空間図形の計量を取り扱う」、p.40「外心，内心及び重心の性質や円に内接する四角形の性質などについては『数学Ａ』の『(1) 図形の性質』で取り扱うので，互いの内容の関連に配慮する」（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「三角形の面積」（「三角形の面積を2つの三角形の面積の和として表現し，線分を求める問題に活用することができる（応用例題3）」「円に内接する四角形の面積を求める方法を考察することができる（応用例題4）」。† の内容）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>東京書籍「評価規準例 改訂版 数学Ⅰ Advanced（数Ⅰ002-901）」の「三角形の面積」（「円に内接する四角形の面積を求める方法を考察することができる（例題7）」）https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16703_su1_hyoka.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題はこのページのために作成したものです（出典を示したものを除く）。花壇・空き地の場面と寸法は、学習用に作成した架空のものです。三角比表の値は小数第4位までの値です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-075",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-075",
+  "title": "平面図形の計量",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-4", "title": "図形と計量"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)イ(イ)"],
+  "kaisetsu_page": "40",
+  "objectives": [
+    {"id": "O1", "text": "四角形を対角線で2つの三角形に分け、余弦定理・正弦定理・面積の公式を用いて、対角線の長さ・角の大きさ・面積を求めることができる。", "from": "四角形などを三角形に分け、三角比や正弦定理・余弦定理を用いて辺の長さ・角の大きさ・面積を求めることができる", "sections": ["sec-1"], "checks": ["q1", "q2", "q3", "q8", "q9"]},
+    {"id": "O2", "text": "三角形の面積を、角の二等分線で分けた2つの三角形の面積の和として表し、角の二等分線の長さを求めることができる。", "from": "角の二等分線の長さを面積の和から求める問題", "sections": ["sec-2"], "checks": ["q4", "q5"]},
+    {"id": "O3", "text": "円に内接する四角形で、向かい合う角の和が 180° であることと余弦定理を用いて、対角線の長さと面積を求めることができる。", "from": "円に内接する四角形の対角線の長さ・面積を求める問題を扱う", "sections": ["sec-3"], "checks": ["q6", "q7", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "対角線で三角形に分ける", "where": "sec-1"},
+    {"term": "角の二等分線", "where": "sec-2"},
+    {"term": "円に内接する四角形", "where": "supp-1"},
+    {"term": "対角", "where": "supp-1"}
+  ],
+  "prerequisites": [
+    {"concept": "正弦定理と外接円の半径", "taught_in": ["hs_math_1a/数Ⅰ-068", "hs_math_1a/数Ⅰ-069"], "gap": false, "where": "review"},
+    {"concept": "余弦定理（2辺とその間の角から辺、3辺から角）", "taught_in": ["hs_math_1a/数Ⅰ-070", "hs_math_1a/数Ⅰ-071"], "gap": false, "where": "review"},
+    {"concept": "三角形の面積の公式 S=(1/2)bc sin A と、3辺から面積を求める手順", "taught_in": ["hs_math_1a/数Ⅰ-073"], "gap": false, "where": "review"},
+    {"concept": "sin(180°−θ)=sin θ、cos(180°−θ)=−cos θ", "taught_in": ["hs_math_1a/数Ⅰ-064"], "gap": false, "where": "review"},
+    {"concept": "三角比の相互関係（sin²+cos²=1）", "taught_in": ["hs_math_1a/数Ⅰ-061", "hs_math_1a/数Ⅰ-065"], "gap": false, "where": "sec-1"},
+    {"concept": "三角比表で角を読む", "taught_in": ["hs_math_1a/数Ⅰ-059"], "gap": false, "where": "sec-1"},
+    {"concept": "sin(90°−A)=cos A", "taught_in": ["hs_math_1a/数Ⅰ-062"], "gap": false, "where": "quiz"},
+    {"concept": "三角形の合同条件（3辺で三角形が1つに決まる）", "taught_in": ["jhs_math/中2-053"], "gap": false, "where": "sec-1"},
+    {"concept": "根号の中が違う数の和はまとめられない", "taught_in": ["jhs_math/中3-027"], "gap": false, "where": "sec-1"},
+    {"concept": "角の二等分線", "taught_in": ["jhs_math/中1-083"], "gap": false, "where": "sec-2"},
+    {"concept": "角の二等分線と線分の比 BD:DC=AB:AC", "taught_in": ["jhs_math/中3-085"], "gap": false, "where": "sec-2"},
+    {"concept": "円周角の定理（円周角は中心角の半分）", "taught_in": ["jhs_math/中3-087", "jhs_math/中3-088"], "gap": false, "where": "review"},
+    {"concept": "円に内接する四角形の対角の和は 180°（並行して学ぶ数学Ａの数Ａ-048 で扱い、数Ⅰ-075 の時点で扱う行がない）", "taught_in": ["hs_math_1a/数Ａ-048"], "gap": true, "where": "supp-1"}
+  ],
+  "out_of_scope": [
+    "空間図形の計量（数Ⅰ-076）",
+    "建造物や山などの日常の事象への活用（数Ⅰ-077）",
+    "円に内接する四角形の性質の証明と、四角形が円に内接するための条件（数Ａ-048・数Ａ-049）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『図形と計量』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(2)イ(イ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.40 平面図形の計量を活用場面として扱うこと、円に内接する四角形の性質は数学Ａで扱うこと"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "面積の和で線分を求める問題（応用例題3）、円に内接する四角形の面積（応用例題4）が教科書で扱われることの確認（† の内容）"},
+    {"name": "評価規準例 改訂版 数学Ⅰ Advanced（数Ⅰ002-901）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16703_su1_hyoka.pdf", "use": "円に内接する四角形の面積（例題7）が教科書で扱われることの確認（† の内容）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

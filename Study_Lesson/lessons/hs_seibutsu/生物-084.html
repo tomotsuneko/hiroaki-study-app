@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>神経細胞の興奮と活動電位｜生物</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="../assets/lesson.js"></script>
+<style>
+  #ap-state { min-height: 3.4em; margin: 8px 0 0; }
+  .ap-readout { font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>生物</span><span>刺激の受容と反応</span><span>生物-084</span></div>
+  <h1>神経細胞の興奮と活動電位</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">指先に触れたものの情報は、あっという間に脳へ届きます。神経細胞が伝えている「電気の信号」の正体は、細胞膜を通るイオンのわずかな出入りです。膜のタンパク質がイオンをどう動かし、どう電位を生むのかを、グラフと実験の結果から読み解きます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>刺激を受けていない神経細胞で、細胞の内側が外側に対して負の電位（静止電位）になる理由を、ナトリウムポンプとカリウムイオンを通すチャネルの働き、イオンの濃度差と関連付けて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>刺激によって活動電位が発生する（興奮する）ときの膜電位の変化を、ナトリウムイオン・カリウムイオンを通すチャネルの開閉とイオンが移動する向きに関連付けて説明し、膜電位の記録や実験の結果を読み取ることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>一定以上の強さ（閾値以上）の刺激で興奮が起こり、活動電位の大きさは刺激の強さによらないこと（全か無かの法則）を説明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（生物-083）</span>神経系による受容器と効果器の連絡</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>神経細胞の興奮と活動電位</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（生物-085）</span>興奮の伝導</div>
+</div>
+<p class="small">前提となる単元：生物基礎「神経系と内分泌系による調節」（生基5）、生物「細胞と分子」（生物4：リン脂質と生体膜、膜輸送タンパク質）。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間の主役は、細胞膜と、膜にあるタンパク質と、ナトリウムイオン（Na⁺）・カリウムイオン（K⁺）です。Na⁺ と K⁺ は、どちらも正の電気を帯びた陽イオンでした（中学校 中3-006、化学基礎 化基-019）。次の3問で既習事項を確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：生物-037</span></div>
+  <p>生体膜にある膜輸送タンパク質のうち、ATP のエネルギーを使って、物質を濃度差に<strong>逆らって</strong>運ぶものはどれですか。</p>
+  <div class="choices">
+    <button>チャネル</button>
+    <button data-correct="true">ポンプ</button>
+    <button>リン脂質</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">ポンプは ATP のエネルギーを使い、濃度の低い側から高い側へ物質を運びます（能動輸送）。チャネルは特定のイオンなどを通す通り道で、物質は濃度の高い側から低い側へ（濃度差に従って）移動します（受動輸送）。リン脂質は膜をつくる物質で、膜輸送タンパク質ではありません。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：生物-030・生物-031</span></div>
+  <p>Na⁺ や K⁺ などのイオンが、タンパク質の助けなしにはリン脂質の膜をほとんど通れないのはなぜですか。</p>
+  <div class="choices">
+    <button>イオンは膜の穴より大きいから</button>
+    <button data-correct="true">膜の内部がリン脂質の疎水性の部分でできていて、電気を帯びたイオンを通しにくいから</button>
+    <button>膜の内部が親水性の部分でできていて、イオンを強く引きつけて離さないから</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">リン脂質は親水性の部分を外側（水のある側）に、疎水性の部分を内側に向けて二重に並びます。膜の内部は疎水性なので、電気を帯びたイオンはそのままでは通りにくく、イオンチャネルやポンプなどのタンパク質が通り道になります。膜に決まった大きさの「穴」が開いているわけではありません。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中1-038</span></div>
+  <p>水に溶けた物質の粒子は、濃度に差がある状態で仕切りをなくすと、その後どうなりますか。</p>
+  <div class="choices">
+    <button data-correct="true">濃度の高い方から低い方へ広がり、やがて全体に均一になる</button>
+    <button>濃度の低い方から高い方へ集まっていく</button>
+    <button>そのまま動かない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">粒子は絶えず動いているので、全体としては濃度の高い方から低い方へ広がり、均一になります（中学校で学んだ、溶質が水溶液中に均一に広がる様子）。チャネルが開くと、イオンもこの向きに移動します。濃度差に逆らって運ぶにはポンプとエネルギーが必要です。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">補足：「膜電位」は細胞の外側を基準にした内側の電位</p>
+  <p>電位は、基準の場所を 0 と決めたときの「電気的な高さ」です。中学校で学んだ電圧（中2-099）は、2点の電位の差にあたります。神経細胞では、細胞の<strong>外側を基準（0 mV）</strong>にして<strong>内側の電位</strong>を表し、これを<strong>膜電位</strong>といいます。内側が外側より低ければ負の値（例：−60 mV）、高ければ正の値になります。1 mV（ミリボルト）は 1000 分の 1 V です。</p>
+</div>
+<div class="box supplement" id="supp-2">
+  <p class="box-title">補足：神経細胞（ニューロン）のつくりと軸索</p>
+  <p>前の時間（生物-083）で学んだように、神経細胞は<strong>ニューロン</strong>とも呼ばれ、核のある部分から、ほかの細胞から情報を受け取る短い突起と、情報を遠くへ送る細長い突起（<strong>軸索</strong>）が伸びています。この時間の膜電位は、主に軸索の細胞膜で測ったものです。</p>
+  <figure>
+    <svg viewBox="0 0 600 160" role="img" aria-label="ニューロンの模式図。左に核のある部分があり、そこから短い突起が数本伸びる。右へ細長い軸索が伸び、その末端は枝分かれして次の細胞へつながる。">
+      <line x1="84" y1="60" x2="30" y2="22" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <line x1="80" y1="80" x2="22" y2="86" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <line x1="90" y1="100" x2="50" y2="130" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <line x1="118" y1="52" x2="150" y2="18" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="110" cy="78" r="32" fill="none" stroke="currentColor" stroke-width="3"/>
+      <circle cx="110" cy="78" r="11" fill="#1f5fbf"/>
+      <line x1="142" y1="78" x2="500" y2="78" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      <line x1="500" y1="78" x2="545" y2="50" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <line x1="500" y1="78" x2="555" y2="78" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <line x1="500" y1="78" x2="545" y2="106" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="549" cy="48" r="5" fill="currentColor"/><circle cx="560" cy="78" r="5" fill="currentColor"/><circle cx="549" cy="108" r="5" fill="currentColor"/>
+      <text x="170" y="44" font-size="12.5" fill="#1f5fbf">核（青い丸）</text>
+      <text x="320" y="106" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">軸索（細長い突起）</text>
+      <text x="16" y="152" font-size="12" fill="currentColor">情報を受け取る短い突起</text>
+      <text x="584" y="140" text-anchor="end" font-size="12" fill="currentColor">軸索の末端 → 次の細胞へ</text>
+    </svg>
+    <figcaption>ニューロンの模式図（形は細胞の種類によってさまざま）</figcaption>
+  </figure>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：細い電極を差し込むと、何が見える？</h2>
+<p>取り出した神経の軸索に、先端がとても細いガラスの電極をそっと差し込んで膜電位を記録すると、次のようなことが起こります。</p>
+<ul>
+  <li>電極の先が細胞膜を通り抜けて内側に入った瞬間、記録が 0 mV から <strong>約 −60 mV</strong> に下がる。刺激を与えない間は、その値のまま変わらない。</li>
+  <li>刺激を与えると、膜電位は一瞬で <strong>約 +40 mV</strong> まではね上がり、数ミリ秒のうちに元の −60 mV に戻る。</li>
+</ul>
+<div class="box think">
+  <p class="box-title">考えよう</p>
+  <p>① 何もしていない細胞で、内側が外側より低い（負）のはなぜでしょうか。</p>
+  <p>② 刺激を受けると、なぜ一瞬だけ内側が正になるのでしょうか。どのイオンが、どちら向きに動いたと考えられるでしょうか。</p>
+  <p class="small">ヒント：細胞膜はイオンを通しにくく、通り道になるのは膜輸送タンパク質でした（確認1・2）。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="静止電位"><span class="num">3</span>刺激を受けていないとき：静止電位</h2>
+<figure>
+  <svg viewBox="0 0 600 220" role="img" aria-label="膜電位の測り方の模式図。軸索の外側に基準の電極、内側に細い電極を差し込み、2つの電極を電位計につなぐ。電位計はマイナス60ミリボルトを示している。">
+    <rect x="240" y="6" width="140" height="36" rx="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="310" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">電位計 −60 mV</text>
+    <path d="M200,96 V24 H240" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M420,146 V24 H380" fill="none" stroke="currentColor" stroke-width="2"/>
+    <circle cx="200" cy="99" r="4" fill="currentColor"/>
+    <path d="M416,120 L420,152 L424,120 z" fill="currentColor"/>
+    <text x="192" y="66" text-anchor="end" font-size="12" fill="currentColor">外側の電極（基準 0 mV）</text>
+    <text x="430" y="66" font-size="12" fill="currentColor">内側に差し込んだ細い電極</text>
+    <rect x="40" y="110" width="520" height="64" rx="32" fill="none" stroke="#9a5b00" stroke-width="3"/>
+    <text x="110" y="148" text-anchor="middle" font-size="13" fill="currentColor">細胞内（軸索の中）</text>
+    <text x="60" y="100" font-size="12" fill="currentColor">細胞外（外液）</text>
+    <text x="300" y="200" text-anchor="middle" font-size="12.5" fill="#9a5b00">茶色の線＝細胞膜</text>
+  </svg>
+  <figcaption>図1　膜電位の測り方（模式図）。外側を基準にして、内側の電位を記録する。</figcaption>
+</figure>
+<p>刺激を受けていない神経細胞の膜電位を<strong>静止電位</strong>といいます。細胞の内側は外側に対して負で、その大きさは細胞の種類によって異なり、およそ −60〜−90 mV です（この時間の図では例として −60 mV とします）。</p>
+<h3>しくみ1：ナトリウムポンプがイオンの濃度差をつくる</h3>
+<p>細胞膜には<strong>ナトリウムポンプ</strong>があり、ATP のエネルギーを使って、Na⁺ を細胞の外へ、K⁺ を細胞の中へ運び続けています（能動輸送。この語と「受動輸送」は、教科書によっては「参考」「発展」の欄で扱われます）。その結果、<strong>細胞の外は Na⁺ が多く、中は K⁺ が多い</strong>という濃度差が保たれています。</p>
+<h3>しくみ2：K⁺ が濃度差に従って外へ出る</h3>
+<p>刺激がないときも、細胞膜には開いている <strong>K⁺チャネル</strong>（K⁺ を通すイオンチャネル）が一部あります。K⁺ は中に多いので、このチャネルを通って少しずつ外へ出ていきます（受動輸送）。一方、<strong>Na⁺チャネル</strong>はほとんど閉じていて、Na⁺ はほとんど入れません。細胞の中には外へ出られない負の電気を帯びた物質（タンパク質など）が多いため、陽イオンの K⁺ が出ていくと、<strong>内側が負、外側が正</strong>になります。</p>
+<p>内側が負になるほど、陽イオンの K⁺ は内側に引き戻されるようになります。「濃度差で出ていく勢い」と「電気的に引き戻す力」がつり合ったところで、膜電位は一定の値（静止電位）に落ち着きます。</p>
+<figure>
+  <svg viewBox="0 0 600 290" role="img" aria-label="静止状態の細胞膜の模式図。上が細胞外、下が細胞内。細胞外にはナトリウムイオンが多く、細胞内にはカリウムイオンが多い。アのナトリウムポンプはATPを使ってナトリウムイオンを外へ、カリウムイオンを内へ運ぶ。イのカリウムチャネルは開いていて、カリウムイオンが内から外へ出る。ウのナトリウムチャネルは閉じている。膜の外側は正、内側は負に帯電している。">
+    <defs>
+      <marker id="m84o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9a5b00"/></marker>
+      <marker id="m84p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7048b6"/></marker>
+    </defs>
+    <text x="16" y="20" font-size="13" font-weight="700" fill="currentColor">細胞外</text>
+    <text x="16" y="284" font-size="13" font-weight="700" fill="currentColor">細胞内</text>
+    <rect x="20" y="130" width="560" height="40" fill="#f0e6d2" fill-opacity=".55" stroke="none"/>
+    <line x1="20" y1="130" x2="580" y2="130" stroke="#9a5b00" stroke-width="2"/>
+    <line x1="20" y1="170" x2="580" y2="170" stroke="#9a5b00" stroke-width="2"/>
+    <rect x="125" y="118" width="50" height="64" rx="10" fill="#9a5b00"/>
+    <text x="150" y="154" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">ATP</text>
+    <line x1="137" y1="186" x2="137" y2="104" stroke="#9a5b00" stroke-width="2.5" marker-end="url(#m84o)"/>
+    <line x1="163" y1="104" x2="163" y2="186" stroke="#7048b6" stroke-width="2.5" marker-end="url(#m84p)"/>
+    <text x="137" y="98" text-anchor="middle" font-size="12" font-weight="700" fill="#9a5b00">Na⁺</text>
+    <text x="163" y="202" text-anchor="middle" font-size="12" font-weight="700" fill="#7048b6">K⁺</text>
+    <text x="150" y="226" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">ア</text>
+    <rect x="298" y="118" width="16" height="64" rx="4" fill="#7048b6"/>
+    <rect x="326" y="118" width="16" height="64" rx="4" fill="#7048b6"/>
+    <line x1="320" y1="190" x2="320" y2="100" stroke="#7048b6" stroke-width="2.5" marker-end="url(#m84p)"/>
+    <text x="336" y="204" font-size="12" font-weight="700" fill="#7048b6">K⁺</text>
+    <text x="320" y="226" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">イ</text>
+    <rect x="458" y="118" width="44" height="64" rx="6" fill="#9a5b00" fill-opacity=".85"/>
+    <text x="480" y="156" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">×</text>
+    <text x="480" y="226" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">ウ</text>
+    <g font-size="15" font-weight="700" fill="#c0392b" text-anchor="middle">
+      <text x="60" y="125">+</text><text x="95" y="125">+</text><text x="230" y="125">+</text><text x="265" y="125">+</text><text x="390" y="125">+</text><text x="425" y="125">+</text><text x="545" y="125">+</text>
+    </g>
+    <g font-size="15" font-weight="700" fill="#1f5fbf" text-anchor="middle">
+      <text x="60" y="187">−</text><text x="95" y="187">−</text><text x="230" y="187">−</text><text x="265" y="187">−</text><text x="390" y="187">−</text><text x="425" y="187">−</text><text x="545" y="187">−</text>
+    </g>
+    <g font-size="10.5" font-weight="700" text-anchor="middle">
+      <circle cx="55" cy="55" r="14" fill="#fff3e0" stroke="#9a5b00"/><text x="55" y="59" fill="#9a5b00">Na⁺</text>
+      <circle cx="215" cy="48" r="14" fill="#fff3e0" stroke="#9a5b00"/><text x="215" y="52" fill="#9a5b00">Na⁺</text>
+      <circle cx="255" cy="88" r="14" fill="#fff3e0" stroke="#9a5b00"/><text x="255" y="92" fill="#9a5b00">Na⁺</text>
+      <circle cx="400" cy="50" r="14" fill="#fff3e0" stroke="#9a5b00"/><text x="400" y="54" fill="#9a5b00">Na⁺</text>
+      <circle cx="440" cy="88" r="14" fill="#fff3e0" stroke="#9a5b00"/><text x="440" y="92" fill="#9a5b00">Na⁺</text>
+      <circle cx="530" cy="50" r="14" fill="#fff3e0" stroke="#9a5b00"/><text x="530" y="54" fill="#9a5b00">Na⁺</text>
+      <circle cx="562" cy="92" r="14" fill="#fff3e0" stroke="#9a5b00"/><text x="562" y="96" fill="#9a5b00">Na⁺</text>
+      <circle cx="90" cy="92" r="14" fill="#fff3e0" stroke="#9a5b00"/><text x="90" y="96" fill="#9a5b00">Na⁺</text>
+      <circle cx="300" cy="44" r="14" fill="#f3eefb" stroke="#7048b6"/><text x="300" y="48" fill="#7048b6">K⁺</text>
+      <circle cx="55" cy="240" r="14" fill="#f3eefb" stroke="#7048b6"/><text x="55" y="244" fill="#7048b6">K⁺</text>
+      <circle cx="95" cy="266" r="14" fill="#f3eefb" stroke="#7048b6"/><text x="95" y="270" fill="#7048b6">K⁺</text>
+      <circle cx="215" cy="246" r="14" fill="#f3eefb" stroke="#7048b6"/><text x="215" y="250" fill="#7048b6">K⁺</text>
+      <circle cx="258" cy="272" r="14" fill="#f3eefb" stroke="#7048b6"/><text x="258" y="276" fill="#7048b6">K⁺</text>
+      <circle cx="400" cy="246" r="14" fill="#f3eefb" stroke="#7048b6"/><text x="400" y="250" fill="#7048b6">K⁺</text>
+      <circle cx="440" cy="272" r="14" fill="#f3eefb" stroke="#7048b6"/><text x="440" y="276" fill="#7048b6">K⁺</text>
+      <circle cx="530" cy="246" r="14" fill="#f3eefb" stroke="#7048b6"/><text x="530" y="250" fill="#7048b6">K⁺</text>
+      <circle cx="565" cy="272" r="14" fill="#fff3e0" stroke="#9a5b00"/><text x="565" y="276" fill="#9a5b00">Na⁺</text>
+    </g>
+  </svg>
+  <figcaption>図2　静止状態の細胞膜（模式図）。ア：ナトリウムポンプ（ATP のエネルギーで Na⁺ を外へ、K⁺ を内へ運ぶ）、イ：K⁺チャネル（刺激がなくても一部が開いていて、K⁺ が外へ出る）、ウ：Na⁺チャネル（静止状態ではほとんど閉じている「×」）。膜の外側は正（＋）、内側は負（−）。</figcaption>
+</figure>
+<div class="box point"><p class="box-title">静止電位は「ポンプがつくった濃度差」＋「K⁺ の流出」</p><p>濃度差をつくるのは<strong>ナトリウムポンプ（能動輸送・ATP を使う）</strong>、電位を直接生むのは<strong>K⁺チャネルを通る K⁺ の流出（受動輸送）</strong>です。役割の違う2種類の膜輸送タンパク質が組み合わさって、静止電位ができています。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>「内側が負なのは、陰イオンが外から入ってきたから」「静止状態ではイオンの出入りがまったくない」は、どちらも誤りです。内側が負になるのは、<strong>陽イオンの K⁺ が外へ出ていく</strong>からです。また静止状態でも、K⁺ はチャネルを通って出入りし、ポンプも働き続けています。電位が変わらないのは、出入りがつり合っているからです。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="活動電位（興奮）"><span class="num">4</span>刺激を受けたとき：活動電位の発生（興奮）</h2>
+<p>神経細胞に一定以上の強さの刺激を与えると、膜電位が短い時間だけ大きく変化します。この膜電位の変化を<strong>活動電位</strong>といい、活動電位が発生することを<strong>興奮</strong>といいます。下の図3は、活動電位の記録を模式的に表したものです。</p>
+<figure>
+<!--GEN:fig-ap-->
+<svg viewBox="0 0 560 330" role="img" aria-label="活動電位の記録の模式図。横軸は時間0から5ミリ秒、縦軸は膜電位。静止電位マイナス60ミリボルトから、1ミリ秒の刺激の後に急上昇してプラス40ミリボルトに達し、下降して一時的にマイナス70ミリボルトになった後、4.5ミリ秒ごろまでにマイナス60ミリボルトに戻る。">
+<defs><marker id="ah84a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/></marker><marker id="ah84b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b7791f"/></marker></defs>
+<line x1="70" y1="20" x2="70" y2="280" stroke="currentColor"/>
+<line x1="70" y1="280" x2="530" y2="280" stroke="currentColor"/>
+<line x1="70" y1="40" x2="530" y2="40" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="62" y="44" text-anchor="end" font-size="12" fill="currentColor">+40</text>
+<line x1="70" y1="80" x2="530" y2="80" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="62" y="84" text-anchor="end" font-size="12" fill="currentColor">+20</text>
+<line x1="70" y1="120" x2="530" y2="120" stroke="currentColor" stroke-opacity="0.35"/>
+<text x="62" y="124" text-anchor="end" font-size="12" fill="currentColor">0</text>
+<line x1="70" y1="160" x2="530" y2="160" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="62" y="164" text-anchor="end" font-size="12" fill="currentColor">−20</text>
+<line x1="70" y1="200" x2="530" y2="200" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="62" y="204" text-anchor="end" font-size="12" fill="currentColor">−40</text>
+<line x1="70" y1="240" x2="530" y2="240" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="62" y="244" text-anchor="end" font-size="12" fill="currentColor">−60</text>
+<line x1="70" y1="280" x2="530" y2="280" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="62" y="284" text-anchor="end" font-size="12" fill="currentColor">−80</text>
+<line x1="70" y1="280" x2="70" y2="285" stroke="currentColor"/>
+<text x="70" y="299" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="162" y1="280" x2="162" y2="285" stroke="currentColor"/>
+<text x="162" y="299" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<line x1="254" y1="280" x2="254" y2="285" stroke="currentColor"/>
+<text x="254" y="299" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<line x1="346" y1="280" x2="346" y2="285" stroke="currentColor"/>
+<text x="346" y="299" text-anchor="middle" font-size="12" fill="currentColor">3</text>
+<line x1="438" y1="280" x2="438" y2="285" stroke="currentColor"/>
+<text x="438" y="299" text-anchor="middle" font-size="12" fill="currentColor">4</text>
+<line x1="530" y1="280" x2="530" y2="285" stroke="currentColor"/>
+<text x="530" y="299" text-anchor="middle" font-size="12" fill="currentColor">5</text>
+<text x="300" y="316" text-anchor="middle" font-size="12.5" fill="currentColor">時間（ミリ秒）</text>
+<text x="18" y="150" text-anchor="middle" font-size="12.5" fill="currentColor" transform="rotate(-90 18 150)">膜電位（mV）</text>
+<line x1="70" y1="210" x2="530" y2="210" stroke="currentColor" stroke-dasharray="3 4" stroke-opacity=".7"/>
+<text x="526" y="224" text-anchor="end" font-size="12" fill="currentColor">閾値（例：−45 mV）</text>
+<line x1="162" y1="264" x2="162" y2="248" stroke="#c0392b" stroke-width="2" marker-end="url(#ah84a)"/>
+<text x="162" y="278" text-anchor="middle" font-size="12" fill="#c0392b">刺激</text>
+<polyline points="70,240 74.6,240 79.2,240 83.8,240 88.4,240 93,240 97.6,240 102.2,240 106.8,240 111.4,240 116,240 120.6,240 125.2,240 129.8,240 134.4,240 139,240 143.6,240 148.2,240 152.8,240 157.4,240 162,240 166.6,235.6 171.2,225 175.8,214.4 180.4,210 185,203.5 189.6,185.1 194.2,157.5 198.8,125 203.4,92.5 208,64.9 212.6,46.5 217.2,40 221.8,41.7 226.4,46.6 231,54.7 235.6,65.7 240.2,79.3 244.8,95 249.4,112.4 254,130.9 258.6,150 263.2,169.1 267.8,187.6 272.4,205 277,220.7 281.6,234.3 286.2,245.3 290.8,253.4 295.4,258.3 300,260 304.6,260 309.2,259.9 313.8,259.7 318.4,259.5 323,259.2 327.6,258.9 332.2,258.5 336.8,258.1 341.4,257.6 346,257.1 350.6,256.5 355.2,255.9 359.8,255.2 364.4,254.5 369,253.8 373.6,253.1 378.2,252.3 382.8,251.6 387.4,250.8 392,250 396.6,249.2 401.2,248.4 405.8,247.7 410.4,246.9 415,246.2 419.6,245.5 424.2,244.8 428.8,244.1 433.4,243.5 438,242.9 442.6,242.4 447.2,241.9 451.8,241.5 456.4,241.1 461,240.8 465.6,240.5 470.2,240.3 474.8,240.1 479.4,240 484,240 488.6,240 493.2,240 497.8,240 502.4,240 507,240 511.6,240 516.2,240 520.8,240 525.4,240 530,240" fill="none" stroke="#1f5fbf" stroke-width="3" stroke-linejoin="round"/>
+<line x1="217.2" y1="40" x2="346" y2="40" stroke="currentColor" stroke-dasharray="2 3" stroke-opacity=".6"/>
+<line x1="346" y1="237" x2="346" y2="43" stroke="#b7791f" stroke-width="2" marker-start="url(#ah84b)" marker-end="url(#ah84b)"/>
+<text x="354" y="140" font-size="12.5" fill="#b7791f">活動電位の</text>
+<text x="354" y="155" font-size="12.5" fill="#b7791f">大きさ 100 mV</text>
+<text x="116" y="230" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">①</text>
+<text x="181" y="100" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">②</text>
+<text x="269.8" y="100" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">③</text>
+<text x="373.6" y="272" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">④</text>
+<text x="456.4" y="272" text-anchor="middle" font-size="12" fill="currentColor">静止電位 −60 mV</text>
+<text x="223.2" y="36" font-size="12" fill="currentColor">最大 +40 mV</text>
+<circle id="ap-marker" cx="70" cy="240" r="7" fill="#c0392b" stroke="#fff" stroke-width="2"/>
+</svg>
+<!--/GEN:fig-ap-->
+  <figcaption>図3　活動電位の記録（模式図。値は例）。① 静止状態　② 急上昇　③ 下降　④ 一時的に静止電位より低くなり、元に戻る。</figcaption>
+</figure>
+<div class="widget">
+  <label for="ap-t">時間を動かしてみよう：<span class="ap-readout"><span id="ap-tv">0.00</span> ミリ秒</span>　膜電位 <span class="ap-readout"><span id="ap-v">−60</span> mV</span></label><br>
+  <input type="range" id="ap-t" min="0" max="5" step="0.05" value="0" aria-label="時間（ミリ秒）">
+  <p id="ap-state" aria-live="polite">① 静止状態。K⁺チャネルの一部が開いていて K⁺ が少しずつ外へ出ている。Na⁺チャネルはほとんど閉じている。</p>
+  <p class="small">図3の赤い点が、選んだ時刻の膜電位を示します。</p>
+</div>
+<h3>①→② 膜電位が急上昇する：Na⁺ が流れ込む</h3>
+<p>刺激によって膜電位が少し上がり、ある値（<ruby>閾値<rt>いきち</rt></ruby>。6節で見るように、興奮が起こる最小の刺激の強さを閾値ということもあります）に達すると、膜電位の変化によって開く Na⁺チャネルが一斉に開きます。Na⁺ は外に多いうえ、内側は負なので、Na⁺ は勢いよく細胞内へ流れ込みます（受動輸送）。陽イオンが入ってくるので膜電位は急上昇し、<strong>内側が正</strong>（図では +40 mV）になります。</p>
+<h3>②→③→④ 膜電位が下がる：K⁺ が流れ出る</h3>
+<p>開いた Na⁺チャネルはすぐに閉じ、代わりに、膜電位の変化によって開く K⁺チャネル（刺激がなくても開いている K⁺チャネルとは別のもの）が少し遅れて開いて、K⁺ が細胞の外へ流れ出ます（受動輸送）。陽イオンが出ていくので膜電位は下がり、K⁺ の流出がしばらく続くため、一時的に静止電位より低くなってから元に戻ります。膜電位が正になっているのは 1 ミリ秒にも満たない、ごく短い時間です。</p>
+<figure>
+  <svg viewBox="0 0 600 220" role="img" aria-label="活動電位のときのイオンの動きの模式図。左は上昇するとき：ナトリウムチャネルが開き、ナトリウムイオンが細胞外から細胞内へ流れ込み、内側が正になる。右は下降するとき：ナトリウムチャネルが閉じ、カリウムチャネルが開いて、カリウムイオンが細胞内から細胞外へ流れ出て、内側が負に戻る。">
+    <defs>
+      <marker id="m84o2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9a5b00"/></marker>
+      <marker id="m84p2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7048b6"/></marker>
+    </defs>
+    <text x="145" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">② 上昇するとき</text>
+    <text x="455" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">③ 下降するとき</text>
+    <text x="16" y="48" font-size="12" fill="currentColor">細胞外</text>
+    <text x="16" y="178" font-size="12" fill="currentColor">細胞内</text>
+    <rect x="10" y="90" width="270" height="40" fill="#f0e6d2" fill-opacity=".55" stroke="none"/>
+    <line x1="10" y1="90" x2="280" y2="90" stroke="#9a5b00" stroke-width="2"/>
+    <line x1="10" y1="130" x2="280" y2="130" stroke="#9a5b00" stroke-width="2"/>
+    <rect x="124" y="80" width="14" height="60" rx="4" fill="#9a5b00"/>
+    <rect x="152" y="80" width="14" height="60" rx="4" fill="#9a5b00"/>
+    <line x1="145" y1="40" x2="145" y2="168" stroke="#9a5b00" stroke-width="3" marker-end="url(#m84o2)"/>
+    <text x="156" y="50" font-size="13" font-weight="700" fill="#9a5b00">Na⁺ が流れ込む</text>
+    <text x="60" y="115" text-anchor="middle" font-size="11.5" fill="currentColor">Na⁺チャネル：開</text>
+    <text x="230" y="115" text-anchor="middle" font-size="11.5" fill="currentColor">K⁺チャネル：閉</text>
+    <text x="145" y="200" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">内側が正になる</text>
+    <rect x="320" y="90" width="270" height="40" fill="#f0e6d2" fill-opacity=".55" stroke="none"/>
+    <line x1="320" y1="90" x2="590" y2="90" stroke="#9a5b00" stroke-width="2"/>
+    <line x1="320" y1="130" x2="590" y2="130" stroke="#9a5b00" stroke-width="2"/>
+    <rect x="434" y="80" width="14" height="60" rx="4" fill="#7048b6"/>
+    <rect x="462" y="80" width="14" height="60" rx="4" fill="#7048b6"/>
+    <line x1="455" y1="168" x2="455" y2="40" stroke="#7048b6" stroke-width="3" marker-end="url(#m84p2)"/>
+    <text x="466" y="166" font-size="13" font-weight="700" fill="#7048b6">K⁺ が流れ出る</text>
+    <text x="378" y="115" text-anchor="middle" font-size="11.5" fill="currentColor">Na⁺チャネル：閉</text>
+    <text x="536" y="115" text-anchor="middle" font-size="11.5" fill="currentColor">K⁺チャネル：開</text>
+    <text x="455" y="200" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">内側が負に戻る</text>
+  </svg>
+  <figcaption>図4　活動電位のときのイオンの動き（模式図）。どちらのイオンも、チャネルを通って濃度差に従って移動する。</figcaption>
+</figure>
+<div class="box point"><p class="box-title">上昇は Na⁺ の流入、下降は K⁺ の流出</p><p>活動電位の上昇は <span class="em">Na⁺チャネルを通る Na⁺ の流入</span>、下降は <span class="em">K⁺チャネルを通る K⁺ の流出</span>によって起こります。どちらも濃度差に従う受動輸送で、ATP は直接使いません。このとき移動するイオンの量はごくわずかで、細胞の内外の濃度差はほとんど変わりません。濃度差は、ナトリウムポンプが長い時間をかけて保ち続けます。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題1　「活動電位の大きさ」を読み取る</p>
+  <p>図3で、静止電位は −60 mV、膜電位の最大値は +40 mV です。活動電位の大きさは何 mV ですか。</p>
+  <div class="step">ステップ1：活動電位の大きさは、<strong>静止電位から最大値までの変化の大きさ</strong>で表す（0 mV からではない）。</div>
+  <div class="step">ステップ2：最大値 − 静止電位 ＝ (+40) − (−60) ＝ 40 ＋ 60</div>
+  <div class="step">ステップ3：答え　100 mV（「40 mV」と答えるのは、0 mV から測ってしまった誤り）。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>「活動電位は、ナトリウムポンプが Na⁺ を細胞内に取り込むことで起こる」は誤りです。ポンプが運ぶ Na⁺ の向きは<strong>細胞の外</strong>です。活動電位で Na⁺ が細胞内に入るのは、<strong>Na⁺チャネル</strong>が開いて、Na⁺ が濃度差に従って流れ込むからです。また、「内側が正になるのは、内外の Na⁺ の濃度が逆転したから」も誤りです。移動する Na⁺ はわずかで、濃度差はほとんど変わっていません。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="実験で確かめる"><span class="num">5</span>実験で確かめる：外液の Na⁺ を減らすと、活動電位はどう変わるか</h2>
+<p>「上昇は Na⁺ の流入による」という考えが正しければ、細胞の外の Na⁺ を減らすと、流れ込む Na⁺ が減って、活動電位の最大値が低くなるはずです。条件を変えた実験の結果（資料）で確かめましょう。</p>
+<div class="box experiment">
+  <p class="box-title">実験：外液の Na⁺ 濃度と活動電位（学習用の架空のデータ）</p>
+  <p><strong>目的</strong>　活動電位で膜電位が上がるのは、Na⁺ が細胞内に流れ込むためかを確かめる。</p>
+  <p><strong>仮説</strong>　外液の Na⁺ 濃度を下げると、内外の濃度差が小さくなって流れ込む Na⁺ が減るので、活動電位の最大値は低くなる。静止電位は主に K⁺ の流出で決まるので、ほとんど変わらない。</p>
+  <p><strong>方法</strong>　取り出した神経の軸索を外液に浸し、図1の方法で膜電位を記録する。外液の Na⁺ 濃度を通常（100%）→ 50% → 25% と変え、そのたびに同じ強さの刺激を同じ場所に与える。減らした Na⁺ の分は、細胞膜をほとんど通らない別の物質に置き換えて、外液全体の濃さ（細胞への水の出入りに影響する）をそろえる。最後に通常の外液に戻して、もう一度記録する。</p>
+  <p><strong>対照と条件</strong>　対照は通常の外液（100%）での記録。温度、刺激の強さと場所、K⁺ など Na⁺ 以外のイオンの濃度、外液全体の濃さ、使う神経をそろえ、外液の Na⁺ 濃度だけを変える。最後に通常の外液に戻すのは、「神経が傷んで弱ったから小さくなった」のではないことを確かめるためである。</p>
+  <p><strong>結果</strong>（単位 mV）</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>外液の Na⁺ 濃度</th><th>静止電位</th><th>膜電位の最大値</th><th>活動電位の大きさ</th></tr>
+    <tr><td>100%（通常）</td><td>−60</td><td>+40</td><td>100</td></tr>
+    <tr><td>50%</td><td>−60</td><td>+23</td><td>83</td></tr>
+    <tr><td>25%</td><td>−61</td><td>+6</td><td>67</td></tr>
+    <tr><td>100%（通常に戻す）</td><td>−60</td><td>+39</td><td>99</td></tr>
+  </table>
+  </div>
+</div>
+<figure>
+<!--GEN:fig-exp-->
+<svg viewBox="0 0 560 330" role="img" aria-label="外液のナトリウムイオン濃度を100パーセント、50パーセント、25パーセントにしたときの活動電位。静止電位はどれもほぼマイナス60ミリボルトで、最大値はプラス40、プラス23、プラス6ミリボルトと低くなる。">
+<line x1="70" y1="20" x2="70" y2="280" stroke="currentColor"/>
+<line x1="70" y1="280" x2="530" y2="280" stroke="currentColor"/>
+<line x1="70" y1="40" x2="530" y2="40" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="62" y="44" text-anchor="end" font-size="12" fill="currentColor">+40</text>
+<line x1="70" y1="80" x2="530" y2="80" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="62" y="84" text-anchor="end" font-size="12" fill="currentColor">+20</text>
+<line x1="70" y1="120" x2="530" y2="120" stroke="currentColor" stroke-opacity="0.35"/>
+<text x="62" y="124" text-anchor="end" font-size="12" fill="currentColor">0</text>
+<line x1="70" y1="160" x2="530" y2="160" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="62" y="164" text-anchor="end" font-size="12" fill="currentColor">−20</text>
+<line x1="70" y1="200" x2="530" y2="200" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="62" y="204" text-anchor="end" font-size="12" fill="currentColor">−40</text>
+<line x1="70" y1="240" x2="530" y2="240" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="62" y="244" text-anchor="end" font-size="12" fill="currentColor">−60</text>
+<line x1="70" y1="280" x2="530" y2="280" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="62" y="284" text-anchor="end" font-size="12" fill="currentColor">−80</text>
+<line x1="70" y1="280" x2="70" y2="285" stroke="currentColor"/>
+<text x="70" y="299" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="162" y1="280" x2="162" y2="285" stroke="currentColor"/>
+<text x="162" y="299" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<line x1="254" y1="280" x2="254" y2="285" stroke="currentColor"/>
+<text x="254" y="299" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<line x1="346" y1="280" x2="346" y2="285" stroke="currentColor"/>
+<text x="346" y="299" text-anchor="middle" font-size="12" fill="currentColor">3</text>
+<line x1="438" y1="280" x2="438" y2="285" stroke="currentColor"/>
+<text x="438" y="299" text-anchor="middle" font-size="12" fill="currentColor">4</text>
+<line x1="530" y1="280" x2="530" y2="285" stroke="currentColor"/>
+<text x="530" y="299" text-anchor="middle" font-size="12" fill="currentColor">5</text>
+<text x="300" y="316" text-anchor="middle" font-size="12.5" fill="currentColor">時間（ミリ秒）</text>
+<text x="18" y="150" text-anchor="middle" font-size="12.5" fill="currentColor" transform="rotate(-90 18 150)">膜電位（mV）</text>
+<text x="330" y="34" font-size="12" font-weight="700" fill="currentColor">外液の Na⁺ 濃度</text>
+<polyline points="70,240 74.6,240 79.2,240 83.8,240 88.4,240 93,240 97.6,240 102.2,240 106.8,240 111.4,240 116,240 120.6,240 125.2,240 129.8,240 134.4,240 139,240 143.6,240 148.2,240 152.8,240 157.4,240 162,240 166.6,235.6 171.2,225 175.8,214.4 180.4,210 185,203.5 189.6,185.1 194.2,157.5 198.8,125 203.4,92.5 208,64.9 212.6,46.5 217.2,40 221.8,41.7 226.4,46.6 231,54.7 235.6,65.7 240.2,79.3 244.8,95 249.4,112.4 254,130.9 258.6,150 263.2,169.1 267.8,187.6 272.4,205 277,220.7 281.6,234.3 286.2,245.3 290.8,253.4 295.4,258.3 300,260 304.6,260 309.2,259.9 313.8,259.7 318.4,259.5 323,259.2 327.6,258.9 332.2,258.5 336.8,258.1 341.4,257.6 346,257.1 350.6,256.5 355.2,255.9 359.8,255.2 364.4,254.5 369,253.8 373.6,253.1 378.2,252.3 382.8,251.6 387.4,250.8 392,250 396.6,249.2 401.2,248.4 405.8,247.7 410.4,246.9 415,246.2 419.6,245.5 424.2,244.8 428.8,244.1 433.4,243.5 438,242.9 442.6,242.4 447.2,241.9 451.8,241.5 456.4,241.1 461,240.8 465.6,240.5 470.2,240.3 474.8,240.1 479.4,240 484,240 488.6,240 493.2,240 497.8,240 502.4,240 507,240 511.6,240 516.2,240 520.8,240 525.4,240 530,240" fill="none" stroke="#1f5fbf" stroke-width="3" stroke-linejoin="round"/>
+<line x1="330" y1="52" x2="360" y2="52" stroke="#1f5fbf" stroke-width="3"/>
+<text x="366" y="56" font-size="12" fill="#1f5fbf">100%（最大 +40 mV）</text>
+<polyline points="70,240 74.6,240 79.2,240 83.8,240 88.4,240 93,240 97.6,240 102.2,240 106.8,240 111.4,240 116,240 120.6,240 125.2,240 129.8,240 134.4,240 139,240 143.6,240 148.2,240 152.8,240 157.4,240 162,240 166.6,236.4 171.2,227.5 175.8,218.7 180.4,215.1 185,209.7 189.6,194.4 194.2,171.5 198.8,144.6 203.4,117.6 208,94.7 212.6,79.4 217.2,74 221.8,75.4 226.4,79.5 231,86.2 235.6,95.4 240.2,106.6 244.8,119.6 249.4,134.1 254,149.4 258.6,165.3 263.2,181.2 267.8,196.5 272.4,211 277,224 281.6,235.2 286.2,244.4 290.8,251.1 295.4,255.2 300,256.6 304.6,256.6 309.2,256.5 313.8,256.4 318.4,256.2 323,256 327.6,255.7 332.2,255.4 336.8,255 341.4,254.6 346,254.2 350.6,253.7 355.2,253.2 359.8,252.6 364.4,252.1 369,251.5 373.6,250.9 378.2,250.2 382.8,249.6 387.4,249 392,248.3 396.6,247.6 401.2,247 405.8,246.4 410.4,245.7 415,245.1 419.6,244.5 424.2,244 428.8,243.4 433.4,242.9 438,242.4 442.6,242 447.2,241.6 451.8,241.2 456.4,240.9 461,240.6 465.6,240.4 470.2,240.2 474.8,240.1 479.4,240 484,240 488.6,240 493.2,240 497.8,240 502.4,240 507,240 511.6,240 516.2,240 520.8,240 525.4,240 530,240" fill="none" stroke="#1e8e5a" stroke-width="2.6" stroke-dasharray="8 5" stroke-linejoin="round"/>
+<line x1="330" y1="70" x2="360" y2="70" stroke="#1e8e5a" stroke-width="2.6" stroke-dasharray="8 5"/>
+<text x="366" y="74" font-size="12" fill="#1e8e5a">50%（最大 +23 mV）</text>
+<polyline points="70,242 74.6,242 79.2,242 83.8,242 88.4,242 93,242 97.6,242 102.2,242 106.8,242 111.4,242 116,242 120.6,242 125.2,242 129.8,242 134.4,242 139,242 143.6,242 148.2,242 152.8,242 157.4,242 162,242 166.6,239.1 171.2,231.9 175.8,224.8 180.4,221.9 185,217.6 189.6,205.2 194.2,186.7 198.8,165 203.4,143.2 208,124.7 212.6,112.3 217.2,108 221.8,109.1 226.4,112.4 231,117.9 235.6,125.2 240.2,134.3 244.8,144.8 249.4,156.5 254,168.9 258.6,181.7 263.2,194.5 267.8,206.9 272.4,218.6 277,229.1 281.6,238.2 286.2,245.5 290.8,251 295.4,254.3 300,255.4 304.6,255.4 309.2,255.3 313.8,255.2 318.4,255.1 323,254.9 327.6,254.7 332.2,254.4 336.8,254.1 341.4,253.8 346,253.4 350.6,253.1 355.2,252.6 359.8,252.2 364.4,251.7 369,251.3 373.6,250.8 378.2,250.3 382.8,249.7 387.4,249.2 392,248.7 396.6,248.2 401.2,247.7 405.8,247.1 410.4,246.6 415,246.1 419.6,245.7 424.2,245.2 428.8,244.8 433.4,244.3 438,244 442.6,243.6 447.2,243.3 451.8,243 456.4,242.7 461,242.5 465.6,242.3 470.2,242.2 474.8,242.1 479.4,242 484,242 488.6,242 493.2,242 497.8,242 502.4,242 507,242 511.6,242 516.2,242 520.8,242 525.4,242 530,242" fill="none" stroke="#c0392b" stroke-width="2.6" stroke-dasharray="2 4" stroke-linejoin="round"/>
+<line x1="330" y1="96" x2="360" y2="96" stroke="#c0392b" stroke-width="2.6" stroke-dasharray="2 4"/>
+<text x="366" y="100" font-size="12" fill="#c0392b">25%（最大 +6 mV）</text>
+</svg>
+<!--/GEN:fig-exp-->
+  <figcaption>図5　外液の Na⁺ 濃度を変えたときの活動電位（学習用の架空のデータ）。線の種類（実線・破線・点線）でも区別している。</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題2　結果から何が言えるか</p>
+  <p>表と図5を読み取り、仮説が支持されるかを判断しなさい。</p>
+  <div class="step">ステップ1：<strong>静止電位</strong>を比べる → −60、−60、−61 mV でほとんど変わらない。静止電位には外液の Na⁺ はほとんど関わっていない（K⁺ が主役という考えと合う）。</div>
+  <div class="step">ステップ2：<strong>最大値</strong>を比べる → +40、+23、+6 mV と、外液の Na⁺ が少ないほど低い。活動電位の大きさも 100、83、67 mV と小さくなる（25% では 6 − (−61) ＝ 67）。Na⁺ の流入が上昇をつくっている、という仮説を支持する。</div>
+  <div class="step">ステップ3：<strong>元に戻した結果</strong> → +39 mV（大きさ 99 mV）とほぼ元どおり。変化は神経が傷んだためではなく、外液の Na⁺ 濃度によるものと判断できる。</div>
+  <div class="step">ステップ4：結論　活動電位の上昇は、細胞外の Na⁺ が Na⁺チャネルを通って流れ込むことで起こる。ただし、この実験は「Na⁺ が関わる」ことを示すもので、「Na⁺ だけで活動電位が決まる」ことまでは示していない。</div>
+</div>
+<div class="box caution"><p class="box-title">読み取りの注意</p><p>「活動電位の大きさ」を「最大値」と混同しないようにしましょう。静止電位がわずかに違う（25% で −61 mV）場合は、差の計算に効いてきます。また、Na⁺ を25%にしても活動電位は消えていません。濃度差が小さくなっても、外のほうが Na⁺ が多い限り、Na⁺ は流れ込むからです。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="全か無かの法則"><span class="num">6</span>刺激の強さと興奮：全か無かの法則</h2>
+<p>1つの神経細胞（1本の軸索）に与える刺激を、弱いものから少しずつ強くしていきます。ある強さまでは膜電位が少し変化するだけで、活動電位は発生しません。活動電位が発生する最小の刺激の強さを<strong>閾値</strong>といいます。閾値以上では、刺激をどんなに強くしても、発生する活動電位の大きさは変わりません。</p>
+<figure>
+<!--GEN:fig-aon-->
+<svg viewBox="0 0 560 280" role="img" aria-label="1つの神経細胞で、刺激の強さ1と2では活動電位が生じず、閾値2.5を超える3、4、5ではどれも同じ100ミリボルトの活動電位が生じることを示すグラフ。">
+<line x1="80" y1="30" x2="80" y2="230" stroke="currentColor"/>
+<line x1="80" y1="230" x2="520" y2="230" stroke="currentColor"/>
+<text x="72" y="234" text-anchor="end" font-size="12" fill="currentColor">0</text>
+<text x="72" y="150.7" text-anchor="end" font-size="12" fill="currentColor">50</text>
+<line x1="80" y1="146.7" x2="520" y2="146.7" stroke="currentColor" stroke-opacity=".12"/>
+<text x="72" y="67.3" text-anchor="end" font-size="12" fill="currentColor">100</text>
+<line x1="80" y1="63.3" x2="520" y2="63.3" stroke="currentColor" stroke-opacity=".12"/>
+<text x="160" y="248" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<text x="240" y="248" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<text x="320" y="248" text-anchor="middle" font-size="12" fill="currentColor">3</text>
+<text x="400" y="248" text-anchor="middle" font-size="12" fill="currentColor">4</text>
+<text x="480" y="248" text-anchor="middle" font-size="12" fill="currentColor">5</text>
+<text x="300" y="266" text-anchor="middle" font-size="12.5" fill="currentColor">刺激の強さ（相対値）</text>
+<text x="22" y="130" text-anchor="middle" font-size="12.5" fill="currentColor" transform="rotate(-90 22 130)">活動電位の大きさ（mV）</text>
+<polyline points="80,230 280,230 280,63.3 520,63.3" fill="none" stroke="#1f5fbf" stroke-width="2.5"/>
+<line x1="280" y1="24" x2="280" y2="230" stroke="currentColor" stroke-dasharray="3 4" stroke-opacity=".7"/>
+<text x="280" y="20" text-anchor="middle" font-size="12" fill="currentColor">閾値</text>
+<circle cx="160" cy="230" r="5" fill="#1f5fbf"/>
+<circle cx="240" cy="230" r="5" fill="#1f5fbf"/>
+<circle cx="320" cy="63.3" r="5" fill="#1f5fbf"/>
+<circle cx="400" cy="63.3" r="5" fill="#1f5fbf"/>
+<circle cx="480" cy="63.3" r="5" fill="#1f5fbf"/>
+<text x="104" y="220" font-size="12" fill="currentColor">閾値未満：興奮しない（無）</text>
+<text x="300" y="53.3" font-size="12" fill="currentColor">閾値以上：いつも同じ大きさ（全）</text>
+</svg>
+<!--/GEN:fig-aon-->
+  <figcaption>図6　1つの神経細胞での刺激の強さと活動電位の大きさ（模式図）</figcaption>
+</figure>
+<p>このように、1つの神経細胞は「興奮するか、しないか」のどちらかで、興奮するときはいつも同じ大きさの活動電位を生じます。これを<strong>全か無かの法則</strong>といいます。</p>
+<div class="box think">
+  <p class="box-title">では、強い刺激と弱い刺激は区別できないの？</p>
+  <p>区別できます。1つの神経細胞では、刺激が続くとき、強い刺激ほど活動電位が発生する<strong>回数（頻度）</strong>が多くなるとされています（扱いは教科書によって異なるので、教科書でも確かめましょう）。また、多数の神経細胞の軸索が束になった神経には閾値の異なる神経細胞が含まれていて、刺激が強いほど<strong>興奮する神経細胞の数</strong>が増えます。刺激の強さは「1回の大きさ」ではなく、「回数」や「数」で伝えられます。</p>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>「強い刺激ほど、1回の活動電位が大きくなる」は、1つの神経細胞については誤りです。神経（束）全体の反応が刺激とともに段階的に大きくなるのは、興奮する神経細胞の数が増えるためです。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-5" data-toc="誤解を直す"><span class="num">7</span>まとめて確認：よくある誤解を直そう</h2>
+<div class="table-wrap">
+<table>
+  <tr><th>よくある誤解</th><th>正しくは</th><th>手がかり</th></tr>
+  <tr><td>静止状態の細胞では、イオンの出入りがない</td><td>K⁺ がチャネルを通って出入りし、ポンプも働いている。出入りがつり合っているので電位が一定。</td><td>図2</td></tr>
+  <tr><td>内側が負なのは、陰イオンが入ってくるから</td><td>陽イオンの K⁺ が外へ出ていくから。</td><td>しくみ2</td></tr>
+  <tr><td>活動電位の Na⁺ の流入はナトリウムポンプによる</td><td>Na⁺チャネルを通る受動輸送。ポンプは Na⁺ を外へ運ぶ。</td><td>図4</td></tr>
+  <tr><td>活動電位で内外の Na⁺ 濃度が逆転する</td><td>移動する量はわずかで、濃度差はほとんど変わらない。</td><td>ポイント</td></tr>
+  <tr><td>活動電位の大きさ＝最大値（例：40 mV）</td><td>静止電位から最大値までの変化（例：100 mV）。</td><td>例題1</td></tr>
+  <tr><td>強い刺激ほど1回の活動電位が大きい</td><td>1つの神経細胞では大きさは一定（全か無かの法則）。強さは興奮する細胞の数や、活動電位の頻度で伝わる。</td><td>図6</td></tr>
+</table>
+</div>
+<div class="box point"><p class="box-title">膜輸送タンパク質の役割分担</p><p>ナトリウムポンプ＝濃度差をつくる「充電係」（ATP を使う）。K⁺チャネル＝静止電位をつくる。Na⁺チャネル＝活動電位の上昇をつくる。K⁺チャネル（膜電位の変化で開くもの）＝下降をつくる。「どのタンパク質が、どのイオンを、どちら向きに」を組にして説明できるようにしましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">8</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>神経細胞（ニューロン）・軸索</dt><dd>神経系を構成し、興奮を伝える細胞。情報を遠くへ送る細長い突起を軸索という。</dd>
+    <dt>膜電位</dt><dd>細胞膜の外側を基準（0 mV）にしたときの、内側の電位。</dd>
+    <dt>静止電位</dt><dd>刺激を受けていない神経細胞の膜電位。内側が負で、およそ −60〜−90 mV。ナトリウムポンプがつくる濃度差と、K⁺チャネルを通る K⁺ の流出によって生じる。</dd>
+    <dt>活動電位・興奮</dt><dd>刺激によって膜電位が一時的に正の向きへ大きく変化し、元に戻る変化を活動電位という。活動電位が発生することを興奮という。</dd>
+    <dt>ナトリウムポンプ</dt><dd>ATP のエネルギーを使って Na⁺ を細胞外へ、K⁺ を細胞内へ運ぶ膜輸送タンパク質（能動輸送）。</dd>
+    <dt>イオンチャネル（Na⁺チャネル・K⁺チャネル）</dt><dd>特定のイオンを通す膜輸送タンパク質。開くと、イオンが濃度差に従って移動する（受動輸送）。</dd>
+    <dt>能動輸送・受動輸送</dt><dd>エネルギーを使って濃度差に逆らって運ぶのが能動輸送、濃度差に従って移動するのが受動輸送。この2語は、教科書によっては「参考」「発展」の欄で扱われます。語よりも、濃度差に逆らうか従うか（ATP を使うかどうか）という考え方を押さえましょう。</dd>
+    <dt>閾値</dt><dd>活動電位が発生する最小の刺激の強さ（そのときの膜電位の値を指すこともある）。</dd>
+    <dt>全か無かの法則</dt><dd>1つの神経細胞は、閾値未満の刺激では興奮せず、閾値以上ではいつも同じ大きさの活動電位を生じること。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">9</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>静止電位（内側が負）は、ナトリウムポンプが ATP を使ってつくる濃度差（外に Na⁺、中に K⁺）と、開いている K⁺チャネルを通る K⁺ の流出によって生じる。（O1）</li>
+    <li>閾値以上の刺激で Na⁺チャネルが開き、Na⁺ が流れ込んで膜電位が急上昇して内側が正になる。続いて K⁺チャネルが開き、K⁺ が流れ出て元に戻る。これが活動電位（興奮）。（O2）</li>
+    <li>外液の Na⁺ を減らすと、静止電位はほぼそのままで最大値が下がる → 上昇は Na⁺ の流入による。活動電位の大きさは「最大値 − 静止電位」で読む。（O2）</li>
+    <li>1つの神経細胞は、閾値未満では興奮せず、閾値以上では同じ大きさの活動電位を生じる（全か無かの法則）。刺激の強さは興奮する細胞の数や活動電位の頻度で伝わる。（O3）</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">活動電位の大きさ</span><p>最大値 − 静止電位　（例）(+40) − (−60) ＝ 100 mV</p></div>
+  <div><span class="f-name">イオンの動き</span><p>静止：K⁺ が外へ（少し）／上昇：Na⁺ が内へ／下降：K⁺ が外へ／ポンプ：Na⁺ を外へ・K⁺ を内へ（ATP）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">10</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。数値はこのページの例・架空のデータによる。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>静止状態の神経細胞で、細胞外に比べて細胞内に多く存在するイオンはどれですか。</p>
+  <div class="choices"><button data-correct="true">K⁺</button><button>Na⁺</button><button>Na⁺ と K⁺ のどちらも、内外で同じ濃度</button></div>
+  <span class="result"></span>
+  <div class="explain">ナトリウムポンプが Na⁺ を外へ、K⁺ を内へ運ぶので、細胞内は K⁺ が多く、細胞外は Na⁺ が多くなります。内外で濃度が同じだと、イオンが流れる勢いが生まれず、静止電位も活動電位も生じません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>ナトリウムポンプの働きとして正しいものはどれですか。</p>
+  <div class="choices">
+    <button>濃度差に従って Na⁺ を細胞内に通す</button>
+    <button data-correct="true">ATP のエネルギーを使って、Na⁺ を細胞外へ、K⁺ を細胞内へ運ぶ</button>
+    <button>ATP のエネルギーを使って、Na⁺ を細胞内へ、K⁺ を細胞外へ運ぶ</button>
+    <button>エネルギーを使わずに、K⁺ だけを細胞外へ運ぶ</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">ナトリウムポンプは能動輸送で、Na⁺ を外へ、K⁺ を内へ運びます。1つ目は Na⁺チャネルの説明、3つ目は向きが逆です。4つ目は K⁺チャネルを通る K⁺ の流出（受動輸送）と混ざっています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>全か無かの法則の説明として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>刺激が強いほど、1つの神経細胞に生じる活動電位は大きくなる。</button>
+    <button>神経細胞は、どんなに弱い刺激でも必ず興奮する。</button>
+    <button data-correct="true">1つの神経細胞は、閾値未満の刺激では興奮せず、閾値以上ではいつも同じ大きさの活動電位を生じる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">閾値未満では「無」（興奮しない）、閾値以上では「全」（いつも同じ大きさ）です。1つ目は誤解の典型で、刺激の強さは、興奮する神経細胞の数や活動電位の頻度で伝えられます。2つ目は閾値があることに反します。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>図3の②（膜電位が急上昇している時期）に、細胞膜で主に起こっていることはどれですか。</p>
+  <div class="choices">
+    <button>ナトリウムポンプが Na⁺ を細胞内へ運び込んでいる。</button>
+    <button>K⁺チャネルが開き、K⁺ が細胞内へ流れ込んでいる。</button>
+    <button data-correct="true">Na⁺チャネルが開き、Na⁺ が濃度差に従って細胞内へ流れ込んでいる。</button>
+    <button>Na⁺チャネルが開き、Na⁺ が細胞外へ流れ出ている。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">上昇期には Na⁺チャネルが開き、外に多い Na⁺ が細胞内へ流れ込みます（受動輸送）。ポンプは Na⁺ を外へ運ぶので1つ目は誤り。K⁺ は中に多いので、チャネルが開けば外へ出ていきます（2つ目は向きが逆で、時期も③）。4つ目は Na⁺ の向きが逆です。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="115|115mV">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>ある神経細胞の記録では、静止電位が −70 mV、膜電位の最大値が +45 mV でした。活動電位の大きさは何 mV ですか。数値で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span><span class="small">mV</span></div>
+  <div class="explain">(+45) − (−70) ＝ 45 ＋ 70 ＝ 115 mV です。「45」は 0 mV から測った誤り、「25」は 70 − 45 と引き算の向きを誤った結果です。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="67|67mV">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2</span></div>
+  <p>実験の表で、外液の Na⁺ 濃度を 25% にしたときの活動電位の大きさは何 mV ですか。表の静止電位と最大値から計算して、数値で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span><span class="small">mV</span></div>
+  <div class="explain">最大値 +6 mV、静止電位 −61 mV なので、6 − (−61) ＝ 67 mV です。静止電位を −60 mV のまま計算すると 66 mV になってしまいます。表の値をそのつど確かめましょう。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O1・O2</span></div>
+  <p>神経を、ATP の合成を止める薬を含む外液に移した。その後の変化として最も適当なものはどれですか。</p>
+  <div class="choices">
+    <button>ポンプがすぐに止まるので、薬を与えた直後から活動電位はまったく発生しなくなる。</button>
+    <button data-correct="true">直後はほぼ同じように活動電位が発生するが、長い時間がたつと濃度差が小さくなり、静止電位も活動電位もしだいに小さくなる。</button>
+    <button>細胞内に Na⁺ がたまるので、活動電位はしだいに大きくなっていく。</button>
+    <button>ATP は膜電位に関係しないので、何時間たっても変化しない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">活動電位を直接つくるのはチャネルを通る Na⁺・K⁺ の受動輸送で、ATP は使いません。1回の興奮で動くイオンはわずかなので、ポンプが止まっても直後は濃度差が残り、活動電位は発生します（1つ目は誤り）。しかし濃度差を保つポンプが働かないため、時間とともに濃度差が失われ、静止電位も活動電位も小さくなります。細胞内に Na⁺ がたまると外との濃度差が小さくなるので、活動電位はむしろ小さくなります（3つ目は誤り）。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1</span></div>
+  <p>神経を浸す外液の K⁺ 濃度だけを高くすると、静止電位はどのように変化すると考えられますか。変化の向きと理由を、K⁺ の移動に着目して説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model"><p><strong>解答例</strong>　静止電位は 0 mV に近づく（負の値が小さくなる）。外液の K⁺ 濃度が高くなると細胞の内外の K⁺ の濃度差が小さくなり、K⁺チャネルを通って外へ出ていく K⁺ が減るため、内側が負になる程度が小さくなるから。</p><p><strong>採点の観点</strong>　①変化の向き（0 に近づく・負の値が小さくなる）が正しい。②K⁺ の濃度差が小さくなることに触れている。③K⁺ の流出が減ることと、内側を負にする働きが弱まることを結び付けている。</p></div>
+  <div class="explain">静止電位は「K⁺ が濃度差に従って外へ出る」ことで生じるので、その濃度差を小さくすると、静止電位が小さく（0 に近く）なります。「K⁺ が外にたくさんあるので外側がより正になり、静止電位はもっと負になる」と考えるのは、K⁺ の移動（流出）の変化を考えていない誤りです。なお、Na⁺ の実験（図5）と違い、K⁺ を変えると静止電位そのものが変わることにも注目しましょう。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O3</span></div>
+  <p>閾値が 1.0、2.0、3.0（刺激の強さの相対値）の3つの神経細胞 a、b、c が束になった神経がある。この神経に強さ 2.5 の刺激を与えたときの記述として、最も適当なものはどれですか。</p>
+  <div class="choices">
+    <button>a、b、c のすべてが興奮し、閾値の低い a の活動電位が最も大きい。</button>
+    <button>a と b が興奮し、刺激に近い閾値をもつ b の活動電位のほうが a より小さい。</button>
+    <button>2.5 は閾値 3.0 に近いので、c は小さな活動電位を生じる。</button>
+    <button data-correct="true">a と b が同じ大きさの活動電位を生じ、c は興奮しない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">刺激 2.5 は a（1.0）と b（2.0）の閾値以上、c（3.0）の閾値未満です。全か無かの法則により、興奮する a・b は同じ大きさの活動電位を生じ、c は興奮しません（「小さな活動電位」は生じない）。刺激を 4.0 にすれば c も興奮し、神経全体の反応は3本分に大きくなります。これが「強さは興奮する細胞の数で伝わる」の意味です。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">11</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（出題科目『生物』）</p>
+  <p>令和9年度の大学入学共通テスト実施要項では、『生物』は理科の出題科目の一つ（1科目選択で60分・100点）です。『生物』には出題範囲の特記がなく、実施要項の「出題範囲について特記がない場合，出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲とする」により、学習指導要領の「生物」の内容が範囲になります。このコマは「生物」(4)ア(ア)㋐ 刺激の受容と反応に含まれます。</p>
+  <p>同じ年度の問題作成方針は、『生物』について「観察，実験，調査の結果などを数学的な手法等を活用して分析し解釈する力を問う問題や，受験者にとって既知ではないものも含めた資料などに示された事物・現象を分析的・総合的に考察する力を問う問題などを含めて検討する。その際，基礎を付した科目の内容との関連も考慮する」としています。このコマでいえば、膜電位の記録の読み取りや条件を変えた実験の比較、生物基礎で学んだ神経系（生基-031）とのつながりが関わります。具体的な出題の形式は、方針からは決まりません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">12</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">興奮の伝導（生物-085）</p>
+  <p>この時間は、軸索の1か所で活動電位が発生するしくみを学びました。次の時間は、その活動電位が軸索に沿って隣の部分へ次々に発生していくこと（<strong>興奮の伝導</strong>）と、神経繊維のつくりによっては興奮が飛び飛びに伝わって速くなること（跳躍伝導）を学びます。閾値と「Na⁺チャネルが開く」ことが、そこでも鍵になります。</p>
+  <p class="small">この時間では扱わないこと：興奮の伝導と跳躍伝導（生物-085）、シナプスでの興奮の伝達（生物-086）、効果器としての筋肉と筋収縮（生物-087・088）、神経筋標本の実験（生物-089）、イオンの濃度から膜電位を計算する式（学習指導要領の範囲外）。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>生物-083　神経系による受容器と効果器の連絡</div>
+  <div><span class="label">次の時間</span>生物-085　興奮の伝導</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_seibutsu/生物-084「神経細胞の興奮と活動電位」（学習指導要領 (4)ア(ア)㋐、解説 p.141）。主な語句：静止電位、全か無かの法則［語句：S20］</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第5節 理科 第2款 第7「生物」2(4)ア(ア)㋐「刺激の受容と反応」・3 内容の取扱い（文部科学省）<a href="https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf">https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</a></li>
+    <li>高等学校学習指導要領（平成30年告示）解説 理科編 理数編 p.136（膜輸送タンパク質）、p.141-142（刺激の受容と反応）（文部科学省）<a href="https://www.mext.go.jp/content/20250311-mxt_kyoiku02-100002620_05.pdf">https://www.mext.go.jp/content/20250311-mxt_kyoiku02-100002620_05.pdf</a></li>
+    <li>語句の確認：東京書籍『改訂 生物』シラバス案（静止電位と活動電位、全か無かの法則、ニューロン、チャネル・担体・ポンプ）<a href="https://ten.tokyo-shoseki.co.jp/text/hs/rika/data/rika_16748_syllabus.pdf">https://ten.tokyo-shoseki.co.jp/text/hs/rika/data/rika_16748_syllabus.pdf</a>、数研出版『改訂版 生物』指導計画（ニューロンの構造、イオンチャネルやポンプ、軸索）<a href="https://www.chart.co.jp/kyokasho/26kou/assets/doc/seibutsu/gen/shidoukeikaku_seibutsu_104-901.xlsx">https://www.chart.co.jp/kyokasho/26kou/assets/doc/seibutsu/gen/shidoukeikaku_seibutsu_104-901.xlsx</a>、第一学習社『改訂 生物基礎＋改訂 生物』ダイジェスト版（イオンチャネル、ナトリウムポンプ、静止電位の形成、受動輸送・能動輸送、閾値、神経における刺激の強さと興奮）<a href="https://www.daiichi-g.co.jp/pr/tb/contents/catalog/88733H_改訂生物基礎＋改訂生物ダイジェスト版.pdf">https://www.daiichi-g.co.jp/pr/tb/contents/catalog/88733H_改訂生物基礎＋改訂生物ダイジェスト版.pdf</a></li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項（大学入試センター）<a href="https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00017382.pdf">https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00017382.pdf</a>、同 問題作成方針 <a href="https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00005361.pdf">https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00005361.pdf</a></li>
+  </ul>
+  <p>作成：2026-09-29　版：1.0　このページは学習指導要領と同解説、公的資料・教科書会社の公開資料をもとに作成した学習用資料です。膜電位の値は模式図の例、実験の数値は既知の傾向に合わせてこのページのために作成した架空のデータです。例文・問題もこのページのために作成したものです。</p>
+</footer>
+
+</main>
+</div>
+
+<!--GEN:ap-data-->
+<script>window.AP_POINTS=[[0.0,-60.00],[0.05,-60.00],[0.1,-60.00],[0.15,-60.00],[0.2,-60.00],[0.25,-60.00],[0.3,-60.00],[0.35,-60.00],[0.4,-60.00],[0.45,-60.00],[0.5,-60.00],[0.55,-60.00],[0.6,-60.00],[0.65,-60.00],[0.7,-60.00],[0.75,-60.00],[0.8,-60.00],[0.85,-60.00],[0.9,-60.00],[0.95,-60.00],[1.0,-60.00],[1.05,-57.80],[1.1,-52.50],[1.15,-47.20],[1.2,-45.00],[1.25,-41.76],[1.3,-32.55],[1.35,-18.76],[1.4,-2.50],[1.45,13.76],[1.5,27.55],[1.55,36.76],[1.6,40.00],[1.65,39.16],[1.7,36.68],[1.75,32.63],[1.8,27.13],[1.85,20.35],[1.9,12.50],[1.95,3.81],[2.0,-5.45],[2.05,-15.00],[2.1,-24.55],[2.15,-33.81],[2.2,-42.50],[2.25,-50.35],[2.3,-57.13],[2.35,-62.63],[2.4,-66.68],[2.45,-69.16],[2.5,-70.00],[2.55,-69.98],[2.6,-69.94],[2.65,-69.86],[2.7,-69.76],[2.75,-69.62],[2.8,-69.46],[2.85,-69.26],[2.9,-69.05],[2.95,-68.80],[3.0,-68.54],[3.05,-68.25],[3.1,-67.94],[3.15,-67.61],[3.2,-67.27],[3.25,-66.91],[3.3,-66.55],[3.35,-66.17],[3.4,-65.78],[3.45,-65.39],[3.5,-65.00],[3.55,-64.61],[3.6,-64.22],[3.65,-63.83],[3.7,-63.45],[3.75,-63.09],[3.8,-62.73],[3.85,-62.39],[3.9,-62.06],[3.95,-61.75],[4.0,-61.46],[4.05,-61.20],[4.1,-60.95],[4.15,-60.74],[4.2,-60.54],[4.25,-60.38],[4.3,-60.24],[4.35,-60.14],[4.4,-60.06],[4.45,-60.02],[4.5,-60.00],[4.55,-60.00],[4.6,-60.00],[4.65,-60.00],[4.7,-60.00],[4.75,-60.00],[4.8,-60.00],[4.85,-60.00],[4.9,-60.00],[4.95,-60.00],[5.0,-60.00]];window.AP_X=[70,530,5.0];window.AP_Y=[20,280,50.0,-80.0];</script>
+<!--/GEN:ap-data-->
+<script>
+(function () {
+  var r = document.getElementById("ap-t");
+  if (!r || !window.AP_POINTS) return;
+  var m = document.getElementById("ap-marker"), tv = document.getElementById("ap-tv"),
+      vv = document.getElementById("ap-v"), st = document.getElementById("ap-state");
+  var P = window.AP_POINTS, X = window.AP_X, Y = window.AP_Y;
+  function px(t) { return X[0] + (X[1] - X[0]) * t / X[2]; }
+  function py(v) { return Y[0] + (Y[1] - Y[0]) * (Y[2] - v) / (Y[2] - Y[3]); }
+  function phase(t) {
+    if (t < 1.0) return "① 静止状態。K⁺チャネルの一部が開いていて K⁺ が少しずつ外へ出ている。Na⁺チャネルはほとんど閉じている。";
+    if (t < 1.2) return "刺激によって膜電位が上がり始める。閾値に達すると、Na⁺チャネルが一斉に開く。";
+    if (t < 1.6) return "② Na⁺チャネルが開き、Na⁺ が濃度差に従って細胞内へ流れ込む。膜電位が急上昇し、内側が正になる。";
+    if (t < 2.5) return "③ Na⁺チャネルが閉じ、K⁺チャネルが開いて K⁺ が細胞外へ流れ出る。膜電位が下がる。";
+    if (t < 4.5) return "④ K⁺ の流出がしばらく続き、一時的に静止電位より低くなってから、元に戻っていく。";
+    return "静止状態に戻った。移動したイオンはわずかで、濃度差はほとんど変わっていない（濃度差はナトリウムポンプが保つ）。";
+  }
+  function update() {
+    var t = parseFloat(r.value), i = Math.min(Math.round(t / 0.05), P.length - 1), v = P[i][1];
+    m.setAttribute("cx", px(t).toFixed(1)); m.setAttribute("cy", py(v).toFixed(1));
+    tv.textContent = t.toFixed(2);
+    var rv = Math.round(v);
+    vv.textContent = rv > 0 ? "+" + rv : (rv < 0 ? "−" + Math.abs(rv) : "0");
+    st.textContent = phase(t);
+  }
+  r.addEventListener("input", update);
+  update();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_seibutsu/生物-084",
+  "map": "hs_seibutsu",
+  "rid": "生物-084",
+  "title": "神経細胞の興奮と活動電位",
+  "subject": "生物",
+  "unit": {
+    "ref": "hs_seibutsu:生物9",
+    "title": "刺激の受容と反応"
+  },
+  "exam": {
+    "共通テスト": "○",
+    "個別試験": ""
+  },
+  "basis": [
+    "(4)ア(ア)㋐"
+  ],
+  "kaisetsu_page": "141",
+  "objectives": [
+    {
+      "id": "O1",
+      "text": "刺激を受けていない神経細胞で、細胞の内側が外側に対して負の電位（静止電位）になる理由を、ナトリウムポンプとカリウムイオンを通すチャネルの働き、イオンの濃度差と関連付けて説明できる。",
+      "from": "刺激を受けていない神経細胞の細胞膜を隔てた電位（静止電位）が … 膜輸送タンパク質の働きと関連付けて理解する",
+      "sections": [
+        "sec-1",
+        "sec-5"
+      ],
+      "checks": [
+        "q1",
+        "q2",
+        "q7",
+        "q8"
+      ]
+    },
+    {
+      "id": "O2",
+      "text": "刺激によって活動電位が発生する（興奮する）ときの膜電位の変化を、ナトリウムイオン・カリウムイオンを通すチャネルの開閉とイオンが移動する向きに関連付けて説明し、膜電位の記録や実験の結果を読み取ることができる。",
+      "from": "刺激によって一時的に変化し、活動電位が発生すること（興奮）を、膜輸送タンパク質の働きと関連付けて理解する",
+      "sections": [
+        "sec-2",
+        "sec-3",
+        "sec-5"
+      ],
+      "checks": [
+        "q4",
+        "q5",
+        "q6",
+        "q7"
+      ]
+    },
+    {
+      "id": "O3",
+      "text": "一定以上の強さ（閾値以上）の刺激で興奮が起こり、活動電位の大きさは刺激の強さによらないこと（全か無かの法則）を説明できる。",
+      "from": "一定以上の強さの刺激で興奮が起こり、その大きさは刺激の強さによらないことにも触れる",
+      "sections": [
+        "sec-4",
+        "sec-5"
+      ],
+      "checks": [
+        "q3",
+        "q9"
+      ]
+    }
+  ],
+  "key_terms": [
+    {
+      "term": "静止電位",
+      "where": "sec-1"
+    },
+    {
+      "term": "全か無かの法則",
+      "where": "sec-4"
+    },
+    {
+      "term": "膜電位",
+      "where": "supp-1"
+    },
+    {
+      "term": "ニューロン",
+      "where": "supp-2"
+    },
+    {
+      "term": "軸索",
+      "where": "supp-2"
+    },
+    {
+      "term": "ナトリウムポンプ",
+      "where": "sec-1"
+    },
+    {
+      "term": "K⁺チャネル",
+      "where": "sec-1"
+    },
+    {
+      "term": "Na⁺チャネル",
+      "where": "sec-1"
+    },
+    {
+      "term": "能動輸送",
+      "where": "sec-1"
+    },
+    {
+      "term": "受動輸送",
+      "where": "sec-1"
+    },
+    {
+      "term": "活動電位",
+      "where": "sec-2"
+    },
+    {
+      "term": "興奮",
+      "where": "sec-2"
+    },
+    {
+      "term": "閾値",
+      "where": "sec-2"
+    }
+  ],
+  "prerequisites": [
+    {
+      "concept": "膜輸送タンパク質（チャネル・ポンプ）と、濃度差に従う輸送・逆らう輸送",
+      "taught_in": [
+        "hs_seibutsu/生物-037"
+      ],
+      "where": "r1"
+    },
+    {
+      "concept": "生体膜はリン脂質の二重層で、内部が疎水性のためイオンを通しにくいこと",
+      "taught_in": [
+        "hs_seibutsu/生物-030",
+        "hs_seibutsu/生物-031"
+      ],
+      "where": "r2"
+    },
+    {
+      "concept": "溶けた粒子が濃度の高い方から低い方へ広がり、均一になること",
+      "taught_in": [
+        "jhs_rika1/中1-038"
+      ],
+      "where": "r3"
+    },
+    {
+      "concept": "陽イオン（Na⁺・K⁺）とその表し方",
+      "taught_in": [
+        "jhs_rika3/中3-006",
+        "hs_kagaku/化基-019"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "電圧（2点間の電位の差）とその測定",
+      "taught_in": [
+        "jhs_rika2/中2-099",
+        "jhs_rika2/中2-102"
+      ],
+      "where": "supp-1"
+    },
+    {
+      "concept": "ATP が生命活動のエネルギーを供給すること",
+      "taught_in": [
+        "hs_seibutsu/生基-011"
+      ],
+      "where": "sec-1"
+    },
+    {
+      "concept": "神経系（中枢神経系・末梢神経系）と、受容器から効果器への情報の流れ",
+      "taught_in": [
+        "jhs_rika2/中2-065",
+        "hs_seibutsu/生基-031",
+        "hs_seibutsu/生物-080",
+        "hs_seibutsu/生物-083"
+      ],
+      "where": "intro"
+    },
+    {
+      "concept": "対照実験と条件の制御（調べる条件以外をそろえる）",
+      "taught_in": [
+        "hs_seibutsu/生物-035",
+        "hs_seibutsu/生基-066"
+      ],
+      "where": "sec-3"
+    },
+    {
+      "concept": "膜電位の考え方（細胞外を基準 0 mV とした細胞内の電位。電位の正負）",
+      "taught_in": [],
+      "gap": true,
+      "where": "supp-1"
+    },
+    {
+      "concept": "神経細胞（ニューロン）のつくりと軸索",
+      "taught_in": [
+        "hs_seibutsu/生物-083"
+      ],
+      "gap": false,
+      "where": "supp-2"
+    }
+  ],
+  "out_of_scope": [
+    "興奮の伝導と跳躍伝導（生物-085）",
+    "シナプスでの興奮の伝達（生物-086）",
+    "効果器としての筋肉と筋収縮の仕組み（生物-087・生物-088）",
+    "神経筋標本の実験結果の分析（生物-089）",
+    "受容器としての眼（生物-081）",
+    "イオンの濃度から膜電位を計算する式（学習指導要領の範囲外）"
+  ],
+  "selection_reason": "生物の候補として、生物-044（電子伝達系とATP合成：抽象度は高いが、実験・データの読み取りの素材が限られる）、生物-013（交配実験の資料の分析：組換え価の計算があるが、前提の検定交雑を「参考」扱いとする教科書があり範囲の調整が必要）と比べて選んだ。生物-084 は、膜電位（電位の正負）という物理的な見方、イオン（中学校・化学基礎）、リン脂質の膜と膜輸送タンパク質（生物4）、ATP（生物基礎）と、科目・単元をまたぐ前提が最も多く、電位の考え方は地図のどの行でも扱っていない（ニューロンのつくりは作成後の地図の修正で生物-083 に加わった）。イオンの向き・チャネルとポンプの役割・活動電位の大きさの読み方など誤解が生じやすく、膜の模式図と膜電位のグラフ、条件を変えた実験の読み取りが欠かせない。共通テストの範囲（○）で、資料の分析が求められやすい内容である。",
+  "sources": [
+    {
+      "name": "高等学校学習指導要領（平成30年告示）第2章第5節 理科",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf",
+      "use": "生物 (4)ア(ア)㋐ と内容の取扱い（受容器として眼を、効果器として筋肉を扱う）"
+    },
+    {
+      "name": "高等学校学習指導要領（平成30年告示）解説 理科編 理数編",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20250311-mxt_kyoiku02-100002620_05.pdf",
+      "use": "p.141-142：神経細胞に興奮が発生すること、活動電位が発生して伝導することを示す資料。p.136：膜輸送タンパク質"
+    },
+    {
+      "name": "改訂 生物 シラバス案（生物002-901）",
+      "publisher": "東京書籍",
+      "url": "https://ten.tokyo-shoseki.co.jp/text/hs/rika/data/rika_16748_syllabus.pdf",
+      "use": "語句：静止電位と活動電位、全か無かの法則、ニューロン、チャネル・担体・ポンプ（地図の S20）"
+    },
+    {
+      "name": "改訂版 生物 指導計画（生物104-901）",
+      "publisher": "数研出版",
+      "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/seibutsu/gen/shidoukeikaku_seibutsu_104-901.xlsx",
+      "use": "語句：ニューロンの構造、イオンチャネルやポンプ、軸索"
+    },
+    {
+      "name": "高等学校 改訂 生物基礎＋改訂 生物 ダイジェスト版",
+      "publisher": "第一学習社",
+      "url": "https://www.daiichi-g.co.jp/pr/tb/contents/catalog/88733H_改訂生物基礎＋改訂生物ダイジェスト版.pdf",
+      "use": "語句：イオンチャネル、ナトリウムポンプ、静止電位の形成、受動輸送・能動輸送、閾値。神経における刺激の強さと興奮（弱い刺激では少数、強い刺激では多数のニューロンが興奮）"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項",
+      "publisher": "大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf",
+      "use": "出題科目『生物』の試験時間・配点、出題範囲の原則"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針",
+      "publisher": "大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf",
+      "use": "『生物』の問題作成の方針の引用"
+    }
+  ],
+  "version": "1.0",
+  "generated": "2026-09-29"
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>語り手の視点を捉える｜文学国語</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="../assets/lesson.js"></script>
+<style>
+.vp-list { list-style: none; padding: 0; margin: 10px 0; }
+.vp-item { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 8px 0; background: var(--card); }
+.vp-item .vp-s { font-family: var(--serif); }
+.vp-item .vp-btns { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 6px; }
+.vp-res.ok { color: var(--ok); font-weight: 700; }
+.vp-res.ng { color: var(--ng); font-weight: 700; }
+.vp-exp { margin-top: 6px; font-size: .92rem; background: var(--review-bg); border-radius: 8px; padding: 6px 10px; }
+.gloss-list { font-size: .88rem; color: var(--muted); margin: 8px 0 0; }
+.omit { font-family: var(--font); font-size: .85rem; color: var(--muted); margin: 6px 0 6px 1.2em; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>文学国語</span><span>読むこと（小説）</span><span>文国-014</span></div>
+  <h1>語り手の視点を捉える</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-out">共通テスト —（出題範囲外）</span>
+    <span class="badge">個別試験：大学ごとに確認</span>
+  </div>
+  <p class="lead">小説の一文一文は、だれかの目と心を通して語られています。それは物語の外に立つ語り手でしょうか、それとも登場人物でしょうか。この時間は、語り手の立ち位置を叙述から見分け、それが作品の読みにどう関わるかを吟味します。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>語り手（作品を語る者）を作者と区別し、客観的な外部の視点から語られる叙述の特徴を、手掛かりとなる表現を挙げて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>語り手が登場人物の一人である場合や、語り手が登場人物の心理を説明する場合に、語り手の視点が「登場人物の視点」と重なることを、叙述の手掛かりを示して見分けることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>語り手の視点を吟味し、だれの目と判断で語られているか、何が語られていないかが内容の理解にどう関わるかを、根拠となる叙述を示して説明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（文国-013）</span>平易な語の組合せによる情景・心情の表現</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>語り手の視点を捉える</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（文国-015）</span>一人称の語りと三人称の語り</div>
+</div>
+<p class="small">前提となる単元：言語文化「読むこと（近代以降の文章）」（言文-3）。同じ単元の「描写の仕方を捉える」（文国-008）と「人物の心情と描写の関係を捉える」（文国-010）も使います。</p>
+<p class="small">時間の目安：前回までの確認 5分 → 導入 3分 → 本編 25分 → 確認問題 17分</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、次の既習事項を使います。</p>
+<ul>
+  <li>描写とは、物事の様子や場面、登場人物の行動や心情などを、読み手が言葉を通して具体的に想像できるように描いたものです（中学1年、中1-077）。心情は、行動や情景を通して暗示的に表されることもあります（中1-086、文国-002）。</li>
+  <li>文学的な文章では、場面の設定や語り手の有無を正確に捉えます（中学2年、中2-078）。言語文化では、語り手や登場人物のものの見方・感じ方・考え方を捉えて解釈しました（言文-051）。</li>
+  <li>描写の仕方とは、視点人物の視界に映った情景の描かれ方のことです（文国-008）。描写が人物の心情をどう表しているかを、根拠の叙述を示して説明しました（文国-010）。</li>
+  <li>助動詞は、意味を付け加えたり、話し手の判断を示したりします（中2-061）。</li>
+</ul>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：文国-008</span></div>
+  <p>「彼女には遠ざかる彼の姿がにじんで見えた」（学習指導要領解説に示された例）についての説明として、最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>「彼」の視界に映った情景を描いた文である。</button>
+    <button data-correct="true">「彼女」の視界に映った情景として描かれ、「にじんで見えた」に、涙ぐむような彼女の心の動きが重ねられていると読める。</button>
+    <button>霧や雨などの天気を客観的に説明した文で、人物の心情とは関係がない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「彼女には…見えた」とあるので、見ているのは彼女です。このように、情景がその人の目を通して描かれている人物を視点人物と呼びました（文国-008）。姿が「にじんで」見えるのは彼女の目に起きていることで、そこに心の動きが重なります。天気の説明と読むと「彼女には」「見えた」という言葉が生かされません。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中2-061</span></div>
+  <p>「重い戸は、なかなか開かないらしい。」の「らしい」が表しているものとして、最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">話し手（語り手）が、見たことなどを根拠にして推し量っていること（推定）。</button>
+    <button>そのことが過去に起きたこと。</button>
+    <button>話し手がはっきりと断定していること。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「らしい」は、根拠をもとに推し量る（推定の）助動詞です。戸を開けようとしている人の様子を見て、「開かないのだろう」と推し量っています。この時間は、語り手が人物の心や事情を「知っていて語る」のか「外から推し量って語る」のかを見分けるときに、この知識を使います。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">補足1：地の文と会話文（言文-051 の確認）</p>
+  <p>小説の文章は、大きく二つに分けられます。かぎかっこ（「」）でくくられた登場人物の話し言葉を<strong>会話文</strong>、それ以外の、出来事や様子を語っていく部分を<strong>地の文</strong>といいます。地の文は語り手の言葉です。</p>
+  <p>ただし、地の文の中に、人物の心の中の言葉がかっこなしで入り込むこともあります。どう見分けるかは本編で扱います。</p>
+</div>
+<div class="box supplement" id="supp-2">
+  <p class="box-title">補足2：作者と語り手は別の存在（言文-051 の確認）</p>
+  <p><strong>作者</strong>（書き手）は、作品を書いた実在の人です。<strong>語り手</strong>は、作品の中で出来事を語る存在です。作者は、だれに語らせるか、語り手をどこに立たせて何を知らせるかを決めて作品を書きます。</p>
+  <p>そのため、語り手の言葉を、そのまま作者自身の考えや体験とみなさないようにします。学習指導要領解説も「書き手」と「語り手」を分けて書いています（言語文化の解説 p.128 など）。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：同じ場面を、二つの語りで読む</h2>
+<div class="box think">
+  <p class="box-title">AとBでは、何が違う？</p>
+  <p>次の二つの文章は、同じ場面を語っています（このページのために作った例文です）。</p>
+  <div class="pair">
+    <div><span class="label">例文A</span>駅のベンチに少年が座っている。少年は時計を見上げ、膝の上の紙袋に目を落とした。上りの電車が着き、十人ほどが降りた。少年は立ち上がりかけて、また座った。</div>
+    <div><span class="label">例文B</span>駅のベンチに少年が座っている。約束の時刻を、もう十分も過ぎた。時計の針がやけにのろい。上りの電車が着き、十人ほどが降りた。――いない。少年は立ち上がりかけて、また座った。</div>
+  </div>
+  <ol>
+    <li>Bにあって、Aにないものは何でしょう。</li>
+    <li>Bの「時計の針がやけにのろい」と感じているのは、だれでしょう。</li>
+    <li>Aだけを読んだとき、少年の気持ちはどのくらい分かりますか。</li>
+  </ol>
+  <p class="small">答えは本編の3（外部の視点）と4（登場人物の視点と重なる）で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="語り手と外部の視点"><span class="num">3</span>語り手はどこに立っているか——外部の視点</h2>
+<p>学習指導要領解説は、語り手の視点を「詩歌や物語や小説などを語る者（語り手）の視点」と説明しています。語り手は作品の言葉の中にいて、出来事を読み手に語る存在です（作者との違いは補足2）。</p>
+<figure>
+  <svg viewBox="0 0 640 220" role="img" aria-label="作者、語り手、物語の世界の関係を示す図。作品の外にいる作者が、作品の中の語り手を作り出す。語り手が、登場人物A・Bのいる物語の世界を語る。">
+    <defs>
+      <marker id="ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+    </defs>
+    <rect x="10" y="75" width="120" height="70" rx="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="70" y="105" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">作者（書き手）</text>
+    <text x="70" y="127" text-anchor="middle" font-size="11" fill="currentColor">作品の外の実在の人</text>
+    <line x1="130" y1="110" x2="186" y2="110" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar1)"/>
+    <text x="158" y="100" text-anchor="middle" font-size="11" fill="currentColor">作り出す</text>
+    <rect x="170" y="10" width="460" height="200" rx="14" fill="none" stroke="currentColor" stroke-dasharray="6 4"/>
+    <text x="185" y="32" font-size="12" fill="currentColor">作品（言葉でできた世界）</text>
+    <rect x="190" y="75" width="120" height="70" rx="10" style="fill: var(--primary-weak)" stroke="currentColor" stroke-width="1.5"/>
+    <text x="250" y="105" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">語り手</text>
+    <text x="250" y="127" text-anchor="middle" font-size="11" fill="currentColor">作品の中で語る者</text>
+    <line x1="310" y1="110" x2="348" y2="110" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar1)"/>
+    <text x="329" y="100" text-anchor="middle" font-size="11" fill="currentColor">語る</text>
+    <rect x="350" y="45" width="265" height="145" rx="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="362" y="66" font-size="12" fill="currentColor">物語の世界（登場人物・出来事）</text>
+    <circle cx="430" cy="125" r="24" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="430" y="129" text-anchor="middle" font-size="12" fill="currentColor">人物A</text>
+    <circle cx="535" cy="125" r="24" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="535" y="129" text-anchor="middle" font-size="12" fill="currentColor">人物B</text>
+    <text x="482" y="176" text-anchor="middle" font-size="11" fill="currentColor">語り手はどこに立って語る？</text>
+  </svg>
+  <figcaption>図1　作者・語り手・物語の世界。語り手は作品の中の存在で、作者とは区別する。</figcaption>
+</figure>
+<p>解説は続けて、語り手の視点には次の二つの場合があることを示しています。</p>
+<div class="box source">
+  <p class="box-title">学習指導要領解説 国語編（文学国語）p.196</p>
+  <p>「物語や小説が客観的な外部の視点から語られる時，語り手の視点から語られることになる。語り手が登場人物の一人であったり，登場人物の心理を説明したりするときに語り手の視点は「登場人物の視点」と重なる。」</p>
+</div>
+<figure>
+  <svg viewBox="0 0 720 300" role="img" aria-label="語り手の三つの立ち位置を示す図。左：外部の視点。語り手は物語の世界の外から人物AとBの行動や姿を語り、心の中は語らない。中：語り手の目が人物Aに重なり、三人称でもAの見たことや心の中を語る。右：語り手が登場人物の一人である私で、私の心の中を語るが、人物Bの心は私には見えない。">
+    <defs>
+      <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+    </defs>
+    <!-- 左：外部の視点 -->
+    <text x="120" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">① 客観的な外部の視点</text>
+    <ellipse cx="120" cy="47" rx="16" ry="9" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="120" cy="47" r="4" fill="currentColor"/>
+    <text x="142" y="51" font-size="11" fill="currentColor">語り手</text>
+    <rect x="20" y="70" width="200" height="170" rx="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="30" y="88" font-size="11" fill="currentColor">物語の世界</text>
+    <line x1="120" y1="56" x2="86.6" y2="151.1" stroke="currentColor" stroke-dasharray="4 3" marker-end="url(#ar2)"/>
+    <line x1="120" y1="56" x2="153.4" y2="151.1" stroke="currentColor" stroke-dasharray="4 3" marker-end="url(#ar2)"/>
+    <circle cx="80" cy="170" r="20" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="80" y="175" text-anchor="middle" font-size="13" fill="currentColor">A</text>
+    <circle cx="160" cy="170" r="20" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="160" y="175" text-anchor="middle" font-size="13" fill="currentColor">B</text>
+    <text x="120" y="218" text-anchor="middle" font-size="11" fill="currentColor">心の中には入らない</text>
+    <text x="120" y="262" text-anchor="middle" font-size="12" fill="currentColor">外から見える行動・姿・声を語る</text>
+    <text x="120" y="282" text-anchor="middle" font-size="11" fill="currentColor">例：例文A</text>
+    <!-- 中：心理を説明（三人称でも重なる） -->
+    <text x="360" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">② 人物の心理を説明する</text>
+    <rect x="260" y="70" width="200" height="170" rx="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="270" y="88" font-size="11" fill="currentColor">物語の世界</text>
+    <ellipse cx="345" cy="118" rx="55" ry="17" style="fill: var(--primary-weak)" stroke="currentColor"/>
+    <text x="345" y="122" text-anchor="middle" font-size="11" fill="currentColor">Aの心の中も語る</text>
+    <circle cx="332" cy="141" r="3" fill="none" stroke="currentColor"/>
+    <circle cx="320" cy="170" r="22" fill="none" stroke="currentColor" stroke-width="3"/>
+    <ellipse cx="320" cy="170" rx="12" ry="7" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="320" cy="170" r="3.5" fill="currentColor"/>
+    <text x="320" y="210" text-anchor="middle" font-size="11" fill="currentColor">Aに語り手の目が重なる</text>
+    <line x1="344" y1="170" x2="378" y2="170" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar2)"/>
+    <circle cx="400" cy="170" r="20" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="400" y="175" text-anchor="middle" font-size="13" fill="currentColor">B</text>
+    <text x="360" y="262" text-anchor="middle" font-size="12" fill="currentColor">三人称でも、Aの目と心で語る</text>
+    <text x="360" y="282" text-anchor="middle" font-size="11" fill="currentColor">例：例文B、本文2の1〜6行目</text>
+    <!-- 右：語り手が登場人物の一人 -->
+    <text x="600" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">③ 語り手が登場人物の一人</text>
+    <rect x="500" y="70" width="200" height="170" rx="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="510" y="88" font-size="11" fill="currentColor">物語の世界</text>
+    <ellipse cx="585" cy="118" rx="58" ry="17" style="fill: var(--primary-weak)" stroke="currentColor"/>
+    <text x="585" y="122" text-anchor="middle" font-size="11" fill="currentColor">「私」の心の中を語る</text>
+    <circle cx="572" cy="141" r="3" fill="none" stroke="currentColor"/>
+    <circle cx="560" cy="170" r="22" fill="none" stroke="currentColor" stroke-width="3"/>
+    <text x="560" y="175" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">私</text>
+    <line x1="584" y1="170" x2="618" y2="170" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar2)"/>
+    <circle cx="640" cy="170" r="20" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="640" y="176" text-anchor="middle" font-size="16" fill="currentColor">？</text>
+    <text x="600" y="210" text-anchor="middle" font-size="11" fill="currentColor">「私」＝語り手／Bの心は見えない</text>
+    <text x="600" y="262" text-anchor="middle" font-size="12" fill="currentColor">「私」が見たこと・考えたことを語る</text>
+    <text x="600" y="282" text-anchor="middle" font-size="11" fill="currentColor">例：本文1（「蜜柑」）</text>
+  </svg>
+  <figcaption>図2　語り手の立ち位置。①が「客観的な外部の視点」、②と③が「登場人物の視点」と重なる場合。一つの作品の中で入れ替わることもある。</figcaption>
+</figure>
+
+<h3>外部の視点で語るとき</h3>
+<p>語り手が物語の世界の外に立ち、外から見えること・聞こえることを語る場合です。カメラで写した映像を言葉にするように、人物の行動や姿、声、周りの様子が語られ、人物の心の中には入りません。解説はこの場合を「語り手の視点から語られる」と表しています。</p>
+<p>導入の例文Aを、一文ずつ確かめてみましょう。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>例文Aの文</th><th>語られていること</th><th>心の中に入っているか</th></tr>
+  <tr><td>駅のベンチに少年が座っている。</td><td>姿（外から見える）</td><td>入っていない</td></tr>
+  <tr><td>少年は時計を見上げ、膝の上の紙袋に目を落とした。</td><td>行動（外から見える）</td><td>入っていない</td></tr>
+  <tr><td>上りの電車が着き、十人ほどが降りた。</td><td>周りの出来事</td><td>入っていない</td></tr>
+  <tr><td>少年は立ち上がりかけて、また座った。</td><td>行動（外から見える）</td><td>入っていない</td></tr>
+</table>
+</div>
+<p>例文Aでは、少年がなぜ時計を見るのか、なぜ座り直したのかは語られません。読み手は行動を手掛かりにして、「だれかを待っているのかもしれない」と推し量ることになります。外部の視点の語りでは、心情は行動や様子を通して読み手に推し量られるものになります。</p>
+<div class="box point">
+  <p class="box-title">外部の視点を見分ける手掛かり</p>
+  <ul>
+    <li>外から観察できること（行動・姿・表情・声・周りの様子）だけが語られている。</li>
+    <li>人物を主語にした「思った」「感じた」「気がした」「わかった」などの、心の動きを表す言葉がない。</li>
+    <li>人物の気持ちに触れるときは、「〜ようだ」「〜らしい」のように外から推し量る形になるか、何も書かれない。</li>
+  </ul>
+</div>
+<div class="box caution">
+  <p class="box-title">よくある間違い①：「語り手＝作者」と考える</p>
+  <p>地の文をすぐに「作者の気持ち」と結び付けるのは早すぎます。まず、作品の中の語り手が、どこに立って何を語っているかを確かめます。</p>
+  <p>作者の体験を基にした小説（私小説、文国-003・004）でも、作品の中で語っているのは、作品の言葉がつくる語り手です。作者の人生の事実と重ねて読むのは、叙述を確かめた後の段階です。</p>
+</div>
+<div class="box caution">
+  <p class="box-title">よくある間違い②：「三人称なら客観的」と考える</p>
+  <p>人物を「少年」「良平」「彼」などと呼んで語る小説でも、語り手が人物の心の中を語ることはよくあります。例文Bがその例です。人物の呼び方だけで決めず、一文ごとに、心の中に入っているかを確かめます（次の節）。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="登場人物の視点と重なる"><span class="num">4</span>語り手の視点が「登場人物の視点」と重なるとき</h2>
+<p>解説によれば、語り手の視点が登場人物の視点と重なるのは、<strong>語り手が登場人物の心理を説明するとき</strong>と、<strong>語り手が登場人物の一人であるとき</strong>です（図2の②と③）。</p>
+
+<h3>語り手が人物の心理を説明する——例文Bを点検する</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>例文Bの文</th><th>手掛かり</th><th>視点</th></tr>
+  <tr><td>駅のベンチに少年が座っている。</td><td>外から見える姿</td><td>外部</td></tr>
+  <tr><td>約束の時刻を、もう十分も過ぎた。</td><td>「約束」という少年の事情。「もう」「十分も」に、長く待たされていると感じる気持ちがこもる</td><td>少年と重なる</td></tr>
+  <tr><td>時計の針がやけにのろい。</td><td>「やけに」は少年の感じ方（針の速さが実際に変わったわけではない）</td><td>少年と重なる</td></tr>
+  <tr><td>上りの電車が着き、十人ほどが降りた。</td><td>この文だけなら外から見える出来事。前後の文から、少年が見ている光景として読める</td><td>外部（文脈では少年の見た光景）</td></tr>
+  <tr><td>――いない。</td><td>地の文に入り込んだ少年の心の中の言葉</td><td>少年と重なる</td></tr>
+  <tr><td>少年は立ち上がりかけて、また座った。</td><td>外から見える行動</td><td>外部</td></tr>
+</table>
+</div>
+<p>導入の問いの答えです。Bには、少年の事情と感じ方と心の声があり、Aにはありません。「時計の針がやけにのろい」と感じているのは少年で、語り手はその感じ方を少年に寄り添って語っています。Aでは、少年の気持ちは行動から推し量るしかありませんでした。</p>
+<div class="box point">
+  <p class="box-title">「登場人物の視点」と重なる叙述の手掛かり</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>手掛かり</th><th>例</th></tr>
+    <tr><td>語り手が「私」「僕」などとして物語の中にいる</td><td>「私は横須賀発上り二等客車の隅に腰を下して」（本文1）</td></tr>
+    <tr><td>心の動きを表す言葉（思った・感じた・気がした・わかった・〜たくなった）</td><td>「良平は殆ど泣きそうになった。が、泣いても仕方がないと思った。」（本文2）</td></tr>
+    <tr><td>人物に見えたもの・聞こえたものとして書かれる（見えた・聞こえた・耳へはいる）</td><td>「彼女には遠ざかる彼の姿がにじんで見えた」（解説 p.195）</td></tr>
+    <tr><td>人物の感じ方や評価がこもった言葉</td><td>「時計の針がやけにのろい。」（例文B）</td></tr>
+    <tr><td>地の文に入り込んだ心の中の言葉（かっこがない）</td><td>「――いない。」（例文B）</td></tr>
+  </table>
+  </div>
+</div>
+<div class="box caution">
+  <p class="box-title">よくある間違い③：どの文も必ずどちらかに決まると考える</p>
+  <p>「上りの電車が着き、十人ほどが降りた。」のように、それだけではどちらとも決めにくい文もあります。その場合は前後の文で判断します。前後が人物の心に寄り添っていれば、その人物の目に映った光景として読めます（文国-008 の視点人物）。根拠がないまま決めつけないことが大切です。</p>
+</div>
+
+<h3>やってみよう：一文ずつ見分ける</h3>
+<p>次の文章（このページのために作った文章）の各文は、「外部の視点」の文でしょうか、「登場人物（美緒）の視点と重なる」文でしょうか。ボタンを押して確かめましょう。</p>
+<div class="widget" id="vp-widget">
+  <ol class="vp-list">
+    <li class="vp-item" data-answer="out"><span class="vp-s">① 放課後の音楽室に、美緒は一人で座っていた。</span>
+      <div class="vp-btns"><button data-pick="out">外部の視点</button><button data-pick="in">美緒の視点と重なる</button><span class="vp-res"></span></div>
+      <div class="vp-exp" hidden>外部の視点：外から見える姿を語っています。心の中を表す言葉はありません。</div></li>
+    <li class="vp-item" data-answer="out"><span class="vp-s">② 膝の上には、書き込みで黒くなった楽譜が開かれている。</span>
+      <div class="vp-btns"><button data-pick="out">外部の視点</button><button data-pick="in">美緒の視点と重なる</button><span class="vp-res"></span></div>
+      <div class="vp-exp" hidden>外部の視点：外から見える物の様子です。「見えた」などの言葉もないので、この文だけでは美緒の視点と決められません。</div></li>
+    <li class="vp-item" data-answer="in"><span class="vp-s">③ あと三日で本番だ。</span>
+      <div class="vp-btns"><button data-pick="out">外部の視点</button><button data-pick="in">美緒の視点と重なる</button><span class="vp-res"></span></div>
+      <div class="vp-exp" hidden>重なる：「あと三日」と本番までの日を数えているのは美緒で、外から見える様子ではなく、美緒が心の中で意識していることです。美緒のつぶやきが、かっこなしで地の文に入り込んでいると読めます（例文Bの「約束の時刻を、もう十分も過ぎた。」と同じ）。②の「開かれている」のように、「〜た」でない形の文でも、外から見える様子なら外部の視点です。</div></li>
+    <li class="vp-item" data-answer="in"><span class="vp-s">④ 指先が冷たく、うまく曲がらない気がした。</span>
+      <div class="vp-btns"><button data-pick="out">外部の視点</button><button data-pick="in">美緒の視点と重なる</button><span class="vp-res"></span></div>
+      <div class="vp-exp" hidden>重なる：「冷たく」は美緒の体の感覚、「気がした」は心の動きを表す言葉です。外からは分かりません。</div></li>
+    <li class="vp-item" data-answer="out"><span class="vp-s">⑤ 先生は「まだ残っていたの」と声をかけた。</span>
+      <div class="vp-btns"><button data-pick="out">外部の視点</button><button data-pick="in">美緒の視点と重なる</button><span class="vp-res"></span></div>
+      <div class="vp-exp" hidden>外部の視点：会話文と行動を、外から聞こえる・見えるとおりに語っています。</div></li>
+    <li class="vp-item" data-answer="out"><span class="vp-s">⑥ 美緒は小さくうなずいた。</span>
+      <div class="vp-btns"><button data-pick="out">外部の視点</button><button data-pick="in">美緒の視点と重なる</button><span class="vp-res"></span></div>
+      <div class="vp-exp" hidden>外部の視点：外から見える動作です。うなずいたときの気持ちは語られていません。</div></li>
+    <li class="vp-item" data-answer="in"><span class="vp-s">⑦ 本当は、聞いてほしいことが山ほどあった。</span>
+      <div class="vp-btns"><button data-pick="out">外部の視点</button><button data-pick="in">美緒の視点と重なる</button><span class="vp-res"></span></div>
+      <div class="vp-exp" hidden>重なる：語り手が美緒の心理を説明しています。「本当は」は、外から見える⑥のうなずきと、心の中とのずれを示しています。</div></li>
+    <li class="vp-item" data-answer="out"><span class="vp-s">⑧ 先生は窓を閉めると、何も言わずに部屋を出ていった。</span>
+      <div class="vp-btns"><button data-pick="out">外部の視点</button><button data-pick="in">美緒の視点と重なる</button><span class="vp-res"></span></div>
+      <div class="vp-exp" hidden>外部の視点：先生の行動を外から語っています。先生の心の中も語られていません。</div></li>
+    <li class="vp-item" data-answer="in"><span class="vp-s">⑨ ――どうして、何も言ってくれないのだろう。</span>
+      <div class="vp-btns"><button data-pick="out">外部の視点</button><button data-pick="in">美緒の視点と重なる</button><span class="vp-res"></span></div>
+      <div class="vp-exp" hidden>重なる：かっこのない、美緒の心の中の問いかけです。「言ってくれない」という言い方にも、先生を見ている美緒の立場が表れています。</div></li>
+  </ol>
+  <button id="vp-all">すべての解説を表示</button>
+  <p class="small">外部の視点の文（①②⑤⑥⑧）だけを続けて読むと、美緒の気持ちは行動から推し量るしかありません。重なる文（③④⑦⑨）が、読み手を美緒の心の中へ案内しています。この文章は三人称ですが、語り手の視点はたびたび美緒の視点と重なっています。</p>
+</div>
+
+<h3>語り手が登場人物の一人——「私」が語る</h3>
+<p>次の本文1は、芥川龍之介「蜜柑」（初出「新潮」1919年5月）の一部です。語り手は「私」という登場人物です。本文は青空文庫のファイルのとおり歴史的仮名遣いで引用しています（「ゐ」は「い」、「待つてゐた」は「待っていた」と読みます。歴史的仮名遣いは中1-109・言文-002で学習）。</p>
+<div class="passage" id="text1">
+  <p class="small">本文1　芥川龍之介「蜜柑」（抄）</p>
+  <ol class="lines" start="1">
+    <li>或曇つた冬の日暮である。</li>
+    <li>私は横須賀発上り二等客車の隅に腰を下して、ぼんやり発車の笛を待つてゐた。</li>
+    <li>とうに電燈のついた客車の中には、珍らしく私の外に一人も乗客はゐなかつた。</li>
+    <li>外を<ruby>覗<rt>のぞ</rt></ruby>くと、うす暗いプラツトフオオムにも、今日は珍しく見送りの人影さへ跡を絶つて、唯、<ruby>檻<rt>をり</rt></ruby>に入れられた小犬が一匹、時々悲しさうに、吠え立ててゐた。</li>
+    <li>これらはその時の私の心もちと、不思議な位似つかはしい景色だつた。</li>
+    <li>私の頭の中には云ひやうのない疲労と倦怠とが、まるで雪曇りの空のやうなどんよりした影を落してゐた。</li>
+  </ol>
+  <p class="omit">（中略：発車の間際に、十三四の小娘が一人、慌ただしく二等室に乗り込んでくる。小娘は三等の赤切符を握っている。）</p>
+  <ol class="lines" start="7">
+    <li>私はこの小娘の下品な顔だちを好まなかつた。</li>
+    <li>それから彼女の服装が不潔なのもやはり不快だつた。</li>
+    <li>最後にその二等と三等との区別さへも<ruby>弁<rt>わきま</rt></ruby>へない愚鈍な心が腹立たしかつた。</li>
+  </ol>
+  <p class="omit">（中略：「私」は夕刊を広げるが、平凡な記事ばかりである。トンネルの中の汽車と小娘と夕刊とを、「私」は「不可解な、下等な、退屈な人生の象徴」だと感じ、目をつぶってうつらうつらし始める。）</p>
+  <ol class="lines" start="10">
+    <li>それから幾分か過ぎた後であつた。</li>
+    <li>ふと何かに<ruby>脅<rt>おびやか</rt></ruby>されたやうな心もちがして、思はずあたりを見まはすと、<ruby>何時<rt>いつ</rt></ruby>の間にか例の小娘が、向う側から席を私の隣へ移して、<ruby>頻<rt>しきり</rt></ruby>に窓を開けようとしてゐる。</li>
+    <li>が、重い<ruby>硝子戸<rt>ガラスど</rt></ruby>は中々思ふやうにあがらないらしい。</li>
+    <li>あの<ruby>皸<rt>ひび</rt></ruby>だらけの頬は<ruby>愈<rt>いよいよ</rt></ruby>赤くなつて、時々<ruby>鼻洟<rt>はな</rt></ruby>をすすりこむ音が、小さな息の切れる声と一しよに、せはしなく耳へはいつて来る。</li>
+    <li>これは勿論私にも、幾分ながら同情を<ruby>惹<rt>ひ</rt></ruby>くに足るものには相違なかつた。</li>
+    <li>しかし汽車が今<ruby>将<rt>まさ</rt></ruby>に<ruby>隧道<rt>トンネル</rt></ruby>の口へさしかからうとしてゐる事は、暮色の中に枯草ばかり明い両側の山腹が、間近く窓側に迫つて来たのでも、すぐに<ruby>合点<rt>がてん</rt></ruby>の行く事であつた。</li>
+    <li>にも関らずこの小娘は、わざわざしめてある窓の戸を下さうとする、――その理由が私には呑みこめなかつた。</li>
+    <li>いや、それが私には、単にこの小娘の気まぐれだとしか考へられなかつた。</li>
+  </ol>
+  <p class="omit">（中略：汽車がトンネルに入ると同時にガラス戸が下へ落ちて窓が開き、どす黒い煙が車内に流れこんで、「私」はひどく咳きこむ。小娘は窓から首を出し、汽車の進む方向を見やっている。汽車はトンネルを抜け、貧しい町はずれの踏切りにさしかかる。柵の向こうに頬の赤い三人の男の子が並んで立ち、汽車に向かって一斉に手を挙げ、声を上げる。）</p>
+  <ol class="lines" start="18">
+    <li>するとその瞬間である。</li>
+    <li>窓から半身を乗り出してゐた例の娘が、あの霜焼けの手をつとのばして、勢よく左右に振つたと思ふと、忽ち心を躍らすばかり暖な日の色に染まつてゐる<ruby>蜜柑<rt>みかん</rt></ruby>が凡そ五つ六つ、汽車を見送つた子供たちの上へばらばらと空から降つて来た。</li>
+    <li>私は思はず息を呑んだ。</li>
+    <li>さうして刹那に一切を了解した。</li>
+    <li>小娘は、恐らくはこれから奉公先へ<ruby>赴<rt>おもむ</rt></ruby>かうとしてゐる小娘は、その懐に蔵してゐた<ruby>幾顆<rt>いくくわ</rt></ruby>の蜜柑を窓から投げて、わざわざ踏切りまで見送りに来た弟たちの労に報いたのである。</li>
+    <li>暮色を帯びた町はづれの踏切りと、小鳥のやうに声を挙げた三人の子供たちと、さうしてその上に乱落する<ruby>鮮<rt>あざやか</rt></ruby>な蜜柑の色と――すべては汽車の窓の外に、<ruby>瞬<rt>またた</rt></ruby>く暇もなく通り過ぎた。</li>
+    <li>が、私の心の上には、切ない程はつきりと、この光景が焼きつけられた。</li>
+    <li>さうしてそこから、或<ruby>得体<rt>えたい</rt></ruby>の知れない<ruby>朗<rt>ほがらか</rt></ruby>な心もちが湧き上つて来るのを意識した。</li>
+    <li>私は昂然と頭を挙げて、まるで別人を見るやうにあの小娘を注視した。</li>
+    <li>小娘は何時かもう私の前の席に返つて、<ruby>不相変<rt>あひかはらず</rt></ruby><ruby>皸<rt>ひび</rt></ruby>だらけの頬を萌黄色の毛糸の襟巻に埋めながら、大きな風呂敷包みを抱へた手に、しつかりと三等切符を握つてゐる。…………</li>
+    <li>私はこの時始めて、云ひやうのない疲労と倦怠とを、さうして又不可解な、下等な、退屈な人生を僅に忘れる事が出来たのである。</li>
+  </ol>
+  <span class="src">出典：芥川龍之介「蜜柑」（青空文庫。底本「現代日本文学大系 43 芥川龍之介集」筑摩書房、1968年）https://www.aozora.gr.jp/cards/000879/files/98_15272.html　※行番号・中略の要約・語注はこのページで付けたもの。</span>
+  <p class="gloss-list">語注（このページで付けたもの）：二等客車・三等＝汽車の客車は等級で分かれていた。小娘は三等の切符で二等室に乗っている。　倦怠＝あきて疲れ、何をするのもいやになること。　弁へない＝区別がつかない。　愚鈍＝頭の働きがにぶいこと。　合点の行く＝納得がいく。　忽ち＝たちまち。　刹那＝ごく短い時間。　了解＝事情をすっかり理解すること。　奉公先＝住み込みで働きに行く先。　幾顆＝いくつか（「顆」は粒状の物を数える語）。　昂然と＝意気が上がって誇らしげに。　不相変＝あいかわらず。　僅に＝わずかに。</p>
+</div>
+<p>1〜6行目を見てみましょう。2行目「私は…待つてゐた」から、語り手は「私」という登場人物の一人だと分かります。したがって、この語りに出てくる景色や他の人物の姿は、すべて「私」が見て、感じ、判断したものとして語られます。</p>
+<p>たとえば4行目の小犬は「時々悲しさうに」吠えています。小犬が悲しいかどうかは小犬にしか分かりません。悲しそうに見えたのは「私」です。5行目では、語り手自身が「これらはその時の私の心もちと、不思議な位似つかはしい景色だつた」と、景色と自分の心もちを結び付けています。13行目の「耳へはいつて来る」も、小娘の鼻をすする音が「私」の耳に聞こえた音として語られていることを示します。</p>
+<div class="box point">
+  <p class="box-title">語り手が登場人物の一人であるとき</p>
+  <p>語り手の視点は、初めからその人物（「私」）の視点と重なっています。語られる景色や他の人物の姿は、「私」の目と心を通ったものです。</p>
+  <p class="small">このように「私」「僕」などが語る語りを<strong>一人称の語り</strong>、人物を名前や「彼」「彼女」で呼んで語る語りを<strong>三人称の語り</strong>と呼びます。二つの語りの違いは、次の時間（文国-015）で比べます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="語り手の視点を吟味する"><span class="num">5</span>語り手の視点を吟味する——何が語られ、何が語られないか</h2>
+<p>見分けたら、次は吟味です。ここでの吟味とは、その視点から語られることで何が読み手に示され、何が示されないかを確かめ、内容の理解に生かすことです。解説は、語り手の視点を吟味することが「物語や小説などを深く理解することにつながる」としています（p.196）。</p>
+<div class="box point">
+  <p class="box-title">吟味の四つの問い</p>
+  <ol>
+    <li><strong>だれの目と心</strong>を通して語られているか（見分け）。</li>
+    <li>語り手は<strong>どこまで知っているか</strong>。語られていないことは何か（他の人物の心、事情、その後の出来事）。</li>
+    <li>評価や判断の言葉は<strong>だれのもの</strong>か（事実と見方を分ける）。</li>
+    <li>語り手は<strong>いつの時点から</strong>語っているか（出来事の最中か、後から振り返っているか）。</li>
+  </ol>
+</div>
+
+<div class="box example worked">
+  <p class="box-title">例題1（問い②）：語られていないことは何か</p>
+  <p>本文1の11〜17行目で、小娘が窓を開けようとする理由は、どのように語られていますか。語り手の視点に注意して説明しなさい。</p>
+  <div class="step">ステップ1：語り手を確かめる。語り手は「私」（登場人物の一人）です。小娘の心の中は、「私」には見えません。</div>
+  <div class="step">ステップ2：手掛かりを集める。12行目「あがらないらしい」は、「私」が外から推し量る言い方です。16行目「その理由が私には呑みこめなかつた」、17行目「単にこの小娘の気まぐれだとしか考へられなかつた」も、「私」の分からなさと判断を示しています。</div>
+  <div class="step">ステップ3：何が伏せられているかを捉える。小娘の本当の理由は語られず、「気まぐれ」という「私」の判断だけが示されます。読み手も「私」と同じく、理由を知らないまま読み進めることになります。</div>
+  <div class="step">ステップ4：答え。理由は、蜜柑が投げられて「私」が「一切を了解した」とき（21・22行目）に初めて示されます。それも22行目「恐らくは」が示すように、確かめた事実ではなく「私」の理解として語られています。</div>
+</div>
+
+<div class="box example worked">
+  <p class="box-title">例題2（問い③）：判断はだれのものか</p>
+  <p>本文1の7〜9行目「下品な顔だち」「愚鈍な心」を、小娘についての事実として読んでよいですか。</p>
+  <div class="step">ステップ1：判断の主を確かめる。「好まなかつた」「不快だつた」「腹立たしかつた」の主語は「私」です。評価しているのは「私」です。</div>
+  <div class="step">ステップ2：そのときの「私」の状態を確かめる。6行目で「私」は「云ひやうのない疲労と倦怠」の中にいます。中略部分では、小娘を「不可解な、下等な、退屈な人生の象徴」の一つだと感じています。</div>
+  <div class="step">ステップ3：後の叙述と照らす。26行目で「私」は「まるで別人を見るやうに」小娘を見ます。しかし27行目の小娘は「不相変」、同じ姿のままです。</div>
+  <div class="step">ステップ4：答え。事実としてではなく、疲れて不機嫌だったこの時点の「私」の見方として読みます。小娘の姿は変わらないのに「私」の見方が一変することから、この場面で変わったのは小娘ではなく「私」の心だと捉えられます。</div>
+</div>
+
+<h3>問い④：いつの時点から語っているか</h3>
+<p>本文1の5行目「その時の私の心もち」という言い方に注目します。出来事の最中にいる人は、自分の気持ちを「その時の」とは言いません。語り手の「私」は、出来事が終わった後から振り返って語っていると分かります。語っている「私」は結末を知っていますが、11〜17行目では、まだ事情を知らない当時の「私」の見方に沿って語っています。</p>
+
+<h3>三人称の語りを吟味する——芥川龍之介「トロッコ」</h3>
+<p>本文2は、芥川龍之介「トロッコ」の一部です。人物は「良平」「彼」と呼ばれ、三人称で語られています。</p>
+<div class="passage" id="text2">
+  <p class="small">本文2　芥川龍之介「トロッコ」（抄）</p>
+  <p class="omit">（前略：少年の良平は、若い二人の土工とトロッコを押して、村から遠く離れた所まで来てしまった。日が暮れかかったころ、土工たちは良平に「われはもう帰んな。おれたちは今日は向う泊りだから」と言う。）</p>
+  <ol class="lines" start="1">
+    <li>良平は一瞬間<ruby>呆気<rt>あっけ</rt></ruby>にとられた。</li>
+    <li>もうかれこれ暗くなる事、去年の暮母と岩村まで来たが、今日の<ruby>途<rt>みち</rt></ruby>はその三四倍ある事、それを今からたった一人、歩いて帰らなければならない事、――そう云う事が一時にわかったのである。</li>
+    <li>良平は<ruby>殆<rt>ほとん</rt></ruby>ど泣きそうになった。</li>
+    <li>が、泣いても仕方がないと思った。</li>
+    <li>泣いている場合ではないとも思った。</li>
+    <li>彼は若い二人の土工に、取って附けたような<ruby>御時宜<rt>おじぎ</rt></ruby>をすると、どんどん線路伝いに走り出した。</li>
+  </ol>
+  <p class="omit">（中略：良平は暗くなっていく線路沿いの道を必死に走り続け、家の門口に駈けこむと、大声で泣き出す。「あの遠い路を駈け通して来た、今までの心細さ」をふり返ると、いくら泣いても足りない気持ちだった。）</p>
+  <ol class="lines" start="7">
+    <li>良平は二十六の年、<ruby>妻子<rt>さいし</rt></ruby>と一しょに東京へ出て来た。</li>
+    <li>今では或雑誌社の二階に、校正の<ruby>朱筆<rt>しゅふで</rt></ruby>を握っている。</li>
+    <li>が、彼はどうかすると、全然何の理由もないのに、その時の彼を思い出す事がある。</li>
+    <li>全然何の理由もないのに？――<ruby>塵労<rt>じんろう</rt></ruby>に疲れた彼の前には今でもやはりその時のように、薄暗い藪や坂のある路が、細細と一すじ断続している。…………</li>
+  </ol>
+  <span class="src">出典：芥川龍之介「トロッコ」（青空文庫。底本「蜘蛛の糸・杜子春」新潮文庫、新潮社）https://www.aozora.gr.jp/cards/000879/files/43016_16836.html　※行番号・前略と中略の要約・語注はこのページで付けたもの。</span>
+  <p class="gloss-list">語注（このページで付けたもの）：土工＝土木工事で働く人。　呆気にとられる＝思いがけないことに驚きあきれる。　取って附けたような＝わざとらしく不自然な。　朱筆＝赤い墨を含ませた筆。校正（印刷前の原稿の誤りを直す仕事）で使う。　塵労＝世の中のわずらわしい苦労。　断続＝途切れたり続いたりすること。</p>
+</div>
+<p>1〜6行目を、吟味の四つの問いで確かめます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>問い</th><th>本文2の1〜6行目</th></tr>
+  <tr><td>① だれの目と心</td><td>三人称だが、2行目「そう云う事が一時にわかったのである」、4・5行目「思った」と、語り手が良平の心理を説明している。語り手の視点は良平の視点と重なる。</td></tr>
+  <tr><td>② どこまで知っているか</td><td>良平がその瞬間に気付いたこと（暗くなること、道のりの長さ、一人で帰らなければならないこと）を、一つずつ並べて語っている。</td></tr>
+  <tr><td>③ 判断はだれのものか</td><td>「泣いても仕方がない」「泣いている場合ではない」は良平自身の判断。</td></tr>
+  <tr><td>④ いつの時点から</td><td>出来事の最中の良平に寄り添って語っている。</td></tr>
+</table>
+</div>
+<p>語り手が良平の心に入っているので、読み手は、良平が泣きそうになる理由を正確に知ることができます。本文1で小娘の理由が伏せられていたのと比べると、語り手がだれの心に入るかによって、どの人物の理由が示されるかが決まることが分かります。</p>
+<p>では、7行目から後で、語り手の立ち位置はどう変わるでしょうか。確認問題の問6と問8で考えます。</p>
+<div class="box caution">
+  <p class="box-title">よくある間違い④：視点は作品の中でずっと同じだと考える</p>
+  <p>一つの作品の中でも、語り手の視点が一つに固定されているとは限りません。外部の視点の文と、人物の視点と重なる文とが入れ替わったり、語っている時点が移ったりします。一文ずつ、どこに立って語っているかを確かめましょう。</p>
+</div>
+<div class="box point">
+  <p class="box-title">吟味は、読みの根拠を正しく選ぶために行う</p>
+  <p>心情を説明する問いに答えるときは、根拠にしようとしている叙述が、だれの目と心を通したものかを確かめます。本文1で「私」の判断（「下品な」「愚鈍な」）を小娘についての事実として書いたり、語り手が後から付け加えた説明を当時の人物の気持ちとして書いたりすると、根拠の使い方を誤ります。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>語り手</dt><dd>詩歌や物語、小説などを語る者。作品の言葉の中にいる存在で、作者（書き手）とは区別する。</dd>
+    <dt>語り手の視点</dt><dd>語る者（語り手）の視点。語り手がどこに立ち、だれの目と心を通して出来事を語っているかということ。</dd>
+    <dt>客観的な外部の視点</dt><dd>語り手が物語の世界の外から、行動・姿・声など外から見えることを語る立場。解説はこの場合を「語り手の視点から語られる」とする。</dd>
+    <dt>登場人物の視点</dt><dd>登場人物の目と心から見た捉え方。語り手が登場人物の一人であるときや、人物の心理を説明するとき、語り手の視点はこれと重なる。</dd>
+    <dt>視点人物</dt><dd>その場面で、情景や出来事がその人の目を通して描かれている人物（文国-008）。</dd>
+    <dt>地の文・会話文</dt><dd>かぎかっこでくくられた登場人物の話し言葉が会話文、それ以外の語りの部分が地の文。地の文に人物の心の中の言葉が入り込むこともある。</dd>
+    <dt>作者（書き手）</dt><dd>作品を書いた実在の人。語り手をどこに立たせ、何を語らせるかを決める。</dd>
+    <dt>一人称の語り・三人称の語り</dt><dd>「私」「僕」などの登場人物が語る語りと、人物を名前や「彼」「彼女」で呼んで語る語り。違いは次の時間（文国-015）で比べる。</dd>
+    <dt>吟味する</dt><dd>ここでは、語り手の視点によって何が示され何が示されないかを確かめ、内容の理解に生かすこと。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>語り手は作品の中で出来事を語る存在で、作者とは区別する。（O1）</li>
+    <li>客観的な外部の視点では、語り手は外から見える行動・姿・声を語り、人物の心の中には入らない。心情は読み手が行動から推し量る。（O1）</li>
+    <li>語り手が登場人物の一人（「私」）であるときや、人物の心理を説明するとき、語り手の視点は「登場人物の視点」と重なる。手掛かりは、心の動きを表す言葉、人物に見えた・聞こえたもの、感じ方のこもった言葉、地の文に入り込んだ心の中の言葉。三人称でも重なることがある。（O2）</li>
+    <li>吟味では、だれの目と心か、どこまで知っているか（何が語られないか）、判断はだれのものか、いつの時点から語るかを確かめ、内容の理解に生かす。（O3）</li>
+    <li>心情を説明するときは、根拠の叙述がだれの目と心を通したものかを確かめてから使う。（O3）</li>
+  </ul>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。本文1は本編の4、本文2は本編の5にある文章です（問いの中にも該当する行を引用しています）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>「語り手」についての説明として、最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>作品を書いた実在の人物のことで、小説の地の文はすべて作者自身の考えを述べたものである。</button>
+    <button data-correct="true">作品の中で出来事を語る存在で、作者とは区別して考える。作者が「私」を語り手にした場合も、その「私」は作品の中の存在である。</button>
+    <button>会話文で話している登場人物のことである。</button>
+    <button>人物を「彼」「彼女」と呼んで語る小説には、語り手はいない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">語り手は作品の言葉の中にいる語る存在で、作者（実在の人）とは区別します（補足2）。1つ目は作者と語り手を混同しています。3つ目は会話文の話し手（登場人物）で、地の文を語る語り手ではありません。4つ目について、三人称の語りにも、地の文を語る語り手はいます（本文2）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>次のうち、客観的な外部の視点から語られていることが最もはっきりしている文はどれですか（このページのために作った文です）。</p>
+  <div class="choices">
+    <button>健太は、自分だけが取り残されたような気がした。</button>
+    <button>監督の声が、いつもより遠く聞こえた。</button>
+    <button>――負けたのは、ぼくのせいだ。</button>
+    <button data-correct="true">健太はボールを拾い上げ、黙ってベンチに戻った。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">4つ目は、外から見える行動だけを語っていて、心の中に入る言葉がありません。1つ目は「気がした」（心の動き）、3つ目はかっこのない心の中の言葉、2つ目は「聞こえた」（健太の耳に聞こえたもの）と「いつもより遠く」（健太の感じ方）があり、いずれも健太の視点と重なっています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>本文2の1〜6行目（「良平は一瞬間呆気にとられた。」から「どんどん線路伝いに走り出した。」まで）の語り手の視点の説明として、最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">三人称で呼ばれているが、2行目「そう云う事が一時にわかったのである」、4行目「泣いても仕方がないと思った」のように語り手が良平の心理を説明しており、語り手の視点は良平の視点と重なっている。</button>
+    <button>「良平」「彼」と三人称で呼ばれているので、語り手は外から行動だけを語っている。</button>
+    <button>語り手は良平自身で、「私」として自分の体験を語っている。</button>
+    <button>語り手は土工の視点に立って、走り去る良平を見送っている。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">呼び方は三人称ですが、「わかった」「思った」と良平の心の中を語っています。2つ目は「三人称なら客観的」という誤り（よくある間違い②）です。3つ目について、本文2に「私」は出てきません。4つ目について、土工の心の中や見たものは語られていません。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="恐らくは|おそらくは|恐らく|おそらく">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>本文1の22行目「小娘は、恐らくはこれから奉公先へ赴かうとしてゐる小娘は、…弟たちの労に報いたのである。」で、「私」が小娘の身の上を確かには知らず、推し量って語っていることを示す語句を、本文から4字で抜き出しなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は「恐らくは」です。語り手の「私」は登場人物の一人なので、小娘がこれから奉公先へ行くのかどうかを確かめることはできません。「恐らくは」は、「私」が見た光景から推し量ったことを示します。「一切を了解した」（21行目）と言っても、その理解は「私」の推測を含んでいるのです（例題1）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>本文1の19行目「忽ち心を躍らすばかり暖な日の色に染まつてゐる蜜柑が凡そ五つ六つ、…ばらばらと空から降つて来た」の、蜜柑の色の描かれ方についての説明として、最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>蜜柑の色を、だれの感じ方も交えずに客観的に説明したものである。</button>
+    <button>小娘の心の中を語り手が説明し、弟たちとの別れを喜ぶ小娘の気持ちを表したものである。</button>
+    <button data-correct="true">「私」の目に映った蜜柑の色として描かれ、「心を躍らすばかり暖な」に、それまで沈んでいた「私」の心が動き始めたことが重ねられている。</button>
+    <button>踏切りの弟たちの目に映った蜜柑の色で、弟たちのうれしさを語り手が説明したものである。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">語り手は「私」なので、景色は「私」の目と心を通ったものです。「心を躍らすばかり暖な」は色を感じ取った者の心の動きを含む言い方で、20行目「私は思はず息を呑んだ」へ続きます。本文1の前半の暗い景色（1〜6行目）と比べると、「私」の心の変化が色に重ねられていると読めます。1つ目は感じ方のこもった言葉を見落としています。2つ目・4つ目について、語り手の「私」は小娘や弟たちの心の中を知ることができません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2・O3</span></div>
+  <p>本文2の7・8行目「良平は二十六の年、妻子と一しょに東京へ出て来た。今では或雑誌社の二階に、校正の朱筆を握っている。」から分かる語り手の立ち位置として、最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>語り手は、トロッコの日の少年の良平と同じことしか知らず、出来事の最中から語っている。</button>
+    <button data-correct="true">語り手は、トロッコの日よりずっと後の良平の生活まで知っており、後の時点に立って出来事を捉えている。</button>
+    <button>語り手は、二十六歳の良平の妻で、夫から聞いた話を語っている。</button>
+    <button>語り手はこの部分で初めて「私」として物語に登場し、自分の体験を語っている。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">1〜6行目では、語り手は出来事の最中の良平に寄り添っていました。7・8行目では、少年の良平が知るはずのない、二十六歳以後の生活（「今では」）まで語っています。語り手は、出来事よりずっと後の時点に立っていると分かります（吟味の問い④）。3つ目・4つ目は、本文に根拠がありません。本文2に「私」は出てきません。</div>
+</div>
+
+<div class="q" data-type="open" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O2・O3</span></div>
+  <p>本文1の語りは、「私」という登場人物の視点に限られている。このことは、小娘が窓を開けようとした理由が読み手に明かされる過程に、どのように関わっているか。本文の表現を根拠にして、120字程度で説明しなさい（行番号を示してよい。行番号の括弧は字数に数えない）。（このページのために作った問題です）</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　語り手は小娘の心の中を知り得ない「私」なので、窓を開けようとする理由は「呑みこめなかつた」「気まぐれ」という私の誤った判断としてしか語られない（16・17行目）。読み手も理由を知らないまま読み進め、蜜柑が投げられた瞬間に私と同時に事情を「了解」する（21・22行目）。</p>
+    <p><strong>採点の観点</strong>　①語り手が「私」であり、小娘の心の中は語られない（視点の限定）ことを押さえている。②理由が伏せられ、「私」の判断（「呑みこめなかつた」「気まぐれ」など）としてだけ示されることを、本文の表現を挙げて書いている。③蜜柑を投げる場面で、「私」と同時に読み手も事情を知ることを書いている。④（加点）その理解も「恐らくは」（22行目）が示すように「私」の推測を含むことに触れている。①〜③がそろえば合格とする。</p>
+  </div>
+  <div class="explain">例題1で確かめた「何が語られないか」（問い②）を、読み手の側から説明する問題です。「小娘は弟たちのために窓を開けた」と理由そのものだけを書くと、問われている「明かされる過程」に答えていません。語り手の位置（だれの目か）→伏せられていること→明かされる時点、の順で書くと整理できます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O3</span></div>
+  <p>本文2の10行目「全然何の理由もないのに？」という問いかけは、どのような働きをしているか。語り手がいつの時点から語っているかに注意して、90字程度で説明しなさい。（このページのために作った問題です）</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　9行目の「全然何の理由もないのに」を問い返し、実は理由があることを示す働き。後の時点に立つ語り手が、塵労に疲れた大人の良平の今の生活を、少年の日の心細い帰り道と重ねて示している。</p>
+    <p><strong>採点の観点</strong>　①直前の「全然何の理由もないのに」を問い返していることを押さえている。②理由がないのではなく、今の生活の疲れ（「塵労」）と、あの日の薄暗い路とが重なっていることを書いている。③語り手が出来事よりずっと後の時点から、過去と現在を結び付けて語っていることに触れている。なお、この問いかけを大人の良平自身の心の中の声と読む解釈もあり得る。①②が書けていて、根拠の叙述に即していれば、その読み方でもよい。</p>
+  </div>
+  <div class="explain">問6で確かめたように、7行目以降の語り手は後の時点に立っています。10行目の後半「今でもやはりその時のように、薄暗い藪や坂のある路が、細細と一すじ断続している」が、問いかけの答えの手掛かりです。「今でも」「その時のように」という言葉が、現在と過去を重ねています。中略部分の「今までの心細さ」も、あの日の路の意味を考える手掛かりになります。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト —（出題範囲外）／個別試験：大学ごとに確認</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『国語』について「「現代の国語」及び「言語文化」を出題範囲とし，近代以降の文章及び古典（古文，漢文）を出題する」としています。選択科目の文学国語は、この出題範囲に含まれません。</p>
+  <p>ただし、語り手の言葉に注意して読むことは、共通テストの範囲である言語文化でも求められています。言語文化の解説は、作品に表れたものの見方などを捉えることを、「書き手や語り手の言葉，登場人物の言動などを通して，対象が，どのような視点，観点，立場によって，どのような感性や感情をもって，どのような認識や解釈の仕方によって捉えられているかについて把握すること」と説明しています（p.128）。この時間は、その読み方を小説の一文一文の水準で確かなものにする学習です。</p>
+  <p>個別試験（各大学の試験）の出題範囲や問題の形式は大学ごとに異なり、学習内容マップでも基準とする大学はまだ決まっていません。志望する大学の募集要項などで出題範囲を確かめてください。このページの記述問題（問7・問8）は、特定の大学の形式をまねたものではなく、「根拠の叙述を示して説明する」練習としてこのページのために作ったものです。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">一人称の語りと三人称の語り（文国-015）</p>
+  <p>この時間は、一文ずつ語り手の立ち位置を見分け、その視点によって何が語られ、何が語られないかを吟味しました。次の時間は、「私」が語る一人称の語りと、外部の視点から語る三人称の語りを比べ、人物の心情の描かれ方や、読み手に伝わる内容がどう違うかを捉えます。この時間に学んだ見分けの手掛かりを、比べるときにも使います。</p>
+</div>
+<p>この時間では、次のことは扱っていません。</p>
+<ul>
+  <li>一人称と三人称の語りを比べ、心情の描かれ方や伝わる内容の違いを捉えること（文国-015）</li>
+  <li>同じ出来事を、複数の登場人物の視点から捉え直すこと（文国-016）</li>
+  <li>場面の設定（状況や舞台の作られ方）を分析すること（文国-017）</li>
+  <li>繰り返し現れる言葉など、表現の特色を評価して解釈すること（文国-018）</li>
+  <li>視点を変えて自分で文章を書き換えること（書くこと、文国-115）</li>
+</ul>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>文国-013　平易な語の組合せによる情景・心情の表現</div>
+  <div><span class="label">次の時間</span>文国-015　一人称の語りと三人称の語り</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_bunkoku/文国-014「語り手の視点を捉える」（学習指導要領 B(1)イ、解説 p.196）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第1節 国語 第4 文学国語（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 国語編（文部科学省）：p.196（語り手の視点）、p.195（描写の仕方の例）、p.128（言語文化 B(1)イ）https://www.mext.go.jp/content/20250410-mxt_kyoiku01-100002620_02.pdf</li>
+    <li>中学校学習指導要領（平成29年告示）解説 国語編（文部科学省）：p.98（語り手の有無）https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_002.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項（独立行政法人大学入試センター）：『国語』の出題範囲 https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00017382.pdf&amp;n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%AE%9F%E6%96%BD%E8%A6%81%E9%A0%85.pdf</li>
+    <li>芥川龍之介「蜜柑」（青空文庫。底本「現代日本文学大系 43 芥川龍之介集」筑摩書房、1968年。新字旧仮名）https://www.aozora.gr.jp/cards/000879/files/98_15272.html 。初出（「新潮」1919年5月）と作者の生没年は青空文庫の図書カード https://www.aozora.gr.jp/cards/000879/card98.html による。</li>
+    <li>芥川龍之介「トロッコ」（青空文庫。底本「蜘蛛の糸・杜子春」新潮文庫、新潮社。新字新仮名）https://www.aozora.gr.jp/cards/000879/files/43016_16836.html （図書カード https://www.aozora.gr.jp/cards/000879/card43016.html ）</li>
+  </ul>
+  <p>作成：2026-09-29　版：1.1（2026-09-29 クロスチェックによる改修）　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題はこのページのために作成したものです（出典を示した文章を除く）。本文1・本文2は著作権の保護期間が終了した作品（芥川龍之介、1892〜1927年。生没年は青空文庫の図書カードによる）を青空文庫のファイルから引用し、行番号・要約・語注を付けました。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var items = document.querySelectorAll(".vp-item");
+  items.forEach(function (item) {
+    var ans = item.getAttribute("data-answer");
+    var res = item.querySelector(".vp-res");
+    var exp = item.querySelector(".vp-exp");
+    item.querySelectorAll("button[data-pick]").forEach(function (b) {
+      b.type = "button";
+      b.addEventListener("click", function () {
+        var ok = b.getAttribute("data-pick") === ans;
+        res.textContent = ok ? "正解" : "もう一度考えよう";
+        res.className = "vp-res " + (ok ? "ok" : "ng");
+        exp.hidden = false;
+      });
+    });
+  });
+  var all = document.getElementById("vp-all");
+  if (all) {
+    all.type = "button";
+    all.addEventListener("click", function () {
+      items.forEach(function (item) {
+        item.querySelector(".vp-exp").hidden = false;
+      });
+    });
+  }
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_bunkoku/文国-014",
+  "map": "hs_bunkoku",
+  "rid": "文国-014",
+  "title": "語り手の視点を捉える",
+  "subject": "文学国語",
+  "unit": {
+    "ref": "hs_bunkoku:文国-1",
+    "title": "読むこと（小説）"
+  },
+  "exam": {
+    "共通テスト": "—",
+    "個別試験": ""
+  },
+  "basis": [
+    "B(1)イ"
+  ],
+  "kaisetsu_page": "196",
+  "objectives": [
+    {
+      "id": "O1",
+      "text": "語り手（作品を語る者）を作者と区別し、客観的な外部の視点から語られる叙述の特徴を、手掛かりとなる表現を挙げて説明できる。",
+      "from": "客観的な外部の視点から語られる場合と、",
+      "sections": [
+        "sec-1"
+      ],
+      "checks": [
+        "q1",
+        "q2"
+      ]
+    },
+    {
+      "id": "O2",
+      "text": "語り手が登場人物の一人である場合や、語り手が登場人物の心理を説明する場合に、語り手の視点が「登場人物の視点」と重なることを、叙述の手掛かりを示して見分けることができる。",
+      "from": "語り手が登場人物の一人であったり人物の心理を説明したりして「登場人物の視点」と重なる場合を見分け、",
+      "sections": [
+        "sec-2"
+      ],
+      "checks": [
+        "q3",
+        "q4",
+        "q6",
+        "q7"
+      ]
+    },
+    {
+      "id": "O3",
+      "text": "語り手の視点を吟味し、だれの目と判断で語られているか、何が語られていないかが内容の理解にどう関わるかを、根拠となる叙述を示して説明できる。",
+      "from": "語り手の視点を吟味する。",
+      "sections": [
+        "sec-3"
+      ],
+      "checks": [
+        "q5",
+        "q6",
+        "q7",
+        "q8"
+      ]
+    }
+  ],
+  "key_terms": [
+    {
+      "term": "語り手",
+      "where": "sec-1"
+    },
+    {
+      "term": "語り手の視点",
+      "where": "sec-1"
+    },
+    {
+      "term": "客観的な外部の視点",
+      "where": "sec-1"
+    },
+    {
+      "term": "登場人物の視点",
+      "where": "sec-2"
+    },
+    {
+      "term": "視点人物",
+      "where": "sec-2"
+    },
+    {
+      "term": "地の文・会話文",
+      "where": "supp-1"
+    },
+    {
+      "term": "作者（書き手）",
+      "where": "supp-2"
+    },
+    {
+      "term": "一人称の語り・三人称の語り",
+      "where": "sec-2"
+    },
+    {
+      "term": "吟味する",
+      "where": "sec-3"
+    }
+  ],
+  "prerequisites": [
+    {
+      "concept": "描写の意味（物事の様子や場面、登場人物の行動や心情を、読み手が具体的に想像できるように描いたもの）",
+      "taught_in": [
+        "jhs_kokugo1/中1-077"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "心情が行動や情景を通して暗示的に表されること",
+      "taught_in": [
+        "jhs_kokugo1/中1-086",
+        "hs_bunkoku/文国-002"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "語り手の有無を捉える（語り手という概念）",
+      "taught_in": [
+        "jhs_kokugo2/中2-078"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "語り手や登場人物のものの見方・感じ方・考え方を捉える",
+      "taught_in": [
+        "hs_kokugo/言文-051",
+        "hs_kokugo/言文-005"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "視点人物の視界に映った情景の描かれ方",
+      "taught_in": [
+        "hs_bunkoku/文国-008"
+      ],
+      "where": "r1"
+    },
+    {
+      "concept": "描写が人物の心情をどう表しているかを根拠を示して説明する",
+      "taught_in": [
+        "hs_bunkoku/文国-010"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "助動詞の働き（「らしい」による推定など）",
+      "taught_in": [
+        "jhs_kokugo2/中2-061",
+        "jhs_kokugo2/中2-062"
+      ],
+      "where": "r2"
+    },
+    {
+      "concept": "歴史的仮名遣いの読み方（本文1は新字旧仮名）",
+      "taught_in": [
+        "jhs_kokugo1/中1-109",
+        "hs_kokugo/言文-002"
+      ],
+      "where": "sec-2"
+    },
+    {
+      "concept": "私小説（書き手と主人公の人生の共通点）",
+      "taught_in": [
+        "hs_bunkoku/文国-003",
+        "hs_bunkoku/文国-004"
+      ],
+      "where": "sec-1"
+    },
+    {
+      "concept": "地の文と会話文の区別（地の文は語り手の言葉）",
+      "taught_in": [
+        "hs_kokugo/言文-051"
+      ],
+      "gap": false,
+      "where": "supp-1"
+    },
+    {
+      "concept": "作者（書き手）と語り手の区別",
+      "taught_in": [
+        "hs_kokugo/言文-051"
+      ],
+      "gap": false,
+      "where": "supp-2"
+    }
+  ],
+  "out_of_scope": [
+    "一人称と三人称の語りを比べ、心情の描かれ方や読み手に伝わる内容の違いを捉えること（文国-015）",
+    "同じ出来事を複数の登場人物の視点から捉え直すこと（文国-016）",
+    "場面の設定の分析（文国-017）",
+    "繰り返し現れる言葉など表現の特色の評価（文国-018）",
+    "解釈の多様性の考察（文国-023・024）",
+    "視点を変えた描写の書き換え（文国-115）"
+  ],
+  "selection_reason": "語り手の視点は抽象度が高く、「語り手＝作者」「三人称なら客観的」という誤解が生じやすい。前提が中学（描写、語り手の有無、推定の助動詞）・言語文化（語り手のものの見方）・同単元の文国-008（視点人物）にまたがり、作者と語り手の区別や地の文はどの行でも扱っていない（作成時点の判断。現在の地図では言文-051 の要点にある）。立ち位置の関係は図と一文ずつの操作がないと理解しにくく、個別試験の小説の記述で心情の根拠を選ぶ土台になる。比べた候補：文国-020（修辞の体系。提喩・換喩などの定義の正確さが要るが、概念が具体的で前提の飛び越しは少ない）、文国-018（表現の特色の評価。014・017を統合する活用で、014の理解が前提になる）。",
+  "sources": [
+    {
+      "name": "高等学校学習指導要領（平成30年告示）第2章第1節 国語",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf",
+      "use": "文学国語 B(1)イ の事項"
+    },
+    {
+      "name": "高等学校学習指導要領（平成30年告示）解説 国語編",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20250410-mxt_kyoiku01-100002620_02.pdf",
+      "use": "p.196 語り手の視点の定義と二つの場合、p.195 描写の仕方の例、p.128 言語文化の語り手のものの見方"
+    },
+    {
+      "name": "中学校学習指導要領（平成29年告示）解説 国語編",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_002.pdf",
+      "use": "p.98 語り手の有無（前提の確認）"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項",
+      "publisher": "独立行政法人大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf&n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%AE%9F%E6%96%BD%E8%A6%81%E9%A0%85.pdf",
+      "use": "『国語』の出題範囲（現代の国語・言語文化）"
+    },
+    {
+      "name": "芥川龍之介「蜜柑」（底本：現代日本文学大系43 芥川龍之介集、筑摩書房、1968年）",
+      "publisher": "青空文庫",
+      "url": "https://www.aozora.gr.jp/cards/000879/files/98_15272.html",
+      "use": "本文1（一人称の語りの教材）。保存：sources/text/aozora_akutagawa_mikan.txt"
+    },
+    {
+      "name": "図書カード No.98「蜜柑」",
+      "publisher": "青空文庫",
+      "url": "https://www.aozora.gr.jp/cards/000879/card98.html",
+      "use": "初出「新潮」1919（大正8）年5月、作者の生年1892年・没年1927年（sec-2 の紹介、フッターの著作権の注記）。取得 2026-09-29、控え：sources/text/lesson_review_kokugo_evidence.txt"
+    },
+    {
+      "name": "芥川龍之介「トロッコ」（底本：蜘蛛の糸・杜子春、新潮文庫）",
+      "publisher": "青空文庫",
+      "url": "https://www.aozora.gr.jp/cards/000879/files/43016_16836.html",
+      "use": "本文2（三人称の語りの教材）。保存：sources/text/aozora_akutagawa_torokko.txt。底本・生没年は図書カード No.43016 https://www.aozora.gr.jp/cards/000879/card43016.html でも確認"
+    }
+  ],
+  "version": "1.1",
+  "generated": "2026-09-29"
+}
+</script>
+</body>
+</html>

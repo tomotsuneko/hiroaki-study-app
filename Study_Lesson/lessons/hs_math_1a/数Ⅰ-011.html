@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>実数と数直線｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.ok-mark { color: var(--ok); font-weight: 700; }
+.ng-mark { color: var(--ng); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>数と式</span><span>数Ⅰ-011</span></div>
+  <h1>実数と数直線</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">3−5 や 3÷5 の答えは、自然数の中にはありません。数の範囲を広げていくと、どの計算もその範囲の中でできるようになるのでしょうか。この時間は、計算と数直線の両方から「実数」という数の範囲のよさを確かめます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>自然数・整数・有理数・実数のそれぞれの範囲で、四則演算の結果がその範囲に入るか（閉じているか）を、例や反例を挙げて調べることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>実数が四則演算に関して閉じていること（0 でわる除法は除く）と、数の範囲を実数まで広げる意味を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>実数が数直線上の点と1対1に対応していることを理解し、実数を数直線上の点の座標として表したり、数直線を使って数の大小を判断したりできる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-010）</span>有限小数と循環小数</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>実数と数直線</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-012）</span>絶対値</div>
+</div>
+<p class="small">前提となる単元：中学3年「簡単な多項式」「正の数の平方根」、中学1年「一元一次方程式」（単元「数と式」の前提）。この時間は特に、中学1年「正の数と負の数」（数直線、数の集合と四則計算の可能性）、中学3年「正の数の平方根」（有理数と無理数）と、同じ単元の数Ⅰ-009・010 を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、数の分類（数Ⅰ-009）、循環小数と分数（数Ⅰ-010）、平方根の大小（中3-021）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-009</span></div>
+  <p>次の数のうち、無理数はどれですか。</p>
+  <div class="choices">
+    <button>\( \sqrt{9} \)</button>
+    <button>\( -\dfrac{3}{7} \)</button>
+    <button>\( 0.25 \)</button>
+    <button data-correct="true">\( \sqrt{5} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sqrt{5} \) は2乗すると 5 になる正の数で、分数では表せないので無理数です。\( \sqrt{9}=3 \) は整数なので有理数です（「\( \sqrt{\ } \) が付いているから無理数」とは限りません）。\( -\dfrac{3}{7} \) は分数そのもの、\( 0.25=\dfrac{1}{4} \) も分数で表せるので、どちらも有理数です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-010</span></div>
+  <p>循環小数 \( 0.\dot{1}\dot{2} \)（\( 0.121212\cdots \)）を分数で表したものはどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{3}{25} \)</button>
+    <button data-correct="true">\( \dfrac{4}{33} \)</button>
+    <button>\( \dfrac{4}{333} \)</button>
+    <button>\( \dfrac{11}{90} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x=0.1212\cdots \) とおくと \( 100x=12.1212\cdots \)。引くと \( 99x=12 \) なので \( x=\dfrac{12}{99}=\dfrac{4}{33} \) です。\( \dfrac{3}{25}=0.12 \) は有限小数で、循環する部分を無視しています。\( \dfrac{4}{333}=\dfrac{12}{999} \) は \( 1000x-x \) を使った値で、\( 0.012012\cdots \) を表します。\( \dfrac{11}{90} \) は \( 0.1222\cdots \) で、2 だけがくり返すと読み違えています。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中3-021</span></div>
+  <p>\( \sqrt{3} \) と \( 1.8 \) の大小を正しく表しているものはどれですか。</p>
+  <div class="choices">
+    <button>\( \sqrt{3}&gt;1.8 \)</button>
+    <button>\( \sqrt{3}=1.8 \)</button>
+    <button data-correct="true">\( \sqrt{3}&lt;1.8 \)</button>
+    <button>2乗しないと比べられないので、決まらない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正の数どうしは、2乗した数の大小で比べられます。\( (\sqrt{3})^2=3 \)、\( 1.8^2=3.24 \) で \( 3&lt;3.24 \) なので \( \sqrt{3}&lt;1.8 \) です。\( \sqrt{3}=1.732\cdots \) を覚えていれば直接比べることもできます。「\( \sqrt{3}&gt;1.8 \)」は大小を逆にした誤りです。2乗すれば比べられるので、「決まらない」わけではありません。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">0 でわる除法を考えない理由</p>
+  <p>中学1年（中1-014）では、除法を乗法の逆として考えました。\( a\div b=q \) は、\( q\times b=a \) となる数 \( q \) を求める計算です。ここで \( b=0 \) とすると、\( q\times 0=a \) となる \( q \) を探すことになります。</p>
+  <ul>
+    <li>\( a\ne 0 \) のとき：どんな \( q \) でも \( q\times 0=0 \) なので、\( q\times 0=a \) となる \( q \) はありません。</li>
+    <li>\( a=0 \) のとき：どんな \( q \) でも \( q\times 0=0 \) となり、\( q \) が1つに決まりません。</li>
+  </ul>
+  <p>このため、数学では 0 でわる除法は考えません。この時間に「除法について閉じているか」を調べるときも、0 でわる場合は除きます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：計算の答えは、いつもその数の範囲に入る？</h2>
+<div class="box think">
+  <p class="box-title">2つの問い</p>
+  <p><strong>問い①</strong>　自然数（1, 2, 3, …）どうしで計算すると、答えはいつも自然数になるでしょうか。\( 3+5 \) や \( 3\times 5 \) は自然数ですが、\( 3-5 \) や \( 3\div 5 \) はどうでしょう。</p>
+  <p><strong>問い②</strong>　数直線上のどの点にも、数を1つずつ対応させることができるでしょうか。分数で表せる数（有理数）だけで、数直線上のすべての点を表せるでしょうか。</p>
+  <p>問い①には「3 「閉じている」とは」と「4 有理数・無理数・実数の範囲で調べる」で、問い②には「5 実数と数直線」で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="「閉じている」とは"><span class="num">3</span>「閉じている」とは：自然数と整数で調べる</h2>
+<p>中学1年（中1-019）では、自然数・整数・数全体のそれぞれで、四則計算がいつでもできるかを調べました。この時間は、この考えに名前を付けて、有理数・実数まで広げて整理します。</p>
+<p>加法・減法・乗法・除法の4つをまとめて<strong>四則演算</strong>（四則計算）といいます。ある範囲の数どうしで、ある演算をした結果が<strong>いつも</strong>その範囲の数になるとき、その範囲はその演算について<strong>閉じている</strong>といいます。除法を調べるときは、0 でわる場合を除きます（補足「0 でわる除法を考えない理由」）。</p>
+
+<h3>自然数の範囲</h3>
+<p>自然数どうしの和 \( 3+5=8 \) や積 \( 3\times 5=15 \) は自然数です。自然数どうしの和と積は、いつも自然数になります。一方、差 \( 3-5=-2 \) は負の数、商 \( 3\div 5=\dfrac{3}{5} \) は分数で、どちらも自然数ではありません。</p>
+<p>したがって、自然数の範囲は<strong>加法・乗法について閉じている</strong>が、<strong>減法・除法について閉じていない</strong>といえます。これが導入の問い①の、自然数についての答えです。</p>
+
+<h3>整数の範囲</h3>
+<p>整数は \( \cdots,\ -2,\ -1,\ 0,\ 1,\ 2,\ \cdots \) です。整数どうしの和・差・積は、いつも整数になります（例：\( 3-5=-2 \)、\( (-4)\times 3=-12 \)）。しかし商は、\( 1\div 2=\dfrac{1}{2} \) のように整数にならないことがあります。整数の範囲は<strong>加法・減法・乗法について閉じている</strong>が、<strong>除法について閉じていない</strong>といえます。</p>
+
+<div class="box point"><p class="box-title">「閉じている」と「閉じていない」の示し方</p><p>「閉じている」ことは、範囲の中の<strong>どの2数でも</strong>結果がその範囲に入ることを説明して示します。「閉じていない」ことは、結果が範囲の外に出る例（<strong>反例</strong>）を<strong>1つ</strong>挙げれば示せます。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：いくつか試して「閉じている」と決める</p><p>\( 5-3=2 \)、\( 8-1=7 \) のように、答えが自然数になる例をいくつ集めても、自然数の範囲が減法について閉じていることにはなりません。\( 3-5=-2 \) のような反例が1つあれば、閉じていません。「いつも」を示すには、文字を使って説明します（例題1）。</p></div>
+
+<div class="box example worked">
+  <p class="box-title">例題1（偶数・奇数の範囲）</p>
+  <p>偶数全体（\( \cdots,\ -4,\ -2,\ 0,\ 2,\ 4,\ \cdots \)）は、加法について閉じているか。また、奇数全体（\( \cdots,\ -3,\ -1,\ 1,\ 3,\ \cdots \)）はどうか。</p>
+  <div class="step">ステップ1（着目点）：「いつも」を確かめるには、数を文字で表します（中2-008）。偶数は整数 \( m \) を使って \( 2m \)、奇数は \( 2m+1 \) と表せます。</div>
+  <div class="step">ステップ2（偶数）：偶数 \( 2m \)、\( 2n \)（\( m,\ n \) は整数）の和は \( 2m+2n=2(m+n) \)。整数は加法について閉じているので \( m+n \) は整数で、和はいつも偶数です。よって、偶数全体は加法について<strong>閉じている</strong>。</div>
+  <div class="step">ステップ3（奇数）：反例を探します。\( 1+3=4 \) は偶数で、奇数ではありません。よって、奇数全体は加法について<strong>閉じていない</strong>。（一般に \( (2m+1)+(2n+1)=2(m+n+1) \) で、奇数どうしの和はいつも偶数です。）</div>
+  <div class="step">答え：偶数全体は加法について閉じている。奇数全体は加法について閉じていない。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="有理数・無理数・実数の範囲"><span class="num">4</span>有理数・無理数・実数の範囲で調べる</h2>
+<h3>有理数の範囲：四則演算について閉じている</h3>
+<p>有理数は、分数で表せる数、つまり整数 \( m \) と 0 でない整数 \( n \) を用いて \( \dfrac{m}{n} \) と表せる数でした（数Ⅰ-009）。整数も \( \dfrac{m}{1} \) と表せるので有理数です。</p>
+<p>2つの有理数を \( \dfrac{a}{b} \)、\( \dfrac{c}{d} \)（\( a,\ b,\ c,\ d \) は整数、\( b\ne 0 \)、\( d\ne 0 \)）とすると、</p>
+$$ \frac{a}{b}+\frac{c}{d}=\frac{ad+bc}{bd},\qquad \frac{a}{b}-\frac{c}{d}=\frac{ad-bc}{bd},\qquad \frac{a}{b}\times\frac{c}{d}=\frac{ac}{bd},\qquad \frac{a}{b}\div\frac{c}{d}=\frac{ad}{bc}\ \ (c\ne 0) $$
+<p>となります。整数は加法・減法・乗法について閉じているので、右辺の分子・分母はどれも整数です。また \( b\ne 0 \)、\( d\ne 0 \)（除法では \( c\ne 0 \) も）なので、分母の \( bd \)、\( bc \) は 0 ではありません。したがって、結果はいつも有理数です。有理数の範囲は<strong>四則演算について閉じている</strong>（0 でわる除法を除く）といえます。</p>
+<p>例：\( \dfrac{2}{3}-\dfrac{5}{4}=\dfrac{8-15}{12}=-\dfrac{7}{12} \)、\( \dfrac{2}{3}\div\left(-\dfrac{5}{4}\right)=\dfrac{2\times 4}{3\times(-5)}=-\dfrac{8}{15} \)。</p>
+
+<h3>無理数の範囲：どの演算についても閉じていない</h3>
+<p>無理数どうしで計算した結果は、無理数になるとは限りません。</p>
+<ul>
+  <li>和：\( \sqrt{2}+(-\sqrt{2})=0 \)　　差：\( \sqrt{2}-\sqrt{2}=0 \)</li>
+  <li>積：\( \sqrt{2}\times\sqrt{2}=2 \)　　商：\( \sqrt{8}\div\sqrt{2}=\sqrt{4}=2 \)（中3-024）</li>
+</ul>
+<p>どれも結果が有理数なので、無理数の範囲は加法・減法・乗法・除法のどれについても<strong>閉じていません</strong>。</p>
+
+<h3>実数の範囲：四則演算に関して閉じている</h3>
+<p>有理数と無理数を合わせた数が<strong>実数</strong>です（数Ⅰ-009）。実数どうしの和・差・積・商（0 でわる場合を除く）は、いつも実数になります。上の例のように無理数どうしの計算の結果が有理数になっても、有理数も実数なので、実数の範囲の外には出ません。このことを「<strong>実数は四則演算に関して閉じている</strong>」といいます。この時間は、これを実数の大切な性質として認めて使います。</p>
+
+<div class="table-wrap">
+<table>
+  <tr><th>範囲</th><th>加法</th><th>減法</th><th>乗法</th><th>除法（0 でわる場合を除く）</th></tr>
+  <tr><td>自然数</td><td><span class="ok-mark">○</span></td><td><span class="ng-mark">×</span>（\( 3-5=-2 \)）</td><td><span class="ok-mark">○</span></td><td><span class="ng-mark">×</span>（\( 3\div 5=\frac{3}{5} \)）</td></tr>
+  <tr><td>整数</td><td><span class="ok-mark">○</span></td><td><span class="ok-mark">○</span></td><td><span class="ok-mark">○</span></td><td><span class="ng-mark">×</span>（\( 1\div 2=\frac{1}{2} \)）</td></tr>
+  <tr><td>有理数</td><td><span class="ok-mark">○</span></td><td><span class="ok-mark">○</span></td><td><span class="ok-mark">○</span></td><td><span class="ok-mark">○</span></td></tr>
+  <tr><td>無理数</td><td><span class="ng-mark">×</span>（\( \sqrt{2}+(-\sqrt{2})=0 \)）</td><td><span class="ng-mark">×</span>（\( \sqrt{2}-\sqrt{2}=0 \)）</td><td><span class="ng-mark">×</span>（\( \sqrt{2}\times\sqrt{2}=2 \)）</td><td><span class="ng-mark">×</span>（\( \sqrt{8}\div\sqrt{2}=2 \)）</td></tr>
+  <tr><td>実数</td><td><span class="ok-mark">○</span></td><td><span class="ok-mark">○</span></td><td><span class="ok-mark">○</span></td><td><span class="ok-mark">○</span></td></tr>
+</table>
+</div>
+<p class="small">○＝閉じている、×＝閉じていない（かっこ内は反例）。</p>
+
+<h3>数の範囲を広げてきた意味</h3>
+<ul>
+  <li><strong>自然数 → 整数</strong>：減法がいつでもできるようになりました（中学1年）。</li>
+  <li><strong>整数 → 有理数</strong>：除法（0 でわる場合を除く）もいつでもできるようになりました。</li>
+  <li><strong>有理数 → 実数</strong>：四則演算は有理数の範囲ですでにいつでもできます。それでも実数まで広げるのは、1辺が1の正方形の対角線の長さ \( \sqrt{2} \) のように、有理数では表せない量があるからです。実数まで広げると、四則演算について閉じたまま、数直線上のすべての点を数で表せるようになります（次の「5 実数と数直線」）。</li>
+</ul>
+<p>これが導入の問い①の答えです。数の範囲を広げるたびにできる計算が増え、実数の範囲では、0 でわる場合を除いて四則演算がいつでもできます。</p>
+<div class="box caution"><p class="box-title">よくある間違い：「無理数＋無理数＝無理数」と思い込む</p><p>\( \sqrt{2}+\sqrt{2}=2\sqrt{2} \) のように無理数になる場合もありますが、\( \sqrt{2}+(-\sqrt{2})=0 \) や \( (1+\sqrt{2})+(1-\sqrt{2})=2 \) のように有理数になる場合もあります。「いつも無理数」とはいえません。どの範囲について、どの演算を考えているかをはっきりさせましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="実数と数直線"><span class="num">5</span>実数と数直線</h2>
+<h3>数直線上の点の座標</h3>
+<p>直線上に基準の点 O（原点）をとり、単位の長さと正の向きを決めたものが数直線でした（中学1年）。数直線上の点 P に実数 \( a \) が対応しているとき、\( a \) を点 P の<strong>座標</strong>といい、P\( (a) \) と表します。たとえば A\( (-2) \) は、原点から左に 2 の位置にある点です。</p>
+
+<h3>√2 の点はどこにあるか</h3>
+<p>有理数の点は、数直線上にいくらでも細かくあります。たとえば 0 と 1 の間にも、\( \dfrac{1}{2} \)、\( \dfrac{1}{3} \)、\( \dfrac{1}{10} \)、\( \dfrac{1}{100} \)、… と有理数の点はいくらでもあります。では、有理数の点だけで数直線はすき間なく埋まるでしょうか。</p>
+<figure>
+<!--svg:f011a-->
+<svg viewBox="0 0 420 220" width="420" role="img" aria-label="数直線の 0 から 1 までを1辺とする正方形 OABC をかき、対角線 OB の長さ √2 を、O を中心とする円で数直線上に移した図。点 P の座標は √2 で、1 と 2 の間にある">
+<defs><marker id="ar011a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker><marker id="ar011a-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/></marker><marker id="ar011a-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f5fbf"/></marker><marker id="ar011a-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e8e5a"/></marker><marker id="ar011a-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b7791f"/></marker><marker id="ar011a-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<rect x="125" y="90" width="85" height="85" fill="#1f5fbf" fill-opacity="0.06" stroke="#1f5fbf" stroke-width="1.5"/>
+<line x1="125" y1="175" x2="210" y2="90" stroke="#1f5fbf" stroke-width="2"/>
+<path d="M210,90 A120.2,120.2 0 0 1 245.2,175" fill="none" stroke="#b7791f" stroke-width="1.8" stroke-dasharray="5 4"/>
+<line x1="26" y1="175" x2="394" y2="175" stroke="currentColor" stroke-width="1" marker-end="url(#ar011a)"/>
+<line x1="40" y1="170" x2="40" y2="180" stroke="currentColor" stroke-width="1"/>
+<text x="40" y="193" text-anchor="middle" font-size="12" fill="currentColor">−1</text>
+<line x1="125" y1="170" x2="125" y2="180" stroke="currentColor" stroke-width="1"/>
+<text x="125" y="193" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="210" y1="170" x2="210" y2="180" stroke="currentColor" stroke-width="1"/>
+<text x="210" y="193" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<line x1="295" y1="170" x2="295" y2="180" stroke="currentColor" stroke-width="1"/>
+<text x="295" y="193" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<line x1="380" y1="170" x2="380" y2="180" stroke="currentColor" stroke-width="1"/>
+<text x="380" y="193" text-anchor="middle" font-size="12" fill="currentColor">3</text>
+<circle cx="210" cy="90" r="3.5" fill="#1f5fbf"/>
+<circle cx="245.2" cy="175" r="5" fill="#c0392b"/>
+<text x="115" y="167" text-anchor="middle" font-size="12" fill="currentColor">O</text>
+<text x="219" y="167" text-anchor="middle" font-size="12" fill="currentColor">A</text>
+<text x="219" y="86" text-anchor="middle" font-size="12" fill="currentColor">B</text>
+<text x="115" y="86" text-anchor="middle" font-size="12" fill="currentColor">C</text>
+<text x="115" y="136.5" text-anchor="middle" font-size="12" fill="#1f5fbf">1</text>
+<text x="159.5" y="124.5" text-anchor="end" font-size="13" font-weight="700" fill="#1f5fbf">√2</text>
+<text x="255.2" y="165" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">P</text>
+<text x="245.2" y="211" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b">√2</text>
+</svg>
+<!--/svg:f011a-->
+  <figcaption>図1　1辺が1の正方形の対角線 OB の長さ \( \sqrt{2} \) を、コンパスで数直線上に移す。点 P の座標は \( \sqrt{2}=1.414\cdots \)</figcaption>
+</figure>
+<p>図1のように、数直線の 0 から 1 までを1辺とする正方形 OABC をかきます。対角線 OB の長さは、三平方の定理（中3-099）より \( \sqrt{1^2+1^2}=\sqrt{2} \) です。O を中心に半径 OB の円をかくと、数直線と交わる点 P の座標は \( \sqrt{2} \) になります。</p>
+<p>\( \sqrt{2} \) は無理数で、分数では表せません（数Ⅰ-009。このことの証明は数Ⅰ-029 で学びます）。つまり点 P は、有理数の点ではありません。有理数の点だけでは、数直線上に P のような点が残ってしまいます。これが導入の問い②の答えです。</p>
+
+<h3>実数と数直線上の点は1対1に対応する</h3>
+<p>数の範囲を実数まで広げると、数直線上のどの点にも、その座標となる実数がちょうど1つ対応し、どの実数にも、数直線上の点がちょうど1つ対応します。このような対応を<strong>1対1の対応</strong>といい、「<strong>実数は数直線上の点と1対1に対応している</strong>」といいます。有理数の点と無理数の点を合わせると、数直線はすき間なく埋まるのです。</p>
+<div class="box point"><p class="box-title">実数の大小と数直線</p><p>数直線では、<strong>右にある点ほど座標が大きい</strong>。実数 \( a,\ b \) について \( a&lt;b \) であることと、点 \( a \) が点 \( b \) より左にあることは同じです。負の数では、原点から遠い（絶対値が大きい）ほど左にあり、小さい数です（中1-004）。</p></div>
+
+<div class="box example worked">
+  <p class="box-title">例題2（実数の大小）</p>
+  <p>次の数を小さい順に並べなさい。　\( \sqrt{3},\ \ -1.5,\ \ \dfrac{5}{3},\ \ -\sqrt{2},\ \ 1.7 \)</p>
+  <div class="step">ステップ1（着目点）：まず符号で分けます。負の数は \( -1.5,\ -\sqrt{2} \)、正の数は \( \sqrt{3},\ \dfrac{5}{3},\ 1.7 \) で、負の数はどれも正の数より小さい（左にある）です。</div>
+  <div class="step">ステップ2（正の数どうし）：2乗して比べます（中3-021）。\( \left(\dfrac{5}{3}\right)^2=\dfrac{25}{9}=2.77\cdots \)、\( 1.7^2=2.89 \)、\( (\sqrt{3})^2=3 \) なので \( \dfrac{5}{3}&lt;1.7&lt;\sqrt{3} \)。</div>
+  <div class="step">ステップ3（負の数どうし）：\( 1.5^2=2.25 \)、\( (\sqrt{2})^2=2 \) なので \( \sqrt{2}&lt;1.5 \)。原点から遠い \( -1.5 \) のほうが左にあるので \( -1.5&lt;-\sqrt{2} \)。</div>
+  <div class="step">答え：\( -1.5&lt;-\sqrt{2}&lt;\dfrac{5}{3}&lt;1.7&lt;\sqrt{3} \)（図2）。</div>
+</div>
+<figure>
+<div class="fig-scroll">
+<!--svg:f011b-->
+<svg viewBox="0 0 560 230" width="560" role="img" aria-label="数直線上に −1.5、−√2、5/3、1.7、√3 をとった図。−1.5 が最も左で、−√2 がその右。5/3、1.7、√3 は 1.6 と 1.8 の間に集まっているので、下の拡大図で 5/3、1.7、√3 の順に右へ並ぶことを示す">
+<defs><marker id="ar011b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker><marker id="ar011b-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/></marker><marker id="ar011b-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f5fbf"/></marker><marker id="ar011b-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e8e5a"/></marker><marker id="ar011b-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b7791f"/></marker><marker id="ar011b-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<line x1="26" y1="70" x2="534" y2="70" stroke="currentColor" stroke-width="1" marker-end="url(#ar011b)"/>
+<line x1="40" y1="65" x2="40" y2="75" stroke="currentColor" stroke-width="1"/>
+<text x="40" y="88" text-anchor="middle" font-size="12" fill="currentColor">−2</text>
+<line x1="160" y1="65" x2="160" y2="75" stroke="currentColor" stroke-width="1"/>
+<text x="160" y="88" text-anchor="middle" font-size="12" fill="currentColor">−1</text>
+<line x1="280" y1="65" x2="280" y2="75" stroke="currentColor" stroke-width="1"/>
+<text x="280" y="88" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="400" y1="65" x2="400" y2="75" stroke="currentColor" stroke-width="1"/>
+<text x="400" y="88" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<line x1="520" y1="65" x2="520" y2="75" stroke="currentColor" stroke-width="1"/>
+<text x="520" y="88" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<circle cx="100" cy="70" r="5" fill="#1e8e5a"/>
+<text x="100" y="110" text-anchor="middle" font-size="12" font-weight="700" fill="#1e8e5a">−1.5</text>
+<circle cx="110.3" cy="70" r="5" fill="#c0392b"/>
+<text x="110.3" y="58" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">−√2</text>
+<circle cx="480" cy="70" r="3.5" fill="#1f5fbf"/>
+<circle cx="484" cy="70" r="3.5" fill="#1f5fbf"/>
+<circle cx="487.8" cy="70" r="3.5" fill="#1f5fbf"/>
+<rect x="472" y="61" width="24" height="18" fill="none" stroke="#b7791f" stroke-width="1.5"/>
+<text x="484" y="54" text-anchor="middle" font-size="12" fill="#b7791f">拡大</text>
+<line x1="472" y1="79" x2="100" y2="175" stroke="#b7791f" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="496" y1="79" x2="500" y2="175" stroke="#b7791f" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="86" y1="185" x2="514" y2="185" stroke="currentColor" stroke-width="1" marker-end="url(#ar011b)"/>
+<line x1="100" y1="180" x2="100" y2="190" stroke="currentColor" stroke-width="1"/>
+<text x="100" y="203" text-anchor="middle" font-size="12" fill="currentColor">1.6</text>
+<line x1="200" y1="180" x2="200" y2="190" stroke="currentColor" stroke-width="1"/>
+<text x="200" y="203" text-anchor="middle" font-size="12" fill="currentColor">1.65</text>
+<line x1="300" y1="180" x2="300" y2="190" stroke="currentColor" stroke-width="1"/>
+<text x="300" y="203" text-anchor="middle" font-size="12" fill="currentColor">1.7</text>
+<line x1="400" y1="180" x2="400" y2="190" stroke="currentColor" stroke-width="1"/>
+<text x="400" y="203" text-anchor="middle" font-size="12" fill="currentColor">1.75</text>
+<line x1="500" y1="180" x2="500" y2="190" stroke="currentColor" stroke-width="1"/>
+<text x="500" y="203" text-anchor="middle" font-size="12" fill="currentColor">1.8</text>
+<circle cx="233.3" cy="185" r="5" fill="#1f5fbf"/>
+<text x="233.3" y="173" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf">5/3</text>
+<circle cx="300" cy="185" r="5" fill="#1f5fbf"/>
+<text x="300" y="173" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf">1.7</text>
+<circle cx="364.1" cy="185" r="5" fill="#1f5fbf"/>
+<text x="364.1" y="173" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf">√3</text>
+</svg>
+<!--/svg:f011b-->
+</div>
+  <figcaption>図2　例題2の5つの数を数直線上に表した図。下は 1.6 から 1.8 までを拡大したもので、\( \frac{5}{3}=1.666\cdots \)、\( 1.7 \)、\( \sqrt{3}=1.732\cdots \) の順に右へ並ぶ</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い：負の数を正の数と同じ向きで比べる</p><p>「\( \sqrt{2}&lt;1.5 \) だから \( -\sqrt{2}&lt;-1.5 \)」は誤りです。数直線で見ると、\( -1.5 \) は \( -\sqrt{2} \) より原点から遠く、左にあります。負の符号を付けると、左右の並びが逆になります。正しくは \( -1.5&lt;-\sqrt{2} \) です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>四則演算</dt><dd>加法・減法・乗法・除法の4つの計算。四則計算ともいう。</dd>
+    <dt>閉じている</dt><dd>ある範囲の数どうしで、ある演算をした結果がいつもその範囲の数になること。除法では 0 でわる場合を除いて考える。</dd>
+    <dt>反例</dt><dd>「いつも成り立つ」とはいえないことを示す例。閉じていないことは反例1つで示せる。</dd>
+    <dt>有理数・無理数</dt><dd>整数 \( m \) と 0 でない整数 \( n \) で \( \frac{m}{n} \) と表せる数が有理数、分数で表せない数が無理数（数Ⅰ-009）。</dd>
+    <dt>実数</dt><dd>有理数と無理数を合わせた数。四則演算に関して閉じている（0 でわる除法を除く）。</dd>
+    <dt>座標</dt><dd>数直線上の点 P に対応する実数 \( a \)。P\( (a) \) と表す。</dd>
+    <dt>1対1の対応</dt><dd>2つのものの集まりの間で、一方のどのものにも他方のものがちょうど1つ対応し、逆も同じであるような対応。実数は数直線上の点と1対1に対応している。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>ある範囲の数どうしの演算の結果がいつもその範囲に入るとき、その範囲はその演算について閉じているという。閉じていないことは反例1つで示せる（O1）。</li>
+    <li>自然数は加法・乗法、整数は加法・減法・乗法について閉じている。有理数は四則演算について閉じている。無理数はどの演算についても閉じていない（O1）。</li>
+    <li>実数は四則演算に関して閉じている（0 でわる除法を除く）。有理数から実数へ広げると、閉じたまま \( \sqrt{2} \) のような量も数で表せる（O2）。</li>
+    <li>実数は数直線上の点と1対1に対応し、点 P に対応する実数を P の座標という。右にある点ほど大きい（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">有理数の四則（\( b,\ d\ne 0 \)）</span>
+    <p>\( \frac{a}{b}\pm\frac{c}{d}=\frac{ad\pm bc}{bd} \)<br>\( \frac{a}{b}\times\frac{c}{d}=\frac{ac}{bd} \)<br>\( \frac{a}{b}\div\frac{c}{d}=\frac{ad}{bc}\ (c\ne 0) \)</p></div>
+  <div><span class="f-name">閉じている範囲</span>
+    <p>自然数：加法・乗法<br>整数：加法・減法・乗法<br>有理数・実数：四則（0 でわる除法を除く）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>自然数の範囲が閉じている演算の組として正しいものはどれですか。</p>
+  <div class="choices"><button data-correct="true">加法と乗法</button><button>加法と減法</button><button>乗法と除法</button><button>四則演算のすべて</button></div>
+  <span class="result"></span>
+  <div class="explain">自然数どうしの和と積はいつも自然数です。「加法と減法」は、\( 3-5=-2 \) が自然数でないので誤り。「乗法と除法」は、\( 3\div 5=\frac{3}{5} \) が自然数でないので誤り。「四則演算のすべて」は、減法と除法に反例があるので誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>「整数の範囲は除法について閉じていない」ことを示す反例として正しいものはどれですか。</p>
+  <div class="choices"><button>\( 6\div 3 \)</button><button>\( (-8)\div 2 \)</button><button data-correct="true">\( 1\div 3 \)</button><button>\( 5\div 0 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( 1\div 3=\frac{1}{3} \) は整数ではないので反例になります。\( 6\div 3=2 \)、\( (-8)\div 2=-4 \) は結果が整数なので、反例になりません。\( 5\div 0 \) は 0 でわる除法で、そもそも考えないので反例には使えません（補足「0 でわる除法を考えない理由」）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>数直線上の点 P の座標が \( \sqrt{2} \) のとき、点 P があるのはどこですか。</p>
+  <div class="choices"><button>1 と 1.4 の間</button><button data-correct="true">1.4 と 1.5 の間</button><button>1.5 と 2 の間</button><button>2 と 3 の間</button></div>
+  <span class="result"></span>
+  <div class="explain">\( 1.4^2=1.96 \)、\( 1.5^2=2.25 \) で \( 1.96&lt;2&lt;2.25 \) なので、\( 1.4&lt;\sqrt{2}&lt;1.5 \) です（\( \sqrt{2}=1.414\cdots \)）。「1 と 1.4 の間」は \( 1.4^2=1.96 \) が 2 より小さいことを見落としています。「1.5 と 2 の間」は \( 1.5^2=2.25 \) が 2 より大きいことを見落としています。「2 と 3 の間」は、\( \sqrt{2} \) を「2 より大きい数」と取り違えた誤りです（\( (\sqrt{2})^2=2 \) なので \( \sqrt{2}&lt;2 \)）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>次のうち、正しい文はどれですか。</p>
+  <div class="choices">
+    <button>無理数どうしの和は、いつも無理数である。</button>
+    <button data-correct="true">有理数どうしの商は、0 でわる場合を除いて、いつも有理数である。</button>
+    <button>整数どうしの差は、いつも自然数である。</button>
+    <button>実数どうしの積が有理数になることはない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \frac{a}{b}\div\frac{c}{d}=\frac{ad}{bc} \)（\( c\ne 0 \)）で分子・分母は整数、分母は 0 でないので、有理数どうしの商は有理数です。「無理数どうしの和」は、\( \sqrt{2}+(-\sqrt{2})=0 \) が反例です。「整数どうしの差」は、\( 1-3=-2 \) が自然数でないので誤り。「実数どうしの積」は、\( \sqrt{2}\times\sqrt{2}=2 \) や \( 2\times 3=6 \) のように有理数になることがあるので誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O1</span></div>
+  <p>偶数全体（\( \cdots,\ -4,\ -2,\ 0,\ 2,\ 4,\ \cdots \)、整数 \( m \) を用いて \( 2m \) と表せる数）について、閉じている演算をすべて挙げたものはどれですか（除法は 0 でわる場合を除く）。</p>
+  <div class="choices">
+    <button data-correct="true">加法・減法・乗法</button>
+    <button>加法と乗法だけ</button>
+    <button>加法だけ</button>
+    <button>加法・減法・乗法・除法</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 2m+2n=2(m+n) \)、\( 2m-2n=2(m-n) \)、\( 2m\times 2n=2(2mn) \) で、\( m+n,\ m-n,\ 2mn \) は整数なので、和・差・積はいつも偶数です。除法は \( 2\div 4=\frac{1}{2} \) が偶数でないので閉じていません。「加法と乗法だけ」は、偶数に負の数や 0 が含まれることを忘れ、\( 2-4=-2 \) を偶数でないと考えた誤りです。「加法だけ」は乗法も確かめていない誤り、「四則すべて」は \( 4\div 2=2 \) のような例だけで判断した誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>有理数だけでは数直線上のすべての点を表せない理由として、正しいものはどれですか。</p>
+  <div class="choices">
+    <button>有理数の点は、数直線上にとびとびにしかないから。</button>
+    <button>負の数は数直線上に表せないから。</button>
+    <button data-correct="true">数直線上には、座標が \( \sqrt{2} \) のように有理数では表せない点があるから。</button>
+    <button>有理数は有限個しかないから。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">1辺が1の正方形の対角線を数直線に移した点の座標は \( \sqrt{2} \) で、これは無理数なので有理数では表せません。「とびとびにしかない」は誤りで、0 と 1 の間にも \( \frac{1}{2},\ \frac{1}{3},\ \frac{1}{10},\ \cdots \) と有理数の点はいくらでもあります（それでもすき間が残る点が大切です）。負の数は原点の左側に表せます。有理数は \( 1,\ 2,\ 3,\ \cdots \) だけでも無数にあり、有限個ではありません。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="-3/2|−3/2|-1.5|−1.5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O2</span></div>
+  <p>有理数どうしの商 \( \dfrac{2}{3}\div\left(-\dfrac{4}{9}\right) \) を計算し、分数で答えなさい（−5/7 のように、負の符号も付けて入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( -\dfrac{3}{2} \)。わる数の逆数をかけて、\( \dfrac{2}{3}\times\left(-\dfrac{9}{4}\right)=-\dfrac{18}{12}=-\dfrac{3}{2} \)。公式 \( \frac{a}{b}\div\frac{c}{d}=\frac{ad}{bc} \) でも \( \frac{2\times 9}{3\times(-4)}=-\frac{3}{2} \) で、結果は有理数です。\( -\dfrac{8}{27} \) と答えた場合は、逆数にせずにかけています。\( \dfrac{3}{2} \) と答えた場合は、負の符号を落としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2</span></div>
+  <p>太郎さんと花子さんが話しています。</p>
+  <p>太郎：「実数は四則演算に関して閉じているんだよね。じゃあ、無理数だけの範囲も、乗法について閉じているのかな。」<br>花子：「無理数どうしをかけても、有理数になることがあるよ。たとえば……。」</p>
+  <p>花子さんの考えを示す例として、2つの数がどちらも無理数で、積が有理数になるものはどれですか。</p>
+  <div class="choices">
+    <button>\( \sqrt{2} \) と \( \sqrt{3} \)</button>
+    <button data-correct="true">\( \sqrt{2} \) と \( \sqrt{8} \)</button>
+    <button>\( 2 \) と \( \sqrt{2} \)</button>
+    <button>\( \sqrt{2} \) と \( 1+\sqrt{2} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sqrt{2}\times\sqrt{8}=\sqrt{16}=4 \) で、積は有理数です。\( \sqrt{2}\times\sqrt{3}=\sqrt{6} \) は無理数なので、例になりません。\( 2 \) は有理数なので、「どちらも無理数」の条件に合いません。\( \sqrt{2}\times(1+\sqrt{2})=\sqrt{2}+2 \) は、無理数 \( \sqrt{2} \) に 2 を加えた数で有理数ではありません（有理数なら、それから 2 を引いた \( \sqrt{2} \) も有理数になってしまう）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O3</span></div>
+  <p>次の4つの数を数直線上に表したとき、最も左にあるものはどれですか。</p>
+  <div class="choices">
+    <button>\( -\sqrt{5} \)</button>
+    <button>\( -2.2 \)</button>
+    <button>\( -\dfrac{9}{4} \)</button>
+    <button data-correct="true">\( -2.3 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">符号を除いた数を2乗して比べると、\( 2.2^2=4.84 \)、\( (\sqrt{5})^2=5 \)、\( \left(\frac{9}{4}\right)^2=\frac{81}{16}=5.0625 \)、\( 2.3^2=5.29 \) なので \( 2.2&lt;\sqrt{5}&lt;\frac{9}{4}&lt;2.3 \)。負の数は原点から遠いほど左にあるので、\( -2.3&lt;-\frac{9}{4}&lt;-\sqrt{5}&lt;-2.2 \) で、最も左は \( -2.3 \) です。\( -2.2 \) を選んだ場合は、負の数でも「符号を除いた数が小さいほど左」と考えています。\( -\sqrt{5} \) を選んだ場合は \( \sqrt{5} \) を 2.3 より大きいと見積もっています（\( 2.3^2=5.29&gt;5 \)）。\( -\frac{9}{4} \) を選んだ場合は \( \frac{9}{4}=2.25 \) を 2.3 より大きいと取り違えています。</div>
+</div>
+
+<div class="q" data-type="open" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O2</span></div>
+  <p>「有理数どうしの差は、いつも有理数である」ことを、有理数を \( \dfrac{a}{b} \)、\( \dfrac{c}{d} \)（\( a,\ b,\ c,\ d \) は整数、\( b\ne 0 \)、\( d\ne 0 \)）と表して説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　\( \dfrac{a}{b}-\dfrac{c}{d}=\dfrac{ad-bc}{bd} \) である。\( a,\ b,\ c,\ d \) は整数で、整数は乗法・減法について閉じているから、\( ad-bc \) と \( bd \) は整数である。また \( b\ne 0 \)、\( d\ne 0 \) より \( bd\ne 0 \)。よって \( \dfrac{a}{b}-\dfrac{c}{d} \) は、整数を 0 でない整数でわった形に表せるので有理数である。</p>
+    <p><strong>採点の観点</strong>　① 差を1つの分数 \( \dfrac{ad-bc}{bd} \) に表している。② 分子・分母が整数であることの理由（整数は乗法・減法について閉じている）を述べている。③ 分母が 0 でないことを述べている。</p>
+  </div>
+  <div class="explain">「例をいくつか計算したら有理数になった」という説明では、「いつも」を示したことになりません。文字で表して、どの有理数でも成り立つことを示します。分母が 0 でないことの確認を落としやすいので注意しましょう。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(1) 数と式」の「数を実数まで拡張する意義を理解し，簡単な無理数の四則計算をすること」（ア(ア)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、問題の作成に当たっては「数学における概念や原理を基に考察したり，数学のよさを認識できたりするような題材等を含め検討する」と述べています。数の範囲と演算の関係を調べるこの時間の考え方は、数の性質を根拠をもって説明する土台になります。</p>
+  <p class="small">問8は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">絶対値（数Ⅰ-012）</p>
+  <p>次の時間は、この時間に学んだ「数直線上の点の座標」を使って、実数 \( a \) の絶対値 \( |a| \) を「原点からの距離」として表し、符号で場合を分けて絶対値の記号をはずします。さらに、2つの実数の差の絶対値を、数直線上の2点間の距離とみます。</p>
+  <p>この時間では、絶対値の記号 \( |a| \) の扱い（数Ⅰ-012）、根号を含む式の計算（数Ⅰ-013）は扱っていません。\( \sqrt{2} \) が無理数であることの証明は、数Ⅰ-029（背理法による証明）で学びます。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-010　有限小数と循環小数</div>
+  <div><span class="label">次の時間</span>数Ⅰ-012　絶対値</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-011「実数と数直線」（学習指導要領 数学Ⅰ (1)ア(ア)、解説 p.35-36）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(1) 数と式（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.35-36「数を実数まで拡張する意義を理解し，簡単な無理数の四則計算をすること」（実数が四則演算に関して閉じていること、直線上の点と1対1に対応していること、数が四則演算に関して閉じていることを調べるなど数を拡張する際の考え方に着目させること）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「実数」（各範囲での四則計算の可能性、実数を数直線上の点の座標として捉えること）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>東京書籍「評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）」の「実数」（実数が数直線上の点と1対1に対応していること）https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-011",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-011",
+  "title": "実数と数直線",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-1", "title": "数と式"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ア)"],
+  "kaisetsu_page": "35-36",
+  "objectives": [
+    {"id": "O1", "text": "自然数・整数・有理数・実数のそれぞれの範囲で、四則演算の結果がその範囲に入るか（閉じているか）を、例や反例を挙げて調べることができる。", "from": "自然数・整数・有理数・実数の範囲で四則演算が閉じているかを調べ", "sections": ["sec-1", "sec-2"], "checks": ["q1", "q2", "q5"]},
+    {"id": "O2", "text": "実数が四則演算に関して閉じていること（0 でわる除法は除く）と、数の範囲を実数まで広げる意味を説明できる。", "from": "実数が四則演算に関して閉じていること", "sections": ["sec-2"], "checks": ["q4", "q7", "q8", "q10"]},
+    {"id": "O3", "text": "実数が数直線上の点と1対1に対応していることを理解し、実数を数直線上の点の座標として表したり、数直線を使って数の大小を判断したりできる。", "from": "実数が数直線上の点と1対1に対応していることを理解する", "sections": ["sec-3"], "checks": ["q3", "q6", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "四則演算", "where": "sec-1"},
+    {"term": "閉じている", "where": "sec-1"},
+    {"term": "反例", "where": "sec-1"},
+    {"term": "実数", "where": "sec-2"},
+    {"term": "座標", "where": "sec-3"},
+    {"term": "1対1の対応", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "自然数・整数・有理数・無理数・実数の分類と、有理数は分数で表せる数・無理数は分数で表せない数であること", "taught_in": ["hs_math_1a/数Ⅰ-009", "jhs_math/中3-023"], "where": "review"},
+    {"concept": "循環小数を分数で表す", "taught_in": ["hs_math_1a/数Ⅰ-010"], "where": "review"},
+    {"concept": "平方根の大小を2乗した数で比べる", "taught_in": ["jhs_math/中3-021"], "where": "review"},
+    {"concept": "自然数・整数・数全体で四則計算がいつでもできるかを調べたこと", "taught_in": ["jhs_math/中1-019"], "where": "sec-1"},
+    {"concept": "除法を乗法の逆として考えること", "taught_in": ["jhs_math/中1-014"], "where": "supp-1"},
+    {"concept": "0 でわる除法は考えないこと（中1-014・中1-019 の要点に明記がない）", "taught_in": [], "gap": true, "where": "supp-1"},
+    {"concept": "数を文字で表して偶数・奇数の性質を説明する（2m、2m+1）", "taught_in": ["jhs_math/中2-008"], "where": "sec-1"},
+    {"concept": "分数の四則計算（通分、逆数を使った除法）", "taught_in": ["jhs_math/中1-006", "jhs_math/中1-015"], "where": "sec-2"},
+    {"concept": "根号を含む式の乗法・除法（√a×√b=√ab）", "taught_in": ["jhs_math/中3-024"], "where": "sec-2"},
+    {"concept": "数直線と数の大小、負の数の大小と絶対値", "taught_in": ["jhs_math/中1-003", "jhs_math/中1-004"], "where": "sec-3"},
+    {"concept": "三平方の定理で直角三角形の辺の長さを求める", "taught_in": ["jhs_math/中3-099"], "where": "sec-3"},
+    {"concept": "平方根の近似値（1.4<√2<1.5）", "taught_in": ["jhs_math/中3-022"], "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "絶対値の記号 |a| と、差の絶対値を2点間の距離とみること（数Ⅰ-012）",
+    "根号を含む式の計算（数Ⅰ-013）・分母の有理化（数Ⅰ-014）",
+    "√2 が無理数であることの証明（数Ⅰ-029）",
+    "集合の記号（∈、⊂ など）を使った数の範囲の表し方（数Ⅰ-021）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『数と式』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(1)ア(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.35-36 実数が四則演算に関して閉じていること、直線上の点と1対1に対応していることの扱い"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "各範囲での四則計算の可能性、実数を数直線上の点の座標として捉えることが教科書の学習項目であることの確認"},
+    {"name": "評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf", "use": "実数が数直線上の点と1対1に対応していることが教科書の学習項目であることの確認"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

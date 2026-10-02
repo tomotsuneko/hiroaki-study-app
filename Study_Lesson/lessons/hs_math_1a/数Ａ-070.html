@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>復習：円の性質と空間図形｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>復習（予備時間）</span><span>数Ａ-070</span></div>
+  <h1>復習：円の性質と空間図形</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">復習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">円周角の定理から始まった円の性質は、円に内接する四角形、接線と弦のつくる角、方べきの定理、2つの円の位置関係へと広がり、空間の直線と平面・多面体へと続きました。この時間は数Ａ-047〜063 の要点を5つにまとめ直します。数学Ａの最後のコマです。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>円周角の定理（逆を含む）と、円に内接する四角形の性質・四角形が円に内接するための条件を用いて、角の大きさを求めたり、4点が同じ円周上にあるかを判断したりできる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>接線と弦のつくる角の性質を、その角の内部にある弧と反対側の弧の上の点を見分けて用い、角の大きさを求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>方べきの定理（接線を含む場合と逆を含む）を、点と円の交わり方に合わせて用い、線分の長さを求めたり、4点が同じ円周上にあるかを判断したりできる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>2つの円の半径と中心間の距離から位置関係を判断し、共通接線の長さを求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O5" aria-label="O5"><span><span class="oid">O5</span>空間の直線と平面の位置関係・なす角・垂直（三垂線の定理を含む）と、多面体の頂点・辺・面の数（オイラーの多面体定理）を用いて、空間図形の問題を解くことができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-069）</span>復習：三角形の性質</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-070）</span>復習：円の性質と空間図形</div>
+  <div class="arrow">→</div>
+  <div><span class="label">この後</span>数学Ａのまとめ（この時間が数学Ａの最後のコマ）</div>
+</div>
+<p class="small">範囲：単元「図形の性質」のうち円の性質（数Ａ-047〜054）と空間図形（数Ａ-059〜062）。この時間は単元「復習（予備時間）」の1コマで、新しい内容は扱いません。問題は範囲のページの例題・確認問題と単元末演習（数Ａ-064）と同じものを使わず、数値や図を変えています。各問の「復習するなら数Ａ-0xx」は、その型を学んだコマです。範囲のうち星形七角形（数Ａ-055）、作図（数Ａ-056〜058）、情報機器を用いた考察（数Ａ-063）は、この時間の要点に入らないので、要点の一覧で確かめるだけにします。四角形は、どの内角も 180° より小さいものを考えます（数Ａ-049 と同じ）。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：範囲の要点の一覧</h2>
+<p>数Ａ-047〜063 で学んだ要点を、学んだコマとともに並べます。</p>
+<div class="formula-card">
+  <div><span class="f-name">① 円周角の定理と逆（数Ａ-047）</span><p>\( \angle\mathrm{APB}=\dfrac{1}{2}\times \)（P を含まない弧 AB に対する中心角）。同じ弧に対する円周角は等しい。逆：P、Q が直線 AB について同じ側で \( \angle\mathrm{APB}=\angle\mathrm{AQB} \) ならば、A、B、P、Q は1つの円周上。</p></div>
+  <div><span class="f-name">② 円に内接する四角形の性質（数Ａ-048）</span><p>対角の和は \( 180^\circ \)。1つの外角は、それと隣り合う内角の対角に等しい。</p></div>
+  <div><span class="f-name">③ 四角形が円に内接するための条件（数Ａ-049）</span><p>どれか1つを満たせば円に内接する：(ア) 対角の和が \( 180^\circ \)　(イ) 1つの外角が、隣り合う内角の対角に等しい　(ウ) 1つの辺を、残りの2頂点（同じ側）から見込む角が等しい。円に内接しないことの根拠は、②の性質の対偶。</p></div>
+  <div><span class="f-name">④ 接線の長さ（数Ａ-050）</span><p>円外の点 P から引いた2本の接線の接点を A、B とすると \( \mathrm{PA}=\mathrm{PB} \)。内接円の接点で分けられる長さは \( \mathrm{AF}=\mathrm{AE}=\dfrac{b+c-a}{2} \) など。</p></div>
+  <div><span class="f-name">⑤ 接線と弦のつくる角（数Ａ-051）</span><p>\( \angle\mathrm{TAB}=\angle\mathrm{ACB} \)（C は ∠TAB の内部にない弧の上の点）。</p></div>
+  <div><span class="f-name">⑥ 方べきの定理（数Ａ-052）</span><p>\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)（P は円の内部でも外部でもよい）。</p></div>
+  <div><span class="f-name">⑦ 方べきの定理（接線を含む場合）と逆（数Ａ-053）</span><p>\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \)（T は接点）。逆：\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) ならば A、B、C、D は1つの円周上（P は2本の線分の上、または2本の延長上）。</p></div>
+  <div><span class="f-name">⑧ 2つの円の位置関係と共通接線（数Ａ-054）</span><p>（\( r&gt;r' \)）離れている \( d&gt;r+r' \)／外接 \( d=r+r' \)／2点で交わる \( r-r'&lt;d&lt;r+r' \)／内接 \( d=r-r' \)／内部 \( d&lt;r-r' \)。共通接線の長さ：同じ側 \( \sqrt{d^2-(r-r')^2} \)、反対側 \( \sqrt{d^2-(r+r')^2} \)（\( d\geqq r+r' \) のときだけ）。</p></div>
+  <div><span class="f-name">⑨ 星形七角形（数Ａ-055）</span><p>7つの頂点を1つの円周上にとり、円周角の定理と円に内接する四角形の性質を用いて先端の角の和を求める（2つ先と結ぶと \( 540^\circ \)、3つ先と結ぶと \( 180^\circ \)）。</p></div>
+  <div><span class="f-name">⑩ 作図（数Ａ-056〜058）</span><p>着目する性質から方針を立て、手順が正しいことを図形の性質で説明する（内分点・外分点は平行線と線分の比、円外の点を通る接線は半円の弧に対する円周角、正五角形は対角線と辺の比、3本の平行線上の正三角形は 60° の回転）。</p></div>
+  <div><span class="f-name">⑪ 空間の直線と平面（数Ａ-059）</span><p>2直線は交わる・平行・ねじれの位置（2直線を両方含む平面がない）。なす角は、平行な直線に移して交わらせ、できた角のうち \( 90^\circ \) 以下のもの。</p></div>
+  <div><span class="f-name">⑫ 直線と平面の垂直・三垂線の定理（数Ａ-060）</span><p>平面 \( \alpha \) 上の交わる2直線 \( m \)、\( n \) に \( \ell\perp m \)、\( \ell\perp n \) ならば \( \ell\perp\alpha \)。三垂線の定理 (1)：\( \mathrm{PO}\perp\alpha \)、\( \mathrm{OQ}\perp\ell \) ならば \( \mathrm{PQ}\perp\ell \)。</p></div>
+  <div><span class="f-name">⑬ 多面体（数Ａ-061）</span><p>\( e= \)（面ごとの辺の数の合計）\( \div2 \)、\( v= \)（面ごとの頂点の数の合計）\( \div k \)（\( k \)：1つの頂点に集まる面の数）。へこみのない多面体では \( v-e+f=2 \)（オイラーの多面体定理）。</p></div>
+  <div><span class="f-name">⑭ 空間図形の性質の考察（数Ａ-062）</span><p>立体を平面で切ってできる立体を、切り口と面・辺・頂点に着目して説明する。球と方べきの定理：内部 \( \mathrm{PA}\cdot\mathrm{PB}=r^2-\mathrm{OP}^2 \)、外部 \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{OP}^2-r^2=\mathrm{PT}^2 \)。</p></div>
+  <div><span class="f-name">⑮ 情報機器を用いた考察（数Ａ-063）</span><p>点を動かして性質を予想・確認し、成り立つ理由を説明する。平面図形の実際の形は、その図形を含む平面に垂直な方向から見る。</p></div>
+</div>
+<p class="small">①〜⑮は、このページの中での番号です。④の接線の長さと、⑦の方べきの定理の逆は、教科書で一般的に扱われる内容（†）として学びました（数Ａ-050・数Ａ-053 の注を参照）。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-053</span></div>
+  <p>円の外部の点 P から引いた接線の接点を T とし、P を通る直線が円と A、B で交わるとします。いつも成り立つ式はどれですか。</p>
+  <div class="choices">
+    <button>\( \mathrm{PA}\cdot\mathrm{AB}=\mathrm{PT}^2 \)</button>
+    <button data-correct="true">\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \)</button>
+    <button>\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">積をとるのは P から2つの交点までの長さ PA と PB で、接線の場合は2つの交点が重なって PT と PT の積になるので \( \mathrm{PT}^2 \) です（数Ａ-053）。\( \mathrm{PA}\cdot\mathrm{AB} \) は弦の長さ AB を使った誤り、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT} \) は2乗を忘れた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-059</span></div>
+  <p>空間の異なる2直線が交わらないとき、2直線の位置関係として考えられるものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">平行か、ねじれの位置</button>
+    <button>平行だけ</button>
+    <button>ねじれの位置だけ</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">空間では、交わらない2直線には、平行の場合（2直線を両方含む平面がある）と、ねじれの位置の場合（そのような平面がない）があります（数Ａ-059）。「平行だけ」は、平面の上で考えたときの思い込みです。「ねじれの位置だけ」は、立体の同じ面の上にない2直線でも平行になることがある（直方体の向かい合う面の対角線など）のを見落としています。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-061</span></div>
+  <p>三角柱の面は、三角形が2つと長方形が3つです。面ごとの辺の数を合計して、三角柱の辺の数を求めるとどれですか。</p>
+  <div class="choices">
+    <button>18</button>
+    <button>6</button>
+    <button data-correct="true">9</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">面ごとの辺の数の合計は \( 3\times2+4\times3=18 \) で、どの辺も2つの面に共有されているので2回ずつ数えています。辺の数は \( 18\div2=9 \) です（数Ａ-061）。18 は重なりを割り忘れた誤り、6 は頂点の数と取り違えた誤りです。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：どの性質を使う？</h2>
+<div class="box think">
+  <p class="box-title">この6問、何に着目する？</p>
+  <p>(ア) \( \angle\mathrm{ABC}=60^\circ \)、\( \angle\mathrm{ACB}=75^\circ \) の △ABC の辺 AB 上に点 E、辺 BC 上に点 D を \( \angle\mathrm{BAD}=\angle\mathrm{BCE}=25^\circ \) となるようにとると、A、E、D、C は同じ円周上にある？<br>
+  (イ) 円に内接する四角形 ABCD で、点 A における接線と弦 AB のつくる角が \( 48^\circ \)、\( \angle\mathrm{BCD}=100^\circ \) のとき、△ABD の角は？<br>
+  (ウ) 円の外部の点から引いた接線の長さが \( 3\sqrt{5} \)、同じ点を通る直線が円から切り取る弦の長さが 4 のとき、点から近いほうの交点までの距離は？<br>
+  (エ) 半径 6 と 3 の2つの円の中心が 15 離れているとき、共通接線は何本あって、長さはいくら？<br>
+  (オ) 直方体の、向かい合う面にある2直線は、平行？ ねじれの位置？ なす角は？<br>
+  (カ) 正三角形と正六角形の面でできた多面体の、辺と頂点の数は？</p>
+  <p>それぞれ、どの性質を使うかを予想しましょう。答えは、(ア) が「3 円周角と円に内接する四角形」の例題1、(イ) が「4 円の接線」の例題2、(ウ) が「5 方べきの定理」の例題3、(エ) が「6 2つの円」の例題4、(オ)(カ) が「7 空間の直線と平面・多面体」の例題5・例題6で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="円周角と円に内接する四角形"><span class="num">3</span>円周角と円に内接する四角形：性質と条件</h2>
+<p>円周角の定理とその逆（数Ａ-047）から、円に内接する四角形の性質（数Ａ-048）と、四角形が円に内接するための条件（数Ａ-049）を導きました。性質は「4点が同じ円周上にある」と分かっているときに角を求めるのに使い、逆（条件）は「4点が同じ円周上にある」ことを示すのに使います。</p>
+<h3>対比表：性質と逆（数Ａ-047〜049）</h3>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>性質（定理）</th><th>逆（条件）</th></tr>
+  <tr><td>円周角</td><td>同じ弧に対する円周角は等しく、中心角の半分（数Ａ-047）</td><td>P、Q が直線 AB について同じ側で \( \angle\mathrm{APB}=\angle\mathrm{AQB} \) ならば、4点は1つの円周上（数Ａ-047）</td></tr>
+  <tr><td>円に内接する四角形</td><td>対角の和は \( 180^\circ \)。外角は隣り合う内角の対角に等しい（数Ａ-048）</td><td>対角の和が \( 180^\circ \)、または外角が隣り合う内角の対角に等しいならば、円に内接する（数Ａ-049）</td></tr>
+  <tr><td>使う場面</td><td>4点が同じ円周上にあると分かっていて、角を求める</td><td>4点が同じ円周上にあることを示す</td></tr>
+  <tr><td>角が等しくない（和が \( 180^\circ \) でない）とき</td><td colspan="2">4点は同じ円周上にない。根拠は性質（定理）の<strong>対偶</strong>で、逆ではない（数Ａ-047・数Ａ-049）</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題1（4点が同じ円周上にあることを示し、角を求める）＝導入の (ア)</p>
+  <p>\( \angle\mathrm{ABC}=60^\circ \)、\( \angle\mathrm{ACB}=75^\circ \) の △ABC の辺 AB 上に点 E、辺 BC 上に点 D を、\( \angle\mathrm{BAD}=\angle\mathrm{BCE}=25^\circ \) となるようにとります（図1）。(1) 4点 A、E、D、C は同じ円周上にあることを示しなさい。(2) ∠ADE を求めなさい。(3) ∠BED を求めなさい。</p>
+  <div class="step">(1) 着目：∠BAD と ∠BCE は、線分 ED を A と C から見込む角です（E は辺 AB 上、D は辺 BC 上）。\( \angle\mathrm{EAD}=\angle\mathrm{BAD}=25^\circ \)、\( \angle\mathrm{ECD}=\angle\mathrm{BCE}=25^\circ \) で等しく、A と C は直線 ED について同じ側にあります。円周角の定理の逆（①）より、4点 A、E、D、C は1つの円周上にあります。</div>
+  <div class="step">(2) 着目：∠ADE と ∠ACE は弧 AE に対する円周角で、D と C は直線 AE について同じ側にあります（①）。\( \angle\mathrm{ADE}=\angle\mathrm{ACE}=\angle\mathrm{ACB}-\angle\mathrm{BCE}=75^\circ-25^\circ=50^\circ \)。答え：<span data-ans="ex1b">\( \angle\mathrm{ADE}=50^\circ \)</span>。</div>
+  <div class="step">(3) 着目：四角形 AEDC は円に内接するので、頂点 E の外角 ∠BED は、隣り合う内角 ∠AED の対角 ∠ACD に等しくなります（②）。答え：<span data-ans="ex1c">\( \angle\mathrm{BED}=\angle\mathrm{ACB}=75^\circ \)</span>。確かめ：△BED の内角の和から \( \angle\mathrm{BDE}=180^\circ-60^\circ-75^\circ=45^\circ \) で、これは D の外角として \( \angle\mathrm{BAC}=180^\circ-60^\circ-75^\circ=45^\circ \) に等しく、②と合っています。</div>
+</div>
+<figure>
+<!--svg:f070a-->
+<svg viewBox="0 0 325 296" width="325" role="img" aria-label="∠ABC=60°、∠ACB=75° の三角形 ABC。辺 AB 上の点 E と辺 BC 上の点 D は ∠BAD=∠BCE=25°。A、E、D、C を通る円（紫の破線）。∠ADE=∠ACE" data-fig="f070a" data-s="50.000000" data-ox="22.053215" data-oy="268.527991">
+<circle cx="180" cy="153" r="122.9" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="5 4" data-circle="AEDC" data-cx="3.159025" data-cy="2.310560" data-r="2.458846"/>
+<line x1="158.7" y1="31.9" x2="22.1" y2="268.5" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="22.1" y1="268.5" x2="222.1" y2="268.5" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="222.1" y1="268.5" x2="158.7" y2="31.9" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="158.7" y1="31.9" x2="138" y2="268.5" stroke="currentColor" stroke-width="1.6" data-seg="AD"/>
+<line x1="222.1" y1="268.5" x2="64.5" y2="195" stroke="currentColor" stroke-width="1.6" data-seg="CE"/>
+<line x1="64.5" y1="195" x2="138" y2="268.5" stroke="currentColor" stroke-width="1.6" data-seg="ED"/>
+<path d="M156.6,55.8 A24,24 0 0 1 146.7,52.7" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="A,B,D" data-mark="1"/>
+<path d="M198.1,268.5 A24,24 0 0 1 200.3,258.4" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="C,B,E" data-mark="1"/>
+<path d="M126.6,257.2 A16,16 0 0 1 139.4,252.6 M124.1,254.7 A19.6,19.6 0 0 1 139.7,249" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="D,A,E" data-mark="2"/>
+<path d="M191.2,254.2 A34,34 0 0 1 213.3,235.7 M188,252.6 A37.6,37.6 0 0 1 212.3,232.2" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="C,A,E" data-mark="2"/>
+<circle cx="158.66" cy="31.93" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="2.732051" data-y="4.732051"/>
+<circle cx="22.05" cy="268.53" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<circle cx="222.05" cy="268.53" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="4.000000" data-y="0.000000"/>
+<circle cx="137.96" cy="268.53" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="D" data-x="2.318050" data-y="0.000000"/>
+<circle cx="64.48" cy="195.05" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="E" data-x="0.848465" data-y="1.469585"/>
+<text x="158.7" y="22.1" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="9.9" y="279.7" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="234.2" y="279.7" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="142.1" y="288.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<text x="50.4" y="194.1" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">E</text>
+</svg>
+<!--/svg:f070a-->
+  <figcaption>図1　例題1の △ABC と点 D、E。A、E、D、C を通る円（紫の破線）。橙の弧1本は \( \angle\mathrm{BAD}=\angle\mathrm{BCE}=25^\circ \)、橙の弧2本は \( \angle\mathrm{ADE}=\angle\mathrm{ACE} \)（学習用に作成した図）</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">つまずきやすい点（円周角と円に内接する四角形）</p>
+<p>(1) 円周角を中心角と同じ大きさにする、または中心角の2倍にする。円周角は中心角の半分です（数Ａ-047）。<br>
+(2) どの弧に対する円周角かを取り違える。円周角は、その点を含まない弧に対する角です（数Ａ-047・数Ａ-048）。<br>
+(3) 「同じ側」の条件を確かめずに円周角の定理の逆を使う。反対側にある2点では、角が等しくても同じ円周上とは限りません（数Ａ-047）。<br>
+(4) 隣り合う角の和を \( 180^\circ \) とする。和が \( 180^\circ \) になるのは向かい合う角です（数Ａ-048）。<br>
+(5) 外角と等しい角を、外角の両どなりの頂点の角と取り違える。等しいのは、隣り合う内角の向かいの角です（数Ａ-048）。<br>
+(6) 角が等しくない（和が \( 180^\circ \) でない）ときの根拠を「逆より」と書く。根拠は性質（定理）の対偶です（数Ａ-047・数Ａ-049）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="円の接線"><span class="num">4</span>円の接線：半径との垂直、接線の長さ、接線と弦のつくる角</h2>
+<p>円の接線については、接線が接点を通る半径に垂直であること（中1-085）をもとに、2本の接線の長さが等しいこと（数Ａ-050）と、接線と弦のつくる角が円周角に等しいこと（数Ａ-051）を学びました。</p>
+<h3>対比表：円の接線の性質（中1-085、数Ａ-050・051）</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>性質</th><th>内容</th><th>学んだコマ</th></tr>
+  <tr><td>接線と半径</td><td>接線は、接点を通る半径に垂直</td><td>中1-085</td></tr>
+  <tr><td>接線の長さ</td><td>円外の点 P から引いた2本の接線の長さは等しい（\( \mathrm{PA}=\mathrm{PB} \)）。証明は直角三角形の合同（斜辺と他の1辺）</td><td>数Ａ-050</td></tr>
+  <tr><td>内接円と接点</td><td>同じ頂点から引いた2本の接線の長さが等しいので、\( \mathrm{AF}=\mathrm{AE}=\dfrac{b+c-a}{2} \) など</td><td>数Ａ-050</td></tr>
+  <tr><td>接線と弦のつくる角</td><td>∠TAB は、その角の内部にある弧に対する円周角（反対側の弧の上の点 C の ∠ACB）に等しい。証明は鋭角・直角・鈍角の場合に分ける</td><td>数Ａ-051</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（接線と弦のつくる角と、円に内接する四角形）＝導入の (イ)</p>
+  <p>円に内接する四角形 ABCD があります。点 A における円の接線上に、直線 AB について D と反対側に点 T をとると、\( \angle\mathrm{TAB}=48^\circ \) でした。\( \angle\mathrm{BCD}=100^\circ \) のとき、∠ADB と ∠ABD を求めなさい（図2）。</p>
+  <div class="step">着目：T は直線 AB について D と反対側にあるので、∠TAB の内部にある弧 AB の上に D はありません。D は反対側の弧の上の点で、∠ADB は ∠TAB の内部にある弧 AB に対する円周角です（⑤）。</div>
+  <div class="step">∠ADB：接線と弦のつくる角の性質より \( \angle\mathrm{ADB}=\angle\mathrm{TAB}=48^\circ \)。</div>
+  <div class="step">∠BAD：四角形 ABCD は円に内接するので、対角の和より \( \angle\mathrm{BAD}=180^\circ-\angle\mathrm{BCD}=180^\circ-100^\circ=80^\circ \)（②）。</div>
+  <div class="step">答え：<span data-ans="ex2">\( \angle\mathrm{ADB}=48^\circ \)、\( \angle\mathrm{ABD}=180^\circ-80^\circ-48^\circ=52^\circ \)</span>（△ABD の内角の和、中2-048）。</div>
+</div>
+<figure>
+<!--svg:f070b-->
+<svg viewBox="0 0 242 248" width="242" role="img" aria-label="円に内接する四角形 ABCD と、点 A における接線（青の実線）上の点 T。T は直線 AB について D と反対側。∠TAB と ∠ADB は等しく 48°。∠BCD=100°" data-fig="f070b" data-s="44.000000" data-ox="121.000000" data-oy="129.000000">
+<circle cx="121" cy="129" r="96.8" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="5 4" data-circle="circ" data-cx="0.000000" data-cy="0.000000" data-r="2.200000"/>
+<path d="M121,32.2 L126.4,32.4 L131.8,32.8 L137.1,33.6 L142.4,34.6 L147.7,35.9 L152.8,37.6 L157.9,39.5 L162.8,41.7 L167.6,44.2 L172.3,46.9 L176.8,49.9 L181.1,53.1 L185.3,56.6 L189.2,60.3 L192.9,64.2 L196.4,68.3 L199.7,72.7 L202.7,77.1 L205.5,81.8 L208,86.6 L210.2,91.5 L212.2,96.5 L213.9,101.7 L215.2,106.9 L216.3,112.2 L217.1,117.5 L217.6,122.9 L217.8,128.3 L217.7,133.7 L217.3,139.1" fill="none" stroke="#1e8e5a" stroke-width="3.2" data-arc="AB" data-from="90.0" data-to="-6.0"/>
+<line x1="59.4" y1="32.2" x2="209" y2="32.2" stroke="#1f5fbf" stroke-width="1.6" data-seg="tangent"/>
+<line x1="121" y1="32.2" x2="217.3" y2="139.1" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="217.3" y1="139.1" x2="127.8" y2="225.6" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="127.8" y1="225.6" x2="27.1" y2="152.4" stroke="currentColor" stroke-width="1.6" data-seg="CD"/>
+<line x1="27.1" y1="152.4" x2="121" y2="32.2" stroke="currentColor" stroke-width="1.6" data-seg="DA"/>
+<line x1="217.3" y1="139.1" x2="27.1" y2="152.4" stroke="currentColor" stroke-width="1.6" data-seg="BD"/>
+<path d="M157,32.2 A36,36 0 0 1 145.1,59" fill="none" stroke="#b7791f" stroke-width="1.8" data-angle="A,T,B" data-mark="1"/>
+<path d="M43.1,131.9 A26,26 0 0 1 53,150.6" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="D,A,B" data-mark="1"/>
+<path d="M116.4,217.3 A14,14 0 0 1 137.8,215.8" fill="none" stroke="#8a99a8" stroke-width="1.4" data-angle="C,B,D" data-mark="1"/>
+<text x="125.5" y="196.1" text-anchor="middle" font-size="11" fill="currentColor">100°</text>
+<circle cx="121.00" cy="32.20" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="0.000000" data-y="2.200000"/>
+<text x="121" y="22.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="217.27" cy="139.12" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="2.187948" data-y="-0.229963"/>
+<text x="231.2" y="144.8" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="127.75" cy="225.56" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="0.153464" data-y="-2.194641"/>
+<text x="128.7" y="243.7" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="27.08" cy="152.42" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="D" data-x="-2.134651" data-y="-0.532228"/>
+<text x="13.5" y="160" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<circle cx="209.00" cy="32.20" r="2.8" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="T" data-x="2.000000" data-y="2.200000"/>
+<text x="209" y="23.4" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">T</text>
+<text x="165.9" y="61.5" text-anchor="middle" font-size="11" fill="currentColor">48°</text>
+</svg>
+<!--/svg:f070b-->
+  <figcaption>図2　例題2の円に内接する四角形 ABCD と、点 A における接線（青の実線）。緑の太線は ∠TAB の内部にある弧 AB。橙の弧1本は \( \angle\mathrm{TAB}=\angle\mathrm{ADB}=48^\circ \)（学習用に作成した図）</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">つまずきやすい点（円の接線）</p>
+<p>(1) ∠TAB を、その角の内部にある弧の上の点から見込む円周角と等しいとする。その角は \( 180^\circ-\angle\mathrm{TAB} \) です（数Ａ-051）。<br>
+(2) ∠TAB と等しい角を、弦の端の頂点の角と取り違える。等しいのは、反対側の弧の上の点から見込む角です（数Ａ-051）。<br>
+(3) 中心角と円周角を取り違える。∠TAB の内部にある弧に対する中心角は \( 2\angle\mathrm{TAB} \) です（数Ａ-051）。<br>
+(4) 接線の長さを、中心までの距離 OP とする。接線の長さは P から接点までの長さです（数Ａ-050）。<br>
+(5) 内接円の接点で分けた長さで、同じ辺の上の2つ（BD と DC など）を等しいとする。等しいのは、同じ頂点から引いた2本の接線の長さです（数Ａ-050）。<br>
+(6) ∠TAB が鋭角の場合の証明だけで、いつも成り立つとする。直角・鈍角の場合は別に示します（数Ａ-051）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="方べきの定理"><span class="num">5</span>方べきの定理：交わり方で式を選ぶ</h2>
+<p>方べきの定理は、点 P を通る2本の直線と円の交わり方によって、3つの形で使いました（数Ａ-052・053）。どの形でも、かけるのは P から円との交点までの長さです。</p>
+<h3>対比表：方べきの定理の形（数Ａ-052・053・062）</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>交わり方</th><th>式</th><th>証明で使った相似</th></tr>
+  <tr><td>2つの弦が円の内部の点 P で交わる</td><td>\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)</td><td>△PAC∽△PDB（同じ弧に対する円周角、対頂角）（数Ａ-052）</td></tr>
+  <tr><td>2つの弦の延長が円の外部の点 P で交わる</td><td>\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)</td><td>△PAC∽△PDB（共通な角、円に内接する四角形の外角）（数Ａ-052）</td></tr>
+  <tr><td>円の外部の点 P から接線 PT と、P を通る直線</td><td>\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \)</td><td>△PTA∽△PBT（共通な角、接線と弦のつくる角）（数Ａ-053）</td></tr>
+  <tr><td>逆</td><td colspan="2">\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) で、P が2本の線分の上、または2本の延長上にあれば、A、B、C、D は1つの円周上（数Ａ-053）</td></tr>
+  <tr><td>球（空間）</td><td colspan="2">中心 O を通る平面で切った切り口の円に方べきの定理を使い、内部 \( \mathrm{PA}\cdot\mathrm{PB}=r^2-\mathrm{OP}^2 \)、外部 \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{OP}^2-r^2 \)（数Ａ-062）</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（接線を含む場合と、方べきの定理の逆）＝導入の (ウ)</p>
+  <p>(1) 円の外部の点 P から引いた接線の接点を T とします。P を通る直線が円と A、B（A のほうが P に近い）で交わり、\( \mathrm{PT}=3\sqrt{5} \)、\( \mathrm{AB}=4 \) です。PA の長さを求めなさい（図3）。(2) 線分 AB と線分 CD が点 P で交わり、\( \mathrm{PA}=6 \)、\( \mathrm{PB}=5 \)、\( \mathrm{PC}=3 \)、\( \mathrm{PD}=10 \) です。4点 A、B、C、D は1つの円周上にあるかを答えなさい。</p>
+  <div class="step">(1) 着目：かけるのは P から2つの交点までの長さ PA と PB です（⑦）。\( \mathrm{PA}=x \) とすると \( \mathrm{PB}=x+4 \)。</div>
+  <div class="step">\( x(x+4)=\left(3\sqrt{5}\right)^2=45 \) より \( x^2+4x-45=0 \)、\( (x+9)(x-5)=0 \)。\( x&gt;0 \) なので \( x=5 \)。答え：<span data-ans="ex3a">\( \mathrm{PA}=5 \)</span>（\( \mathrm{PB}=9 \)）。</div>
+  <div class="step">(2) 着目：P は2本の線分の上にあるので、方べきの定理の逆（⑦）が使えます。\( \mathrm{PA}\cdot\mathrm{PB}=6\times5=30 \)、\( \mathrm{PC}\cdot\mathrm{PD}=3\times10=30 \) で等しくなります。</div>
+  <div class="step">答え：<span data-ans="ex3b">4点 A、B、C、D は1つの円周上にある</span>（方べきの定理の逆）。</div>
+</div>
+<figure>
+<!--svg:f070c-->
+<svg viewBox="0 0 361 224" width="361" role="img" aria-label="半径 3 の円と、円の外部の点 P。P から引いた接線 PT（青の実線、T は接点で緑）と、P を通り円と A、B で交わる直線。PA=5、AB=4、PT=3√5" data-fig="f070c" data-s="30.000000" data-ox="114.272962" data-oy="112.000000">
+<circle cx="114.3" cy="112" r="90" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="5 4" data-circle="circ" data-cx="0.000000" data-cy="0.000000" data-r="3.000000"/>
+<line x1="334.7" y1="112" x2="151" y2="29.8" stroke="#1f5fbf" stroke-width="1.7" data-seg="PT"/>
+<line x1="334.7" y1="112" x2="77.5" y2="194.2" stroke="currentColor" stroke-width="1.6" data-seg="PB"/>
+<circle cx="114.27" cy="112.00" r="2.6" fill="#7b3fa0" stroke="#7b3fa0" stroke-width="1.4" data-pt="O" data-x="0.000000" data-y="0.000000"/>
+<text x="104.7" y="110.1" text-anchor="middle" font-size="12" fill="#7b3fa0" font-weight="700">O</text>
+<circle cx="151.02" cy="29.84" r="3.2" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="1.4" data-pt="T" data-x="1.224745" data-y="2.738613"/>
+<text x="151" y="20" text-anchor="middle" font-size="14" fill="#1e8e5a" font-weight="700">T</text>
+<circle cx="191.84" cy="157.64" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="2.585573" data-y="-1.521452"/>
+<text x="199.3" y="174.8" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="77.53" cy="194.16" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="-1.224745" data-y="-2.738613"/>
+<text x="67.9" y="209.8" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="334.73" cy="112.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P" data-x="7.348469" data-y="0.000000"/>
+<text x="347.7" y="116.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">P</text>
+<text x="267.3" y="150.8" text-anchor="middle" font-size="12" fill="currentColor">5</text>
+<text x="138.7" y="191.9" text-anchor="middle" font-size="12" fill="currentColor">4</text>
+<text x="249.6" y="59.5" text-anchor="middle" font-size="12" fill="#1f5fbf">3√5</text>
+</svg>
+<!--/svg:f070c-->
+  <figcaption>図3　例題3(1)：円の外部の点 P から引いた接線 PT（青の実線、T は接点）と、P を通り円と A、B で交わる直線。\( \mathrm{PA}=5 \)、\( \mathrm{AB}=4 \)、\( \mathrm{PT}=3\sqrt{5} \)（学習用に作成した図）</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">つまずきやすい点（方べきの定理）</p>
+<p>(1) 組を取り違えて \( \mathrm{PA}\cdot\mathrm{PC}=\mathrm{PB}\cdot\mathrm{PD} \) とする。かけるのは同じ直線の上の2つの長さどうしです（数Ａ-052）。<br>
+(2) 弦の長さを使って \( \mathrm{PA}\cdot\mathrm{AB}=\mathrm{PC}\cdot\mathrm{CD} \)、\( \mathrm{PA}\cdot\mathrm{AB}=\mathrm{PT}^2 \) とする（数Ａ-052・数Ａ-053）。<br>
+(3) 接線の場合に2乗を忘れて \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT} \) とする（数Ａ-053）。<br>
+(4) 二次方程式の負の解を残す。長さは正です（数Ａ-053）。<br>
+(5) 積が等しくないときの根拠を「方べきの定理の逆より」と書く。根拠は方べきの定理の対偶です（数Ａ-053）。<br>
+(6) P の位置を確かめずに逆を使う。P が一方の線分の上にあり、もう一方では延長上にある場合は使えません（数Ａ-053）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="2つの円"><span class="num">6</span>2つの円：位置関係と共通接線</h2>
+<p>2つの円の位置関係は、半径 \( r \)、\( r' \)（\( r&gt;r' \)）と中心間の距離 \( d \) を、半径の和 \( r+r' \) と差 \( r-r' \) と比べて決めました。共通接線の長さは、接線と半径が垂直であることから長方形と直角三角形をつくり、三平方の定理で求めました（数Ａ-054）。</p>
+<h3>対比表：2つの円の位置関係と共通接線の本数（数Ａ-054）</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>位置関係</th><th>離れている</th><th>外接する</th><th>2点で交わる</th><th>内接する</th><th>一方が他方の内部</th></tr>
+  <tr><td>\( d \) の条件</td><td>\( d&gt;r+r' \)</td><td>\( d=r+r' \)</td><td>\( r-r'&lt;d&lt;r+r' \)</td><td>\( d=r-r' \)</td><td>\( d&lt;r-r' \)</td></tr>
+  <tr><td>共有点の個数</td><td>0 個</td><td>1 個</td><td>2 個</td><td>1 個</td><td>0 個</td></tr>
+  <tr><td>同じ側にある共通接線</td><td>2 本</td><td>2 本</td><td>2 本</td><td>1 本</td><td>0 本</td></tr>
+  <tr><td>反対側にある共通接線</td><td>2 本</td><td>1 本</td><td>0 本</td><td>0 本</td><td>0 本</td></tr>
+</table>
+</div>
+<p class="small">「同じ側・反対側にある共通接線」は、2つの円が共通接線の同じ側にあるか、反対側にあるかで分けた、数Ａ-054 での言い方です。</p>
+<div class="box example worked">
+  <p class="box-title">例題4（位置関係と共通接線の長さ）＝導入の (エ)</p>
+  <p>半径 6 の円 O と半径 3 の円 O′ の中心間の距離が 15 です。(1) 2つの円の位置関係と、共通接線の本数を答えなさい。(2) 2つの円が同じ側にある共通接線の長さ AB と、反対側にある共通接線の長さ CD を求めなさい（図4）。</p>
+  <div class="step">(1) 着目：\( d \) を半径の和と差と比べます（⑧）。\( r+r'=9 \)、\( r-r'=3 \) で、\( d=15&gt;9 \)。答え：<span data-ans="ex4a">2つの円は離れていて、共通接線は4本</span>（同じ側に2本、反対側に2本）。</div>
+  <div class="step">(2) 着目：接線は接点を通る半径に垂直なので（中1-085）、O′ から半径 OA（またはその延長）に垂線をひくと長方形と直角三角形ができます。斜辺は \( d \)、1辺は半径の差（同じ側）または和（反対側）です。</div>
+  <div class="step">\( \mathrm{AB}=\sqrt{15^2-3^2}=\sqrt{216}=6\sqrt{6} \)、\( \mathrm{CD}=\sqrt{15^2-9^2}=\sqrt{144}=12 \)。答え：<span data-ans="ex4b">\( \mathrm{AB}=6\sqrt{6} \)、\( \mathrm{CD}=12 \)</span>。</div>
+</div>
+<figure>
+<!--svg:f070d-->
+<svg viewBox="0 0 396 224" width="396" role="img" aria-label="半径 6 の円 O（青の破線）と半径 3 の円 O′（緑の破線）。中心間の距離は 15。2つの円が同じ側にある共通接線 AB（橙の実線）と、反対側にある共通接線 CD（赤の破線）。O′ から半径 OA に垂線 O′H（灰の破線）" data-fig="f070d" data-s="15.000000" data-ox="106.000000" data-oy="118.000000">
+<circle cx="106" cy="118" r="90" fill="none" stroke="#1f5fbf" stroke-width="1.4" stroke-dasharray="5 4" data-circle="O" data-cx="0.000000" data-cy="0.000000" data-r="6.000000"/>
+<circle cx="331" cy="118" r="45" fill="none" stroke="#1e8e5a" stroke-width="1.4" stroke-dasharray="5 4" data-circle="Op" data-cx="15.000000" data-cy="0.000000" data-r="3.000000"/>
+<line x1="98.1" y1="24.5" x2="372.4" y2="80.5" stroke="#b7791f" stroke-width="1.8" data-seg="AB"/>
+<line x1="145.6" y1="200.8" x2="332.8" y2="60.4" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="6 4" data-seg="CD"/>
+<line x1="106" y1="118" x2="331" y2="118" stroke="currentColor" stroke-width="1.6" data-seg="OOp"/>
+<line x1="106" y1="118" x2="124" y2="29.8" stroke="currentColor" stroke-width="1.6" data-seg="OA"/>
+<line x1="331" y1="118" x2="340" y2="73.9" stroke="currentColor" stroke-width="1.6" data-seg="OpB"/>
+<line x1="331" y1="118" x2="115" y2="73.9" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="4 3" data-seg="OpH"/>
+<path d="M122.4,37.7 L130.2,39.3 L131.8,31.4" fill="none" stroke="currentColor" stroke-width="1.2" data-right="A,O,B"/>
+<path d="M116.6,66.1 L124.4,67.7 L122.8,75.5" fill="none" stroke="currentColor" stroke-width="1.2" data-right="H,A,Op"/>
+<circle cx="124.00" cy="29.82" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="1.200000" data-y="5.878775"/>
+<text x="117.5" y="22.8" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="340.00" cy="73.91" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="15.600000" data-y="2.939388"/>
+<text x="342.3" y="65.3" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="160.00" cy="190.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="3.600000" data-y="-4.800000"/>
+<text x="167.8" y="204.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="304.00" cy="82.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="D" data-x="13.200000" data-y="2.400000"/>
+<text x="311.8" y="96.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<circle cx="106.00" cy="118.00" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="O" data-x="0.000000" data-y="0.000000"/>
+<text x="93.8" y="126.6" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">O</text>
+<circle cx="331.00" cy="118.00" r="3.2" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="1.4" data-pt="O′" data-x="15.000000" data-y="0.000000"/>
+<text x="340.9" y="132.1" text-anchor="middle" font-size="14" fill="#1e8e5a" font-weight="700">O′</text>
+<circle cx="115.00" cy="73.91" r="2.4" fill="#8a99a8" stroke="#8a99a8" stroke-width="1.4" data-pt="H" data-x="0.600000" data-y="2.939388"/>
+<text x="103.7" y="81.6" text-anchor="middle" font-size="12" fill="#8a99a8" font-weight="700">H</text>
+<text x="218.5" y="132.8" text-anchor="middle" font-size="12" fill="currentColor">15</text>
+</svg>
+<!--/svg:f070d-->
+  <figcaption>図4　例題4の2つの円。円 O（青の破線、半径 6）と円 O′（緑の破線、半径 3）、中心間の距離 15。橙の実線は2つの円が同じ側にある共通接線 AB、赤の破線は反対側にある共通接線 CD（それぞれ1本ずつ示した）。灰の破線は O′ から半径 OA にひいた垂線（学習用に作成した図）</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">つまずきやすい点（2つの円）</p>
+<p>(1) 「\( d&lt;r+r' \) なら2点で交わる」とする。下の境目 \( r-r' \) も確かめます（数Ａ-054）。<br>
+(2) 内接と内部を取り違える。内接するのは \( d=r-r' \) のときだけで、\( d&lt;r-r' \) なら共有点はありません（数Ａ-054）。<br>
+(3) 同じ側と反対側の式を取り違える。同じ側は半径の差、反対側は半径の和を使います（数Ａ-054）。<br>
+(4) 共通接線の長さを中心間の距離 \( d \) と同じだと思う。直角三角形の斜辺 \( d \) より短くなります（数Ａ-054）。<br>
+(5) 2点で交わる2つの円で、反対側にある共通接線の長さを求めようとする。そのような共通接線はありません（数Ａ-054）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-5" data-toc="空間の直線と平面・多面体"><span class="num">7</span>空間の直線と平面・多面体：平面の図形に戻して考える</h2>
+<p>空間図形では、見取図の上の見かけに頼らず、2直線を含む平面があるか、平行な直線に移すとどんな平面図形になるかを考えました（数Ａ-059・060）。多面体の頂点・辺・面の数は、面ごとに数えた合計を、重なりの回数で割って求めました（数Ａ-061）。</p>
+<h3>対比表：空間の位置関係・垂直・多面体（数Ａ-059〜061）</h3>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>考えられる場合</th><th>見分け方・求め方</th></tr>
+  <tr><td>空間の2直線</td><td>交わる・平行・ねじれの位置</td><td>2直線を両方含む平面がなければ、ねじれの位置（数Ａ-059）</td></tr>
+  <tr><td>直線と平面</td><td>平面に含まれる・1点で交わる・平行</td><td>共有点が無数・1個・0個（数Ａ-059）</td></tr>
+  <tr><td>2平面</td><td>交わる（交線は直線）・平行</td><td>共有点があるか（数Ａ-059）</td></tr>
+  <tr><td>2直線のなす角</td><td colspan="2">一方を平行な直線に移して交わらせ、できた角のうち \( 90^\circ \) 以下のもの。実際の長さや形が分かる三角形で求める（数Ａ-059）</td></tr>
+  <tr><td>直線と平面の垂直</td><td colspan="2">平面上の交わる2直線に垂直なら、平面に垂直。平面に垂直な直線は、その平面上のどの直線とも垂直（数Ａ-060）</td></tr>
+  <tr><td>三垂線の定理</td><td colspan="2">\( \mathrm{PO}\perp\alpha \)、\( \mathrm{OQ}\perp\ell \) ならば \( \mathrm{PQ}\perp\ell \)。点と直線の距離 \( \mathrm{PQ}=\sqrt{\mathrm{PO}^2+\mathrm{OQ}^2} \)（数Ａ-060）</td></tr>
+  <tr><td>多面体の数</td><td colspan="2">\( e= \)（面ごとの辺の数の合計）\( \div2 \)、\( v= \)（面ごとの頂点の数の合計）\( \div k \)。へこみのない多面体では \( v-e+f=2 \)（数Ａ-061）</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5（ねじれの位置となす角、直線と平面の垂直）＝導入の (オ)</p>
+  <p>\( \mathrm{AB}=4 \)、\( \mathrm{AD}=3 \)、\( \mathrm{AE}=\sqrt{3} \) の直方体 ABCD-EFGH があります（底面 ABCD、高さの辺 AE）。(1) 直線 BG と直線 EH の位置関係となす角を求めなさい。(2) 直線 CD は平面 BCGF に垂直であることを示し、\( \mathrm{CD}\perp\mathrm{BG} \) を確かめなさい（図5）。</p>
+  <div class="step">(1) 着目：BG は面 BCGF の上に、EH は面 ADHE の上にあり、この2つの面は平行なので、BG と EH に共有点はありません。また、\( \mathrm{EH}\,/\!/\,\mathrm{BC} \) なので、もし \( \mathrm{BG}\,/\!/\,\mathrm{EH} \) なら \( \mathrm{BG}\,/\!/\,\mathrm{BC} \) となりますが（数Ａ-059）、BG と BC は B で交わるので平行ではありません。よって BG と EH はねじれの位置にあります。</div>
+  <div class="step">なす角：EH を BC に平行に移すと、なす角は ∠GBC です。△GBC は \( \angle\mathrm{BCG}=90^\circ \)、\( \mathrm{BC}=3 \)、\( \mathrm{CG}=\sqrt{3} \) の直角三角形で、\( \mathrm{BG}=\sqrt{9+3}=2\sqrt{3} \)。\( \mathrm{CG}:\mathrm{BC}:\mathrm{BG}=\sqrt{3}:3:2\sqrt{3}=1:\sqrt{3}:2 \) なので（中3-101）、\( \angle\mathrm{GBC}=30^\circ \)。答え：<span data-ans="ex5a">ねじれの位置にあり、なす角は \( 30^\circ \)</span>。</div>
+  <div class="step">(2) 着目：平面上の交わる2直線に垂直かを調べます（⑫）。底面 ABCD は長方形なので \( \mathrm{CD}\perp\mathrm{BC} \)、側面 CDHG は長方形なので \( \mathrm{CD}\perp\mathrm{CG} \)。BC と CG は平面 BCGF 上で C で交わる2直線なので、\( \mathrm{CD}\perp \) 平面 BCGF。</div>
+  <div class="step">答え：<span data-ans="ex5b">CD は平面 BCGF に垂直なので、その平面上の直線 BG とも垂直で、\( \mathrm{CD}\perp\mathrm{BG} \)</span>。</div>
+</div>
+<figure>
+<!--svg:f070e-->
+<svg viewBox="0 0 281 200" width="281" role="img" aria-label="直方体 ABCD-EFGH の見取図（AB=4、AD=3、AE=√3）。面 BCGF の対角線 BG を青、上の面の辺 EH を緑、EH に平行な辺 BC を橙の破線で示し、平面 BCGF に灰の色を付けた。見えない辺は灰の破線" data-fig="f070e" data-s="46.000000" data-ox="26.325663" data-oy="142.139438" data-yaw="-30.000000" data-elev="20.000000" data-solid="直方体" data-faces="ABCD EFGH ABFE DCGH ADHE BCGF">
+<polygon points="185.7,173.6 254.7,132.7 254.7,57.9 185.7,98.7" fill="#8a99a8" fill-opacity="0.25" stroke="none" data-region="BCGF"/>
+<line x1="26.3" y1="142.1" x2="185.7" y2="173.6" stroke="currentColor" stroke-width="1.6" data-edge="AB" data-hidden="0"/>
+<line x1="185.7" y1="173.6" x2="254.7" y2="132.7" stroke="#b7791f" stroke-width="2.0" stroke-dasharray="6 4" data-edge="BC" data-hidden="0"/>
+<line x1="254.7" y1="132.7" x2="95.3" y2="101.3" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="CD" data-hidden="1"/>
+<line x1="95.3" y1="101.3" x2="26.3" y2="142.1" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="DA" data-hidden="1"/>
+<line x1="26.3" y1="67.3" x2="185.7" y2="98.7" stroke="currentColor" stroke-width="1.6" data-edge="EF" data-hidden="0"/>
+<line x1="185.7" y1="98.7" x2="254.7" y2="57.9" stroke="currentColor" stroke-width="1.6" data-edge="FG" data-hidden="0"/>
+<line x1="254.7" y1="57.9" x2="95.3" y2="26.4" stroke="currentColor" stroke-width="1.6" data-edge="GH" data-hidden="0"/>
+<line x1="95.3" y1="26.4" x2="26.3" y2="67.3" stroke="#1e8e5a" stroke-width="3.0" data-edge="HE" data-hidden="0"/>
+<line x1="26.3" y1="142.1" x2="26.3" y2="67.3" stroke="currentColor" stroke-width="1.6" data-edge="AE" data-hidden="0"/>
+<line x1="185.7" y1="173.6" x2="185.7" y2="98.7" stroke="currentColor" stroke-width="1.6" data-edge="BF" data-hidden="0"/>
+<line x1="254.7" y1="132.7" x2="254.7" y2="57.9" stroke="currentColor" stroke-width="1.6" data-edge="CG" data-hidden="0"/>
+<line x1="95.3" y1="101.3" x2="95.3" y2="26.4" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="DH" data-hidden="1"/>
+<line x1="185.7" y1="173.6" x2="254.7" y2="57.9" stroke="#1f5fbf" stroke-width="3.0" data-seg3="BG" data-hidden="0"/>
+<circle cx="26.33" cy="142.14" r="2.4" fill="currentColor" data-pt="A" data-x3="0.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="14.1" y="150.5" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A</text>
+<circle cx="185.67" cy="173.61" r="2.4" fill="currentColor" data-pt="B" data-x3="4.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="190.1" y="189.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">B</text>
+<circle cx="254.67" cy="132.73" r="2.4" fill="currentColor" data-pt="C" data-x3="4.000000" data-y3="3.000000" data-z3="0.000000"/>
+<text x="265.9" y="143.1" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">C</text>
+<circle cx="95.33" cy="101.26" r="2.4" fill="currentColor" data-pt="D" data-x3="0.000000" data-y3="3.000000" data-z3="0.000000"/>
+<text x="84.1" y="98.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">D</text>
+<circle cx="26.33" cy="67.27" r="2.4" fill="currentColor" data-pt="E" data-x3="0.000000" data-y3="0.000000" data-z3="1.732051"/>
+<text x="13.3" y="71.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">E</text>
+<circle cx="185.67" cy="98.74" r="2.4" fill="currentColor" data-pt="F" data-x3="4.000000" data-y3="0.000000" data-z3="1.732051"/>
+<text x="192.2" y="113.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">F</text>
+<circle cx="254.67" cy="57.86" r="2.4" fill="currentColor" data-pt="G" data-x3="4.000000" data-y3="3.000000" data-z3="1.732051"/>
+<text x="265.9" y="55.3" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">G</text>
+<circle cx="95.33" cy="26.39" r="2.4" fill="currentColor" data-pt="H" data-x3="0.000000" data-y3="3.000000" data-z3="1.732051"/>
+<text x="88.8" y="19" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">H</text>
+<text x="220.2" y="170.3" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<text x="267.4" y="101.1" text-anchor="middle" font-size="11" fill="currentColor">√3</text>
+</svg>
+<!--/svg:f070e-->
+  <figcaption>図5　例題5の直方体 ABCD-EFGH（\( \mathrm{AB}=4 \)、\( \mathrm{AD}=3 \)、\( \mathrm{AE}=\sqrt{3} \)）。BG は青、EH は緑、EH に平行な BC は橙の破線、平面 BCGF は灰の板。見えない辺は灰の破線（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題6（多面体の頂点・辺・面の数）＝導入の (カ)</p>
+  <p>正三角形の面が 4、正六角形の面が 4 あり、どの頂点にも3つの面が集まる、へこみのない多面体があります（学習用の例）。辺の数と頂点の数を求め、オイラーの多面体定理が成り立つことを確かめなさい。</p>
+  <div class="step">着目：面ごとに辺（頂点）を数えて合計し、1つの辺（頂点）を何回数えたかで割ります（⑬）。</div>
+  <div class="step">面ごとの辺の数の合計は \( 3\times4+6\times4=36 \)。どの辺も2つの面に共有されるので、\( e=36\div2=18 \)。</div>
+  <div class="step">面ごとの頂点の数の合計も 36 で、どの頂点にも3つの面が集まるので、\( v=36\div3=12 \)。面の数は \( f=4+4=8 \)。</div>
+  <div class="step">答え：<span data-ans="ex6">辺の数 18、頂点の数 12</span>。確かめ：\( v-e+f=12-18+8=2 \) で、オイラーの多面体定理が成り立ちます。</div>
+</div>
+<div class="box caution"><p class="box-title">つまずきやすい点（空間の直線と平面・多面体）</p>
+<p>(1) 「交わらない2直線は平行」と考える。空間では、ねじれの位置の場合もあります（数Ａ-059）。<br>
+(2) 見取図の上で線が交わって見える・角度を測ってそのまま使う。共有点やなす角は空間で考え、平行な直線に移して実際の形が分かる図形で求めます（数Ａ-059）。<br>
+(3) なす角を \( 90^\circ \) より大きくとる。\( 135^\circ \) の角ができたら、なす角はその補角の \( 45^\circ \) です（数Ａ-059）。<br>
+(4) 「1つの直線に垂直な2直線は平行」と考える。空間では正しくありません（数Ａ-059）。<br>
+(5) 平面上の1本の直線、または平行な2直線に垂直なだけで「平面に垂直」とする。条件の2直線は交わることが必要です（数Ａ-060）。<br>
+(6) \( \mathrm{PO}\perp\alpha \) を確かめずに三垂線の定理を使う（数Ａ-060）。<br>
+(7) 多面体の辺・頂点の数で、重なりを割り忘れる（数Ａ-061）。<br>
+(8) へこみのない多面体かを確かめずに、オイラーの多面体定理を使う（数Ａ-061）。</p></div>
+<div class="box point"><p class="box-title">単元をまたぐ整理：この範囲で使った、ほかの単元の考え</p>
+<div class="table-wrap">
+<table>
+  <tr><th>この範囲の場面（コマ）</th><th>使った考え（学んだコマ）</th></tr>
+  <tr><td>円周角の定理とその逆（数Ａ-047）</td><td>円周角と中心角の関係（中3-087）、円周角の定理の逆（中3-091）</td></tr>
+  <tr><td>円に内接する四角形の性質（数Ａ-048）</td><td>四角形の内角の和（中2-049）、多角形の外角（中2-050）</td></tr>
+  <tr><td>四角形が円に内接するための条件（数Ａ-049）</td><td>逆と反例（中2-063）、対偶（数Ⅰ-027）、3点を通る円はただ1つ（数Ａ-037）</td></tr>
+  <tr><td>接線の長さ（数Ａ-050）</td><td>接線は接点を通る半径に垂直（中1-085）、直角三角形の合同条件（中2-064）</td></tr>
+  <tr><td>接線と弦のつくる角（数Ａ-051）</td><td>半円の弧に対する円周角（数Ａ-047）、円に内接する四角形の性質（数Ａ-048）</td></tr>
+  <tr><td>方べきの定理（数Ａ-052・数Ａ-053）</td><td>三角形の相似条件（中3-067）、接線と弦のつくる角（数Ａ-051）</td></tr>
+  <tr><td>2つの円の位置関係と共通接線（数Ａ-054）</td><td>三角形が成立するための条件（数Ａ-044）、三平方の定理（中3-099）</td></tr>
+  <tr><td>空間の直線と平面（数Ａ-059）</td><td>平面の決定と、空間の2直線・直線と平面の位置関係（中1-096・中1-097）</td></tr>
+  <tr><td>直線と平面の垂直・三垂線の定理（数Ａ-060）</td><td>三角形の合同条件（中2-053）、三平方の定理とその逆（中3-097・中3-100）</td></tr>
+  <tr><td>多面体（数Ａ-061）</td><td>多面体・正多面体の意味（中1-092）、多角形の内角の和（中2-049）</td></tr>
+  <tr><td>球と方べきの定理（数Ａ-062）</td><td>方べきの定理（数Ａ-052）</td></tr>
+</table>
+</div></div>
+<div class="box point"><p class="box-title">この範囲の問題の型と、練習した場所</p>
+<div class="table-wrap">
+<table>
+  <tr><th>型（学んだコマ）</th><th>このページで練習する問題</th></tr>
+  <tr><td>円周角の定理とその逆（047）</td><td>例題1、問1・問5</td></tr>
+  <tr><td>円に内接する四角形の性質（048）</td><td>例題1・例題2、問1</td></tr>
+  <tr><td>四角形が円に内接するための条件（049）</td><td>問5</td></tr>
+  <tr><td>接線と弦のつくる角（051）</td><td>例題2、問2</td></tr>
+  <tr><td>方べきの定理（052）</td><td>問3</td></tr>
+  <tr><td>方べきの定理（接線を含む場合）と逆（053）</td><td>確認1、例題3、問5・問6</td></tr>
+  <tr><td>2つの円の位置関係と共通接線（054）</td><td>例題4、問4・問7</td></tr>
+  <tr><td>空間の2直線・なす角（059）</td><td>確認2、例題5、問8</td></tr>
+  <tr><td>直線と平面の垂直・三垂線の定理（060）</td><td>例題5、問9</td></tr>
+  <tr><td>多面体とオイラーの多面体定理（061）、立体を平面で切る（062）</td><td>確認3、例題6、問10</td></tr>
+</table>
+</div>
+<p>接線の長さ（050）は数Ａ-050 の問題で、球と方べきの定理（062）は数Ａ-062 の問題で練習しましょう。星形七角形（055）、作図（056〜058）、情報機器を用いた考察（063）も、それぞれのコマで練習した内容です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">8</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この範囲の重要語句（すべて既習）</p>
+  <dl>
+    <dt>円に内接する四角形</dt><dd>4つの頂点がすべて1つの円周上にある四角形。対角の和は 180°、1つの外角は隣り合う内角の対角に等しい（数Ａ-048）。対角の和が 180° などの条件を満たす四角形は円に内接する（数Ａ-049）。</dd>
+    <dt>接線と弦のつくる角</dt><dd>円の点 A における接線 AT と、A を通る弦 AB のつくる角 ∠TAB。その角の内部にある弧に対する円周角に等しい（数Ａ-051）。</dd>
+    <dt>方べきの定理</dt><dd>点 P を通る2直線が円と A、B、C、D で交わるとき \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)。接線なら \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \)（数Ａ-052・053）。</dd>
+    <dt>2つの円の位置関係・共通接線</dt><dd>半径と中心間の距離で決まる5つの位置関係。2つの円の両方に接する直線が共通接線（数Ａ-054）。</dd>
+    <dt>ねじれの位置</dt><dd>空間の2直線が同じ平面上にないこと。交わらず、平行でもない（数Ａ-059）。</dd>
+    <dt>三垂線の定理</dt><dd>\( \mathrm{PO}\perp\alpha \)、\( \mathrm{OQ}\perp\ell \) ならば \( \mathrm{PQ}\perp\ell \) など、3つの垂直の関係（数Ａ-060。このページでは (1) を使う）。</dd>
+    <dt>オイラーの多面体定理</dt><dd>へこみのない多面体の頂点の数 \( v \)、辺の数 \( e \)、面の数 \( f \) について \( v-e+f=2 \)（数Ａ-061）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">9</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>4点が同じ円周上にあると分かっていれば円周角の定理・円に内接する四角形の性質で角を求め、同じ円周上にあることを示すには逆（条件）を使う。等しくないときの根拠は対偶（O1）。</li>
+    <li>∠TAB と等しいのは、∠TAB の内部にある弧を、反対側の弧の上の点から見込む円周角（O2）。</li>
+    <li>方べきの定理は P から交点までの長さの積。接線なら \( \mathrm{PT}^2 \)。逆は P が2本の線分の上か、2本の延長上にあるときに使う（O3）。</li>
+    <li>2つの円は \( d \) を \( r+r' \)、\( r-r' \) と比べて位置関係を決め、共通接線の長さは同じ側が \( \sqrt{d^2-(r-r')^2} \)、反対側が \( \sqrt{d^2-(r+r')^2} \)（O4）。</li>
+    <li>空間では、2直線を含む平面があるか、平行な直線に移すとどんな図形になるかで考える。平面への垂直は交わる2直線で確かめ、多面体の数は重なりで割ってオイラーの多面体定理で確かめる（O5）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">円周角と円に内接する四角形</span><p>同じ弧の円周角は等しい。対角の和 \( 180^\circ \)、外角＝隣り合う内角の対角</p></div>
+  <div><span class="f-name">接線と弦のつくる角</span><p>\( \angle\mathrm{TAB}=\angle\mathrm{ACB} \)（C は ∠TAB の内部にない弧の上）</p></div>
+  <div><span class="f-name">方べきの定理</span><p>\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \)</p></div>
+  <div><span class="f-name">共通接線の長さ</span><p>同じ側 \( \sqrt{d^2-(r-r')^2} \)、反対側 \( \sqrt{d^2-(r+r')^2} \)（\( d\geqq r+r' \)）</p></div>
+  <div><span class="f-name">空間図形・多面体</span><p>\( \mathrm{PO}\perp\alpha \)、\( \mathrm{OQ}\perp\ell \) ならば \( \mathrm{PQ}\perp\ell \)。\( v-e+f=2 \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">10</span>確認問題</h2>
+<p class="small">範囲（数Ａ-047〜054・059〜062）から10問です。基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）と、復習するときに戻るコマを示します。長さ・角の大きさ・面積は数だけを入力してください（小数で答えるときは 0.5 のように入力します）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1（復習するなら数Ａ-048・数Ａ-047）</span></div>
+  <p>円 O に内接する四角形 ABCD で、\( \angle\mathrm{ADC}=118^\circ \) です。B を含まない弧 AC に対する中心角 ∠AOC はどれですか。</p>
+  <div class="choices">
+    <button>\( 59^\circ \)</button>
+    <button data-correct="true">\( 124^\circ \)</button>
+    <button>\( 236^\circ \)</button>
+    <button>\( 62^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">円に内接する四角形の対角の和は \( 180^\circ \) なので、\( \angle\mathrm{ABC}=180^\circ-118^\circ=62^\circ \) です（②）。∠ABC は B を含まない弧 AC に対する円周角なので、その中心角は \( 2\times62^\circ=124^\circ \) です（①）。\( 236^\circ \) は \( 2\times118^\circ \) で、∠ADC が対する弧（D を含まない弧 AC、つまり B を含む弧）の中心角と取り違えています。\( 62^\circ \) は、円周角 ∠ABC を中心角と取り違えています。\( 59^\circ \) は ∠ADC の半分で、円周角と中心角の関係を逆にしています。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="71|71°|71度|∠ABC=71|∠ABC=71°">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2（復習するなら数Ａ-051）</span></div>
+  <p>円に内接する △ABC があり、点 A における円の接線上に、直線 AB について C と反対側に点 T をとります。\( \angle\mathrm{TAB}=58^\circ \)、\( \angle\mathrm{BAC}=51^\circ \) のとき、∠ABC は何度ですか（数字だけを入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 71。∠TAB の内部にある弧 AB を、反対側の弧の上の点 C から見込む角が ∠ACB なので、\( \angle\mathrm{ACB}=\angle\mathrm{TAB}=58^\circ \) です（⑤）。△ABC の内角の和より \( \angle\mathrm{ABC}=180^\circ-58^\circ-51^\circ=71^\circ \) です。58 と答えた場合は、∠TAB と等しい角を、弦 AB の端の頂点 B の角と取り違えています。100 と答えた場合は、∠ACB を ∠TAB の半分の \( 29^\circ \) とし（中心角と円周角の取り違え）、\( 180^\circ-29^\circ-51^\circ \) としています。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="14|CD=14">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3（復習するなら数Ａ-052）</span></div>
+  <p>円の2本の弦 AB、CD が円の内部の点 P で交わり、\( \mathrm{PA}=5 \)、\( \mathrm{PB}=8 \)、\( \mathrm{PC}=4 \) です。弦 CD の長さを求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 14。P は円の内部で2本の弦が交わる点なので、方べきの定理（⑥）より \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) です。\( 5\times8=4\times\mathrm{PD} \)、\( \mathrm{PD}=10 \)、\( \mathrm{CD}=\mathrm{PC}+\mathrm{PD}=4+10=14 \) です。10 と答えた場合は PD を答えています。13/2 と答えた場合は、組を取り違えて \( \mathrm{PA}\cdot\mathrm{PC}=\mathrm{PB}\cdot\mathrm{PD} \)（\( 5\times4=8\times\mathrm{PD} \) から \( \mathrm{PD}=\dfrac{5}{2} \)）としています。13 と答えた場合は、2本の弦の長さが等しい（\( \mathrm{PA}+\mathrm{PB}=\mathrm{PC}+\mathrm{PD} \)）と考えています。円の外部の点 P を通る2本の直線の場合（\( \mathrm{PB}=\mathrm{PA}+\mathrm{AB} \) に注意）は、単元末演習 数Ａ-064 の問11 で練習しました。この時間では、問6（接線を含む場合）で確かめます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問4</span><span class="q-obj">O4（復習するなら数Ａ-054）</span></div>
+  <p>半径 8 の円 O と半径 3 の円 O′ の中心間の距離が 4 です。2つの円の位置関係はどれですか。</p>
+  <div class="choices">
+    <button>2点で交わる</button>
+    <button>内接する</button>
+    <button data-correct="true">円 O′ が円 O の内部にある（共有点はない）</button>
+    <button>離れている（共有点はない）</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( r-r'=8-3=5 \)、\( r+r'=11 \) で、\( d=4 \) は 5 より小さいので、円 O′ は円 O の内部にあります（⑧）。「2点で交わる」は \( d&lt;r+r' \) だけを確かめた誤りで、下の境目 \( r-r' \) も確かめる必要があります。「内接する」は \( d=r-r'=5 \) のときで、\( d=4 \) とは違います（内接と内部の取り違え）。「離れている」は \( d&gt;r+r' \) のときです。共有点がないのは同じですが、2つの円が互いの外側にあるわけではありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O1・O3（復習するなら数Ａ-049・数Ａ-047・数Ａ-053）</span></div>
+  <p>4点 A、B、C、D が1つの円周上にあると<strong>いえる</strong>ものはどれですか。四角形は、どの内角も 180° より小さいとします。</p>
+  <div class="choices">
+    <button data-correct="true">四角形 ABCD で、\( \angle\mathrm{A}=81^\circ \)、\( \angle\mathrm{C}=99^\circ \)</button>
+    <button>四角形 ABCD で、辺 BC を C の先に延ばした点 E について \( \angle\mathrm{DCE}=\angle\mathrm{ABC} \)</button>
+    <button>A と D が直線 BC について反対側にあり、\( \angle\mathrm{BAC}=\angle\mathrm{BDC} \)</button>
+    <button>直線 AB と直線 CD の交点 P が、線分 AB の上にあり、線分 CD を D の先に延ばした直線の上にあって、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \angle\mathrm{A}+\angle\mathrm{C}=81^\circ+99^\circ=180^\circ \) で対角の和が \( 180^\circ \) なので、四角形が円に内接するための条件（③の(ア)）から、4点は1つの円周上にあります。「∠DCE=∠ABC」は、外角と比べる角を取り違えています。外角 ∠DCE と比べるのは、C の向かいの頂点 A の角 ∠BAD です（\( \angle\mathrm{DCE}=\angle\mathrm{ABC} \) なら AB//DC です。中2-046）。「A と D が直線 BC について反対側にあり、∠BAC=∠BDC」は、円周角の定理の逆が、2点が同じ側にあるときにしか使えないことを見落としています（反対側のときは、四角形 ABDC の対角として \( \angle\mathrm{BAC}+\angle\mathrm{BDC}=180^\circ \) かを調べます。数Ａ-049）。「P が線分 AB の上にあり、線分 CD の延長上にあって PA·PB=PC·PD」は、方べきの定理の逆の P の位置の条件（2本の線分の上、または2本の延長上）を満たしていないので、積が等しくても使えません（数Ａ-053）。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="16|AB=16">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3（復習するなら数Ａ-053）</span></div>
+  <p>円の外部の点 P から引いた接線の接点を T とします。P を通る直線が円と A、B（A のほうが P に近い）で交わり、\( \mathrm{PT}=15 \)、\( \mathrm{PA}=9 \) です。弦 AB の長さを求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 16。方べきの定理（接線を含む場合、⑦）より \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \) なので、\( 9\times\mathrm{PB}=225 \)、\( \mathrm{PB}=25 \)、\( \mathrm{AB}=\mathrm{PB}-\mathrm{PA}=25-9=16 \) です。25 と答えた場合は、PB を答えているか、弦の長さを使って \( \mathrm{PA}\cdot\mathrm{AB}=\mathrm{PT}^2 \)（\( 9\times\mathrm{AB}=225 \)）としています。積をとるのは、P から2つの交点までの長さ PA と PB です。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="6|AB=6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O4（復習するなら数Ａ-054）</span></div>
+  <p>半径 11 の円 O と半径 3 の円 O′ の中心間の距離が 10 です。2つの円が同じ側にある共通接線の長さを求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 6。同じ側にある共通接線の長さは \( \sqrt{d^2-(r-r')^2}=\sqrt{10^2-8^2}=\sqrt{36}=6 \) です（⑧）。\( 2\sqrt{41} \) と答えた場合は、半径の差の2乗を引かずに足しています（\( \sqrt{10^2+8^2} \)）。10 と答えた場合は、共通接線の長さを中心間の距離と同じと考えています。なお、\( r-r'=8&lt;d=10&lt;r+r'=14 \) なので2つの円は2点で交わり、反対側にある共通接線はありません（\( d^2-(r+r')^2=100-196 \) は負）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問8</span><span class="q-obj">O5（復習するなら数Ａ-059）</span></div>
+  <p>底面が正六角形 ABCDEF の正六角柱 ABCDEF-GHIJKL があります（上の面は正六角形 GHIJKL で、側面の辺は AG、BH、CI、DJ、EK、FL）。直線 AB と直線 IJ について正しいものはどれですか。</p>
+  <div class="choices">
+    <button>平行である</button>
+    <button>1点で交わり、なす角は \( 60^\circ \) である</button>
+    <button>ねじれの位置にあり、なす角は \( 120^\circ \) である</button>
+    <button data-correct="true">ねじれの位置にあり、なす角は \( 60^\circ \) である</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">側面 CDJI は長方形なので \( \mathrm{IJ}\,/\!/\,\mathrm{CD} \) です。AB は底面、IJ は上の面にあり、2つの面は平行なので、AB と IJ に共有点はありません。また、AB と CD は（延ばすと）交わるので、もし \( \mathrm{AB}\,/\!/\,\mathrm{IJ} \) なら \( \mathrm{AB}\,/\!/\,\mathrm{CD} \) となって矛盾します（数Ａ-059）。よって AB と IJ はねじれの位置にあります。なす角は AB と CD のなす角で、AB と CD を延ばした交点を X とすると、正六角形の内角は \( 120^\circ \) なので \( \angle\mathrm{XBC}=\angle\mathrm{XCB}=180^\circ-120^\circ=60^\circ \)、\( \angle\mathrm{BXC}=60^\circ \) です（⑪）。「平行である」は、交わらない2直線を平行と考えた誤りです。「1点で交わり」は、見取図の上で交わって見えることから空間でも交わると考えた誤りです。「なす角は \( 120^\circ \)」は、なす角を \( 90^\circ \) より大きくとった誤りで、なす角は \( 90^\circ \) 以下のほうの \( 60^\circ \) です。この問題は数Ａ-059 の問7・単元末演習 数Ａ-064 の問12 と同じ型（角柱の底面の辺と上の面の辺）で、立体を正六角柱にかえたものです。</div>
+</div>
+
+<div class="q" data-type="input" id="q9" data-accept="10.4|10.4m2|10.4m²|52/5|10.4平方メートル">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O5（復習するなら数Ａ-060）</span></div>
+  <p>底面が1辺 2 m の正方形で、高さが 2.4 m の正四角錐の形のテントがあります（学習用の架空の場面。テントを正四角錐 O-ABCD とみなし、頂点 O から底面に下ろした垂線の足 H は、正方形 ABCD の対角線の交点とします）。4つの側面に布を張ります（底面には張りません）。</p>
+  <p>太郎：「側面の三角形の高さは 2.4 m だから、1面は \( \dfrac{1}{2}\times2\times2.4 \) だね。」<br>
+  花子：「2.4 m は OH の長さだよ。側面の △OBC の高さは、O から辺 BC までの距離じゃないかな。」</p>
+  <p>4つの側面の面積の合計は何 m² ですか。数だけを入力してください。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 10.4。辺 BC の中点を M とすると、H は正方形の対角線の交点なので \( \mathrm{HM}\perp\mathrm{BC} \)、\( \mathrm{HM}=1 \) m です。\( \mathrm{OH}\perp \)（底面）、\( \mathrm{HM}\perp\mathrm{BC} \) なので、三垂線の定理（⑫）より \( \mathrm{OM}\perp\mathrm{BC} \) で、O と辺 BC の距離は OM です。△OHM は H が直角の直角三角形なので \( \mathrm{OM}=\sqrt{2.4^2+1^2}=\sqrt{6.76}=2.6 \)（m）。\( \triangle\mathrm{OBC}=\dfrac{1}{2}\times2\times2.6=2.6 \)（m²）で、4面で \( 2.6\times4=10.4 \)（m²）です。9.6 と答えた場合は、太郎さんのように OH の 2.4 m を側面の三角形の高さとしています。4 と答えた場合は、HM の 1 m を高さとしています。2.6 と答えた場合は、1面だけの面積です。三垂線の定理で平面外の点と直線の距離を求める点で、数Ａ-060 の問8・単元末演習 数Ａ-064 の問15 と同じ型（垂線の長さや平面上の距離をそのまま使う誤りも同じ）の問題です。<br><span class="small">この会話文の問題は練習用に作成したもので、実際の入試の出題形式を示すものではありません。</span></div>
+</div>
+
+<div class="q" data-type="choice" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O5（復習するなら数Ａ-061・数Ａ-062）</span></div>
+  <p>太郎さんと花子さんが、正八面体の模型について話しています（正八面体は、8つの合同な正三角形の面でできていて、どの頂点にも4つの面が集まる立体です）。</p>
+  <p>花子：「1つの頂点を、その頂点に集まる4本の辺の中点を通る平面で切り落としてみたよ。」<br>
+  太郎：「残った立体の頂点・辺・面の数はどうなるかな。オイラーの多面体定理で確かめられるね。」</p>
+  <p>残った立体の（頂点の数, 辺の数, 面の数）はどれですか。</p>
+  <div class="choices">
+    <button>（10, 16, 9）</button>
+    <button data-correct="true">（9, 16, 9）</button>
+    <button>（9, 12, 9）</button>
+    <button>（9, 16, 8）</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正八面体は \( e=8\times3\div2=12 \)、\( v=8\times3\div4=6 \)、\( f=8 \) です（⑬）。1つの頂点を切り落とすと、頂点はその1つが減って切り口の4つが増え \( 6-1+4=9 \)、辺はもとの 12 本（切り落とした頂点に集まる4本は短くなって残る）に切り口の4本が増え 16、面はもとの8つ（切り落とした頂点に集まる4つの面は四角形になって残る）に切り口の面が1つ増え 9 です。\( 9-16+9=2 \) で、オイラーの多面体定理も成り立ちます。（10, 16, 9）は、切り落とした頂点を引き忘れています（\( 10-16+9=3 \) で定理に合いません）。（9, 12, 9）は、切り口の4本の辺を数え忘れています（\( 9-12+9=6 \)）。（9, 16, 8）は、切り口の面を数え忘れています（\( 9-16+8=1 \)）。この問題は数Ａ-061 の問6（立方体の1つの頂点を切り落とす）と同じ型で、立体を正八面体にかえたものです。<br><span class="small">この会話文の問題は練習用に作成したもので、実際の入試の出題形式を示すものではありません。</span></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">11</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(1) 図形の性質」のア(イ)「円に関する基本的な性質について理解すること」とア(ウ)「空間図形に関する基本的な性質について理解すること」に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。点と円の交わり方に合わせて式を選ぶこと（5 の対比表）や、テントの布の面積のような場面を空間図形の問題として捉えること（問9）は、こうした過程の練習になります。</p>
+  <p class="small">問9・問10は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="数学Ａのまとめ"><span class="num">12</span>次の時間へ：数学Ａのまとめ</h2>
+<div class="box bridge">
+  <p class="box-title">数学Ａのまとめ（この時間が数学Ａの最後のコマ）</p>
+  <p>この時間（数Ａ-070）が数学Ａの最後のコマなので、ここで数学Ａの学習をふり返ります。数学Ａは次の単元からできていて、単元「復習（予備時間）」のコマで範囲ごとに復習しました。</p>
+  <div class="table-wrap">
+  <table id="t070-units">
+    <tr><th>単元</th><th>学んだコマ</th><th>復習したコマ</th></tr>
+    <tr><td>場合の数と確率</td><td>数Ａ-001〜034</td><td>数Ａ-065〜068</td></tr>
+    <tr><td>図形の性質</td><td>数Ａ-035〜064</td><td>数Ａ-069・数Ａ-070</td></tr>
+  </table>
+  </div>
+  <p>学習指導要領は、数学Ａを、内容の (1) 図形の性質、(2) 場合の数と確率、(3) 数学と人間の活動 の中から「適宜選択させるもの」としています。この教材の数学Ａの70コマは (1)(2) の単元と復習のコマで、(3) の内容は単元「数学と人間の活動」（数Ａ-071〜100）として、70コマとは別に用意しています。共通テストの『数学Ⅰ，数学Ａ』の「数学Ａ」は「図形の性質，場合の数と確率の２項目に対応した出題」です（実施要項）。</p>
+  <p>この時間の2つの円の位置関係は、数学Ⅱの単元「図形と方程式」の数Ⅱ-046 で、数学Ａで学んだ2円の位置関係と中心間の距離・半径の関係を振り返り、方程式で与えられた2つの円の位置関係を判断することにつながります。数Ａ-069 で復習した内分点や重心も、数Ⅱ-034 で座標を用いて求めます。</p>
+  <p>この時間では、新しい内容は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-069　復習：三角形の性質</div>
+  <div><span class="label">次の時間</span>なし（数学Ａの最後のコマ。単元「数学と人間の活動」は数Ａ-071 から）</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-070「復習：円の性質と空間図形」（区分：復習。学習指導要領 数学Ａ (1)ア(イ)・ア(ウ)）。単元「復習（予備時間）」のねらい。範囲の各行 hs_math_1a/数Ａ-047〜063 の要点と、それぞれの完成ページの用語・図の約束・よくある間違い。数学Ａの各単元の行の範囲と、hs_math_1a/数Ａ-071、hs_math_2/数Ⅱ-034・数Ⅱ-046 の要点</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(1) 図形の性質 ア(イ)・ア(ウ)、内容の取扱い(1)（「この科目は，内容の (1) から (3) までの中から適宜選択させるものとする」）（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.89-90（円の性質、空間図形の性質）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料と、範囲の完成ページをもとに作成した学習用資料です。例題・問題・図はこのページのために作成したものです（出典を示したものを除く）。問9のテントは学習用の架空の場面です。①〜⑮はこのページでの番号です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-070",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-070",
+  "title": "復習：円の性質と空間図形",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-3", "title": "復習（予備時間）"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(イ)", "(1)ア(ウ)"],
+  "kaisetsu_page": "",
+  "objectives": [
+    {"id": "O1", "text": "円周角の定理（逆を含む）と、円に内接する四角形の性質・四角形が円に内接するための条件を用いて、角の大きさを求めたり、4点が同じ円周上にあるかを判断したりできる。", "from": "円に内接する四角形…の問題に取り組む", "sections": ["sec-1"], "checks": ["q1", "q5"]},
+    {"id": "O2", "text": "接線と弦のつくる角の性質を、その角の内部にある弧と反対側の弧の上の点を見分けて用い、角の大きさを求めることができる。", "from": "接線と弦のつくる角…の問題に取り組む", "sections": ["sec-2"], "checks": ["q2"]},
+    {"id": "O3", "text": "方べきの定理（接線を含む場合と逆を含む）を、点と円の交わり方に合わせて用い、線分の長さを求めたり、4点が同じ円周上にあるかを判断したりできる。", "from": "方べきの定理…の問題に取り組む", "sections": ["sec-3"], "checks": ["q3", "q5", "q6"]},
+    {"id": "O4", "text": "2つの円の半径と中心間の距離から位置関係を判断し、共通接線の長さを求めることができる。", "from": "2円の位置関係…の問題に取り組む", "sections": ["sec-4"], "checks": ["q4", "q7"]},
+    {"id": "O5", "text": "空間の直線と平面の位置関係・なす角・垂直（三垂線の定理を含む）と、多面体の頂点・辺・面の数（オイラーの多面体定理）を用いて、空間図形の問題を解くことができる。", "from": "空間の直線と平面・多面体の問題に取り組む", "sections": ["sec-5"], "checks": ["q8", "q9", "q10"]}
+  ],
+  "key_terms": [
+    {"term": "円に内接する四角形", "where": "sec-1"},
+    {"term": "接線と弦のつくる角", "where": "sec-2"},
+    {"term": "方べきの定理", "where": "sec-3"},
+    {"term": "2つの円の位置関係・共通接線", "where": "sec-4"},
+    {"term": "ねじれの位置", "where": "sec-5"},
+    {"term": "三垂線の定理", "where": "sec-5"},
+    {"term": "オイラーの多面体定理", "where": "sec-5"}
+  ],
+  "prerequisites": [
+    {"concept": "円周角の定理（中心角が 180° より大きい弧を含む）と円周角の定理の逆", "taught_in": ["hs_math_1a/数Ａ-047"], "gap": false, "where": "sec-1"},
+    {"concept": "円に内接する四角形の性質（対角の和・外角）", "taught_in": ["hs_math_1a/数Ａ-048"], "gap": false, "where": "sec-1"},
+    {"concept": "四角形が円に内接するための条件と、内接しないことの根拠（性質の対偶）。どの内角も 180° より小さい四角形で考えること", "taught_in": ["hs_math_1a/数Ａ-049"], "gap": false, "where": "sec-1"},
+    {"concept": "接線の長さ、内接円と接点で分けられる長さ", "taught_in": ["hs_math_1a/数Ａ-050"], "gap": false, "where": "sec-2"},
+    {"concept": "接線と弦のつくる角", "taught_in": ["hs_math_1a/数Ａ-051"], "gap": false, "where": "sec-2"},
+    {"concept": "方べきの定理（内部・外部）", "taught_in": ["hs_math_1a/数Ａ-052"], "gap": false, "where": "sec-3"},
+    {"concept": "方べきの定理（接線を含む場合）と方べきの定理の逆", "taught_in": ["hs_math_1a/数Ａ-053"], "gap": false, "where": "sec-3"},
+    {"concept": "2つの円の位置関係、共通接線の本数と長さ", "taught_in": ["hs_math_1a/数Ａ-054"], "gap": false, "where": "sec-4"},
+    {"concept": "星形七角形の先端の角の和", "taught_in": ["hs_math_1a/数Ａ-055"], "gap": false, "where": "review"},
+    {"concept": "作図（内分点・外分点、円の接線、正五角形、正三角形）", "taught_in": ["hs_math_1a/数Ａ-056", "hs_math_1a/数Ａ-057", "hs_math_1a/数Ａ-058"], "gap": false, "where": "review"},
+    {"concept": "空間の2直線・直線と平面・2平面の位置関係と、2直線のなす角", "taught_in": ["hs_math_1a/数Ａ-059"], "gap": false, "where": "sec-5"},
+    {"concept": "直線と平面の垂直、直線と平面が垂直になる条件、三垂線の定理", "taught_in": ["hs_math_1a/数Ａ-060"], "gap": false, "where": "sec-5"},
+    {"concept": "多面体・正多面体、重なりに注意した数え方、オイラーの多面体定理", "taught_in": ["hs_math_1a/数Ａ-061"], "gap": false, "where": "sec-5"},
+    {"concept": "立体を平面で切ってできる立体、球と方べきの定理", "taught_in": ["hs_math_1a/数Ａ-062"], "gap": false, "where": "sec-3"},
+    {"concept": "情報機器を用いた図形の考察、見る方向", "taught_in": ["hs_math_1a/数Ａ-063"], "gap": false, "where": "review"},
+    {"concept": "単元末演習（図形の性質）", "taught_in": ["hs_math_1a/数Ａ-064"], "gap": false, "where": "goals"},
+    {"concept": "円周角と中心角の関係、円周角の定理の逆（中学校）", "taught_in": ["jhs_math/中3-087", "jhs_math/中3-091"], "gap": false, "where": "sec-1"},
+    {"concept": "四角形の内角の和、多角形の外角", "taught_in": ["jhs_math/中2-049", "jhs_math/中2-050"], "gap": false, "where": "sec-1"},
+    {"concept": "平行線になる条件（錯角・同側内角）", "taught_in": ["jhs_math/中2-046"], "gap": false, "where": "quiz"},
+    {"concept": "三角形の内角の和", "taught_in": ["jhs_math/中2-048"], "gap": false, "where": "sec-2"},
+    {"concept": "接線は接点を通る半径に垂直", "taught_in": ["jhs_math/中1-085"], "gap": false, "where": "sec-2"},
+    {"concept": "直角三角形の合同条件", "taught_in": ["jhs_math/中2-064"], "gap": false, "where": "sec-2"},
+    {"concept": "三角形の相似条件", "taught_in": ["jhs_math/中3-067"], "gap": false, "where": "sec-3"},
+    {"concept": "二次方程式を因数分解で解く", "taught_in": ["jhs_math/中3-041"], "gap": false, "where": "sec-3"},
+    {"concept": "三平方の定理とその逆、特別な直角三角形の辺の比", "taught_in": ["jhs_math/中3-097", "jhs_math/中3-099", "jhs_math/中3-100", "jhs_math/中3-101"], "gap": false, "where": "sec-4"},
+    {"concept": "三角形が成立するための条件", "taught_in": ["hs_math_1a/数Ａ-044"], "gap": false, "where": "sec-4"},
+    {"concept": "逆と反例、対偶", "taught_in": ["jhs_math/中2-063", "hs_math_1a/数Ⅰ-027"], "gap": false, "where": "sec-1"},
+    {"concept": "一直線上にない3点を通る円はただ1つ", "taught_in": ["hs_math_1a/数Ａ-037"], "gap": false, "where": "sec-1"},
+    {"concept": "平面の決定と空間の位置関係、多面体・正多面体（中学校）", "taught_in": ["jhs_math/中1-096", "jhs_math/中1-097", "jhs_math/中1-092"], "gap": false, "where": "sec-5"},
+    {"concept": "三角形の合同条件", "taught_in": ["jhs_math/中2-053"], "gap": false, "where": "sec-5"}
+  ],
+  "out_of_scope": [
+    "新しい内容（復習の行のため、数Ａ-047〜063 の内容の練習だけを扱う）",
+    "星形七角形・作図・情報機器を用いた考察の問題（数Ａ-055〜058・063。この行の要点にないので要点の一覧で確かめるだけにした）",
+    "座標・方程式を用いた円や2つの円の位置関係（数Ⅱ-042〜046）、空間座標・空間のベクトル（数学Ｃ）",
+    "単元「数学と人間の活動」（数Ａ-071〜100。数学Ａの70コマとは別に置いた単元）"
+  ],
+  "selection_reason": "数学Ａ 単元『復習（予備時間）』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(1)ア(イ)・ア(ウ)の事項と内容の取扱い(1)（内容の選択）（保存本文：sources/text/hs_cos_honbun.txt）"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.89-90 円の性質・空間図形の性質の扱い（保存本文：sources/text/hs_kaisetsu_math.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり・数学Ａのまとめ）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

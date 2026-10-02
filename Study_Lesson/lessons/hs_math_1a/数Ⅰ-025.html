@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>必要条件と十分条件｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.widget select { font-size: 1rem; padding: 2px 4px; margin: 2px 0; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>集合と命題</span><span>数Ⅰ-025</span></div>
+  <h1>必要条件と十分条件</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">60 点以上で合格する試験で、80 点以上とることは、合格するのに「十分」でしょうか、「必要」でしょうか。日常でも使う「必要」「十分」という言葉を、数学では集合の包含関係で正確に使い分けます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>必要条件・十分条件の意味を理解し、条件を満たすものの集合の包含関係（ベン図の円の内側と外側）と関連付けて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>2つの条件 p、q について、p が q であるための十分条件か、必要条件か、どちらでもないかを、集合の包含関係や反例を使って判断できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-024）</span>命題と集合</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-025）</span>必要条件と十分条件</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-026）</span>必要十分条件と条件の否定</div>
+</div>
+<p class="small">前提となる単元：数学Ⅰ「数と式」、中学2年「平行線と角・図形の合同」「三角形と四角形」。この時間は特に、前の時間（数Ⅰ-024）の命題の真偽と集合の包含関係、反例を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、命題「\( p \) ならば \( q \)」の真偽を集合の包含関係で判断する方法と、反例（数Ⅰ-024）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-024</span></div>
+  <p>条件 \( p,\ q \) を満たすもの全体の集合を \( P,\ Q \) とします。命題「\( p \) ならば \( q \)」が真であることと同じものはどれですか。</p>
+  <div class="choices">
+    <button>\( Q\subset P \)</button>
+    <button data-correct="true">\( P\subset Q \)</button>
+    <button>\( P\cap Q=\emptyset \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「\( p \) ならば \( q \)」が真であることと、\( P\subset Q \)（\( p \) を満たすものはどれも \( q \) を満たす）は同じです（数Ⅰ-024）。\( Q\subset P \) は向きが逆で、「\( q \) ならば \( p \)」が真であることを表します。\( P\cap Q=\emptyset \) は、\( p \) と \( q \) を両方満たすものがないことです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-024</span></div>
+  <p>\( x \) は実数とします。命題「\( x&gt;3 \) ならば \( x&gt;1 \)」と「\( x&gt;1 \) ならば \( x&gt;3 \)」の真偽の組合せとして正しいものはどれですか。</p>
+  <div class="choices">
+    <button>どちらも真</button>
+    <button>前者は偽、後者は真</button>
+    <button data-correct="true">前者は真、後者は偽（反例 \( x=2 \)）</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \{\,x\mid x&gt;3\,\}\subset\{\,x\mid x&gt;1\,\} \) なので前者は真。後者は、\( x=2 \) が \( x&gt;1 \) を満たし \( x&gt;3 \) を満たさない反例なので偽です。2つの命題は仮定と結論を入れかえたもので、一方が真でも、もう一方が真とは限りません（中学2年で学んだ「逆」。数Ⅰ-027 で詳しく学びます）。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-024</span></div>
+  <p>命題「\( x^2=1 \) ならば \( x=1 \)」の反例はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( x=-1 \)</button>
+    <button>\( x=1 \)</button>
+    <button>\( x=2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x=-1 \) は \( x^2=1 \)（仮定）を満たし、\( x=1 \)（結論）を満たさないので反例です。\( x=1 \) は両方を満たし、\( x=2 \) は仮定を満たさないので、どちらも反例ではありません。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：合格に「十分」？「必要」？</h2>
+<div class="box think">
+  <p class="box-title">学習用に作成した架空の検定試験</p>
+  <p>ある検定試験は、100 点満点で <strong>60 点以上なら合格</strong>とします。2つの条件を考えます。</p>
+  <p>\( p \)：得点が 80 点以上である　　\( q \)：得点が 60 点以上である（合格する）</p>
+  <p>① 80 点以上とれば、必ず合格するでしょうか。<br>② 合格した人は、必ず 80 点以上でしょうか。<br>③ 「80 点以上であること」は、合格するのに「十分」といえるでしょうか、「必要」といえるでしょうか。</p>
+  <p>答えは「必要条件と十分条件の意味」の節で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="必要条件と十分条件の意味"><span class="num">3</span>必要条件と十分条件の意味</h2>
+<p>2つの条件 \( p,\ q \) について、命題「\( p \) ならば \( q \)」（このページでも、数Ⅰ-024 と同じく \( p\Longrightarrow q \) と書きます）が真であるとき、</p>
+<ul>
+  <li>\( p \) は \( q \) であるための<strong>十分条件</strong>である</li>
+  <li>\( q \) は \( p \) であるための<strong>必要条件</strong>である</li>
+</ul>
+<p>といいます。条件 \( p,\ q \) を満たすもの全体の集合を \( P,\ Q \) とすると、「\( p \) ならば \( q \)」が真であることは \( P\subset Q \) と同じでした（数Ⅰ-024）。ベン図にかくと、図1のように、<strong>内側の円 \( P \) の条件が十分条件、外側の円 \( Q \) の条件が必要条件</strong>です。</p>
+<figure>
+<!--svg:f025b-->
+<svg viewBox="0 0 360 206" width="360" role="img" aria-label="全体集合 U の中で、条件 p を満たすものの集合 P（小さい実線の円、十分条件）が、条件 q を満たすものの集合 Q（大きい破線の円、必要条件）に含まれる図" data-fig="f025b">
+<text x="180" y="14" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">P⊂Q のとき（「p ならば q」が真）</text>
+<rect x="12" y="22" width="336" height="176" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<path d="M112,114 A78,78 0 1,1 268,114 A78,78 0 1,1 112,114 Z" fill="#b7791f" fill-opacity="0.08" stroke="currentColor" stroke-width="1.6" stroke-dasharray="7 3"/>
+<path d="M120,122 A40,40 0 1,1 200,122 A40,40 0 1,1 120,122 Z" fill="#1f5fbf" fill-opacity="0.16" stroke="currentColor" stroke-width="1.6"/>
+<text x="24" y="40" text-anchor="start" font-size="15" font-weight="700" font-style="italic" fill="currentColor">U</text>
+<text x="160" y="116" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="currentColor">P</text>
+<text x="160" y="134" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">十分条件</text>
+<text x="254" y="56" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="currentColor">Q</text>
+<text x="238" y="144" text-anchor="middle" font-size="11" font-weight="700" fill="#b7791f" style="paint-order:stroke;stroke:var(--card);stroke-width:3.5px;stroke-linejoin:round">必要条件</text>
+</svg>
+<!--/svg:f025b-->
+  <figcaption>図1　\( P\subset Q \) のとき、\( p \) は \( q \) であるための十分条件、\( q \) は \( p \) であるための必要条件</figcaption>
+</figure>
+<h3>言葉の意味をつかむ</h3>
+<ul>
+  <li><strong>十分</strong>：\( P \) に入っていれば、それだけで必ず \( Q \) にも入っています。\( p \) が成り立つことは、\( q \) が成り立つと言うのに<strong>十分</strong>です。</li>
+  <li><strong>必要</strong>：\( P \) に入っているものは、どれも \( Q \) に入っています。\( p \) が成り立つためには、少なくとも \( q \) が成り立っていることが<strong>必要</strong>です。</li>
+</ul>
+<div class="box example worked">
+  <p class="box-title">導入の問いの答え</p>
+  <p>得点を \( x \) 点（\( 0\leqq x\leqq 100 \)）とすると、\( P=\{\,x\mid 80\leqq x\leqq 100\,\} \)、\( Q=\{\,x\mid 60\leqq x\leqq 100\,\} \) です（図2）。</p>
+  <div class="step">① 80 点以上なら 60 点以上なので、必ず合格します。\( P\subset Q \) で、「\( p \) ならば \( q \)」は真です。</div>
+  <div class="step">② 70 点の人は合格していますが、80 点以上ではありません。「\( q \) ならば \( p \)」は偽（反例 \( x=70 \)）です。</div>
+  <div class="step">③ 「80 点以上であること（\( p \)）」は、合格する（\( q \)）ための<strong>十分条件</strong>です。合格することは必ずしも 80 点以上を意味しないので、\( p \) は \( q \) であるための必要条件ではありません。反対に、「合格すること（\( q \)）」は、80 点以上である（\( p \)）ための<strong>必要条件</strong>です。</div>
+</div>
+<figure>
+<!--svg:f025a-->
+<svg viewBox="0 0 440 104" width="440" role="img" aria-label="0 点から 100 点までの数直線に、p：80 点以上（青の実線、80 に黒丸）と q：60 点以上（橙の破線、60 に黒丸）を描いた図。80 点以上の範囲は 60 点以上の範囲にすっぽり入る" data-fig="f025a">
+<line x1="10" y1="62" x2="430" y2="62" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,62 L422,58 L422,66 Z" fill="currentColor"/>
+<line x1="22" y1="58" x2="22" y2="66" stroke="currentColor"/>
+<text x="22" y="81" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="61.2" y1="58" x2="61.2" y2="66" stroke="currentColor"/>
+<text x="61.2" y="81" text-anchor="middle" font-size="12" fill="currentColor">10</text>
+<line x1="100.4" y1="58" x2="100.4" y2="66" stroke="currentColor"/>
+<text x="100.4" y="81" text-anchor="middle" font-size="12" fill="currentColor">20</text>
+<line x1="139.6" y1="58" x2="139.6" y2="66" stroke="currentColor"/>
+<text x="139.6" y="81" text-anchor="middle" font-size="12" fill="currentColor">30</text>
+<line x1="178.8" y1="58" x2="178.8" y2="66" stroke="currentColor"/>
+<text x="178.8" y="81" text-anchor="middle" font-size="12" fill="currentColor">40</text>
+<line x1="218" y1="58" x2="218" y2="66" stroke="currentColor"/>
+<text x="218" y="81" text-anchor="middle" font-size="12" fill="currentColor">50</text>
+<line x1="257.2" y1="58" x2="257.2" y2="66" stroke="currentColor"/>
+<text x="257.2" y="81" text-anchor="middle" font-size="12" fill="currentColor">60</text>
+<line x1="296.4" y1="58" x2="296.4" y2="66" stroke="currentColor"/>
+<text x="296.4" y="81" text-anchor="middle" font-size="12" fill="currentColor">70</text>
+<line x1="335.6" y1="58" x2="335.6" y2="66" stroke="currentColor"/>
+<text x="335.6" y="81" text-anchor="middle" font-size="12" fill="currentColor">80</text>
+<line x1="374.8" y1="58" x2="374.8" y2="66" stroke="currentColor"/>
+<text x="374.8" y="81" text-anchor="middle" font-size="12" fill="currentColor">90</text>
+<line x1="414" y1="58" x2="414" y2="66" stroke="currentColor"/>
+<text x="414" y="81" text-anchor="middle" font-size="12" fill="currentColor">100</text>
+<path d="M335.6,62 L335.6,46 L414,46 L414,62" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="P" data-lo="80" data-hi="100"/>
+<circle cx="335.6" cy="62" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-set="P" data-v="80" data-in="1"/>
+<circle cx="414" cy="62" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-set="P" data-v="100" data-in="1"/>
+<text x="374.8" y="41" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">p：80 点以上</text>
+<path d="M257.2,62 L257.2,20 L414,20 L414,62" fill="none" stroke="#b7791f" stroke-width="2.5" stroke-dasharray="6 3" data-set="Q" data-lo="60" data-hi="100"/>
+<circle cx="257.2" cy="62" r="5" fill="#b7791f" stroke="#b7791f" stroke-width="2" data-set="Q" data-v="60" data-in="1"/>
+<circle cx="414" cy="62" r="5" fill="#b7791f" stroke="#b7791f" stroke-width="2" data-set="Q" data-v="100" data-in="1"/>
+<text x="312.1" y="15" text-anchor="middle" font-size="11" font-weight="700" fill="#b7791f">q：60 点以上（合格）</text>
+<text x="430" y="98" text-anchor="end" font-size="11" fill="currentColor">得点（点）</text>
+</svg>
+<!--/svg:f025a-->
+  <figcaption>図2　学習用に作成した架空の検定試験。80 点以上（\( p \)）の範囲は、60 点以上（\( q \)）の範囲に含まれる</figcaption>
+</figure>
+<div class="box point"><p class="box-title">覚え方（このページでの言い方）</p><p>\( P\subset Q \) のとき、<strong>内側（小さいほう）が十分条件、外側（大きいほう）が必要条件</strong>。「\( p\Longrightarrow q \)」の矢印の出発点 \( p \) が十分条件、行き先 \( q \) が必要条件と覚えてもよい。どちらも、包含関係があるときだけ使える覚え方です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="2つの条件の関係の判断"><span class="num">4</span>2つの条件の関係を判断する</h2>
+<p>「\( p \) は \( q \) であるための何条件か」を判断するには、<strong>2つの向きの命題</strong>の真偽を調べます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>「\( p \) ならば \( q \)」</th><th>「\( q \) ならば \( p \)」</th><th>\( p \) は \( q \) であるための</th><th>集合</th></tr>
+  <tr><td>真</td><td>偽</td><td>十分条件であるが、必要条件ではない</td><td>\( P\subset Q \)、\( Q\subset P \) でない</td></tr>
+  <tr><td>偽</td><td>真</td><td>必要条件であるが、十分条件ではない</td><td>\( Q\subset P \)、\( P\subset Q \) でない</td></tr>
+  <tr><td>偽</td><td>偽</td><td>必要条件でも十分条件でもない</td><td>どちらも他方に含まれない</td></tr>
+  <tr><td>真</td><td>真</td><td>必要条件でもあり、十分条件でもある</td><td>\( P=Q \)</td></tr>
+</table>
+</div>
+<p>表の最後の行のように両方が真になる場合の呼び方と意味は、次の時間（数Ⅰ-026）で学びます。偽であることは、反例を1つ挙げて示します（数Ⅰ-024）。</p>
+<div class="box example worked">
+  <p class="box-title">例題1</p>
+  <p>\( n \) は整数とします。\( p \)：\( n \) は 6 の倍数、\( q \)：\( n \) は 3 の倍数 のとき、\( p \) は \( q \) であるための何条件ですか。</p>
+  <div class="step">ステップ1（「\( p \) ならば \( q \)」）：6 の倍数は \( 6k=3\times 2k \)（\( k \) は整数）と表せるので 3 の倍数です。真。</div>
+  <div class="step">ステップ2（「\( q \) ならば \( p \)」）：\( n=3 \) は 3 の倍数ですが 6 の倍数ではありません。反例があるので偽。</div>
+  <div class="step">答え：\( p \) は \( q \) であるための<strong>十分条件であるが、必要条件ではない</strong>（\( q \) は \( p \) であるための必要条件）。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2</p>
+  <p>\( x \) は実数とします。\( p \)：\( x&gt;1 \)、\( q \)：\( x&gt;3 \) のとき、\( p \) は \( q \) であるための何条件ですか。</p>
+  <div class="step">ステップ1（数直線にかく。図3）：\( Q=\{\,x\mid x&gt;3\,\} \) は \( P=\{\,x\mid x&gt;1\,\} \) に含まれます（\( Q\subset P \)）。</div>
+  <div class="step">ステップ2：「\( p \) ならば \( q \)」は偽（反例 \( x=2 \)）。「\( q \) ならば \( p \)」は真。</div>
+  <div class="step">答え：\( p \) は \( q \) であるための<strong>必要条件であるが、十分条件ではない</strong>。外側の \( P \) の条件が必要条件です。</div>
+</div>
+<figure>
+<!--svg:f025c-->
+<svg viewBox="0 0 440 102" width="440" role="img" aria-label="数直線に p：x&gt;1（青の実線、1 に白丸）と q：x&gt;3（橙の破線、3 に白丸）を描いた図。q の範囲は p の範囲に含まれ、x=2 は p を満たすが q を満たさない" data-fig="f025c">
+<line x1="10" y1="62" x2="430" y2="62" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,62 L422,58 L422,66 Z" fill="currentColor"/>
+<line x1="22" y1="58" x2="22" y2="66" stroke="currentColor"/>
+<text x="22" y="81" text-anchor="middle" font-size="12" fill="currentColor">−2</text>
+<line x1="65.6" y1="58" x2="65.6" y2="66" stroke="currentColor"/>
+<text x="65.6" y="81" text-anchor="middle" font-size="12" fill="currentColor">−1</text>
+<line x1="109.1" y1="58" x2="109.1" y2="66" stroke="currentColor"/>
+<text x="109.1" y="81" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="152.7" y1="58" x2="152.7" y2="66" stroke="currentColor"/>
+<text x="152.7" y="81" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<line x1="196.2" y1="58" x2="196.2" y2="66" stroke="currentColor"/>
+<text x="196.2" y="81" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<line x1="239.8" y1="58" x2="239.8" y2="66" stroke="currentColor"/>
+<text x="239.8" y="81" text-anchor="middle" font-size="12" fill="currentColor">3</text>
+<line x1="283.3" y1="58" x2="283.3" y2="66" stroke="currentColor"/>
+<text x="283.3" y="81" text-anchor="middle" font-size="12" fill="currentColor">4</text>
+<line x1="326.9" y1="58" x2="326.9" y2="66" stroke="currentColor"/>
+<text x="326.9" y="81" text-anchor="middle" font-size="12" fill="currentColor">5</text>
+<line x1="370.4" y1="58" x2="370.4" y2="66" stroke="currentColor"/>
+<text x="370.4" y="81" text-anchor="middle" font-size="12" fill="currentColor">6</text>
+<line x1="414" y1="58" x2="414" y2="66" stroke="currentColor"/>
+<text x="414" y="81" text-anchor="middle" font-size="12" fill="currentColor">7</text>
+<path d="M152.7,62 L152.7,46 L416,46" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="P" data-lo="1" data-hi="None"/>
+<path d="M422,46 L413,41.5 L413,50.5 Z" fill="#1f5fbf"/>
+<circle cx="152.7" cy="62" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-set="P" data-v="1" data-in="0"/>
+<text x="326.9" y="41" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">p：x &gt; 1</text>
+<path d="M239.8,62 L239.8,20 L416,20" fill="none" stroke="#b7791f" stroke-width="2.5" stroke-dasharray="6 3" data-set="Q" data-lo="3" data-hi="None"/>
+<path d="M422,20 L413,15.5 L413,24.5 Z" fill="#b7791f"/>
+<circle cx="239.8" cy="62" r="5" style="fill:var(--card)" stroke="#b7791f" stroke-width="2" data-set="Q" data-v="3" data-in="0"/>
+<text x="326.9" y="15" text-anchor="middle" font-size="11" font-weight="700" fill="#b7791f">q：x &gt; 3</text>
+<path d="M191.2,57 L201.2,67 M191.2,67 L201.2,57" stroke="#c0392b" stroke-width="2.4" data-mark="2"/>
+<text x="196.2" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">x＝2</text>
+</svg>
+<!--/svg:f025c-->
+  <figcaption>図3　例題2。\( q \)（\( x&gt;3 \)）の範囲は \( p \)（\( x&gt;1 \)）の範囲に含まれる。\( x=2 \) は「\( p \) ならば \( q \)」の反例</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題3</p>
+  <p>\( x \) は実数とします。\( p \)：\( x&gt;1 \)、\( q \)：\( x&lt;3 \) のとき、\( p \) は \( q \) であるための何条件ですか。</p>
+  <div class="step">ステップ1（数直線にかく。図4）：どちらの範囲も、他方に含まれません。</div>
+  <div class="step">ステップ2：「\( p \) ならば \( q \)」は反例 \( x=4 \) があるので偽。「\( q \) ならば \( p \)」は反例 \( x=0 \) があるので偽。</div>
+  <div class="step">答え：\( p \) は \( q \) であるための<strong>必要条件でも十分条件でもない</strong>。</div>
+</div>
+<figure>
+<!--svg:f025d-->
+<svg viewBox="0 0 440 102" width="440" role="img" aria-label="数直線に p：x&gt;1（青の実線）と q：x&lt;3（橙の破線）を描いた図。どちらの範囲も他方に含まれない。x=4 は p を満たし q を満たさず、x=0 は q を満たし p を満たさない" data-fig="f025d">
+<line x1="10" y1="62" x2="430" y2="62" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,62 L422,58 L422,66 Z" fill="currentColor"/>
+<line x1="22" y1="58" x2="22" y2="66" stroke="currentColor"/>
+<text x="22" y="81" text-anchor="middle" font-size="12" fill="currentColor">−2</text>
+<line x1="65.6" y1="58" x2="65.6" y2="66" stroke="currentColor"/>
+<text x="65.6" y="81" text-anchor="middle" font-size="12" fill="currentColor">−1</text>
+<line x1="109.1" y1="58" x2="109.1" y2="66" stroke="currentColor"/>
+<text x="109.1" y="81" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="152.7" y1="58" x2="152.7" y2="66" stroke="currentColor"/>
+<text x="152.7" y="81" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<line x1="196.2" y1="58" x2="196.2" y2="66" stroke="currentColor"/>
+<text x="196.2" y="81" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<line x1="239.8" y1="58" x2="239.8" y2="66" stroke="currentColor"/>
+<text x="239.8" y="81" text-anchor="middle" font-size="12" fill="currentColor">3</text>
+<line x1="283.3" y1="58" x2="283.3" y2="66" stroke="currentColor"/>
+<text x="283.3" y="81" text-anchor="middle" font-size="12" fill="currentColor">4</text>
+<line x1="326.9" y1="58" x2="326.9" y2="66" stroke="currentColor"/>
+<text x="326.9" y="81" text-anchor="middle" font-size="12" fill="currentColor">5</text>
+<line x1="370.4" y1="58" x2="370.4" y2="66" stroke="currentColor"/>
+<text x="370.4" y="81" text-anchor="middle" font-size="12" fill="currentColor">6</text>
+<line x1="414" y1="58" x2="414" y2="66" stroke="currentColor"/>
+<text x="414" y="81" text-anchor="middle" font-size="12" fill="currentColor">7</text>
+<path d="M152.7,62 L152.7,46 L416,46" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="P" data-lo="1" data-hi="None"/>
+<path d="M422,46 L413,41.5 L413,50.5 Z" fill="#1f5fbf"/>
+<circle cx="152.7" cy="62" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-set="P" data-v="1" data-in="0"/>
+<text x="326.9" y="41" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">p：x &gt; 1</text>
+<path d="M12,20 L239.8,20 L239.8,62" fill="none" stroke="#b7791f" stroke-width="2.5" stroke-dasharray="6 3" data-set="Q" data-lo="None" data-hi="3"/>
+<path d="M6,20 L15,15.5 L15,24.5 Z" fill="#b7791f"/>
+<circle cx="239.8" cy="62" r="5" style="fill:var(--card)" stroke="#b7791f" stroke-width="2" data-set="Q" data-v="3" data-in="0"/>
+<text x="65.6" y="15" text-anchor="middle" font-size="11" font-weight="700" fill="#b7791f">q：x &lt; 3</text>
+<path d="M104.1,57 L114.1,67 M104.1,67 L114.1,57" stroke="#c0392b" stroke-width="2.4" data-mark="0"/>
+<text x="109.1" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">x＝0</text>
+<path d="M278.3,57 L288.3,67 M278.3,67 L288.3,57" stroke="#c0392b" stroke-width="2.4" data-mark="4"/>
+<text x="283.3" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">x＝4</text>
+</svg>
+<!--/svg:f025d-->
+  <figcaption>図4　例題3。\( x=4 \) は「\( p \) ならば \( q \)」の反例、\( x=0 \) は「\( q \) ならば \( p \)」の反例</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い：「〜は…であるための」の向きを取り違える</p><p>例題1で「\( q \) は \( p \) であるための十分条件」とするのは誤りです。「A は B であるための十分条件」は「A ならば B が真」という意味で、<strong>A が矢印の出発点</strong>です。問題文の「〜は」と「…であるための」がどちらの条件かを、先に確かめましょう。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：片方の向きだけ調べて決める</p><p>例題3で「\( p \) ならば \( q \)」が偽なので「必要条件だ」と決めるのは誤りです。必要条件であるためには「\( q \) ならば \( p \)」が真でなければなりません。<strong>2つの向きの両方</strong>を調べます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="いろいろな条件で判断する"><span class="num">5</span>いろいろな条件で判断する</h2>
+<div class="box example worked">
+  <p class="box-title">例題4</p>
+  <p>次の □ にあてはまるものを、「十分条件であるが必要条件ではない」「必要条件であるが十分条件ではない」「必要条件でも十分条件でもない」から選びなさい。<br>(1) \( x=2 \) は、\( x^2=4 \) であるための □。<br>(2) 四角形が正方形であることは、四角形がひし形であるための □。</p>
+  <div class="step">(1)：\( x=2 \) ならば \( x^2=4 \) は真。\( x^2=4 \) ならば \( x=2 \) は偽（反例 \( x=-2 \)。数Ⅰ-024 の例題3）。答え：十分条件であるが必要条件ではない。</div>
+  <div class="step">(2)：正方形は4つの辺がすべて等しいのでひし形です（中2-072）。「正方形ならばひし形」は真。角が直角でないひし形は正方形ではないので、「ひし形ならば正方形」は偽。答え：十分条件であるが必要条件ではない。</div>
+</div>
+<h3>操作して確かめよう：条件の組の判定</h3>
+<p>条件 \( p \) と \( q \) を選ぶと、数直線にそれぞれを満たす範囲が表示され、2つの向きの命題の真偽と反例、\( p \) が \( q \) であるための何条件かが表示されます（\( x \) は実数）。</p>
+<div class="widget" id="w1">
+  <label for="w1-p">p：</label>
+  <select id="w1-p">
+    <option value="0" selected>x &gt; 3</option>
+    <option value="1">x ≧ 3</option>
+    <option value="2">x &gt; 1</option>
+    <option value="3">x &lt; 3</option>
+    <option value="4">1 &lt; x &lt; 3</option>
+    <option value="5">0 ≦ x ≦ 5</option>
+    <option value="6">x = 2</option>
+    <option value="7">x² = 4（x = −2, 2）</option>
+    <option value="8">|x| &lt; 2（−2 &lt; x &lt; 2）</option>
+    <option value="9">x &lt; 1</option>
+  </select>
+  <label for="w1-q">　q：</label>
+  <select id="w1-q">
+    <option value="0">x &gt; 3</option>
+    <option value="1">x ≧ 3</option>
+    <option value="2" selected>x &gt; 1</option>
+    <option value="3">x &lt; 3</option>
+    <option value="4">1 &lt; x &lt; 3</option>
+    <option value="5">0 ≦ x ≦ 5</option>
+    <option value="6">x = 2</option>
+    <option value="7">x² = 4（x = −2, 2）</option>
+    <option value="8">|x| &lt; 2（−2 &lt; x &lt; 2）</option>
+    <option value="9">x &lt; 1</option>
+  </select>
+  <div id="w1-fig">
+<!--svg:w025-->
+<svg viewBox="0 0 440 86" width="440" role="img" aria-label="操作部品の数直線。p の条件を満たす範囲（青の実線）と q の条件を満たす範囲（橙の破線）を高さを変えて表示する" data-fig="w025">
+<line x1="10" y1="60" x2="430" y2="60" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,60 L422,56 L422,64 Z" fill="currentColor"/>
+<line x1="22" y1="56" x2="22" y2="64" stroke="currentColor"/>
+<text x="22" y="79" text-anchor="middle" font-size="12" fill="currentColor">−4</text>
+<line x1="61.2" y1="56" x2="61.2" y2="64" stroke="currentColor"/>
+<text x="61.2" y="79" text-anchor="middle" font-size="12" fill="currentColor">−3</text>
+<line x1="100.4" y1="56" x2="100.4" y2="64" stroke="currentColor"/>
+<text x="100.4" y="79" text-anchor="middle" font-size="12" fill="currentColor">−2</text>
+<line x1="139.6" y1="56" x2="139.6" y2="64" stroke="currentColor"/>
+<text x="139.6" y="79" text-anchor="middle" font-size="12" fill="currentColor">−1</text>
+<line x1="178.8" y1="56" x2="178.8" y2="64" stroke="currentColor"/>
+<text x="178.8" y="79" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="218" y1="56" x2="218" y2="64" stroke="currentColor"/>
+<text x="218" y="79" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<line x1="257.2" y1="56" x2="257.2" y2="64" stroke="currentColor"/>
+<text x="257.2" y="79" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<line x1="296.4" y1="56" x2="296.4" y2="64" stroke="currentColor"/>
+<text x="296.4" y="79" text-anchor="middle" font-size="12" fill="currentColor">3</text>
+<line x1="335.6" y1="56" x2="335.6" y2="64" stroke="currentColor"/>
+<text x="335.6" y="79" text-anchor="middle" font-size="12" fill="currentColor">4</text>
+<line x1="374.8" y1="56" x2="374.8" y2="64" stroke="currentColor"/>
+<text x="374.8" y="79" text-anchor="middle" font-size="12" fill="currentColor">5</text>
+<line x1="414" y1="56" x2="414" y2="64" stroke="currentColor"/>
+<text x="414" y="79" text-anchor="middle" font-size="12" fill="currentColor">6</text>
+<path d="M296.4,60 L296.4,44 L416,44" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-set="p" data-lo="3" data-hi="None"/>
+<path d="M422,44 L413,39.5 L413,48.5 Z" fill="#1f5fbf"/>
+<circle cx="296.4" cy="44" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-set="p" data-v="3" data-in="0"/>
+<text x="37.7" y="39" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5fbf">p</text>
+<path d="M218,60 L218,20 L416,20" fill="none" stroke="#b7791f" stroke-width="2.5" stroke-dasharray="6 3" data-set="q" data-lo="1" data-hi="None"/>
+<path d="M422,20 L413,15.5 L413,24.5 Z" fill="#b7791f"/>
+<circle cx="218" cy="20" r="5" style="fill:var(--card)" stroke="#b7791f" stroke-width="2" data-set="q" data-v="1" data-in="0"/>
+<text x="37.7" y="15" text-anchor="middle" font-size="11" font-weight="700" fill="#b7791f">q</text>
+</svg>
+<!--/svg:w025-->
+  </div>
+  <p class="w-out" id="w1-out" aria-live="polite">p：x &gt; 3、q：x &gt; 1。「p ならば q」は真。「q ならば p」は偽（反例 x = 2）。よって、p は q であるための十分条件であるが、必要条件ではない。</p>
+  <p class="small">青の実線が p、橙の破線が q を満たす範囲。● は端の数を含む、○ は含まない。初めは p：x &gt; 3、q：x &gt; 1 を選んだ状態です。</p>
+</div>
+<div class="box point"><p class="box-title">判断の手順</p><p>① 文字の範囲を確かめ、\( p,\ q \) を満たす集合 \( P,\ Q \) を数直線やベン図に表す。② 「\( p \) ならば \( q \)」と「\( q \) ならば \( p \)」の真偽を、包含関係と反例で調べる。③ 表にあてはめて答える。端の数（●○）と「〜は…であるための」の向きに注意する。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>十分条件</dt><dd>命題「\( p \) ならば \( q \)」が真のとき、\( p \) は \( q \) であるための十分条件。集合では、内側の \( P \)（\( P\subset Q \)）。</dd>
+    <dt>必要条件</dt><dd>命題「\( p \) ならば \( q \)」が真のとき、\( q \) は \( p \) であるための必要条件。集合では、外側の \( Q \)。</dd>
+    <dt>2つの向きの命題</dt><dd>「\( p \) ならば \( q \)」と「\( q \) ならば \( p \)」。何条件かを判断するときは、両方の真偽を調べる。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>「\( p \) ならば \( q \)」が真のとき、\( p \) は \( q \) であるための十分条件、\( q \) は \( p \) であるための必要条件（O1）。</li>
+    <li>集合では \( P\subset Q \) のとき、内側の \( P \) の条件が十分条件、外側の \( Q \) の条件が必要条件（O1）。</li>
+    <li>何条件かは、「\( p \) ならば \( q \)」と「\( q \) ならば \( p \)」の両方の真偽を調べて決める。偽は反例で示す。どちらも偽なら、必要条件でも十分条件でもない（O2）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">必要条件・十分条件</span><p>\( p\Longrightarrow q \) が真のとき　\( p \)：十分条件　\( q \)：必要条件<br>集合では \( P\subset Q \)（内側が十分、外側が必要）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。とくに断らない限り、\( x \) は実数とする。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>命題「\( p \) ならば \( q \)」が真であるとき、正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( p \) は \( q \) であるための必要条件である。</button>
+    <button data-correct="true">\( p \) は \( q \) であるための十分条件である。</button>
+    <button>\( q \) は \( p \) であるための十分条件である。</button>
+    <button>\( p \) と \( q \) を満たすものの集合は等しい。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「\( p \) ならば \( q \)」が真のとき、矢印の出発点の \( p \) が十分条件、行き先の \( q \) が必要条件です。1つ目と3つ目は、必要と十分を取り違えています。4つ目は、\( P\subset Q \) であっても \( P=Q \) とは限らないので誤りです（「\( q \) ならば \( p \)」も真でなければ等しくない）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>\( x=2 \) は、\( x^2=4 \) であるための何条件ですか。</p>
+  <div class="choices">
+    <button data-correct="true">十分条件であるが、必要条件ではない</button>
+    <button>必要条件であるが、十分条件ではない</button>
+    <button>必要条件でも十分条件でもない</button>
+    <button>必要条件でもあり、十分条件でもある</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「\( x=2 \) ならば \( x^2=4 \)」は真、「\( x^2=4 \) ならば \( x=2 \)」は反例 \( x=-2 \) があるので偽です。よって十分条件であるが、必要条件ではありません（例題4(1)）。「必要条件であるが…」は向きを取り違えた誤り、「必要条件でもあり…」は \( x=-2 \) を見落とした誤りです。「どちらでもない」は、「\( x=2 \) ならば \( x^2=4 \)」が真であることを見落としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>\( x\geqq 3 \) は、\( x&gt;3 \) であるための何条件ですか。</p>
+  <div class="choices">
+    <button>十分条件であるが、必要条件ではない</button>
+    <button>必要条件でも十分条件でもない</button>
+    <button data-correct="true">必要条件であるが、十分条件ではない</button>
+    <button>必要条件でもあり、十分条件でもある</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「\( x\geqq 3 \) ならば \( x&gt;3 \)」は反例 \( x=3 \) があるので偽。「\( x&gt;3 \) ならば \( x\geqq 3 \)」は真です。\( \{\,x\mid x&gt;3\,\}\subset\{\,x\mid x\geqq 3\,\} \) で、外側の \( x\geqq 3 \) が必要条件です。「十分条件であるが…」は向きの取り違え、「必要条件でもあり…」は端の 3 の違いを見落とした誤り、「どちらでもない」は包含関係を見落とした誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>\( n \) は自然数とします。「\( n \) が 4 の倍数であること」は、「\( n \) が 6 の倍数であること」であるための何条件ですか。</p>
+  <div class="choices">
+    <button>必要条件でもあり、十分条件でもある</button>
+    <button>十分条件であるが、必要条件ではない</button>
+    <button>必要条件であるが、十分条件ではない</button>
+    <button data-correct="true">必要条件でも十分条件でもない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「4 の倍数ならば 6 の倍数」は反例 \( n=4 \)、「6 の倍数ならば 4 の倍数」は反例 \( n=6 \) があり、どちらも偽です。よって必要条件でも十分条件でもありません。\( n=12 \) のように両方を満たす数があっても、包含関係にはなりません。十分条件・必要条件とした選択肢は、片方の向きだけ（または \( n=12 \) のような1つの例だけ）で判断した誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>「四角形がひし形であること」は、「四角形が正方形であること」であるための何条件ですか。</p>
+  <div class="choices">
+    <button>十分条件であるが、必要条件ではない</button>
+    <button data-correct="true">必要条件であるが、十分条件ではない</button>
+    <button>必要条件でもあり、十分条件でもある</button>
+    <button>必要条件でも十分条件でもない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「正方形ならばひし形」は真、「ひし形ならば正方形」は偽（角が直角でないひし形が反例）です。正方形全体の集合はひし形全体の集合に含まれ、外側のひし形の条件が必要条件です。例題4(2) と「〜は…であるための」の順が逆なので、答えも逆になります。「十分条件であるが…」は向きを取り違えた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="5|n=5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2</span></div>
+  <p>\( n \) は自然数とします。\( p \)：\( n \) は 10 の倍数、\( q \)：\( n \) は 5 の倍数 のとき、\( p \) は \( q \) であるための十分条件ですが、必要条件ではありません。必要条件でないことを示す反例のうち、最も小さい自然数 \( n \) を答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( n=5 \)。必要条件でないことは「\( q \) ならば \( p \)」が偽であることなので、反例は「5 の倍数だが 10 の倍数でない」自然数です。5、15、25、…のうち最も小さいのは 5 です。10 と答えた場合は、両方を満たす数を選んでいます（反例ではない）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O1・O2</span></div>
+  <p>学習用に作成した架空の設定です。X市はY県にある市で、Y県にはX市のほかにもいくつかの市町村があるとします（どの人も、ただ1つの市町村に住んでいるものとします）。</p>
+  <p>太郎：「Y県に住んでいれば、X市に住んでいると言うのに十分だよね。」<br>花子：「Y県のほかの町に住んでいる人もいるよ。集合の包含関係で考えてみよう。」</p>
+  <p>「Y県に住んでいること」は、「X市に住んでいること」であるための何条件ですか。</p>
+  <div class="choices">
+    <button>十分条件であるが、必要条件ではない</button>
+    <button>必要条件でも十分条件でもない</button>
+    <button>必要条件でもあり、十分条件でもある</button>
+    <button data-correct="true">必要条件であるが、十分条件ではない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">X市に住んでいる人全体の集合は、Y県に住んでいる人全体の集合に含まれます（「X市に住んでいるならば、Y県に住んでいる」は真）。「Y県に住んでいるならば、X市に住んでいる」は、県内のほかの町に住む人が反例になり偽です。よって、外側の「Y県に住んでいること」は必要条件ですが、十分条件ではありません。太郎さんの考え（十分条件）は、向きを取り違えています。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2</span></div>
+  <p>\( p \)：\( x^2=x \)、\( q \)：\( x=1 \) とします。\( p \) は \( q \) であるための何条件ですか。条件を満たすものの集合と反例を使って説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　\( x^2=x \) より \( x^2-x=0 \)、\( x(x-1)=0 \) なので \( x=0,\ 1 \)。よって \( P=\{0,\ 1\} \)、\( Q=\{1\} \) で、\( Q\subset P \) である。「\( q \) ならば \( p \)」は真。一方、\( x=0 \) は \( p \) を満たすが \( q \) を満たさないので、「\( p \) ならば \( q \)」は偽（反例 \( x=0 \)）。したがって、\( p \) は \( q \) であるための必要条件であるが、十分条件ではない。</p>
+    <p><strong>採点の観点</strong>　① \( x^2=x \) を解いて \( P=\{0,\ 1\} \) を求めている（両辺を \( x \) でわって \( x=0 \) を落としていない）。② 2つの向きの命題の真偽を調べ、偽のほうに反例 \( x=0 \) を挙げている。③ 包含関係から「必要条件であるが、十分条件ではない」と結論している。</p>
+  </div>
+  <div class="explain">\( x^2=x \) の両辺を \( x \) でわって \( x=1 \) とすると、\( x=0 \) の解を落としてしまい、「必要十分」と誤って判断します。因数分解で解きましょう（中3-041）。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2</span></div>
+  <p>\( a \) は定数とします。\( p \)：\( 0&lt;x&lt;2 \) が、\( q \)：\( x&lt;a \) であるための十分条件となる \( a \) の値の範囲はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( a\geqq 2 \)</button>
+    <button>\( a&gt;2 \)</button>
+    <button>\( a\leqq 0 \)</button>
+    <button>\( a\geqq 0 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">十分条件となるのは「\( 0&lt;x&lt;2 \) ならば \( x&lt;a \)」が真、つまり \( \{\,x\mid 0&lt;x&lt;2\,\}\subset\{\,x\mid x&lt;a\,\} \) のときです。数直線で、0 から 2 までの線が \( a \) より左にすっぽり入るのは \( a\geqq 2 \) のときです。\( a=2 \) のときも、\( 0&lt;x&lt;2 \) の数はすべて \( x&lt;2 \) を満たします（2 は \( p \) の範囲に入らない）。「\( a&gt;2 \)」は \( a=2 \) を落とした誤り、「\( a\geqq 0 \)」は左端の 0 で考えた誤り（\( a=1 \) なら \( x=1.5 \) が反例）、「\( a\leqq 0 \)」は、\( x&lt;a \) の範囲と \( 0&lt;x&lt;2 \) の範囲が重ならない（共通部分が空集合になる）条件と取り違えた誤りです（\( a=0 \) なら \( x=1 \) が反例）。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(1) 数と式」の「集合と命題に関する基本的な概念を理解すること」（ア(イ)）と「集合の考えを用いて論理的に考察し，簡単な命題を証明すること」（イ(ア)）に当たり、出題範囲に含まれます。学習指導要領解説は、「必要条件，十分条件や対偶などの指導においても，図表示による集合の包含関係と関連付けるなどして，直観的に理解させることが大切である」としています。</p>
+  <p>令和9年度の問題作成方針は、数学について「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求め、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。日常の場面の条件を集合の包含関係で捉え、必要・十分を判断するこの時間の考え方は、その土台になります。</p>
+  <p class="small">問7は日常の場面と会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">必要十分条件と条件の否定（数Ⅰ-026）</p>
+  <p>この時間の表の最後の行（「\( p \) ならば \( q \)」と「\( q \) ならば \( p \)」がどちらも真で、\( P=Q \) となる場合）を、次の時間は「必要十分条件」として学びます。また、条件の否定や、「かつ」「または」を含む条件の否定を、数Ⅰ-023 で学んだド・モルガンの法則と集合を使って求めます。</p>
+  <p>この時間では、必要十分条件（同値）の意味、条件の否定（数Ⅰ-026）、命題の逆・裏・対偶（数Ⅰ-027）、対偶や背理法による証明（数Ⅰ-028・029）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-024　命題と集合</div>
+  <div><span class="label">次の時間</span>数Ⅰ-026　必要十分条件と条件の否定</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-025「必要条件と十分条件」（学習指導要領 数学Ⅰ (1)ア(イ)・イ(ア)、解説 p.36）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(1) 数と式 ア(イ)・イ(ア)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.36（「必要条件，十分条件や対偶などの指導においても，図表示による集合の包含関係と関連付けるなどして，直観的に理解させることが大切である」。中学校で既に学習した数の性質や図形の性質を命題として表現させ、必要条件、十分条件について考える活動の例）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>中学校学習指導要領（平成29年告示）解説 数学編 p.116（正方形，ひし形，長方形，平行四辺形の間の関係の整理）（文部科学省）https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「命題と条件」（必要条件，十分条件の定義、命題の真偽を集合の包含関係に結び付けて考察することの確認）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>東京書籍「評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）」の「命題と条件」（条件どうしの関係を、条件が満たすもの全体の集合の包含関係と関連付けて考えることの確認）https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。検定試験・X市・Y県・会話は、このページのために作成した架空のものです。「内側が十分条件、外側が必要条件」は、このページでの覚え方です。記号 ⟹ の書き方は教科書でも確かめよう。操作部品はブラウザのスクリプトで動きます（動かない環境でも、本文と図だけで学べます）。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  /*w025-begin*/
+  var CONDS = [
+    { t: "x > 3", s: [[3, false, null, false]] },
+    { t: "x ≧ 3", s: [[3, true, null, false]] },
+    { t: "x > 1", s: [[1, false, null, false]] },
+    { t: "x < 3", s: [[null, false, 3, false]] },
+    { t: "1 < x < 3", s: [[1, false, 3, false]] },
+    { t: "0 ≦ x ≦ 5", s: [[0, true, 5, true]] },
+    { t: "x = 2", s: [[2, true, 2, true]] },
+    { t: "x² = 4", s: [[-2, true, -2, true], [2, true, 2, true]] },
+    { t: "|x| < 2", s: [[-2, false, 2, false]] },
+    { t: "x < 1", s: [[null, false, 1, false]] }
+  ];
+  var CAND = [];
+  for (var k = -16; k <= 16; k++) CAND.push(k / 2);
+  CAND.sort(function (a, b) {
+    var ha = a % 1 === 0 ? 0 : 1, hb = b % 1 === 0 ? 0 : 1;
+    return ha - hb || Math.abs(a) - Math.abs(b) || b - a;
+  });
+  function inPiece(p, x) {
+    if (p[0] !== null && (x < p[0] || (x === p[0] && !p[1]))) return false;
+    if (p[2] !== null && (x > p[2] || (x === p[2] && !p[3]))) return false;
+    return true;
+  }
+  function member(c, x) {
+    return CONDS[c].s.some(function (p) { return inPiece(p, x); });
+  }
+  function counter(a, b) {
+    for (var i = 0; i < CAND.length; i++) {
+      if (member(a, CAND[i]) && !member(b, CAND[i])) return CAND[i];
+    }
+    return null;
+  }
+  function num(v) {
+    var s = v % 1 === 0 ? String(v) : v.toFixed(1);
+    return s.replace("-", "\u2212");
+  }
+  var W = 440, L = 22, R = 26, V0 = -4, V1 = 6, BASE = 60, GAP = 24;
+  function X(v) { return L + (v - V0) / (V1 - V0) * (W - L - R); }
+  function f1(v) { var s = (Math.round(v * 10) / 10).toFixed(1); return s.slice(-2) === ".0" ? s.slice(0, -2) : s; }
+  function drawSet(c, level, color, dash, name) {
+    var y = BASE - 16 - GAP * level, out = [];
+    var da = dash ? ' stroke-dasharray="6 3"' : "";
+    CONDS[c].s.forEach(function (p) {
+      var lo = p[0], hi = p[2];
+      if (lo !== null && hi !== null && lo === hi) {
+        out.push('<line x1="' + f1(X(lo)) + '" y1="' + BASE + '" x2="' + f1(X(lo)) + '" y2="' + y + '" stroke="' + color + '" stroke-width="1.2" stroke-dasharray="2 2"/>');
+        out.push('<circle cx="' + f1(X(lo)) + '" cy="' + y + '" r="5" fill="' + color + '" stroke="' + color + '" stroke-width="2" data-set="' + name + '" data-v="' + lo + '" data-in="1"/>');
+        return;
+      }
+      var xl = lo !== null ? X(lo) : L - 12 + 2, xh = hi !== null ? X(hi) : W - R + 16 - 14;
+      var d = (lo !== null ? "M" + f1(xl) + "," + BASE + " L" + f1(xl) + "," + y + " " : "M" + f1(xl) + "," + y + " ") + "L" + f1(xh) + "," + y;
+      if (hi !== null) d += " L" + f1(xh) + "," + BASE;
+      out.push('<path d="' + d + '" fill="none" stroke="' + color + '" stroke-width="2.5"' + da + ' data-set="' + name + '" data-lo="' + lo + '" data-hi="' + hi + '"/>');
+      if (lo === null) out.push('<path d="M' + f1(xl - 6) + "," + y + " L" + f1(xl + 3) + "," + f1(y - 4.5) + " L" + f1(xl + 3) + "," + f1(y + 4.5) + ' Z" fill="' + color + '"/>');
+      if (hi === null) out.push('<path d="M' + f1(xh + 6) + "," + y + " L" + f1(xh - 3) + "," + f1(y - 4.5) + " L" + f1(xh - 3) + "," + f1(y + 4.5) + ' Z" fill="' + color + '"/>');
+      [[lo, p[1]], [hi, p[3]]].forEach(function (e) {
+        if (e[0] === null) return;
+        var fill = e[1] ? 'fill="' + color + '"' : 'style="fill:var(--card)"';
+        out.push('<circle cx="' + f1(X(e[0])) + '" cy="' + y + '" r="5" ' + fill + ' stroke="' + color + '" stroke-width="2" data-set="' + name + '" data-v="' + e[0] + '" data-in="' + (e[1] ? 1 : 0) + '"/>');
+      });
+    });
+    out.push('<text x="' + f1(X(-3.6)) + '" y="' + (y - 5) + '" text-anchor="middle" font-size="11" font-weight="700" fill="' + color + '">' + name + "</text>");
+    return out.join("");
+  }
+  function axis() {
+    var o = ['<line x1="' + (L - 12) + '" y1="' + BASE + '" x2="' + (W - R + 16) + '" y2="' + BASE + '" stroke="currentColor" stroke-width="1.2"/>'];
+    var xe = W - R + 16;
+    o.push('<path d="M' + xe + "," + BASE + " L" + (xe - 8) + "," + (BASE - 4) + " L" + (xe - 8) + "," + (BASE + 4) + ' Z" fill="currentColor"/>');
+    for (var t = V0; t <= V1; t++) {
+      o.push('<line x1="' + f1(X(t)) + '" y1="' + (BASE - 4) + '" x2="' + f1(X(t)) + '" y2="' + (BASE + 4) + '" stroke="currentColor"/>');
+      o.push('<text x="' + f1(X(t)) + '" y="' + (BASE + 19) + '" text-anchor="middle" font-size="12" fill="currentColor">' + String(t).replace("-", "\u2212") + "</text>");
+    }
+    return o.join("");
+  }
+  var selP = document.getElementById("w1-p");
+  var selQ = document.getElementById("w1-q");
+  var fig = document.getElementById("w1-fig");
+  var out = document.getElementById("w1-out");
+  if (!selP || !selQ || !fig || !out) return;
+  function show() {
+    var p = parseInt(selP.value, 10), q = parseInt(selQ.value, 10);
+    if (!CONDS[p] || !CONDS[q]) return;
+    fig.innerHTML = '<svg viewBox="0 0 440 86" width="440" role="img" aria-label="p と q を満たす範囲の数直線（青の実線が p、橙の破線が q）" data-fig="w025">' +
+      axis() + drawSet(p, 0, "#1f5fbf", false, "p") + drawSet(q, 1, "#b7791f", true, "q") + "</svg>";
+    var cpq = counter(p, q), cqp = counter(q, p);
+    var s = "p：" + CONDS[p].t + "、q：" + CONDS[q].t + "。";
+    s += "「p ならば q」は" + (cpq === null ? "真" : "偽（反例 x = " + num(cpq) + "）") + "。";
+    s += "「q ならば p」は" + (cqp === null ? "真" : "偽（反例 x = " + num(cqp) + "）") + "。よって、p は q であるための";
+    if (cpq === null && cqp === null) s += "必要条件でもあり、十分条件でもある（このような場合の呼び方は数Ⅰ-026 で学ぶ）。";
+    else if (cpq === null) s += "十分条件であるが、必要条件ではない。";
+    else if (cqp === null) s += "必要条件であるが、十分条件ではない。";
+    else s += "必要条件でも十分条件でもない。";
+    out.textContent = s;
+  }
+  selP.addEventListener("change", show);
+  selQ.addEventListener("change", show);
+  show();
+  /*w025-end*/
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-025",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-025",
+  "title": "必要条件と十分条件",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-2", "title": "集合と命題"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(イ)", "(1)イ(ア)"],
+  "kaisetsu_page": "36",
+  "objectives": [
+    {"id": "O1", "text": "必要条件・十分条件の意味を理解し、条件を満たすものの集合の包含関係（ベン図の円の内側と外側）と関連付けて説明できる。", "from": "必要条件・十分条件の意味を、図に表した集合の包含関係と関連付けて直観的に理解し", "sections": ["sec-1"], "checks": ["q1", "q7", "q8"]},
+    {"id": "O2", "text": "2つの条件 p、q について、p が q であるための十分条件か、必要条件か、どちらでもないかを、集合の包含関係や反例を使って判断できる。", "from": "2つの条件の関係を判断できる", "sections": ["sec-2", "sec-3"], "checks": ["q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "十分条件", "where": "sec-1"},
+    {"term": "必要条件", "where": "sec-1"},
+    {"term": "2つの向きの命題", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "命題「p ならば q」の真偽と集合の包含関係 P⊂Q、反例", "taught_in": ["hs_math_1a/数Ⅰ-024"], "where": "review"},
+    {"concept": "仮定と結論を入れかえた「逆」（逆が正しいとは限らない）", "taught_in": ["jhs_math/中2-063"], "where": "review"},
+    {"concept": "部分集合と集合が等しいこと（A=B）", "taught_in": ["hs_math_1a/数Ⅰ-021"], "where": "sec-2"},
+    {"concept": "正方形・ひし形は平行四辺形の特別な形で、正方形はひし形でもあること", "taught_in": ["jhs_math/中2-072"], "where": "sec-3"},
+    {"concept": "倍数を文字で表して説明すること", "taught_in": ["jhs_math/中2-008"], "where": "sec-2"},
+    {"concept": "二次方程式を因数分解で解くこと（x²=x、x(x−1)=0）", "taught_in": ["jhs_math/中3-041"], "where": "quiz"},
+    {"concept": "ax²=b の形の二次方程式の解（x²=4 なら x=±2）", "taught_in": ["jhs_math/中3-036"], "where": "sec-3"},
+    {"concept": "絶対値を含む不等式（|x|<2 の解は −2<x<2）", "taught_in": ["hs_math_1a/数Ⅰ-018"], "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "必要十分条件（同値）の意味と呼び方（数Ⅰ-026）",
+    "条件の否定、「かつ」「または」を含む条件の否定（数Ⅰ-026）",
+    "命題の逆・裏・対偶と、その真偽の関係（数Ⅰ-027）",
+    "対偶を利用した証明・背理法（数Ⅰ-028・数Ⅰ-029）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『集合と命題』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(1)ア(イ)・イ(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.36 必要条件・十分条件を図表示による集合の包含関係と関連付けて直観的に理解させること、数や図形の性質を命題として必要条件・十分条件を考える活動"},
+    {"name": "中学校学習指導要領（平成29年告示）解説 数学編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf", "use": "p.116 正方形・ひし形などの関係（例題4(2)・問5）"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "必要条件・十分条件の定義、命題の真偽を集合の包含関係に結び付けること"},
+    {"name": "評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）", "publisher": "東京書籍（東書Ｅネット）", "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf", "use": "条件どうしの関係を、条件が満たすもの全体の集合の包含関係と関連付けること"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

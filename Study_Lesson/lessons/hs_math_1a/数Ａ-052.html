@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>方べきの定理｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.proof ol { margin: 4px 0 4px 1.2em; }
+.proof .tag { font-weight: 700; }
+.widget .w-row { margin: 4px 0; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>図形の性質</span><span>数Ａ-052</span></div>
+  <h1>方べきの定理</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">円の中の1点 P を通る弦は、どの向きに引いても、P で分けられた2つの部分の長さの積が同じになります。点 P が円の外にあっても同じことが成り立ちます。この「方べきの定理」を、三角形の相似を使って証明します。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>円の2つの弦 AB、CD が円の内部の点 P で交わるとき、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) が成り立つことを、三角形の相似を用いて証明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>2つの弦の延長どうしが円の外部の点 P で交わるときも、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) が成り立つことを、三角形の相似を用いて証明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>方べきの定理を用いて、線分の長さを求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-051）</span>接線と弦のつくる角</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-052）</span>方べきの定理</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-053）</span>方べきの定理（接線を含む場合）</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」、中学1年「平面図形」「空間図形」。中学3年の三角形の相似条件（中3-067）と円と相似（中3-094）、中学2年の対頂角（中2-044）、数学Ａの円周角の定理（数Ａ-047）と円に内接する四角形の性質（数Ａ-048）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">この時間に使うこと（中3-067、中1-054、中2-044、数Ａ-047、数Ａ-048、中3-094）</p>
+  <ul>
+    <li><strong>三角形の相似条件</strong>（中3-067）：2組の角がそれぞれ等しい2つの三角形は相似。相似な図形の対応する辺の比は等しい（中3-064・065）。</li>
+    <li><strong>比例式</strong>（中1-054）：\( a:b=c:d \) は比の値が等しいこと \( \dfrac{a}{b}=\dfrac{c}{d} \) で、両辺に \( bd \) をかけると \( ad=bc \) です。</li>
+    <li><strong>対頂角</strong>は等しい（中2-044）。<strong>同じ弧に対する円周角</strong>は等しい（数Ａ-047）。円に内接する四角形の<strong>外角</strong>は、隣り合う内角の対角に等しい（数Ａ-048）。</li>
+    <li><strong>円と相似</strong>（中3-094）：中学校でも、円周角の定理を使って三角形の相似を証明し、線分の長さを求めました。</li>
+  </ul>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中3-067</span></div>
+  <p>2つの三角形が相似であるといえる条件はどれですか。</p>
+  <div class="choices">
+    <button>1組の角が等しい</button>
+    <button data-correct="true">2組の角がそれぞれ等しい</button>
+    <button>2組の辺の比が等しい</button>
+    <button>1組の辺が等しい</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">三角形の相似条件は「3組の辺の比がすべて等しい」「2組の辺の比とその間の角がそれぞれ等しい」「2組の角がそれぞれ等しい」です（中3-067）。1組の角だけ、2組の辺の比だけ（間の角がない）、1組の辺だけでは決まりません。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中1-054</span></div>
+  <p>\( 3:x=4:8 \) のとき、\( x \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{3}{2} \)</button>
+    <button>\( \dfrac{32}{3} \)</button>
+    <button data-correct="true">6</button>
+    <button>7</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \dfrac{3}{x}=\dfrac{4}{8} \) より \( 4x=3\times8=24 \)、\( x=6 \) です（外側どうしの積と内側どうしの積が等しい）。\( \dfrac{3}{2} \) は \( 3:x=8:4 \) と後ろの比を逆にした値（\( 8x=3\times4 \)）、\( \dfrac{32}{3} \) は \( 3x=4\times8 \) と組を取り違えています。7 は \( 3+4=x \) のように差を合わせていて、比ではありません。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-048</span></div>
+  <p>円に内接する四角形 ABDC の辺 BA を A の先に延ばした直線上に点 P をとります。外角 \( \angle\mathrm{PAC} \) と等しい角はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \angle\mathrm{BDC} \)</button>
+    <button>\( \angle\mathrm{BAC} \)</button>
+    <button>\( \angle\mathrm{ABD} \)</button>
+    <button>\( \angle\mathrm{ACD} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">四角形 ABDC の A における外角 \( \angle\mathrm{PAC} \) と隣り合う内角は \( \angle\mathrm{BAC} \) で、その対角は D の内角 \( \angle\mathrm{BDC} \) です（数Ａ-048）。\( \angle\mathrm{BAC} \) は隣り合う内角そのもので、外角との和が \( 180^\circ \) です。\( \angle\mathrm{ABD} \) と \( \angle\mathrm{ACD} \) は A のとなりの頂点 B、C の内角です。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：P を通る弦の長さの積</h2>
+<div class="box think">
+  <p class="box-title">3本の弦の測定値</p>
+  <p>ある円の内部の点 P を通る3本の弦について、P で分けられた2つの部分の長さを調べました（学習用に作成した値。半径 4 の円で、中心から P までの距離が 2 のときの値）。</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>弦</th><th>一方の部分</th><th>もう一方の部分</th></tr>
+    <tr><td>弦1</td><td>5</td><td>2.4</td></tr>
+    <tr><td>弦2</td><td>3</td><td>4</td></tr>
+    <tr><td>弦3</td><td>6</td><td>2</td></tr>
+  </table>
+  </div>
+  <ul>
+    <li>① 3本の弦に共通する関係を見つけましょう（長さの和？ 差？ 積？）。</li>
+    <li>② その関係は、P を通るどの弦でも成り立つでしょうか。</li>
+  </ul>
+  <p>予想してから読み進めましょう。答えは「3 弦が円の内部で交わるとき」で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="弦が円の内部で交わるとき"><span class="num">3</span>弦が円の内部で交わるとき</h2>
+<p>円の2つの弦 AB と CD が、円の内部の点 P で交わっているとします。線分の長さの積を \( \mathrm{PA}\cdot\mathrm{PB} \) のように書きます。</p>
+<div class="box point">
+  <p class="box-title">方べきの定理（2つの弦が円の内部で交わるとき）</p>
+  <p>円の2つの弦 AB、CD が点 P で交わるとき、</p>
+  $$ \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} $$
+</div>
+<figure>
+<!--svg:f052a-->
+<svg viewBox="0 0 260 230" width="260" role="img" aria-label="円の弦 AB と CD が円の内部の点 P で交わる。△PAC と △PDB は相似で、∠PAC＝∠PDB、∠APC＝∠DPB" data-fig="f052a" data-s="23.750000" data-ox="130.000000" data-oy="115.000000">
+<circle cx="130" cy="115" r="95" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円" data-cx="0.000000" data-cy="0.000000" data-r="4.000000"/>
+<polygon points="102.6,139.8 38.2,90.4 68.9,187.8" fill="#1f5fbf" fill-opacity="0.16" stroke="none" data-region="PAC"/>
+<polygon points="102.6,139.8 177.5,32.7 177.5,197.3" fill="#b7791f" fill-opacity="0.18" stroke="none" data-region="PDB"/>
+<line x1="38.2" y1="90.4" x2="177.5" y2="197.3" stroke="currentColor" stroke-width="1.8" data-seg="AB"/>
+<line x1="68.9" y1="187.8" x2="177.5" y2="32.7" stroke="currentColor" stroke-width="1.8" data-seg="CD"/>
+<line x1="38.2" y1="90.4" x2="68.9" y2="187.8" stroke="currentColor" stroke-width="1.3" data-seg="AC"/>
+<line x1="177.5" y1="32.7" x2="177.5" y2="197.3" stroke="currentColor" stroke-width="1.3" data-seg="DB"/>
+<path d="M54.1,102.6 A20,20 0 0 1 44.3,109.5" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="A,P,C" data-mark="1"/>
+<path d="M177.5,52.7 A20,20 0 0 1 166,49.1" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="D,P,B" data-mark="1"/>
+<path d="M95.1,150.4 A13,13 0 0 1 92.2,131.8 M93,153.4 A16.6,16.6 0 0 1 89.4,129.7" fill="none" stroke="#1e8e5a" stroke-width="1.4" data-angle="P,A,C" data-mark="2"/>
+<path d="M110,129.1 A13,13 0 0 1 112.9,147.7 M112.1,126.2 A16.6,16.6 0 0 1 115.7,149.9" fill="none" stroke="#1e8e5a" stroke-width="1.4" data-angle="P,D,B" data-mark="2"/>
+<circle cx="38.24" cy="90.41" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="-3.863703" data-y="1.035276" data-on="円"/>
+<text x="25.7" y="91.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="177.50" cy="197.27" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="2.000000" data-y="-3.464102" data-on="円"/>
+<text x="184" y="212.7" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="68.94" cy="187.77" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="-2.571150" data-y="-3.064178" data-on="円"/>
+<text x="60.6" y="201.9" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="177.50" cy="32.73" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="D" data-x="2.000000" data-y="3.464102" data-on="円"/>
+<text x="184" y="25.7" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<circle cx="102.55" cy="139.76" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P" data-x="-1.155674" data-y="-1.042668"/>
+<text x="100.3" y="129.1" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">P</text>
+</svg>
+<!--/svg:f052a-->
+  <figcaption>図1　弦 AB、CD が円の内部の点 P で交わる。△PAC（青の塗り）と △PDB（橙の塗り）で、∠PAC＝∠PDB（橙の弧1本：同じ弧 BC に対する円周角）、∠APC＝∠DPB（緑の弧2本：対頂角）（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example proof">
+  <p class="box-title">証明（内部で交わるとき）</p>
+  <p><span class="tag">仮定</span>　円の2つの弦 AB、CD が円の内部の点 P で交わる。<br><span class="tag">結論</span>　\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)</p>
+  <p>△PAC と △PDB において、</p>
+  <ol>
+    <li>A と D は直線 BC について同じ側にあり、\( \angle\mathrm{BAC} \) と \( \angle\mathrm{BDC} \) は同じ弧 BC に対する円周角なので等しい（数Ａ-047）。P は線分 AB、CD 上にあるので、\( \angle\mathrm{PAC}=\angle\mathrm{PDB} \)。</li>
+    <li>対頂角は等しいので、\( \angle\mathrm{APC}=\angle\mathrm{DPB} \)（中2-044）。</li>
+    <li>①、② より、2組の角がそれぞれ等しいので、\( \triangle\mathrm{PAC}\backsim\triangle\mathrm{PDB} \)（中3-067）。</li>
+    <li>対応する辺の比は等しいので、\( \mathrm{PA}:\mathrm{PD}=\mathrm{PC}:\mathrm{PB} \)。よって \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)（中1-054）。</li>
+  </ol>
+  <p>（証明終わり）</p>
+</div>
+<p>相似な三角形の頂点は、P↔P、A↔D、C↔B と対応します。比の式は、この対応にそって「△PAC の辺：△PDB の対応する辺」で書くと間違えにくくなります。中学校の中3-094 で行った「円周角の定理で相似を示し、線分の長さを求める」を、一般の形にまとめたのが方べきの定理です。</p>
+<div class="box point"><p class="box-title">導入の問いの答え</p><p>① 3本とも、2つの部分の長さの積が \( 5\times2.4=3\times4=6\times2=12 \) で等しくなっています。② 方べきの定理より、P を通るどの弦でも積は同じ値（12）になります。下の操作部品でも確かめられます。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題1（内部で交わるとき）</p>
+  <p>円の弦 AB、CD が点 P で交わり、\( \mathrm{PA}=6 \)、\( \mathrm{PB}=4 \)、\( \mathrm{PC}=3 \) です。PD の長さを求めなさい。</p>
+  <div class="step">着眼点：P で交わる2つの弦なので、方べきの定理 \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) が使えます。</div>
+  <div class="step">\( 6\times4=3\times\mathrm{PD} \) より、\( \mathrm{PD}=\dfrac{24}{3}=8 \)。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：組を取り違える</p><p>① \( \mathrm{PA}\cdot\mathrm{PC}=\mathrm{PB}\cdot\mathrm{PD} \) とする：かけるのは、<strong>同じ弦</strong>の2つの部分どうしです（AB の PA と PB、CD の PC と PD）。例題1でこうすると \( \mathrm{PD}=\dfrac{6\times3}{4}=\dfrac{9}{2} \) となり、誤りです。<br>② \( \mathrm{PA}+\mathrm{PB}=\mathrm{PC}+\mathrm{PD} \) とする：和は弦の長さで、2本の弦の長さはふつう違います。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="弦の延長が円の外部で交わるとき"><span class="num">4</span>弦の延長が円の外部で交わるとき</h2>
+<p>2つの弦 AB、CD を延ばした直線どうしが、円の外部の点 P で交わる場合を考えます。P から出る2本の直線が、円とそれぞれ A、B と C、D で交わり、P、A、B と P、C、D がこの順に並んでいるとします。</p>
+<div class="box point">
+  <p class="box-title">方べきの定理（2つの弦の延長が円の外部で交わるとき）</p>
+  <p>円の2つの弦 AB、CD の延長が点 P で交わるとき、</p>
+  $$ \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} $$
+  <p class="small">内部で交わるときと同じ形で、どちらも「P から、直線と円との2つの交点までの長さの積」が等しいことを表しています。</p>
+</div>
+<figure>
+<!--svg:f052b-->
+<svg viewBox="0 0 314 200" width="314" role="img" aria-label="円の弦 AB、CD の延長が円の外部の点 P で交わる。P、A、B と P、C、D はこの順。△PAC と △PDB は相似で、∠P は共通、∠PAC＝∠PDB" data-fig="f052b" data-s="19.500000" data-ox="104.350000" data-oy="100.000000">
+<circle cx="104.3" cy="100" r="78" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円" data-cx="0.000000" data-cy="0.000000" data-r="4.000000"/>
+<polygon points="287.6,111.7 176.9,71.4 172.3,138.3" fill="#1f5fbf" fill-opacity="0.16" stroke="none" data-region="PAC"/>
+<polygon points="287.6,111.7 60.1,164.2 67.1,31.4" fill="#b7791f" fill-opacity="0.14" stroke="none" data-region="PDB"/>
+<line x1="287.6" y1="111.7" x2="67.1" y2="31.4" stroke="currentColor" stroke-width="1.8" data-seg="PB"/>
+<line x1="287.6" y1="111.7" x2="60.1" y2="164.2" stroke="currentColor" stroke-width="1.8" data-seg="PD"/>
+<line x1="176.9" y1="71.4" x2="172.3" y2="138.3" stroke="currentColor" stroke-width="1.3" data-seg="AC"/>
+<line x1="60.1" y1="164.2" x2="67.1" y2="31.4" stroke="currentColor" stroke-width="1.3" data-seg="DB"/>
+<path d="M192,76.9 A16,16 0 0 1 175.8,87.4" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="A,P,C" data-mark="1"/>
+<path d="M61.1,146.3 A18,18 0 0 1 77.6,160.2" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="D,P,B" data-mark="1"/>
+<path d="M254.5,119.3 A34,34 0 0 1 255.7,100.1 M251,120.2 A37.6,37.6 0 0 1 252.3,98.8" fill="none" stroke="#1e8e5a" stroke-width="1.4" data-angle="P,A,C" data-mark="2"/>
+<circle cx="176.92" cy="71.40" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="3.721331" data-y="1.466867" data-on="円"/>
+<circle cx="67.15" cy="31.44" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="-1.907821" data-y="3.515710" data-on="円"/>
+<circle cx="172.28" cy="138.34" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="3.483556" data-y="-1.965919" data-on="円"/>
+<circle cx="60.10" cy="164.23" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="D" data-x="-2.269198" data-y="-3.294047" data-on="円"/>
+<text x="183.5" y="63.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="60.9" y="24.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="184.5" y="149.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="52.7" y="179.1" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<circle cx="287.65" cy="111.70" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P" data-x="9.400000" data-y="-0.600000"/>
+<text x="300.6" y="115.9" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">P</text>
+</svg>
+<!--/svg:f052b-->
+  <figcaption>図2　弦 AB、CD の延長が円の外部の点 P で交わる。△PAC（青の塗り）と △PDB（橙の塗り）で、∠P は共通（緑の弧2本）、∠PAC＝∠PDB（橙の弧1本：円に内接する四角形 ABDC の外角と、隣り合う内角の対角）（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example proof">
+  <p class="box-title">証明（外部で交わるとき）</p>
+  <p><span class="tag">仮定</span>　円の2つの弦 AB、CD の延長が円の外部の点 P で交わり、P、A、B と P、C、D はこの順に並ぶ。<br><span class="tag">結論</span>　\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)</p>
+  <p>△PAC と △PDB において、</p>
+  <ol>
+    <li>\( \angle\mathrm{APC}=\angle\mathrm{DPB} \)（共通な角）。</li>
+    <li>4点 A、B、D、C はこの順に円周上にあり、四角形 ABDC は円に内接する。P は辺 BA を A の先に延ばした直線上にあるので、\( \angle\mathrm{PAC} \) は A における外角で、隣り合う内角 \( \angle\mathrm{BAC} \) の対角 \( \angle\mathrm{BDC} \) に等しい（数Ａ-048）。C は線分 PD 上にあるので \( \angle\mathrm{BDC}=\angle\mathrm{PDB} \)。よって \( \angle\mathrm{PAC}=\angle\mathrm{PDB} \)。</li>
+    <li>①、② より、2組の角がそれぞれ等しいので、\( \triangle\mathrm{PAC}\backsim\triangle\mathrm{PDB} \)（中3-067）。</li>
+    <li>対応する辺の比は等しいので、\( \mathrm{PA}:\mathrm{PD}=\mathrm{PC}:\mathrm{PB} \)。よって \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)。</li>
+  </ol>
+  <p>（証明終わり）</p>
+</div>
+<p>②では、前の時間までに学んだ円に内接する四角形の性質（数Ａ-048）を使いました。円周角の定理だけを使って、別の三角形の組で証明することもできます（問8）。</p>
+<div class="box example worked">
+  <p class="box-title">例題2（外部で交わるとき）</p>
+  <p>点 P から引いた2本の直線が、円と A、B および C、D で交わり、P、A、B と P、C、D はこの順に並んでいます。\( \mathrm{PA}=3 \)、\( \mathrm{AB}=5 \)、\( \mathrm{PC}=4 \) のとき、CD の長さを求めなさい。</p>
+  <div class="step">着眼点：方べきの定理で使うのは、P から2つの交点までの長さ PA と PB です。\( \mathrm{PB}=\mathrm{PA}+\mathrm{AB} \) を先に求めます。</div>
+  <div class="step">\( \mathrm{PB}=3+5=8 \)。\( \mathrm{PD}=4+\mathrm{CD} \) とおくと、\( 3\times8=4\times\mathrm{PD} \) より \( \mathrm{PD}=6 \)。</div>
+  <div class="step">\( \mathrm{CD}=\mathrm{PD}-\mathrm{PC}=6-4=2 \)。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：弦の長さを使う</p><p>例題2で \( \mathrm{PA}\cdot\mathrm{AB}=\mathrm{PC}\cdot\mathrm{CD} \) とすると、\( 3\times5=4\times\mathrm{CD} \)、\( \mathrm{CD}=\dfrac{15}{4} \) となり、誤りです。かけるのは P から2つの交点までの長さ（PA と PB、PC と PD）で、弦の長さ AB、CD ではありません。</p></div>
+<h3>操作して確かめよう：直線 CD の向きを変える</h3>
+<p>点 P と直線 AB を固定して、P を通る直線 CD の向きを変えます。P が円の内部にあるとき・外部にあるときの両方で、\( \mathrm{PA}\cdot\mathrm{PB} \) と \( \mathrm{PC}\cdot\mathrm{PD} \) を比べましょう。</p>
+<div class="widget" id="w1">
+  <div class="w-row"><label for="w1-mode">点 P の位置：</label><select id="w1-mode"><option value="in" selected>円の内部（中心から 1）</option><option value="out">円の外部（中心から 5）</option></select></div>
+  <div class="w-row"><label for="w1-k">直線 CD の向きを変える：</label><input type="range" id="w1-k" min="-10" max="40" step="1" value="10"></div>
+  <div><svg id="w1-svg" viewBox="0 0 300 230" width="300" role="img" aria-label="半径 3 の円と点 P、P を通る直線 AB（固定）と直線 CD（向きが変わる）。P は円の内部または外部"></svg></div>
+  <p class="w-out" id="w1-out" aria-live="polite">PA ≒ 3.01、PB ≒ 2.66、PA·PB = 8。PC ≒ 2.04、PD ≒ 3.92、PC·PD = 8。P が円の内部にあるとき、どの向きの直線でも PA·PB = PC·PD です。（スクリプトが動かない場合は、図1・図2で同じことを確かめられます）</p>
+  <p class="small">紫の破線の円＝半径 3 の円、青でない実線＝直線 AB（固定）、青の線＝直線 CD。長さは小数第3位を四捨五入した値で、積はもとの長さから計算しています。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="線分の長さを求める"><span class="num">5</span>方べきの定理を使って線分の長さを求める</h2>
+<div class="box example worked">
+  <p class="box-title">例題3（比が分かっているとき）</p>
+  <p>円の弦 AB、CD が点 P で交わり、\( \mathrm{AB}=10 \)、\( \mathrm{PA}=4 \)、\( \mathrm{PC}:\mathrm{PD}=2:3 \) です。CD の長さを求めなさい。</p>
+  <div class="step">着眼点：\( \mathrm{PB}=\mathrm{AB}-\mathrm{PA} \)。比が分かっているので、\( \mathrm{PC}=2k \)、\( \mathrm{PD}=3k \)（\( k&gt;0 \)）とおきます。</div>
+  <div class="step">\( \mathrm{PB}=10-4=6 \)。方べきの定理より \( 4\times6=2k\times3k \)、\( 6k^2=24 \)、\( k^2=4 \)。\( k&gt;0 \) より \( k=2 \)。</div>
+  <div class="step">\( \mathrm{CD}=2k+3k=5k=10 \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（根号を含む答え）</p>
+  <p>点 P から引いた2本の直線が、円と A、B および C、D で交わり、P、A、B と P、C、D はこの順に並んでいます。\( \mathrm{PA}=4 \)、\( \mathrm{AB}=5 \)、\( \mathrm{PC}=\mathrm{CD} \) のとき、CD の長さを求めなさい。</p>
+  <div class="step">着眼点：\( \mathrm{PC}=\mathrm{CD}=t \)（\( t&gt;0 \)）とおくと、\( \mathrm{PD}=2t \) です。</div>
+  <div class="step">\( \mathrm{PB}=4+5=9 \)。方べきの定理より \( 4\times9=t\times2t \)、\( 2t^2=36 \)、\( t^2=18 \)。</div>
+  <div class="step">\( t&gt;0 \) より \( t=\sqrt{18}=3\sqrt{2} \)。答え：\( \mathrm{CD}=3\sqrt{2} \)。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 例題3で \( \mathrm{PB}=10 \) とする：10 は弦 AB 全体の長さで、P で分けた一方の部分は \( 10-4=6 \) です。<br>② 例題4で \( t^2=18 \) から \( t=\pm3\sqrt{2} \) と答える：長さなので \( t&gt;0 \) です。<br>③ 例題4で \( 4\times9=t\times t \) とする：PD は \( \mathrm{PC}+\mathrm{CD}=2t \) です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>方べきの定理</dt><dd>円の2つの弦 AB、CD、またはその延長どうしが点 P で交わるとき、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)。P が円の内部にあっても外部にあっても同じ形。</dd>
+    <dt>\( \mathrm{PA}\cdot\mathrm{PB} \)</dt><dd>線分 PA と PB の長さの積。P から、直線と円との2つの交点までの長さをかけたもの。</dd>
+    <dt>相似な三角形の対応</dt><dd>方べきの定理の証明では △PAC∽△PDB（P↔P、A↔D、C↔B）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>弦 AB、CD が円の内部の点 P で交わるとき、同じ弧に対する円周角と対頂角から △PAC∽△PDB。対応する辺の比から \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)（O1）。</li>
+    <li>弦の延長が円の外部の点 P で交わるとき、共通な角と、円に内接する四角形の外角の性質から △PAC∽△PDB。同じ形 \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) が成り立つ（O2）。</li>
+    <li>かけるのは P から2つの交点までの長さ。弦の長さ AB を使うときは PB＝PA＋AB（外部）、PB＝AB−PA（内部）を先に求める。比や等しい長さは文字でおく（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">方べきの定理（P は円の内部でも外部でもよい）</span>
+  $$ \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。入力問題は数字だけを入力してください（分数は 9/2、根号は 3√5 のように入力。3ルート5 でもかまいません）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1・O3</span></div>
+  <p>円の弦 AB、CD が点 P で交わり、\( \mathrm{PA}=3 \)、\( \mathrm{PB}=4 \)、\( \mathrm{PC}=2 \) です。PD の長さはどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{3}{2} \)</button>
+    <button data-correct="true">6</button>
+    <button>5</button>
+    <button>\( \dfrac{8}{3} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) より \( 3\times4=2\times\mathrm{PD} \)、\( \mathrm{PD}=6 \) です。\( \dfrac{3}{2} \) は \( \mathrm{PA}\cdot\mathrm{PC}=\mathrm{PB}\cdot\mathrm{PD} \) と組を取り違えた値、5 は \( \mathrm{PA}+\mathrm{PB}=\mathrm{PC}+\mathrm{PD} \) とした値、\( \dfrac{8}{3} \) は \( \mathrm{PA}:\mathrm{PB}=\mathrm{PC}:\mathrm{PD} \) とした値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>点 P から引いた2本の直線が、円と A、B および C、D で交わり、P、A、B と P、C、D はこの順に並んでいます。いつも成り立つ式はどれですか。</p>
+  <div class="choices">
+    <button>\( \mathrm{PA}\cdot\mathrm{AB}=\mathrm{PC}\cdot\mathrm{CD} \)</button>
+    <button>\( \mathrm{PA}\cdot\mathrm{PC}=\mathrm{PB}\cdot\mathrm{PD} \)</button>
+    <button>\( \mathrm{PA}+\mathrm{PB}=\mathrm{PC}+\mathrm{PD} \)</button>
+    <button data-correct="true">\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">P が円の外部にあるときも、方べきの定理 \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) が成り立ちます。1つ目は弦の長さ AB、CD を使っていて誤りです（例題2では \( 3\times5\neq4\times2 \)）。2つ目は、別の直線の上の長さどうしをかけていて誤りです。3つ目の和はふつう等しくありません（例題2では \( 3+8\neq4+6 \)）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O1</span></div>
+  <p>弦 AB、CD が円の内部の点 P で交わるときの方べきの定理の証明で、相似を示す三角形の組と根拠として正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">△PAC∽△PDB。同じ弧に対する円周角と対頂角から、2組の角がそれぞれ等しい。</button>
+    <button>△PAC∽△PBD。同じ弧に対する円周角と対頂角から、2組の角がそれぞれ等しい。</button>
+    <button>△PAC≡△PDB。対頂角と、1組の辺が等しい。</button>
+    <button>△PAC∽△PDB。3組の辺の比がすべて等しい。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">∠PAC＝∠PDB（同じ弧 BC に対する円周角）、∠APC＝∠DPB（対頂角）なので、2組の角がそれぞれ等しく △PAC∽△PDB です。△PBD と書くと頂点の対応が A↔B、C↔D になり、∠PAC と ∠PBD は等しいとは限らないので誤りです。合同とは限りません（大きさが違う）。3組の辺の比が等しいことは、これから示したいことにかかわるので、根拠には使えません。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="10|CD=10">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1・O3</span></div>
+  <p>円の弦 AB、CD が点 P で交わり、\( \mathrm{AB}=11 \)、\( \mathrm{PA}=3 \)、\( \mathrm{PC}=4 \) です。CD の長さを求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 10。\( \mathrm{PB}=11-3=8 \)。\( 3\times8=4\times\mathrm{PD} \) より \( \mathrm{PD}=6 \)、\( \mathrm{CD}=4+6=10 \) です。6 と答えた場合は PD を答えています。\( \dfrac{33}{4} \) と答えた場合は、\( \mathrm{PA}\cdot\mathrm{AB}=\mathrm{PC}\cdot\mathrm{CD} \) と、弦の長さ AB、CD を使っています。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="3|CD=3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2・O3</span></div>
+  <p>点 P から引いた2本の直線が、円と A、B および C、D で交わり、P、A、B と P、C、D はこの順に並んでいます。\( \mathrm{PA}=2 \)、\( \mathrm{AB}=7 \)、\( \mathrm{PC}=3 \) のとき、CD の長さを求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 3。\( \mathrm{PB}=2+7=9 \)。\( 2\times9=3\times\mathrm{PD} \) より \( \mathrm{PD}=6 \)、\( \mathrm{CD}=6-3=3 \) です。6 と答えた場合は PD を答えています。\( \dfrac{14}{3} \) と答えた場合は、\( \mathrm{PA}\cdot\mathrm{AB}=\mathrm{PC}\cdot\mathrm{CD} \) と弦の長さを使っています。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="4√3|4√(3)|4ルート3|4root3|CD=4√3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>円の弦 AB、CD が点 P で交わり、\( \mathrm{PA}=2 \)、\( \mathrm{PB}=6 \)、\( \mathrm{PC}=\mathrm{PD} \) です。CD の長さを求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 4\sqrt{3} \)。\( \mathrm{PC}=\mathrm{PD}=t \)（\( t&gt;0 \)）とおくと \( 2\times6=t^2 \)、\( t=\sqrt{12}=2\sqrt{3} \)。\( \mathrm{CD}=2t=4\sqrt{3} \) です。\( 2\sqrt{3} \) と答えた場合は PC（CD の半分）を答えています。8 と答えた場合は \( \mathrm{PA}+\mathrm{PB} \) で、弦 AB の長さです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O1・O3</span></div>
+  <p>円形の池の上に、まっすぐな2本の橋 AB と CD が架かっていて、池の中の点 P で交わっています（学習用の架空の場面。池のふちは円、橋の両端は池のふちの上にあるとします）。測ると \( \mathrm{PA}=12 \) m、\( \mathrm{PB}=15 \) m、\( \mathrm{PC}=9 \) m でした。</p>
+  <p>太郎：「PD は \( \mathrm{PA}+\mathrm{PB}-\mathrm{PC}=18 \) m だと思う。」<br>花子：「2本の橋の長さが同じとは限らないよ。円の性質を使って考えよう。」</p>
+  <p>PD の長さとして正しいものはどれですか。</p>
+  <div class="choices">
+    <button>18 m</button>
+    <button>7.2 m</button>
+    <button data-correct="true">20 m</button>
+    <button>11.25 m</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">橋は池（円）の弦で、P で交わるので、方べきの定理より \( 12\times15=9\times\mathrm{PD} \)、\( \mathrm{PD}=20 \)（m）です。18 m は太郎さんの考えで、2本の弦の長さが等しいとしています（実際は AB＝27 m、CD＝29 m）。7.2 m は \( \mathrm{PA}\cdot\mathrm{PC}=\mathrm{PB}\cdot\mathrm{PD} \)、11.25 m は \( \mathrm{PA}:\mathrm{PB}=\mathrm{PC}:\mathrm{PD} \) とした値です。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2</span></div>
+  <p>円の2つの弦 AB、CD の延長が円の外部の点 P で交わり、P、A、B と P、C、D はこの順に並んでいます。本文とは別の三角形の組 △PAD と △PCB の相似を使い、円周角の定理（数Ａ-047）を根拠にして、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) を証明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　△PAD と △PCB において、\( \angle\mathrm{APD}=\angle\mathrm{CPB} \)（共通な角）。D と B は直線 AC について同じ側にあり、\( \angle\mathrm{ADC} \) と \( \angle\mathrm{ABC} \) は同じ弧 AC に対する円周角なので等しい。C は線分 PD 上、A は線分 PB 上にあるので、\( \angle\mathrm{PDA}=\angle\mathrm{ADC} \)、\( \angle\mathrm{PBC}=\angle\mathrm{ABC} \)。よって \( \angle\mathrm{PDA}=\angle\mathrm{PBC} \)。2組の角がそれぞれ等しいので \( \triangle\mathrm{PAD}\backsim\triangle\mathrm{PCB} \)。対応する辺の比は等しいので \( \mathrm{PA}:\mathrm{PC}=\mathrm{PD}:\mathrm{PB} \)。よって \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \)。（証明終わり）</p>
+    <p><strong>採点の観点</strong>　① 共通な角と、同じ弧 AC に対する円周角が等しいことを根拠に、2組の角を示している。② 頂点の対応（P↔P、A↔C、D↔B）にそって比の式を書いている。③ 比の式から積の形を導いている。</p>
+  </div>
+  <div class="explain">本文の証明（△PAC∽△PDB、円に内接する四角形の外角）とは別の組です。どちらの組でも、同じ式 \( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PC}\cdot\mathrm{PD} \) が得られます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(1) 図形の性質」のア(イ)「円に関する基本的な性質について理解すること」とイ(ア)に関わり、出題範囲に含まれます。学習指導要領解説は、円の性質の例として「方べきの定理」を挙げています。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。方べきの定理は、線分の長さを求めるときに、相似な三角形を毎回探さなくても使える形にまとめたものです。</p>
+  <p class="small">問7は会話と日常の場面を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">方べきの定理（接線を含む場合）（数Ａ-053）</p>
+  <p>次の時間は、円外の点 P から引いた接線 PT と、P を通り円と2点 A、B で交わる直線について、\( \mathrm{PA}\cdot\mathrm{PB}=\mathrm{PT}^2 \) が成り立つことを理解し、線分の長さを求めます。また、方べきの定理の逆を用いて、4点が同じ円周上にあることを示します。この時間の外部で交わる場合で、直線 CD を回していき、C と D が重なって直線が円に接するときにあたります。</p>
+  <p>この時間では、接線を含む場合と方べきの定理の逆（数Ａ-053）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-051　接線と弦のつくる角</div>
+  <div><span class="label">次の時間</span>数Ａ-053　方べきの定理（接線を含む場合）</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-052「方べきの定理」（学習指導要領 数学Ａ (1)ア(イ)・イ(ア)、解説 p.90）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(1) 図形の性質（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.90（「方べきの定理及び 2 円の位置関係やそれらの共通接線の性質などについて理解できるようにする」）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「方べきの定理」（「方べきの定理を利用して，線分の長さを求めたり」「相似を利用した方べきの定理の導き方に興味・関心をもつ」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>東京書籍「評価規準例 数学A Standard（数A 002-902）」の「5 方べきの定理」（「方べきの定理の証明について，相似な三角形に着目して考察することができる」）https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_sua_hyoka.pdf</li>
+    <li>東京書籍「令和7年度用『新編 新しい数学』学習指導計画例（略案）3年」（「円と交わる直線でできる図形について考えてみよう」「相似な三角形の組を見つけ、線分の長さを求めること」）https://ten.tokyo-shoseki.co.jp/text/chu/list/keikaku/</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・図はこのページのために作成したものです（出典を示したものを除く）。導入の測定値と池の場面は学習用の架空のものです。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var svg = document.getElementById("w1-svg");
+  var sl = document.getElementById("w1-k");
+  var md = document.getElementById("w1-mode");
+  var out = document.getElementById("w1-out");
+  if (!svg || !sl || !md) return;
+  var W = 300, H = 230, S = 30, CX = 120, CY = 115, RAD = 3;
+  var PURPLE = "#7b3fa0", BLUE = "#1f5fbf";
+  function X(x) { return CX + S * x; }
+  function Y(y) { return CY - S * y; }
+  function r1(v) { return String(Math.round(v * 10) / 10); }
+  function rnd(v, d) { var m = Math.pow(10, d); return Math.round(v * m + (v >= 0 ? 1e-9 : -1e-9)) / m; }
+  function fmt(v) { return Math.abs(v - Math.round(v)) < 1e-9 ? "= " + Math.round(v) : "≒ " + rnd(v, 2).toFixed(2); }
+  function hits(P, deg) {
+    var u = [Math.cos(deg * Math.PI / 180), Math.sin(deg * Math.PI / 180)];
+    var b = P[0] * u[0] + P[1] * u[1], c = P[0] * P[0] + P[1] * P[1] - RAD * RAD;
+    var dsc = Math.sqrt(b * b - c);
+    var t1 = -b - dsc, t2 = -b + dsc;
+    return { u: u, t1: t1, t2: t2 };
+  }
+  function at(P, u, t) { return [P[0] + u[0] * t, P[1] + u[1] * t]; }
+  function line(p, q, color, w) {
+    return '<line x1="' + r1(X(p[0])) + '" y1="' + r1(Y(p[1])) + '" x2="' + r1(X(q[0])) + '" y2="' + r1(Y(q[1])) + '" stroke="' + color + '" stroke-width="' + w + '"/>';
+  }
+  function dot(p, name, color, lx, ly) {
+    return '<circle cx="' + r1(X(p[0])) + '" cy="' + r1(Y(p[1])) + '" r="3.2" fill="' + color + '" data-pt="' + name + '" data-x="' + p[0].toFixed(6) + '" data-y="' + p[1].toFixed(6) + '"/>' +
+      '<text x="' + r1(X(p[0]) + lx) + '" y="' + r1(Y(p[1]) + ly) + '" text-anchor="middle" font-size="14" font-weight="700" fill="' + color + '">' + name + '</text>';
+  }
+  function outward(p, color, name) {
+    var L = Math.sqrt(p[0] * p[0] + p[1] * p[1]);
+    return dot(p, name, color, p[0] / L * 14, -p[1] / L * 14 + 5);
+  }
+  function draw() {
+    var k = parseInt(sl.value, 10);
+    var inside = md.value !== "out";
+    var P = inside ? [1, 0] : [5, 0];
+    var d1 = inside ? 100 : 160, d2 = inside ? 2 * k : 180 + 0.8 * k;
+    var h1 = hits(P, d1), h2 = hits(P, d2);
+    var A, B, C, D, pa, pb, pc, pd;
+    if (inside) {
+      A = at(P, h1.u, h1.t2); B = at(P, h1.u, h1.t1); C = at(P, h2.u, h2.t2); D = at(P, h2.u, h2.t1);
+      pa = h1.t2; pb = -h1.t1; pc = h2.t2; pd = -h2.t1;
+    } else {
+      A = at(P, h1.u, h1.t1); B = at(P, h1.u, h1.t2); C = at(P, h2.u, h2.t1); D = at(P, h2.u, h2.t2);
+      pa = h1.t1; pb = h1.t2; pc = h2.t1; pd = h2.t2;
+    }
+    var h = [];
+    h.push('<circle cx="' + X(0) + '" cy="' + Y(0) + '" r="' + (S * RAD) + '" fill="none" stroke="' + PURPLE + '" stroke-width="1.4" stroke-dasharray="6 4"/>');
+    h.push(line(inside ? A : P, B, "currentColor", 1.8));
+    h.push(line(inside ? C : P, D, BLUE, 1.8));
+    h.push(outward(A, "currentColor", "A"));
+    h.push(outward(B, "currentColor", "B"));
+    h.push(outward(C, BLUE, "C"));
+    h.push(outward(D, BLUE, "D"));
+    var dirs = [d1, d1 + 180, d2, d2 + 180], best = 0, bestGap = -1;
+    for (var c = 0; c < 360; c += 15) {
+      var gap = 360;
+      for (var i = 0; i < dirs.length; i++) {
+        var g = Math.abs(((c - dirs[i]) % 360 + 540) % 360 - 180);
+        if (g < gap) gap = g;
+      }
+      if (gap > bestGap) { bestGap = gap; best = c; }
+    }
+    var lx = Math.cos(best * Math.PI / 180) * 15, ly = -Math.sin(best * Math.PI / 180) * 15 + 5;
+    h.push(dot(P, "P", "currentColor", lx, ly));
+    h.push('<circle cx="' + X(0) + '" cy="' + Y(0) + '" r="2.6" fill="' + PURPLE + '" data-pt="O" data-x="0.000000" data-y="0.000000"/>');
+    svg.innerHTML = h.join("");
+    var where = inside ? "P が円の内部にあるとき" : "P が円の外部にあるとき";
+    if (out) out.textContent = "PA " + fmt(pa) + "、PB " + fmt(pb) + "、PA·PB " + fmt(pa * pb) + "。PC " + fmt(pc) + "、PD " + fmt(pd) + "、PC·PD " + fmt(pc * pd) + "。" + where + "、どの向きの直線でも PA·PB = PC·PD です。";
+  }
+  sl.addEventListener("input", draw);
+  md.addEventListener("change", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-052",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-052",
+  "title": "方べきの定理",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-2", "title": "図形の性質"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(イ)", "(1)イ(ア)"],
+  "kaisetsu_page": "90",
+  "objectives": [
+    {"id": "O1", "text": "円の2つの弦 AB、CD が円の内部の点 P で交わるとき、\\( \\mathrm{PA}\\cdot\\mathrm{PB}=\\mathrm{PC}\\cdot\\mathrm{PD} \\) が成り立つことを、三角形の相似を用いて証明できる。", "from": "円の2つの弦…どうしが点 P で交わるとき PA·PB=PC·PD（方べきの定理）が成り立つことを、三角形の相似を用いて証明できる", "sections": ["sec-1"], "checks": ["q1", "q3", "q4", "q7"]},
+    {"id": "O2", "text": "2つの弦の延長どうしが円の外部の点 P で交わるときも、\\( \\mathrm{PA}\\cdot\\mathrm{PB}=\\mathrm{PC}\\cdot\\mathrm{PD} \\) が成り立つことを、三角形の相似を用いて証明できる。", "from": "円の2つの弦またはその延長どうしが点 P で交わるとき（延長どうしの場合）", "sections": ["sec-2"], "checks": ["q2", "q5", "q8"]},
+    {"id": "O3", "text": "方べきの定理を用いて、線分の長さを求めることができる。", "from": "PA·PB=PC·PD（方べきの定理）が成り立つ（線分の長さを求める）", "sections": ["sec-3"], "checks": ["q1", "q4", "q5", "q6", "q7"]}
+  ],
+  "key_terms": [
+    {"term": "方べきの定理", "where": "sec-1"},
+    {"term": "PA·PB", "where": "sec-1"},
+    {"term": "相似な三角形の対応", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "三角形の相似条件（2組の角がそれぞれ等しい）", "taught_in": ["jhs_math/中3-067"], "gap": false, "where": "review"},
+    {"concept": "相似な図形の対応する辺の比は等しい、相似比と比例式", "taught_in": ["jhs_math/中3-064", "jhs_math/中3-065"], "gap": false, "where": "review"},
+    {"concept": "比例式（比の値が等しい）と、外側どうし・内側どうしの積", "taught_in": ["jhs_math/中1-054"], "gap": false, "where": "review"},
+    {"concept": "対頂角は等しい", "taught_in": ["jhs_math/中2-044"], "gap": false, "where": "review"},
+    {"concept": "同じ弧に対する円周角は等しい", "taught_in": ["hs_math_1a/数Ａ-047", "jhs_math/中3-087"], "gap": false, "where": "review"},
+    {"concept": "円に内接する四角形の外角は、隣り合う内角の対角に等しい", "taught_in": ["hs_math_1a/数Ａ-048"], "gap": false, "where": "review"},
+    {"concept": "円周角の定理を用いた相似の証明と線分の長さ（円と相似）", "taught_in": ["jhs_math/中3-094"], "gap": false, "where": "review"},
+    {"concept": "ax²=b の形の二次方程式を平方根の考えで解く、根号を含む数を a√b の形に変形する", "taught_in": ["jhs_math/中3-036", "jhs_math/中3-025"], "gap": false, "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "接線を含む場合 PA·PB=PT²（数Ａ-053）",
+    "方べきの定理の逆（数Ａ-053）",
+    "球に対する方べきの定理（数Ａ-062）"
+  ],
+  "selection_reason": "数学Ａ 単元『図形の性質』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(1)ア(イ)・イ(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.90 方べきの定理（保存本文：sources/text/hs_kaisetsu_math.txt）"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "方べきの定理で線分の長さを求めること、相似を利用した導き方（保存本文：sources/text/suken_syllabus_suakai.txt）"},
+    {"name": "評価規準例 数学A Standard（数A 002-902）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_sua_hyoka.pdf", "use": "方べきの定理の証明で相似な三角形に着目すること（取得した本文：sources/text/ts_ma_16704_hyoka.txt）"},
+    {"name": "令和7年度用『新編 新しい数学』学習指導計画例（略案）3年", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/chu/list/keikaku/", "use": "中学校で円と交わる直線でできる相似な三角形から線分の長さを求めること（保存本文：sources/text/tosho_math_ryakuan_3.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

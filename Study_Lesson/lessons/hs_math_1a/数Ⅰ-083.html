@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>外れ値｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+table.data td, table.data th { text-align: center; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>データの分析</span><span>数Ⅰ-083</span></div>
+  <h1>外れ値</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">12人の販売員のうち、1人だけ販売台数が飛び抜けて多い。この記録は「ほかと離れすぎているから除くべき値」でしょうか。ほかの値から極端にかけ離れた値を見つける基準と、その値の背景を探る意味を学びます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>第1四分位数より四分位範囲の1.5倍以上小さい値や、第3四分位数より四分位範囲の1.5倍以上大きい値を、外れ値として判定できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>外れ値を区別した箱ひげ図をかいたり読み取ったりして、データの中の外れ値を見いだすことができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>販売実績が極めてよい販売員の例などから、外れ値をすぐに除かず、その背景を探る意義を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>測定ミスや入力ミスなど原因が分かっている異常値と、外れ値を区別できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-082）</span>変量の変換と平均値・分散</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-083）</span>外れ値</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-084）</span>散布図</div>
+</div>
+<p class="small">前提となる単元：中学1年「データの分布／不確定な事象の起こりやすさ」、中学2年「データの分布（四分位範囲と箱ひげ図）」。同じ単元の数Ⅰ-079（四分位数の求め方、統計量の使い分け）、数Ⅰ-081（標準偏差、分布の形による使い分け）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>中学1年では、ヒストグラムから「極端にかけ離れた値（外れ値）」があるかどうかを読み取りました（中1-110）。この時間は、外れ値かどうかを決める<strong>基準</strong>を学びます。基準には四分位数と四分位範囲（中2-088・中2-089、数Ⅰ-079）を使います。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中2-088・数Ⅰ-079</span></div>
+  <p>11個の値 5, 8, 9, 10, 12, 13, 14, 15, 17, 18, 20 の第1四分位数・第3四分位数・四分位範囲の組はどれですか。</p>
+  <div class="choices">
+    <button>第1四分位数 9.5、第3四分位数 16、四分位範囲 6.5</button>
+    <button data-correct="true">第1四分位数 9、第3四分位数 17、四分位範囲 8</button>
+    <button>第1四分位数 9、第3四分位数 17、四分位範囲 15</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">中央値は6番目の 13。前半 5, 8, 9, 10, 12 の中央値 9 が第1四分位数、後半 14, 15, 17, 18, 20 の中央値 17 が第3四分位数で、四分位範囲は \( 17-9=8 \) です。「9.5 と 16」は中央値 13 を前半と後半の両方に入れて6個ずつの中央値をとった誤りです。15 は範囲（\( 20-5 \)）で、四分位範囲ではありません。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中1-111・中2-089</span></div>
+  <p>データに極端にかけ離れた値が1つ加わったとき、影響を受けにくい統計量の組はどれですか。</p>
+  <div class="choices">
+    <button>平均値と範囲</button>
+    <button>平均値と標準偏差</button>
+    <button data-correct="true">中央値と四分位範囲</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">中央値は真ん中の値、四分位範囲は真ん中のおよそ半分の広がりなので、端の値が1つ極端になってもほとんど変わりません（中1-111・中2-089）。平均値はすべての値の合計を使うので強く影響を受け、範囲は最大値・最小値そのものが変わります。標準偏差も偏差の2乗を使うので、大きく離れた値の影響を強く受けます（数Ⅰ-080・081）。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中2-089</span></div>
+  <p>中学校で学んだ箱ひげ図で、左右のひげの端は何を表していましたか。</p>
+  <div class="choices">
+    <button data-correct="true">最小値と最大値</button>
+    <button>第1四分位数と第3四分位数</button>
+    <button>平均値と中央値</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">中学校の箱ひげ図は、最小値・第1四分位数・中央値・第3四分位数・最大値の5つの値を表し、ひげは箱から最小値・最大値までのびます。第1四分位数と第3四分位数は箱の両端です。平均値は5つの値に含まれません（記入して比べることはあります）。この時間は、外れ値があるときの別のかき方も学びます。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：飛び抜けた記録は除くべき？</h2>
+<div class="box think">
+  <p class="box-title">X社の家電売り場（学習用の架空のデータ）</p>
+  <p>X社のある売り場の販売員12人について、先月の販売台数を小さい順に並べました。</p>
+  <div class="table-wrap">
+  <table class="data">
+    <tr><th>販売台数（台）</th><td>18</td><td>21</td><td>22</td><td>23</td><td>24</td><td>24</td><td>25</td><td>26</td><td>27</td><td>29</td><td>30</td><td>52</td></tr>
+  </table>
+  </div>
+  <p>52台を売ったのは A さんです。売り場の責任者は言いました。</p>
+  <p>「A さんの 52台はほかと離れすぎているから、売り場の平均を出すときは除いておこう。」</p>
+  <p><strong>(1) 52台は「外れ値」といえるでしょうか。(2) この記録は除いてしまってよいでしょうか。</strong>(1)は「3 外れ値の基準」の例題1、(2)は「5 外れ値の背景を探る」の例2で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="外れ値の基準"><span class="num">3</span>外れ値の基準</h2>
+<p>量的データには、ほかの値から極端にかけ離れた値があることがあります。高等学校学習指導要領解説は、そのような値を<strong>外れ値</strong>と呼び、外れ値は通常、四分位範囲の1.5倍以上離れた値とされるとしています。具体的には、次のどちらかに当てはまる値を外れ値とします。このページでは、第1四分位数を \( Q_1 \)、第3四分位数を \( Q_3 \) と書きます。</p>
+<div class="box point"><p class="box-title">外れ値の基準</p>
+<p>① 第1四分位数より、四分位範囲の1.5倍以上小さい値：\( Q_1-1.5\times(Q_3-Q_1) \) 以下の値<br>② 第3四分位数より、四分位範囲の1.5倍以上大きい値：\( Q_3+1.5\times(Q_3-Q_1) \) 以上の値</p>
+<p>\( Q_1-1.5\times(Q_3-Q_1) \) と \( Q_3+1.5\times(Q_3-Q_1) \) を、このページでは「下の境界」「上の境界」と呼びます。「以上」「以下」なので、境界ちょうどの値も外れ値に入ります。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の問い(1)の答え）</p>
+  <p>導入の販売台数のデータについて、外れ値があるかを調べなさい。</p>
+  <div class="step">着目1（四分位数）：12個なので、小さい方の6個 18, 21, 22, 23, 24, 24 と大きい方の6個 25, 26, 27, 29, 30, 52 に分けます（数Ⅰ-079 の約束）。\( Q_1=(22+23)\div2=22.5 \)、\( Q_3=(27+29)\div2=28 \)、中央値は \( (24+25)\div2=24.5 \) です。</div>
+  <div class="step">着目2（境界）：四分位範囲は \( 28-22.5=5.5 \)、その1.5倍は \( 1.5\times5.5=8.25 \)。下の境界は \( 22.5-8.25=14.25 \)、上の境界は \( 28+8.25=36.25 \) です。</div>
+  <div class="step">判定：14.25 以下の値はありません（最小値 18）。36.25 以上の値は 52 だけです。</div>
+  <div class="step">答え：<span data-ans="intro1">52台は外れ値である</span>（上の境界 36.25 以上）。ほかの11個は外れ値ではありません。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 1.5倍を中央値や範囲に掛けてしまう：掛けるのは<strong>四分位範囲</strong>です。<br>② 境界を中央値から測ってしまう：下の境界は \( Q_1 \) から、上の境界は \( Q_3 \) から測ります。<br>③ 片側だけ調べる：小さい側（下の境界以下）も確かめましょう。</p></div>
+<div class="box point"><p class="box-title">ほかの基準もある</p><p>解説は、標準偏差 \( s \) を用いて、平均値より \( \pm2s \)（事象によっては \( \pm3s \)）以上離れた値を外れ値とすることもある、としています。どの基準を使ったかは、結果とあわせて示しましょう。このページでは、特に断らない限り四分位範囲を使う基準で判定します。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="外れ値を区別した箱ひげ図"><span class="num">4</span>外れ値を区別した箱ひげ図</h2>
+<p>外れ値があるときは、外れ値を区別した箱ひげ図が用いられることもあります。解説によると、この場合、ひげは「第1四分位数−1.5×四分位範囲」までの範囲にある最小値から第1四分位数まで、第3四分位数から「第3四分位数＋1.5×四分位範囲」までの範囲にある最大値まで引き、外れ値はひげの外に別の印で示します。このページでは外れ値を ×（赤）で示します（数直線の ○ と区別するため）。</p>
+<figure>
+<div class="fig-scroll">
+<!--svg:f083a-->
+<svg viewBox="0 0 560 190" width="560" role="img" aria-label="販売台数の箱ひげ図2つ。上は中学校のかき方で、ひげは18から52まで。下は外れ値を区別したかき方で、ひげは18から30まで、52を×で示す。箱はどちらも22.5から28、中央値24.5。赤の破線は下の境界14.25と上の境界36.25" data-fig="f083a">
+<line x1="137.1" y1="24" x2="137.1" y2="128" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4 3" data-fence="14.25"/>
+<text x="137.1" y="20" text-anchor="middle" font-size="11" fill="#c0392b">下の境界 14.25</text>
+<line x1="328.9" y1="24" x2="328.9" y2="128" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4 3" data-fence="36.25"/>
+<text x="328.9" y="20" text-anchor="middle" font-size="11" fill="#c0392b">上の境界 36.25</text>
+<line x1="100" y1="30" x2="100" y2="128" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="100" y1="128" x2="100" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="100" y="145" text-anchor="middle" font-size="11" fill="currentColor">10</text>
+<line x1="143.6" y1="30" x2="143.6" y2="128" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="143.6" y1="128" x2="143.6" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="143.6" y="145" text-anchor="middle" font-size="11" fill="currentColor">15</text>
+<line x1="187.2" y1="30" x2="187.2" y2="128" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="187.2" y1="128" x2="187.2" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="187.2" y="145" text-anchor="middle" font-size="11" fill="currentColor">20</text>
+<line x1="230.8" y1="30" x2="230.8" y2="128" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="230.8" y1="128" x2="230.8" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="230.8" y="145" text-anchor="middle" font-size="11" fill="currentColor">25</text>
+<line x1="274.4" y1="30" x2="274.4" y2="128" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="274.4" y1="128" x2="274.4" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="274.4" y="145" text-anchor="middle" font-size="11" fill="currentColor">30</text>
+<line x1="318" y1="30" x2="318" y2="128" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="318" y1="128" x2="318" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="318" y="145" text-anchor="middle" font-size="11" fill="currentColor">35</text>
+<line x1="361.6" y1="30" x2="361.6" y2="128" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="361.6" y1="128" x2="361.6" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="361.6" y="145" text-anchor="middle" font-size="11" fill="currentColor">40</text>
+<line x1="405.2" y1="30" x2="405.2" y2="128" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="405.2" y1="128" x2="405.2" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="405.2" y="145" text-anchor="middle" font-size="11" fill="currentColor">45</text>
+<line x1="448.8" y1="30" x2="448.8" y2="128" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="448.8" y1="128" x2="448.8" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="448.8" y="145" text-anchor="middle" font-size="11" fill="currentColor">50</text>
+<line x1="492.4" y1="30" x2="492.4" y2="128" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="492.4" y1="128" x2="492.4" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="492.4" y="145" text-anchor="middle" font-size="11" fill="currentColor">55</text>
+<line x1="536" y1="30" x2="536" y2="128" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="536" y1="128" x2="536" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="145" text-anchor="middle" font-size="11" fill="currentColor">60</text>
+<line x1="100" y1="128" x2="536" y2="128" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="163" text-anchor="end" font-size="12" fill="currentColor">販売台数（台）</text>
+<g data-box="18 22.5 24.5 28 52">
+<line x1="169.8" y1="53" x2="209" y2="53" stroke="currentColor" stroke-width="1.5"/>
+<line x1="257" y1="53" x2="466.2" y2="53" stroke="currentColor" stroke-width="1.5"/>
+<line x1="169.8" y1="45" x2="169.8" y2="61" stroke="currentColor" stroke-width="1.5"/>
+<line x1="466.2" y1="45" x2="466.2" y2="61" stroke="currentColor" stroke-width="1.5"/>
+<rect x="209" y="42" width="48" height="22" fill="#1f5fbf" stroke="currentColor" stroke-width="1.5" fill-opacity="0.18"/>
+<line x1="226.4" y1="42" x2="226.4" y2="64" stroke="currentColor" stroke-width="2.5"/>
+</g>
+<text x="92" y="57" text-anchor="end" font-size="12" fill="currentColor">中学のかき方</text>
+<g data-box="18 22.5 24.5 28 30">
+<line x1="169.8" y1="99" x2="209" y2="99" stroke="currentColor" stroke-width="1.5"/>
+<line x1="257" y1="99" x2="274.4" y2="99" stroke="currentColor" stroke-width="1.5"/>
+<line x1="169.8" y1="91" x2="169.8" y2="107" stroke="currentColor" stroke-width="1.5"/>
+<line x1="274.4" y1="91" x2="274.4" y2="107" stroke="currentColor" stroke-width="1.5"/>
+<rect x="209" y="88" width="48" height="22" fill="#1f5fbf" stroke="currentColor" stroke-width="1.5" fill-opacity="0.18"/>
+<line x1="226.4" y1="88" x2="226.4" y2="110" stroke="currentColor" stroke-width="2.5"/>
+</g>
+<path d="M461.2,94 L471.2,104 M461.2,104 L471.2,94" stroke="#c0392b" stroke-width="2.2" fill="none" data-out="52"/>
+<text x="92" y="103" text-anchor="end" font-size="12" fill="currentColor">外れ値を区別</text>
+<text x="536" y="184" text-anchor="end" font-size="11" fill="currentColor">×：外れ値</text>
+</svg>
+<!--/svg:f083a-->
+</div>
+  <figcaption>図1　販売台数の箱ひげ図。上：中学校で学んだかき方（ひげは最小値 18 から最大値 52 まで）。下：外れ値を区別したかき方（ひげは 18 から、上の境界 36.25 までにある最大値 30 まで。52 は外れ値として ×）。赤の破線は下の境界 14.25 と上の境界 36.25</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例1（外れ値を区別した箱ひげ図のかき方）</p>
+  <div class="step">① 5つの値のうち、箱の部分（\( Q_1=22.5 \)、中央値 24.5、\( Q_3=28 \)）は中学校と同じようにかきます。</div>
+  <div class="step">② 境界を求めます（下の境界 14.25、上の境界 36.25）。</div>
+  <div class="step">③ 左のひげ：14.25 より大きい値のうち最小の 18 まで。右のひげ：36.25 より小さい値のうち最大の 30 まで。</div>
+  <div class="step">④ 外れ値 52 を、ひげの外に × でかきます。</div>
+</div>
+<p>下の部品で、A さんの販売台数を変えてみましょう。ほかの11人の値は変えません。</p>
+<div class="widget" id="w83">
+  <label for="w83-v">A さんの販売台数：</label>
+  <input type="range" id="w83-v" min="30" max="70" step="1" value="52" aria-label="Aさんの販売台数（30台から70台）">
+  <output id="w83-vv" for="w83-v">52</output> 台
+  <div class="fig-scroll"><svg id="w83-svg" viewBox="0 0 560 130" width="560" role="img" aria-label="12人の販売台数の、外れ値を区別した箱ひげ図。赤の破線は上の境界 36.25、▲は平均値。A さんの値が外れ値なら × で示す"></svg></div>
+  <p class="w-out" id="w83-out" aria-live="polite">A さん 52 台：上の境界 36.25 以上なので外れ値。平均値 26.75 台、中央値 24.5 台（平均値と中央値の差 2.25 台）</p>
+  <p class="small">A さんの値が 30 台以上なら並び順は変わらないので、\( Q_1=22.5 \)、中央値 24.5、\( Q_3=28 \)、上の境界 36.25 は変わりません。平均値は小数第3位を四捨五入しています（割り切れるときはそのまま）。</p>
+</div>
+<p>A さんの値を大きくしても、箱と中央値は動きませんが、平均値（▲）は右へ動き続けます。37台以上で外れ値になり、ひげの右端は 30 のまま、A さんの値は × で示されます。外れ値は、平均値を大きく動かすことがわかります。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="外れ値の背景を探る"><span class="num">5</span>外れ値の背景を探る</h2>
+<p>外れ値は、計算の邪魔になる「除くべき値」と考えられがちです。しかし解説は、外れ値の<strong>背景を探ることも大切</strong>だとしています。測定ミスや入力ミスでなければ、そこに問題の発見や解決の手がかりがあることもあるからです。解説は例として、販売実績が極めてよい販売員がいたとすれば、その販売員の工夫を探ることで対策が見いだせる、と述べています。</p>
+<div class="box example worked">
+  <p class="box-title">例2（導入の問い(2)の答え）</p>
+  <p>A さんの 52台を除いてよいかを、統計量への影響と、外れ値の背景を探る意義から考えなさい。</p>
+  <div class="step">着目1（統計量への影響）：52 を含む12人と、除いた11人で比べます。
+  <div class="table-wrap"><table class="data">
+    <tr><th></th><th>平均値</th><th>中央値</th><th>四分位範囲</th><th>範囲</th><th>標準偏差</th></tr>
+    <tr><th>12人（52 を含む）</th><td>26.75</td><td>24.5</td><td>5.5</td><td>34</td><td>約 8.26</td></tr>
+    <tr><th>11人（52 を除く）</th><td>約 24.45</td><td>24</td><td>5</td><td>12</td><td>約 3.34</td></tr>
+  </table></div>
+  平均値・範囲・標準偏差は大きく変わりますが、中央値と四分位範囲はあまり変わりません。</div>
+  <div class="step">着目2（背景）：52 が入力ミスでないなら、A さんは実際に多く売っています。A さんの接客や説明の工夫を調べれば、ほかの販売員にも生かせる売り方が見つかるかもしれません。除いてしまうと、その手がかりを見落とします。</div>
+  <div class="step">答え：<span data-ans="intro2">すぐに除くのは適切でない</span>。まず記録が正しいか（ミスでないか）を確かめ、正しければ外れ値として残し、その背景を探ります。売り場全体の「中心」を示したいときは、外れ値の影響を受けにくい中央値（24.5台）や四分位範囲を使う方法も考えられます（数Ⅰ-081 の使い分け）。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：「外れ値＝間違った値」と思い込む</p><p>外れ値は、基準で見つけた「ほかから大きく離れた値」というだけで、間違いとは限りません。実際に起きた珍しい値のこともあります。外れ値を見つけたら、除くかどうかを決める前に、なぜその値になったのかを調べます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="異常値との区別"><span class="num">6</span>異常値と外れ値を区別する</h2>
+<p>解説は、測定ミス・入力ミスなど<strong>原因が分かっているもの</strong>を<strong>異常値</strong>と呼び、外れ値と区別するとしています。外れ値を見つけたら原因を調べ、ミスと分かったものは異常値として扱います。</p>
+<div class="box example worked">
+  <p class="box-title">例題2（外れ値を調べたら入力ミスだった）</p>
+  <p>11人の50m走の記録（秒）を表計算ソフトに入力しました（学習用の架空のデータ）。小さい順に 7.2, 7.5, 7.6, 7.8, 7.9, 8.0, 8.1, 8.3, 8.4, 8.6, 75.0 です。外れ値を調べなさい。また、記録用紙を確かめると 75.0 は 7.5 の小数点の打ち忘れでした。この値をどう扱えばよいですか。</p>
+  <div class="step">着目（境界）：中央値は6番目の 8.0、\( Q_1=7.6 \)（1〜5番目の中央値）、\( Q_3=8.4 \)（7〜11番目の中央値）、四分位範囲 0.8、その1.5倍 1.2。下の境界 \( 7.6-1.2=6.4 \)、上の境界 \( 8.4+1.2=9.6 \)。75.0 は 9.6 以上なので外れ値です。</div>
+  <div class="step">原因を調べる：記録用紙と照らし合わせると入力ミスと分かったので、75.0 は<strong>異常値</strong>です。正しい値 7.5 に直して分析します。</div>
+  <div class="step">直した後：7.2, 7.5, 7.5, 7.6, 7.8, 7.9, 8.0, 8.1, 8.3, 8.4, 8.6 で、\( Q_1=7.5 \)、\( Q_3=8.3 \)、境界は 6.3 と 9.5。外れ値はありません。</div>
+</div>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>外れ値</th><th>異常値</th></tr>
+  <tr><th>どんな値か</th><td>ほかの値から極端にかけ離れた値（四分位範囲を使う基準などで判定）</td><td>測定ミス・入力ミスなど原因が分かっている値</td></tr>
+  <tr><th>例</th><td>実際に 52台を売った販売員の記録</td><td>7.5 秒を 75.0 と入力した記録</td></tr>
+  <tr><th>扱い方</th><td>すぐに除かず、背景を探る。問題発見・解決の手がかりになることがある</td><td>原因が分かっているので、正しい値が確かめられれば直して分析する</td></tr>
+</table>
+</div>
+<div class="box point"><p class="box-title">外れ値を見つけたときの手順</p><p>① 基準（四分位範囲の1.5倍など）で外れ値を見つける。② 記録や測定の方法を確かめ、原因を調べる。③ ミスと分かれば異常値として扱い（正しい値が分かれば直す）、ミスでなければ外れ値として残し、その背景を探る。④ どの基準を使い、どう扱ったかを、結論とあわせて示す。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>外れ値</dt><dd>ほかの値から極端にかけ離れた値。通常、\( Q_1-1.5\times \)（四分位範囲）以下の値と、\( Q_3+1.5\times \)（四分位範囲）以上の値。平均値±2s（または ±3s）以上離れた値とすることもある。</dd>
+    <dt>異常値</dt><dd>測定ミス・入力ミスなど原因が分かっている値。外れ値と区別する。</dd>
+    <dt>外れ値を区別した箱ひげ図</dt><dd>ひげを境界の内側にある最小値・最大値までにし、外れ値をひげの外に別の印（このページでは ×）で示した箱ひげ図。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>外れ値の基準：\( Q_1-1.5\times(Q_3-Q_1) \) 以下、または \( Q_3+1.5\times(Q_3-Q_1) \) 以上の値（O1）。</li>
+    <li>外れ値を区別した箱ひげ図では、ひげを境界の内側の最小値・最大値までにし、外れ値を別の印で示す（O2）。</li>
+    <li>外れ値は除くべき値と決めつけず、背景を探る。販売実績が極めてよい販売員の工夫から、対策が見いだせることがある。外れ値は平均値・標準偏差を大きく動かすが、中央値・四分位範囲はあまり動かさない（O3）。</li>
+    <li>測定ミス・入力ミスなど原因が分かっている値は異常値と呼び、外れ値と区別する（O4）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">下の境界（これ以下は外れ値）</span>$$ Q_1-1.5\times(Q_3-Q_1) $$</div>
+  <div><span class="f-name">上の境界（これ以上は外れ値）</span>$$ Q_3+1.5\times(Q_3-Q_1) $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。問題のデータはすべて学習用の架空のデータです。外れ値は四分位範囲の1.5倍を使う基準で判定します。数を入力する問題は、半角・全角のどちらで入力してもかまいません。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>あるデータの第1四分位数が 40、第3四分位数が 70 です。大きい側の外れ値になるのは、いくつ以上の値ですか。</p>
+  <div class="choices"><button>100 以上</button><button>45 以上</button><button data-correct="true">115 以上</button><button>105 以上</button></div>
+  <span class="result"></span>
+  <div class="explain">四分位範囲は \( 70-40=30 \)、その1.5倍は 45 なので、上の境界は \( 70+45=115 \) です。100 は \( 70+30 \) と、1.5倍を掛け忘れた値です。45 は1.5倍した四分位範囲そのもので、\( Q_3 \) を足し忘れています。105 は \( 1.5\times70 \) と、四分位範囲でなく第3四分位数に1.5を掛けた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="33">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>9個の値 12, 14, 15, 15, 16, 18, 19, 20, 33 の中から、外れ値をすべて答えなさい（1つなら1つ）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 33。中央値は5番目の 16、\( Q_1=(14+15)\div2=14.5 \)、\( Q_3=(19+20)\div2=19.5 \)、四分位範囲は 5、その1.5倍は 7.5。下の境界 \( 14.5-7.5=7 \)、上の境界 \( 19.5+7.5=27 \)。27 以上は 33 だけで、7 以下の値はありません。中央値を両方に入れると \( Q_1=15 \)、\( Q_3=19 \) となり、上の境界 25 でも答えは 33 だけですが、求め方は前後に分ける方法にそろえましょう。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O4</span></div>
+  <p>次のうち、「異常値」に当たるものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">体重 52.4 kg を、入力のときに 524 kg と打ち間違えた値</button>
+    <button>正しく測定した、クラスで1人だけ飛び抜けて速い 100 m の記録</button>
+    <button>ほかの販売員の2倍以上売った販売員の、正しく記録された販売台数</button>
+    <button>データの平均値に最も近い値</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">異常値は、測定ミス・入力ミスなど原因が分かっている値です（解説）。524 kg は打ち間違いと原因が分かっているので異常値です。正しく測定した飛び抜けた記録や、正しく記録された販売台数は、外れ値であっても異常値ではなく、背景を探る対象です。平均値に近い値は外れ値でも異常値でもありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1</span></div>
+  <p>10個の値 3, 21, 23, 24, 25, 26, 27, 28, 30, 45 の外れ値として、正しいものはどれですか。</p>
+  <div class="choices"><button>45 だけ</button><button>3 だけ</button><button>外れ値はない</button><button data-correct="true">3 と 45</button></div>
+  <span class="result"></span>
+  <div class="explain">小さい方の5個 3, 21, 23, 24, 25 の中央値 23 が \( Q_1 \)、大きい方の5個 26, 27, 28, 30, 45 の中央値 28 が \( Q_3 \)。四分位範囲 5、その1.5倍 7.5 で、下の境界 15.5、上の境界 35.5。3 は 15.5 以下、45 は 35.5 以上なので、どちらも外れ値です。「45 だけ」は小さい側を調べ忘れた誤り、「3 だけ」は大きい側を調べ忘れた誤りです。「ない」は、四分位範囲の代わりに範囲 \( 45-3=42 \) を1.5倍して境界を求めた誤りで、下の境界 \( 23-63=-40 \)、上の境界 \( 28+63=91 \) となり、どの値も外れ値にならなくなります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>次の図は、あるデータを外れ値を区別した箱ひげ図に表したものです（× は外れ値）。正しいものはどれですか。</p>
+  <figure>
+  <div class="fig-scroll">
+<!--svg:f083b-->
+<svg viewBox="0 0 560 128" width="560" role="img" aria-label="外れ値を区別した箱ひげ図。ひげの左端11、第1四分位数18、中央値21、第3四分位数24、ひげの右端31。×は4と40" data-fig="f083b">
+<line x1="70" y1="14" x2="70" y2="66" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="70" y1="66" x2="70" y2="70" stroke="currentColor" stroke-width="1"/>
+<text x="70" y="83" text-anchor="middle" font-size="11" fill="currentColor">0</text>
+<line x1="121.8" y1="14" x2="121.8" y2="66" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="121.8" y1="66" x2="121.8" y2="70" stroke="currentColor" stroke-width="1"/>
+<text x="121.8" y="83" text-anchor="middle" font-size="11" fill="currentColor">5</text>
+<line x1="173.6" y1="14" x2="173.6" y2="66" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="173.6" y1="66" x2="173.6" y2="70" stroke="currentColor" stroke-width="1"/>
+<text x="173.6" y="83" text-anchor="middle" font-size="11" fill="currentColor">10</text>
+<line x1="225.3" y1="14" x2="225.3" y2="66" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="225.3" y1="66" x2="225.3" y2="70" stroke="currentColor" stroke-width="1"/>
+<text x="225.3" y="83" text-anchor="middle" font-size="11" fill="currentColor">15</text>
+<line x1="277.1" y1="14" x2="277.1" y2="66" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="277.1" y1="66" x2="277.1" y2="70" stroke="currentColor" stroke-width="1"/>
+<text x="277.1" y="83" text-anchor="middle" font-size="11" fill="currentColor">20</text>
+<line x1="328.9" y1="14" x2="328.9" y2="66" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="328.9" y1="66" x2="328.9" y2="70" stroke="currentColor" stroke-width="1"/>
+<text x="328.9" y="83" text-anchor="middle" font-size="11" fill="currentColor">25</text>
+<line x1="380.7" y1="14" x2="380.7" y2="66" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="380.7" y1="66" x2="380.7" y2="70" stroke="currentColor" stroke-width="1"/>
+<text x="380.7" y="83" text-anchor="middle" font-size="11" fill="currentColor">30</text>
+<line x1="432.4" y1="14" x2="432.4" y2="66" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="432.4" y1="66" x2="432.4" y2="70" stroke="currentColor" stroke-width="1"/>
+<text x="432.4" y="83" text-anchor="middle" font-size="11" fill="currentColor">35</text>
+<line x1="484.2" y1="14" x2="484.2" y2="66" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="484.2" y1="66" x2="484.2" y2="70" stroke="currentColor" stroke-width="1"/>
+<text x="484.2" y="83" text-anchor="middle" font-size="11" fill="currentColor">40</text>
+<line x1="536" y1="14" x2="536" y2="66" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"/>
+<line x1="536" y1="66" x2="536" y2="70" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="83" text-anchor="middle" font-size="11" fill="currentColor">45</text>
+<line x1="70" y1="66" x2="536" y2="66" stroke="currentColor" stroke-width="1"/>
+<g data-box="11 18 21 24 31">
+<line x1="183.9" y1="37" x2="256.4" y2="37" stroke="currentColor" stroke-width="1.5"/>
+<line x1="318.5" y1="37" x2="391" y2="37" stroke="currentColor" stroke-width="1.5"/>
+<line x1="183.9" y1="29" x2="183.9" y2="45" stroke="currentColor" stroke-width="1.5"/>
+<line x1="391" y1="29" x2="391" y2="45" stroke="currentColor" stroke-width="1.5"/>
+<rect x="256.4" y="26" width="62.1" height="22" fill="#1f5fbf" stroke="currentColor" stroke-width="1.5" fill-opacity="0.18"/>
+<line x1="287.5" y1="26" x2="287.5" y2="48" stroke="currentColor" stroke-width="2.5"/>
+</g>
+<path d="M106.4,32 L116.4,42 M106.4,42 L116.4,32" stroke="#c0392b" stroke-width="2.2" fill="none" data-out="4"/>
+<path d="M479.2,32 L489.2,42 M479.2,42 L489.2,32" stroke="#c0392b" stroke-width="2.2" fill="none" data-out="40"/>
+<text x="62" y="41" text-anchor="end" font-size="12" fill="currentColor">データ</text>
+<text x="536" y="122" text-anchor="end" font-size="11" fill="currentColor">×：外れ値</text>
+</svg>
+<!--/svg:f083b-->
+  </div>
+  <figcaption>問5の図　ひげの左端 11、\( Q_1=18 \)、中央値 21、\( Q_3=24 \)、ひげの右端 31。× は 4 と 40</figcaption>
+  </figure>
+  <div class="choices">
+    <button>このデータの最大値は 31 である。</button>
+    <button data-correct="true">40 は \( Q_3+1.5\times \)（四分位範囲）\( =33 \) 以上なので、外れ値として × で示されている。</button>
+    <button>箱の長さ（四分位範囲）は 20 である。</button>
+    <button>× の値は誤りなので、分析では必ず除かなければならない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">四分位範囲は \( 24-18=6 \)、上の境界は \( 24+1.5\times6=33 \)、下の境界は \( 18-9=9 \)。40 は 33 以上、4 は 9 以下なので外れ値です。ひげの右端 31 は境界の内側の最大値で、データ全体の最大値は外れ値の 40 です。箱の長さは 6 で、20 はひげの両端の差（\( 31-11 \)）と取り違えた値です。外れ値は誤りとは限らず、必ず除くものでもありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>ある店舗の販売員の月間販売額を調べると、1人の販売額が外れ値でした。記録に誤りはないことが確かめられています。この結果の扱いとして、最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>外れ値なので記録から削除し、残りのデータだけで平均値を求め直す。</button>
+    <button>外れ値は入力ミスに決まっているので、本人に確かめずにほかの人と同じくらいの値に直す。</button>
+    <button>外れ値があるデータは分析できないので、データをすべて集め直す。</button>
+    <button data-correct="true">その販売員の売り方を調べ、ほかの販売員にも生かせる工夫がないかを探る。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">記録に誤りがない外れ値は、実際に起きた珍しい結果です。解説は、販売実績が極めてよい販売員がいれば、その工夫を探ることで対策が見いだせるとしています。誤りのない値を削除すると、その手がかりを失い、実態ともずれます。「入力ミスに決まっている」は、誤りがないと確かめた条件に反し、確かめずに値を直すのも不適切です。外れ値があっても分析はでき、中央値や四分位範囲など影響を受けにくい統計量も使えます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O1・O3</span></div>
+  <p>導入の販売台数のデータから外れ値の 52 を除いたとき、統計量の変化について正しいものはどれですか（例2の表を参照）。</p>
+  <div class="choices">
+    <button data-correct="true">平均値と標準偏差は大きく変わるが、中央値と四分位範囲はあまり変わらない。</button>
+    <button>中央値の方が、平均値より大きく変わる。</button>
+    <button>四分位範囲が、どの統計量よりも大きく変わる。</button>
+    <button>どの統計量も、まったく変わらない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">平均値は 26.75 から約 24.45（約 2.30 減）、標準偏差は約 8.26 から約 3.34 に変わりますが、中央値は 24.5 から 24（0.5 減）、四分位範囲は 5.5 から 5（0.5 減）とあまり変わりません。中央値の変化（0.5）は平均値の変化（約 2.30）より小さいので、2つ目は誤りです。四分位範囲の変化は小さく、範囲（34 → 12）や標準偏差の方が大きく変わるので、3つ目も誤りです。4つ目は、どれも少しは変わるので誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O3・O4</span></div>
+  <p>クラスの11人に通学時間（分）をアンケートで尋ね、表計算ソフトに入力すると、小さい順に 10, 15, 18, 20, 22, 25, 25, 28, 30, 95, 300 でした。</p>
+  <p>太郎：「四分位範囲を使う基準で調べると、95 と 300 が外れ値だね。両方とも除いて平均を出そう。」<br>花子：「回答用紙を確かめたら、300 は 30 の打ち間違いだったよ。95 は、遠くから通っている人の正しい回答だった。」</p>
+  <p>この会話を踏まえた扱いとして、最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>95 も 300 も外れ値なので、2つとも除いて分析する。</button>
+    <button data-correct="true">300 は原因が分かった異常値なので 30 に直して分析し、95 は正しい値なので除かずに外れ値として扱い、背景も考える。</button>
+    <button>300 は打ち間違いと分かったので外れ値ではなくなり、95 も外れ値ではなくなる。</button>
+    <button>95 は正しい値なので異常値として扱い、300 は外れ値として残す。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">はじめのデータでは中央値 25、\( Q_1=18 \)、\( Q_3=30 \)、四分位範囲 12、上の境界 \( 30+18=48 \) で、95 と 300 が外れ値です。300 は打ち間違いと原因が分かったので異常値で、30 に直します。直した後も \( Q_1=18 \)、\( Q_3=30 \)、上の境界 48 で、95 は外れ値のままです。95 は正しい回答なので、除かずに外れ値として扱い、遠くから通う人がいるという背景も考えます。「2つとも除く」は正しい値まで除いてしまいます。「95 も外れ値でなくなる」は、直した後の計算と合いません。「95 を異常値」「300 を外れ値として残す」は、異常値と外れ値を取り違えています。<br><span class="small">この会話文の問題は練習用に作成したもので、実際の入試の出題形式を示すものではありません。</span></div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O2・O3</span></div>
+  <p>ある生徒の10日間の歩数（千歩）は 4, 6, 7, 7, 8, 8, 9, 10, 11, 22 でした。(1) \( Q_1 \)、\( Q_3 \)、四分位範囲、下の境界・上の境界を求め、外れ値を答えなさい。(2) 外れ値を区別した箱ひげ図をかくとき、左右のひげの端はいくつになりますか。(3) 外れ値の扱いについて、注意することを書きなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) 小さい方の5個 4, 6, 7, 7, 8 の中央値で \( Q_1=7 \)、大きい方の5個 8, 9, 10, 11, 22 の中央値で \( Q_3=10 \)。四分位範囲は 3、その1.5倍は 4.5。下の境界 \( 7-4.5=2.5 \)、上の境界 \( 10+4.5=14.5 \)。外れ値は 22。</p>
+    <p>(2) 左のひげの端は 4（2.5 より大きい値の最小値）、右のひげの端は 11（14.5 より小さい値の最大値）。22 はひげの外に別の印でかく。</p>
+    <p>(3) 22 千歩が記録の誤りかどうかを確かめる。誤りなら異常値として正しい値に直し、正しい記録なら除かずに、その日に何があったか（遠足や部活動の大会など）背景を探る。</p>
+    <p><strong>採点の観点</strong>　① 四分位数・四分位範囲・境界を正しく求め、外れ値を判定している。② ひげの端を境界の内側の最小値・最大値にしている。③ 異常値との区別と、背景を探る意義に触れている。</p>
+  </div>
+  <div class="explain">ひげの右端を 22 や上の境界 14.5 にしないことに注意します。ひげは「境界までの範囲にある最大値」までです（解説）。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。外れ値は数学Ⅰ「(4) データの分析」の〔用語・記号〕に示された語で、この時間の内容は、同じ項目の「目的に応じて複数の種類のデータを収集し，適切な統計量やグラフ，手法などを選択して分析を行い，データの傾向を把握して事象の特徴を表現すること」（イ(イ)）などに関わり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「解決過程を振り返り，得られた結果を意味づけたり，活用したり，統合的・発展的に考察したりすることなどを求める」と述べています。外れ値を見つけて終わりにせず、その原因や背景から結果を意味づけることは、この方針に沿った力です。</p>
+  <p class="small">問8・問9は会話や架空のデータを題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">散布図（数Ⅰ-084）</p>
+  <p>ここまでは、1つの量的データの分布を、代表値・散らばりの指標・箱ひげ図などで調べてきました。次の時間は、2つの量的データの関係を<strong>散布図</strong>に表し、一方が増加すると他方も増加する傾向（<strong>正の相関</strong>）、減少する傾向（<strong>負の相関</strong>）、どちらの傾向もない（相関がない）を見分け、相関の強さを捉えます。データが多く点が重なるときに使う、散布図と箱ひげ図を組み合わせた図も扱います。</p>
+  <p>この時間では、2つの量的データの関係（散布図・相関係数、数Ⅰ-084・085）や、仮説検定の考え方（数Ⅰ-089・090）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-082　変量の変換と平均値・分散</div>
+  <div><span class="label">次の時間</span>数Ⅰ-084　散布図</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-083「外れ値」（学習。学習指導要領 数学Ⅰ (4)ア(イ)・イ(イ)、解説 p.47）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(4) データの分析、〔用語・記号〕外れ値（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.47（量的データには他の値から極端にかけ離れたデータがあることがあり、そのような値を「外れ値」と呼ぶこと、外れ値は除外すべき値と捉えがちだがその背景を探ることが大切であること、測定ミスや入力ミスでなければ問題発見や問題解決の手がかりがあることもあること、販売実績が極めてよい販売員の工夫を探ることで対策が見いだせる例、外れ値は通常四分位範囲の1.5倍以上離れた値とされること、標準偏差を用いて平均値より±2s（事象によっては±3s）以上離れた値とされることもあること、外れ値がある場合の箱ひげ図のひげの引き方、測定ミス・入力ミスなど原因が分かっているものは「異常値」と呼び区別すること）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>中学校学習指導要領（平成29年告示）解説 数学編 p.89（ヒストグラムで「極端にかけ離れた値（外れ値）の有無」を捉えること）・p.120-121（箱ひげ図）（文部科学省）https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。このページのデータ（X社の販売台数、50m走、歩数、通学時間、販売額など）は、すべて学習用に作成した架空のデータで、実在の会社・人物とは関係ありません。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var OTHERS = [18, 21, 22, 23, 24, 24, 25, 26, 27, 29, 30];   // A さん以外（合計 269）
+  var Q1 = 22.5, MED = 24.5, Q3 = 28, UPPER = 36.25;            // A さんが 30 以上なら変わらない
+  var slider = document.getElementById("w83-v");
+  var vv = document.getElementById("w83-vv");
+  var svg = document.getElementById("w83-svg");
+  var out = document.getElementById("w83-out");
+  if (!slider || !svg) return;
+  var X = function (v) { return 40 + (v - 10) * 8; };           // 10..70 → x=40..520
+  function per12(num) {                                          // num/12（num は 0 以上の整数）を小数第2位まで四捨五入
+    var c = Math.floor((num * 100 + 6) / 12);
+    var exact = (num * 100) % 12 === 0;
+    var s = String(c); while (s.length < 3) s = "0" + s;
+    return { txt: s.slice(0, -2) + "." + s.slice(-2), exact: exact };
+  }
+  function draw() {
+    var v = parseInt(slider.value, 10);
+    var isOut = v >= UPPER;
+    var whiskerR = isOut ? 30 : Math.max(30, v);
+    var h = [];
+    var base = 92, cy = 56;
+    h.push('<line x1="30" y1="' + base + '" x2="530" y2="' + base + '" stroke="currentColor"/>');
+    for (var t = 10; t <= 70; t += 5) {
+      h.push('<line x1="' + X(t) + '" y1="' + base + '" x2="' + X(t) + '" y2="' + (base + 4) + '" stroke="currentColor"/>');
+      h.push('<text x="' + X(t) + '" y="' + (base + 17) + '" text-anchor="middle" font-size="11" fill="currentColor">' + t + '</text>');
+    }
+    h.push('<line x1="' + X(UPPER) + '" y1="16" x2="' + X(UPPER) + '" y2="' + base + '" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4 3" data-fence="' + UPPER + '"/>');
+    h.push('<text x="' + X(UPPER) + '" y="12" text-anchor="middle" font-size="11" fill="#c0392b">上の境界 36.25</text>');
+    h.push('<line x1="' + X(18) + '" y1="' + cy + '" x2="' + X(Q1) + '" y2="' + cy + '" stroke="currentColor" stroke-width="1.5" data-wl="18"/>');
+    h.push('<line x1="' + X(Q3) + '" y1="' + cy + '" x2="' + X(whiskerR) + '" y2="' + cy + '" stroke="currentColor" stroke-width="1.5" data-wr="' + whiskerR + '"/>');
+    h.push('<line x1="' + X(18) + '" y1="' + (cy - 8) + '" x2="' + X(18) + '" y2="' + (cy + 8) + '" stroke="currentColor" stroke-width="1.5"/>');
+    h.push('<line x1="' + X(whiskerR) + '" y1="' + (cy - 8) + '" x2="' + X(whiskerR) + '" y2="' + (cy + 8) + '" stroke="currentColor" stroke-width="1.5"/>');
+    h.push('<rect x="' + X(Q1) + '" y="' + (cy - 11) + '" width="' + (X(Q3) - X(Q1)) + '" height="22" fill="#1f5fbf" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5" data-box="' + Q1 + ' ' + Q3 + '"/>');
+    h.push('<line x1="' + X(MED) + '" y1="' + (cy - 11) + '" x2="' + X(MED) + '" y2="' + (cy + 11) + '" stroke="currentColor" stroke-width="2.5" data-med="' + MED + '"/>');
+    if (isOut) {
+      var cx = X(v);
+      h.push('<path d="M' + (cx - 5) + ',' + (cy - 5) + ' L' + (cx + 5) + ',' + (cy + 5) + ' M' + (cx - 5) + ',' + (cy + 5) + ' L' + (cx + 5) + ',' + (cy - 5) + '" stroke="#c0392b" stroke-width="2.2" fill="none" data-out="' + v + '"/>');
+    }
+    var m = per12(269 + v);                                       // 平均値 = (269+v)/12
+    var mx = (X((269 + v) / 12)).toFixed(1);
+    h.push('<path d="M' + mx + ',' + (cy + 13) + ' l-5,9 h10 z" fill="#b7791f" data-mean="' + m.txt + '"/>');
+    h.push('<text x="' + mx + '" y="' + (cy + 33) + '" text-anchor="middle" font-size="10" fill="#b7791f">平均値</text>');
+    svg.innerHTML = h.join("");
+    if (vv) vv.textContent = String(v);
+    var d = per12(v - 25);                                        // 平均値−中央値 = (269+v)/12 − 24.5 = (v−25)/12（v ≧ 30）
+    out.textContent = "A さん " + v + " 台：上の境界 36.25 " + (isOut ? "以上なので外れ値" : "より小さいので外れ値ではない") +
+      "。平均値 " + (m.exact ? "" : "約 ") + m.txt + " 台、中央値 24.5 台（平均値と中央値の差 " + (d.exact ? "" : "約 ") + d.txt + " 台）";
+  }
+  slider.addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-083",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-083",
+  "title": "外れ値",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-5", "title": "データの分析"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(4)ア(イ)", "(4)イ(イ)"],
+  "kaisetsu_page": "47",
+  "objectives": [
+    {"id": "O1", "text": "第1四分位数より四分位範囲の1.5倍以上小さい値や、第3四分位数より四分位範囲の1.5倍以上大きい値を、外れ値として判定できる。", "from": "第1四分位数より四分位範囲の1.5倍以上小さい値や第3四分位数より1.5倍以上大きい値を外れ値として", "sections": ["sec-1"], "checks": ["q1", "q2", "q4", "q7", "q8", "q9"]},
+    {"id": "O2", "text": "外れ値を区別した箱ひげ図をかいたり読み取ったりして、データの中の外れ値を見いだすことができる。", "from": "箱ひげ図などで見いだし", "sections": ["sec-2"], "checks": ["q5", "q9"]},
+    {"id": "O3", "text": "販売実績が極めてよい販売員の例などから、外れ値をすぐに除かず、その背景を探る意義を説明できる。", "from": "販売実績が極めてよい販売員の例などから、その背景を探る意義を理解する", "sections": ["sec-3"], "checks": ["q6", "q7", "q8", "q9"]},
+    {"id": "O4", "text": "測定ミスや入力ミスなど原因が分かっている異常値と、外れ値を区別できる。", "from": "原因が分かっている異常値とは区別する", "sections": ["sec-4"], "checks": ["q3", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "外れ値", "where": "sec-1"},
+    {"term": "異常値", "where": "sec-4"},
+    {"term": "外れ値を区別した箱ひげ図", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "ヒストグラムで極端にかけ離れた値（外れ値）の有無を読み取ること", "taught_in": ["jhs_math/中1-110"], "gap": false, "where": "review"},
+    {"concept": "四分位数の求め方（個数が偶数のときの分け方を含む）", "taught_in": ["jhs_math/中2-088", "hs_math_1a/数Ⅰ-079"], "gap": false, "where": "review"},
+    {"concept": "四分位範囲と箱ひげ図、極端な値の影響を受けにくいこと", "taught_in": ["jhs_math/中2-089"], "gap": false, "where": "review"},
+    {"concept": "平均値は極端な値の影響を受けやすいこと", "taught_in": ["jhs_math/中1-111"], "gap": false, "where": "review"},
+    {"concept": "標準偏差と、分布の形による標準偏差・四分位範囲の使い分け", "taught_in": ["hs_math_1a/数Ⅰ-081"], "gap": false, "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "散布図と相関（数Ⅰ-084・数Ⅰ-085）",
+    "仮説検定の考え方と平均から 2s・3s 離れた値の基準（数Ⅰ-089・数Ⅰ-090）",
+    "境界ちょうどの値の箱ひげ図での扱いの詳細（このページのデータでは境界ちょうどの値が出ないようにした）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『データの分析』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(4)の事項と〔用語・記号〕外れ値（入試へのつながりの引用）"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.47 外れ値の意味・背景を探る意義・販売員の例・1.5倍の基準・±2s（±3s）の基準・外れ値がある場合の箱ひげ図・異常値との区別"},
+    {"name": "中学校学習指導要領（平成29年告示）解説 数学編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf", "use": "p.89 ヒストグラムで外れ値の有無を捉えること、p.120-121 箱ひげ図（保存本文：sources/text/jhs_kaisetsu_math.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

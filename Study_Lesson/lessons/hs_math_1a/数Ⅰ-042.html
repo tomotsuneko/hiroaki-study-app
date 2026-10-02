@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>最大・最小の練習｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>二次関数</span><span>数Ⅰ-042</span></div>
+  <h1>最大・最小の練習</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">演習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">二次関数の最大値・最小値の問題は、「定義域が決まっているか」「文字がどこに入っているか」で解き方の入り口が変わります。この時間は、数Ⅰ-039〜041 で学んだ求め方を4つの「型」に分けて練習し、軸と定義域の位置関係で場合を分ける考え方を確実にします。新しい公式は出てきません。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>x がすべての実数をとるときの二次関数の最大値・最小値を、平方完成して頂点から求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>定義域が限られた二次関数の最大値・最小値を、軸が定義域の内側にあるか外側にあるかに着目し、頂点と両端の値を比べて求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>軸が文字を含む二次関数の最大値・最小値を、軸と定義域の位置関係で場合を分けて求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>定義域が文字を含む二次関数の最大値・最小値を、軸と定義域の位置関係で場合を分けて求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-041）</span>文字を含む二次関数の最大・最小</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-042）</span>最大・最小の練習</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-043）</span>最大・最小の活用</div>
+</div>
+<p class="small">前提となる単元：中学3年「関数 y=ax²」「二次方程式」、数学Ⅰ「数と式」。練習の範囲は、同じ単元の数Ⅰ-039（x がすべての実数をとるときの最大・最小）、数Ⅰ-040（定義域が限られた場合）、数Ⅰ-041（軸や定義域が文字を含む場合）です。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：最大・最小の求め方の総整理</h2>
+<p>練習に入る前に、数Ⅰ-039〜041 で学んだことをまとめます。どの型でも、最初に平方完成して軸・頂点と凸の向きを確かめます（数Ⅰ-034）。</p>
+<div class="formula-card">
+  <div><span class="f-name">① x がすべての実数をとるとき（数Ⅰ-039）</span><p>\( y=a(x-p)^2+q \) で、<br>\( a&gt;0 \)（下に凸）なら \( x=p \) で最小値 \( q \)、最大値はない。<br>\( a&lt;0 \)（上に凸）なら \( x=p \) で最大値 \( q \)、最小値はない。</p></div>
+  <div><span class="f-name">② 定義域が限られたとき（数Ⅰ-040）</span><p>最大・最小の候補は、頂点（定義域に入るとき）と定義域の両端。<br>下に凸で、軸が定義域の内側なら頂点で最小、両端のうち値の大きいほうで最大。軸が外側なら両端で最大・最小。<br>上に凸なら、最大と最小の役割が入れかわる。端を含まないときは、その端の値はとらない。</p></div>
+  <div><span class="f-name">③ 軸や定義域が文字を含むとき（数Ⅰ-041）</span><p>下に凸で定義域 \( L\leqq x\leqq R \)、軸 \( x=m \) のとき、<br>最小値は、軸が定義域の左の外・内側・右の外のどれかで分ける（左端・頂点・右端）。<br>最大値は、軸が定義域の中央 \( \dfrac{L+R}{2} \) より左・一致・右のどれかで分ける（右端・両端・左端）。<br>上に凸なら、最大と最小の役割が入れかわる。</p></div>
+</div>
+<p class="small">①〜③は、このページの中での番号です。</p>
+<h3>型の見分け方</h3>
+<p>このページでは、問題を次の4つの型に分けて練習します（「型A〜D」はこのページでの呼び方です）。問題文の定義域と文字の位置を見れば、どの型かが分かります。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>問題文の手がかり</th><th>型</th><th>主に使う考え</th></tr>
+  <tr><td>定義域が書かれていない（\( x \) はすべての実数）</td><td>型A</td><td>① 頂点で最大または最小</td></tr>
+  <tr><td>定義域が数で決まっている（例：\( 0\leqq x\leqq 4 \)）</td><td>型B</td><td>② 軸が定義域の内側か外側か</td></tr>
+  <tr><td>式の中に文字があり、軸が動く（例：\( x^2-2ax+1 \)）</td><td>型C</td><td>③ 軸を動かして場合分け</td></tr>
+  <tr><td>定義域に文字があり、定義域が動く（例：\( a\leqq x\leqq a+2 \)）</td><td>型D</td><td>③ 定義域を動かして場合分け</td></tr>
+</table>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-039</span></div>
+  <p>\( x \) がすべての実数をとるとき、\( y=-(x+1)^2+4 \) の最大値・最小値として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( x=-1 \) で最小値 4、最大値はない</button>
+    <button>\( x=1 \) で最大値 4、最小値はない</button>
+    <button data-correct="true">\( x=-1 \) で最大値 4、最小値はない</button>
+    <button>\( x=4 \) で最大値 \( -1 \)、最小値はない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x^2 \) の係数 \( -1 \) が負なので上に凸で、頂点 \( (-1,\ 4) \) で最大になります。最小値はありません（数Ⅰ-039）。「最小値 4」は凸の向きの取り違え、「\( x=1 \)」は \( (x+1)^2 \) の軸を \( x=1 \) とした符号の誤り、「\( x=4 \) で最大値 \( -1 \)」は頂点の \( x \) 座標と \( y \) 座標の取り違えです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-040</span></div>
+  <p>\( y=(x-2)^2-1 \)（\( 3\leqq x\leqq 5 \)）が最小値をとる \( x \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( x=2 \)</button>
+    <button data-correct="true">\( x=3 \)</button>
+    <button>\( x=4 \)</button>
+    <button>\( x=5 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">軸 \( x=2 \) は定義域 \( 3\leqq x\leqq 5 \) の左の外にあるので、定義域の中では \( y \) は増加し、左端 \( x=3 \) で最小になります（最小値 0）。\( x=2 \) は定義域に入らない頂点、\( x=5 \) は最大値をとる右端です。\( x=4 \) は定義域の中央で、最小の点ではありません。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-041</span></div>
+  <p>下に凸の放物線で、定義域が \( 1\leqq x\leqq 3 \)、軸 \( x=a \) が定義域の中央より右にあるとき、最大値をとる \( x \) の値はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( x=1 \)</button>
+    <button>\( x=2 \)</button>
+    <button>\( x=3 \)</button>
+    <button>\( x=a \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">最大値は、両端のうち軸から遠いほうでとります（数Ⅰ-041）。軸が中央 \( x=2 \) より右にあれば、左端 \( x=1 \) のほうが軸から遠いので、\( x=1 \) で最大です。\( x=3 \) は軸に近いほうの端、\( x=a \) は頂点で、下に凸では頂点は最小の点です。\( x=2 \) は場合分けの基準にする中央です。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">数直線上の2点の中点（数Ⅰ-041 の補足の確認）</p>
+  <p>2つの数 \( p,\ q \)（\( p&lt;q \)）のちょうど真ん中の数（中点）は \( \dfrac{p+q}{2} \) です。どちらの端からの距離も \( \dfrac{q-p}{2} \) で等しいからです。この時間も、数Ⅰ-041 と同じく、定義域 \( L\leqq x\leqq R \) の中点 \( \dfrac{L+R}{2} \) を「定義域の中央」と呼んで使います（例：\( 1\leqq x\leqq 3 \) の中央は 2、\( a\leqq x\leqq a+2 \) の中央は \( a+1 \)）。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：4つの問題、どの型？</h2>
+<div class="box think">
+  <p class="box-title">入り口を見分けよう</p>
+  <p>次の4つの問題は、それぞれ型A〜Dのどれでしょうか。解く前に、定義域と文字の位置だけを見て予想してみよう（\( a \) は定数とします）。</p>
+  <p>ア \( y=-2x^2+8x-3 \) の最大値・最小値<br>イ \( y=x^2-6x+5 \)（\( 0\leqq x\leqq 4 \)）の最大値・最小値<br>ウ \( f(x)=x^2-2ax+1 \)（\( 1\leqq x\leqq 3 \)）の最小値・最大値<br>エ \( f(x)=x^2-4x+3 \)（\( a\leqq x\leqq a+2 \)）の最小値・最大値</p>
+  <p>アは「型A」の節の例題1、イは「型B」の節の例題3、ウは「型C」の節の例題5、エは「型D」の節の例題6で答えを確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="型A すべての実数"><span class="num">3</span>型A：x がすべての実数をとる場合</h2>
+<p>定義域が書かれていない問題を<strong>型A</strong>と呼びます。\( x \) はすべての実数をとるので、頂点がいつも候補になり、下に凸なら頂点で最小、上に凸なら頂点で最大です（①）。見分ける手がかりは「定義域の指定がないこと」です。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（型A：上に凸。導入のア）</p>
+  <p>\( y=-2x^2+8x-3 \) の最大値・最小値を求めなさい。</p>
+  <div class="step">着眼点：定義域の指定がないので型Aです。\( x^2 \) の係数 \( -2 \) で、\( x^2 \) の項と \( x \) の項をくくります。</div>
+  <div class="step">ステップ1：\( y=-2(x^2-4x)-3=-2\{(x-2)^2-4\}-3 \)。</div>
+  <div class="step">ステップ2：中かっこをはずすとき、\( -4 \) にも \( -2 \) を掛けて \( +8 \)。\( y=-2(x-2)^2+8-3=-2(x-2)^2+5 \)。</div>
+  <div class="step">ステップ3：\( x^2 \) の係数が負なので上に凸。頂点 \( (2,\ 5) \) で最大になり、\( y \) はいくらでも小さくなります。</div>
+  <div class="step">答え：\( x=2 \) で最大値 5。最小値はない。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（型A：係数が分数）</p>
+  <p>\( y=\dfrac{1}{2}x^2+3x+1 \) の最大値・最小値を求めなさい。</p>
+  <div class="step">着眼点：\( 3x\div\dfrac{1}{2}=6x \) なので、\( \dfrac{1}{2}x^2+3x=\dfrac{1}{2}(x^2+6x) \) です。</div>
+  <div class="step">ステップ1：\( y=\dfrac{1}{2}\{(x+3)^2-9\}+1=\dfrac{1}{2}(x+3)^2-\dfrac{9}{2}+1=\dfrac{1}{2}(x+3)^2-\dfrac{7}{2} \)。</div>
+  <div class="step">答え：下に凸なので、\( x=-3 \) で最小値 \( -\dfrac{7}{2} \)。最大値はない。</div>
+</div>
+<figure>
+  <div class="fig-row">
+<!--svg:f042a-->
+<svg viewBox="0 0 230 240" width="230" role="img" aria-label="y=−2(x−2)²+5 のグラフ。頂点 (2, 5) で最大値 5、y 軸との交点 (0, −3)" data-frame="22 30 192 188 -0.8 4.8 -4.4 6.8"><defs><clipPath id="clip-f42a1"><rect x="22" y="30" width="192" height="188"/></clipPath></defs>
+<text x="115" y="16" text-anchor="middle" font-size="12.5" fill="currentColor">例題1　上に凸</text>
+<line x1="16" y1="144.1" x2="222" y2="144.1" stroke="currentColor" stroke-width="1"/>
+<polygon points="223,144.1 215,140.6 215,147.6" fill="currentColor"/>
+<text x="220" y="137.1" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="49.4" y1="224" x2="49.4" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="49.4,21 45.9,29 52.9,29" fill="currentColor"/>
+<text x="56.4" y="31" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="45.4" y="157.1" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="118" y1="141.1" x2="118" y2="147.1" stroke="currentColor"/>
+<text x="118" y="158.1" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="186.6" y1="141.1" x2="186.6" y2="147.1" stroke="currentColor"/>
+<text x="186.6" y="158.1" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="46.4" y1="60.2" x2="52.4" y2="60.2" stroke="currentColor"/>
+<text x="44.4" y="64.2" text-anchor="end" font-size="11" fill="currentColor">5</text>
+<line x1="46.4" y1="194.5" x2="52.4" y2="194.5" stroke="currentColor"/>
+<text x="44.4" y="198.5" text-anchor="end" font-size="11" fill="currentColor">−3</text>
+<line x1="118" y1="30" x2="118" y2="218" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="5 4" data-axis="2"/>
+<path d="M22,323.4 L23.6,314.7 L25.2,306.2 L26.8,297.8 L28.4,289.5 L30,281.4 L31.6,273.4 L33.2,265.6 L34.8,257.9 L36.4,250.4 L38,243 L39.6,235.8 L41.2,228.7 L42.8,221.7 L44.4,214.9 L46,208.3 L47.6,201.8 L49.2,195.4 L50.8,189.2 L52.4,183.1 L54,177.2 L55.6,171.4 L57.2,165.8 L58.8,160.3 L60.4,155 L62,149.8 L63.6,144.7 L65.2,139.8 L66.8,135.1 L68.4,130.5 L70,126 L71.6,121.7 L73.2,117.5 L74.8,113.5 L76.4,109.6 L78,105.9 L79.6,102.3 L81.2,98.9 L82.8,95.6 L84.4,92.5 L86,89.5 L87.6,86.6 L89.2,83.9 L90.8,81.3 L92.4,78.9 L94,76.7 L95.6,74.5 L97.2,72.6 L98.8,70.7 L100.4,69.1 L102,67.5 L103.6,66.1 L105.2,64.9 L106.8,63.8 L108.4,62.8 L110,62 L111.6,61.4 L113.2,60.9 L114.8,60.5 L116.4,60.3 L118,60.2 L119.6,60.3 L121.2,60.5 L122.8,60.9 L124.4,61.4 L126,62 L127.6,62.8 L129.2,63.8 L130.8,64.9 L132.4,66.1 L134,67.5 L135.6,69.1 L137.2,70.7 L138.8,72.6 L140.4,74.5 L142,76.7 L143.6,78.9 L145.2,81.3 L146.8,83.9 L148.4,86.6 L150,89.5 L151.6,92.5 L153.2,95.6 L154.8,98.9 L156.4,102.3 L158,105.9 L159.6,109.6 L161.2,113.5 L162.8,117.5 L164.4,121.7 L166,126 L167.6,130.5 L169.2,135.1 L170.8,139.8 L172.4,144.7 L174,149.8 L175.6,155 L177.2,160.3 L178.8,165.8 L180.4,171.4 L182,177.2 L183.6,183.1 L185.2,189.2 L186.8,195.4 L188.4,201.8 L190,208.3 L191.6,214.9 L193.2,221.7 L194.8,228.7 L196.4,235.8 L198,243 L199.6,250.4 L201.2,257.9 L202.8,265.6 L204.4,273.4 L206,281.4 L207.6,289.5 L209.2,297.8 L210.8,306.2 L212.4,314.7 L214,323.4" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-f="-2 2 5" clip-path="url(#clip-f42a1)"/>
+<circle cx="118" cy="60.2" r="4.5" fill="#c0392b" data-xy="2 5"/>
+<circle cx="49.4" cy="194.5" r="4.5" fill="#1f5fbf" data-xy="0 -3"/>
+<text x="126" y="56.2" text-anchor="start" font-size="12" font-weight="700" fill="#c0392b">最大 5</text>
+<text x="57.4" y="190.5" text-anchor="start" font-size="11" fill="#1f5fbf">(0, −3)</text>
+</svg>
+<svg viewBox="0 0 230 240" width="230" role="img" aria-label="y=1/2(x+3)²−7/2 のグラフ。頂点 (−3, −7/2) で最小値 −7/2、y 軸との交点 (0, 1)" data-frame="22 30 192 188 -7.2 1.6 -4.6 4.4"><defs><clipPath id="clip-f42a2"><rect x="22" y="30" width="192" height="188"/></clipPath></defs>
+<text x="115" y="16" text-anchor="middle" font-size="12.5" fill="currentColor">例題2　下に凸</text>
+<line x1="16" y1="121.9" x2="222" y2="121.9" stroke="currentColor" stroke-width="1"/>
+<polygon points="223,121.9 215,118.4 215,125.4" fill="currentColor"/>
+<text x="220" y="114.9" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="179.1" y1="224" x2="179.1" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="179.1,21 175.6,29 182.6,29" fill="currentColor"/>
+<text x="186.1" y="31" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="175.1" y="134.9" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="48.2" y1="118.9" x2="48.2" y2="124.9" stroke="currentColor"/>
+<text x="48.2" y="135.9" text-anchor="middle" font-size="11" fill="currentColor">−6</text>
+<line x1="113.6" y1="118.9" x2="113.6" y2="124.9" stroke="currentColor"/>
+<text x="113.6" y="135.9" text-anchor="middle" font-size="11" fill="currentColor">−3</text>
+<line x1="176.1" y1="101" x2="182.1" y2="101" stroke="currentColor"/>
+<text x="174.1" y="105" text-anchor="end" font-size="11" fill="currentColor">1</text>
+<line x1="113.6" y1="30" x2="113.6" y2="218" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="5 4" data-axis="-3"/>
+<path d="M22,10.8 L23.6,17.2 L25.2,23.4 L26.8,29.6 L28.4,35.6 L30,41.5 L31.6,47.4 L33.2,53.1 L34.8,58.7 L36.4,64.1 L38,69.5 L39.6,74.8 L41.2,79.9 L42.8,84.9 L44.4,89.8 L46,94.7 L47.6,99.3 L49.2,103.9 L50.8,108.4 L52.4,112.7 L54,117 L55.6,121.1 L57.2,125.1 L58.8,129 L60.4,132.8 L62,136.5 L63.6,140.1 L65.2,143.5 L66.8,146.9 L68.4,150.1 L70,153.2 L71.6,156.3 L73.2,159.1 L74.8,161.9 L76.4,164.6 L78,167.2 L79.6,169.6 L81.2,171.9 L82.8,174.2 L84.4,176.3 L86,178.3 L87.6,180.1 L89.2,181.9 L90.8,183.6 L92.4,185.1 L94,186.6 L95.6,187.9 L97.2,189.1 L98.8,190.2 L100.4,191.2 L102,192.1 L103.6,192.8 L105.2,193.5 L106.8,194 L108.4,194.4 L110,194.7 L111.6,194.9 L113.2,195 L114.8,195 L116.4,194.9 L118,194.6 L119.6,194.2 L121.2,193.8 L122.8,193.2 L124.4,192.5 L126,191.7 L127.6,190.7 L129.2,189.7 L130.8,188.6 L132.4,187.3 L134,185.9 L135.6,184.4 L137.2,182.8 L138.8,181.1 L140.4,179.3 L142,177.4 L143.6,175.3 L145.2,173.2 L146.8,170.9 L148.4,168.5 L150,166 L151.6,163.4 L153.2,160.7 L154.8,157.8 L156.4,154.9 L158,151.8 L159.6,148.7 L161.2,145.4 L162.8,142 L164.4,138.5 L166,134.9 L167.6,131.1 L169.2,127.3 L170.8,123.3 L172.4,119.3 L174,115.1 L175.6,110.8 L177.2,106.4 L178.8,101.9 L180.4,97.2 L182,92.5 L183.6,87.6 L185.2,82.7 L186.8,77.6 L188.4,72.4 L190,67.1 L191.6,61.7 L193.2,56.1 L194.8,50.5 L196.4,44.7 L198,38.9 L199.6,32.9 L201.2,26.8 L202.8,20.6 L204.4,14.3 L206,7.8 L207.6,1.3 L209.2,-5.3 L210.8,-12.1 L212.4,-19 L214,-26" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-f="1/2 -3 -7/2" clip-path="url(#clip-f42a2)"/>
+<circle cx="113.6" cy="195" r="4.5" fill="#c0392b" data-xy="-3 -7/2"/>
+<circle cx="179.1" cy="101" r="4.5" fill="#1f5fbf" data-xy="0 1"/>
+<text x="105.6" y="207" text-anchor="end" font-size="12" font-weight="700" fill="#1e8e5a">最小 −7/2</text>
+<text x="187.1" y="97" text-anchor="start" font-size="11" fill="#1f5fbf">(0, 1)</text>
+</svg>
+<!--/svg:f042a-->
+  </div>
+  <figcaption>図1　例題1（左、上に凸）と例題2（右、下に凸）のグラフ。赤の●＝頂点、青の●＝\( y \) 軸との交点、赤の破線＝軸（縦・横の縮尺は図ごとに違う）</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い（型A）</p><p>① くくった係数を掛け忘れる：例題1で \( -2\{(x-2)^2-4\}-3 \) を \( -2(x-2)^2-4-3 \) とすると、「\( x=2 \) で最大値 \( -7 \)」と誤ります。<br>② 最大値をとる \( x \) の値と最大値を取り違える：例題1の最大値は 5 で、2 は最大値をとるときの \( x \) の値です。<br>③ 「最小値はない」（例題2なら「最大値はない」）を書き忘れる：最大値と最小値の両方について答えます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="型B 定義域が限られた"><span class="num">4</span>型B：定義域が限られた場合</h2>
+<p>定義域が数で決まっている問題を<strong>型B</strong>と呼びます。平方完成したら、まず<strong>軸が定義域の内側か外側か</strong>を確かめ、頂点（内側のとき）と両端の値を比べます（②）。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（型B：軸が内側。導入のイ）</p>
+  <p>\( y=x^2-6x+5 \)（\( 0\leqq x\leqq 4 \)）の最大値・最小値を求めなさい。</p>
+  <div class="step">着眼点：\( y=(x-3)^2-4 \)。軸 \( x=3 \) は定義域 \( 0\leqq x\leqq 4 \) の内側にあります。</div>
+  <div class="step">ステップ1：頂点と両端の値を求めます。頂点 \( (3,\ -4) \)、\( x=0 \) のとき \( y=5 \)、\( x=4 \) のとき \( y=16-24+5=-3 \)。</div>
+  <div class="step">ステップ2：下に凸なので、頂点で最小。最大は両端のうち値の大きいほうで、\( 5&gt;-3 \) より左端です。</div>
+  <div class="step">答え：\( x=0 \) で最大値 5、\( x=3 \) で最小値 \( -4 \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（型B：上に凸で、軸が外側）</p>
+  <p>\( y=-x^2+2x+3 \)（\( 2\leqq x\leqq 4 \)）の最大値・最小値を求めなさい。</p>
+  <div class="step">着眼点：\( y=-(x^2-2x)+3=-(x-1)^2+4 \)。上に凸で、軸 \( x=1 \) は定義域の左の外にあります。</div>
+  <div class="step">ステップ1：定義域の全体が軸より右にあるので、上に凸のグラフでは \( x \) が増加すると \( y \) は減少します。左端で最大、右端で最小です。</div>
+  <div class="step">ステップ2：\( x=2 \) のとき \( y=-4+4+3=3 \)、\( x=4 \) のとき \( y=-16+8+3=-5 \)。</div>
+  <div class="step">答え：\( x=2 \) で最大値 3、\( x=4 \) で最小値 \( -5 \)。</div>
+</div>
+<figure>
+  <div class="fig-row">
+<!--svg:f042b-->
+<svg viewBox="0 0 250 250" width="250" role="img" aria-label="y=(x−3)²−4（0≦x≦4）のグラフ。軸 x=3 は定義域の内側。x=0 で最大値 5、x=3 で最小値 −4" data-frame="22 32 212 196 -1.2 5.6 -5.2 6.6"><defs><clipPath id="clip-f42b1"><rect x="22" y="32" width="212" height="196"/></clipPath></defs>
+<text x="125" y="16" text-anchor="middle" font-size="12.5" fill="currentColor">例題3　0≦x≦4</text>
+<rect x="59.4" y="32" width="124.7" height="196" fill="#1f5fbf" fill-opacity="0.08" data-band="0 4"/>
+<line x1="16" y1="141.6" x2="242" y2="141.6" stroke="currentColor" stroke-width="1"/>
+<polygon points="243,141.6 235,138.1 235,145.1" fill="currentColor"/>
+<text x="240" y="134.6" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="59.4" y1="234" x2="59.4" y2="24" stroke="currentColor" stroke-width="1"/>
+<polygon points="59.4,23 55.9,31 62.9,31" fill="currentColor"/>
+<text x="66.4" y="33" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="55.4" y="154.6" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="152.9" y1="138.6" x2="152.9" y2="144.6" stroke="currentColor"/>
+<text x="152.9" y="155.6" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="184.1" y1="138.6" x2="184.1" y2="144.6" stroke="currentColor"/>
+<text x="184.1" y="155.6" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="152.9" y1="32" x2="152.9" y2="228" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="5 4" data-axis="3"/>
+<text x="156.9" y="42" text-anchor="start" font-size="11" fill="#c0392b">軸</text>
+<path d="M22,-84.9 L22.6,-82.2 L23.2,-79.4 L23.9,-76.6 L24.5,-73.9 L25.1,-71.1 L25.7,-68.4 L26.4,-65.7 L27,-63 L27.6,-60.4 L28.2,-57.7 L28.9,-55 L29.5,-52.4 L30.1,-49.8 L30.7,-47.2 L31.4,-44.6 L32,-42 L32.6,-39.4 L33.2,-36.9 L33.8,-34.3 L34.5,-31.8 L35.1,-29.3 L35.7,-26.8 L36.3,-24.3 L37,-21.8 L37.6,-19.3 L38.2,-16.9 L38.8,-14.4 L39.5,-12 L40.1,-9.6 L40.7,-7.2 L41.3,-4.8 L42,-2.4 L42.6,-0.1 L43.2,2.3 L43.8,4.6 L44.4,6.9 L45.1,9.2 L45.7,11.5 L46.3,13.8 L46.9,16.1 L47.6,18.3 L48.2,20.5 L48.8,22.8 L49.4,25 L50.1,27.2 L50.7,29.4 L51.3,31.5 L51.9,33.7 L52.6,35.8 L53.2,38 L53.8,40.1 L54.4,42.2 L55,44.3 L55.7,46.4 L56.3,48.4 L56.9,50.5 L57.5,52.5 L58.2,54.6 L58.8,56.6 L59.4,58.6" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="1 3 -4" clip-path="url(#clip-f42b1)"/>
+<path d="M184.1,191.5 L184.9,190.6 L185.8,189.6 L186.6,188.7 L187.4,187.7 L188.3,186.7 L189.1,185.7 L189.9,184.7 L190.8,183.6 L191.6,182.5 L192.4,181.4 L193.3,180.3 L194.1,179.1 L194.9,177.9 L195.8,176.7 L196.6,175.5 L197.4,174.3 L198.3,173 L199.1,171.7 L199.9,170.4 L200.7,169 L201.6,167.6 L202.4,166.3 L203.2,164.8 L204.1,163.4 L204.9,161.9 L205.7,160.4 L206.6,158.9 L207.4,157.4 L208.2,155.8 L209.1,154.3 L209.9,152.6 L210.7,151 L211.6,149.4 L212.4,147.7 L213.2,146 L214,144.3 L214.9,142.5 L215.7,140.7 L216.5,138.9 L217.4,137.1 L218.2,135.3 L219,133.4 L219.9,131.5 L220.7,129.6 L221.5,127.7 L222.4,125.7 L223.2,123.7 L224,121.7 L224.9,119.7 L225.7,117.6 L226.5,115.6 L227.3,113.5 L228.2,111.3 L229,109.2 L229.8,107 L230.7,104.8 L231.5,102.6 L232.3,100.3 L233.2,98.1 L234,95.8" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="1 3 -4" clip-path="url(#clip-f42b1)"/>
+<path d="M59.4,58.6 L61,63.5 L62.5,68.4 L64.1,73.2 L65.6,77.8 L67.2,82.5 L68.8,87 L70.3,91.4 L71.9,95.8 L73.4,100.1 L75,104.3 L76.6,108.4 L78.1,112.4 L79.7,116.3 L81.2,120.2 L82.8,124 L84.4,127.7 L85.9,131.3 L87.5,134.8 L89,138.3 L90.6,141.6 L92.1,144.9 L93.7,148.1 L95.3,151.2 L96.8,154.3 L98.4,157.2 L99.9,160.1 L101.5,162.8 L103.1,165.5 L104.6,168.2 L106.2,170.7 L107.7,173.1 L109.3,175.5 L110.9,177.8 L112.4,180 L114,182.1 L115.5,184.1 L117.1,186.1 L118.6,188 L120.2,189.8 L121.8,191.5 L123.3,193.1 L124.9,194.6 L126.4,196.1 L128,197.4 L129.6,198.7 L131.1,199.9 L132.7,201 L134.2,202.1 L135.8,203 L137.4,203.9 L138.9,204.7 L140.5,205.4 L142,206 L143.6,206.6 L145.1,207 L146.7,207.4 L148.3,207.7 L149.8,207.9 L151.4,208 L152.9,208.1 L154.5,208 L156.1,207.9 L157.6,207.7 L159.2,207.4 L160.7,207 L162.3,206.6 L163.9,206 L165.4,205.4 L167,204.7 L168.5,203.9 L170.1,203 L171.6,202.1 L173.2,201 L174.8,199.9 L176.3,198.7 L177.9,197.4 L179.4,196.1 L181,194.6 L182.6,193.1 L184.1,191.5" fill="none" stroke="#1f5fbf" stroke-width="3.5" data-f="1 3 -4" clip-path="url(#clip-f42b1)"/>
+<circle cx="152.9" cy="208.1" r="4.5" fill="#c0392b" data-xy="3 -4"/>
+<circle cx="59.4" cy="58.6" r="4.5" fill="#1f5fbf" data-xy="0 5"/>
+<circle cx="184.1" cy="191.5" r="4.5" fill="#1f5fbf" data-xy="4 -3"/>
+<text x="67.4" y="54.6" text-anchor="start" font-size="12" font-weight="700" fill="#c0392b">最大 5</text>
+<text x="160.9" y="220.1" text-anchor="start" font-size="12" font-weight="700" fill="#1e8e5a">最小 −4</text>
+</svg>
+<svg viewBox="0 0 250 250" width="250" role="img" aria-label="y=−(x−1)²+4（2≦x≦4）のグラフ。軸 x=1 は定義域の外側。x=2 で最大値 3、x=4 で最小値 −5" data-frame="22 32 212 196 -1.2 5.2 -6.4 5.4"><defs><clipPath id="clip-f42b2"><rect x="22" y="32" width="212" height="196"/></clipPath></defs>
+<text x="125" y="16" text-anchor="middle" font-size="12.5" fill="currentColor">例題4　2≦x≦4（上に凸）</text>
+<rect x="128" y="32" width="66.2" height="196" fill="#1f5fbf" fill-opacity="0.08" data-band="2 4"/>
+<line x1="16" y1="121.7" x2="242" y2="121.7" stroke="currentColor" stroke-width="1"/>
+<polygon points="243,121.7 235,118.2 235,125.2" fill="currentColor"/>
+<text x="240" y="114.7" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="61.7" y1="234" x2="61.7" y2="24" stroke="currentColor" stroke-width="1"/>
+<polygon points="61.7,23 58.2,31 65.2,31" fill="currentColor"/>
+<text x="68.8" y="33" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="57.7" y="134.7" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="94.9" y1="118.7" x2="94.9" y2="124.7" stroke="currentColor"/>
+<text x="94.9" y="135.7" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="128" y1="118.7" x2="128" y2="124.7" stroke="currentColor"/>
+<text x="128" y="135.7" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="194.2" y1="118.7" x2="194.2" y2="124.7" stroke="currentColor"/>
+<text x="194.2" y="135.7" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="94.9" y1="32" x2="94.9" y2="228" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="5 4" data-axis="1"/>
+<text x="98.9" y="42" text-anchor="start" font-size="11" fill="#c0392b">軸</text>
+<path d="M22,135.6 L23.8,131.8 L25.5,128 L27.3,124.4 L29.1,120.8 L30.8,117.3 L32.6,114 L34.4,110.7 L36.1,107.5 L37.9,104.4 L39.7,101.4 L41.4,98.5 L43.2,95.7 L45,93 L46.7,90.3 L48.5,87.8 L50.3,85.4 L52,83 L53.8,80.8 L55.6,78.6 L57.3,76.6 L59.1,74.6 L60.9,72.8 L62.6,71 L64.4,69.3 L66.2,67.7 L67.9,66.2 L69.7,64.8 L71.5,63.5 L73.2,62.3 L75,61.2 L76.8,60.2 L78.5,59.3 L80.3,58.5 L82.1,57.7 L83.8,57.1 L85.6,56.6 L87.4,56.1 L89.1,55.8 L90.9,55.5 L92.7,55.3 L94.4,55.3 L96.2,55.3 L98,55.4 L99.7,55.6 L101.5,55.9 L103.3,56.3 L105,56.8 L106.8,57.4 L108.6,58.1 L110.3,58.9 L112.1,59.7 L113.9,60.7 L115.6,61.8 L117.4,62.9 L119.2,64.2 L120.9,65.5 L122.7,67 L124.5,68.5 L126.2,70.1 L128,71.9" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="-1 1 4" clip-path="url(#clip-f42b2)"/>
+<path d="M194.2,204.7 L194.9,206.7 L195.6,208.8 L196.2,210.8 L196.9,212.8 L197.6,214.9 L198.2,216.9 L198.9,219 L199.6,221.1 L200.2,223.2 L200.9,225.3 L201.5,227.5 L202.2,229.6 L202.9,231.8 L203.5,234 L204.2,236.1 L204.9,238.3 L205.5,240.6 L206.2,242.8 L206.8,245 L207.5,247.3 L208.2,249.5 L208.8,251.8 L209.5,254.1 L210.2,256.4 L210.8,258.7 L211.5,261.1 L212.1,263.4 L212.8,265.8 L213.5,268.1 L214.1,270.5 L214.8,272.9 L215.5,275.3 L216.1,277.8 L216.8,280.2 L217.4,282.6 L218.1,285.1 L218.8,287.6 L219.4,290.1 L220.1,292.6 L220.8,295.1 L221.4,297.6 L222.1,300.2 L222.7,302.7 L223.4,305.3 L224.1,307.9 L224.7,310.5 L225.4,313.1 L226.1,315.7 L226.7,318.4 L227.4,321 L228,323.7 L228.7,326.4 L229.4,329 L230,331.8 L230.7,334.5 L231.4,337.2 L232,339.9 L232.7,342.7 L233.3,345.5 L234,348.3" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="-1 1 4" clip-path="url(#clip-f42b2)"/>
+<path d="M128,71.9 L128.8,72.7 L129.7,73.6 L130.5,74.4 L131.3,75.4 L132.1,76.3 L133,77.2 L133.8,78.2 L134.6,79.2 L135.5,80.2 L136.3,81.2 L137.1,82.3 L137.9,83.3 L138.8,84.4 L139.6,85.5 L140.4,86.7 L141.2,87.8 L142.1,89 L142.9,90.2 L143.7,91.4 L144.6,92.6 L145.4,93.9 L146.2,95.2 L147,96.5 L147.9,97.8 L148.7,99.1 L149.5,100.5 L150.4,101.9 L151.2,103.3 L152,104.7 L152.8,106.1 L153.7,107.6 L154.5,109.1 L155.3,110.6 L156.2,112.1 L157,113.6 L157.8,115.2 L158.6,116.8 L159.5,118.4 L160.3,120 L161.1,121.7 L162,123.4 L162.8,125.1 L163.6,126.8 L164.4,128.5 L165.3,130.3 L166.1,132 L166.9,133.8 L167.8,135.6 L168.6,137.5 L169.4,139.3 L170.2,141.2 L171.1,143.1 L171.9,145 L172.7,147 L173.5,148.9 L174.4,150.9 L175.2,152.9 L176,155 L176.9,157 L177.7,159.1 L178.5,161.2 L179.3,163.3 L180.2,165.4 L181,167.5 L181.8,169.7 L182.7,171.9 L183.5,174.1 L184.3,176.3 L185.1,178.6 L186,180.9 L186.8,183.2 L187.6,185.5 L188.5,187.8 L189.3,190.2 L190.1,192.5 L190.9,194.9 L191.8,197.4 L192.6,199.8 L193.4,202.3 L194.2,204.7" fill="none" stroke="#1f5fbf" stroke-width="3.5" data-f="-1 1 4" clip-path="url(#clip-f42b2)"/>
+<circle cx="94.9" cy="55.3" r="3.8" fill="#8a99a8" data-xy="1 4"/>
+<circle cx="128" cy="71.9" r="4.5" fill="#1f5fbf" data-xy="2 3"/>
+<circle cx="194.2" cy="204.7" r="4.5" fill="#1f5fbf" data-xy="4 -5"/>
+<text x="136" y="67.9" text-anchor="start" font-size="12" font-weight="700" fill="#c0392b">最大 3</text>
+<text x="202.2" y="200.7" text-anchor="start" font-size="12" font-weight="700" fill="#1e8e5a">最小 −5</text>
+</svg>
+<!--/svg:f042b-->
+  </div>
+  <figcaption>図2　例題3（左）と例題4（右）。青い帯と太線＝定義域の部分、点線＝定義域の外、赤の破線＝軸、赤の●＝頂点（灰色は定義域の外の頂点）、青の●＝定義域の端（含む）</figcaption>
+</figure>
+<p>例題4の定義域を \( 2&lt;x\leqq 4 \) に変えると、最大になるはずの左端 \( x=2 \) が含まれなくなります。\( y \) は 3 に近い値をいくらでもとりますが、3 にはならないので、最大値はありません。最小値は右端 \( x=4 \) の \( -5 \) のままです（数Ⅰ-040）。</p>
+<div class="box caution"><p class="box-title">よくある間違い（型B）</p><p>① 頂点が定義域の外なのに、頂点の値を答える：例題4で「\( x=1 \) で最大値 4」とする誤りです。\( x=1 \) は定義域に入りません。<br>② 上に凸なのに、下に凸と同じ向きで増減を考える：例題4で「右端で最大」とすると、最大値 \( -5 \) が最小値 3 より小さいという矛盾が起きます。凸の向きを最初に確かめましょう。<br>③ 軸が内側のとき、両端の片方しか計算しない：例題3で右端だけを見て「最大値 \( -3 \)」とする誤りです。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="型C 軸が文字を含む"><span class="num">5</span>型C：軸が文字を含む場合</h2>
+<p>式の中に定数 \( a \) があり、平方完成すると軸が \( x=a \) のように文字で表される問題を<strong>型C</strong>と呼びます。定義域は動かず、\( a \) の値によって軸が左右に動くので、軸と定義域の位置関係で場合を分けます（③）。最小値と最大値では、場合分けの境目が違うことに注意します。</p>
+<div class="box example worked">
+  <p class="box-title">例題5（型C。導入のウ）</p>
+  <p>\( a \) は定数とする。\( f(x)=x^2-2ax+1 \)（\( 1\leqq x\leqq 3 \)）の最小値と最大値を求めなさい。</p>
+  <div class="step">着眼点：\( f(x)=(x-a)^2-a^2+1 \)。下に凸で、軸は直線 \( x=a \)。定義域の両端は 1 と 3、中央は 2 です。</div>
+  <div class="step">ステップ1（最小値）：軸が定義域の左の外・内側・右の外のどれかで分けます。<br>(i) \( a&lt;1 \) のとき、左端で最小。\( f(1)=1-2a+1=2-2a \)。<br>(ii) \( 1\leqq a\leqq 3 \) のとき、頂点で最小。\( f(a)=-a^2+1 \)。<br>(iii) \( a&gt;3 \) のとき、右端で最小。\( f(3)=9-6a+1=10-6a \)。</div>
+  <div class="step">ステップ2（最大値）：軸が中央 \( x=2 \) より左・一致・右のどれかで分けます。<br>(i) \( a&lt;2 \) のとき、右端のほうが軸から遠いので、最大値は \( f(3)=10-6a \)。<br>(ii) \( a=2 \) のとき、\( f(1)=f(3)=-2 \) なので、最大値は \( -2 \)（\( x=1,\ 3 \)）。<br>(iii) \( a&gt;2 \) のとき、左端のほうが遠いので、最大値は \( f(1)=2-2a \)。</div>
+  <div class="step">ステップ3（確かめ）：境目で両側の値が一致するかを見ます。最小値は \( a=1 \) で \( 2-2=0 \) と \( -1+1=0 \)、\( a=3 \) で \( -9+1=-8 \) と \( 10-18=-8 \)。最大値は \( a=2 \) で \( 10-12=-2 \) と \( 2-4=-2 \)。どれも一致します。</div>
+  <div class="step">答え：最小値は \( a&lt;1 \) のとき \( 2-2a \)（\( x=1 \)）、\( 1\leqq a\leqq 3 \) のとき \( -a^2+1 \)（\( x=a \)）、\( a&gt;3 \) のとき \( 10-6a \)（\( x=3 \)）。最大値は \( a&lt;2 \) のとき \( 10-6a \)（\( x=3 \)）、\( a=2 \) のとき \( -2 \)（\( x=1,\ 3 \)）、\( a&gt;2 \) のとき \( 2-2a \)（\( x=1 \)）。</div>
+</div>
+<figure>
+  <div class="fig-row">
+<!--svg:f042c-->
+<svg viewBox="0 0 210 240" width="210" role="img" aria-label="f(x)=x²−2ax+1 で a=0 のときのグラフ（定義域 1≦x≦3）。x=1 で最小値 2、x=3 で最大値 10" data-frame="20 30 176 188 -0.8 4.8 -2.0 11.5"><defs><clipPath id="clip-f42c1"><rect x="20" y="30" width="176" height="188"/></clipPath></defs>
+<text x="105" y="16" text-anchor="middle" font-size="12.5" fill="currentColor">a=0（a&lt;1）</text>
+<rect x="76.6" y="30" width="62.9" height="188" fill="#1f5fbf" fill-opacity="0.08" data-band="1 3"/>
+<line x1="14" y1="190.1" x2="204" y2="190.1" stroke="currentColor" stroke-width="1"/>
+<polygon points="205,190.1 197,186.6 197,193.6" fill="currentColor"/>
+<text x="202" y="183.1" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="45.1" y1="224" x2="45.1" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="45.1,21 41.6,29 48.6,29" fill="currentColor"/>
+<text x="52.1" y="31" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="41.1" y="203.1" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="76.6" y1="187.1" x2="76.6" y2="193.1" stroke="currentColor"/>
+<text x="76.6" y="204.1" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="108" y1="187.1" x2="108" y2="193.1" stroke="currentColor"/>
+<text x="108" y="204.1" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="139.4" y1="187.1" x2="139.4" y2="193.1" stroke="currentColor"/>
+<text x="139.4" y="204.1" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="45.1" y1="30" x2="45.1" y2="218" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="5 4" data-axis="0"/>
+<text x="41.1" y="214" text-anchor="end" font-size="11" fill="#c0392b">軸</text>
+<line x1="108" y1="30" x2="108" y2="218" stroke="#b7791f" stroke-width="1.3" stroke-dasharray="2 3" data-center="2"/>
+<path d="M20,167.3 L20.9,168 L21.9,168.6 L22.8,169.2 L23.8,169.8 L24.7,170.3 L25.7,170.9 L26.6,171.4 L27.5,171.9 L28.5,172.3 L29.4,172.7 L30.4,173.1 L31.3,173.5 L32.3,173.9 L33.2,174.2 L34.1,174.5 L35.1,174.8 L36,175.1 L37,175.3 L37.9,175.5 L38.9,175.7 L39.8,175.8 L40.7,175.9 L41.7,176.1 L42.6,176.1 L43.6,176.2 L44.5,176.2 L45.5,176.2 L46.4,176.2 L47.3,176.2 L48.3,176.1 L49.2,176 L50.2,175.9 L51.1,175.7 L52.1,175.5 L53,175.4 L53.9,175.1 L54.9,174.9 L55.8,174.6 L56.8,174.3 L57.7,174 L58.7,173.6 L59.6,173.3 L60.5,172.9 L61.5,172.5 L62.4,172 L63.4,171.5 L64.3,171 L65.3,170.5 L66.2,170 L67.1,169.4 L68.1,168.8 L69,168.2 L70,167.5 L70.9,166.9 L71.9,166.2 L72.8,165.4 L73.7,164.7 L74.7,163.9 L75.6,163.1 L76.6,162.3" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="1 0 1" clip-path="url(#clip-f42c1)"/>
+<path d="M139.4,50.9 L140.4,48.4 L141.3,45.8 L142.3,43.3 L143.2,40.7 L144.1,38 L145.1,35.4 L146,32.7 L147,30 L147.9,27.3 L148.9,24.6 L149.8,21.8 L150.7,19 L151.7,16.2 L152.6,13.3 L153.6,10.5 L154.5,7.6 L155.5,4.7 L156.4,1.7 L157.3,-1.3 L158.3,-4.3 L159.2,-7.3 L160.2,-10.3 L161.1,-13.4 L162.1,-16.5 L163,-19.6 L163.9,-22.8 L164.9,-25.9 L165.8,-29.1 L166.8,-32.3 L167.7,-35.6 L168.7,-38.9 L169.6,-42.2 L170.5,-45.5 L171.5,-48.8 L172.4,-52.2 L173.4,-55.6 L174.3,-59 L175.3,-62.5 L176.2,-65.9 L177.1,-69.4 L178.1,-73 L179,-76.5 L180,-80.1 L180.9,-83.7 L181.9,-87.3 L182.8,-90.9 L183.7,-94.6 L184.7,-98.3 L185.6,-102 L186.6,-105.8 L187.5,-109.6 L188.5,-113.3 L189.4,-117.2 L190.3,-121 L191.3,-124.9 L192.2,-128.8 L193.2,-132.7 L194.1,-136.7 L195.1,-140.6 L196,-144.6" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="1 0 1" clip-path="url(#clip-f42c1)"/>
+<path d="M76.6,162.3 L77.4,161.6 L78.1,160.9 L78.9,160.1 L79.7,159.4 L80.5,158.6 L81.3,157.8 L82.1,157 L82.9,156.2 L83.6,155.3 L84.4,154.5 L85.2,153.6 L86,152.7 L86.8,151.8 L87.6,150.8 L88.4,149.9 L89.1,148.9 L89.9,147.9 L90.7,146.9 L91.5,145.9 L92.3,144.9 L93.1,143.8 L93.9,142.8 L94.6,141.7 L95.4,140.6 L96.2,139.4 L97,138.3 L97.8,137.2 L98.6,136 L99.4,134.8 L100.1,133.6 L100.9,132.3 L101.7,131.1 L102.5,129.8 L103.3,128.6 L104.1,127.3 L104.9,125.9 L105.6,124.6 L106.4,123.3 L107.2,121.9 L108,120.5 L108.8,119.1 L109.6,117.7 L110.4,116.3 L111.1,114.8 L111.9,113.3 L112.7,111.8 L113.5,110.3 L114.3,108.8 L115.1,107.3 L115.9,105.7 L116.6,104.1 L117.4,102.6 L118.2,100.9 L119,99.3 L119.8,97.7 L120.6,96 L121.4,94.3 L122.1,92.6 L122.9,90.9 L123.7,89.2 L124.5,87.4 L125.3,85.7 L126.1,83.9 L126.9,82.1 L127.6,80.3 L128.4,78.4 L129.2,76.6 L130,74.7 L130.8,72.8 L131.6,70.9 L132.4,69 L133.1,67 L133.9,65.1 L134.7,63.1 L135.5,61.1 L136.3,59.1 L137.1,57.1 L137.9,55 L138.6,53 L139.4,50.9" fill="none" stroke="#1f5fbf" stroke-width="3.5" data-f="1 0 1" clip-path="url(#clip-f42c1)"/>
+<circle cx="76.6" cy="162.3" r="4.5" fill="#1e8e5a" data-xy="1 2"/>
+<rect x="134.9" y="46.4" width="9" height="9" fill="#c0392b" data-xy="3 10" data-mark="max"/>
+<text x="76.6" y="184.3" text-anchor="middle" font-size="12" font-weight="700" fill="#1e8e5a">最小</text>
+<text x="147.4" y="46.9" text-anchor="start" font-size="12" font-weight="700" fill="#c0392b">最大</text>
+</svg>
+<svg viewBox="0 0 210 240" width="210" role="img" aria-label="f(x)=x²−2ax+1 で a=5/2 のときのグラフ（定義域 1≦x≦3）。x=5/2 で最小値 −21/4、x=1 で最大値 −3" data-frame="20 30 176 188 -0.8 4.8 -6.8 3.2"><defs><clipPath id="clip-f42c2"><rect x="20" y="30" width="176" height="188"/></clipPath></defs>
+<text x="105" y="16" text-anchor="middle" font-size="12.5" fill="currentColor">a=5/2（2&lt;a≦3）</text>
+<rect x="76.6" y="30" width="62.9" height="188" fill="#1f5fbf" fill-opacity="0.08" data-band="1 3"/>
+<line x1="14" y1="90.2" x2="204" y2="90.2" stroke="currentColor" stroke-width="1"/>
+<polygon points="205,90.2 197,86.7 197,93.7" fill="currentColor"/>
+<text x="202" y="83.2" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="45.1" y1="224" x2="45.1" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="45.1,21 41.6,29 48.6,29" fill="currentColor"/>
+<text x="52.1" y="31" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="41.1" y="103.2" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="76.6" y1="87.2" x2="76.6" y2="93.2" stroke="currentColor"/>
+<text x="76.6" y="104.2" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="108" y1="87.2" x2="108" y2="93.2" stroke="currentColor"/>
+<text x="108" y="104.2" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="139.4" y1="87.2" x2="139.4" y2="93.2" stroke="currentColor"/>
+<text x="139.4" y="104.2" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="123.7" y1="30" x2="123.7" y2="218" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="5 4" data-axis="5/2"/>
+<text x="127.7" y="40" text-anchor="start" font-size="11" fill="#c0392b">軸</text>
+<line x1="108" y1="30" x2="108" y2="218" stroke="#b7791f" stroke-width="1.3" stroke-dasharray="2 3" data-center="2"/>
+<path d="M20,-15.9 L20.9,-12.2 L21.9,-8.5 L22.8,-4.9 L23.8,-1.3 L24.7,2.3 L25.7,5.9 L26.6,9.4 L27.5,12.8 L28.5,16.3 L29.4,19.7 L30.4,23 L31.3,26.4 L32.3,29.7 L33.2,32.9 L34.1,36.2 L35.1,39.4 L36,42.5 L37,45.6 L37.9,48.7 L38.9,51.8 L39.8,54.8 L40.7,57.8 L41.7,60.8 L42.6,63.7 L43.6,66.6 L44.5,69.5 L45.5,72.3 L46.4,75.1 L47.3,77.8 L48.3,80.6 L49.2,83.3 L50.2,85.9 L51.1,88.5 L52.1,91.1 L53,93.7 L53.9,96.2 L54.9,98.7 L55.8,101.1 L56.8,103.6 L57.7,106 L58.7,108.3 L59.6,110.6 L60.5,112.9 L61.5,115.2 L62.4,117.4 L63.4,119.6 L64.3,121.7 L65.3,123.8 L66.2,125.9 L67.1,127.9 L68.1,130 L69,131.9 L70,133.9 L70.9,135.8 L71.9,137.7 L72.8,139.5 L73.7,141.3 L74.7,143.1 L75.6,144.9 L76.6,146.6" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="1 5/2 -21/4" clip-path="url(#clip-f42c2)"/>
+<path d="M139.4,184.2 L140.4,183.6 L141.3,183 L142.3,182.3 L143.2,181.6 L144.1,180.9 L145.1,180.2 L146,179.4 L147,178.6 L147.9,177.7 L148.9,176.8 L149.8,175.9 L150.7,175 L151.7,174 L152.6,172.9 L153.6,171.9 L154.5,170.8 L155.5,169.7 L156.4,168.5 L157.3,167.3 L158.3,166.1 L159.2,164.9 L160.2,163.6 L161.1,162.2 L162.1,160.9 L163,159.5 L163.9,158.1 L164.9,156.6 L165.8,155.1 L166.8,153.6 L167.7,152 L168.7,150.4 L169.6,148.8 L170.5,147.1 L171.5,145.4 L172.4,143.7 L173.4,141.9 L174.3,140.1 L175.3,138.3 L176.2,136.4 L177.1,134.5 L178.1,132.6 L179,130.6 L180,128.6 L180.9,126.6 L181.9,124.5 L182.8,122.4 L183.7,120.3 L184.7,118.1 L185.6,115.9 L186.6,113.7 L187.5,111.4 L188.5,109.1 L189.4,106.7 L190.3,104.4 L191.3,102 L192.2,99.5 L193.2,97 L194.1,94.5 L195.1,92 L196,89.4" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="1 5/2 -21/4" clip-path="url(#clip-f42c2)"/>
+<path d="M76.6,146.6 L77.4,148 L78.1,149.3 L78.9,150.7 L79.7,152 L80.5,153.3 L81.3,154.6 L82.1,155.9 L82.9,157.1 L83.6,158.3 L84.4,159.5 L85.2,160.6 L86,161.8 L86.8,162.9 L87.6,164 L88.4,165.1 L89.1,166.1 L89.9,167.1 L90.7,168.1 L91.5,169.1 L92.3,170.1 L93.1,171 L93.9,171.9 L94.6,172.8 L95.4,173.6 L96.2,174.5 L97,175.3 L97.8,176.1 L98.6,176.8 L99.4,177.6 L100.1,178.3 L100.9,179 L101.7,179.6 L102.5,180.3 L103.3,180.9 L104.1,181.5 L104.9,182.1 L105.6,182.6 L106.4,183.2 L107.2,183.7 L108,184.2 L108.8,184.6 L109.6,185.1 L110.4,185.5 L111.1,185.9 L111.9,186.2 L112.7,186.6 L113.5,186.9 L114.3,187.2 L115.1,187.4 L115.9,187.7 L116.6,187.9 L117.4,188.1 L118.2,188.3 L119,188.4 L119.8,188.6 L120.6,188.7 L121.4,188.8 L122.1,188.8 L122.9,188.8 L123.7,188.9 L124.5,188.8 L125.3,188.8 L126.1,188.8 L126.9,188.7 L127.6,188.6 L128.4,188.4 L129.2,188.3 L130,188.1 L130.8,187.9 L131.6,187.7 L132.4,187.4 L133.1,187.2 L133.9,186.9 L134.7,186.6 L135.5,186.2 L136.3,185.9 L137.1,185.5 L137.9,185.1 L138.6,184.6 L139.4,184.2" fill="none" stroke="#1f5fbf" stroke-width="3.5" data-f="1 5/2 -21/4" clip-path="url(#clip-f42c2)"/>
+<circle cx="123.7" cy="188.9" r="4.5" fill="#1e8e5a" data-xy="5/2 -21/4"/>
+<rect x="72.1" y="142.1" width="9" height="9" fill="#c0392b" data-xy="1 -3" data-mark="max"/>
+<text x="131.7" y="200.9" text-anchor="start" font-size="12" font-weight="700" fill="#1e8e5a">最小</text>
+<text x="76.6" y="182.6" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">最大</text>
+</svg>
+<svg viewBox="0 0 210 240" width="210" role="img" aria-label="f(x)=x²−2ax+1 で a=4 のときのグラフ（定義域 1≦x≦3）。x=3 で最小値 −14、x=1 で最大値 −6" data-frame="20 30 176 188 -0.8 4.8 -16.5 3.5"><defs><clipPath id="clip-f42c3"><rect x="20" y="30" width="176" height="188"/></clipPath></defs>
+<text x="105" y="16" text-anchor="middle" font-size="12.5" fill="currentColor">a=4（a&gt;3）</text>
+<rect x="76.6" y="30" width="62.9" height="188" fill="#1f5fbf" fill-opacity="0.08" data-band="1 3"/>
+<line x1="14" y1="62.9" x2="204" y2="62.9" stroke="currentColor" stroke-width="1"/>
+<polygon points="205,62.9 197,59.4 197,66.4" fill="currentColor"/>
+<text x="202" y="55.9" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="45.1" y1="224" x2="45.1" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="45.1,21 41.6,29 48.6,29" fill="currentColor"/>
+<text x="52.1" y="31" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="41.1" y="75.9" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="76.6" y1="59.9" x2="76.6" y2="65.9" stroke="currentColor"/>
+<text x="76.6" y="76.9" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="108" y1="59.9" x2="108" y2="65.9" stroke="currentColor"/>
+<text x="108" y="76.9" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="139.4" y1="59.9" x2="139.4" y2="65.9" stroke="currentColor"/>
+<text x="139.4" y="76.9" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="170.9" y1="30" x2="170.9" y2="218" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="5 4" data-axis="4"/>
+<text x="166.9" y="40" text-anchor="end" font-size="11" fill="#c0392b">軸</text>
+<line x1="108" y1="30" x2="108" y2="218" stroke="#b7791f" stroke-width="1.3" stroke-dasharray="2 3" data-center="2"/>
+<path d="M20,-12.7 L20.9,-10 L21.9,-7.3 L22.8,-4.6 L23.8,-2 L24.7,0.6 L25.7,3.3 L26.6,5.9 L27.5,8.4 L28.5,11 L29.4,13.6 L30.4,16.1 L31.3,18.6 L32.3,21.1 L33.2,23.6 L34.1,26 L35.1,28.5 L36,30.9 L37,33.3 L37.9,35.7 L38.9,38.1 L39.8,40.4 L40.7,42.8 L41.7,45.1 L42.6,47.4 L43.6,49.7 L44.5,52 L45.5,54.3 L46.4,56.5 L47.3,58.7 L48.3,60.9 L49.2,63.1 L50.2,65.3 L51.1,67.4 L52.1,69.6 L53,71.7 L53.9,73.8 L54.9,75.9 L55.8,78 L56.8,80 L57.7,82.1 L58.7,84.1 L59.6,86.1 L60.5,88.1 L61.5,90.1 L62.4,92 L63.4,94 L64.3,95.9 L65.3,97.8 L66.2,99.7 L67.1,101.5 L68.1,103.4 L69,105.2 L70,107 L70.9,108.8 L71.9,110.6 L72.8,112.4 L73.7,114.1 L74.7,115.9 L75.6,117.6 L76.6,119.3" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="1 4 -15" clip-path="url(#clip-f42c3)"/>
+<path d="M139.4,194.5 L140.4,195.1 L141.3,195.6 L142.3,196.1 L143.2,196.6 L144.1,197.1 L145.1,197.6 L146,198 L147,198.5 L147.9,198.9 L148.9,199.3 L149.8,199.7 L150.7,200 L151.7,200.4 L152.6,200.7 L153.6,201.1 L154.5,201.4 L155.5,201.6 L156.4,201.9 L157.3,202.2 L158.3,202.4 L159.2,202.6 L160.2,202.8 L161.1,203 L162.1,203.2 L163,203.3 L163.9,203.4 L164.9,203.6 L165.8,203.7 L166.8,203.7 L167.7,203.8 L168.7,203.9 L169.6,203.9 L170.5,203.9 L171.5,203.9 L172.4,203.9 L173.4,203.8 L174.3,203.8 L175.3,203.7 L176.2,203.6 L177.1,203.5 L178.1,203.4 L179,203.3 L180,203.1 L180.9,202.9 L181.9,202.7 L182.8,202.5 L183.7,202.3 L184.7,202.1 L185.6,201.8 L186.6,201.5 L187.5,201.3 L188.5,201 L189.4,200.6 L190.3,200.3 L191.3,199.9 L192.2,199.6 L193.2,199.2 L194.1,198.8 L195.1,198.3 L196,197.9" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="1 4 -15" clip-path="url(#clip-f42c3)"/>
+<path d="M76.6,119.3 L77.4,120.7 L78.1,122.1 L78.9,123.5 L79.7,124.8 L80.5,126.2 L81.3,127.5 L82.1,128.9 L82.9,130.2 L83.6,131.5 L84.4,132.8 L85.2,134.1 L86,135.4 L86.8,136.6 L87.6,137.9 L88.4,139.1 L89.1,140.4 L89.9,141.6 L90.7,142.8 L91.5,144 L92.3,145.2 L93.1,146.3 L93.9,147.5 L94.6,148.6 L95.4,149.8 L96.2,150.9 L97,152 L97.8,153.1 L98.6,154.2 L99.4,155.2 L100.1,156.3 L100.9,157.4 L101.7,158.4 L102.5,159.4 L103.3,160.4 L104.1,161.5 L104.9,162.4 L105.6,163.4 L106.4,164.4 L107.2,165.4 L108,166.3 L108.8,167.2 L109.6,168.2 L110.4,169.1 L111.1,170 L111.9,170.9 L112.7,171.7 L113.5,172.6 L114.3,173.4 L115.1,174.3 L115.9,175.1 L116.6,175.9 L117.4,176.7 L118.2,177.5 L119,178.3 L119.8,179.1 L120.6,179.8 L121.4,180.6 L122.1,181.3 L122.9,182 L123.7,182.8 L124.5,183.4 L125.3,184.1 L126.1,184.8 L126.9,185.5 L127.6,186.1 L128.4,186.8 L129.2,187.4 L130,188 L130.8,188.6 L131.6,189.2 L132.4,189.8 L133.1,190.4 L133.9,190.9 L134.7,191.5 L135.5,192 L136.3,192.5 L137.1,193 L137.9,193.5 L138.6,194 L139.4,194.5" fill="none" stroke="#1f5fbf" stroke-width="3.5" data-f="1 4 -15" clip-path="url(#clip-f42c3)"/>
+<circle cx="139.4" cy="194.5" r="4.5" fill="#1e8e5a" data-xy="3 -14"/>
+<rect x="72.1" y="114.8" width="9" height="9" fill="#c0392b" data-xy="1 -6" data-mark="max"/>
+<text x="139.4" y="212.5" text-anchor="middle" font-size="12" font-weight="700" fill="#1e8e5a">最小</text>
+<text x="76.6" y="155.3" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">最大</text>
+</svg>
+<!--/svg:f042c-->
+  </div>
+  <figcaption>図3　例題5の \( a=0 \)、\( a=\frac{5}{2} \)、\( a=4 \) のときのグラフ（定義域 \( 1\leqq x\leqq 3 \)）。赤の破線＝軸 \( x=a \)、橙の点線＝定義域の中央 \( x=2 \)、緑の●＝最小、赤の■＝最大（縦の縮尺は図ごとに違う）</figcaption>
+</figure>
+<p>最小値と最大値の場合分けを \( a \) の値の順に並べると、次の表になります。同じ「軸が内側」の \( 1\leqq a\leqq 3 \) でも、最大値をとる端は \( a=2 \) の前後で変わります。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>\( a \) の範囲</th><th>最小値（とる \( x \)）</th><th>最大値（とる \( x \)）</th></tr>
+  <tr><td>\( a&lt;1 \)</td><td>\( 2-2a \)（\( x=1 \)）</td><td>\( 10-6a \)（\( x=3 \)）</td></tr>
+  <tr><td>\( 1\leqq a&lt;2 \)</td><td>\( -a^2+1 \)（\( x=a \)）</td><td>\( 10-6a \)（\( x=3 \)）</td></tr>
+  <tr><td>\( a=2 \)</td><td>\( -3 \)（\( x=2 \)）</td><td>\( -2 \)（\( x=1,\ 3 \)）</td></tr>
+  <tr><td>\( 2&lt;a\leqq 3 \)</td><td>\( -a^2+1 \)（\( x=a \)）</td><td>\( 2-2a \)（\( x=1 \)）</td></tr>
+  <tr><td>\( a&gt;3 \)</td><td>\( 10-6a \)（\( x=3 \)）</td><td>\( 2-2a \)（\( x=1 \)）</td></tr>
+</table>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い（型C）</p><p>① 最大値も最小値と同じ境目（\( a=1,\ 3 \)）で分ける：\( 1\leqq a\leqq 3 \) の中で、最大値をとる端が1つに決まりません（上の表の \( a=2 \) の前後）。<br>② 上に凸のときも下に凸と同じ判断をする：上に凸なら、最大値が「軸に最も近い点」、最小値が「軸から最も遠い端」になります。\( x^2 \) の係数の符号を最初に確かめましょう。<br>③ 境目の値（\( a=1 \) など）をどの場合にも入れない：等号はどちらか一方の場合に必ず入れます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="型D 定義域が文字を含む"><span class="num">6</span>型D：定義域が文字を含む場合</h2>
+<p>定義域が \( a\leqq x\leqq a+2 \) のように文字を含む問題を<strong>型D</strong>と呼びます。今度はグラフ（軸）が動かず、定義域が左右に動きます。見るものは型Cと同じ「軸と定義域の位置関係」ですが、軸の位置を<strong>定義域の端や中央との大小</strong>として、\( a \) の不等式で表す必要があります。</p>
+<p class="small">定義域が文字を含む（定義域が動く）場合の最大・最小は、教科書によって扱いの程度が異なります。応用例題として扱う教科書（数研出版『改訂版 数学Ⅰ』のシラバス）がある一方、本文の外の「研究」「発展」で扱う教科書（新興出版社啓林館『深進数学Ⅰ』『爽解数学Ⅰ』の年間指導計画、数研出版『改訂版 新編 数学Ⅰ』の編修趣意書）もあります（数Ⅰ-041 の注記と同じ。フッターの出典を参照）。</p>
+<div class="box example worked">
+  <p class="box-title">例題6（型D。導入のエ）</p>
+  <p>\( a \) は定数とする。\( f(x)=x^2-4x+3 \)（\( a\leqq x\leqq a+2 \)）の最小値と最大値を求めなさい。</p>
+  <div class="step">着眼点：\( f(x)=(x-2)^2-1 \)。軸は直線 \( x=2 \) で動きません。定義域の左端は \( a \)、右端は \( a+2 \)、中央は \( a+1 \) です。</div>
+  <div class="step">ステップ1（最小値）：<br>(i) 定義域の全体が軸より左、つまり<strong>右端</strong>が軸より左（\( a+2&lt;2 \)、すなわち \( a&lt;0 \)）のとき、右端で最小。\( f(a+2)=(a+2)^2-4(a+2)+3=a^2-1 \)。<br>(ii) 軸が定義域の内側（\( a\leqq 2\leqq a+2 \)、すなわち \( 0\leqq a\leqq 2 \)）のとき、頂点で最小。最小値は \( -1 \)。<br>(iii) 左端が軸より右（\( a&gt;2 \)）のとき、左端で最小。\( f(a)=a^2-4a+3 \)。</div>
+  <div class="step">ステップ2（最大値）：中央 \( a+1 \) と軸 2 を比べます。<br>(i) \( a+1&lt;2 \)（\( a&lt;1 \)）のとき、左端のほうが軸から遠いので、最大値は \( f(a)=a^2-4a+3 \)。<br>(ii) \( a=1 \) のとき、\( f(1)=f(3)=0 \) なので、最大値は 0（\( x=1,\ 3 \)）。<br>(iii) \( a+1&gt;2 \)（\( a&gt;1 \)）のとき、右端のほうが遠いので、最大値は \( f(a+2)=a^2-1 \)。</div>
+  <div class="step">答え：最小値は \( a&lt;0 \) のとき \( a^2-1 \)、\( 0\leqq a\leqq 2 \) のとき \( -1 \)、\( a&gt;2 \) のとき \( a^2-4a+3 \)。最大値は \( a&lt;1 \) のとき \( a^2-4a+3 \)、\( a=1 \) のとき 0、\( a&gt;1 \) のとき \( a^2-1 \)。</div>
+</div>
+<figure>
+  <div class="fig-row">
+<!--svg:f042d-->
+<svg viewBox="0 0 210 240" width="210" role="img" aria-label="y=(x−2)²−1 のグラフと定義域 −1≦x≦1。x=1 で最小値 0、x=−1 で最大値 8" data-frame="20 30 176 188 -1.8 5.8 -2.2 9.6"><defs><clipPath id="clip-f42d1"><rect x="20" y="30" width="176" height="188"/></clipPath></defs>
+<text x="105" y="16" text-anchor="middle" font-size="12.5" fill="currentColor">a=−1（a&lt;0）</text>
+<rect x="38.5" y="30" width="46.3" height="188" fill="#1f5fbf" fill-opacity="0.08" data-band="-1 1"/>
+<line x1="14" y1="182.9" x2="204" y2="182.9" stroke="currentColor" stroke-width="1"/>
+<polygon points="205,182.9 197,179.4 197,186.4" fill="currentColor"/>
+<text x="202" y="175.9" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="61.7" y1="224" x2="61.7" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="61.7,21 58.2,29 65.2,29" fill="currentColor"/>
+<text x="68.7" y="31" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="57.7" y="195.9" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="38.5" y1="179.9" x2="38.5" y2="185.9" stroke="currentColor"/>
+<text x="38.5" y="196.9" text-anchor="middle" font-size="11" fill="currentColor">−1</text>
+<line x1="84.8" y1="179.9" x2="84.8" y2="185.9" stroke="currentColor"/>
+<text x="84.8" y="196.9" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="108" y1="179.9" x2="108" y2="185.9" stroke="currentColor"/>
+<text x="108" y="196.9" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="58.7" y1="55.5" x2="64.7" y2="55.5" stroke="currentColor"/>
+<text x="56.7" y="59.5" text-anchor="end" font-size="11" fill="currentColor">8</text>
+<line x1="108" y1="30" x2="108" y2="218" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="5 4" data-axis="2"/>
+<text x="112" y="40" text-anchor="start" font-size="11" fill="#c0392b">軸</text>
+<path d="M20,-31.2 L20.3,-29.6 L20.6,-28 L20.9,-26.4 L21.2,-24.8 L21.5,-23.2 L21.9,-21.6 L22.2,-20 L22.5,-18.4 L22.8,-16.9 L23.1,-15.3 L23.4,-13.8 L23.7,-12.2 L24,-10.7 L24.3,-9.1 L24.6,-7.6 L24.9,-6.1 L25.2,-4.6 L25.6,-3 L25.9,-1.5 L26.2,0 L26.5,1.5 L26.8,3 L27.1,4.5 L27.4,5.9 L27.7,7.4 L28,8.9 L28.3,10.3 L28.6,11.8 L29,13.3 L29.3,14.7 L29.6,16.1 L29.9,17.6 L30.2,19 L30.5,20.4 L30.8,21.9 L31.1,23.3 L31.4,24.7 L31.7,26.1 L32,27.5 L32.4,28.9 L32.7,30.3 L33,31.6 L33.3,33 L33.6,34.4 L33.9,35.7 L34.2,37.1 L34.5,38.4 L34.8,39.8 L35.1,41.1 L35.4,42.5 L35.7,43.8 L36.1,45.1 L36.4,46.4 L36.7,47.7 L37,49 L37.3,50.3 L37.6,51.6 L37.9,52.9 L38.2,54.2 L38.5,55.5" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="1 2 -1" clip-path="url(#clip-f42d1)"/>
+<path d="M84.8,182.9 L86.7,185.4 L88.5,187.6 L90.4,189.7 L92.3,191.5 L94.1,193.1 L96,194.6 L97.8,195.8 L99.7,196.8 L101.5,197.6 L103.4,198.2 L105.2,198.7 L107.1,198.9 L108.9,198.9 L110.8,198.7 L112.6,198.2 L114.5,197.6 L116.3,196.8 L118.2,195.8 L120,194.6 L121.9,193.1 L123.7,191.5 L125.6,189.7 L127.5,187.6 L129.3,185.4 L131.2,182.9 L133,180.3 L134.9,177.4 L136.7,174.4 L138.6,171.1 L140.4,167.7 L142.3,164 L144.1,160.1 L146,156 L147.8,151.7 L149.7,147.3 L151.5,142.6 L153.4,137.7 L155.2,132.6 L157.1,127.3 L158.9,121.8 L160.8,116.1 L162.7,110.1 L164.5,104 L166.4,97.7 L168.2,91.2 L170.1,84.4 L171.9,77.5 L173.8,70.4 L175.6,63 L177.5,55.5 L179.3,47.7 L181.2,39.8 L183,31.6 L184.9,23.3 L186.7,14.7 L188.6,5.9 L190.4,-3 L192.3,-12.2 L194.1,-21.6 L196,-31.2" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="1 2 -1" clip-path="url(#clip-f42d1)"/>
+<path d="M38.5,55.5 L39.1,57.9 L39.7,60.2 L40.3,62.6 L40.8,64.9 L41.4,67.2 L42,69.5 L42.6,71.7 L43.2,74 L43.7,76.2 L44.3,78.4 L44.9,80.6 L45.5,82.7 L46.1,84.9 L46.6,87 L47.2,89.1 L47.8,91.2 L48.4,93.2 L48.9,95.3 L49.5,97.3 L50.1,99.3 L50.7,101.3 L51.3,103.2 L51.8,105.2 L52.4,107.1 L53,109 L53.6,110.9 L54.2,112.8 L54.7,114.6 L55.3,116.4 L55.9,118.2 L56.5,120 L57.1,121.8 L57.6,123.5 L58.2,125.2 L58.8,126.9 L59.4,128.6 L59.9,130.3 L60.5,131.9 L61.1,133.5 L61.7,135.2 L62.3,136.7 L62.8,138.3 L63.4,139.8 L64,141.4 L64.6,142.9 L65.2,144.4 L65.7,145.8 L66.3,147.3 L66.9,148.7 L67.5,150.1 L68.1,151.5 L68.6,152.8 L69.2,154.2 L69.8,155.5 L70.4,156.8 L70.9,158.1 L71.5,159.4 L72.1,160.6 L72.7,161.8 L73.3,163 L73.8,164.2 L74.4,165.4 L75,166.5 L75.6,167.7 L76.2,168.8 L76.7,169.8 L77.3,170.9 L77.9,172 L78.5,173 L79.1,174 L79.6,175 L80.2,175.9 L80.8,176.9 L81.4,177.8 L81.9,178.7 L82.5,179.6 L83.1,180.5 L83.7,181.3 L84.3,182.1 L84.8,182.9" fill="none" stroke="#1f5fbf" stroke-width="3.5" data-f="1 2 -1" clip-path="url(#clip-f42d1)"/>
+<circle cx="84.8" cy="182.9" r="4.5" fill="#1e8e5a" data-xy="1 0"/>
+<rect x="34" y="51" width="9" height="9" fill="#c0392b" data-xy="-1 8" data-mark="max"/>
+<text x="84.8" y="210.9" text-anchor="middle" font-size="12" font-weight="700" fill="#1e8e5a">最小</text>
+<text x="30.5" y="51.5" text-anchor="end" font-size="12" font-weight="700" fill="#c0392b">最大</text>
+</svg>
+<svg viewBox="0 0 210 240" width="210" role="img" aria-label="y=(x−2)²−1 のグラフと定義域 1≦x≦3。x=2 で最小値 −1、x=1、x=3 で最大値 0" data-frame="20 30 176 188 -1.8 5.8 -2.2 9.6"><defs><clipPath id="clip-f42d2"><rect x="20" y="30" width="176" height="188"/></clipPath></defs>
+<text x="105" y="16" text-anchor="middle" font-size="12.5" fill="currentColor">a=1</text>
+<rect x="84.8" y="30" width="46.3" height="188" fill="#1f5fbf" fill-opacity="0.08" data-band="1 3"/>
+<line x1="14" y1="182.9" x2="204" y2="182.9" stroke="currentColor" stroke-width="1"/>
+<polygon points="205,182.9 197,179.4 197,186.4" fill="currentColor"/>
+<text x="202" y="175.9" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="61.7" y1="224" x2="61.7" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="61.7,21 58.2,29 65.2,29" fill="currentColor"/>
+<text x="68.7" y="31" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="57.7" y="195.9" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="84.8" y1="179.9" x2="84.8" y2="185.9" stroke="currentColor"/>
+<text x="84.8" y="196.9" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="108" y1="179.9" x2="108" y2="185.9" stroke="currentColor"/>
+<text x="108" y="196.9" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="131.2" y1="179.9" x2="131.2" y2="185.9" stroke="currentColor"/>
+<text x="131.2" y="196.9" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="58.7" y1="55.5" x2="64.7" y2="55.5" stroke="currentColor"/>
+<text x="56.7" y="59.5" text-anchor="end" font-size="11" fill="currentColor">8</text>
+<line x1="108" y1="30" x2="108" y2="218" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="5 4" data-axis="2"/>
+<text x="112" y="40" text-anchor="start" font-size="11" fill="#c0392b">軸</text>
+<path d="M20,-31.2 L21.1,-25.6 L22.2,-20 L23.2,-14.5 L24.3,-9.1 L25.4,-3.8 L26.5,1.5 L27.6,6.7 L28.6,11.8 L29.7,16.9 L30.8,21.9 L31.9,26.8 L33,31.6 L34,36.4 L35.1,41.1 L36.2,45.8 L37.3,50.3 L38.4,54.9 L39.5,59.3 L40.5,63.7 L41.6,68 L42.7,72.2 L43.8,76.3 L44.9,80.4 L45.9,84.4 L47,88.4 L48.1,92.3 L49.2,96.1 L50.3,99.8 L51.3,103.5 L52.4,107.1 L53.5,110.6 L54.6,114.1 L55.7,117.5 L56.7,120.8 L57.8,124.1 L58.9,127.3 L60,130.4 L61.1,133.4 L62.1,136.4 L63.2,139.3 L64.3,142.2 L65.4,144.9 L66.5,147.6 L67.6,150.3 L68.6,152.8 L69.7,155.3 L70.8,157.8 L71.9,160.1 L73,162.4 L74,164.6 L75.1,166.8 L76.2,168.8 L77.3,170.8 L78.4,172.8 L79.4,174.6 L80.5,176.4 L81.6,178.2 L82.7,179.8 L83.8,181.4 L84.8,182.9" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="1 2 -1" clip-path="url(#clip-f42d2)"/>
+<path d="M131.2,182.9 L132.2,181.4 L133.3,179.8 L134.4,178.2 L135.5,176.4 L136.6,174.6 L137.6,172.8 L138.7,170.8 L139.8,168.8 L140.9,166.8 L142,164.6 L143,162.4 L144.1,160.1 L145.2,157.8 L146.3,155.3 L147.4,152.8 L148.4,150.3 L149.5,147.6 L150.6,144.9 L151.7,142.2 L152.8,139.3 L153.9,136.4 L154.9,133.4 L156,130.4 L157.1,127.3 L158.2,124.1 L159.3,120.8 L160.3,117.5 L161.4,114.1 L162.5,110.6 L163.6,107.1 L164.7,103.5 L165.7,99.8 L166.8,96.1 L167.9,92.3 L169,88.4 L170.1,84.4 L171.1,80.4 L172.2,76.3 L173.3,72.2 L174.4,68 L175.5,63.7 L176.5,59.3 L177.6,54.9 L178.7,50.3 L179.8,45.8 L180.9,41.1 L182,36.4 L183,31.6 L184.1,26.8 L185.2,21.9 L186.3,16.9 L187.4,11.8 L188.4,6.7 L189.5,1.5 L190.6,-3.8 L191.7,-9.1 L192.8,-14.5 L193.8,-20 L194.9,-25.6 L196,-31.2" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="1 2 -1" clip-path="url(#clip-f42d2)"/>
+<path d="M84.8,182.9 L85.4,183.7 L86,184.5 L86.6,185.2 L87.2,186 L87.7,186.7 L88.3,187.4 L88.9,188 L89.5,188.7 L90.1,189.3 L90.6,189.9 L91.2,190.5 L91.8,191.1 L92.4,191.6 L92.9,192.1 L93.5,192.7 L94.1,193.1 L94.7,193.6 L95.3,194.1 L95.8,194.5 L96.4,194.9 L97,195.3 L97.6,195.7 L98.2,196 L98.7,196.3 L99.3,196.6 L99.9,196.9 L100.5,197.2 L101.1,197.4 L101.6,197.7 L102.2,197.9 L102.8,198.1 L103.4,198.2 L103.9,198.4 L104.5,198.5 L105.1,198.6 L105.7,198.7 L106.3,198.8 L106.8,198.8 L107.4,198.9 L108,198.9 L108.6,198.9 L109.2,198.8 L109.7,198.8 L110.3,198.7 L110.9,198.6 L111.5,198.5 L112.1,198.4 L112.6,198.2 L113.2,198.1 L113.8,197.9 L114.4,197.7 L114.9,197.4 L115.5,197.2 L116.1,196.9 L116.7,196.6 L117.3,196.3 L117.8,196 L118.4,195.7 L119,195.3 L119.6,194.9 L120.2,194.5 L120.7,194.1 L121.3,193.6 L121.9,193.1 L122.5,192.7 L123.1,192.1 L123.6,191.6 L124.2,191.1 L124.8,190.5 L125.4,189.9 L125.9,189.3 L126.5,188.7 L127.1,188 L127.7,187.4 L128.3,186.7 L128.8,186 L129.4,185.2 L130,184.5 L130.6,183.7 L131.2,182.9" fill="none" stroke="#1f5fbf" stroke-width="3.5" data-f="1 2 -1" clip-path="url(#clip-f42d2)"/>
+<circle cx="108" cy="198.9" r="4.5" fill="#1e8e5a" data-xy="2 -1"/>
+<rect x="80.3" y="178.4" width="9" height="9" fill="#c0392b" data-xy="1 0" data-mark="max"/>
+<rect x="126.7" y="178.4" width="9" height="9" fill="#c0392b" data-xy="3 0" data-mark="max"/>
+<text x="116" y="210.9" text-anchor="start" font-size="12" font-weight="700" fill="#1e8e5a">最小</text>
+<text x="84.8" y="210.9" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">最大</text>
+<text x="139.2" y="194.9" text-anchor="start" font-size="12" font-weight="700" fill="#c0392b">最大</text>
+</svg>
+<svg viewBox="0 0 210 240" width="210" role="img" aria-label="y=(x−2)²−1 のグラフと定義域 3≦x≦5。x=3 で最小値 0、x=5 で最大値 8" data-frame="20 30 176 188 -1.8 5.8 -2.2 9.6"><defs><clipPath id="clip-f42d3"><rect x="20" y="30" width="176" height="188"/></clipPath></defs>
+<text x="105" y="16" text-anchor="middle" font-size="12.5" fill="currentColor">a=3（a&gt;2）</text>
+<rect x="131.2" y="30" width="46.3" height="188" fill="#1f5fbf" fill-opacity="0.08" data-band="3 5"/>
+<line x1="14" y1="182.9" x2="204" y2="182.9" stroke="currentColor" stroke-width="1"/>
+<polygon points="205,182.9 197,179.4 197,186.4" fill="currentColor"/>
+<text x="202" y="175.9" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="61.7" y1="224" x2="61.7" y2="22" stroke="currentColor" stroke-width="1"/>
+<polygon points="61.7,21 58.2,29 65.2,29" fill="currentColor"/>
+<text x="68.7" y="31" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="57.7" y="195.9" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="108" y1="179.9" x2="108" y2="185.9" stroke="currentColor"/>
+<text x="108" y="196.9" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="131.2" y1="179.9" x2="131.2" y2="185.9" stroke="currentColor"/>
+<text x="131.2" y="196.9" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="177.5" y1="179.9" x2="177.5" y2="185.9" stroke="currentColor"/>
+<text x="177.5" y="196.9" text-anchor="middle" font-size="11" fill="currentColor">5</text>
+<line x1="58.7" y1="55.5" x2="64.7" y2="55.5" stroke="currentColor"/>
+<text x="56.7" y="59.5" text-anchor="end" font-size="11" fill="currentColor">8</text>
+<line x1="108" y1="30" x2="108" y2="218" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="5 4" data-axis="2"/>
+<text x="112" y="40" text-anchor="start" font-size="11" fill="#c0392b">軸</text>
+<path d="M20,-31.2 L21.9,-21.6 L23.7,-12.2 L25.6,-3 L27.4,5.9 L29.3,14.7 L31.1,23.3 L33,31.6 L34.8,39.8 L36.7,47.7 L38.5,55.5 L40.4,63 L42.2,70.4 L44.1,77.5 L45.9,84.4 L47.8,91.2 L49.6,97.7 L51.5,104 L53.3,110.1 L55.2,116.1 L57.1,121.8 L58.9,127.3 L60.8,132.6 L62.6,137.7 L64.5,142.6 L66.3,147.3 L68.2,151.7 L70,156 L71.9,160.1 L73.7,164 L75.6,167.7 L77.4,171.1 L79.3,174.4 L81.1,177.4 L83,180.3 L84.8,182.9 L86.7,185.4 L88.5,187.6 L90.4,189.7 L92.3,191.5 L94.1,193.1 L96,194.6 L97.8,195.8 L99.7,196.8 L101.5,197.6 L103.4,198.2 L105.2,198.7 L107.1,198.9 L108.9,198.9 L110.8,198.7 L112.6,198.2 L114.5,197.6 L116.3,196.8 L118.2,195.8 L120,194.6 L121.9,193.1 L123.7,191.5 L125.6,189.7 L127.5,187.6 L129.3,185.4 L131.2,182.9" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="1 2 -1" clip-path="url(#clip-f42d3)"/>
+<path d="M177.5,55.5 L177.8,54.2 L178.1,52.9 L178.4,51.6 L178.7,50.3 L179,49 L179.3,47.7 L179.6,46.4 L179.9,45.1 L180.3,43.8 L180.6,42.5 L180.9,41.1 L181.2,39.8 L181.5,38.4 L181.8,37.1 L182.1,35.7 L182.4,34.4 L182.7,33 L183,31.6 L183.3,30.3 L183.6,28.9 L184,27.5 L184.3,26.1 L184.6,24.7 L184.9,23.3 L185.2,21.9 L185.5,20.4 L185.8,19 L186.1,17.6 L186.4,16.1 L186.7,14.7 L187,13.3 L187.4,11.8 L187.7,10.3 L188,8.9 L188.3,7.4 L188.6,5.9 L188.9,4.5 L189.2,3 L189.5,1.5 L189.8,0 L190.1,-1.5 L190.4,-3 L190.8,-4.6 L191.1,-6.1 L191.4,-7.6 L191.7,-9.1 L192,-10.7 L192.3,-12.2 L192.6,-13.8 L192.9,-15.3 L193.2,-16.9 L193.5,-18.4 L193.8,-20 L194.1,-21.6 L194.5,-23.2 L194.8,-24.8 L195.1,-26.4 L195.4,-28 L195.7,-29.6 L196,-31.2" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" data-f="1 2 -1" clip-path="url(#clip-f42d3)"/>
+<path d="M131.2,182.9 L131.7,182.1 L132.3,181.3 L132.9,180.5 L133.5,179.6 L134.1,178.7 L134.6,177.8 L135.2,176.9 L135.8,175.9 L136.4,175 L136.9,174 L137.5,173 L138.1,172 L138.7,170.9 L139.3,169.8 L139.8,168.8 L140.4,167.7 L141,166.5 L141.6,165.4 L142.2,164.2 L142.7,163 L143.3,161.8 L143.9,160.6 L144.5,159.4 L145.1,158.1 L145.6,156.8 L146.2,155.5 L146.8,154.2 L147.4,152.8 L147.9,151.5 L148.5,150.1 L149.1,148.7 L149.7,147.3 L150.3,145.8 L150.8,144.4 L151.4,142.9 L152,141.4 L152.6,139.8 L153.2,138.3 L153.7,136.7 L154.3,135.2 L154.9,133.5 L155.5,131.9 L156.1,130.3 L156.6,128.6 L157.2,126.9 L157.8,125.2 L158.4,123.5 L158.9,121.8 L159.5,120 L160.1,118.2 L160.7,116.4 L161.3,114.6 L161.8,112.8 L162.4,110.9 L163,109 L163.6,107.1 L164.2,105.2 L164.7,103.2 L165.3,101.3 L165.9,99.3 L166.5,97.3 L167.1,95.3 L167.6,93.2 L168.2,91.2 L168.8,89.1 L169.4,87 L169.9,84.9 L170.5,82.7 L171.1,80.6 L171.7,78.4 L172.3,76.2 L172.8,74 L173.4,71.7 L174,69.5 L174.6,67.2 L175.2,64.9 L175.7,62.6 L176.3,60.2 L176.9,57.9 L177.5,55.5" fill="none" stroke="#1f5fbf" stroke-width="3.5" data-f="1 2 -1" clip-path="url(#clip-f42d3)"/>
+<circle cx="131.2" cy="182.9" r="4.5" fill="#1e8e5a" data-xy="3 0"/>
+<rect x="173" y="51" width="9" height="9" fill="#c0392b" data-xy="5 8" data-mark="max"/>
+<text x="139.2" y="194.9" text-anchor="start" font-size="12" font-weight="700" fill="#1e8e5a">最小</text>
+<text x="169.5" y="51.5" text-anchor="end" font-size="12" font-weight="700" fill="#c0392b">最大</text>
+</svg>
+<!--/svg:f042d-->
+  </div>
+  <figcaption>図4　例題6の \( a=-1 \)、\( a=1 \)、\( a=3 \) のときのグラフ。軸 \( x=2 \) は動かず、定義域（青い帯）が左から右へ動く。緑の●＝最小、赤の■＝最大</figcaption>
+</figure>
+<p>図4の左では定義域 \( -1\leqq x\leqq 1 \) の全体が軸より左にあり、右端 \( x=1 \) で最小値 \( f(1)=0 \)（\( a^2-1 \) に \( a=-1 \) を代入した値と一致）、左端 \( x=-1 \) で最大値 \( f(-1)=8 \) です。右の \( a=3 \) では、左端 \( x=3 \) で最小値 0、右端 \( x=5 \) で最大値 8 です。</p>
+<div class="box caution"><p class="box-title">よくある間違い（型D）</p><p>「定義域の全体が軸より左」を \( a&lt;2 \)（左端で判定）とする誤りです。たとえば \( a=1 \) のとき定義域 \( 1\leqq x\leqq 3 \) は軸 \( x=2 \) を含みます。「全体が左」は<strong>右端</strong> \( a+2 \) が 2 より小さいこと、つまり \( a+2&lt;2 \) です。迷ったら、数直線に定義域と軸をかいて確かめましょう。</p></div>
+<div class="box point"><p class="box-title">どの型でも共通の手順</p><p>① 平方完成して、軸・頂点と凸の向きを確かめる → ② 型を見分ける（定義域の指定があるか、文字は軸と定義域のどちらにあるか）→ ③ 軸と定義域の位置関係を見る（型C・Dでは、最小値は端、最大値は中央を基準に \( a \) の範囲を分ける）→ ④ 各場合で値を求め、「\( x= \) ○ で最大値 □」の形で書く → ⑤ 境目で値が一致するか、図と合うかを確かめる。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間で使う語句（すべて既習）</p>
+  <dl>
+    <dt>最大値・最小値</dt><dd>定義域の中で、関数がとる値のうち最も大きい値・最も小さい値（数Ⅰ-039）。定義域がすべての実数のときや、端を含まないときは、ないことがある。</dd>
+    <dt>定義域</dt><dd>関数で、\( x \) のとりうる値の範囲（数Ⅰ-031）。</dd>
+    <dt>軸が定義域の内側・外側</dt><dd>軸 \( x=p \) の \( p \) が定義域に入っているか（内側）、入っていないか（外側）（数Ⅰ-040）。</dd>
+    <dt>定義域の中央</dt><dd>定義域 \( L\leqq x\leqq R \) の中点 \( x=\dfrac{L+R}{2} \)。下に凸のとき、最大値の場合分けの境目になる（数Ⅰ-041）。</dd>
+    <dt>場合分け</dt><dd>文字のとりうる値の範囲をいくつかに分け、それぞれの場合について考えること（数Ⅰ-041）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>型A（定義域の指定なし）：平方完成して頂点を求め、下に凸なら頂点で最小・最大値はない、上に凸なら頂点で最大・最小値はない（O1）。</li>
+    <li>型B（定義域が数で決まる）：軸が定義域の内側か外側かを見て、頂点と両端の値を比べる。上に凸なら最大と最小が入れかわり、含まない端では値をとらない（O2）。</li>
+    <li>型C（軸が文字を含む）：軸を動かし、最小値は「軸が左の外・内側・右の外」、最大値は「軸が中央より左・一致・右」で場合を分ける（O3）。</li>
+    <li>型D（定義域が文字を含む）：定義域を動かし、軸の位置を端や中央との大小として \( a \) の不等式で表して場合を分ける（O4）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">下に凸、定義域 L≦x≦R、軸 x=m</span><p>最小値：\( m&lt;L \) → 左端、\( L\leqq m\leqq R \) → 頂点、\( R&lt;m \) → 右端<br>最大値：\( m&lt;\frac{L+R}{2} \) → 右端、\( m=\frac{L+R}{2} \) → 両端、\( m&gt;\frac{L+R}{2} \) → 左端<br>上に凸なら、最大と最小の役割を入れかえる</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。型を混ぜて出題します。各問に対応するねらい（O番号）を示す。数は -12 のように、文字の式は a^2-8a+15（または a²-8a+15）のように入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>\( y=3x^2+12x+7 \) の最大値・最小値として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( x=2 \) で最小値 \( -5 \)、最大値はない</button>
+    <button>\( x=-2 \) で最小値 3、最大値はない</button>
+    <button data-correct="true">\( x=-2 \) で最小値 \( -5 \)、最大値はない</button>
+    <button>\( x=-2 \) で最大値 \( -5 \)、最小値はない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">型Aです。\( y=3(x^2+4x)+7=3\{(x+2)^2-4\}+7=3(x+2)^2-12+7=3(x+2)^2-5 \)。下に凸なので、\( x=-2 \) で最小値 \( -5 \)、最大値はありません。「\( x=2 \)」は \( (x+2)^2 \) の軸を \( x=2 \) とした符号の誤りです。「最小値 3」は中かっこをはずすとき \( -4 \) に 3 を掛け忘れ、\( 3(x+2)^2-4+7 \) とした誤りです。「最大値 \( -5 \)、最小値はない」は、係数 3 が正なのに上に凸と考えた凸の向きの取り違えです。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="3|最大値3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>\( y=-\dfrac{1}{2}x^2+2x+1 \) の最大値を答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 3。\( 2x\div\left(-\dfrac{1}{2}\right)=-4x \) なので、\( y=-\dfrac{1}{2}(x^2-4x)+1=-\dfrac{1}{2}\{(x-2)^2-4\}+1=-\dfrac{1}{2}(x-2)^2+2+1=-\dfrac{1}{2}(x-2)^2+3 \)。上に凸なので \( x=2 \) で最大値 3 です（最小値はない）。2 と答えた場合は、最大値をとる \( x \) の値と取り違えています。1 は \( x=0 \) のときの値（\( y \) 軸との交点）です。\( -3 \) は \( -4 \) に \( -\dfrac{1}{2} \) を掛け忘れた誤り（\( -4+1 \)）、\( -1 \) は \( \left(-\dfrac{1}{2}\right)\times(-4) \) を \( -2 \) とした符号の誤り（\( -2+1 \)）です。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="5|最大値5">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>\( y=x^2+2x-3 \)（\( -4\leqq x\leqq 0 \)）の最大値を答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 5。型Bです。\( y=(x+1)^2-4 \) で、軸 \( x=-1 \) は定義域の内側にあります。両端の値は \( x=-4 \) のとき \( 16-8-3=5 \)、\( x=0 \) のとき \( -3 \) なので、\( x=-4 \) で最大値 5 です（\( x=-1 \) で最小値 \( -4 \)）。\( -3 \) と答えた場合は右端だけを見ています。\( -4 \) は最小値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>\( y=-x^2+4x \)（\( 3\leqq x\leqq 5 \)）の最大値・最小値として正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( x=3 \) で最大値 3、\( x=5 \) で最小値 \( -5 \)</button>
+    <button>\( x=2 \) で最大値 4、\( x=5 \) で最小値 \( -5 \)</button>
+    <button>\( x=5 \) で最大値 \( -5 \)、\( x=3 \) で最小値 3</button>
+    <button>\( x=3 \) で最大値 3、最小値はない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">型Bです。\( y=-(x-2)^2+4 \) は上に凸で、軸 \( x=2 \) は定義域の左の外にあります。定義域の全体が軸より右なので、\( y \) は減少し、左端 \( x=3 \) で最大値 \( -9+12=3 \)、右端 \( x=5 \) で最小値 \( -25+20=-5 \) です。「\( x=2 \) で最大値 4」は定義域の外の頂点を答えています。「\( x=5 \) で最大値 \( -5 \)、\( x=3 \) で最小値 3」は、上に凸なのに下に凸と同じく増加すると考えた誤りで、最大値が最小値より小さくなっています。「最小値はない」は、\( x \) がすべての実数をとる場合（型A）と混同しています。定義域は両端を含むので、右端で最小値をとります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>\( y=x^2-2x \)（\( -1&lt;x\leqq 2 \)）の最大値・最小値として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( x=1 \) で最小値 \( -1 \)、\( x=-1 \) で最大値 3</button>
+    <button>\( x=1 \) で最小値 \( -1 \)、\( x=2 \) で最大値 0</button>
+    <button>最小値も最大値もない</button>
+    <button data-correct="true">\( x=1 \) で最小値 \( -1 \)、最大値はない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( y=(x-1)^2-1 \) で、軸 \( x=1 \) は定義域の内側にあるので、\( x=1 \) で最小値 \( -1 \) です。両端の値は \( x=-1 \) で 3、\( x=2 \) で 0 ですが、左端 \( x=-1 \) は含まれません。\( y \) は 3 に近い値をいくらでもとりますが 3 にはならないので、最大値はありません。「\( x=-1 \) で最大値 3」は含まない端の値を答えています。「\( x=2 \) で最大値 0」は、含む端を最大と決めた誤りです。たとえば \( x=-\dfrac{1}{2} \) のとき \( y=\dfrac{5}{4} \) となり、0 より大きい値をとります。「最小値もない」は、端を含まないことが最小値にも影響すると考えた誤りで、最小値は頂点でとるので \( -1 \) のままです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>\( a \) は定数とします。\( g(x)=-x^2+2ax \)（\( 0\leqq x\leqq 2 \)）の<strong>最大値</strong>として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( a&lt;0 \) のとき \( 4a-4 \)、\( 0\leqq a\leqq 2 \) のとき \( a^2 \)、\( a&gt;2 \) のとき 0</button>
+    <button data-correct="true">\( a&lt;0 \) のとき 0、\( 0\leqq a\leqq 2 \) のとき \( a^2 \)、\( a&gt;2 \) のとき \( 4a-4 \)</button>
+    <button>\( a&lt;1 \) のとき \( 4a-4 \)、\( a\geqq 1 \) のとき 0</button>
+    <button>\( a \) の値に関係なく \( a^2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">型Cです。\( g(x)=-(x^2-2ax)=-(x-a)^2+a^2 \) は上に凸で、軸は \( x=a \)。上に凸では、最大値は定義域の中で<strong>軸に最も近い点</strong>でとります。\( a&lt;0 \)（軸が左の外）なら左端 \( g(0)=0 \)、\( 0\leqq a\leqq 2 \)（内側）なら頂点 \( g(a)=a^2 \)、\( a&gt;2 \)（右の外）なら右端 \( g(2)=-4+4a=4a-4 \) です。境目 \( a=0 \) で 0 と \( 0^2 \)、\( a=2 \) で \( 2^2=4 \) と \( 4\cdot 2-4=4 \) が一致することも確かめられます。1つ目は左の外・右の外の端を入れかえた誤りです。3つ目は、下に凸のときの最大値の考え（軸から遠い端、中央 \( x=1 \) で分ける）を上に凸にあてはめた誤りです。「関係なく \( a^2 \)」は、頂点がいつも定義域に入ると考えた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="a^2-6a+8|a²-6a+8|(a-3)^2-1|(a-3)²-1|(a-2)(a-4)|(a-4)(a-2)">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O4</span></div>
+  <p>\( a \) は定数とします。\( f(x)=x^2-6x+8 \)（\( a\leqq x\leqq a+1 \)）について、\( a&gt;3 \) のときの<strong>最小値</strong>を \( a \) の式で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( a^2-6a+8 \)。型Dです。\( f(x)=(x-3)^2-1 \) で、軸は \( x=3 \)。\( a&gt;3 \) のとき、左端 \( a \) が軸より右にあるので、定義域の全体が軸より右にあり、\( f(x) \) は増加します。左端で最小になり、最小値は \( f(a)=a^2-6a+8 \) です（たとえば \( a=4 \) なら定義域 \( 4\leqq x\leqq 5 \) で、最小値 \( f(4)=0 \)）。\( a^2-4a+3 \) と答えた場合は、右端の値 \( f(a+1)=(a+1)^2-6(a+1)+8 \) を使っていて、端を取り違えています。\( -1 \) は頂点の値で、頂点 \( x=3 \) は定義域に入りません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O4</span></div>
+  <p>太郎さんと花子さんが、\( a \) を定数として \( h(x)=-x^2+6x \)（\( a\leqq x\leqq a+1 \)）の最大値について話しています。</p>
+  <p>太郎：「\( h(x)=-(x-3)^2+9 \) で上に凸だから、頂点で最大になるよね。最大値は \( a \) に関係なく 9 だ。」<br>花子：「でも、定義域 \( a\leqq x\leqq a+1 \) は \( a \) によって動くよ。頂点がいつも定義域に入るとは限らないんじゃない？」</p>
+  <p>最大値の正しい答えはどれですか。</p>
+  <div class="choices">
+    <button>\( a \) に関係なく、\( x=3 \) で最大値 9</button>
+    <button>\( a&lt;3 \) のとき \( -a^2+4a+5 \)、\( a=3 \) のとき 9、\( a&gt;3 \) のとき \( -a^2+6a \)</button>
+    <button data-correct="true">\( a&lt;2 \) のとき \( -a^2+4a+5 \)、\( 2\leqq a\leqq 3 \) のとき 9、\( a&gt;3 \) のとき \( -a^2+6a \)</button>
+    <button>\( a&lt;2 \) のとき \( -a^2+6a \)、\( 2\leqq a\leqq 3 \) のとき 9、\( a&gt;3 \) のとき \( -a^2+4a+5 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">上に凸なので、最大値は定義域の中で軸 \( x=3 \) に最も近い点でとります。右端が軸より左（\( a+1&lt;3 \)、つまり \( a&lt;2 \)）なら右端で最大、\( h(a+1)=-(a+1)^2+6(a+1)=-a^2+4a+5 \)。軸が内側（\( a\leqq 3\leqq a+1 \)、つまり \( 2\leqq a\leqq 3 \)）なら頂点で 9。左端が軸より右（\( a&gt;3 \)）なら左端で \( h(a)=-a^2+6a \) です。境目で \( a=2 \) のとき \( -4+8+5=9 \)、\( a=3 \) のとき \( -9+18=9 \) と一致します。「関係なく 9」は太郎さんの考えで、たとえば \( a=0 \) では定義域 \( 0\leqq x\leqq 1 \) に頂点が入らず、最大値は \( h(1)=5 \) です。「\( a&lt;3 \) のとき…、\( a=3 \) のとき 9」は、「定義域の全体が軸より左」を右端 \( a+1 \) ではなく左端 \( a \) で判定した誤りです（\( a=\dfrac{5}{2} \) のとき定義域 \( \dfrac{5}{2}\leqq x\leqq\dfrac{7}{2} \) は軸を含み、最大値は 9）。最後の選択肢は、左端と右端の値を入れかえた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q9" data-accept="1|a=1">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O4</span></div>
+  <p>\( a \) は正の定数とします。\( f(x)=x^2-4x+5 \)（\( 0\leqq x\leqq a \)）の最小値が 2 となるような \( a \) の値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( a=1 \)。\( f(x)=(x-2)^2+1 \) で、軸は \( x=2 \)。定義域の右端 \( a \) が動く型Dです。\( 0&lt;a&lt;2 \) のとき、軸は定義域の右の外にあるので右端で最小、最小値は \( f(a)=a^2-4a+5 \)。これが 2 になるのは \( a^2-4a+3=0 \)、\( (a-1)(a-3)=0 \)（中3-041）より \( a=1,\ 3 \) で、\( 0&lt;a&lt;2 \) を満たすのは \( a=1 \) です。\( a\geqq 2 \) のときは頂点が定義域に入り、最小値は 1 なので、2 になりません。\( a=3 \) を答えに含めた場合は、「求めた値がその場合の範囲に入るか」の確認が抜けています（\( a=3 \) のときの最小値は 1）。</div>
+</div>
+
+<div class="q" data-type="open" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O3</span></div>
+  <p>\( a \) は定数とします。\( f(x)=x^2-2ax+2 \)（\( -1\leqq x\leqq 1 \)）について、次の問いに答えなさい。</p>
+  <p>(1) 最小値 \( m \) を \( a \) の式で表しなさい。　(2) \( m=-2 \) となる \( a \) の値をすべて求めなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) \( f(x)=(x-a)^2-a^2+2 \)。下に凸で、軸は \( x=a \)。\( a&lt;-1 \) のとき、軸は定義域の左の外なので左端で最小、\( m=f(-1)=1+2a+2=2a+3 \)。\( -1\leqq a\leqq 1 \) のとき、頂点で最小、\( m=-a^2+2 \)。\( a&gt;1 \) のとき、右端で最小、\( m=f(1)=1-2a+2=3-2a \)。</p>
+    <p>(2) \( a&lt;-1 \) のとき \( 2a+3=-2 \) より \( a=-\dfrac{5}{2} \)（\( a&lt;-1 \) を満たす）。\( -1\leqq a\leqq 1 \) のとき \( -a^2+2=-2 \) より \( a^2=4 \)、\( a=\pm 2 \) で、どちらも \( -1\leqq a\leqq 1 \) を満たさない。\( a&gt;1 \) のとき \( 3-2a=-2 \) より \( a=\dfrac{5}{2} \)（\( a&gt;1 \) を満たす）。よって \( a=\pm\dfrac{5}{2} \)。</p>
+    <p><strong>採点の観点</strong>　① 平方完成して軸 \( x=a \) と下に凸を示している。② 軸が左の外・内側・右の外で場合を分け、各場合の \( m \) が正しい。③ (2) で各場合の方程式を解き、求めた値がその場合の範囲に入るかを確かめている（\( a=\pm 2 \) を除いている）。</p>
+  </div>
+  <div class="explain">(2) で \( a=\pm 2 \) を答えに入れるのは、頂点の場合の式 \( -a^2+2 \) を範囲外でも使った誤りです。たとえば \( a=2 \) では軸が右の外にあり、最小値は \( f(1)=3-4=-1 \) で、\( -2 \) ではありません。(1) の答えは、境目 \( a=-1 \) で \( 2(-1)+3=1 \) と \( -1+2=1 \)、\( a=1 \) で \( -1+2=1 \) と \( 3-2=1 \) が一致することでも確かめられます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(3) 二次関数」の「二次関数の最大値や最小値を求めること」（ア(イ)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。問題の型を見分け、式とグラフを行き来して場合を分けるこの時間の練習は、こうした処理の土台になります。</p>
+  <p class="small">問8は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">最大・最小の活用（数Ⅰ-043）</p>
+  <p>次の時間は、周の長さが一定の長方形の面積など、具体的な事象の二つの数量の関係を二次関数で表し、変数のとりうる値の範囲に注意して最大値・最小値を求めます。この時間の型Bの考え（定義域が限られたときは、軸が内側か外側かを見る）と、含まない端では値をとらないことが、そのまま使われます。</p>
+  <p>この時間では、具体的な事象への活用（数Ⅰ-043）と、条件から二次関数の式を決める問題（数Ⅰ-044・045）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-041　文字を含む二次関数の最大・最小</div>
+  <div><span class="label">次の時間</span>数Ⅰ-043　最大・最小の活用</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-042「最大・最小の練習」（演習。学習指導要領 数学Ⅰ (3)ア(イ)、解説 p.42）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(3) 二次関数（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.42（二次関数のグラフを通して、関数の値の変化を考察し、二次関数の最大値や最小値を求めることができるようにする）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「2次関数の最大と最小」（「2次関数の定義域に制限がある場合に，最大値，最小値を求めることができる」「定義域が変化するときや，グラフが動くときの最大値や最小値について，考察することができる」の確認。型D の注記の根拠）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>数研出版「編修趣意書 数Ⅰ104-904『改訂版 新編 数学Ⅰ』」の、「やや発展的なものは本文外の『研究』『発展』で扱い」とした項目の「定義域が変化するときの最大最小（103ページ）」（型D の注記の根拠）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-17.pdf</li>
+    <li>新興出版社啓林館「深進数学Ⅰ（数Ⅰ061-902）」「爽解数学Ⅰ（数Ⅰ061-903）」年間指導計画（「研究／定義域が変化するときの関数の最大・最小」。型D の注記の根拠）（同社「高等学校 数学 サポート資料」https://www.shinko-keirin.co.jp/keirinkan/kou/math/support/ に掲載）</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。「型A〜D」はこのページでの呼び方です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-042",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-042",
+  "title": "最大・最小の練習",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-3", "title": "二次関数"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(3)ア(イ)"],
+  "kaisetsu_page": "42",
+  "objectives": [
+    {"id": "O1", "text": "x がすべての実数をとるときの二次関数の最大値・最小値を、平方完成して頂点から求めることができる。", "from": "x がすべての実数をとる場合…の二次関数の最大値・最小値を求める問題を解き", "sections": ["sec-1"], "checks": ["q1", "q2"]},
+    {"id": "O2", "text": "定義域が限られた二次関数の最大値・最小値を、軸が定義域の内側にあるか外側にあるかに着目し、頂点と両端の値を比べて求めることができる。", "from": "定義域が限られた場合…の二次関数の最大値・最小値を求める問題を解き、軸と定義域の位置関係で場合を分ける考え方を確実にする", "sections": ["sec-2"], "checks": ["q3", "q4", "q5"]},
+    {"id": "O3", "text": "軸が文字を含む二次関数の最大値・最小値を、軸と定義域の位置関係で場合を分けて求めることができる。", "from": "軸や定義域が文字を含む場合（軸が文字を含む場合）の二次関数の最大値・最小値を求める問題を解き、軸と定義域の位置関係で場合を分ける考え方を確実にする", "sections": ["sec-3"], "checks": ["q6", "q10"]},
+    {"id": "O4", "text": "定義域が文字を含む二次関数の最大値・最小値を、軸と定義域の位置関係で場合を分けて求めることができる。", "from": "軸や定義域が文字を含む場合（定義域が文字を含む場合）の二次関数の最大値・最小値を求める問題を解き、軸と定義域の位置関係で場合を分ける考え方を確実にする", "sections": ["sec-4"], "checks": ["q7", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "最大値・最小値", "where": "review"},
+    {"term": "定義域", "where": "review"},
+    {"term": "軸が定義域の内側・外側", "where": "sec-2"},
+    {"term": "定義域の中央", "where": "sec-3"},
+    {"term": "場合分け", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "x がすべての実数をとるときの最大値・最小値（頂点から求める）", "taught_in": ["hs_math_1a/数Ⅰ-039"], "where": "review"},
+    {"concept": "定義域が限られた場合の最大・最小（軸が定義域の内側か外側か、含まない端）", "taught_in": ["hs_math_1a/数Ⅰ-040"], "where": "review"},
+    {"concept": "軸や定義域が文字を含む場合の場合分け（最小値は端、最大値は中央が境目）", "taught_in": ["hs_math_1a/数Ⅰ-041"], "where": "review"},
+    {"concept": "平方完成して軸・頂点を求める（係数が負・分数の場合を含む）", "taught_in": ["hs_math_1a/数Ⅰ-034", "hs_math_1a/数Ⅰ-033"], "where": "review"},
+    {"concept": "定義域・関数の値 f(a)", "taught_in": ["hs_math_1a/数Ⅰ-031"], "where": "sec-2"},
+    {"concept": "数直線での ●（含む）・○（含まない）、端を含まない定義域", "taught_in": ["hs_math_1a/数Ⅰ-015", "hs_math_1a/数Ⅰ-031"], "where": "sec-2"},
+    {"concept": "一次不等式・連立不等式を解く（型Dで軸の位置を a の不等式で表す）", "taught_in": ["hs_math_1a/数Ⅰ-016", "hs_math_1a/数Ⅰ-017"], "where": "sec-4"},
+    {"concept": "二次方程式を因数分解で解く（問9）", "taught_in": ["jhs_math/中3-041"], "where": "quiz"},
+    {"concept": "数直線上の2点の中点の座標 (p+q)/2（数Ⅰ-041 の補足と同じ。数直線上の内分点は数Ⅱ-032 で扱うが、数Ⅰ-042 の時点で扱う行がない）", "taught_in": [], "gap": true, "where": "supp-1"}
+  ],
+  "out_of_scope": [
+    "具体的な事象の二つの数量の関係を二次関数で表す最大・最小の活用（数Ⅰ-043）",
+    "条件から二次関数の式を決める問題（数Ⅰ-044・数Ⅰ-045）",
+    "数直線上の内分点・外分点の一般的な扱い（数Ⅱ-032）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『二次関数』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(3)ア(イ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.42 二次関数の最大値・最小値を求めること"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "定義域に制限がある場合・定義域が変化するとき・グラフが動くときの最大値・最小値を教科書で扱うこと（型の分け方の参考、sec-4 の注記の根拠）"},
+    {"name": "編修趣意書 数Ⅰ104-904『改訂版 新編 数学Ⅰ』", "publisher": "数研出版（文部科学省掲載）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-17.pdf", "use": "「やや発展的なものは本文外の『研究』『発展』で扱い」とした項目の「定義域が変化するときの最大最小（103ページ）」（sec-4 の注記の根拠。保存本文：sources/text/hensyu_数研出版_数Ⅰ104-904.txt）"},
+    {"name": "深進数学Ⅰ・爽解数学Ⅰ 年間指導計画", "publisher": "新興出版社啓林館", "url": "https://www.shinko-keirin.co.jp/keirinkan/kou/math/support/", "use": "「研究／定義域が変化するときの関数の最大・最小」（sec-4 の注記の根拠。保存本文：sources/text/kr_m1_shinshin_keikaku.txt・kr_m1_soukai_keikaku.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

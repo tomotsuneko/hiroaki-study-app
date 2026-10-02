@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>余弦定理｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.widget .w-row { margin: 4px 0; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>図形と計量</span><span>数Ⅰ-070</span></div>
+  <h1>余弦定理</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">2辺の長さとその間の角が分かれば、三角形は1つに決まります。それなら残りの辺の長さも求められるはずです。垂線をひいて三平方の定理を使う活動から、どんな三角形にも使える「余弦定理」を導きましょう。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>2辺とその間の角が分かる三角形で、頂点から垂線をひいて直角三角形をつくり、三角比と三平方の定理を用いて残りの辺の長さを求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>その活動を一般化して余弦定理 \( a^2=b^2+c^2-2bc\cos A \) を導き、A が鋭角・直角・鈍角のどの場合も同じ式で表せることを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>余弦定理が \( A=90^\circ \) のとき三平方の定理になることから、三平方の定理を一般の三角形に拡張したものであることを説明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-069）</span>正弦定理の利用</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-070）</span>余弦定理</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-071）</span>余弦定理の利用</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」「三平方の定理」。三平方の定理（中3-097・099）と、数Ⅰ-060（\( a=c\sin A \)、\( b=c\cos A \)）、数Ⅰ-061・065（\( \sin^2A+\cos^2A=1 \)）、数Ⅰ-063・064（鈍角の三角比）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、三平方の定理（中3-097・099）、直角三角形の辺を三角比で表すこと（数Ⅰ-060）、鈍角の三角比（数Ⅰ-063・064）、相互関係 \( \sin^2A+\cos^2A=1 \)（数Ⅰ-061、鈍角でも成り立つことは数Ⅰ-065）を使います。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中3-099</span></div>
+  <p>直角をはさむ2辺の長さが 2 と 3 の直角三角形の、斜辺の長さはどれですか。</p>
+  <div class="choices">
+    <button>\( 5 \)</button>
+    <button>\( \sqrt{5} \)</button>
+    <button data-correct="true">\( \sqrt{13} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">三平方の定理より、斜辺の2乗は \( 2^2+3^2=13 \) なので、斜辺は \( \sqrt{13} \) です。\( 5 \) は2辺をそのまま足した誤り、\( \sqrt{5} \) は \( 3^2-2^2 \) と引き算にした誤り（斜辺が 3 のときの残りの辺）です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-060</span></div>
+  <p>\( \angle \mathrm{H}=90^\circ \) の直角三角形 AHC で、斜辺 \( \mathrm{AC}=b \)、\( \angle \mathrm{A}=A \) のとき、AH と CH を表したものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \mathrm{AH}=b\cos A,\ \mathrm{CH}=b\sin A \)</button>
+    <button>\( \mathrm{AH}=b\sin A,\ \mathrm{CH}=b\cos A \)</button>
+    <button>\( \mathrm{AH}=\dfrac{b}{\cos A},\ \mathrm{CH}=\dfrac{b}{\sin A} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \cos A=\dfrac{\mathrm{AH}}{\mathrm{AC}} \)、\( \sin A=\dfrac{\mathrm{CH}}{\mathrm{AC}} \) なので、\( \mathrm{AH}=b\cos A \)、\( \mathrm{CH}=b\sin A \) です。\( \sin \) と \( \cos \) を入れかえた選択肢は、角 A に隣り合う辺と向かいの辺を取り違えています。\( \dfrac{b}{\cos A} \) などは、両辺に \( \mathrm{AC} \) をかけるところを \( \mathrm{AC} \) をわった誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-064</span></div>
+  <p>\( \cos 120^\circ \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{1}{2} \)</button>
+    <button data-correct="true">\( -\dfrac{1}{2} \)</button>
+    <button>\( -\dfrac{\sqrt{3}}{2} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \cos(180^\circ-A)=-\cos A \) より、\( \cos 120^\circ=-\cos 60^\circ=-\dfrac{1}{2} \) です。\( \dfrac{1}{2} \) は符号の変化を忘れた誤り、\( -\dfrac{\sqrt{3}}{2} \) は \( -\cos 60^\circ \) とすべきところを \( -\cos 30^\circ \) とした（\( 60^\circ \) と \( 30^\circ \) を取り違えた）誤りです。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：正弦定理では求められない辺</h2>
+<div class="box think">
+  <p class="box-title">\( b=4 \)、\( c=5 \)、\( A=60^\circ \) の三角形の辺 \( a \)</p>
+  <p>△ABC で \( b=\mathrm{CA}=4 \)、\( c=\mathrm{AB}=5 \)、\( A=60^\circ \) です。2辺とその間の角が分かっているので、三角形の合同条件（中2-053）から、この三角形は1つに決まります。</p>
+  <ul>
+    <li>① 正弦定理 \( \dfrac{a}{\sin 60^\circ}=\dfrac{4}{\sin B}=\dfrac{5}{\sin C} \) を書いてみましょう。辺 \( a \) は求められるでしょうか。</li>
+    <li>② 直角三角形がないなら、つくればよいのでは？ どこに線をひけば、三平方の定理が使えるでしょうか。</li>
+  </ul>
+  <p>① は、\( a \)、B、C の3つがどれも分かっていないので、この式だけでは求められません。② の答えは「3 垂線をひいて残りの辺を求める」の例題1で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="垂線をひいて残りの辺を求める"><span class="num">3</span>垂線をひいて残りの辺を求める</h2>
+<p>頂点 C から直線 AB に垂線 CH をひくと、直角三角形 AHC と BHC ができます。AHC では、斜辺 \( b \) と角 A が分かっているので、三角比で AH と CH が求まります（数Ⅰ-060）。BHC では、CH と BH が分かれば、三平方の定理で斜辺 \( a=\mathrm{BC} \) が求まります。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の答え：A が鋭角）</p>
+  <p>△ABC で \( b=4 \)、\( c=5 \)、\( A=60^\circ \) のとき、\( a \) を求めなさい。</p>
+  <div class="step">着目：C から直線 AB に垂線 CH をひき、直角三角形 AHC をつくります（図1）。</div>
+  <div class="step">\( \mathrm{CH}=4\sin 60^\circ=2\sqrt{3} \)、\( \mathrm{AH}=4\cos 60^\circ=2 \)。H は辺 AB 上にあるので、\( \mathrm{BH}=5-2=3 \)。</div>
+  <div class="step">直角三角形 BHC で三平方の定理：\( a^2=\mathrm{CH}^2+\mathrm{BH}^2=(2\sqrt{3})^2+3^2=12+9=21 \)。\( a&gt;0 \) より \( a=\sqrt{21} \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（A が鈍角）</p>
+  <p>△ABC で \( b=4 \)、\( c=5 \)、\( A=120^\circ \) のとき、\( a \) を求めなさい。</p>
+  <div class="step">着目：A が鈍角なので、C から直線 AB にひいた垂線の足 H は、辺 BA を A の側に延長した直線上にきます（図1の (ii)）。</div>
+  <div class="step">\( \angle \mathrm{CAH}=180^\circ-120^\circ=60^\circ \) なので、\( \mathrm{CH}=4\sin 60^\circ=2\sqrt{3} \)、\( \mathrm{AH}=4\cos 60^\circ=2 \)。H は A の外側にあるので、\( \mathrm{BH}=5+2=7 \)。</div>
+  <div class="step">\( a^2=(2\sqrt{3})^2+7^2=12+49=61 \)。よって \( a=\sqrt{61} \)。</div>
+</div>
+<figure>
+  <div class="fig-row">
+<!--svg:f070a-->
+<svg viewBox="0 0 186 172" width="186" role="img" aria-label="(i) A＝60°。b=CA=4、c=AB=5 の三角形 ABC と、C から直線 AB にひいた垂線 CH" data-fig="f070a-60" data-s="26.000000" data-ox="26.700000" data-oy="136.433321">
+<text x="93" y="18" text-anchor="middle" font-size="13" fill="currentColor">(i) A＝60°</text>
+<line x1="26.7" y1="136.4" x2="156.7" y2="136.4" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="156.7" y1="136.4" x2="78.7" y2="46.4" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="78.7" y1="46.4" x2="26.7" y2="136.4" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="78.7" y1="46.4" x2="78.7" y2="136.4" stroke="#1e8e5a" stroke-width="1.6" stroke-dasharray="5 3" data-seg="CH"/>
+<path d="M78.7,127.4 L69.7,127.4 L69.7,136.4" fill="none" stroke="currentColor" stroke-width="1.2" data-right="1"/>
+<circle cx="26.7" cy="136.4" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="0.000000" data-y="0.000000"/>
+<circle cx="156.7" cy="136.4" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="5.000000" data-y="0.000000"/>
+<circle cx="78.7" cy="46.4" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="2.000000" data-y="3.464102"/>
+<circle cx="78.7" cy="136.4" r="3.2" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="1.4" data-pt="H" data-x="2.000000" data-y="0.000000"/>
+<text x="16.7" y="156.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="166.7" y="144.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="78.7" y="38.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="78.7" y="156.6" text-anchor="middle" font-size="14" fill="#1e8e5a" font-weight="700">H</text>
+<text x="46.8" y="85.9" text-anchor="middle" font-size="13" fill="currentColor">4</text>
+<text x="107.3" y="150.1" text-anchor="middle" font-size="13" fill="currentColor">5</text>
+<text x="125.5" y="88.5" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">a</text>
+<path d="M34.2,123.4 A15,15 0 0 1 41.7,136.4" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<text x="50.1" y="126.2" text-anchor="middle" font-size="11" fill="currentColor">60°</text>
+</svg>
+<svg viewBox="0 0 238 172" width="238" role="img" aria-label="(ii) A＝120°。b=CA=4、c=AB=5 の三角形 ABC と、C から直線 AB にひいた垂線 CH" data-fig="f070a-120" data-s="26.000000" data-ox="78.700000" data-oy="136.433321">
+<text x="119" y="18" text-anchor="middle" font-size="13" fill="currentColor">(ii) A＝120°</text>
+<line x1="26.7" y1="136.4" x2="78.7" y2="136.4" stroke="#8a99a8" stroke-width="1.4" stroke-dasharray="2 3" data-seg="延長"/>
+<line x1="78.7" y1="136.4" x2="208.7" y2="136.4" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="208.7" y1="136.4" x2="26.7" y2="46.4" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="26.7" y1="46.4" x2="78.7" y2="136.4" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="26.7" y1="46.4" x2="26.7" y2="136.4" stroke="#1e8e5a" stroke-width="1.6" stroke-dasharray="5 3" data-seg="CH"/>
+<path d="M26.7,127.4 L35.7,127.4 L35.7,136.4" fill="none" stroke="currentColor" stroke-width="1.2" data-right="1"/>
+<circle cx="78.7" cy="136.4" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="0.000000" data-y="0.000000"/>
+<circle cx="208.7" cy="136.4" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="5.000000" data-y="0.000000"/>
+<circle cx="26.7" cy="46.4" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="-2.000000" data-y="3.464102"/>
+<circle cx="26.7" cy="136.4" r="3.2" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="1.4" data-pt="H" data-x="-2.000000" data-y="0.000000"/>
+<text x="81.7" y="156.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="218.7" y="144.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="26.7" y="38.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="26.7" y="156.6" text-anchor="middle" font-size="14" fill="#1e8e5a" font-weight="700">H</text>
+<text x="41.6" y="95.7" text-anchor="middle" font-size="13" fill="currentColor">4</text>
+<text x="143.7" y="150.1" text-anchor="middle" font-size="13" fill="currentColor">5</text>
+<text x="122.5" y="85.6" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">a</text>
+<path d="M73.2,126.9 A11,11 0 0 1 89.7,136.4" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<text x="91.7" y="117.2" text-anchor="middle" font-size="11" fill="currentColor">120°</text>
+<path d="M59.7,136.4 A19,19 0 0 1 69.2,120" fill="none" stroke="#1e8e5a" stroke-width="1.3"/>
+<text x="50.1" y="123.2" text-anchor="middle" font-size="11" fill="#1e8e5a">60°</text>
+</svg>
+<!--/svg:f070a-->
+  </div>
+  <figcaption>図1　C から直線 AB にひいた垂線 CH（緑の破線）。(i) \( A=60^\circ \) のとき H は辺 AB 上。(ii) \( A=120^\circ \) のとき H は辺 BA を延長した直線上（灰の点線は延長した部分。学習用に作成した図で、辺の長さと角は例題の値で描いている）</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い：H の位置を確かめずに \( \mathrm{BH}=c-\mathrm{AH} \) とする</p><p>例題2で、例題1と同じように \( \mathrm{BH}=5-2=3 \) とすると \( a=\sqrt{21} \) になり、鋭角のときと同じ長さになってしまいます。角 A が開いているほど向かいの辺 \( a \) は長くなるはずです。垂線の足 H が辺 AB 上にあるか、延長上にあるかを、図をかいて確かめましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="余弦定理を導く"><span class="num">4</span>一般化して余弦定理を導く</h2>
+<p>例題1・2の計算を、\( b \)、\( c \)、A のまま行います。</p>
+<h3>A が鋭角のとき</h3>
+<p>\( \mathrm{CH}=b\sin A \)、\( \mathrm{AH}=b\cos A \) です。H が辺 AB 上にあれば \( \mathrm{BH}=c-b\cos A \) なので、三平方の定理より
+$$ a^2=(b\sin A)^2+(c-b\cos A)^2=b^2\sin^2A+c^2-2bc\cos A+b^2\cos^2A $$
+\( \sin^2A+\cos^2A=1 \)（数Ⅰ-061）を使うと \( b^2\sin^2A+b^2\cos^2A=b^2 \) なので
+$$ a^2=b^2+c^2-2bc\cos A $$
+となります。B が鈍角のときは H が辺 AB を B の側に延長した直線上にきて \( \mathrm{BH}=b\cos A-c \) ですが、2乗すると \( (b\cos A-c)^2=(c-b\cos A)^2 \) なので、同じ式になります。</p>
+<h3>A が鈍角のとき</h3>
+<p>H は A の外側にあり、\( \angle \mathrm{CAH}=180^\circ-A \) です。\( \cos(180^\circ-A)=-\cos A \)、\( \sin(180^\circ-A)=\sin A \)（数Ⅰ-064）なので
+$$ \mathrm{AH}=b\cos(180^\circ-A)=-b\cos A,\quad \mathrm{CH}=b\sin(180^\circ-A)=b\sin A $$
+\( \cos A&lt;0 \) なので \( \mathrm{AH}=-b\cos A \) は正の長さです。\( \mathrm{BH}=c+\mathrm{AH}=c-b\cos A \) となり、鋭角のときと同じ形になるので、同じ計算で \( a^2=b^2+c^2-2bc\cos A \) が得られます（\( \sin^2A+\cos^2A=1 \) は鈍角でも成り立つ。数Ⅰ-065）。</p>
+<h3>A が直角のとき</h3>
+<p>H は A と一致し、△ABC そのものが直角三角形なので \( a^2=b^2+c^2 \) です。\( \cos 90^\circ=0 \) なので、これも \( a^2=b^2+c^2-2bc\cos A \) の形に含まれます。</p>
+<div class="formula-card">
+  <div><span class="f-name">余弦定理（△ABC で）</span>
+  <p>\( a^2=b^2+c^2-2bc\cos A \)<br>\( b^2=c^2+a^2-2ca\cos B \)<br>\( c^2=a^2+b^2-2ab\cos C \)</p></div>
+</div>
+<p>2つ目・3つ目の式は、同じことを角 B、角 C について行ったものです。どの式も「求める辺の2乗 ＝ 残りの2辺の2乗の和 − 2 × 残りの2辺の積 × その2辺の間の角の余弦」の形です。</p>
+<div class="box point"><p class="box-title">別の見方：座標を使うと、すべての場合を一度に示せる</p><p>A を原点、B を \( (c,\ 0) \) とし、C を \( y \) 座標が正の側にとると、数Ⅰ-063 の三角比の定め方から C の座標は \( (b\cos A,\ b\sin A) \) です。2点間の距離（中3-103）より
+$$ a^2=(b\cos A-c)^2+(b\sin A-0)^2=b^2(\cos^2A+\sin^2A)-2bc\cos A+c^2=b^2+c^2-2bc\cos A $$
+A が鋭角でも鈍角でも直角でも、同じ計算で済みます（図2）。</p></div>
+<figure>
+<!--svg:f070b-->
+<svg viewBox="0 0 273 156" width="273" role="img" aria-label="座標平面で A を原点 O、B を (5, 0) にとると、C の座標は (4cos120°, 4sin120°)=(−2, 2√3)" data-fig="f070b" data-s="26.000000" data-ox="97.500000" data-oy="126.100000">
+<line x1="14.3" y1="126.1" x2="253.5" y2="126.1" stroke="currentColor" stroke-width="1.6" data-seg="x軸"/>
+<line x1="97.5" y1="139.1" x2="97.5" y2="16.9" stroke="currentColor" stroke-width="1.6" data-seg="y軸"/>
+<path d="M258.7,126.1 l-7,-3.5 l0,7 z" fill="currentColor"/>
+<path d="M97.5,11.7 l-3.5,7 l7,0 z" fill="currentColor"/>
+<text x="257.4" y="119.1" text-anchor="end" font-size="12" fill="currentColor" font-style="italic">x</text>
+<text x="104.5" y="18.3" text-anchor="start" font-size="12" fill="currentColor" font-style="italic">y</text>
+<line x1="97.5" y1="126.1" x2="227.5" y2="126.1" stroke="currentColor" stroke-width="2" data-seg="AB"/>
+<line x1="227.5" y1="126.1" x2="45.5" y2="36" stroke="currentColor" stroke-width="2" data-seg="BC"/>
+<line x1="45.5" y1="36" x2="97.5" y2="126.1" stroke="currentColor" stroke-width="2" data-seg="CA"/>
+<line x1="45.5" y1="36" x2="45.5" y2="126.1" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="2 3" data-seg="Cから下ろした線"/>
+<circle cx="97.5" cy="126.1" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="0.000000" data-y="0.000000"/>
+<circle cx="227.5" cy="126.1" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="5.000000" data-y="0.000000"/>
+<circle cx="45.5" cy="36" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="-2.000000" data-y="3.464102"/>
+<text x="118.5" y="142.7" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">A(O)</text>
+<text x="227.5" y="144.7" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">B(5, 0)</text>
+<text x="41.5" y="26.6" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">C(−2, 2√3)</text>
+<text x="45.5" y="142.4" text-anchor="middle" font-size="11" fill="currentColor">−2</text>
+<path d="M90.5,114 A14,14 0 0 1 111.5,126.1" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<text x="112.5" y="103.4" text-anchor="middle" font-size="11" fill="currentColor">120°</text>
+<text x="68.5" y="110.7" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">b=4</text>
+<text x="132.2" y="70.8" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">a</text>
+</svg>
+<!--/svg:f070b-->
+  <figcaption>図2　A を原点、AB を \( x \) 軸の正の向きにとると、C の座標は \( (b\cos A,\ b\sin A) \)（図は \( A=120^\circ \)、\( b=4 \)、\( c=5 \) のとき。C の \( x \) 座標 \( 4\cos 120^\circ=-2 \) は負になる）</figcaption>
+</figure>
+
+<h3>操作して確かめよう：角 A を変えると H はどこへ動く？</h3>
+<p>2辺 \( b \)、\( c \) を選び、スライダーで角 A を変えましょう。垂線の足 H の位置と、三平方の定理で求めた \( a^2 \) と余弦定理の右辺の値が一致することを確かめます。</p>
+<div class="widget" id="w1">
+  <div class="w-row"><label for="w1-bc">2辺の長さ：</label>
+    <select id="w1-bc">
+      <option value="4,5" selected>b = 4、c = 5</option>
+      <option value="5,3">b = 5、c = 3</option>
+    </select></div>
+  <div class="w-row"><label for="w1-A">角 A の大きさ：</label><input type="range" id="w1-A" min="5" max="175" step="5" value="60"> <output id="w1-Av" for="w1-A">60°</output></div>
+  <div><svg id="w1-svg" viewBox="0 0 360 230" width="360" role="img" aria-label="三角形 ABC と、C から直線 AB にひいた垂線 CH。角 A を変えると C と H が動き、H が辺 AB 上・A の外側・B の外側に移る"></svg></div>
+  <p class="w-out" id="w1-out" aria-live="polite">b = 4、c = 5、A = 60° のとき：b cos A = 2.00 で、H は辺 AB 上にある。CH = b sin A ≒ 3.46、BH = |c − b cos A| = 3.00。三平方の定理で CH² + BH² = 21.00、余弦定理で b² + c² − 2bc cos A = 21.00（a ≒ 4.58）。（スクリプトが動かない場合は、図1・図2で同じことを確かめられます）</p>
+  <p class="small">黒（暗い表示では白）の線＝△ABC、緑の破線＝垂線 CH、灰の点線＝直線 AB を延長した部分、□＝直角。</p>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：\( -2bc\cos A \) の符号</p><p>A が鈍角のとき \( \cos A&lt;0 \) なので、\( -2bc\cos A \) は正の数になり、\( a^2 \) は \( b^2+c^2 \) より大きくなります。例題2で \( \cos 120^\circ \) を \( +\dfrac{1}{2} \) とすると \( a^2=16+25-20=21 \) となり、正しい \( 61 \) と大きく食い違います。式の中の「−」と、\( \cos A \) の符号を分けて考えましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="三平方の定理の拡張"><span class="num">5</span>余弦定理は三平方の定理の拡張</h2>
+<p>余弦定理で \( A=90^\circ \) とすると、\( \cos 90^\circ=0 \) なので
+$$ a^2=b^2+c^2 $$
+となり、三平方の定理（中3-097）そのものです。三平方の定理は直角三角形でしか使えませんが、余弦定理はどんな三角形でも使えます。余弦定理は、三平方の定理を<strong>一般の三角形に拡張した</strong>ものと見ることができます。</p>
+<p>\( -2bc\cos A \) は、角 A が直角からずれた分を補う項です。A が \( 90^\circ \) より小さいと \( \cos A&gt;0 \) で \( a^2 \) は \( b^2+c^2 \) より小さく、A が \( 90^\circ \) より大きいと \( \cos A&lt;0 \) で \( a^2 \) は \( b^2+c^2 \) より大きくなります。この大小を使って角の種類を判断する方法は、次の時間（数Ⅰ-071）で学びます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>角 A</th><th>\( \cos A \)</th><th>\( a^2 \) と \( b^2+c^2 \)</th><th>例（\( b=4 \)、\( c=5 \)）</th></tr>
+  <tr><td>\( 60^\circ \)（鋭角）</td><td>\( \dfrac{1}{2} \)</td><td>\( a^2&lt;b^2+c^2 \)</td><td>\( a^2=21&lt;41 \)</td></tr>
+  <tr><td>\( 90^\circ \)（直角）</td><td>\( 0 \)</td><td>\( a^2=b^2+c^2 \)（三平方の定理）</td><td>\( a^2=41 \)</td></tr>
+  <tr><td>\( 120^\circ \)（鈍角）</td><td>\( -\dfrac{1}{2} \)</td><td>\( a^2&gt;b^2+c^2 \)</td><td>\( a^2=61&gt;41 \)</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（よく知っている三角形で確かめる）</p>
+  <p>1辺の長さが \( k \) の正三角形について、余弦定理が成り立つことを確かめなさい。</p>
+  <div class="step">着目：正三角形では \( a=b=c=k \)、\( A=60^\circ \)。</div>
+  <div class="step">右辺：\( b^2+c^2-2bc\cos 60^\circ=k^2+k^2-2k^2\times\dfrac{1}{2}=k^2 \)。</div>
+  <div class="step">左辺は \( a^2=k^2 \) なので、両辺が一致します。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>余弦定理</dt><dd>△ABC で \( a^2=b^2+c^2-2bc\cos A \)（\( b^2 \)、\( c^2 \) についても同様）。2辺とその間の角から、残りの辺が求められる。</dd>
+    <dt>垂線の足</dt><dd>点から直線に垂線をひいたときの、垂線と直線の交点（この時間の H）。角の大きさによって、辺の上にも延長上にもくる。</dd>
+    <dt>三平方の定理の拡張</dt><dd>余弦定理で \( A=90^\circ \) とすると三平方の定理 \( a^2=b^2+c^2 \) になる。余弦定理は直角三角形以外にも使える。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>2辺とその間の角が分かる三角形は、垂線をひいて直角三角形をつくると、三角比と三平方の定理で残りの辺が求められる。H が辺上か延長上かに注意する（O1）。</li>
+    <li>一般化すると余弦定理 \( a^2=b^2+c^2-2bc\cos A \)。A が鋭角・直角・鈍角のどの場合も同じ式になる（座標を使うと一度に示せる）（O2）。</li>
+    <li>\( A=90^\circ \) では三平方の定理になる。余弦定理は三平方の定理を一般の三角形に拡張したもの（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">余弦定理</span>
+  <p>\( a^2=b^2+c^2-2bc\cos A \)<br>\( b^2=c^2+a^2-2ca\cos B \)<br>\( c^2=a^2+b^2-2ab\cos C \)</p></div>
+  <div><span class="f-name">\( A=90^\circ \) のとき</span><p>\( a^2=b^2+c^2 \)（三平方の定理）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。根号は √ を使い、√15 のように入力してください。</p>
+
+<div class="q" data-type="input" id="q1" data-accept="√7|√(7)|a=√7|a=√(7)">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>△ABC で \( b=2 \)、\( c=3 \)、\( A=60^\circ \) です。C から辺 AB に垂線 CH をひいて、\( a \) を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( a=\sqrt{7} \)。\( \mathrm{CH}=2\sin 60^\circ=\sqrt{3} \)、\( \mathrm{AH}=2\cos 60^\circ=1 \)、\( \mathrm{BH}=3-1=2 \)。三平方の定理より \( a^2=3+4=7 \)、\( a=\sqrt{7} \) です（余弦定理でも \( 4+9-2\cdot2\cdot3\cdot\frac{1}{2}=7 \)）。\( \sqrt{13} \) と答えた場合は \( b^2+c^2 \) で止めて、\( -2bc\cos A \) を忘れています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>△ABC の辺 \( b \) を求める余弦定理として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( b^2=c^2+a^2-2ca\cos A \)</button>
+    <button>\( b^2=c^2+a^2+2ca\cos B \)</button>
+    <button data-correct="true">\( b^2=c^2+a^2-2ca\cos B \)</button>
+    <button>\( b^2=c^2+a^2-2bc\cos B \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">辺 \( b \) の向かいの角は B で、B をはさむ2辺は \( c \) と \( a \) です。よって \( b^2=c^2+a^2-2ca\cos B \)。\( \cos A \) の式は角を取り違えています。\( +2ca\cos B \) は符号の誤りです。\( 2bc \) の式は、求める辺 \( b \) を積に入れてしまっています（積に入るのは残りの2辺）。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="7|a=7">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>△ABC で \( b=3 \)、\( c=5 \)、\( A=120^\circ \) のとき、余弦定理を用いて \( a \) を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( a=7 \)。\( a^2=9+25-2\cdot3\cdot5\cdot\left(-\dfrac{1}{2}\right)=34+15=49 \)、\( a&gt;0 \) より \( a=7 \)。\( \sqrt{19} \) と答えた場合は \( \cos 120^\circ \) を \( +\dfrac{1}{2} \) として \( 34-15 \) とした誤り、\( \sqrt{34} \) は \( -2bc\cos A \) を忘れた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1・O2</span></div>
+  <p>△ABC で \( b=\sqrt{2} \)、\( c=3 \)、\( A=135^\circ \) のとき、\( a \) はどれですか。</p>
+  <div class="choices">
+    <button>\( \sqrt{5} \)</button>
+    <button data-correct="true">\( \sqrt{17} \)</button>
+    <button>\( \sqrt{11} \)</button>
+    <button>\( 17 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">垂線の足 H は A の外側にあり、\( \angle \mathrm{CAH}=45^\circ \) なので \( \mathrm{AH}=\mathrm{CH}=\sqrt{2}\cos 45^\circ=1 \)、\( \mathrm{BH}=3+1=4 \)、\( a^2=1+16=17 \)。余弦定理でも \( 2+9-2\cdot\sqrt{2}\cdot3\cdot\left(-\dfrac{\sqrt{2}}{2}\right)=11+6=17 \) で、\( a=\sqrt{17} \)。\( \sqrt{5} \) は \( \cos 135^\circ \) を正にした誤りで、H を辺 AB 上にあるとして \( \mathrm{BH}=3-1 \) としたのと同じ値です。\( \sqrt{11} \) は \( -2bc\cos A \) を忘れた誤り、\( 17 \) は \( a^2 \) を答えた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O1</span></div>
+  <p>△ABC で \( b=6 \)、\( c=2 \)、\( A=60^\circ \) です。C から直線 AB に垂線 CH をひくと、\( \mathrm{AH}=6\cos 60^\circ=3 \) で、\( c=2 \) より長くなります。BH と \( a \) の組として正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \mathrm{BH}=1,\ a=2\sqrt{7} \)</button>
+    <button>\( \mathrm{BH}=5,\ a=2\sqrt{13} \)</button>
+    <button>\( \mathrm{BH}=3,\ a=6 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">AH が AB より長いので、H は辺 AB を B の側に延長した直線上にあり、\( \mathrm{BH}=3-2=1 \) です。\( \mathrm{CH}=6\sin 60^\circ=3\sqrt{3} \) なので \( a^2=27+1=28 \)、\( a=2\sqrt{7} \)。余弦定理でも \( 36+4-2\cdot6\cdot2\cdot\frac{1}{2}=28 \) です（このとき B は鈍角）。\( \mathrm{BH}=5 \) は H を A の外側にとって \( 2+3 \) とした誤り、\( \mathrm{BH}=3 \) は AH を BH と取り違えた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>余弦定理と三平方の定理の関係として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>余弦定理は、直角三角形には使えない。</button>
+    <button>\( A=90^\circ \) のとき、余弦定理は \( a^2=b^2+c^2-2bc \) となる。</button>
+    <button>三平方の定理と余弦定理は無関係で、別々に覚える必要がある。</button>
+    <button data-correct="true">\( A=90^\circ \) のとき \( \cos A=0 \) なので、余弦定理は \( a^2=b^2+c^2 \) となり、三平方の定理と一致する。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \cos 90^\circ=0 \) なので \( -2bc\cos A \) が 0 になり、三平方の定理になります。余弦定理はどんな三角形にも使え、直角三角形では三平方の定理と同じ式になります。\( a^2=b^2+c^2-2bc \) は \( \cos 90^\circ \) を 1 とした誤りです。三平方の定理は余弦定理の特別な場合なので、「無関係」ではありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O1・O2</span></div>
+  <p>池をはさんだ2地点 P、Q の距離を求めます。池の外の地点 R から測ると、\( \mathrm{RP}=40\ \mathrm{m} \)、\( \mathrm{RQ}=50\ \mathrm{m} \)、\( \angle \mathrm{PRQ}=60^\circ \) でした（学習用に作成した場面と数値です）。</p>
+  <p>太郎：「△PQR は直角三角形じゃないから、三平方の定理は使えない。PQ は求められないよ。」<br>花子：「この時間に学んだことを使えば求められるよ。」</p>
+  <p>PQ の長さとして正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( 10\sqrt{41}\ \mathrm{m} \)</button>
+    <button>\( 10\sqrt{61}\ \mathrm{m} \)</button>
+    <button data-correct="true">\( 10\sqrt{21}\ \mathrm{m} \)（約 45.8 m）</button>
+    <button>太郎さんの言うとおり、求められない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">2辺 RP、RQ とその間の角 R が分かっているので、余弦定理より \( \mathrm{PQ}^2=40^2+50^2-2\cdot40\cdot50\cos 60^\circ=1600+2500-2000=2100 \)、\( \mathrm{PQ}=10\sqrt{21}\fallingdotseq45.8 \)（m）です（P から直線 RQ に垂線をひいて三平方の定理を使っても、同じ値になります）。\( 10\sqrt{41} \) は \( -2\cdot40\cdot50\cos 60^\circ \) を忘れた誤り、\( 10\sqrt{61} \) は符号を \( + \) にした誤りです。直角三角形でなくても、垂線をひくか余弦定理を使えば求められます。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2</span></div>
+  <p>△ABC の角 A が鈍角のとき、C から直線 AB に垂線 CH をひいて、\( a^2=b^2+c^2-2bc\cos A \) が成り立つことを説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　A が鈍角なので、H は辺 BA を A の側に延長した直線上にあり、\( \angle \mathrm{CAH}=180^\circ-A \)。直角三角形 AHC で \( \mathrm{AH}=b\cos(180^\circ-A)=-b\cos A \)、\( \mathrm{CH}=b\sin(180^\circ-A)=b\sin A \)。\( \mathrm{BH}=\mathrm{AB}+\mathrm{AH}=c-b\cos A \)。直角三角形 BHC で三平方の定理より \( a^2=\mathrm{CH}^2+\mathrm{BH}^2=b^2\sin^2A+(c-b\cos A)^2=b^2(\sin^2A+\cos^2A)+c^2-2bc\cos A=b^2+c^2-2bc\cos A \)。</p>
+    <p><strong>採点の観点</strong>　① H が A の外側（延長上）にあることを書いている。② \( \mathrm{AH}=-b\cos A \)、\( \mathrm{CH}=b\sin A \) を \( 180^\circ-A \) の三角比から導いている。③ \( \mathrm{BH}=c-b\cos A \)（\( c+\mathrm{AH} \)）としている。④ 三平方の定理と \( \sin^2A+\cos^2A=1 \) で式を整理している。</p>
+  </div>
+  <div class="explain">\( \cos A&lt;0 \) なので、\( -b\cos A \) は正の数で、長さ AH を表します。「長さはいつも正」と「\( \cos A \) は負」を区別して書くことがポイントです。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(2) 図形と計量」の「正弦定理や余弦定理について三角形の決定条件や三平方の定理と関連付けて理解し，三角形の辺の長さや角の大きさなどを求めること」（ア(ウ)）と、「図形の構成要素間の関係を三角比を用いて表現するとともに，定理や公式として導くこと」（イ(ア)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。具体的な三角形での計算から一般の式を導き、既習の定理との関係を振り返るこの時間の考え方は、その土台になります。</p>
+  <p class="small">問7は会話と日常の場面を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">余弦定理の利用（数Ⅰ-071）</p>
+  <p>次の時間は、余弦定理を使って、2辺とその間の角から残りの辺を求めるだけでなく、式を \( \cos A=\dfrac{b^2+c^2-a^2}{2bc} \) と変形して、3辺の長さから角の大きさを求めます。この時間の表で見た「\( a^2 \) と \( b^2+c^2 \) の大小」から角 A が鋭角・直角・鈍角のどれかを判断し、三角形の決定条件（合同条件）と関連付けて考えます。</p>
+  <p>この時間では、3辺から角を求めること、角の種類の判断、三角形の決定条件との関連（数Ⅰ-071）、三角形の面積（数Ⅰ-073）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-069　正弦定理の利用</div>
+  <div><span class="label">次の時間</span>数Ⅰ-071　余弦定理の利用</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-070「余弦定理」（学習指導要領 数学Ⅰ (2)ア(ウ)・イ(ア)、解説 p.39-40）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(2) 図形と計量（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.39-40（余弦定理では，二辺の長さとその間の角の大きさが分かっている三角形について，三平方の定理を用いて残りの辺の長さを求める活動の後，余弦定理へとつなげること、余弦定理が三平方の定理を一般の三角形に拡張したものであることを認識できるようにすること）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「余弦定理」（「三平方の定理をもとに余弦定理を導こうとする」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>東京書籍「評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）」の「余弦定理」（「三平方の定理を用いて，三角形の 1 つの角の大きさと 3 辺の長さの間にある関係（余弦定理）について考察することができる」）https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf</li>
+    <li>新興出版社啓林館「新編数学Ⅰ 改訂版（数Ⅰ061-904）シラバス案」の「2 余弦定理」（「math探 Aが鈍角のときの余弦定理」）（同社「高等学校 数学 サポート資料」https://www.shinko-keirin.co.jp/keirinkan/kou/math/support/ に掲載）</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・図はこのページのために作成したものです（出典を示したものを除く）。池をはさんだ地点の場面と数値は、学習用に作成した架空のものです。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var svg = document.getElementById("w1-svg");
+  var sel = document.getElementById("w1-bc");
+  var slider = document.getElementById("w1-A");
+  var outA = document.getElementById("w1-Av");
+  var out = document.getElementById("w1-out");
+  if (!svg || !sel || !slider) return;
+  var S = 30, X0 = 180, Y0 = 188;
+  function X(x) { return X0 + S * x; }
+  function Y(y) { return Y0 - S * y; }
+  function r1(v) { return String(Math.round(v * 10) / 10); }
+  function f2(v) {
+    var m = Math.round(Math.abs(v) * 100 + 1e-9) / 100;
+    var s = m.toFixed(2);
+    return (v < 0 && m > 0 ? "−" : "") + s;
+  }
+  function rel(v) { return Math.abs(v * 100 - Math.round(v * 100)) < 1e-6 ? "= " : "≒ "; }
+  function line(p, q, attr) {
+    return '<line x1="' + r1(X(p[0])) + '" y1="' + r1(Y(p[1])) + '" x2="' + r1(X(q[0])) + '" y2="' + r1(Y(q[1])) + '" ' + attr + '/>';
+  }
+  function dot(p, name, col) {
+    return '<circle cx="' + r1(X(p[0])) + '" cy="' + r1(Y(p[1])) + '" r="3.2" fill="' + col + '" data-pt="' + name + '"/>';
+  }
+  function text(x, y, s, col) {
+    return '<text x="' + r1(x) + '" y="' + r1(y) + '" text-anchor="middle" font-size="14" font-weight="700" fill="' + col + '">' + s + '</text>';
+  }
+  function draw() {
+    var bc = sel.value.split(",");
+    var b = parseFloat(bc[0]), c = parseFloat(bc[1]);
+    var deg = parseInt(slider.value, 10);
+    var t = deg * Math.PI / 180;
+    var bcos = b * Math.cos(t), bsin = b * Math.sin(t);
+    if (Math.abs(bcos) < 1e-9) bcos = 0;
+    var A = [0, 0], B = [c, 0], C = [bcos, bsin], H = [bcos, 0];
+    if (outA) outA.textContent = deg + "°";
+    var h = [];
+    var xmin = Math.min(0, bcos), xmax = Math.max(c, bcos);
+    if (xmin < 0) h.push(line([xmin, 0], A, 'stroke="#8a99a8" stroke-width="1.4" stroke-dasharray="2 3"'));
+    if (xmax > c) h.push(line(B, [xmax, 0], 'stroke="#8a99a8" stroke-width="1.4" stroke-dasharray="2 3"'));
+    h.push(line(A, B, 'stroke="currentColor" stroke-width="1.8"'));
+    h.push(line(B, C, 'stroke="currentColor" stroke-width="1.8"'));
+    h.push(line(C, A, 'stroke="currentColor" stroke-width="1.8"'));
+    var where, hAtA = bcos === 0;
+    if (hAtA) where = "H は A と一致する（A が直角）";
+    else if (bcos < 0) where = "H は辺 BA を A の側に延長した直線上にある";
+    else if (bcos > c) where = "H は辺 AB を B の側に延長した直線上にある";
+    else where = "H は辺 AB 上にある";
+    if (!hAtA) h.push(line(C, H, 'stroke="#1e8e5a" stroke-width="1.6" stroke-dasharray="5 3"'));
+    var k = 8 / S, up = [0, 1], side = bcos > 0 ? [-1, 0] : [1, 0];
+    if (hAtA) side = [1, 0];
+    var m1 = [H[0] + side[0] * k, H[1]], m2 = [H[0] + side[0] * k, H[1] + k], m3 = [H[0], H[1] + k];
+    h.push('<path d="M' + r1(X(m1[0])) + ',' + r1(Y(m1[1])) + ' L' + r1(X(m2[0])) + ',' + r1(Y(m2[1])) + ' L' + r1(X(m3[0])) + ',' + r1(Y(m3[1])) + '" fill="none" stroke="currentColor" stroke-width="1.2" data-right="H"/>');
+    h.push(dot(A, "A", "currentColor"));
+    h.push(dot(B, "B", "currentColor"));
+    h.push(dot(C, "C", "currentColor"));
+    if (!hAtA) h.push(dot(H, "H", "#1e8e5a"));
+    h.push(text(X(0), Y(0) + 19, "A", "currentColor"));
+    h.push(text(X(c), Y(0) + 19, "B", "currentColor"));
+    h.push(text(X(bcos), Y(bsin) - 9, "C", "currentColor"));
+    if (!hAtA) {
+      var near = Math.min(Math.abs(bcos), Math.abs(bcos - c)) < 0.8;
+      h.push(text(X(bcos), Y(0) + (near ? 36 : 19), "H", "#1e8e5a"));
+    }
+    svg.innerHTML = h.join("");
+    var BH = Math.abs(c - bcos), CH = bsin;
+    var py = CH * CH + BH * BH, law = b * b + c * c - 2 * b * c * Math.cos(t);
+    if (out) out.textContent = "b = " + bc[0] + "、c = " + bc[1] + "、A = " + deg + "° のとき：b cos A " + rel(bcos) + f2(bcos) + " で、" + where + "。" +
+      "CH = b sin A " + rel(CH) + f2(CH) + "、BH = |c − b cos A| " + rel(BH) + f2(BH) + "。" +
+      "三平方の定理で CH² + BH² " + rel(py) + f2(py) + "、余弦定理で b² + c² − 2bc cos A " + rel(law) + f2(law) +
+      "（a " + rel(Math.sqrt(law)) + f2(Math.sqrt(law)) + "）。";
+  }
+  sel.addEventListener("change", draw);
+  slider.addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-070",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-070",
+  "title": "余弦定理",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-4", "title": "図形と計量"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(ウ)", "(2)イ(ア)"],
+  "kaisetsu_page": "39-40",
+  "objectives": [
+    {"id": "O1", "text": "2辺とその間の角が分かる三角形で、頂点から垂線をひいて直角三角形をつくり、三角比と三平方の定理を用いて残りの辺の長さを求めることができる。", "from": "2辺とその間の角が分かる三角形で三平方の定理を用いて残りの辺を求める活動から", "sections": ["sec-1"], "checks": ["q1", "q4", "q5", "q7"]},
+    {"id": "O2", "text": "その活動を一般化して余弦定理 \\( a^2=b^2+c^2-2bc\\cos A \\) を導き、A が鋭角・直角・鈍角のどの場合も同じ式で表せることを説明できる。", "from": "余弦定理 a²=b²+c²−2bc cos A を導き", "sections": ["sec-2"], "checks": ["q2", "q3", "q4", "q7", "q8"]},
+    {"id": "O3", "text": "余弦定理が \\( A=90^\\circ \\) のとき三平方の定理になることから、三平方の定理を一般の三角形に拡張したものであることを説明できる。", "from": "三平方の定理を一般の三角形に拡張したものであることを理解する", "sections": ["sec-3"], "checks": ["q6"]}
+  ],
+  "key_terms": [
+    {"term": "余弦定理", "where": "sec-2"},
+    {"term": "垂線の足", "where": "sec-1"},
+    {"term": "三平方の定理の拡張", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "三平方の定理", "taught_in": ["jhs_math/中3-097", "jhs_math/中3-099"], "where": "review"},
+    {"concept": "直角三角形の辺を三角比で表す（a=c sin A、b=c cos A）", "taught_in": ["hs_math_1a/数Ⅰ-060"], "where": "review"},
+    {"concept": "30°・45°・60° の三角比の値", "taught_in": ["hs_math_1a/数Ⅰ-058"], "where": "sec-1"},
+    {"concept": "sin²A+cos²A=1", "taught_in": ["hs_math_1a/数Ⅰ-061", "hs_math_1a/数Ⅰ-065"], "where": "sec-2"},
+    {"concept": "座標を用いた鈍角・90° の三角比（点 P の座標が (α cos θ, α sin θ)）", "taught_in": ["hs_math_1a/数Ⅰ-063"], "where": "sec-2"},
+    {"concept": "cos(180°−A)=−cos A、sin(180°−A)=sin A", "taught_in": ["hs_math_1a/数Ⅰ-064"], "where": "review"},
+    {"concept": "座標平面上の2点間の距離", "taught_in": ["jhs_math/中3-103"], "where": "sec-2"},
+    {"concept": "三角形の合同条件（2組の辺とその間の角）", "taught_in": ["jhs_math/中2-053"], "where": "intro"},
+    {"concept": "垂線をひくこと", "taught_in": ["jhs_math/中1-076", "jhs_math/中1-084"], "where": "sec-1"},
+    {"concept": "正弦定理（導入で、この場面では使えないことを確かめる）", "taught_in": ["hs_math_1a/数Ⅰ-068"], "where": "intro"},
+    {"concept": "乗法公式 (a−b)²=a²−2ab+b²（式の展開）", "taught_in": ["jhs_math/中3-005", "hs_math_1a/数Ⅰ-003"], "where": "sec-2"}
+  ],
+  "out_of_scope": [
+    "3辺から角の大きさを求めること、a² と b²+c² の大小による角の種類の判断、三角形の決定条件との関連（数Ⅰ-071）",
+    "正弦定理・余弦定理を選んで使う練習（数Ⅰ-072）",
+    "三角形の面積（数Ⅰ-073）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『図形と計量』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(2)ア(ウ)・イ(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.39-40 余弦定理を三平方の定理を用いて残りの辺を求める活動から導く例、三平方の定理の一般の三角形への拡張"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "「三平方の定理をもとに余弦定理を導こうとする」"},
+    {"name": "評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）", "publisher": "東京書籍（東書Ｅネット）", "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf", "use": "三平方の定理を用いて余弦定理について考察すること"},
+    {"name": "新編数学Ⅰ 改訂版（数Ⅰ061-904）シラバス案", "publisher": "新興出版社啓林館", "url": "https://www.shinko-keirin.co.jp/keirinkan/kou/math/support/", "use": "「math探 Aが鈍角のときの余弦定理」（鈍角の場合を扱うことの確認。保存本文：sources/text/kr_m1_shinpen_syllabus.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

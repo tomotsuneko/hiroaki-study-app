@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>組合せと nCr｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-011</span></div>
+  <h1>組合せと nCr</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">5つの候補から2つを「選ぶだけ」なら何通りでしょう。2つを選んで順番も決めるときと比べると、何が違うでしょう。樹形図や表に整理して、選ぶだけの場合の数（組合せ）を求める公式を導きます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>具体的な事象の場合の数を樹形図や表に整理し、順序を区別しない組合せの意味を、順列と比べて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>組合せと順列の関係 \( {}_n\mathrm{P}_r={}_n\mathrm{C}_r\times r! \) を表に整理して導き、\( {}_n\mathrm{C}_r \) を求める公式を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>公式を用いて組合せの総数を求め、選ぶ場面の問題に用いることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-010）</span>重複順列</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-011）</span>組合せと nCr</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-012）</span>nCr の性質</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。同じ単元の数Ａ-003（樹形図・表）、数Ａ-005〜007（積の法則、順列、階乗）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、順列 \( {}_n\mathrm{P}_r \)（数Ａ-006）と階乗（数Ａ-007）、樹形図・表で整理すること（数Ａ-003、中学2年）を使います。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-006</span></div>
+  <p>5人の中から、委員長と副委員長を1人ずつ選びます（兼任はしない）。選び方は何通りですか。</p>
+  <div class="choices">
+    <button>10通り</button>
+    <button data-correct="true">20通り</button>
+    <button>25通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">委員長5通りのそれぞれに対して副委員長が残りの4通りなので、\( {}_5\mathrm{P}_2=5\times4=20 \)（通り）。25通りは \( 5\times5 \) で、兼任を許した数（重複順列、数Ａ-010）。10通りは \( 5\times2 \) で、かける数を選ぶ人数にした誤りです。この時間は、20通りと「役を決めずに2人を選ぶ」数を比べます。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-007</span></div>
+  <p>3人 A、B、C を1列に並べる並べ方は何通りですか。</p>
+  <div class="choices">
+    <button>3通り</button>
+    <button>9通り</button>
+    <button data-correct="true">6通り</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">3人すべてを並べるので \( 3!=3\times2\times1=6 \)（通り）（ABC、ACB、BAC、BCA、CAB、CBA）。3通りは1番目の人の選び方だけ、9通りは \( 3\times3 \) で同じ人を何度も並べられるとした誤りです。「選んだ3人の並べ方は \( 3! \) 通り」が、この時間の公式の鍵になります。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：選ぶだけ？順番も決める？</h2>
+<div class="box think">
+  <p class="box-title">文化祭のクラス企画</p>
+  <p>クラス企画の候補が5つ（劇、展示、模擬店、合唱、ダンス）あります。</p>
+  <ul>
+    <li>① 5つから2つを選んで実施します。選び方は何通りでしょう。</li>
+    <li>② 5つから2つを選び、1つを午前、もう1つを午後に行います。決め方は何通りでしょう。</li>
+  </ul>
+  <p>②は順番があるので順列で \( {}_5\mathrm{P}_2=5\times4=20 \)（通り）です。①も20通りでしょうか。「劇と展示を選ぶ」と「展示と劇を選ぶ」は同じ選び方であることに注目しましょう。①の答えは「5 公式を使って組合せの総数を求める」の例題1で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="組合せとは"><span class="num">3</span>組合せとは：選ぶだけで、順序を考えない</h2>
+<p>A、B、C、D の4人から2人を選ぶ場合を、表に整理して考えます。まず、順番をつけて「1人目、2人目」と選ぶと、同じ人は2度選べないので、図1のように \( {}_4\mathrm{P}_2=4\times3=12 \)（通り）です。</p>
+<figure>
+<div class="fig-scroll">
+<!--svg:f011a-->
+<svg viewBox="0 0 352 248" width="352" role="img" aria-label="4人 A、B、C、D から1人目と2人目を順に選ぶ表。同じ人は選べないので12通り。右上の AB、AC、AD、BC、BD、CD と、左下の BA、CA、DA、CB、DB、DC は人を入れかえただけで、同じ組。組は6通り">
+<text x="212" y="18" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">2人目</text>
+<text x="24" y="128" text-anchor="start" font-size="12" fill="currentColor" font-weight="700">1人目</text>
+<text x="125" y="46" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="183" y="46" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="241" y="46" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="299" y="46" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<text x="82" y="78" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<rect x="96" y="56" width="58" height="34" fill="#8a99a8" fill-opacity="0.25" stroke="currentColor" stroke-width="1"/>
+<text x="125" y="78" text-anchor="middle" font-size="13" fill="#8a99a8">—</text>
+<rect x="154" y="56" width="58" height="34" fill="#1f5fbf" fill-opacity="0.08" stroke="currentColor" stroke-width="1"/>
+<text x="183" y="78" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">AB</text>
+<rect x="212" y="56" width="58" height="34" fill="#1f5fbf" fill-opacity="0.08" stroke="currentColor" stroke-width="1"/>
+<text x="241" y="78" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">AC</text>
+<rect x="270" y="56" width="58" height="34" fill="#1f5fbf" fill-opacity="0.08" stroke="currentColor" stroke-width="1"/>
+<text x="299" y="78" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">AD</text>
+<text x="82" y="112" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<rect x="96" y="90" width="58" height="34" fill="#b7791f" fill-opacity="0.08" stroke="currentColor" stroke-width="1"/>
+<text x="125" y="112" text-anchor="middle" font-size="14" fill="#b7791f">BA</text>
+<rect x="154" y="90" width="58" height="34" fill="#8a99a8" fill-opacity="0.25" stroke="currentColor" stroke-width="1"/>
+<text x="183" y="112" text-anchor="middle" font-size="13" fill="#8a99a8">—</text>
+<rect x="212" y="90" width="58" height="34" fill="#1f5fbf" fill-opacity="0.08" stroke="currentColor" stroke-width="1"/>
+<text x="241" y="112" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">BC</text>
+<rect x="270" y="90" width="58" height="34" fill="#1f5fbf" fill-opacity="0.08" stroke="currentColor" stroke-width="1"/>
+<text x="299" y="112" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">BD</text>
+<text x="82" y="146" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<rect x="96" y="124" width="58" height="34" fill="#b7791f" fill-opacity="0.08" stroke="currentColor" stroke-width="1"/>
+<text x="125" y="146" text-anchor="middle" font-size="14" fill="#b7791f">CA</text>
+<rect x="154" y="124" width="58" height="34" fill="#b7791f" fill-opacity="0.08" stroke="currentColor" stroke-width="1"/>
+<text x="183" y="146" text-anchor="middle" font-size="14" fill="#b7791f">CB</text>
+<rect x="212" y="124" width="58" height="34" fill="#8a99a8" fill-opacity="0.25" stroke="currentColor" stroke-width="1"/>
+<text x="241" y="146" text-anchor="middle" font-size="13" fill="#8a99a8">—</text>
+<rect x="270" y="124" width="58" height="34" fill="#1f5fbf" fill-opacity="0.08" stroke="currentColor" stroke-width="1"/>
+<text x="299" y="146" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">CD</text>
+<text x="82" y="180" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<rect x="96" y="158" width="58" height="34" fill="#b7791f" fill-opacity="0.08" stroke="currentColor" stroke-width="1"/>
+<text x="125" y="180" text-anchor="middle" font-size="14" fill="#b7791f">DA</text>
+<rect x="154" y="158" width="58" height="34" fill="#b7791f" fill-opacity="0.08" stroke="currentColor" stroke-width="1"/>
+<text x="183" y="180" text-anchor="middle" font-size="14" fill="#b7791f">DB</text>
+<rect x="212" y="158" width="58" height="34" fill="#b7791f" fill-opacity="0.08" stroke="currentColor" stroke-width="1"/>
+<text x="241" y="180" text-anchor="middle" font-size="14" fill="#b7791f">DC</text>
+<rect x="270" y="158" width="58" height="34" fill="#8a99a8" fill-opacity="0.25" stroke="currentColor" stroke-width="1"/>
+<text x="299" y="180" text-anchor="middle" font-size="13" fill="#8a99a8">—</text>
+<text x="176" y="216" text-anchor="middle" font-size="12" fill="currentColor">並べ方（順列）：4×3＝12通り</text>
+<text x="176" y="236" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">右上（青）と左下（橙）は同じ組 → 12÷2＝6通り</text>
+</svg>
+<!--/svg:f011a-->
+</div>
+  <figcaption>図1　4人から1人目（行）と2人目（列）を順に選ぶ表。同じ人は選べないので対角線（—）は除く。右上（青）と左下（橙）は、人を入れかえただけの同じ組</figcaption>
+</figure>
+<p>委員長と副委員長のように<strong>役割（順番）があるなら</strong>、AB（A が委員長）と BA（B が委員長）は違う選び方です。しかし、2人の掃除当番のように<strong>役割がなく選ぶだけなら</strong>、AB と BA はどちらも「A と B の2人」で同じです。図1では、右上の6つと左下の6つが1つずつ対応しているので、選ぶだけの選び方は \( 12\div2=6 \)（通り）です。</p>
+<p>このように、異なる \( n \) 個のものから、順序を考えずに \( r \) 個を取り出して1組にしたものを、\( n \) 個から \( r \) 個取る<strong>組合せ</strong>といい、その総数を \( {}_n\mathrm{C}_r \) で表します。4人から2人の組合せの総数は \( {}_4\mathrm{C}_2=6 \) です。</p>
+<p>組合せを書き出すときは、組の中を文字の順（A→B→C→D）にそろえると、もれや重なりを防げます。図2はその樹形図です。このページでは、組を \( \{A,\ B\} \) のように書きます（中の順序は考えません）。</p>
+<figure>
+<!--svg:f011b-->
+<svg viewBox="0 0 330 198" width="330" role="img" aria-label="4人 A、B、C、D から2人を選ぶ組を、文字の順に樹形図で整理した図。{A, B}、{A, C}、{A, D}、{B, C}、{B, D}、{C, D} の6通り">
+<text x="126" y="18" text-anchor="middle" font-size="12" fill="currentColor">前の文字</text>
+<text x="222" y="18" text-anchor="middle" font-size="12" fill="currentColor">後の文字</text>
+<circle cx="30" cy="126.3" r="3" fill="currentColor"/>
+<line x1="34" y1="126.3" x2="117" y2="70" stroke="currentColor" stroke-width="1"/>
+<text x="126" y="75" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<line x1="34" y1="126.3" x2="117" y2="135" stroke="currentColor" stroke-width="1"/>
+<text x="126" y="140" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<line x1="34" y1="126.3" x2="117" y2="174" stroke="currentColor" stroke-width="1"/>
+<text x="126" y="179" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<line x1="135" y1="70" x2="213" y2="44" stroke="currentColor" stroke-width="1"/>
+<text x="222" y="49" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<text x="244" y="49" text-anchor="start" font-size="12" fill="currentColor">{A, B}</text>
+<line x1="135" y1="70" x2="213" y2="70" stroke="currentColor" stroke-width="1"/>
+<text x="222" y="75" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="244" y="75" text-anchor="start" font-size="12" fill="currentColor">{A, C}</text>
+<line x1="135" y1="70" x2="213" y2="96" stroke="currentColor" stroke-width="1"/>
+<text x="222" y="101" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<text x="244" y="101" text-anchor="start" font-size="12" fill="currentColor">{A, D}</text>
+<line x1="135" y1="135" x2="213" y2="122" stroke="currentColor" stroke-width="1"/>
+<text x="222" y="127" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="244" y="127" text-anchor="start" font-size="12" fill="currentColor">{B, C}</text>
+<line x1="135" y1="135" x2="213" y2="148" stroke="currentColor" stroke-width="1"/>
+<text x="222" y="153" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<text x="244" y="153" text-anchor="start" font-size="12" fill="currentColor">{B, D}</text>
+<line x1="135" y1="174" x2="213" y2="174" stroke="currentColor" stroke-width="1"/>
+<text x="222" y="179" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">D</text>
+<text x="244" y="179" text-anchor="start" font-size="12" fill="currentColor">{C, D}</text>
+</svg>
+<!--/svg:f011b-->
+  <figcaption>図2　4人から2人を選ぶ組を、組の中を文字の順にそろえて整理した樹形図。前の文字が A なら後は B、C、D の3通り、B なら C、D の2通り、C なら D の1通り</figcaption>
+</figure>
+<p>図2より、組は \( 3+2+1=6 \)（通り）で、図1から求めた6通りと一致します。</p>
+<div class="box caution"><p class="box-title">よくある間違い：選ぶだけなのに順列で数える</p><p>「4人から2人の当番を選ぶ」を \( {}_4\mathrm{P}_2=12 \)（通り）とする誤りです。順列では {A, B} を AB と BA の2回数えています。「選んだ後に役割や順番を決めるか」を問題文で確かめ、決めないなら組合せです。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="順列との関係から公式を導く"><span class="num">4</span>順列との関係から公式を導く</h2>
+<p>次に、4人から3人を選ぶ場合を考えます。3人の組は {A, B, C}、{A, B, D}、{A, C, D}、{B, C, D} の4通りです。それぞれの組の3人を1列に並べると \( 3!=6 \)（通り）ずつの並べ方があり、それらを全部集めると、4人から3人を選んで並べる順列になります。</p>
+<figure>
+<div class="fig-scroll">
+<!--svg:f011c-->
+<svg viewBox="0 0 436 204" width="436" role="img" aria-label="4人から3人を選ぶ組 {A, B, C}、{A, B, D}、{A, C, D}、{B, C, D} の4通りを行に、それぞれの3人の並べ方6通りを列にした表。全部で24通りで、4人から3人の順列の総数に等しい">
+<text x="260" y="18" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">選んだ3人の並べ方（3!＝6通り）</text>
+<text x="14" y="34" text-anchor="start" font-size="12" fill="currentColor" font-weight="700">組</text>
+<text x="14" y="68" text-anchor="start" font-size="13" fill="#1f5fbf" font-weight="700">{A, B, C}</text>
+<rect x="104" y="48" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="130" y="68" text-anchor="middle" font-size="13" fill="currentColor">ABC</text>
+<rect x="156" y="48" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="182" y="68" text-anchor="middle" font-size="13" fill="currentColor">ACB</text>
+<rect x="208" y="48" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="234" y="68" text-anchor="middle" font-size="13" fill="currentColor">BAC</text>
+<rect x="260" y="48" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="286" y="68" text-anchor="middle" font-size="13" fill="currentColor">BCA</text>
+<rect x="312" y="48" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="338" y="68" text-anchor="middle" font-size="13" fill="currentColor">CAB</text>
+<rect x="364" y="48" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="390" y="68" text-anchor="middle" font-size="13" fill="currentColor">CBA</text>
+<text x="14" y="98" text-anchor="start" font-size="13" fill="#1f5fbf" font-weight="700">{A, B, D}</text>
+<rect x="104" y="78" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="130" y="98" text-anchor="middle" font-size="13" fill="currentColor">ABD</text>
+<rect x="156" y="78" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="182" y="98" text-anchor="middle" font-size="13" fill="currentColor">ADB</text>
+<rect x="208" y="78" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="234" y="98" text-anchor="middle" font-size="13" fill="currentColor">BAD</text>
+<rect x="260" y="78" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="286" y="98" text-anchor="middle" font-size="13" fill="currentColor">BDA</text>
+<rect x="312" y="78" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="338" y="98" text-anchor="middle" font-size="13" fill="currentColor">DAB</text>
+<rect x="364" y="78" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="390" y="98" text-anchor="middle" font-size="13" fill="currentColor">DBA</text>
+<text x="14" y="128" text-anchor="start" font-size="13" fill="#1f5fbf" font-weight="700">{A, C, D}</text>
+<rect x="104" y="108" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="130" y="128" text-anchor="middle" font-size="13" fill="currentColor">ACD</text>
+<rect x="156" y="108" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="182" y="128" text-anchor="middle" font-size="13" fill="currentColor">ADC</text>
+<rect x="208" y="108" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="234" y="128" text-anchor="middle" font-size="13" fill="currentColor">CAD</text>
+<rect x="260" y="108" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="286" y="128" text-anchor="middle" font-size="13" fill="currentColor">CDA</text>
+<rect x="312" y="108" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="338" y="128" text-anchor="middle" font-size="13" fill="currentColor">DAC</text>
+<rect x="364" y="108" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="390" y="128" text-anchor="middle" font-size="13" fill="currentColor">DCA</text>
+<text x="14" y="158" text-anchor="start" font-size="13" fill="#1f5fbf" font-weight="700">{B, C, D}</text>
+<rect x="104" y="138" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="130" y="158" text-anchor="middle" font-size="13" fill="currentColor">BCD</text>
+<rect x="156" y="138" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="182" y="158" text-anchor="middle" font-size="13" fill="currentColor">BDC</text>
+<rect x="208" y="138" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="234" y="158" text-anchor="middle" font-size="13" fill="currentColor">CBD</text>
+<rect x="260" y="138" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="286" y="158" text-anchor="middle" font-size="13" fill="currentColor">CDB</text>
+<rect x="312" y="138" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="338" y="158" text-anchor="middle" font-size="13" fill="currentColor">DBC</text>
+<rect x="364" y="138" width="52" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="390" y="158" text-anchor="middle" font-size="13" fill="currentColor">DCB</text>
+<text x="218" y="192" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">表全体は4人から3人の順列　組 4通り × 並べ方 6通り ＝ 24通り（＝<tspan font-size="9" baseline-shift="sub">4</tspan>P<tspan font-size="9" baseline-shift="sub">3</tspan>）</text>
+</svg>
+<!--/svg:f011c-->
+</div>
+  <figcaption>図3　4人から3人を選ぶ組（行）と、それぞれの組の3人の並べ方（列）の表。表の24個のどの並びも、ちょうど1つの組の行にある</figcaption>
+</figure>
+<p>図3の表の数は、組の数 \( {}_4\mathrm{C}_3 \) と並べ方の数 \( 3! \) の積であり、4人から3人の順列の総数 \( {}_4\mathrm{P}_3=24 \) に等しくなります。</p>
+$$ {}_4\mathrm{P}_3={}_4\mathrm{C}_3\times3! $$
+<p>より、\( {}_4\mathrm{C}_3=\dfrac{{}_4\mathrm{P}_3}{3!}=\dfrac{24}{6}=4 \) です。図2の2人の場合も、\( {}_4\mathrm{C}_2=\dfrac{{}_4\mathrm{P}_2}{2!}=\dfrac{12}{2}=6 \) で一致します。</p>
+<p>一般に、\( n \) 個から \( r \) 個を取る順列は、「まず \( r \) 個の組を選び（\( {}_n\mathrm{C}_r \) 通り）、次に選んだ \( r \) 個を並べる（\( r! \) 通り）」と考えられるので、積の法則より</p>
+$$ {}_n\mathrm{P}_r={}_n\mathrm{C}_r\times r! $$
+<p>が成り立ちます。両辺を \( r! \) で割ると、組合せの総数を求める公式が得られます。</p>
+<div class="formula-card"><div><span class="f-name">組合せの総数（\( 1\leqq r\leqq n \)）</span>$$ {}_n\mathrm{C}_r=\frac{{}_n\mathrm{P}_r}{r!}=\frac{n(n-1)(n-2)\cdots(n-r+1)}{r(r-1)(r-2)\cdots2\cdot1} $$</div></div>
+<p>分子は \( n \) から1ずつ小さくなる \( r \) 個の数の積、分母は \( r \) から1までの積です。数Ａ-007 の \( {}_n\mathrm{P}_r=\dfrac{n!}{(n-r)!} \) を使うと、次の形にも書けます。</p>
+$$ {}_n\mathrm{C}_r=\frac{n!}{r!\,(n-r)!} $$
+<p>\( r=n \) のときは \( {}_n\mathrm{C}_n=\dfrac{{}_n\mathrm{P}_n}{n!}=\dfrac{n!}{n!}=1 \) で、「全部を選ぶ」1通りに合っています。\( r=0 \) の場合は、次の時間（数Ａ-012）で考えます。</p>
+<div class="box caution"><p class="box-title">よくある間違い：\( r! \) で割り忘れる・\( r \) で割る</p><p>\( {}_5\mathrm{C}_3 \) を \( 5\times4\times3=60 \) としたら、それは順列 \( {}_5\mathrm{P}_3 \) です。また \( \dfrac{60}{3}=20 \) と \( r \) で割るのも誤りです。1つの組から作れる並べ方は \( 3 \) 通りではなく \( 3!=6 \) 通りなので、\( \dfrac{60}{6}=10 \) が正しい値です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="公式を使って求める"><span class="num">5</span>公式を使って組合せの総数を求める</h2>
+<div class="box example worked">
+  <p class="box-title">例題1（選ぶだけ：導入の①）</p>
+  <p>5つの企画の候補から2つを選ぶ選び方は何通りありますか。</p>
+  <div class="step">ステップ1（順列か組合せか）：2つを選ぶだけで順番を決めないので、組合せ \( {}_5\mathrm{C}_2 \) です。</div>
+  <div class="step">ステップ2（公式）：\( {}_5\mathrm{C}_2=\dfrac{5\times4}{2\times1}=10 \)。</div>
+  <div class="step">ステップ3（答えと確かめ）：答え 10通り（導入の問い①の答え）。②の20通りは、10通りの選び方それぞれに午前・午後の決め方が \( 2!=2 \) 通りずつあるので \( 10\times2=20 \) で、\( {}_5\mathrm{P}_2={}_5\mathrm{C}_2\times2! \) になっています。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（公式で計算する）</p>
+  <p>(1) \( {}_7\mathrm{C}_2 \)　(2) \( {}_{10}\mathrm{C}_3 \) の値を求めなさい。</p>
+  <div class="step">ステップ1（分子）：\( r \) 個の数を \( n \) から1ずつ小さくしてかけます。(1) \( 7\times6 \)、(2) \( 10\times9\times8 \)。</div>
+  <div class="step">ステップ2（分母）：\( r! \) です。(1) \( 2\times1 \)、(2) \( 3\times2\times1 \)。</div>
+  <div class="step">ステップ3（約分してから計算）：(1) \( {}_7\mathrm{C}_2=\dfrac{7\times6}{2\times1}=21 \)。(2) \( {}_{10}\mathrm{C}_3=\dfrac{10\times9\times8}{3\times2\times1}=120 \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（2つのグループから選ぶ）</p>
+  <p>1年生6人と2年生4人の中から、1年生2人と2年生2人の計4人の委員を選びます。選び方は何通りありますか。</p>
+  <div class="step">ステップ1（グループごとに分ける）：1年生6人から2人を選ぶ選び方と、2年生4人から2人を選ぶ選び方を別々に考えます。</div>
+  <div class="step">ステップ2（それぞれ組合せ）：\( {}_6\mathrm{C}_2=\dfrac{6\times5}{2\times1}=15 \)、\( {}_4\mathrm{C}_2=\dfrac{4\times3}{2\times1}=6 \)。</div>
+  <div class="step">ステップ3（積の法則）：1年生の選び方15通りのそれぞれに対して、2年生の選び方が6通りずつあるので \( 15\times6=90 \)。答え 90通り。</div>
+</div>
+<div class="box point"><p class="box-title">順列か組合せかの見分け方</p><p>選んだものに<strong>順番・役割・位置の区別をつけるなら順列</strong>、<strong>選ぶだけで区別をつけないなら組合せ</strong>です。迷ったら、選んだものを入れかえたとき「別の結果」になるかを考えましょう。委員長と副委員長を入れかえると別の結果（順列）、当番の2人を入れかえても同じ結果（組合せ）です。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：グループごとの数を足す</p><p>例題3を \( 15+6=21 \)（通り）とする誤りです。1年生の選び方と2年生の選び方は「どちらか一方」ではなく「両方とも」決めるので、和の法則ではなく積の法則でかけます。また、10人から4人を選ぶ \( {}_{10}\mathrm{C}_4=210 \)（通り）では、1年生が3人になる選び方なども含まれてしまいます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>組合せ</dt><dd>異なる \( n \) 個のものから、順序を考えずに \( r \) 個を取り出して1組にしたもの。</dd>
+    <dt>\( {}_n\mathrm{C}_r \)</dt><dd>\( n \) 個から \( r \) 個取る組合せの総数。\( {}_n\mathrm{C}_r=\dfrac{{}_n\mathrm{P}_r}{r!}=\dfrac{n!}{r!\,(n-r)!} \)。</dd>
+    <dt>順列と組合せの関係</dt><dd>\( {}_n\mathrm{P}_r={}_n\mathrm{C}_r\times r! \)。順列は「組を選んでから、選んだ \( r \) 個を並べる」と考えられる。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>順序を考えずに選んだものを組合せという。表や樹形図に整理すると、順列では同じ組を並べ方の数だけ重ねて数えていることが分かる（O1）。</li>
+    <li>順列は「組を選ぶ」×「選んだ \( r \) 個を並べる」なので \( {}_n\mathrm{P}_r={}_n\mathrm{C}_r\times r! \)。よって \( {}_n\mathrm{C}_r=\dfrac{{}_n\mathrm{P}_r}{r!}=\dfrac{n!}{r!\,(n-r)!} \)（O2）。</li>
+    <li>選んだものに順番・役割をつけるなら順列、つけないなら組合せ。グループごとに選ぶときは、それぞれの組合せを積の法則でかける（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">順列と組合せの関係</span>$$ {}_n\mathrm{P}_r={}_n\mathrm{C}_r\times r! $$</div>
+  <div><span class="f-name">組合せの総数</span>$$ {}_n\mathrm{C}_r=\frac{n(n-1)\cdots(n-r+1)}{r(r-1)\cdots2\cdot1}=\frac{n!}{r!\,(n-r)!} $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。数で答える問題は、半角数字で入力してください（「通り」「個」は付けても付けなくてもかまいません）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>次のうち、総数を<strong>組合せ</strong> \( {}_6\mathrm{C}_3 \) で求めるものはどれですか。</p>
+  <div class="choices">
+    <button>6人の中から、班長・副班長・書記を1人ずつ選ぶ</button>
+    <button>6人のそれぞれが、3つの係から1つを選ぶ（同じ係でもよい）</button>
+    <button data-correct="true">6人の中から、掃除当番を3人選ぶ</button>
+    <button>6人全員が1列に並ぶ</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">掃除当番は選ぶだけで役割の区別がないので組合せ \( {}_6\mathrm{C}_3=20 \)（通り）。班長・副班長・書記は役割があるので順列 \( {}_6\mathrm{P}_3=120 \)（通り）。6人がそれぞれ係を選ぶのは重複順列 \( 3^6=729 \)（通り、数Ａ-010）。6人全員が1列に並ぶのは \( 6!=720 \)（通り、数Ａ-007）です。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="35|35通り">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O3</span></div>
+  <p>\( {}_7\mathrm{C}_3 \) の値を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 35。\( {}_7\mathrm{C}_3=\dfrac{7\times6\times5}{3\times2\times1}=\dfrac{210}{6}=35 \)。210 としたなら順列 \( {}_7\mathrm{P}_3 \) のままで \( 3! \) で割っていません。70 としたなら \( 3! \) ではなく 3 で割っています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>\( {}_6\mathrm{C}_2 \) を求める式として正しいものはどれですか。</p>
+  <div class="choices"><button data-correct="true">\( \dfrac{6\times5}{2\times1} \)</button><button>\( 6\times5 \)</button><button>\( \dfrac{6!}{2!} \)</button><button>\( 6\times2 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( {}_6\mathrm{C}_2=\dfrac{{}_6\mathrm{P}_2}{2!}=\dfrac{6\times5}{2\times1}=15 \)。\( 6\times5=30 \) は順列 \( {}_6\mathrm{P}_2 \) で、\( 2! \) で割っていません。\( \dfrac{6!}{2!}=360 \) は分母の \( (n-r)!=4! \) を書き落とした誤り（正しくは \( \dfrac{6!}{2!\,4!} \)）。\( 6\times2=12 \) は \( n \) と \( r \) をかけただけの誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="126|126通り">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>9人の部員から、大会に出場する4人を選びます（役割は決めない）。選び方は何通りですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 126。\( {}_9\mathrm{C}_4=\dfrac{9\times8\times7\times6}{4\times3\times2\times1}=\dfrac{3024}{24}=126 \)（通り）。3024 としたなら順列 \( {}_9\mathrm{P}_4 \) で、選んだ4人の並べ方 \( 4!=24 \) 通りを重ねて数えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>1年生5人と2年生4人の中から、1年生2人と2年生2人を選びます。選び方は何通りですか。</p>
+  <div class="choices"><button>16通り</button><button>126通り</button><button>240通り</button><button data-correct="true">60通り</button></div>
+  <span class="result"></span>
+  <div class="explain">\( {}_5\mathrm{C}_2=10 \)、\( {}_4\mathrm{C}_2=6 \) で、両方とも選ぶので積の法則より \( 10\times6=60 \)（通り）。16通りは \( 10+6 \) と足した誤り。126通りは9人から4人を選ぶ \( {}_9\mathrm{C}_4 \) で、学年ごとの人数の条件を使っていません。240通りは \( {}_5\mathrm{P}_2\times{}_4\mathrm{P}_2=20\times12 \) で、選ぶだけなのに順列で数えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2</span></div>
+  <p>関係式 \( {}_5\mathrm{P}_3={}_5\mathrm{C}_3\times3! \) の \( 3! \) は、何の数を表していますか。</p>
+  <div class="choices">
+    <button>選ばなかった2人の並べ方の数</button>
+    <button data-correct="true">選んだ3人の並べ方の数</button>
+    <button>5人から3人を選ぶ選び方の数</button>
+    <button>5人全員の並べ方の数</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( {}_5\mathrm{P}_3 \) は「3人の組を選び（\( {}_5\mathrm{C}_3=10 \) 通り）、選んだ3人を並べる（\( 3!=6 \) 通り）」と考えた積で、\( 10\times6=60 \) です。選ばなかった2人の並べ方は \( 2! \)（数Ａ-007 で \( {}_5\mathrm{P}_3=\dfrac{5!}{2!} \) の分母に出てきた数）、5人から3人を選ぶ選び方は \( {}_5\mathrm{C}_3 \)、5人全員の並べ方は \( 5! \) で、どれも \( 3! \) とは別の数です。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="40|40通り">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>1 から 9 までの9個の整数から、異なる3個を選びます。選んだ3個の中に偶数がちょうど1個含まれる選び方は何通りですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 40。1〜9 の偶数は 2、4、6、8 の4個、奇数は 1、3、5、7、9 の5個。偶数を1個（\( {}_4\mathrm{C}_1=4 \) 通り）、奇数を2個（\( {}_5\mathrm{C}_2=10 \) 通り）選ぶので、積の法則より \( 4\times10=40 \)（通り）。\( {}_9\mathrm{C}_3=84 \) としたなら、偶数の個数の条件を使っていません。\( 4\times{}_8\mathrm{C}_2=112 \) としたなら、残りの2個に偶数が入る選び方まで数えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O3</span></div>
+  <p>文化祭の模擬店で売る商品を、8つの候補から3つ選びます。花子さんと太郎さんが選び方の総数を話し合っています。</p>
+  <p>花子：「1つ目、2つ目、3つ目と順に選ぶと \( 8\times7\times6 \) 通りだね。」<br>太郎：「でも、選ぶ順番が違うだけで同じ3つになるものが重なっているよ。」</p>
+  <p>3つの商品の選び方は何通りですか。</p>
+  <div class="choices"><button>336通り</button><button>112通り</button><button data-correct="true">56通り</button><button>24通り</button></div>
+  <span class="result"></span>
+  <div class="explain">花子さんの \( 8\times7\times6=336 \) は順列 \( {}_8\mathrm{P}_3 \) で、同じ3つの組を、その3つの並べ方 \( 3!=6 \) 通りずつ重ねて数えています（太郎さんの指摘）。よって \( {}_8\mathrm{C}_3=\dfrac{336}{6}=56 \)（通り）。336通りは重なりを除いていない数、112通りは \( 336\div3 \) と \( 3! \) ではなく 3 で割った誤り、24通りは \( 8\times3 \) と候補の数と選ぶ数をかけた誤りです。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2</span></div>
+  <p>5人 A、B、C、D、E から3人を選ぶ組合せの総数が \( \dfrac{{}_5\mathrm{P}_3}{3!} \) で求められる理由を、「組」と「並べ方」を行と列にした表を思い浮かべて説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　5人から3人を選んで並べる順列は \( {}_5\mathrm{P}_3=60 \) 通りある。この60通りを、どの3人を選んだか（組）で行に分け、その3人の並べ方を列に並べた表を作る。1つの組（たとえば {A, B, C}）の3人の並べ方は \( 3!=6 \) 通りなので、どの行にも6つずつ並ぶ。また、どの並べ方もちょうど1つの組の行に入る。よって（組の数）×6＝60 なので、組の数は \( \dfrac{{}_5\mathrm{P}_3}{3!}=\dfrac{60}{6}=10 \)（通り）である。</p>
+    <p><strong>採点の観点</strong>　① 順列60通りを組ごとに分けて考えている。② 1つの組から並べ方が \( 3! \) 通りずつできることを書いている。③ \( {}_5\mathrm{P}_3={}_5\mathrm{C}_3\times3! \) から割り算で組の数を求めている。</p>
+  </div>
+  <div class="explain">図3は4人から3人の場合の表でした。5人から3人でも、行（組）が10、列（並べ方）が6の表になります。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(イ)「具体的な事象を基に順列及び組合せの意味を理解し，順列の総数や組合せの総数を求めること」と、イ(ア)「事象の構造などに着目し，場合の数を求める方法を多面的に考察すること」に当たり、出題範囲に含まれます。学習指導要領は［用語・記号］に「nCr」を挙げ、解説は「具体的な事象に関する場合の数を樹形図や表に整理して調べる方法を考察することを通して，順列・組合せの総数の求め方の公式を導く」としています。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。</p>
+  <p class="small">問8は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">nCr の性質（数Ａ-012）</p>
+  <p>次の時間は、具体的な選び方を数える過程から、\( {}_n\mathrm{C}_r={}_n\mathrm{C}_{n-r} \) などの関係を見つけ、一般化して計算に使います。たとえば「10人から8人を選ぶ」と「10人から選ばない2人を選ぶ」の関係を考えます。\( r=0 \) のときの \( {}_n\mathrm{C}_0 \) もそこで扱います。</p>
+  <p>この時間では、多角形の対角線や三角形の個数への活用（数Ａ-013）、組分け（数Ａ-014）、同じものを含む順列（数Ａ-015）、組合せを用いた確率（数Ａ-020）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-010　重複順列</div>
+  <div><span class="label">次の時間</span>数Ａ-012　nCr の性質</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-011「組合せと nCr」（学習指導要領 数学Ａ (2)ア(イ)・イ(ア)、解説 p.93）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率、［用語・記号］nPr，nCr（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.93（具体的な事象に関する場合の数を樹形図や表に整理して調べる方法を考察することを通して，順列・組合せの総数の求め方の公式を導く）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「組合せ」（組合せの用語・記号・公式、既知の順列の総数をもとにして組合せの総数を考察すること）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>数研出版「編修趣意書 数Ａ104-904」（組合せから順列を作る仕組みを図を用いて解説すること）、「編修趣意書 数Ａ104-905」（順列と組合せの導入で同じ題材を扱い、関係を理解しやすくすること）https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。組を {A, B} のように書くのはこのページでの書き方です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-011",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-011",
+  "title": "組合せと nCr",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(イ)", "(2)イ(ア)"],
+  "kaisetsu_page": "93",
+  "objectives": [
+    {"id": "O1", "text": "具体的な事象の場合の数を樹形図や表に整理し、順序を区別しない組合せの意味を、順列と比べて説明できる。", "from": "具体的な事象の場合の数を樹形図や表に整理して組合せの意味を理解し", "sections": ["sec-1"], "checks": ["q1", "q8"]},
+    {"id": "O2", "text": "組合せと順列の関係 \\( {}_n\\mathrm{P}_r={}_n\\mathrm{C}_r\\times r! \\) を表に整理して導き、\\( {}_n\\mathrm{C}_r \\) を求める公式を説明できる。", "from": "順列との関係 nPr=nCr×r! から組合せの総数 nCr を求める公式を導くことができる", "sections": ["sec-2"], "checks": ["q3", "q6", "q9"]},
+    {"id": "O3", "text": "公式を用いて組合せの総数を求め、選ぶ場面の問題に用いることができる。", "from": "組合せの総数 nCr を求める", "sections": ["sec-3"], "checks": ["q2", "q4", "q5", "q7", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "組合せ", "where": "sec-1"},
+    {"term": "nCr", "where": "sec-1"},
+    {"term": "nPr=nCr×r!", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "順列 nPr", "taught_in": ["hs_math_1a/数Ａ-006"], "where": "review"},
+    {"concept": "階乗と nPr=n!/(n−r)!", "taught_in": ["hs_math_1a/数Ａ-007"], "where": "review"},
+    {"concept": "樹形図・表で、もれなく重複なく整理する", "taught_in": ["jhs_math/中2-081", "hs_math_1a/数Ａ-003"], "where": "sec-1"},
+    {"concept": "積の法則・和の法則", "taught_in": ["hs_math_1a/数Ａ-005", "hs_math_1a/数Ａ-004"], "where": "sec-3"},
+    {"concept": "集合を {A, B} のように要素を書き並べて表す", "taught_in": ["hs_math_1a/数Ⅰ-021"], "where": "sec-1"},
+    {"concept": "重複順列（確認1・問1の誤答の説明）", "taught_in": ["hs_math_1a/数Ａ-010"], "where": "review"},
+    {"concept": "偶数・奇数", "taught_in": ["jhs_math/中2-008"], "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "nCr=nCn−r などの性質と nC0（数Ａ-012）",
+    "多角形の対角線・三角形の個数への活用（数Ａ-013）",
+    "組分け（数Ａ-014）、同じものを含む順列（数Ａ-015）",
+    "組合せを用いた確率（数Ａ-020）"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(イ)・イ(ア)の事項と［用語・記号］nCr"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.93 樹形図や表に整理して順列・組合せの総数の求め方の公式を導くこと"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "「既知の順列の総数をもとにして，組合せの総数を考察することができる」"},
+    {"name": "編修趣意書 数Ａ104-904・数Ａ104-905", "publisher": "数研出版（文部科学省公開）", "url": "https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html", "use": "組合せから順列を作る仕組みを図で示す扱い、順列と組合せの導入で同じ題材を使う扱い（参考）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

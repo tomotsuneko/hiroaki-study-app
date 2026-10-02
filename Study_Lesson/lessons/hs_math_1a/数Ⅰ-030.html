@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単元末演習（集合と命題）｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>集合と命題</span><span>数Ⅰ-030</span></div>
+  <h1>単元末演習（集合と命題）</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">演習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">「集合と命題」で学んだ問題には、いくつかの決まった型があります。問題を見て「どの型か」「何に着目するか」を判断しながら、集合の計算、命題の真偽と条件の判定、対偶や背理法による証明の問題を仕上げます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>集合を要素の書き並べや条件で表し、包含関係を判断して、共通部分・和集合・補集合をベン図や数直線とド・モルガンの法則を用いて求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>命題の真偽を集合の包含関係から判断して偽なら反例を示し、必要条件・十分条件・必要十分条件の判定と条件の否定ができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>逆・裏・対偶の真偽を調べ、対偶や背理法を用いて簡単な命題を証明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-029）</span>背理法による証明</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-030）</span>単元末演習（集合と命題）</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-031）</span>関数と f(x)</div>
+</div>
+<p class="small">範囲：単元「集合と命題」の数Ⅰ-021〜029。新しい内容は扱わず、学んだ型を見分けて使う練習をします。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：単元の要点の総整理</h2>
+<p>単元「集合と命題」の要点を、学んだコマとともにまとめます。命題「\( p \) ならば \( q \)」を \( p\Longrightarrow q \)、条件 \( p \)、\( q \) を満たすもの全体の集合を \( P \)、\( Q \)、条件 \( p \) の否定を \( \overline{p} \) と書きます。</p>
+<div class="formula-card">
+  <div><span class="f-name">集合と要素・包含関係（数Ⅰ-021）</span>
+    <p>\( a\in A \)（\( a \) は \( A \) の要素）、\( a\notin A \)<br>書き並べる \( \{1,\ 2,\ 3\} \)／条件で表す \( \{\,x\mid x&gt;2\,\} \)<br>\( A\subset B \)：\( A \) のどの要素も \( B \) の要素</p></div>
+  <div><span class="f-name">共通部分・和集合・補集合（数Ⅰ-022）</span>
+    <p>\( A\cap B \)：両方に属する<br>\( A\cup B \)：少なくとも一方に属する<br>\( \overline{A} \)：\( U \) の要素で \( A \) に属さない<br>空集合 \( \emptyset \)：要素がない（記号 \( \emptyset \) は数Ⅰ-022 と同じく、このページでの書き方）</p></div>
+  <div><span class="f-name">ド・モルガンの法則（数Ⅰ-023）</span>
+    <p>\( \overline{A\cap B}=\overline{A}\cup\overline{B} \)<br>\( \overline{A\cup B}=\overline{A}\cap\overline{B} \)</p></div>
+  <div><span class="f-name">命題と集合（数Ⅰ-024）</span>
+    <p>\( p\Longrightarrow q \) が真であることは \( P\subset Q \) と同じ<br>偽を示すには反例（\( p \) を満たし \( q \) を満たさない例）を1つ</p></div>
+  <div><span class="f-name">必要条件・十分条件（数Ⅰ-025・026）</span>
+    <p>\( p\Longrightarrow q \) が真：\( p \) は \( q \) の十分条件、\( q \) は \( p \) の必要条件<br>両方向が真：必要十分条件（同値、\( P=Q \)）</p></div>
+  <div><span class="f-name">条件の否定（数Ⅰ-026）</span>
+    <p>\( \overline{p} \) の集合は \( \overline{P} \)<br>\( \overline{p\ \text{かつ}\ q}\Longleftrightarrow\overline{p}\ \text{または}\ \overline{q} \)<br>\( \overline{p\ \text{または}\ q}\Longleftrightarrow\overline{p}\ \text{かつ}\ \overline{q} \)</p></div>
+  <div><span class="f-name">逆・裏・対偶（数Ⅰ-027）</span>
+    <p>逆 \( q\Longrightarrow p \)、裏 \( \overline{p}\Longrightarrow\overline{q} \)、対偶 \( \overline{q}\Longrightarrow\overline{p} \)<br>もとの命題と対偶は真偽が一致</p></div>
+  <div><span class="f-name">証明の方法（数Ⅰ-028・029）</span>
+    <p>対偶：\( \overline{q}\Longrightarrow\overline{p} \) を示す<br>背理法：成り立たないと仮定して矛盾を導く</p></div>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-021</span></div>
+  <p>\( A=\{\,x\mid x \) は 12 の正の約数\( \,\} \)、\( B=\{\,x\mid x \) は 24 の正の約数\( \,\} \) とします。正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( B\subset A \)</button>
+    <button data-correct="true">\( A\subset B \)</button>
+    <button>\( A=B \)</button>
+    <button>\( 3\notin A \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( A=\{1,\ 2,\ 3,\ 4,\ 6,\ 12\} \)、\( B=\{1,\ 2,\ 3,\ 4,\ 6,\ 8,\ 12,\ 24\} \) で、\( A \) のどの要素も \( B \) の要素なので \( A\subset B \) です。\( B \) の要素 8 は \( A \) に入らないので、\( B\subset A \) も \( A=B \) も成り立ちません。3 は 12 の約数なので \( 3\in A \) です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-024</span></div>
+  <p>自然数 \( n \) についての命題「\( n \) が素数ならば、\( n \) は奇数である」は偽です。反例はどれですか。</p>
+  <div class="choices">
+    <button>\( n=9 \)</button>
+    <button>\( n=3 \)</button>
+    <button data-correct="true">\( n=2 \)</button>
+    <button>\( n=1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">反例は、仮定（素数）を満たすのに結論（奇数）を満たさないものです。2 は素数（中1-020）で、偶数です。9 と 1 は素数ではないので仮定を満たさず、3 は素数で奇数なので、どれも反例になりません。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-025</span></div>
+  <p>\( \triangle ABC \) が正三角形であることは、\( \triangle ABC \) が二等辺三角形であるための何条件ですか。</p>
+  <div class="choices">
+    <button data-correct="true">十分条件であるが、必要条件ではない</button>
+    <button>必要条件であるが、十分条件ではない</button>
+    <button>必要十分条件</button>
+    <button>必要条件でも十分条件でもない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正三角形は3つの辺が等しいので、2つの辺が等しい二等辺三角形でもあります（中2-061）。よって「正三角形 ⟹ 二等辺三角形」は真で、十分条件です。一方、\( AB=AC=5 \)、\( BC=6 \) の三角形は二等辺三角形ですが正三角形ではないので、逆は偽で、必要条件ではありません。「必要条件であるが…」は矢印の向きを逆に読んだ誤りです。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：どの型か見分けよう</h2>
+<div class="box think">
+  <p class="box-title">この4問、何に着目する？</p>
+  <p>(ア) 1 から 12 までの自然数を全体集合とし、2 の倍数の集合を \( A \)、3 の倍数の集合を \( B \) とするとき、\( \overline{A\cup B} \) を求める。<br>
+  (イ) 実数 \( x \) について、「\( x^2=x \)」は「\( x=1 \)」であるための何条件かを答える。<br>
+  (ウ) \( n \) を整数とするとき、「\( n^2+2n \) が奇数ならば、\( n \) は奇数である」ことを証明する。<br>
+  (エ) \( x \) を有理数とするとき、\( x+\sqrt{2} \) は無理数であることを証明する。</p>
+  <p>解き始める前に、それぞれ「どの方法を使うか」を予想しましょう。答えは、(ア) が「型A 集合」、(イ) が「型B 命題と条件」、(ウ)(エ) が「型C 証明」の例題で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="型A 集合"><span class="num">3</span>型A：集合の表し方と共通部分・和集合・補集合</h2>
+<h3>型を見分ける手掛かり</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>問題の形</th><th>着目すること・使う方法</th><th>学んだコマ</th></tr>
+  <tr><td>集合を表す・要素かどうか・含まれるか</td><td>書き並べられるなら書き並べる。\( A\subset B \) は \( A \) の要素を1つずつ確かめる。成り立たないなら、\( B \) にない \( A \) の要素を1つ示す</td><td>数Ⅰ-021</td></tr>
+  <tr><td>要素を書き並べた集合の \( \cap \)・\( \cup \)・補集合</td><td>ベン図に要素を書き込み、領域ごとに読む</td><td>数Ⅰ-022</td></tr>
+  <tr><td>不等式で表された集合</td><td>数直線に高さを変えてかく。端の ●○ に注意</td><td>数Ⅰ-021・022</td></tr>
+  <tr><td>\( \overline{A\cup B} \)、\( \overline{A\cap B} \) など</td><td>ド・モルガンの法則で \( \overline{A} \)、\( \overline{B} \) の式に直すか、ベン図の外側・内側で読む</td><td>数Ⅰ-023</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題1（要素を書き並べた集合）＝導入の (ア)</p>
+  <p>全体集合を \( U=\{1,\ 2,\ \cdots,\ 12\} \) とし、\( A \) を 2 の倍数、\( B \) を 3 の倍数の集合とします。\( A\cap B \)、\( A\cup B \)、\( \overline{A\cup B} \)、\( \overline{A}\cap B \) を求めなさい。</p>
+  <div class="step">着目：まず書き並べる。\( A=\{2,\ 4,\ 6,\ 8,\ 10,\ 12\} \)、\( B=\{3,\ 6,\ 9,\ 12\} \)。ベン図（図1）に書き込みます。</div>
+  <div class="step">\( A\cap B=\{6,\ 12\} \)、\( A\cup B=\{2,\ 3,\ 4,\ 6,\ 8,\ 9,\ 10,\ 12\} \)。</div>
+  <div class="step">着目：\( \overline{A\cup B} \) は \( A \) にも \( B \) にも入らない部分（図1の斜線）。\( \overline{A\cup B}=\{1,\ 5,\ 7,\ 11\} \)。ド・モルガンの法則で \( \overline{A}\cap\overline{B} \) を求めても同じになります。</div>
+  <div class="step">\( \overline{A}\cap B \) は「\( B \) の要素で \( A \) に入らないもの」なので \( \{3,\ 9\} \)。</div>
+  <div class="step">答え：\( A\cap B=\{6,\ 12\} \)、\( A\cup B=\{2,\ 3,\ 4,\ 6,\ 8,\ 9,\ 10,\ 12\} \)、\( \overline{A\cup B}=\{1,\ 5,\ 7,\ 11\} \)、\( \overline{A}\cap B=\{3,\ 9\} \)</div>
+</div>
+<figure>
+<!--svg:f030a-->
+<svg viewBox="0 0 440 244" width="440" role="img" aria-label="1 から 12 までの自然数のベン図。A は 2 の倍数、B は 3 の倍数。A だけに 2、4、8、10、共通部分に 6、12、B だけに 3、9、どちらにも入らない部分に 1、5、7、11。A と B の外側（A∪B の補集合）に斜線" data-fig="f030a">
+<defs><pattern id="hatch030a" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#c0392b" fill-opacity="0.10"/><line x1="0" y1="0" x2="0" y2="8" stroke="#c0392b" stroke-width="2" stroke-opacity="0.45"/></pattern></defs>
+<rect x="10" y="30" width="420" height="206" rx="4" fill="url(#hatch030a)" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="165" cy="132" r="82" style="fill:var(--card)"/>
+<circle cx="275" cy="132" r="82" style="fill:var(--card)"/>
+<circle cx="165" cy="132" r="82" fill="none" stroke="#1f5fbf" stroke-width="2" data-set="A"/>
+<circle cx="275" cy="132" r="82" fill="none" stroke="#1e8e5a" stroke-width="2" stroke-dasharray="6 3" data-set="B"/>
+<text x="18" y="22" text-anchor="start" font-size="12" font-weight="700" fill="currentColor">U：1 から 12 までの自然数</text>
+<text x="76" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf">A：2 の倍数</text>
+<text x="364" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#1e8e5a">B：3 の倍数</text>
+<text x="118" y="104.5" text-anchor="middle" font-size="13" fill="currentColor" data-n="2">2</text>
+<text x="150" y="104.5" text-anchor="middle" font-size="13" fill="currentColor" data-n="4">4</text>
+<text x="118" y="154.5" text-anchor="middle" font-size="13" fill="currentColor" data-n="8">8</text>
+<text x="150" y="154.5" text-anchor="middle" font-size="13" fill="currentColor" data-n="10">10</text>
+<text x="220" y="116.5" text-anchor="middle" font-size="13" fill="currentColor" data-n="6">6</text>
+<text x="220" y="156.5" text-anchor="middle" font-size="13" fill="currentColor" data-n="12">12</text>
+<text x="305" y="116.5" text-anchor="middle" font-size="13" fill="currentColor" data-n="3">3</text>
+<text x="305" y="156.5" text-anchor="middle" font-size="13" fill="currentColor" data-n="9">9</text>
+<text x="36" y="84.5" text-anchor="middle" font-size="13" fill="currentColor" data-n="1">1</text>
+<text x="36" y="174.5" text-anchor="middle" font-size="13" fill="currentColor" data-n="5">5</text>
+<text x="404" y="84.5" text-anchor="middle" font-size="13" fill="currentColor" data-n="7">7</text>
+<text x="404" y="174.5" text-anchor="middle" font-size="13" fill="currentColor" data-n="11">11</text>
+</svg>
+<!--/svg:f030a-->
+  <figcaption>図1　1 から 12 までの自然数のベン図（A：2 の倍数、B：3 の倍数）。斜線は \( \overline{A\cup B}=\{1,\ 5,\ 7,\ 11\} \)</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題2（不等式で表された集合）</p>
+  <p>全体集合を実数全体とし、\( A=\{\,x\mid -1\leqq x&lt;3\,\} \)、\( B=\{\,x\mid x\geqq 2\,\} \)、\( C=\{\,x\mid x&lt;-1\,\} \) とします。\( A\cap B \)、\( A\cup B \)、\( \overline{A} \)、\( A\cap C \) を求めなさい。</p>
+  <div class="step">着目：数直線に \( A \)、\( B \) を高さを変えてかく（図2）。重なる部分は \( 2\leqq x&lt;3 \) で、\( A\cap B=\{\,x\mid 2\leqq x&lt;3\,\} \)。</div>
+  <div class="step">少なくとも一方に入る部分は \( -1 \) 以上のすべてで、\( A\cup B=\{\,x\mid x\geqq -1\,\} \)。</div>
+  <div class="step">着目：補集合は「かつ」の否定。\( A \) は「\( x\geqq -1 \) かつ \( x&lt;3 \)」なので、\( \overline{A}=\{\,x\mid x&lt;-1 \) または \( x\geqq 3\,\} \)（数Ⅰ-026）。</div>
+  <div class="step">着目：端の数。\( A \) は \( -1 \) を含み、\( C \) は \( -1 \) を含まないので、共通の要素はありません。\( A\cap C=\emptyset \)。</div>
+</div>
+<figure>
+<!--svg:f030b-->
+<svg viewBox="0 0 440 95" width="440" role="img" aria-label="数直線に A：−1≦x&lt;3（−1 に黒丸、3 に白丸）と B：x≧2（2 に黒丸、右向き）を高さを変えて描いた図。重なる部分は 2≦x&lt;3" data-fig="f030b">
+<g data-row="0">
+<text x="8" y="15" text-anchor="start" font-size="12" font-weight="700" fill="currentColor">A＝{x | −1 ≦ x &lt; 3}、B＝{x | x ≧ 2}</text>
+<line x1="10" y1="65" x2="430" y2="65" stroke="currentColor" stroke-width="1.2"/>
+<path d="M430,65 L422,61 L422,69 Z" fill="currentColor"/>
+<line x1="22" y1="61" x2="22" y2="69" stroke="currentColor"/>
+<text x="22" y="84" text-anchor="middle" font-size="12" fill="currentColor">−3</text>
+<line x1="65.6" y1="61" x2="65.6" y2="69" stroke="currentColor"/>
+<text x="65.6" y="84" text-anchor="middle" font-size="12" fill="currentColor">−2</text>
+<line x1="109.1" y1="61" x2="109.1" y2="69" stroke="currentColor"/>
+<text x="109.1" y="84" text-anchor="middle" font-size="12" fill="currentColor">−1</text>
+<line x1="152.7" y1="61" x2="152.7" y2="69" stroke="currentColor"/>
+<text x="152.7" y="84" text-anchor="middle" font-size="12" fill="currentColor">0</text>
+<line x1="196.2" y1="61" x2="196.2" y2="69" stroke="currentColor"/>
+<text x="196.2" y="84" text-anchor="middle" font-size="12" fill="currentColor">1</text>
+<line x1="239.8" y1="61" x2="239.8" y2="69" stroke="currentColor"/>
+<text x="239.8" y="84" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<line x1="283.3" y1="61" x2="283.3" y2="69" stroke="currentColor"/>
+<text x="283.3" y="84" text-anchor="middle" font-size="12" fill="currentColor">3</text>
+<line x1="326.9" y1="61" x2="326.9" y2="69" stroke="currentColor"/>
+<text x="326.9" y="84" text-anchor="middle" font-size="12" fill="currentColor">4</text>
+<line x1="370.4" y1="61" x2="370.4" y2="69" stroke="currentColor"/>
+<text x="370.4" y="84" text-anchor="middle" font-size="12" fill="currentColor">5</text>
+<line x1="414" y1="61" x2="414" y2="69" stroke="currentColor"/>
+<text x="414" y="84" text-anchor="middle" font-size="12" fill="currentColor">6</text>
+<path d="M109.1,65 L109.1,49 L283.3,49 L283.3,65" fill="none" stroke="#1f5fbf" stroke-width="2.5"/>
+<circle cx="109.1" cy="65" r="5" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="2" data-v="-1" data-in="1"/>
+<circle cx="283.3" cy="65" r="5" style="fill:var(--card)" stroke="#1f5fbf" stroke-width="2" data-v="3" data-in="0"/>
+<path d="M239.8,65 L239.8,34 L416,34" fill="none" stroke="#1e8e5a" stroke-width="2.5"/>
+<path d="M422,34 L413,29.5 L413,38.5 Z" fill="#1e8e5a"/>
+<circle cx="239.8" cy="65" r="5" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="2" data-v="2" data-in="1"/>
+<text x="152.7" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="#1f5fbf">A</text>
+<text x="370.4" y="29" text-anchor="middle" font-size="12" font-weight="700" fill="#1e8e5a">B</text>
+</g>
+</svg>
+<!--/svg:f030b-->
+  <figcaption>図2　\( A=\{\,x\mid -1\leqq x&lt;3\,\} \)（青）と \( B=\{\,x\mid x\geqq 2\,\} \)（緑）。重なる部分が \( A\cap B \)</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>(1) \( \overline{A\cup B} \) を \( \overline{A}\cup\overline{B} \) とする。補集合をとると \( \cup \) は \( \cap \) に変わります。<br>(2) 数直線で端の数を見落とす。\( A\cap B \) の左端 2 は \( A \) にも \( B \) にも入るので含み（●）、右端 3 は \( A \) に入らないので含みません（○）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="型B 命題と条件"><span class="num">4</span>型B：命題の真偽と反例、必要条件・十分条件、条件の否定</h2>
+<h3>型を見分ける手掛かり</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>問題の形</th><th>着目すること・使う方法</th><th>学んだコマ</th></tr>
+  <tr><td>命題の真偽</td><td>\( P\subset Q \) かを数直線・ベン図で見る。偽なら反例（\( p \) を満たし \( q \) を満たさない例）を1つ</td><td>数Ⅰ-024</td></tr>
+  <tr><td>「何条件か」</td><td>\( p\Longrightarrow q \) と \( q\Longrightarrow p \) の両方の真偽を調べる。集合 \( P \)、\( Q \) を求めて比べると確実</td><td>数Ⅰ-025・026</td></tr>
+  <tr><td>条件の否定</td><td>不等号は境目の等号、「かつ」「または」はド・モルガンの法則</td><td>数Ⅰ-026</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（命題の真偽）</p>
+  <p>次の命題の真偽を答え、偽であるものは反例を示しなさい。(1) 実数 \( x \) について「\( x\geqq 3 \) ならば \( x&gt;2 \)」　(2) 整数 \( n \) について「\( n \) が 3 の倍数ならば \( n \) は 6 の倍数」</p>
+  <div class="step">(1) 着目：集合の包含関係。\( P=\{\,x\mid x\geqq 3\,\} \) は \( Q=\{\,x\mid x&gt;2\,\} \) に含まれる（3 以上の数はすべて 2 より大きい）。答え：真</div>
+  <div class="step">(2) 着目：仮定を満たす小さな数から調べる。\( n=3 \) は 3 の倍数ですが 6 の倍数ではありません。答え：偽（反例 \( n=3 \)）</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（何条件か）＝導入の (イ)</p>
+  <p>実数 \( x \) について、「\( x^2=x \)」は「\( x=1 \)」であるための何条件ですか。</p>
+  <div class="step">着目：\( p \) を満たす \( x \) を求めて集合で比べる。\( x^2=x \) より \( x^2-x=0 \)、\( x(x-1)=0 \) なので \( x=0 \) または \( x=1 \)（中3-041）。\( P=\{0,\ 1\} \)、\( Q=\{1\} \)。</div>
+  <div class="step">\( Q\subset P \) なので \( q\Longrightarrow p \) は真。\( 0\in P \)、\( 0\notin Q \) なので \( p\Longrightarrow q \) は偽（反例 \( x=0 \)）。</div>
+  <div class="step">答え：必要条件であるが、十分条件ではない</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5（条件の否定）</p>
+  <p>整数 \( n \) の条件「\( n \) は偶数 かつ \( n&gt;5 \)」の否定を答えなさい。</p>
+  <div class="step">着目：ド・モルガンの法則で「かつ」は「または」に。\( n \) が整数なので「偶数でない」は「奇数」、\( n&gt;5 \) の否定は \( n\leqq 5 \)。</div>
+  <div class="step">答え：「\( n \) は奇数 または \( n\leqq 5 \)」</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>(1) 「何条件か」で、一方の向きだけ調べて答える。例題4で \( x=1 \Longrightarrow x^2=x \) だけを見て「必要十分条件」とすると、\( x=0 \) を落とします。<br>(2) 反例に、仮定を満たさない数を挙げる。例題3(2)で \( n=4 \) は 3 の倍数でないので反例になりません。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="型C 証明"><span class="num">5</span>型C：逆・裏・対偶と、対偶・背理法による証明</h2>
+<h3>型を見分ける手掛かり</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>問題の形</th><th>着目すること・使う方法</th><th>学んだコマ</th></tr>
+  <tr><td>逆・裏・対偶をつくる・真偽を調べる</td><td>定義どおりにつくる。もとの命題と対偶、逆と裏は真偽が一致</td><td>数Ⅰ-027</td></tr>
+  <tr><td>「〜ならば〜」の証明で、結論を否定すると式にしやすい（「奇数」→ \( 2k+1 \) など）</td><td>対偶を利用した証明</td><td>数Ⅰ-028</td></tr>
+  <tr><td>「無理数である」「〜でない」「ただ1つ」など、直接示しにくい主張</td><td>背理法（成り立たないと仮定して矛盾を導く）</td><td>数Ⅰ-029</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題6（逆・裏・対偶の真偽）</p>
+  <p>整数 \( n \) についての命題「\( n \) が 6 の倍数ならば、\( n \) は 3 の倍数である」の逆・裏・対偶をつくり、真偽を答えなさい。</p>
+  <div class="step">もとの命題：6 の倍数は \( 6k=3\cdot 2k \) で 3 の倍数なので、真。</div>
+  <div class="step">逆「3 の倍数ならば 6 の倍数」：\( n=3 \) が反例で、偽。裏「6 の倍数でないならば 3 の倍数でない」：\( n=3 \) が反例で、偽（逆と真偽が一致）。</div>
+  <div class="step">対偶「3 の倍数でないならば 6 の倍数でない」：もとの命題と真偽が一致するので、真。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題7（対偶を利用した証明）＝導入の (ウ)</p>
+  <p>\( n \) を整数とするとき、「\( n^2+2n \) が奇数ならば、\( n \) は奇数である」ことを証明しなさい。</p>
+  <div class="step">着目：結論「\( n \) は奇数」の否定「\( n \) は偶数」なら \( n=2k \) と式にできる。対偶「\( n \) が偶数ならば、\( n^2+2n \) は偶数である」を証明する。</div>
+  <div class="step">\( n \) は偶数なので、整数 \( k \) を用いて \( n=2k \) と表せる。\( n^2+2n=4k^2+4k=2(2k^2+2k) \)。</div>
+  <div class="step">\( 2k^2+2k \) は整数なので、\( n^2+2n \) は偶数である。対偶が真であるから、もとの命題も真である。（証明終わり）</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題8（背理法による証明）＝導入の (エ)</p>
+  <p>\( x \) を有理数とするとき、\( x+\sqrt{2} \) は無理数であることを証明しなさい。ただし、\( \sqrt{2} \) が無理数であることは用いてよい。</p>
+  <div class="step">着目：「無理数である」は直接示しにくいので背理法。\( x+\sqrt{2} \) が有理数であると仮定し、\( x+\sqrt{2}=r \)（\( r \) は有理数）とおく。</div>
+  <div class="step">\( \sqrt{2}=r-x \)。有理数どうしの差は有理数なので（数Ⅰ-011）、\( \sqrt{2} \) は有理数になる。</div>
+  <div class="step">これは \( \sqrt{2} \) が無理数であること（数Ⅰ-029）に矛盾する。よって、\( x+\sqrt{2} \) は無理数である。（証明終わり）</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>(1) 対偶のつもりで逆や裏を証明する。最初に「対偶『…』を証明する」と書き、どの命題を示すかをはっきりさせます。<br>(2) 背理法で、矛盾の相手を書かない。例題8では「\( \sqrt{2} \) は無理数」という既に証明した事実と矛盾しています。<br>(3) 例をいくつか確かめて「証明した」とする。いくつかの例では、すべての場合を示したことになりません。</p></div>
+<div class="box point"><p class="box-title">この単元の問題の型と、練習した場所</p>
+<div class="table-wrap">
+<table>
+  <tr><th>型（学んだコマ）</th><th>このページで練習する問題</th></tr>
+  <tr><td>集合と要素・表し方・包含関係（021）</td><td>確認1、例題1・2、問3</td></tr>
+  <tr><td>共通部分・和集合・補集合・空集合（022）</td><td>例題1・2、問1・問3</td></tr>
+  <tr><td>ド・モルガンの法則（023）</td><td>例題1、問2</td></tr>
+  <tr><td>命題の真偽と反例（024）</td><td>確認2、例題3、問4</td></tr>
+  <tr><td>必要条件・十分条件（025）</td><td>確認3、例題4、問5・問9</td></tr>
+  <tr><td>必要十分条件・条件の否定（026）</td><td>例題4・5、問6・問9・問11</td></tr>
+  <tr><td>逆・裏・対偶（027）</td><td>例題6、問7</td></tr>
+  <tr><td>対偶を利用した証明（028）</td><td>例題7、問8・問11</td></tr>
+  <tr><td>背理法による証明（029）</td><td>例題8、問10</td></tr>
+</table>
+</div></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この単元の重要語句</p>
+  <dl>
+    <dt>集合・要素・部分集合</dt><dd>そこに入るかどうかがはっきり決まるものの集まりが集合、集合をつくっている一つ一つのものが要素。\( A \) のどの要素も \( B \) の要素のとき \( A\subset B \)（\( A \) は \( B \) の部分集合）（数Ⅰ-021）。</dd>
+    <dt>共通部分・和集合・補集合・空集合</dt><dd>\( A\cap B \)、\( A\cup B \)、\( \overline{A} \)、要素をもたない集合 \( \emptyset \)（数Ⅰ-022）。</dd>
+    <dt>ド・モルガンの法則</dt><dd>\( \overline{A\cap B}=\overline{A}\cup\overline{B} \)、\( \overline{A\cup B}=\overline{A}\cap\overline{B} \)（数Ⅰ-023）。</dd>
+    <dt>命題・真偽・反例</dt><dd>正しいか正しくないかがはっきり決まる文や式が命題。偽を示すには反例を1つ挙げる（数Ⅰ-024）。</dd>
+    <dt>必要条件・十分条件・必要十分条件</dt><dd>\( p\Longrightarrow q \) が真のとき、\( p \) は \( q \) の十分条件、\( q \) は \( p \) の必要条件。両方向が真なら必要十分条件（同値）（数Ⅰ-025・026）。</dd>
+    <dt>逆・裏・対偶</dt><dd>\( p\Longrightarrow q \) に対する \( q\Longrightarrow p \)、\( \overline{p}\Longrightarrow\overline{q} \)、\( \overline{q}\Longrightarrow\overline{p} \)（数Ⅰ-027）。</dd>
+    <dt>背理法</dt><dd>成り立たないと仮定して矛盾を導き、成り立つと結論する証明の方法（数Ⅰ-029）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>型A：書き並べてベン図、不等式なら数直線。補集合はド・モルガンの法則で \( \cap \) と \( \cup \) を入れかえ、端の ●○ に注意する（O1）。</li>
+    <li>型B：真偽は \( P\subset Q \) か、偽なら反例1つ。「何条件か」は両方向を調べる。否定は等号と「かつ」「または」に注意する（O2）。</li>
+    <li>型C：対偶と真偽が一致することを使う。結論の否定が式にしやすいなら対偶、「無理数」「ただ1つ」などは背理法。どの命題を示すか、何と矛盾するかを書く（O3）。</li>
+  </ul>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">型を混ぜた11問です。基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）と型（学んだコマ）を示す。要素を入力する問題は 3,8 のようにコンマ（、でもよい）で区切り、式を入力する問題は \( k^2 \) を k^2 または k² と入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1（数Ⅰ-022）</span></div>
+  <p>全体集合を \( U=\{1,\ 2,\ \cdots,\ 10\} \) とし、\( A=\{2,\ 4,\ 6,\ 8,\ 10\} \)、\( B=\{1,\ 2,\ 3,\ 4,\ 5\} \) とします。\( \overline{A}\cap B \) はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \{1,\ 3,\ 5\} \)</button>
+    <button>\( \{2,\ 4\} \)</button>
+    <button>\( \{1,\ 3,\ 5,\ 7,\ 9\} \)</button>
+    <button>\( \{7,\ 9\} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \overline{A}=\{1,\ 3,\ 5,\ 7,\ 9\} \) で、そのうち \( B \) にも入るのは 1、3、5 なので \( \overline{A}\cap B=\{1,\ 3,\ 5\} \) です。\( \{2,\ 4\} \) は \( A\cap B \)（補集合をとり忘れた）、\( \{1,\ 3,\ 5,\ 7,\ 9\} \) は \( \overline{A} \) だけ（\( B \) との共通部分をとり忘れた）、\( \{7,\ 9\} \) は \( \overline{A}\cap\overline{B} \)（\( B \) の補集合までとってしまった）です。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="7,9|9,7|{7,9}|{9,7}">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1（数Ⅰ-023）</span></div>
+  <p>問1の \( U \)、\( A \)、\( B \) について、\( \overline{A\cup B} \) の要素をすべて答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 7、9。\( A\cup B=\{1,\ 2,\ 3,\ 4,\ 5,\ 6,\ 8,\ 10\} \) なので、その補集合は \( \{7,\ 9\} \) です。ド・モルガンの法則で \( \overline{A}\cap\overline{B}=\{1,\ 3,\ 5,\ 7,\ 9\}\cap\{6,\ 7,\ 8,\ 9,\ 10\}=\{7,\ 9\} \) としても同じです。\( \{1,\ 3,\ 5,\ 7,\ 9\} \) と答えた場合は \( \overline{A} \) だけ、\( \{1,\ 3,\ 5,\ 6,\ 7,\ 8,\ 9,\ 10\} \) と答えた場合は \( \overline{A}\cup\overline{B} \)（\( \overline{A\cap B} \)）を求めています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O1（数Ⅰ-021・022）</span></div>
+  <p>全体集合を実数全体とし、\( A=\{\,x\mid -2\leqq x&lt;3\,\} \)、\( B=\{\,x\mid x&gt;1\,\} \) とします。\( A\cap B \) はどれですか。</p>
+  <div class="choices">
+    <button>\( \{\,x\mid 1\leqq x&lt;3\,\} \)</button>
+    <button data-correct="true">\( \{\,x\mid 1&lt;x&lt;3\,\} \)</button>
+    <button>\( \{\,x\mid x\geqq -2\,\} \)</button>
+    <button>\( \{\,x\mid -2\leqq x\leqq 1\,\} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">数直線で重なる部分は、1 より大きく 3 より小さい部分です。1 は \( B \) に入らず、3 は \( A \) に入らないので、どちらの端も含みません。\( \{\,x\mid 1\leqq x&lt;3\,\} \) は端の 1 を含めた誤り、\( \{\,x\mid x\geqq -2\,\} \) は和集合 \( A\cup B \)、\( \{\,x\mid -2\leqq x\leqq 1\,\} \) は \( A\cap\overline{B} \)（\( A \) の要素で \( B \) に入らない部分）です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問4</span><span class="q-obj">O2（数Ⅰ-024）</span></div>
+  <p>次の命題のうち、真であるものはどれですか。</p>
+  <div class="choices">
+    <button>実数 \( x \) について「\( x^2=4 \) ならば \( x=2 \)」</button>
+    <button>実数 \( x \) について「\( x\geqq 3 \) ならば \( x&gt;3 \)」</button>
+    <button data-correct="true">整数 \( n \) について「\( n \) が 4 の倍数ならば \( n \) は 2 の倍数」</button>
+    <button>実数 \( x \) について「\( x&gt;1 \) ならば \( x&gt;2 \)」</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">4 の倍数は \( 4k=2\cdot 2k \)（\( k \) は整数）で 2 の倍数なので、真です。ほかは偽で、反例はそれぞれ \( x=-2 \)（\( x^2=4 \) だが \( x\ne 2 \)）、\( x=3 \)（\( x\geqq 3 \) だが \( x&gt;3 \) でない：端の数に注意）、\( x=\dfrac{3}{2} \)（\( x&gt;1 \) だが \( x&gt;2 \) でない）です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2（数Ⅰ-025・026）</span></div>
+  <p>\( a \)、\( b \) を実数とします。「\( a=b \)」は「\( a^2=b^2 \)」であるための何条件ですか。</p>
+  <div class="choices">
+    <button data-correct="true">十分条件であるが、必要条件ではない</button>
+    <button>必要条件であるが、十分条件ではない</button>
+    <button>必要十分条件</button>
+    <button>必要条件でも十分条件でもない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( a=b \) なら \( a^2=b^2 \) なので、「\( a=b\Longrightarrow a^2=b^2 \)」は真（十分条件）。一方、\( a=1 \)、\( b=-1 \) は \( a^2=b^2 \) を満たすが \( a=b \) を満たさないので、逆は偽（必要条件ではない）。「必要条件であるが…」は矢印の向きを逆に読んだ誤り、「必要十分条件」は \( a=-b \) の場合を見落とした誤り、「どちらでもない」は \( a=b\Longrightarrow a^2=b^2 \) が真であることを見落とした誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2（数Ⅰ-026）</span></div>
+  <p>実数 \( x \) の条件「\( x\leqq -1 \) または \( x&gt;2 \)」の否定はどれですか。</p>
+  <div class="choices">
+    <button>\( -1\leqq x&lt;2 \)</button>
+    <button>\( x&gt;-1 \) または \( x\leqq 2 \)</button>
+    <button>\( x&lt;-1 \) または \( x\geqq 2 \)</button>
+    <button data-correct="true">\( -1&lt;x\leqq 2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">ド・モルガンの法則より「\( x&gt;-1 \) かつ \( x\leqq 2 \)」、まとめて \( -1&lt;x\leqq 2 \) です。\( -1\leqq x&lt;2 \) は境目の等号を取り違えた誤りで、\( x=-1 \) はもとの条件を満たすのにこの条件も満たします。「\( x&gt;-1 \) または \( x\leqq 2 \)」は「または」を「かつ」に変え忘れた誤りで、すべての実数になってしまいます。「\( x&lt;-1 \) または \( x\geqq 2 \)」は等号だけを付け替えた誤りで、\( x=3 \) はもとの条件とこの条件の両方を満たします。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3（数Ⅰ-027）</span></div>
+  <p>実数 \( x \) についての命題「\( x&gt;1 \) ならば \( x^2&gt;1 \)」は真です。この命題の逆・裏・対偶について、正しいものはどれですか。</p>
+  <div class="choices">
+    <button>逆「\( x^2&gt;1 \) ならば \( x&gt;1 \)」は真である。</button>
+    <button>裏「\( x\leqq 1 \) ならば \( x^2\leqq 1 \)」は真である。</button>
+    <button data-correct="true">対偶「\( x^2\leqq 1 \) ならば \( x\leqq 1 \)」は真である。</button>
+    <button>逆は偽で、裏は真である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">もとの命題が真なので、真偽が一致する対偶も真です（もとの命題は、\( x&gt;1 \) の両辺に正の数 \( x \) をかけて \( x^2&gt;x \)、\( x&gt;1 \) と合わせて \( x^2&gt;1 \) と確かめられます）。逆は \( x=-2 \) が反例（\( x^2=4&gt;1 \) だが \( x&gt;1 \) でない）で偽、裏も \( x=-2 \) が反例（\( x\leqq 1 \) だが \( x^2\leqq 1 \) でない）で偽です。逆と裏は互いに対偶なので真偽が一致し、「逆は偽で裏は真」ということは起こりません。</div>
+</div>
+
+<div class="q" data-type="input" id="q8" data-accept="2k^2+4k+1|2k²+4k+1|2k^2+1+4k|4k+2k^2+1|1+4k+2k^2|2k²+1+4k">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問8</span><span class="q-obj">O3（数Ⅰ-028）</span></div>
+  <p>\( n \) を整数とするとき、「\( n^2+4n+3 \) が偶数ならば \( n \) は奇数である」を、対偶「\( n \) が偶数ならば \( n^2+4n+3 \) は奇数である」を示して証明します。\( n=2k \)（\( k \) は整数）とおくと、\( n^2+4n+3=2(\ \boxed{\text{ア}}\ )+1 \) となります。ア に入る \( k \) の式を答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 2k^2+4k+1 \)。\( n^2+4n+3=4k^2+8k+3=4k^2+8k+2+1=2(2k^2+4k+1)+1 \) です。\( 2k^2+4k+1 \) は整数なので \( n^2+4n+3 \) は奇数となり、対偶が示せます。\( 2k^2+4k \) と答えた場合は、3 を 2＋1 に分けずに 1 を落としています（\( 2(2k^2+4k)+1=4k^2+8k+1 \) で、元の式と違う）。\( 4k^2+8k+2 \) と答えた場合は、2 でくくっていません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2（数Ⅰ-025・026）</span></div>
+  <p>学習用に作成した架空の場面です。あるスマートフォンのロックは、「暗証番号が正しい かつ 指紋が一致する」ときだけ解除されます。</p>
+  <p>太郎：「暗証番号さえ正しければ、ロックは解除されるんだよね。」<br>花子：「それだけでは足りないよ。暗証番号が正しいことは、解除されるための何条件かな。」</p>
+  <p>正しいものはどれですか。</p>
+  <div class="choices">
+    <button>暗証番号が正しいことは、ロックが解除されるための十分条件である。</button>
+    <button data-correct="true">暗証番号が正しいことは、ロックが解除されるための必要条件である。</button>
+    <button>ロックが解除されないのは、暗証番号が正しくなく、指紋も一致しないときだけである。</button>
+    <button>指紋が一致することは、ロックが解除されるための必要十分条件である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">ロックが解除されるときは必ず暗証番号が正しいので、「解除される ⟹ 暗証番号が正しい」は真で、暗証番号が正しいことは必要条件です。しかし、暗証番号が正しくても指紋が一致しなければ解除されないので、十分条件ではありません（太郎さんの誤り）。「解除されない」は「暗証番号が正しい かつ 指紋が一致する」の否定なので、ド・モルガンの法則より「暗証番号が正しくない または 指紋が一致しない」です。暗証番号が正しく指紋だけが一致しない場合も解除されないので、3つ目は誤りです。指紋が一致しても暗証番号が違えば解除されないので、指紋の一致は必要十分条件ではありません（必要条件ではあります）。</div>
+</div>
+
+<div class="q" data-type="open" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O3（数Ⅰ-029）</span></div>
+  <p>\( a \)、\( b \) を有理数とします。\( a+b\sqrt{2}=0 \) ならば \( a=0 \) かつ \( b=0 \) であることを、\( \sqrt{2} \) が無理数であることを用いて証明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　\( a+b\sqrt{2}=0 \) とする。まず \( b=0 \) であることを背理法で示す。\( b\ne 0 \) と仮定すると、\( \sqrt{2}=-\dfrac{a}{b} \) となる。\( a \)、\( b \) は有理数で \( b\ne 0 \) なので、\( -\dfrac{a}{b} \) は有理数である（有理数どうしの商は、0 でわる場合を除いて有理数：数Ⅰ-011）。すると \( \sqrt{2} \) が有理数となり、\( \sqrt{2} \) が無理数であることに矛盾する。よって \( b=0 \)。このとき \( a+b\sqrt{2}=a=0 \) なので、\( a=0 \)。したがって \( a=0 \) かつ \( b=0 \) である。</p>
+    <p><strong>採点の観点</strong>　① \( b\ne 0 \) と仮定して \( \sqrt{2} \) について解いている（\( b \) でわれる理由を書いている）。② \( -\dfrac{a}{b} \) が有理数である根拠（有理数の四則）を書いている。③ \( \sqrt{2} \) が無理数であることとの矛盾を明記している。④ \( b=0 \) から \( a=0 \) を導いている。</p>
+  </div>
+  <div class="explain">\( b\ne 0 \) の仮定を置かずに、いきなり両辺を \( b \) でわるのは誤りです（\( b=0 \) ならわれません）。また、「\( a \) も \( b \) も 0 でないと仮定する」と、否定のつくり方を誤らないようにしましょう。「\( a=0 \) かつ \( b=0 \)」の否定は「\( a\ne 0 \) または \( b\ne 0 \)」です（数Ⅰ-026）。解答例では、\( b\ne 0 \) の場合を背理法で否定し、残った \( b=0 \) から \( a=0 \) を導いています。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="choice" id="q11">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問11</span><span class="q-obj">O2（数Ⅰ-026・028）</span></div>
+  <p>\( n \) を整数とします。「\( n^2 \) が偶数であること」は、「\( n \) が偶数であること」であるための何条件ですか。</p>
+  <div class="choices">
+    <button>十分条件であるが、必要条件ではない</button>
+    <button>必要条件であるが、十分条件ではない</button>
+    <button>必要条件でも十分条件でもない</button>
+    <button data-correct="true">必要十分条件</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( p \)：「\( n^2 \) が偶数」、\( q \)：「\( n \) が偶数」とします。\( q\Longrightarrow p \)：\( n \) が偶数なら、整数 \( k \) を用いて \( n=2k \) と表せて、\( n^2=4k^2=2\cdot 2k^2 \)（\( 2k^2 \) は整数）なので偶数です。真。\( p\Longrightarrow q \)：数Ⅰ-028 の例題1で、対偶を利用して「\( n^2 \) が偶数ならば \( n \) も偶数」を証明しました。真。両方の向きが真なので、必要十分条件（\( p \) と \( q \) は同値）です。「十分条件であるが…」は \( q\Longrightarrow p \) を確かめ忘れた誤り、「必要条件であるが…」は数Ⅰ-028 で証明した \( p\Longrightarrow q \) を確かめ忘れた誤りです。「どちらでもない」は、どちらかの向きに反例があると考えた誤りですが、\( n^2 \) が偶数で \( n \) が奇数になる整数も、\( n \) が偶数で \( n^2 \) が奇数になる整数もありません。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この単元の内容は、数学Ⅰ「(1) 数と式」の「集合と命題に関する基本的な概念を理解すること」（ア(イ)）と「集合の考えを用いて論理的に考察し，簡単な命題を証明すること」（イ(ア)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めています。条件を集合や図に置きかえて判断し、根拠を明らかにして証明するこの単元の考え方は、この後の二次関数（数Ⅰ-031〜）や、数学Ａの集合の要素の個数（数Ａ-001〜）でも使います。</p>
+  <p class="small">問9は会話と日常の場面を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">関数と f(x)（数Ⅰ-031）</p>
+  <p>次の時間から単元「二次関数」に入ります。中学校で学んだ関数 \( y=ax^2 \) などを振り返って関数の意味を確かめ、記号 \( f(x) \) を用いて関数とその値を表します。変域（定義域・値域）は、この単元の「条件で表す集合」の見方で捉え直すことができます。</p>
+  <p>この時間では、新しい内容は扱っていません。集合の要素の個数の関係式 \( n(A\cup B)=n(A)+n(B)-n(A\cap B) \) は数学Ａ（数Ａ-002）で、「すべて」「ある」を含む命題の否定は一部の教科書で「発展」などとして扱われる内容で、この単元の範囲に含まれません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-029　背理法による証明</div>
+  <div><span class="label">次の時間</span>数Ⅰ-031　関数と f(x)</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-030「単元末演習（集合と命題）」（学習指導要領 数学Ⅰ (1)ア(イ)・イ(ア)、解説 p.36）。範囲の各行 hs_math_1a/数Ⅰ-021〜029 の要点。単元「集合と命題」の注（要素の個数の関係式は数学Ａで扱う、「すべて」「ある」を含む命題の否定は載せていない）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(1) 数と式（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.36（集合に関する用語・記号 a∈A、A∩B、A∪B、A⊂B、補集合、命題を集合の包含関係と関連付けること、対偶を利用した証明や背理法による証明）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。問9のスマートフォンのロックの場面は、学習用に作成した架空のものです。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-030",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-030",
+  "title": "単元末演習（集合と命題）",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-2", "title": "集合と命題"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(イ)", "(1)イ(ア)"],
+  "kaisetsu_page": "36",
+  "objectives": [
+    {"id": "O1", "text": "集合を要素の書き並べや条件で表し、包含関係を判断して、共通部分・和集合・補集合をベン図や数直線とド・モルガンの法則を用いて求めることができる。", "from": "集合の表し方と共通部分・補集合…の問題を解き", "sections": ["sec-1"], "checks": ["q1", "q2", "q3"]},
+    {"id": "O2", "text": "命題の真偽を集合の包含関係から判断して偽なら反例を示し、必要条件・十分条件・必要十分条件の判定と条件の否定ができる。", "from": "命題の真偽と反例、必要条件・十分条件の判定…の問題を解き", "sections": ["sec-2"], "checks": ["q4", "q5", "q6", "q9", "q11"]},
+    {"id": "O3", "text": "逆・裏・対偶の真偽を調べ、対偶や背理法を用いて簡単な命題を証明できる。", "from": "対偶や背理法による証明の問題を解き、集合と論理の基本事項を確かめる", "sections": ["sec-3"], "checks": ["q7", "q8", "q10"]}
+  ],
+  "key_terms": [
+    {"term": "集合・要素・部分集合", "where": "terms"},
+    {"term": "共通部分・和集合・補集合・空集合", "where": "sec-1"},
+    {"term": "ド・モルガンの法則", "where": "sec-1"},
+    {"term": "命題・真偽・反例", "where": "sec-2"},
+    {"term": "必要条件・十分条件・必要十分条件", "where": "sec-2"},
+    {"term": "逆・裏・対偶", "where": "sec-3"},
+    {"term": "背理法", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "集合と要素、集合の表し方、包含関係 A⊂B", "taught_in": ["hs_math_1a/数Ⅰ-021"], "where": "review"},
+    {"concept": "共通部分・和集合・補集合・空集合", "taught_in": ["hs_math_1a/数Ⅰ-022"], "where": "review"},
+    {"concept": "ド・モルガンの法則", "taught_in": ["hs_math_1a/数Ⅰ-023"], "where": "review"},
+    {"concept": "命題の真偽と集合、反例", "taught_in": ["hs_math_1a/数Ⅰ-024"], "where": "review"},
+    {"concept": "必要条件・十分条件", "taught_in": ["hs_math_1a/数Ⅰ-025"], "where": "review"},
+    {"concept": "必要十分条件（同値）と条件の否定", "taught_in": ["hs_math_1a/数Ⅰ-026"], "where": "review"},
+    {"concept": "逆・裏・対偶とその真偽", "taught_in": ["hs_math_1a/数Ⅰ-027"], "where": "review"},
+    {"concept": "対偶を利用した証明", "taught_in": ["hs_math_1a/数Ⅰ-028"], "where": "sec-3"},
+    {"concept": "背理法による証明、√2 が無理数であること", "taught_in": ["hs_math_1a/数Ⅰ-029"], "where": "sec-3"},
+    {"concept": "有理数どうしの和・差・積・商（0 でわる場合を除く）は有理数", "taught_in": ["hs_math_1a/数Ⅰ-011"], "where": "sec-3"},
+    {"concept": "偶数・奇数を文字で表す", "taught_in": ["jhs_math/中2-008"], "where": "sec-3"},
+    {"concept": "AB=0 ならば A=0 または B=0（x²=x を解く）", "taught_in": ["jhs_math/中3-041"], "where": "sec-2"},
+    {"concept": "素数・約数・倍数", "taught_in": ["jhs_math/中1-020", "jhs_math/中1-021"], "where": "review"},
+    {"concept": "正三角形は二等辺三角形の特別な場合", "taught_in": ["jhs_math/中2-061"], "where": "review"},
+    {"concept": "不等式の性質③（正の数をかけても向きは変わらない）（問7）", "taught_in": ["hs_math_1a/数Ⅰ-015"], "where": "quiz"},
+    {"concept": "数直線と数の大小・不等号", "taught_in": ["jhs_math/中1-003"], "where": "sec-1"}
+  ],
+  "out_of_scope": [
+    "集合の要素の個数の関係式 n(A∪B)=n(A)+n(B)−n(A∩B)（数学Ａ 数Ａ-002。単元の注）",
+    "「すべて」「ある」を含む命題の否定（一部の教科書で「発展」などとして扱う。単元の注）",
+    "二次関数（数Ⅰ-031〜）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『集合と命題』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(1)ア(イ)・イ(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.36 集合と命題の扱い（用語・記号、命題と集合の包含関係、対偶・背理法による証明）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

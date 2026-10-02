@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>公共性に関する思想｜倫理</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="../assets/lesson.js"></script>
+<style>
+.veil-rules { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+.veil-rules button.chosen { background: var(--primary); color: #fff; }
+#veil-table tr.chosen td, #veil-table tr.chosen th { font-weight: 700; background: var(--primary-weak); }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>倫理</span><span>様々な倫理観・世界観（近代以降の思想）</span><span>倫理-041</span></div>
+  <h1>公共性に関する思想</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">多数決で決めれば、それで公正なのでしょうか。社会全体の幸福が大きくなるなら、誰かが大きな負担を背負ってもよいのでしょうか。この時間は、ロールズ、セン、ハーバーマス、アーレントの4人を手掛かりに、「みんなのための仕組み」を何を基準に考え、どのようにつくるのかを学びます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>ロールズが「無知のヴェール」の状態から合意されうるルールを考えて「公正としての正義」を説いたことを、功利主義の考え方と比べて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>センが「潜在能力（ケイパビリティ）」に着目し、平等や福祉を、配られるものの量だけでなく人が実際に何をできるかという点から捉えたことを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>ハーバーマスの「コミュニケーション的理性」とアーレントの「活動」を手掛かりに、人々が対等に語り合い、共に行為することで公共性が形づくられるという考え方を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>4人の考え方を対比表で整理し、身近な場面のルールや決め方の公正さを考える手掛かりとして使うことができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（倫理-040）</span>言語哲学と構造主義</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>公共性に関する思想</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（倫理-042）</span>民主社会における人間の在り方</div>
+</div>
+<p class="small">前提となる単元：様々な人生観（倫理-2）、公共的な空間における人間としての在り方生き方（公共-2）、公共的な空間における基本的原理（公共-3）</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、「公共」と「倫理」で学んだ考え方を土台にします。まず、次の三つを確かめましょう。</p>
+<div class="table-wrap"><table>
+  <tr><th>既習の考え方</th><th>要点</th><th>学んだコマ</th></tr>
+  <tr><td>行為の結果である幸福を重視する考え方（功利主義）</td><td>行為によって影響を受ける全ての人々の幸福を、全体として最も大きくする行為ほど正しいと考える。単なる利己主義とは違う。</td><td>公共-007、倫理-035</td></tr>
+  <tr><td>行為の動機となる公正などの義務を重視する考え方（義務論）</td><td>予期される結果に関わりなく、人間には従うべき義務があると考える。カントは、人格として他者を尊重することの意味を説いた。</td><td>公共-008、公共-013、倫理-033</td></tr>
+  <tr><td>社会契約の思想</td><td>社会は自由で平等な個人の契約によってつくられたと考え、そこから個人と国家や法との関係を考える（ホッブズ・ロック・ルソー）。</td><td>倫理-032</td></tr>
+</table></div>
+<p>また「公共」では、不公正をどう正すかについての考え方として、ロールズの「公正としての正義」とセンの「潜在能力」に触れました（公共-008）。この時間はその中身を深め、さらにハーバーマスとアーレントを加えます。</p>
+<p class="small">教科書によっては、「公共」でアーレントの「活動」やハーバーマスの「コミュニケーション的理性」にも触れています（公共-003、東京書籍『公共』シラバス案）。この時間は、4人の考え方を「倫理」で改めてまとめて扱います。</p>
+
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：公共-007・倫理-035</span></div>
+  <p>功利主義（行為の結果である幸福を重視する考え方）の説明として適当なものはどれですか。</p>
+  <div class="choices">
+    <button>自分一人の幸福が最も大きくなる行為が正しいと考える。</button>
+    <button data-correct="true">行為によって影響を受ける全ての人々の幸福を、全体として最も大きくする行為ほど正しいと考える。</button>
+    <button>予期される結果に関わりなく、従うべき義務に基づいて行為すべきだと考える。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は2番目です。功利主義は、影響を受ける全員の幸福を合算して、全体として最大になるかで判断します。1番目は利己主義で、功利主義と混同しないよう注意します。3番目は義務を重視する考え方（義務論）の説明です。</div>
+</div>
+
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：公共-008・公共-011</span></div>
+  <p>「公共」の思考実験で、「最大多数の最大幸福を実現するが、特定の人に大きな負担を課す政策」に対して「負担をその人たちだけが負うのは公正ではない」と疑問を示すとき、よりどころになっているのはどの考え方ですか。</p>
+  <div class="choices">
+    <button>行為の結果である社会全体の幸福を重視する考え方</button>
+    <button data-correct="true">行為の動機となる公正などの義務を重視する考え方</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は2番目です。解説の例でも、開発によって社会全体の幸福が最大になるとしても、環境悪化の影響を周辺住民だけが被るのは公正ではない、と考えるのが義務を重視する考え方の説明とされています。1番目の考え方は、幸福の合計が最大になる政策を選ぶので、この疑問のよりどころにはなりにくいのです。</div>
+</div>
+
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：倫理-032</span></div>
+  <p>社会契約の思想の説明として適当なものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">社会は自由で平等な個人の契約によってつくられたと考え、そこから国家や法の在り方を考えた。</button>
+    <button>社会のルールの正しさは、人々の合意とは関係なく、昔からの慣習だけで決まると考えた。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は1番目です。社会契約の思想は、人々の契約（合意）を社会や国家の成り立ちの基礎に置きました。この時間のロールズも「皆が合意できるルールか」を問うので、比べながら読むと理解しやすくなります。2番目は、合意を基礎に置かない点で社会契約の思想と逆の考え方です。</div>
+</div>
+
+<div class="box supplement" id="supp-1">
+  <p class="box-title">「平等」は一つではない（機会の平等と結果の平等）</p>
+  <p>「平等」と一口に言っても、何を等しくするかで意味が変わります。たとえば、誰もが同じ条件で挑戦できることを重視する考え方を<strong>機会の平等</strong>、結果として得られるもの（所得など）の差を小さくすることを重視する考え方を<strong>結果の平等</strong>といいます。</p>
+  <p>「公共」で考えた積極的差別是正措置（アファーマティブ・アクション、公共-017）をめぐる議論も、どの平等を重視するかと関わっています。この時間は「平等や福祉をどう考えるか」を問うので、この区別を前提にします（「公共」の公共-017 で触れた区別です。ここで確かめておきます）。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：放課後の自習室のルール、どう決める？</h2>
+<div class="box think">
+  <p class="box-title">あなたならどう考える？</p>
+  <p>ある高校で、放課後の自習室（30席）の使い方を生徒会が決めることになりました（このページのための架空の場面）。自習室を使いたい生徒には、たとえば次のような人がいます。</p>
+  <ul>
+    <li>立場1：受験を控え、家に落ち着いて勉強できる場所がない3年生</li>
+    <li>立場2：部活動があり、17時以降しか来られない1年生</li>
+    <li>立場3：家でも勉強できる2年生</li>
+    <li>立場4：車いすを使っていて、段差のある入口では一人で入りにくい2年生</li>
+  </ul>
+  <p>① どんなルールなら「公正」だと言えるでしょうか。② 席を同じように割り当てれば、それで平等でしょうか。③ ルールは誰が、どのように決めるべきでしょうか。</p>
+  <p>予想を書き留めてから本編に進みましょう。①はロールズ、②はセン、③はハーバーマスとアーレントが、それぞれ考える手掛かりを与えてくれます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="ロールズ：公正としての正義"><span class="num">3</span>公正なルールはどう選ぶ？―ロールズの「公正としての正義」</h2>
+<p>功利主義（倫理-035）は、社会全体の幸福の総和が大きくなるかどうかで、行為や政策の善しあしを判断します。分かりやすい考え方ですが、「公共」の思考実験（公共-011）で見たように、全体の幸福が大きくなるなら特定の人に大きな負担を課してもよいのか、という疑問が残ります。</p>
+<p><strong>ロールズ</strong>は、社会の仕組みを考えるとき、特定の立場にかたよらない<span class="em">公正さ</span>を正義の中心に置きました。この考え方を<strong>公正としての正義</strong>といいます。ロールズの<strong>正義論</strong>（社会の仕組みが正しいとはどういうことかを問う理論）の中心となる考え方で、「公共」では不公正をどう正すかの手掛かりとして触れました（公共-008）。</p>
+
+<h3>思考実験「無知のヴェール」</h3>
+<p>では、どんなルールなら公正と言えるのでしょうか。ロールズが用いたのが<strong>無知のヴェール</strong>という考え方です。ヴェール（覆い）がかけられて、自分が社会の中でどのような立場・境遇になるのかが分からない状態を想定し、その状態からでも皆が合意できるルールを考えます。</p>
+<p>自分の立場が分かっていると、人はつい自分に有利なルールを選びがちです。立場が分からなければ、どの立場になっても受け入れられるかを真剣に考えざるを得ません。こうして、自分とは違う立場の人の状況を意識し、特定の立場の利益にかたよらないルールを考える視点が得られます。</p>
+<figure>
+  <svg viewBox="0 0 660 250" role="img" aria-label="無知のヴェールの思考実験の図。左：ヴェールの手前では自分がどの立場か分からない。中央：その状態で皆が合意できるルールを選ぶ。右：ヴェールを外すと、立場1から立場4のどれかになっている。">
+    <defs>
+      <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+    </defs>
+    <text x="105" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">① ヴェールの手前</text>
+    <rect x="10" y="30" width="190" height="200" rx="12" fill="none" stroke="currentColor"/>
+    <g fill="currentColor" fill-opacity="0.35">
+      <circle cx="45" cy="95" r="12"/><rect x="33" y="110" width="24" height="40" rx="8"/>
+      <circle cx="85" cy="95" r="12"/><rect x="73" y="110" width="24" height="40" rx="8"/>
+      <circle cx="125" cy="95" r="12"/><rect x="113" y="110" width="24" height="40" rx="8"/>
+      <circle cx="165" cy="95" r="12"/><rect x="153" y="110" width="24" height="40" rx="8"/>
+    </g>
+    <rect x="20" y="70" width="170" height="95" rx="10" fill="#7a86a8" fill-opacity="0.55"/>
+    <g font-size="16" font-weight="700" text-anchor="middle" fill="currentColor">
+      <text x="45" y="101">？</text><text x="85" y="101">？</text><text x="125" y="101">？</text><text x="165" y="101">？</text>
+    </g>
+    <text x="105" y="192" text-anchor="middle" font-size="13" fill="currentColor">自分がどの立場になるか</text>
+    <text x="105" y="210" text-anchor="middle" font-size="13" fill="currentColor">分からない</text>
+    <line x1="204" y1="130" x2="244" y2="130" stroke="currentColor" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <text x="330" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">② ルールを選ぶ</text>
+    <rect x="250" y="30" width="160" height="200" rx="12" fill="none" stroke="currentColor"/>
+    <rect x="295" y="60" width="70" height="88" rx="4" fill="none" stroke="currentColor"/>
+    <g stroke="currentColor" stroke-opacity="0.6">
+      <line x1="305" y1="80" x2="355" y2="80"/><line x1="305" y1="96" x2="355" y2="96"/><line x1="305" y1="112" x2="355" y2="112"/><line x1="305" y1="128" x2="340" y2="128"/>
+    </g>
+    <text x="330" y="175" text-anchor="middle" font-size="13" fill="currentColor">皆が合意できる</text>
+    <text x="330" y="193" text-anchor="middle" font-size="13" fill="currentColor">ルールはどれか</text>
+    <line x1="414" y1="130" x2="454" y2="130" stroke="currentColor" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <text x="555" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">③ ヴェールを外す</text>
+    <rect x="460" y="30" width="190" height="200" rx="12" fill="none" stroke="currentColor"/>
+    <g fill="currentColor" fill-opacity="0.07" stroke="currentColor">
+      <rect x="470" y="45" width="170" height="38" rx="6"/><rect x="470" y="90" width="170" height="38" rx="6"/>
+      <rect x="470" y="135" width="170" height="38" rx="6"/><rect x="470" y="180" width="170" height="38" rx="6"/>
+    </g>
+    <g text-anchor="middle" fill="currentColor">
+      <text x="555" y="60" font-size="12" font-weight="700">立場1</text><text x="555" y="76" font-size="11">家に勉強できる場所がない3年生</text>
+      <text x="555" y="105" font-size="12" font-weight="700">立場2</text><text x="555" y="121" font-size="11">17時以降しか来られない1年生</text>
+      <text x="555" y="150" font-size="12" font-weight="700">立場3</text><text x="555" y="166" font-size="11">家でも勉強できる2年生</text>
+      <text x="555" y="195" font-size="12" font-weight="700">立場4</text><text x="555" y="211" font-size="11">車いすを使う2年生</text>
+    </g>
+  </svg>
+  <figcaption>図1　無知のヴェールの思考実験（自習室の場面に当てはめた模式図）</figcaption>
+</figure>
+
+<div class="widget" id="veil">
+  <p><strong>操作してみよう：ヴェールの向こうで合意する</strong></p>
+  <p class="small">表の数字は、各ルールのもとでの自習室の「使いやすさ」を0〜10で表した学習用の架空の値です。あなたは自分がどの立場になるか分からないまま、ルールを一つ選んで合意します。</p>
+  <div class="table-wrap"><table id="veil-table">
+    <tr><th>ルール</th><th>立場1</th><th>立場2</th><th>立場3</th><th>立場4</th><th>合計</th></tr>
+    <tr data-rule="A"><th>A　先着順（早く来た人から座る）</th><td>9</td><td>1</td><td>10</td><td>5</td><td>25</td></tr>
+    <tr data-rule="B"><th>B　3年生優先（3年生が先に席を取れる）</th><td>10</td><td>2</td><td>5</td><td>3</td><td>20</td></tr>
+    <tr data-rule="C"><th>C　時間帯で枠を分ける（17時以降の枠と予約枠を設ける）</th><td>7</td><td>6</td><td>6</td><td>4</td><td>23</td></tr>
+  </table></div>
+  <div class="veil-rules">
+    <button type="button" data-rule="A">ルールAに合意する</button>
+    <button type="button" data-rule="B">ルールBに合意する</button>
+    <button type="button" data-rule="C">ルールCに合意する</button>
+  </div>
+  <div class="veil-rules">
+    <button type="button" id="veil-open" class="primary" disabled>ヴェールを外す</button>
+    <button type="button" id="veil-reset">最初から</button>
+  </div>
+  <p id="veil-result" aria-live="polite">まずルールを一つ選びましょう。</p>
+</div>
+
+<div class="box example worked">
+  <p class="box-title">例題1　同じ表を、二つの見方で読む</p>
+  <p>上の表（学習用の架空の値）で、① 功利主義の考え方で比べると、どのルールが選ばれますか。② 「無知のヴェール」の思考実験では、どのような問いを立ててルールを選びますか。</p>
+  <div class="step">ステップ1：功利主義は、影響を受ける全員の幸福を全体として最も大きくする行為ほど正しいと考えます（公共-007）。使いやすさを合計すると、A＝9＋1＋10＋5＝25、B＝10＋2＋5＋3＝20、C＝7＋6＋6＋4＝23 です。</div>
+  <div class="step">ステップ2：合計が最も大きいのはルールA（25）です。ただしAでは、立場2の生徒の使いやすさが1で、ほとんど自習室を使えません。</div>
+  <div class="step">ステップ3：無知のヴェールでは、「自分が立場1〜4のどれになるか分からないとしても、このルールに合意できるか」と問います。合計の大きさだけでなく、どの立場になったとしても受け入れられるかが判断の手掛かりになります。</div>
+  <div class="step">答え：① ルールA。② 自分の立場が分からない状態で、どの立場になっても受け入れられるルールかを問う。同じ表でも、どこに注目するかによって、選ばれるルールが変わりうることに気付こう。</div>
+</div>
+
+<div class="box point"><p class="box-title">ロールズのポイント</p><p>社会の仕組みの正しさを「全体の幸福の合計」だけで測るのではなく、「自分がどの立場になるか分からない状態で、皆が合意できるか」という<strong>公正さ</strong>から考える（公正としての正義）。これは、社会の不公正を正す手掛かりにもなる。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p>
+  <p>・「無知のヴェール」は「知識の少ない人が決める」という意味ではありません。見えなくなっているのは、ルールを選ぶ自分自身の立場や境遇です。</p>
+  <p>・ロールズの考え方を「功利主義と同じく、全体の幸福の合計を最大にする考え方」とするのは誤りです。</p>
+  <p>・「公共」では、カントの義務論と同じ時間にロールズにも触れました（公共-008）。ただし、カントが主に問うたのは一人一人の行為の動機と人格の尊重、ロールズが問うたのは社会の仕組み（ルール）の公正さで、問いの対象が違います。二人の考え方を取り違えないようにしましょう。</p>
+</div>
+<p>なお、表を見ると、どのルールでも立場4（車いすを使う2年生）の使いやすさは5以下にとどまります。入口の段差のように、席の割り当て方を変えるだけでは解決しない問題があるからです。この点を考える手掛かりが、次のセンです。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="セン：潜在能力"><span class="num">4</span>同じものを配れば平等？―センの「潜在能力（ケイパビリティ）」</h2>
+<p>自習室の席を、全員に同じ数だけ割り当てたとします。これで平等でしょうか。車いすを使う生徒にとって、入口に段差があれば、その席は実際には使えません。同じものが配られても、それを使って実際にできることは、人によって違うのです。</p>
+<p><strong>セン</strong>は、この「実際に何ができるか」に目を向け、<strong>潜在能力（ケイパビリティ）</strong>という考え方を示しました。このページでは、潜在能力を「その人が実際に何かをしたり、ある状態になったりできる可能性の幅」と言い換えて考えます（教科書によって説明の言葉が少しずつ違うので、教科書の本文でも確かめましょう）。</p>
+<p>この考え方に立つと、平等や福祉（人々の暮らしのよさ）は、所得や物の量だけでは測れません。同じ量の物やお金があっても、体の状態、住んでいる環境、社会の仕組みによって、できることは変わるからです。そこで、一人一人のケイパビリティを高めるために、どのような支援が必要かを考えることが大切になります。</p>
+
+<figure>
+  <svg viewBox="0 0 660 300" role="img" aria-label="潜在能力の模式図。3人の生徒に同じ端末が1台ずつ配られるが、実際にできることの幅は生徒ごとに違う。支援を加えると、生徒Yと生徒Zのできることの幅が広がる。" id="sen-figure">
+    <g text-anchor="middle" fill="currentColor">
+      <text x="110" y="24" font-size="13" font-weight="700">生徒X：家に通信環境がある</text>
+      <text x="330" y="24" font-size="13" font-weight="700">生徒Y：家に通信環境がない</text>
+      <text x="550" y="24" font-size="13" font-weight="700">生徒Z：画面の文字が読みにくい</text>
+    </g>
+    <g fill="none" stroke="currentColor">
+      <rect x="80" y="36" width="60" height="44" rx="6"/><rect x="300" y="36" width="60" height="44" rx="6"/><rect x="520" y="36" width="60" height="44" rx="6"/>
+    </g>
+    <g fill="currentColor" fill-opacity="0.15">
+      <rect x="86" y="41" width="48" height="34" rx="3"/><rect x="306" y="41" width="48" height="34" rx="3"/><rect x="526" y="41" width="48" height="34" rx="3"/>
+    </g>
+    <g text-anchor="middle" font-size="11" fill="currentColor">
+      <text x="110" y="97">配られたもの：同じ端末1台</text><text x="330" y="97">配られたもの：同じ端末1台</text><text x="550" y="97">配られたもの：同じ端末1台</text>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-dasharray="4 3" stroke-opacity="0.6">
+      <rect x="85" y="120" width="50" height="140"/><rect x="305" y="120" width="50" height="140"/><rect x="525" y="120" width="50" height="140"/>
+    </g>
+    <g fill="#2f7fbf" fill-opacity="0.75">
+      <rect id="bar-X" x="85" y="134" width="50" height="126"/>
+      <rect id="bar-Y" x="305" y="218" width="50" height="42"/>
+      <rect id="bar-Z" x="525" y="211" width="50" height="49"/>
+    </g>
+    <g text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">
+      <text id="val-X" x="110" y="128">広い</text>
+      <text id="val-Y" x="330" y="212">せまい</text>
+      <text id="val-Z" x="550" y="205">せまい</text>
+    </g>
+    <g text-anchor="middle" font-size="11" fill="currentColor">
+      <text x="110" y="276">実際にできることの幅</text><text x="330" y="276">実際にできることの幅</text><text x="550" y="276">実際にできることの幅</text>
+      <text id="sup-X" x="110" y="293"></text>
+      <text id="sup-Y" x="330" y="293"></text>
+      <text id="sup-Z" x="550" y="293"></text>
+    </g>
+  </svg>
+  <figcaption>図2　同じものを配っても、実際にできることの幅は違う（棒の長さは考え方を示す模式で、測定したデータではありません）</figcaption>
+</figure>
+<div class="widget">
+  <label><input type="checkbox" id="sen-support"> 必要な支援を加える（生徒Y：通信機器の貸し出し、生徒Z：読み上げ・拡大表示の設定）</label>
+  <p class="small" id="sen-note" aria-live="polite">今は、全員に同じ端末を1台ずつ配っただけの状態です。</p>
+</div>
+<p>自習室の例でいえば、席の数を同じにするだけでなく、入口にスロープを設ける、予約の仕組みをつくるといった支えがあって初めて、立場4の生徒は自習室で勉強できるようになります。端末の例も同じで、同じ物を配ったうえで、一人一人に必要な支援を考えることが、センの考え方の核心です。</p>
+<p>「公共」では、ロールズやセンの考え方に、不公正を正す考え方として触れました（公共-008）。教科書によっては、社会保障政策などの事例をもとに学んでいます。社会保障や所得の再分配（公共-043・公共-050・公共-051）を考えるときにも、「何を等しくすべきか」という問いが生まれます。</p>
+<div class="box point"><p class="box-title">センのポイント</p><p>平等や福祉を、配られるもの（所得・物）の量だけでなく、その人が実際に何をでき、どのように生きられるか（<strong>潜在能力</strong>）から捉える。だから、同じものを配るだけでなく、一人一人の潜在能力を高める支援を考える。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p>
+  <p>・潜在能力は「生まれつきの才能」や「隠れた能力」という意味ではありません。本人の力だけでなく、使える物や周りの環境、社会の支えによって広がったり狭まったりする「実際にできることの幅」です。</p>
+  <p>・センの考え方は「全員に全く同じ物を配ればよい」という主張ではありません。同じ物では実際にできることに差が残る場合に、何が必要かを問います。</p>
+</div>
+<p>ロールズは、どの立場になっても合意できるルールの公正さを問いました。センは、ルールや配分のもとで一人一人が実際に何をできるかに注目しました。二人の考え方は、それぞれ違う角度から、不公正を正す手掛かりになります。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="ハーバーマスとアーレント"><span class="num">5</span>公共性はどう生まれる？―ハーバーマスとアーレント</h2>
+<p>ロールズとセンは、「何が公正・公平か」という仕組みの中身を問いました。では、そうしたルールは誰が、どのように決めるべきでしょうか。ここで手掛かりになるのが、ハーバーマスとアーレントです。二人は、人々が互いに関わり合う中で<strong>公共性</strong>が形づくられることに注目しました。</p>
+<p>ここでいう公共性とは、特定の人だけのものではなく、社会の人々に開かれ、皆に関わる事柄として共に考え、決めていくことに関わる性質です。</p>
+
+<h3>ハーバーマス：理由を示し合う話し合い</h3>
+<p><strong>ハーバーマス</strong>は、<strong>コミュニケーション的行為</strong>を通じて、合意と公共性の形成をはかることをめざしました。このページでは、コミュニケーション的行為を「互いに理由を示し合い、相手の納得による合意をめざして話し合うこと」と言い換えて考えます。そうした話し合いを支える理性の働きとして、ハーバーマスが重んじたのが<strong>コミュニケーション的理性</strong>です（言い換えはこのページのものなので、教科書の説明も確かめましょう）。</p>
+<p>この考え方に立つと、力や地位で相手を従わせたり、一部の人だけで決めて知らせたりするのではなく、関係する人々が対等な立場で、理由を挙げて意見を交わすことが大切になると考えられます。「公共」で学んだ、公共的な空間の在り方が全ての者の合理的な議論に開かれていること（公共-014）や、互いの根拠や意味を問い合う対話（公共-003）と深く関わります。</p>
+<p>自習室の例でいえば、生徒会役員だけで決めて貼り出すのではなく、利用したい生徒たちがそれぞれの事情と理由を示して話し合い、皆が納得できる案にまとめる、という決め方です。</p>
+
+<h3>アーレント：他者と共に行為する「活動」</h3>
+<p><strong>アーレント</strong>は、公共的に他と交わり<strong>活動</strong>することが、人間の自由な行為にふさわしいと考えました。このページでは、活動を「公共の場で他者と交わり、共に語り合い、行動すること」と言い換えて考えます。</p>
+<p>この考え方に立つと、公共の事柄を一部の人に任せきりにせず、自分も他者と共に語り、行動に加わること自体に意味があることになります。自習室の例でいえば、ルールが決まるのを待つのではなく、自分から意見を出し、ほかの生徒と一緒に提案をまとめて動くことです。</p>
+
+<figure>
+  <svg viewBox="0 0 660 360" role="img" aria-label="公共性に関する思想の見取り図。中央に公共的な空間。上半分は仕組みの中身（何が公正・平等か）で、左にロールズ（どんなルールなら公正か：公正としての正義、無知のヴェール）、右にセン（何を等しくすれば平等か：潜在能力）。下半分は公共性のつくり方（どう決め、どう関わるか）で、左にハーバーマス（ルールをどう決めるか：コミュニケーション的理性、理由を示し合い合意へ）、右にアーレント（公共の場でどう関わるか：活動、他者と交わり共に行為することに自由）。">
+    <text x="330" y="20" text-anchor="middle" font-size="12" fill="currentColor">仕組みの中身（何が公正・平等か）</text>
+    <text x="330" y="352" text-anchor="middle" font-size="12" fill="currentColor">公共性のつくり方（どう決め、どう関わるか）</text>
+    <g stroke="currentColor" stroke-dasharray="5 4" stroke-opacity="0.5">
+      <line x1="20" y1="180" x2="232" y2="180"/><line x1="428" y1="180" x2="640" y2="180"/>
+    </g>
+    <g fill="currentColor" fill-opacity="0.07" stroke="currentColor">
+      <rect x="20" y="30" width="220" height="110" rx="10"/><rect x="420" y="30" width="220" height="110" rx="10"/>
+      <rect x="20" y="220" width="220" height="110" rx="10"/><rect x="420" y="220" width="220" height="110" rx="10"/>
+    </g>
+    <ellipse cx="330" cy="180" rx="95" ry="38" fill="#2f7fbf" fill-opacity="0.18" stroke="currentColor"/>
+    <text x="330" y="176" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">公共的な空間</text>
+    <text x="330" y="196" text-anchor="middle" font-size="12" fill="currentColor">（公共性）</text>
+    <g stroke="currentColor" stroke-width="1.5">
+      <line x1="240" y1="140" x2="262" y2="156"/><line x1="420" y1="140" x2="398" y2="156"/>
+      <line x1="240" y1="220" x2="262" y2="204"/><line x1="420" y1="220" x2="398" y2="204"/>
+    </g>
+    <g text-anchor="middle" fill="currentColor">
+      <text x="130" y="55" font-size="14" font-weight="700">ロールズ</text>
+      <text x="130" y="80" font-size="12">どんなルールなら公正か</text>
+      <text x="130" y="102" font-size="12">公正としての正義</text>
+      <text x="130" y="124" font-size="12">無知のヴェール</text>
+      <text x="530" y="55" font-size="14" font-weight="700">セン</text>
+      <text x="530" y="80" font-size="12">何を等しくすれば平等か</text>
+      <text x="530" y="102" font-size="12">潜在能力</text>
+      <text x="530" y="124" font-size="12">（ケイパビリティ）</text>
+      <text x="130" y="245" font-size="14" font-weight="700">ハーバーマス</text>
+      <text x="130" y="270" font-size="12">ルールをどう決めるか</text>
+      <text x="130" y="292" font-size="12">コミュニケーション的理性</text>
+      <text x="130" y="314" font-size="12">理由を示し合い合意へ</text>
+      <text x="530" y="245" font-size="14" font-weight="700">アーレント</text>
+      <text x="530" y="270" font-size="12">公共の場でどう関わるか</text>
+      <text x="530" y="292" font-size="12">活動</text>
+      <text x="530" y="314" font-size="12">他者と交わり共に行為＝自由</text>
+    </g>
+  </svg>
+  <figcaption>図3　公共性に関する思想の見取り図（上：仕組みの中身、下：公共性のつくり方。このページで整理のために用いた分け方）</figcaption>
+</figure>
+
+<div class="box point"><p class="box-title">二人のポイント</p><p>ハーバーマス＝理由を示し合う話し合い（コミュニケーション的行為）による合意と公共性の形成。それを支えるのがコミュニケーション的理性。アーレント＝公共の場で他者と交わり、共に行為する<strong>活動</strong>に、人間の自由な行為の姿を見る。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p>
+  <p>・「コミュニケーション的理性」は、話がうまいことや、情報を伝える技術のことではありません。互いに理由を示し、納得による合意をめざす理性の働きです。</p>
+  <p>・組合せを取り違えやすいので注意しましょう。「コミュニケーション的理性」はハーバーマス、「活動」はアーレントです。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="4人を比べて使う"><span class="num">6</span>4人を比べ、身近な場面で使ってみよう</h2>
+<p>4人の考え方を、比べる基準となる功利主義とあわせて表にまとめます。どの思想家が「何を問うたか」をつかむと、概念の取り違えを防げます。</p>
+<div class="table-wrap"><table>
+  <tr><th>思想家</th><th>手掛かりになる語</th><th>問い</th><th>考え方の要点</th><th>自習室の場面では</th></tr>
+  <tr><td>（比べる基準）功利主義（倫理-035）</td><td>社会全体の幸福</td><td>何が善い結果か</td><td>影響を受ける全員の幸福を合算し、全体として最大になるものを選ぶ</td><td>使いやすさの合計が最も大きいルールはどれか</td></tr>
+  <tr><td>ロールズ</td><td>公正としての正義／無知のヴェール</td><td>どんなルールなら公正か</td><td>自分の立場が分からない状態からでも、皆が合意できるルールを考える</td><td>どの立場の生徒になっても受け入れられるルールか</td></tr>
+  <tr><td>セン</td><td>潜在能力（ケイパビリティ）</td><td>何を等しくすれば平等か</td><td>一人一人が実際に何をできるかに注目し、それを高める支援を考える</td><td>席があっても使えない人はいないか、どんな支えが要るか</td></tr>
+  <tr><td>ハーバーマス</td><td>コミュニケーション的理性／コミュニケーション的行為</td><td>ルールをどう決めるか</td><td>対等な立場で理由を示し合う話し合いを通じて、合意と公共性をつくる</td><td>関係する生徒が理由を示し合い、納得して決めたか</td></tr>
+  <tr><td>アーレント</td><td>活動</td><td>公共の場でどう関わるか</td><td>他者と交わり、言葉と行いで共に行為することに自由を見る</td><td>自分も話し合いや提案に加わっているか</td></tr>
+</table></div>
+<p>このページでは整理の目安として、上の二人（ロールズ・セン）は「仕組みの中身」、下の二人（ハーバーマス・アーレント）は「公共性のつくり方」に重心があると見ています（4人の思想をこの二つに分けきれるわけではありません）。また、どれか一つが正解というわけでもありません。一つの場面を、四つの問いで順に照らしてみることが大切です。</p>
+
+<div class="box example worked">
+  <p class="box-title">例題2　校外学習の行き先をクラスで決める</p>
+  <p>クラスで校外学習の行き先を決めることになりました（架空の場面）。候補は、入場料の高いテーマパーク、無料の自然公園、博物館です。4人の考え方を使うと、どのような問いを立てられますか。</p>
+  <div class="step">ステップ1（ロールズ）：「自分が、家計に余裕のない家庭の生徒なのか、体力に自信のない生徒なのか分からないとしても、この決め方や条件に合意できるか」と問います。たとえば費用が高すぎないか、参加しにくい人が出ないかを確かめます。</div>
+  <div class="step">ステップ2（セン）：「同じ行き先に行っても、実際に楽しめない人はいないか」と問います。食物アレルギーのある生徒が昼食をとれるか、車いすで回れる経路があるかなど、必要な支援を考えます。</div>
+  <div class="step">ステップ3（ハーバーマス）：「多数決の前に、それぞれが理由を示して話し合ったか」と問います。声の大きい人の意見だけで決まっていないかを確かめます。</div>
+  <div class="step">ステップ4（アーレント）：「一部の人に任せきりにせず、自分も提案や準備に加わっているか」と問います。自分から意見を出し、他の生徒と共に行動すること自体に意味があると考えます。</div>
+  <div class="step">まとめ：四つの問いは互いに補い合います。公正なルール（ロールズ）、実際にできること（セン）、納得による合意（ハーバーマス）、共に行為する参加（アーレント）を順に確かめると、見落としの少ない決め方に近づきます。</div>
+</div>
+
+<div class="box source">
+  <p class="box-title">原典について</p>
+  <p>このページでは、4人の著作の文章は引用せず、考え方の要旨をこのページの言葉でまとめています。教科書や資料集に原典の日本語訳が載っていたら、上の表のどの列と関わるかを確かめながら読んでみましょう。読むときは「この思想家は何を問うているか」「その答えは誰の立場から見て公正か」の二点に注目すると、要約にとどまらず自分の課題と結び付けて考えやすくなります。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>公共性</dt><dd>特定の人だけのものではなく、社会の人々に開かれ、皆に関わる事柄として共に考え、決めていくことに関わる性質。この時間は、仕組みの中身（ロールズ・セン）と、公共性のつくり方（ハーバーマス・アーレント）から考えた。</dd>
+    <dt>ロールズ</dt><dd>「公正としての正義」を説き、「無知のヴェール」の思考実験を用いて、公正なルールをどう選ぶかを考えた。</dd>
+    <dt>正義論</dt><dd>社会の仕組みが正しい（正義にかなう）とはどういうことかを問う理論。この時間では、ロールズの正義についての考え方を指す。</dd>
+    <dt>公正としての正義</dt><dd>社会の仕組みの正しさを、特定の立場にかたよらない公正さから考える、ロールズの正義の考え方。「公共」では不公正の是正に関わる考え方として学んだ。</dd>
+    <dt>無知のヴェール</dt><dd>自分が社会の中でどのような立場・境遇になるかが分からない状態を想定し、その状態からでも皆が合意できるルールを考えるための思考実験。</dd>
+    <dt>セン</dt><dd>人が実際に何をでき、どのような状態になれるかに注目し、潜在能力（ケイパビリティ）の考え方から平等や福祉を捉えた。</dd>
+    <dt>潜在能力（ケイパビリティ）</dt><dd>センの考え方の中心となる語。このページでは「その人が実際に何かをしたり、ある状態になったりできる可能性の幅」と言い換えた。本人の力だけでなく、使える物や環境、社会の支えによって広がったり狭まったりする。</dd>
+    <dt>ハーバーマス</dt><dd>コミュニケーション的行為を通じて、合意と公共性の形成をはかることをめざした。</dd>
+    <dt>コミュニケーション的行為</dt><dd>ハーバーマスの語。このページでは「互いに理由を示し合い、相手の納得による合意をめざして話し合うこと」と言い換えた。</dd>
+    <dt>コミュニケーション的理性</dt><dd>ハーバーマスが重んじた理性の働き。このページでは、コミュニケーション的行為（理由を示し合う話し合い）を支える理性の働きと言い換えた。</dd>
+    <dt>アーレント</dt><dd>公共的に他と交わり活動することが、人間の自由な行為にふさわしいと考えた。</dd>
+    <dt>活動（アーレント）</dt><dd>アーレントの語。このページでは「公共の場で他者と交わり、共に語り合い、行動すること」と言い換えた。</dd>
+    <dt>機会の平等・結果の平等（補足）</dt><dd>誰もが同じ条件で挑戦できることを重視するのが機会の平等、結果として得られるものの差を小さくすることを重視するのが結果の平等。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>（O1）ロールズは、自分の立場が分からない状態（無知のヴェール）からでも皆が合意できるルールを考え、「公正としての正義」を説いた。全体の幸福の合計で判断する功利主義とは、判断の手掛かりが違う。</li>
+    <li>（O2）センは、平等や福祉を、配られる物や所得の量だけでなく、人が実際に何をできるか（潜在能力＝ケイパビリティ）から捉え、それを高める支援を考えた。</li>
+    <li>（O3）ハーバーマスは、理由を示し合うコミュニケーション的行為を通じた合意と公共性の形成をめざし、それを支えるコミュニケーション的理性を重んじた。アーレントは、他者と交わり共に行為する「活動」に人間の自由を見た。</li>
+    <li>（O4）ロールズ・センは「仕組みの中身（何が公正・平等か）」、ハーバーマス・アーレントは「公共性のつくり方（どう決め、どう関わるか）」に重心がある。一つの場面を四つの問いで照らすと、公正さを多面的に考えられる。</li>
+    <li>ロールズとセンは「公共」で触れた考え方（公共-008）を深めたもの。次の時間（倫理-042）は、これらを手掛かりに民主社会の在り方を考え、表現する。</li>
+  </ul>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。問題文の場面・資料・数値は、すべてこのページのために作った架空のものです。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>ロールズの「無知のヴェール」の説明として最も適当なものはどれですか。</p>
+  <div class="choices">
+    <button>知識や経験の少ない人々にも分かるように、ルールを簡単な言葉で示すための考え方。</button>
+    <button data-correct="true">自分が社会の中でどのような立場や境遇になるかが分からない状態を想定し、その状態からでも皆が合意できるルールを考えるための考え方。</button>
+    <button>社会全体の幸福の総和が最も大きくなるルールを、専門家が計算して選ぶための考え方。</button>
+    <button>自分の利益が最も大きくなるように、他の人には自分の立場を隠して交渉するための考え方。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は2番目です。ヴェールで見えなくなるのは、ルールを選ぶ自分自身の立場や境遇です。1番目は「無知」を「知識が少ない」と取り違えた誤りです。3番目は功利主義の見方で、ロールズの考え方ではありません。4番目は、自分の立場が分かったうえで自分の利益を求めている点で、無知のヴェールの趣旨と逆です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1・O2・O3</span></div>
+  <p>思想家と、その思想家の考え方を表す語の組合せとして正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">ロールズ―公正としての正義　セン―潜在能力　ハーバーマス―コミュニケーション的理性　アーレント―活動</button>
+    <button>ロールズ―潜在能力　セン―公正としての正義　ハーバーマス―コミュニケーション的理性　アーレント―活動</button>
+    <button>ロールズ―公正としての正義　セン―潜在能力　ハーバーマス―活動　アーレント―コミュニケーション的理性</button>
+    <button>ロールズ―コミュニケーション的理性　セン―活動　ハーバーマス―公正としての正義　アーレント―潜在能力</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は1番目です。2番目はロールズとセンを、3番目はハーバーマスとアーレントを入れ替えています。4番目はすべて取り違えています。「ルールの公正さ＝ロールズ」「実際にできること＝セン」「理由を示し合う話し合い＝ハーバーマス」「共に行為する＝アーレント」と、問いとセットで覚えると取り違えを防げます。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="潜在能力|ケイパビリティ|潜在能力（ケイパビリティ）|潜在能力(ケイパビリティ)|ケイパビリティ（潜在能力）|ケイパビリティ(潜在能力)">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>センが注目した、人が実際に何かをしたり、ある状態になったりできる可能性の幅（この時間の言い換え）を何といいますか（漢字4字、またはカタカナで）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">答えは「潜在能力」（ケイパビリティ）です。「生まれつきの才能」という意味ではなく、使える物や環境、社会の支えによって広がったり狭まったりする「実際にできることの幅」である点に注意しましょう。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1</span></div>
+  <p>本編の例題1の表（自習室のルールA〜Cと立場1〜4の使いやすさ、学習用の架空の値）について述べた文として最も適当なものはどれですか。</p>
+  <div class="choices">
+    <button>功利主義の考え方で使いやすさの合計を比べると、ルールCが最も大きい。</button>
+    <button>ルールBは、どの立場にとっても使いやすさが最も高いルールである。</button>
+    <button data-correct="true">功利主義の考え方で合計を比べるとルールAが選ばれるが、ルールAでは立場2の使いやすさが1にとどまる。</button>
+    <button>どのルールを選んでも、立場4の使いやすさは6以上になる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は3番目です。合計はA＝25、B＝20、C＝23で、Aが最大です。しかしAでは立場2が1しかありません。1番目は合計の比較の誤りです（CはAより小さい）。2番目について、Bが最も高いのは立場1だけです（立場2ではC、立場3と立場4ではAが最も高い）。4番目について、立場4の値は5・3・4で、どれも6に届きません。無知のヴェールで考えるなら、「自分が立場2になったらAに合意できるか」と問うことになります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>ある市が、すべての高齢者に同じ額の交通費の補助を始めました（架空の事例）。この政策について、センの考え方に最も近い意見はどれですか。</p>
+  <div class="choices">
+    <button>同じ額を配ったのだから、どの人にとっても平等は実現している。</button>
+    <button>補助によって市全体の満足の合計が増えるなら、それ以上考える必要はない。</button>
+    <button data-correct="true">同じ額の補助でも、足が不自由でバスに乗りにくい人は外出できないままかもしれない。一人一人が実際に外出できるようになるには何が必要かを考えるべきだ。</button>
+    <button>外出できるかどうかは本人の生まれつきの能力の問題なので、社会が考えることではない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は3番目です。センは、配られる物やお金の量ではなく、それを使って実際に何ができるか（潜在能力）に注目しました。1番目は「同じ額＝平等」とみなしており、センが問い直した見方です。2番目は満足の合計で判断する功利主義の見方です。4番目は潜在能力を「生まれつきの能力」と取り違え、社会の支えの役割を見落としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>ハーバーマスとアーレントについての説明として最も適当なものはどれですか。</p>
+  <div class="choices">
+    <button>ハーバーマスは、公共の事柄は専門家に任せ、市民は決まったことに従えばよいと考えた。</button>
+    <button data-correct="true">ハーバーマスは理由を示し合う話し合いを通じて合意と公共性をつくり出すことをめざし、アーレントは他者と交わり共に行為する活動に人間の自由を見た。</button>
+    <button>アーレントは、他者と関わらずに一人で考えることにだけ、人間の自由があると考えた。</button>
+    <button>ハーバーマスの「コミュニケーション的理性」とは、相手を説得して従わせる話術の巧みさのことである。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は2番目です。1番目は、関係する人々が対等に理由を示し合うことを重んじたハーバーマスの考え方と逆です。3番目は、公共的に他と交わり活動することを自由な行為とみたアーレントの考え方と逆です。4番目は、コミュニケーション的理性を話術と取り違えています。相手を従わせるのではなく、納得による合意をめざす理性の働きです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O1・O2・O3</span></div>
+  <p>4人の思想家についての説明として<strong>適当でないもの</strong>はどれですか。</p>
+  <div class="choices">
+    <button>ロールズは、自分がどの立場になるか分からない状態を想定し、皆が合意できるルールを考えた。</button>
+    <button data-correct="true">センは、所得や配られる物の量が同じであれば、人々の福祉は等しいと考えた。</button>
+    <button>ハーバーマスは、コミュニケーション的行為を通じて、合意と公共性の形成をはかることをめざした。</button>
+    <button>アーレントは、公共的に他と交わり活動することが、人間の自由な行為にふさわしいと考えた。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">この問いでは、誤った説明を選ぶのが正解です。2番目が誤りで、センはむしろ、同じ量の物や所得があっても実際にできることは人によって違うと考え、潜在能力に注目しました。1・3・4番目は、それぞれロールズ・ハーバーマス・アーレントの説明として適当です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O4（O1・O2・O3）</span></div>
+  <p>次の資料は、ある高校の生徒会で自習室のルールを話し合ったときの記録の一部です（このページのために作成した架空の資料）。</p>
+  <div class="box source">
+    <p class="box-title">資料　生徒会の話し合いの記録（架空）</p>
+    <p>ア（3年生）「利用者アンケートをとって、満足の合計がいちばん大きくなるルールを選べばいいと思う。」</p>
+    <p>イ（2年生）「自分が何年生で、どんな事情を抱えているかが分からないと考えてみようよ。どの立場になっても受け入れられるルールにしたい。」</p>
+    <p>ウ（1年生）「席の数を平等に割り当てても、入口の段差で入れない人は使えない。実際に使えるようにするには、スロープや予約の仕組みといった支えが要ると思う。」</p>
+    <p>エ（3年生）「役員だけで決めて貼り出すのではなく、使う人がそれぞれ理由を示し合って、みんなが納得できる案にまとめよう。」</p>
+    <p>オ（2年生）「決まるのを待つより、私たち自身が集まって話し、提案をつくって動くこと自体に意味があると思う。」</p>
+  </div>
+  <p>資料の発言ア〜オのうち、センの考え方に最も近い発言と、ハーバーマスの考え方に最も近い発言の組合せとして最も適当なものはどれですか。</p>
+  <div class="choices">
+    <button>イ・エ</button>
+    <button data-correct="true">ウ・エ</button>
+    <button>ウ・オ</button>
+    <button>ア・オ</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正解は「ウ・エ」です。ウは、同じ数の席があっても実際に使えるかどうかは違うとして支えを求めており、センの潜在能力の考え方に近い発言です。エは、関係する人が理由を示し合い、納得による合意をめざしており、ハーバーマスの考え方に近い発言です。なお、アは満足の合計で判断する功利主義、イは自分の立場が分からない状態で合意できるかを問うロールズ、オは共に集まり行動すること自体に意味を見るアーレントの考え方に近い発言です。「イ・エ」はセンをロールズと、「ウ・オ」はハーバーマスをアーレントと取り違えています。「ア・オ」は両方とも取り違えています。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O2・O4</span></div>
+  <p>災害時の避難所で、支援物資（食料や毛布）をどのように配るかを決める場面を考えます（架空の場面）。ロールズの「無知のヴェール」とセンの「潜在能力」の考え方をそれぞれ使い、どのような配り方が公正だといえるかを、200字程度で説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　無知のヴェールに立つと、自分が乳児のいる家族なのか、高齢者なのか、健康な若者なのか分からない状態でも合意できる配り方かを問うことになり、一部の立場だけに不利な配り方は合意されにくい。潜在能力に立つと、同じ量を配っても、食物アレルギーのある人や体が不自由で配布場所まで行けない人は、実際に食べたり暖を取ったりできない。そこで、一律に同じ物を配るだけでなく、事情に応じた物や届け方を用意する配り方が公正だといえる。</p>
+    <p><strong>採点の観点</strong>　① 無知のヴェールを「自分の立場が分からない状態で、皆が合意できるか」という意味で正しく使っている。② 潜在能力を「実際に何ができるか」の観点で使い、同じ量を配るだけでは不十分な具体例を挙げている。③ 二つの考え方を結び付けて、公正な配り方を具体的に示している。④ 思想家と概念の組合せを取り違えていない。</p>
+  </div>
+  <div class="explain">よくある失点は、無知のヴェールを「何も知らない人が決める」と書く、潜在能力を「その人の才能」と書く、の二つです。また「全員に同じ量を配るのが公正」とだけ書くと、センの考え方を使ったことになりません。どの立場からも合意できる条件（ロールズ）と、実際にできることを支える工夫（セン）の両方を示しましょう。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『公共，倫理』のうち「倫理」の範囲）</p>
+  <p>令和9年度の大学入学共通テスト実施要項は、出題範囲について「特記がない場合，出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲とする」としています。『公共，倫理』は「公共」と「倫理」の内容を総合した範囲で、地理歴史・公民で1科目を選ぶ場合の試験時間は60分（100点）です。このコマの内容は、その「倫理」の範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、「倫理」について「『公共』での学習などを踏まえ，倫理に関する概念や理論についての理解を深め，それらを活用して，考察する力を求める」とし、問題の作成に当たっては「先哲の思想に関する原典など多様な資料や他者との対話等を手掛かりにして，批判的に吟味して思索を深めたり，様々な立場から考察したりする問題などを含めて検討する」としています。</p>
+  <p>この時間は、「公共」で触れたロールズとセンを「倫理」で深め、4人の概念を身近な場面の考察に使いました。方針のいう「『公共』での学習などを踏まえ」た概念の理解と活用に当たります。確認問題の問8のように、話し合いの記録などの資料から考え方を読み取る練習をしておきましょう（これは実際の出題形式を示すものではありません）。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">民主社会における人間の在り方（倫理-042）</p>
+  <p>次の時間は「活用」のコマです。一人一人の人生観・世界観ないし価値観を尊重し合うことが民主主義の重要な前提であることを理解し、この時間の4人をはじめとする先哲の思想を手掛かりに、民主社会の発展のために何をすればよいかを考え、表現します。手掛かりの一つとして、リバタリアニズムとコミュニタリアニズムの考え方や、ノージック、マッキンタイアの思想にも触れます。</p>
+  <p>この時間では、民主社会の発展のための構想づくりと表現、リバタリアニズムとコミュニタリアニズム（倫理-042）、社会参加と奉仕の意義（倫理-043）、ケアの倫理（倫理-066）には深入りしていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>倫理-040　言語哲学と構造主義</div>
+  <div><span class="label">次の時間</span>倫理-042　民主社会における人間の在り方</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_kokyo_rinri/倫理-041「公共性に関する思想」（学習指導要領 A(1)ア(ウ)、解説 p.100）</li>
+    <li>文部科学省『高等学校学習指導要領（平成30年告示）』第2章第3節 公民（倫理 A(1)ア(ウ)）<a href="https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf">https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</a></li>
+    <li>文部科学省『高等学校学習指導要領（平成30年告示）解説 公民編』p.100（倫理：様々な倫理観、正義の視点と平等や福祉との関係）、p.43・45（公共：幸福を重視する考え方と義務を重視する考え方、思考実験の例）<a href="https://www.mext.go.jp/content/20211102-mxt_kyoiku02-100002620_04.pdf">https://www.mext.go.jp/content/20211102-mxt_kyoiku02-100002620_04.pdf</a></li>
+    <li>思想家と概念の対応の確認：東京書籍『倫理』（倫理002-901）編修趣意書（活動〔アーレント〕、コミュニケーション的理性〔ハーバーマス〕）<a href="https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/260430/20260420-mxt_ope01-059.pdf">文部科学省公開</a>／第一学習社『倫理』（倫理183-901）編修趣意書（ハーバーマスのコミュニケーション的行為と合意・公共性の形成、アーレントの活動と自由、ロールズ・セン、社会契約の思想）<a href="https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/260430/20260420-mxt_ope01-060.pdf">文部科学省公開</a>／東京書籍『倫理』（倫理701）シラバス案（「無知のヴェール」の状態から合意されうるルール、ケイパビリティを高める支援）<a href="https://ten.tokyo-shoseki.co.jp/text/hs/shakai/data/shakai_16602_syllabus.pdf">東京書籍</a>／東京書籍『公共』（公共002-901）シラバス案（ロールズの「公正としての正義」、センの「潜在能力」、不公正の是正と社会保障政策の事例）<a href="https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108350/shakai_16700_syllabus.pdf">東京書籍</a>／清水書院『公共』（公共035-902）編修趣意書の紙面（ロールズの「無知のヴェール」と自分とは違う立場の意識、平等の考え方）<a href="https://www.mext.go.jp/content/20250415-ope_dev03-000041681-6.pdf">文部科学省公開</a>／第一学習社『公共』（公共183-901）編修趣意書（正義論）<a href="https://www.mext.go.jp/content/20250415-ope_dev03-000041681-10.pdf">文部科学省公開</a></li>
+    <li>大学入試センター「令和9年度大学入学者選抜に係る大学入学共通テスト実施要項」<a href="https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00017382.pdf&amp;n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%AE%9F%E6%96%BD%E8%A6%81%E9%A0%85.pdf">大学入試センター</a>・「同 問題作成方針」（第4の3 公民）<a href="https://www.dnc.ac.jp/albums/abm.php?d=753&amp;f=abm00005361.pdf&amp;n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%95%8F%E9%A1%8C%E4%BD%9C%E6%88%90%E6%96%B9%E9%87%9D.pdf">大学入試センター</a></li>
+  </ul>
+  <p>作成：2026-09-29　版：1.1（2026-09-29 クロスチェックによる改修）　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。思想家と概念の対応と、各思想家についての要点（例：ハーバーマス＝コミュニケーション的行為を通じた合意と公共性の形成、アーレント＝公共的に他と交わり活動することが自由な行為に値する、「無知のヴェール」の状態から合意されうるルール、ケイパビリティを高める支援）は、上の資料で確かめられた範囲に限って書いています。概念の中身の説明（潜在能力・コミュニケーション的行為・活動などの言い換え）は、このページの言葉による言い換えで、本文でもそう示しています。確かめられなかった学説の細部・著作名は載せていません。原典の文章は引用せず、考え方の要旨をこのページの言葉でまとめています。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var positions = [
+    "立場1（家に勉強できる場所がない3年生）",
+    "立場2（17時以降しか来られない1年生）",
+    "立場3（家でも勉強できる2年生）",
+    "立場4（車いすを使う2年生）"
+  ];
+  var values = { A: [9, 1, 10, 5], B: [10, 2, 5, 3], C: [7, 6, 6, 4] };
+  var chosen = "";
+  var result = document.getElementById("veil-result");
+  var openBtn = document.getElementById("veil-open");
+  var ruleBtns = document.querySelectorAll("#veil .veil-rules button[data-rule]");
+  var rows = document.querySelectorAll("#veil-table tr[data-rule]");
+
+  function mark() {
+    ruleBtns.forEach(function (b) {
+      b.classList.toggle("chosen", b.dataset.rule === chosen);
+    });
+    rows.forEach(function (r) {
+      r.classList.toggle("chosen", r.dataset.rule === chosen);
+    });
+  }
+  ruleBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      chosen = b.dataset.rule;
+      mark();
+      openBtn.disabled = false;
+      result.textContent = "ルール" + chosen + "に合意しました。まだ自分がどの立場かは分かりません。「ヴェールを外す」を押してみましょう。";
+    });
+  });
+  openBtn.addEventListener("click", function () {
+    if (!chosen) {
+      return;
+    }
+    var i = Math.floor(Math.random() * 4);
+    var v = values[chosen][i];
+    var msg = "ヴェールを外すと、あなたは" + positions[i] + "でした。ルール" + chosen + "での使いやすさは" + v + "です。";
+    if (v <= 2) {
+      msg += "ほとんど自習室を使えません。この結果を知っていたら、あなたは前もってこのルールに合意できたでしょうか。";
+    } else if (v <= 5) {
+      msg += "使えなくはありませんが、十分とはいえません。何度か試して、どの立場になっても受け入れられるかを確かめましょう。";
+    } else {
+      msg += "今回は満足できる結果でした。ただし、別の立場になっていたらどうだったかも確かめましょう。";
+    }
+    result.textContent = msg;
+  });
+  document.getElementById("veil-reset").addEventListener("click", function () {
+    chosen = "";
+    mark();
+    openBtn.disabled = true;
+    result.textContent = "まずルールを一つ選びましょう。";
+  });
+
+  var base = 260;
+  var full = 140;
+  var level = {
+    off: { X: 0.9, Y: 0.3, Z: 0.35 },
+    on: { X: 0.9, Y: 0.8, Z: 0.8 }
+  };
+  var supportText = { X: "", Y: "支援：通信機器の貸し出し", Z: "支援：読み上げ・拡大表示" };
+  var note = document.getElementById("sen-note");
+  function drawSen(on) {
+    var lv = on ? level.on : level.off;
+    ["X", "Y", "Z"].forEach(function (k) {
+      var h = Math.round(full * lv[k]);
+      var bar = document.getElementById("bar-" + k);
+      bar.setAttribute("y", String(base - h));
+      bar.setAttribute("height", String(h));
+      var t = document.getElementById("val-" + k);
+      t.setAttribute("y", String(base - h - 6));
+      t.textContent = lv[k] >= 0.7 ? "広い" : "せまい";
+      document.getElementById("sup-" + k).textContent = on ? supportText[k] : "";
+    });
+    note.textContent = on
+      ? "支援を加えると、生徒Yと生徒Zの「実際にできることの幅」が広がりました。配られた端末は同じままです。"
+      : "今は、全員に同じ端末を1台ずつ配っただけの状態です。";
+  }
+  var sw = document.getElementById("sen-support");
+  sw.addEventListener("change", function () {
+    drawSen(sw.checked);
+  });
+  drawSen(false);
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_kokyo_rinri/倫理-041",
+  "map": "hs_kokyo_rinri",
+  "rid": "倫理-041",
+  "title": "公共性に関する思想",
+  "subject": "倫理",
+  "unit": {
+    "ref": "hs_kokyo_rinri:倫理-3",
+    "title": "様々な倫理観・世界観（近代以降の思想）"
+  },
+  "exam": {
+    "共通テスト": "○",
+    "個別試験": ""
+  },
+  "basis": [
+    "A(1)ア(ウ)"
+  ],
+  "kaisetsu_page": "100",
+  "objectives": [
+    {
+      "id": "O1",
+      "text": "ロールズが「無知のヴェール」の状態から合意されうるルールを考えて「公正としての正義」を説いたことを、功利主義の考え方と比べて説明できる。",
+      "from": "社会生活を成り立たせる公正・公平な仕組み…についての考え方を理解する。ロールズの正義論…を扱う。",
+      "sections": [
+        "sec-1",
+        "sec-4"
+      ],
+      "checks": [
+        "q1",
+        "q2",
+        "q4",
+        "q7",
+        "q9"
+      ]
+    },
+    {
+      "id": "O2",
+      "text": "センが「潜在能力（ケイパビリティ）」に着目し、平等や福祉を、配られるものの量だけでなく人が実際に何をできるかという点から捉えたことを説明できる。",
+      "from": "平等や福祉との関係についての考え方を理解する。…セン…を扱う。",
+      "sections": [
+        "sec-2",
+        "sec-4"
+      ],
+      "checks": [
+        "q2",
+        "q3",
+        "q5",
+        "q7",
+        "q9"
+      ]
+    },
+    {
+      "id": "O3",
+      "text": "ハーバーマスの「コミュニケーション的理性」とアーレントの「活動」を手掛かりに、人々が対等に語り合い、共に行為することで公共性が形づくられるという考え方を説明できる。",
+      "from": "公共性に関する思想を取り上げ…ハーバーマスのコミュニケーション的理性、アーレントを扱う。",
+      "sections": [
+        "sec-3",
+        "sec-4"
+      ],
+      "checks": [
+        "q2",
+        "q6",
+        "q7",
+        "q8"
+      ]
+    },
+    {
+      "id": "O4",
+      "text": "4人の考え方を対比表で整理し、身近な場面のルールや決め方の公正さを考える手掛かりとして使うことができる。",
+      "from": "公共性に関する思想を取り上げ、社会生活を成り立たせる公正・公平な仕組みや、平等や福祉との関係についての考え方を理解する。（要点全体。4人の比較と活用）",
+      "sections": [
+        "sec-4"
+      ],
+      "checks": [
+        "q8",
+        "q9"
+      ]
+    }
+  ],
+  "key_terms": [
+    {
+      "term": "公共性",
+      "where": "sec-3"
+    },
+    {
+      "term": "ロールズ",
+      "where": "sec-1"
+    },
+    {
+      "term": "正義論",
+      "where": "sec-1"
+    },
+    {
+      "term": "公正としての正義",
+      "where": "sec-1"
+    },
+    {
+      "term": "無知のヴェール",
+      "where": "sec-1"
+    },
+    {
+      "term": "セン",
+      "where": "sec-2"
+    },
+    {
+      "term": "潜在能力（ケイパビリティ）",
+      "where": "sec-2"
+    },
+    {
+      "term": "ハーバーマス",
+      "where": "sec-3"
+    },
+    {
+      "term": "コミュニケーション的行為",
+      "where": "sec-3"
+    },
+    {
+      "term": "コミュニケーション的理性",
+      "where": "sec-3"
+    },
+    {
+      "term": "アーレント",
+      "where": "sec-3"
+    },
+    {
+      "term": "活動",
+      "where": "sec-3"
+    }
+  ],
+  "prerequisites": [
+    {
+      "concept": "行為の結果である幸福を重視する考え方（功利主義）：全員の幸福を全体として最大にする",
+      "taught_in": [
+        "hs_kokyo_rinri/公共-007",
+        "hs_kokyo_rinri/倫理-035"
+      ],
+      "where": "r1"
+    },
+    {
+      "concept": "最大多数の最大幸福を実現するが特定の人に大きな負担を課す政策の思考実験",
+      "taught_in": [
+        "hs_kokyo_rinri/公共-011"
+      ],
+      "where": "r2"
+    },
+    {
+      "concept": "行為の動機となる公正などの義務を重視する考え方（義務論）、カントの人格の尊重",
+      "taught_in": [
+        "hs_kokyo_rinri/公共-008",
+        "hs_kokyo_rinri/公共-013",
+        "hs_kokyo_rinri/倫理-033"
+      ],
+      "where": "r2"
+    },
+    {
+      "concept": "社会契約の思想（社会は自由で平等な個人の契約によってつくられた）",
+      "taught_in": [
+        "hs_kokyo_rinri/倫理-032",
+        "hs_kokyo_rinri/公共-014"
+      ],
+      "where": "r3"
+    },
+    {
+      "concept": "ロールズの「公正としての正義」とセンの「潜在能力」（「公共」で触れる程度）",
+      "taught_in": [
+        "hs_kokyo_rinri/公共-008"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "アーレントの「活動」とハーバーマスの「コミュニケーション的理性」（教科書によっては「公共」で触れる）",
+      "taught_in": [
+        "hs_kokyo_rinri/公共-003"
+      ],
+      "where": "review"
+    },
+    {
+      "concept": "公共的な空間、互いの根拠や意味を問い合う対話",
+      "taught_in": [
+        "hs_kokyo_rinri/公共-001",
+        "hs_kokyo_rinri/公共-003"
+      ],
+      "where": "sec-3"
+    },
+    {
+      "concept": "民主主義：公共的な空間の在り方が全ての者の合理的な議論に開かれていること",
+      "taught_in": [
+        "hs_kokyo_rinri/公共-014"
+      ],
+      "where": "sec-3"
+    },
+    {
+      "concept": "正義を視点に、公正・公平な仕組みと平等や福祉との関係を問う",
+      "taught_in": [
+        "hs_kokyo_rinri/倫理-030"
+      ],
+      "where": "sec-1"
+    },
+    {
+      "concept": "所得の再分配と社会保障",
+      "taught_in": [
+        "hs_kokyo_rinri/公共-043",
+        "hs_kokyo_rinri/公共-050",
+        "hs_kokyo_rinri/公共-051"
+      ],
+      "where": "sec-2"
+    },
+    {
+      "concept": "積極的差別是正措置（アファーマティブ・アクション）",
+      "taught_in": [
+        "hs_kokyo_rinri/公共-017"
+      ],
+      "where": "supp-1"
+    },
+    {
+      "concept": "障がいのある人とともにつくる共生社会と、差別や偏見をなくす取組",
+      "taught_in": [
+        "jhs_shakai_komin/公民-023"
+      ],
+      "where": "sec-2"
+    },
+    {
+      "concept": "平等の二つの考え方（機会の平等と結果の平等）",
+      "taught_in": [
+        "hs_kokyo_rinri/公共-017"
+      ],
+      "gap": false,
+      "where": "supp-1"
+    }
+  ],
+  "out_of_scope": [
+    "民主社会の発展のために何をすればよいかを思索し表現する活動（倫理-042）",
+    "社会参加と奉仕の意義（倫理-043）",
+    "ケアの倫理・ギリガン（倫理-066）",
+    "功利主義の詳細（ベンサムの量的功利主義とJ.S.ミルの質的功利主義の比較）（倫理-035）",
+    "カントの批判哲学と道徳思想の詳細（倫理-033）、ホッブズ・ロック・ルソーの比較（倫理-032）",
+    "リバタリアニズムとコミュニタリアニズム、ノージック・マッキンタイアの思想（倫理-042）",
+    "出典で確かめられなかったロールズ・セン・ハーバーマス・アーレントの学説の細部と著作名（載せない）"
+  ],
+  "selection_reason": "倫理の行から倫理-033（カントの人格の尊厳）、倫理-039（フロイトとハイデッガー）、倫理-041（公共性に関する思想）を比べた。倫理-041は、系統の違う4人（ロールズ・セン・ハーバーマス・アーレント）の抽象的な中心概念を1コマで区別させる必要があり、思想家と概念の取り違え（判例 P-30 の型の誤り）が最も起きやすい。前提は功利主義・義務論・社会契約の思想（倫理-032・033・035）と「公共」の複数の行（公共-007・008・011・014ほか）にまたがり、ロールズとセンは「公共」で触れているため二重の新出を避ける境界の設計も要る。考え方の違いは対比表・概念図・思考実験の操作がないと理解しにくく、出典で確かめられる語が限られるため正確さの管理も難しい。共通テスト ○。",
+  "sources": [
+    {
+      "name": "高等学校学習指導要領（平成30年告示）第2章第3節 公民",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf",
+      "use": "倫理 A(1)ア(ウ) の事項"
+    },
+    {
+      "name": "高等学校学習指導要領（平成30年告示）解説 公民編",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20211102-mxt_kyoiku02-100002620_04.pdf",
+      "use": "p.100（様々な倫理観の例、正義の視点と平等や福祉との関係）、p.43・45（公共：幸福を重視する考え方・義務を重視する考え方・思考実験）"
+    },
+    {
+      "name": "教科書編修趣意書『倫理』（倫理002-901）",
+      "publisher": "東京書籍（文部科学省公開）",
+      "url": "https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/260430/20260420-mxt_ope01-059.pdf",
+      "use": "原典資料の一覧：活動（アーレント）、コミュニケーション的理性（ハーバーマス）"
+    },
+    {
+      "name": "教科書編修趣意書『倫理』（倫理183-901）",
+      "publisher": "第一学習社（文部科学省公開）",
+      "url": "https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/260430/20260420-mxt_ope01-060.pdf",
+      "use": "ハーバーマス（コミュニケーション的行為を通じた合意と公共性の形成）、アーレント（公共的に他と交わり活動することが自由な行為に値する）、ロールズ・セン、社会契約の思想の説明"
+    },
+    {
+      "name": "『倫理』（倫理701）シラバス案",
+      "publisher": "東京書籍",
+      "url": "https://ten.tokyo-shoseki.co.jp/text/hs/shakai/data/shakai_16602_syllabus.pdf",
+      "use": "「無知のヴェール」の状態から合意されうるルール、ケイパビリティを高めるために必要な支援、リバタリアニズム・コミュニタリアニズムの扱い"
+    },
+    {
+      "name": "『公共』（公共002-901）シラバス案",
+      "publisher": "東京書籍",
+      "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108350/shakai_16700_syllabus.pdf",
+      "use": "ロールズの「公正としての正義」、センの「潜在能力」、不公正の是正と社会保障政策の事例、公共でのアーレント・ハーバーマスの扱い"
+    },
+    {
+      "name": "教科書編修趣意書『公共』（公共035-902）",
+      "publisher": "清水書院（文部科学省公開）",
+      "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041681-6.pdf",
+      "use": "紙面：ロールズの「無知のヴェール」を参考に自分とは違う立場を意識する、平等の考え方（機会の平等・結果の平等）"
+    },
+    {
+      "name": "教科書編修趣意書『公共』（公共183-901）",
+      "publisher": "第一学習社（文部科学省公開）",
+      "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041681-10.pdf",
+      "use": "語句「正義論」"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項",
+      "publisher": "大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf&n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%AE%9F%E6%96%BD%E8%A6%81%E9%A0%85.pdf",
+      "use": "出題範囲の原則、試験時間と配点"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針",
+      "publisher": "大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf&n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%95%8F%E9%A1%8C%E4%BD%9C%E6%88%90%E6%96%B9%E9%87%9D.pdf",
+      "use": "『公共，倫理』の「倫理」の問題作成の方針"
+    }
+  ],
+  "version": "1.1",
+  "generated": "2026-09-29"
+}
+</script>
+</body>
+</html>

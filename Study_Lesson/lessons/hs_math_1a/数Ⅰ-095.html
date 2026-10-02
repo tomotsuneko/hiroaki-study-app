@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>課題学習：携帯端末の利用の影響を調べる｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.widget .w-row { margin: 4px 0; }
+.widget .w-out { font-size: .92rem; margin: 4px 0 0; }
+.stage { display: inline-block; font-size: .8rem; font-weight: 700; padding: 1px 8px; border-radius: 10px; border: 1px solid currentColor; margin-right: 6px; }
+table.data td, table.data th { text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>課題学習</span><span>数Ⅰ-095</span></div>
+  <h1>課題学習：携帯端末の利用の影響を調べる</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">課題学習</span>
+    <span class="badge exam-tri">共通テスト △</span>
+  </div>
+  <p class="lead">スマートフォンなどの携帯端末を長く使う人ほど、睡眠や勉強の時間は短いのでしょうか。この時間は、あるクラスのデータ（学習用の架空のデータ）を分析して結論を発表するまでの流れをたどり、その結論がどこまで言えるのか、広げすぎていないかを批判的に検討します。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>携帯端末の利用の影響を調べるために、集めるデータ（使用時間・読書・家庭学習・睡眠時間など）と、集め方（対象者・時期・記録の方法）を計画できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>集めたデータを、平均値・散布図・相関係数・層別などを用いて分析し、使用時間とほかの時間との関係の傾向を読み取ることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>分析の結果から、根拠となる数値と調べた範囲を示して結論をまとめ、発表できる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>データの収集時期や対象者、相関と因果の違いを考慮して、結論が過度に一般化していないかを批判的に検討できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-094）</span>課題学習：模擬店の利益を最大にする</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-095）</span>課題学習：携帯端末の利用の影響を調べる</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-096）</span>課題学習：解決の過程の振り返りと発表</div>
+</div>
+<p class="small">前提となる単元：なし（課題学習）。この時間は、中学1〜3年「データの活用」と、数学Ⅰ「データの分析」（数Ⅰ-079〜088：統計的探究プロセス、分散・標準偏差、散布図、相関係数、相関と因果、層別）を使います。本編の <span class="stage">①理解</span> などの印は、数Ⅰ-092 で示した課題学習の過程（①課題の理解 ②結果の予想 ③解決の方向の構想 ④解決 ⑤振り返りと発展）のどの段階かを表します。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：使う既習事項</h2>
+<p>この時間は、次の4つを使います。3問で確かめましょう。</p>
+<div class="formula-card">
+  <div><span class="f-name">① 統計的探究プロセス（数Ⅰ-079）</span><p>問題 → 計画 → データ → 分析 → 結論 の順に進める。</p></div>
+  <div><span class="f-name">② 散布図と相関（数Ⅰ-084）</span><p>一方が増えると他方も増える傾向が正の相関、減る傾向が負の相関、どちらでもないのが相関がない。</p></div>
+  <div><span class="f-name">③ 相関係数（数Ⅰ-085）</span><p>\( s_x&gt;0,\ s_y&gt;0 \) のとき \( r=\dfrac{s_{xy}}{s_xs_y} \)（\( s_{xy} \) は共分散、\( s_x \)、\( s_y \) は標準偏差）。\( -1\leqq r\leqq1 \) で、\( -1 \) に近いほど強い負の相関。</p></div>
+  <div><span class="f-name">④ 相関と因果（数Ⅰ-086）</span><p>相関があっても、一方が他方の原因であるとは断定できない。</p></div>
+</div>
+<p class="small">①〜④は、このページの中での番号です。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-085</span></div>
+  <p>次の相関係数のうち、最も強い負の相関を表すものはどれですか。</p>
+  <div class="choices">
+    <button>\( r=-0.39 \)</button>
+    <button>\( r=0.06 \)</button>
+    <button>\( r=0.50 \)</button>
+    <button data-correct="true">\( r=-0.80 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">負の相関は \( r&lt;0 \) で、\( -1 \) に近いほど強いので、\( r=-0.80 \) です。\( r=-0.39 \) も負の相関ですが、\( -1 \) から遠く弱い相関です。\( r=0.06 \) はほぼ 0 で、相関がほとんどありません。\( r=0.50 \) は正の相関です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-085</span></div>
+  <p>共分散が \( s_{xy}=-1455 \)、\( x \) の標準偏差が \( s_x\fallingdotseq72.8 \)、\( y \) の標準偏差が \( s_y=25 \) のとき、相関係数 \( r \) に最も近いものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( -0.80 \)</button>
+    <button>\( -58.2 \)</button>
+    <button>\( -0.27 \)</button>
+    <button>\( 0.80 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( r=\dfrac{-1455}{72.8\times25}=\dfrac{-1455}{1820}\fallingdotseq-0.80 \) です。\( -58.2 \) は \( s_y \) だけでわった値（\( -1455\div25 \)）で、\( -1\leqq r\leqq1 \) に入りません。\( -0.27 \) は \( x \) の分散 5301 でわった値（\( -1455\div5301 \)）で、標準偏差の積でわっていません。\( 0.80 \) は符号を落としています（共分散が負なら \( r \) も負）。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-086</span></div>
+  <p>あるデータで、1か月間に朝食を摂った日数の割合と、数学のテストの得点の間に正の相関がありました。このデータから言えることとして最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>朝食を毎日摂れば、数学の得点が上がる</button>
+    <button data-correct="true">正の相関はあるが、朝食を摂ることが得点を上げる原因だとは断定できない</button>
+    <button>得点が高い人は、そのために朝食を摂るようになると断定できる</button>
+    <button>相関係数が正なので、因果関係があることが証明された</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">相関があっても因果関係は断定できません（数Ⅰ-086）。生活のリズムなど、両方に関係するほかの要因があるかもしれません。「朝食を毎日摂れば得点が上がる」は、相関を原因と結果の関係と取り違えています。「得点が高い人はそのために朝食を摂る」は、逆向きの因果を根拠なく断定しています。「因果関係があることが証明された」は、相関係数の符号だけで因果を決めています。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：「使う時間が長いと睡眠が減る」は本当？</h2>
+<div class="box think">
+  <p class="box-title">ある会話（学習用に作成した架空の場面）</p>
+  <p>A さん：「スマートフォンを長く使う人ほど、寝る時間が短いと思う。」<br>B さん：「勉強の時間や読書の時間はどうだろう。」</p>
+  <p>① この主張を確かめるには、どんなデータを、誰から、いつ、どのように集めればよいでしょうか。</p>
+  <p>② 集めたデータからは、どんな結論が言えるでしょうか。</p>
+  <p>③ その結論は、ほかのクラスや全国の高校生にも当てはまるでしょうか。</p>
+  <p>①は「課題を理解し、計画する」、②は「分析する」「結論をまとめて発表する」、③は「批判的に検討する」の節で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="課題を理解し、計画する"><span class="num">3</span>課題を理解し、計画する</h2>
+<h3><span class="stage">①理解</span>何を調べるか</h3>
+<p>学習指導要領解説には、「データの分析」の課題学習の例として、スマートフォン等の携帯端末の利用の影響について、使用時間・読書・テレビ視聴・家庭学習・睡眠時間などのデータを収集し、分析することが挙げられています。この時間は、その一部を使って、次の課題に取り組みます。</p>
+<div class="box think"><p class="box-title">課題</p><p>X高校1年のあるクラスで、携帯端末の使用時間と、読書・家庭学習・睡眠の時間との間に、どんな関係があるか。</p></div>
+<h3><span class="stage">②予想</span>結果を予想する</h3>
+<p>A さんの考えのとおりなら、使用時間と睡眠時間の散布図は右下がりになり、負の相関が見られるはずです。家庭学習や読書についても、同じように負の相関があると予想する人がいるかもしれません。予想は、分析の前に書いておきます（分析の結果を見てから予想を変えないため）。</p>
+<h3><span class="stage">③構想</span>データの集め方と分析の方法を決める</h3>
+<p>統計的探究プロセス（数Ⅰ-079）の「計画」に当たります。次のことを決めました（学習用の設定）。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>決めること</th><th>この時間の計画</th><th>なぜ決めるか</th></tr>
+  <tr><td>何を記録するか</td><td>平日の、携帯端末の使用時間・読書・家庭学習・睡眠時間（分）と、部活動（運動部・文化部・所属なし）</td><td>量的データどうしの関係は散布図で、部活動（質的データ）は層別に使う</td></tr>
+  <tr><td>誰から</td><td>X高校1年のあるクラスの 20 人</td><td>結論が当てはまる範囲は、この対象者で決まる</td></tr>
+  <tr><td>いつ</td><td>11 月の、定期考査の前の1週間</td><td>時期によって時間の使い方が変わることがある</td></tr>
+  <tr><td>どのように</td><td>1人ひとりが毎日記録し、平日1日あたりの平均を 10 分単位で答える</td><td>同じ人について全部の時間を記録しないと、関係を調べられない</td></tr>
+  <tr><td>どう分析するか</td><td>平均値などの統計量、散布図、相関係数、部活動ごとの層別</td><td>予想（負の相関）を確かめられる方法を選ぶ</td></tr>
+</table>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：使用時間の長い人だけに睡眠時間を聞く</p><p>使用時間が長い人だけを集めて睡眠時間を聞いても、使用時間が短い人と比べられないので、関係は分かりません。関係を調べるには、<strong>同じ人について両方の時間を記録</strong>し、使用時間が短い人から長い人までのデータをそろえます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="分析する"><span class="num">4</span>分析する：散布図と相関係数</h2>
+<h3><span class="stage">④解決</span>集めたデータ</h3>
+<div class="box source">
+  <p class="box-title">資料1　X高校1年のあるクラス 20 人の記録（学習用の架空のデータ。平日1日あたりの平均、単位は分）</p>
+  <div class="table-wrap">
+  <table class="data" id="data-table">
+    <tr><th>No</th><th>部活動</th><th>使用時間</th><th>読書</th><th>家庭学習</th><th>睡眠時間</th></tr>
+    <tr><td>1</td><td>運動部</td><td>60</td><td>20</td><td>90</td><td>450</td></tr>
+    <tr><td>2</td><td>運動部</td><td>150</td><td>0</td><td>60</td><td>430</td></tr>
+    <tr><td>3</td><td>文化部</td><td>210</td><td>30</td><td>50</td><td>390</td></tr>
+    <tr><td>4</td><td>所属なし</td><td>120</td><td>40</td><td>90</td><td>420</td></tr>
+    <tr><td>5</td><td>運動部</td><td>90</td><td>10</td><td>80</td><td>440</td></tr>
+    <tr><td>6</td><td>文化部</td><td>180</td><td>20</td><td>70</td><td>400</td></tr>
+    <tr><td>7</td><td>所属なし</td><td>270</td><td>30</td><td>40</td><td>370</td></tr>
+    <tr><td>8</td><td>運動部</td><td>120</td><td>0</td><td>100</td><td>430</td></tr>
+    <tr><td>9</td><td>文化部</td><td>60</td><td>30</td><td>110</td><td>420</td></tr>
+    <tr><td>10</td><td>所属なし</td><td>240</td><td>30</td><td>60</td><td>400</td></tr>
+    <tr><td>11</td><td>運動部</td><td>180</td><td>10</td><td>40</td><td>420</td></tr>
+    <tr><td>12</td><td>文化部</td><td>150</td><td>40</td><td>90</td><td>390</td></tr>
+    <tr><td>13</td><td>所属なし</td><td>90</td><td>20</td><td>100</td><td>410</td></tr>
+    <tr><td>14</td><td>運動部</td><td>210</td><td>30</td><td>30</td><td>420</td></tr>
+    <tr><td>15</td><td>文化部</td><td>120</td><td>10</td><td>60</td><td>450</td></tr>
+    <tr><td>16</td><td>所属なし</td><td>300</td><td>10</td><td>90</td><td>360</td></tr>
+    <tr><td>17</td><td>運動部</td><td>30</td><td>30</td><td>70</td><td>460</td></tr>
+    <tr><td>18</td><td>文化部</td><td>240</td><td>30</td><td>80</td><td>410</td></tr>
+    <tr><td>19</td><td>所属なし</td><td>150</td><td>30</td><td>100</td><td>410</td></tr>
+    <tr><td>20</td><td>運動部</td><td>90</td><td>20</td><td>50</td><td>420</td></tr>
+  </table>
+  </div>
+  <p class="small">項目は学習指導要領解説の例の表（No・性別・所属の部・使用時間・読書・テレビ視聴・家庭学習・睡眠時間）の一部です。数値は学習用に作成した架空のもので、実際の高校生の傾向を示すものではありません。</p>
+</div>
+<h3>統計量で全体の様子をつかむ</h3>
+<div class="table-wrap">
+<table class="data" id="stat-table">
+  <tr><th></th><th>使用時間</th><th>読書</th><th>家庭学習</th><th>睡眠時間</th></tr>
+  <tr><th>平均値（分）</th><td>153</td><td>22</td><td>73</td><td>415</td></tr>
+  <tr><th>標準偏差（分）</th><td>72.8</td><td>11.7</td><td>22.8</td><td>25</td></tr>
+  <tr><th>使用時間との相関係数</th><td>—</td><td>0.06</td><td>−0.39</td><td>−0.80</td></tr>
+</table>
+</div>
+<p class="small">標準偏差は小数第2位を、相関係数は小数第3位を四捨五入した近似値（睡眠時間の標準偏差 25 はちょうどの値）。分散は偏差の2乗の平均（データの個数 20 でわる）で求めた（数Ⅰ-081）。</p>
+<figure>
+<!--svg:f095a-->
+<svg viewBox="0 0 340 250" width="340" role="img" aria-label="使用時間（横軸）と睡眠時間（縦軸）の散布図。20 人の点は右下がりに並び、負の相関が見られる。●は運動部、▲は文化部、■は所属なし。破線は平均値（使用時間 153 分、睡眠時間 415 分）" data-frame="54.0 325.0 30.0 215.0 0 320 340 480">
+<line x1="54" y1="215" x2="333" y2="215" stroke="currentColor" stroke-width="1"/>
+<line x1="54" y1="215" x2="54" y2="18" stroke="currentColor" stroke-width="1"/>
+<text x="58" y="16" text-anchor="start" font-size="11" fill="currentColor">睡眠時間（分）</text>
+<text x="325" y="245" text-anchor="end" font-size="11" fill="currentColor">使用時間（分）</text>
+<line x1="54" y1="212" x2="54" y2="218" stroke="currentColor" stroke-width="1"/>
+<text x="54" y="229" text-anchor="middle" font-size="10" fill="currentColor">0</text>
+<line x1="138.7" y1="212" x2="138.7" y2="218" stroke="currentColor" stroke-width="1"/>
+<text x="138.7" y="229" text-anchor="middle" font-size="10" fill="currentColor">100</text>
+<line x1="223.4" y1="212" x2="223.4" y2="218" stroke="currentColor" stroke-width="1"/>
+<text x="223.4" y="229" text-anchor="middle" font-size="10" fill="currentColor">200</text>
+<line x1="308.1" y1="212" x2="308.1" y2="218" stroke="currentColor" stroke-width="1"/>
+<text x="308.1" y="229" text-anchor="middle" font-size="10" fill="currentColor">300</text>
+<line x1="51" y1="188.6" x2="57" y2="188.6" stroke="currentColor" stroke-width="1"/>
+<text x="49" y="192.6" text-anchor="end" font-size="10" fill="currentColor">360</text>
+<line x1="51" y1="135.7" x2="57" y2="135.7" stroke="currentColor" stroke-width="1"/>
+<text x="49" y="139.7" text-anchor="end" font-size="10" fill="currentColor">400</text>
+<line x1="51" y1="82.9" x2="57" y2="82.9" stroke="currentColor" stroke-width="1"/>
+<text x="49" y="86.9" text-anchor="end" font-size="10" fill="currentColor">440</text>
+<line x1="51" y1="30" x2="57" y2="30" stroke="currentColor" stroke-width="1"/>
+<text x="49" y="34" text-anchor="end" font-size="10" fill="currentColor">480</text>
+<line x1="183.6" y1="30" x2="183.6" y2="215" stroke="#8a99a8" stroke-width="1" stroke-dasharray="4 3" data-mean-x="153.0"/>
+<line x1="54" y1="115.9" x2="325" y2="115.9" stroke="#8a99a8" stroke-width="1" stroke-dasharray="4 3" data-mean-y="415.0"/>
+<text x="187.6" y="38" text-anchor="start" font-size="10" fill="#8a99a8">平均 153</text>
+<text x="325" y="110.9" text-anchor="end" font-size="10" fill="#8a99a8">平均 415</text>
+<circle cx="104.8" cy="69.6" r="4.5" fill="#1f5fbf" data-xy="60 450" data-g="運動部"/>
+<circle cx="181" cy="96.1" r="4.5" fill="#1f5fbf" data-xy="150 430" data-g="運動部"/>
+<polygon points="231.8,143.4 226.8,152.4 236.8,152.4" fill="#b7791f" stroke="#b7791f" stroke-width="0.5" data-xy="210 390" data-g="文化部"/>
+<rect x="151.6" y="105.3" width="8" height="8" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="0.5" data-xy="120 420" data-g="所属なし"/>
+<circle cx="130.2" cy="82.9" r="4.5" fill="#1f5fbf" data-xy="90 440" data-g="運動部"/>
+<polygon points="206.4,130.2 201.4,139.2 211.4,139.2" fill="#b7791f" stroke="#b7791f" stroke-width="0.5" data-xy="180 400" data-g="文化部"/>
+<rect x="278.7" y="171.4" width="8" height="8" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="0.5" data-xy="270 370" data-g="所属なし"/>
+<circle cx="155.6" cy="96.1" r="4.5" fill="#1f5fbf" data-xy="120 430" data-g="運動部"/>
+<polygon points="104.8,103.8 99.8,112.8 109.8,112.8" fill="#b7791f" stroke="#b7791f" stroke-width="0.5" data-xy="60 420" data-g="文化部"/>
+<rect x="253.2" y="131.7" width="8" height="8" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="0.5" data-xy="240 400" data-g="所属なし"/>
+<circle cx="206.4" cy="109.3" r="4.5" fill="#1f5fbf" data-xy="180 420" data-g="運動部"/>
+<polygon points="181,143.4 176,152.4 186,152.4" fill="#b7791f" stroke="#b7791f" stroke-width="0.5" data-xy="150 390" data-g="文化部"/>
+<rect x="126.2" y="118.5" width="8" height="8" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="0.5" data-xy="90 410" data-g="所属なし"/>
+<circle cx="231.8" cy="109.3" r="4.5" fill="#1f5fbf" data-xy="210 420" data-g="運動部"/>
+<polygon points="155.6,64.1 150.6,73.1 160.6,73.1" fill="#b7791f" stroke="#b7791f" stroke-width="0.5" data-xy="120 450" data-g="文化部"/>
+<rect x="304.1" y="184.6" width="8" height="8" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="0.5" data-xy="300 360" data-g="所属なし"/>
+<circle cx="79.4" cy="56.4" r="4.5" fill="#1f5fbf" data-xy="30 460" data-g="運動部"/>
+<polygon points="257.2,117 252.2,126 262.2,126" fill="#b7791f" stroke="#b7791f" stroke-width="0.5" data-xy="240 410" data-g="文化部"/>
+<rect x="177" y="118.5" width="8" height="8" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="0.5" data-xy="150 410" data-g="所属なし"/>
+<circle cx="130.2" cy="109.3" r="4.5" fill="#1f5fbf" data-xy="90 420" data-g="運動部"/>
+</svg>
+<!--/svg:f095a-->
+  <figcaption>図1　使用時間と睡眠時間の散布図（資料1。学習用の架空のデータ）。●＝運動部、▲＝文化部、■＝所属なし。破線はそれぞれの平均値（使用時間 153 分、睡眠時間 415 分）。縦軸は 340 分からの部分を示している</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題1（使用時間と睡眠時間の相関係数）</p>
+  <p>資料1で、使用時間を \( x \)、睡眠時間を \( y \) とします。\( x \) の分散は 5301、\( y \) の分散は 625、共分散は \( s_{xy}=-1455 \) です。相関係数 \( r \) を小数第2位まで求め、散布図と合わせて関係を読み取りなさい。</p>
+  <div class="step">ステップ1：標準偏差は \( s_x=\sqrt{5301}\fallingdotseq72.8 \)、\( s_y=\sqrt{625}=25 \)。</div>
+  <div class="step">ステップ2：\( r=\dfrac{s_{xy}}{s_xs_y}=\dfrac{-1455}{\sqrt{5301}\times25}\fallingdotseq-0.80 \)。</div>
+  <div class="step">ステップ3（散布図）：図1で、平均値の破線で4つに分けると、点の多くが「左上（使用時間が短く睡眠時間が長い）」と「右下（使用時間が長く睡眠時間が短い）」にあります。</div>
+  <div class="step">答え：\( r\fallingdotseq-0.80 \)。このクラスでは、使用時間が長い人ほど睡眠時間が短い傾向（強い負の相関）が見られる。</div>
+</div>
+<p>家庭学習の時間との相関係数は \( -0.39 \) で弱い負の相関、読書の時間とは \( 0.06 \) で、ほとんど相関がありません。また、使用時間が 180 分以上の 8 人の睡眠時間の平均は 396.25 分、180 分未満の 12 人では 427.5 分で、約 31 分の差があります。</p>
+<h3>部活動で分けて（層別して）みる</h3>
+<p>データをある要因で分けて比べることを、<strong>層別</strong>して比較するといいました（数Ⅰ-088）。ここでは、部活動（質的データ）で分けます。下の図で、部活動ごとの相関係数を確かめてみましょう。</p>
+<div class="widget" id="w1">
+  <div class="w-row"><label for="w1-y">縦軸にする時間：</label>
+    <select id="w1-y"><option value="sleep" selected>睡眠時間</option><option value="study">家庭学習</option><option value="read">読書</option></select></div>
+  <div class="w-row"><label for="w1-g">対象：</label>
+    <select id="w1-g"><option value="all" selected>全体（20人）</option><option value="sport">運動部（8人）</option><option value="culture">文化部（6人）</option><option value="none">所属なし（6人）</option></select></div>
+  <div><svg id="w1-svg" viewBox="0 0 340 250" width="340" role="img" aria-label="使用時間（横軸）とえらんだ時間（縦軸）の散布図。えらんだ対象の点を濃く、それ以外を薄い灰色で示す"></svg></div>
+  <p class="w-out" id="w1-out" aria-live="polite">対象：全体（20人）　使用時間と睡眠時間の相関係数 r ≒ −0.80</p>
+  <p class="w-out" id="w1-out2" aria-live="polite">平均値：使用時間 153 分、睡眠時間 415 分</p>
+  <p class="small">●＝運動部、▲＝文化部、■＝所属なし。えらんだ対象以外の点は薄い灰色の ○ で示しています。相関係数は小数第3位を四捨五入した近似値です。</p>
+</div>
+<div class="box caution"><p class="box-title">注意：人数の少ない層の相関係数</p><p>層別すると、運動部（8人）では睡眠時間との相関係数が約 −0.82、文化部（6人）では約 −0.49 となり、層によって違って見えます。しかし、6人や8人のデータでは、1人の値が変わるだけで相関係数が大きく変わることがあります。層ごとの違いを主張するには、人数を増やして確かめる必要があります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="結論をまとめて発表する"><span class="num">5</span>結論をまとめて発表する</h2>
+<h3><span class="stage">④解決</span>根拠を明確にした結論</h3>
+<p>学習指導要領解説では、根拠を明確にしながら得られた結論を発表させることが示されています。発表する結論には、次の3つを入れます。</p>
+<ol>
+  <li><strong>主張</strong>：何が分かったか（どんな傾向があったか）。</li>
+  <li><strong>根拠</strong>：そう言える数値やグラフ（相関係数、平均値の差、散布図）。</li>
+  <li><strong>調べた範囲</strong>：誰を、いつ、どのように調べた結果か。</li>
+</ol>
+<div class="box example worked">
+  <p class="box-title">例題2（発表の原稿を組み立てる）</p>
+  <p>資料1の分析から、発表の結論を組み立てなさい。</p>
+  <div class="step">主張：このクラスでは、携帯端末の使用時間が長い人ほど、睡眠時間が短い傾向がありました。</div>
+  <div class="step">根拠：使用時間と睡眠時間の相関係数は約 −0.80 で、散布図も右下がりです。使用時間が 180 分以上の人の睡眠時間の平均は 396.25 分で、180 分未満の人の 427.5 分より約 31 分短くなっています。家庭学習とは約 −0.39 の弱い負の相関、読書とはほとんど相関がありませんでした。</div>
+  <div class="step">調べた範囲：X高校1年のあるクラス 20 人が、11 月の定期考査の前の1週間に自分で記録した、平日1日あたりの平均です。</div>
+  <div class="step">答え（まとめ）：上の3つを順に述べ、「この結果は、このクラスのこの時期のデータについてのもので、使用時間が睡眠時間を減らす原因だとまでは言えません」と、言えることの範囲を添える。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：主張だけを大きく言う</p><p>「スマートフォンを使うと睡眠時間が減ることが分かりました」という発表は、根拠の数値も調べた範囲も示しておらず、しかも因果関係を言い切っています。聞き手が確かめられるように、数値と範囲を必ず添えます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="批判的に検討する"><span class="num">6</span>振り返り：結論を批判的に検討する</h2>
+<h3><span class="stage">⑤振り返り</span>過度に一般化していないか</h3>
+<p>学習指導要領解説では、データの収集時期や対象者等を考慮し、過度に一般化した結論になっていないかどうかを批判的に検討することが示されています。この時間の結論を、次の観点で見直します。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>観点</th><th>この時間のデータでは</th><th>結論への影響</th></tr>
+  <tr><td>収集時期</td><td>定期考査の前の1週間</td><td>家庭学習の時間がふだんより長く、使用時間や睡眠時間もふだんと違う可能性がある。ふだんの関係と同じとは限らない</td></tr>
+  <tr><td>対象者</td><td>1つのクラスの 20 人で、無作為に選んだ標本ではない</td><td>ほかのクラス・学校・全国の高校生に、そのまま当てはめることはできない（中3-111・112）</td></tr>
+  <tr><td>相関と因果</td><td>強い負の相関（約 −0.80）</td><td>使用時間が睡眠時間を減らす原因だとは断定できない。帰宅時刻などほかの要因や、眠れないから使うという逆の向きも考えられる（数Ⅰ-086）</td></tr>
+  <tr><td>記録の方法</td><td>自分で記録し、10 分単位で答えた平均</td><td>記録のし忘れや見積もりのずれがある。使用時間の数え方（ながら使いを含むか）も人によって違うかもしれない</td></tr>
+  <tr><td>層別</td><td>6〜8 人の層</td><td>層ごとの相関係数の違いは、人数が少ないため確かではない</td></tr>
+</table>
+</div>
+<h3><span class="stage">⑤発展</span>ほかの集団のデータと比べる</h3>
+<p>解説では、さらに他の集団のデータと比較することも考えられるとしています。ここでは、国の調査の結果と比べてみます。</p>
+<div class="box source">
+  <p class="box-title">資料2　公的な調査の結果（こども家庭庁「令和６年度 青少年のインターネット利用環境実態調査 調査結果（概要）」概要10）</p>
+  <p>インターネットを利用すると回答した青少年の平均利用時間について、「高校生は、約６時間19分」（高校生 938 人、平均 379.4 分）とされています。この平均利用時間は、スマートフォン、学校から配布・指定されたパソコンやタブレット等、ゲーム機など7種類の機器でインターネットを利用した時間を合計した、平日1日あたりの時間です。調査の対象は満 10 歳から満 17 歳の青少年 5,000 人（回収 3,129 人）、期間は令和６年11月１日～12月16日です。</p>
+  <p class="small">調査の回答方法は、調査員による個別面接聴取法 911 人、調査員が調査票を配って回収する訪問配布訪問回収法 1,719 人、WEB 調査法 371 人、郵送回収法 128 人です（調査概要）。</p>
+  <p class="small">出典：こども家庭庁「令和６年度 青少年のインターネット利用環境実態調査 調査結果（概要）」調査概要・概要10（概要 p.15）。2026-10-01 に公開資料から取得（URL はページの最後）。</p>
+</div>
+<p>資料1のクラスの使用時間の平均は 153 分で、資料2の 379.4 分よりずっと短くなっています。しかし、「このクラスは全国の高校生より携帯端末を使っていない」と、そのまま言うことはできません。</p>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>資料1（このクラス）</th><th>資料2（国の調査）</th></tr>
+  <tr><th>測ったもの</th><td>携帯端末の使用時間</td><td>7種類の機器でのインターネット利用時間の合計</td></tr>
+  <tr><th>対象</th><td>1つのクラスの 20 人</td><td>満 10〜17 歳の青少年 5,000 人を対象にした調査で、インターネットを利用すると回答した高校生 938 人</td></tr>
+  <tr><th>時期</th><td>11 月の定期考査の前の1週間</td><td>令和６年11月１日～12月16日</td></tr>
+  <tr><th>方法</th><td>自分で記録した平均</td><td>調査員による聞き取り、調査票の訪問配布・回収、WEB、郵送による回答</td></tr>
+</table>
+</div>
+<p>測ったものの定義や方法が違うデータの平均値は、単純には比べられません。比べるなら、測り方をそろえて同じ質問で調べる必要があります。ほかの学年・学校で同じ方法で調べたり、考査のない時期にも調べたりすると、結論をどこまで広げてよいかを確かめられます。</p>
+<div class="box caution"><p class="box-title">よくある間違い：公的な調査の数値なら、どんな比べ方をしてもよい</p><p>公的な調査の数値は信頼できる資料ですが、自分のデータと比べてよいかは別の問題です。何を、誰に、いつ、どのように調べた数値かを確かめてから比べます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>過度な一般化</dt><dd>調べた対象者・時期・方法の範囲を超えて、結論を広く当てはめてしまうこと（解説の「過度に一般化した結論」に当たる、このページでの言い方）。</dd>
+    <dt>収集時期・対象者</dt><dd>データを集めた時期と、データを集めた人の集団。結論がどこまで当てはまるかを決める。</dd>
+    <dt>相関係数</dt><dd>\( r=\dfrac{s_{xy}}{s_xs_y} \)（\( s_x&gt;0,\ s_y&gt;0 \) のとき）。2つの量的データの直線的な関係の強さと向きを表す（数Ⅰ-085）。</dd>
+    <dt>相関と因果</dt><dd>相関があっても、一方が他方の原因であるとは断定できない（数Ⅰ-086）。</dd>
+    <dt>層別</dt><dd>データをある要因（部活動などの質的データ）で分けて比べること（数Ⅰ-088 の「層別して比較する」）。人数の少ない層の結果は変わりやすい。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>課題を決めたら、何を・誰から・いつ・どのように集め、どう分析するかを計画する。同じ人について必要な時間をすべて記録する（O1）。</li>
+    <li>このクラスのデータでは、使用時間と睡眠時間の相関係数は約 −0.80（強い負の相関）、家庭学習とは約 −0.39、読書とは約 0.06。層別した結果は人数が少なく変わりやすい（O2）。</li>
+    <li>結論は「主張・根拠の数値・調べた範囲」をそろえて発表する（O3）。</li>
+    <li>収集時期（考査前）・対象者（1クラス 20 人）・相関と因果・記録の方法を考え、結論を広げすぎない。ほかの集団と比べるときは、測ったものと方法がそろっているかを確かめる（O4）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">結論を検討する観点</span><p>収集時期／対象者（標本の選び方・人数）／相関と因果／記録の方法／比べる集団と測り方</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示します。資料1の数値は学習用に作成した架空のものです。数を入力する問題は、単位を付けずに数だけを入力してもかまいません。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O2</span></div>
+  <p>図1の散布図で、使用時間が長いほど睡眠時間が短い傾向が見られます。この傾向を表す言葉として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>正の相関</button>
+    <button data-correct="true">負の相関</button>
+    <button>相関がない</button>
+    <button>因果関係</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">一方が増えると他方が減る傾向は負の相関です（数Ⅰ-084）。「正の相関」は、一方が増えると他方も増える傾向です。「相関がない」は、どちらの傾向も見られない場合です。「因果関係」は原因と結果の関係で、散布図の傾向だけからは断定できません（数Ⅰ-086）。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="116.25|116.25分">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>資料1で、運動部の 8 人の使用時間の平均値を求めなさい（単位は分）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 116.25（分）。運動部は No.1・2・5・8・11・14・17・20 で、使用時間は 60、150、90、120、180、210、30、90。合計 930 を 8 でわって 116.25 です。105 と答えた場合は中央値（小さい順に並べた4番目と5番目 90 と 120 の平均）です。153 と答えた場合は、クラス全体 20 人の平均値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O1</span></div>
+  <p>携帯端末の使用時間と睡眠時間の関係を調べる計画として、最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>使用時間の長い人だけを集めて、睡眠時間を聞く</button>
+    <button>使用時間はこのクラスで、睡眠時間は別のクラスで調べる</button>
+    <button>クラス全体の平均値だけを集めて比べる</button>
+    <button data-correct="true">同じ人について、使用時間と睡眠時間の両方を記録する</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">関係を散布図や相関係数で調べるには、同じ人についての2つの値の組が必要です。「使用時間の長い人だけ」では、短い人と比べられません。「別のクラスで調べる」では、同じ人の組が作れません。「平均値だけ」では、1人ひとりの関係（散布図）が分からず、相関係数も求められません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>資料1で、使用時間と家庭学習の時間の共分散は \( -654 \)、標準偏差はそれぞれ約 72.8 分、約 22.8 分です。相関係数に最も近いものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( -0.39 \)</button>
+    <button>\( -28.7 \)</button>
+    <button>\( -0.12 \)</button>
+    <button>\( 0.39 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( r=\dfrac{-654}{72.8\times22.8}\fallingdotseq-0.39 \) で、弱い負の相関です。\( -28.7 \) は家庭学習の標準偏差だけでわった値（\( -654\div22.8 \)）です。\( -0.12 \) は使用時間の分散 5301 でわった値（\( -654\div5301 \)）です。\( 0.39 \) は符号を落としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O1・O4</span></div>
+  <p>資料1は、定期考査の前の1週間に記録したデータです。この収集時期について、最も適切な注意はどれですか。</p>
+  <div class="choices">
+    <button>1週間の平均をとったので、どの時期に集めても結果は同じになる</button>
+    <button>考査の前は誰も携帯端末を使わないので、使用時間のデータは意味がない</button>
+    <button data-correct="true">家庭学習の時間などがふだんと違う可能性があるので、ふだんの関係と同じとは限らない</button>
+    <button>時期が違っても、相関係数は必ず同じ値になる</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">考査の前は、家庭学習を増やす人や、使用時間・睡眠時間がふだんと変わる人がいると考えられ、ふだんの時期の関係と同じとは言えません。「1週間の平均なので時期は関係ない」は、平均をとっても時期による違いは消えないことを見落としています。「誰も使わない」は資料1（使用時間 30〜300 分）と合いません。「相関係数は必ず同じ」は根拠がなく、データが変われば相関係数も変わります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O4</span></div>
+  <p>資料1のクラスの使用時間の平均 153 分は、資料2の高校生の平均利用時間 379.4 分より短くなっています。「このクラスは全国の高校生より携帯端末を使っていない」と、そのまま言えない理由として最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">資料2は7種類の機器でのインターネット利用時間の合計で、資料1とは測ったものや調べ方が違うから</button>
+    <button>資料2の人数が 938 人と多すぎて、平均値が正しく求められないから</button>
+    <button>379.4 分は約 6 時間 19 分で、分と時間が混ざっているから</button>
+    <button>平均値どうしは、どんな場合でも比べてはいけないから</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">資料2はゲーム機や学校の端末なども含む7種類の機器でのインターネット利用時間の合計で、調査員による聞き取りや調査票の配布・回収などで集めた回答です。資料1の「携帯端末の使用時間（自分で記録）」とは定義も方法も違います。「人数が多すぎる」は誤りで、人数が多いことは平均値を求める妨げになりません。「分と時間が混ざっている」は、379.4 分＝約 6 時間 19 分という同じ量の言い換えで、理由になりません。「平均値どうしはどんな場合でも比べてはいけない」は言いすぎで、測り方がそろっていれば比べられます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O3・O4</span></div>
+  <p>資料1の分析について、4人が結論を述べました。過度に一般化せず、根拠も示している結論として最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>太郎：「スマートフォンを使うと睡眠時間が減ることが、相関係数 −0.80 で証明された。」</button>
+    <button>花子：「全国の高校生も、使用時間が長いほど睡眠時間が短いことが分かった。」</button>
+    <button>次郎：「家庭学習との相関係数は −0.39 なので、使用時間を減らせば家庭学習の時間が必ず増える。」</button>
+    <button data-correct="true">由美：「このクラスの考査前の記録では、使用時間と睡眠時間の相関係数が約 −0.80 で、使用時間が長い人ほど睡眠時間が短い傾向があった。」</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">由美さんは、調べた範囲（このクラス、考査前）と根拠の数値を示し、「傾向があった」と言える範囲で述べています。太郎さんは、相関係数から因果関係を「証明された」と言い切っています。花子さんは、1つのクラスの結果を全国の高校生に広げています。次郎さんは、弱い負の相関から「必ず増える」と因果と確実さの両方を言いすぎています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2・O4</span></div>
+  <p>資料1を部活動で層別すると、睡眠時間との相関係数は、運動部（8人）で約 −0.82、文化部（6人）で約 −0.49 でした。この結果の読み取りとして最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>文化部の人は、携帯端末の影響を受けにくいことが分かった</button>
+    <button data-correct="true">人数が少ない層では、1人の値で相関係数が大きく変わりうるので、層ごとの違いを主張するには人数を増やして確かめる必要がある</button>
+    <button>層によって相関係数が違うので、全体の相関係数 −0.80 は誤りである</button>
+    <button>運動部では、使用時間を 1 分減らすと睡眠時間が 0.82 分増える</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">6〜8人のデータでは、相関係数が偶然に大きく変わることがあります。「文化部の人は影響を受けにくい」は、相関係数の大小を因果の強さと取り違え、少ない人数で言い切っています。「全体の相関係数は誤り」は誤りで、全体と層とでは対象のデータが違うので、値が違っても矛盾しません。「1 分減らすと 0.82 分増える」は、相関係数を「増え方の割合」と取り違えています（相関係数は直線的な関係の強さを表す値で、単位もありません）。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O3・O4</span></div>
+  <p>資料1の分析をもとに、発表用の結論を書きなさい。根拠となる数値と調べた範囲を示し、結論を広げすぎないための注意を1つ以上含めて、120字程度で書くこと。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　このクラスの20人が考査前の1週間に記録したデータでは、使用時間と睡眠時間の相関係数は約−0.80で、使用時間が長い人ほど睡眠時間が短い傾向があった。ただし、相関があっても使用時間が原因とは言えず、ほかのクラスやふだんの時期にも当てはまるとは限らない。（126字）</p>
+    <p><strong>採点の観点</strong>　①調べた範囲（このクラス 20 人、考査前の1週間）を示している（2点）。②根拠の数値（相関係数約 −0.80、または平均値の差など）を示している（3点）。③傾向を「〜の傾向があった」と言える範囲で述べている（2点）。④相関と因果、対象者、収集時期のうち1つ以上について、結論を広げすぎないための注意を書いている（3点）。計10点。字数は多少前後してよい。</p>
+  </div>
+  <div class="explain">「スマートフォンは睡眠に悪い」のように因果や価値判断を言い切る結論、「高校生は〜」と対象を広げた結論は、観点③④を満たしません。家庭学習（約 −0.39）や読書（約 0.06）の結果を加えてもかまいません。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト △（課題学習）</p>
+  <p>学習内容マップでは、課題学習の行に △ の印を付けています。△ は「出題範囲の内容だが、活動そのもの（実演・発表・討論・レポート作成など）は筆記の学力検査で直接は問われにくい」という意味です。散布図・相関係数・相関と因果は出題範囲の内容ですが、データを集める・発表するといった活動そのものは、筆記の試験で直接は問われにくいと考えられます。</p>
+  <p>令和9年度大学入学共通テスト実施要項では、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「解決過程を振り返り，得られた結果を意味づけたり，活用したり，統合的・発展的に考察したりすることなどを求める」としています。分析の結果をもとに結論の範囲を検討するこの時間の活動は、こうした考え方の土台になります。</p>
+  <p class="small">確認問題は学習用に作成した練習問題（架空のデータ）で、実際の出題形式を示すものではありません。△ は出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">課題学習：解決の過程の振り返りと発表（数Ⅰ-096）</p>
+  <p>数Ⅰ-092〜095 では、無理数・図形・二次関数・データの分析の課題に取り組みました。次の時間は、これらの課題を材料に、課題の理解から振り返りと発展までの過程全体を振り返り、発表の組み立て方や、質問・議論の仕方を学びます。</p>
+  <p>この時間では、課題学習の過程全体の振り返りと、発表・議論の仕方（数Ⅰ-096）は扱っていません。また、偶然で起こりうる差かどうかを判断する仮説検定の考え方（数Ⅰ-089・090）は使っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-094　課題学習：模擬店の利益を最大にする</div>
+  <div><span class="label">次の時間</span>数Ⅰ-096　課題学習：解決の過程の振り返りと発表</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-095「課題学習：携帯端末の利用の影響を調べる」（課題学習。学習指導要領 数学Ⅰ〔課題学習〕・(4)イ(イ)、解説 p.51）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」〔課題学習〕、内容の取扱い(4)、(4) データの分析 イ(イ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.49（課題学習の過程）、p.50-51（課題学習の例〈データの分析〉：目的に応じて複数の種類のデータを収集し分析する。スマートフォン等の携帯端末の利用の影響について、使用時間・読書・テレビ視聴・家庭学習・睡眠時間などのデータを収集し分析する。根拠を明確にしながら得られた結論を発表させ、データの収集時期や対象者等を考慮し、過度に一般化した結論になっていないかどうかを批判的に検討する。他の集団のデータと比較する）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>こども家庭庁「令和６年度 青少年のインターネット利用環境実態調査 調査結果（概要）」調査概要・概要10（概要 p.15）https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/9a55b57d-cd9d-4cf6-8ed4-3da8efa12d63/0a26134c/20250328_policies_youth-kankyou_internet_research_results-etc_16.pdf（報告書の案内：https://www.cfa.go.jp/policies/youth-kankyou/internet_research/results-etc/r06）（2026-10-01 取得。取得した本文の該当部分は tools/worker/lesson_hs_math_1a_数Ⅰ-095_source_cfa_r06.txt）</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。X高校、資料1のデータ（20 人の記録）、記録の時期・方法は学習用に作成した架空のもので、実際の高校生の傾向を示すものではありません。資料2の数値は公的な調査の結果で、調査の改訂などにより値が更新されることがあります。操作できる図は、ブラウザの JavaScript で動きます（動かない環境でも、本文の表と図で学べます）。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  function mk(parent, name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text !== undefined) e.textContent = text;
+    parent.appendChild(e);
+    return e;
+  }
+  // No, 部活動, 使用時間, 読書, 家庭学習, 睡眠時間（資料1と同じ）
+  var D = [
+    [1, "sport", 60, 20, 90, 450], [2, "sport", 150, 0, 60, 430], [3, "culture", 210, 30, 50, 390],
+    [4, "none", 120, 40, 90, 420], [5, "sport", 90, 10, 80, 440], [6, "culture", 180, 20, 70, 400],
+    [7, "none", 270, 30, 40, 370], [8, "sport", 120, 0, 100, 430], [9, "culture", 60, 30, 110, 420],
+    [10, "none", 240, 30, 60, 400], [11, "sport", 180, 10, 40, 420], [12, "culture", 150, 40, 90, 390],
+    [13, "none", 90, 20, 100, 410], [14, "sport", 210, 30, 30, 420], [15, "culture", 120, 10, 60, 450],
+    [16, "none", 300, 10, 90, 360], [17, "sport", 30, 30, 70, 460], [18, "culture", 240, 30, 80, 410],
+    [19, "none", 150, 30, 100, 410], [20, "sport", 90, 20, 50, 420]
+  ];
+  var COL = { read: 3, study: 4, sleep: 5 };
+  var YNAME = { read: "読書", study: "家庭学習", sleep: "睡眠時間" };
+  var YR = { read: [0, 60, 10], study: [0, 160, 40], sleep: [340, 480, 20] };
+  var GNAME = { all: "全体", sport: "運動部", culture: "文化部", none: "所属なし" };
+  var COLOR = { sport: "#1f5fbf", culture: "#b7791f", none: "#1e8e5a" };
+  var sy = document.getElementById("w1-y"), sg = document.getElementById("w1-g");
+  var svg = document.getElementById("w1-svg");
+  var out = document.getElementById("w1-out"), out2 = document.getElementById("w1-out2");
+  if (!sy || !sg || !svg) return;
+  var L = 54, R = 325, T = 24, B = 210, X0 = 0, X1 = 320;
+  function mean(a) { var s = 0; a.forEach(function (v) { s += v; }); return s / a.length; }
+  function meanStr(a) {
+    var s = 0; a.forEach(function (v) { s += v; });
+    var n = a.length;
+    if ((s * 100) % n === 0) { var q = s * 100 / n; return String(q / 100); }
+    return "≒ " + (Math.round(s * 100 / n) / 100).toFixed(2);
+  }
+  function corr(x, y) {
+    var mx = mean(x), my = mean(y), sxy = 0, sxx = 0, syy = 0;
+    for (var i = 0; i < x.length; i++) { sxy += (x[i] - mx) * (y[i] - my); sxx += (x[i] - mx) * (x[i] - mx); syy += (y[i] - my) * (y[i] - my); }
+    return sxy / Math.sqrt(sxx * syy);
+  }
+  function rStr(r) { var v = Math.round(Math.abs(r) * 100) / 100; return (r < 0 && v > 0 ? "−" : "") + v.toFixed(2); }
+  function marker(g, cx, cy, on) {
+    var col = on ? COLOR[g] : "#8a99a8";
+    if (!on) return mk(svg, "circle", { cx: cx, cy: cy, r: 3.5, fill: "none", stroke: col, "stroke-width": 1, "data-role": "pt-off" });
+    if (g === "sport") return mk(svg, "circle", { cx: cx, cy: cy, r: 4.5, fill: col, "data-role": "pt-on" });
+    if (g === "culture") return mk(svg, "polygon", { points: cx + "," + (cy - 5.5) + " " + (cx - 5) + "," + (cy + 3.5) + " " + (cx + 5) + "," + (cy + 3.5), fill: col, "data-role": "pt-on" });
+    return mk(svg, "rect", { x: cx - 4, y: cy - 4, width: 8, height: 8, fill: col, "data-role": "pt-on" });
+  }
+  function draw() {
+    var yk = sy.value, g = sg.value, yr = YR[yk];
+    var px = function (v) { return L + (v - X0) / (X1 - X0) * (R - L); };
+    var py = function (v) { return B - (v - yr[0]) / (yr[1] - yr[0]) * (B - T); };
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    mk(svg, "line", { x1: L, y1: B, x2: R + 6, y2: B, stroke: "currentColor" });
+    mk(svg, "line", { x1: L, y1: B, x2: L, y2: T - 8, stroke: "currentColor" });
+    mk(svg, "text", { x: L + 4, y: T - 10, "font-size": 11, fill: "currentColor" }, YNAME[yk] + "（分）");
+    mk(svg, "text", { x: R, y: B + 30, "text-anchor": "end", "font-size": 11, fill: "currentColor" }, "使用時間（分）");
+    for (var t = 0; t <= 300; t += 100) {
+      mk(svg, "line", { x1: px(t), y1: B - 3, x2: px(t), y2: B + 3, stroke: "currentColor" });
+      mk(svg, "text", { x: px(t), y: B + 14, "text-anchor": "middle", "font-size": 10, fill: "currentColor" }, String(t));
+    }
+    for (var u = yr[0]; u <= yr[1]; u += yr[2] * 2) {
+      mk(svg, "line", { x1: L - 3, y1: py(u), x2: L + 3, y2: py(u), stroke: "currentColor" });
+      mk(svg, "text", { x: L - 5, y: py(u) + 4, "text-anchor": "end", "font-size": 10, fill: "currentColor" }, String(u));
+    }
+    var xs = [], ys = [];
+    D.forEach(function (r) {
+      var on = g === "all" || r[1] === g;
+      if (!on) marker(r[1], px(r[2]), py(r[COL[yk]]), false);
+    });
+    D.forEach(function (r) {
+      var on = g === "all" || r[1] === g;
+      if (on) { marker(r[1], px(r[2]), py(r[COL[yk]]), true); xs.push(r[2]); ys.push(r[COL[yk]]); }
+    });
+    if (out) out.textContent = "対象：" + GNAME[g] + "（" + xs.length + "人）　使用時間と" + YNAME[yk] + "の相関係数 r ≒ " + rStr(corr(xs, ys));
+    if (out2) out2.textContent = "平均値：使用時間 " + meanStr(xs) + " 分、" + YNAME[yk] + " " + meanStr(ys) + " 分";
+  }
+  sy.addEventListener("change", draw);
+  sg.addEventListener("change", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-095",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-095",
+  "title": "課題学習：携帯端末の利用の影響を調べる",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-6", "title": "課題学習"},
+  "exam": {"共通テスト": "△", "個別試験": ""},
+  "basis": ["課題学習", "(4)イ(イ)"],
+  "kaisetsu_page": "51",
+  "objectives": [
+    {"id": "O1", "text": "携帯端末の利用の影響を調べるために、集めるデータ（使用時間・読書・家庭学習・睡眠時間など）と、集め方（対象者・時期・記録の方法）を計画できる。", "from": "スマートフォン等の使用時間と読書・家庭学習・睡眠時間などのデータを収集", "sections": ["sec-1"], "checks": ["q3", "q5"]},
+    {"id": "O2", "text": "集めたデータを、平均値・散布図・相関係数・層別などを用いて分析し、使用時間とほかの時間との関係の傾向を読み取ることができる。", "from": "…分析して", "sections": ["sec-2"], "checks": ["q1", "q2", "q4", "q8"]},
+    {"id": "O3", "text": "分析の結果から、根拠となる数値と調べた範囲を示して結論をまとめ、発表できる。", "from": "結論を発表し", "sections": ["sec-3"], "checks": ["q7", "q9"]},
+    {"id": "O4", "text": "データの収集時期や対象者、相関と因果の違いを考慮して、結論が過度に一般化していないかを批判的に検討できる。", "from": "収集時期や対象者を考慮して過度に一般化していないかを批判的に検討できる", "sections": ["sec-4"], "checks": ["q5", "q6", "q7", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "過度な一般化", "where": "sec-4"},
+    {"term": "収集時期・対象者", "where": "sec-1"},
+    {"term": "相関係数", "where": "sec-2"},
+    {"term": "相関と因果", "where": "sec-4"},
+    {"term": "層別", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "統計的探究プロセス、質的データ・量的データ", "taught_in": ["hs_math_1a/数Ⅰ-079"], "gap": false, "where": "review"},
+    {"concept": "平均値・中央値", "taught_in": ["jhs_math/中1-111"], "gap": false, "where": "sec-2"},
+    {"concept": "分散と標準偏差", "taught_in": ["hs_math_1a/数Ⅰ-081"], "gap": false, "where": "sec-2"},
+    {"concept": "散布図と正の相関・負の相関", "taught_in": ["hs_math_1a/数Ⅰ-084"], "gap": false, "where": "review"},
+    {"concept": "共分散と相関係数", "taught_in": ["hs_math_1a/数Ⅰ-085"], "gap": false, "where": "review"},
+    {"concept": "相関と因果", "taught_in": ["hs_math_1a/数Ⅰ-086"], "gap": false, "where": "review"},
+    {"concept": "層別", "taught_in": ["hs_math_1a/数Ⅰ-088"], "gap": false, "where": "sec-2"},
+    {"concept": "母集団と標本・無作為抽出", "taught_in": ["jhs_math/中3-111", "jhs_math/中3-112"], "gap": false, "where": "sec-4"},
+    {"concept": "調査の方法や結果の批判的考察", "taught_in": ["jhs_math/中1-116", "jhs_math/中3-115"], "gap": false, "where": "sec-4"}
+  ],
+  "out_of_scope": [
+    "課題学習の過程全体の振り返りと発表・議論の仕方（数Ⅰ-096）",
+    "偶然で起こりうる差かどうかの判断（仮説検定の考え方、数Ⅰ-089・数Ⅰ-090）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『課題学習』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ〔課題学習〕と内容の取扱い(4)、(4)イ(イ)"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.49 課題学習の過程、p.50-51 課題学習の例〈データの分析〉（携帯端末の利用の影響、データの項目、根拠を明確にした発表、収集時期や対象者等を考慮した批判的検討、他の集団との比較）"},
+    {"name": "令和６年度 青少年のインターネット利用環境実態調査 調査結果（概要）", "publisher": "こども家庭庁", "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/9a55b57d-cd9d-4cf6-8ed4-3da8efa12d63/0a26134c/20250328_policies_youth-kankyou_internet_research_results-etc_16.pdf", "use": "調査概要（対象・期間・7機器）と概要10（高校生の平均利用時間 約6時間19分＝379.4分、938人）。2026-10-01 取得、保存：tools/worker/lesson_hs_math_1a_数Ⅰ-095_source_cfa_r06.txt"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

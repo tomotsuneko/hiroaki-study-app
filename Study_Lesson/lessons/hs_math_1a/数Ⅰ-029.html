@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>背理法による証明｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>集合と命題</span><span>数Ⅰ-029</span></div>
+  <h1>背理法による証明</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">\( \sqrt{2} \) は分数で表せない数（無理数）だと、中学3年で学びました。でも、なぜそう言い切れるのでしょう。分数は限りなくあるので、1つずつ調べることはできません。「もし分数で表せたとしたら」と仮定して、つじつまの合わないことを導く方法で証明します。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>証明したいことが成り立たないと仮定して矛盾を導き、証明したいことが成り立つと結論する背理法の考え方を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>「直線外の1点からその直線に引ける垂線は1本だけである」ことを、背理法を用いて証明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>√2 が分数で表せない（無理数である）ことを、背理法を用いて証明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-028）</span>対偶を利用した証明</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-029）</span>背理法による証明</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-030）</span>単元末演習（集合と命題）</div>
+</div>
+<p class="small">前提となる単元：数学Ⅰ「数と式」、中学2年「平行線と角・図形の合同」「三角形と四角形」。中学3年で学んだ有理数と無理数（中3-023）、数Ⅰ-009（実数と数の体系）、前の時間の数Ⅰ-028（対偶を利用した証明）の結果を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、前の時間に証明した「\( n \) を整数とするとき、\( n^2 \) が偶数ならば \( n \) も偶数」（数Ⅰ-028）、有理数・無理数の意味（中3-023・数Ⅰ-009）、三角形の内角の和（中2-048）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-028</span></div>
+  <p>\( m \)、\( a \) を整数とします。\( m^2=2a \) が成り立つとき、\( m \) についていえることはどれですか。</p>
+  <div class="choices">
+    <button>\( m \) は奇数である。</button>
+    <button data-correct="true">\( m \) は偶数である。</button>
+    <button>偶数か奇数かは決まらない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( m^2=2a \) は \( 2\times \)（整数）の形なので、\( m^2 \) は偶数です。数Ⅰ-028 で証明した「\( m^2 \) が偶数ならば \( m \) も偶数」より、\( m \) は偶数です（たとえば \( m=4 \) のとき \( m^2=16=2\times 8 \)）。\( m \) が奇数なら \( m^2 \) も奇数になるので（数Ⅰ-028 の対偶）、「奇数」も「決まらない」も誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中3-023・数Ⅰ-009</span></div>
+  <p>「\( \sqrt{2} \) は無理数である」とは、どういうことですか。</p>
+  <div class="choices">
+    <button>\( \sqrt{2} \) は整数ではない。</button>
+    <button>\( \sqrt{2} \) は小数で表せない。</button>
+    <button>\( \sqrt{2} \) は2乗すると 2 になる。</button>
+    <button data-correct="true">\( \sqrt{2} \) は、整数 \( m \) と 0 でない整数 \( n \) を用いて \( \dfrac{m}{n} \) の形に表せない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">無理数は、整数 \( m \) と 0 でない整数 \( n \) を用いた分数 \( \dfrac{m}{n} \) の形に表せない数です（数Ⅰ-009）。「整数ではない」だけなら \( \dfrac{1}{2} \) も当てはまりますが、\( \dfrac{1}{2} \) は有理数です。\( \sqrt{2}=1.41421\cdots \) と小数で表すことはできるので、「小数で表せない」は誤りです。「2乗すると 2」は \( \sqrt{2} \) の意味（中3-019）で、無理数であることとは別のことです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中2-048</span></div>
+  <p>\( \triangle PAB \) で \( \angle A=90^\circ \)、\( \angle B=90^\circ \) だとすると、\( \angle P \) は何度になりますか。</p>
+  <div class="choices">
+    <button>\( 90^\circ \)</button>
+    <button>\( 180^\circ \)</button>
+    <button data-correct="true">\( 0^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">三角形の内角の和は \( 180^\circ \) なので（中2-048）、\( \angle P=180^\circ-90^\circ-90^\circ=0^\circ \) になります。三角形の角は \( 0^\circ \) より大きいので、このような三角形はありません。このことを「垂線は1本だけ」の節の証明で使います。\( 90^\circ \) は和を \( 270^\circ \) と考えた誤り、\( 180^\circ \) は内角の和そのものを答えた誤りです。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：\( m^2=2n^2 \) になる自然数を探そう</h2>
+<div class="box think">
+  <p class="box-title">\( \sqrt{2}=\dfrac{m}{n} \) と書けるなら…</p>
+  <p>もし \( \sqrt{2}=\dfrac{m}{n} \)（\( m \)、\( n \) は自然数）と書けるなら、両辺を \( n \) 倍して2乗すると \( m^2=2n^2 \) です。そこで、\( 2n^2 \) が自然数の2乗（平方数）になる \( n \) を探してみます。</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>\( n \)</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+    <tr><th>\( 2n^2 \)</th><td>2</td><td>8</td><td>18</td><td>32</td><td>50</td><td>72</td><td>98</td><td>128</td><td>162</td><td>200</td></tr>
+    <tr><th>平方数か</th><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td></tr>
+  </table>
+  </div>
+  <p>\( 2\times 5^2=50 \) は \( 7^2=49 \) に、\( 2\times 12^2=288 \) は \( 17^2=289 \) に近いのに、ぴったりにはなりません。どこまで探しても見つからないのでしょうか。探すだけでは「ない」ことは示せません。どうすれば示せるかを、「\( \sqrt{2} \) は無理数」の節の例題2で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="背理法の考え方"><span class="num">3</span>背理法の考え方</h2>
+<p>「ない」ことや「1つだけ」であることは、調べて確かめるのが難しい主張です。そこで、次のように証明します。</p>
+<div class="box point">
+  <p class="box-title">背理法</p>
+  <p>ある命題を証明するとき、その命題が<strong>成り立たないと仮定</strong>すると、正しい推論を重ねた結果、<strong>矛盾</strong>が起こることを示します。仮定が誤りだったことになるので、もとの命題は成り立つと結論します。このような証明の方法を<strong>背理法</strong>といいます。</p>
+  <p>ここで<strong>矛盾</strong>とは、つじつまが合わないこと、つまり、仮定や既に正しいと分かっている事実と反することが導かれることです。</p>
+</div>
+<div class="table-wrap">
+<table>
+  <tr><th>段階</th><th>すること</th><th>注意すること</th></tr>
+  <tr><td>① 否定を仮定する</td><td>「証明したいことが成り立たない」と仮定する</td><td>否定を正しくつくる（数Ⅰ-026）。少なくとも1本あると分かっているとき、「1本だけ」の否定は「2本以上」</td></tr>
+  <tr><td>② 推論する</td><td>仮定と、既に正しいと分かっている性質から、分かることを導く</td><td>使った性質（定理・前の時間の結果）を書く</td></tr>
+  <tr><td>③ 矛盾を示す</td><td>仮定や既に分かっている事実と反することを導く</td><td>何と何が矛盾するかをはっきり書く</td></tr>
+  <tr><td>④ 結論する</td><td>「仮定は誤り。よって、もとの命題は成り立つ」</td><td>最後に結論を書く</td></tr>
+</table>
+</div>
+<h3>対偶を利用した証明との違い</h3>
+<p>前の時間の対偶を利用した証明では、命題 \( p\Longrightarrow q \)（「\( p \) ならば \( q \)」。数Ⅰ-024 と同じ、このページでの書き方）の代わりに \( \overline{q}\Longrightarrow\overline{p} \) を示しました。目標は「\( \overline{p} \) を導く」ことに決まっていました。背理法では、「\( p \) であって \( q \) でない」と仮定し、<strong>何か1つ矛盾</strong>を導けばよいので、矛盾の相手は仮定 \( p \) でも、既に分かっている事実（三角形の内角の和など）でもかまいません。</p>
+<div class="box caution"><p class="box-title">よくある間違い：否定のつくり方と、矛盾の書き落とし</p><p>(1) 「\( \sqrt{2} \) は無理数」を示すのに「\( \sqrt{2} \) は整数である」と仮定する誤り。無理数の否定は「有理数である（分数で表せる）」です。<br>(2) 途中の式を書いただけで「矛盾」と書き、何と何が反するのかを書かない。矛盾の相手（仮定のどこか、どの事実か）を必ず書きます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="垂線は1本だけ"><span class="num">4</span>直線外の1点から引ける垂線は1本だけ</h2>
+<p>中学1年で、2直線が垂直に交わるとき一方を他方の<strong>垂線</strong>ということと、直線外の点を通る垂線の作図を学びました（中1-076・中1-084）。作図できるので、垂線が少なくとも1本引けることは分かっています。ここで示すのは、<strong>2本以上は引けない</strong>ことです。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（垂線は1本だけ）</p>
+  <p>直線 \( l \) と、\( l \) 上にない点 P があります。P から \( l \) に引ける垂線は1本だけであることを、背理法を用いて証明しなさい。</p>
+  <div class="step">ステップ1（否定を仮定する）：P から \( l \) に垂線が2本以上引けたと仮定する。そのうちの2本を PA、PB とし、A、B は \( l \) との交点とする（図1）。</div>
+  <div class="step">ステップ2（A と B は異なる点）：もし A と B が同じ点なら、2本の垂線はどちらも2点 P、A を通る直線になる。異なる2点を通る直線は1本だけなので、2本は同じ直線になり、2本であることに反する。よって A と B は異なる点である。</div>
+  <div class="step">ステップ3（三角形ができる）：P は \( l \) 上にないので、P、A、B は1つの直線上になく、\( \triangle PAB \) ができる。PA、PB は \( l \) に垂直なので、\( \angle PAB=90^\circ \)、\( \angle PBA=90^\circ \)。</div>
+  <div class="step">ステップ4（矛盾を示す）：三角形の内角の和は \( 180^\circ \) なので（中2-048）、\( \angle APB=180^\circ-90^\circ-90^\circ=0^\circ \)。これは、三角形の角が \( 0^\circ \) より大きいことに反する（矛盾）。</div>
+  <div class="step">ステップ5（結論）：仮定は誤りである。よって、P から \( l \) に引ける垂線は1本だけである。（証明終わり）</div>
+</div>
+<figure>
+<!--svg:f029a-->
+<svg viewBox="0 0 440 262" width="440" role="img" aria-label="直線 l と l 上にない点 P。P から l に2本の垂線 PA、PB が引けたと仮定し、A と B に直角の印を付けた模式図。三角形 PAB の内角の和を考えると ∠APB が 0° になり矛盾する。実際には2本の垂線はかけないので、線は破線でかいている" data-fig="f029a">
+<path d="M220,44 L160,168 L280,168 Z" fill="#c0392b" fill-opacity="0.08" stroke="none"/>
+<line x1="24" y1="168" x2="416" y2="168" stroke="currentColor" stroke-width="1.6" data-line="l"/>
+<line x1="220" y1="44" x2="160" y2="168" stroke="#1f5fbf" stroke-width="2" stroke-dasharray="6 4" data-line="PA"/>
+<line x1="220" y1="44" x2="280" y2="168" stroke="#1f5fbf" stroke-width="2" stroke-dasharray="6 4" data-line="PB"/>
+<path d="M173,168 L178.7,156.3 L165.7,156.3" fill="none" stroke="#c0392b" stroke-width="1.6"/>
+<path d="M267,168 L261.3,156.3 L274.3,156.3" fill="none" stroke="#c0392b" stroke-width="1.6"/>
+<circle cx="220" cy="44" r="4" fill="currentColor" data-pt="P"/>
+<circle cx="160" cy="168" r="4" fill="currentColor" data-pt="A"/>
+<circle cx="280" cy="168" r="4" fill="currentColor" data-pt="B"/>
+<text x="220" y="32" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">P</text>
+<text x="160" y="190" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">A</text>
+<text x="280" y="190" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">B</text>
+<text x="412" y="160" text-anchor="end" font-size="14" font-weight="700" fill="currentColor">l</text>
+<text x="20" y="216" text-anchor="start" font-size="12" font-weight="700" fill="#1f5fbf">仮定：PA⊥l、PB⊥l（垂線が2本引けたとする）</text>
+<text x="20" y="238" text-anchor="start" font-size="12" font-weight="700" fill="#c0392b">△PAB の内角の和：90°＋90°＋∠APB＝180° → ∠APB＝0°</text>
+<text x="20" y="256" text-anchor="start" font-size="12" fill="#c0392b">三角形の角は 0° より大きいので矛盾</text>
+</svg>
+<!--/svg:f029a-->
+  <figcaption>図1　「垂線が2本引けた」と仮定したときの模式図。実際にはこのような図はかけない（かけないこと自体を、図ではなく推論で示すのが証明）</figcaption>
+</figure>
+<div class="box point"><p class="box-title">図は考える助け、証明は推論</p><p>仮定のもとの図は、正しくはかけません。図1も、角が 90° に見えるようにはかけていません。証明では「かけない」ことを図で示すのではなく、ステップ2〜4のように、既に分かっている性質から矛盾を導いて示します。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="√2 は無理数"><span class="num">5</span>\( \sqrt{2} \) は無理数（分数で表せない）</h2>
+<p>中学3年では、\( \sqrt{2} \) は分数で表せない数（無理数）であることを学びました（中3-023）。数Ⅰ-009 でもこのことを使いました。ここでは、それを背理法で証明します。学習指導要領の解説も、ある自然数の平方根が分数で表せないことを理解できるようにする、としています。</p>
+<p>証明で使う事実を確かめておきます。</p>
+<ul>
+  <li>分数は、分子と分母を公約数でわって（約分して）、それ以上約分できない分数にできる（約分は小学校で学び、公約数は中1-021 で捉え直した）。</li>
+  <li>\( n \) を整数とするとき、\( n^2 \) が偶数ならば \( n \) も偶数（数Ⅰ-028 の例題1）。</li>
+  <li>偶数は \( 2k \)（\( k \) は整数）と表せる（中2-008）。</li>
+</ul>
+<div class="box example worked">
+  <p class="box-title">例題2（導入の答え：\( \sqrt{2} \) は無理数）</p>
+  <p>\( \sqrt{2} \) が無理数であることを、背理法を用いて証明しなさい。</p>
+  <div class="step">ステップ1（否定を仮定する）：\( \sqrt{2} \) が有理数であると仮定する。\( \sqrt{2}&gt;0 \) なので、\( \sqrt{2}=\dfrac{m}{n} \) と、自然数 \( m \)、\( n \) を用いて表せる。さらに約分して、\( \dfrac{m}{n} \) はそれ以上約分できない分数としてよい。</div>
+  <div class="step">ステップ2（式を変形する）：両辺に \( n \) をかけて \( \sqrt{2}\,n=m \)。両辺を2乗して \( 2n^2=m^2 \) …①</div>
+  <div class="step">ステップ3（\( m \) は偶数）：①より \( m^2 \) は偶数なので、数Ⅰ-028 の結果から \( m \) も偶数。自然数 \( k \) を用いて \( m=2k \) と表せる。</div>
+  <div class="step">ステップ4（\( n \) も偶数）：\( m=2k \) を①に代入すると \( 2n^2=4k^2 \)、つまり \( n^2=2k^2 \)。\( n^2 \) は偶数なので、同じく \( n \) も偶数。</div>
+  <div class="step">ステップ5（矛盾を示す）：\( m \) も \( n \) も偶数なので、\( \dfrac{m}{n} \) は分子と分母を 2 でわって約分できる。これは、それ以上約分できない分数としたことに反する（矛盾）。</div>
+  <div class="step">ステップ6（結論）：仮定は誤りである。よって、\( \sqrt{2} \) は有理数ではなく、無理数である。（証明終わり）</div>
+</div>
+<p><strong>導入の問いの答え</strong>：\( m^2=2n^2 \) を満たす自然数 \( m \)、\( n \) は、どこまで探しても見つかりません。もし見つかれば \( \sqrt{2}=\dfrac{m}{n} \) となり、例題2で示したように矛盾が起こるからです。</p>
+<p class="small">教科書によっては、\( \sqrt{2} \) が無理数であることの証明を、本文ではなく本文外の「研究」として扱っています（本文で扱う教科書もあります）。</p>
+<div class="box caution"><p class="box-title">よくある間違い：\( \sqrt{2} \) の証明で</p><p>(1) 「それ以上約分できない分数」とおくのを忘れる。これがないと、ステップ5で矛盾が起こりません。<br>(2) 「\( m^2 \) が偶数だから \( m \) は偶数」の根拠を書かない。これは数Ⅰ-028 で証明した事実です。<br>(3) 「\( \sqrt{2}=1.41421356\cdots \) と小数が限りなく続くから無理数」とする。限りなく続く小数でも、循環小数なら分数で表せます（数Ⅰ-010）。電卓で見える範囲の数字だけでは、循環しないことは分かりません。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題3（\( \sqrt{2} \) を使って、ほかの数が無理数であることを示す）</p>
+  <p>\( \sqrt{2} \) が無理数であることを用いて、\( \sqrt{2}+1 \) が無理数であることを証明しなさい。</p>
+  <div class="step">ステップ1（否定を仮定する）：\( \sqrt{2}+1 \) が有理数であると仮定し、\( \sqrt{2}+1=r \)（\( r \) は有理数）とおく。</div>
+  <div class="step">ステップ2（推論）：\( \sqrt{2}=r-1 \)。有理数どうしの差は有理数なので（数Ⅰ-011）、\( r-1 \) は有理数である。</div>
+  <div class="step">ステップ3（矛盾と結論）：\( \sqrt{2} \) が有理数となり、例題2で証明した「\( \sqrt{2} \) は無理数」に反する。よって、\( \sqrt{2}+1 \) は無理数である。（証明終わり）</div>
+</div>
+<p>数Ⅰ-009 で「\( \sqrt{2}+1 \) がもし分数で表せたら、\( \sqrt{2} \) が分数で表せてしまう」と説明したのは、この背理法の考え方でした。また、数Ⅰ-009 で \( \sqrt{3} \) も無理数であると述べました。これは、数Ⅰ-028 の例題3「\( n^2 \) が 3 の倍数ならば \( n \) は 3 の倍数」を使って、例題2と同じように証明できます（問10）。</p>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>背理法</dt><dd>証明したい命題が成り立たないと仮定し、矛盾が起こることを示して、もとの命題が成り立つと結論する証明の方法。</dd>
+    <dt>矛盾</dt><dd>つじつまが合わないこと。仮定や、既に正しいと分かっている事実と反することが導かれること。</dd>
+    <dt>垂線</dt><dd>2直線が垂直に交わるとき、一方を他方の垂線という（中1-076）。直線外の1点からその直線に引ける垂線は1本だけ。</dd>
+    <dt>無理数</dt><dd>整数 \( m \) と 0 でない整数 \( n \) を用いて \( \dfrac{m}{n} \) の形に表せない数（中3-023・数Ⅰ-009）。\( \sqrt{2} \) は無理数である。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>背理法は、「成り立たない」と仮定して矛盾を導き、「成り立つ」と結論する方法。否定を正しくつくり、何と何が矛盾するかを書く（O1）。</li>
+    <li>垂線が2本引けたと仮定すると、三角形の2つの角が \( 90^\circ \) になり、内角の和から残りの角が \( 0^\circ \) となって矛盾する。よって垂線は1本だけ（O2）。</li>
+    <li>\( \sqrt{2}=\dfrac{m}{n} \)（それ以上約分できない）と仮定すると、\( 2n^2=m^2 \) から \( m \)、\( n \) がともに偶数になり矛盾する。よって \( \sqrt{2} \) は無理数（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">背理法の流れ</span>
+    <p>① 成り立たないと仮定<br>② 正しい推論<br>③ 矛盾（何と何が反するか）<br>④ 仮定は誤り → 成り立つ</p></div>
+  <div><span class="f-name">\( \sqrt{2} \) の証明の要点</span>
+    <p>\( \sqrt{2}=\dfrac{m}{n} \)（約分できない）<br>\( 2n^2=m^2 \) → \( m=2k \) → \( n^2=2k^2 \)<br>\( m \)、\( n \) ともに偶数 → 矛盾</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。数を入力する問題は、半角または全角の数字で入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>背理法の説明として正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">証明したいことが成り立たないと仮定して矛盾を導き、証明したいことが成り立つと結論する。</button>
+    <button>証明したいことの逆を証明し、もとの命題も成り立つと結論する。</button>
+    <button>証明したいことが成り立つ例を1つ示して、成り立つと結論する。</button>
+    <button>証明したいことが成り立つと仮定して、矛盾が起こらないことを確かめる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">背理法は、否定を仮定して矛盾を導く方法です。逆は、もとの命題と真偽が一致するとは限りません（数Ⅰ-027）。成り立つ例を1つ示しても、いつも成り立つことの証明にはなりません。成り立つと仮定して矛盾が起こらないことを確かめても、成り立つことの証明にはなりません（仮定したことを結論にしているだけです）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O3</span></div>
+  <p>「\( \sqrt{2} \) は無理数である」を背理法で証明するとき、最初に仮定することはどれですか。</p>
+  <div class="choices">
+    <button>\( \sqrt{2} \) は整数である。</button>
+    <button>\( \sqrt{2} \) は無理数である。</button>
+    <button data-correct="true">\( \sqrt{2} \) は有理数である。</button>
+    <button>\( \sqrt{2} \) は小数で表せる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">背理法では結論の否定を仮定します。実数は有理数か無理数のどちらか一方なので、「無理数である」の否定は「有理数である」です。「整数である」は有理数の一部しか考えていないので、否定として足りません。「無理数である」は結論そのものです。「小数で表せる」は有理数でも無理数でも成り立つので、否定になりません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>例題1「P から \( l \) に引ける垂線は1本だけ」を背理法で証明するとき、最初に仮定したことはどれですか。</p>
+  <div class="choices">
+    <button>P は \( l \) 上にある。</button>
+    <button data-correct="true">P から \( l \) に垂線が2本以上引ける。</button>
+    <button>P から \( l \) に垂線が1本だけ引ける。</button>
+    <button>2本の垂線 PA、PB は平行である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">垂線が少なくとも1本引けることは作図で分かっているので、「1本だけ」でないとすると「2本以上引ける」です。これを仮定しました。「P は \( l \) 上にある」は、問題の条件（P は \( l \) 上にない）を否定しており、結論の否定ではありません。「1本だけ引ける」は結論そのものです。「平行である」は仮定ではなく、2本の垂線はどちらも P を通るので、平行になることはありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>例題1の証明で、矛盾を導くために使った性質はどれですか。</p>
+  <div class="choices">
+    <button>対頂角は等しい。</button>
+    <button>二等辺三角形の2つの底角は等しい。</button>
+    <button>2組の辺とその間の角がそれぞれ等しい2つの三角形は合同である。</button>
+    <button data-correct="true">三角形の内角の和は \( 180^\circ \) である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \triangle PAB \) で \( \angle PAB=\angle PBA=90^\circ \) となり、三角形の内角の和 \( 180^\circ \) から \( \angle APB=0^\circ \) となって矛盾しました。対頂角、二等辺三角形の底角、三角形の合同条件は、この証明では使っていません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>例題2の証明で、\( 2n^2=m^2 \) から「\( m \) は偶数である」といえる根拠はどれですか。</p>
+  <div class="choices">
+    <button>\( m=\sqrt{2}\,n \) なので、\( m \) は \( \sqrt{2} \) の倍数だから。</button>
+    <button data-correct="true">\( m^2 \) が偶数なので、数Ⅰ-028 で証明した「\( m^2 \) が偶数ならば \( m \) も偶数」が使えるから。</button>
+    <button>\( n \) が自然数だから。</button>
+    <button>\( \dfrac{m}{n} \) がそれ以上約分できない分数だから。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( m^2=2n^2 \) は \( 2\times \)（整数）なので偶数で、数Ⅰ-028 の結果から \( m \) も偶数です。「\( \sqrt{2} \) の倍数」は、偶数かどうかと関係がありません。「\( n \) が自然数」だけでは \( m \) の偶奇は決まりません。「約分できない」は、最後に矛盾を示すときに使う条件で、\( m \) が偶数である根拠ではありません。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="2">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>例題2で、\( m=2k \) を \( 2n^2=m^2 \) に代入して整理すると、\( n^2=\boxed{\ \text{ア}\ }\,k^2 \) となります。ア に入る数を答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 2。\( 2n^2=(2k)^2=4k^2 \) の両辺を 2 でわると \( n^2=2k^2 \) です。4 と答えた場合は、両辺を 2 でわり忘れています（\( n^2=4k^2 \) では \( 2n^2=4k^2 \) と合いません）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>「電卓で \( \sqrt{2}=1.41421356\cdots \) と小数がずっと続くから、\( \sqrt{2} \) は無理数である」という説明について、正しいものはどれですか。</p>
+  <div class="choices">
+    <button>小数がずっと続く数はすべて無理数なので、正しい説明である。</button>
+    <button>\( \sqrt{2} \) は 1.41 で表せるので、有理数である。</button>
+    <button data-correct="true">限りなく続く小数でも循環小数なら分数で表せるので、見えている範囲の数字だけからは無理数といえない。</button>
+    <button>無理数は小数で表せないので、1.414… と書くこと自体が誤りである。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \dfrac{1}{3}=0.333\cdots \) のように限りなく続く小数でも、循環小数は分数で表せる有理数です（数Ⅰ-010）。電卓で見える範囲の数字だけでは、この先ずっと循環しないかは分かりません。1つ目はこの点を見落としています。1.41 は \( \sqrt{2} \) の近似値で、\( 1.41^2=1.9881 \) なので \( \sqrt{2} \) そのものではありません。無理数も \( 1.41421\cdots \) のように小数で表すことはできるので、4つ目も誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O3</span></div>
+  <p>\( \sqrt{2} \) が無理数であることを用いて、\( 3-\sqrt{2} \) が無理数であることを示します。正しい推論はどれですか。</p>
+  <div class="choices">
+    <button>3 も \( \sqrt{2} \) も無理数なので、その差も無理数である。</button>
+    <button>\( 3-\sqrt{2}=1.5857\cdots \) と小数が続くので、無理数である。</button>
+    <button>\( 3-\sqrt{2} \) が無理数であると仮定すると、矛盾が起こらないので、無理数である。</button>
+    <button data-correct="true">\( 3-\sqrt{2} \) が有理数 \( r \) であると仮定すると \( \sqrt{2}=3-r \) で、有理数どうしの差は有理数なので \( \sqrt{2} \) が有理数となり、矛盾する。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">例題3と同じく、否定（有理数である）を仮定し、\( \sqrt{2}=3-r \) が有理数になって「\( \sqrt{2} \) は無理数」に反することを示します（数Ⅰ-011：有理数どうしの差は有理数）。3 は有理数なので1つ目は誤りです（しかも無理数どうしの差が無理数とは限らず、\( \sqrt{2}-\sqrt{2}=0 \)）。小数が続くことだけでは無理数といえません（問7）。成り立つと仮定して矛盾が起こらないことを確かめても、証明になりません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O2</span></div>
+  <p>太郎さんと花子さんが、例題1について話しています。</p>
+  <p>太郎：「垂線が2本引けたと仮定して図をかいてみたけど、どうしても直角が2つある三角形がかけないよ。かけないから、垂線は1本だけだね。」<br>花子：「かけないことを、図ではなく、正しいと分かっている性質から示す必要があるよ。」</p>
+  <p>花子さんの考えに合う説明はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">仮定から \( \triangle PAB \) の2つの角が \( 90^\circ \) となり、内角の和 \( 180^\circ \) より残りの角が \( 0^\circ \) になって矛盾する、と推論で示す。</button>
+    <button>何回かいても図がかけなかったことを記録すれば、証明になる。</button>
+    <button>分度器で測って、2つの角が \( 90^\circ \) にならないことを確かめる。</button>
+    <button>垂線を1本作図できることを示せば、2本目がないことも分かる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">証明は、正しいと分かっている性質から推論で示します（中学2年で、観察や実験で調べて見つけたことは、同じ条件のものをすべて調べつくすことはできないので、推論による証明が必要になると学びました：中2-054）。図がかけなかった記録や、分度器での測定は、いくつかの場合を調べただけなので証明になりません。1本作図できることは「少なくとも1本ある」ことを示すだけで、「2本以上ない」ことは示せません。</div>
+</div>
+
+<div class="q" data-type="open" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O1・O3</span></div>
+  <p>数Ⅰ-028 の例題3「\( n \) を自然数とするとき、\( n^2 \) が 3 の倍数ならば \( n \) は 3 の倍数である」を用いて、\( \sqrt{3} \) が無理数であることを背理法で証明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　\( \sqrt{3} \) が有理数であると仮定する。\( \sqrt{3}&gt;0 \) なので、それ以上約分できない分数 \( \dfrac{m}{n} \)（\( m \)、\( n \) は自然数）を用いて \( \sqrt{3}=\dfrac{m}{n} \) と表せる。両辺に \( n \) をかけて2乗すると \( 3n^2=m^2 \) …①。\( m^2 \) は 3 の倍数なので、数Ⅰ-028 の例題3より \( m \) も 3 の倍数で、自然数 \( k \) を用いて \( m=3k \) と表せる。①に代入して \( 3n^2=9k^2 \)、つまり \( n^2=3k^2 \)。\( n^2 \) は 3 の倍数なので、\( n \) も 3 の倍数である。すると \( m \)、\( n \) はともに 3 の倍数となり、\( \dfrac{m}{n} \) は 3 で約分できる。これは、それ以上約分できない分数としたことに矛盾する。よって、\( \sqrt{3} \) は無理数である。</p>
+    <p><strong>採点の観点</strong>　① 「有理数である」と仮定し、それ以上約分できない分数で表している。② \( 3n^2=m^2 \) を導き、数Ⅰ-028 の例題3を根拠に \( m \) が 3 の倍数であることを示している。③ \( n^2=3k^2 \) から \( n \) も 3 の倍数であることを示している。④ 何と矛盾するか（約分できないとしたこと）を書き、結論を述べている。</p>
+  </div>
+  <div class="explain">例題2の「偶数」を「3 の倍数」に、「2 でわる」を「3 でわる」に置きかえた形です。\( m=3k \) を代入した後、両辺を 3 でわるのを忘れて \( n^2=9k^2 \) としないよう注意しましょう。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(1) 数と式」の「集合の考えを用いて論理的に考察し，簡単な命題を証明すること」（イ(ア)）と「数を実数まで拡張する意義を理解し，簡単な無理数の四則計算をすること」（ア(ア)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について、問題の作成に当たって「数学における概念や原理を基に考察したり，数学のよさを認識できたりするような題材等を含め検討する」と述べ、題材の例として「教科書等では扱われていない数学の定理等を既習の知識等を活用しながら導くことのできるような題材」を挙げています。既に証明した結果（数Ⅰ-028）を使って新しい事実を導く問10のような考え方は、こうした題材の土台になります。</p>
+  <p class="small">問9は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">単元末演習（集合と命題）（数Ⅰ-030）</p>
+  <p>次の時間は、単元「集合と命題」のまとめとして、集合の表し方と共通部分・補集合、命題の真偽と反例、必要条件・十分条件の判定、対偶や背理法による証明の問題を、型を見分けながら解きます。</p>
+  <p>この時間では、\( \pi \) が無理数であることの証明は扱っていません（数Ⅰ-009 では「知られています」として紹介しました）。背理法の考えが背景にあるパズル（覆面算など）は、数学Ａ（数Ａ-097）で扱います。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-028　対偶を利用した証明</div>
+  <div><span class="label">次の時間</span>数Ⅰ-030　単元末演習（集合と命題）</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-029「背理法による証明」（学習指導要領 数学Ⅰ (1)イ(ア)・ア(ア)、解説 p.35-36）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(1) 数と式（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.36（「ある自然数の平方根が分数で表せないこと」を理解できるようにすること、「直線外の 1 点からその直線に引ける垂線は 1 本だけである」ことを背理法で証明する例）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>中学校学習指導要領（平成29年告示）解説 数学編（「√2 や √5 は…分数で表せない新しい数であり，無理数と呼ばれる数である」、「観察や操作，実験などの活動によって帰納的に導かれたもの」と演繹的に導かれたものとの違い、「全ての図形について…調べつくすことはできない」ので演繹的な推論による証明が必要であること）（文部科学省）https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「命題と証明」（「対偶による証明法や背理法のしくみを理解している」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>東京書籍「シラバス案 数学Ⅰ（数Ⅰ002-902）」の「論証」（「対偶を利用した証明法や背理法を用いて簡単な証明をすることができる」）https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_su1_syllabus.pdf</li>
+    <li>数研出版「編修趣意書 数Ⅰ104-901『改訂版 数学Ⅰ』」（「√2が無理数であることの証明も本文で扱い」の確認）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-14.pdf</li>
+    <li>数研出版「編修趣意書 数Ⅰ104-905『改訂版 最新 数学Ⅰ』」（本文外の「研究」として「√2 が無理数であることの証明」を扱う、の確認）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-18.pdf</li>
+    <li>小学校学習指導要領（平成29年告示）第2章第3節 算数 第5学年〔用語・記号〕「約分」（中学校学習指導要領（平成29年告示）の冊子に収録）（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_02.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。図1は、仮定のもとで考えるために学習用に作成した模式図です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-029",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-029",
+  "title": "背理法による証明",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-2", "title": "集合と命題"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)イ(ア)", "(1)ア(ア)"],
+  "kaisetsu_page": "35-36",
+  "objectives": [
+    {"id": "O1", "text": "証明したいことが成り立たないと仮定して矛盾を導き、証明したいことが成り立つと結論する背理法の考え方を説明できる。", "from": "背理法の考え方を理解し", "sections": ["sec-1"], "checks": ["q1", "q8", "q9", "q10"]},
+    {"id": "O2", "text": "「直線外の1点からその直線に引ける垂線は1本だけである」ことを、背理法を用いて証明できる。", "from": "「直線外の1点からその直線に引ける垂線は1本だけである」ことや…を証明できる", "sections": ["sec-2"], "checks": ["q3", "q4", "q9"]},
+    {"id": "O3", "text": "√2 が分数で表せない（無理数である）ことを、背理法を用いて証明できる。", "from": "√2 が分数で表せない（無理数である）ことを証明できる", "sections": ["sec-3"], "checks": ["q2", "q5", "q6", "q7", "q8", "q10"]}
+  ],
+  "key_terms": [
+    {"term": "背理法", "where": "sec-1"},
+    {"term": "矛盾", "where": "sec-1"},
+    {"term": "垂線", "where": "sec-2"},
+    {"term": "無理数", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "n² が偶数ならば n も偶数（対偶を利用した証明の結果）、n² が 3 の倍数ならば n は 3 の倍数（問10）", "taught_in": ["hs_math_1a/数Ⅰ-028"], "where": "review"},
+    {"concept": "対偶を利用した証明（背理法との比較）", "taught_in": ["hs_math_1a/数Ⅰ-028"], "where": "sec-1"},
+    {"concept": "条件の否定", "taught_in": ["hs_math_1a/数Ⅰ-026"], "where": "sec-1"},
+    {"concept": "有理数・無理数の意味、√2 が無理数であること（事実として）", "taught_in": ["jhs_math/中3-023", "hs_math_1a/数Ⅰ-009"], "where": "review"},
+    {"concept": "√2 の意味（2乗すると 2 になる正の数）", "taught_in": ["jhs_math/中3-019"], "where": "review"},
+    {"concept": "循環小数は分数で表せる（有理数）", "taught_in": ["hs_math_1a/数Ⅰ-010"], "where": "sec-3"},
+    {"concept": "有理数どうしの和・差は有理数（有理数は四則演算について閉じている）", "taught_in": ["hs_math_1a/数Ⅰ-011"], "where": "sec-3"},
+    {"concept": "垂直・垂線の意味", "taught_in": ["jhs_math/中1-076", "jhs_math/中1-084"], "where": "sec-2"},
+    {"concept": "直線外の点を通る垂線の作図（垂線が少なくとも1本引けること）", "taught_in": ["jhs_math/中1-084"], "where": "sec-2"},
+    {"concept": "異なる2点を通る直線は1本だけ（直線の意味）", "taught_in": ["jhs_math/中1-075"], "where": "sec-2"},
+    {"concept": "三角形の内角の和は 180°", "taught_in": ["jhs_math/中2-048"], "where": "review"},
+    {"concept": "偶数を 2k と表す", "taught_in": ["jhs_math/中2-008"], "where": "sec-3"},
+    {"concept": "約分（分子と分母を公約数でわる）", "taught_in": ["jhs_math/中1-021"], "where": "sec-3"},
+    {"concept": "調べつくせないことを推論による証明で示す", "taught_in": ["jhs_math/中2-054"], "where": "quiz"}
+  ],
+  "out_of_scope": [
+    "π が無理数であることの証明（範囲外。数Ⅰ-009 で「知られている」と紹介）",
+    "背理法の考えが背景にあるパズル（数Ａ-097）",
+    "「すべて」「ある」を含む命題の否定（一部の教科書で「発展」などとして扱う。単元の注）",
+    "単元の問題演習（数Ⅰ-030）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『集合と命題』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(1)イ(ア)・ア(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.36 ある自然数の平方根が分数で表せないこと、垂線が1本だけであることを背理法で証明する例"},
+    {"name": "中学校学習指導要領（平成29年告示）解説 数学編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf", "use": "√2 が分数で表せない無理数であること（中学3年）、証明の必要性"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "背理法のしくみの理解が教科書の学習項目であること"},
+    {"name": "シラバス案 数学Ⅰ（数Ⅰ002-902）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_su1_syllabus.pdf", "use": "背理法を用いて簡単な証明をすること"},
+    {"name": "編修趣意書 数Ⅰ104-901『改訂版 数学Ⅰ』", "publisher": "数研出版（文部科学省掲載）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-14.pdf", "use": "√2 が無理数であることの証明を本文で扱う教科書の例"},
+    {"name": "編修趣意書 数Ⅰ104-905『改訂版 最新 数学Ⅰ』", "publisher": "数研出版（文部科学省掲載）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-18.pdf", "use": "√2 が無理数であることの証明を本文外の「研究」で扱う教科書の例（注記の根拠）"},
+    {"name": "小学校学習指導要領（平成29年告示）第2章第3節 算数（中学校学習指導要領（平成29年告示）の冊子に収録）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_02.pdf", "use": "第5学年〔用語・記号〕約分"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

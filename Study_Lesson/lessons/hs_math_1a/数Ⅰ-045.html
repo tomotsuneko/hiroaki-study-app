@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二次関数の決定（3点を通る）｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.eqs { margin: 4px 0 4px 1em; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>二次関数</span><span>数Ⅰ-045</span></div>
+  <h1>二次関数の決定（3点を通る）</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">2点 \( (0,\ -2) \)、\( (1,\ 0) \) を通る放物線はたくさんあります。もう1点 \( (2,\ 4) \) を通るという条件を加えると、ただ1つに決まるでしょうか。この時間は、グラフが通る3点の座標から、\( y=ax^2+bx+c \) の \( a \)、\( b \)、\( c \) を求めます。そのために、中学2年で学んだ連立方程式の解き方を、文字が3つの場合に広げます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>グラフが通る3点の座標を y=ax²+bx+c に代入して、a、b、c についての連立三元一次方程式をつくることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>連立三元一次方程式を、1つの文字を消去して連立二元一次方程式に帰着させて解き、二次関数を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>与えられた条件に応じて、y=a(x−p)²+q と y=ax²+bx+c のどちらの形でおくかを選び、二次関数を求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-044）</span>二次関数の決定（頂点や軸の条件）</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-045）</span>二次関数の決定（3点を通る）</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-046）</span>二次方程式の解とグラフ</div>
+</div>
+<p class="small">前提となる単元：中学2年「連立方程式」、中学3年「関数 y=ax²」、数学Ⅰ「数と式」。同じ単元の数Ⅰ-034（平方完成）、数Ⅰ-044（二次関数の決定（頂点や軸の条件））を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、連立方程式の加減法・代入法（中2-016・中2-018）と、通る点の座標を式に代入する考え（数Ⅰ-044）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中2-016</span></div>
+  <p>連立方程式 \( x+y=4 \)、\( 3x+y=10 \) の解はどれですか。</p>
+  <div class="choices">
+    <button>\( x=1,\ y=3 \)</button>
+    <button>\( x=3,\ y=7 \)</button>
+    <button data-correct="true">\( x=3,\ y=1 \)</button>
+    <button>\( x=3,\ y=-1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">下の式から上の式を引くと \( y \) が消えて \( 2x=6 \)、\( x=3 \)。\( x+y=4 \) に代入して \( y=1 \) です（加減法、中2-016）。\( x=1,\ y=3 \) は \( x \) と \( y \) の取り違え、\( y=7 \) は \( 3x+y=10 \) に代入するときに 3 を掛け忘れた誤り（\( y=10-3 \)）、\( y=-1 \) は \( y=3-4 \) とした符号の誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中2-018</span></div>
+  <p>連立方程式 \( y=2x-1 \)、\( 3x+y=9 \) の解はどれですか。</p>
+  <div class="choices">
+    <button>\( x=3,\ y=2 \)</button>
+    <button data-correct="true">\( x=2,\ y=3 \)</button>
+    <button>\( x=\dfrac{8}{5},\ y=\dfrac{11}{5} \)</button>
+    <button>\( x=2,\ y=7 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( y=2x-1 \) を \( 3x+y=9 \) に代入すると \( 3x+2x-1=9 \)、\( 5x=10 \)、\( x=2 \)。\( y=2\times 2-1=3 \) です（代入法、中2-018）。\( x=3,\ y=2 \) は取り違え、\( x=\dfrac{8}{5} \) は代入するときに \( -1 \) を \( +1 \) とした誤り（\( 5x+1=9 \)）、\( y=7 \) は \( x=2 \) を \( 3x+y=9 \) に代入するときに 3 を掛け忘れた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-044</span></div>
+  <p>\( y=ax^2+bx+c \) のグラフが点 \( (2,\ 3) \) を通るとき、成り立つ式はどれですか。</p>
+  <div class="choices">
+    <button>\( 2a+2b+c=3 \)</button>
+    <button>\( 9a+3b+c=2 \)</button>
+    <button>\( 4a+2b=3 \)</button>
+    <button data-correct="true">\( 4a+2b+c=3 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x=2 \)、\( y=3 \) を代入すると \( 3=a\times 2^2+b\times 2+c \)、つまり \( 4a+2b+c=3 \) です（数Ⅰ-044 の「通る点の座標を代入する」考え）。\( 2a+2b+c=3 \) は \( 2^2 \) を 2 とした誤り、\( 9a+3b+c=2 \) は \( x \) と \( y \) を逆にして \( x=3 \)、\( y=2 \) を代入した誤り、\( 4a+2b=3 \) は \( c \) を書き忘れた誤りです。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：2点では決まらない、3点なら？</h2>
+<div class="box think">
+  <p class="box-title">2点 (0, −2)、(1, 0) を通る放物線</p>
+  <p>\( y=x^2+x-2 \)、\( y=2x^2-2 \)、\( y=-x^2+3x-2 \) は、どれも2点 \( (0,\ -2) \)、\( (1,\ 0) \) を通る放物線です（図1）。</p>
+  <p>① 2点 \( (0,\ -2) \)、\( (1,\ 0) \) を通ることだけで、放物線は1つに決まるでしょうか。② さらに「点 \( (2,\ 4) \) を通る」という条件を加えると、どうでしょうか。答えは「3点の条件を式にする」の節の例題1で確かめます。</p>
+</div>
+<figure>
+<!--svg:f045a-->
+<svg viewBox="0 0 320 280" width="320" role="img" aria-label="2点 (0, −2)、(1, 0) を通る放物線 y=x²+x−2、y=2x²−2、y=−x²+3x−2。3点目 (2, 4) を通るのは y=x²+x−2 だけ" data-frame="24 22 280 236 -2.4 3.4 -4.4 7.4"><defs><clipPath id="clip-f45a"><rect x="24" y="22" width="280" height="236"/></clipPath></defs>
+<line x1="18" y1="170" x2="312" y2="170" stroke="currentColor" stroke-width="1"/>
+<polygon points="313,170 305,166.5 305,173.5" fill="currentColor"/>
+<text x="310" y="163" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="139.9" y1="264" x2="139.9" y2="14" stroke="currentColor" stroke-width="1"/>
+<polygon points="139.9,13 136.4,21 143.4,21" fill="currentColor"/>
+<text x="146.9" y="23" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="135.9" y="183" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="188.1" y1="167" x2="188.1" y2="173" stroke="currentColor"/>
+<text x="188.1" y="184" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="236.4" y1="167" x2="236.4" y2="173" stroke="currentColor"/>
+<text x="236.4" y="184" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="136.9" y1="90" x2="142.9" y2="90" stroke="currentColor"/>
+<text x="134.9" y="94" text-anchor="end" font-size="11" fill="currentColor">4</text>
+<path d="M24,-20.4 L26.3,-11.2 L28.7,-2.2 L31,6.6 L33.3,15.2 L35.7,23.7 L38,31.9 L40.3,40 L42.7,47.9 L45,55.6 L47.3,63.1 L49.7,70.4 L52,77.5 L54.3,84.4 L56.7,91.2 L59,97.8 L61.3,104.2 L63.7,110.4 L66,116.4 L68.3,122.2 L70.7,127.8 L73,133.3 L75.3,138.5 L77.7,143.6 L80,148.5 L82.3,153.2 L84.7,157.7 L87,162 L89.3,166.2 L91.7,170.1 L94,173.9 L96.3,177.5 L98.7,180.9 L101,184.1 L103.3,187.1 L105.7,189.9 L108,192.6 L110.3,195 L112.7,197.3 L115,199.4 L117.3,201.3 L119.7,203 L122,204.5 L124.3,205.9 L126.7,207 L129,208 L131.3,208.8 L133.7,209.3 L136,209.7 L138.3,210 L140.7,210 L143,209.8 L145.3,209.5 L147.7,209 L150,208.2 L152.3,207.3 L154.7,206.2 L157,205 L159.3,203.5 L161.7,201.8 L164,200 L166.3,198 L168.7,195.8 L171,193.4 L173.3,190.8 L175.7,188 L178,185 L180.3,181.9 L182.7,178.6 L185,175 L187.3,171.3 L189.7,167.4 L192,163.3 L194.3,159.1 L196.7,154.6 L199,150 L201.3,145.1 L203.7,140.1 L206,134.9 L208.3,129.5 L210.7,124 L213,118.2 L215.3,112.2 L217.7,106.1 L220,99.8 L222.3,93.3 L224.7,86.6 L227,79.7 L229.3,72.6 L231.7,65.3 L234,57.9 L236.3,50.3 L238.7,42.4 L241,34.4 L243.3,26.2 L245.7,17.9 L248,9.3 L250.3,0.5 L252.7,-8.4 L255,-17.5 L257.3,-26.8 L259.7,-36.3 L262,-46 L264.3,-55.9 L266.7,-66 L269,-76.2 L271.3,-86.7 L273.7,-97.3 L276,-108.1 L278.3,-119.1 L280.7,-130.3 L283,-141.6 L285.3,-153.2 L287.7,-165 L290,-176.9 L292.3,-189 L294.7,-201.3 L297,-213.8 L299.3,-226.5 L301.7,-239.3 L304,-252.4" fill="none" stroke="#8a99a8" stroke-width="1.8" stroke-dasharray="6 4" data-f="2 0 -2" clip-path="url(#clip-f45a)"/>
+<path d="M24,469.2 L26.3,461.7 L28.7,454.3 L31,447 L33.3,439.8 L35.7,432.7 L38,425.6 L40.3,418.7 L42.7,411.9 L45,405.1 L47.3,398.5 L49.7,391.9 L52,385.4 L54.3,379.1 L56.7,372.8 L59,366.6 L61.3,360.5 L63.7,354.5 L66,348.6 L68.3,342.8 L70.7,337.1 L73,331.5 L75.3,325.9 L77.7,320.5 L80,315.2 L82.3,309.9 L84.7,304.7 L87,299.7 L89.3,294.7 L91.7,289.8 L94,285.1 L96.3,280.4 L98.7,275.8 L101,271.3 L103.3,266.9 L105.7,262.5 L108,258.3 L110.3,254.2 L112.7,250.1 L115,246.2 L117.3,242.4 L119.7,238.6 L122,234.9 L124.3,231.4 L126.7,227.9 L129,224.5 L131.3,221.2 L133.7,218 L136,214.9 L138.3,211.9 L140.7,209 L143,206.2 L145.3,203.5 L147.7,200.8 L150,198.3 L152.3,195.8 L154.7,193.5 L157,191.2 L159.3,189.1 L161.7,187 L164,185 L166.3,183.1 L168.7,181.3 L171,179.6 L173.3,178 L175.7,176.5 L178,175.1 L180.3,173.8 L182.7,172.5 L185,171.4 L187.3,170.3 L189.7,169.4 L192,168.5 L194.3,167.8 L196.7,167.1 L199,166.5 L201.3,166 L203.7,165.6 L206,165.3 L208.3,165.1 L210.7,165 L213,165 L215.3,165.1 L217.7,165.2 L220,165.5 L222.3,165.9 L224.7,166.3 L227,166.9 L229.3,167.5 L231.7,168.2 L234,169.1 L236.3,170 L238.7,171 L241,172.1 L243.3,173.3 L245.7,174.6 L248,176 L250.3,177.4 L252.7,179 L255,180.7 L257.3,182.4 L259.7,184.3 L262,186.2 L264.3,188.3 L266.7,190.4 L269,192.6 L271.3,194.9 L273.7,197.3 L276,199.8 L278.3,202.4 L280.7,205.1 L283,207.9 L285.3,210.8 L287.7,213.8 L290,216.8 L292.3,220 L294.7,223.3 L297,226.6 L299.3,230 L301.7,233.6 L304,237.2" fill="none" stroke="#8a99a8" stroke-width="1.8" stroke-dasharray="2 3" data-f="-1 3/2 1/4" clip-path="url(#clip-f45a)"/>
+<path d="M24,142.8 L26.3,146.4 L28.7,150 L31,153.4 L33.3,156.7 L35.7,160 L38,163.2 L40.3,166.2 L42.7,169.2 L45,172.1 L47.3,174.9 L49.7,177.6 L52,180.2 L54.3,182.7 L56.7,185.1 L59,187.4 L61.3,189.6 L63.7,191.7 L66,193.8 L68.3,195.7 L70.7,197.6 L73,199.3 L75.3,201 L77.7,202.6 L80,204 L82.3,205.4 L84.7,206.7 L87,207.9 L89.3,209 L91.7,210 L94,210.9 L96.3,211.8 L98.7,212.5 L101,213.1 L103.3,213.7 L105.7,214.1 L108,214.5 L110.3,214.8 L112.7,214.9 L115,215 L117.3,215 L119.7,214.9 L122,214.7 L124.3,214.4 L126.7,214 L129,213.5 L131.3,212.9 L133.7,212.2 L136,211.5 L138.3,210.6 L140.7,209.7 L143,208.6 L145.3,207.5 L147.7,206.2 L150,204.9 L152.3,203.5 L154.7,202 L157,200.4 L159.3,198.7 L161.7,196.9 L164,195 L166.3,193 L168.7,190.9 L171,188.8 L173.3,186.5 L175.7,184.2 L178,181.7 L180.3,179.2 L182.7,176.5 L185,173.8 L187.3,171 L189.7,168.1 L192,165.1 L194.3,162 L196.7,158.8 L199,155.5 L201.3,152.1 L203.7,148.6 L206,145.1 L208.3,141.4 L210.7,137.6 L213,133.8 L215.3,129.9 L217.7,125.8 L220,121.7 L222.3,117.5 L224.7,113.1 L227,108.7 L229.3,104.2 L231.7,99.6 L234,95 L236.3,90.2 L238.7,85.3 L241,80.3 L243.3,75.3 L245.7,70.1 L248,64.8 L250.3,59.5 L252.7,54.1 L255,48.5 L257.3,42.9 L259.7,37.2 L262,31.4 L264.3,25.5 L266.7,19.5 L269,13.4 L271.3,7.2 L273.7,0.9 L276,-5.4 L278.3,-11.9 L280.7,-18.5 L283,-25.1 L285.3,-31.9 L287.7,-38.7 L290,-45.6 L292.3,-52.7 L294.7,-59.8 L297,-67 L299.3,-74.3 L301.7,-81.7 L304,-89.2" fill="none" stroke="#1f5fbf" stroke-width="3" data-f="1 -1/2 -9/4" clip-path="url(#clip-f45a)"/>
+<circle cx="139.9" cy="210" r="4.5" fill="#1f5fbf" data-xy="0 -2"/>
+<circle cx="188.1" cy="170" r="4.5" fill="#1f5fbf" data-xy="1 0"/>
+<circle cx="236.4" cy="90" r="4.5" fill="#1f5fbf" data-xy="2 4"/>
+<text x="147.9" y="222" text-anchor="start" font-size="11" fill="#1f5fbf">(0, −2)</text>
+<text x="214.1" y="157" text-anchor="start" font-size="11" fill="#1f5fbf">(1, 0)</text>
+<text x="244.4" y="86" text-anchor="start" font-size="11" fill="#1f5fbf">(2, 4)</text>
+<text x="51.3" y="166" text-anchor="start" font-size="11" font-weight="700" fill="#1f5fbf">a=1</text>
+<text x="85.1" y="138.4" text-anchor="start" font-size="11" fill="currentColor">a=2</text>
+<text x="276.7" y="222" text-anchor="end" font-size="11" fill="currentColor">a=−1</text>
+</svg>
+<!--/svg:f045a-->
+  <figcaption>図1　2点 \( (0,\ -2) \)、\( (1,\ 0) \) を通る放物線の例（青の●＝通る点）。3点目 \( (2,\ 4) \) も通るのは \( y=x^2+x-2 \)（青の太線）だけ</figcaption>
+</figure>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="3点の条件を式にする"><span class="num">3</span>3点の条件を式にする</h2>
+<p>頂点も軸も分からないときは、二次関数を \( y=ax^2+bx+c \) とおきます。決める値は \( a \)、\( b \)、\( c \) の3つです。数Ⅰ-044 で見たように、決める値の数だけ条件が必要なので、通る点が3つあれば、それぞれの座標を代入して3つの式がつくれます。</p>
+<div class="box point">
+  <p class="box-title">三元一次方程式・連立三元一次方程式</p>
+  <p>\( 4a+2b+c=4 \) のように、3つの文字を含む一次方程式を<strong>三元一次方程式</strong>といいます（中2-014 で、2つの文字を含む一次方程式を二元一次方程式と呼んだのと同じ言い方です）。</p>
+  <p>三元一次方程式を3つ組にしたものを<strong>連立三元一次方程式</strong>といい、3つの式を同時に成り立たせる文字の値の組を、連立三元一次方程式の<strong>解</strong>といいます（中2-015 の連立方程式とその解と同じ考え方です）。</p>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の答え）</p>
+  <p>グラフが3点 \( (0,\ -2) \)、\( (1,\ 0) \)、\( (2,\ 4) \) を通る二次関数を求めなさい。</p>
+  <div class="step">着眼点：\( y=ax^2+bx+c \) とおき、3点の座標を順に代入します。</div>
+  <div class="step">ステップ1：点 \( (0,\ -2) \) から \( -2=a\times 0^2+b\times 0+c \)、つまり \( c=-2 \)。点 \( (1,\ 0) \) から \( a+b+c=0 \)。点 \( (2,\ 4) \) から \( 4a+2b+c=4 \)。</div>
+  <div class="step">ステップ2：\( c=-2 \) をほかの2式に代入すると \( a+b=2 \)、\( 4a+2b=6 \)。下の式を 2 で割ると \( 2a+b=3 \)。これから \( a+b=2 \) を引いて \( a=1 \)、\( b=1 \)。</div>
+  <div class="step">ステップ3（確かめ）：\( y=x^2+x-2 \) に \( x=0,\ 1,\ 2 \) を代入すると \( -2 \)、\( 0 \)、\( 4 \) となり、3点とも通ります。</div>
+  <div class="step">答え：\( y=x^2+x-2 \)。導入の問いの答えは、①2点だけでは1つに決まらない（図1の3本はどれも通る）、②点 \( (2,\ 4) \) を加えると \( y=x^2+x-2 \) の1つに決まる、です。</div>
+</div>
+<p>例題1では、\( x \) 座標が 0 の点があったので、すぐに \( c \) が決まり、文字が2つの連立方程式になりました。そうでないときは、文字が3つのまま解く必要があります。</p>
+<p class="small">3点がどれでもよいわけではありません。3点が一直線上にあると、求めた \( a \) が 0 になり、二次関数にはなりません。\( x \) 座標が同じ2点を含むときも、式が1つに決まらないか、条件を満たす式がありません。この時間の例題と問題の3点は、一直線上になく、\( x \) 座標もすべて異なります。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="連立三元一次方程式の解き方"><span class="num">4</span>連立三元一次方程式の解き方</h2>
+<p>中2-016 では、連立二元一次方程式を、一方の文字を消去して一元一次方程式にして解きました。文字が3つのときも同じ考えで、<strong>まず1つの文字を消去して、文字が2つの連立方程式にします</strong>。そのあとは中学2年の方法で解けます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>文字の数</th><th>すること</th><th>その結果</th></tr>
+  <tr><td>2つ（中2-016）</td><td>1つの文字を消去する</td><td>文字が1つの一次方程式</td></tr>
+  <tr><td>3つ（この時間）</td><td>2組の式から、<strong>同じ</strong>1つの文字を消去する</td><td>文字が2つの連立方程式（中2の方法で解く）</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（連立三元一次方程式）</p>
+  <p>次の連立三元一次方程式を解きなさい。</p>
+  <p class="eqs">\( x+y+z=6 \)　…①<br>\( 2x-y+z=3 \)　…②<br>\( x+2y-z=2 \)　…③</p>
+  <div class="step">着眼点：\( z \) の係数は ① と ② が 1、③ が \( -1 \) なので、足すと \( z \) が消えます。消去する文字を \( z \) に決めます。</div>
+  <div class="step">ステップ1：①＋③ より \( 2x+3y=8 \)　…④。②＋③ より \( 3x+y=5 \)　…⑤。どちらも \( z \) を消去したので、\( x \)、\( y \) だけの連立方程式になりました。</div>
+  <div class="step">ステップ2：⑤×3−④ より \( 9x-2x=15-8 \)、\( 7x=7 \)、\( x=1 \)。⑤に代入して \( y=5-3=2 \)。①に代入して \( z=6-1-2=3 \)。</div>
+  <div class="step">ステップ3（確かめ）：② は \( 2-2+3=3 \)、③ は \( 1+4-3=2 \)。3つの式すべてが成り立ちます。</div>
+  <div class="step">答え：\( x=1,\ y=2,\ z=3 \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（3点を通る）</p>
+  <p>グラフが3点 \( (1,\ 0) \)、\( (2,\ 3) \)、\( (3,\ 10) \) を通る二次関数を求めなさい。</p>
+  <div class="step">着眼点：\( y=ax^2+bx+c \) とおきます。3つの式はどれも \( c \) の係数が 1 なので、引き算で \( c \) を消去します。</div>
+  <div class="step">ステップ1：3点を代入して、\( a+b+c=0 \)　…①、\( 4a+2b+c=3 \)　…②、\( 9a+3b+c=10 \)　…③。</div>
+  <div class="step">ステップ2：②−① より \( 3a+b=3 \)　…④。③−② より \( 5a+b=7 \)　…⑤。⑤−④ より \( 2a=4 \)、\( a=2 \)。④に代入して \( b=3-6=-3 \)。①に代入して \( c=0-2+3=1 \)。</div>
+  <div class="step">ステップ3（確かめ）：\( y=2x^2-3x+1 \) に \( x=1,\ 2,\ 3 \) を代入すると \( 0 \)、\( 3 \)、\( 10 \)。3点とも通ります。</div>
+  <div class="step">答え：\( y=2x^2-3x+1 \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（x 座標が −1 と 1 の点を含む）</p>
+  <p>グラフが3点 \( (-1,\ 6) \)、\( (1,\ 2) \)、\( (2,\ 3) \) を通る二次関数を求めなさい。</p>
+  <div class="step">着眼点：\( x=-1 \) を代入すると \( a\times(-1)^2+b\times(-1)+c=a-b+c \) です。\( (-1)^2=1 \) なので \( a \) の符号は変わらず、\( b \) の符号だけが変わります。</div>
+  <div class="step">ステップ1：3点を代入して、\( a-b+c=6 \)　…①、\( a+b+c=2 \)　…②、\( 4a+2b+c=3 \)　…③。</div>
+  <div class="step">ステップ2：②−① より \( 2b=-4 \)、\( b=-2 \)。この引き算では \( a \) と \( c \) が同時に消えました。\( b=-2 \) を ② と ③ に代入すると \( a+c=4 \)　…④、\( 4a+c=7 \)　…⑤。⑤−④ より \( 3a=3 \)、\( a=1 \)。④より \( c=3 \)。</div>
+  <div class="step">ステップ3（確かめ）：\( y=x^2-2x+3 \) に \( x=-1,\ 1,\ 2 \) を代入すると \( 6 \)、\( 2 \)、\( 3 \)。3点とも通ります。</div>
+  <div class="step">答え：\( y=x^2-2x+3 \)（平方完成すると \( y=(x-1)^2+2 \)）。</div>
+</div>
+<figure>
+<div class="fig-row">
+<!--svg:f045b-->
+<svg viewBox="0 0 230 250" width="230" role="img" aria-label="y=2x²−3x+1 のグラフ。3点 (1, 0)、(2, 3)、(3, 10) を通る" data-frame="22 32 192 196 -0.8 3.6 -1.6 11.6"><defs><clipPath id="clip-f45b1"><rect x="22" y="32" width="192" height="196"/></clipPath></defs>
+<text x="115" y="16" text-anchor="middle" font-size="12.5" fill="currentColor">例題3　y=2x²−3x+1</text>
+<line x1="16" y1="204.2" x2="222" y2="204.2" stroke="currentColor" stroke-width="1"/>
+<polygon points="223,204.2 215,200.7 215,207.7" fill="currentColor"/>
+<text x="220" y="197.2" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="56.9" y1="234" x2="56.9" y2="24" stroke="currentColor" stroke-width="1"/>
+<polygon points="56.9,23 53.4,31 60.4,31" fill="currentColor"/>
+<text x="63.9" y="33" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="52.9" y="217.2" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="100.5" y1="201.2" x2="100.5" y2="207.2" stroke="currentColor"/>
+<text x="100.5" y="218.2" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="144.2" y1="201.2" x2="144.2" y2="207.2" stroke="currentColor"/>
+<text x="144.2" y="218.2" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="187.8" y1="201.2" x2="187.8" y2="207.2" stroke="currentColor"/>
+<text x="187.8" y="218.2" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="53.9" y1="159.7" x2="59.9" y2="159.7" stroke="currentColor"/>
+<text x="51.9" y="163.7" text-anchor="end" font-size="11" fill="currentColor">3</text>
+<line x1="53.9" y1="55.8" x2="59.9" y2="55.8" stroke="currentColor"/>
+<text x="51.9" y="59.8" text-anchor="end" font-size="11" fill="currentColor">10</text>
+<path d="M22,134.8 L23.6,138.1 L25.2,141.3 L26.8,144.5 L28.4,147.6 L30,150.6 L31.6,153.6 L33.2,156.4 L34.8,159.2 L36.4,161.9 L38,164.5 L39.6,167.1 L41.2,169.5 L42.8,171.9 L44.4,174.2 L46,176.4 L47.6,178.5 L49.2,180.6 L50.8,182.6 L52.4,184.5 L54,186.3 L55.6,188 L57.2,189.7 L58.8,191.3 L60.4,192.8 L62,194.2 L63.6,195.5 L65.2,196.8 L66.8,198 L68.4,199.1 L70,200.1 L71.6,201 L73.2,201.9 L74.8,202.7 L76.4,203.4 L78,204 L79.6,204.5 L81.2,205 L82.8,205.4 L84.4,205.7 L86,205.9 L87.6,206 L89.2,206.1 L90.8,206.1 L92.4,206 L94,205.8 L95.6,205.5 L97.2,205.2 L98.8,204.8 L100.4,204.3 L102,203.7 L103.6,203.1 L105.2,202.3 L106.8,201.5 L108.4,200.6 L110,199.6 L111.6,198.6 L113.2,197.4 L114.8,196.2 L116.4,194.9 L118,193.6 L119.6,192.1 L121.2,190.6 L122.8,188.9 L124.4,187.3 L126,185.5 L127.6,183.6 L129.2,181.7 L130.8,179.7 L132.4,177.6 L134,175.4 L135.6,173.1 L137.2,170.8 L138.8,168.4 L140.4,165.9 L142,163.3 L143.6,160.7 L145.2,157.9 L146.8,155.1 L148.4,152.2 L150,149.3 L151.6,146.2 L153.2,143.1 L154.8,139.9 L156.4,136.6 L158,133.2 L159.6,129.8 L161.2,126.2 L162.8,122.6 L164.4,118.9 L166,115.2 L167.6,111.3 L169.2,107.4 L170.8,103.4 L172.4,99.3 L174,95.1 L175.6,90.8 L177.2,86.5 L178.8,82.1 L180.4,77.6 L182,73 L183.6,68.4 L185.2,63.7 L186.8,58.9 L188.4,54 L190,49 L191.6,44 L193.2,38.8 L194.8,33.6 L196.4,28.3 L198,23 L199.6,17.5 L201.2,12 L202.8,6.4 L204.4,0.7 L206,-5.1 L207.6,-10.9 L209.2,-16.9 L210.8,-22.9 L212.4,-28.9 L214,-35.1" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-f="2 3/4 -1/8" clip-path="url(#clip-f45b1)"/>
+<circle cx="100.5" cy="204.2" r="4.5" fill="#1f5fbf" data-xy="1 0"/>
+<circle cx="144.2" cy="159.7" r="4.5" fill="#1f5fbf" data-xy="2 3"/>
+<circle cx="187.8" cy="55.8" r="4.5" fill="#1f5fbf" data-xy="3 10"/>
+<text x="100.5" y="232.2" text-anchor="middle" font-size="11" fill="#1f5fbf">(1, 0)</text>
+<text x="152.2" y="171.7" text-anchor="start" font-size="11" fill="#1f5fbf">(2, 3)</text>
+<text x="179.8" y="51.8" text-anchor="end" font-size="11" fill="#1f5fbf">(3, 10)</text>
+</svg>
+<svg viewBox="0 0 230 250" width="230" role="img" aria-label="y=x²−2x+3 のグラフ。3点 (−1, 6)、(1, 2)、(2, 3) を通る" data-frame="22 32 192 196 -2.0 3.4 -0.8 7.4"><defs><clipPath id="clip-f45b2"><rect x="22" y="32" width="192" height="196"/></clipPath></defs>
+<text x="115" y="16" text-anchor="middle" font-size="12.5" fill="currentColor">例題4　y=x²−2x+3</text>
+<line x1="16" y1="208.9" x2="222" y2="208.9" stroke="currentColor" stroke-width="1"/>
+<polygon points="223,208.9 215,205.4 215,212.4" fill="currentColor"/>
+<text x="220" y="201.9" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="93.1" y1="234" x2="93.1" y2="24" stroke="currentColor" stroke-width="1"/>
+<polygon points="93.1,23 89.6,31 96.6,31" fill="currentColor"/>
+<text x="100.1" y="33" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="89.1" y="221.9" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="57.6" y1="205.9" x2="57.6" y2="211.9" stroke="currentColor"/>
+<text x="57.6" y="222.9" text-anchor="middle" font-size="11" fill="currentColor">−1</text>
+<line x1="128.7" y1="205.9" x2="128.7" y2="211.9" stroke="currentColor"/>
+<text x="128.7" y="222.9" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="164.2" y1="205.9" x2="164.2" y2="211.9" stroke="currentColor"/>
+<text x="164.2" y="222.9" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="90.1" y1="161.1" x2="96.1" y2="161.1" stroke="currentColor"/>
+<text x="88.1" y="165.1" text-anchor="end" font-size="11" fill="currentColor">2</text>
+<line x1="90.1" y1="137.2" x2="96.1" y2="137.2" stroke="currentColor"/>
+<text x="88.1" y="141.2" text-anchor="end" font-size="11" fill="currentColor">3</text>
+<line x1="90.1" y1="65.5" x2="96.1" y2="65.5" stroke="currentColor"/>
+<text x="88.1" y="69.5" text-anchor="end" font-size="11" fill="currentColor">6</text>
+<path d="M22,-54 L23.6,-47.6 L25.2,-41.3 L26.8,-35.1 L28.4,-29 L30,-23 L31.6,-17.1 L33.2,-11.2 L34.8,-5.5 L36.4,0.1 L38,5.6 L39.6,11.1 L41.2,16.4 L42.8,21.7 L44.4,26.8 L46,31.9 L47.6,36.8 L49.2,41.7 L50.8,46.4 L52.4,51.1 L54,55.7 L55.6,60.1 L57.2,64.5 L58.8,68.8 L60.4,73 L62,77 L63.6,81 L65.2,84.9 L66.8,88.7 L68.4,92.4 L70,96 L71.6,99.5 L73.2,102.9 L74.8,106.2 L76.4,109.4 L78,112.5 L79.6,115.6 L81.2,118.5 L82.8,121.3 L84.4,124 L86,126.7 L87.6,129.2 L89.2,131.6 L90.8,134 L92.4,136.2 L94,138.4 L95.6,140.4 L97.2,142.4 L98.8,144.2 L100.4,146 L102,147.6 L103.6,149.2 L105.2,150.7 L106.8,152 L108.4,153.3 L110,154.5 L111.6,155.6 L113.2,156.6 L114.8,157.4 L116.4,158.2 L118,158.9 L119.6,159.5 L121.2,160 L122.8,160.4 L124.4,160.7 L126,160.9 L127.6,161.1 L129.2,161.1 L130.8,161 L132.4,160.8 L134,160.5 L135.6,160.2 L137.2,159.7 L138.8,159.1 L140.4,158.5 L142,157.7 L143.6,156.9 L145.2,155.9 L146.8,154.9 L148.4,153.7 L150,152.5 L151.6,151.1 L153.2,149.7 L154.8,148.2 L156.4,146.5 L158,144.8 L159.6,143 L161.2,141.1 L162.8,139 L164.4,136.9 L166,134.7 L167.6,132.4 L169.2,130 L170.8,127.5 L172.4,124.9 L174,122.2 L175.6,119.4 L177.2,116.5 L178.8,113.6 L180.4,110.5 L182,107.3 L183.6,104 L185.2,100.6 L186.8,97.2 L188.4,93.6 L190,89.9 L191.6,86.2 L193.2,82.3 L194.8,78.4 L196.4,74.3 L198,70.2 L199.6,65.9 L201.2,61.6 L202.8,57.2 L204.4,52.6 L206,48 L207.6,43.3 L209.2,38.4 L210.8,33.5 L212.4,28.5 L214,23.4" fill="none" stroke="#1f5fbf" stroke-width="2.5" data-f="1 1 2" clip-path="url(#clip-f45b2)"/>
+<circle cx="57.6" cy="65.5" r="4.5" fill="#1f5fbf" data-xy="-1 6"/>
+<circle cx="128.7" cy="161.1" r="4.5" fill="#1f5fbf" data-xy="1 2"/>
+<circle cx="164.2" cy="137.2" r="4.5" fill="#1f5fbf" data-xy="2 3"/>
+<text x="49.6" y="61.5" text-anchor="end" font-size="11" fill="#1f5fbf">(−1, 6)</text>
+<text x="136.7" y="173.1" text-anchor="start" font-size="11" fill="#1f5fbf">(1, 2)</text>
+<text x="172.2" y="149.2" text-anchor="start" font-size="11" fill="#1f5fbf">(2, 3)</text>
+</svg>
+<!--/svg:f045b-->
+</div>
+  <figcaption>図2　例題3のグラフ \( y=2x^2-3x+1 \) と、例題4のグラフ \( y=x^2-2x+3 \)。青の●が与えられた3点</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い（3点の条件）</p><p>① \( x \) 座標が負の点の代入：点 \( (-1,\ 6) \) で \( (-1)^2 \) を \( -1 \) として \( -a-b+c=6 \) とする誤りです。2乗すると正になるので \( a-b+c=6 \) です。<br>② \( x \) と \( y \) の取り違え：点 \( (2,\ 3) \) で \( x=3 \)、\( y=2 \) を代入して \( 9a+3b+c=2 \) とする誤りです。<br>③ 消去する文字がそろっていない：例題3で、②−① で \( c \) を消し、別の組で \( b \) を消すと、\( a \)、\( b \)、\( c \) が残ったままになり、文字が2つの連立方程式になりません。2組とも<strong>同じ文字</strong>を消去します。<br>④ 確かめを省く：求めた式に3点の \( x \) 座標を代入して、\( y \) 座標になるかを必ず確かめます。計算の誤りはここで見つかります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="式の形を選ぶ"><span class="num">5</span>条件に応じて式の形を選ぶ</h2>
+<p>数Ⅰ-044 と この時間で、二次関数を2つの形でおいて求めました。条件によって、分からない文字の数が少なくなる形を選ぶと、計算が短くなります。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>与えられた条件</th><th>おく式</th><th>分からない文字</th><th>必要な通る点</th></tr>
+  <tr><td>頂点 \( (p,\ q) \)、または「\( x=p \) で最大値（最小値）\( q \)」</td><td>\( y=a(x-p)^2+q \)</td><td>\( a \)</td><td>1つ</td></tr>
+  <tr><td>軸 \( x=p \)、または「\( x=p \) で最大値（最小値）をとる」</td><td>\( y=a(x-p)^2+q \)</td><td>\( a \)、\( q \)</td><td>2つ</td></tr>
+  <tr><td>頂点も軸も分からない</td><td>\( y=ax^2+bx+c \)</td><td>\( a \)、\( b \)、\( c \)</td><td>3つ</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5（形を選ぶ）</p>
+  <p>\( x=1 \) で最小値 \( -3 \) をとり、グラフが点 \( (3,\ 5) \) を通る二次関数を求めなさい。</p>
+  <div class="step">着眼点：最小値とそれをとる \( x \) が分かっているので、頂点は \( (1,\ -3) \) です。\( y=a(x-1)^2-3 \) とおくと、分からない文字は \( a \) だけです（数Ⅰ-044）。</div>
+  <div class="step">ステップ1：\( x=3 \)、\( y=5 \) を代入して \( 5=4a-3 \)、\( a=2 \)。</div>
+  <div class="step">ステップ2（確かめ）：\( a=2&gt;0 \) で下に凸なので、確かに \( x=1 \) で最小値 \( -3 \) をとります。</div>
+  <div class="step">答え：\( y=2(x-1)^2-3 \)（展開すると \( y=2x^2-4x-1 \)）。</div>
+</div>
+<p>例題5を \( y=ax^2+bx+c \) とおいて解こうとすると、「\( x=1 \) で最小値 \( -3 \)」を式にするのに平方完成が必要で、手間がかかります。反対に、3点を通る条件を \( y=a(x-p)^2+q \) に代入すると、たとえば点 \( (1,\ 0) \) からは \( a(1-p)^2+q=0 \) となり、\( a \) と \( p \) を掛けた項や \( p \) の2乗の項が現れて一次方程式になりません。そのため、3点の条件では \( y=ax^2+bx+c \) とおきます。</p>
+<div class="box point"><p class="box-title">形を選ぶときの目安</p><p>頂点・軸・最大値・最小値の条件があれば \( y=a(x-p)^2+q \)、通る点だけが3つ分かっていれば \( y=ax^2+bx+c \)。どちらの形で求めても、最後に条件をすべて満たすかを確かめます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>三元一次方程式</dt><dd>3つの文字を含む一次方程式（例：\( 4a+2b+c=4 \)）。2つの文字なら二元一次方程式（中2-014）。</dd>
+    <dt>連立三元一次方程式</dt><dd>三元一次方程式を3つ組にしたもの。3つの式を同時に成り立たせる文字の値の組を、その解という。</dd>
+    <dt>文字の消去</dt><dd>式を足したり引いたり、代入したりして、ある文字を含まない式をつくること（中2-016・中2-018）。文字が3つのときは、2組の式から同じ文字を消去して、文字が2つの連立方程式にする。</dd>
+    <dt>式の形の選び方</dt><dd>頂点・軸などの条件があれば \( y=a(x-p)^2+q \)、通る3点だけが分かっていれば \( y=ax^2+bx+c \) とおく。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>通る3点が分かっているときは \( y=ax^2+bx+c \) とおき、3点の座標を代入して \( a \)、\( b \)、\( c \) の連立三元一次方程式をつくる（O1）。</li>
+    <li>連立三元一次方程式は、2組の式から同じ1つの文字を消去して、文字が2つの連立方程式にして解く。求めた式は3点を代入して確かめる（O2）。</li>
+    <li>頂点・軸・最大値・最小値の条件があれば \( y=a(x-p)^2+q \)、通る3点だけなら \( y=ax^2+bx+c \) と、条件に合わせて形を選ぶ（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">3点を通る二次関数の決定</span><p>\( y=ax^2+bx+c \) に3点を代入 → 連立三元一次方程式 → 1文字を消去して二元に → \( a,\ b,\ c \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。式を入力する問題は、y=x^2+3 や y=-(x-3)^2+4 のように入力してください（x² と書いてもかまいません）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>\( y=ax^2+bx+c \) のグラフが3点 \( (0,\ 2) \)、\( (1,\ 3) \)、\( (2,\ 6) \) を通るとき、成り立つ3つの式の組はどれですか。</p>
+  <div class="choices">
+    <button>\( c=2 \)、\( a+b+c=3 \)、\( 2a+2b+c=6 \)</button>
+    <button data-correct="true">\( c=2 \)、\( a+b+c=3 \)、\( 4a+2b+c=6 \)</button>
+    <button>\( 4a+2b+c=0 \)、\( 9a+3b+c=1 \)、\( 36a+6b+c=2 \)</button>
+    <button>\( a=2 \)、\( a+b+c=3 \)、\( a+2b+4c=6 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">3点の座標を順に代入すると、\( (0,\ 2) \) から \( c=2 \)、\( (1,\ 3) \) から \( a+b+c=3 \)、\( (2,\ 6) \) から \( 4a+2b+c=6 \) です。\( 2a+2b+c=6 \) は \( 2^2 \) を 2 とした誤り、\( 4a+2b+c=0 \) などの組は各点の \( x \) と \( y \) を逆にして代入した誤り、\( a=2 \) などの組は \( a \) と \( c \) の役割を取り違えて \( y=a+bx+cx^2 \) に代入した誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="y=x^2+2|y=x²+2|x^2+2|x²+2|y=2+x^2|y=2+x²|y=x^2+0x+2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>問1の3点 \( (0,\ 2) \)、\( (1,\ 3) \)、\( (2,\ 6) \) を通る二次関数を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( y=x^2+2 \)。\( c=2 \) をほかの2式に代入すると \( a+b=1 \)、\( 4a+2b=4 \)。下の式を 2 で割って \( 2a+b=2 \)、これから \( a+b=1 \) を引いて \( a=1 \)、\( b=0 \) です。確かめ：\( x=1 \) で \( 1+2=3 \)、\( x=2 \) で \( 4+2=6 \)。\( b=0 \) なので \( x \) の項はありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>連立三元一次方程式 \( a+b+c=4 \)　…①、\( a-b+c=0 \)　…②、\( 4a+2b+c=9 \)　…③ の解はどれですか。</p>
+  <div class="choices">
+    <button>\( a=\dfrac{5}{3},\ b=2,\ c=\dfrac{1}{3} \)</button>
+    <button>\( a=\dfrac{1}{3},\ b=4,\ c=-\dfrac{1}{3} \)</button>
+    <button>\( a=\dfrac{7}{3},\ b=-2,\ c=\dfrac{11}{3} \)</button>
+    <button data-correct="true">\( a=1,\ b=2,\ c=1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">①−② より \( 2b=4 \)、\( b=2 \)。①に代入して \( a+c=2 \)、③に代入して \( 4a+c=5 \)。引き算して \( 3a=3 \)、\( a=1 \)、\( c=1 \) です。確かめ：② は \( 1-2+1=0 \)、③ は \( 4+4+1=9 \)。\( a=\dfrac{5}{3} \) の組は ③ に \( b=2 \) を代入するときに \( 2b \) を \( 2 \) として \( 4a+c=7 \) とした誤り、\( b=4 \) の組は \( 2b=4 \) を 2 で割り忘れた誤り、\( b=-2 \) の組は ②−① の右辺を \( 4-0 \) と逆に計算して \( -2b=4 \) とした誤りです（この組は ② を満たしません）。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="y=2x^2-3x+2|y=2x²-3x+2|2x^2-3x+2|2x²-3x+2|y=2(x-3/4)^2+7/8|y=2(x-3/4)²+7/8">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>グラフが3点 \( (-1,\ 7) \)、\( (1,\ 1) \)、\( (2,\ 4) \) を通る二次関数を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( y=2x^2-3x+2 \)。代入すると \( a-b+c=7 \)、\( a+b+c=1 \)、\( 4a+2b+c=4 \)。上の2式を引いて \( 2b=-6 \)、\( b=-3 \)。すると \( a+c=4 \)、\( 4a+c=10 \) となり、\( 3a=6 \)、\( a=2 \)、\( c=2 \) です。確かめ：\( x=-1 \) で \( 2+3+2=7 \)、\( x=1 \) で \( 2-3+2=1 \)、\( x=2 \) で \( 8-6+2=4 \)。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>次の条件で二次関数を求めるとき、\( y=ax^2+bx+c \) とおいて連立三元一次方程式をつくるのが最も適しているのはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">グラフが3点 \( (-1,\ 2) \)、\( (1,\ 0) \)、\( (2,\ 5) \) を通る</button>
+    <button>グラフの頂点が \( (1,\ 3) \) で、点 \( (0,\ 5) \) を通る</button>
+    <button>グラフの軸が直線 \( x=2 \) で、2点 \( (0,\ 1) \)、\( (1,\ 4) \) を通る</button>
+    <button>\( x=-1 \) で最小値 2 をとり、グラフが点 \( (1,\ 6) \) を通る</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">頂点も軸も分からず通る点が3つ分かっている1つ目は、\( y=ax^2+bx+c \) とおきます。2つ目と4つ目は頂点が分かるので \( y=a(x-p)^2+q \) とおけば分からない文字は \( a \) だけ、3つ目は軸が分かるので \( y=a(x-2)^2+q \) とおけば \( a \)、\( q \) の2つで済みます（数Ⅰ-044）。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="y=-(x-2)^2+5|y=-(x-2)²+5|-(x-2)^2+5|-(x-2)²+5|y=-x^2+4x+1|y=-x²+4x+1|-x^2+4x+1|-x²+4x+1|y=5-(x-2)^2">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>\( x=2 \) で最大値 5 をとり、グラフが点 \( (0,\ 1) \) を通る二次関数を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( y=-(x-2)^2+5 \)（\( y=-x^2+4x+1 \) でもよい）。頂点が \( (2,\ 5) \) なので \( y=a(x-2)^2+5 \) とおき、\( x=0 \)、\( y=1 \) を代入して \( 1=4a+5 \)、\( a=-1 \)。\( a&lt;0 \) で上に凸なので、確かに \( x=2 \) で最大値 5 をとります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>太郎さんと花子さんが、グラフが3点 \( (1,\ 0) \)、\( (3,\ 0) \)、\( (0,\ 6) \) を通る二次関数を求めています。</p>
+  <p>太郎：「\( y=ax^2+bx+c \) とおいて、3点を代入して連立三元一次方程式を解けばいいね。」<br>花子：「2点 \( (1,\ 0) \) と \( (3,\ 0) \) は \( y \) 座標が等しいから、放物線の軸について対称な位置にあるよ。軸は、1 と 3 からの距離がどちらも 1 の直線 \( x=2 \) だね。だから \( y=a(x-2)^2+q \) とおいてもいいんじゃないかな。」</p>
+  <p>2人が求める二次関数はどれですか。</p>
+  <div class="choices">
+    <button>\( y=-2x^2+8x-6 \)</button>
+    <button>\( y=-6x^2+24x-18 \)</button>
+    <button data-correct="true">\( y=2x^2-8x+6 \)</button>
+    <button>\( y=2x^2+8x+6 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">花子さんの方法では、\( y=a(x-2)^2+q \) に \( (1,\ 0) \) を代入して \( a+q=0 \)、\( (0,\ 6) \) を代入して \( 4a+q=6 \)。引き算して \( 3a=6 \)、\( a=2 \)、\( q=-2 \)。\( y=2(x-2)^2-2=2x^2-8x+6 \) です。太郎さんの方法でも、\( c=6 \)、\( a+b+6=0 \)、\( 9a+3b+6=0 \) から \( a=2 \)、\( b=-8 \) と同じ答えになります。\( y=-2x^2+8x-6 \) は引き算で \( 3a=-6 \) とした誤りで、点 \( (0,\ 6) \) を通りません。\( y=-6x^2+24x-18 \) は点 \( (0,\ 6) \) の \( y \) 座標 6 を \( q \) とした誤り、\( y=2x^2+8x+6 \) は軸を \( x=-2 \) とした符号の誤りで、点 \( (1,\ 0) \) を通りません。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2</span></div>
+  <p>グラフが3点 \( (-2,\ 1) \)、\( (1,\ -2) \)、\( (2,\ 5) \) を通る二次関数について、次の問いに答えなさい。</p>
+  <p>(1) この二次関数を求めなさい。　(2) このグラフの頂点の座標を求めなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) \( y=ax^2+bx+c \) とおく。3点を代入して \( 4a-2b+c=1 \)　…①、\( a+b+c=-2 \)　…②、\( 4a+2b+c=5 \)　…③。③−① より \( 4b=4 \)、\( b=1 \)。② と ③ に代入して \( a+c=-3 \)、\( 4a+c=3 \)。引き算して \( 3a=6 \)、\( a=2 \)、\( c=-5 \)。よって \( y=2x^2+x-5 \)。確かめ：\( x=-2 \) で \( 8-2-5=1 \)、\( x=1 \) で \( 2+1-5=-2 \)、\( x=2 \) で \( 8+2-5=5 \)。</p>
+    <p>(2) \( y=2\left(x^2+\dfrac{1}{2}x\right)-5=2\left(x+\dfrac{1}{4}\right)^2-\dfrac{1}{8}-5=2\left(x+\dfrac{1}{4}\right)^2-\dfrac{41}{8} \)。頂点は \( \left(-\dfrac{1}{4},\ -\dfrac{41}{8}\right) \)。</p>
+    <p><strong>採点の観点</strong>　① 3点の座標を正しく代入して3つの式をつくっている。② 同じ文字を消去して文字が2つの連立方程式にし、\( a \)、\( b \)、\( c \) を正しく求めている。③ 求めた式で3点を確かめている。④ 平方完成して頂点を正しく求めている（数Ⅰ-034）。</p>
+  </div>
+  <div class="explain">①と③は \( b \) の係数が \( -2 \) と \( 2 \) で、それ以外の係数が等しいので、引き算すると \( a \) と \( c \) が同時に消えます。このように、\( x \) 座標が \( s \) と \( -s \) の2点があるときは、先に \( b \) が求まります（例題4と同じ）。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(3) 二次関数」の「二次関数の値の変化やグラフの特徴について理解すること」（ア(ア)）に関わり、出題範囲に含まれます（学習内容マップでは、3点から二次関数を決めることは解説に明記はないが教科書で一般的な内容として † を付けています）。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。条件に合わせて式の形を選ぶこの時間の考え方は、こうした処理の土台になります。</p>
+  <p class="small">問7は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">二次方程式の解とグラフ（数Ⅰ-046）</p>
+  <p>次の時間は、二次関数 \( y=ax^2+bx+c \) のグラフと \( x \) 軸の関係を考えます。グラフ上で \( y=0 \) となる点を調べると、中学3年で学んだ二次方程式 \( ax^2+bx+c=0 \) の解とつながります。</p>
+  <p>この時間では、グラフと \( x \) 軸との共有点（数Ⅰ-046）と、共有点の個数と判別式（数Ⅰ-047）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-044　二次関数の決定（頂点や軸の条件）</div>
+  <div><span class="label">次の時間</span>数Ⅰ-046　二次方程式の解とグラフ</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-045「二次関数の決定（3点を通る）」（学習指導要領 数学Ⅰ (3)ア(ア)、解説 p.41。† 教科書で一般的な内容を含む行）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(3) 二次関数（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.41（二次関数の値の変化やグラフの特徴）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「2次関数の決定」（「連立3元1次方程式の解き方を理解している」「条件を処理するのに適した式の形を判断することができる」の確認。† の内容と「連立3元1次方程式」の呼び方）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>東京書籍「評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）」の「２次関数の決定」（「2 次関数のグラフについて，与えられた条件からその 2 次関数を求めることができる」の確認）https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-045",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-045",
+  "title": "二次関数の決定（3点を通る）",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-3", "title": "二次関数"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(3)ア(ア)"],
+  "kaisetsu_page": "41",
+  "objectives": [
+    {"id": "O1", "text": "グラフが通る3点の座標を y=ax²+bx+c に代入して、a、b、c についての連立三元一次方程式をつくることができる。", "from": "グラフが通る3点の座標から、y=ax²+bx+c の a、b、c を連立三元一次方程式を解いて求めることができる（式をつくる）", "sections": ["sec-1"], "checks": ["q1", "q8"]},
+    {"id": "O2", "text": "連立三元一次方程式を、1つの文字を消去して連立二元一次方程式に帰着させて解き、二次関数を求めることができる。", "from": "グラフが通る3点の座標から、y=ax²+bx+c の a、b、c を連立三元一次方程式を解いて求めることができる（解く）", "sections": ["sec-2"], "checks": ["q2", "q3", "q4", "q8"]},
+    {"id": "O3", "text": "与えられた条件に応じて、y=a(x−p)²+q と y=ax²+bx+c のどちらの形でおくかを選び、二次関数を求めることができる。", "from": "条件に応じて使う式の形を選ぶ", "sections": ["sec-3"], "checks": ["q5", "q6", "q7"]}
+  ],
+  "key_terms": [
+    {"term": "三元一次方程式", "where": "sec-1"},
+    {"term": "連立三元一次方程式", "where": "sec-1"},
+    {"term": "文字の消去", "where": "sec-2"},
+    {"term": "式の形の選び方", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "二元一次方程式とその解（2つの文字を含む一次方程式）", "taught_in": ["jhs_math/中2-014"], "where": "sec-1"},
+    {"concept": "連立方程式とその解（同時に成り立たせる値の組）", "taught_in": ["jhs_math/中2-015"], "where": "sec-1"},
+    {"concept": "一方の文字を消去する考えと加減法", "taught_in": ["jhs_math/中2-016"], "where": "review"},
+    {"concept": "代入法", "taught_in": ["jhs_math/中2-018"], "where": "review"},
+    {"concept": "変数と方程式の数が一致すると解が一通りに定まること", "taught_in": ["jhs_math/中2-024"], "where": "sec-1"},
+    {"concept": "通る点の座標を代入して式を決める考え、y=a(x−p)²+q の形での決定", "taught_in": ["hs_math_1a/数Ⅰ-044", "jhs_math/中2-033"], "where": "review"},
+    {"concept": "平方完成（頂点を求める）", "taught_in": ["hs_math_1a/数Ⅰ-034"], "where": "quiz"},
+    {"concept": "放物線は軸について対称であること（問7）", "taught_in": ["jhs_math/中3-051", "hs_math_1a/数Ⅰ-033"], "where": "quiz"}
+  ],
+  "out_of_scope": [
+    "グラフと x 軸との共有点、二次方程式の実数解との関係（数Ⅰ-046）",
+    "共有点の個数と判別式（数Ⅰ-047）",
+    "文字が4つ以上の連立一次方程式、解が1つに決まらない連立三元一次方程式の一般的な扱い"
+  ],
+  "selection_reason": "数学Ⅰ 単元『二次関数』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(3)ア(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.41 二次関数の値の変化やグラフの特徴"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "「2次関数の決定」：連立3元1次方程式の解き方、条件を処理するのに適した式の形の判断（† の内容と呼び方）"},
+    {"name": "評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）", "publisher": "東京書籍（東書Ｅネット）", "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf", "use": "「２次関数の決定」：与えられた条件からその 2 次関数を求めること（† の内容。保存本文：sources/text/ts_m1_16704_hyoka.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

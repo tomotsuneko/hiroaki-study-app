@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>グラフの平行移動と対称移動｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.widget .w-row { margin: 4px 0; }
+.widget .w-row output { display: inline-block; min-width: 3em; font-weight: 700; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>二次関数</span><span>数Ⅰ-038</span></div>
+  <h1>グラフの平行移動と対称移動</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">放物線 \( y=x^2-4x+5 \) を \( x \) 軸で折り返すように移すと、どんな式のグラフになるでしょうか。この時間は、平行移動したグラフの式を頂点の動きから求め、\( x \) 軸・\( y \) 軸・原点に関して対称移動したグラフの式を、\( x \)、\( y \) の置き換えから求めます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>放物線を平行移動したグラフの式を、頂点の移動に着目して求めることができる（2つの放物線の間の平行移動を求める場合を含む）。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>点を x 軸・y 軸・原点に関して対称移動した点の座標を求め、グラフの対称移動では x、y をどう置き換えればよいかを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>放物線を x 軸・y 軸・原点に関して対称移動したグラフの式を、x、y の置き換えによって求め、頂点の移動で確かめることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-037）</span>係数の変化とグラフ</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-038）</span>グラフの平行移動と対称移動</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-039）</span>二次関数の値の変化と最大・最小</div>
+</div>
+<p class="small">前提となる単元：中学3年「関数 y=ax²」「二次方程式」、数学Ⅰ「数と式」。同じ単元の数Ⅰ-032〜035（グラフの平行移動、軸と頂点、平方完成）と、中学1年の図形の移動（平行移動・回転移動・対称移動）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、\( y=a(x-p)^2+q \) のグラフと平行移動の関係（数Ⅰ-032・033）、平方完成（数Ⅰ-034）、図形の対称移動の性質（中1-079）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-033</span></div>
+  <p>\( y=(x-3)^2+2 \) のグラフは、\( y=x^2 \) のグラフをどのように平行移動したものですか。</p>
+  <div class="choices">
+    <button>\( x \) 軸方向に \( -3 \)、\( y \) 軸方向に 2</button>
+    <button data-correct="true">\( x \) 軸方向に 3、\( y \) 軸方向に 2</button>
+    <button>\( x \) 軸方向に 3、\( y \) 軸方向に \( -2 \)</button>
+    <button>\( x \) 軸方向に 2、\( y \) 軸方向に 3</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( y=a(x-p)^2+q \) のグラフは、\( y=ax^2 \) のグラフを \( x \) 軸方向に \( p \)、\( y \) 軸方向に \( q \) だけ平行移動したものです。ここでは \( p=3 \)、\( q=2 \) で、頂点 \( (0,\ 0) \) が \( (3,\ 2) \) に移ります。「\( -3 \)」は \( x-3 \) の \( -3 \) をそのまま移動の量とした誤り、「\( -2 \)」は \( q \) の符号の誤り、「2 と 3」は \( x \) 方向と \( y \) 方向の取り違えです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-034</span></div>
+  <p>\( y=x^2+6x+4 \) のグラフの頂点はどれですか。</p>
+  <div class="choices">
+    <button>\( (3,\ -5) \)</button>
+    <button>\( (-3,\ 13) \)</button>
+    <button>\( (-3,\ 4) \)</button>
+    <button data-correct="true">\( (-3,\ -5) \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x^2+6x+4=(x+3)^2-9+4=(x+3)^2-5 \) なので、頂点は \( (-3,\ -5) \) です。\( (3,\ -5) \) は軸の符号の誤り、\( (-3,\ 13) \) は 9 を引かずに足した誤り（\( 9+4 \)）、\( (-3,\ 4) \) は定数項 4 を頂点の \( y \) 座標とした誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中1-079</span></div>
+  <p>図形を直線 \( \ell \) を対称の軸として対称移動したとき、正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">対応する2点を結ぶ線分は \( \ell \) と垂直に交わり、その交点で二等分される</button>
+    <button>対応する2点を結ぶ線分は \( \ell \) と平行になる</button>
+    <button>対応する2点を結ぶ線分は、いつも \( \ell \) の上にある</button>
+    <button>移動の前と後で、図形の大きさが変わる</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">対称移動では、対応する2点を結ぶ線分が対称の軸と垂直に交わり、その交点で二等分されます（中1-079）。「\( \ell \) と平行になる」は誤りで、対応する点を結ぶ線分どうしが平行になるのは平行移動のときです。もとの点が \( \ell \) の上にあるときはその点は動かないので、対応する2点を結ぶ線分が \( \ell \) の上にあることはありません。移動では図形の形と大きさは変わりません。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：折り返した放物線の式は？</h2>
+<div class="box think">
+  <p class="box-title">x 軸で折り返すと、式のどこが変わる？</p>
+  <p>放物線 \( y=x^2-4x+5 \) を、\( x \) 軸を折り目にして折り返すように移します（\( x \) 軸に関する対称移動）。移したグラフは上に凸になりそうです。</p>
+  <ul>
+    <li>予想A：\( x^2 \) の項の符号だけを変えて \( y=-x^2-4x+5 \)</li>
+    <li>予想B：すべての項の符号を変えて \( y=-x^2+4x-5 \)</li>
+  </ul>
+  <p>どちらが正しいでしょうか。答えは「5 放物線を対称移動する」の例題3で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="平行移動したグラフの式"><span class="num">3</span>平行移動したグラフの式：頂点の移動に着目する</h2>
+<p>放物線を平行移動しても、形（\( x^2 \) の係数）は変わりません。変わるのは頂点の位置だけです。そこで、<strong>頂点がどこに移るか</strong>を求めれば、移動後の式が \( y=a(x-p)^2+q \) の形で分かります（数Ⅰ-033）。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（平行移動したグラフの式）</p>
+  <p>放物線 \( y=x^2-4x+5 \) を \( x \) 軸方向に 3、\( y \) 軸方向に \( -2 \) だけ平行移動した放物線の式を求めなさい。</p>
+  <div class="step">着眼点：まず平方完成して頂点を求めます。\( y=x^2-4x+5=(x-2)^2+1 \) なので、頂点は \( (2,\ 1) \)。</div>
+  <div class="step">ステップ1：頂点を \( x \) 軸方向に 3、\( y \) 軸方向に \( -2 \) 動かすと \( (2+3,\ 1-2)=(5,\ -1) \)。</div>
+  <div class="step">ステップ2：\( x^2 \) の係数 1 は変わらないので、移動後の式は \( y=(x-5)^2-1 \)。</div>
+  <div class="step">答え：\( y=(x-5)^2-1 \)（展開すると \( y=x^2-10x+24 \)）。</div>
+</div>
+<figure>
+<!--svg:f038a-->
+<svg viewBox="0 0 290 250" width="290" role="img" aria-label="y=(x−2)²+1 のグラフ（青）を x 軸方向に 3、y 軸方向に −2 だけ平行移動したグラフ y=(x−5)²−1（赤の破線）。頂点は (2, 1) から (5, −1) に移る" data-frame="22 22 248 204 -1.2 7.6 -2.6 6.4"><defs><clipPath id="clip-f38a"><rect x="22" y="22" width="248" height="204"/></clipPath></defs>
+<line x1="16" y1="167.1" x2="278" y2="167.1" stroke="currentColor" stroke-width="1"/>
+<polygon points="279,167.1 271,163.6 271,170.6" fill="currentColor"/>
+<text x="276" y="160.1" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="55.8" y1="232" x2="55.8" y2="14" stroke="currentColor" stroke-width="1"/>
+<polygon points="55.8,13 52.3,21 59.3,21" fill="currentColor"/>
+<text x="62.8" y="23" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="51.8" y="180.1" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="84" y1="164.1" x2="84" y2="170.1" stroke="currentColor"/>
+<text x="84" y="181.1" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="112.2" y1="164.1" x2="112.2" y2="170.1" stroke="currentColor"/>
+<text x="112.2" y="181.1" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="140.4" y1="164.1" x2="140.4" y2="170.1" stroke="currentColor"/>
+<text x="140.4" y="181.1" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="168.5" y1="164.1" x2="168.5" y2="170.1" stroke="currentColor"/>
+<text x="168.5" y="181.1" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="196.7" y1="164.1" x2="196.7" y2="170.1" stroke="currentColor"/>
+<text x="196.7" y="181.1" text-anchor="middle" font-size="11" fill="currentColor">5</text>
+<line x1="224.9" y1="164.1" x2="224.9" y2="170.1" stroke="currentColor"/>
+<text x="224.9" y="181.1" text-anchor="middle" font-size="11" fill="currentColor">6</text>
+<line x1="253.1" y1="164.1" x2="253.1" y2="170.1" stroke="currentColor"/>
+<text x="253.1" y="181.1" text-anchor="middle" font-size="11" fill="currentColor">7</text>
+<line x1="52.8" y1="212.4" x2="58.8" y2="212.4" stroke="currentColor"/>
+<text x="50.8" y="216.4" text-anchor="end" font-size="11" fill="currentColor">−2</text>
+<line x1="52.8" y1="189.7" x2="58.8" y2="189.7" stroke="currentColor"/>
+<text x="50.8" y="193.7" text-anchor="end" font-size="11" fill="currentColor">−1</text>
+<line x1="52.8" y1="144.4" x2="58.8" y2="144.4" stroke="currentColor"/>
+<text x="50.8" y="148.4" text-anchor="end" font-size="11" fill="currentColor">1</text>
+<line x1="52.8" y1="121.7" x2="58.8" y2="121.7" stroke="currentColor"/>
+<text x="50.8" y="125.7" text-anchor="end" font-size="11" fill="currentColor">2</text>
+<line x1="52.8" y1="99.1" x2="58.8" y2="99.1" stroke="currentColor"/>
+<text x="50.8" y="103.1" text-anchor="end" font-size="11" fill="currentColor">3</text>
+<line x1="52.8" y1="76.4" x2="58.8" y2="76.4" stroke="currentColor"/>
+<text x="50.8" y="80.4" text-anchor="end" font-size="11" fill="currentColor">4</text>
+<line x1="52.8" y1="53.7" x2="58.8" y2="53.7" stroke="currentColor"/>
+<text x="50.8" y="57.7" text-anchor="end" font-size="11" fill="currentColor">5</text>
+<line x1="52.8" y1="31.1" x2="58.8" y2="31.1" stroke="currentColor"/>
+<text x="50.8" y="35.1" text-anchor="end" font-size="11" fill="currentColor">6</text>
+<path d="M22,-87.7 L24.1,-77.2 L26.1,-66.9 L28.2,-56.9 L30.3,-47.1 L32.3,-37.6 L34.4,-28.3 L36.5,-19.2 L38.5,-10.4 L40.6,-1.8 L42.7,6.5 L44.7,14.6 L46.8,22.4 L48.9,30 L50.9,37.3 L53,44.4 L55.1,51.3 L57.1,57.9 L59.2,64.3 L61.3,70.4 L63.3,76.3 L65.4,81.9 L67.5,87.3 L69.5,92.5 L71.6,97.4 L73.7,102.1 L75.7,106.5 L77.8,110.7 L79.9,114.6 L81.9,118.3 L84,121.7 L86.1,124.9 L88.1,127.9 L90.2,130.6 L92.3,133.1 L94.3,135.3 L96.4,137.3 L98.5,139 L100.5,140.5 L102.6,141.8 L104.7,142.8 L106.7,143.6 L108.8,144.1 L110.9,144.4 L112.9,144.4 L115,144.2 L117.1,143.7 L119.1,143 L121.2,142.1 L123.3,140.9 L125.3,139.5 L127.4,137.8 L129.5,135.9 L131.5,133.7 L133.6,131.3 L135.7,128.7 L137.7,125.8 L139.8,122.6 L141.9,119.3 L143.9,115.6 L146,111.8 L148.1,107.6 L150.1,103.3 L152.2,98.7 L154.3,93.9 L156.3,88.8 L158.4,83.4 L160.5,77.9 L162.5,72 L164.6,66 L166.7,59.7 L168.7,53.1 L170.8,46.3 L172.9,39.3 L174.9,32 L177,24.5 L179.1,16.7 L181.1,8.7 L183.2,0.5 L185.3,-8 L187.3,-16.8 L189.4,-25.8 L191.5,-35 L193.5,-44.5 L195.6,-54.2 L197.7,-64.2 L199.7,-74.4 L201.8,-84.8 L203.9,-95.5 L205.9,-106.4 L208,-117.6 L210.1,-129.1 L212.1,-140.7 L214.2,-152.6 L216.3,-164.8 L218.3,-177.2 L220.4,-189.8 L222.5,-202.7 L224.5,-215.9 L226.6,-229.2 L228.7,-242.8 L230.7,-256.7 L232.8,-270.8 L234.9,-285.2 L236.9,-299.8 L239,-314.6 L241.1,-329.7 L243.1,-345 L245.2,-360.6 L247.3,-376.4 L249.3,-392.4 L251.4,-408.7 L253.5,-425.3 L255.5,-442.1 L257.6,-459.1 L259.7,-476.4 L261.7,-493.9 L263.8,-511.7 L265.9,-529.7 L267.9,-547.9 L270,-566.4" fill="none" stroke="#1f5fbf" stroke-width="2.4" data-f="1 2 1" clip-path="url(#clip-f38a)"/>
+<path d="M22,-681.6 L24.1,-661.1 L26.1,-640.8 L28.2,-620.8 L30.3,-601.1 L32.3,-581.6 L34.4,-562.3 L36.5,-543.3 L38.5,-524.5 L40.6,-505.9 L42.7,-487.6 L44.7,-469.6 L46.8,-451.8 L48.9,-434.2 L50.9,-416.9 L53,-399.8 L55.1,-383 L57.1,-366.4 L59.2,-350.1 L61.3,-334 L63.3,-318.1 L65.4,-302.5 L67.5,-287.1 L69.5,-272 L71.6,-257.1 L73.7,-242.5 L75.7,-228.1 L77.8,-213.9 L79.9,-200 L81.9,-186.4 L84,-172.9 L86.1,-159.8 L88.1,-146.8 L90.2,-134.1 L92.3,-121.7 L94.3,-109.5 L96.4,-97.5 L98.5,-85.8 L100.5,-74.4 L102.6,-63.1 L104.7,-52.1 L106.7,-41.4 L108.8,-30.9 L110.9,-20.7 L112.9,-10.7 L115,-0.9 L117.1,8.6 L119.1,17.9 L121.2,26.9 L123.3,35.7 L125.3,44.3 L127.4,52.6 L129.5,60.6 L131.5,68.4 L133.6,76 L135.7,83.3 L137.7,90.4 L139.8,97.2 L141.9,103.8 L143.9,110.2 L146,116.3 L148.1,122.2 L150.1,127.8 L152.2,133.1 L154.3,138.3 L156.3,143.2 L158.4,147.8 L160.5,152.2 L162.5,156.4 L164.6,160.3 L166.7,163.9 L168.7,167.4 L170.8,170.5 L172.9,173.5 L174.9,176.2 L177,178.6 L179.1,180.8 L181.1,182.8 L183.2,184.5 L185.3,186 L187.3,187.2 L189.4,188.2 L191.5,188.9 L193.5,189.4 L195.6,189.7 L197.7,189.7 L199.7,189.5 L201.8,189 L203.9,188.3 L205.9,187.3 L208,186.1 L210.1,184.7 L212.1,183 L214.2,181 L216.3,178.8 L218.3,176.4 L220.4,173.7 L222.5,170.8 L224.5,167.7 L226.6,164.3 L228.7,160.6 L230.7,156.7 L232.8,152.6 L234.9,148.2 L236.9,143.6 L239,138.7 L241.1,133.6 L243.1,128.3 L245.2,122.7 L247.3,116.8 L249.3,110.8 L251.4,104.4 L253.5,97.9 L255.5,91 L257.6,84 L259.7,76.7 L261.7,69.1 L263.8,61.3 L265.9,53.3 L267.9,45 L270,36.5" fill="none" stroke="#c0392b" stroke-width="2.4" stroke-dasharray="7 4" data-f="1 5 -1" clip-path="url(#clip-f38a)"/>
+<line x1="117.5" y1="147.2" x2="190.6" y2="186.4" stroke="#b7791f" stroke-width="1.6"/>
+<polygon points="192.3,187.4 183.6,186.3 186.6,180.7" fill="#b7791f"/>
+<circle cx="112.2" cy="144.4" r="4.5" fill="#1f5fbf" data-xy="2 1"/>
+<circle cx="196.7" cy="189.7" r="4.5" fill="#c0392b" data-xy="5 -1"/>
+<text x="104.2" y="156.4" text-anchor="end" font-size="11" fill="#1f5fbf">(2, 1)</text>
+<text x="204.7" y="201.7" text-anchor="start" font-size="11" fill="#c0392b">(5, −1)</text>
+</svg>
+<!--/svg:f038a-->
+  <figcaption>図1　例題1。頂点 (2, 1) が (5, −1) に移る（青＝もとの放物線、赤の破線＝移動後、矢印＝頂点の移動）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題2（2つの放物線の間の平行移動）</p>
+  <p>放物線 \( y=2x^2+4x+1 \) をどのように平行移動すると、放物線 \( y=2x^2-8x+5 \) に重なりますか。</p>
+  <div class="step">着眼点：どちらも \( x^2 \) の係数が 2 なので、平行移動で重ねられます。頂点どうしを比べます。</div>
+  <div class="step">ステップ1：\( y=2x^2+4x+1=2(x+1)^2-1 \) の頂点は \( (-1,\ -1) \)、\( y=2x^2-8x+5=2(x-2)^2-3 \) の頂点は \( (2,\ -3) \)。</div>
+  <div class="step">ステップ2：\( x \) 座標は \( 2-(-1)=3 \)、\( y \) 座標は \( -3-(-1)=-2 \) だけ変わります。</div>
+  <div class="step">答え：\( x \) 軸方向に 3、\( y \) 軸方向に \( -2 \) だけ平行移動すると重なる（図2）。</div>
+</div>
+<figure>
+<!--svg:f038b-->
+<svg viewBox="0 0 290 250" width="290" role="img" aria-label="y=2x²+4x+1 のグラフ（青、頂点 (−1, −1)）と y=2x²−8x+5 のグラフ（赤の破線、頂点 (2, −3)）。頂点を右に 3、下に 2 動かすと重なる" data-frame="22 22 248 204 -3.4 4.4 -3.8 4.6"><defs><clipPath id="clip-f38b"><rect x="22" y="22" width="248" height="204"/></clipPath></defs>
+<line x1="16" y1="133.7" x2="278" y2="133.7" stroke="currentColor" stroke-width="1"/>
+<polygon points="279,133.7 271,130.2 271,137.2" fill="currentColor"/>
+<text x="276" y="126.7" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="130.1" y1="232" x2="130.1" y2="14" stroke="currentColor" stroke-width="1"/>
+<polygon points="130.1,13 126.6,21 133.6,21" fill="currentColor"/>
+<text x="137.1" y="23" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="126.1" y="146.7" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="34.7" y1="130.7" x2="34.7" y2="136.7" stroke="currentColor"/>
+<text x="34.7" y="147.7" text-anchor="middle" font-size="11" fill="currentColor">−3</text>
+<line x1="66.5" y1="130.7" x2="66.5" y2="136.7" stroke="currentColor"/>
+<text x="66.5" y="147.7" text-anchor="middle" font-size="11" fill="currentColor">−2</text>
+<line x1="98.3" y1="130.7" x2="98.3" y2="136.7" stroke="currentColor"/>
+<text x="98.3" y="147.7" text-anchor="middle" font-size="11" fill="currentColor">−1</text>
+<line x1="161.9" y1="130.7" x2="161.9" y2="136.7" stroke="currentColor"/>
+<text x="161.9" y="147.7" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="193.7" y1="130.7" x2="193.7" y2="136.7" stroke="currentColor"/>
+<text x="193.7" y="147.7" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="225.5" y1="130.7" x2="225.5" y2="136.7" stroke="currentColor"/>
+<text x="225.5" y="147.7" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="257.3" y1="130.7" x2="257.3" y2="136.7" stroke="currentColor"/>
+<text x="257.3" y="147.7" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="127.1" y1="206.6" x2="133.1" y2="206.6" stroke="currentColor"/>
+<text x="125.1" y="210.6" text-anchor="end" font-size="11" fill="currentColor">−3</text>
+<line x1="127.1" y1="182.3" x2="133.1" y2="182.3" stroke="currentColor"/>
+<text x="125.1" y="186.3" text-anchor="end" font-size="11" fill="currentColor">−2</text>
+<line x1="127.1" y1="158" x2="133.1" y2="158" stroke="currentColor"/>
+<text x="125.1" y="162" text-anchor="end" font-size="11" fill="currentColor">−1</text>
+<line x1="127.1" y1="109.4" x2="133.1" y2="109.4" stroke="currentColor"/>
+<text x="125.1" y="113.4" text-anchor="end" font-size="11" fill="currentColor">1</text>
+<line x1="127.1" y1="85.1" x2="133.1" y2="85.1" stroke="currentColor"/>
+<text x="125.1" y="89.1" text-anchor="end" font-size="11" fill="currentColor">2</text>
+<line x1="127.1" y1="60.9" x2="133.1" y2="60.9" stroke="currentColor"/>
+<text x="125.1" y="64.9" text-anchor="end" font-size="11" fill="currentColor">3</text>
+<line x1="127.1" y1="36.6" x2="133.1" y2="36.6" stroke="currentColor"/>
+<text x="125.1" y="40.6" text-anchor="end" font-size="11" fill="currentColor">4</text>
+<path d="M22,-121.8 L24.1,-106.8 L26.1,-92.3 L28.2,-78.2 L30.3,-64.4 L32.3,-51.1 L34.4,-38.2 L36.5,-25.7 L38.5,-13.7 L40.6,-2 L42.7,9.2 L44.7,20.1 L46.8,30.5 L48.9,40.6 L50.9,50.2 L53,59.4 L55.1,68.2 L57.1,76.5 L59.2,84.5 L61.3,92.1 L63.3,99.2 L65.4,106 L67.5,112.3 L69.5,118.2 L71.6,123.7 L73.7,128.8 L75.7,133.5 L77.8,137.8 L79.9,141.7 L81.9,145.1 L84,148.2 L86.1,150.8 L88.1,153 L90.2,154.8 L92.3,156.2 L94.3,157.2 L96.4,157.8 L98.5,158 L100.5,157.8 L102.6,157.1 L104.7,156.1 L106.7,154.6 L108.8,152.7 L110.9,150.4 L112.9,147.7 L115,144.6 L117.1,141.1 L119.1,137.2 L121.2,132.8 L123.3,128.1 L125.3,122.9 L127.4,117.3 L129.5,111.4 L131.5,105 L133.6,98.2 L135.7,90.9 L137.7,83.3 L139.8,75.3 L141.9,66.8 L143.9,58 L146,48.7 L148.1,39 L150.1,29 L152.2,18.5 L154.3,7.5 L156.3,-3.8 L158.4,-15.5 L160.5,-27.6 L162.5,-40.2 L164.6,-53.2 L166.7,-66.5 L168.7,-80.3 L170.8,-94.5 L172.9,-109.1 L174.9,-124.1 L177,-139.5 L179.1,-155.4 L181.1,-171.6 L183.2,-188.3 L185.3,-205.3 L187.3,-222.8 L189.4,-240.7 L191.5,-259 L193.5,-277.7 L195.6,-296.8 L197.7,-316.3 L199.7,-336.3 L201.8,-356.6 L203.9,-377.4 L205.9,-398.5 L208,-420.1 L210.1,-442.1 L212.1,-464.5 L214.2,-487.3 L216.3,-510.5 L218.3,-534.2 L220.4,-558.2 L222.5,-582.7 L224.5,-607.5 L226.6,-632.8 L228.7,-658.5 L230.7,-684.6 L232.8,-711.1 L234.9,-738 L236.9,-765.3 L239,-793.1 L241.1,-821.2 L243.1,-849.8 L245.2,-878.7 L247.3,-908.1 L249.3,-937.9 L251.4,-968.1 L253.5,-998.7 L255.5,-1029.7 L257.6,-1061.1 L259.7,-1093 L261.7,-1125.2 L263.8,-1157.9 L265.9,-1191 L267.9,-1224.5 L270,-1258.3" fill="none" stroke="#1f5fbf" stroke-width="2.4" data-f="2 -1 -1" clip-path="url(#clip-f38b)"/>
+<path d="M22,-1209.8 L24.1,-1175.9 L26.1,-1142.4 L28.2,-1109.3 L30.3,-1076.7 L32.3,-1044.4 L34.4,-1012.6 L36.5,-981.1 L38.5,-950.1 L40.6,-919.5 L42.7,-889.3 L44.7,-859.5 L46.8,-830.2 L48.9,-801.2 L50.9,-772.6 L53,-744.5 L55.1,-716.8 L57.1,-689.4 L59.2,-662.5 L61.3,-636 L63.3,-609.9 L65.4,-584.2 L67.5,-559 L69.5,-534.1 L71.6,-509.6 L73.7,-485.6 L75.7,-462 L77.8,-438.7 L79.9,-415.9 L81.9,-393.5 L84,-371.6 L86.1,-350 L88.1,-328.8 L90.2,-308 L92.3,-287.7 L94.3,-267.8 L96.4,-248.2 L98.5,-229.1 L100.5,-210.4 L102.6,-192.1 L104.7,-174.2 L106.7,-156.8 L108.8,-139.7 L110.9,-123 L112.9,-106.8 L115,-91 L117.1,-75.5 L119.1,-60.5 L121.2,-45.9 L123.3,-31.7 L125.3,-17.9 L127.4,-4.6 L129.5,8.4 L131.5,20.9 L133.6,33.1 L135.7,44.8 L137.7,56.1 L139.8,67 L141.9,77.5 L143.9,87.6 L146,97.3 L148.1,106.6 L150.1,115.4 L152.2,123.9 L154.3,131.9 L156.3,139.5 L158.4,146.7 L160.5,153.5 L162.5,159.9 L164.6,165.9 L166.7,171.5 L168.7,176.6 L170.8,181.4 L172.9,185.7 L174.9,189.7 L177,193.2 L179.1,196.3 L181.1,199 L183.2,201.3 L185.3,203.2 L187.3,204.6 L189.4,205.7 L191.5,206.3 L193.5,206.6 L195.6,206.4 L197.7,205.8 L199.7,204.8 L201.8,203.4 L203.9,201.6 L205.9,199.4 L208,196.7 L210.1,193.7 L212.1,190.2 L214.2,186.4 L216.3,182.1 L218.3,177.4 L220.4,172.3 L222.5,166.8 L224.5,160.9 L226.6,154.5 L228.7,147.8 L230.7,140.6 L232.8,133.1 L234.9,125.1 L236.9,116.7 L239,107.9 L241.1,98.7 L243.1,89.1 L245.2,79.1 L247.3,68.7 L249.3,57.8 L251.4,46.6 L253.5,34.9 L255.5,22.8 L257.6,10.3 L259.7,-2.6 L261.7,-15.9 L263.8,-29.6 L265.9,-43.7 L267.9,-58.3 L270,-73.2" fill="none" stroke="#c0392b" stroke-width="2.4" stroke-dasharray="7 4" data-f="2 2 -3" clip-path="url(#clip-f38b)"/>
+<line x1="103.7" y1="160.7" x2="187.5" y2="203.4" stroke="#b7791f" stroke-width="1.6"/>
+<polygon points="189.2,204.3 180.5,203.4 183.3,197.7" fill="#b7791f"/>
+<circle cx="98.3" cy="158" r="4.5" fill="#1f5fbf" data-xy="-1 -1"/>
+<circle cx="193.7" cy="206.6" r="4.5" fill="#c0392b" data-xy="2 -3"/>
+<text x="90.3" y="170" text-anchor="end" font-size="11" fill="#1f5fbf">(−1, −1)</text>
+<text x="201.7" y="218.6" text-anchor="start" font-size="11" fill="#c0392b">(2, −3)</text>
+</svg>
+<!--/svg:f038b-->
+  <figcaption>図2　例題2。x² の係数が同じ2つの放物線は、頂点を重ねる平行移動で重なる</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">よくある間違い（平行移動）</p><p>① 頂点ではなく式の係数を比べる：例題2で定数項の差 \( 5-1=4 \) を \( y \) 軸方向の移動の量としてしまう誤りです。移動の量は頂点の座標の差で求めます。<br>② 向きを逆にする：「\( y=2x^2-8x+5 \) を \( y=2x^2+4x+1 \) に重ねる」なら、移動は \( x \) 軸方向に \( -3 \)、\( y \) 軸方向に 2 です。どちらからどちらへ移すのかを確かめましょう。<br>③ \( x^2 \) の係数が違う2つの放物線は、平行移動では重なりません（形が違うため）。</p></div>
+<p class="small">放物線の平行移動・対称移動したグラフの式の求め方は、教科書によって扱いの程度が異なります。応用例題・例などで扱うもの（数研出版『改訂版 数学Ⅰ』のシラバス）や、一般の関数 \( y=f(x) \) の表記を用いてまとめるもの（同『改訂版 新編 数学Ⅰ』の編修趣意書）と、本文の外の「研究」で扱うもの（数研出版『改訂版 最新 数学Ⅰ』の2つの2次関数のグラフの平行移動、新興出版社啓林館『α数学Ⅰ』『深進数学Ⅰ』『爽解数学Ⅰ』の関数のグラフの平行移動・対称移動）があります（フッターの出典を参照）。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="点の対称移動と置き換え"><span class="num">4</span>点の対称移動と、x、y の置き換え</h2>
+<p>このページでは、\( x \) 軸を対称の軸として対称移動することを「\( x \) 軸に関して対称移動する」といいます（数Ⅰ-033 の「\( y \) 軸について対称」と同じ意味で、「〜について」とも言います）。原点に関して対称移動するとは、原点を中心として 180° 回転移動（点対称移動、中1-078）することです。</p>
+<h3>点の座標はどう変わるか</h3>
+<ul>
+  <li><strong>x 軸に関して対称な点</strong>：対応する2点を結ぶ線分は \( x \) 軸と垂直に交わり、そこで二等分されます（中1-079）。したがって \( x \) 座標は同じで、\( x \) 軸から同じ距離だけ反対側にあるので、\( y \) 座標の符号が逆になります。点 \( (a,\ b) \) → \( (a,\ -b) \)。</li>
+  <li><strong>y 軸に関して対称な点</strong>：同じように考えて、\( y \) 座標は同じで \( x \) 座標の符号が逆になります。点 \( (a,\ b) \) → \( (-a,\ b) \)。</li>
+  <li><strong>原点に関して対称な点</strong>：原点 O が、対応する2点を結ぶ線分のまん中にあります。O から右へ \( a \)、上へ \( b \) 進んだ点なら、対応する点は O から左へ \( a \)、下へ \( b \) 進んだ点です。点 \( (a,\ b) \) → \( (-a,\ -b) \)。</li>
+</ul>
+<figure>
+<!--svg:f038c-->
+<svg viewBox="0 0 300 270" width="300" role="img" aria-label="点 P(3, 2) と、x 軸に関して対称な点 (3, −2)、y 軸に関して対称な点 (−3, 2)、原点に関して対称な点 (−3, −2)" data-frame="22 22 258 224 -4.6 4.6 -3.6 3.6"><defs><clipPath id="clip-f38c"><rect x="22" y="22" width="258" height="224"/></clipPath></defs>
+<line x1="16" y1="134" x2="288" y2="134" stroke="currentColor" stroke-width="1"/>
+<polygon points="289,134 281,130.5 281,137.5" fill="currentColor"/>
+<text x="286" y="127" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="151" y1="252" x2="151" y2="14" stroke="currentColor" stroke-width="1"/>
+<polygon points="151,13 147.5,21 154.5,21" fill="currentColor"/>
+<text x="158" y="23" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="147" y="147" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="38.8" y1="131" x2="38.8" y2="137" stroke="currentColor"/>
+<text x="38.8" y="148" text-anchor="middle" font-size="11" fill="currentColor">−4</text>
+<line x1="66.9" y1="131" x2="66.9" y2="137" stroke="currentColor"/>
+<text x="66.9" y="148" text-anchor="middle" font-size="11" fill="currentColor">−3</text>
+<line x1="94.9" y1="131" x2="94.9" y2="137" stroke="currentColor"/>
+<text x="94.9" y="148" text-anchor="middle" font-size="11" fill="currentColor">−2</text>
+<line x1="123" y1="131" x2="123" y2="137" stroke="currentColor"/>
+<text x="123" y="148" text-anchor="middle" font-size="11" fill="currentColor">−1</text>
+<line x1="179" y1="131" x2="179" y2="137" stroke="currentColor"/>
+<text x="179" y="148" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="207.1" y1="131" x2="207.1" y2="137" stroke="currentColor"/>
+<text x="207.1" y="148" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="235.1" y1="131" x2="235.1" y2="137" stroke="currentColor"/>
+<text x="235.1" y="148" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="263.2" y1="131" x2="263.2" y2="137" stroke="currentColor"/>
+<text x="263.2" y="148" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="148" y1="227.3" x2="154" y2="227.3" stroke="currentColor"/>
+<text x="146" y="231.3" text-anchor="end" font-size="11" fill="currentColor">−3</text>
+<line x1="148" y1="196.2" x2="154" y2="196.2" stroke="currentColor"/>
+<text x="146" y="200.2" text-anchor="end" font-size="11" fill="currentColor">−2</text>
+<line x1="148" y1="165.1" x2="154" y2="165.1" stroke="currentColor"/>
+<text x="146" y="169.1" text-anchor="end" font-size="11" fill="currentColor">−1</text>
+<line x1="148" y1="102.9" x2="154" y2="102.9" stroke="currentColor"/>
+<text x="146" y="106.9" text-anchor="end" font-size="11" fill="currentColor">1</text>
+<line x1="148" y1="71.8" x2="154" y2="71.8" stroke="currentColor"/>
+<text x="146" y="75.8" text-anchor="end" font-size="11" fill="currentColor">2</text>
+<line x1="148" y1="40.7" x2="154" y2="40.7" stroke="currentColor"/>
+<text x="146" y="44.7" text-anchor="end" font-size="11" fill="currentColor">3</text>
+<line x1="235.1" y1="71.8" x2="235.1" y2="196.2" stroke="#1e8e5a" stroke-width="1.3" stroke-dasharray="4 3"/>
+<line x1="235.1" y1="71.8" x2="66.9" y2="71.8" stroke="#7b3fa0" stroke-width="1.3" stroke-dasharray="4 3"/>
+<line x1="235.1" y1="71.8" x2="66.9" y2="196.2" stroke="#b7791f" stroke-width="1.3" stroke-dasharray="4 3"/>
+<circle cx="235.1" cy="71.8" r="4.5" fill="#1f5fbf" data-xy="3 2"/>
+<circle cx="235.1" cy="196.2" r="4.5" fill="#1e8e5a" data-xy="3 -2"/>
+<circle cx="66.9" cy="71.8" r="4.5" fill="#7b3fa0" data-xy="-3 2"/>
+<circle cx="66.9" cy="196.2" r="4.5" fill="#b7791f" data-xy="-3 -2"/>
+<text x="235.1" y="61.8" text-anchor="middle" font-size="11" fill="#1f5fbf">P(3, 2)</text>
+<text x="235.1" y="216.2" text-anchor="middle" font-size="11" fill="#1e8e5a">x 軸：(3, −2)</text>
+<text x="66.9" y="61.8" text-anchor="middle" font-size="11" fill="#7b3fa0">y 軸：(−3, 2)</text>
+<text x="66.9" y="216.2" text-anchor="middle" font-size="11" fill="#b7791f">原点：(−3, −2)</text>
+</svg>
+<!--/svg:f038c-->
+  <figcaption>図3　点 P(3, 2) を x 軸・y 軸・原点に関して対称移動した点</figcaption>
+</figure>
+<h3>グラフの式では、x、y をどう置き換えるか</h3>
+<p>放物線 \( C \)：\( y=x^2-4x+5 \) を \( x \) 軸に関して対称移動した放物線を \( C' \) とします。</p>
+<ol>
+  <li>\( C' \) 上の点を \( (x,\ y) \) とします。</li>
+  <li>この点を \( x \) 軸に関して対称移動すると、もとの \( C \) 上の点 \( (x,\ -y) \) に戻ります。</li>
+  <li>\( (x,\ -y) \) は \( C \) 上にあるので、\( C \) の式の \( y \) に \( -y \) を入れた \( -y=x^2-4x+5 \) が成り立ちます。これが \( C' \) の式です。</li>
+</ol>
+<p>つまり、<strong>もとの式の \( y \) を \( -y \) に置き換える</strong>と、\( x \) 軸に関して対称移動したグラフの式になります。同じように考えると、\( y \) 軸に関しては \( x \) を \( -x \) に、原点に関しては \( x \) を \( -x \)、\( y \) を \( -y \) に置き換えます。この考え方は放物線以外のグラフにも使えますが、この時間は放物線で考えます。</p>
+<div class="widget" id="w1">
+  <div class="w-row"><label for="w1-type">対称移動の種類：</label><select id="w1-type"><option value="x">x 軸に関して</option><option value="y">y 軸に関して</option><option value="o">原点に関して</option></select></div>
+  <div class="w-row"><label for="w1-t">もとの放物線上の点 P の x 座標：</label><input type="range" id="w1-t" min="0" max="4" step="0.5" value="1"><output id="w1-tv" for="w1-t">1</output></div>
+  <div><svg id="w1-svg" viewBox="0 0 420 320" width="420" role="img" aria-label="もとの放物線 y=x²−4x+5（青）と、選んだ対称移動のグラフ（赤の破線）。放物線上の点 P と、P を対称移動した点 P′ を示す"></svg></div>
+  <p class="w-out" id="w1-eq" aria-live="polite">移動後の式：y = −x² + 4x − 5（y を −y に置き換えた）</p>
+  <p class="w-out" id="w1-pt">P (1, 2) → P′ (1, −2)</p>
+  <p class="w-out" id="w1-chk">確かめ：移動後の式に x = 1 を代入すると y = −2 となり、P′ の y 座標と一致します。</p>
+  <p class="small">青の線＝もとの放物線 y=x²−4x+5、赤の破線＝対称移動したグラフ、青の●＝P、赤の●＝P′、橙の点線＝P と P′ を結ぶ線分。</p>
+</div>
+<div class="box point"><p class="box-title">置き換えのまとめ（放物線 y=f(x) の移動）</p><p>\( x \) 軸に関して対称移動：\( y \) を \( -y \) に → \( -y=f(x) \)<br>\( y \) 軸に関して対称移動：\( x \) を \( -x \) に → \( y=f(-x) \)<br>原点に関して対称移動：\( x \) を \( -x \)、\( y \) を \( -y \) に → \( -y=f(-x) \)</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="放物線を対称移動する"><span class="num">5</span>放物線を対称移動する</h2>
+<div class="box example worked">
+  <p class="box-title">例題3（導入の答え：3つの対称移動）</p>
+  <p>放物線 \( y=x^2-4x+5 \) を、(1) \( x \) 軸、(2) \( y \) 軸、(3) 原点に関して対称移動した放物線の式を求めなさい。</p>
+  <div class="step">(1) \( y \) を \( -y \) に置き換えて \( -y=x^2-4x+5 \)。両辺に \( -1 \) を掛けて \( y=-x^2+4x-5 \)。すべての項の符号が変わります。</div>
+  <div class="step">(2) \( x \) を \( -x \) に置き換えて \( y=(-x)^2-4(-x)+5=x^2+4x+5 \)。\( (-x)^2=x^2 \) なので、変わるのは \( x \) の1次の項の符号だけです。</div>
+  <div class="step">(3) \( x \) を \( -x \)、\( y \) を \( -y \) に置き換えて \( -y=x^2+4x+5 \)、よって \( y=-x^2-4x-5 \)。</div>
+  <div class="step">頂点で確かめる：もとの頂点は \( (2,\ 1) \)。(1) \( (2,\ -1) \)：\( y=-(x-2)^2-1=-x^2+4x-5 \)。(2) \( (-2,\ 1) \)：\( y=(x+2)^2+1=x^2+4x+5 \)。(3) \( (-2,\ -1) \)：\( y=-(x+2)^2-1=-x^2-4x-5 \)。\( x \) 軸・原点に関する移動では凸の向きも逆になります。</div>
+  <div class="step">答え：(1) \( y=-x^2+4x-5 \)　(2) \( y=x^2+4x+5 \)　(3) \( y=-x^2-4x-5 \)。導入の予想B が正しく、予想A の \( y=-x^2-4x+5 \) は誤りです（頂点が \( (-2,\ 9) \) になってしまいます）。</div>
+</div>
+<figure>
+<!--svg:f038d-->
+<svg viewBox="0 0 380 330" width="380" role="img" aria-label="もとの放物線 y=x²−4x+5（青、頂点 (2, 1)）と、x 軸に関して対称な y=−x²+4x−5（緑、頂点 (2, −1)）、y 軸に関して対称な y=x²+4x+5（紫、頂点 (−2, 1)）、原点に関して対称な y=−x²−4x−5（橙、頂点 (−2, −1)）" data-frame="22 22 338 284 -5.2 5.2 -7.2 7.2"><defs><clipPath id="clip-f38d"><rect x="22" y="22" width="338" height="284"/></clipPath></defs>
+<line x1="16" y1="164" x2="368" y2="164" stroke="currentColor" stroke-width="1"/>
+<polygon points="369,164 361,160.5 361,167.5" fill="currentColor"/>
+<text x="366" y="157" text-anchor="end" font-size="12" fill="currentColor">x</text>
+<line x1="191" y1="312" x2="191" y2="14" stroke="currentColor" stroke-width="1"/>
+<polygon points="191,13 187.5,21 194.5,21" fill="currentColor"/>
+<text x="198" y="23" text-anchor="start" font-size="12" fill="currentColor">y</text>
+<text x="187" y="177" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="61" y1="161" x2="61" y2="167" stroke="currentColor"/>
+<text x="61" y="178" text-anchor="middle" font-size="11" fill="currentColor">−4</text>
+<line x1="93.5" y1="161" x2="93.5" y2="167" stroke="currentColor"/>
+<text x="93.5" y="178" text-anchor="middle" font-size="11" fill="currentColor">−3</text>
+<line x1="126" y1="161" x2="126" y2="167" stroke="currentColor"/>
+<text x="126" y="178" text-anchor="middle" font-size="11" fill="currentColor">−2</text>
+<line x1="158.5" y1="161" x2="158.5" y2="167" stroke="currentColor"/>
+<text x="158.5" y="178" text-anchor="middle" font-size="11" fill="currentColor">−1</text>
+<line x1="223.5" y1="161" x2="223.5" y2="167" stroke="currentColor"/>
+<text x="223.5" y="178" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="256" y1="161" x2="256" y2="167" stroke="currentColor"/>
+<text x="256" y="178" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="288.5" y1="161" x2="288.5" y2="167" stroke="currentColor"/>
+<text x="288.5" y="178" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="321" y1="161" x2="321" y2="167" stroke="currentColor"/>
+<text x="321" y="178" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="188" y1="282.3" x2="194" y2="282.3" stroke="currentColor"/>
+<text x="186" y="286.3" text-anchor="end" font-size="11" fill="currentColor">−6</text>
+<line x1="188" y1="242.9" x2="194" y2="242.9" stroke="currentColor"/>
+<text x="186" y="246.9" text-anchor="end" font-size="11" fill="currentColor">−4</text>
+<line x1="188" y1="203.4" x2="194" y2="203.4" stroke="currentColor"/>
+<text x="186" y="207.4" text-anchor="end" font-size="11" fill="currentColor">−2</text>
+<line x1="188" y1="124.6" x2="194" y2="124.6" stroke="currentColor"/>
+<text x="186" y="128.6" text-anchor="end" font-size="11" fill="currentColor">2</text>
+<line x1="188" y1="85.1" x2="194" y2="85.1" stroke="currentColor"/>
+<text x="186" y="89.1" text-anchor="end" font-size="11" fill="currentColor">4</text>
+<line x1="188" y1="45.7" x2="194" y2="45.7" stroke="currentColor"/>
+<text x="186" y="49.7" text-anchor="end" font-size="11" fill="currentColor">6</text>
+<path d="M22,-878.1 L24.8,-853.7 L27.6,-829.5 L30.4,-805.6 L33.3,-782 L36.1,-758.8 L38.9,-735.8 L41.7,-713.1 L44.5,-690.7 L47.4,-668.6 L50.2,-646.8 L53,-625.3 L55.8,-604.1 L58.6,-583.2 L61.4,-562.6 L64.2,-542.3 L67.1,-522.2 L69.9,-502.5 L72.7,-483.1 L75.5,-463.9 L78.3,-445.1 L81.2,-426.6 L84,-408.3 L86.8,-390.4 L89.6,-372.7 L92.4,-355.4 L95.2,-338.3 L98.1,-321.6 L100.9,-305.1 L103.7,-288.9 L106.5,-273 L109.3,-257.5 L112.1,-242.2 L114.9,-227.2 L117.8,-212.5 L120.6,-198.1 L123.4,-184 L126.2,-170.2 L129,-156.7 L131.9,-143.5 L134.7,-130.6 L137.5,-118 L140.3,-105.7 L143.1,-93.7 L145.9,-81.9 L148.8,-70.5 L151.6,-59.4 L154.4,-48.5 L157.2,-38 L160,-27.7 L162.8,-17.8 L165.7,-8.1 L168.5,1.2 L171.3,10.3 L174.1,19 L176.9,27.5 L179.7,35.7 L182.6,43.5 L185.4,51.1 L188.2,58.4 L191,65.4 L193.8,72.1 L196.6,78.5 L199.5,84.6 L202.3,90.4 L205.1,95.9 L207.9,101.1 L210.7,106 L213.5,110.6 L216.4,114.9 L219.2,118.9 L222,122.7 L224.8,126.1 L227.6,129.2 L230.4,132.1 L233.2,134.6 L236.1,136.9 L238.9,138.8 L241.7,140.5 L244.5,141.8 L247.3,142.9 L250.1,143.6 L253,144.1 L255.8,144.3 L258.6,144.2 L261.4,143.7 L264.2,143 L267.1,142 L269.9,140.7 L272.7,139.1 L275.5,137.2 L278.3,135 L281.1,132.5 L283.9,129.7 L286.8,126.6 L289.6,123.2 L292.4,119.5 L295.2,115.6 L298,111.3 L300.9,106.7 L303.7,101.9 L306.5,96.7 L309.3,91.2 L312.1,85.5 L314.9,79.4 L317.7,73.1 L320.6,66.4 L323.4,59.5 L326.2,52.3 L329,44.7 L331.8,36.9 L334.7,28.8 L337.5,20.4 L340.3,11.6 L343.1,2.6 L345.9,-6.7 L348.7,-16.3 L351.5,-26.2 L354.4,-36.4 L357.2,-46.9 L360,-57.7" fill="none" stroke="#1f5fbf" stroke-width="2.2" data-f="1 2 1" clip-path="url(#clip-f38d)"/>
+<circle cx="256" cy="144.3" r="4" fill="#1f5fbf" data-xy="2 1"/>
+<path d="M22,1206.1 L24.8,1181.7 L27.6,1157.5 L30.4,1133.6 L33.3,1110 L36.1,1086.8 L38.9,1063.8 L41.7,1041.1 L44.5,1018.7 L47.4,996.6 L50.2,974.8 L53,953.3 L55.8,932.1 L58.6,911.2 L61.4,890.6 L64.2,870.3 L67.1,850.2 L69.9,830.5 L72.7,811.1 L75.5,791.9 L78.3,773.1 L81.2,754.6 L84,736.3 L86.8,718.4 L89.6,700.7 L92.4,683.4 L95.2,666.3 L98.1,649.6 L100.9,633.1 L103.7,616.9 L106.5,601 L109.3,585.5 L112.1,570.2 L114.9,555.2 L117.8,540.5 L120.6,526.1 L123.4,512 L126.2,498.2 L129,484.7 L131.9,471.5 L134.7,458.6 L137.5,446 L140.3,433.7 L143.1,421.7 L145.9,409.9 L148.8,398.5 L151.6,387.4 L154.4,376.5 L157.2,366 L160,355.7 L162.8,345.8 L165.7,336.1 L168.5,326.8 L171.3,317.7 L174.1,309 L176.9,300.5 L179.7,292.3 L182.6,284.5 L185.4,276.9 L188.2,269.6 L191,262.6 L193.8,255.9 L196.6,249.5 L199.5,243.4 L202.3,237.6 L205.1,232.1 L207.9,226.9 L210.7,222 L213.5,217.4 L216.4,213.1 L219.2,209.1 L222,205.3 L224.8,201.9 L227.6,198.8 L230.4,195.9 L233.2,193.4 L236.1,191.1 L238.9,189.2 L241.7,187.5 L244.5,186.2 L247.3,185.1 L250.1,184.4 L253,183.9 L255.8,183.7 L258.6,183.8 L261.4,184.3 L264.2,185 L267.1,186 L269.9,187.3 L272.7,188.9 L275.5,190.8 L278.3,193 L281.1,195.5 L283.9,198.3 L286.8,201.4 L289.6,204.8 L292.4,208.5 L295.2,212.4 L298,216.7 L300.9,221.3 L303.7,226.1 L306.5,231.3 L309.3,236.8 L312.1,242.5 L314.9,248.6 L317.7,254.9 L320.6,261.6 L323.4,268.5 L326.2,275.7 L329,283.3 L331.8,291.1 L334.7,299.2 L337.5,307.6 L340.3,316.4 L343.1,325.4 L345.9,334.7 L348.7,344.3 L351.5,354.2 L354.4,364.4 L357.2,374.9 L360,385.7" fill="none" stroke="#1e8e5a" stroke-width="2.2" stroke-dasharray="7 4" data-f="-1 2 -1" clip-path="url(#clip-f38d)"/>
+<circle cx="256" cy="183.7" r="4" fill="#1e8e5a" data-xy="2 -1"/>
+<path d="M22,-57.7 L24.8,-46.9 L27.6,-36.4 L30.4,-26.2 L33.3,-16.3 L36.1,-6.7 L38.9,2.6 L41.7,11.6 L44.5,20.4 L47.4,28.8 L50.2,36.9 L53,44.7 L55.8,52.3 L58.6,59.5 L61.4,66.4 L64.2,73.1 L67.1,79.4 L69.9,85.5 L72.7,91.2 L75.5,96.7 L78.3,101.9 L81.2,106.7 L84,111.3 L86.8,115.6 L89.6,119.5 L92.4,123.2 L95.2,126.6 L98.1,129.7 L100.9,132.5 L103.7,135 L106.5,137.2 L109.3,139.1 L112.1,140.7 L114.9,142 L117.8,143 L120.6,143.7 L123.4,144.2 L126.2,144.3 L129,144.1 L131.9,143.6 L134.7,142.9 L137.5,141.8 L140.3,140.5 L143.1,138.8 L145.9,136.9 L148.8,134.6 L151.6,132.1 L154.4,129.2 L157.2,126.1 L160,122.7 L162.8,118.9 L165.7,114.9 L168.5,110.6 L171.3,106 L174.1,101.1 L176.9,95.9 L179.7,90.4 L182.6,84.6 L185.4,78.5 L188.2,72.1 L191,65.4 L193.8,58.4 L196.6,51.1 L199.5,43.5 L202.3,35.7 L205.1,27.5 L207.9,19 L210.7,10.3 L213.5,1.2 L216.4,-8.1 L219.2,-17.8 L222,-27.7 L224.8,-38 L227.6,-48.5 L230.4,-59.4 L233.2,-70.5 L236.1,-81.9 L238.9,-93.7 L241.7,-105.7 L244.5,-118 L247.3,-130.6 L250.1,-143.5 L253,-156.7 L255.8,-170.2 L258.6,-184 L261.4,-198.1 L264.2,-212.5 L267.1,-227.2 L269.9,-242.2 L272.7,-257.5 L275.5,-273 L278.3,-288.9 L281.1,-305.1 L283.9,-321.6 L286.8,-338.3 L289.6,-355.4 L292.4,-372.7 L295.2,-390.4 L298,-408.3 L300.9,-426.6 L303.7,-445.1 L306.5,-463.9 L309.3,-483.1 L312.1,-502.5 L314.9,-522.2 L317.7,-542.3 L320.6,-562.6 L323.4,-583.2 L326.2,-604.1 L329,-625.3 L331.8,-646.8 L334.7,-668.6 L337.5,-690.7 L340.3,-713.1 L343.1,-735.8 L345.9,-758.8 L348.7,-782 L351.5,-805.6 L354.4,-829.5 L357.2,-853.7 L360,-878.1" fill="none" stroke="#7b3fa0" stroke-width="2.2" stroke-dasharray="2 3" data-f="1 -2 1" clip-path="url(#clip-f38d)"/>
+<circle cx="126" cy="144.3" r="4" fill="#7b3fa0" data-xy="-2 1"/>
+<path d="M22,385.7 L24.8,374.9 L27.6,364.4 L30.4,354.2 L33.3,344.3 L36.1,334.7 L38.9,325.4 L41.7,316.4 L44.5,307.6 L47.4,299.2 L50.2,291.1 L53,283.3 L55.8,275.7 L58.6,268.5 L61.4,261.6 L64.2,254.9 L67.1,248.6 L69.9,242.5 L72.7,236.8 L75.5,231.3 L78.3,226.1 L81.2,221.3 L84,216.7 L86.8,212.4 L89.6,208.5 L92.4,204.8 L95.2,201.4 L98.1,198.3 L100.9,195.5 L103.7,193 L106.5,190.8 L109.3,188.9 L112.1,187.3 L114.9,186 L117.8,185 L120.6,184.3 L123.4,183.8 L126.2,183.7 L129,183.9 L131.9,184.4 L134.7,185.1 L137.5,186.2 L140.3,187.5 L143.1,189.2 L145.9,191.1 L148.8,193.4 L151.6,195.9 L154.4,198.8 L157.2,201.9 L160,205.3 L162.8,209.1 L165.7,213.1 L168.5,217.4 L171.3,222 L174.1,226.9 L176.9,232.1 L179.7,237.6 L182.6,243.4 L185.4,249.5 L188.2,255.9 L191,262.6 L193.8,269.6 L196.6,276.9 L199.5,284.5 L202.3,292.3 L205.1,300.5 L207.9,309 L210.7,317.7 L213.5,326.8 L216.4,336.1 L219.2,345.8 L222,355.7 L224.8,366 L227.6,376.5 L230.4,387.4 L233.2,398.5 L236.1,409.9 L238.9,421.7 L241.7,433.7 L244.5,446 L247.3,458.6 L250.1,471.5 L253,484.7 L255.8,498.2 L258.6,512 L261.4,526.1 L264.2,540.5 L267.1,555.2 L269.9,570.2 L272.7,585.5 L275.5,601 L278.3,616.9 L281.1,633.1 L283.9,649.6 L286.8,666.3 L289.6,683.4 L292.4,700.7 L295.2,718.4 L298,736.3 L300.9,754.6 L303.7,773.1 L306.5,791.9 L309.3,811.1 L312.1,830.5 L314.9,850.2 L317.7,870.3 L320.6,890.6 L323.4,911.2 L326.2,932.1 L329,953.3 L331.8,974.8 L334.7,996.6 L337.5,1018.7 L340.3,1041.1 L343.1,1063.8 L345.9,1086.8 L348.7,1110 L351.5,1133.6 L354.4,1157.5 L357.2,1181.7 L360,1206.1" fill="none" stroke="#b7791f" stroke-width="2.2" stroke-dasharray="5 2 1 2" data-f="-1 -2 -1" clip-path="url(#clip-f38d)"/>
+<circle cx="126" cy="183.7" r="4" fill="#b7791f" data-xy="-2 -1"/>
+<text x="264" y="156.3" text-anchor="start" font-size="11" font-weight="700" fill="#1f5fbf">もと</text>
+<text x="256" y="201.7" text-anchor="middle" font-size="11" font-weight="700" fill="#1e8e5a">x 軸</text>
+<text x="134" y="156.3" text-anchor="start" font-size="11" font-weight="700" fill="#7b3fa0">y 軸</text>
+<text x="126" y="201.7" text-anchor="middle" font-size="11" font-weight="700" fill="#b7791f">原点</text>
+</svg>
+<!--/svg:f038d-->
+  <figcaption>図4　もとの放物線（青）と、x 軸（緑の破線）・y 軸（紫の点線）・原点（橙の一点鎖線）に関して対称移動した放物線。●は頂点</figcaption>
+</figure>
+<h3>具体的な点でも確かめる</h3>
+<p>もとの放物線上の点 \( (1,\ 2) \) と \( (4,\ 5) \) を使います（\( 1-4+5=2 \)、\( 16-16+5=5 \)）。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>移動</th><th>点 (1, 2) の移る先</th><th>移動後の式に代入</th><th>点 (4, 5) の移る先</th><th>移動後の式に代入</th></tr>
+  <tr><td>x 軸</td><td>\( (1,\ -2) \)</td><td>\( -1+4-5=-2 \)</td><td>\( (4,\ -5) \)</td><td>\( -16+16-5=-5 \)</td></tr>
+  <tr><td>y 軸</td><td>\( (-1,\ 2) \)</td><td>\( 1-4+5=2 \)</td><td>\( (-4,\ 5) \)</td><td>\( 16-16+5=5 \)</td></tr>
+  <tr><td>原点</td><td>\( (-1,\ -2) \)</td><td>\( -1+4-5=-2 \)</td><td>\( (-4,\ -5) \)</td><td>\( -16+16-5=-5 \)</td></tr>
+</table>
+</div>
+<p>どの点も、移る先の座標が移動後の式を満たしています。操作できる図で、ほかの点でも確かめてみよう。</p>
+<div class="box caution"><p class="box-title">よくある間違い（対称移動）</p><p>① \( x \) 軸と \( y \) 軸の取り違え：\( x \) 軸に関する対称移動で変わるのは \( y \) 座標です。だから置き換えるのは \( y \) です。<br>② \( (-x)^2 \) を \( -x^2 \) とする：\( y \) 軸に関する対称移動で \( x^2 \) の項の符号まで変えてしまう誤りです。\( (-x)^2=x^2 \) です。<br>③ \( -y=\cdots \) の両辺に \( -1 \) を掛けるとき、一部の項の符号を変え忘れる：導入の予想A はこの誤りの例です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="置き換えで平行移動を見直す"><span class="num">6</span>置き換えの考え方で平行移動も表す</h2>
+<p>平行移動も置き換えで表せます。\( x \) 軸方向に \( p \)、\( y \) 軸方向に \( q \) だけ平行移動したグラフ上の点 \( (x,\ y) \) を、逆向きに動かすと \( (x-p,\ y-q) \) になり、これがもとのグラフ上にあります。だから、<strong>\( x \) を \( x-p \) に、\( y \) を \( y-q \) に置き換えます</strong>。</p>
+<div class="box example worked">
+  <p class="box-title">例題4（例題1を置き換えで確かめる）</p>
+  <p>例題1の平行移動（\( x \) 軸方向に 3、\( y \) 軸方向に \( -2 \)）を、置き換えで求めなさい。</p>
+  <div class="step">\( x \) を \( x-3 \) に、\( y \) を \( y-(-2)=y+2 \) に置き換えて、\( y+2=(x-3)^2-4(x-3)+5 \)。</div>
+  <div class="step">右辺を展開すると \( x^2-6x+9-4x+12+5=x^2-10x+26 \)。よって \( y=x^2-10x+24 \)。</div>
+  <div class="step">答え：\( y=x^2-10x+24 \)。例題1の \( y=(x-5)^2-1 \) を展開した式と一致します。</div>
+</div>
+<div class="table-wrap">
+<table>
+  <tr><th>移動</th><th>点の動き</th><th>式の置き換え</th></tr>
+  <tr><td>\( x \) 軸方向に \( p \)、\( y \) 軸方向に \( q \) の平行移動</td><td>\( (a,\ b)\to(a+p,\ b+q) \)</td><td>\( x \to x-p \)、\( y \to y-q \)</td></tr>
+  <tr><td>\( x \) 軸に関する対称移動</td><td>\( (a,\ b)\to(a,\ -b) \)</td><td>\( y \to -y \)</td></tr>
+  <tr><td>\( y \) 軸に関する対称移動</td><td>\( (a,\ b)\to(-a,\ b) \)</td><td>\( x \to -x \)</td></tr>
+  <tr><td>原点に関する対称移動</td><td>\( (a,\ b)\to(-a,\ -b) \)</td><td>\( x \to -x \)、\( y \to -y \)</td></tr>
+</table>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：点の動きと置き換えの符号</p><p>平行移動では、点は \( +p \) だけ動きますが、式では \( x \) を \( x-p \) に置き換えます（符号が逆）。\( x \) を \( x+3 \) に置き換えると、\( x \) 軸方向に \( -3 \) の移動になってしまいます。迷ったら頂点の移動で確かめましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>平行移動</dt><dd>図形を一定の方向に一定の距離だけ動かすこと（中1-077）。放物線の平行移動では形は変わらず、頂点が動く（数Ⅰ-032・033）。</dd>
+    <dt>対称移動</dt><dd>直線を対称の軸として図形を移すこと（中1-079）。この時間は \( x \) 軸・\( y \) 軸を対称の軸とする。</dd>
+    <dt>x 軸に関して対称</dt><dd>\( x \) 軸を対称の軸として対称移動した位置にあること。点 \( (a,\ b) \) と \( (a,\ -b) \)。</dd>
+    <dt>y 軸に関して対称</dt><dd>\( y \) 軸を対称の軸として対称移動した位置にあること。点 \( (a,\ b) \) と \( (-a,\ b) \)。</dd>
+    <dt>原点に関して対称</dt><dd>原点を中心として 180° 回転移動（点対称移動、中1-078）した位置にあること。点 \( (a,\ b) \) と \( (-a,\ -b) \)。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>平行移動したグラフの式は、平方完成して頂点を求め、頂点の移る先から \( y=a(x-p)^2+q \) の形で求める。\( x^2 \) の係数は変わらない（O1）。</li>
+    <li>点 \( (a,\ b) \) は、\( x \) 軸に関して \( (a,\ -b) \)、\( y \) 軸に関して \( (-a,\ b) \)、原点に関して \( (-a,\ -b) \) に移る。グラフの式では、符号が変わる座標の文字を置き換える（O2）。</li>
+    <li>放物線 \( y=f(x) \) の対称移動は、\( x \) 軸：\( -y=f(x) \)、\( y \) 軸：\( y=f(-x) \)、原点：\( -y=f(-x) \)。頂点の移動や具体的な点で確かめる（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">移動と置き換え</span><p>平行移動（\( p,\ q \)）：\( x\to x-p,\ y\to y-q \)<br>\( x \) 軸：\( y\to -y \)　\( y \) 軸：\( x\to -x \)<br>原点：\( x\to -x,\ y\to -y \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。座標は (3,-4) のように、式は y=-x^2-6 のように入力してください（x² は x^2 または x²）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>放物線 \( y=x^2+2x+3 \) を \( x \) 軸方向に 2、\( y \) 軸方向に \( -3 \) だけ平行移動した放物線の式はどれですか。</p>
+  <div class="choices">
+    <button>\( y=(x+3)^2-1 \)</button>
+    <button data-correct="true">\( y=(x-1)^2-1 \)</button>
+    <button>\( y=(x-1)^2+5 \)</button>
+    <button>\( y=(x-1)^2+2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( y=x^2+2x+3=(x+1)^2+2 \) の頂点 \( (-1,\ 2) \) を動かすと \( (-1+2,\ 2-3)=(1,\ -1) \)。よって \( y=(x-1)^2-1 \) です。\( (x+3)^2-1 \) は \( x \) 方向の向きを逆にして \( -1-2=-3 \) とした誤り（\( x \) を \( x+2 \) に置き換えた場合も同じ）です。\( (x-1)^2+5 \) は \( y \) 方向を \( 2+3 \) とした符号の誤り、\( (x-1)^2+2 \) は \( y \) 軸方向の移動を忘れています。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="(2,-5)|2,-5">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>点 \( (-2,\ 5) \) を原点に関して対称移動した点の座標を答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( (2,\ -5) \)。原点に関して対称移動すると、\( x \) 座標も \( y \) 座標も符号が逆になります。\( (-2,\ -5) \) は \( x \) 軸に関して、\( (2,\ 5) \) は \( y \) 軸に関して対称な点です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>放物線 \( y=x^2-3x+2 \) を \( y \) 軸に関して対称移動した放物線の式はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( y=x^2+3x+2 \)</button>
+    <button>\( y=-x^2+3x-2 \)</button>
+    <button>\( y=-x^2-3x-2 \)</button>
+    <button>\( y=-x^2+3x+2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x \) を \( -x \) に置き換えて \( y=(-x)^2-3(-x)+2=x^2+3x+2 \)。\( y=-x^2+3x-2 \) は \( x \) 軸に関する対称移動（\( y \) を \( -y \) に置き換えた）、\( y=-x^2-3x-2 \) は原点に関する対称移動の式です。\( y=-x^2+3x+2 \) は \( (-x)^2 \) を \( -x^2 \) と計算した誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="(-1,3)|-1,3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>放物線 \( y=2x^2+4x-1 \) を \( x \) 軸に関して対称移動した放物線の頂点の座標を答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( (-1,\ 3) \)。\( y=2x^2+4x-1=2(x+1)^2-3 \) の頂点 \( (-1,\ -3) \) を \( x \) 軸に関して対称移動すると \( (-1,\ 3) \) です。移動後の式 \( y=-2x^2-4x+1=-2(x+1)^2+3 \) からも確かめられます。\( (1,\ -3) \) は \( y \) 軸に関して、\( (1,\ 3) \) は原点に関して対称な点で、\( (-1,\ -3) \) はもとの頂点のままです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O1</span></div>
+  <p>放物線 \( y=x^2-6x+7 \) をどのように平行移動すると、放物線 \( y=x^2+2x-1 \) に重なりますか。</p>
+  <div class="choices">
+    <button>\( x \) 軸方向に 4 だけ平行移動する</button>
+    <button>\( y \) 軸方向に \( -8 \) だけ平行移動する</button>
+    <button data-correct="true">\( x \) 軸方向に \( -4 \) だけ平行移動する</button>
+    <button>\( x \) 軸方向に 8 だけ平行移動する</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( y=x^2-6x+7=(x-3)^2-2 \) の頂点は \( (3,\ -2) \)、\( y=x^2+2x-1=(x+1)^2-2 \) の頂点は \( (-1,\ -2) \) です。\( x \) 座標は \( -1-3=-4 \)、\( y \) 座標は変わらないので、\( x \) 軸方向に \( -4 \) だけ平行移動します。「\( x \) 軸方向に 4」は移す向きを逆にした誤りです。「\( y \) 軸方向に \( -8 \)」は定数項の差 \( -1-7 \) を移動の量とした誤り、「\( x \) 軸方向に 8」は \( x \) の係数の差 \( 2-(-6) \) を移動の量とした誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2</span></div>
+  <p>放物線 \( y=f(x) \) を原点に関して対称移動したグラフの式を求めるとき、\( x \)、\( y \) をどう置き換えればよいですか。</p>
+  <div class="choices">
+    <button>\( x \) だけを \( -x \) に置き換える</button>
+    <button>\( y \) だけを \( -y \) に置き換える</button>
+    <button>\( x \) を \( y \) に、\( y \) を \( x \) に入れかえる</button>
+    <button data-correct="true">\( x \) を \( -x \) に、\( y \) を \( -y \) に置き換える</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">原点に関して対称な点は \( (a,\ b)\to(-a,\ -b) \) で、両方の座標の符号が変わるので、\( x \) と \( y \) の両方を置き換えます（\( -y=f(-x) \)）。\( x \) だけは \( y \) 軸に関する、\( y \) だけは \( x \) 軸に関する対称移動です。\( x \) と \( y \) を入れかえても、原点に関して対称な点にはなりません（たとえば点 \( (1,\ 2) \) は \( (2,\ 1) \) になり、\( (-1,\ -2) \) になりません）。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="y=-x^2-4|y=-x²-4|y=-4-x^2|y=-4-x²|y=-(x^2+4)|y=-(x²+4)">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O1・O3</span></div>
+  <p>放物線 \( y=x^2-2x+3 \) を \( x \) 軸方向に \( -1 \)、\( y \) 軸方向に 2 だけ平行移動し、さらに \( x \) 軸に関して対称移動した放物線の式を答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( y=-x^2-4 \)。\( y=(x-1)^2+2 \) の頂点 \( (1,\ 2) \) は、平行移動で \( (0,\ 4) \) に移り、式は \( y=x^2+4 \)。これを \( x \) 軸に関して対称移動すると \( -y=x^2+4 \)、つまり \( y=-x^2-4 \)（頂点 \( (0,\ -4) \)）です。\( y=x^2-4 \) は定数項の符号だけを変えた誤り、\( y=-x^2+4 \) は \( x^2 \) の項だけの符号を変えた誤りです。\( y=-(x-2)^2-4 \) は平行移動の \( x \) 方向の向きを逆にした誤りです。なお、移動の順序を逆にする（先に \( x \) 軸に関して対称移動してから平行移動する）と \( y=-x^2 \) となり、結果が変わります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2・O3</span></div>
+  <p>太郎さんと花子さんが、放物線 \( y=x^2-4x+5 \) を \( y \) 軸に関して対称移動した放物線の式について話しています。</p>
+  <p>太郎：「\( y \) 軸に関する対称移動では \( x \) を \( -x \) に置き換えるから、\( x \) の入った項の符号を全部変えて \( y=-x^2+4x+5 \) だね。」<br>花子：「その式だと上に凸になるよ。\( y \) 軸で折り返しても凸の向きは変わらないはずだけど……。」</p>
+  <p>正しい説明はどれですか。</p>
+  <div class="choices">
+    <button>\( y \) 軸に関する対称移動では \( y \) を \( -y \) に置き換えるので、\( y=-x^2+4x-5 \) になる。</button>
+    <button>太郎さんの式で正しい。\( x \) を含む項の符号をすべて変えればよい。</button>
+    <button data-correct="true">\( (-x)^2=x^2 \) なので \( x^2 \) の項の符号は変わらず、\( y=x^2+4x+5 \) になる。頂点が \( (2,\ 1) \) から \( (-2,\ 1) \) に移ることからも確かめられる。</button>
+    <button>頂点 \( (2,\ 1) \) は \( (-2,\ -1) \) に移るので、\( y=-(x+2)^2-1 \) になる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( y=(-x)^2-4(-x)+5=x^2+4x+5=(x+2)^2+1 \) で、頂点 \( (-2,\ 1) \)、下に凸のままです。花子さんの指摘どおり、\( y \) 軸に関する対称移動では凸の向きは変わりません。「\( y \) を \( -y \) に置き換える」は \( x \) 軸に関する対称移動と取り違えています。「太郎さんの式で正しい」は \( (-x)^2 \) を \( -x^2 \) とする誤りです。「\( (-2,\ -1) \)」は原点に関する対称移動と取り違えています。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O2・O3</span></div>
+  <p>放物線 \( y=x^2-6x+8 \) を \( x \) 軸方向に \( p \)、\( y \) 軸方向に \( q \) だけ平行移動し、さらに原点に関して対称移動すると、放物線 \( y=-x^2+2x+1 \) になりました。\( p \)、\( q \) の値を求めなさい。考え方も書きなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　\( y=x^2-6x+8=(x-3)^2-1 \) の頂点は \( (3,\ -1) \)。平行移動で頂点は \( (3+p,\ -1+q) \) に移り、原点に関する対称移動で \( (-3-p,\ 1-q) \) に移る。一方、\( y=-x^2+2x+1=-(x-1)^2+2 \) の頂点は \( (1,\ 2) \)。よって \( -3-p=1 \)、\( 1-q=2 \) から \( p=-4 \)、\( q=-1 \)。（\( x^2 \) の係数は、原点に関する対称移動で \( 1 \) から \( -1 \) になり、一致している。）</p>
+    <p><strong>採点の観点</strong>　① もとの放物線と結果の放物線の頂点を正しく求めている。② 平行移動と原点に関する対称移動で頂点が移る先を、順序どおりに式で表している。③ \( x^2 \) の係数の符号が合うことを確かめている。④ \( p,\ q \) の値が正しい。</p>
+  </div>
+  <div class="explain">置き換えで確かめることもできます。\( p=-4 \)、\( q=-1 \) で平行移動すると \( y+1=(x+4)^2-6(x+4)+8 \)、つまり \( y=x^2+2x-1 \)。これを原点に関して対称移動すると \( -y=x^2-2x-1 \)、つまり \( y=-x^2+2x+1 \) となり、問題の式と一致します。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(3) 二次関数」の「二次関数の値の変化やグラフの特徴について理解すること」（ア(ア)）に関わる内容で、出題範囲に含まれます（学習内容マップでは、解説に明記はないが教科書で一般的な内容として † を付けています）。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。グラフの動きを点の座標と式の両方で捉えることは、こうした処理の土台になります。</p>
+  <p class="small">問8は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">二次関数の値の変化と最大・最小（数Ⅰ-039）</p>
+  <p>次の時間は、グラフを通して、軸を境に \( x \) の増加に伴う \( y \) の値の増減が変わることを捉え、\( x \) がすべての実数をとるときの最大値・最小値を頂点から求めます。この時間に使った「平方完成して頂点を求める」が、そのまま最大値・最小値を求める手がかりになります。</p>
+  <p>この時間では、二次関数の最大値・最小値（数Ⅰ-039〜041）と、条件から二次関数の式を決めること（数Ⅰ-044・045）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-037　係数の変化とグラフ</div>
+  <div><span class="label">次の時間</span>数Ⅰ-039　二次関数の値の変化と最大・最小</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-038「グラフの平行移動と対称移動」（学習指導要領 数学Ⅰ (3)ア(ア)、解説 p.41。† 教科書で一般的な内容を含む行）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(3) 二次関数（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.41（関数 y=ax² のグラフの平行移動を取り扱った後で y=a(x−p)²+q の形に変形し、対称軸や頂点に着目すること）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「2次関数のグラフ」（「放物線の平行移動や対称移動の一般公式を活用して,移動後の放物線の方程式を求めることができる」「放物線の平行移動を，頂点の移動に着目して，考察することができる」を本文の応用例題・例・練習で扱うことの確認）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>数研出版「編修趣意書 数Ⅰ104-904『改訂版 新編 数学Ⅰ』」（第3章で、一般の関数のグラフについても平行移動や対称移動が考えられるよう y=f(x) の表記を用いてまとめたこと、平行移動では頂点の移動に着目したまとめを載せたことの確認）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-17.pdf</li>
+    <li>数研出版「編修趣意書 数Ⅰ104-905『改訂版 最新 数学Ⅰ』」（本文外の「研究」として「２次関数のグラフの平行移動」を扱い、２つの２次関数のグラフの平行移動を頂点の移動に着目して考察することの確認）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-18.pdf</li>
+    <li>新興出版社啓林館「編修趣意書 数Ⅰ061-901『α数学Ⅰ』」（グラフの平行移動を研究として点の移動から扱うことの確認）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-10.pdf</li>
+    <li>新興出版社啓林館「α数学Ⅰ（数Ⅰ061-901）」「深進数学Ⅰ（数Ⅰ061-902）」「爽解数学Ⅰ（数Ⅰ061-903）」年間指導計画（「研究／関数のグラフの平行移動」「研究／関数のグラフの対称移動」）（同社「高等学校 数学 サポート資料」https://www.shinko-keirin.co.jp/keirinkan/kou/math/support/ に掲載）</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。操作できる図は、ブラウザの JavaScript で動きます（動かない環境でも、本文の表と図で学べます）。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  var MINUS = "\u2212";
+  function el(id) { return document.getElementById(id); }
+  function mk(parent, name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text !== undefined) e.textContent = text;
+    parent.appendChild(e);
+    return e;
+  }
+  // k/4 を小数で表す（点の座標は 0.25 刻み）
+  function qstr(k) {
+    var m = Math.abs(k), ip = Math.floor(m / 4), r = m % 4;
+    var s = String(ip) + (r === 0 ? "" : ["", ".25", ".5", ".75"][r]);
+    return (k < 0 ? MINUS : "") + s;
+  }
+  var TYPES = {
+    x: { eq: "y = " + MINUS + "x² + 4x " + MINUS + " 5", how: "y を " + MINUS + "y に置き換えた", sx: 1, sy: -1 },
+    y: { eq: "y = x² + 4x + 5", how: "x を " + MINUS + "x に置き換えた", sx: -1, sy: 1 },
+    o: { eq: "y = " + MINUS + "x² " + MINUS + " 4x " + MINUS + " 5", how: "x を " + MINUS + "x、y を " + MINUS + "y に置き換えた", sx: -1, sy: -1 }
+  };
+  var svg = el("w1-svg"), sel = el("w1-type"), sl = el("w1-t");
+  if (!svg || !sel || !sl) return;
+  var L = 30, T = 14, W = 370, H = 290, X0 = -6, X1 = 6, Y0 = -7, Y1 = 7;
+  function X(x) { return L + (x - X0) / (X1 - X0) * W; }
+  function Y(y) { return T + (Y1 - y) / (Y1 - Y0) * H; }
+  function path(f) {
+    var d = "";
+    for (var i = 0; i <= 240; i++) {
+      var x = X0 + (X1 - X0) * i / 240;
+      d += (i ? " L" : "M") + X(x).toFixed(1) + "," + Y(f(x)).toFixed(1);
+    }
+    return d;
+  }
+  // 4倍した値で計算する：F4(T2) は t=T2/2 のときの 4f(t)
+  function F4(T2) { return T2 * T2 - 8 * T2 + 20; }
+  function draw() {
+    var ty = TYPES[sel.value] || TYPES.x;
+    var T2 = Math.round(parseFloat(sl.value) * 2);
+    var t = T2 / 2;
+    var px4 = 2 * T2, py4 = F4(T2);
+    var qx4 = ty.sx * px4, qy4 = ty.sy * py4;
+    // 移動後の式 g(x) に x' を代入した値（4倍）：g(x) = sy*f(sx*x)
+    var gx4 = ty.sy * F4(ty.sx * qx4 / 2);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var defs = mk(svg, "defs", {});
+    var cp = mk(defs, "clipPath", { id: "w1-clip" });
+    mk(cp, "rect", { x: L, y: T, width: W, height: H });
+    mk(svg, "line", { x1: L - 4, y1: Y(0), x2: L + W + 6, y2: Y(0), stroke: "currentColor" });
+    mk(svg, "polygon", { points: (L + W + 7) + "," + Y(0) + " " + (L + W) + "," + (Y(0) - 3.5) + " " + (L + W) + "," + (Y(0) + 3.5), fill: "currentColor" });
+    mk(svg, "line", { x1: X(0), y1: T + H + 4, x2: X(0), y2: T - 6, stroke: "currentColor" });
+    mk(svg, "polygon", { points: X(0) + "," + (T - 7) + " " + (X(0) - 3.5) + "," + T + " " + (X(0) + 3.5) + "," + T, fill: "currentColor" });
+    mk(svg, "text", { x: L + W - 2, y: Y(0) - 7, "text-anchor": "end", "font-size": 12, fill: "currentColor" }, "x");
+    mk(svg, "text", { x: X(0) + 7, y: T + 4, "font-size": 12, fill: "currentColor" }, "y");
+    mk(svg, "text", { x: X(0) - 4, y: Y(0) + 13, "text-anchor": "end", "font-size": 11, fill: "currentColor" }, "O");
+    for (var k = X0; k <= X1; k++) {
+      if (k === 0) continue;
+      mk(svg, "line", { x1: X(k), y1: Y(0) - 3, x2: X(k), y2: Y(0) + 3, stroke: "currentColor" });
+      if (k % 2 === 0) mk(svg, "text", { x: X(k), y: Y(0) + 14, "text-anchor": "middle", "font-size": 10.5, fill: "currentColor" }, (k < 0 ? MINUS : "") + Math.abs(k));
+    }
+    for (var u = Y0; u <= Y1; u++) {
+      if (u === 0) continue;
+      mk(svg, "line", { x1: X(0) - 3, y1: Y(u), x2: X(0) + 3, y2: Y(u), stroke: "currentColor" });
+      if (u % 2 === 0) mk(svg, "text", { x: X(0) - 5, y: Y(u) + 4, "text-anchor": "end", "font-size": 10.5, fill: "currentColor" }, (u < 0 ? MINUS : "") + Math.abs(u));
+    }
+    var g = mk(svg, "g", { "clip-path": "url(#w1-clip)" });
+    mk(g, "path", { d: path(function (x) { return x * x - 4 * x + 5; }), fill: "none", stroke: "#1f5fbf", "stroke-width": 2.4, "data-role": "orig" });
+    mk(g, "path", { d: path(function (x) { return ty.sy * ((ty.sx * x) * (ty.sx * x) - 4 * (ty.sx * x) + 5); }), fill: "none", stroke: "#c0392b", "stroke-width": 2.4, "stroke-dasharray": "7 4", "data-role": "image" });
+    mk(svg, "line", { x1: X(px4 / 4), y1: Y(py4 / 4), x2: X(qx4 / 4), y2: Y(qy4 / 4), stroke: "#b7791f", "stroke-width": 1.5, "stroke-dasharray": "2 3", "data-role": "seg" });
+    mk(svg, "circle", { cx: X(px4 / 4), cy: Y(py4 / 4), r: 5, fill: "#1f5fbf", "data-role": "P" });
+    mk(svg, "circle", { cx: X(qx4 / 4), cy: Y(qy4 / 4), r: 5, fill: "#c0392b", "data-role": "Q" });
+    el("w1-tv").textContent = qstr(px4);
+    el("w1-eq").textContent = "移動後の式：" + ty.eq + "（" + ty.how + "）";
+    el("w1-pt").textContent = "P (" + qstr(px4) + ", " + qstr(py4) + ") → P′ (" + qstr(qx4) + ", " + qstr(qy4) + ")";
+    el("w1-chk").textContent = "確かめ：移動後の式に x = " + qstr(qx4) + " を代入すると y = " + qstr(gx4) + " となり、P′ の y 座標"
+      + (gx4 === qy4 ? "と一致します。" : "と一致しません。");
+  }
+  sel.addEventListener("change", draw);
+  sl.addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-038",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-038",
+  "title": "グラフの平行移動と対称移動",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-3", "title": "二次関数"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(3)ア(ア)"],
+  "kaisetsu_page": "41",
+  "objectives": [
+    {"id": "O1", "text": "放物線を平行移動したグラフの式を、頂点の移動に着目して求めることができる（2つの放物線の間の平行移動を求める場合を含む）。", "from": "頂点の移動に着目して平行移動したグラフの式を求め", "sections": ["sec-1", "sec-4"], "checks": ["q1", "q5", "q7", "q9"]},
+    {"id": "O2", "text": "点を x 軸・y 軸・原点に関して対称移動した点の座標を求め、グラフの対称移動では x、y をどう置き換えればよいかを説明できる。", "from": "x、y をどう置き換えるかから", "sections": ["sec-2"], "checks": ["q2", "q6", "q8", "q9"]},
+    {"id": "O3", "text": "放物線を x 軸・y 軸・原点に関して対称移動したグラフの式を、x、y の置き換えによって求め、頂点の移動で確かめることができる。", "from": "x 軸・y 軸・原点に関して対称移動したグラフの式を、x、y をどう置き換えるかから求めることができる", "sections": ["sec-3"], "checks": ["q3", "q4", "q7", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "平行移動", "where": "sec-1"},
+    {"term": "対称移動", "where": "sec-2"},
+    {"term": "x 軸に関して対称", "where": "sec-2"},
+    {"term": "y 軸に関して対称", "where": "sec-2"},
+    {"term": "原点に関して対称", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "y=a(x−p)²+q のグラフは y=ax² を x 軸方向に p、y 軸方向に q だけ平行移動したもの", "taught_in": ["hs_math_1a/数Ⅰ-032", "hs_math_1a/数Ⅰ-033"], "where": "review"},
+    {"concept": "平方完成して頂点を求める", "taught_in": ["hs_math_1a/数Ⅰ-034"], "where": "review"},
+    {"concept": "図形の平行移動の意味", "taught_in": ["jhs_math/中1-077"], "where": "terms"},
+    {"concept": "対称移動の性質（対応する点を結ぶ線分は対称の軸と垂直に交わり、その交点で二等分される）", "taught_in": ["jhs_math/中1-079"], "where": "review"},
+    {"concept": "点対称移動（180° の回転移動）", "taught_in": ["jhs_math/中1-078"], "where": "sec-2"},
+    {"concept": "座標（x 軸・y 軸・原点、点の座標）", "taught_in": ["jhs_math/中1-062"], "where": "sec-2"},
+    {"concept": "放物線は軸について対称であること・y 軸について対称な点", "taught_in": ["jhs_math/中3-051", "hs_math_1a/数Ⅰ-033"], "where": "sec-2"},
+    {"concept": "関数の記号 f(x) と関数の値", "taught_in": ["hs_math_1a/数Ⅰ-031"], "where": "sec-2"},
+    {"concept": "式の展開と整理", "taught_in": ["hs_math_1a/数Ⅰ-002", "hs_math_1a/数Ⅰ-003"], "where": "sec-4"}
+  ],
+  "out_of_scope": [
+    "二次関数の最大値・最小値（数Ⅰ-039〜041）",
+    "条件から二次関数の式を決めること（数Ⅰ-044・数Ⅰ-045）",
+    "直線 y=x など、座標軸以外の直線に関する対称移動（数学Ⅱ以降。数Ⅱ-039 で直線に関して対称な点を扱う）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『二次関数』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(3)ア(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.41 y=ax² のグラフの平行移動と y=a(x−p)²+q の形"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "放物線の平行移動・対称移動の一般公式と、頂点の移動に着目した平行移動を本文で扱うこと（† の内容）"},
+    {"name": "編修趣意書 数Ⅰ104-904『改訂版 新編 数学Ⅰ』", "publisher": "数研出版（文部科学省掲載）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-17.pdf", "use": "一般の関数のグラフの平行移動・対称移動を y=f(x) でまとめ、頂点の移動に着目したまとめを載せたこと"},
+    {"name": "編修趣意書 数Ⅰ104-905『改訂版 最新 数学Ⅰ』", "publisher": "数研出版（文部科学省掲載）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-18.pdf", "use": "2つの2次関数のグラフの平行移動を「研究」で扱うこと（注記の根拠）"},
+    {"name": "編修趣意書 数Ⅰ061-901『α数学Ⅰ』", "publisher": "新興出版社啓林館（文部科学省掲載）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-10.pdf", "use": "グラフの平行移動を研究として扱うこと（注記の根拠）"},
+    {"name": "α数学Ⅰ・深進数学Ⅰ・爽解数学Ⅰ 年間指導計画", "publisher": "新興出版社啓林館", "url": "https://www.shinko-keirin.co.jp/keirinkan/kou/math/support/", "use": "「研究／関数のグラフの平行移動」「研究／関数のグラフの対称移動」（注記の根拠）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

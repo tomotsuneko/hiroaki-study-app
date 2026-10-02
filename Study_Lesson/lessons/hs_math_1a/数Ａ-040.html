@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>チェバの定理｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.proof ol { margin: 4px 0 4px 1.2em; }
+.proof .tag { font-weight: 700; }
+table.ratio td, table.ratio th { text-align: center; }
+.widget .w-row { margin: 4px 0; }
+.widget .w-row select { margin-right: 10px; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>図形の性質</span><span>数Ａ-040</span></div>
+  <h1>チェバの定理</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">3本の中線は1点で交わり、どの辺も \( 1:1 \) に分けました。では、頂点と向かい合う辺の上の点を結ぶ3本の線分が1点で交わるとき、辺を分ける3つの比の間には、どんな関係があるでしょうか。三角形の面積の比を手がかりに見いだします。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>高さが等しい三角形の面積の比が底辺の比に等しいことを用いて、三角形の面積の比と線分の比を結びつけることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>三角形の内部の1点で交わる3本の線分について、辺を分ける3つの比の積が 1 になること（チェバの定理）を、いくつかの場合を調べて見いだすことができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>面積の比を用いてチェバの定理が成り立つことを論理的に説明し、定理を用いて線分の比を求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-039）</span>三角形の重心</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-040）</span>チェバの定理</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-041）</span>チェバの定理の逆と拡張</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」、中学1年「平面図形」「空間図形」。三角形の面積の公式と、底辺が共通な三角形の面積（中2-074）、数Ａ-036（角の二等分線と辺の比）・数Ａ-038（内心）・数Ａ-039（重心）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">この時間に使うこと（中2-012・074、数Ａ-036・039）</p>
+  <ul>
+    <li>三角形の面積は \( \dfrac{1}{2}\times(\text{底辺})\times(\text{高さ}) \) で求められます（\( S=\dfrac{1}{2}ah \) を変形する問題を中2-012 で扱いました）。</li>
+    <li>底辺が共通で、頂点が底辺に平行な直線上にある三角形の面積は等しい（中2-074）。</li>
+    <li>△ABC の ∠A の二等分線と辺 BC の交点 D について \( \mathrm{BD}:\mathrm{DC}=\mathrm{AB}:\mathrm{AC} \)（数Ａ-036）。重心は3本の中線の交点（数Ａ-039）。</li>
+  </ul>
+  <p>この時間は、△ABO のように三角形の名前で、その三角形の<strong>面積</strong>も表します（たとえば「\( \triangle\mathrm{ABO}=8 \)」は △ABO の面積が 8 であることを表す）。</p>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中2-012</span></div>
+  <p>底辺が 6、高さが 4 の三角形の面積はどれですか。</p>
+  <div class="choices">
+    <button>24</button>
+    <button>10</button>
+    <button data-correct="true">12</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \dfrac{1}{2}\times6\times4=12 \) です。24 は \( \dfrac{1}{2} \) を忘れた値、10 は底辺と高さを足した値です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中2-074</span></div>
+  <p>\( \mathrm{AD}\,/\!/\,\mathrm{BC} \) の台形 ABCD があります。面積が必ず等しい三角形の組はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">△ABC と △DBC</button>
+    <button>△ABC と △ACD</button>
+    <button>△ABD と △BCD</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">△ABC と △DBC は底辺 BC が共通で、頂点 A、D が BC に平行な直線 AD 上にあるので、高さが等しく、面積が等しくなります（中2-074）。△ABC と △ACD は底辺 BC と AD の長さが違い、△ABD と △BCD も底辺 AD と BC が違うので、ふつうは等しくありません。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-039</span></div>
+  <p>△ABC の重心を G とし、直線 AG と辺 BC の交点を P とします。\( \mathrm{BP}:\mathrm{PC} \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 2:1 \)</button>
+    <button data-correct="true">\( 1:1 \)</button>
+    <button>\( \mathrm{AB}:\mathrm{AC} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">重心は3本の中線の交点なので、AG は中線で、P は辺 BC の中点です。よって \( \mathrm{BP}:\mathrm{PC}=1:1 \)。\( 2:1 \) は重心が中線を分ける比 \( \mathrm{AG}:\mathrm{GP} \) と混同しています。\( \mathrm{AB}:\mathrm{AC} \) は、∠A の二等分線の場合（数Ａ-036）です。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：3つの比をかけると？</h2>
+<div class="box think">
+  <p class="box-title">重心と内心で、3つの比を比べる</p>
+  <p>△ABC の内部の点 O を通る3本の線分 AP、BQ、CR（P、Q、R は辺 BC、CA、AB 上の点）について、3つの比 \( \dfrac{\mathrm{BP}}{\mathrm{PC}} \)、\( \dfrac{\mathrm{CQ}}{\mathrm{QA}} \)、\( \dfrac{\mathrm{AR}}{\mathrm{RB}} \) を考えます。</p>
+  <ul>
+    <li>① O が重心のとき、3つの比はそれぞれいくつでしょうか。3つをかけるといくつでしょうか。</li>
+    <li>② \( \mathrm{AB}=5 \)、\( \mathrm{BC}=6 \)、\( \mathrm{CA}=4 \) の三角形で O が内心のとき、3つの比は数Ａ-036 からいくつでしょうか。3つをかけるといくつでしょうか。</li>
+    <li>③ O がほかの点でも、同じことが起こるでしょうか。</li>
+  </ul>
+  <p>計算して予想してから読み進めましょう。答えは「4 チェバの定理を見いだす」の表と操作部品で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="面積の比と線分の比"><span class="num">3</span>面積の比と線分の比</h2>
+<h3>高さが等しい三角形の面積の比</h3>
+<p>辺 BC 上に点 P をとると、△ABP と △ACP は、底辺 BP、PC が同じ直線上にあり、頂点 A が共通です。どちらも高さは A から直線 BC までの距離 \( h \) なので</p>
+$$ \triangle\mathrm{ABP}:\triangle\mathrm{ACP}=\frac{1}{2}\,\mathrm{BP}\cdot h:\frac{1}{2}\,\mathrm{PC}\cdot h=\mathrm{BP}:\mathrm{PC} $$
+<div class="box point"><p class="box-title">性質1（高さが等しい三角形）</p><p>高さが等しい2つの三角形の面積の比は、底辺の比に等しい。</p></div>
+<h3>線分 AP 上の点 O と面積の比</h3>
+<p>線分 AP 上（両端を除く）に点 O をとると、△ABO と △ACO の面積の比はどうなるでしょうか（図1）。</p>
+<figure>
+<!--svg:f040a-->
+<svg viewBox="0 0 264 174" width="264" role="img" aria-label="三角形 ABC の辺 BC 上の点 P（BP:PC=2:3）と、線分 AP 上の点 O（AO:OP=2:1）。三角形 ABO を青、三角形 ACO を橙で塗ってある" data-fig="f040a" data-s="36.000000" data-ox="24.000000" data-oy="147.529404">
+<polygon points="159,28.5 24,147.5 126.6,107.8" fill="#1f5fbf" fill-opacity="0.16" stroke="none" data-region="ABO"/>
+<polygon points="159,28.5 240,147.5 126.6,107.8" fill="#b7791f" fill-opacity="0.18" stroke="none" data-region="ACO"/>
+<line x1="159" y1="28.5" x2="24" y2="147.5" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="24" y1="147.5" x2="240" y2="147.5" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="240" y1="147.5" x2="159" y2="28.5" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="159" y1="28.5" x2="110.4" y2="147.5" stroke="#1e8e5a" stroke-width="1.8" data-seg="AP"/>
+<line x1="24" y1="147.5" x2="126.6" y2="107.8" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="5 3" data-seg="BO"/>
+<line x1="240" y1="147.5" x2="126.6" y2="107.8" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="5 3" data-seg="CO"/>
+<circle cx="159.00" cy="28.47" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="3.750000" data-y="3.307189"/>
+<text x="159" y="17.7" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="24.00" cy="147.53" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="11.7" y="160.3" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="240.00" cy="147.53" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="6.000000" data-y="0.000000"/>
+<text x="252.3" y="160.3" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="110.40" cy="147.53" r="2.8" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="P" data-x="2.400000" data-y="0.000000"/>
+<text x="110.4" y="165.7" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">P</text>
+<circle cx="126.60" cy="107.84" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="O" data-x="2.850000" data-y="1.102396"/>
+<text x="144" y="107.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">O</text>
+<text x="67.2" y="162.4" text-anchor="middle" font-size="12" fill="currentColor">2</text>
+<text x="175.2" y="162.4" text-anchor="middle" font-size="12" fill="currentColor">3</text>
+</svg>
+<!--/svg:f040a-->
+  <figcaption>図1　辺 BC 上の点 P（\( \mathrm{BP}:\mathrm{PC}=2:3 \)）と、線分 AP 上の点 O（\( \mathrm{AO}:\mathrm{OP}=2:1 \)）。青が △ABO、橙が △ACO（学習用に作成した図）</figcaption>
+</figure>
+<p>\( \mathrm{BP}:\mathrm{PC}=m:n \) とします。性質1より、\( \triangle\mathrm{ABP}=\dfrac{m}{n}\,\triangle\mathrm{ACP} \)。同じく頂点 O が共通な △OBP と △OCP も高さが等しいので、\( \triangle\mathrm{OBP}=\dfrac{m}{n}\,\triangle\mathrm{OCP} \)。△ABO は △ABP から △OBP を除いた部分、△ACO は △ACP から △OCP を除いた部分なので</p>
+$$ \triangle\mathrm{ABO}=\triangle\mathrm{ABP}-\triangle\mathrm{OBP}=\frac{m}{n}\left(\triangle\mathrm{ACP}-\triangle\mathrm{OCP}\right)=\frac{m}{n}\,\triangle\mathrm{ACO} $$
+<div class="box point"><p class="box-title">性質2（面積の比と線分の比）</p><p>辺 BC 上の点 P と、線分 AP 上の点 O について
+$$ \triangle\mathrm{ABO}:\triangle\mathrm{ACO}=\mathrm{BP}:\mathrm{PC} $$
+△ABO と △ACO は辺 AO を共有していて、その面積の比が、直線 AO が辺 BC を分ける比になります。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題1（図1の場合で確かめる）</p>
+  <p>図1で \( \triangle\mathrm{ABC}=30 \)、\( \mathrm{BP}:\mathrm{PC}=2:3 \)、\( \mathrm{AO}:\mathrm{OP}=2:1 \) とします。△ABO と △ACO の面積を求め、性質2を確かめなさい。</p>
+  <div class="step">着眼点：性質1を2回使います。まず辺 BC を底辺とみます。\( \triangle\mathrm{ABP}=30\times\dfrac{2}{5}=12 \)、\( \triangle\mathrm{ACP}=30\times\dfrac{3}{5}=18 \)。</div>
+  <div class="step">次に、直線 AP 上の線分を底辺とみると、△ABO と △ABP は頂点 B が共通で高さが等しいので、\( \triangle\mathrm{ABO}=12\times\dfrac{2}{3}=8 \)。同じく \( \triangle\mathrm{ACO}=18\times\dfrac{2}{3}=12 \)。</div>
+  <div class="step">\( \triangle\mathrm{ABO}:\triangle\mathrm{ACO}=8:12=2:3 \) で、\( \mathrm{BP}:\mathrm{PC}=2:3 \) と一致します。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① △ABO と △ACO は辺 AO が共通だから面積が等しい、と考える：共通なのは辺だけで、AO を底辺とみたときの高さ（B と C から直線 AO までの距離）は違います。<br>② 底辺の比を \( \mathrm{BP}:\mathrm{BC} \) にする：△ABP と △ACP の底辺は BP と PC です。\( \mathrm{BP}:\mathrm{BC} \) は △ABP と △ABC の面積の比です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="チェバの定理を見いだす"><span class="num">4</span>チェバの定理を見いだす</h2>
+<p>△ABC の内部に点 O をとり、直線 AO、BO、CO が辺 BC、CA、AB と交わる点を P、Q、R とします。この時間の O は、外心とは限らない一般の点です。\( \mathrm{AB}=5 \)、\( \mathrm{BC}=6 \)、\( \mathrm{CA}=4 \) の三角形で、O をいろいろにとって3つの比を調べました（表1）。</p>
+<div class="table-wrap">
+<table class="ratio">
+  <tr><th>点 O</th><th>\( \dfrac{\mathrm{BP}}{\mathrm{PC}} \)</th><th>\( \dfrac{\mathrm{CQ}}{\mathrm{QA}} \)</th><th>\( \dfrac{\mathrm{AR}}{\mathrm{RB}} \)</th><th>3つの積</th></tr>
+  <tr><td>(ア) 重心</td><td>\( 1 \)</td><td>\( 1 \)</td><td>\( 1 \)</td><td>\( 1 \)</td></tr>
+  <tr><td>(イ) 内心</td><td>\( \dfrac{5}{4} \)</td><td>\( \dfrac{6}{5} \)</td><td>\( \dfrac{2}{3} \)</td><td>\( 1 \)</td></tr>
+  <tr><td>(ウ) ほかの点</td><td>\( \dfrac{1}{2} \)</td><td>\( 3 \)</td><td>\( \dfrac{2}{3} \)</td><td>\( 1 \)</td></tr>
+  <tr><td>(エ) ほかの点</td><td>\( \dfrac{3}{2} \)</td><td>\( \dfrac{2}{5} \)</td><td>\( \dfrac{5}{3} \)</td><td>\( 1 \)</td></tr>
+</table>
+</div>
+<p class="small">表1　\( \mathrm{AB}=5 \)、\( \mathrm{BC}=6 \)、\( \mathrm{CA}=4 \) の △ABC で、点 O を変えたときの3つの比（学習用に、図の座標から計算した値。(ウ)(エ)は P と Q の位置を決めて O をとった）</p>
+<p>(イ)の内心では、AP、BQ、CR が内角の二等分線なので、数Ａ-036 より \( \dfrac{\mathrm{BP}}{\mathrm{PC}}=\dfrac{\mathrm{AB}}{\mathrm{AC}}=\dfrac{5}{4} \)、\( \dfrac{\mathrm{CQ}}{\mathrm{QA}}=\dfrac{\mathrm{BC}}{\mathrm{BA}}=\dfrac{6}{5} \)、\( \dfrac{\mathrm{AR}}{\mathrm{RB}}=\dfrac{\mathrm{CA}}{\mathrm{CB}}=\dfrac{4}{6}=\dfrac{2}{3} \) です。どの場合も、3つの比の積が 1 になっています。</p>
+<h3>操作して確かめよう：2つの比を選ぶ</h3>
+<p>\( \mathrm{BP}:\mathrm{PC} \) と \( \mathrm{CQ}:\mathrm{QA} \) を選ぶと、P と Q が決まり、AP と BQ の交点 O、直線 CO と辺 AB の交点 R が決まります。図の長さから計算した \( \dfrac{\mathrm{AR}}{\mathrm{RB}} \) と、3つの比の積を確かめましょう。</p>
+<div class="widget" id="w1">
+  <div class="w-row"><label for="w1-p">BP:PC＝</label><select id="w1-p"><option value="1,3">1:3</option><option value="1,2" selected>1:2</option><option value="2,3">2:3</option><option value="1,1">1:1</option><option value="3,2">3:2</option><option value="2,1">2:1</option><option value="3,1">3:1</option></select>
+    <label for="w1-q">CQ:QA＝</label><select id="w1-q"><option value="1,3">1:3</option><option value="1,2">1:2</option><option value="2,3">2:3</option><option value="1,1">1:1</option><option value="3,2">3:2</option><option value="2,1">2:1</option><option value="3,1" selected>3:1</option></select></div>
+  <div><svg id="w1-svg" viewBox="0 0 320 200" width="320" role="img" aria-label="AB=5、BC=6、CA=4 の三角形 ABC と、選んだ比で決まる辺上の点 P、Q、AP と BQ の交点 O、直線 CO と辺 AB の交点 R"></svg></div>
+  <p class="w-out" id="w1-out" aria-live="polite">BP/PC = 1/2、CQ/QA = 3、AR/RB ≒ 0.67（図の長さから計算した値）。3つの積 ≒ 1.00。（スクリプトが動かない場合は、表1で同じことを確かめられます）</p>
+  <p class="small">緑の線＝AP・BQ・CR、青の点＝辺上の点 P・Q・R、黒の点 O＝AP と BQ の交点。AR/RB は、R の位置を座標で求めて長さの比を小数第3位で四捨五入した値なので「≒」を付けています。</p>
+</div>
+<div class="box point">
+  <p class="box-title">チェバの定理</p>
+  <p>△ABC の内部の点 O を通る直線 AO、BO、CO が、辺 BC、CA、AB とそれぞれ点 P、Q、R で交わるとき
+  $$ \frac{\mathrm{BP}}{\mathrm{PC}}\cdot\frac{\mathrm{CQ}}{\mathrm{QA}}\cdot\frac{\mathrm{AR}}{\mathrm{RB}}=1 $$</p>
+  <p>分数は、頂点 B から出発して B → P → C → Q → A → R → B と三角形を一回りする順に、辺の上の長さを分子・分母・分子……と交互に並べています。</p>
+</div>
+<div class="box point"><p class="box-title">導入の問いの答え</p><p>① 重心では、P、Q、R が辺の中点なので3つの比はどれも 1 で、積も 1。② 内心では \( \dfrac{5}{4} \)、\( \dfrac{6}{5} \)、\( \dfrac{2}{3} \) で、積は \( \dfrac{5}{4}\times\dfrac{6}{5}\times\dfrac{2}{3}=1 \)。③ ほかの点でも積は 1 になります（表1の(ウ)(エ)と操作部品）。これがいつも成り立つことを、次の節で証明します。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="チェバの定理の証明と利用"><span class="num">5</span>チェバの定理を証明し、使う</h2>
+<p>△OBC、△OCA、△OAB の面積を、それぞれ \( S_1 \)、\( S_2 \)、\( S_3 \) とします（図2。このページでの書き方）。</p>
+<figure>
+<!--svg:f040b-->
+<svg viewBox="0 0 276 180" width="276" role="img" aria-label="三角形 ABC の内部の点 O を通る3本の線分 AP、BQ、CR。P、Q、R は辺 BC、CA、AB 上の点。三角形 OBC、OCA、OAB の面積を S1、S2、S3 とする" data-fig="f040b" data-s="38.000000" data-ox="24.000000" data-oy="153.836594">
+<polygon points="162.9,106.7 24,153.8 252,153.8" fill="#1f5fbf" fill-opacity="0.14" stroke="none" data-region="S1"/>
+<polygon points="162.9,106.7 252,153.8 166.5,28.2" fill="#b7791f" fill-opacity="0.16" stroke="none" data-region="S2"/>
+<polygon points="162.9,106.7 166.5,28.2 24,153.8" fill="#1e8e5a" fill-opacity="0.14" stroke="none" data-region="S3"/>
+<line x1="166.5" y1="28.2" x2="24" y2="153.8" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="24" y1="153.8" x2="252" y2="153.8" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="252" y1="153.8" x2="166.5" y2="28.2" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="166.5" y1="28.2" x2="160.8" y2="153.8" stroke="#1e8e5a" stroke-width="1.8" data-seg="AP"/>
+<line x1="24" y1="153.8" x2="209.2" y2="91" stroke="#1e8e5a" stroke-width="1.8" data-seg="BQ"/>
+<line x1="252" y1="153.8" x2="109.5" y2="78.4" stroke="#1e8e5a" stroke-width="1.8" data-seg="CR"/>
+<circle cx="166.50" cy="28.16" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="3.750000" data-y="3.307189"/>
+<text x="166.5" y="17.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="24.00" cy="153.84" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="11.7" y="166.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="252.00" cy="153.84" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="6.000000" data-y="0.000000"/>
+<text x="264.3" y="166.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="160.80" cy="153.84" r="2.8" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="P" data-x="3.600000" data-y="0.000000"/>
+<circle cx="209.25" cy="91.00" r="2.8" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="Q" data-x="4.875000" data-y="1.653595"/>
+<circle cx="109.50" cy="78.43" r="2.8" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="R" data-x="2.250000" data-y="1.984313"/>
+<text x="160.8" y="172" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">P</text>
+<text x="220" y="86.2" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">Q</text>
+<text x="96.3" y="77.8" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">R</text>
+<circle cx="162.94" cy="106.71" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="O" data-x="3.656250" data-y="1.240196"/>
+<text x="171.9" y="126.5" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">O</text>
+<text x="115.9" y="142" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">S₁</text>
+<text x="179.6" y="79.2" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">S₂</text>
+<text x="98.8" y="116.9" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">S₃</text>
+</svg>
+<!--/svg:f040b-->
+  <figcaption>図2　△ABC の内部の点 O を通る3本の線分 AP、BQ、CR。△OBC（青）、△OCA（橙）、△OAB（緑）の面積を \( S_1 \)、\( S_2 \)、\( S_3 \) とする（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example proof">
+  <p class="box-title">証明（チェバの定理）</p>
+  <p><span class="tag">仮定</span>　O は △ABC の内部の点で、直線 AO、BO、CO が辺 BC、CA、AB と点 P、Q、R で交わる。<br><span class="tag">結論</span>　\( \dfrac{\mathrm{BP}}{\mathrm{PC}}\cdot\dfrac{\mathrm{CQ}}{\mathrm{QA}}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \)</p>
+  <ol>
+    <li>O は線分 AP 上の点なので、性質2より \( \dfrac{\mathrm{BP}}{\mathrm{PC}}=\dfrac{\triangle\mathrm{ABO}}{\triangle\mathrm{ACO}}=\dfrac{S_3}{S_2} \)。</li>
+    <li>O は線分 BQ 上の点なので、頂点 B について同じように考えると \( \dfrac{\mathrm{CQ}}{\mathrm{QA}}=\dfrac{\triangle\mathrm{BCO}}{\triangle\mathrm{BAO}}=\dfrac{S_1}{S_3} \)。</li>
+    <li>O は線分 CR 上の点なので、頂点 C について同じように考えると \( \dfrac{\mathrm{AR}}{\mathrm{RB}}=\dfrac{\triangle\mathrm{CAO}}{\triangle\mathrm{CBO}}=\dfrac{S_2}{S_1} \)。</li>
+    <li>①〜③をかけると、\( \dfrac{\mathrm{BP}}{\mathrm{PC}}\cdot\dfrac{\mathrm{CQ}}{\mathrm{QA}}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=\dfrac{S_3}{S_2}\cdot\dfrac{S_1}{S_3}\cdot\dfrac{S_2}{S_1}=1 \)。（証明終わり）</li>
+  </ol>
+</div>
+<p>証明のかなめは、3つの線分の比が、どれも3つの面積 \( S_1 \)、\( S_2 \)、\( S_3 \) のうち2つの比で表され、かけると分子と分母が打ち消し合うことです。</p>
+<div class="box example worked">
+  <p class="box-title">例題2（残りの比を求める）</p>
+  <p>△ABC の内部の点 O について、直線 AO、BO、CO と辺 BC、CA、AB の交点を P、Q、R とします。\( \mathrm{BP}:\mathrm{PC}=2:3 \)、\( \mathrm{CQ}:\mathrm{QA}=4:1 \) のとき、\( \mathrm{AR}:\mathrm{RB} \) を求めなさい。</p>
+  <div class="step">着眼点：チェバの定理に分かっている2つの比を入れ、\( \dfrac{\mathrm{AR}}{\mathrm{RB}} \) について解きます。</div>
+  <div class="step">\( \dfrac{2}{3}\cdot\dfrac{4}{1}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \) より、\( \dfrac{\mathrm{AR}}{\mathrm{RB}}=\dfrac{3}{8} \)。</div>
+  <div class="step">答え：\( \mathrm{AR}:\mathrm{RB}=3:8 \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（真ん中の比を求める）</p>
+  <p>例題2と同じ記号で、\( \mathrm{AR}:\mathrm{RB}=1:2 \)、\( \mathrm{BP}:\mathrm{PC}=3:1 \) のとき、\( \mathrm{CQ}:\mathrm{QA} \) を求めなさい。</p>
+  <div class="step">着眼点：一回りする順（B → P → C → Q → A → R → B）を守って式を立てます。</div>
+  <div class="step">\( \dfrac{3}{1}\cdot\dfrac{\mathrm{CQ}}{\mathrm{QA}}\cdot\dfrac{1}{2}=1 \) より、\( \dfrac{\mathrm{CQ}}{\mathrm{QA}}=\dfrac{2}{3} \)。</div>
+  <div class="step">答え：\( \mathrm{CQ}:\mathrm{QA}=2:3 \)。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 比の向きをそろえない：\( \dfrac{\mathrm{BP}}{\mathrm{PC}}\cdot\dfrac{\mathrm{QA}}{\mathrm{CQ}}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}} \) のように途中で向きが逆になると、積は 1 になりません。例題2でこの式を使うと \( \mathrm{AR}:\mathrm{RB}=6:1 \) となり、誤りです。<br>② 部分と全体の比を使う：\( \dfrac{\mathrm{BP}}{\mathrm{BC}} \) ではなく \( \dfrac{\mathrm{BP}}{\mathrm{PC}} \) です。<br>③ O が三角形の外部にある場合にも、この時間の証明をそのまま使う：この時間は O が内部にある場合だけを考えました。外部の場合は次の時間（数Ａ-041）に考えます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>チェバの定理</dt><dd>△ABC の内部の点 O を通る直線 AO、BO、CO が辺 BC、CA、AB と P、Q、R で交わるとき、\( \dfrac{\mathrm{BP}}{\mathrm{PC}}\cdot\dfrac{\mathrm{CQ}}{\mathrm{QA}}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \)。</dd>
+    <dt>高さが等しい三角形の面積の比</dt><dd>底辺の比に等しい（三角形の面積の公式から）。</dd>
+    <dt>面積の比と線分の比（性質2）</dt><dd>辺 BC 上の点 P と線分 AP 上の点 O について、\( \triangle\mathrm{ABO}:\triangle\mathrm{ACO}=\mathrm{BP}:\mathrm{PC} \)。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>高さが等しい三角形の面積の比は底辺の比。差をとって、線分 AP 上の点 O について \( \triangle\mathrm{ABO}:\triangle\mathrm{ACO}=\mathrm{BP}:\mathrm{PC} \)（O1）。</li>
+    <li>重心・内心・ほかの点で調べると、内部の1点で交わる3本の線分について、3つの比の積はいつも 1 になる（O2）。</li>
+    <li>3つの比を面積 \( S_1 \)、\( S_2 \)、\( S_3 \) の比で表してかけると 1 になり、チェバの定理が証明できる。2つの比が分かれば、残りの比が求められる（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">チェバの定理（O は △ABC の内部の点）</span>
+  $$ \frac{\mathrm{BP}}{\mathrm{PC}}\cdot\frac{\mathrm{CQ}}{\mathrm{QA}}\cdot\frac{\mathrm{AR}}{\mathrm{RB}}=1 $$</div>
+  <div><span class="f-name">面積の比と線分の比</span>
+  <p>\( \triangle\mathrm{ABO}:\triangle\mathrm{ACO}=\mathrm{BP}:\mathrm{PC} \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。問3〜問7・問9 の点 O、P、Q、R は、△ABC の内部の点 O と、直線 AO、BO、CO と辺 BC、CA、AB の交点 P、Q、R です。入力問題は数字だけ、比は 5:2 のように入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>△ABC の辺 BC 上に、\( \mathrm{BP}=4 \)、\( \mathrm{PC}=6 \) となる点 P をとります。\( \triangle\mathrm{ABP}:\triangle\mathrm{ACP} \) はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 2:3 \)</button>
+    <button>\( 3:2 \)</button>
+    <button>\( 2:5 \)</button>
+    <button>\( 1:1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">△ABP と △ACP は頂点 A が共通で高さが等しいので、面積の比は底辺の比 \( 4:6=2:3 \) です。\( 3:2 \) は向きが逆です。\( 2:5 \) は \( \mathrm{BP}:\mathrm{BC} \) で、△ABP と △ABC の比です。\( 1:1 \) は、頂点が共通だから面積も等しいと考えた誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>チェバの定理を正しく表したものはどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{\mathrm{BP}}{\mathrm{BC}}\cdot\dfrac{\mathrm{CQ}}{\mathrm{CA}}\cdot\dfrac{\mathrm{AR}}{\mathrm{AB}}=1 \)</button>
+    <button>\( \dfrac{\mathrm{BP}}{\mathrm{PC}}+\dfrac{\mathrm{CQ}}{\mathrm{QA}}+\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \)</button>
+    <button data-correct="true">\( \dfrac{\mathrm{BP}}{\mathrm{PC}}\cdot\dfrac{\mathrm{CQ}}{\mathrm{QA}}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \)</button>
+    <button>\( \dfrac{\mathrm{PC}}{\mathrm{BP}}\cdot\dfrac{\mathrm{CQ}}{\mathrm{QA}}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">B → P → C → Q → A → R → B と一回りする順に、部分の長さの比をかけた積が 1 です。部分と全体の比（BP/BC など）をかけた積は、重心のとき \( \dfrac{1}{2}\cdot\dfrac{1}{2}\cdot\dfrac{1}{2}=\dfrac{1}{8} \) となり 1 になりません。和は、重心のとき \( 1+1+1=3 \) です。最後の式は1つ目の比だけ向きが逆で、表1の(ウ)では \( 2\times3\times\dfrac{2}{3}=4 \) となり 1 になりません。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="8|△ACO=8">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O1</span></div>
+  <p>\( \mathrm{BP}:\mathrm{PC}=3:2 \)、\( \triangle\mathrm{ABO}=12 \) のとき、△ACO の面積を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 8。性質2より \( \triangle\mathrm{ABO}:\triangle\mathrm{ACO}=\mathrm{BP}:\mathrm{PC}=3:2 \) なので、\( 12:\triangle\mathrm{ACO}=3:2 \)、\( \triangle\mathrm{ACO}=8 \) です。18 と答えた場合は比の向きを逆にしています。12 と答えた場合は、辺 AO が共通だから面積が等しいと考えています。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="8:3|AR:RB=8:3">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>\( \mathrm{BP}:\mathrm{PC}=1:2 \)、\( \mathrm{CQ}:\mathrm{QA}=3:4 \) のとき、\( \mathrm{AR}:\mathrm{RB} \) を最も簡単な整数の比で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 8:3 \)。\( \dfrac{1}{2}\cdot\dfrac{3}{4}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \) より \( \dfrac{\mathrm{AR}}{\mathrm{RB}}=\dfrac{8}{3} \) です。\( 3:8 \) と答えた場合は、最後に比を逆に書いています。\( 3:2 \) と答えた場合は、2つ目の比を \( \dfrac{\mathrm{QA}}{\mathrm{CQ}}=\dfrac{4}{3} \) と逆にして \( \dfrac{1}{2}\cdot\dfrac{4}{3}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \) としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>\( \mathrm{AR}:\mathrm{RB}=2:1 \)、\( \mathrm{CQ}:\mathrm{QA}=1:1 \) のとき、\( \mathrm{BP}:\mathrm{PC} \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 2:1 \)</button>
+    <button data-correct="true">\( 1:2 \)</button>
+    <button>\( 1:1 \)</button>
+    <button>\( 1:4 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \dfrac{\mathrm{BP}}{\mathrm{PC}}\cdot\dfrac{1}{1}\cdot\dfrac{2}{1}=1 \) より \( \dfrac{\mathrm{BP}}{\mathrm{PC}}=\dfrac{1}{2} \)、\( \mathrm{BP}:\mathrm{PC}=1:2 \) です。\( 2:1 \) は、残りの比も \( \mathrm{AR}:\mathrm{RB} \) と同じになると考えた誤り、\( 1:1 \) は \( \mathrm{CQ}:\mathrm{QA} \) と同じになると考えた誤りです。\( 1:4 \) は、\( \mathrm{CQ}:\mathrm{QA} \) も \( 2:1 \) と読み違えて \( \dfrac{\mathrm{BP}}{\mathrm{PC}}\cdot 2\cdot 2=1 \) とした誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O1</span></div>
+  <p>性質2「\( \triangle\mathrm{ABO}:\triangle\mathrm{ACO}=\mathrm{BP}:\mathrm{PC} \)」の説明として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>△ABO と △ACO は辺 AO が共通で、高さも等しいから。</button>
+    <button>O が △ABC の重心だから。</button>
+    <button>△ABO と △ACO は相似で、相似比が \( \mathrm{BP}:\mathrm{PC} \) だから。</button>
+    <button data-correct="true">\( \triangle\mathrm{ABP}:\triangle\mathrm{ACP} \) と \( \triangle\mathrm{OBP}:\triangle\mathrm{OCP} \) がどちらも \( \mathrm{BP}:\mathrm{PC} \) なので、差の \( \triangle\mathrm{ABO}:\triangle\mathrm{ACO} \) も \( \mathrm{BP}:\mathrm{PC} \) になるから。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \triangle\mathrm{ABP}=\dfrac{m}{n}\,\triangle\mathrm{ACP} \)、\( \triangle\mathrm{OBP}=\dfrac{m}{n}\,\triangle\mathrm{OCP} \)（\( \mathrm{BP}:\mathrm{PC}=m:n \)）から、差をとって \( \triangle\mathrm{ABO}=\dfrac{m}{n}\,\triangle\mathrm{ACO} \) です。辺 AO を底辺とみると、高さ（B、C から直線 AO までの距離）はふつう違います。性質2は O が重心でなくても成り立ちます。△ABO と △ACO はふつう相似ではありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O2・O3</span></div>
+  <p>\( \mathrm{AB}=7 \)、\( \mathrm{BC}=6 \)、\( \mathrm{CA}=5 \) の △ABC で、O が内心のとき、\( \mathrm{AR}:\mathrm{RB} \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 6:5 \)</button>
+    <button>\( 5:7 \)</button>
+    <button data-correct="true">\( 5:6 \)</button>
+    <button>\( 7:6 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">CR は ∠C の二等分線なので、数Ａ-036 より \( \mathrm{AR}:\mathrm{RB}=\mathrm{CA}:\mathrm{CB}=5:6 \) です。チェバの定理で確かめると、\( \dfrac{\mathrm{BP}}{\mathrm{PC}}=\dfrac{7}{5} \)、\( \dfrac{\mathrm{CQ}}{\mathrm{QA}}=\dfrac{6}{7} \) なので \( \dfrac{7}{5}\cdot\dfrac{6}{7}\cdot\dfrac{5}{6}=1 \) となり、合っています。\( 6:5 \) は向きが逆、\( 5:7 \) は \( \mathrm{CA}:\mathrm{AB} \) と、∠C をはさまない辺 AB を使った誤り、\( 7:6 \) は \( \mathrm{AB}:\mathrm{BC} \) を使った誤りです。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O3</span></div>
+  <p>△ABC の内部の点 O を通る直線 AO、BO、CO が、辺 BC、CA、AB と点 P、Q、R で交わるとき、\( \dfrac{\mathrm{BP}}{\mathrm{PC}}\cdot\dfrac{\mathrm{CQ}}{\mathrm{QA}}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \) であることを、三角形の面積の比を用いて証明しなさい。性質2を使うときは、その理由も書きなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　△OBC、△OCA、△OAB の面積を \( S_1 \)、\( S_2 \)、\( S_3 \) とする。<br>
+    （性質2）\( \mathrm{BP}:\mathrm{PC}=m:n \) とすると、△ABP と △ACP、△OBP と △OCP はそれぞれ高さが等しいので、\( \triangle\mathrm{ABP}=\dfrac{m}{n}\,\triangle\mathrm{ACP} \)、\( \triangle\mathrm{OBP}=\dfrac{m}{n}\,\triangle\mathrm{OCP} \)。差をとると \( \triangle\mathrm{ABO}=\dfrac{m}{n}\,\triangle\mathrm{ACO} \)。よって \( \dfrac{\mathrm{BP}}{\mathrm{PC}}=\dfrac{\triangle\mathrm{ABO}}{\triangle\mathrm{ACO}}=\dfrac{S_3}{S_2} \)。<br>
+    同じように、O は線分 BQ 上にあるので \( \dfrac{\mathrm{CQ}}{\mathrm{QA}}=\dfrac{\triangle\mathrm{BCO}}{\triangle\mathrm{BAO}}=\dfrac{S_1}{S_3} \)、O は線分 CR 上にあるので \( \dfrac{\mathrm{AR}}{\mathrm{RB}}=\dfrac{\triangle\mathrm{CAO}}{\triangle\mathrm{CBO}}=\dfrac{S_2}{S_1} \)。<br>
+    よって \( \dfrac{\mathrm{BP}}{\mathrm{PC}}\cdot\dfrac{\mathrm{CQ}}{\mathrm{QA}}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=\dfrac{S_3}{S_2}\cdot\dfrac{S_1}{S_3}\cdot\dfrac{S_2}{S_1}=1 \)。（証明終わり）</p>
+    <p><strong>採点の観点</strong>　① 高さが等しい三角形の面積の比が底辺の比であることを使い、性質2の理由（差をとる）を書いている。② 3つの比をそれぞれ2つの面積の比で表している（対応する三角形が正しい）。③ 3つをかけて打ち消し合うことから結論を導いている。④ 結びに「（証明終わり）」がある。</p>
+  </div>
+  <div class="explain">②の比で、どの頂点を共有する三角形を比べるかを間違えやすいので、「O を通る線分 BQ について、頂点 B を共有する2つの三角形 △BCO と △BAO」のように、どの線分の上の点かを先に書きましょう。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>太郎さんと花子さんが、チェバの定理について話しています。</p>
+  <p>太郎：「重心は \( \mathrm{BP}:\mathrm{PC}=\mathrm{CQ}:\mathrm{QA}=1:1 \) で、\( \mathrm{AR}:\mathrm{RB} \) も \( 1:1 \) だったよね。だから \( \mathrm{BP}:\mathrm{PC}=\mathrm{CQ}:\mathrm{QA}=2:1 \) なら、\( \mathrm{AR}:\mathrm{RB} \) も \( 2:1 \) になるはずだよ。」<br>花子：「チェバの定理で確かめてみようよ。」</p>
+  <p>\( \mathrm{AR}:\mathrm{RB} \) として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( 2:1 \)</button>
+    <button>\( 1:2 \)</button>
+    <button data-correct="true">\( 1:4 \)</button>
+    <button>\( 4:1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \dfrac{2}{1}\cdot\dfrac{2}{1}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \) より \( \dfrac{\mathrm{AR}}{\mathrm{RB}}=\dfrac{1}{4} \)、\( \mathrm{AR}:\mathrm{RB}=1:4 \) です。重心で3つとも \( 1:1 \) になったのは、積が \( 1\times1\times1=1 \) になるからで、「3つの比がいつも同じになる」わけではありません。\( 2:1 \) は太郎さんの予想で、積は \( 2\times2\times2=8 \) です。\( 1:2 \) は1つの比だけで打ち消そうとした値、\( 4:1 \) は最後に比を逆に書いた値です。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(1) 図形の性質」のア(ア)「三角形に関する基本的な性質について理解すること」とイ(ア)「図形の構成要素間の関係や既に学習した図形の性質に着目し，図形の新たな性質を見いだし，その性質について論理的に考察したり説明したりすること」に関わり、出題範囲に含まれます。学習指導要領解説は、その例として「面積比と線分比の関係を用いてチェバの定理が成り立つことや，平行線の性質や三角形の相似などを用いてメネラウスの定理が成り立つことを見いだし，論理的に考察したり説明したりさせること」を挙げています。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。いくつかの場合を調べて性質を見いだし、面積を使って証明するこの時間の流れは、その過程の練習になります。</p>
+  <p class="small">問9は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">チェバの定理の逆と拡張（数Ａ-041）</p>
+  <p>次の時間は、逆に、辺 BC、CA、AB 上の点 P、Q、R が \( \dfrac{\mathrm{BP}}{\mathrm{PC}}\cdot\dfrac{\mathrm{CQ}}{\mathrm{QA}}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \) を満たすとき、AP、BQ、CR が1点で交わるか（チェバの定理の逆が成り立つか）を考えます。また、点 O が三角形の外部にあって、P、Q、R のうちいずれか2点が辺の延長上にある場合に、条件を見直して定理を広げます。</p>
+  <p>この時間では、O が三角形の内部にある場合だけを扱いました。チェバの定理の逆、O が外部にある場合（数Ａ-041）と、メネラウスの定理（数Ａ-042）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-039　三角形の重心</div>
+  <div><span class="label">次の時間</span>数Ａ-041　チェバの定理の逆と拡張</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-040「チェバの定理」（学習指導要領 数学Ａ (1)ア(ア)・イ(ア)、解説 p.89）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(1) 図形の性質（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.89（「面積比と線分比の関係を用いてチェバの定理が成り立つことや，平行線の性質や三角形の相似などを用いてメネラウスの定理が成り立つことを見いだし，論理的に考察したり説明したりさせることなどが考えられる」、定理の逆が成り立つかどうかを考えたり、条件を見直し定理を拡張したりすること）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「チェバの定理，メネラウスの定理」（「チェバの定理，メネラウスの定理を理解している」「チェバの定理，メネラウスの定理について，論理的に考察し，証明することができる」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・図・表はこのページのために作成したものです（出典を示したものを除く）。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var svg = document.getElementById("w1-svg");
+  var sp = document.getElementById("w1-p");
+  var sq = document.getElementById("w1-q");
+  var out = document.getElementById("w1-out");
+  if (!svg || !sp || !sq) return;
+  var W = 320, H = 200, S = 43, OX = 31, OY = 172;
+  var BLUE = "#1f5fbf", GREEN = "#1e8e5a";
+  var B = [0, 0], C = [6, 0], ax = 45 / 12, A = [ax, Math.sqrt(25 - ax * ax)];
+  function X(x) { return OX + S * x; }
+  function Y(y) { return OY - S * y; }
+  function r1(v) { return String(Math.round(v * 10) / 10); }
+  function rnd(v, d) { var m = Math.pow(10, d); return Math.round(v * m + (v >= 0 ? 1e-9 : -1e-9)) / m; }
+  function gcd(a, b) { while (b) { var t = a % b; a = b; b = t; } return a; }
+  function frac(a, b) { var g = gcd(a, b); a /= g; b /= g; return b === 1 ? String(a) : a + "/" + b; }
+  function div(P, Q, m, n) { return [(n * P[0] + m * Q[0]) / (m + n), (n * P[1] + m * Q[1]) / (m + n)]; }
+  function meet(P1, P2, P3, P4) {
+    var d = (P1[0] - P2[0]) * (P3[1] - P4[1]) - (P1[1] - P2[1]) * (P3[0] - P4[0]);
+    var t = ((P1[0] - P3[0]) * (P3[1] - P4[1]) - (P1[1] - P3[1]) * (P3[0] - P4[0])) / d;
+    return [P1[0] + t * (P2[0] - P1[0]), P1[1] + t * (P2[1] - P1[1])];
+  }
+  function dist(P, Q) { return Math.sqrt((P[0] - Q[0]) * (P[0] - Q[0]) + (P[1] - Q[1]) * (P[1] - Q[1])); }
+  function hit(rc, ln) {
+    for (var t = 0; t <= 60; t++) {
+      var x = ln[0] + (ln[2] - ln[0]) * t / 60, y = ln[1] + (ln[3] - ln[1]) * t / 60;
+      if (x >= rc[0] - 1 && x <= rc[2] + 1 && y >= rc[1] - 1 && y <= rc[3] + 1) return true;
+    }
+    return false;
+  }
+  function over(a, b) { return a[0] < b[2] && b[0] < a[2] && a[1] < b[3] && b[1] < a[3]; }
+  function draw() {
+    var pv = sp.value.split(","), qv = sq.value.split(",");
+    var m = parseInt(pv[0], 10), n = parseInt(pv[1], 10), p = parseInt(qv[0], 10), q = parseInt(qv[1], 10);
+    var P = div(B, C, m, n), Q = div(C, A, p, q), O = meet(A, P, B, Q), R = meet(C, O, A, B);
+    var h = [], segs = [], rects = [];
+    function line(U, V, attr) {
+      segs.push([X(U[0]), Y(U[1]), X(V[0]), Y(V[1])]);
+      h.push('<line x1="' + r1(X(U[0])) + '" y1="' + r1(Y(U[1])) + '" x2="' + r1(X(V[0])) + '" y2="' + r1(Y(V[1])) + '" ' + attr + '/>');
+    }
+    line(A, B, 'stroke="currentColor" stroke-width="1.8"');
+    line(B, C, 'stroke="currentColor" stroke-width="1.8"');
+    line(C, A, 'stroke="currentColor" stroke-width="1.8"');
+    line(A, P, 'stroke="' + GREEN + '" stroke-width="1.7"');
+    line(B, Q, 'stroke="' + GREEN + '" stroke-width="1.7"');
+    line(C, R, 'stroke="' + GREEN + '" stroke-width="1.7"');
+    function dot(U, nm, r, col) {
+      col = col || "currentColor";
+      h.push('<circle cx="' + r1(X(U[0])) + '" cy="' + r1(Y(U[1])) + '" r="' + r + '" fill="' + col + '" data-pt="' + nm + '" data-x="' + U[0].toFixed(6) + '" data-y="' + U[1].toFixed(6) + '"/>');
+    }
+    function label(tx, ty, nm, col) {
+      rects.push([tx - 4.2, ty - 11.5, tx + 4.2, ty + 3.1]);
+      h.push('<text x="' + r1(tx) + '" y="' + r1(ty) + '" text-anchor="middle" font-size="14" font-weight="700" fill="' + (col || "currentColor") + '">' + nm + '</text>');
+    }
+    function outward(U, V, Wp, d) {
+      var ex = V[0] - U[0], ey = V[1] - U[1], L = Math.sqrt(ex * ex + ey * ey), nx = -ey / L, ny = ex / L;
+      if ((Wp[0] - U[0]) * nx + (Wp[1] - U[1]) * ny > 0) { nx = -nx; ny = -ny; }
+      return [nx * d, ny * d];
+    }
+    dot(A, "A", 3.4); dot(B, "B", 3.4); dot(C, "C", 3.4);
+    dot(P, "P", 2.8, BLUE); dot(Q, "Q", 2.8, BLUE); dot(R, "R", 2.8, BLUE); dot(O, "O", 3.4);
+    label(X(A[0]), Y(A[1]) - 10, "A");
+    label(X(B[0]) - 11, Y(B[1]) + 15, "B");
+    label(X(C[0]) + 11, Y(C[1]) + 15, "C");
+    label(X(P[0]), Y(P[1]) + 19, "P", BLUE);
+    var oq = outward(C, A, B, 15), orr = outward(A, B, C, 15);
+    label(X(Q[0]) + oq[0], Y(Q[1]) - oq[1] + 5, "Q", BLUE);
+    label(X(R[0]) + orr[0], Y(R[1]) - orr[1] + 5, "R", BLUE);
+    var found = false;
+    for (var j = 0; j <= 23 && !found; j++) {
+      for (var dd = 15; dd <= 25 && !found; dd += 5) {
+        var aa = (300 + 15 * j) * Math.PI / 180;
+        var tx = X(O[0]) + Math.cos(aa) * dd, ty = Y(O[1]) - Math.sin(aa) * dd + 5;
+        var rc = [tx - 4.2, ty - 11.5, tx + 4.2, ty + 3.1], ok = true;
+        for (var k = 0; k < segs.length && ok; k++) if (hit(rc, segs[k])) ok = false;
+        for (k = 0; k < rects.length && ok; k++) if (over(rc, rects[k])) ok = false;
+        if (ok) { label(tx, ty, "O"); found = true; }
+      }
+    }
+    svg.innerHTML = h.join("");
+    var ar = dist(A, R) / dist(R, B);
+    var prod = (m / n) * (p / q) * ar;
+    var txt = "BP/PC = " + frac(m, n) + "、CQ/QA = " + frac(p, q) + "、AR/RB ≒ " + rnd(ar, 2).toFixed(2) + "（図の長さから計算した値）。3つの積 ≒ " + rnd(prod, 2).toFixed(2) + "。";
+    if (out) out.textContent = txt;
+  }
+  sp.addEventListener("change", draw);
+  sq.addEventListener("change", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-040",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-040",
+  "title": "チェバの定理",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-2", "title": "図形の性質"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ア)", "(1)イ(ア)"],
+  "kaisetsu_page": "89",
+  "objectives": [
+    {"id": "O1", "text": "高さが等しい三角形の面積の比が底辺の比に等しいことを用いて、三角形の面積の比と線分の比を結びつけることができる。", "from": "面積比と線分比の関係を用いて", "sections": ["sec-1"], "checks": ["q1", "q3", "q6", "q8"]},
+    {"id": "O2", "text": "三角形の内部の1点で交わる3本の線分について、辺を分ける3つの比の積が 1 になること（チェバの定理）を、いくつかの場合を調べて見いだすことができる。", "from": "チェバの定理が成り立つことを見いだし", "sections": ["sec-2"], "checks": ["q2", "q7", "q9"]},
+    {"id": "O3", "text": "面積の比を用いてチェバの定理が成り立つことを論理的に説明し、定理を用いて線分の比を求めることができる。", "from": "論理的に説明できる", "sections": ["sec-3"], "checks": ["q4", "q5", "q7", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "チェバの定理", "where": "sec-2"},
+    {"term": "高さが等しい三角形の面積の比", "where": "sec-1"},
+    {"term": "面積の比と線分の比", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "三角形の面積＝(1/2)×(底辺)×(高さ)", "taught_in": ["jhs_math/中2-012"], "gap": false, "where": "review"},
+    {"concept": "底辺が共通で頂点が底辺に平行な直線上にある三角形の面積は等しい", "taught_in": ["jhs_math/中2-074"], "gap": false, "where": "review"},
+    {"concept": "角の二等分線と辺の比（内心の場合の比）", "taught_in": ["hs_math_1a/数Ａ-036"], "gap": false, "where": "sec-2"},
+    {"concept": "内心は3つの内角の二等分線の交点", "taught_in": ["hs_math_1a/数Ａ-038"], "gap": false, "where": "sec-2"},
+    {"concept": "重心は3本の中線の交点", "taught_in": ["hs_math_1a/数Ａ-039"], "gap": false, "where": "review"},
+    {"concept": "内分の言い方", "taught_in": ["hs_math_1a/数Ａ-035"], "gap": false, "where": "sec-2"},
+    {"concept": "比例式・分数の計算", "taught_in": ["jhs_math/中1-054"], "gap": false, "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "チェバの定理の逆、点 O が三角形の外部にあり P・Q・R のうち2点が辺の延長上にある場合への拡張（数Ａ-041）",
+    "メネラウスの定理（数Ａ-042）",
+    "チェバの定理・メネラウスの定理を用いた面積の比の問題（数Ａ-043）"
+  ],
+  "selection_reason": "数学Ａ 単元『図形の性質』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(1)ア(ア)・イ(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.89 面積比と線分比の関係を用いてチェバの定理が成り立つことを見いだす例、定理の逆と拡張（保存本文：sources/text/hs_kaisetsu_math.txt）"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "チェバの定理を理解し、論理的に考察し証明すること（保存本文：sources/text/suken_syllabus_suakai.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

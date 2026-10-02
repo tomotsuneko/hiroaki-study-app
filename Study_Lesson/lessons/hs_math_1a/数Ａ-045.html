@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三角形の辺と角の大小｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>図形の性質</span><span>数Ａ-045</span></div>
+  <h1>三角形の辺と角の大小</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">三角形では、長い辺の向かいには大きい角があるように見えます。見た目では明らかに思えるこの性質を、二等辺三角形と外角の性質を使って証明し、ほかの図形の性質を証明するときに使います。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>△ABC で \( \mathrm{AB}&gt;\mathrm{AC} \) ならば \( \angle\mathrm{C}&gt;\angle\mathrm{B} \) であることを、二等辺三角形の底角と三角形の外角の性質を用いて証明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>逆（\( \angle\mathrm{C}&gt;\angle\mathrm{B} \) ならば \( \mathrm{AB}&gt;\mathrm{AC} \)）を、起こりうる場合をすべて調べて証明し、辺の大小とそれに向かい合う角の大小が一致することを使って、三角形の辺や角の大小を比べることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>辺と角の大小関係を用いて、2辺の和が残りの辺より大きいことや、直角三角形の斜辺がいちばん長いことなどの図形の性質を証明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-044）</span>三角形が成立するための条件</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-045）</span>三角形の辺と角の大小</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-046）</span>三角形の性質の練習</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」、中学1年「平面図形」「空間図形」。この時間は、二等辺三角形の性質（中2-060・062）、三角形の内角と外角（中2-048）、背理法（数Ⅰ-029）、前の時間の「2辺の和は残りの辺より大きい」（数Ａ-044）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">この時間に使う性質</p>
+  <ul>
+    <li><strong>二等辺三角形</strong>：2つの辺が等しい三角形では、それらに向かい合う2つの角（底角）は等しい（中2-060）。逆に、2つの角が等しい三角形は二等辺三角形である（中2-062）。</li>
+    <li><strong>三角形の内角と外角</strong>（中2-048）：内角の和は 180°。1つの外角は、それと隣り合わない2つの内角の和に等しい。したがって外角は、隣り合わない内角のどちらよりも大きい。</li>
+    <li><strong>辺と向かい合う角</strong>：△ABC で \( a=\mathrm{BC} \)、\( b=\mathrm{CA} \)、\( c=\mathrm{AB} \) とする（数Ⅰ-068 からの記号）。辺 BC は ∠A と向かい合い、辺 CA は ∠B と、辺 AB は ∠C と向かい合う。</li>
+    <li><strong>背理法</strong>（数Ⅰ-029）：結論が成り立たないと仮定して矛盾を導き、結論が成り立つことを示す方法。</li>
+  </ul>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中2-060・中2-048</span></div>
+  <p>\( \mathrm{AB}=\mathrm{AC} \) の二等辺三角形 ABC で、\( \angle\mathrm{B}=50^\circ \) のとき、∠A の大きさはどれですか。</p>
+  <div class="choices">
+    <button>\( 50^\circ \)</button>
+    <button data-correct="true">\( 80^\circ \)</button>
+    <button>\( 65^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">AB＝AC なので、それらに向かい合う底角 ∠C と ∠B が等しく、\( \angle\mathrm{C}=50^\circ \)。内角の和より \( \angle\mathrm{A}=180^\circ-50^\circ\times2=80^\circ \) です。\( 50^\circ \) は ∠A も底角と等しいと考えた誤りです。\( 65^\circ \) は \( 50^\circ \) を頂角とみて \( (180^\circ-50^\circ)\div2 \) とした値で、どの角が底角かを取り違えています。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中2-048</span></div>
+  <p>△ABC で \( \angle\mathrm{A}=40^\circ \)、\( \angle\mathrm{B}=70^\circ \) です。頂点 C における外角（辺 BC を C の先に延ばしてできる角）の大きさはどれですか。</p>
+  <div class="choices">
+    <button>\( 70^\circ \)</button>
+    <button>\( 140^\circ \)</button>
+    <button data-correct="true">\( 110^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">外角は、隣り合わない2つの内角の和なので \( 40^\circ+70^\circ=110^\circ \) です。このとき外角は ∠A（40°）より大きく、∠B（70°）より大きくなっています。\( 70^\circ \) は ∠C（内角）の大きさ \( 180^\circ-110^\circ \) で、外角と取り違えています。\( 140^\circ \) は \( 180^\circ-40^\circ \) で、∠A のところの外角です。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-044</span></div>
+  <p>3辺の長さが 3、5、\( x \) である三角形ができるような \( x \) の値の範囲はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 2&lt;x&lt;8 \)</button>
+    <button>\( 2\leqq x\leqq8 \)</button>
+    <button>\( x&lt;8 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( |5-3|&lt;x&lt;5+3 \) より \( 2&lt;x&lt;8 \) です。\( 2\leqq x\leqq8 \) は等号の場合（3点が一直線上）を含めています。\( x&lt;8 \) は \( |5-3|&lt;x \) を忘れています。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：いちばん大きい角はどこ？</h2>
+<figure>
+<!--svg:f045i-->
+<svg viewBox="0 0 255 182" width="255" role="img" aria-label="三角形 ABC。AB=7、BC=5、CA=4。いちばん長い辺は AB" data-fig="f045i" data-s="34.000000" data-ox="27.900000" data-oy="157.626121">
+<line x1="225.1" y1="24.4" x2="27.9" y2="157.6" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="27.9" y1="157.6" x2="197.9" y2="157.6" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="197.9" y1="157.6" x2="225.1" y2="24.4" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<circle cx="225.10" cy="24.37" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="5.800000" data-y="3.919184"/>
+<text x="231.6" y="17.3" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="27.90" cy="157.63" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="14.7" y="166.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="197.90" cy="157.63" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="5.000000" data-y="0.000000"/>
+<text x="203" y="175.9" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="119.3" y="84.3" text-anchor="middle" font-size="13" fill="currentColor">7</text>
+<text x="112.9" y="173.3" text-anchor="middle" font-size="13" fill="currentColor">5</text>
+<text x="221.5" y="96.9" text-anchor="middle" font-size="13" fill="currentColor">4</text>
+</svg>
+<!--/svg:f045i-->
+  <figcaption>図1　\( \mathrm{AB}=7 \)、\( \mathrm{BC}=5 \)、\( \mathrm{CA}=4 \) の △ABC（学習用に作成した図）</figcaption>
+</figure>
+<div class="box think">
+  <p class="box-title">分度器を使わずに比べられるか</p>
+  <p>図1の三角形で、∠A、∠B、∠C のうちいちばん大きい角はどれでしょうか。また、3つの角を大きい順に並べられるでしょうか。図からはいちばん長い辺 AB の向かいの ∠C が大きく見えますが、図の見た目は根拠になりません。いつでも言えることなのかを確かめましょう。</p>
+  <p>予想してから読み進めましょう。答えは「4 逆も成り立つ」の例題1で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="大きい辺に向かい合う角は大きい"><span class="num">3</span>大きい辺に向かい合う角は大きい</h2>
+<p>二等辺三角形では、等しい2辺に向かい合う角は等しくなりました（中2-060）。辺の長さが等しくないときは、どうなるでしょうか。</p>
+<div class="box point">
+  <p class="box-title">辺の大小と角の大小（その1）</p>
+  <p>△ABC で \( \mathrm{AB}&gt;\mathrm{AC} \) ならば、\( \angle\mathrm{C}&gt;\angle\mathrm{B} \)。（大きい辺に向かい合う角は、小さい辺に向かい合う角より大きい）</p>
+</div>
+<figure>
+<!--svg:f045a-->
+<svg viewBox="0 0 300 188" width="300" role="img" aria-label="AB が AC より長い三角形 ABC。辺 AB 上に AD=AC となる点 D をとり、C と D を結ぶ（灰の破線）。角 ADC と角 ACD は等しい（1本の弧）。角 B は2本の弧" data-fig="f045a" data-s="40.000000" data-ox="30.000000" data-oy="164.000000">
+<line x1="190" y1="24" x2="30" y2="164" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="30" y1="164" x2="270" y2="164" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="270" y1="164" x2="190" y2="24" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="270" y1="164" x2="68.7" y2="130.2" stroke="#8a99a8" stroke-width="1.4" stroke-dasharray="5 3" data-seg="CD"/>
+<path d="M132.6,80.9 L126,73.3" fill="none" stroke="currentColor" stroke-width="1.4" data-tick="A,D" data-mark="1"/>
+<path d="M234.3,91.5 L225.7,96.5" fill="none" stroke="currentColor" stroke-width="1.4" data-tick="A,C" data-mark="1"/>
+<path d="M79.9,120.3 A15,15 0 0 1 83.4,132.7" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="D,A,C" data-mark="1"/>
+<path d="M250.3,160.7 A20,20 0 0 1 260.1,146.6" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="C,A,D" data-mark="1"/>
+<path d="M48.1,148.2 A24,24 0 0 1 54,164 M50.8,145.8 A27.6,27.6 0 0 1 57.6,164" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="B,C,A" data-mark="2"/>
+<circle cx="190.00" cy="24.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="4.000000" data-y="3.500000"/>
+<text x="192.3" y="15.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="30.00" cy="164.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="16.8" y="173" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="270.00" cy="164.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="6.000000" data-y="0.000000"/>
+<text x="282.1" y="175.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="68.65" cy="130.18" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="D" data-x="0.966266" data-y="0.845483"/>
+<text x="57.2" y="124.7" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">D</text>
+</svg>
+<!--/svg:f045a-->
+  <figcaption>図2　\( \mathrm{AB}&gt;\mathrm{AC} \) の △ABC。辺 AB 上に \( \mathrm{AD}=\mathrm{AC} \) となる点 D をとる（同じ数の短い線は等しい長さ）。\( \angle\mathrm{ADC}=\angle\mathrm{ACD} \)（1本の弧）、∠B は2本の弧（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">証明（大きい辺に向かい合う角は大きい）</p>
+  <p><strong class="tag">仮定</strong>　△ABC で \( \mathrm{AB}&gt;\mathrm{AC} \)。<br><strong class="tag">結論</strong>　\( \angle\mathrm{C}&gt;\angle\mathrm{B} \)（\( \angle\mathrm{ACB}&gt;\angle\mathrm{ABC} \)）。</p>
+  <div class="step">ステップ1（点をとる）：\( \mathrm{AB}&gt;\mathrm{AC} \) なので、辺 AB 上（A と B の間）に \( \mathrm{AD}=\mathrm{AC} \) となる点 D をとることができる（図2）。</div>
+  <div class="step">ステップ2（二等辺三角形）：△ADC は \( \mathrm{AD}=\mathrm{AC} \) の二等辺三角形なので、底角は等しく \( \angle\mathrm{ADC}=\angle\mathrm{ACD} \)（中2-060）。</div>
+  <div class="step">ステップ3（外角）：∠ADC は △DBC の頂点 D における外角なので、\( \angle\mathrm{ADC}=\angle\mathrm{DBC}+\angle\mathrm{DCB}&gt;\angle\mathrm{DBC}=\angle\mathrm{B} \)（中2-048）。</div>
+  <div class="step">ステップ4（角を分ける）：D は辺 AB 上にあるので、線分 CD は ∠ACB の内部を通り、\( \angle\mathrm{ACB}=\angle\mathrm{ACD}+\angle\mathrm{DCB}&gt;\angle\mathrm{ACD} \)。</div>
+  <div class="step">ステップ5（つなげる）：\( \angle\mathrm{C}=\angle\mathrm{ACB}&gt;\angle\mathrm{ACD}=\angle\mathrm{ADC}&gt;\angle\mathrm{B} \)。よって \( \angle\mathrm{C}&gt;\angle\mathrm{B} \)。（証明終わり）</div>
+</div>
+<p>証明のポイントは、長い辺 AB の上に短い辺 AC と同じ長さをとって、二等辺三角形をつくったことです。二等辺三角形の底角（∠ACD）を間にはさんで、∠C と ∠B をくらべました。</p>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="逆も成り立つ"><span class="num">4</span>逆も成り立つ：大きい角に向かい合う辺は大きい</h2>
+<p>3節の命題の逆「\( \angle\mathrm{C}&gt;\angle\mathrm{B} \) ならば \( \mathrm{AB}&gt;\mathrm{AC} \)」は成り立つでしょうか。逆はいつも成り立つとは限らない（中2-063）ので、証明します。</p>
+<div class="box example worked">
+  <p class="box-title">証明（大きい角に向かい合う辺は大きい）</p>
+  <p><strong class="tag">仮定</strong>　△ABC で \( \angle\mathrm{C}&gt;\angle\mathrm{B} \)。<br><strong class="tag">結論</strong>　\( \mathrm{AB}&gt;\mathrm{AC} \)。</p>
+  <div class="step">ステップ1（背理法）：結論が成り立たない、つまり \( \mathrm{AB}\leqq\mathrm{AC} \) と仮定する。このとき \( \mathrm{AB}=\mathrm{AC} \) か \( \mathrm{AB}&lt;\mathrm{AC} \) のどちらかである。</div>
+  <div class="step">ステップ2（等しい場合）：\( \mathrm{AB}=\mathrm{AC} \) なら、二等辺三角形の底角は等しい（中2-060）ので \( \angle\mathrm{C}=\angle\mathrm{B} \)。これは仮定 \( \angle\mathrm{C}&gt;\angle\mathrm{B} \) に矛盾する。</div>
+  <div class="step">ステップ3（小さい場合）：\( \mathrm{AB}&lt;\mathrm{AC} \) なら、3節で証明した性質（B と C の役割を入れかえて、\( \mathrm{AC}&gt;\mathrm{AB} \) ならば \( \angle\mathrm{B}&gt;\angle\mathrm{C} \)）より \( \angle\mathrm{B}&gt;\angle\mathrm{C} \)。これも仮定に矛盾する。</div>
+  <div class="step">ステップ4（結論）：どちらの場合も矛盾するので、仮定 \( \mathrm{AB}\leqq\mathrm{AC} \) は誤りで、\( \mathrm{AB}&gt;\mathrm{AC} \) である。（証明終わり）</div>
+</div>
+<p>この証明では、示したい逆の命題そのものは使っていません。使ったのは、3節で証明した性質と二等辺三角形の底角の性質（中2-060）です。起こりうる場合（\( \mathrm{AB}=\mathrm{AC} \)、\( \mathrm{AB}&lt;\mathrm{AC} \)）を1つずつ否定して、残った場合（\( \mathrm{AB}&gt;\mathrm{AC} \)）に決まりました。</p>
+<div class="box point">
+  <p class="box-title">三角形の辺と角の大小関係</p>
+  <p>△ABC で、\( a=\mathrm{BC} \)、\( b=\mathrm{CA} \)、\( c=\mathrm{AB} \) とする。次の式の「\( \iff \)」は、このページでは「左の式が成り立てば右の式も成り立ち、右の式が成り立てば左の式も成り立つ」ことを表す記号として使います。</p>
+  $$ a&gt;b \iff \angle\mathrm{A}&gt;\angle\mathrm{B},\qquad a=b \iff \angle\mathrm{A}=\angle\mathrm{B},\qquad a&lt;b \iff \angle\mathrm{A}&lt;\angle\mathrm{B} $$
+  <p>辺の大小と、それに向かい合う角の大小は一致する（ほかの2組の辺と角についても同じ）。</p>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の問いの答え）</p>
+  <p>図1の △ABC（\( \mathrm{AB}=7 \)、\( \mathrm{BC}=5 \)、\( \mathrm{CA}=4 \)）で、3つの角を大きい順に並べなさい。</p>
+  <div class="step">着眼点：それぞれの辺に向かい合う角を確かめます。AB は ∠C、BC は ∠A、CA は ∠B と向かい合います。</div>
+  <div class="step">辺の大小は \( \mathrm{AB}&gt;\mathrm{BC}&gt;\mathrm{CA} \)（\( 7&gt;5&gt;4 \)）。</div>
+  <div class="step">答え：向かい合う角も同じ順なので \( \angle\mathrm{C}&gt;\angle\mathrm{A}&gt;\angle\mathrm{B} \)。いちばん大きい角は、いちばん長い辺 AB に向かい合う ∠C です。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（角から辺の大小を決める）</p>
+  <p>△ABC で \( \angle\mathrm{A}=50^\circ \)、\( \angle\mathrm{B}=60^\circ \) です。3つの辺を長い順に並べなさい。</p>
+  <div class="step">着眼点：まず残りの角を求めます。\( \angle\mathrm{C}=180^\circ-50^\circ-60^\circ=70^\circ \)。</div>
+  <div class="step">角の大小は \( \angle\mathrm{C}&gt;\angle\mathrm{B}&gt;\angle\mathrm{A} \)。向かい合う辺は ∠C に AB、∠B に CA、∠A に BC。</div>
+  <div class="step">答え：\( \mathrm{AB}&gt;\mathrm{CA}&gt;\mathrm{BC} \)。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 向かい合う角でなく、その辺の端にある角とくらべる：AB がいちばん長いとき、大きいのは AB の両端の ∠A や ∠B ではなく、向かい合う ∠C です。<br>② 角の大きさと辺の長さが比例すると考える：大小の順番は一致しますが、比は一致しません。たとえば \( 30^\circ \)、\( 60^\circ \)、\( 90^\circ \) の三角形の辺の比は \( 1:\sqrt{3}:2 \)（中3-101）で、\( 1:2:3 \) ではありません。<br>③ 逆の証明で、示したい命題を根拠に使う：4節の証明では、3節の性質と二等辺三角形の底角の性質だけを使います。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="証明に用いる"><span class="num">5</span>辺と角の大小関係を証明に用いる</h2>
+<figure>
+<!--svg:f045b-->
+<svg viewBox="0 0 218 254" width="218" role="img" aria-label="三角形 ABC の辺 BA を A の先に延ばし（灰の点線）、AD=AC となる点 D をとって C と D を結ぶ（灰の破線）。角 ACD と角 ADC は等しい（1本の弧）" data-fig="f045b" data-s="30.000000" data-ox="26.500000" data-oy="229.533435">
+<line x1="86.5" y1="139.5" x2="163.2" y2="24.5" stroke="#8a99a8" stroke-width="1.4" stroke-dasharray="2 3" data-seg="AD"/>
+<line x1="86.5" y1="139.5" x2="26.5" y2="229.5" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="26.5" y1="229.5" x2="191.5" y2="229.5" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="191.5" y1="229.5" x2="86.5" y2="139.5" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="191.5" y1="229.5" x2="163.2" y2="24.5" stroke="#8a99a8" stroke-width="1.4" stroke-dasharray="5 3" data-seg="CD"/>
+<path d="M120.7,79.2 L129,84.8" fill="none" stroke="currentColor" stroke-width="1.4" data-tick="A,D" data-mark="1"/>
+<path d="M142.3,180.7 L135.7,188.3" fill="none" stroke="currentColor" stroke-width="1.4" data-tick="A,C" data-mark="1"/>
+<path d="M165.7,42.3 A18,18 0 0 1 153.2,39.4" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="D,A,C" data-mark="1"/>
+<path d="M171.8,212.6 A26,26 0 0 1 187.9,203.8" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="C,A,D" data-mark="1"/>
+<circle cx="86.50" cy="139.53" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="2.000000" data-y="3.000000"/>
+<text x="73.3" y="138.9" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="26.50" cy="229.53" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="13.3" y="238.5" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="191.50" cy="229.53" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="5.500000" data-y="0.000000"/>
+<text x="203.6" y="240.7" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="163.21" cy="24.47" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="D" data-x="4.557042" data-y="6.835562"/>
+<text x="158.8" y="16.5" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">D</text>
+</svg>
+<!--/svg:f045b-->
+  <figcaption>図3　辺 BA を A の先に延ばし（灰の点線）、\( \mathrm{AD}=\mathrm{AC} \) となる点 D をとる。\( \angle\mathrm{ACD}=\angle\mathrm{ADC} \)（1本の弧）（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題3（2辺の和は残りの辺より大きい：別の証明）</p>
+  <p>△ABC で \( \mathrm{AB}+\mathrm{AC}&gt;\mathrm{BC} \) であることを、辺と角の大小関係を用いて証明しなさい（数Ａ-044 では三平方の定理を用いて証明しました）。</p>
+  <div class="step">ステップ1（点をとる）：辺 BA を A の先に延ばし、\( \mathrm{AD}=\mathrm{AC} \) となる点 D をとる（図3）。A は線分 BD 上にあり、\( \mathrm{BD}=\mathrm{AB}+\mathrm{AD}=\mathrm{AB}+\mathrm{AC} \)。</div>
+  <div class="step">ステップ2（二等辺三角形）：△ACD は \( \mathrm{AD}=\mathrm{AC} \) の二等辺三角形なので \( \angle\mathrm{ACD}=\angle\mathrm{ADC} \)（中2-060）。</div>
+  <div class="step">ステップ3（角をくらべる）：A は線分 BD 上にあるので、線分 CA は ∠BCD の内部を通り、\( \angle\mathrm{BCD}=\angle\mathrm{BCA}+\angle\mathrm{ACD}&gt;\angle\mathrm{ACD}=\angle\mathrm{ADC}=\angle\mathrm{BDC} \)。</div>
+  <div class="step">ステップ4（辺と角の大小）：△BCD で \( \angle\mathrm{BCD}&gt;\angle\mathrm{BDC} \) なので、大きい角に向かい合う辺は大きく（4節）、\( \mathrm{BD}&gt;\mathrm{BC} \)。すなわち \( \mathrm{AB}+\mathrm{AC}&gt;\mathrm{BC} \)。（証明終わり）</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（直角三角形・鈍角三角形のいちばん長い辺）</p>
+  <p>(1) 直角三角形では、斜辺がいちばん長いことを示しなさい。(2) 鈍角三角形では、鈍角に向かい合う辺がいちばん長いことを示しなさい。</p>
+  <div class="step">(1) ∠C＝90° とすると、内角の和より \( \angle\mathrm{A}+\angle\mathrm{B}=90^\circ \) なので、∠A、∠B はどちらも 90° より小さい。∠C がいちばん大きい角なので、向かい合う辺 AB（斜辺）がいちばん長い（4節）。</div>
+  <div class="step">(2) ∠C が鈍角（90° より大きい）とすると、\( \angle\mathrm{A}+\angle\mathrm{B}=180^\circ-\angle\mathrm{C}&lt;90^\circ \) なので、∠A、∠B は ∠C より小さい。よって向かい合う辺 AB がいちばん長い。</div>
+  <div class="step">見方を変えると、鈍角があるとすれば、それはいちばん長い辺に向かい合う角です。数Ⅰ-071 で「最も長い辺の向かいの角だけ調べればよい」と余弦定理で確かめたことは、この性質からも分かります。</div>
+</div>
+<figure>
+<!--svg:f045c-->
+<svg viewBox="0 0 260 184" width="260" role="img" aria-label="AB=AC の二等辺三角形 ABC と、辺 BC 上の点 D。角 B と角 C は等しい（1本の弧）。角 ADB は2本の弧" data-fig="f045c" data-s="34.000000" data-ox="28.000000" data-oy="160.000000">
+<line x1="130" y1="24" x2="28" y2="160" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="28" y1="160" x2="232" y2="160" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="232" y1="160" x2="130" y2="24" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="130" y1="24" x2="170.8" y2="160" stroke="#8a99a8" stroke-width="1.4" stroke-dasharray="5 3" data-seg="AD"/>
+<path d="M83,95 L75,89" fill="none" stroke="currentColor" stroke-width="1.4" data-tick="A,B" data-mark="1"/>
+<path d="M185,89 L177,95" fill="none" stroke="currentColor" stroke-width="1.4" data-tick="A,C" data-mark="1"/>
+<path d="M40,144 A20,20 0 0 1 48,160" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="B,C,A" data-mark="1"/>
+<path d="M212,160 A20,20 0 0 1 220,144" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="C,A,B" data-mark="1"/>
+<path d="M156.8,160 A14,14 0 0 1 166.8,146.6 M153.2,160 A17.6,17.6 0 0 1 165.7,143.1" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="D,A,B" data-mark="2"/>
+<circle cx="130.00" cy="24.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="3.000000" data-y="4.000000"/>
+<text x="130" y="15.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="28.00" cy="160.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="14.8" y="169" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="232.00" cy="160.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="6.000000" data-y="0.000000"/>
+<text x="245.2" y="169" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="170.80" cy="160.00" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="D" data-x="4.200000" data-y="0.000000"/>
+<text x="178.3" y="177.2" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">D</text>
+</svg>
+<!--/svg:f045c-->
+  <figcaption>図4　\( \mathrm{AB}=\mathrm{AC} \) の二等辺三角形 ABC と、辺 BC 上の点 D。\( \angle\mathrm{B}=\angle\mathrm{C} \)（1本の弧）、∠ADB は2本の弧（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題5（二等辺三角形の底辺上の点）</p>
+  <p>\( \mathrm{AB}=\mathrm{AC} \) の二等辺三角形 ABC の辺 BC 上に点 D（B、C 以外）をとります。\( \mathrm{AD}&lt;\mathrm{AB} \) であることを証明しなさい。</p>
+  <div class="step">ステップ1（外角）：∠ADB は △ADC の頂点 D における外角なので、\( \angle\mathrm{ADB}=\angle\mathrm{DAC}+\angle\mathrm{C}&gt;\angle\mathrm{C} \)（中2-048）。</div>
+  <div class="step">ステップ2（二等辺三角形）：\( \mathrm{AB}=\mathrm{AC} \) なので \( \angle\mathrm{C}=\angle\mathrm{B} \)（中2-060）。よって \( \angle\mathrm{ADB}&gt;\angle\mathrm{B}=\angle\mathrm{ABD} \)。</div>
+  <div class="step">ステップ3（辺と角の大小）：△ABD で、∠ADB に向かい合う辺は AB、∠ABD に向かい合う辺は AD なので、大きい角に向かい合う辺は大きく、\( \mathrm{AB}&gt;\mathrm{AD} \)。（証明終わり）</div>
+</div>
+<p class="small">三角形の辺と角の大小関係は、学習指導要領の解説の数学Ａの項には明記がなく（†）、教科書によって扱いが異なります。第一学習社『よくわかる 新編数学Ａ』の編修趣意書は「三角形の辺と角の大小関係、三角形の 3 辺の大小関係に関する内容を扱い」と述べています（p.72‐73）。数研出版の『改訂版 数学Ａ』『改訂版 高等学校 数学A』『改訂版 最新 数学A』では、本文の外の「研究」（『改訂版 最新 数学A』の編修趣意書の説明では「やや程度の高い内容」）として扱われています（『改訂版 数学Ａ』はシラバス、ほかの2冊は編修趣意書による）。</p>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>三角形の辺と角の大小関係</dt><dd>三角形で、辺の大小とそれに向かい合う角の大小は一致する。大きい辺に向かい合う角は大きく、大きい角に向かい合う辺は大きい。</dd>
+    <dt>向かい合う辺と角</dt><dd>△ABC で、辺 BC（\( a \)）と ∠A、辺 CA（\( b \)）と ∠B、辺 AB（\( c \)）と ∠C が向かい合う。</dd>
+    <dt>三角形の外角の性質</dt><dd>外角は隣り合わない2つの内角の和に等しく、そのどちらよりも大きい（中2-048）。</dd>
+    <dt>二等辺三角形の底角</dt><dd>等しい2辺に向かい合う2つの角は等しい（中2-060）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>\( \mathrm{AB}&gt;\mathrm{AC} \) ならば \( \angle\mathrm{C}&gt;\angle\mathrm{B} \)。長い辺の上に短い辺と同じ長さをとって二等辺三角形をつくり、底角と外角の性質で示す（O1）。</li>
+    <li>逆の \( \angle\mathrm{C}&gt;\angle\mathrm{B} \) ならば \( \mathrm{AB}&gt;\mathrm{AC} \) も成り立つ（AB＝AC、AB＜AC の場合を否定する）。辺の大小と向かい合う角の大小は一致するので、辺から角の順、角から辺の順が分かる（O2）。</li>
+    <li>この関係を使うと、2辺の和は残りの辺より大きいこと、直角・鈍角に向かい合う辺がいちばん長いこと、二等辺三角形の底辺上の点と頂点の距離が等しい辺より短いことなどを証明できる（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">三角形の辺と角の大小関係（\( a=\mathrm{BC} \)、\( b=\mathrm{CA} \)、\( c=\mathrm{AB} \)）</span>
+  <p>\( a&gt;b \) と \( \angle\mathrm{A}&gt;\angle\mathrm{B} \) は同じ。\( a=b \) と \( \angle\mathrm{A}=\angle\mathrm{B} \)、\( a&lt;b \) と \( \angle\mathrm{A}&lt;\angle\mathrm{B} \) も同じ（ほかの2組の辺と角も同じ）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。角を答える問題は「B」または「∠B」のように入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O2</span></div>
+  <p>△ABC で \( \mathrm{BC}=6 \)、\( \mathrm{CA}=8 \)、\( \mathrm{AB}=5 \) です。いちばん大きい角はどれですか。</p>
+  <div class="choices">
+    <button>∠A</button>
+    <button data-correct="true">∠B</button>
+    <button>∠C</button>
+    <button>角度を測らないと決められない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">いちばん長い辺は CA（8）で、CA に向かい合う角は ∠B なので、∠B がいちばん大きい角です。∠A と ∠C は、いちばん長い辺 CA の両端にある角で、向かい合う角ではありません（∠A は BC＝6、∠C は AB＝5 と向かい合います）。辺の大小と向かい合う角の大小は一致するので、測らなくても決められます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>△ABC で \( \angle\mathrm{A}=45^\circ \)、\( \angle\mathrm{B}=75^\circ \) です。3つの辺を長い順に並べたものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \mathrm{CA}&gt;\mathrm{AB}&gt;\mathrm{BC} \)</button>
+    <button>\( \mathrm{BC}&gt;\mathrm{AB}&gt;\mathrm{CA} \)</button>
+    <button>\( \mathrm{CA}&gt;\mathrm{BC}&gt;\mathrm{AB} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \angle\mathrm{C}=180^\circ-45^\circ-75^\circ=60^\circ \) なので \( \angle\mathrm{B}&gt;\angle\mathrm{C}&gt;\angle\mathrm{A} \)。向かい合う辺の順も同じで、∠B に CA、∠C に AB、∠A に BC が向かい合うので \( \mathrm{CA}&gt;\mathrm{AB}&gt;\mathrm{BC} \) です。2つ目は大小を逆にしています。3つ目は ∠C を求めずに、AB をいちばん短いとした誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="A|∠A|角A">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>\( \mathrm{AB}=\mathrm{AC} \) の二等辺三角形 ABC で、底辺 BC が AB より短いとき、∠A、∠B、∠C のうちいちばん小さい角はどれですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は ∠A。3辺は \( \mathrm{AB}=\mathrm{AC}&gt;\mathrm{BC} \) なので、いちばん短い辺 BC に向かい合う ∠A がいちばん小さい角です（∠B＝∠C は ∠A より大きい）。∠B や ∠C と答えた場合は、短い辺 BC の両端の角と、向かい合う角を取り違えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>∠C＝90° の直角三角形 ABC で、斜辺 AB がいちばん長い理由として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>AB が直角の頂点 C から最も離れているから。</button>
+    <button>\( \mathrm{AB}^2=\mathrm{BC}^2+\mathrm{CA}^2 \) なので、AB は BC と CA の和に等しいから。</button>
+    <button data-correct="true">\( \angle\mathrm{A}+\angle\mathrm{B}=90^\circ \) なので ∠C がいちばん大きい角で、大きい角に向かい合う辺は大きいから。</button>
+    <button>直角三角形はいつも二等辺三角形だから。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">内角の和より \( \angle\mathrm{A}+\angle\mathrm{B}=90^\circ \) なので、∠A、∠B は 90° より小さく、∠C がいちばん大きい角です。大きい角に向かい合う辺は大きいので、∠C に向かい合う AB がいちばん長くなります（例題4）。1つ目は理由になっていません。2つ目は三平方の定理の読み違いで、2乗の和が等しいのであり、長さの和は等しくありません（\( \mathrm{AB}&lt;\mathrm{BC}+\mathrm{CA} \)）。4つ目は誤りで、直角二等辺三角形は直角三角形の一部です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>4節で「\( \angle\mathrm{C}&gt;\angle\mathrm{B} \) ならば \( \mathrm{AB}&gt;\mathrm{AC} \)」を証明したとき、\( \mathrm{AB}&lt;\mathrm{AC} \) の場合を否定するのに使った根拠はどれですか。</p>
+  <div class="choices">
+    <button>示そうとしている「大きい角に向かい合う辺は大きい」そのもの</button>
+    <button>二等辺三角形の底角は等しいこと</button>
+    <button>三平方の定理</button>
+    <button data-correct="true">3節で証明した「大きい辺に向かい合う角は大きい」</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \mathrm{AC}&gt;\mathrm{AB} \) なら、3節の性質より \( \angle\mathrm{B}&gt;\angle\mathrm{C} \) となり、仮定に矛盾します。1つ目は、示そうとしている命題を根拠に使っていて、証明になりません。2つ目は \( \mathrm{AB}=\mathrm{AC} \) の場合を否定するのに使った根拠です。3つ目は使っていません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2</span></div>
+  <p>\( \angle\mathrm{A}=30^\circ \)、\( \angle\mathrm{B}=60^\circ \)、\( \angle\mathrm{C}=90^\circ \) の △ABC で、\( \mathrm{BC}:\mathrm{CA}:\mathrm{AB} \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 1:2:3 \)</button>
+    <button data-correct="true">\( 1:\sqrt{3}:2 \)</button>
+    <button>\( 2:\sqrt{3}:1 \)</button>
+    <button>\( 3:2:1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">30°・60°・90° の直角三角形の辺の比は、30° に向かい合う辺：60° に向かい合う辺：斜辺＝\( 1:\sqrt{3}:2 \) です（中3-101）。BC は ∠A（30°）、CA は ∠B（60°）、AB は ∠C（90°）と向かい合うので \( 1:\sqrt{3}:2 \)。大小の順（\( 1&lt;\sqrt{3}&lt;2 \)）は角の順と一致しています。\( 1:2:3 \) は角の比をそのまま辺の比にした誤りで、辺と角は大小の順は一致しますが、比例はしません。\( 2:\sqrt{3}:1 \) と \( 3:2:1 \) は大小を逆にしています。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="C|∠C|角C">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>3辺が \( \mathrm{BC}=4 \)、\( \mathrm{CA}=5 \)、\( \mathrm{AB}=8 \) の △ABC は鈍角三角形です（\( 4^2+5^2&lt;8^2 \)、数Ⅰ-071）。鈍角になっているのはどの角ですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は ∠C。鈍角は1つの三角形に1つまでで、残りの2つの角より大きいので、いちばん大きい角です。いちばん大きい角は、いちばん長い辺 AB（8）に向かい合う ∠C です（例題4）。∠A や ∠B と答えた場合は、AB の両端の角と向かい合う角を取り違えています。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O3</span></div>
+  <p>△ABC の辺 BC 上に点 D（B、C 以外）をとります。AD は、AB と AC のうち長いほう（等しいときはその長さ）より短いことを、仮定・結論・根拠を明らかにして証明しなさい。（ヒント：∠ADB と ∠ADC のどちらかは 90° 以上）</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　仮定：D は △ABC の辺 BC 上の点（B、C 以外）。結論：\( \mathrm{AD}&lt;\mathrm{AB} \) または \( \mathrm{AD}&lt;\mathrm{AC} \) で、とくに AD は AB と AC の長いほうより短い。<br>B、D、C は一直線上にあるので \( \angle\mathrm{ADB}+\angle\mathrm{ADC}=180^\circ \)。よって、どちらかは 90° 以上である。<br>\( \angle\mathrm{ADB}\geqq90^\circ \) のとき、△ABD の内角の和は 180° なので \( \angle\mathrm{ABD}&lt;90^\circ\leqq\angle\mathrm{ADB} \)。大きい角に向かい合う辺は大きいので、∠ADB に向かい合う AB は、∠ABD に向かい合う AD より大きく、\( \mathrm{AD}&lt;\mathrm{AB} \)。<br>\( \angle\mathrm{ADC}\geqq90^\circ \) のときも同じように、△ACD で \( \mathrm{AD}&lt;\mathrm{AC} \)。<br>どちらの場合も、AD は AB と AC の長いほうより短い。（証明終わり）</p>
+    <p><strong>採点の観点</strong>　① ∠ADB＋∠ADC＝180° から、どちらかが 90° 以上であることを示している。② その角を含む三角形で、残りの角が 90° より小さいことを内角の和から示している。③ 「大きい角に向かい合う辺は大きい」を根拠に、向かい合う辺を正しく対応させて \( \mathrm{AD}&lt;\mathrm{AB} \)（または \( \mathrm{AD}&lt;\mathrm{AC} \)）を導いている。</p>
+  </div>
+  <div class="explain">例題5は AB＝AC の場合でした。一般の三角形では、∠ADB と ∠ADC の大きいほうに注目すると、その角がその三角形のいちばん大きい角になります。辺と角の大小関係を使うときは、「どの角とどの辺が向かい合うか」を毎回確かめましょう。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2</span></div>
+  <p>3つの駅 A、B、C をまっすぐな線路で結んだ路線図があります（学習用の架空の場面）。地図上で角度を測ると \( \angle\mathrm{A}=40^\circ \)、\( \angle\mathrm{B}=65^\circ \)、\( \angle\mathrm{C}=75^\circ \) でした。</p>
+  <p>太郎：「距離は地図の縮尺を調べないと分からないから、どの区間が長いかも分からないね。」<br>花子：「長さの順番だけなら、角度から分かるよ。」</p>
+  <p>3つの区間を長い順に並べたものはどれですか。</p>
+  <div class="choices">
+    <button>\( \mathrm{BC}&gt;\mathrm{CA}&gt;\mathrm{AB} \)</button>
+    <button>\( \mathrm{AB}&gt;\mathrm{BC}&gt;\mathrm{CA} \)</button>
+    <button data-correct="true">\( \mathrm{AB}&gt;\mathrm{CA}&gt;\mathrm{BC} \)</button>
+    <button>縮尺が分からないので、順番も決められない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">角の大小は \( \angle\mathrm{C}&gt;\angle\mathrm{B}&gt;\angle\mathrm{A} \) で、向かい合う辺は ∠C に AB、∠B に CA、∠A に BC なので、\( \mathrm{AB}&gt;\mathrm{CA}&gt;\mathrm{BC} \) です。地図は実際の形の縮図なので、角の大きさは実際と同じで、辺の大小の順も実際と同じです（相似、中3-064）。1つ目は大小を逆にしています。2つ目は ∠B に向かい合う辺を BC と取り違えています。4つ目は、長さそのものは分からなくても、順番は辺と角の大小関係から決まることを見落としています。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(1) 図形の性質」のア(ア)「三角形に関する基本的な性質について理解すること」とイ(ア)「図形の構成要素間の関係や既に学習した図形の性質に着目し，図形の新たな性質を見いだし，その性質について論理的に考察したり説明したりすること」に関わり、出題範囲に含まれます。三角形の辺と角の大小関係そのものは、学習指導要領の解説の数学Ａの項には明記がなく、教科書によって扱いが異なる内容です（†、5節の最後を参照）。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「解決過程を振り返り，得られた結果を意味づけたり，活用したり，統合的・発展的に考察したりすることなどを求める」としています。数Ａ-044 と別の方法で同じ性質を証明する（例題3）ことは、こうした考察の練習になります。</p>
+  <p class="small">問9は日常の場面と会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">三角形の性質の練習（数Ａ-046）</p>
+  <p>次の時間は、数Ａ-035 からこの時間までに学んだ三角形の性質（内分・外分、角の二等分線と辺の比、外心・内心・重心、チェバの定理・メネラウスの定理、面積比、三角形の成立条件、辺と角の大小）を使い分けて、線分の長さや比、面積比、角の大きさを求める練習をします。新しい性質は学びません。</p>
+  <p>この時間では、正弦定理・余弦定理を使った辺の長さや角の大きさの計算（数Ⅰ-068〜072 で学んだ内容）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-044　三角形が成立するための条件</div>
+  <div><span class="label">次の時間</span>数Ａ-046　三角形の性質の練習</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-045「三角形の辺と角の大小」（学習指導要領 数学Ａ (1)ア(ア)・イ(ア)、解説 p.90。† 解説に明記がなく教科書で扱われている内容を含む行）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(1) 図形の性質（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.89-90（三角形に関する基本的な性質の扱い。三角形の辺と角の大小関係の明記はない＝†）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>教科書編修趣意書 数学Ａ『よくわかる 新編数学Ａ』（数Ａ183-901）（「三角形の辺と角の大小関係、三角形の 3 辺の大小関係に関する内容を扱い」p.72‐73）（第一学習社、文部科学省公開）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-40.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」（「三角形の存在条件や，辺と角の大小関係について理解している」p.96〜97 研究、「三角形の辺と角の大小関係という明らかに見える性質を，論理的に考察しようとする」p.97 研究）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>教科書編修趣意書 数学Ａ『改訂版 高等学校 数学A』（数Ａ104-903）（「“三角形の辺と角”は後半で研究として取り上げた」）（数研出版、文部科学省公開）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-36.pdf</li>
+    <li>教科書編修趣意書 数学Ａ『改訂版 最新 数学A』（数Ａ104-905）（「研究」…… やや程度の高い内容「三角形の辺と角（74，75 ページ）」）（数研出版、文部科学省公開）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-38.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・図はこのページのために作成したものです（出典を示したものを除く）。問9の路線図は学習用の架空の場面です。「⇔」はこのページでの書き方です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-045",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-045",
+  "title": "三角形の辺と角の大小",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-2", "title": "図形の性質"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ア)", "(1)イ(ア)"],
+  "kaisetsu_page": "90",
+  "objectives": [
+    {"id": "O1", "text": "△ABC で \\( \\mathrm{AB}>\\mathrm{AC} \\) ならば \\( \\angle\\mathrm{C}>\\angle\\mathrm{B} \\) であることを、二等辺三角形の底角と三角形の外角の性質を用いて証明できる。", "from": "三角形の辺の大小とそれに向かい合う角の大小が一致することを理解し", "sections": ["sec-1"], "checks": ["q1", "q3"]},
+    {"id": "O2", "text": "逆（\\( \\angle\\mathrm{C}>\\angle\\mathrm{B} \\) ならば \\( \\mathrm{AB}>\\mathrm{AC} \\)）を、起こりうる場合をすべて調べて証明し、辺の大小とそれに向かい合う角の大小が一致することを使って、三角形の辺や角の大小を比べることができる。", "from": "三角形の辺の大小とそれに向かい合う角の大小が一致することを理解し", "sections": ["sec-2"], "checks": ["q1", "q2", "q3", "q5", "q6", "q9"]},
+    {"id": "O3", "text": "辺と角の大小関係を用いて、2辺の和が残りの辺より大きいことや、直角三角形の斜辺がいちばん長いことなどの図形の性質を証明できる。", "from": "証明に用いることができる", "sections": ["sec-3"], "checks": ["q4", "q7", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "三角形の辺と角の大小関係", "where": "sec-2"},
+    {"term": "向かい合う辺と角", "where": "review"},
+    {"term": "三角形の外角の性質", "where": "sec-1"},
+    {"term": "二等辺三角形の底角", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "二等辺三角形の底角は等しい", "taught_in": ["jhs_math/中2-060"], "gap": false, "where": "review"},
+    {"concept": "2つの角が等しい三角形は二等辺三角形", "taught_in": ["jhs_math/中2-062"], "gap": false, "where": "review"},
+    {"concept": "三角形の内角の和・外角の性質", "taught_in": ["jhs_math/中2-048"], "gap": false, "where": "review"},
+    {"concept": "逆と反例", "taught_in": ["jhs_math/中2-063"], "gap": false, "where": "sec-2"},
+    {"concept": "背理法", "taught_in": ["hs_math_1a/数Ⅰ-029"], "gap": false, "where": "review"},
+    {"concept": "辺の記号 a=BC、b=CA、c=AB", "taught_in": ["hs_math_1a/数Ⅰ-068"], "gap": false, "where": "review"},
+    {"concept": "三角形が成立するための条件（3辺の長さの範囲）と、2辺の和は残りの辺より大きいこと", "taught_in": ["hs_math_1a/数Ａ-044"], "gap": false, "where": "review"},
+    {"concept": "30°・60°・90° の直角三角形の辺の比", "taught_in": ["jhs_math/中3-101"], "gap": false, "where": "sec-2"},
+    {"concept": "辺の長さの関係から鈍角三角形かを判断すること（a² と b²+c² の大小）", "taught_in": ["hs_math_1a/数Ⅰ-071"], "gap": false, "where": "sec-3"},
+    {"concept": "相似な図形では角の大きさが等しく、辺の比が等しい（問9の地図）", "taught_in": ["jhs_math/中3-064"], "gap": false, "where": "quiz"}
+  ],
+  "out_of_scope": [
+    "正弦定理・余弦定理を用いた辺の長さ・角の大きさの計算（数Ⅰ-068〜072 で扱った）",
+    "角の大きさと辺の長さの比の関係（a:b:c=sin A:sin B:sin C、数Ⅰ-069）の詳しい扱い（問6の注意で比例しないことを述べるだけにした）",
+    "三角形の性質を組み合わせた練習（数Ａ-046）"
+  ],
+  "selection_reason": "数学Ａ 単元『図形の性質』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(1)ア(ア)・イ(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.89-90 三角形に関する基本的な性質の扱い。数学Ａの項に三角形の辺と角の大小関係の明記はない（†）（保存本文：sources/text/hs_kaisetsu_math.txt）"},
+    {"name": "教科書編修趣意書 数学Ａ『よくわかる 新編数学Ａ』（数Ａ183-901）", "publisher": "第一学習社（文部科学省公開）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-40.pdf", "use": "「三角形の辺と角の大小関係、三角形の 3 辺の大小関係に関する内容を扱い」（p.72‐73）＝教科書で扱われていることの確認（保存本文：sources/text/hensyu_第一学習社_数A183-901.txt）"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "辺と角の大小関係が p.96〜97 の「研究」であること（保存本文：sources/text/suken_syllabus_suakai.txt）"},
+    {"name": "教科書編修趣意書 数学Ａ『改訂版 高等学校 数学A』（数Ａ104-903）", "publisher": "数研出版（文部科学省公開）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-36.pdf", "use": "「“三角形の辺と角”は後半で研究として取り上げた」（保存本文：sources/text/hensyu_数研出版_数A104-903.txt）"},
+    {"name": "教科書編修趣意書 数学Ａ『改訂版 最新 数学A』（数Ａ104-905）", "publisher": "数研出版（文部科学省公開）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-38.pdf", "use": "「研究」…… やや程度の高い内容「三角形の辺と角（74，75 ページ）」（保存本文：sources/text/hensyu_数研出版_数A104-905.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>多面体｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>図形の性質</span><span>数Ａ-061</span></div>
+  <h1>多面体</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">立方体には頂点が8個、辺が12本、面が6枚あります。いろいろな多面体の頂点・辺・面の数を調べて表にすると、形が違っても成り立つ関係が見えてきます。どんな多面体なら成り立つのかも考えます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>多面体・正多面体の意味を理解し、多面体の頂点・辺・面の数を、面の形と1つの頂点に集まる面の数から重なりに注意して求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>いろいろな多面体の頂点・辺・面の数を調べて、その間に成り立つ関係（オイラーの多面体定理）を見いだし、それを使って頂点・辺・面の数を考察できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-060）</span>直線と平面の垂直</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-061）</span>多面体</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-062）</span>空間図形の性質の考察</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」、中学1年「平面図形」「空間図形」。中学1年の「いろいろな立体」（中1-092）で学んだ多面体・正多面体と、中学2年の多角形の内角の和（中2-049）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">中学校で学んだ立体（中1-092）と多角形の角（中2-049）</p>
+  <ul>
+    <li>平面だけで囲まれた立体を<strong>多面体</strong>といい、面の数によって四面体、五面体、…といいます（中1-092）。角柱・角錐は多面体で、円柱・円錐・球は多面体ではありません。</li>
+    <li>中学校では、正多面体には正四面体・正六面体（立方体）・正八面体・正十二面体・正二十面体の5種類があることを学びました（中1-092）。数Ⅰ-076 では、正四面体を「4つの面がすべて合同な正三角形である三角錐」として使いました。</li>
+    <li>\( n \) 角形の内角の和は \( 180^\circ\times(n-2) \) です（中2-049）。</li>
+  </ul>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中1-092</span></div>
+  <p>多面体でないものはどれですか。</p>
+  <div class="choices">
+    <button>三角柱</button>
+    <button>四角錐</button>
+    <button data-correct="true">円錐</button>
+    <button>立方体</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">円錐の側面は曲面で、平面だけで囲まれていないので、多面体ではありません。三角柱（5つの面）、四角錐（5つの面）、立方体（6つの面）は、どれも平面だけで囲まれた多面体です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中2-049</span></div>
+  <p>正五角形の1つの内角の大きさはどれですか。</p>
+  <div class="choices">
+    <button>\( 72^\circ \)</button>
+    <button data-correct="true">\( 108^\circ \)</button>
+    <button>\( 120^\circ \)</button>
+    <button>\( 540^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">五角形の内角の和は \( 180^\circ\times(5-2)=540^\circ \) で、正五角形の5つの内角は等しいので \( 540^\circ\div5=108^\circ \) です。\( 540^\circ \) は内角の和のまま、\( 72^\circ \) は1つの外角（\( 360^\circ\div5 \)）、\( 120^\circ \) は正六角形の内角です。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中1-092・数Ⅰ-076</span></div>
+  <p>正四面体の面について正しいものはどれですか。</p>
+  <div class="choices">
+    <button>4つの面がすべて合同な正方形である。</button>
+    <button data-correct="true">4つの面がすべて合同な正三角形である。</button>
+    <button>底面が正三角形で、側面は二等辺三角形であればよい。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正四面体は、4つの面がすべて合同な正三角形である三角錐です（数Ⅰ-076）。正方形の面をもつ正多面体は立方体です。底面が正三角形で側面が二等辺三角形の三角錐は、側面が正三角形でなければ正四面体ではありません。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：頂点・辺・面の数に共通の関係はある？</h2>
+<div class="box think">
+  <p class="box-title">いろいろな多面体を数える</p>
+  <p>立方体は、頂点の数が 8、辺の数が 12、面の数が 6 です。三角柱は、頂点の数が 6、辺の数が 9、面の数が 5 です。</p>
+  <ul>
+    <li>① 正十二面体（図1）の頂点・辺・面の数は、1つずつ数えずに求められるでしょうか。</li>
+    <li>② 頂点の数・辺の数・面の数の間に、どの多面体でも成り立つ関係はあるでしょうか。立方体と三角柱で予想してみましょう。</li>
+  </ul>
+  <p>①は「3 多面体と正多面体」の例題1で、②は「4 頂点・辺・面の数の関係」で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="多面体と正多面体"><span class="num">3</span>多面体と正多面体</h2>
+<p>多面体を囲む多角形を<strong>面</strong>、2つの面が交わってできる線分を<strong>辺</strong>、辺の端の点を<strong>頂点</strong>といいます。この時間は、とくに断らない限り、へこみのない多面体を考えます。</p>
+<div class="box point">
+  <p class="box-title">へこみのない多面体（このページでの言い方）</p>
+  <p>どの面についても、その面を含む平面の片側に多面体全体があるとき、<strong>へこみのない多面体</strong>ということにします。立方体、角柱・角錐（底面がへこみのない多角形のもの）、正四面体などは、へこみのない多面体です。図2の (i) のL字形の立体は、へこみのある多面体です。</p>
+</div>
+<div class="box point">
+  <p class="box-title">正多面体（このページでの定義）</p>
+  <p>次の (ア)、(イ) を満たすへこみのない多面体を<strong>正多面体</strong>といいます。</p>
+  <p>(ア) すべての面が合同な正多角形である。<br>(イ) どの頂点にも同じ数の面が集まっている。</p>
+  <p>数Ⅰ-076 の正四面体（4つの面がすべて合同な正三角形である三角錐）は、三角錐なのでへこみがなく、どの頂点にも3つの面が集まるので、この定義の正多面体です。正多面体には、正四面体・正六面体（立方体）・正八面体・正十二面体・正二十面体の5種類があります（図1）。</p>
+</div>
+<figure>
+  <div class="fig-row">
+<!--svg:f061a-->
+<svg viewBox="0 0 150 165" width="150" role="img" aria-label="正四面体の見取図。頂点 4、面 4。見えない辺は灰の破線" data-fig="f061a1" data-yaw="20.000000" data-elev="14.000000" data-s="47.592567" data-ox="75.000000" data-oy="95.437912" data-solid="正四面体" data-faces="cab bad dac cbd">
+<line x1="103.4" y1="34.5" x2="136" y2="148.5" stroke="currentColor" stroke-width="1.6" data-edge="ab" data-hidden="0"/>
+<line x1="103.4" y1="34.5" x2="14" y2="134.7" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="ac" data-hidden="1"/>
+<line x1="103.4" y1="34.5" x2="46.6" y2="64" stroke="currentColor" stroke-width="1.6" data-edge="ad" data-hidden="0"/>
+<line x1="136" y1="148.5" x2="14" y2="134.7" stroke="currentColor" stroke-width="1.6" data-edge="bc" data-hidden="0"/>
+<line x1="136" y1="148.5" x2="46.6" y2="64" stroke="currentColor" stroke-width="1.6" data-edge="bd" data-hidden="0"/>
+<line x1="14" y1="134.7" x2="46.6" y2="64" stroke="currentColor" stroke-width="1.6" data-edge="cd" data-hidden="0"/>
+<circle cx="103.4" cy="34.5" r="1.6" fill="currentColor" data-pt="a" data-x3="1.000000" data-y3="1.000000" data-z3="1.000000"/>
+<circle cx="136" cy="148.5" r="1.6" fill="currentColor" data-pt="b" data-x3="1.000000" data-y3="-1.000000" data-z3="-1.000000"/>
+<circle cx="14" cy="134.7" r="1.6" fill="currentColor" data-pt="c" data-x3="-1.000000" data-y3="1.000000" data-z3="-1.000000"/>
+<circle cx="46.6" cy="64" r="1.6" fill="currentColor" data-pt="d" data-x3="-1.000000" data-y3="-1.000000" data-z3="1.000000"/>
+<text x="75" y="14" text-anchor="middle" font-size="12" fill="currentColor">正四面体</text>
+</svg>
+<svg viewBox="0 0 150 165" width="150" role="img" aria-label="正六面体（立方体）の見取図。頂点 8、面 6。見えない辺は灰の破線" data-fig="f061a2" data-yaw="28.000000" data-elev="20.000000" data-s="45.104360" data-ox="75.000000" data-oy="91.500000" data-solid="正六面体（立方体）" data-faces="bacd eabf caeg fbdh dcgh gefh">
+<line x1="93.6" y1="28.3" x2="93.6" y2="113" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="ab" data-hidden="1"/>
+<line x1="93.6" y1="28.3" x2="136" y2="55.5" stroke="currentColor" stroke-width="1.6" data-edge="ac" data-hidden="0"/>
+<line x1="93.6" y1="28.3" x2="14" y2="42.7" stroke="currentColor" stroke-width="1.6" data-edge="ae" data-hidden="0"/>
+<line x1="93.6" y1="113" x2="136" y2="140.3" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="bd" data-hidden="1"/>
+<line x1="93.6" y1="113" x2="14" y2="127.5" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="bf" data-hidden="1"/>
+<line x1="136" y1="55.5" x2="136" y2="140.3" stroke="currentColor" stroke-width="1.6" data-edge="cd" data-hidden="0"/>
+<line x1="136" y1="55.5" x2="56.4" y2="70" stroke="currentColor" stroke-width="1.6" data-edge="cg" data-hidden="0"/>
+<line x1="136" y1="140.3" x2="56.4" y2="154.7" stroke="currentColor" stroke-width="1.6" data-edge="dh" data-hidden="0"/>
+<line x1="14" y1="42.7" x2="14" y2="127.5" stroke="currentColor" stroke-width="1.6" data-edge="ef" data-hidden="0"/>
+<line x1="14" y1="42.7" x2="56.4" y2="70" stroke="currentColor" stroke-width="1.6" data-edge="eg" data-hidden="0"/>
+<line x1="14" y1="127.5" x2="56.4" y2="154.7" stroke="currentColor" stroke-width="1.6" data-edge="fh" data-hidden="0"/>
+<line x1="56.4" y1="70" x2="56.4" y2="154.7" stroke="currentColor" stroke-width="1.6" data-edge="gh" data-hidden="0"/>
+<circle cx="93.6" cy="28.3" r="1.6" fill="currentColor" data-pt="a" data-x3="1.000000" data-y3="1.000000" data-z3="1.000000"/>
+<circle cx="93.6" cy="113" r="1.6" fill="#8a99a8" data-pt="b" data-x3="1.000000" data-y3="1.000000" data-z3="-1.000000"/>
+<circle cx="136" cy="55.5" r="1.6" fill="currentColor" data-pt="c" data-x3="1.000000" data-y3="-1.000000" data-z3="1.000000"/>
+<circle cx="136" cy="140.3" r="1.6" fill="currentColor" data-pt="d" data-x3="1.000000" data-y3="-1.000000" data-z3="-1.000000"/>
+<circle cx="14" cy="42.7" r="1.6" fill="currentColor" data-pt="e" data-x3="-1.000000" data-y3="1.000000" data-z3="1.000000"/>
+<circle cx="14" cy="127.5" r="1.6" fill="currentColor" data-pt="f" data-x3="-1.000000" data-y3="1.000000" data-z3="-1.000000"/>
+<circle cx="56.4" cy="70" r="1.6" fill="currentColor" data-pt="g" data-x3="-1.000000" data-y3="-1.000000" data-z3="1.000000"/>
+<circle cx="56.4" cy="154.7" r="1.6" fill="currentColor" data-pt="h" data-x3="-1.000000" data-y3="-1.000000" data-z3="-1.000000"/>
+<text x="75" y="14" text-anchor="middle" font-size="12" fill="currentColor">正六面体（立方体）</text>
+</svg>
+<svg viewBox="0 0 150 165" width="150" role="img" aria-label="正八面体の見取図。頂点 6、面 8。見えない辺は灰の破線" data-fig="f061a3" data-yaw="22.000000" data-elev="16.000000" data-s="65.790619" data-ox="75.000000" data-oy="91.500000" data-solid="正八面体" data-faces="bac fab cae eaf dbc fbd dce fde">
+<line x1="136" y1="84.7" x2="75" y2="28.3" stroke="currentColor" stroke-width="1.6" data-edge="ab" data-hidden="0"/>
+<line x1="136" y1="84.7" x2="50.4" y2="74.7" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="ac" data-hidden="1"/>
+<line x1="136" y1="84.7" x2="75" y2="154.7" stroke="currentColor" stroke-width="1.6" data-edge="ae" data-hidden="0"/>
+<line x1="136" y1="84.7" x2="99.6" y2="108.3" stroke="currentColor" stroke-width="1.6" data-edge="af" data-hidden="0"/>
+<line x1="75" y1="28.3" x2="50.4" y2="74.7" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="bc" data-hidden="1"/>
+<line x1="75" y1="28.3" x2="14" y2="98.3" stroke="currentColor" stroke-width="1.6" data-edge="bd" data-hidden="0"/>
+<line x1="75" y1="28.3" x2="99.6" y2="108.3" stroke="currentColor" stroke-width="1.6" data-edge="bf" data-hidden="0"/>
+<line x1="50.4" y1="74.7" x2="14" y2="98.3" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="cd" data-hidden="1"/>
+<line x1="50.4" y1="74.7" x2="75" y2="154.7" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="ce" data-hidden="1"/>
+<line x1="14" y1="98.3" x2="75" y2="154.7" stroke="currentColor" stroke-width="1.6" data-edge="de" data-hidden="0"/>
+<line x1="14" y1="98.3" x2="99.6" y2="108.3" stroke="currentColor" stroke-width="1.6" data-edge="df" data-hidden="0"/>
+<line x1="75" y1="154.7" x2="99.6" y2="108.3" stroke="currentColor" stroke-width="1.6" data-edge="ef" data-hidden="0"/>
+<circle cx="136" cy="84.7" r="1.6" fill="currentColor" data-pt="a" data-x3="1.000000" data-y3="0.000000" data-z3="0.000000"/>
+<circle cx="75" cy="28.3" r="1.6" fill="currentColor" data-pt="b" data-x3="0.000000" data-y3="0.000000" data-z3="1.000000"/>
+<circle cx="50.4" cy="74.7" r="1.6" fill="#8a99a8" data-pt="c" data-x3="0.000000" data-y3="1.000000" data-z3="0.000000"/>
+<circle cx="14" cy="98.3" r="1.6" fill="currentColor" data-pt="d" data-x3="-1.000000" data-y3="0.000000" data-z3="0.000000"/>
+<circle cx="75" cy="154.7" r="1.6" fill="currentColor" data-pt="e" data-x3="0.000000" data-y3="0.000000" data-z3="-1.000000"/>
+<circle cx="99.6" cy="108.3" r="1.6" fill="currentColor" data-pt="f" data-x3="0.000000" data-y3="-1.000000" data-z3="0.000000"/>
+<text x="75" y="14" text-anchor="middle" font-size="12" fill="currentColor">正八面体</text>
+</svg>
+<svg viewBox="0 0 150 165" width="150" role="img" aria-label="正十二面体の見取図。頂点 20、面 12。見えない辺は灰の破線" data-fig="f061a4" data-yaw="18.000000" data-elev="14.000000" data-s="39.640203" data-ox="75.000000" data-oy="91.500000" data-solid="正十二面体" data-faces="bjakq ckaio eiajp rlbqd pjblf qkcmd smcog hrdms tnepf oieng htflr hsgnt">
+<line x1="100.5" y1="41" x2="67.4" y2="23.6" stroke="currentColor" stroke-width="1.6" data-edge="ai" data-hidden="0"/>
+<line x1="100.5" y1="41" x2="78.5" y2="74.9" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="aj" data-hidden="1"/>
+<line x1="100.5" y1="41" x2="136" y2="62.9" stroke="currentColor" stroke-width="1.6" data-edge="ak" data-hidden="0"/>
+<line x1="100.5" y1="117.9" x2="78.5" y2="74.9" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="bj" data-hidden="1"/>
+<line x1="100.5" y1="117.9" x2="67.4" y2="148.1" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="bl" data-hidden="1"/>
+<line x1="100.5" y1="117.9" x2="136" y2="110.5" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="bq" data-hidden="1"/>
+<line x1="124.9" y1="59.2" x2="136" y2="62.9" stroke="currentColor" stroke-width="1.6" data-edge="ck" data-hidden="0"/>
+<line x1="124.9" y1="59.2" x2="118.1" y2="104.4" stroke="currentColor" stroke-width="1.6" data-edge="cm" data-hidden="0"/>
+<line x1="124.9" y1="59.2" x2="82.6" y2="34.9" stroke="currentColor" stroke-width="1.6" data-edge="co" data-hidden="0"/>
+<line x1="124.9" y1="136.1" x2="118.1" y2="104.4" stroke="currentColor" stroke-width="1.6" data-edge="dm" data-hidden="0"/>
+<line x1="124.9" y1="136.1" x2="136" y2="110.5" stroke="currentColor" stroke-width="1.6" data-edge="dq" data-hidden="0"/>
+<line x1="124.9" y1="136.1" x2="82.6" y2="159.4" stroke="currentColor" stroke-width="1.6" data-edge="dr" data-hidden="0"/>
+<line x1="25.1" y1="46.9" x2="67.4" y2="23.6" stroke="currentColor" stroke-width="1.6" data-edge="ei" data-hidden="0"/>
+<line x1="25.1" y1="46.9" x2="14" y2="72.5" stroke="currentColor" stroke-width="1.6" data-edge="en" data-hidden="0"/>
+<line x1="25.1" y1="46.9" x2="31.9" y2="78.6" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="ep" data-hidden="1"/>
+<line x1="25.1" y1="123.8" x2="67.4" y2="148.1" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="fl" data-hidden="1"/>
+<line x1="25.1" y1="123.8" x2="31.9" y2="78.6" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="fp" data-hidden="1"/>
+<line x1="25.1" y1="123.8" x2="14" y2="120.1" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="ft" data-hidden="1"/>
+<line x1="49.5" y1="65.1" x2="14" y2="72.5" stroke="currentColor" stroke-width="1.6" data-edge="gn" data-hidden="0"/>
+<line x1="49.5" y1="65.1" x2="82.6" y2="34.9" stroke="currentColor" stroke-width="1.6" data-edge="go" data-hidden="0"/>
+<line x1="49.5" y1="65.1" x2="71.5" y2="108.1" stroke="currentColor" stroke-width="1.6" data-edge="gs" data-hidden="0"/>
+<line x1="49.5" y1="142" x2="82.6" y2="159.4" stroke="currentColor" stroke-width="1.6" data-edge="hr" data-hidden="0"/>
+<line x1="49.5" y1="142" x2="71.5" y2="108.1" stroke="currentColor" stroke-width="1.6" data-edge="hs" data-hidden="0"/>
+<line x1="49.5" y1="142" x2="14" y2="120.1" stroke="currentColor" stroke-width="1.6" data-edge="ht" data-hidden="0"/>
+<line x1="67.4" y1="23.6" x2="82.6" y2="34.9" stroke="currentColor" stroke-width="1.6" data-edge="io" data-hidden="0"/>
+<line x1="78.5" y1="74.9" x2="31.9" y2="78.6" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="jp" data-hidden="1"/>
+<line x1="136" y1="62.9" x2="136" y2="110.5" stroke="currentColor" stroke-width="1.6" data-edge="kq" data-hidden="0"/>
+<line x1="67.4" y1="148.1" x2="82.6" y2="159.4" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="lr" data-hidden="1"/>
+<line x1="118.1" y1="104.4" x2="71.5" y2="108.1" stroke="currentColor" stroke-width="1.6" data-edge="ms" data-hidden="0"/>
+<line x1="14" y1="72.5" x2="14" y2="120.1" stroke="currentColor" stroke-width="1.6" data-edge="nt" data-hidden="0"/>
+<circle cx="100.5" cy="41" r="1.6" fill="currentColor" data-pt="a" data-x3="1.000000" data-y3="1.000000" data-z3="1.000000"/>
+<circle cx="100.5" cy="117.9" r="1.6" fill="#8a99a8" data-pt="b" data-x3="1.000000" data-y3="1.000000" data-z3="-1.000000"/>
+<circle cx="124.9" cy="59.2" r="1.6" fill="currentColor" data-pt="c" data-x3="1.000000" data-y3="-1.000000" data-z3="1.000000"/>
+<circle cx="124.9" cy="136.1" r="1.6" fill="currentColor" data-pt="d" data-x3="1.000000" data-y3="-1.000000" data-z3="-1.000000"/>
+<circle cx="25.1" cy="46.9" r="1.6" fill="currentColor" data-pt="e" data-x3="-1.000000" data-y3="1.000000" data-z3="1.000000"/>
+<circle cx="25.1" cy="123.8" r="1.6" fill="#8a99a8" data-pt="f" data-x3="-1.000000" data-y3="1.000000" data-z3="-1.000000"/>
+<circle cx="49.5" cy="65.1" r="1.6" fill="currentColor" data-pt="g" data-x3="-1.000000" data-y3="-1.000000" data-z3="1.000000"/>
+<circle cx="49.5" cy="142" r="1.6" fill="currentColor" data-pt="h" data-x3="-1.000000" data-y3="-1.000000" data-z3="-1.000000"/>
+<circle cx="67.4" cy="23.6" r="1.6" fill="currentColor" data-pt="i" data-x3="0.000000" data-y3="0.618034" data-z3="1.618034"/>
+<circle cx="78.5" cy="74.9" r="1.6" fill="#8a99a8" data-pt="j" data-x3="0.618034" data-y3="1.618034" data-z3="0.000000"/>
+<circle cx="136" cy="62.9" r="1.6" fill="currentColor" data-pt="k" data-x3="1.618034" data-y3="0.000000" data-z3="0.618034"/>
+<circle cx="67.4" cy="148.1" r="1.6" fill="#8a99a8" data-pt="l" data-x3="0.000000" data-y3="0.618034" data-z3="-1.618034"/>
+<circle cx="118.1" cy="104.4" r="1.6" fill="currentColor" data-pt="m" data-x3="0.618034" data-y3="-1.618034" data-z3="0.000000"/>
+<circle cx="14" cy="72.5" r="1.6" fill="currentColor" data-pt="n" data-x3="-1.618034" data-y3="0.000000" data-z3="0.618034"/>
+<circle cx="82.6" cy="34.9" r="1.6" fill="currentColor" data-pt="o" data-x3="0.000000" data-y3="-0.618034" data-z3="1.618034"/>
+<circle cx="31.9" cy="78.6" r="1.6" fill="#8a99a8" data-pt="p" data-x3="-0.618034" data-y3="1.618034" data-z3="0.000000"/>
+<circle cx="136" cy="110.5" r="1.6" fill="currentColor" data-pt="q" data-x3="1.618034" data-y3="0.000000" data-z3="-0.618034"/>
+<circle cx="82.6" cy="159.4" r="1.6" fill="currentColor" data-pt="r" data-x3="0.000000" data-y3="-0.618034" data-z3="-1.618034"/>
+<circle cx="71.5" cy="108.1" r="1.6" fill="currentColor" data-pt="s" data-x3="-0.618034" data-y3="-1.618034" data-z3="0.000000"/>
+<circle cx="14" cy="120.1" r="1.6" fill="currentColor" data-pt="t" data-x3="-1.618034" data-y3="0.000000" data-z3="-0.618034"/>
+<text x="75" y="14" text-anchor="middle" font-size="12" fill="currentColor">正十二面体</text>
+</svg>
+<svg viewBox="0 0 150 165" width="150" role="img" aria-label="正二十面体の見取図。頂点 12、面 20。見えない辺は灰の破線" data-fig="f061a5" data-yaw="20.000000" data-elev="12.000000" data-s="38.525369" data-ox="75.000000" data-oy="91.500000" data-solid="正二十面体" data-faces="bac hab cag gaf fah cib hbd bid ecg eic dlh dij jld gke jie kje fkg hlf lkf ljk">
+<line x1="61.8" y1="23" x2="89.9" y2="76.6" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="ab" data-hidden="1"/>
+<line x1="61.8" y1="23" x2="133.6" y2="49.4" stroke="currentColor" stroke-width="1.6" data-edge="ac" data-hidden="0"/>
+<line x1="61.8" y1="23" x2="16.4" y2="58.2" stroke="currentColor" stroke-width="1.6" data-edge="af" data-hidden="0"/>
+<line x1="61.8" y1="23" x2="88.2" y2="38.1" stroke="currentColor" stroke-width="1.6" data-edge="ag" data-hidden="0"/>
+<line x1="61.8" y1="23" x2="17.5" y2="82.1" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="ah" data-hidden="1"/>
+<line x1="89.9" y1="76.6" x2="133.6" y2="49.4" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="bc" data-hidden="1"/>
+<line x1="89.9" y1="76.6" x2="61.8" y2="144.9" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="bd" data-hidden="1"/>
+<line x1="89.9" y1="76.6" x2="17.5" y2="82.1" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="bh" data-hidden="1"/>
+<line x1="89.9" y1="76.6" x2="133.6" y2="124.8" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="bi" data-hidden="1"/>
+<line x1="133.6" y1="49.4" x2="132.5" y2="100.9" stroke="currentColor" stroke-width="1.6" data-edge="ce" data-hidden="0"/>
+<line x1="133.6" y1="49.4" x2="88.2" y2="38.1" stroke="currentColor" stroke-width="1.6" data-edge="cg" data-hidden="0"/>
+<line x1="133.6" y1="49.4" x2="133.6" y2="124.8" stroke="currentColor" stroke-width="1.6" data-edge="ci" data-hidden="0"/>
+<line x1="61.8" y1="144.9" x2="17.5" y2="82.1" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="dh" data-hidden="1"/>
+<line x1="61.8" y1="144.9" x2="133.6" y2="124.8" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="di" data-hidden="1"/>
+<line x1="61.8" y1="144.9" x2="88.2" y2="160" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="dj" data-hidden="1"/>
+<line x1="61.8" y1="144.9" x2="16.4" y2="133.6" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="dl" data-hidden="1"/>
+<line x1="132.5" y1="100.9" x2="88.2" y2="38.1" stroke="currentColor" stroke-width="1.6" data-edge="eg" data-hidden="0"/>
+<line x1="132.5" y1="100.9" x2="133.6" y2="124.8" stroke="currentColor" stroke-width="1.6" data-edge="ei" data-hidden="0"/>
+<line x1="132.5" y1="100.9" x2="88.2" y2="160" stroke="currentColor" stroke-width="1.6" data-edge="ej" data-hidden="0"/>
+<line x1="132.5" y1="100.9" x2="60.1" y2="106.4" stroke="currentColor" stroke-width="1.6" data-edge="ek" data-hidden="0"/>
+<line x1="16.4" y1="58.2" x2="88.2" y2="38.1" stroke="currentColor" stroke-width="1.6" data-edge="fg" data-hidden="0"/>
+<line x1="16.4" y1="58.2" x2="17.5" y2="82.1" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="fh" data-hidden="1"/>
+<line x1="16.4" y1="58.2" x2="60.1" y2="106.4" stroke="currentColor" stroke-width="1.6" data-edge="fk" data-hidden="0"/>
+<line x1="16.4" y1="58.2" x2="16.4" y2="133.6" stroke="currentColor" stroke-width="1.6" data-edge="fl" data-hidden="0"/>
+<line x1="88.2" y1="38.1" x2="60.1" y2="106.4" stroke="currentColor" stroke-width="1.6" data-edge="gk" data-hidden="0"/>
+<line x1="17.5" y1="82.1" x2="16.4" y2="133.6" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="hl" data-hidden="1"/>
+<line x1="133.6" y1="124.8" x2="88.2" y2="160" stroke="currentColor" stroke-width="1.6" data-edge="ij" data-hidden="0"/>
+<line x1="88.2" y1="160" x2="60.1" y2="106.4" stroke="currentColor" stroke-width="1.6" data-edge="jk" data-hidden="0"/>
+<line x1="88.2" y1="160" x2="16.4" y2="133.6" stroke="currentColor" stroke-width="1.6" data-edge="jl" data-hidden="0"/>
+<line x1="60.1" y1="106.4" x2="16.4" y2="133.6" stroke="currentColor" stroke-width="1.6" data-edge="kl" data-hidden="0"/>
+<circle cx="61.8" cy="23" r="1.6" fill="currentColor" data-pt="a" data-x3="0.000000" data-y3="1.000000" data-z3="1.618034"/>
+<circle cx="89.9" cy="76.6" r="1.6" fill="#8a99a8" data-pt="b" data-x3="1.000000" data-y3="1.618034" data-z3="0.000000"/>
+<circle cx="133.6" cy="49.4" r="1.6" fill="currentColor" data-pt="c" data-x3="1.618034" data-y3="0.000000" data-z3="1.000000"/>
+<circle cx="61.8" cy="144.9" r="1.6" fill="#8a99a8" data-pt="d" data-x3="0.000000" data-y3="1.000000" data-z3="-1.618034"/>
+<circle cx="132.5" cy="100.9" r="1.6" fill="currentColor" data-pt="e" data-x3="1.000000" data-y3="-1.618034" data-z3="0.000000"/>
+<circle cx="16.4" cy="58.2" r="1.6" fill="currentColor" data-pt="f" data-x3="-1.618034" data-y3="0.000000" data-z3="1.000000"/>
+<circle cx="88.2" cy="38.1" r="1.6" fill="currentColor" data-pt="g" data-x3="0.000000" data-y3="-1.000000" data-z3="1.618034"/>
+<circle cx="17.5" cy="82.1" r="1.6" fill="#8a99a8" data-pt="h" data-x3="-1.000000" data-y3="1.618034" data-z3="0.000000"/>
+<circle cx="133.6" cy="124.8" r="1.6" fill="currentColor" data-pt="i" data-x3="1.618034" data-y3="0.000000" data-z3="-1.000000"/>
+<circle cx="88.2" cy="160" r="1.6" fill="currentColor" data-pt="j" data-x3="0.000000" data-y3="-1.000000" data-z3="-1.618034"/>
+<circle cx="60.1" cy="106.4" r="1.6" fill="currentColor" data-pt="k" data-x3="-1.000000" data-y3="-1.618034" data-z3="0.000000"/>
+<circle cx="16.4" cy="133.6" r="1.6" fill="currentColor" data-pt="l" data-x3="-1.618034" data-y3="0.000000" data-z3="-1.000000"/>
+<text x="75" y="14" text-anchor="middle" font-size="12" fill="currentColor">正二十面体</text>
+</svg><!--/svg:f061a-->
+  </div>
+  <figcaption>図1　5種類の正多面体。空間の座標から計算して描いた見取図で、見えない辺は灰の破線（学習用に作成した図）</figcaption>
+</figure>
+<p>(イ) が必要なことは、図2の (ii) の立体で分かります。正四面体を2つ、面どうしを貼り合わせた立体は、6つの面がすべて合同な正三角形でへこみもありませんが、3つの面が集まる頂点（S、T）と4つの面が集まる頂点（P、Q、R）があるので、正多面体ではありません。</p>
+<figure>
+  <div class="fig-row">
+<!--svg:f061b-->
+<svg viewBox="0 0 190 190" width="190" role="img" aria-label="L字形の立体（へこみのある多面体）の見取図。頂点 12、辺 18、面 8。見えない辺は灰の破線" data-fig="f061b1" data-yaw="-32.000000" data-elev="22.000000" data-s="58.497048" data-ox="26.792463" data-oy="157.775356">
+<polygon points="26.8,157.8 126,181 126,137.6 26.8,114.4" fill="#8a99a8" fill-opacity="0.1" stroke="none" data-sheet="面1/1" data-p3="0.000000,0.000000,0.000000;2.000000,0.000000,0.000000;2.000000,0.000000,0.800000;0.000000,0.000000,0.800000"/>
+<polygon points="26.8,114.4 66.5,123.7 66.5,58.6 26.8,49.3" fill="#8a99a8" fill-opacity="0.1" stroke="none" data-sheet="面1/2" data-p3="0.000000,0.000000,0.800000;0.800000,0.000000,0.800000;0.800000,0.000000,2.000000;0.000000,0.000000,2.000000"/>
+<polygon points="64,135.5 163.2,158.7 163.2,115.3 64,92.1" fill="#8a99a8" fill-opacity="0.1" stroke="none" data-sheet="面2/1" data-p3="0.000000,1.200000,0.000000;2.000000,1.200000,0.000000;2.000000,1.200000,0.800000;0.000000,1.200000,0.800000"/>
+<polygon points="64,92.1 103.7,101.4 103.7,36.3 64,27" fill="#8a99a8" fill-opacity="0.1" stroke="none" data-sheet="面2/2" data-p3="0.000000,1.200000,0.800000;0.800000,1.200000,0.800000;0.800000,1.200000,2.000000;0.000000,1.200000,2.000000"/>
+<polygon points="26.8,157.8 126,181 163.2,158.7 64,135.5" fill="#8a99a8" fill-opacity="0.1" stroke="none" data-sheet="面3/1" data-p3="0.000000,0.000000,0.000000;2.000000,0.000000,0.000000;2.000000,1.200000,0.000000;0.000000,1.200000,0.000000"/>
+<polygon points="126,181 126,137.6 163.2,115.3 163.2,158.7" fill="#8a99a8" fill-opacity="0.1" stroke="none" data-sheet="面4/1" data-p3="2.000000,0.000000,0.000000;2.000000,0.000000,0.800000;2.000000,1.200000,0.800000;2.000000,1.200000,0.000000"/>
+<polygon points="126,137.6 66.5,123.7 103.7,101.4 163.2,115.3" fill="#8a99a8" fill-opacity="0.1" stroke="none" data-sheet="面5/1" data-p3="2.000000,0.000000,0.800000;0.800000,0.000000,0.800000;0.800000,1.200000,0.800000;2.000000,1.200000,0.800000"/>
+<polygon points="66.5,123.7 66.5,58.6 103.7,36.3 103.7,101.4" fill="#8a99a8" fill-opacity="0.1" stroke="none" data-sheet="面6/1" data-p3="0.800000,0.000000,0.800000;0.800000,0.000000,2.000000;0.800000,1.200000,2.000000;0.800000,1.200000,0.800000"/>
+<polygon points="66.5,58.6 26.8,49.3 64,27 103.7,36.3" fill="#8a99a8" fill-opacity="0.1" stroke="none" data-sheet="面7/1" data-p3="0.800000,0.000000,2.000000;0.000000,0.000000,2.000000;0.000000,1.200000,2.000000;0.800000,1.200000,2.000000"/>
+<polygon points="26.8,49.3 26.8,157.8 64,135.5 64,27" fill="#8a99a8" fill-opacity="0.1" stroke="none" data-sheet="面8/1" data-p3="0.000000,0.000000,2.000000;0.000000,0.000000,0.000000;0.000000,1.200000,0.000000;0.000000,1.200000,2.000000"/>
+<line x1="26.8" y1="157.8" x2="126" y2="181" stroke="currentColor" stroke-width="1.5" data-seg="辺ab" data-p3="0.000000,0.000000,0.000000;2.000000,0.000000,0.000000" data-hidden="0"/>
+<line x1="126" y1="181" x2="126" y2="137.6" stroke="currentColor" stroke-width="1.5" data-seg="辺bc" data-p3="2.000000,0.000000,0.000000;2.000000,0.000000,0.800000" data-hidden="0"/>
+<line x1="126" y1="137.6" x2="66.5" y2="123.7" stroke="currentColor" stroke-width="1.5" data-seg="辺cd" data-p3="2.000000,0.000000,0.800000;0.800000,0.000000,0.800000" data-hidden="0"/>
+<line x1="66.5" y1="123.7" x2="66.5" y2="58.6" stroke="currentColor" stroke-width="1.5" data-seg="辺de" data-p3="0.800000,0.000000,0.800000;0.800000,0.000000,2.000000" data-hidden="0"/>
+<line x1="66.5" y1="58.6" x2="26.8" y2="49.3" stroke="currentColor" stroke-width="1.5" data-seg="辺ef" data-p3="0.800000,0.000000,2.000000;0.000000,0.000000,2.000000" data-hidden="0"/>
+<line x1="26.8" y1="49.3" x2="26.8" y2="157.8" stroke="currentColor" stroke-width="1.5" data-seg="辺fa" data-p3="0.000000,0.000000,2.000000;0.000000,0.000000,0.000000" data-hidden="0"/>
+<line x1="64" y1="135.5" x2="163.2" y2="158.7" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺gh" data-p3="0.000000,1.200000,0.000000;2.000000,1.200000,0.000000" data-hidden="1"/>
+<line x1="163.2" y1="158.7" x2="163.2" y2="115.3" stroke="currentColor" stroke-width="1.5" data-seg="辺hi" data-p3="2.000000,1.200000,0.000000;2.000000,1.200000,0.800000" data-hidden="0"/>
+<line x1="163.2" y1="115.3" x2="103.7" y2="101.4" stroke="currentColor" stroke-width="1.5" data-seg="辺ij" data-p3="2.000000,1.200000,0.800000;0.800000,1.200000,0.800000" data-hidden="0"/>
+<line x1="103.7" y1="101.4" x2="103.7" y2="36.3" stroke="currentColor" stroke-width="1.5" data-seg="辺jk" data-p3="0.800000,1.200000,0.800000;0.800000,1.200000,2.000000" data-hidden="0"/>
+<line x1="103.7" y1="36.3" x2="64" y2="27" stroke="currentColor" stroke-width="1.5" data-seg="辺kl" data-p3="0.800000,1.200000,2.000000;0.000000,1.200000,2.000000" data-hidden="0"/>
+<line x1="64" y1="27" x2="64" y2="135.5" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺lg" data-p3="0.000000,1.200000,2.000000;0.000000,1.200000,0.000000" data-hidden="1"/>
+<line x1="26.8" y1="157.8" x2="64" y2="135.5" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺ag" data-p3="0.000000,0.000000,0.000000;0.000000,1.200000,0.000000" data-hidden="1"/>
+<line x1="126" y1="181" x2="163.2" y2="158.7" stroke="currentColor" stroke-width="1.5" data-seg="辺bh" data-p3="2.000000,0.000000,0.000000;2.000000,1.200000,0.000000" data-hidden="0"/>
+<line x1="126" y1="137.6" x2="163.2" y2="115.3" stroke="currentColor" stroke-width="1.5" data-seg="辺ci" data-p3="2.000000,0.000000,0.800000;2.000000,1.200000,0.800000" data-hidden="0"/>
+<line x1="66.5" y1="123.7" x2="103.7" y2="101.4" stroke="currentColor" stroke-width="1.5" data-seg="辺dj" data-p3="0.800000,0.000000,0.800000;0.800000,1.200000,0.800000" data-hidden="0"/>
+<line x1="66.5" y1="58.6" x2="103.7" y2="36.3" stroke="currentColor" stroke-width="1.5" data-seg="辺ek" data-p3="0.800000,0.000000,2.000000;0.800000,1.200000,2.000000" data-hidden="0"/>
+<line x1="26.8" y1="49.3" x2="64" y2="27" stroke="currentColor" stroke-width="1.5" data-seg="辺fl" data-p3="0.000000,0.000000,2.000000;0.000000,1.200000,2.000000" data-hidden="0"/>
+<circle cx="26.8" cy="157.8" r="1.6" fill="currentColor" data-pt="a" data-x3="0.000000" data-y3="0.000000" data-z3="0.000000"/>
+<circle cx="64" cy="135.5" r="1.6" fill="currentColor" data-pt="g" data-x3="0.000000" data-y3="1.200000" data-z3="0.000000"/>
+<circle cx="126" cy="181" r="1.6" fill="currentColor" data-pt="b" data-x3="2.000000" data-y3="0.000000" data-z3="0.000000"/>
+<circle cx="163.2" cy="158.7" r="1.6" fill="currentColor" data-pt="h" data-x3="2.000000" data-y3="1.200000" data-z3="0.000000"/>
+<circle cx="126" cy="137.6" r="1.6" fill="currentColor" data-pt="c" data-x3="2.000000" data-y3="0.000000" data-z3="0.800000"/>
+<circle cx="163.2" cy="115.3" r="1.6" fill="currentColor" data-pt="i" data-x3="2.000000" data-y3="1.200000" data-z3="0.800000"/>
+<circle cx="66.5" cy="123.7" r="1.6" fill="currentColor" data-pt="d" data-x3="0.800000" data-y3="0.000000" data-z3="0.800000"/>
+<circle cx="103.7" cy="101.4" r="1.6" fill="currentColor" data-pt="j" data-x3="0.800000" data-y3="1.200000" data-z3="0.800000"/>
+<circle cx="66.5" cy="58.6" r="1.6" fill="currentColor" data-pt="e" data-x3="0.800000" data-y3="0.000000" data-z3="2.000000"/>
+<circle cx="103.7" cy="36.3" r="1.6" fill="currentColor" data-pt="k" data-x3="0.800000" data-y3="1.200000" data-z3="2.000000"/>
+<circle cx="26.8" cy="49.3" r="1.6" fill="currentColor" data-pt="f" data-x3="0.000000" data-y3="0.000000" data-z3="2.000000"/>
+<circle cx="64" cy="27" r="1.6" fill="currentColor" data-pt="l" data-x3="0.000000" data-y3="1.200000" data-z3="2.000000"/>
+<text x="8" y="15" text-anchor="start" font-size="12" fill="currentColor">(i) へこみのある多面体</text>
+</svg>
+<svg viewBox="0 0 230 230" width="230" role="img" aria-label="正四面体を2つ、面どうしを貼り合わせた立体。6つの面はすべて合同な正三角形。頂点 S、T には3つ、P、Q、R には4つの面が集まる。見えない辺は灰の破線" data-fig="f061b2" data-yaw="15.000000" data-elev="14.000000" data-s="53.199034" data-ox="108.115538" data-oy="128.000000" data-solid="貼り合わせた立体" data-faces="SPQ QPT RPS TPR SQR RQT">
+<line x1="159.5" y1="124.7" x2="70.5" y2="118.9" stroke="#8a99a8" stroke-width="1.6" stroke-dasharray="4 3" data-edge="PQ" data-hidden="1"/>
+<line x1="159.5" y1="124.7" x2="94.3" y2="140.4" stroke="currentColor" stroke-width="1.6" data-edge="PR" data-hidden="0"/>
+<line x1="159.5" y1="124.7" x2="108.1" y2="55" stroke="currentColor" stroke-width="1.6" data-edge="PS" data-hidden="0"/>
+<line x1="159.5" y1="124.7" x2="108.1" y2="201" stroke="currentColor" stroke-width="1.6" data-edge="PT" data-hidden="0"/>
+<line x1="70.5" y1="118.9" x2="94.3" y2="140.4" stroke="currentColor" stroke-width="1.6" data-edge="QR" data-hidden="0"/>
+<line x1="70.5" y1="118.9" x2="108.1" y2="55" stroke="currentColor" stroke-width="1.6" data-edge="QS" data-hidden="0"/>
+<line x1="70.5" y1="118.9" x2="108.1" y2="201" stroke="currentColor" stroke-width="1.6" data-edge="QT" data-hidden="0"/>
+<line x1="94.3" y1="140.4" x2="108.1" y2="55" stroke="currentColor" stroke-width="1.6" data-edge="RS" data-hidden="0"/>
+<line x1="94.3" y1="140.4" x2="108.1" y2="201" stroke="currentColor" stroke-width="1.6" data-edge="RT" data-hidden="0"/>
+<circle cx="159.5" cy="124.7" r="2.2" fill="currentColor" data-pt="P" data-x3="1.000000" data-y3="0.000000" data-z3="0.000000"/>
+<text x="172.4" y="128.6" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">P</text>
+<circle cx="70.5" cy="118.9" r="2.2" fill="currentColor" data-pt="Q" data-x3="-0.500000" data-y3="0.866025" data-z3="0.000000"/>
+<text x="58.1" y="121" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">Q</text>
+<circle cx="94.3" cy="140.4" r="2.2" fill="currentColor" data-pt="R" data-x3="-0.500000" data-y3="-0.866025" data-z3="0.000000"/>
+<text x="85.5" y="153.6" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">R</text>
+<circle cx="108.1" cy="55" r="2.2" fill="currentColor" data-pt="S" data-x3="0.000000" data-y3="0.000000" data-z3="1.414214"/>
+<text x="108.1" y="44.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">S</text>
+<circle cx="108.1" cy="201" r="2.2" fill="currentColor" data-pt="T" data-x3="0.000000" data-y3="0.000000" data-z3="-1.414214"/>
+<text x="108.1" y="220.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">T</text>
+<text x="8" y="15" text-anchor="start" font-size="12" fill="currentColor">(ii) 正四面体を2つ貼り合わせた立体</text>
+</svg><!--/svg:f061b-->
+  </div>
+  <figcaption>図2　(i) へこみのある多面体の例（L字形の立体）。(ii) 正四面体を2つ貼り合わせた立体（すべての面は合同な正三角形だが、頂点に集まる面の数が3と4で違う）。見えない辺は灰の破線（学習用に作成した図）</figcaption>
+</figure>
+<h3>頂点・辺・面の数を、重なりに注意して数える</h3>
+<p>辺の数・頂点の数は、面ごとに数えた数の「重なり」を考えると、1つずつ数えなくても求められます。</p>
+<div class="box point">
+  <p class="box-title">数え方</p>
+  <p>面ごとに辺を数えて合計すると、どの辺も2つの面に共有されているので、<strong>どの辺もちょうど2回</strong>数えています。したがって、辺の数＝（面ごとの辺の数の合計）÷ 2。<br>面ごとに頂点を数えて合計すると、どの頂点にも \( k \) 個ずつ面が集まるとき、<strong>どの頂点もちょうど \( k \) 回</strong>数えています。したがって、頂点の数＝（面ごとの頂点の数の合計）÷ \( k \)。</p>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題1（正十二面体。導入の問い①の答え）</p>
+  <p>正十二面体は、12個の合同な正五角形の面でできていて、どの頂点にも3つの面が集まっています。辺の数と頂点の数を求めなさい。</p>
+  <div class="step">着眼点：面ごとに辺と頂点を数え、何回ずつ重ねて数えたかで割ります。</div>
+  <div class="step">面ごとの辺の数の合計は \( 5\times12=60 \)。どの辺も2回数えているので、辺の数は \( 60\div2=30 \)。</div>
+  <div class="step">面ごとの頂点の数の合計も \( 5\times12=60 \)。どの頂点も3回数えているので、頂点の数は \( 60\div3=20 \)。</div>
+  <div class="step">答え：辺の数 30、頂点の数 20（面の数 12）。図1の正十二面体の座標から数えても、頂点 20、辺 30 になります。</div>
+</div>
+<p>同じように数えると、5種類の正多面体は次のようになります。</p>
+<div class="table-wrap">
+<table id="t061a">
+  <tr><th>正多面体</th><th>面の形</th><th>1つの頂点に集まる面の数</th><th>面の数</th><th>辺の数</th><th>頂点の数</th></tr>
+  <tr><td>正四面体</td><td>正三角形</td><td>3</td><td>4</td><td>6</td><td>4</td></tr>
+  <tr><td>正六面体（立方体）</td><td>正方形</td><td>3</td><td>6</td><td>12</td><td>8</td></tr>
+  <tr><td>正八面体</td><td>正三角形</td><td>4</td><td>8</td><td>12</td><td>6</td></tr>
+  <tr><td>正十二面体</td><td>正五角形</td><td>3</td><td>12</td><td>30</td><td>20</td></tr>
+  <tr><td>正二十面体</td><td>正三角形</td><td>5</td><td>20</td><td>30</td><td>12</td></tr>
+</table>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：重なりを割り忘れる</p><p>正二十面体の辺の数を「\( 3\times20=60 \)」とすると、どの辺も2つの面で数えているので2倍になります。頂点の数を「\( 3\times20\div3=20 \)」とするのも誤りで、正二十面体では1つの頂点に集まる面の数は5なので、\( 60\div5=12 \) です。何で割るかは「1つの辺（頂点）を何回数えたか」で決めます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="頂点・辺・面の数の関係"><span class="num">4</span>頂点・辺・面の数の関係</h2>
+<p>頂点の数を \( v \)、辺の数を \( e \)、面の数を \( f \) とし（このページでの文字）、いろいろな多面体について表にします。最後の列の \( v-e+f \) に注目しましょう。</p>
+<div class="table-wrap">
+<table id="t061b">
+  <tr><th>多面体</th><th>頂点の数 \( v \)</th><th>辺の数 \( e \)</th><th>面の数 \( f \)</th><th>\( v-e+f \)</th></tr>
+  <tr><td>正四面体</td><td>4</td><td>6</td><td>4</td><td>2</td></tr>
+  <tr><td>正六面体（立方体）</td><td>8</td><td>12</td><td>6</td><td>2</td></tr>
+  <tr><td>正八面体</td><td>6</td><td>12</td><td>8</td><td>2</td></tr>
+  <tr><td>正十二面体</td><td>20</td><td>30</td><td>12</td><td>2</td></tr>
+  <tr><td>正二十面体</td><td>12</td><td>30</td><td>20</td><td>2</td></tr>
+  <tr><td>三角柱</td><td>6</td><td>9</td><td>5</td><td>2</td></tr>
+  <tr><td>五角柱</td><td>10</td><td>15</td><td>7</td><td>2</td></tr>
+  <tr><td>四角錐</td><td>5</td><td>8</td><td>5</td><td>2</td></tr>
+  <tr><td>五角錐</td><td>6</td><td>10</td><td>6</td><td>2</td></tr>
+</table>
+</div>
+<p>どの多面体でも \( v-e+f=2 \) になっています。<strong>導入の問い②の答え</strong>：立方体では \( 8-12+6=2 \)、三角柱では \( 6-9+5=2 \) で、表のどの多面体でも \( v-e+f=2 \) が成り立っています。</p>
+<div class="box point">
+  <p class="box-title">オイラーの多面体定理</p>
+  <p>へこみのない多面体の頂点の数を \( v \)、辺の数を \( e \)、面の数を \( f \) とすると</p>
+  $$ v-e+f=2 $$
+  <p>が成り立ちます。これを<strong>オイラーの多面体定理</strong>といいます。どんなへこみのない多面体でも成り立つことが知られていますが、このページでは証明しません。</p>
+</div>
+<p>表の角柱・角錐は、文字を使って一般の場合を確かめられます。\( n \) 角柱は、上下の底面に頂点が \( n \) 個ずつあるので \( v=2n \)、辺は上下の底面に \( n \) 本ずつと側面に \( n \) 本で \( e=3n \)、面は底面2つと側面 \( n \) 個で \( f=n+2 \) です。よって \( v-e+f=2n-3n+(n+2)=2 \)。\( n \) 角錐は \( v=n+1 \)、\( e=2n \)、\( f=n+1 \) で、\( v-e+f=(n+1)-2n+(n+1)=2 \) です。</p>
+<div class="box example worked">
+  <p class="box-title">例題2（面の形から辺・頂点の数を求め、定理で確かめる）</p>
+  <p>正五角形の面が 12、正六角形の面が 20 あり、どの頂点にも3つの面が集まる、へこみのない多面体があります（学習用の例。図3）。辺の数と頂点の数を求め、オイラーの多面体定理が成り立つことを確かめなさい。</p>
+  <div class="step">着眼点：面の形が2種類あるので、面ごとの辺（頂点）の数を、それぞれの種類で合計します。</div>
+  <div class="step">面ごとの辺の数の合計は \( 5\times12+6\times20=60+120=180 \)。どの辺も2回数えているので \( e=180\div2=90 \)。</div>
+  <div class="step">面ごとの頂点の数の合計も 180 で、どの頂点も3回数えているので \( v=180\div3=60 \)。面の数は \( f=12+20=32 \)。</div>
+  <div class="step">確かめ：\( v-e+f=60-90+32=2 \)。答え：辺の数 90、頂点の数 60。</div>
+</div>
+<figure>
+<!--svg:f061d-->
+<svg viewBox="0 0 240 230" width="240" role="img" aria-label="正五角形の面 12 と正六角形の面 20 でできた多面体の見取図。見える正五角形の面を青く塗った。見えない辺は省いた" data-fig="f061d" data-yaw="22.000000" data-elev="16.000000" data-s="20.521661" data-ox="120.000000" data-oy="124.000000" data-solid="" data-faces="oKagQA D2gaWr yWaKm mLbhRy B3hbXp zXbLn nMciSz C4icYq AYcMo dNuGTj xZdj5J pNdZB EUkeOs k6Hv0e qOe0C FVlfPt l7Iw1f rPf1D sQg2E tRh3F i4GuS TvH5j UwI6k VxJ7l LmKoMn SuNpXz QsOqYA RtPrWy vTG4C0 1wUE2D ZxVF3B J5H6I7" data-skip-edges="3B 3F 3h 4i BZ Bp Gu Km Lb Lm Ln Mc Mn Mo Nd Np Nu Rh Rt Ry Si Su Sz Wy Xb Xp Xz Yc Zd Zx bh ci dj my nz">
+<polygon points="213.7,113.6 190.6,110.1 176.3,147.3 190.6,173.9 213.7,153" fill="#1f5fbf" fill-opacity="0.28" stroke="none" data-fill="五角形" data-p3="3.618034,-3.236068,1.000000;2.000000,-4.236068,1.618034;1.000000,-4.854102,0.000000;2.000000,-4.236068,-1.618034;3.618034,-3.236068,-1.000000"/>
+<polygon points="50.7,54.2 27,85 27.6,114.6 51.8,102 66.1,64.7" fill="#1f5fbf" fill-opacity="0.28" stroke="none" data-fill="五角形" data-p3="-3.236068,1.000000,3.618034;-4.236068,1.618034,2.000000;-4.854102,0.000000,1.000000;-4.236068,-1.618034,2.000000;-3.236068,-1.000000,3.618034"/>
+<polygon points="166.8,77 166.2,47.5 127.7,33.5 104.6,54.4 128.8,81.3" fill="#1f5fbf" fill-opacity="0.28" stroke="none" data-fill="五角形" data-p3="1.000000,-3.618034,3.236068;1.618034,-2.000000,4.236068;0.000000,-1.000000,4.854102;-1.618034,-2.000000,4.236068;-1.000000,-3.618034,3.236068"/>
+<polygon points="166.2,214.6 166.8,204.7 128.8,208.9 104.6,221.5 127.7,225" fill="#1f5fbf" fill-opacity="0.28" stroke="none" data-fill="五角形" data-p3="1.618034,-2.000000,-4.236068;1.000000,-3.618034,-3.236068;-1.000000,-3.618034,-3.236068;-1.618034,-2.000000,-4.236068;0.000000,-1.000000,-4.854102"/>
+<polygon points="114.5,118.5 76,128.9 76,168.4 114.5,182.4 138.3,151.6" fill="#1f5fbf" fill-opacity="0.28" stroke="none" data-fill="五角形" data-p3="-2.000000,-4.236068,1.618034;-3.618034,-3.236068,1.000000;-3.618034,-3.236068,-1.000000;-2.000000,-4.236068,-1.618034;-1.000000,-4.854102,0.000000"/>
+<polygon points="27,163.9 50.7,197 66.1,207.5 51.8,180.9 27.6,154" fill="#1f5fbf" fill-opacity="0.28" stroke="none" data-fill="五角形" data-p3="-4.236068,1.618034,-2.000000;-3.236068,1.000000,-3.618034;-3.236068,-1.000000,-3.618034;-4.236068,-1.618034,-2.000000;-4.854102,0.000000,-1.000000"/>
+<line x1="190.6" y1="173.9" x2="213.7" y2="153" stroke="currentColor" stroke-width="1.6" data-edge="0C" data-hidden="0"/>
+<line x1="190.6" y1="173.9" x2="176.3" y2="147.3" stroke="currentColor" stroke-width="1.6" data-edge="0e" data-hidden="0"/>
+<line x1="190.6" y1="173.9" x2="166.8" y2="204.7" stroke="currentColor" stroke-width="1.6" data-edge="0v" data-hidden="0"/>
+<line x1="51.8" y1="102" x2="66.1" y2="64.7" stroke="currentColor" stroke-width="1.6" data-edge="1D" data-hidden="0"/>
+<line x1="51.8" y1="102" x2="27.6" y2="114.6" stroke="currentColor" stroke-width="1.6" data-edge="1f" data-hidden="0"/>
+<line x1="51.8" y1="102" x2="76" y2="128.9" stroke="currentColor" stroke-width="1.6" data-edge="1w" data-hidden="0"/>
+<line x1="104.6" y1="54.4" x2="66.1" y2="64.7" stroke="currentColor" stroke-width="1.6" data-edge="2D" data-hidden="0"/>
+<line x1="104.6" y1="54.4" x2="128.8" y2="81.3" stroke="currentColor" stroke-width="1.6" data-edge="2E" data-hidden="0"/>
+<line x1="104.6" y1="54.4" x2="127.7" y2="33.5" stroke="currentColor" stroke-width="1.6" data-edge="2g" data-hidden="0"/>
+<line x1="213" y1="163" x2="213.7" y2="153" stroke="currentColor" stroke-width="1.6" data-edge="4C" data-hidden="0"/>
+<line x1="213" y1="163" x2="189.3" y2="193.8" stroke="currentColor" stroke-width="1.6" data-edge="4G" data-hidden="0"/>
+<line x1="104.6" y1="221.5" x2="128.8" y2="208.9" stroke="currentColor" stroke-width="1.6" data-edge="5H" data-hidden="0"/>
+<line x1="104.6" y1="221.5" x2="66.1" y2="207.5" stroke="currentColor" stroke-width="1.6" data-edge="5J" data-hidden="0"/>
+<line x1="104.6" y1="221.5" x2="127.7" y2="225" stroke="currentColor" stroke-width="1.6" data-edge="5j" data-hidden="0"/>
+<line x1="114.5" y1="182.4" x2="128.8" y2="208.9" stroke="currentColor" stroke-width="1.6" data-edge="6H" data-hidden="0"/>
+<line x1="114.5" y1="182.4" x2="76" y2="168.4" stroke="currentColor" stroke-width="1.6" data-edge="6I" data-hidden="0"/>
+<line x1="114.5" y1="182.4" x2="138.3" y2="151.6" stroke="currentColor" stroke-width="1.6" data-edge="6k" data-hidden="0"/>
+<line x1="51.8" y1="180.9" x2="76" y2="168.4" stroke="currentColor" stroke-width="1.6" data-edge="7I" data-hidden="0"/>
+<line x1="51.8" y1="180.9" x2="66.1" y2="207.5" stroke="currentColor" stroke-width="1.6" data-edge="7J" data-hidden="0"/>
+<line x1="51.8" y1="180.9" x2="27.6" y2="154" stroke="currentColor" stroke-width="1.6" data-edge="7l" data-hidden="0"/>
+<line x1="189.3" y1="51" x2="166.2" y2="47.5" stroke="currentColor" stroke-width="1.6" data-edge="AQ" data-hidden="0"/>
+<line x1="189.3" y1="51" x2="213" y2="84.1" stroke="currentColor" stroke-width="1.6" data-edge="AY" data-hidden="0"/>
+<line x1="189.3" y1="51" x2="173.9" y2="40.5" stroke="currentColor" stroke-width="1.6" data-edge="Ao" data-hidden="0"/>
+<line x1="213.7" y1="153" x2="213.7" y2="113.6" stroke="currentColor" stroke-width="1.6" data-edge="Cq" data-hidden="0"/>
+<line x1="66.1" y1="64.7" x2="50.7" y2="54.2" stroke="currentColor" stroke-width="1.6" data-edge="Dr" data-hidden="0"/>
+<line x1="128.8" y1="81.3" x2="114.5" y2="118.5" stroke="currentColor" stroke-width="1.6" data-edge="EU" data-hidden="0"/>
+<line x1="128.8" y1="81.3" x2="166.8" y2="77" stroke="currentColor" stroke-width="1.6" data-edge="Es" data-hidden="0"/>
+<line x1="26.3" y1="134.4" x2="27" y2="163.9" stroke="currentColor" stroke-width="1.6" data-edge="FV" data-hidden="0"/>
+<line x1="26.3" y1="134.4" x2="26.3" y2="95" stroke="currentColor" stroke-width="1.6" data-edge="Ft" data-hidden="0"/>
+<line x1="189.3" y1="193.8" x2="166.2" y2="214.6" stroke="currentColor" stroke-width="1.6" data-edge="GT" data-hidden="0"/>
+<line x1="128.8" y1="208.9" x2="166.8" y2="204.7" stroke="currentColor" stroke-width="1.6" data-edge="Hv" data-hidden="0"/>
+<line x1="76" y1="168.4" x2="76" y2="128.9" stroke="currentColor" stroke-width="1.6" data-edge="Iw" data-hidden="0"/>
+<line x1="66.1" y1="207.5" x2="50.7" y2="197" stroke="currentColor" stroke-width="1.6" data-edge="Jx" data-hidden="0"/>
+<line x1="135.4" y1="26.5" x2="112.3" y2="23" stroke="currentColor" stroke-width="1.6" data-edge="Ka" data-hidden="0"/>
+<line x1="135.4" y1="26.5" x2="173.9" y2="40.5" stroke="currentColor" stroke-width="1.6" data-edge="Ko" data-hidden="0"/>
+<line x1="190.6" y1="110.1" x2="176.3" y2="147.3" stroke="currentColor" stroke-width="1.6" data-edge="Oe" data-hidden="0"/>
+<line x1="190.6" y1="110.1" x2="213.7" y2="113.6" stroke="currentColor" stroke-width="1.6" data-edge="Oq" data-hidden="0"/>
+<line x1="190.6" y1="110.1" x2="166.8" y2="77" stroke="currentColor" stroke-width="1.6" data-edge="Os" data-hidden="0"/>
+<line x1="27" y1="85" x2="27.6" y2="114.6" stroke="currentColor" stroke-width="1.6" data-edge="Pf" data-hidden="0"/>
+<line x1="27" y1="85" x2="50.7" y2="54.2" stroke="currentColor" stroke-width="1.6" data-edge="Pr" data-hidden="0"/>
+<line x1="27" y1="85" x2="26.3" y2="95" stroke="currentColor" stroke-width="1.6" data-edge="Pt" data-hidden="0"/>
+<line x1="166.2" y1="47.5" x2="127.7" y2="33.5" stroke="currentColor" stroke-width="1.6" data-edge="Qg" data-hidden="0"/>
+<line x1="166.2" y1="47.5" x2="166.8" y2="77" stroke="currentColor" stroke-width="1.6" data-edge="Qs" data-hidden="0"/>
+<line x1="166.2" y1="214.6" x2="127.7" y2="225" stroke="currentColor" stroke-width="1.6" data-edge="Tj" data-hidden="0"/>
+<line x1="166.2" y1="214.6" x2="166.8" y2="204.7" stroke="currentColor" stroke-width="1.6" data-edge="Tv" data-hidden="0"/>
+<line x1="114.5" y1="118.5" x2="138.3" y2="151.6" stroke="currentColor" stroke-width="1.6" data-edge="Uk" data-hidden="0"/>
+<line x1="114.5" y1="118.5" x2="76" y2="128.9" stroke="currentColor" stroke-width="1.6" data-edge="Uw" data-hidden="0"/>
+<line x1="27" y1="163.9" x2="27.6" y2="154" stroke="currentColor" stroke-width="1.6" data-edge="Vl" data-hidden="0"/>
+<line x1="27" y1="163.9" x2="50.7" y2="197" stroke="currentColor" stroke-width="1.6" data-edge="Vx" data-hidden="0"/>
+<line x1="73.8" y1="33.4" x2="112.3" y2="23" stroke="currentColor" stroke-width="1.6" data-edge="Wa" data-hidden="0"/>
+<line x1="73.8" y1="33.4" x2="50.7" y2="54.2" stroke="currentColor" stroke-width="1.6" data-edge="Wr" data-hidden="0"/>
+<line x1="213" y1="84.1" x2="213.7" y2="113.6" stroke="currentColor" stroke-width="1.6" data-edge="Yq" data-hidden="0"/>
+<line x1="112.3" y1="23" x2="127.7" y2="33.5" stroke="currentColor" stroke-width="1.6" data-edge="ag" data-hidden="0"/>
+<line x1="176.3" y1="147.3" x2="138.3" y2="151.6" stroke="currentColor" stroke-width="1.6" data-edge="ek" data-hidden="0"/>
+<line x1="27.6" y1="114.6" x2="27.6" y2="154" stroke="currentColor" stroke-width="1.6" data-edge="fl" data-hidden="0"/>
+<circle cx="112.3" cy="23" r="1.6" fill="currentColor" data-pt="a" data-x3="0.000000" data-y3="1.000000" data-z3="4.854102"/>
+<circle cx="101.7" cy="96.4" r="1.6" fill="none" data-pt="b" data-x3="1.000000" data-y3="4.854102" data-z3="0.000000"/>
+<circle cx="212.4" cy="94" r="1.6" fill="none" data-pt="c" data-x3="4.854102" data-y3="0.000000" data-z3="1.000000"/>
+<circle cx="112.3" cy="214.5" r="1.6" fill="none" data-pt="d" data-x3="0.000000" data-y3="1.000000" data-z3="-4.854102"/>
+<circle cx="176.3" cy="147.3" r="1.6" fill="currentColor" data-pt="e" data-x3="1.000000" data-y3="-4.854102" data-z3="0.000000"/>
+<circle cx="27.6" cy="114.6" r="1.6" fill="currentColor" data-pt="f" data-x3="-4.854102" data-y3="0.000000" data-z3="1.000000"/>
+<circle cx="127.7" cy="33.5" r="1.6" fill="currentColor" data-pt="g" data-x3="0.000000" data-y3="-1.000000" data-z3="4.854102"/>
+<circle cx="63.7" cy="100.7" r="1.6" fill="none" data-pt="h" data-x3="-1.000000" data-y3="4.854102" data-z3="0.000000"/>
+<circle cx="212.4" cy="133.4" r="1.6" fill="none" data-pt="i" data-x3="4.854102" data-y3="0.000000" data-z3="-1.000000"/>
+<circle cx="127.7" cy="225" r="1.6" fill="currentColor" data-pt="j" data-x3="0.000000" data-y3="-1.000000" data-z3="-4.854102"/>
+<circle cx="138.3" cy="151.6" r="1.6" fill="currentColor" data-pt="k" data-x3="-1.000000" data-y3="-4.854102" data-z3="0.000000"/>
+<circle cx="27.6" cy="154" r="1.6" fill="currentColor" data-pt="l" data-x3="-4.854102" data-y3="0.000000" data-z3="-1.000000"/>
+<circle cx="111.2" cy="39.1" r="1.6" fill="none" data-pt="m" data-x3="1.000000" data-y3="3.618034" data-z3="3.236068"/>
+<circle cx="164" cy="79.6" r="1.6" fill="none" data-pt="n" data-x3="3.618034" data-y3="3.236068" data-z3="1.000000"/>
+<circle cx="173.9" cy="40.5" r="1.6" fill="currentColor" data-pt="o" data-x3="3.236068" data-y3="1.000000" data-z3="3.618034"/>
+<circle cx="111.2" cy="166.7" r="1.6" fill="none" data-pt="p" data-x3="1.000000" data-y3="3.618034" data-z3="-3.236068"/>
+<circle cx="213.7" cy="113.6" r="1.6" fill="currentColor" data-pt="q" data-x3="3.618034" data-y3="-3.236068" data-z3="1.000000"/>
+<circle cx="50.7" cy="54.2" r="1.6" fill="currentColor" data-pt="r" data-x3="-3.236068" data-y3="1.000000" data-z3="3.618034"/>
+<circle cx="166.8" cy="77" r="1.6" fill="currentColor" data-pt="s" data-x3="1.000000" data-y3="-3.618034" data-z3="3.236068"/>
+<circle cx="26.3" cy="95" r="1.6" fill="currentColor" data-pt="t" data-x3="-3.618034" data-y3="3.236068" data-z3="1.000000"/>
+<circle cx="173.9" cy="183.3" r="1.6" fill="none" data-pt="u" data-x3="3.236068" data-y3="1.000000" data-z3="-3.618034"/>
+<circle cx="166.8" cy="204.7" r="1.6" fill="currentColor" data-pt="v" data-x3="1.000000" data-y3="-3.618034" data-z3="-3.236068"/>
+<circle cx="76" cy="128.9" r="1.6" fill="currentColor" data-pt="w" data-x3="-3.618034" data-y3="-3.236068" data-z3="1.000000"/>
+<circle cx="50.7" cy="197" r="1.6" fill="currentColor" data-pt="x" data-x3="-3.236068" data-y3="1.000000" data-z3="-3.618034"/>
+<circle cx="73.2" cy="43.3" r="1.6" fill="none" data-pt="y" data-x3="-1.000000" data-y3="3.618034" data-z3="3.236068"/>
+<circle cx="164" cy="119.1" r="1.6" fill="none" data-pt="z" data-x3="3.618034" data-y3="3.236068" data-z3="-1.000000"/>
+<circle cx="189.3" cy="51" r="1.6" fill="currentColor" data-pt="A" data-x3="3.236068" data-y3="-1.000000" data-z3="3.618034"/>
+<circle cx="73.2" cy="171" r="1.6" fill="none" data-pt="B" data-x3="-1.000000" data-y3="3.618034" data-z3="-3.236068"/>
+<circle cx="213.7" cy="153" r="1.6" fill="currentColor" data-pt="C" data-x3="3.618034" data-y3="-3.236068" data-z3="-1.000000"/>
+<circle cx="66.1" cy="64.7" r="1.6" fill="currentColor" data-pt="D" data-x3="-3.236068" data-y3="-1.000000" data-z3="3.618034"/>
+<circle cx="128.8" cy="81.3" r="1.6" fill="currentColor" data-pt="E" data-x3="-1.000000" data-y3="-3.618034" data-z3="3.236068"/>
+<circle cx="26.3" cy="134.4" r="1.6" fill="currentColor" data-pt="F" data-x3="-3.618034" data-y3="3.236068" data-z3="-1.000000"/>
+<circle cx="189.3" cy="193.8" r="1.6" fill="currentColor" data-pt="G" data-x3="3.236068" data-y3="-1.000000" data-z3="-3.618034"/>
+<circle cx="128.8" cy="208.9" r="1.6" fill="currentColor" data-pt="H" data-x3="-1.000000" data-y3="-3.618034" data-z3="-3.236068"/>
+<circle cx="76" cy="168.4" r="1.6" fill="currentColor" data-pt="I" data-x3="-3.618034" data-y3="-3.236068" data-z3="-1.000000"/>
+<circle cx="66.1" cy="207.5" r="1.6" fill="currentColor" data-pt="J" data-x3="-3.236068" data-y3="-1.000000" data-z3="-3.618034"/>
+<circle cx="135.4" cy="26.5" r="1.6" fill="currentColor" data-pt="K" data-x3="1.618034" data-y3="2.000000" data-z3="4.236068"/>
+<circle cx="125.5" cy="65.6" r="1.6" fill="none" data-pt="L" data-x3="2.000000" data-y3="4.236068" data-z3="1.618034"/>
+<circle cx="188.2" cy="67.1" r="1.6" fill="none" data-pt="M" data-x3="4.236068" data-y3="1.618034" data-z3="2.000000"/>
+<circle cx="135.4" cy="193.6" r="1.6" fill="none" data-pt="N" data-x3="1.618034" data-y3="2.000000" data-z3="-4.236068"/>
+<circle cx="190.6" cy="110.1" r="1.6" fill="currentColor" data-pt="O" data-x3="2.000000" data-y3="-4.236068" data-z3="1.618034"/>
+<circle cx="27" cy="85" r="1.6" fill="currentColor" data-pt="P" data-x3="-4.236068" data-y3="1.618034" data-z3="2.000000"/>
+<circle cx="166.2" cy="47.5" r="1.6" fill="currentColor" data-pt="Q" data-x3="1.618034" data-y3="-2.000000" data-z3="4.236068"/>
+<circle cx="49.4" cy="74.1" r="1.6" fill="none" data-pt="R" data-x3="-2.000000" data-y3="4.236068" data-z3="1.618034"/>
+<circle cx="188.2" cy="146" r="1.6" fill="none" data-pt="S" data-x3="4.236068" data-y3="1.618034" data-z3="-2.000000"/>
+<circle cx="166.2" cy="214.6" r="1.6" fill="currentColor" data-pt="T" data-x3="1.618034" data-y3="-2.000000" data-z3="-4.236068"/>
+<circle cx="114.5" cy="118.5" r="1.6" fill="currentColor" data-pt="U" data-x3="-2.000000" data-y3="-4.236068" data-z3="1.618034"/>
+<circle cx="27" cy="163.9" r="1.6" fill="currentColor" data-pt="V" data-x3="-4.236068" data-y3="1.618034" data-z3="-2.000000"/>
+<circle cx="73.8" cy="33.4" r="1.6" fill="currentColor" data-pt="W" data-x3="-1.618034" data-y3="2.000000" data-z3="4.236068"/>
+<circle cx="125.5" cy="129.5" r="1.6" fill="none" data-pt="X" data-x3="2.000000" data-y3="4.236068" data-z3="-1.618034"/>
+<circle cx="213" cy="84.1" r="1.6" fill="currentColor" data-pt="Y" data-x3="4.236068" data-y3="-1.618034" data-z3="2.000000"/>
+<circle cx="73.8" cy="200.5" r="1.6" fill="none" data-pt="Z" data-x3="-1.618034" data-y3="2.000000" data-z3="-4.236068"/>
+<circle cx="190.6" cy="173.9" r="1.6" fill="currentColor" data-pt="0" data-x3="2.000000" data-y3="-4.236068" data-z3="-1.618034"/>
+<circle cx="51.8" cy="102" r="1.6" fill="currentColor" data-pt="1" data-x3="-4.236068" data-y3="-1.618034" data-z3="2.000000"/>
+<circle cx="104.6" cy="54.4" r="1.6" fill="currentColor" data-pt="2" data-x3="-1.618034" data-y3="-2.000000" data-z3="4.236068"/>
+<circle cx="49.4" cy="137.9" r="1.6" fill="none" data-pt="3" data-x3="-2.000000" data-y3="4.236068" data-z3="-1.618034"/>
+<circle cx="213" cy="163" r="1.6" fill="currentColor" data-pt="4" data-x3="4.236068" data-y3="-1.618034" data-z3="-2.000000"/>
+<circle cx="104.6" cy="221.5" r="1.6" fill="currentColor" data-pt="5" data-x3="-1.618034" data-y3="-2.000000" data-z3="-4.236068"/>
+<circle cx="114.5" cy="182.4" r="1.6" fill="currentColor" data-pt="6" data-x3="-2.000000" data-y3="-4.236068" data-z3="-1.618034"/>
+<circle cx="51.8" cy="180.9" r="1.6" fill="currentColor" data-pt="7" data-x3="-4.236068" data-y3="-1.618034" data-z3="-2.000000"/>
+</svg><!--/svg:f061d-->
+  <figcaption>図3　例題2の多面体（正五角形の面を青く塗った）。空間の座標から計算して描いた見取図で、見えない辺は省いた（学習用に作成した図）</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">注意：定理の条件「へこみのない」</p><p>オイラーの多面体定理は、へこみのない多面体についての定理です。へこみのある多面体でも成り立つものがあります。図2の (i) のL字形の立体は \( v=12 \)、\( e=18 \)、\( f=8 \) で、\( v-e+f=2 \) です。一方、図4の額縁のような、穴のあいた立体（面が多角形になるように、上と下の面をそれぞれ4つの台形に分けた）は \( v=16 \)、\( e=32 \)、\( f=16 \) で、\( v-e+f=0 \) となり、成り立ちません。定理を使うときは、へこみのない多面体かどうかを確かめます。</p></div>
+<figure>
+<!--svg:f061c-->
+<svg viewBox="0 0 260 190" width="260" role="img" aria-label="正方形の板の真ん中に正方形の穴をあけた、額縁のような立体の見取図。上の面と下の面はそれぞれ4つの台形に分けてある。頂点 16、辺 32、面 16。見えない辺は灰の破線" data-fig="f061c" data-yaw="24.000000" data-elev="40.000000" data-s="39.955680" data-ox="130.000000" data-oy="107.182348">
+<polygon points="89.5,156.6 235.5,114.9 182.8,101.8 109.8,122.7" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面1/1" data-p3="-2.000000,-2.000000,0.600000;2.000000,-2.000000,0.600000;1.000000,-1.000000,0.600000;-1.000000,-1.000000,0.600000"/>
+<polygon points="89.5,175 235.5,133.2 182.8,120.2 109.8,141.1" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面2/1" data-p3="-2.000000,-2.000000,0.000000;2.000000,-2.000000,0.000000;1.000000,-1.000000,0.000000;-1.000000,-1.000000,0.000000"/>
+<polygon points="89.5,156.6 235.5,114.9 235.5,133.2 89.5,175" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面3/1" data-p3="-2.000000,-2.000000,0.600000;2.000000,-2.000000,0.600000;2.000000,-2.000000,0.000000;-2.000000,-2.000000,0.000000"/>
+<polygon points="109.8,122.7 182.8,101.8 182.8,120.2 109.8,141.1" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面4/1" data-p3="-1.000000,-1.000000,0.600000;1.000000,-1.000000,0.600000;1.000000,-1.000000,0.000000;-1.000000,-1.000000,0.000000"/>
+<polygon points="235.5,114.9 170.5,21 150.2,54.9 182.8,101.8" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面5/1" data-p3="2.000000,-2.000000,0.600000;2.000000,2.000000,0.600000;1.000000,1.000000,0.600000;1.000000,-1.000000,0.600000"/>
+<polygon points="235.5,133.2 170.5,39.4 150.2,73.3 182.8,120.2" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面6/1" data-p3="2.000000,-2.000000,0.000000;2.000000,2.000000,0.000000;1.000000,1.000000,0.000000;1.000000,-1.000000,0.000000"/>
+<polygon points="235.5,114.9 170.5,21 170.5,39.4 235.5,133.2" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面7/1" data-p3="2.000000,-2.000000,0.600000;2.000000,2.000000,0.600000;2.000000,2.000000,0.000000;2.000000,-2.000000,0.000000"/>
+<polygon points="182.8,101.8 150.2,54.9 150.2,73.3 182.8,120.2" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面8/1" data-p3="1.000000,-1.000000,0.600000;1.000000,1.000000,0.600000;1.000000,1.000000,0.000000;1.000000,-1.000000,0.000000"/>
+<polygon points="170.5,21 24.5,62.8 77.2,75.8 150.2,54.9" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面9/1" data-p3="2.000000,2.000000,0.600000;-2.000000,2.000000,0.600000;-1.000000,1.000000,0.600000;1.000000,1.000000,0.600000"/>
+<polygon points="170.5,39.4 24.5,81.1 77.2,94.2 150.2,73.3" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面10/1" data-p3="2.000000,2.000000,0.000000;-2.000000,2.000000,0.000000;-1.000000,1.000000,0.000000;1.000000,1.000000,0.000000"/>
+<polygon points="170.5,21 24.5,62.8 24.5,81.1 170.5,39.4" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面11/1" data-p3="2.000000,2.000000,0.600000;-2.000000,2.000000,0.600000;-2.000000,2.000000,0.000000;2.000000,2.000000,0.000000"/>
+<polygon points="150.2,54.9 77.2,75.8 77.2,94.2 150.2,73.3" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面12/1" data-p3="1.000000,1.000000,0.600000;-1.000000,1.000000,0.600000;-1.000000,1.000000,0.000000;1.000000,1.000000,0.000000"/>
+<polygon points="24.5,62.8 89.5,156.6 109.8,122.7 77.2,75.8" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面13/1" data-p3="-2.000000,2.000000,0.600000;-2.000000,-2.000000,0.600000;-1.000000,-1.000000,0.600000;-1.000000,1.000000,0.600000"/>
+<polygon points="24.5,81.1 89.5,175 109.8,141.1 77.2,94.2" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面14/1" data-p3="-2.000000,2.000000,0.000000;-2.000000,-2.000000,0.000000;-1.000000,-1.000000,0.000000;-1.000000,1.000000,0.000000"/>
+<polygon points="24.5,62.8 89.5,156.6 89.5,175 24.5,81.1" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面15/1" data-p3="-2.000000,2.000000,0.600000;-2.000000,-2.000000,0.600000;-2.000000,-2.000000,0.000000;-2.000000,2.000000,0.000000"/>
+<polygon points="77.2,75.8 109.8,122.7 109.8,141.1 77.2,94.2" fill="#8a99a8" fill-opacity="0.08" stroke="none" data-sheet="面16/1" data-p3="-1.000000,1.000000,0.600000;-1.000000,-1.000000,0.600000;-1.000000,-1.000000,0.000000;-1.000000,1.000000,0.000000"/>
+<line x1="89.5" y1="156.6" x2="235.5" y2="114.9" stroke="currentColor" stroke-width="1.5" data-seg="辺ab" data-p3="-2.000000,-2.000000,0.600000;2.000000,-2.000000,0.600000" data-hidden="0"/>
+<line x1="109.8" y1="122.7" x2="182.8" y2="101.8" stroke="currentColor" stroke-width="1.5" data-seg="辺ef" data-p3="-1.000000,-1.000000,0.600000;1.000000,-1.000000,0.600000" data-hidden="0"/>
+<line x1="89.5" y1="156.6" x2="109.8" y2="122.7" stroke="currentColor" stroke-width="1.5" data-seg="辺ae" data-p3="-2.000000,-2.000000,0.600000;-1.000000,-1.000000,0.600000" data-hidden="0"/>
+<line x1="235.5" y1="114.9" x2="170.5" y2="21" stroke="currentColor" stroke-width="1.5" data-seg="辺bc" data-p3="2.000000,-2.000000,0.600000;2.000000,2.000000,0.600000" data-hidden="0"/>
+<line x1="182.8" y1="101.8" x2="150.2" y2="54.9" stroke="currentColor" stroke-width="1.5" data-seg="辺fg" data-p3="1.000000,-1.000000,0.600000;1.000000,1.000000,0.600000" data-hidden="0"/>
+<line x1="235.5" y1="114.9" x2="182.8" y2="101.8" stroke="currentColor" stroke-width="1.5" data-seg="辺bf" data-p3="2.000000,-2.000000,0.600000;1.000000,-1.000000,0.600000" data-hidden="0"/>
+<line x1="170.5" y1="21" x2="24.5" y2="62.8" stroke="currentColor" stroke-width="1.5" data-seg="辺cd" data-p3="2.000000,2.000000,0.600000;-2.000000,2.000000,0.600000" data-hidden="0"/>
+<line x1="150.2" y1="54.9" x2="77.2" y2="75.8" stroke="currentColor" stroke-width="1.5" data-seg="辺gh" data-p3="1.000000,1.000000,0.600000;-1.000000,1.000000,0.600000" data-hidden="0"/>
+<line x1="170.5" y1="21" x2="150.2" y2="54.9" stroke="currentColor" stroke-width="1.5" data-seg="辺cg" data-p3="2.000000,2.000000,0.600000;1.000000,1.000000,0.600000" data-hidden="0"/>
+<line x1="24.5" y1="62.8" x2="89.5" y2="156.6" stroke="currentColor" stroke-width="1.5" data-seg="辺da" data-p3="-2.000000,2.000000,0.600000;-2.000000,-2.000000,0.600000" data-hidden="0"/>
+<line x1="77.2" y1="75.8" x2="109.8" y2="122.7" stroke="currentColor" stroke-width="1.5" data-seg="辺he" data-p3="-1.000000,1.000000,0.600000;-1.000000,-1.000000,0.600000" data-hidden="0"/>
+<line x1="24.5" y1="62.8" x2="77.2" y2="75.8" stroke="currentColor" stroke-width="1.5" data-seg="辺dh" data-p3="-2.000000,2.000000,0.600000;-1.000000,1.000000,0.600000" data-hidden="0"/>
+<line x1="89.5" y1="175" x2="235.5" y2="133.2" stroke="currentColor" stroke-width="1.5" data-seg="辺ij" data-p3="-2.000000,-2.000000,0.000000;2.000000,-2.000000,0.000000" data-hidden="0"/>
+<line x1="109.8" y1="141.1" x2="182.8" y2="120.2" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺mn" data-p3="-1.000000,-1.000000,0.000000;1.000000,-1.000000,0.000000" data-hidden="1"/>
+<line x1="89.5" y1="175" x2="109.8" y2="141.1" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺im" data-p3="-2.000000,-2.000000,0.000000;-1.000000,-1.000000,0.000000" data-hidden="1"/>
+<line x1="235.5" y1="133.2" x2="170.5" y2="39.4" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺jk" data-p3="2.000000,-2.000000,0.000000;2.000000,2.000000,0.000000" data-hidden="1"/>
+<line x1="182.8" y1="120.2" x2="172.1" y2="104.9" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺no" data-p3="1.000000,-1.000000,0.000000;1.000000,-0.346767,0.000000" data-hidden="1"/>
+<line x1="172.1" y1="104.9" x2="150.2" y2="73.3" stroke="currentColor" stroke-width="1.5" data-seg="辺no" data-p3="1.000000,-0.346767,0.000000;1.000000,1.000000,0.000000" data-hidden="0"/>
+<line x1="235.5" y1="133.2" x2="182.8" y2="120.2" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺jn" data-p3="2.000000,-2.000000,0.000000;1.000000,-1.000000,0.000000" data-hidden="1"/>
+<line x1="170.5" y1="39.4" x2="24.5" y2="81.1" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺kl" data-p3="2.000000,2.000000,0.000000;-2.000000,2.000000,0.000000" data-hidden="1"/>
+<line x1="150.2" y1="73.3" x2="87.9" y2="91.1" stroke="currentColor" stroke-width="1.5" data-seg="辺op" data-p3="1.000000,1.000000,0.000000;-0.709162,1.000000,0.000000" data-hidden="0"/>
+<line x1="87.9" y1="91.1" x2="77.2" y2="94.2" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺op" data-p3="-0.709162,1.000000,0.000000;-1.000000,1.000000,0.000000" data-hidden="1"/>
+<line x1="170.5" y1="39.4" x2="150.2" y2="73.3" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺ko" data-p3="2.000000,2.000000,0.000000;1.000000,1.000000,0.000000" data-hidden="1"/>
+<line x1="24.5" y1="81.1" x2="89.5" y2="175" stroke="currentColor" stroke-width="1.5" data-seg="辺li" data-p3="-2.000000,2.000000,0.000000;-2.000000,-2.000000,0.000000" data-hidden="0"/>
+<line x1="77.2" y1="94.2" x2="109.8" y2="141.1" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺pm" data-p3="-1.000000,1.000000,0.000000;-1.000000,-1.000000,0.000000" data-hidden="1"/>
+<line x1="24.5" y1="81.1" x2="77.2" y2="94.2" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺lp" data-p3="-2.000000,2.000000,0.000000;-1.000000,1.000000,0.000000" data-hidden="1"/>
+<line x1="89.5" y1="156.6" x2="89.5" y2="175" stroke="currentColor" stroke-width="1.5" data-seg="辺ai" data-p3="-2.000000,-2.000000,0.600000;-2.000000,-2.000000,0.000000" data-hidden="0"/>
+<line x1="235.5" y1="114.9" x2="235.5" y2="133.2" stroke="currentColor" stroke-width="1.5" data-seg="辺bj" data-p3="2.000000,-2.000000,0.600000;2.000000,-2.000000,0.000000" data-hidden="0"/>
+<line x1="170.5" y1="21" x2="170.5" y2="39.4" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺ck" data-p3="2.000000,2.000000,0.600000;2.000000,2.000000,0.000000" data-hidden="1"/>
+<line x1="24.5" y1="62.8" x2="24.5" y2="81.1" stroke="currentColor" stroke-width="1.5" data-seg="辺dl" data-p3="-2.000000,2.000000,0.600000;-2.000000,2.000000,0.000000" data-hidden="0"/>
+<line x1="109.8" y1="122.7" x2="109.8" y2="141.1" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺em" data-p3="-1.000000,-1.000000,0.600000;-1.000000,-1.000000,0.000000" data-hidden="1"/>
+<line x1="182.8" y1="101.8" x2="182.8" y2="120.2" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺fn" data-p3="1.000000,-1.000000,0.600000;1.000000,-1.000000,0.000000" data-hidden="1"/>
+<line x1="150.2" y1="54.9" x2="150.2" y2="73.3" stroke="currentColor" stroke-width="1.5" data-seg="辺go" data-p3="1.000000,1.000000,0.600000;1.000000,1.000000,0.000000" data-hidden="0"/>
+<line x1="77.2" y1="75.8" x2="77.2" y2="94.2" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="4 3" data-seg="辺hp" data-p3="-1.000000,1.000000,0.600000;-1.000000,1.000000,0.000000" data-hidden="1"/>
+<circle cx="89.5" cy="156.6" r="1.6" fill="currentColor" data-pt="a" data-x3="-2.000000" data-y3="-2.000000" data-z3="0.600000"/>
+<circle cx="109.8" cy="122.7" r="1.6" fill="currentColor" data-pt="e" data-x3="-1.000000" data-y3="-1.000000" data-z3="0.600000"/>
+<circle cx="89.5" cy="175" r="1.6" fill="currentColor" data-pt="i" data-x3="-2.000000" data-y3="-2.000000" data-z3="0.000000"/>
+<circle cx="109.8" cy="141.1" r="1.6" fill="currentColor" data-pt="m" data-x3="-1.000000" data-y3="-1.000000" data-z3="0.000000"/>
+<circle cx="235.5" cy="114.9" r="1.6" fill="currentColor" data-pt="b" data-x3="2.000000" data-y3="-2.000000" data-z3="0.600000"/>
+<circle cx="182.8" cy="101.8" r="1.6" fill="currentColor" data-pt="f" data-x3="1.000000" data-y3="-1.000000" data-z3="0.600000"/>
+<circle cx="235.5" cy="133.2" r="1.6" fill="currentColor" data-pt="j" data-x3="2.000000" data-y3="-2.000000" data-z3="0.000000"/>
+<circle cx="182.8" cy="120.2" r="1.6" fill="currentColor" data-pt="n" data-x3="1.000000" data-y3="-1.000000" data-z3="0.000000"/>
+<circle cx="170.5" cy="21" r="1.6" fill="currentColor" data-pt="c" data-x3="2.000000" data-y3="2.000000" data-z3="0.600000"/>
+<circle cx="150.2" cy="54.9" r="1.6" fill="currentColor" data-pt="g" data-x3="1.000000" data-y3="1.000000" data-z3="0.600000"/>
+<circle cx="170.5" cy="39.4" r="1.6" fill="currentColor" data-pt="k" data-x3="2.000000" data-y3="2.000000" data-z3="0.000000"/>
+<circle cx="150.2" cy="73.3" r="1.6" fill="currentColor" data-pt="o" data-x3="1.000000" data-y3="1.000000" data-z3="0.000000"/>
+<circle cx="24.5" cy="62.8" r="1.6" fill="currentColor" data-pt="d" data-x3="-2.000000" data-y3="2.000000" data-z3="0.600000"/>
+<circle cx="77.2" cy="75.8" r="1.6" fill="currentColor" data-pt="h" data-x3="-1.000000" data-y3="1.000000" data-z3="0.600000"/>
+<circle cx="24.5" cy="81.1" r="1.6" fill="currentColor" data-pt="l" data-x3="-2.000000" data-y3="2.000000" data-z3="0.000000"/>
+<circle cx="77.2" cy="94.2" r="1.6" fill="currentColor" data-pt="p" data-x3="-1.000000" data-y3="1.000000" data-z3="0.000000"/>
+</svg><!--/svg:f061c-->
+  <figcaption>図4　穴のあいた額縁のような立体。上の面と下の面は、それぞれ4つの台形に分けてある。見えない辺は灰の破線（学習用に作成した図）</figcaption>
+</figure>
+<div class="box think">
+  <p class="box-title">考えよう（発展）：正多面体はなぜ5種類しかないのか</p>
+  <p>教科書によっては「研究」として扱われる内容です（啓林館『α数学Ａ』『深進数学Ａ』の年間指導計画、数研出版のシラバス・観点別評価規準例）。</p>
+  <p>へこみのない多面体の1つの頂点には3つ以上の面が集まり、そこに集まる角の和は \( 360^\circ \) より小さくなります（このページでは証明しません。\( 360^\circ \) になると、集まった面は平らに広がって頂点ができません）。正多面体では、1つの頂点に同じ正多角形の内角が \( k \) 個（\( k\geqq3 \)）集まるので、次のようになります。</p>
+  <ul>
+    <li>正三角形（\( 60^\circ \)）：\( 60^\circ\times k&lt;360^\circ \) より \( k=3,\ 4,\ 5 \)（正四面体・正八面体・正二十面体）</li>
+    <li>正方形（\( 90^\circ \)）：\( 90^\circ\times k&lt;360^\circ \) より \( k=3 \)（立方体）</li>
+    <li>正五角形（\( 108^\circ \)）：\( 108^\circ\times k&lt;360^\circ \) より \( k=3 \)（正十二面体）</li>
+  </ul>
+  <p>面の形と \( k \) の組み合わせは、正六角形以上の面を除けば、この5通りに限られます。正六角形以上の面がないことは、確認問題の問9で考えましょう。なお、それぞれの組み合わせで正多面体の形が1つに決まり、図1の5種類になることは、このページでは証明しません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">5</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>多面体</dt><dd>平面だけで囲まれた立体（中1-092）。囲む多角形が面、2つの面が交わる線分が辺、辺の端の点が頂点。</dd>
+    <dt>へこみのない多面体</dt><dd>どの面についても、その面を含む平面の片側に多面体全体があるもの（このページでの言い方）。</dd>
+    <dt>正多面体</dt><dd>すべての面が合同な正多角形で、どの頂点にも同じ数の面が集まる、へこみのない多面体（このページでの定義）。正四面体・正六面体（立方体）・正八面体・正十二面体・正二十面体の5種類。</dd>
+    <dt>オイラーの多面体定理</dt><dd>へこみのない多面体の頂点の数 \( v \)、辺の数 \( e \)、面の数 \( f \) について \( v-e+f=2 \)。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">6</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>正多面体は、すべての面が合同な正多角形で、どの頂点にも同じ数の面が集まるへこみのない多面体で、5種類ある。辺の数＝（面ごとの辺の数の合計）÷2、頂点の数＝（面ごとの頂点の数の合計）÷（1つの頂点に集まる面の数。どの頂点にも同じ数ずつ集まるとき）（O1）。</li>
+    <li>へこみのない多面体では、頂点の数 \( v \)、辺の数 \( e \)、面の数 \( f \) について \( v-e+f=2 \)（オイラーの多面体定理）。2つが分かれば残りが求まり、\( v-e+f\neq2 \) となる数の組のへこみのない多面体はない。穴のあいた立体では成り立たないことがある（O2）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">重なりに注意した数え方</span><p>\( e=\dfrac{\text{面ごとの辺の数の合計}}{2} \)、\( v=\dfrac{\text{面ごとの頂点の数の合計}}{k} \)（\( k \)：どの頂点にも同じ数ずつ集まるときの、1つの頂点に集まる面の数）</p></div>
+  <div><span class="f-name">オイラーの多面体定理</span><p>\( v-e+f=2 \)（へこみのない多面体）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">7</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。入力問題は数字だけを入力してください。とくに断らない限り、多面体はへこみのないものとします。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>次のうち、正多面体であるものはどれですか。</p>
+  <div class="choices">
+    <button>底面が正三角形で、側面がすべて正方形の三角柱</button>
+    <button>底面が正方形で、側面がすべて正三角形の四角錐</button>
+    <button>縦・横・高さがすべて異なる直方体</button>
+    <button data-correct="true">8つの合同な正三角形の面でできていて、どの頂点にも4つの面が集まる立体</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">4つ目は正八面体で、(ア)・(イ) を満たします。三角柱は面が正三角形と正方形の2種類で、すべての面が合同ではありません。四角錐も面が正方形と正三角形の2種類で、頂点に集まる面の数も4（頂点）と3（底面の頂点）で違います。直方体の面は正方形でない長方形を含み、正多角形ではありません。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="18|18本">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>六角柱の辺の数を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 18。上下の底面に6本ずつ、側面の縦の辺が6本で \( 6\times3=18 \) です（\( n \) 角柱は \( e=3n \)）。12 と答えた場合は、側面の縦の辺を数え忘れています。面ごとに数えると \( 6\times2+4\times6=36 \) で、どの辺も2回数えているので \( 36\div2=18 \) と確かめられます。36 と答えた場合は、2で割り忘れています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>頂点の数が 7、面の数が 7 の多面体の辺の数はどれですか。</p>
+  <div class="choices">
+    <button>14</button>
+    <button>16</button>
+    <button data-correct="true">12</button>
+    <button>2</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">オイラーの多面体定理 \( v-e+f=2 \) より \( e=v+f-2=7+7-2=12 \) です（六角錐がこの例です）。14 は \( v+f \) で 2 を引き忘れた値、16 は \( v+f+2 \) と符号を誤った値、2 は \( e=v-f+2 \) と移項を誤った値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>次の（頂点の数, 辺の数, 面の数）の組のうち、へこみのない多面体として<strong>ありえない</strong>ものはどれですか。</p>
+  <div class="choices">
+    <button>（6, 12, 8）</button>
+    <button data-correct="true">（10, 15, 8）</button>
+    <button>（5, 8, 5）</button>
+    <button>（7, 12, 7）</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( v-e+f \) を計算すると、順に \( 2,\ 3,\ 2,\ 2 \) です。へこみのない多面体なら \( v-e+f=2 \) が成り立つので、\( v-e+f=3 \) となる（10, 15, 8）の多面体はありません。ほかの組は、正八面体（6, 12, 8）、四角錐（5, 8, 5）、六角錐（7, 12, 7）が例です。なお、\( v-e+f=2 \) を満たすことは、その組の多面体があることの理由にはなりません（ここでは実際の例で確かめています）。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="12|12個">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O1</span></div>
+  <p>正三角形の面が 8、正方形の面が 6 あり、どの頂点にも4つの面が集まる多面体があります。頂点の数を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 12。面ごとの頂点の数の合計は \( 3\times8+4\times6=48 \) で、どの頂点も4回数えているので \( 48\div4=12 \) です。確かめ：辺の数は \( 48\div2=24 \)、面の数は 14 で、\( 12-24+14=2 \)。16 と答えた場合は 3 で割っていて、1つの頂点に集まる面の数（4）を使っていません。48 は割り忘れ、24 は辺の数です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O1・O2</span></div>
+  <p>立方体の1つの頂点を、その頂点に集まる3本の辺の中点を通る平面で切り落としました。残った立体の（頂点の数, 辺の数, 面の数）はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">（10, 15, 7）</button>
+    <button>（7, 12, 7）</button>
+    <button>（11, 15, 7）</button>
+    <button>（10, 12, 6）</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">切り落とした頂点が1つなくなり、切り口の三角形の頂点が3つ増えるので、頂点は \( 8-1+3=10 \)。辺は、もとの12本はどれも残り（3本は短くなる）、切り口の三角形の3辺が増えて \( 12+3=15 \)。面は、もとの6つに切り口が1つ増えて 7。確かめ：\( 10-15+7=2 \)。（7, 12, 7）は頂点を1つ減らしただけで増えた頂点を数えていません。（11, 15, 7）は切り落とした頂点も残して数えた誤りで、\( v-e+f=3 \) になるのでありえません。（10, 12, 6）は切り口の辺と面を数え忘れています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O1・O2</span></div>
+  <p>太郎さんと花子さんが、立方体の6つの面の中心（対角線の交点）を頂点とする立体について話しています。</p>
+  <p>花子：「となり合う面の中心を結ぶと、正八面体ができるね。」<br>太郎：「立方体と正八面体の、頂点・辺・面の数を比べると、何か関係がありそうだよ。」</p>
+  <p>立方体と、この正八面体の数の関係として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>頂点の数・辺の数・面の数が、それぞれ等しい。</button>
+    <button>頂点の数どうしと面の数どうしが等しく、辺の数だけが違う。</button>
+    <button data-correct="true">立方体の面の数と正八面体の頂点の数が等しく、立方体の頂点の数と正八面体の面の数が等しく、辺の数は等しい。</button>
+    <button>辺の数が、正八面体は立方体の2倍である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">正八面体の頂点は立方体の6つの面の中心なので、頂点の数は 6（立方体の面の数）。立方体の1つの頂点のまわりの3つの面の中心が、正八面体の1つの面（正三角形）になるので、正八面体の面の数は 8（立方体の頂点の数）。辺は、となり合う2面の中心を結ぶ線分で、立方体の辺1本ごとに1本できるので、どちらも 12 です。表の値（立方体 8, 12, 6、正八面体 6, 12, 8）とも合います。1つ目・2つ目は頂点と面の入れかわりを見落とし、4つ目は辺の数の誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q8" data-accept="12|12枚|12個">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2</span></div>
+  <p>正五角形と正六角形の面だけでできていて、どの頂点にも3つの面が集まる、へこみのない多面体を考えます。正五角形の面の数を \( p \)、正六角形の面の数を \( h \) とするとき、オイラーの多面体定理を使って \( p \) の値を求めなさい（\( h \) の値は分からなくても求められます）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 12。面ごとの辺（頂点）の数の合計は \( 5p+6h \) なので、\( e=\dfrac{5p+6h}{2} \)、\( v=\dfrac{5p+6h}{3} \)、\( f=p+h \)。\( v-e+f=2 \) に代入して両辺を6倍すると、\( 2(5p+6h)-3(5p+6h)+6(p+h)=12 \)、整理すると \( p=12 \)。\( h \) は消えるので、正六角形の面がいくつでも、正五角形の面は 12 です（\( h=0 \) なら正十二面体、\( h=20 \) なら例題2の多面体）。両辺を6倍するときに右辺の 2 にかけ忘れると \( p=2 \) になります。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1</span></div>
+  <p>面が正六角形である正多面体はありません。その理由を、1つの頂点に集まる角の大きさに着目して説明しなさい（「考えよう（発展）」の、へこみのない多面体の頂点に集まる角の和は \( 360^\circ \) より小さいという性質を使ってよい）。また、正七角形以上の面でも同じことがいえる理由を書きなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　正六角形の1つの内角は \( 180^\circ\times(6-2)\div6=120^\circ \) である。正多面体の1つの頂点には3つ以上の面が集まるので、そこに集まる角の和は \( 120^\circ\times3=360^\circ \) 以上になる。へこみのない多面体の頂点に集まる角の和は \( 360^\circ \) より小さいので、面が正六角形の正多面体はない。正七角形以上では、1つの内角が \( 120^\circ \) より大きく（\( n \) が大きいほど \( 180^\circ\times(n-2)\div n=180^\circ-\dfrac{360^\circ}{n} \) は大きい）、3つ集めると和が \( 360^\circ \) を超えるので、やはりない。</p>
+    <p><strong>採点の観点</strong>　① 正六角形の内角 \( 120^\circ \) を求めている。② 1つの頂点に3つ以上集まることと、和が \( 360^\circ \) より小さいことを使って、正六角形ではありえないと説明している。③ 正七角形以上では内角が \( 120^\circ \) より大きくなることを示している。</p>
+  </div>
+  <div class="explain">正六角形を3つ集めると \( 360^\circ \) でちょうど平らになり、平面をすき間なく敷きつめる形になります。頂点ができないので、立体を囲むことはできません。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">8</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(1) 図形の性質」のア(ウ)「空間図形に関する基本的な性質について理解すること」とイ(ア)「図形の構成要素間の関係や既に学習した図形の性質に着目し，図形の新たな性質を見いだし，その性質について論理的に考察したり説明したりすること」に関わり、出題範囲に含まれます。多面体とオイラーの多面体定理は、学習指導要領の解説の数学Ａの項には明記がなく（†）、教科書で扱われる内容です（東京書籍・数研出版の資料で確かめた）。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」としています。表に整理して関係を見いだし、文字を使って一般の場合を確かめるこの時間の進め方は、その例の1つです。</p>
+  <p class="small">問7は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">9</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">空間図形の性質の考察（数Ａ-062）</p>
+  <p>次の時間は、直方体を3つの頂点を通る平面で切ると四面体ができることを発展させ、四面体の各辺の内分点を通る平面で切ると八面体ができることなどを、この時間の頂点・辺・面の数え方や前の時間までの性質を使って説明します。球に方べきの定理を当てはめることも考えます。</p>
+  <p>この時間では、オイラーの多面体定理の証明と、立体を平面で切ってできる立体の考察（数Ａ-062）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-060　直線と平面の垂直</div>
+  <div><span class="label">次の時間</span>数Ａ-062　空間図形の性質の考察</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-061「多面体」（学習指導要領 数学Ａ (1)ア(ウ)・イ(ア)、解説 p.90。† 解説の数学Ａの項に明記がなく教科書で扱われている内容を含む行）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(1) 図形の性質 ア(ウ)・イ(ア)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.90（数学Ａの項：空間図形の基本的な性質。多面体・オイラーの多面体定理の明記はない＝†）、p.119（数学Ｃの項：「数学Ａ」で「(1) 図形の性質」を学習している場合には「空間における直線や平面の位置関係やなす角，多面体などについて」取り扱っている）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>東京書籍 教科書編修趣意書 数学Ａ『改訂版 新数学Ａ』（数Ａ002-905・906）（「5種類の正多面体の頂点，辺，面の数の間にある関係を表に整理することによって発見させ，それと関連させてオイラーの多面体定理を紹介する構成」）（文部科学省公開）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-25.pdf 。同「シラバス案 数学Ａ（新数学Ａ）」（「多面体，正多面体を理解し，オイラーの多面体定理に触れ」）https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16707_sua_syllabus.pdf 、「シラバス案 数学Ａ（数学Ａ Standard）」（「多面体や正多面体について理解し，正多面体の頂点の数と辺の数と面の数について考察することができる」）https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_sua_syllabus.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「多面体」（「正多面体の特徴を理解し，それに基づいて面，頂点，辺の数を求めることができる」「オイラーの多面体定理を利用すると，正多面体の面の形から面の数が限定されることに関心をもつ」（p.126研究））https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx 。数研出版 教科書編修趣意書 数学Ａ『改訂版 数学Ａ』（数Ａ104-901）（「オイラーの多面体定理を利用して，正多面体の面の形から面の数を代数的に導き」）（文部科学省公開）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-34.pdf</li>
+    <li>新興出版社啓林館「α数学Ａ（数Ａ061-901）」「深進数学Ａ 改訂版（数Ａ061-902）」年間指導計画（第4節 空間図形「２ 多面体」「研究／正多面体は5種類しかない」）、「新編数学Ａ 改訂版（数Ａ061-904）」年間指導計画（「math探 オイラーの多面体定理」）（同社「高等学校 数学 サポート資料」https://www.shinko-keirin.co.jp/keirinkan/kou/math/support/ に掲載）</li>
+    <li>東京書籍「令和7年度用『新編 新しい数学』年間指導計画・学習指導計画例（略案）」1年（「多面体の意味」「正多面体の意味とその種類」。中1-092 の出典）https://ten.tokyo-shoseki.co.jp/text/chu/list/keikaku/</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・図はこのページのために作成したものです（出典を示したものを除く）。例題2の多面体は学習用の例です。図は空間の座標から計算して描いた見取図です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-061",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-061",
+  "title": "多面体",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-2", "title": "図形の性質"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ウ)", "(1)イ(ア)"],
+  "kaisetsu_page": "90",
+  "objectives": [
+    {"id": "O1", "text": "多面体・正多面体の意味を理解し、多面体の頂点・辺・面の数を、面の形と1つの頂点に集まる面の数から重なりに注意して求めることができる。", "from": "多面体や正多面体の頂点・辺・面の数を調べ", "sections": ["sec-1"], "checks": ["q1", "q2", "q5", "q6", "q7", "q9"]},
+    {"id": "O2", "text": "いろいろな多面体の頂点・辺・面の数を調べて、その間に成り立つ関係（オイラーの多面体定理）を見いだし、それを使って頂点・辺・面の数を考察できる。", "from": "その間に成り立つ関係（オイラーの多面体定理）を見いだすことができる", "sections": ["sec-2"], "checks": ["q3", "q4", "q6", "q7", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "多面体", "where": "review"},
+    {"term": "へこみのない多面体", "where": "sec-1"},
+    {"term": "正多面体", "where": "sec-1"},
+    {"term": "オイラーの多面体定理", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "多面体・正多面体の意味と正多面体の種類（正四面体など）", "taught_in": ["jhs_math/中1-092"], "gap": false, "where": "review"},
+    {"concept": "正四面体（4つの面がすべて合同な正三角形である三角錐）", "taught_in": ["jhs_math/中1-092", "hs_math_1a/数Ⅰ-076"], "gap": false, "where": "review"},
+    {"concept": "多角形の内角の和 180°×(n−2)", "taught_in": ["jhs_math/中2-049"], "gap": false, "where": "review"},
+    {"concept": "角柱・角錐の頂点・辺・面（見取図・展開図で辺や面の関係を読み取る）", "taught_in": ["jhs_math/中1-093"], "gap": false, "where": "sec-2"},
+    {"concept": "文字式で数量を表す（n角柱の頂点の数など）", "taught_in": ["jhs_math/中1-029"], "gap": false, "where": "sec-2"},
+    {"concept": "正方形の対角線の交点（面の中心）", "taught_in": ["jhs_math/中2-073"], "gap": false, "where": "quiz"},
+    {"concept": "辺の中点（中点連結定理で使う語）", "taught_in": ["jhs_math/中3-073"], "gap": false, "where": "quiz"}
+  ],
+  "out_of_scope": [
+    "オイラーの多面体定理の証明（このページでは証明しない）",
+    "へこみのない多面体の頂点に集まる角の和が 360° より小さいことの証明（「考えよう（発展）」で使うが証明しない）",
+    "正多面体が5種類しかないことの詳しい扱い（教科書によっては「研究」。このページでは「考えよう（発展）」で考え方だけを示す）",
+    "立体を平面で切ってできる立体の考察（数Ａ-062）",
+    "正多面体の体積（数研出版のシラバスにある「正多面体どうしの関係を利用して，正多面体の体積を求める」。地図の要点にない）"
+  ],
+  "selection_reason": "数学Ａ 単元『図形の性質』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(1)ア(ウ)・イ(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.90 空間図形の基本的な性質（数学Ａの項。多面体の明記はない）、p.119 数学Ａで「多面体など」を扱っていること（数学Ｃの項）（保存本文：sources/text/hs_kaisetsu_math.txt）"},
+    {"name": "教科書編修趣意書 数学Ａ『改訂版 新数学Ａ』（数Ａ002-905・906）", "publisher": "東京書籍（文部科学省公開）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-25.pdf", "use": "正多面体の頂点・辺・面の数を表に整理して関係を発見させ、オイラーの多面体定理を紹介する構成（保存本文：sources/text/hensyu_東京書籍_数A002-905_906.txt）"},
+    {"name": "シラバス案 数学Ａ（新数学Ａ、数Ａ002-905・906）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16707_sua_syllabus.pdf", "use": "「多面体，正多面体を理解し，オイラーの多面体定理に触れ」（写し：sources/text/ts_ma_16707_syllabus.txt）"},
+    {"name": "シラバス案 数学Ａ（数学Ａ Standard、数Ａ002-902）", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/hs_current/sugaku/data/sugaku_16704_sua_syllabus.pdf", "use": "「正多面体の頂点の数と辺の数と面の数について考察する」（写し：sources/text/ts_ma_16704_syllabus.txt）"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "正多面体の面・頂点・辺の数、オイラーの多面体定理、p.126研究（正多面体の面の数が限定される）（保存本文：sources/text/suken_syllabus_suakai.txt）"},
+    {"name": "教科書編修趣意書 数学Ａ『改訂版 数学Ａ』（数Ａ104-901）", "publisher": "数研出版（文部科学省公開）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-34.pdf", "use": "「オイラーの多面体定理を利用して，正多面体の面の形から面の数を代数的に導き」（保存本文：sources/text/hensyu_数研出版_数A104-901.txt）"},
+    {"name": "α数学Ａ・深進数学Ａ 改訂版・新編数学Ａ 改訂版 年間指導計画", "publisher": "新興出版社啓林館", "url": "https://www.shinko-keirin.co.jp/keirinkan/kou/math/support/", "use": "「研究／正多面体は5種類しかない」（α・深進）、「math探 オイラーの多面体定理」（新編）（写し：sources/text/kr_ma_*_keikaku.txt）"},
+    {"name": "令和7年度用『新編 新しい数学』年間指導計画・学習指導計画例（略案）1年", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/chu/list/keikaku/", "use": "「多面体の意味」「正多面体の意味とその種類」（中1-092 の出典。保存本文：sources/text/tosho_math_ryakuan_1.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

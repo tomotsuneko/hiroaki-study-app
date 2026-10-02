@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>散らばりを数値化する方法｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+table.data td, table.data th { text-align: center; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>データの分析</span><span>数Ⅰ-080</span></div>
+  <h1>散らばりを数値化する方法</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">平均値も範囲も四分位範囲も同じ2つの班。それでも得点の散らばり方は違って見えます。すべての値を使って「散らばりの大きさ」を1つの数で表すには、どうすればよいでしょうか。いくつかの考えを出し合い、長所と短所を比べます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>範囲や四分位範囲だけでは散らばりの違いを表しきれない例を挙げ、すべての値と平均値の差を使って散らばりを数値化する考えを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>各データと平均値の差の和がいつも 0 になることを式で示し、散らばりの指標に使えない理由を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>差の絶対値の和・差の2乗の和や、それらをデータの個数で割った値を求め、長所・短所を比べて、散らばりの指標としての特徴を説明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-079）</span>統計的探究プロセスとデータの整理</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-080）</span>散らばりを数値化する方法</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-081）</span>分散と標準偏差</div>
+</div>
+<p class="small">前提となる単元：中学1年「データの分布／不確定な事象の起こりやすさ」、中学2年「データの分布（四分位範囲と箱ひげ図）」。同じ単元の数Ⅰ-079（統計量の整理）、数学Ⅰ「数と式」の数Ⅰ-012（絶対値）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、平均値（中1-111）、散らばりの指標としての範囲と四分位範囲（中1-111・中2-089、数Ⅰ-079 で整理）、絶対値（数Ⅰ-012）を使います。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中1-111</span></div>
+  <p>4個の値 3, 5, 8, 12 の平均値はどれですか。</p>
+  <div class="choices">
+    <button>6.5</button>
+    <button data-correct="true">7</button>
+    <button>28</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">合計 \( 3+5+8+12=28 \) を個数 4 で割って \( 28\div4=7 \) です。6.5 は中央値（真ん中の2つ 5 と 8 の平均）で、平均値とは違います。28 は合計で、個数で割り忘れています。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-012</span></div>
+  <p>\( |2-7| \) の値はどれですか。</p>
+  <div class="choices">
+    <button>\( -5 \)</button>
+    <button>9</button>
+    <button data-correct="true">5</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 2-7=-5 \) の絶対値なので \( |-5|=5 \) です。\( |a-b| \) は数直線上の2点 \( a,\ b \) の距離を表すので、0 以上の値になります。\( -5 \) は絶対値をとり忘れています。9 は \( 2+7 \) で、差でなく和を計算しています。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中1-111・中2-089</span></div>
+  <p>範囲と四分位範囲について、正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">範囲は最大値と最小値だけで決まり、四分位範囲は第1四分位数と第3四分位数だけで決まる。</button>
+    <button>範囲も四分位範囲も、すべての値を合計して計算する。</button>
+    <button>四分位範囲は、極端にかけ離れた値が1つあるだけで大きく変わる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">範囲＝最大値−最小値、四分位範囲＝第3四分位数−第1四分位数で、どちらも2つの値だけで決まります。すべての値を合計する計算ではありません。極端な値の影響を大きく受けるのは範囲の方で、四分位範囲はほとんど影響を受けません（中2-089）。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：どちらの班の得点が散らばっている？</h2>
+<div class="box think">
+  <p class="box-title">A班・B班の小テスト（10点満点、学習用の架空のデータ）</p>
+  <div class="table-wrap">
+  <table class="data">
+    <tr><th>A班（8人）</th><td>1</td><td>3</td><td>3</td><td>3</td><td>7</td><td>7</td><td>7</td><td>9</td></tr>
+    <tr><th>B班（8人）</th><td>1</td><td>3</td><td>3</td><td>5</td><td>5</td><td>7</td><td>7</td><td>9</td></tr>
+  </table>
+  </div>
+  <p>どちらの班も、平均値は 5 点、範囲は \( 9-1=8 \)（点）、第1四分位数 3 点、第3四分位数 7 点で、四分位範囲も 4 点です。</p>
+  <p><strong>では、2つの班の得点の散らばりの大きさは同じといえるでしょうか。</strong>違うとしたら、それを数で示すにはどうすればよいでしょうか。答えは「5 絶対値の和と2乗の和を比べる」の例1で確かめます。</p>
+</div>
+<figure>
+<div class="fig-scroll">
+<!--svg:f080a-->
+<svg viewBox="0 0 560 176" width="560" role="img" aria-label="A班とB班の得点を数直線の上に積み上げた図。A班は1点が1人、3点が3人、7点が3人、9点が1人。B班は1点が1人、3点が2人、5点が2人、7点が2人、9点が1人。どちらも平均値は5点（破線）" data-fig="f080a">
+<line x1="64" y1="68" x2="542" y2="68" stroke="currentColor" stroke-width="1"/>
+<line x1="70" y1="68" x2="70" y2="72" stroke="currentColor" stroke-width="1"/>
+<text x="70" y="84" text-anchor="middle" font-size="11" fill="currentColor">0</text>
+<line x1="116.6" y1="68" x2="116.6" y2="72" stroke="currentColor" stroke-width="1"/>
+<text x="116.6" y="84" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="163.2" y1="68" x2="163.2" y2="72" stroke="currentColor" stroke-width="1"/>
+<text x="163.2" y="84" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="209.8" y1="68" x2="209.8" y2="72" stroke="currentColor" stroke-width="1"/>
+<text x="209.8" y="84" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="256.4" y1="68" x2="256.4" y2="72" stroke="currentColor" stroke-width="1"/>
+<text x="256.4" y="84" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="303" y1="68" x2="303" y2="72" stroke="currentColor" stroke-width="1"/>
+<text x="303" y="84" text-anchor="middle" font-size="11" fill="currentColor">5</text>
+<line x1="349.6" y1="68" x2="349.6" y2="72" stroke="currentColor" stroke-width="1"/>
+<text x="349.6" y="84" text-anchor="middle" font-size="11" fill="currentColor">6</text>
+<line x1="396.2" y1="68" x2="396.2" y2="72" stroke="currentColor" stroke-width="1"/>
+<text x="396.2" y="84" text-anchor="middle" font-size="11" fill="currentColor">7</text>
+<line x1="442.8" y1="68" x2="442.8" y2="72" stroke="currentColor" stroke-width="1"/>
+<text x="442.8" y="84" text-anchor="middle" font-size="11" fill="currentColor">8</text>
+<line x1="489.4" y1="68" x2="489.4" y2="72" stroke="currentColor" stroke-width="1"/>
+<text x="489.4" y="84" text-anchor="middle" font-size="11" fill="currentColor">9</text>
+<line x1="536" y1="68" x2="536" y2="72" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="84" text-anchor="middle" font-size="11" fill="currentColor">10</text>
+<circle cx="116.6" cy="61" r="6" fill="#1f5fbf" data-dot="1 0"/>
+<circle cx="209.8" cy="61" r="6" fill="#1f5fbf" data-dot="3 0"/>
+<circle cx="209.8" cy="47" r="6" fill="#1f5fbf" data-dot="3 1"/>
+<circle cx="209.8" cy="33" r="6" fill="#1f5fbf" data-dot="3 2"/>
+<circle cx="396.2" cy="61" r="6" fill="#1f5fbf" data-dot="7 0"/>
+<circle cx="396.2" cy="47" r="6" fill="#1f5fbf" data-dot="7 1"/>
+<circle cx="396.2" cy="33" r="6" fill="#1f5fbf" data-dot="7 2"/>
+<circle cx="489.4" cy="61" r="6" fill="#1f5fbf" data-dot="9 0"/>
+<line x1="303" y1="20" x2="303" y2="68" stroke="#b7791f" stroke-width="1.5" stroke-dasharray="5 3" data-mean="5"/>
+<text x="307" y="30" text-anchor="start" font-size="11" fill="#b7791f">平均値 5</text>
+<text x="56" y="62" text-anchor="end" font-size="12" font-weight="700" fill="currentColor">A班</text>
+<line x1="64" y1="146" x2="542" y2="146" stroke="currentColor" stroke-width="1"/>
+<line x1="70" y1="146" x2="70" y2="150" stroke="currentColor" stroke-width="1"/>
+<text x="70" y="162" text-anchor="middle" font-size="11" fill="currentColor">0</text>
+<line x1="116.6" y1="146" x2="116.6" y2="150" stroke="currentColor" stroke-width="1"/>
+<text x="116.6" y="162" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="163.2" y1="146" x2="163.2" y2="150" stroke="currentColor" stroke-width="1"/>
+<text x="163.2" y="162" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="209.8" y1="146" x2="209.8" y2="150" stroke="currentColor" stroke-width="1"/>
+<text x="209.8" y="162" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="256.4" y1="146" x2="256.4" y2="150" stroke="currentColor" stroke-width="1"/>
+<text x="256.4" y="162" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="303" y1="146" x2="303" y2="150" stroke="currentColor" stroke-width="1"/>
+<text x="303" y="162" text-anchor="middle" font-size="11" fill="currentColor">5</text>
+<line x1="349.6" y1="146" x2="349.6" y2="150" stroke="currentColor" stroke-width="1"/>
+<text x="349.6" y="162" text-anchor="middle" font-size="11" fill="currentColor">6</text>
+<line x1="396.2" y1="146" x2="396.2" y2="150" stroke="currentColor" stroke-width="1"/>
+<text x="396.2" y="162" text-anchor="middle" font-size="11" fill="currentColor">7</text>
+<line x1="442.8" y1="146" x2="442.8" y2="150" stroke="currentColor" stroke-width="1"/>
+<text x="442.8" y="162" text-anchor="middle" font-size="11" fill="currentColor">8</text>
+<line x1="489.4" y1="146" x2="489.4" y2="150" stroke="currentColor" stroke-width="1"/>
+<text x="489.4" y="162" text-anchor="middle" font-size="11" fill="currentColor">9</text>
+<line x1="536" y1="146" x2="536" y2="150" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="162" text-anchor="middle" font-size="11" fill="currentColor">10</text>
+<circle cx="116.6" cy="139" r="6" fill="#1f5fbf" data-dot="1 0"/>
+<circle cx="209.8" cy="139" r="6" fill="#1f5fbf" data-dot="3 0"/>
+<circle cx="209.8" cy="125" r="6" fill="#1f5fbf" data-dot="3 1"/>
+<circle cx="303" cy="139" r="6" fill="#1f5fbf" data-dot="5 0"/>
+<circle cx="303" cy="125" r="6" fill="#1f5fbf" data-dot="5 1"/>
+<circle cx="396.2" cy="139" r="6" fill="#1f5fbf" data-dot="7 0"/>
+<circle cx="396.2" cy="125" r="6" fill="#1f5fbf" data-dot="7 1"/>
+<circle cx="489.4" cy="139" r="6" fill="#1f5fbf" data-dot="9 0"/>
+<line x1="303" y1="98" x2="303" y2="146" stroke="#b7791f" stroke-width="1.5" stroke-dasharray="5 3" data-mean="5"/>
+<text x="307" y="108" text-anchor="start" font-size="11" fill="#b7791f">平均値 5</text>
+<text x="56" y="140" text-anchor="end" font-size="12" font-weight="700" fill="currentColor">B班</text>
+</svg>
+<!--/svg:f080a-->
+</div>
+  <figcaption>図1　A班・B班の得点。数直線の上に1人を1つの●で表し、同じ得点は積み上げた図。破線は平均値 5 点</figcaption>
+</figure>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="すべての値を使う"><span class="num">3</span>範囲・四分位範囲では表しきれない散らばり</h2>
+<p>図1を見ると、B班には平均値ちょうどの 5 点が2人いますが、A班には1人もいません。A班は 3 点と 7 点に3人ずつ集まり、全体として平均値から離れた得点が多いようです。</p>
+<p>範囲は最大値と最小値だけ、四分位範囲は第1四分位数と第3四分位数だけで決まるので、この違いを表せません。散らばりの度合いを、<strong>すべての値を使って</strong>数値化する方法を考えましょう。</p>
+<p>その手がかりとして、各データが平均値からどれだけ離れているかを表す<strong>各データと平均値の差</strong>（データの値）−（平均値）を考えます。データを \( x_1,\ x_2,\ \cdots,\ x_n \)、平均値を \( \overline{x} \) と書くと、差は \( x_1-\overline{x},\ x_2-\overline{x},\ \cdots,\ x_n-\overline{x} \) です（この差には次の時間（数Ⅰ-081）で名前を付けます）。</p>
+<div class="table-wrap">
+<table class="data">
+  <tr><th>A班の得点</th><td>1</td><td>3</td><td>3</td><td>3</td><td>7</td><td>7</td><td>7</td><td>9</td></tr>
+  <tr><th>平均値との差</th><td>−4</td><td>−2</td><td>−2</td><td>−2</td><td>2</td><td>2</td><td>2</td><td>4</td></tr>
+  <tr><th>B班の得点</th><td>1</td><td>3</td><td>3</td><td>5</td><td>5</td><td>7</td><td>7</td><td>9</td></tr>
+  <tr><th>平均値との差</th><td>−4</td><td>−2</td><td>−2</td><td>0</td><td>0</td><td>2</td><td>2</td><td>4</td></tr>
+</table>
+</div>
+<p>この差をどうまとめれば「散らばりの大きさ」になるでしょうか。高等学校学習指導要領解説は、たとえば次のような考えを出し合い、それぞれの長所や短所を話し合うことを例に挙げています。</p>
+<div class="box point"><p class="box-title">散らばりを数値化する考え（解説の例）</p>
+<p>① 各データと平均値の差の<strong>和</strong>　② 差の<strong>絶対値</strong>の和　③ 差の<strong>2乗</strong>の和<br>④ 平均値の代わりに中央値との差を使う（差の和・絶対値の和・2乗の和）<br>⑤ ①〜④をデータの総数で割った値</p></div>
+<p>この時間は、平均値との差を使う①〜③と、⑤の「個数で割る」を中心に比べます。</p>
+<div class="box caution"><p class="box-title">よくある間違い：「範囲が同じなら散らばりも同じ」</p><p>範囲は両端の2つの値しか見ていません。範囲が同じでも、間の値が平均値の近くに集まっているか、離れているかで散らばり方は違います。図1のように、すべての値を見て判断しましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="差の和はいつも0"><span class="num">4</span>差の和はいつも 0 になる</h2>
+<p>まず①の差の和を計算します。</p>
+<p>A班：\( (-4)+(-2)+(-2)+(-2)+2+2+2+4=0 \)<br>B班：\( (-4)+(-2)+(-2)+0+0+2+2+4=0 \)</p>
+<p>どちらも 0 になりました。これは偶然ではありません。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（差の和がいつも 0 になることを示す）</p>
+  <p>データ \( x_1,\ x_2,\ \cdots,\ x_n \) の平均値を \( \overline{x} \) とします。差の和 \( (x_1-\overline{x})+(x_2-\overline{x})+\cdots+(x_n-\overline{x}) \) が 0 になることを示しなさい。</p>
+  <div class="step">着目：平均値の定義 \( \overline{x}=\dfrac{x_1+x_2+\cdots+x_n}{n} \) より、値の合計は \( x_1+x_2+\cdots+x_n=n\overline{x} \) です。</div>
+  <div class="step">式の変形：\( \overline{x} \) が \( n \) 個あるので、まとめると<br>\( (x_1-\overline{x})+\cdots+(x_n-\overline{x})=(x_1+\cdots+x_n)-n\overline{x}=n\overline{x}-n\overline{x}=0 \)</div>
+  <div class="step">答え：差の和は、どんなデータでも 0 になる（証明終わり）。</div>
+</div>
+<p>平均値より大きい値の差（正）と、小さい値の差（負）が、ちょうど打ち消し合うということです。平均値は、差の合計がつり合う位置にあるともいえます。</p>
+<div class="box point"><p class="box-title">①の短所</p><p>差の和はいつも 0 なので、散らばりが大きいデータでも小さいデータでも同じ値になり、<strong>散らばりの指標には使えません</strong>。打ち消し合わないようにするには、差の符号をなくす工夫が要ります。それが②の絶対値と③の2乗です。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：「平均値より大きい値と小さい値は同じ個数ある」</p><p>差の和が 0 になるのは、値の<strong>合計</strong>が \( n\overline{x} \) だからで、個数がつり合うからではありません。たとえば 1, 2, 9 の平均値は 4 で、4 より小さい値は2個、大きい値は1個ですが、差の和は \( (-3)+(-2)+5=0 \) です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="絶対値の和と2乗の和"><span class="num">5</span>絶対値の和と2乗の和を比べる</h2>
+<p>②の差の絶対値の和と、③の差の2乗の和を、A班とB班で計算してみます。</p>
+<div class="box example worked">
+  <p class="box-title">例1（導入の問いの答え）</p>
+  <p>A班とB班について、差の絶対値の和と差の2乗の和を求め、どちらの班の得点が散らばっているかを答えなさい。</p>
+  <div class="step">着目：符号をなくして足すので、打ち消し合いが起きません。</div>
+  <div class="step">A班：絶対値の和 \( 4+2+2+2+2+2+2+4=20 \)、2乗の和 \( 16+4+4+4+4+4+4+16=56 \)</div>
+  <div class="step">B班：絶対値の和 \( 4+2+2+0+0+2+2+4=16 \)、2乗の和 \( 16+4+4+0+0+4+4+16=48 \)</div>
+  <div class="step">答え：<span data-ans="intro">散らばりの大きさは同じではなく、A班の方が散らばっている</span>。絶対値の和でも 20＞16、2乗の和でも 56＞48 で、どちらの方法でも A班の方が大きくなります。範囲と四分位範囲では表せなかった違いを、すべての値を使った指標で示せました。</div>
+</div>
+
+<h3>個数で割る（⑤）</h3>
+<p>和のままだと困ることがあります。4人のC班の得点 1, 3, 7, 9（平均値 5 点）と、8人のA班を比べてみましょう。</p>
+<div class="table-wrap">
+<table class="data">
+  <tr><th></th><th>人数</th><th>差の絶対値の和</th><th>÷ 人数</th><th>差の2乗の和</th><th>÷ 人数</th></tr>
+  <tr><th>A班</th><td>8</td><td>20</td><td>2.5</td><td>56</td><td>7</td></tr>
+  <tr><th>C班</th><td>4</td><td>12</td><td>3</td><td>40</td><td>10</td></tr>
+</table>
+</div>
+<p>C班は4人のうち2人が平均値から4点離れていて（A班は8人のうち2人）、A班より散らばっていると考えられます。ところが和だけを見ると、人数の多いA班の方が大きくなってしまいます。和は、<strong>データの個数が多いほど大きくなる</strong>からです。データの個数で割って「1つあたり」にすれば、C班の方が大きくなり、個数の違うデータどうしでも比べられます。</p>
+
+<h3>絶対値と2乗で結果が変わることもある</h3>
+<p>次の2つのデータ D・E（どちらも平均値 5）では、2つの方法の結果が分かれます。</p>
+<div class="table-wrap">
+<table class="data">
+  <tr><th></th><th>値</th><th>平均値との差</th><th>差の絶対値の和 ÷ 4</th><th>差の2乗の和 ÷ 4</th></tr>
+  <tr><th>D</th><td>2, 2, 8, 8</td><td>−3, −3, 3, 3</td><td>\( 12\div4=3 \)</td><td>\( 36\div4=9 \)</td></tr>
+  <tr><th>E</th><td>0, 4, 6, 10</td><td>−5, −1, 1, 5</td><td>\( 12\div4=3 \)</td><td>\( 52\div4=13 \)</td></tr>
+</table>
+</div>
+<figure>
+<div class="fig-scroll">
+<!--svg:f080b-->
+<svg viewBox="0 0 560 148" width="560" role="img" aria-label="データDは2が2つ、8が2つ。データEは0、4、6、10。どちらも平均値は5（破線）" data-fig="f080b">
+<line x1="64" y1="54" x2="542" y2="54" stroke="currentColor" stroke-width="1"/>
+<line x1="70" y1="54" x2="70" y2="58" stroke="currentColor" stroke-width="1"/>
+<text x="70" y="70" text-anchor="middle" font-size="11" fill="currentColor">0</text>
+<line x1="116.6" y1="54" x2="116.6" y2="58" stroke="currentColor" stroke-width="1"/>
+<text x="116.6" y="70" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="163.2" y1="54" x2="163.2" y2="58" stroke="currentColor" stroke-width="1"/>
+<text x="163.2" y="70" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="209.8" y1="54" x2="209.8" y2="58" stroke="currentColor" stroke-width="1"/>
+<text x="209.8" y="70" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="256.4" y1="54" x2="256.4" y2="58" stroke="currentColor" stroke-width="1"/>
+<text x="256.4" y="70" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="303" y1="54" x2="303" y2="58" stroke="currentColor" stroke-width="1"/>
+<text x="303" y="70" text-anchor="middle" font-size="11" fill="currentColor">5</text>
+<line x1="349.6" y1="54" x2="349.6" y2="58" stroke="currentColor" stroke-width="1"/>
+<text x="349.6" y="70" text-anchor="middle" font-size="11" fill="currentColor">6</text>
+<line x1="396.2" y1="54" x2="396.2" y2="58" stroke="currentColor" stroke-width="1"/>
+<text x="396.2" y="70" text-anchor="middle" font-size="11" fill="currentColor">7</text>
+<line x1="442.8" y1="54" x2="442.8" y2="58" stroke="currentColor" stroke-width="1"/>
+<text x="442.8" y="70" text-anchor="middle" font-size="11" fill="currentColor">8</text>
+<line x1="489.4" y1="54" x2="489.4" y2="58" stroke="currentColor" stroke-width="1"/>
+<text x="489.4" y="70" text-anchor="middle" font-size="11" fill="currentColor">9</text>
+<line x1="536" y1="54" x2="536" y2="58" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="70" text-anchor="middle" font-size="11" fill="currentColor">10</text>
+<circle cx="163.2" cy="47" r="6" fill="#7b3fa0" data-dot="2 0"/>
+<circle cx="163.2" cy="33" r="6" fill="#7b3fa0" data-dot="2 1"/>
+<circle cx="442.8" cy="47" r="6" fill="#7b3fa0" data-dot="8 0"/>
+<circle cx="442.8" cy="33" r="6" fill="#7b3fa0" data-dot="8 1"/>
+<line x1="303" y1="20" x2="303" y2="54" stroke="#b7791f" stroke-width="1.5" stroke-dasharray="5 3" data-mean="5"/>
+<text x="307" y="30" text-anchor="start" font-size="11" fill="#b7791f">平均値 5</text>
+<text x="56" y="48" text-anchor="end" font-size="12" font-weight="700" fill="currentColor">D</text>
+<line x1="64" y1="118" x2="542" y2="118" stroke="currentColor" stroke-width="1"/>
+<line x1="70" y1="118" x2="70" y2="122" stroke="currentColor" stroke-width="1"/>
+<text x="70" y="134" text-anchor="middle" font-size="11" fill="currentColor">0</text>
+<line x1="116.6" y1="118" x2="116.6" y2="122" stroke="currentColor" stroke-width="1"/>
+<text x="116.6" y="134" text-anchor="middle" font-size="11" fill="currentColor">1</text>
+<line x1="163.2" y1="118" x2="163.2" y2="122" stroke="currentColor" stroke-width="1"/>
+<text x="163.2" y="134" text-anchor="middle" font-size="11" fill="currentColor">2</text>
+<line x1="209.8" y1="118" x2="209.8" y2="122" stroke="currentColor" stroke-width="1"/>
+<text x="209.8" y="134" text-anchor="middle" font-size="11" fill="currentColor">3</text>
+<line x1="256.4" y1="118" x2="256.4" y2="122" stroke="currentColor" stroke-width="1"/>
+<text x="256.4" y="134" text-anchor="middle" font-size="11" fill="currentColor">4</text>
+<line x1="303" y1="118" x2="303" y2="122" stroke="currentColor" stroke-width="1"/>
+<text x="303" y="134" text-anchor="middle" font-size="11" fill="currentColor">5</text>
+<line x1="349.6" y1="118" x2="349.6" y2="122" stroke="currentColor" stroke-width="1"/>
+<text x="349.6" y="134" text-anchor="middle" font-size="11" fill="currentColor">6</text>
+<line x1="396.2" y1="118" x2="396.2" y2="122" stroke="currentColor" stroke-width="1"/>
+<text x="396.2" y="134" text-anchor="middle" font-size="11" fill="currentColor">7</text>
+<line x1="442.8" y1="118" x2="442.8" y2="122" stroke="currentColor" stroke-width="1"/>
+<text x="442.8" y="134" text-anchor="middle" font-size="11" fill="currentColor">8</text>
+<line x1="489.4" y1="118" x2="489.4" y2="122" stroke="currentColor" stroke-width="1"/>
+<text x="489.4" y="134" text-anchor="middle" font-size="11" fill="currentColor">9</text>
+<line x1="536" y1="118" x2="536" y2="122" stroke="currentColor" stroke-width="1"/>
+<text x="536" y="134" text-anchor="middle" font-size="11" fill="currentColor">10</text>
+<circle cx="70" cy="111" r="6" fill="#7b3fa0" data-dot="0 0"/>
+<circle cx="256.4" cy="111" r="6" fill="#7b3fa0" data-dot="4 0"/>
+<circle cx="349.6" cy="111" r="6" fill="#7b3fa0" data-dot="6 0"/>
+<circle cx="536" cy="111" r="6" fill="#7b3fa0" data-dot="10 0"/>
+<line x1="303" y1="84" x2="303" y2="118" stroke="#b7791f" stroke-width="1.5" stroke-dasharray="5 3" data-mean="5"/>
+<text x="307" y="94" text-anchor="start" font-size="11" fill="#b7791f">平均値 5</text>
+<text x="56" y="112" text-anchor="end" font-size="12" font-weight="700" fill="currentColor">E</text>
+</svg>
+<!--/svg:f080b-->
+</div>
+  <figcaption>図2　データ D・E。破線は平均値 5。E には平均値から5離れた値が2つある</figcaption>
+</figure>
+<p>絶対値で測ると D と E は同じですが、2乗で測ると E の方が大きくなります。2乗すると、差が 3 なら 9、差が 5 なら 25 のように、<strong>大きく離れた値ほど、より重く数えられる</strong>からです。どちらが「正しい」というより、指標によって性質が違うということです。</p>
+
+<h3>単位にも注意する</h3>
+<p>得点の単位が「点」なら、差の絶対値も「点」ですが、差の2乗は「点²」（点の2乗）という、なじみにくい単位になります。2乗の和を個数で割った値の<strong>正の平方根</strong>をとれば、単位はもとの「点」に戻ります。この考えは次の時間に使います。</p>
+
+<div class="table-wrap">
+<table>
+  <tr><th>考え</th><th>長所</th><th>短所</th></tr>
+  <tr><td>① 差の和</td><td>計算が簡単</td><td>いつも 0 になり、散らばりを表せない</td></tr>
+  <tr><td>② 差の絶対値の和（個数で割る）</td><td>「平均値から平均してどれだけ離れているか」と読める。単位がもとのデータと同じ</td><td>値ごとに符号を確かめて絶対値をはずす必要があり、文字式のままでは変形しにくい</td></tr>
+  <tr><td>③ 差の2乗の和（個数で割る）</td><td>2乗はいつも 0 以上なので符号を考えずに計算でき、展開して式を変形できる（次の時間）。大きく離れた値を重く数える</td><td>単位が2乗になる。大きく離れた値の影響を強く受ける</td></tr>
+  <tr><td>②・③を和のまま使う（⑤の「個数で割る」をしない）</td><td>—</td><td>個数が多いほど大きくなり、個数の違うデータを比べられない</td></tr>
+</table>
+</div>
+<p class="small">「長所・短所」はこのページで整理したものです。授業では、ほかの見方も出し合ってみましょう。</p>
+<div class="box caution"><p class="box-title">よくある間違い：2乗の和を「平均してどれだけ離れているか」と読む</p><p>差の2乗の和を個数で割った値は、離れ具合そのものではなく「2乗した離れ具合」の平均です。A班の 7（点²）を「平均して7点離れている」と読むのは誤りです。平均して何点離れているかの目安にするには、平方根をとって単位を戻します（次の時間）。</p></div>
+
+<h3>考えよう：2乗の和は、基準をどこにとると最小になるか</h3>
+<p>解説は、平均値の数学的な意味を少数のデータで考える例として、5個のデータ \( d_1,\ \cdots,\ d_5 \) について \( (d_1-p)^2+(d_2-p)^2+\cdots+(d_5-p)^2 \) を最小にする \( p \) が平均値であることを挙げています。5個の値 2, 4, 5, 9, 15（平均値 7、中央値 5）で、基準の値 \( p \) を動かして確かめましょう。</p>
+<div class="widget" id="w80">
+  <label for="w80-p">基準の値 \( p \)：</label>
+  <input type="range" id="w80-p" min="0" max="32" step="1" value="10" aria-label="基準の値 p（0から16まで0.5刻み）">
+  <output id="w80-pv" for="w80-p">5.0</output>
+  <div class="fig-scroll"><svg id="w80-svg" viewBox="0 0 560 300" width="560" role="img" aria-label="上は数直線上の5個の値と基準の値 p。下の左は差の絶対値の和、下の右は差の2乗の和を p の関数としてかいたグラフで、いまの p の点を示す"></svg></div>
+  <p class="w-out" id="w80-out" aria-live="polite">p = 5.0 のとき：差の絶対値の和 18.0、差の2乗の和 126.00（絶対値の和が最小。p は中央値）</p>
+  <p class="small">赤の縦線＝基準の値 \( p \)、青の●＝データ、灰の線＝各データと \( p \) の差。下のグラフの赤の●が、いまの \( p \) での値です。</p>
+</div>
+<p>スライダーを動かすと、<strong>2乗の和は \( p=7 \)（平均値）で最小の 106</strong>、<strong>絶対値の和は \( p=5 \)（中央値）で最小の 18</strong> になります。2乗の和が平均値で最小になることは、二次関数の最小値（数Ⅰ-039）で確かめられます。</p>
+<p>\( (2-p)^2+(4-p)^2+(5-p)^2+(9-p)^2+(15-p)^2=5p^2-70p+351=5(p-7)^2+106 \)</p>
+<p>平方完成（数Ⅰ-034）すると、\( p=7 \) のとき最小値 106 をとります。7 はデータの平均値 \( (2+4+5+9+15)\div5 \) です。一般に、\( n \) 個のデータでも同じように展開すると \( np^2-2(x_1+\cdots+x_n)p+(x_1^2+\cdots+x_n^2) \) となり、軸は \( p=\dfrac{x_1+\cdots+x_n}{n}=\overline{x} \) です。<span class="em">平均値は、差の2乗の和をいちばん小さくする基準の値</span>になっていて、2乗の和を使うときに平均値を基準にする理由の1つになります。</p>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>散らばりの度合い</dt><dd>データの値が、中心（平均値など）のまわりにどれだけ広がっているか。範囲・四分位範囲のほか、すべての値を使って数値化する方法がある。</dd>
+    <dt>各データと平均値の差</dt><dd>（データの値）−（平均値）。\( x_1-\overline{x},\ \cdots,\ x_n-\overline{x} \)。その和はいつも 0。次の時間（数Ⅰ-081）に名前を付ける。</dd>
+    <dt>差の絶対値の和・差の2乗の和</dt><dd>差の符号をなくして足したもの。データの個数で割ると、個数の違うデータどうしでも比べられる。2乗の和は、平均値を基準にしたとき最小になる。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>範囲・四分位範囲は2つの値だけで決まるので、間の値の散らばり方の違いを表せない。すべての値と平均値の差を使う（O1）。</li>
+    <li>差の和は \( (x_1+\cdots+x_n)-n\overline{x}=0 \) で、いつも 0。散らばりの指標には使えない（O2）。</li>
+    <li>差の絶対値の和・差の2乗の和は符号をなくして足す。個数で割ると個数の違うデータを比べられる。2乗は大きな差を重く数え、単位が2乗になる。2乗の和は平均値を基準にすると最小になる（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">差の和はいつも 0</span><p>\( (x_1-\overline{x})+\cdots+(x_n-\overline{x})=0 \)</p></div>
+  <div><span class="f-name">差の2乗の和を個数で割った値</span><p>\( \dfrac{1}{n}\left\{(x_1-\overline{x})^2+\cdots+(x_n-\overline{x})^2\right\} \)（次の時間に「分散」と名付ける）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。問題のデータはすべて学習用の架空のデータです。数を入力する問題は、半角・全角のどちらで入力してもかまいません。問1〜問3 は同じデータ 3, 6, 7, 8, 11 を使います。</p>
+
+<div class="q" data-type="input" id="q1" data-accept="0">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O2</span></div>
+  <p>5個の値 3, 6, 7, 8, 11 について、各データと平均値の差の和を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 0。平均値は \( 35\div5=7 \) で、差は \( -4,\ -1,\ 0,\ 1,\ 4 \)。和は \( 0 \) です。差の和はどんなデータでも 0 になります（例題1）。差の絶対値の和 10 を答えるのは、符号を落とした誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="10">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O3</span></div>
+  <p>問1のデータについて、各データと平均値の差の絶対値の和を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 10。\( 4+1+0+1+4=10 \) です。0 と答えるのは、絶対値をとらずに足した誤りです。2 と答えるのは、和をさらに個数 5 で割った値で、問われているのは和です。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="34">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>問1のデータについて、各データと平均値の差の2乗の和を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 34。\( 16+1+0+1+16=34 \) です。100 と答えるのは、差の絶対値の和 10 を2乗した誤りで、「2乗してから足す」と「足してから2乗する」は違います。6.8 は和を個数 5 で割った値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1</span></div>
+  <p>2つのデータ P・Q の範囲と四分位範囲がそれぞれ等しいとき、正しいものはどれですか。</p>
+  <div class="choices">
+    <button>P と Q の散らばりの大きさは、必ず等しい。</button>
+    <button>P と Q の平均値は、必ず等しい。</button>
+    <button data-correct="true">間の値の散らばり方が違うことがあるので、すべての値を使った指標で比べないと、散らばりの大きさが等しいとはいえない。</button>
+    <button>P と Q の差の和を比べれば、どちらが散らばっているか分かる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">導入の A班・B班のように、範囲も四分位範囲も等しいのに、差の絶対値の和（20 と 16）や2乗の和（56 と 48）が違う例があります。したがって「必ず等しい」は誤りです。範囲と四分位範囲は平均値を決めないので、「平均値は必ず等しい」も誤りです（たとえば 0, 2, 4, 6, 8 と 0, 2, 5, 6, 8 は範囲 8・四分位範囲 6 が等しいが、平均値は 4 と 4.2）。差の和はどんなデータでも 0 なので、比べても違いは分かりません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>10人のデータと20人のデータの散らばりの大きさを、平均値との差の絶対値の和で比べようとしています。適切な方法はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">それぞれの絶対値の和をデータの個数で割った値どうしを比べる。</button>
+    <button>絶対値の和をそのまま比べ、大きい方が散らばっているとする。</button>
+    <button>20人のデータの絶対値の和を2倍してから比べる。</button>
+    <button>差の和（絶対値をとらない）で比べる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">和はデータの個数が多いほど大きくなるので、個数で割って「1つあたり」にしてから比べます（A班とC班の例）。和をそのまま比べると、個数の多い20人の方が大きくなりやすく、散らばりの比較になりません。人数をそろえるつもりなら、10人の方を2倍するか20人の方を2で割ることになり、20人の方を2倍するのは逆です。個数で割れば、人数が何人でもそのまま比べられます。差の和はいつも 0 なので比べられません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>身長（cm）のデータについて、平均値との差の2乗の和をデータの個数で割った値の単位はどれですか。</p>
+  <div class="choices">
+    <button>cm</button>
+    <button data-correct="true">cm²</button>
+    <button>単位はない</button>
+    <button>cm³</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">差の単位は cm で、それを2乗するので cm² です。個数で割っても単位は変わりません。cm にするには、正の平方根をとる必要があります（次の時間）。差の絶対値を個数で割った値なら cm です。cm³ は3乗の単位です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O2</span></div>
+  <p>各データと平均値の差の和がいつも 0 になる理由として、正しいものはどれですか。</p>
+  <div class="choices">
+    <button>平均値より大きい値と小さい値が、必ず同じ個数あるから。</button>
+    <button>データの個数が偶数だから。</button>
+    <button>差を2乗していないから。</button>
+    <button data-correct="true">値の合計が（平均値）×（個数）に等しいから。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x_1+\cdots+x_n=n\overline{x} \) なので、差の和は \( n\overline{x}-n\overline{x}=0 \) です。大きい値と小さい値の個数は同じとは限りません（1, 2, 9 の平均値 4 では小さい値2個、大きい値1個）。個数が奇数でも 0 になります（問1は5個）。「2乗していない」は、差の和が打ち消し合う状況の説明にはなりますが、0 に「ちょうど」なる理由は、合計が \( n\overline{x} \) であることです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O3</span></div>
+  <p>2つのデータ P：3, 3, 9, 9 と Q：1, 5, 7, 11 は、どちらも平均値が 6 です。</p>
+  <p>太郎：「平均値との差の絶対値を平均すると、P も Q も 3 だ。散らばりの大きさは同じだね。」<br>花子：「でも差の2乗を平均すると、P は 9、Q は 13 になるよ。」</p>
+  <p>この会話について、正しい説明はどれですか。</p>
+  <div class="choices">
+    <button>花子さんの計算が誤りで、正しく計算すれば P と Q の2乗の平均も等しくなる。</button>
+    <button data-correct="true">2乗すると平均値から大きく離れた値ほど重く数えられるので、6 から 5 離れた値をもつ Q の方が大きくなる。指標によって比べた結果が変わることがある。</button>
+    <button>絶対値の平均が等しいので、どんな指標で比べても P と Q の散らばりは等しい。</button>
+    <button>2乗の平均の方がいつも正しい指標なので、太郎さんの方法は散らばりの比較に使えない。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">P の差は \( -3,\ -3,\ 3,\ 3 \) で、絶対値の平均 \( 12\div4=3 \)、2乗の平均 \( 36\div4=9 \)。Q の差は \( -5,\ -1,\ 1,\ 5 \) で、絶対値の平均 \( 12\div4=3 \)、2乗の平均 \( 52\div4=13 \)。2人の計算はどちらも正しく、「花子さんの計算が誤り」は誤りです。絶対値では等しくても2乗では違うので、「どんな指標でも等しい」も誤りです。どちらの指標にも長所・短所があり、「2乗がいつも正しい」とはいえません。<br><span class="small">この会話文の問題は練習用に作成したもので、実際の入試の出題形式を示すものではありません。</span></div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O2・O3</span></div>
+  <p>ある班で「データの散らばりを1つの数で表す方法」を話し合っています。「各データと平均値の差の和」「差の絶対値の和を個数で割った値」「差の2乗の和を個数で割った値」の3つについて、それぞれ散らばりの指標として使えるかどうかと、その理由（長所・短所）を説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　差の和は、値の合計が（平均値）×（個数）に等しいので、どんなデータでも 0 になり、散らばりの指標には使えない。差の絶対値の和を個数で割った値は、平均値から平均してどれだけ離れているかを表し、単位ももとと同じで分かりやすいが、値ごとに絶対値をはずす必要があり、式で扱いにくい。差の2乗の和を個数で割った値は、符号を考えずに計算でき式で扱いやすいが、単位が2乗になり、平均値から大きく離れた値を重く数える。個数で割るのは、個数の違うデータどうしを比べられるようにするためである。</p>
+    <p><strong>採点の観点</strong>　① 差の和がいつも 0 になる理由を式や合計の関係で述べている。② 絶対値・2乗のそれぞれについて長所と短所を1つ以上挙げている。③ 個数で割る理由に触れている。</p>
+  </div>
+  <div class="explain">ポイントは、「使えない理由」を式で説明すること（差の和）と、「使える方法」にも長所・短所があることです。次の時間は、③の値に「分散」という名前を付け、その平方根「標準偏差」で単位をもとに戻します。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(4) データの分析」の「データの散らばり具合や傾向を数値化する方法を考察すること」（イ(ア)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「解決過程を振り返り，得られた結果を意味づけたり，活用したり，統合的・発展的に考察したりすることなどを求める」と述べています。指標の計算だけでなく、その指標が何を表し、どんな長所・短所があるかを説明することは、得られた結果を意味づける練習になります。</p>
+  <p class="small">問8・問9は会話や架空のデータを題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">分散と標準偏差（数Ⅰ-081）</p>
+  <p>次の時間は、各データと平均値の差に「偏差」という名前を付け、偏差の2乗の平均を<strong>分散</strong>、その正の平方根を<strong>標準偏差</strong>と定めます。分散を（2乗の平均値）−（平均値の2乗）で求める方法や、分布の形によって標準偏差と四分位範囲を使い分けることも学びます。</p>
+  <p>この時間では、分散・標準偏差の定義と計算（数Ⅰ-081）、変量を変換したときの平均値・分散の変化（数Ⅰ-082）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-079　統計的探究プロセスとデータの整理</div>
+  <div><span class="label">次の時間</span>数Ⅰ-081　分散と標準偏差</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-080「散らばりを数値化する方法」（学習。学習指導要領 数学Ⅰ (4)イ(ア)・ア(ア)、解説 p.44）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(4) データの分析（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.44（中学校では範囲や四分位範囲を用いていること、散らばりの度合いをどのように数値化するかを考えさせること、各データと平均値・中央値の差の和・差の絶対値の和・差の2乗の和やそれらをデータの総数で除した値などの考えを出させ長所や短所を話し合うこと、5個のデータで \( (d_1-p)^2+\cdots+(d_5-p)^2 \) を最小にする \( p \) が平均値であることを考察する例）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。このページのデータ（A班・B班・C班の得点、D・E、操作部品の5個の値、確認問題のデータ）は、すべて学習用に作成した架空のデータです。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var DATA = [2, 4, 5, 9, 15];
+  var svg = document.getElementById("w80-svg");
+  var slider = document.getElementById("w80-p");
+  var outV = document.getElementById("w80-pv");
+  var outT = document.getElementById("w80-out");
+  if (!svg || !slider) return;
+  // 計算は p の2倍 q（整数）で行い、表示の丸めで誤差が出ないようにする
+  function sumAbs2(q) { var s = 0; DATA.forEach(function (d) { s += Math.abs(2 * d - q); }); return s; }      // = 2×絶対値の和
+  function sumSq4(q) { var s = 0; DATA.forEach(function (d) { s += (2 * d - q) * (2 * d - q); }); return s; } // = 4×2乗の和
+  function half(n) { return (n - n % 2) / 2 + "." + (n % 2 ? "5" : "0"); }
+  function quarter(n) { var r = n % 4; return (n - r) / 4 + "." + ["00", "25", "50", "75"][r]; }
+  function f1(v) { return (Math.round(v * 10) / 10).toFixed(1); }
+  var NX = function (p) { return 40 + p * 30; };                 // 数直線：p=0..16 → x=40..520
+  var GX1 = function (p) { return 50 + p * 13.125; };            // 左のグラフ：p=0..16 → x=50..260
+  var GY1 = function (v) { return 280 - v * 2.4; };              // 絶対値の和 0..50 → y=280..160
+  var GX2 = function (p) { return 330 + p * 13.125; };           // 右のグラフ：p=0..16 → x=330..540
+  var GY2 = function (v) { return 280 - v * 0.23; };             // 2乗の和 0..520 → y=280..160.4
+  function draw() {
+    var q = parseInt(slider.value, 10);
+    var p = q / 2;
+    var A2 = sumAbs2(q), S4 = sumSq4(q);
+    var h = [];
+    h.push('<line x1="30" y1="70" x2="530" y2="70" stroke="currentColor"/>');
+    for (var t = 0; t <= 16; t += 2) {
+      h.push('<line x1="' + NX(t) + '" y1="70" x2="' + NX(t) + '" y2="75" stroke="currentColor"/>');
+      h.push('<text x="' + NX(t) + '" y="89" text-anchor="middle" font-size="11" fill="currentColor">' + t + '</text>');
+    }
+    DATA.forEach(function (d, i) {
+      var y = 60 - i * 9;
+      h.push('<line x1="' + f1(NX(p)) + '" y1="' + y + '" x2="' + NX(d) + '" y2="' + y + '" stroke="#8a99a8" stroke-width="2"/>');
+      h.push('<circle cx="' + NX(d) + '" cy="' + y + '" r="4.5" fill="#1f5fbf" data-d="' + d + '"/>');
+    });
+    h.push('<line x1="' + f1(NX(p)) + '" y1="14" x2="' + f1(NX(p)) + '" y2="74" stroke="#c0392b" stroke-width="2" data-p="' + p + '"/>');
+    h.push('<text x="' + f1(NX(p)) + '" y="11" text-anchor="middle" font-size="12" fill="#c0392b">p</text>');
+    [[GX1, GY1, 50, 10, "差の絶対値の和", 50, 260], [GX2, GY2, 520, 100, "差の2乗の和", 330, 540]].forEach(function (g, k) {
+      var gx = g[0], gy = g[1], top = g[2], step = g[3];
+      h.push('<line x1="' + g[5] + '" y1="280" x2="' + g[6] + '" y2="280" stroke="currentColor"/>');
+      h.push('<line x1="' + g[5] + '" y1="280" x2="' + g[5] + '" y2="150" stroke="currentColor"/>');
+      h.push('<text x="' + (g[5] + 4) + '" y="146" font-size="11" fill="currentColor">' + g[4] + '</text>');
+      for (var v = step; v <= top; v += step) {
+        if (k === 1 && v % 200 !== 0) continue;
+        if (k === 0 && v % 20 !== 0) continue;
+        h.push('<line x1="' + (g[5] - 3) + '" y1="' + f1(gy(v)) + '" x2="' + g[5] + '" y2="' + f1(gy(v)) + '" stroke="currentColor"/>');
+        h.push('<text x="' + (g[5] - 5) + '" y="' + f1(gy(v) + 4) + '" text-anchor="end" font-size="10" fill="currentColor">' + v + '</text>');
+      }
+      for (var tt = 0; tt <= 16; tt += 4) {
+        h.push('<text x="' + f1(gx(tt)) + '" y="294" text-anchor="middle" font-size="10" fill="currentColor">' + tt + '</text>');
+      }
+      var d = "";
+      for (var j = 0; j <= 32; j++) {
+        var val = k === 0 ? sumAbs2(j) / 2 : sumSq4(j) / 4;
+        d += (j ? " L" : "M") + f1(gx(j / 2)) + "," + f1(gy(val));
+      }
+      h.push('<path d="' + d + '" fill="none" stroke="#1f5fbf" stroke-width="1.6"/>');
+      var cur = k === 0 ? A2 / 2 : S4 / 4;
+      h.push('<circle cx="' + f1(gx(p)) + '" cy="' + f1(gy(cur)) + '" r="5" fill="#c0392b" data-g="' + k + '"/>');
+    });
+    svg.innerHTML = h.join("");
+    var note = "";
+    if (q === 10) note = "（絶対値の和が最小。p は中央値）";
+    if (q === 14) note = "（2乗の和が最小。p は平均値）";
+    if (outV) outV.textContent = half(q);
+    if (outT) outT.textContent = "p = " + half(q) + " のとき：差の絶対値の和 " + half(A2) + "、差の2乗の和 " + quarter(S4) + note;
+  }
+  slider.addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-080",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-080",
+  "title": "散らばりを数値化する方法",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-5", "title": "データの分析"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(4)イ(ア)", "(4)ア(ア)"],
+  "kaisetsu_page": "44",
+  "objectives": [
+    {"id": "O1", "text": "範囲や四分位範囲だけでは散らばりの違いを表しきれない例を挙げ、すべての値と平均値の差を使って散らばりを数値化する考えを説明できる。", "from": "データの散らばりの度合いを数値化する方法を考察できる", "sections": ["intro", "sec-1"], "checks": ["q4", "q9"]},
+    {"id": "O2", "text": "各データと平均値の差の和がいつも 0 になることを式で示し、散らばりの指標に使えない理由を説明できる。", "from": "各データと平均値の差の和", "sections": ["sec-2"], "checks": ["q1", "q7", "q9"]},
+    {"id": "O3", "text": "差の絶対値の和・差の2乗の和や、それらをデータの個数で割った値を求め、長所・短所を比べて、散らばりの指標としての特徴を説明できる。", "from": "差の絶対値の和、差の2乗の和などの考えを出し合い、長所・短所を比べて", "sections": ["sec-3"], "checks": ["q2", "q3", "q5", "q6", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "散らばりの度合い", "where": "sec-1"},
+    {"term": "各データと平均値の差", "where": "sec-1"},
+    {"term": "差の絶対値の和", "where": "sec-3"},
+    {"term": "差の2乗の和", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "平均値（値の合計 ÷ 個数）", "taught_in": ["jhs_math/中1-111"], "gap": false, "where": "review"},
+    {"concept": "範囲（最大値−最小値）と四分位範囲、四分位範囲は極端な値の影響を受けにくいこと", "taught_in": ["jhs_math/中1-111", "jhs_math/中2-089", "hs_math_1a/数Ⅰ-079"], "gap": false, "where": "review"},
+    {"concept": "四分位数の求め方", "taught_in": ["jhs_math/中2-088", "hs_math_1a/数Ⅰ-079"], "gap": false, "where": "intro"},
+    {"concept": "絶対値と、差の絶対値を数直線上の距離とみること", "taught_in": ["hs_math_1a/数Ⅰ-012"], "gap": false, "where": "review"},
+    {"concept": "二次関数の平方完成と最小値", "taught_in": ["hs_math_1a/数Ⅰ-034", "hs_math_1a/数Ⅰ-039"], "gap": false, "where": "sec-3"},
+    {"concept": "乗法公式による展開（(a−b)²）", "taught_in": ["jhs_math/中3-005"], "gap": false, "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "偏差・分散・標準偏差の定義と計算（数Ⅰ-081）",
+    "分散を（2乗の平均値）−（平均値の2乗）で求める方法（数Ⅰ-081）",
+    "変量の変換と平均値・分散（数Ⅰ-082）",
+    "中央値との差を使う指標の詳しい性質（解説の例として紹介のみ）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『データの分析』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(4)イ(ア)・ア(ア)の事項（入試へのつながりの引用）"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.44 散らばりの度合いを数値化する方法の考察（差の和・絶対値の和・2乗の和・中央値との差・総数で除した値、長所や短所の話し合い）、平均値の数学的な意味の例"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

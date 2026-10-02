@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>復習：データの分析（分散・標準偏差・相関係数）｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>復習（予備時間）</span><span>数Ⅰ-105</span></div>
+  <h1>復習：データの分析（分散・標準偏差・相関係数）</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">復習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">データの分析では、グラフで分布の形を見て、統計量で中心と散らばりを数値にし、2つの変量の関係を散布図と相関係数で表しました。この時間は数Ⅰ-079〜082・084・085 の要点を「グラフの読み取り」「分散・標準偏差」「散布図と相関係数」の3つにまとめ直します。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>ヒストグラム・箱ひげ図から分布の特徴を読み取り、目的に応じて統計量やグラフを選ぶことができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>分散・標準偏差を定義の式と（2乗の平均値）−（平均値の2乗）で求め、変量の変換による変化も使って、散らばりの大きさを解釈できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>散布図から相関の正負と強さを読み取り、共分散・相関係数を求めて、その符号と大きさから相関を説明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-104）</span>復習：正弦定理・余弦定理と図形の計量</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-105）</span>復習：データの分析（分散・標準偏差・相関係数）</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-106）</span>復習：データの分析（外れ値・仮説検定・質的データ）</div>
+</div>
+<p class="small">範囲：単元「データの分析」のうち、数Ⅰ-079〜082・084・085 と、単元末演習（数Ⅰ-091）の同じ型。外れ値（数Ⅰ-083）、相関と因果（数Ⅰ-086）、質的データ（数Ⅰ-087・088）、仮説検定の考え方（数Ⅰ-089・090）は次の時間（数Ⅰ-106）で復習します。この時間は単元「復習（予備時間）」の1コマで、新しい内容は扱いません。問題は単元末演習（数Ⅰ-091）や範囲の例題と同じものを使わず、データを変えています。データはすべて学習用の架空のデータです。各問の「復習するなら数Ⅰ-0xx」は、その型を学んだコマです。四分位数は数Ⅰ-079 の約束（個数が偶数なら小さい方の半分と大きい方の半分に、奇数なら中央値を除いて分け、それぞれの中央値）で求め、近似値は「≒」で書きます。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：範囲の要点の一覧</h2>
+<p>数Ⅰ-079〜082・084・085 で学んだ要点を、学んだコマとともに並べます。</p>
+<div class="formula-card">
+  <div><span class="f-name">統計的探究プロセスとデータの整理（数Ⅰ-079）</span>
+    <p>問題 → 計画 → データ → 分析 → 結論（段階を行き来しながら進む）<br>範囲＝（最大値）−（最小値）、四分位範囲＝（第3四分位数）−（第1四分位数）<br>量的データはヒストグラム（分布の形）・箱ひげ図（要約と集団の比較）、質的データは棒グラフなど</p></div>
+  <div><span class="f-name">散らばりを数値化する方法（数Ⅰ-080）</span>
+    <p>差の和 \( (x_1-\overline{x})+\cdots+(x_n-\overline{x})=0 \)（いつも 0 なので散らばりの指標に使えない）<br>差の絶対値の和・差の2乗の和で符号をなくす。個数で割ると、個数の違うデータを比べられる</p></div>
+  <div><span class="f-name">分散と標準偏差（数Ⅰ-081）</span>
+    $$ s^2=\frac{1}{n}\left\{(x_1-\overline{x})^2+\cdots+(x_n-\overline{x})^2\right\}=\overline{x^2}-(\overline{x})^2 $$
+    <p>\( s=\sqrt{s^2} \)（\( \overline{x^2} \) は2乗の平均値）<br>分布がおおむね対称形なら平均値と標準偏差、非対称形なら中央値と四分位範囲</p></div>
+  <div><span class="f-name">変量の変換（数Ⅰ-082）</span>
+    <p>\( y=ax+b \) のとき \( \overline{y}=a\overline{x}+b \)、\( s_y^2=a^2s_x^2 \)、\( s_y=|a|s_x \)</p></div>
+  <div><span class="f-name">散布図（数Ⅰ-084）</span>
+    <p>点が右上がり → 正の相関、右下がり → 負の相関、どちらの傾向もない → 相関がない。点が直線の近くに集まるほど相関が強い<br>点が重なるときは散布図と箱ひげ図を組み合わせた図</p></div>
+  <div><span class="f-name">相関係数（数Ⅰ-085）</span>
+    $$ s_{xy}=\frac{1}{n}\left\{(x_1-\overline{x})(y_1-\overline{y})+\cdots+(x_n-\overline{x})(y_n-\overline{y})\right\} $$
+    <p>\( r=\dfrac{s_{xy}}{s_xs_y} \)（\( s_x&gt;0,\ s_y&gt;0 \) のとき）、\( -1\leqq r\leqq1 \)。単位のとり方によらない</p></div>
+  <div><span class="f-name">単元末演習（数Ⅰ-091）</span>
+    <p>数Ⅰ-091 の型A（ヒストグラム・箱ひげ図）・型B（分散・標準偏差、\( y=ax+b \)）・型D（散布図、共分散、相関係数）を見分けて解く</p></div>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-079</span></div>
+  <p>8個の値 4, 6, 7, 9, 10, 12, 13, 15 の第1四分位数と第3四分位数の組はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">6.5 と 12.5</button>
+    <button>6 と 12</button>
+    <button>9 と 10</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">8個なので、小さい方の半分 4, 6, 7, 9 と大きい方の半分 10, 12, 13, 15 に分けます（数Ⅰ-079 の約束）。それぞれの中央値は \( (6+7)\div2=6.5 \)、\( (12+13)\div2=12.5 \) です。「6 と 12」は、4個の中央値を平均せずに2番目の値とした誤り。「9 と 10」は、全体の中央値（\( (9+10)\div2=9.5 \)）の両どなりの値を答えた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-080</span></div>
+  <p>データの各値と平均値の差の和は、いつもどうなりますか。</p>
+  <div class="choices">
+    <button>平均値に等しい</button>
+    <button data-correct="true">0 になる</button>
+    <button>平均値より大きい値と小さい値の個数が等しいときだけ 0 になる</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">値の合計は（平均値）×（個数）なので、差の和は \( (x_1+\cdots+x_n)-n\overline{x}=0 \) です（数Ⅰ-080）。そのため、差の和は散らばりの指標に使えません。「平均値に等しい」は、差の和がいつも 0 になることを確かめていない誤りです。「個数が等しいときだけ 0」は、0 になる理由を個数のつり合いと考えた誤りで、たとえば 1, 3, 8（平均値 4）では小さい値が2個、大きい値が1個ですが、差の和は \( (-3)+(-1)+4=0 \) です（数Ⅰ-080 のよくある間違い）。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-084</span></div>
+  <p>散布図で、点が右下がりに分布しているとき、2つの変量の関係はどれですか。</p>
+  <div class="choices">
+    <button>正の相関がある</button>
+    <button>相関がない</button>
+    <button data-correct="true">負の相関がある</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">一方が増加すると他方が減少する傾向があり、点は右下がりに分布するので、負の相関があります（数Ⅰ-084）。右上がりなら正の相関、どちらの傾向も見られなければ相関がありません。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：どの統計量・グラフを使う？</h2>
+<div class="box think">
+  <p class="box-title">この4問、何に着目する？</p>
+  <p>(ア) A組20人の1週間の運動時間の分布は、どんな形か。中心を表すには、平均値と中央値のどちらがよいか。<br>
+  (イ) 6人の通学時間（分）8, 10, 11, 13, 14, 16 の分散と標準偏差はいくつか。<br>
+  (ウ) (イ) の通学時間を秒で表すと、平均値・分散・標準偏差は何倍になるか。<br>
+  (エ) 5人の家庭学習の時間と小テストの得点には、どのくらいの強さの相関があるか。</p>
+  <p>それぞれ「どのグラフ・統計量・式を使うか」を予想しましょう。答えは、(ア) が「3 ヒストグラム・箱ひげ図の読み取り」の例題1、(イ)(ウ) が「4 分散と標準偏差」の例題2・例題3、(エ) が「5 散布図と相関係数」の例題4で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="グラフの読み取り"><span class="num">3</span>ヒストグラム・箱ひげ図の読み取り</h2>
+<p>量的データの分布は、ヒストグラムで形を、箱ひげ図で5つの値（最小値・第1四分位数・中央値・第3四分位数・最大値）を見ました。中心を表す統計量（平均値・中央値・最頻値）と散らばりを表す統計量（範囲・四分位範囲）は、分布の形を確かめてから組にして選びます（数Ⅰ-079）。</p>
+<h3>対比表：グラフと統計量の使い分け（単元をまたぐ整理）</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>知りたいこと</th><th>グラフ</th><th>統計量</th><th>学んだコマ</th></tr>
+  <tr><td>分布の形（山・裾・対称か）</td><td>ヒストグラム</td><td>平均値と中央値のずれ</td><td>中1-110、数Ⅰ-079</td></tr>
+  <tr><td>分布の要約、集団の比較</td><td>箱ひげ図を並べる</td><td>中央値・四分位範囲</td><td>中2-089・中2-091、数Ⅰ-079</td></tr>
+  <tr><td>対称形の分布の中心と散らばり</td><td>ヒストグラム</td><td>平均値と標準偏差</td><td>数Ⅰ-081</td></tr>
+  <tr><td>非対称形の分布・極端な値がある</td><td>箱ひげ図</td><td>中央値と四分位範囲</td><td>数Ⅰ-079・081</td></tr>
+  <tr><td>2つの量的データの関係</td><td>散布図（点が重なるときは箱ひげ図と組み合わせる）</td><td>共分散・相関係数</td><td>数Ⅰ-084・085</td></tr>
+</table>
+</div>
+<div class="box source"><p class="box-title">A組・B組の1週間の運動時間（時間。学習用の架空のデータ、各20人を小さい順に並べた）</p>
+<div class="table-wrap">
+<table id="t105-data">
+  <tr><th>A組</th><td>1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 6, 6, 7, 8, 9, 10, 11</td></tr>
+  <tr><th>B組</th><td>2, 3, 4, 4, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 8, 8, 9, 9, 10, 11</td></tr>
+</table>
+</div></div>
+<figure>
+<!--svg:f105a-->
+<svg viewBox="0 0 440 262" width="440" role="img" aria-label="例題1の図。上：A組20人の1週間の運動時間のヒストグラム（階級の幅2時間、0〜2時間 1人、2〜4時間 5人、4〜6時間 7人、6〜8時間 3人、8〜10時間 2人、10〜12時間 2人）。下：同じ目盛りでかいた A組と B組の箱ひげ図。A組は最小値1、第1四分位数3、中央値4.5、第3四分位数6.5、最大値11、平均値5.1。B組は最小値2、第1四分位数5、中央値6、第3四分位数8、最大値11、平均値6.4。平均値は橙の▲" data-fig="f105a">
+<line x1="50" y1="128" x2="50" y2="21.6" stroke="currentColor" stroke-width="1"/>
+<line x1="47" y1="128" x2="50" y2="128" stroke="currentColor" stroke-width="1"/>
+<text x="44" y="132" text-anchor="end" font-size="11" fill="currentColor">0</text>
+<line x1="47" y1="100" x2="50" y2="100" stroke="currentColor" stroke-width="1"/>
+<text x="44" y="104" text-anchor="end" font-size="11" fill="currentColor">2</text>
+<line x1="47" y1="72" x2="50" y2="72" stroke="currentColor" stroke-width="1"/>
+<text x="44" y="76" text-anchor="end" font-size="11" fill="currentColor">4</text>
+<line x1="47" y1="44" x2="50" y2="44" stroke="currentColor" stroke-width="1"/>
+<text x="44" y="48" text-anchor="end" font-size="11" fill="currentColor">6</text>
+<text x="44" y="14" text-anchor="start" font-size="11" fill="currentColor">度数（人）</text>
+<rect x="50" y="114" width="54.7" height="14" fill="#1f5fbf" fill-opacity="0.25" stroke="#1f5fbf" stroke-width="1.2" data-bin="0 2" data-n="1"/>
+<text x="77.3" y="110" text-anchor="middle" font-size="11" fill="#1f5fbf">1</text>
+<rect x="104.7" y="58" width="54.7" height="70" fill="#1f5fbf" fill-opacity="0.25" stroke="#1f5fbf" stroke-width="1.2" data-bin="2 4" data-n="5"/>
+<text x="132" y="54" text-anchor="middle" font-size="11" fill="#1f5fbf">5</text>
+<rect x="159.3" y="30" width="54.7" height="98" fill="#1f5fbf" fill-opacity="0.25" stroke="#1f5fbf" stroke-width="1.2" data-bin="4 6" data-n="7"/>
+<text x="186.7" y="26" text-anchor="middle" font-size="11" fill="#1f5fbf">7</text>
+<rect x="214" y="86" width="54.7" height="42" fill="#1f5fbf" fill-opacity="0.25" stroke="#1f5fbf" stroke-width="1.2" data-bin="6 8" data-n="3"/>
+<text x="241.3" y="82" text-anchor="middle" font-size="11" fill="#1f5fbf">3</text>
+<rect x="268.7" y="100" width="54.7" height="28" fill="#1f5fbf" fill-opacity="0.25" stroke="#1f5fbf" stroke-width="1.2" data-bin="8 10" data-n="2"/>
+<text x="296" y="96" text-anchor="middle" font-size="11" fill="#1f5fbf">2</text>
+<rect x="323.3" y="100" width="54.7" height="28" fill="#1f5fbf" fill-opacity="0.25" stroke="#1f5fbf" stroke-width="1.2" data-bin="10 12" data-n="2"/>
+<text x="350.7" y="96" text-anchor="middle" font-size="11" fill="#1f5fbf">2</text>
+<line x1="50" y1="128" x2="384" y2="128" stroke="currentColor" stroke-width="1"/>
+<line x1="50" y1="128" x2="50" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="50" y="143" text-anchor="middle" font-size="11" fill="currentColor" data-tick="h" data-v="0">0</text>
+<line x1="104.7" y1="128" x2="104.7" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="104.7" y="143" text-anchor="middle" font-size="11" fill="currentColor" data-tick="h" data-v="2">2</text>
+<line x1="159.3" y1="128" x2="159.3" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="159.3" y="143" text-anchor="middle" font-size="11" fill="currentColor" data-tick="h" data-v="4">4</text>
+<line x1="214" y1="128" x2="214" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="214" y="143" text-anchor="middle" font-size="11" fill="currentColor" data-tick="h" data-v="6">6</text>
+<line x1="268.7" y1="128" x2="268.7" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="268.7" y="143" text-anchor="middle" font-size="11" fill="currentColor" data-tick="h" data-v="8">8</text>
+<line x1="323.3" y1="128" x2="323.3" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="323.3" y="143" text-anchor="middle" font-size="11" fill="currentColor" data-tick="h" data-v="10">10</text>
+<line x1="378" y1="128" x2="378" y2="132" stroke="currentColor" stroke-width="1"/>
+<text x="378" y="143" text-anchor="middle" font-size="11" fill="currentColor" data-tick="h" data-v="12">12</text>
+<text x="390" y="143" text-anchor="start" font-size="11" fill="currentColor">（時間）</text>
+<text x="376" y="36" text-anchor="end" font-size="12" font-weight="700" fill="#1f5fbf">A組のヒストグラム</text>
+<line x1="77.3" y1="182" x2="132" y2="182" stroke="#1f5fbf" stroke-width="1.6" data-box="A組" data-part="lw"/>
+<line x1="227.7" y1="182" x2="350.7" y2="182" stroke="#1f5fbf" stroke-width="1.6" data-box="A組" data-part="rw"/>
+<line x1="77.3" y1="177.5" x2="77.3" y2="186.5" stroke="#1f5fbf" stroke-width="1.6"/>
+<line x1="350.7" y1="177.5" x2="350.7" y2="186.5" stroke="#1f5fbf" stroke-width="1.6"/>
+<rect x="132" y="173" width="95.7" height="18" fill="#1f5fbf" fill-opacity="0.12" stroke="#1f5fbf" stroke-width="1.8" data-box="A組" data-five="1 3 9/2 13/2 11"/>
+<line x1="173" y1="173" x2="173" y2="191" stroke="#1f5fbf" stroke-width="2.4" data-box="A組" data-part="med"/>
+<path d="M189.4,170 L184.4,162 L194.4,162 Z" fill="#b7791f" data-mean="51/10" data-box="A組"/>
+<text x="44" y="186" text-anchor="end" font-size="12" font-weight="700" fill="#1f5fbf">A組</text>
+<line x1="104.7" y1="222" x2="186.7" y2="222" stroke="#1e8e5a" stroke-width="1.6" data-box="B組" data-part="lw"/>
+<line x1="268.7" y1="222" x2="350.7" y2="222" stroke="#1e8e5a" stroke-width="1.6" data-box="B組" data-part="rw"/>
+<line x1="104.7" y1="217.5" x2="104.7" y2="226.5" stroke="#1e8e5a" stroke-width="1.6"/>
+<line x1="350.7" y1="217.5" x2="350.7" y2="226.5" stroke="#1e8e5a" stroke-width="1.6"/>
+<rect x="186.7" y="213" width="82" height="18" fill="#1e8e5a" fill-opacity="0.12" stroke="#1e8e5a" stroke-width="1.8" data-box="B組" data-five="2 5 6 8 11"/>
+<line x1="214" y1="213" x2="214" y2="231" stroke="#1e8e5a" stroke-width="2.4" data-box="B組" data-part="med"/>
+<path d="M224.9,210 L219.9,202 L229.9,202 Z" fill="#b7791f" data-mean="32/5" data-box="B組"/>
+<text x="44" y="226" text-anchor="end" font-size="12" font-weight="700" fill="#1e8e5a">B組</text>
+<line x1="50" y1="244" x2="384" y2="244" stroke="currentColor" stroke-width="1"/>
+<line x1="50" y1="244" x2="50" y2="248" stroke="currentColor" stroke-width="1"/>
+<text x="50" y="259" text-anchor="middle" font-size="11" fill="currentColor" data-tick="b" data-v="0">0</text>
+<line x1="104.7" y1="244" x2="104.7" y2="248" stroke="currentColor" stroke-width="1"/>
+<text x="104.7" y="259" text-anchor="middle" font-size="11" fill="currentColor" data-tick="b" data-v="2">2</text>
+<line x1="159.3" y1="244" x2="159.3" y2="248" stroke="currentColor" stroke-width="1"/>
+<text x="159.3" y="259" text-anchor="middle" font-size="11" fill="currentColor" data-tick="b" data-v="4">4</text>
+<line x1="214" y1="244" x2="214" y2="248" stroke="currentColor" stroke-width="1"/>
+<text x="214" y="259" text-anchor="middle" font-size="11" fill="currentColor" data-tick="b" data-v="6">6</text>
+<line x1="268.7" y1="244" x2="268.7" y2="248" stroke="currentColor" stroke-width="1"/>
+<text x="268.7" y="259" text-anchor="middle" font-size="11" fill="currentColor" data-tick="b" data-v="8">8</text>
+<line x1="323.3" y1="244" x2="323.3" y2="248" stroke="currentColor" stroke-width="1"/>
+<text x="323.3" y="259" text-anchor="middle" font-size="11" fill="currentColor" data-tick="b" data-v="10">10</text>
+<line x1="378" y1="244" x2="378" y2="248" stroke="currentColor" stroke-width="1"/>
+<text x="378" y="259" text-anchor="middle" font-size="11" fill="currentColor" data-tick="b" data-v="12">12</text>
+<line x1="50" y1="150" x2="50" y2="240" stroke="#8a99a8" stroke-width="0.6" stroke-dasharray="2 4"/>
+<line x1="104.7" y1="150" x2="104.7" y2="240" stroke="#8a99a8" stroke-width="0.6" stroke-dasharray="2 4"/>
+<line x1="159.3" y1="150" x2="159.3" y2="240" stroke="#8a99a8" stroke-width="0.6" stroke-dasharray="2 4"/>
+<line x1="214" y1="150" x2="214" y2="240" stroke="#8a99a8" stroke-width="0.6" stroke-dasharray="2 4"/>
+<line x1="268.7" y1="150" x2="268.7" y2="240" stroke="#8a99a8" stroke-width="0.6" stroke-dasharray="2 4"/>
+<line x1="323.3" y1="150" x2="323.3" y2="240" stroke="#8a99a8" stroke-width="0.6" stroke-dasharray="2 4"/>
+<line x1="378" y1="150" x2="378" y2="240" stroke="#8a99a8" stroke-width="0.6" stroke-dasharray="2 4"/>
+<text x="390" y="259" text-anchor="start" font-size="11" fill="currentColor">（時間）</text>
+<text x="376" y="160" text-anchor="end" font-size="11" fill="#b7791f">▲は平均値</text>
+</svg>
+<!--/svg:f105a-->
+  <figcaption>図1　A組のヒストグラム（階級は「0時間以上2時間未満」のように幅2時間）と、同じ目盛りでかいた A組・B組の箱ひげ図。橙の▲は平均値（学習用の架空のデータから作成）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題1（ヒストグラムと箱ひげ図を読む）＝導入の (ア)</p>
+  <p>A組の5つの値と平均値を求め、図1から分布の特徴を読み取りなさい。また、A組の中心と散らばりを伝えるのに適した統計量を答え、B組と比べなさい。</p>
+  <div class="step">着目1（四分位数）：20個なので、小さい方の10個と大きい方の10個に分けます。中央値は10番目と11番目の平均 \( (4+5)\div2=4.5 \)、第1四分位数は小さい方の10個の中央値 \( (3+3)\div2=3 \)、第3四分位数は大きい方の10個の中央値 \( (6+7)\div2=6.5 \)。最小値 1、最大値 11、四分位範囲は \( 6.5-3=3.5 \)（時間）です。</div>
+  <div class="step">着目2（平均値）：合計は 102 なので、平均値は \( 102\div20=5.1 \)（時間）。中央値 4.5 より大きくなっています。</div>
+  <div class="step">着目3（分布の形）：ヒストグラムの山は「4〜6時間」の階級にあり、右に長く裾をひいています。箱ひげ図でも右のひげが長く、平均値（▲）が中央値より右にあります。少数の長い時間の人に、平均値が引っ張られています（数Ⅰ-079）。</div>
+  <div class="step">着目4（B組と比べる）：B組は中央値 6、四分位範囲 \( 8-5=3 \)、平均値 6.4。中央値も平均値も A組より大きく、平均値と中央値の差は A組より小さくなっています。</div>
+  <div class="step">答え：<span data-ans="ex1">A組は最小値 1、第1四分位数 3、中央値 4.5、第3四分位数 6.5、最大値 11、平均値 5.1。右に長く裾をひく分布なので、中心と散らばりは中央値と四分位範囲で伝えるとよい</span>。B組は A組より中央値が大きく（6時間と 4.5時間）、四分位範囲はやや小さい（3時間と 3.5時間）です。</div>
+</div>
+<div class="box caution"><p class="box-title">つまずきやすい点（グラフの読み取り）</p>
+<p>(1) 平均値を「よくある値」「真ん中の人の値」と思い込む。少数の大きな値があると、平均値は大きい方に引っ張られます（数Ⅰ-079）。<br>
+(2) 箱ひげ図の箱が長い集団は「人数が多い」と読む。箱ひげ図から人数は分かりません。箱の長さは四分位範囲です（数Ⅰ-091）。<br>
+(3) ヒストグラムの柱の高さだけで箱ひげ図を選ぶ。中央値などが何番目の値で、どの階級に入るかを、度数を足して確かめます（数Ⅰ-091）。<br>
+(4) 階級の幅を変えると、ヒストグラムの山の形の見え方が変わることがあります。人数の違う集団は相対度数で比べます（数Ⅰ-079）。<br>
+(5) 分布の形を見ずに平均値と標準偏差だけで説明する。非対称な分布では、平均値±標準偏差が実際の値の広がりを表さないことがあります（数Ⅰ-081）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="分散と標準偏差"><span class="num">4</span>分散と標準偏差</h2>
+<p>すべての値を使って散らばりを数値化するために、平均値との差（偏差）の2乗の平均を分散、その正の平方根を標準偏差としました（数Ⅰ-080・081）。標準偏差はもとのデータと同じ単位で、大きいほど平均値のまわりに広く散らばっています。</p>
+<h3>対比表：散らばりを表す統計量（単元をまたぐ整理）</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>統計量</th><th>使う値</th><th>単位</th><th>特徴（学んだコマ）</th></tr>
+  <tr><td>範囲</td><td>最大値と最小値の2つ</td><td>もとと同じ</td><td>間の値の散らばり方を表せない（中1-111、数Ⅰ-080）</td></tr>
+  <tr><td>四分位範囲</td><td>第1・第3四分位数</td><td>もとと同じ</td><td>極端な値の影響をほとんど受けない（中2-089、数Ⅰ-079）</td></tr>
+  <tr><td>差の絶対値の和を個数で割った値</td><td>すべての値</td><td>もとと同じ</td><td>符号をなくして足す（数Ⅰ-080）</td></tr>
+  <tr><td>分散 \( s^2 \)</td><td>すべての値</td><td>もとの単位の2乗</td><td>大きな偏差ほど重く数える（数Ⅰ-080・081）</td></tr>
+  <tr><td>標準偏差 \( s \)</td><td>すべての値</td><td>もとと同じ</td><td>分散の正の平方根。対称形の分布で平均値と組にする（数Ⅰ-081）</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（分散と標準偏差を2通りで）＝導入の (イ)</p>
+  <p>6人の通学時間 \( x \)（分）8, 10, 11, 13, 14, 16 の分散と標準偏差を求めなさい（学習用の架空のデータ）。標準偏差は小数第3位を四捨五入しなさい。</p>
+  <div class="step">着目（定義の式）：平均値は \( \overline{x}=\dfrac{8+10+11+13+14+16}{6}=\dfrac{72}{6}=12 \)。偏差は \( -4,\ -2,\ -1,\ 1,\ 2,\ 4 \) で、和は 0 です。</div>
+  <div class="step">偏差の2乗は \( 16,\ 4,\ 1,\ 1,\ 4,\ 16 \) で和は 42。分散は \( s^2=\dfrac{42}{6}=7 \)、標準偏差は \( s=\sqrt{7}\fallingdotseq2.65 \)（分）。</div>
+  <div class="step">確かめ（変形した式）：2乗の平均値は \( \overline{x^2}=\dfrac{64+100+121+169+196+256}{6}=\dfrac{906}{6}=151 \)。\( s^2=151-12^2=151-144=7 \) で同じ値です（数Ⅰ-081）。</div>
+  <div class="step">答え：<span data-ans="ex2">分散 7（分²）、標準偏差 約 2.65 分</span></div>
+</div>
+<h3>対比表：変量の変換と平均値・分散・標準偏差（数Ⅰ-082）</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>変換</th><th>平均値</th><th>分散</th><th>標準偏差</th></tr>
+  <tr><td>\( y=x+b \)（同じ数を足す）</td><td>\( \overline{x}+b \)</td><td>変わらない</td><td>変わらない</td></tr>
+  <tr><td>\( y=ax \)（同じ数を掛ける）</td><td>\( a\overline{x} \)</td><td>\( a^2 \) 倍</td><td>\( |a| \) 倍</td></tr>
+  <tr><td>\( y=ax+b \)</td><td>\( a\overline{x}+b \)</td><td>\( a^2s_x^2 \)</td><td>\( |a|s_x \)</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（単位の換算と、同じ数を足す変換）＝導入の (ウ)</p>
+  <p>例題2の通学時間 \( x \)（分）について、(1) 秒で表した \( z=60x \) と、(2) 全員の通学時間が 5 分ずつ長くなったときの \( y=x+5 \) の、平均値・分散・標準偏差を求めなさい。</p>
+  <div class="step">(1) 着目：数Ⅰ-082 の問6 と同じく、分を秒に直す換算です。\( z=60x \) は \( a=60,\ b=0 \)。\( \overline{z}=60\times12=720 \)（秒）、\( s_z^2=60^2\times7=25200 \)（秒²）、\( s_z=60\sqrt{7}\fallingdotseq158.7 \)（秒）。</div>
+  <div class="step">(2) 着目：\( y=x+5 \) は \( a=1,\ b=5 \)。\( \overline{y}=12+5=17 \)（分）。偏差は変わらないので、分散は 7 のまま、標準偏差は \( \sqrt{7} \) のままです。</div>
+  <div class="step">答え：<span data-ans="ex3">(1) 平均値 720 秒、分散 25200（秒²）、標準偏差 \( 60\sqrt{7} \) 秒（約 158.7 秒）　(2) 平均値 17 分、分散 7（分²）、標準偏差 \( \sqrt{7} \) 分</span>。分散は \( 60^2=3600 \) 倍、標準偏差は 60 倍です。</div>
+</div>
+<div class="box caution"><p class="box-title">つまずきやすい点（分散と標準偏差）</p>
+<p>(1) 偏差の2乗の和を分散としてしまう。個数で割って平均にします（数Ⅰ-081）。<br>
+(2) 分散を標準偏差としてしまう。標準偏差は分散の正の平方根で、単位も違います（数Ⅰ-081）。<br>
+(3) （平均値の2乗）−（2乗の平均値）と逆に引く。分散は負になりません。\( \overline{x^2} \) と \( (\overline{x})^2 \) は別のものです（数Ⅰ-081）。<br>
+(4) 差の2乗の和を個数で割った値を「平均してどれだけ離れているか」と読む。平方根をとって単位を戻します（数Ⅰ-080）。<br>
+(5) \( a \) が負のとき標準偏差を \( a \) 倍する。標準偏差は \( |a| \) 倍、分散は \( a^2 \) 倍です（数Ⅰ-082）。<br>
+(6) 足した数 \( b \) を分散や標準偏差にも足す。同じ数を足しても偏差は変わりません（数Ⅰ-091）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="散布図と相関係数"><span class="num">5</span>散布図と相関係数</h2>
+<p>2つの量的データの関係は、値の組を点で表した散布図で見ました（数Ⅰ-084）。平均値を通る直線で4つの区域に分けると、偏差の積は区域Ⅰ・Ⅲで正、区域Ⅱ・Ⅳで負になります。偏差の積の平均が共分散で、それを標準偏差の積で割ったものが相関係数です（数Ⅰ-085）。</p>
+<h3>対比表：共分散と相関係数（単元をまたぐ整理）</h3>
+<div class="table-wrap">
+<table>
+  <tr><th></th><th>共分散 \( s_{xy} \)</th><th>相関係数 \( r \)</th></tr>
+  <tr><td>式</td><td>偏差の積の平均値</td><td>\( r=\dfrac{s_{xy}}{s_xs_y} \)（\( s_x&gt;0,\ s_y&gt;0 \) のとき）</td></tr>
+  <tr><td>符号</td><td>正の相関なら正、負の相関なら負になりやすい</td><td>共分散と同じ符号</td></tr>
+  <tr><td>値の範囲</td><td>決まっていない</td><td>\( -1\leqq r\leqq1 \)（このページでは証明しない）</td></tr>
+  <tr><td>単位を変えると</td><td>値が変わる</td><td>変わらない（数Ⅰ-082 の標準偏差の変化で打ち消し合う）</td></tr>
+  <tr><td>読み方</td><td>強さは比べにくい</td><td>1 に近いほど正の相関が強く、\( -1 \) に近いほど負の相関が強く、0 に近いほど弱い</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（共分散と相関係数）＝導入の (エ)</p>
+  <p>5人の1週間の家庭学習の時間 \( x \)（時間）と小テストの得点 \( y \)（点）の組は (1, 5)、(2, 1)、(3, 7)、(4, 3)、(5, 9) です（学習用の架空のデータ）。共分散 \( s_{xy} \) と相関係数 \( r \) を求め、相関を説明しなさい。</p>
+  <div class="step">着目1（平均値と偏差）：\( \overline{x}=\dfrac{15}{5}=3 \)、\( \overline{y}=\dfrac{25}{5}=5 \)。偏差は \( x \)：\( -2,\ -1,\ 0,\ 1,\ 2 \)、\( y \)：\( 0,\ -4,\ 2,\ -2,\ 4 \)。</div>
+  <div class="step">着目2（表にする）：偏差の積は \( 0,\ 4,\ 0,\ -2,\ 8 \) で和は 10。偏差の2乗の和は \( x \) が 10、\( y \) が \( 0+16+4+4+16=40 \)。点 (4, 3) は区域Ⅳにあり、積は負の \( -2 \) です。(1, 5) と (3, 7) は境界線上にあり、積は 0 です（図2）。</div>
+  <div class="step">着目3（共分散と標準偏差）：\( s_{xy}=\dfrac{10}{5}=2 \)、\( s_x=\sqrt{\dfrac{10}{5}}=\sqrt{2} \)、\( s_y=\sqrt{\dfrac{40}{5}}=2\sqrt{2} \)。</div>
+  <div class="step">着目4（相関係数）：\( r=\dfrac{2}{\sqrt{2}\times2\sqrt{2}}=\dfrac{2}{4}=0.5 \)。</div>
+  <div class="step">組み合わせた図（図2の上と右）：\( x \) は中央値 3、四分位範囲 \( 4.5-1.5=3 \)、\( y \) は中央値 5、四分位範囲 \( 8-2=6 \) です。点が重なるときも、それぞれの変量の分布がこの部分から分かります（数Ⅰ-084）。</div>
+  <div class="step">答え：<span data-ans="ex4">\( s_{xy}=2 \)、\( r=0.5 \)</span>。正の値なので正の相関がありますが、1 から離れていて、点は右上がりの直線のまわりに広く散らばっています（図2）。</div>
+</div>
+<figure>
+<!--svg:f105b-->
+<svg viewBox="0 0 400 330" width="400" role="img" aria-label="例題4の散布図と箱ひげ図を組み合わせた図。横軸は家庭学習の時間 x（時間）、縦軸は小テストの得点 y（点）。5つの点 (1, 5)、(2, 1)、(3, 7)、(4, 3)、(5, 9)（青の●）。平均値 x̄=3 と ȳ=5 を通る直線（橙の破線）で、右上が区域Ⅰ、左上が区域Ⅱ、左下が区域Ⅲ、右下が区域Ⅳ。上に x の箱ひげ図（最小値1、第1四分位数1.5、中央値3、第3四分位数4.5、最大値5）、右に y の箱ひげ図（最小値1、第1四分位数2、中央値5、第3四分位数8、最大値9）" data-fig="f105b">
+<defs><marker id="ar-f105b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<line x1="58" y1="280" x2="344" y2="280" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f105b)"/>
+<line x1="58" y1="280" x2="58" y2="52" stroke="currentColor" stroke-width="1" marker-end="url(#ar-f105b)"/>
+<line x1="58" y1="280" x2="58" y2="284" stroke="currentColor" stroke-width="1"/>
+<text x="58" y="296" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="0">0</text>
+<line x1="103.3" y1="280" x2="103.3" y2="284" stroke="currentColor" stroke-width="1"/>
+<text x="103.3" y="296" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="1">1</text>
+<line x1="148.7" y1="280" x2="148.7" y2="284" stroke="currentColor" stroke-width="1"/>
+<text x="148.7" y="296" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="2">2</text>
+<line x1="194" y1="280" x2="194" y2="284" stroke="currentColor" stroke-width="1"/>
+<text x="194" y="296" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="3">3</text>
+<line x1="239.3" y1="280" x2="239.3" y2="284" stroke="currentColor" stroke-width="1"/>
+<text x="239.3" y="296" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="4">4</text>
+<line x1="284.7" y1="280" x2="284.7" y2="284" stroke="currentColor" stroke-width="1"/>
+<text x="284.7" y="296" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="5">5</text>
+<line x1="330" y1="280" x2="330" y2="284" stroke="currentColor" stroke-width="1"/>
+<text x="330" y="296" text-anchor="middle" font-size="11" fill="currentColor" data-tick="x" data-v="6">6</text>
+<line x1="54" y1="280" x2="58" y2="280" stroke="currentColor" stroke-width="1"/>
+<text x="51" y="284" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="0">0</text>
+<line x1="54" y1="236.8" x2="58" y2="236.8" stroke="currentColor" stroke-width="1"/>
+<text x="51" y="240.8" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="2">2</text>
+<line x1="54" y1="193.6" x2="58" y2="193.6" stroke="currentColor" stroke-width="1"/>
+<text x="51" y="197.6" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="4">4</text>
+<line x1="54" y1="150.4" x2="58" y2="150.4" stroke="currentColor" stroke-width="1"/>
+<text x="51" y="154.4" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="6">6</text>
+<line x1="54" y1="107.2" x2="58" y2="107.2" stroke="currentColor" stroke-width="1"/>
+<text x="51" y="111.2" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="8">8</text>
+<line x1="54" y1="64" x2="58" y2="64" stroke="currentColor" stroke-width="1"/>
+<text x="51" y="68" text-anchor="end" font-size="11" fill="currentColor" data-tick="y" data-v="10">10</text>
+<text x="194" y="314" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">家庭学習の時間 x（時間）</text>
+<text x="64" y="54" text-anchor="start" font-size="12" font-weight="700" fill="currentColor">小テストの得点 y（点）</text>
+<line x1="194" y1="278" x2="194" y2="64" stroke="#b7791f" stroke-width="1.6" stroke-dasharray="6 4" data-mean="x" data-v="3"/>
+<line x1="60" y1="172" x2="330" y2="172" stroke="#b7791f" stroke-width="1.6" stroke-dasharray="6 4" data-mean="y" data-v="5"/>
+<text x="198" y="74" text-anchor="start" font-size="11" font-weight="700" fill="#b7791f">x̄=3</text>
+<text x="328" y="186" text-anchor="end" font-size="11" font-weight="700" fill="#b7791f">ȳ=5</text>
+<text x="257.5" y="72.6" text-anchor="middle" font-size="14" font-weight="700" fill="#8a99a8" data-region="Ⅰ">Ⅰ</text>
+<text x="85.2" y="72.6" text-anchor="middle" font-size="14" font-weight="700" fill="#8a99a8" data-region="Ⅱ">Ⅱ</text>
+<text x="85.2" y="267" text-anchor="middle" font-size="14" font-weight="700" fill="#8a99a8" data-region="Ⅲ">Ⅲ</text>
+<text x="311.9" y="267" text-anchor="middle" font-size="14" font-weight="700" fill="#8a99a8" data-region="Ⅳ">Ⅳ</text>
+<circle cx="103.3" cy="172" r="5" fill="#1f5fbf" data-xy="1 5"/>
+<text x="111.3" y="166" text-anchor="start" font-size="11" fill="#1f5fbf">(1, 5)</text>
+<circle cx="148.7" cy="258.4" r="5" fill="#1f5fbf" data-xy="2 1"/>
+<text x="156.7" y="252.4" text-anchor="start" font-size="11" fill="#1f5fbf">(2, 1)</text>
+<circle cx="194" cy="128.8" r="5" fill="#1f5fbf" data-xy="3 7"/>
+<text x="202" y="122.8" text-anchor="start" font-size="11" fill="#1f5fbf">(3, 7)</text>
+<circle cx="239.3" cy="215.2" r="5" fill="#1f5fbf" data-xy="4 3"/>
+<text x="247.3" y="209.2" text-anchor="start" font-size="11" fill="#1f5fbf">(4, 3)</text>
+<circle cx="284.7" cy="85.6" r="5" fill="#1f5fbf" data-xy="5 9"/>
+<text x="292.7" y="79.6" text-anchor="start" font-size="11" fill="#1f5fbf">(5, 9)</text>
+<line x1="103.3" y1="30" x2="126" y2="30" stroke="#8a99a8" stroke-width="1.4"/>
+<line x1="262" y1="30" x2="284.7" y2="30" stroke="#8a99a8" stroke-width="1.4"/>
+<line x1="103.3" y1="26.5" x2="103.3" y2="33.5" stroke="#8a99a8" stroke-width="1.4"/>
+<line x1="284.7" y1="26.5" x2="284.7" y2="33.5" stroke="#8a99a8" stroke-width="1.4"/>
+<rect x="126" y="23" width="136" height="14" fill="#8a99a8" fill-opacity="0.12" stroke="#8a99a8" stroke-width="1.6" data-box="x" data-five="1 3/2 3 9/2 5"/>
+<line x1="194" y1="23" x2="194" y2="37" stroke="#8a99a8" stroke-width="2.2"/>
+<line x1="370" y1="258.4" x2="370" y2="236.8" stroke="#8a99a8" stroke-width="1.4"/>
+<line x1="370" y1="107.2" x2="370" y2="85.6" stroke="#8a99a8" stroke-width="1.4"/>
+<line x1="366.5" y1="258.4" x2="373.5" y2="258.4" stroke="#8a99a8" stroke-width="1.4"/>
+<line x1="366.5" y1="85.6" x2="373.5" y2="85.6" stroke="#8a99a8" stroke-width="1.4"/>
+<rect x="363" y="107.2" width="14" height="129.6" fill="#8a99a8" fill-opacity="0.12" stroke="#8a99a8" stroke-width="1.6" data-box="y" data-five="1 2 5 8 9"/>
+<line x1="363" y1="172" x2="377" y2="172" stroke="#8a99a8" stroke-width="2.2"/>
+<text x="52" y="34" text-anchor="start" font-size="10" fill="#8a99a8">x の箱ひげ図</text>
+<text x="370" y="60" text-anchor="middle" font-size="10" fill="#8a99a8">y の箱ひげ図</text>
+</svg>
+<!--/svg:f105b-->
+  <figcaption>図2　例題4 の散布図と箱ひげ図を組み合わせた図（学習用の架空のデータから作成）。橙の破線は平均値 \( \overline{x}=3 \)、\( \overline{y}=5 \) を通る直線で、区域Ⅰ（右上）〜Ⅳ（右下）に分ける</figcaption>
+</figure>
+<div class="box caution"><p class="box-title">つまずきやすい点（散布図と相関係数）</p>
+<p>(1) 組の順番を入れ替えて点をとる、1組の2つの値を別々の点にする（数Ⅰ-084）。<br>
+(2) 「傾きが急なほど相関が強い」と読む。相関の強さは、点の集まりが直線にどれだけ近いかで決まります（数Ⅰ-084）。<br>
+(3) 標準偏差ではなく分散で割る。分母は \( s_xs_y \) です（数Ⅰ-085）。<br>
+(4) 偏差の積の和を個数で割り忘れたまま、標準偏差の積で割る。\( r \) が 1 を超えたら誤りと分かります（数Ⅰ-085）。<br>
+(5) 共分散を相関係数と答える。共分散は単位で値が変わります（数Ⅰ-091）。<br>
+(6) 相関係数だけで判断する。外れ値や曲線の関係があると、\( r \) は全体の傾向を示さないことがあるので、散布図もかいて確かめます（数Ⅰ-085）。</p></div>
+<div class="box point"><p class="box-title">単元をまたぐ整理：この範囲で使った、ほかの単元の考え</p>
+<div class="table-wrap">
+<table>
+  <tr><th>この範囲の場面（コマ）</th><th>使った考え（学んだコマ）</th></tr>
+  <tr><td>四分位数と箱ひげ図（数Ⅰ-079）</td><td>四分位数・四分位範囲・箱ひげ図（中2-088・中2-089）</td></tr>
+  <tr><td>差の絶対値の和（数Ⅰ-080）</td><td>絶対値と数直線上の距離（数Ⅰ-012）</td></tr>
+  <tr><td>差の2乗の和が平均値で最小になる（数Ⅰ-080）</td><td>平方完成と最小値（数Ⅰ-034・数Ⅰ-039）</td></tr>
+  <tr><td>分散の式の変形（数Ⅰ-081）</td><td>乗法公式 \( (a-b)^2=a^2-2ab+b^2 \)（中3-005）</td></tr>
+  <tr><td>標準偏差（数Ⅰ-081）</td><td>平方根（中3-019・中3-020）</td></tr>
+  <tr><td>\( s_y=|a|s_x \)（数Ⅰ-082）</td><td>\( \sqrt{a^2}=|a| \)（数Ⅰ-013）</td></tr>
+  <tr><td>散布図（数Ⅰ-084）</td><td>点の座標（中1-062）</td></tr>
+  <tr><td>偏差の積の符号（数Ⅰ-085）</td><td>正負の数の乗法（中1-012）</td></tr>
+</table>
+</div></div>
+<div class="box point"><p class="box-title">この範囲の問題の型と、練習した場所</p>
+<div class="table-wrap">
+<table>
+  <tr><th>型（学んだコマ）</th><th>このページで練習する問題</th></tr>
+  <tr><td>統計的探究プロセス、統計量とグラフの使い分け、ヒストグラム・箱ひげ図の読み取り（079）</td><td>確認1、例題1、問1・問2</td></tr>
+  <tr><td>散らばりの数値化：差の和・差の絶対値の和・差の2乗の和（080）</td><td>確認2、問4</td></tr>
+  <tr><td>分散・標準偏差：定義の式・変形した式・分布の形による使い分け（081）</td><td>例題1・例題2、問3・問6・問9</td></tr>
+  <tr><td>変量の変換 \( y=ax+b \)（082）</td><td>例題3、問5・問9</td></tr>
+  <tr><td>散布図と相関の正負・強さ、散布図と箱ひげ図を組み合わせた図（084）</td><td>確認3、例題4、問7・問10</td></tr>
+  <tr><td>共分散・相関係数（085）</td><td>例題4、問7・問8・問10</td></tr>
+  <tr><td>単元末演習の型A・型B・型D（091）</td><td>問1〜問10（型を混ぜて出題）</td></tr>
+</table>
+</div></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この範囲の重要語句（すべて既習）</p>
+  <dl>
+    <dt>統計的探究プロセス</dt><dd>「問題─計画─データ─分析─結論」の5つの段階からなる、統計的に問題を解決する一連の過程。段階を行き来しながら進む（数Ⅰ-079）。</dd>
+    <dt>四分位範囲</dt><dd>（第3四分位数）−（第1四分位数）。真ん中のおよそ半分のデータの広がりで、極端な値の影響をほとんど受けない（数Ⅰ-079）。</dd>
+    <dt>偏差</dt><dd>各データの値から平均値を引いた値 \( x_k-\overline{x} \)。偏差の和はいつも 0（数Ⅰ-080・081）。</dd>
+    <dt>分散・標準偏差</dt><dd>分散は偏差の2乗の平均値 \( s^2 \)、標準偏差は分散の正の平方根 \( s \)。\( s^2=\overline{x^2}-(\overline{x})^2 \) でも求められる（数Ⅰ-081）。</dd>
+    <dt>正の相関・負の相関</dt><dd>一方が増加すると他方も増加する傾向（散布図で右上がり）と、減少する傾向（右下がり）（数Ⅰ-084）。</dd>
+    <dt>共分散</dt><dd>\( x \) と \( y \) の偏差の積の平均値 \( s_{xy} \)。単位のとり方で値が変わる（数Ⅰ-085）。</dd>
+    <dt>相関係数</dt><dd>\( r=\dfrac{s_{xy}}{s_xs_y} \)（\( s_x&gt;0,\ s_y&gt;0 \) のとき）。\( -1\leqq r\leqq1 \) で、単位のとり方によらない（数Ⅰ-085）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>ヒストグラムで分布の形、箱ひげ図で5つの値と集団の比較を読む。分布が非対称なら中央値と四分位範囲、おおむね対称なら平均値と標準偏差を組にして使う（O1）。</li>
+    <li>分散は偏差の2乗の平均値（\( =\overline{x^2}-(\overline{x})^2 \)）、標準偏差はその正の平方根。\( y=ax+b \) なら平均値は \( a\overline{x}+b \)、分散は \( a^2 \) 倍、標準偏差は \( |a| \) 倍（O2）。</li>
+    <li>散布図の右上がり・右下がりで相関の正負、直線への近さで強さを見る。相関係数 \( r=\dfrac{s_{xy}}{s_xs_y} \) は \( -1\leqq r\leqq1 \) で、散布図もかいて確かめる（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">分散・標準偏差</span><p>\( s^2=\overline{x^2}-(\overline{x})^2 \)、\( s=\sqrt{s^2} \)</p></div>
+  <div><span class="f-name">変量の変換</span><p>\( \overline{y}=a\overline{x}+b \)、\( s_y^2=a^2s_x^2 \)、\( s_y=|a|s_x \)</p></div>
+  <div><span class="f-name">相関係数</span><p>\( r=\dfrac{s_{xy}}{s_xs_y} \)（\( s_x&gt;0,\ s_y&gt;0 \) のとき）、\( -1\leqq r\leqq1 \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">範囲（数Ⅰ-079〜082・084・085）全体から10問です。基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）と、復習するときに戻るコマを示します。数値を入力する問題は、整数や小数（1.25 のように）、分数（5/4 のように）で入力してください。データはすべて学習用の架空のデータです。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1（復習するなら数Ⅰ-079）</span></div>
+  <p>図1の A組・B組の箱ひげ図から正しいといえるものはどれですか。</p>
+  <div class="choices"><button>四分位範囲は B組の方が大きい。</button><button>箱ひげ図から、B組の方が人数が多いと分かる。</button><button data-correct="true">B組の中央値（6時間）は、A組の第3四分位数（6.5時間）より小さい。</button><button>A組の最大値は、B組の最大値より大きい。</button></div>
+  <span class="result"></span>
+  <div class="explain">B組の中央値は 6時間、A組の第3四分位数は 6.5時間なので、「B組の中央値（6時間）は、A組の第3四分位数（6.5時間）より小さい」が正しい記述です。「四分位範囲は B組の方が大きい」は誤りで、A組は \( 6.5-3=3.5 \)、B組は \( 8-5=3 \) です。「B組の方が人数が多いと分かる」は誤りで、箱ひげ図から人数は分かりません（どちらも20人）。「A組の最大値は、B組の最大値より大きい」は誤りで、どちらも 11時間です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1（復習するなら数Ⅰ-079）</span></div>
+  <p>体育委員会が「1年生と2年生で、1週間の運動時間に違いがあるか」を統計的探究プロセスで調べています。「集めたデータで学年ごとの箱ひげ図をかき、中央値と四分位範囲を比べる」という活動は、どの段階に当たりますか。</p>
+  <div class="choices"><button>問題</button><button>計画</button><button>データ</button><button data-correct="true">分析</button></div>
+  <span class="result"></span>
+  <div class="explain">グラフをかいて特徴や傾向をつかむのは「分析」の段階です（数Ⅰ-079）。「問題」は問題の把握と設定、「計画」はどんなデータをどう集めるかを決める段階、「データ」はデータを集めて表に整理する段階です。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="10">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2（復習するなら数Ⅰ-081）</span></div>
+  <p>4個の値 3, 5, 9, 11 の分散を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 10。平均値は \( \dfrac{3+5+9+11}{4}=\dfrac{28}{4}=7 \)、偏差は \( -4,\ -2,\ 2,\ 4 \)、偏差の2乗は \( 16,\ 4,\ 4,\ 16 \) で和は 40。分散は \( \dfrac{40}{4}=10 \) です（数Ⅰ-081）。40 と答えた場合は、偏差の2乗の和を個数で割り忘れた誤り。\( \sqrt{10} \) は標準偏差です。3 は偏差の絶対値の平均 \( \dfrac{4+2+2+4}{4}=3 \) を求めた場合です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問4</span><span class="q-obj">O2（復習するなら数Ⅰ-080）</span></div>
+  <p>散らばりを数値化する方法についての説明として、正しいものはどれですか。</p>
+  <div class="choices"><button>各データと平均値の差の和は、散らばりが大きいデータほど大きくなる。</button><button data-correct="true">差の2乗の和を個数で割った値は、平均値から大きく離れた値ほど重く数え、単位はもとのデータの単位の2乗になる。</button><button>範囲が同じ2つのデータは、散らばりの大きさも同じである。</button><button>差の2乗の和を個数で割った値が 9（点²）なら、各データは平均して 9 点離れている。</button></div>
+  <span class="result"></span>
+  <div class="explain">2乗すると、大きな差ほど重く数えられ、単位は2乗になります（数Ⅰ-080）。「差の和は、散らばりが大きいデータほど大きくなる」は誤りで、差の和はいつも 0 です。「範囲が同じ2つのデータは、散らばりの大きさも同じ」は誤りで、範囲は両端の2つの値しか見ていません。「9（点²）なら平均して 9 点離れている」は誤りで、2乗した離れ具合の平均です。平方根をとって 3 点を目安にします（数Ⅰ-081 の標準偏差）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2（復習するなら数Ⅰ-082）</span></div>
+  <p>変量 \( x \) の平均値が 8、標準偏差が 3 です。\( y=-2x+25 \) とするとき、\( y \) の平均値と標準偏差の組はどれですか。</p>
+  <div class="choices"><button data-correct="true">平均値 9、標準偏差 6</button><button>平均値 9、標準偏差 \( -6 \)</button><button>平均値 9、標準偏差 36</button><button>平均値 \( -16 \)、標準偏差 6</button></div>
+  <span class="result"></span>
+  <div class="explain">\( \overline{y}=-2\times8+25=9 \)、\( s_y=|-2|\times3=6 \) なので、「平均値 9、標準偏差 6」です（数Ⅰ-082）。「平均値 9、標準偏差 \( -6 \)」は標準偏差を \( a=-2 \) 倍した誤りで、標準偏差は負になりません。「平均値 9、標準偏差 36」は分散 \( (-2)^2\times3^2=36 \) と取り違えた誤り。「平均値 \( -16 \)、標準偏差 6」は \( b=25 \) を足し忘れた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="2.96|74/25">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2（復習するなら数Ⅰ-081）</span></div>
+  <p>5個の値 4, 5, 5, 6, 9 の分散を、（2乗の平均値）−（平均値の2乗）を使って求め、小数で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 2.96。平均値は \( \overline{x}=\dfrac{29}{5}=5.8 \)、2乗の平均値は \( \overline{x^2}=\dfrac{16+25+25+36+81}{5}=\dfrac{183}{5}=36.6 \)。分散は \( s^2=36.6-5.8^2=36.6-33.64=2.96 \) です（数Ⅰ-081）。\( -2.96 \) は \( 33.64-36.6 \) と逆に引いた誤り、36.6 は平均値の2乗を引き忘れた誤り、14.8 は偏差の2乗の和（個数で割る前）、約 1.72 は標準偏差 \( \sqrt{2.96} \) です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3（復習するなら数Ⅰ-085・数Ⅰ-084）</span></div>
+  <p>2つの変量 \( x \)、\( y \) の相関係数が \( r=-0.92 \) でした。正しいものはどれですか。</p>
+  <div class="choices"><button data-correct="true">負の相関が強く、散布図では点が右下がりの直線の近くに集まっていると考えられる。</button><button>\( r \) が負の数なので、\( x \) と \( y \) の間には相関がない。</button><button>\( x \) が増加すると \( y \) も増加する傾向が強い。</button><button>\( r \) が \( -1 \) ではないので、相関の強さについては何もいえない。</button></div>
+  <span class="result"></span>
+  <div class="explain">\( r \) が \( -1 \) に近いほど負の相関が強く、点は右下がりの直線の近くに集まります（数Ⅰ-085・084）。「\( r \) が負の数なので相関がない」は誤りで、相関が弱いのは \( r \) が 0 に近いときです。「\( x \) が増加すると \( y \) も増加する傾向が強い」は符号を取り違えた誤りで、それは正の相関です。「\( -1 \) ではないので何もいえない」は誤りで、\( -1 \) への近さで強さを読みます。ただし、外れ値の影響などは散布図で確かめます。</div>
+</div>
+
+<div class="q" data-type="input" id="q8" data-accept="0.7|7/10|.7|r=0.7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問8</span><span class="q-obj">O3（復習するなら数Ⅰ-085）</span></div>
+  <p>5組のデータ \( (x,\ y)=(1,\ 1),\ (2,\ 7),\ (3,\ 3),\ (4,\ 5),\ (5,\ 9) \) について、相関係数 \( r \) を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 0.7。\( \overline{x}=3 \)、\( \overline{y}=5 \)。偏差は \( x \)：\( -2,\ -1,\ 0,\ 1,\ 2 \)、\( y \)：\( -4,\ 2,\ -2,\ 0,\ 4 \)。偏差の積の和は \( 8-2+0+0+8=14 \)、偏差の2乗の和は \( x \) が 10、\( y \) が 40。\( s_{xy}=\dfrac{14}{5}=2.8 \)、\( s_x=\sqrt{2} \)、\( s_y=\sqrt{8}=2\sqrt{2} \) なので、\( r=\dfrac{2.8}{\sqrt{2}\times2\sqrt{2}}=\dfrac{2.8}{4}=0.7 \) です（数Ⅰ-085）。2.8 と答えた場合は共分散のまま。0.175 は分散 2 と 8 の積 16 で割った誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2（復習するなら数Ⅰ-081・数Ⅰ-082）</span></div>
+  <p>太郎さんと花子さんが、A班と B班（各10人）の10点満点の小テストの結果について話しています（学習用の架空のデータ）。どちらの班も平均値は 6.0 点で、標準偏差は A班が 1.2 点、B班が 2.5 点でした。</p>
+  <p>太郎：平均値が同じだから、2つの班の得点の分布は同じだね。<br>
+  花子：標準偏差が違うよ。得点を 10 倍して 100 点満点に直したら、どうなるかな。</p>
+  <p>正しいものはどれですか。</p>
+  <div class="choices"><button>太郎さんの言うとおり、平均値が同じなので2つの班の得点の分布は同じである。</button><button data-correct="true">B班の方が標準偏差が大きいので、得点が平均値のまわりに広く散らばっている。得点を 10 倍すると、標準偏差はどちらも 10 倍（A班 12 点、B班 25 点）になる。</button><button>B班の方が標準偏差が大きいので、B班の方が得点の高い人が多い。</button><button>得点を 10 倍すると、標準偏差は 100 倍（A班 120 点、B班 250 点）になる。</button></div>
+  <span class="result"></span>
+  <div class="explain">標準偏差が大きいほど、平均値のまわりに広く散らばっています（数Ⅰ-081）。\( y=10x \) なら標準偏差は \( |10|=10 \) 倍です（数Ⅰ-082）。正しいのは「B班の方が標準偏差が大きいので、…10 倍（A班 12 点、B班 25 点）になる」です。「平均値が同じなので分布は同じ」は太郎さんの考えで、散らばりの違いを見ていません。「B班の方が得点の高い人が多い」は、散らばりの大きさを中心の位置と取り違えた誤りです。「100 倍」は、分散が \( 10^2=100 \) 倍になることと取り違えた誤りです。</div>
+</div>
+
+<div class="q" data-type="open" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O3（復習するなら数Ⅰ-085・数Ⅰ-084）</span></div>
+  <p>5組のデータ \( (x,\ y)=(1,\ 3),\ (2,\ 4),\ (3,\ 5),\ (4,\ 2),\ (5,\ 1) \) について、次の問いに答えなさい。(1) 平均値を通る直線で分けた区域Ⅰ〜Ⅳのどこに各点があるか（境界線上の点はそう答える）と、偏差の積の符号を答えなさい。(2) \( s_x \)、\( s_y \)、\( s_{xy} \) と相関係数 \( r \) を求めなさい。(3) \( x \) と \( y \) の相関を説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) \( \overline{x}=3 \)、\( \overline{y}=3 \)。偏差は \( x \)：\( -2,\ -1,\ 0,\ 1,\ 2 \)、\( y \)：\( 0,\ 1,\ 2,\ -1,\ -2 \)。(1, 3) と (3, 5) は境界線上で積は 0、(2, 4) は区域Ⅱで積は負、(4, 2) と (5, 1) は区域Ⅳで積は負。(2) 偏差の2乗の和は \( x \) が 10、\( y \) が \( 0+1+4+1+4=10 \) なので \( s_x=\sqrt{2} \)、\( s_y=\sqrt{2} \)。偏差の積の和は \( 0-1+0-1-4=-6 \) なので \( s_{xy}=-\dfrac{6}{5}=-1.2 \)。\( r=\dfrac{-1.2}{\sqrt{2}\times\sqrt{2}}=-0.6 \)。(3) <span data-ans="q10">\( r=-0.6 \)</span> は負なので負の相関がある。\( -1 \) に近いとまではいえず、点は右下がりの直線のまわりにある程度散らばっている（散布図でも確かめる）。</p>
+    <p><strong>採点の観点</strong>　① 平均値を通る直線で区域を分け、偏差の積の符号を正しく判断している（境界線上は 0）。② 共分散を偏差の積の平均、標準偏差を偏差の2乗の平均の正の平方根として求め、\( r=\dfrac{s_{xy}}{s_xs_y} \) で計算している。③ \( r \) の符号と \( -1 \) への近さで相関を説明している。</p>
+  </div>
+  <div class="explain">区域Ⅱ・Ⅳの点が多いと偏差の積の和は負になり、負の相関の傾向を表します（数Ⅰ-085）。偏差の積の和 \( -6 \) を個数で割らずに \( \dfrac{-6}{2} \) とすると \( -3 \) になり、\( -1 \) より小さくなるので誤りと分かります。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲について特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲とする」とされています。この時間の内容は、数学Ⅰ「(4) データの分析」の「分散，標準偏差，散布図及び相関係数の意味やその用い方を理解すること」（ア(ア)）と「コンピュータなどの情報機器を用いるなどして，データを表やグラフに整理したり，分散や標準偏差などの基本的な統計量を求めたりすること」（ア(イ)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めています。グラフで分布の形を見て、統計量で中心・散らばり・相関を数値にするこの範囲の内容は、こうした処理の基本になります。</p>
+  <p class="small">問9は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">復習：データの分析（外れ値・仮説検定・質的データ）（数Ⅰ-106）</p>
+  <p>次の時間は、データの分析の残りの範囲（数Ⅰ-083・086〜090）の復習で、数学Ⅰの最後のコマです。外れ値の判断、二次元表による質的データの分析、相関と因果の区別、仮説検定の考え方による主張の妥当性の判断の問題に取り組みます。外れ値の基準にはこの時間の四分位数・四分位範囲を、仮説検定の考え方では実験結果の平均値と標準偏差を使います。</p>
+  <p>この時間では、新しい内容は扱っていません。Σ を使った書き方は数学Ｂで扱うので、この範囲では使っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-104　復習：正弦定理・余弦定理と図形の計量</div>
+  <div><span class="label">次の時間</span>数Ⅰ-106　復習：データの分析（外れ値・仮説検定・質的データ）</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-105「復習：データの分析（分散・標準偏差・相関係数）」（区分：復習。学習指導要領 数学Ⅰ (4)ア(ア)・ア(イ)）。単元「復習（予備時間）」の注。範囲の各行 hs_math_1a/数Ⅰ-079〜082・084・085・091 の要点と、それぞれの完成ページ（データの分析のクロスチェック後の版）の用語・図の約束・よくある間違い。単元「データの分析」の注（Σ は数学Ｂ）。次の行 hs_math_1a/数Ⅰ-106 の要点</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(4) データの分析 ア(ア)・ア(イ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.43-47（データの散らばり、データの相関）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料と、範囲の完成ページをもとに作成した学習用資料です。例題・問題・データはこのページのために作成したもので、すべて学習用の架空のデータです（出典を示したものを除く）。図1・図2は学習用に作成した図です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-105",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-105",
+  "title": "復習：データの分析（分散・標準偏差・相関係数）",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-7", "title": "復習（予備時間）"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(4)ア(ア)", "(4)ア(イ)"],
+  "kaisetsu_page": "",
+  "objectives": [
+    {"id": "O1", "text": "ヒストグラム・箱ひげ図から分布の特徴を読み取り、目的に応じて統計量やグラフを選ぶことができる。", "from": "箱ひげ図・ヒストグラムの読み取り", "sections": ["sec-1"], "checks": ["q1", "q2"]},
+    {"id": "O2", "text": "分散・標準偏差を定義の式と（2乗の平均値）−（平均値の2乗）で求め、変量の変換による変化も使って、散らばりの大きさを解釈できる。", "from": "分散・標準偏差の計算", "sections": ["sec-2"], "checks": ["q3", "q4", "q5", "q6", "q9"]},
+    {"id": "O3", "text": "散布図から相関の正負と強さを読み取り、共分散・相関係数を求めて、その符号と大きさから相関を説明できる。", "from": "散布図と相関係数の計算・解釈の問題に取り組む", "sections": ["sec-3"], "checks": ["q7", "q8", "q10"]}
+  ],
+  "key_terms": [
+    {"term": "統計的探究プロセス", "where": "review"},
+    {"term": "四分位範囲", "where": "sec-1"},
+    {"term": "偏差", "where": "sec-2"},
+    {"term": "分散・標準偏差", "where": "sec-2"},
+    {"term": "正の相関・負の相関", "where": "sec-3"},
+    {"term": "共分散", "where": "sec-3"},
+    {"term": "相関係数", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "統計的探究プロセス、統計量とグラフの使い分け、四分位数の求め方（偶数個は半分ずつ、奇数個は中央値を除く）", "taught_in": ["hs_math_1a/数Ⅰ-079"], "gap": false, "where": "sec-1"},
+    {"concept": "散らばりを数値化する方法（差の和はいつも 0、差の絶対値の和・差の2乗の和）", "taught_in": ["hs_math_1a/数Ⅰ-080"], "gap": false, "where": "sec-2"},
+    {"concept": "偏差・分散・標準偏差、分散＝（2乗の平均値）−（平均値の2乗）、分布の形による使い分け", "taught_in": ["hs_math_1a/数Ⅰ-081"], "gap": false, "where": "sec-2"},
+    {"concept": "変量の変換 y=ax+b と平均値・分散・標準偏差", "taught_in": ["hs_math_1a/数Ⅰ-082"], "gap": false, "where": "sec-2"},
+    {"concept": "散布図、正の相関・負の相関・相関の強さ、散布図と箱ひげ図を組み合わせた図", "taught_in": ["hs_math_1a/数Ⅰ-084"], "gap": false, "where": "sec-3"},
+    {"concept": "共分散・相関係数、−1≦r≦1、単位のとり方によらないこと", "taught_in": ["hs_math_1a/数Ⅰ-085"], "gap": false, "where": "sec-3"},
+    {"concept": "単元末演習の型A・型B・型D", "taught_in": ["hs_math_1a/数Ⅰ-091"], "gap": false, "where": "review"},
+    {"concept": "ヒストグラムと階級、相対度数", "taught_in": ["jhs_math/中1-110", "jhs_math/中1-112"], "gap": false, "where": "sec-1"},
+    {"concept": "代表値と範囲", "taught_in": ["jhs_math/中1-111"], "gap": false, "where": "sec-2"},
+    {"concept": "四分位数・四分位範囲・箱ひげ図、複数の集団の比較", "taught_in": ["jhs_math/中2-088", "jhs_math/中2-089", "jhs_math/中2-091"], "gap": false, "where": "sec-1"},
+    {"concept": "絶対値と数直線上の距離", "taught_in": ["hs_math_1a/数Ⅰ-012"], "gap": false, "where": "sec-3"},
+    {"concept": "平方完成と最小値", "taught_in": ["hs_math_1a/数Ⅰ-034", "hs_math_1a/数Ⅰ-039"], "gap": false, "where": "sec-3"},
+    {"concept": "乗法公式 (a−b)²", "taught_in": ["jhs_math/中3-005"], "gap": false, "where": "sec-3"},
+    {"concept": "平方根", "taught_in": ["jhs_math/中3-019", "jhs_math/中3-020"], "gap": false, "where": "sec-3"},
+    {"concept": "√(a²)=|a|", "taught_in": ["hs_math_1a/数Ⅰ-013"], "gap": false, "where": "sec-3"},
+    {"concept": "点の座標", "taught_in": ["jhs_math/中1-062"], "gap": false, "where": "sec-3"},
+    {"concept": "正負の数の乗法（積の符号）", "taught_in": ["jhs_math/中1-012"], "gap": false, "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "新しい内容（復習の行のため、数Ⅰ-079〜082・084・085 の内容の練習だけを扱う）",
+    "外れ値（数Ⅰ-083）、相関と因果（数Ⅰ-086）、質的データの分析（数Ⅰ-087・088）、仮説検定の考え方（数Ⅰ-089・090）の復習（数Ⅰ-106）",
+    "−1≦r≦1 の証明（数Ⅰ-085 と同じく扱わない）",
+    "Σ を使った書き方（数学Ｂで扱う）、データの個数より1小さい数で割る分散"
+  ],
+  "selection_reason": "数学Ⅰ 単元『復習（予備時間）』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(4)ア(ア)・ア(イ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.43-47 データの散らばり、データの相関"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

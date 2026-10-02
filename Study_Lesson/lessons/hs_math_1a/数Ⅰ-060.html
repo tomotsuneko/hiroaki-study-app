@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三角比を用いた辺の長さの計算｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>図形と計量</span><span>数Ⅰ-060</span></div>
+  <h1>三角比を用いた辺の長さの計算</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">傾斜の角を 35° にしたい階段で、蹴上げを 18 cm にするなら、踏面は何 cm にすればよいでしょう。木の先を見上げる角から、木の高さは分かるでしょうか。この時間は、三角比の定義を変形して、直角三角形の1辺と1つの鋭角から他の辺の長さを求め、身の回りの計量に使います。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>三角比の定義から a=c sin A、b=c cos A、a=b tan A を導き、直角三角形の1辺の長さと1つの鋭角から、他の辺の長さを求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>ある傾斜にするための踏面と蹴上げの長さを、三角比を用いて求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>見上げる角と水平な距離から建物や木の高さを求めるなど、三角比を高さの測量に活用できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-059）</span>三角比表と情報機器の利用</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-060）</span>三角比を用いた辺の長さの計算</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-061）</span>三角比の相互関係</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」（縮図の利用・相似の活用）、「三平方の定理」。中学2年「式の計算」の等式の変形（中2-012）も使います。この時間の角 A は、直角三角形の鋭角です。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、三角比の定義（数Ⅰ-058）、三角比表（数Ⅰ-059）、等式の変形（中2-012）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-058</span></div>
+  <p>\( \angle\mathrm{C}=90^\circ \) の直角三角形 ABC で、\( \cos A \) を表す式はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{\mathrm{BC}}{\mathrm{AB}} \)</button>
+    <button data-correct="true">\( \dfrac{\mathrm{AC}}{\mathrm{AB}} \)</button>
+    <button>\( \dfrac{\mathrm{BC}}{\mathrm{AC}} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \cos A \) は、\( \angle\mathrm{A} \) をはさむ斜辺でない辺 AC を斜辺 AB で割った値です。\( \dfrac{\mathrm{BC}}{\mathrm{AB}} \) は \( \sin A \)、\( \dfrac{\mathrm{BC}}{\mathrm{AC}} \) は \( \tan A \) です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-059</span></div>
+  <p>三角比表で、\( \tan 35^\circ \) の値はどれですか。</p>
+  <div class="choices">
+    <button>0.5736</button>
+    <button>0.8192</button>
+    <button>0.7265</button>
+    <button data-correct="true">0.7002</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">35° の行の tan の列は 0.7002 です。0.5736 は sin、0.8192 は cos の列の値、0.7265 は1つ下の 36° の行の tan を読んだ誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中2-012</span></div>
+  <p>等式 \( \dfrac{a}{c}=k \)（\( c\neq0 \)）を \( a \) について解いたものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( a=ck \)</button>
+    <button>\( a=\dfrac{c}{k} \)</button>
+    <button>\( a=\dfrac{k}{c} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">両辺に \( c \) を掛けると \( a=ck \) です。\( a=\dfrac{c}{k} \) は \( c \) を掛ける代わりに割った誤り、\( a=\dfrac{k}{c} \) は分母の \( c \) をそのまま残した誤りです。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">四捨五入（小学校算数）</p>
+  <p>この時間は、答えを「小数第2位を四捨五入して小数第1位まで」求めることがあります。四捨五入は小学校算数（第4学年）で学ぶ内容で、数Ⅰ-059 の補足でも確かめました。小数第2位の数字が 0〜4 なら切り捨て、5〜9 なら小数第1位を1大きくします。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：測らずに長さを知る</h2>
+<div class="box think">
+  <p class="box-title">2つの問い</p>
+  <p>① 傾斜の角が 35° の階段を作ります。蹴上げを 18 cm にするには、踏面を何 cm にすればよいでしょうか（学習用の設定）。</p>
+  <p>② 中3-084 では、直接測れない木の高さを、測った距離と角から縮図をかいて求めました。木から水平に 20 m 離れた地点で、目の高さ 1.5 m から木の先を見上げた角が 32° だったとき、縮図をかかずに、木の高さを計算で求められるでしょうか。</p>
+  <p>答えは「ある傾斜にするための踏面と蹴上げ」と「三角比を高さの測量に使う」の節で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="辺の長さを求める式"><span class="num">3</span>三角比で辺の長さを求める</h2>
+<p>\( \angle\mathrm{C}=90^\circ \) の直角三角形 ABC で、\( a=\mathrm{BC} \)、\( b=\mathrm{CA} \)、\( c=\mathrm{AB} \) とします。三角比の定義の式を、等式の変形（中2-012）で求めたい辺について解きます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>定義</th><th>両辺に掛ける</th><th>辺の長さの式</th></tr>
+  <tr><td>\( \sin A=\dfrac{a}{c} \)</td><td>\( c \)</td><td>\( a=c\sin A \)</td></tr>
+  <tr><td>\( \cos A=\dfrac{b}{c} \)</td><td>\( c \)</td><td>\( b=c\cos A \)</td></tr>
+  <tr><td>\( \tan A=\dfrac{a}{b} \)</td><td>\( b \)</td><td>\( a=b\tan A \)</td></tr>
+</table>
+</div>
+<figure>
+<!--svg:f060a-->
+<svg viewBox="0 0 350 236" width="350" role="img" aria-label="∠C が直角の直角三角形 ABC。斜辺 AB が c、BC が c sin A、AC が c cos A">
+<polygon points="40,196 264,39.2 264,196" fill="#1f5fbf" fill-opacity="0.05" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+<line x1="264" y1="39.2" x2="264" y2="196" stroke="#c0392b" stroke-width="3.2"/>
+<line x1="40" y1="196" x2="264" y2="196" stroke="#1f5fbf" stroke-width="3.2"/>
+<polygon points="40,196 264,39.2 264,196" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+<text x="27.7" y="205.2" text-anchor="middle" font-size="14" fill="currentColor">A</text>
+<text x="271.6" y="33.5" text-anchor="middle" font-size="14" fill="currentColor">B</text>
+<text x="274.6" y="208.4" text-anchor="middle" font-size="14" fill="currentColor">C</text>
+<polyline points="254,196 254,186 264,186" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<text x="310.8" y="122.1" text-anchor="middle" font-size="13" fill="#c0392b">a = c sin A</text>
+<text x="152" y="212.6" text-anchor="middle" font-size="13" fill="#1f5fbf">b = c cos A</text>
+<text x="143.8" y="110.5" text-anchor="middle" font-size="13" fill="#1e8e5a">c</text>
+<path d="M66,196 A26,26 0 0 0 61.3,181.1" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<text x="79.5" y="187.7" text-anchor="middle" font-size="12" fill="currentColor">A</text>
+</svg>
+<!--/svg:f060a-->
+  <figcaption>図1　斜辺 \( c \) と \( \angle\mathrm{A} \) が分かれば \( a=c\sin A \)、\( b=c\cos A \)。\( b \) と \( \angle\mathrm{A} \) が分かれば \( a=b\tan A \)</figcaption>
+</figure>
+<p>\( a=c\sin A \) は、数Ⅰ-058 の「\( \sin A \) は斜辺に対する BC の割合」という見方を式にしたものです。斜辺が \( c \) なら、BC はその \( \sin A \) 倍です。</p>
+<div class="box point">
+  <p class="box-title">どの三角比を使うか</p>
+  <p>① 分かっている辺と求めたい辺が、\( \angle\mathrm{A} \) から見てどの位置か（向かい合う辺・はさむ斜辺でない辺・斜辺）を確かめる。② その2辺を含む三角比を選ぶ（向かい合う辺と斜辺なら sin、はさむ辺と斜辺なら cos、向かい合う辺とはさむ辺なら tan）。③ 定義の式に代入して、求めたい辺について解く。</p>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題1　斜辺と角から2辺を求める</p>
+  <p>\( \angle\mathrm{C}=90^\circ \) の直角三角形 ABC で、次の場合の BC、AC の長さを求めなさい。(1) \( \mathrm{AB}=10 \)、\( A=30^\circ \)　(2) \( \mathrm{AB}=8 \)、\( A=40^\circ \)（三角比表を用い、小数第2位を四捨五入）</p>
+  <div class="step">(1) 着眼点：30° の三角比は正確な値が分かるので、根号のまま求めます。\( \mathrm{BC}=10\sin30^\circ=10\times\dfrac{1}{2}=5 \)、\( \mathrm{AC}=10\cos30^\circ=10\times\dfrac{\sqrt{3}}{2}=5\sqrt{3} \)。</div>
+  <div class="step">(2) 着眼点：40° の三角比は表の値を使います。\( \mathrm{BC}=8\sin40^\circ\fallingdotseq8\times0.6428=5.1424 \)、\( \mathrm{AC}=8\cos40^\circ\fallingdotseq8\times0.7660=6.128 \)。</div>
+  <div class="step">答え：(1) \( \mathrm{BC}=5 \)、\( \mathrm{AC}=5\sqrt{3} \)　(2) \( \mathrm{BC}\fallingdotseq5.1 \)、\( \mathrm{AC}\fallingdotseq6.1 \)</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2　斜辺でない辺と角から求める</p>
+  <p>\( \angle\mathrm{C}=90^\circ \) の直角三角形 ABC で、次の長さを求めなさい。(1) \( \mathrm{AC}=6 \)、\( A=25^\circ \) のときの BC（三角比表を用い、小数第2位を四捨五入）　(2) \( \mathrm{BC}=3 \)、\( A=30^\circ \) のときの AB と AC</p>
+  <div class="step">(1)：AC と BC は「はさむ斜辺でない辺」と「向かい合う辺」なので tan。\( \mathrm{BC}=6\tan25^\circ\fallingdotseq6\times0.4663=2.7978 \) より、およそ 2.8。</div>
+  <div class="step">(2) 着眼点：分からない辺が分母にあるときは、割り算になります。\( \sin30^\circ=\dfrac{\mathrm{BC}}{\mathrm{AB}} \) より \( \mathrm{AB}\sin30^\circ=\mathrm{BC} \)、\( \mathrm{AB}=\dfrac{\mathrm{BC}}{\sin30^\circ}=3\div\dfrac{1}{2}=6 \)。</div>
+  <div class="step">(2) 続き：\( \tan30^\circ=\dfrac{\mathrm{BC}}{\mathrm{AC}} \) より \( \mathrm{AC}=\dfrac{\mathrm{BC}}{\tan30^\circ}=3\div\dfrac{\sqrt{3}}{3}=\dfrac{9}{\sqrt{3}}=3\sqrt{3} \)。</div>
+  <div class="step">答え：(1) \( \mathrm{BC}\fallingdotseq2.8 \)　(2) \( \mathrm{AB}=6 \)、\( \mathrm{AC}=3\sqrt{3} \)</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：割るべきところで掛ける</p><p>例題2(2) で \( \mathrm{AB}=3\sin30^\circ=1.5 \) とすると、斜辺 AB が BC（3）より短くなってしまいます。斜辺は最も長い辺（数Ⅰ-058）なので、誤りと分かります。分からない辺が定義の式の分母にあるときは、割り算になります。求めた長さが辺の大小に合っているかを確かめましょう。</p></div>
+<div class="box caution"><p class="box-title">注意：近似値を使う計算</p><p>三角比表の値は近似値なので、それを使って求めた長さも近似値です。このページでは、表の値（小数第4位まで）をそのまま使って計算し、<strong>最後に</strong>四捨五入します。途中で丸めると、答えがずれることがあります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="踏面と蹴上げの長さ"><span class="num">4</span>ある傾斜にするための踏面と蹴上げ</h2>
+<p>学習指導要領解説は、ある傾斜にするための踏面と蹴上げの長さについて考えることを例に挙げています。階段の1段がつくる直角三角形では、傾斜の角を A とすると、\( \tan A=\dfrac{\text{蹴上げ}}{\text{踏面}} \)（数Ⅰ-057）なので、</p>
+$$ \text{蹴上げ}=\text{踏面}\times\tan A,\qquad \text{踏面}=\frac{\text{蹴上げ}}{\tan A} $$
+<p>です。</p>
+<figure>
+<!--svg:f060b-->
+<svg viewBox="0 0 340 214" width="340" role="img" aria-label="傾斜の角 35°、蹴上げ 18 cm の階段の1段がつくる直角三角形。踏面は x cm">
+<polygon points="36,176 241.7,32 241.7,176" fill="#8a99a8" fill-opacity="0.15" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+<line x1="241.7" y1="32" x2="241.7" y2="176" stroke="#1e8e5a" stroke-width="3.2"/>
+<line x1="36" y1="176" x2="241.7" y2="176" stroke="#1f5fbf" stroke-width="3.2"/>
+<polygon points="36,176 241.7,32 241.7,176" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+<polyline points="231.7,176 231.7,166 241.7,166" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<text x="293.3" y="108.5" text-anchor="middle" font-size="13" fill="#1e8e5a">蹴上げ 18 cm</text>
+<text x="138.8" y="192.6" text-anchor="middle" font-size="13" fill="#1f5fbf">踏面 x cm</text>
+<path d="M66,176 A30,30 0 0 0 60.6,158.8" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<text x="85.9" y="164.5" text-anchor="middle" font-size="12" fill="currentColor">35°</text>
+</svg>
+<!--/svg:f060b-->
+  <figcaption>図2　傾斜の角 35°、蹴上げ 18 cm の1段がつくる直角三角形（学習用の値による模式図）。踏面を \( x \) cm とすると \( \tan35^\circ=\dfrac{18}{x} \)</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題3（導入の問い①の答え）</p>
+  <p>傾斜の角が 35° の階段を作ります。(1) 蹴上げを 18 cm にするとき、踏面は何 cm にすればよいですか。(2) 踏面を 26 cm にするとき、蹴上げは何 cm にすればよいですか。三角比表を用い、小数第2位を四捨五入して答えなさい（学習用の設定）。</p>
+  <div class="step">(1)：踏面を \( x \) cm とすると \( \tan35^\circ=\dfrac{18}{x} \)。\( x=\dfrac{18}{\tan35^\circ}\fallingdotseq\dfrac{18}{0.7002}=25.706\cdots \)</div>
+  <div class="step">(2)：蹴上げ \( =26\times\tan35^\circ\fallingdotseq26\times0.7002=18.2052 \)</div>
+  <div class="step">確かめ：(1) で \( \dfrac{18}{25.7}=0.7003\cdots \) となり、\( \tan35^\circ\fallingdotseq0.7002 \) に近い値です。</div>
+  <div class="step">答え：(1) およそ 25.7 cm　(2) およそ 18.2 cm</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：踏面を 蹴上げ × tan とする</p><p>(1) で \( 18\times0.7002\fallingdotseq12.6 \) とするのは、踏面と蹴上げの位置を取り違えた誤りです。傾斜の角が 45° より小さいとき、tan の値は 1 より小さいので、踏面は蹴上げより長くなるはずです。答えの大小で確かめましょう。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題4　エスカレータの高さと水平方向の長さ</p>
+  <p>傾斜の角が 30° のエスカレータで、斜面に沿った長さが 12 m あります（学習用の値）。上がる高さと、水平方向に進む長さを求めなさい。</p>
+  <div class="step">着眼点：斜面に沿った長さが斜辺です。高さは sin、水平方向の長さは cos を使います。</div>
+  <div class="step">高さ：\( 12\sin30^\circ=12\times\dfrac{1}{2}=6 \)（m）</div>
+  <div class="step">水平方向：\( 12\cos30^\circ=12\times\dfrac{\sqrt{3}}{2}=6\sqrt{3} \)（m）。\( \sqrt{3}=1.732\cdots \) より、およそ 10.4 m。</div>
+  <div class="step">答え：高さ 6 m、水平方向の長さ \( 6\sqrt{3} \) m（およそ 10.4 m）</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="高さの測量"><span class="num">5</span>三角比を高さの測量に使う</h2>
+<p>このページでは、水平な方向と、目から物の先を見る方向とのなす角を<strong>見上げる角</strong>と呼びます。木の根元と目の位置の水平な距離と、見上げる角が分かれば、tan を使って、目の高さより上の部分の長さが求められます。</p>
+<figure>
+<!--svg:f060c-->
+<svg viewBox="0 0 360 272" width="360" role="img" aria-label="木から水平に 20 m 離れた地点で、目の高さ 1.5 m から木の先を見上げた角が 32°。目の高さより上の部分の長さ h は 20 tan 32°">
+<line x1="16" y1="246" x2="350" y2="246" stroke="currentColor" stroke-width="1.4"/>
+<line x1="60" y1="246" x2="60" y2="226.5" stroke="#8a99a8" stroke-width="3"/>
+<circle cx="60" cy="226.5" r="4" fill="#8a99a8"/>
+<line x1="320" y1="246" x2="320" y2="64" stroke="#8d6e3f" stroke-width="4"/>
+<circle cx="320" cy="64" r="3.5" fill="#1e8e5a"/>
+<line x1="60" y1="226.5" x2="320" y2="226.5" stroke="#1f5fbf" stroke-width="1.6" stroke-dasharray="6 4"/>
+<line x1="60" y1="226.5" x2="320" y2="64" stroke="#c0392b" stroke-width="1.8"/>
+<line x1="320" y1="226.5" x2="320" y2="64" stroke="#1e8e5a" stroke-width="2.4"/>
+<polyline points="312,226.5 312,218.5 320,218.5" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<path d="M94,226.5 A34,34 0 0 0 88.8,208.5" fill="none" stroke="#c0392b" stroke-width="1.3"/>
+<text x="118" y="218.4" text-anchor="middle" font-size="12" fill="#c0392b">32°</text>
+<text x="190" y="240.5" text-anchor="middle" font-size="12" fill="#1f5fbf">20 m</text>
+<text x="52" y="240.2" text-anchor="end" font-size="12" fill="#8a99a8">1.5 m</text>
+<text x="328" y="149.3" text-anchor="start" font-size="13" fill="#1e8e5a" font-style="italic">h</text>
+<text x="320" y="54" text-anchor="middle" font-size="12" fill="currentColor">木の先</text>
+<text x="60" y="264" text-anchor="middle" font-size="12" fill="currentColor">目の位置</text>
+<text x="320" y="264" text-anchor="middle" font-size="12" fill="currentColor">木の根元</text>
+</svg>
+<!--/svg:f060c-->
+  <figcaption>図3　木から水平に 20 m 離れ、目の高さ 1.5 m から木の先を見上げた角が 32° の場合（学習用の値による模式図）。目の高さより上の部分 \( h \) は \( 20\tan32^\circ \)</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題5（導入の問い②の答え）</p>
+  <p>木から水平に 20 m 離れた地点で、目の高さ 1.5 m から木の先を見上げた角が 32° でした。木の高さを、三角比表を用い、小数第2位を四捨五入して求めなさい。</p>
+  <div class="step">着眼点：目の位置を頂点とし、水平な線（20 m）と、目の高さから木の先までの縦の線分 \( h \) を2辺とする直角三角形をつくります。</div>
+  <div class="step">ステップ1：\( \tan32^\circ=\dfrac{h}{20} \) より \( h=20\tan32^\circ\fallingdotseq20\times0.6249=12.498 \)（m）。</div>
+  <div class="step">ステップ2：木の高さは、目の高さを加えて \( 12.498+1.5=13.998 \)（m）。</div>
+  <div class="step">答え：およそ 14.0 m</div>
+</div>
+<p>中3-084 の縮図を使う方法では、図をかいて長さを測るので、図の正確さによって結果が変わります。三角比を使うと、測った距離と角から計算で求められます。ただし、測った距離や角そのものにも誤差があるので、結果は近似値です。</p>
+<div class="box caution"><p class="box-title">よくある間違い：目の高さを忘れる・sin を使う</p><p>\( 20\tan32^\circ\fallingdotseq12.5 \) をそのまま木の高さとするのは、目の高さ 1.5 m を加え忘れた誤りです。また、\( 20\sin32^\circ \) とするのは、20 m を斜辺（目から木の先までの距離）と取り違えた誤りです。20 m は水平な距離で、直角をはさむ辺です。</p></div>
+<div class="box point"><p class="box-title">身の回りの問題を解く流れ</p><p>① 場面から直角三角形を見つけ、分かっている長さ・角と求めたい長さを図にかき込む。② 使う三角比を選んで式をつくる。③ 表の値で計算し、最後に四捨五入する。④ 目の高さを加えるなど、もとの場面に戻して答える。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>\( a=c\sin A \)、\( b=c\cos A \)、\( a=b\tan A \)</dt><dd>\( \angle\mathrm{C}=90^\circ \) の直角三角形 ABC（\( a=\mathrm{BC} \)、\( b=\mathrm{CA} \)、\( c=\mathrm{AB} \)）で、三角比の定義を変形した式。</dd>
+    <dt>見上げる角</dt><dd>このページでの言い方。水平な方向と、目から物の先を見る方向とのなす角。</dd>
+    <dt>踏面・蹴上げ</dt><dd>階段の1段の水平方向の長さと高さ（数Ⅰ-057 でのこのページの扱い）。蹴上げ ＝ 踏面 × tan（傾斜の角）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>三角比の定義を変形すると、\( a=c\sin A \)、\( b=c\cos A \)、\( a=b\tan A \)。分からない辺が分母にあるときは割り算になる（O1）。</li>
+    <li>分かっている辺と求めたい辺の位置から、使う三角比を選ぶ。求めた長さが辺の大小に合っているか確かめる（O1）。</li>
+    <li>傾斜の角 A の階段では、蹴上げ ＝ 踏面 × tan A、踏面 ＝ 蹴上げ ÷ tan A（O2）。</li>
+    <li>見上げる角と水平な距離から tan で高さを求め、目の高さを加える（O3）。</li>
+    <li>表の値を使った答えは近似値。計算の最後に四捨五入する（O1・O2・O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">辺の長さ（\( \angle\mathrm{C}=90^\circ \)）</span>
+    <p>\( a=c\sin A \)、\( b=c\cos A \)、\( a=b\tan A \)<br>\( c=\dfrac{a}{\sin A} \)、\( c=\dfrac{b}{\cos A} \)、\( b=\dfrac{a}{\tan A} \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。三角形はどれも \( \angle\mathrm{C}=90^\circ \) の直角三角形 ABC です。三角比表の値は数Ⅰ-059 の表（小数第4位まで）を使い、近似値の答えは小数第2位を四捨五入して小数第1位まで、数だけで入力してください。根号は √ を使って 2√7 のように入力します。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>\( \mathrm{AB}=c \)、\( \angle\mathrm{A}=A \) のとき、BC の長さを表す式はどれですか。</p>
+  <div class="choices">
+    <button>\( c\cos A \)</button>
+    <button data-correct="true">\( c\sin A \)</button>
+    <button>\( c\tan A \)</button>
+    <button>\( \dfrac{c}{\sin A} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sin A=\dfrac{\mathrm{BC}}{c} \) の両辺に \( c \) を掛けて \( \mathrm{BC}=c\sin A \) です。\( c\cos A \) は AC の長さです。\( c\tan A \) は、斜辺 \( c \) を AC と取り違えた式です（AC が分かっているときは \( \mathrm{BC}=\mathrm{AC}\tan A \)）。\( \dfrac{c}{\sin A} \) は掛ける代わりに割った誤りで、斜辺より長くなってしまいます。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="3√3|3*√3|3×√3|AC=3√3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>\( \mathrm{AB}=6 \)、\( A=30^\circ \) のとき、AC の長さを根号を使って求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( 3\sqrt{3} \)。\( \mathrm{AC}=6\cos30^\circ=6\times\dfrac{\sqrt{3}}{2}=3\sqrt{3} \) です。3 と答えた場合は \( 6\sin30^\circ \)（BC の長さ）、\( 2\sqrt{3} \) と答えた場合は \( 6\tan30^\circ \) を計算しています。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="6.4|BC=6.4">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O1</span></div>
+  <p>\( \mathrm{AC}=5 \)、\( A=52^\circ \) のとき、BC の長さを求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 6.4。\( \mathrm{BC}=5\tan52^\circ\fallingdotseq5\times1.2799=6.3995 \)、小数第2位を四捨五入して 6.4 です。3.9 と答えた場合は \( 5\sin52^\circ\fallingdotseq5\times0.7880=3.94 \)、3.1 と答えた場合は \( 5\cos52^\circ\fallingdotseq5\times0.6157=3.0785 \) と、AC を斜辺と取り違えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1</span></div>
+  <p>\( \mathrm{BC}=4 \)、\( A=25^\circ \) のとき、斜辺 AB の長さに最も近いものはどれですか。</p>
+  <div class="choices">
+    <button>1.7</button>
+    <button>4.4</button>
+    <button>8.6</button>
+    <button data-correct="true">9.5</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sin25^\circ=\dfrac{4}{\mathrm{AB}} \) より \( \mathrm{AB}=\dfrac{4}{\sin25^\circ}\fallingdotseq\dfrac{4}{0.4226}=9.465\cdots \)、およそ 9.5 です。1.7 は \( 4\times0.4226 \) と掛けた誤り（斜辺が BC より短くなる）、4.4 は \( \dfrac{4}{\cos25^\circ} \) と cos を使った誤り、8.6 は \( \dfrac{4}{\tan25^\circ} \) で AC を求めた値です。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="21.0|21|21.0cm|21cm">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>傾斜の角が 40° の階段で、踏面を 25 cm にするとき、蹴上げは何 cm にすればよいですか（学習用の設定）。数で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 21.0（cm）。蹴上げ ＝ \( 25\tan40^\circ\fallingdotseq25\times0.8391=20.9775 \)、小数第2位を四捨五入して 21.0 です。16.1 と答えた場合は \( 25\sin40^\circ \) と、踏面を斜辺と取り違えています。29.8 と答えた場合は \( 25\div\tan40^\circ \) と、割る式を使っています（それは蹴上げが 25 cm のときの踏面です）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2</span></div>
+  <p>傾斜の角が 30° のエスカレータで 5 m の高さを上がるとき、斜面に沿った長さはどれですか（学習用の設定）。</p>
+  <div class="choices">
+    <button data-correct="true">10 m</button>
+    <button>2.5 m</button>
+    <button>\( 5\sqrt{3} \) m</button>
+    <button>\( \dfrac{10\sqrt{3}}{3} \) m</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">斜面に沿った長さを \( \ell \) m とすると \( \sin30^\circ=\dfrac{5}{\ell} \)、\( \ell=\dfrac{5}{\sin30^\circ}=5\div\dfrac{1}{2}=10 \) です。2.5 m は \( 5\sin30^\circ \) と掛けた誤り、\( 5\sqrt{3} \) m は \( \dfrac{5}{\tan30^\circ} \) で水平方向の長さを求めた値、\( \dfrac{10\sqrt{3}}{3} \) m は \( \dfrac{5}{\cos30^\circ} \) と、高さを「はさむ辺」と取り違えた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="37.4|37.4m">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>X市の公園で、建物から水平に 30 m 離れた地点に立ち、目の高さ 1.6 m から建物の屋上の端を見上げた角が 50° でした（X市と数値は学習用の架空の設定です）。建物の高さは何 m ですか。数で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 37.4（m）。目の高さより上の部分は \( 30\tan50^\circ\fallingdotseq30\times1.1918=35.754 \)、目の高さを加えて \( 35.754+1.6=37.354 \)、およそ 37.4 m です。35.8 と答えた場合は目の高さを加え忘れています。24.6 と答えた場合は \( 30\sin50^\circ+1.6 \) と、30 m を斜辺と取り違えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2</span></div>
+  <p>花子さんは、蹴上げが 18 cm で、傾斜の角が 30° 以下になる階段を考えています（学習用の設定）。踏面について正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( 6\sqrt{3} \) cm 以上にすればよい。</button>
+    <button>36 cm 以上にすればよい。</button>
+    <button data-correct="true">\( 18\sqrt{3} \) cm（およそ 31.2 cm）以上にすればよい。</button>
+    <button>\( 18\sqrt{3} \) cm 以下にすればよい。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">傾斜の角がちょうど 30° のとき、踏面は \( \dfrac{18}{\tan30^\circ}=18\div\dfrac{\sqrt{3}}{3}=\dfrac{54}{\sqrt{3}}=18\sqrt{3} \)（およそ 31.2 cm）です。蹴上げが同じなら、踏面が長いほど \( \tan A=\dfrac{18}{\text{踏面}} \) は小さくなり、傾斜の角も小さくなります。したがって踏面は \( 18\sqrt{3} \) cm 以上にします。\( 6\sqrt{3} \) は \( 18\times\tan30^\circ \) と掛けた誤り、36 は \( \dfrac{18}{\sin30^\circ} \) で斜辺を求めた誤りです。「以下」は、踏面を短くすると傾斜が急になることを見落とした誤りです。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O3</span></div>
+  <p>校舎から水平に 25 m 離れた地点で、目の高さ 1.5 m から校舎の屋上の端を見上げた角が 38° でした（学習用の値）。校舎の高さを、三角比表を用い、小数第2位を四捨五入して求めなさい。求め方も書きなさい（100字程度）。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　目の高さより上の部分の長さをhmとすると、直角三角形でtan38°＝h/25だからh＝25tan38°≒25×0.7813＝19.5325。目の高さを加えて19.5325＋1.5＝21.0325なので、およそ21.0m。</p>
+    <p><strong>採点の観点</strong>　① 水平な距離 25 m と目の高さより上の部分を2辺とする直角三角形を考え、tan を選んでいる。② 表の値 0.7813 で計算している。③ 目の高さ 1.5 m を加え、最後に四捨五入している。</p>
+  </div>
+  <div class="explain">\( 25\tan38^\circ \) だけで答えると、目の高さの分だけ低い値（およそ 19.5 m）になります。また、途中の 19.5325 を先に 19.5 に丸めてから 1.5 を加えても、この問題では 21.0 になりますが、途中で丸めない習慣をつけましょう。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(2) 図形と計量」の「鋭角の三角比の意味と相互関係について理解すること」（ア(ア)）と、「図形の構成要素間の関係に着目し，日常の事象や社会の事象などを数学的に捉え，問題を解決したり」すること（イ(イ)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。場面から直角三角形を見つけて長さを求めるこの時間の内容は、そうした題材を処理する土台になります。</p>
+  <p class="small">問7〜問9は日常の場面を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">三角比の相互関係（数Ⅰ-061）</p>
+  <p>この時間は、三角比の値と1辺から、他の辺の長さを求めました。では、\( \sin A=\dfrac{3}{5} \) のように三角比の値が1つだけ分かっているとき、\( \cos A \) や \( \tan A \) は求められるでしょうか。次の時間は、\( \sin^2A+\cos^2A=1 \)、\( \tan A=\dfrac{\sin A}{\cos A} \)、\( 1+\tan^2A=\dfrac{1}{\cos^2A} \) を導き、三角比の値の1つから他の値を求めます。</p>
+  <p>この時間では、三角比の相互関係（数Ⅰ-061）、90°−A の三角比（数Ⅰ-062）、2地点からの観測など、より複雑な場面の測量（数Ⅰ-077）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-059　三角比表と情報機器の利用</div>
+  <div><span class="label">次の時間</span>数Ⅰ-061　三角比の相互関係</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-060「三角比を用いた辺の長さの計算」（学習指導要領 数学Ⅰ (2)ア(ア)・イ(イ)、解説 p.38-40）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(2) 図形と計量（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.38（ある傾斜にするための踏面と蹴上げの長さについて考えさせる例、sin A を AB の長さに対する BC の長さの割合と考える見方）、p.40（三角比などを日常の事象や社会の事象などの問題の解決に活用すること）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「直角三角形の辺の長さを三角比で表す式を理解し，測量などの応用問題に利用できる」https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。階段・エスカレータ・木・建物・校舎の寸法と X市は、学習用に作成した架空の値・設定です。三角比表の値は計算で求め、小数第5位を四捨五入したものです。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-060",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-060",
+  "title": "三角比を用いた辺の長さの計算",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-4", "title": "図形と計量"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(ア)", "(2)イ(イ)"],
+  "kaisetsu_page": "38-40",
+  "objectives": [
+    {"id": "O1", "text": "三角比の定義から a=c sin A、b=c cos A、a=b tan A を導き、直角三角形の1辺の長さと1つの鋭角から、他の辺の長さを求めることができる。", "from": "a=c sin A、b=c cos A などの関係を用いて直角三角形の辺の長さを求め", "sections": ["sec-1"], "checks": ["q1", "q2", "q3", "q4"]},
+    {"id": "O2", "text": "ある傾斜にするための踏面と蹴上げの長さを、三角比を用いて求めることができる。", "from": "ある傾斜にするための踏面と蹴上げの長さや", "sections": ["sec-2"], "checks": ["q5", "q6", "q8"]},
+    {"id": "O3", "text": "見上げる角と水平な距離から建物や木の高さを求めるなど、三角比を高さの測量に活用できる。", "from": "高さの測量などに活用できる", "sections": ["sec-3"], "checks": ["q7", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "見上げる角", "where": "sec-3"},
+    {"term": "踏面", "where": "sec-2"},
+    {"term": "蹴上げ", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "三角比（sin・cos・tan）の定義と 30°・45°・60° の値、斜辺が最も長いこと", "taught_in": ["hs_math_1a/数Ⅰ-058"], "where": "review"},
+    {"concept": "三角比表の読み方（小数第4位までの値）", "taught_in": ["hs_math_1a/数Ⅰ-059"], "where": "review"},
+    {"concept": "踏面・蹴上げと、傾斜の角の tan＝蹴上げ÷踏面", "taught_in": ["hs_math_1a/数Ⅰ-057"], "where": "sec-2"},
+    {"concept": "等式をある文字について解く（等式の変形）", "taught_in": ["jhs_math/中2-012"], "where": "review"},
+    {"concept": "縮図をつくって直接測れない高さを求める", "taught_in": ["jhs_math/中3-084"], "where": "intro"},
+    {"concept": "分母の有理化", "taught_in": ["jhs_math/中3-026", "hs_math_1a/数Ⅰ-014"], "where": "sec-1"},
+    {"concept": "√3 の近似値", "taught_in": ["jhs_math/中3-022"], "where": "sec-2"},
+    {"concept": "四捨五入（小学校算数 第4学年。地図は中学校から始まるので出どころの行がない。数Ⅰ-059 の補足と同じ）", "taught_in": [], "gap": true, "where": "supp-1"}
+  ],
+  "out_of_scope": [
+    "三角比の相互関係（数Ⅰ-061）",
+    "90°−A の三角比（数Ⅰ-062）",
+    "建造物や山・天体などを見込む角度や、直接測定できない2地点間の距離を求め、結果を事象に即して解釈する活用（数Ⅰ-077）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『図形と計量』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(2)ア(ア)・イ(イ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.38 ある傾斜にするための踏面と蹴上げの長さを考える例・sin A を割合とみる見方、p.40 三角比を日常の事象の問題解決に活用すること"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "「直角三角形の辺の長さを三角比で表す式を理解し，測量などの応用問題に利用できる」（保存本文：sources/text/suken_syllabus_su1kai.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

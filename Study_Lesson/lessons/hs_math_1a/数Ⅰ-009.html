@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>実数と数の体系｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.widget select { font-size: 1rem; padding: 2px 4px; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+.widget td.yes { font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>数と式</span><span>数Ⅰ-009</span></div>
+  <h1>実数と数の体系</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">\( \sqrt{9} \) と \( \sqrt{2} \)、\( 3.14 \) と \( \pi \)。見た目は似ていても、数の仲間分けでは別のグループに入ります。中学校までに少しずつ広げてきた数を「実数」としてまとめ、それぞれの数がどこに入るのかを整理しましょう。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>有理数は分数 m/n（m は整数、n は 0 でない整数）で表せる数、無理数は分数で表せない数であることを、具体的な数で確かめて説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>自然数・整数・有理数・無理数を実数としてまとめた数の体系を図に表し、与えられた数がどの範囲に入るかを判断できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>引き算・割り算の答えや正方形の1辺の長さを表すために、数の範囲を広げてきた考え方を説明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-008）</span>展開と因数分解の練習</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-009）</span>実数と数の体系</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-010）</span>有限小数と循環小数</div>
+</div>
+<p class="small">前提となる単元：中学1年「正の数・負の数」（自然数、負の数への拡張、数の集合と四則計算）、中学3年「正の数の平方根」（平方根、有理数と無理数）。この単元の「式」の学習（数Ⅰ-001〜008）に続いて、ここから「数」の学習に入ります。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、中学校で学んだ自然数（中1-001）、負の数への拡張と四則計算の可能性（中1-009・中1-019）、平方根と有理数・無理数（中3-019・中3-023）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中1-009・中1-019</span></div>
+  <p>次の計算のうち、答えが自然数にならないものはどれですか。</p>
+  <div class="choices">
+    <button>\( 3+5 \)</button>
+    <button>\( 3\times 5 \)</button>
+    <button data-correct="true">\( 3-5 \)</button>
+    <button>\( 15\div 5 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 3-5=-2 \) は負の数で、自然数（1、2、3、… の正の整数）ではありません。\( 3+5=8 \)、\( 3\times 5=15 \)、\( 15\div 5=3 \) は自然数です。自然数どうしの減法は、答えが自然数になるとは限りません。中学1年で、数を負の数まで広げると減法がいつでもできることを確かめました（中1-009）。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中3-019・中3-022</span></div>
+  <p>面積が 2 の正方形の1辺の長さを表す数はどれですか。</p>
+  <div class="choices">
+    <button>\( 1 \)</button>
+    <button>\( 1.4 \)</button>
+    <button>\( 2 \)</button>
+    <button data-correct="true">\( \sqrt{2} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">1辺の長さを \( x \) とすると \( x^2=2 \)、\( x>0 \) なので \( x=\sqrt{2} \) です（中3-019）。\( 1.4^2=1.96 \) で 2 にならないので、\( 1.4 \) は \( \sqrt{2} \) の近似値です（中3-022）。\( 1^2=1 \)、\( 2^2=4 \) も 2 ではありません。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中3-023</span></div>
+  <p>中学3年で学んだ「分数で表せる数」を何といいますか。</p>
+  <div class="choices">
+    <button data-correct="true">有理数</button>
+    <button>無理数</button>
+    <button>自然数</button>
+    <button>整数</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">分数で表せる数を<strong>有理数</strong>、分数で表せない数を<strong>無理数</strong>といいます（中3-023）。自然数や整数も分数で表せる（\( 3=\dfrac{3}{1} \) など）ので有理数の仲間ですが、「分数で表せる数」全体の名前は有理数です。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：似ている数、似ていない数</h2>
+<div class="box think">
+  <p class="box-title">仲間分けをしてみよう</p>
+  <p>次の数を、分数で表せる数と、表せない数に分けてみましょう。</p>
+  <p>\( \sqrt{9} \)　\( \sqrt{2} \)　\( 3.14 \)　\( \pi \)　\( \dfrac{12}{4} \)　\( -0.25 \)</p>
+  <p>\( \sqrt{9} \) と \( \sqrt{2} \) はどちらも根号を使っています。\( 3.14 \) と \( \pi \) は近い値です。見た目が似ている数どうしは、同じ仲間でしょうか。答えは「有理数と無理数」の節の例題1で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="有理数と無理数"><span class="num">3</span>有理数と無理数：分数で表せるかどうか</h2>
+<p>中学校で学んだ数の名前を、ここで正確に確かめます。</p>
+<ul>
+  <li><strong>自然数</strong>：\( 1,\ 2,\ 3,\ \cdots \) のような正の整数（中1-001）。0 は自然数に含めません。</li>
+  <li><strong>整数</strong>：\( \cdots,\ -2,\ -1,\ 0,\ 1,\ 2,\ \cdots \)。負の整数、0、正の整数（自然数）をまとめたもの。</li>
+  <li><strong>有理数</strong>：整数 \( m \) と 0 でない整数 \( n \) を用いて、分数 \( \dfrac{m}{n} \) の形に表せる数。</li>
+  <li><strong>無理数</strong>：分数 \( \dfrac{m}{n} \)（\( m,\ n \) は整数、\( n\ne 0 \)）の形に表せない数。</li>
+</ul>
+<p>有理数の定義の「\( m,\ n \) は整数」が大切です。\( \dfrac{\sqrt{2}}{2} \) は分数の形に書かれていますが、分子が整数ではありません。有理数かどうかは、<strong>分子も分母も整数である分数に表せるかどうか</strong>で判断します。</p>
+
+<div class="box example worked">
+  <p class="box-title">例題1（導入の答え）</p>
+  <p>\( \sqrt{9} \)、\( \sqrt{2} \)、\( 3.14 \)、\( \pi \)、\( \dfrac{12}{4} \)、\( -0.25 \) を、有理数と無理数に分けなさい。</p>
+  <div class="step">ステップ1（計算できるものは計算する）：\( \sqrt{9}=3=\dfrac{3}{1} \)、\( \dfrac{12}{4}=3=\dfrac{3}{1} \)。どちらも有理数です。根号がついていても、計算すると整数になる数は有理数です。</div>
+  <div class="step">ステップ2（小数は分数に直す）：\( 3.14=\dfrac{314}{100}=\dfrac{157}{50} \)、\( -0.25=-\dfrac{25}{100}=-\dfrac{1}{4}=\dfrac{-1}{4} \)。どちらも有理数です。</div>
+  <div class="step">ステップ3（分数で表せない数）：\( \sqrt{2} \) は分数で表せない数で、無理数です（中学3年で学んだこと。証明は数Ⅰ-029 の背理法で行います）。円周率 \( \pi \) も無理数であることが知られています（教科書でも確かめよう）。\( \pi \) は \( 3.14159\cdots \) と続く数で、\( 3.14 \) は \( \pi \) の近似値です。</div>
+  <div class="step">答え：有理数は \( \sqrt{9} \)、\( 3.14 \)、\( \dfrac{12}{4} \)、\( -0.25 \)。無理数は \( \sqrt{2} \)、\( \pi \)。見た目が似ていても、\( \sqrt{9} \) と \( \sqrt{2} \)、\( 3.14 \) と \( \pi \) は別の仲間です。</div>
+</div>
+<div class="box point"><p class="box-title">有理数かどうかの確かめ方</p><p>① 根号や分数は、計算・約分できるなら先に計算する。② 小数は分母が 10、100、… の分数に直す。③ 整数 \( m \) と 0 でない整数 \( n \) で \( \dfrac{m}{n} \) と書ければ有理数。整数 \( m \) は \( \dfrac{m}{1} \) と書けるので、整数はすべて有理数です。</p></div>
+<p>\( \dfrac{1}{3}=0.333\cdots \) のように、分数を小数に直すと終わらない小数になることもあります。分数がどんな小数になるかは、次の時間（数Ⅰ-010）で詳しく調べます。</p>
+<div class="box caution"><p class="box-title">よくある間違い：「根号があれば無理数」「分数の形なら有理数」</p><p>\( \sqrt{9}=3 \) や \( \sqrt{\dfrac{4}{9}}=\dfrac{2}{3} \) は根号がついていても有理数です。反対に \( \dfrac{\sqrt{2}}{2} \) は分数の形でも有理数ではありません（もし \( \dfrac{\sqrt{2}}{2}=\dfrac{m}{n} \) と表せたら、\( \sqrt{2}=\dfrac{2m}{n} \) となって \( \sqrt{2} \) が分数で表せてしまうからです）。見た目でなく、定義に戻って判断します。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="実数と数の体系"><span class="num">4</span>実数と数の体系</h2>
+<p>有理数と無理数を合わせた数全体を<strong>実数</strong>といいます。中学校までに学んだ数は、すべて実数です。自然数・整数・有理数・無理数の関係を図にまとめると、図1のようになります。このような数どうしの関係の全体を<strong>数の体系</strong>といいます。</p>
+<figure>
+<!--svg:f009a-->
+<svg viewBox="0 0 360 362" width="360" role="img" aria-label="実数の体系の図。実数の枠の中に有理数の枠、その中に整数の枠、その中に自然数の枠。有理数の枠の外側で実数の枠の内側が無理数。例：自然数 1, 2, 3、整数 0, −1, −2、有理数 2/3, −0.25, 3.14, 1.5、無理数 √2, −√5, √2＋1, π">
+<rect x="6" y="26" width="348" height="330" rx="8" fill="#1f5fbf" fill-opacity="0.04" stroke="currentColor" stroke-width="1.3"/>
+<text x="14" y="43" font-size="13" font-weight="700" fill="currentColor">実数</text>
+<rect x="16" y="50" width="328" height="210" rx="8" fill="#1f5fbf" fill-opacity="0.08" stroke="currentColor" stroke-width="1.3"/>
+<text x="24" y="67" font-size="13" font-weight="700" fill="currentColor">有理数（分数で表せる数）</text>
+<rect x="26" y="78" width="200" height="172" rx="8" fill="#1f5fbf" fill-opacity="0.1" stroke="currentColor" stroke-width="1.3"/>
+<text x="34" y="95" font-size="13" font-weight="700" fill="currentColor">整数</text>
+<rect x="36" y="150" width="150" height="90" rx="8" fill="#1f5fbf" fill-opacity="0.14" stroke="currentColor" stroke-width="1.3"/>
+<text x="44" y="167" font-size="13" font-weight="700" fill="currentColor">自然数</text>
+<rect x="10" y="264" width="340" height="88" rx="6" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="18" y="284" font-size="13" font-weight="700" fill="currentColor">無理数（分数で表せない数）</text>
+<text x="111" y="205" text-anchor="middle" font-size="13" fill="currentColor">1, 2, 3, …</text>
+<text x="126" y="128" text-anchor="middle" font-size="13" fill="currentColor">0, −1, −2, …</text>
+<text x="285" y="112" text-anchor="middle" font-size="13" fill="currentColor">2/3</text>
+<text x="285" y="152" text-anchor="middle" font-size="13" fill="currentColor">−0.25</text>
+<text x="285" y="192" text-anchor="middle" font-size="13" fill="currentColor">3.14</text>
+<text x="285" y="232" text-anchor="middle" font-size="13" fill="currentColor">1.5</text>
+<text x="60" y="326" text-anchor="middle" font-size="13" fill="currentColor">√2</text>
+<text x="128" y="326" text-anchor="middle" font-size="13" fill="currentColor">−√5</text>
+<text x="208" y="326" text-anchor="middle" font-size="13" fill="currentColor">√2＋1</text>
+<text x="292" y="326" text-anchor="middle" font-size="13" fill="currentColor">π</text>
+</svg>
+<!--/svg:f009a-->
+  <figcaption>図1　実数の体系。内側の枠の数は、外側の枠の数でもある（自然数は整数でも有理数でも実数でもある）。無理数は、実数のうち有理数でない数</figcaption>
+</figure>
+<div class="table-wrap">
+<table>
+  <tr><th>数の種類</th><th>例</th><th>ほかの種類との関係</th></tr>
+  <tr><td>自然数</td><td>\( 1,\ 2,\ 3,\ \sqrt{9} \)</td><td>整数でも、有理数でも、実数でもある</td></tr>
+  <tr><td>整数</td><td>\( -2,\ 0,\ 5 \)</td><td>有理数でも、実数でもある。自然数は整数の一部</td></tr>
+  <tr><td>有理数</td><td>\( \dfrac{2}{3},\ -0.25,\ 3.14 \)</td><td>実数でもある。整数は有理数の一部</td></tr>
+  <tr><td>無理数</td><td>\( \sqrt{2},\ -\sqrt{5},\ \sqrt{2}+1 \)</td><td>実数である。有理数と重ならない</td></tr>
+</table>
+</div>
+<p>\( \sqrt{2}+1 \) や \( -\sqrt{5} \) のように、無理数に整数を足したり、無理数に \( -1 \) を掛けたりした数も無理数です。たとえば \( \sqrt{2}+1 \) がもし分数 \( \dfrac{m}{n} \) で表せたら、\( \sqrt{2}=\dfrac{m}{n}-1=\dfrac{m-n}{n} \) となり、\( \sqrt{2} \) が分数で表せてしまうからです。</p>
+
+<h3>操作して確かめよう：数の分類ナビ</h3>
+<div class="widget" id="w1">
+  <label for="w1-sel">数を選ぶ：</label>
+  <select id="w1-sel">
+    <option value="0">7</option>
+    <option value="1">−3</option>
+    <option value="2">0</option>
+    <option value="3">2/3</option>
+    <option value="4">−0.25</option>
+    <option value="5">1.5</option>
+    <option value="6">12/4</option>
+    <option value="7">√9</option>
+    <option value="8">√(4/9)</option>
+    <option value="9">(√3)²</option>
+    <option value="10">3.14</option>
+    <option value="11">√2</option>
+    <option value="12">−√5</option>
+    <option value="13">√2＋1</option>
+    <option value="14">π</option>
+  </select>
+  <p class="w-out" id="w1-out" aria-live="polite">数を選ぶと、自然数・整数・有理数・無理数・実数のどれに当たるかと、その理由が表示されます。</p>
+  <div class="table-wrap" id="w1-table"></div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：0 と負の数の扱い</p><p>0 は整数ですが、自然数ではありません。\( -3 \) も整数で、自然数ではありません。また、\( -\dfrac{1}{4} \) のような負の分数も、\( \dfrac{-1}{4} \) と書けるので有理数です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="数を広げてきた考え方"><span class="num">5</span>数を広げてきた考え方</h2>
+<p>中学校までに学んだ数の範囲の広がりは、「それまでの数では答えを表せない計算や量を表すために、新しい数を加えてきた」と整理できます。表は学んだ順序そのものではありません（分数は小学校で、負の数は中学1年で学びました）。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>広げる前</th><th>困った場面</th><th>広げた後</th><th>学んだ時間</th></tr>
+  <tr><td>自然数</td><td>\( 3-5 \) の答えを表せない</td><td>負の数を加えて整数へ（さらに正負の数全体へ）</td><td>中1-001・中1-009</td></tr>
+  <tr><td>整数</td><td>\( 2\div 3 \) の答えを整数で表せない</td><td>分数で表せる数全体（有理数）へ</td><td>中1-019（小学校で分数を学んでいる）</td></tr>
+  <tr><td>有理数</td><td>面積が 2 の正方形の1辺の長さを分数で表せない</td><td>無理数を加えて実数へ</td><td>中3-019・中3-023</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（どこまで広げれば答えを表せるか）</p>
+  <p>次の(1)〜(3)の答えを表すには、少なくともどの範囲の数が必要ですか。(1) \( 4-9 \)　(2) \( 5\div 8 \)　(3) \( x^2=3 \) を満たす正の数 \( x \)</p>
+  <div class="step">(1) \( 4-9=-5 \)。負の整数なので、<strong>整数</strong>の範囲が必要です。</div>
+  <div class="step">(2) \( 5\div 8=\dfrac{5}{8} \)。整数ではない分数なので、<strong>有理数</strong>の範囲が必要です。</div>
+  <div class="step">(3) \( x=\sqrt{3} \)。\( \sqrt{3} \) も \( \sqrt{2} \) と同じように分数で表せない数、つまり無理数です（\( \sqrt{2} \) の場合と同じく、数Ⅰ-029 の背理法で確かめられます）。<strong>実数</strong>の範囲が必要です。</div>
+  <div class="step">答え：(1) 整数　(2) 有理数　(3) 実数</div>
+</div>
+<div class="box point"><p class="box-title">数を広げるときの考え方</p><p>新しい数は、それまでの数を含むように加えます。広げた後も、それまでの計算のきまり（交換法則・分配法則など）がそのまま成り立つことを確かめてきました（中1-007・中1-017）。どの範囲で四則計算がいつでもできるかをまとめて調べることは、数Ⅰ-011 で扱います。数学Ⅱでは、2乗すると負になる数を加えて、さらに数を広げます（数Ⅱ-010）。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：広げた後の数に、前の数が入っていないと考える</p><p>「実数」を「無理数のこと」と思ってしまう誤りがあります。実数は有理数と無理数を<strong>合わせた</strong>ものなので、\( 3 \) も \( \dfrac{2}{3} \) も実数です。図1のように、内側の数は外側の数でもあります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>自然数</dt><dd>\( 1,\ 2,\ 3,\ \cdots \) のような正の整数（中1-001）。</dd>
+    <dt>整数</dt><dd>負の整数、0、正の整数（自然数）をまとめたもの。</dd>
+    <dt>有理数</dt><dd>整数 \( m \) と 0 でない整数 \( n \) を用いて \( \dfrac{m}{n} \) の形に表せる数（中3-023）。整数は有理数でもある。</dd>
+    <dt>無理数</dt><dd>分数 \( \dfrac{m}{n} \)（\( m,\ n \) は整数、\( n\ne 0 \)）の形に表せない数（中3-023）。例：\( \sqrt{2} \)、\( \sqrt{5} \)。</dd>
+    <dt>実数</dt><dd>有理数と無理数を合わせた数全体。</dd>
+    <dt>数の体系</dt><dd>自然数・整数・有理数・無理数・実数のような、数の種類どうしの関係の全体（図1）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>有理数は、整数 \( m \) と 0 でない整数 \( n \) で \( \dfrac{m}{n} \) と表せる数。無理数は、そのように表せない数（O1）。</li>
+    <li>根号や分数の形などの見た目ではなく、計算・約分してから、分子も分母も整数の分数に表せるかで判断する（O1）。</li>
+    <li>自然数 ⊂ 整数 ⊂ 有理数 ⊂ 実数（「⊂」は、左の数の集まりが右の数の集まりに含まれることを表す記号。数Ⅰ-021（集合と要素、包含関係）で詳しく学ぶ）。無理数は実数のうち有理数でない数。有理数と無理数を合わせて実数（O2）。</li>
+    <li>引き算・割り算の答えや正方形の1辺の長さを表すために、前の数を含むように数の範囲を広げてきた（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">数の体系</span><p>実数 ＝ 有理数（整数・自然数を含む）＋ 無理数</p></div>
+  <div><span class="f-name">有理数の形</span><p>\( \dfrac{m}{n} \)（\( m \) は整数、\( n \) は 0 でない整数）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>有理数の説明として正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">整数 \( m \) と 0 でない整数 \( n \) を用いて \( \dfrac{m}{n} \) の形に表せる数</button>
+    <button>分数の形で書かれている数</button>
+    <button>小数で表せる数</button>
+    <button>整数でない数</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">有理数は、分子も分母も整数である分数に表せる数です。「分数の形で書かれている数」では、\( \dfrac{\sqrt{2}}{2} \) のように分子が整数でないものも入ってしまいます。「小数で表せる数」では、\( \sqrt{2}=1.414\cdots \) のように終わらない小数で表される無理数も入ってしまいます。「整数でない数」は誤りで、整数も \( \dfrac{m}{1} \) と表せるので有理数です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>次の数のうち、整数であるが自然数でないものはどれですか。</p>
+  <div class="choices"><button>\( 5 \)</button><button data-correct="true">\( 0 \)</button><button>\( -\dfrac{1}{2} \)</button><button>\( \sqrt{4} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">0 は整数ですが、自然数（正の整数）ではありません。\( 5 \) と \( \sqrt{4}=2 \) は自然数です。\( -\dfrac{1}{2} \) は整数ではなく、整数でない有理数です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O1</span></div>
+  <p>次の数のうち、無理数はどれですか。</p>
+  <div class="choices"><button>\( \sqrt{16} \)</button><button>\( 0.3 \)</button><button data-correct="true">\( \sqrt{5} \)</button><button>\( \dfrac{12}{4} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( \sqrt{5} \) は分数で表せない数で、無理数です（中学3年で学んだこと）。\( \sqrt{16}=4 \) は根号がついていても自然数です。\( 0.3=\dfrac{3}{10} \)、\( \dfrac{12}{4}=3 \) は有理数です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>次のうち、正しい文はどれですか。</p>
+  <div class="choices">
+    <button>すべての有理数は整数である。</button>
+    <button>無理数の中には整数もある。</button>
+    <button>0 は自然数である。</button>
+    <button data-correct="true">すべての整数は有理数である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">整数 \( m \) は \( \dfrac{m}{1} \) と表せるので、すべて有理数です（図1で、整数の枠は有理数の枠の内側）。「すべての有理数は整数」は、\( \dfrac{2}{3} \) が反例です（向きが逆）。無理数は有理数と重ならないので、整数は無理数に入りません。0 は自然数ではありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>次の数の組のうち、すべて有理数であるものはどれですか。</p>
+  <div class="choices">
+    <button>\( \sqrt{2},\ \dfrac{1}{3},\ 0 \)</button>
+    <button data-correct="true">\( -2,\ 0.75,\ \sqrt{\dfrac{1}{4}} \)</button>
+    <button>\( 3.14,\ \pi,\ 2 \)</button>
+    <button>\( -\sqrt{9},\ \sqrt{2}+1,\ \dfrac{5}{7} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( -2=\dfrac{-2}{1} \)、\( 0.75=\dfrac{3}{4} \)、\( \sqrt{\dfrac{1}{4}}=\dfrac{1}{2} \) で、すべて有理数です。\( \sqrt{2},\ \dfrac{1}{3},\ 0 \) の組は \( \sqrt{2} \) が無理数です。\( 3.14,\ \pi,\ 2 \) の組は、\( 3.14 \) は有理数ですが、\( \pi \) は無理数です（\( 3.14 \) と \( \pi \) を同じとみた誤り）。\( -\sqrt{9},\ \sqrt{2}+1,\ \dfrac{5}{7} \) の組は、\( -\sqrt{9}=-3 \) と \( \dfrac{5}{7} \) は有理数ですが、\( \sqrt{2}+1 \) は無理数です。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="5|5個|５|５個">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O1・O2</span></div>
+  <p>次の6つの数のうち、有理数はいくつありますか。数で答えなさい。</p>
+  <p>\( -4 \)　\( \dfrac{5}{2} \)　\( 3\sqrt{2} \)　\( 0 \)　\( 0.6 \)　\( \dfrac{\sqrt{18}}{\sqrt{2}} \)</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 5 個。\( -4=\dfrac{-4}{1} \)、\( \dfrac{5}{2} \)、\( 0=\dfrac{0}{1} \)、\( 0.6=\dfrac{3}{5} \)、\( \dfrac{\sqrt{18}}{\sqrt{2}}=\sqrt{9}=3 \) の5つが有理数です。\( 3\sqrt{2} \) は、もし分数 \( \dfrac{m}{n} \) で表せたら \( \sqrt{2}=\dfrac{m}{3n} \) となってしまうので、無理数です。4 個と答えた場合は、\( \dfrac{\sqrt{18}}{\sqrt{2}} \) を根号があるので無理数とみたか、0 を数え落とした可能性があります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>数の範囲を広げた場面と、広げた後の数の組合せとして正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( 3-5 \) の答えを表す → 有理数　\( 2\div 3 \) の答えを表す → 整数　\( x^2=2 \) の正の解を表す → 実数</button>
+    <button>\( 3-5 \) の答えを表す → 実数　\( 2\div 3 \) の答えを表す → 有理数　\( x^2=2 \) の正の解を表す → 整数</button>
+    <button data-correct="true">\( 3-5 \) の答えを表す → 整数　\( 2\div 3 \) の答えを表す → 有理数　\( x^2=2 \) の正の解を表す → 実数</button>
+    <button>\( 3-5 \) の答えを表す → 整数　\( 2\div 3 \) の答えを表す → 実数　\( x^2=2 \) の正の解を表す → 有理数</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 3-5=-2 \) は負の整数なので整数まで、\( 2\div 3=\dfrac{2}{3} \) は分数なので有理数まで、\( x^2=2 \) の正の解 \( \sqrt{2} \) は無理数なので実数まで広げれば表せます。1つ目は \( -2 \) と \( \dfrac{2}{3} \) の範囲を入れかえています（\( \dfrac{2}{3} \) は整数ではありません）。2つ目は \( \sqrt{2} \) を整数としていて誤りです。4つ目は \( \sqrt{2} \) を有理数としていて誤りです（\( \sqrt{2} \) は分数で表せません）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2</span></div>
+  <p>太郎さんと花子さんが話しています。</p>
+  <p>太郎：「\( \dfrac{\sqrt{4}}{3} \) も \( \dfrac{\sqrt{2}}{2} \) も分数の形をしているから、どちらも有理数だね。」<br>花子：「本当に？ 有理数の定義に戻って考えてみよう。」</p>
+  <p>正しい説明はどれですか。</p>
+  <div class="choices">
+    <button>どちらも根号を含むので、どちらも無理数である。</button>
+    <button>どちらも分数の形をしているので、太郎さんの言うとおりどちらも有理数である。</button>
+    <button>\( \dfrac{\sqrt{4}}{3} \) は無理数で、\( \dfrac{\sqrt{2}}{2} \) は有理数である。</button>
+    <button data-correct="true">\( \dfrac{\sqrt{4}}{3}=\dfrac{2}{3} \) は有理数だが、\( \dfrac{\sqrt{2}}{2} \) は分子が整数でなく、整数どうしの分数にも表せないので無理数である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sqrt{4}=2 \) なので \( \dfrac{\sqrt{4}}{3}=\dfrac{2}{3} \) で有理数です。\( \dfrac{\sqrt{2}}{2} \) は、もし \( \dfrac{m}{n} \)（\( m,\ n \) は整数、\( n\ne 0 \)）と表せたら \( \sqrt{2}=\dfrac{2m}{n} \) となり、\( \sqrt{2} \) が分数で表せてしまうので、無理数です。「どちらも無理数」は根号の有無だけで判断した誤り、「どちらも有理数」は分数の形かどうかだけで判断した誤り、3つ目は2つを取り違えています。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O3</span></div>
+  <p>「自然数 → 整数 → 有理数 → 実数」と数の範囲を広げてきた理由を、それぞれ具体的な計算や量の例を1つずつ挙げて、3つの文で説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　自然数どうしの引き算 \( 2-7 \) の答え \( -5 \) を表すために、負の数を加えて整数まで広げた。整数どうしの割り算 \( 1\div 4 \) の答え \( \dfrac{1}{4} \) を表すために、分数で表せる数（有理数）まで広げた。面積が 3 の正方形の1辺の長さ \( \sqrt{3} \) は分数で表せないので、無理数を加えて実数まで広げた。</p>
+    <p><strong>採点の観点</strong>　① 3つの段階それぞれに、前の数では答えを表せない具体例（引き算・割り算・長さや方程式の解）を挙げている。② 例の答えが、広げた後の数の範囲に入っていることを正しく述べている。③ 広げた後の数が前の数を含むことを踏まえている（「実数＝無理数」としていない）。</p>
+  </div>
+  <div class="explain">例は、\( 3-5 \)、\( 2\div 3 \)、\( \sqrt{2} \) のように本文と同じものでもかまいません。有理数から実数へは、「分数で表せない量（無理数）を表すため」であることが書けていれば正解です。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(1) 数と式」の「数を実数まで拡張する意義を理解し，簡単な無理数の四則計算をすること」（ア(ア)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について、問題の作成に当たって「数学における概念や原理を基に考察したり，数学のよさを認識できたりするような題材等を含め検討する」と述べています。有理数・無理数の定義に戻って数を判断するこの時間の考え方は、概念を基に考察する土台になります。</p>
+  <p class="small">問8は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">有限小数と循環小数（数Ⅰ-010）</p>
+  <p>次の時間は、有理数（分数）を小数で表すとどうなるかを、割り算の余りに着目して調べます。\( \dfrac{1}{4}=0.25 \) のように終わる小数と、\( \dfrac{1}{3}=0.333\cdots \) のように同じ数字の並びがくり返す小数があること、くり返す小数は分数に直せることを学びます。</p>
+  <p>この時間では、分数と小数の関係（数Ⅰ-010）、四則演算がどの範囲でいつでもできるかと、実数と数直線の関係（数Ⅰ-011）、\( \sqrt{2} \) が無理数であることの証明（数Ⅰ-029）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-008　展開と因数分解の練習</div>
+  <div><span class="label">次の時間</span>数Ⅰ-010　有限小数と循環小数</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-009「実数と数の体系」（学習指導要領 数学Ⅰ (1)ア(ア)、解説 p.35-36）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(1) 数と式（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.35-36（「中学校までに学習してきた自然数，整数，有理数及び無理数を実数としてまとめ，数を拡張してきた基本的な考え方」を取り扱うことの確認）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>中学校学習指導要領（平成29年告示）解説 数学編（数の範囲の拡張の考え方、「√2 や √5 は…分数で表せない新しい数であり，無理数と呼ばれる数である」、「√2＋1 や √2＋√3 などは…それぞれ一つの無理数を表している」の確認）（文部科学省）https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「実数」（有理数・無理数・実数の定義、四則計算を可能にするために数が拡張されてきたこと、数の体系の整理の確認）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>東京書籍「評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）」の「実数」（自然数，整数，有理数，無理数，実数の意味の確認）https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf</li>
+    <li>数研出版「編修趣意書 数Ⅰ104-904『改訂版 新編 数学Ⅰ』」（自然数，整数，有理数，無理数，実数の包含関係を図で示すことの確認）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-17.pdf</li>
+    <li>小学校学習指導要領（平成29年告示）第2章第3節 算数 第5学年「整数の除法の結果は，分数を用いると常に一つの数として表すことができることを理解すること」（分数を小学校で学んでいることの確認。中学校学習指導要領（平成29年告示）の冊子に収録）（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_02.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。\( \pi \) が無理数であることは、このページで参照した公的資料では確かめていないため、「知られています」と書いています。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  /*items-begin*/
+  var ITEMS = [
+    { label: "7", sets: "NZQR", why: "7＝7/1 と整数どうしの分数で表せる。正の整数なので自然数でもある。" },
+    { label: "−3", sets: "ZQR", why: "−3＝−3/1。負の整数なので整数だが、自然数ではない。" },
+    { label: "0", sets: "ZQR", why: "0＝0/1。0 は整数だが、自然数ではない。" },
+    { label: "2/3", sets: "QR", why: "整数どうしの分数 2/3 で、約分しても整数にならない。整数でない有理数。" },
+    { label: "−0.25", sets: "QR", why: "−0.25＝−25/100＝−1/4。整数でない有理数。" },
+    { label: "1.5", sets: "QR", why: "1.5＝15/10＝3/2。整数でない有理数。" },
+    { label: "12/4", sets: "NZQR", why: "12/4 を約分すると 3。分数の形でも、値は自然数。" },
+    { label: "√9", sets: "NZQR", why: "√9＝3。根号がついていても、値は自然数。" },
+    { label: "√(4/9)", sets: "QR", why: "√(4/9)＝2/3。根号がついていても、値は整数でない有理数。" },
+    { label: "(√3)²", sets: "NZQR", why: "(√3)²＝3。値は自然数。" },
+    { label: "3.14", sets: "QR", why: "3.14＝314/100＝157/50。整数でない有理数（π の近似値だが、π とは別の数）。" },
+    { label: "√2", sets: "IR", why: "分数で表せない数（中学3年で学んだこと。証明は数Ⅰ-029）。無理数。" },
+    { label: "−√5", sets: "IR", why: "√5 は分数で表せない。−√5 が分数 m/n なら √5＝−m/n となってしまうので、−√5 も無理数。" },
+    { label: "√2＋1", sets: "IR", why: "√2＋1 が分数 m/n なら √2＝(m−n)/n となってしまうので、無理数。" },
+    { label: "π", sets: "IR", why: "円周率。無理数であることが知られている（教科書でも確かめよう）。3.14 はその近似値。" }
+  ];
+  /*items-end*/
+  var NAMES = [["N", "自然数"], ["Z", "整数"], ["Q", "有理数"], ["I", "無理数"], ["R", "実数"]];
+  var sel = document.getElementById("w1-sel");
+  var out = document.getElementById("w1-out");
+  var tbl = document.getElementById("w1-table");
+  if (!sel || !out || !tbl) return;
+  function show() {
+    var it = ITEMS[parseInt(sel.value, 10)];
+    if (!it) return;
+    var yes = NAMES.filter(function (p) { return it.sets.indexOf(p[0]) >= 0; }).map(function (p) { return p[1]; });
+    out.textContent = it.label + " は、" + yes.join("・") + "。" + it.why;
+    var h = "<table><tr>" + NAMES.map(function (p) { return "<th>" + p[1] + "</th>"; }).join("") + "</tr><tr>";
+    h += NAMES.map(function (p) { var y = it.sets.indexOf(p[0]) >= 0; return "<td" + (y ? " class=\"yes\"" : "") + ">" + (y ? "○" : "×") + "</td>"; }).join("");
+    tbl.innerHTML = h + "</tr></table>";
+  }
+  sel.addEventListener("change", show);
+  show();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-009",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-009",
+  "title": "実数と数の体系",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-1", "title": "数と式"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ア)"],
+  "kaisetsu_page": "35-36",
+  "objectives": [
+    {"id": "O1", "text": "有理数は分数 m/n（m は整数、n は 0 でない整数）で表せる数、無理数は分数で表せない数であることを、具体的な数で確かめて説明できる。", "from": "有理数は分数で表せる数、無理数は分数で表せない数であることを確かめる", "sections": ["sec-1"], "checks": ["q1", "q3", "q6", "q8"]},
+    {"id": "O2", "text": "自然数・整数・有理数・無理数を実数としてまとめた数の体系を図に表し、与えられた数がどの範囲に入るかを判断できる。", "from": "中学校までに学んだ自然数・整数・有理数・無理数を実数としてまとめ、…数の体系を理解する", "sections": ["sec-2"], "checks": ["q2", "q4", "q5", "q6", "q8"]},
+    {"id": "O3", "text": "引き算・割り算の答えや正方形の1辺の長さを表すために、数の範囲を広げてきた考え方を説明できる。", "from": "数を拡張してきた考え方", "sections": ["sec-3"], "checks": ["q7", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "自然数", "where": "sec-1"},
+    {"term": "整数", "where": "sec-1"},
+    {"term": "有理数", "where": "sec-1"},
+    {"term": "無理数", "where": "sec-1"},
+    {"term": "実数", "where": "sec-2"},
+    {"term": "数の体系", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "自然数の意味", "taught_in": ["jhs_math/中1-001"], "where": "sec-1"},
+    {"concept": "負の数まで広げると減法がいつでもできること", "taught_in": ["jhs_math/中1-009"], "where": "review"},
+    {"concept": "自然数・整数・数全体の各集合での四則計算の可能性（数の範囲を広げた意味）", "taught_in": ["jhs_math/中1-019"], "where": "sec-3"},
+    {"concept": "平方根の意味（面積が2の正方形の1辺）と根号", "taught_in": ["jhs_math/中3-019", "jhs_math/中3-020"], "where": "review"},
+    {"concept": "平方根の近似値", "taught_in": ["jhs_math/中3-022"], "where": "review"},
+    {"concept": "有理数と無理数の意味と数の分類", "taught_in": ["jhs_math/中3-023"], "where": "review"},
+    {"concept": "根号を含む数の計算（√18/√2=√9 など）", "taught_in": ["jhs_math/中3-025", "jhs_math/中3-028"], "where": "quiz"},
+    {"concept": "円周率 π", "taught_in": ["jhs_math/中1-088"], "where": "sec-1"},
+    {"concept": "交換法則・分配法則が正負の数でも成り立つこと", "taught_in": ["jhs_math/中1-007", "jhs_math/中1-017"], "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "分数が有限小数・循環小数で表される仕組みと、循環小数を分数に直すこと（数Ⅰ-010）",
+    "自然数・整数・有理数・実数の範囲で四則演算が閉じているかを調べること、実数と数直線上の点の1対1の対応（数Ⅰ-011）",
+    "√2 が無理数であることの証明（数Ⅰ-029）",
+    "集合の記号 ⊂ と包含関係（数Ⅰ-021）",
+    "複素数への拡張（数Ⅱ-010）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『数と式』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(1)ア(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.35-36 実数としてまとめること、数を拡張してきた考え方"},
+    {"name": "中学校学習指導要領（平成29年告示）解説 数学編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf", "use": "数の範囲の拡張、√2・√5 が分数で表せない無理数であること、√2＋1 が一つの無理数であること"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "有理数・無理数・実数の定義、数の拡張と体系の整理が教科書で扱われることの確認"},
+    {"name": "評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）", "publisher": "東京書籍（東書Ｅネット）", "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf", "use": "自然数・整数・有理数・無理数・実数の意味の確認"},
+    {"name": "編修趣意書 数Ⅰ104-904『改訂版 新編 数学Ⅰ』", "publisher": "数研出版（文部科学省掲載）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-17.pdf", "use": "数の包含関係を図で示す扱い（図1）"},
+    {"name": "小学校学習指導要領（平成29年告示）第2章第3節 算数（中学校学習指導要領（平成29年告示）の冊子に収録）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_02.pdf", "use": "第5学年：整数の除法の結果を分数で表すこと（分数は小学校で学んでいることの確認）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

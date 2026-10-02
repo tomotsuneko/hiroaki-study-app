@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>正弦定理の利用｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>図形と計量</span><span>数Ⅰ-069</span></div>
+  <h1>正弦定理の利用</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">川の向こう岸の木までの距離は、巻き尺では測れません。けれども、こちら岸の2地点の間の距離と、そこから木を見る角が分かれば、正弦定理で計算できます。正弦定理を使って、三角形の辺・角・外接円の半径を求めましょう。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>1辺と2つの角（1辺とその両端の角など）が分かる三角形で、内角の和から残りの角を求め、正弦定理を用いて残りの辺の長さを求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>正弦定理を用いて外接円の半径 \( R \) や角の大きさを求めることができ、正弦の値から角を求めるときは、考えられる2つの角を内角の和で確かめることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>\( a:b:c=\sin A:\sin B:\sin C \) の関係を導き、角の大きさや正弦の比から辺の比や辺の長さを求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-068）</span>正弦定理</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-069）</span>正弦定理の利用</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-070）</span>余弦定理</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」「三平方の定理」。前の時間（数Ⅰ-068）の正弦定理と、数Ⅰ-058・059・064・066（三角比の値、三角比表、\( 180^\circ-A \) の三角比、三角比の値と角）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、正弦定理（数Ⅰ-068）、正弦の値から \( 0^\circ \) 〜 \( 180^\circ \) の角を求めること（数Ⅰ-066）、分母の有理化（数Ⅰ-014）を使います。3つの角の和が \( 180^\circ \) であること（中2-048）も、毎回使います。</p>
+<div class="formula-card">
+  <div><span class="f-name">正弦定理（数Ⅰ-068、\( R \) は外接円の半径）</span>
+  $$ \frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C}=2R $$</div>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-068</span></div>
+  <p>正弦定理から導かれる式として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( a=R\sin A \)</button>
+    <button data-correct="true">\( a=2R\sin A \)</button>
+    <button>\( a=\dfrac{\sin A}{2R} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \dfrac{a}{\sin A}=2R \) の両辺に \( \sin A \) をかけると \( a=2R\sin A \) です。\( a=R\sin A \) は直径 \( 2R \) を半径と取り違えた誤り、\( a=\dfrac{\sin A}{2R} \) は分母を払う向きを逆にした誤りです（正しくは \( \sin A=\dfrac{a}{2R} \)）。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-066</span></div>
+  <p>\( 0^\circ\leqq\theta\leqq180^\circ \) で \( \sin\theta=\dfrac{\sqrt{2}}{2} \) を満たす \( \theta \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 45^\circ \) だけ</button>
+    <button>\( 45^\circ \) と \( 315^\circ \)</button>
+    <button data-correct="true">\( 45^\circ \) と \( 135^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">半円周上で \( y \) 座標が等しい点は、\( y \) 軸について対称な位置に2つあります。\( \sin(180^\circ-45^\circ)=\sin 45^\circ \) なので、\( 45^\circ \) と \( 135^\circ \) です。「\( 45^\circ \) だけ」は鈍角を見落とした誤り、\( 315^\circ \) は \( 0^\circ \) 〜 \( 180^\circ \) の範囲の外です。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-014</span></div>
+  <p>\( \dfrac{6}{\sqrt{3}} \) の分母を有理化したものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 2\sqrt{3} \)</button>
+    <button>\( 6\sqrt{3} \)</button>
+    <button>\( 2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">分母と分子に \( \sqrt{3} \) をかけて \( \dfrac{6\sqrt{3}}{3}=2\sqrt{3} \) です。\( 6\sqrt{3} \) は分子にだけ \( \sqrt{3} \) をかけて、分母の 3 でわり忘れた誤りです。\( 2 \) は分母にだけ \( \sqrt{3} \) をかけて \( \dfrac{6}{3} \) とした誤りで、値が変わってしまいます。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：川の向こう岸の木までの距離</h2>
+<div class="box think">
+  <p class="box-title">巻き尺を使わずに PT を求めるには</p>
+  <p>川のこちら岸に2地点 P、Q をとり、\( \mathrm{PQ}=40\ \mathrm{m} \) を測りました。向こう岸の木 T を見て、\( \angle \mathrm{TPQ}=75^\circ \)、\( \angle \mathrm{TQP}=60^\circ \) を測りました（学習用に作成した場面と数値です）。</p>
+  <ul>
+    <li>① △TPQ の形は、この3つの値で1つに決まるでしょうか。</li>
+    <li>② P から木 T までの距離 PT は、およそ何 m でしょうか。</li>
+  </ul>
+  <p>① は中学校で学んだ三角形の合同条件、② は正弦定理で考えます。答えは「3 1辺と2角から残りの辺を求める」の例題1で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="1辺と2角から辺を求める"><span class="num">3</span>1辺と2角から残りの辺を求める</h2>
+<p>三角形の合同条件（中2-053）の1つに「1組の辺とその両端の角がそれぞれ等しい」があります。1辺とその両端の角が決まれば、三角形の形と大きさは1つに決まるということです。決まるのなら、残りの辺の長さも計算で求められるはずです。</p>
+<p>直角三角形でない三角形では、三平方の定理や直角三角形の三角比をそのまま使えません。そこで正弦定理を使います。手順は次のとおりです。</p>
+<ol>
+  <li>内角の和 \( 180^\circ \) から、3つ目の角を求める。</li>
+  <li>求めたい辺と<strong>その向かいの角</strong>、長さの分かっている辺と<strong>その向かいの角</strong>の2組を選び、正弦定理の等式 \( \dfrac{b}{\sin B}=\dfrac{a}{\sin A} \) などを書く。</li>
+  <li>分母を払って \( b=\dfrac{a\sin B}{\sin A} \) の形にし、値を代入する。必要なら分母を有理化する。</li>
+</ol>
+<figure>
+<!--svg:f069a-->
+<svg viewBox="0 0 259 231" width="259" role="img" aria-label="川をはさんだ地点 P、Q と木 T。PQ=40 m、∠TPQ=75°、∠TQP=60°、∠PTQ=45°。PT と QT を求める" data-fig="f069a" data-s="3.600000" data-ox="57.500000" data-oy="196.676915">
+<polygon points="14.3,149.9 244.7,149.9 244.7,85.1 14.3,85.1" fill="#1f5fbf" fill-opacity="0.12" stroke="none"/>
+<text x="223.1" y="121.1" text-anchor="middle" font-size="12" fill="#1f5fbf">川</text>
+<line x1="57.5" y1="196.7" x2="201.5" y2="196.7" stroke="currentColor" stroke-width="1.6" data-seg="PQ"/>
+<line x1="57.5" y1="196.7" x2="103.1" y2="26.3" stroke="currentColor" stroke-width="1.6" data-seg="PT"/>
+<line x1="201.5" y1="196.7" x2="103.1" y2="26.3" stroke="currentColor" stroke-width="1.6" data-seg="QT"/>
+<circle cx="57.5" cy="196.7" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P" data-x="0.000000" data-y="0.000000"/>
+<circle cx="201.5" cy="196.7" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="Q" data-x="40.000000" data-y="0.000000"/>
+<circle cx="103.1" cy="26.3" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="T" data-x="12.679492" data-y="47.320508"/>
+<text x="47.8" y="209.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">P</text>
+<text x="212.1" y="208.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">Q</text>
+<text x="100.7" y="14.7" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">T（木）</text>
+<text x="129.5" y="211.3" text-anchor="middle" font-size="13" fill="currentColor">40 m</text>
+<path d="M62.2,179.3 A18,18 0 0 1 75.5,196.7" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<text x="84.5" y="179.3" text-anchor="middle" font-size="11" fill="currentColor">75°</text>
+<path d="M185.5,196.7 A16,16 0 0 1 193.5,182.8" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<text x="173.8" y="184" text-anchor="middle" font-size="11" fill="currentColor">60°</text>
+<path d="M113.1,43.6 A20,20 0 0 1 98,45.6" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<text x="107.6" y="63.3" text-anchor="middle" font-size="11" fill="currentColor">45°</text>
+<text x="80.3" y="78.9" text-anchor="middle" font-size="13" fill="currentColor">?</text>
+<text x="142" y="76" text-anchor="middle" font-size="13" fill="currentColor">?</text>
+</svg>
+<!--/svg:f069a-->
+  <figcaption>図1　川をはさんだ P、Q、T（学習用に作成した模式図。辺の長さと角の大きさは例題1の値で描いている）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の答え）</p>
+  <p>△TPQ で \( \mathrm{PQ}=40 \)（m）、\( \angle \mathrm{P}=75^\circ \)、\( \angle \mathrm{Q}=60^\circ \) のとき、PT と QT を求めなさい。</p>
+  <div class="step">着目：1辺 PQ とその両端の角が分かっているので、三角形は1つに決まります（導入の問い①の答え）。まず残りの角：\( \angle \mathrm{T}=180^\circ-(75^\circ+60^\circ)=45^\circ \)。</div>
+  <div class="step">PT の向かいの角は \( \angle \mathrm{Q}=60^\circ \)、PQ の向かいの角は \( \angle \mathrm{T}=45^\circ \)。正弦定理より \( \dfrac{\mathrm{PT}}{\sin 60^\circ}=\dfrac{40}{\sin 45^\circ} \)。</div>
+  <div class="step">\( \mathrm{PT}=\dfrac{40\sin 60^\circ}{\sin 45^\circ}=40\times\dfrac{\sqrt{3}}{2}\div\dfrac{\sqrt{2}}{2}=\dfrac{40\sqrt{3}}{\sqrt{2}}=20\sqrt{6} \)。\( 20\sqrt{6}\fallingdotseq 48.99 \) なので、およそ \( 49.0\ \mathrm{m} \)（導入の問い②の答え）。</div>
+  <div class="step">QT の向かいの角は \( \angle \mathrm{P}=75^\circ \)。\( \sin 75^\circ \) は三角比表（数Ⅰ-059）で \( 0.9659 \)、\( \sin 45^\circ \) は \( 0.7071 \) です。\( \mathrm{QT}=\dfrac{40\sin 75^\circ}{\sin 45^\circ}\fallingdotseq\dfrac{40\times0.9659}{0.7071}=54.64\cdots \) なので、およそ \( 54.6\ \mathrm{m} \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（鈍角を含む）</p>
+  <p>△ABC で \( a=6 \)、\( A=120^\circ \)、\( B=30^\circ \) のとき、\( C \) と \( b \)、\( c \) を求めなさい。</p>
+  <div class="step">着目：分かっている角 A、B は辺 \( a \) の両端の角ではありませんが、内角の和から \( C=180^\circ-(120^\circ+30^\circ)=30^\circ \) が求まり、辺 \( a \) の両端の角 B、C が分かったことになります。</div>
+  <div class="step">\( \dfrac{b}{\sin 30^\circ}=\dfrac{6}{\sin 120^\circ} \)。\( \sin 120^\circ=\sin 60^\circ=\dfrac{\sqrt{3}}{2} \)（数Ⅰ-064）なので、\( b=6\times\dfrac{1}{2}\div\dfrac{\sqrt{3}}{2}=\dfrac{6}{\sqrt{3}}=2\sqrt{3} \)。</div>
+  <div class="step">\( C=B=30^\circ \) なので、同じ計算で \( c=2\sqrt{3} \)（2つの角が等しいので二等辺三角形、中2-062）。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：向かい合わない辺と角を組にする</p><p>例題1で「PT は P から出ている辺だから \( \angle \mathrm{P} \) と組にする」と考えて \( \dfrac{\mathrm{PT}}{\sin 75^\circ}=\dfrac{40}{\sin 45^\circ} \) とすると、QT の値（およそ 54.6 m）が出てしまいます。正弦定理で組にするのは、辺と<strong>その辺の向かい側にある角</strong>です。図に辺と角を書き込み、向かい合う組を確かめましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="外接円の半径と角を求める"><span class="num">4</span>外接円の半径と角の大きさを求める</h2>
+<h3>外接円の半径 \( R \)</h3>
+<p>1辺とその向かいの角が分かれば、\( 2R=\dfrac{a}{\sin A} \) から \( R=\dfrac{a}{2\sin A} \) が求まります。ほかの辺や角は必要ありません。</p>
+<div class="box example worked">
+  <p class="box-title">例題3</p>
+  <p>△ABC で \( b=4 \)、\( B=135^\circ \) のとき、外接円の半径 \( R \) を求めなさい。</p>
+  <div class="step">着目：辺 \( b \) とその向かいの角 B の組が分かっています。\( \sin 135^\circ=\sin 45^\circ=\dfrac{\sqrt{2}}{2} \)（数Ⅰ-064）。</div>
+  <div class="step">\( 2R=\dfrac{4}{\sin 135^\circ}=4\div\dfrac{\sqrt{2}}{2}=\dfrac{8}{\sqrt{2}}=4\sqrt{2} \) なので、\( R=2\sqrt{2} \)。</div>
+</div>
+<h3>角の大きさ：正弦の値から角を求めると2つの候補が出る</h3>
+<p>正弦定理を \( \sin A=\dfrac{a}{2R} \) や \( \sin B=\dfrac{b\sin A}{a} \) の形に変えると、角の正弦の値が求まります。ところが \( 0^\circ&lt;\theta&lt;180^\circ \) で正弦の値が \( 1 \) より小さい正の数のとき、それを満たす角は鋭角と鈍角の2つあります（数Ⅰ-066）。そこで、2つの候補のそれぞれについて、ほかの角と合わせて内角の和が \( 180^\circ \) より小さくなるか（三角形がつくれるか）を確かめます。</p>
+<div class="box example worked">
+  <p class="box-title">例題4</p>
+  <p>外接円の半径が \( R=3 \) の △ABC で \( a=3\sqrt{3} \) のとき、角 A を求めなさい。さらに \( B=75^\circ \) と分かっているときはどうですか。</p>
+  <div class="step">\( \sin A=\dfrac{a}{2R}=\dfrac{3\sqrt{3}}{6}=\dfrac{\sqrt{3}}{2} \) より、\( A=60^\circ \) または \( A=120^\circ \)。</div>
+  <div class="step">A が弦 BC について外接円の中心と同じ側なら \( 60^\circ \)、反対側なら \( 120^\circ \) で（数Ⅰ-068）、どちらの三角形もつくれます。この条件だけでは A は1つに決まりません。</div>
+  <div class="step">\( B=75^\circ \) なら、\( A=120^\circ \) とすると \( A+B=195^\circ&gt;180^\circ \) で三角形になりません。\( A=60^\circ \) なら \( A+B=135^\circ&lt;180^\circ \) です。よって \( A=60^\circ \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5</p>
+  <p>△ABC で \( a=\sqrt{6} \)、\( b=2 \)、\( A=60^\circ \) のとき、B と C を求めなさい。</p>
+  <div class="step">着目：辺 \( a \) とその向かいの角 A の組が分かっているので、\( \dfrac{b}{\sin B}=\dfrac{a}{\sin A} \) から \( \sin B \) を求めます。</div>
+  <div class="step">\( \sin B=\dfrac{b\sin A}{a}=\dfrac{2\times\frac{\sqrt{3}}{2}}{\sqrt{6}}=\dfrac{\sqrt{3}}{\sqrt{6}}=\dfrac{1}{\sqrt{2}} \) より、\( B=45^\circ \) または \( B=135^\circ \)。</div>
+  <div class="step">\( B=135^\circ \) とすると \( A+B=195^\circ&gt;180^\circ \) で不適。\( B=45^\circ \) なら \( A+B=105^\circ&lt;180^\circ \) で適します。よって \( B=45^\circ \)、\( C=180^\circ-(60^\circ+45^\circ)=75^\circ \)。</div>
+</div>
+<h3>2つの候補がどちらも三角形になる場合</h3>
+<p>候補の角がどちらも内角の和の条件を満たすことがあります。たとえば \( A=30^\circ \)、\( a=\sqrt{2} \)、\( b=2 \) のとき、\( \sin B=\dfrac{2\times\frac{1}{2}}{\sqrt{2}}=\dfrac{1}{\sqrt{2}} \) で \( B=45^\circ \) または \( 135^\circ \) です。\( 30^\circ+135^\circ=165^\circ&lt;180^\circ \) なので、どちらも三角形になり、\( C=105^\circ \) の三角形と \( C=15^\circ \) の三角形の2つがあります（図2）。</p>
+<figure>
+<!--svg:f069b-->
+<svg viewBox="0 0 270 238" width="270" role="img" aria-label="A=30°、CA=2、BC=√2 を満たす三角形 AB₁C（∠AB₁C=135°）と AB₂C（∠AB₂C=45°）。C を中心とする半径 √2 の円が、A から出る半直線と B₁、B₂ で交わる" data-fig="f069b" data-s="70.000000" data-ox="24.250000" data-oy="187.000000">
+<circle cx="145.5" cy="117" r="99" fill="none" stroke="#8a99a8" stroke-width="1.2" stroke-dasharray="2 3" data-circle="Cを中心とする円" data-cx="1.732051" data-cy="1.000000" data-r="1.414214"/>
+<polygon points="24.2,187 75.5,187 145.5,117" fill="#1e8e5a" fill-opacity="0.1" stroke="none"/>
+<line x1="24.2" y1="187" x2="251.8" y2="187" stroke="currentColor" stroke-width="1.6" data-seg="半直線"/>
+<line x1="24.2" y1="187" x2="145.5" y2="117" stroke="currentColor" stroke-width="1.6" data-seg="AC"/>
+<line x1="145.5" y1="117" x2="75.5" y2="187" stroke="#1e8e5a" stroke-width="1.8" data-seg="CB1"/>
+<line x1="145.5" y1="117" x2="215.5" y2="187" stroke="#7b3fa0" stroke-width="1.8" stroke-dasharray="6 3" data-seg="CB2"/>
+<circle cx="24.2" cy="187" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="0.000000" data-y="0.000000"/>
+<circle cx="145.5" cy="117" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="1.732051" data-y="1.000000"/>
+<circle cx="75.5" cy="187" r="3.2" fill="#1e8e5a" stroke="#1e8e5a" stroke-width="1.4" data-pt="B₁" data-x="0.732051" data-y="0.000000"/>
+<circle cx="215.5" cy="187" r="3.2" fill="#7b3fa0" stroke="#7b3fa0" stroke-width="1.4" data-pt="B₂" data-x="2.732051" data-y="0.000000"/>
+<text x="12.2" y="195.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<text x="145.5" y="108.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<text x="62.5" y="206.2" text-anchor="middle" font-size="14" fill="#1e8e5a" font-weight="700">B₁</text>
+<text x="228.5" y="206.2" text-anchor="middle" font-size="14" fill="#7b3fa0" font-weight="700">B₂</text>
+<path d="M39.8,178 A18,18 0 0 1 42.2,187" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<text x="8.2" y="218" text-anchor="start" font-size="11" fill="currentColor">∠A＝30°</text>
+<text x="69.8" y="152.1" text-anchor="middle" font-size="13" fill="currentColor">2</text>
+<text x="130" y="154.4" text-anchor="middle" font-size="13" fill="currentColor">√2</text>
+<text x="186.7" y="142.7" text-anchor="middle" font-size="13" fill="currentColor">√2</text>
+<path d="M64.5,187 A11,11 0 0 1 83.3,179.2" fill="none" stroke="#1e8e5a" stroke-width="1.3"/>
+<path d="M199.5,187 A16,16 0 0 1 204.2,175.7" fill="none" stroke="#7b3fa0" stroke-width="1.3"/>
+</svg>
+<!--/svg:f069b-->
+  <figcaption>図2　\( A=30^\circ \)、\( b=\mathrm{CA}=2 \)、\( a=\mathrm{BC}=\sqrt{2} \) を満たす三角形は2つある。C を中心とする半径 \( \sqrt{2} \) の円（点線）が、A から出る半直線と2点 \( \mathrm{B_1} \)、\( \mathrm{B_2} \) で交わり、\( \angle \mathrm{AB_1C}=135^\circ \)（緑の三角形）、\( \angle \mathrm{AB_2C}=45^\circ \)（紫の破線の辺）となる</figcaption>
+</figure>
+<p>このように「2辺とその間にない角」（ここでは \( a \)、\( b \) と A）が分かっても、三角形が1つに決まらないことがあります。この組合せが三角形の合同条件にないことと対応しています。三角形の決定条件との関係は数Ⅰ-071 で余弦定理を使って考え、数Ⅰ-072 で練習します。</p>
+<div class="box point"><p class="box-title">正弦定理で角を求めるときの手順</p><p>① \( \sin \) の値を求める → ② \( 0^\circ \) 〜 \( 180^\circ \) で候補の角を2つ（\( \sin=1 \) なら \( 90^\circ \) の1つ、\( 1 \) より大きければ候補はなく三角形はない）挙げる → ③ それぞれについて、分かっている角との和が \( 180^\circ \) より小さいかを確かめる → ④ 残った候補が答え（2つ残れば三角形が2つある）。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：鋭角だけを答える</p><p>\( \sin B=\dfrac{1}{\sqrt{2}} \) から、すぐに \( B=45^\circ \) と答えると、例題5では正解になっても、図2の場合には \( B=135^\circ \) の三角形を見落とします。逆に、例題5で \( B=135^\circ \) を残すと、内角の和が \( 180^\circ \) を超える「ありえない三角形」を答えることになります。2つの候補を必ず確かめましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="辺の比と正弦の比"><span class="num">5</span>辺の比と正弦の比：\( a:b:c=\sin A:\sin B:\sin C \)</h2>
+<p>3つの数の比 \( a:b:c=p:q:r \) は、「\( a:b=p:q \)、\( b:c=q:r \)、\( a:c=p:r \) がすべて成り立つ」こと、つまり、ある正の数 \( k \) を使って \( a=kp \)、\( b=kq \)、\( c=kr \) と表せることを意味します。</p>
+<p>正弦定理から \( a=2R\sin A \)、\( b=2R\sin B \)、\( c=2R\sin C \) です。\( k=2R \) とみると
+$$ a:b:c=\sin A:\sin B:\sin C $$
+が成り立ちます。三角形の<strong>辺の比は、向かいの角の正弦の比に等しい</strong>ということです。</p>
+<div class="box example worked">
+  <p class="box-title">例題6（角の比から辺の比）</p>
+  <p>△ABC で \( A:B:C=1:2:3 \) のとき、\( a:b:c \) を求めなさい。</p>
+  <div class="step">着目：角の比から、まず角の大きさを求めます。\( A+B+C=180^\circ \) を \( 1:2:3 \) に分けて、\( A=30^\circ \)、\( B=60^\circ \)、\( C=90^\circ \)。</div>
+  <div class="step">\( a:b:c=\sin 30^\circ:\sin 60^\circ:\sin 90^\circ=\dfrac{1}{2}:\dfrac{\sqrt{3}}{2}:1 \)。各項に 2 をかけて \( 1:\sqrt{3}:2 \)。</div>
+  <div class="step">確かめ：中3-101 で学んだ「\( 30^\circ \)、\( 60^\circ \)、\( 90^\circ \) の直角三角形の3辺の比 \( 1:\sqrt{3}:2 \)」と一致します。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題7（正弦の比から辺の長さ）</p>
+  <p>△ABC で \( \sin A:\sin B:\sin C=4:5:6 \)、\( a=8 \) のとき、\( b \) と \( c \) を求めなさい。</p>
+  <div class="step">\( a:b:c=4:5:6 \) なので、正の数 \( k \) を使って \( a=4k \)、\( b=5k \)、\( c=6k \) と表せます。</div>
+  <div class="step">\( 4k=8 \) より \( k=2 \)。よって \( b=10 \)、\( c=12 \)。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：角の比をそのまま辺の比にする</p><p>例題6で \( A:B:C=1:2:3 \) だから \( a:b:c=1:2:3 \) とするのは誤りです。辺の比に等しいのは、角の比ではなく<strong>角の正弦の比</strong>です。実際、例題6の三角形の辺の比は \( 1:\sqrt{3}:2 \) で、\( 1:2:3 \) ではありません（3辺が \( 1 \)、\( 2 \)、\( 3 \) では、長さ 1 と 2 の辺をつなぐと長さ 3 の辺とちょうど重なってしまい、三角形がつくれません。3つの線分から三角形ができる条件は数学Ａ（数Ａ-044）で学びます）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>正弦定理</dt><dd>\( \dfrac{a}{\sin A}=\dfrac{b}{\sin B}=\dfrac{c}{\sin C}=2R \)（数Ⅰ-068）。この時間は、辺・外接円の半径・角を求めるのに使う。</dd>
+    <dt>外接円の半径</dt><dd>\( R=\dfrac{a}{2\sin A} \)。1辺とその向かいの角だけで決まる。</dd>
+    <dt>\( a:b:c=\sin A:\sin B:\sin C \)</dt><dd>三角形の辺の比は、向かいの角の正弦の比に等しい。3つの数の比 \( a:b:c=p:q:r \) は、正の数 \( k \) で \( a=kp \)、\( b=kq \)、\( c=kr \) と表せること。</dd>
+    <dt>2つの角の候補</dt><dd>\( 0^\circ&lt;\theta&lt;180^\circ \) で \( \sin\theta=k \)（\( 0&lt;k&lt;1 \)）を満たす角は \( \theta \) と \( 180^\circ-\theta \) の2つ。内角の和で確かめる。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>1辺と2角が分かれば三角形は1つに決まる。内角の和で3つ目の角を求め、正弦定理で、求めたい辺とその向かいの角を、分かっている辺とその向かいの角と組にして求める（O1）。</li>
+    <li>外接円の半径は \( R=\dfrac{a}{2\sin A} \)。正弦の値から角を求めると、その値が \( 1 \) より小さい正の数のとき候補が2つ出るので、内角の和で確かめる（\( 1 \) なら \( 90^\circ \) の1つ、\( 1 \) より大きければ三角形はない）。2つとも残れば三角形は2つある（O2）。</li>
+    <li>\( a:b:c=\sin A:\sin B:\sin C \)。角の比ではなく、角の正弦の比が辺の比になる（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">辺を求める</span><p>\( b=\dfrac{a\sin B}{\sin A} \)</p></div>
+  <div><span class="f-name">半径を求める</span><p>\( R=\dfrac{a}{2\sin A} \)</p></div>
+  <div><span class="f-name">角の正弦を求める</span><p>\( \sin B=\dfrac{b\sin A}{a} \)、\( \sin A=\dfrac{a}{2R} \)<br>（値が \( 1 \) より小さい正の数なら候補2つを内角の和で確かめる。\( 1 \) なら \( 90^\circ \)）</p></div>
+  <div><span class="f-name">辺の比</span><p>\( a:b:c=\sin A:\sin B:\sin C \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。根号は √ を使い、6√5 のように入力してください。角は 80° または 80 と入力してください。</p>
+
+<div class="q" data-type="input" id="q1" data-accept="10√2|10√(2)|a=10√2|a=10√(2)">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>△ABC で \( c=10 \)、\( A=45^\circ \)、\( B=105^\circ \) のとき、\( a \) を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( a=10\sqrt{2} \)。まず \( C=180^\circ-(45^\circ+105^\circ)=30^\circ \)。\( \dfrac{a}{\sin 45^\circ}=\dfrac{10}{\sin 30^\circ} \) より、\( a=10\times\dfrac{\sqrt{2}}{2}\div\dfrac{1}{2}=10\sqrt{2} \) です。\( 5\sqrt{2} \) と答えた場合は、\( a=\dfrac{10\sin 30^\circ}{\sin 45^\circ} \) と分母と分子の角を入れかえています。\( \sin 105^\circ \) を使った場合は、辺 \( a \) の向かいの角（A）でなく B と組にしています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>△ABC で \( a=6 \)、\( A=30^\circ \) のとき、外接円の半径 \( R \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 12 \)</button>
+    <button>\( 2\sqrt{3} \)</button>
+    <button data-correct="true">\( 6 \)</button>
+    <button>\( \dfrac{3}{2} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 2R=\dfrac{6}{\sin 30^\circ}=6\div\dfrac{1}{2}=12 \) なので \( R=6 \) です。\( 12 \) は直径 \( 2R \) を答えた誤りです。\( 2\sqrt{3} \) は \( \sin 30^\circ \) の代わりに \( \cos 30^\circ=\dfrac{\sqrt{3}}{2} \) を使い、\( R=\dfrac{6}{2\cos 30^\circ} \) とした誤りです。\( \dfrac{3}{2} \) は \( \sin A \) でわらずにかけて \( 2R=6\times\dfrac{1}{2}=3 \) とした誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>△ABC で \( A=45^\circ \)、\( B=60^\circ \)、\( C=75^\circ \) です。辺 \( a \) と \( b \) の比 \( a:b \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 3:4 \)</button>
+    <button data-correct="true">\( \sqrt{2}:\sqrt{3} \)</button>
+    <button>\( \sqrt{3}:\sqrt{2} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( a:b=\sin 45^\circ:\sin 60^\circ=\dfrac{\sqrt{2}}{2}:\dfrac{\sqrt{3}}{2}=\sqrt{2}:\sqrt{3} \) です。\( 3:4 \) は角の比 \( 45:60 \) をそのまま辺の比にした誤りです。\( \sqrt{3}:\sqrt{2} \) は向かいの角を入れかえた（\( a \) と B、\( b \) と A を組にした）誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>外接円の半径が \( R=2 \) の △ABC で \( a=2\sqrt{2} \) です。角 A として考えられるものをすべて挙げたものはどれですか。</p>
+  <div class="choices">
+    <button>\( 45^\circ \) だけ</button>
+    <button>\( 135^\circ \) だけ</button>
+    <button>このような三角形はない</button>
+    <button data-correct="true">\( 45^\circ \) または \( 135^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sin A=\dfrac{a}{2R}=\dfrac{2\sqrt{2}}{4}=\dfrac{\sqrt{2}}{2} \) より \( A=45^\circ \) または \( 135^\circ \)。ほかの角の条件がないので、A が弦 BC について外接円の中心と同じ側なら \( 45^\circ \)、反対側なら \( 135^\circ \) で、どちらの三角形もつくれます。「だけ」の選択肢は片方を見落としています。「三角形はない」は \( \sin A=\dfrac{a}{R}=\sqrt{2}&gt;1 \) と、直径でなく半径でわった誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="30°|30|B=30°|B=30|30度">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O2</span></div>
+  <p>△ABC で \( a=3 \)、\( b=\sqrt{3} \)、\( A=120^\circ \) のとき、角 B を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( B=30^\circ \)。\( \sin B=\dfrac{b\sin A}{a}=\dfrac{\sqrt{3}\times\frac{\sqrt{3}}{2}}{3}=\dfrac{1}{2} \) より、候補は \( 30^\circ \) と \( 150^\circ \)。\( B=150^\circ \) とすると \( A+B=270^\circ&gt;180^\circ \) で不適なので、\( B=30^\circ \) です。「\( 30^\circ \) または \( 150^\circ \)」と答えた場合は、内角の和による確かめが抜けています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O1</span></div>
+  <p>△ABC で \( b=4 \)、\( B=45^\circ \)、\( C=105^\circ \) のとき、\( a \) はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 2\sqrt{2} \)</button>
+    <button>\( 4\sqrt{2} \)</button>
+    <button>\( 2 \)</button>
+    <button>\( 2\sqrt{6} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( A=180^\circ-(45^\circ+105^\circ)=30^\circ \)。\( a=\dfrac{b\sin A}{\sin B}=4\times\dfrac{1}{2}\div\dfrac{\sqrt{2}}{2}=\dfrac{4}{\sqrt{2}}=2\sqrt{2} \) です。\( 4\sqrt{2} \) は \( \dfrac{b\sin B}{\sin A} \) と角を入れかえた誤り、\( 2 \) は \( \sin B \) でわり忘れて \( b\sin A \) とした誤り、\( 2\sqrt{6} \) は \( \sin 30^\circ \) を \( \cos 30^\circ=\dfrac{\sqrt{3}}{2} \) と取り違えた誤りです。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="14|c=14">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>△ABC で \( \sin A:\sin B:\sin C=3:5:7 \)、\( a=6 \) のとき、\( c \) を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( c=14 \)。\( a:b:c=\sin A:\sin B:\sin C=3:5:7 \) なので、\( a=3k \)、\( c=7k \) と表せます。\( 3k=6 \) より \( k=2 \)、\( c=14 \) です。\( 7 \) と答えた場合は、比の数をそのまま長さとしています（\( k=1 \) とした誤り）。\( 10 \) は \( b \) の値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2</span></div>
+  <p>太郎さんと花子さんが、△ABC で \( A=30^\circ \)、\( a=2 \)、\( b=2\sqrt{3} \) のときの角 B を求めています。</p>
+  <p>太郎：「\( \sin B=\dfrac{b\sin A}{a}=\dfrac{\sqrt{3}}{2} \) だから、\( B=60^\circ \) だね。」<br>花子：「正弦の値が \( \dfrac{\sqrt{3}}{2} \) になる角は、ほかにもあったよね。」</p>
+  <p>正しい説明はどれですか。</p>
+  <div class="choices">
+    <button>三角形の角は鋭角に決まっているので、\( B=60^\circ \) だけでよい。</button>
+    <button>\( B=120^\circ \) とすると \( A+B=150^\circ \) となり、内角の和が \( 180^\circ \) を超えるので除く。よって \( B=60^\circ \) だけ。</button>
+    <button data-correct="true">\( B=60^\circ \) または \( 120^\circ \) で、どちらも \( A+B&lt;180^\circ \) を満たすので、三角形は2つある（\( C=90^\circ \) または \( 30^\circ \)）。</button>
+    <button>正弦の値が \( \dfrac{\sqrt{3}}{2} \) になる角は \( 30^\circ \) と \( 150^\circ \) なので、\( B=30^\circ \) または \( 150^\circ \)。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sin B=\dfrac{2\sqrt{3}\times\frac{1}{2}}{2}=\dfrac{\sqrt{3}}{2} \) より候補は \( 60^\circ \) と \( 120^\circ \)。\( 30^\circ+60^\circ=90^\circ \)、\( 30^\circ+120^\circ=150^\circ \) はどちらも \( 180^\circ \) より小さいので、\( C=90^\circ \) の三角形と \( C=30^\circ \) の三角形の2つがあります。三角形にも鈍角はあるので「鋭角に決まっている」は誤りです。「\( 150^\circ \) で 180° を超える」は計算の誤りです（\( 150^\circ&lt;180^\circ \)）。\( 30^\circ \) と \( 150^\circ \) は \( \sin\theta=\dfrac{1}{2} \) の角で、\( \cos 30^\circ=\dfrac{\sqrt{3}}{2} \) と取り違えています。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O2</span></div>
+  <p>△ABC で \( \mathrm{BC}=8 \)、\( B=45^\circ \)、\( C=105^\circ \) です。外接円の半径 \( R \) と辺 CA の長さを求め、求め方を説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　\( A=180^\circ-(45^\circ+105^\circ)=30^\circ \)。BC（\( =a \)）の向かいの角は A なので、正弦定理より \( 2R=\dfrac{a}{\sin A}=\dfrac{8}{\sin 30^\circ}=16 \)、よって \( R=8 \)。CA（\( =b \)）の向かいの角は B なので、\( b=2R\sin B=16\times\dfrac{\sqrt{2}}{2}=8\sqrt{2} \)。答え：\( R=8 \)、\( \mathrm{CA}=8\sqrt{2} \)。</p>
+    <p><strong>採点の観点</strong>　① 内角の和から \( A=30^\circ \) を求めている。② 辺とその向かいの角を正しく組にしている（BC と A、CA と B）。③ \( 2R=16 \) から \( R=8 \)（直径と半径を区別している）。④ \( b=8\sqrt{2} \) まで正しく計算している。</p>
+  </div>
+  <div class="explain">1辺とその両端の角が分かっているので三角形は1つに決まり、外接円の半径も1つに決まります。辺 BC の両端の角 B、C を、BC と組にしないことがポイントです。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(2) 図形と計量」の「正弦定理や余弦定理について三角形の決定条件や三平方の定理と関連付けて理解し，三角形の辺の長さや角の大きさなどを求めること」（ア(ウ)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。図に辺と角を書き込んで向かい合う組を見つけ、角の候補を確かめるこの時間の処理は、その土台になります。</p>
+  <p class="small">問8は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">余弦定理（数Ⅰ-070）</p>
+  <p>正弦定理は「辺とその向かいの角」の組が1つ分かっているときに使えます。では、2辺とその間の角が分かっている三角形（これも合同条件の1つ）では、残りの辺をどう求めるのでしょうか。次の時間は、垂線をひいて直角三角形をつくり、三平方の定理を使って残りの辺を求める活動から、余弦定理 \( a^2=b^2+c^2-2bc\cos A \) を導きます。</p>
+  <p>この時間では、余弦定理（数Ⅰ-070・071）は扱っていません。2辺とその間にない角が分かる場合に三角形が1つに決まらないことは、数Ⅰ-071 で三角形の決定条件と関連付けて考え、数Ⅰ-072 で練習します。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-068　正弦定理</div>
+  <div><span class="label">次の時間</span>数Ⅰ-070　余弦定理</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-069「正弦定理の利用」（学習指導要領 数学Ⅰ (2)ア(ウ)、解説 p.39-40）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(2) 図形と計量（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.39-40（導いた正弦定理や余弦定理を用いて具体的な三角形の辺の長さや角の大きさを求めることができるようにする、正弦定理や余弦定理の有用性を認識できるようにする）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>中学校学習指導要領（平成29年告示）解説 数学編 第2学年「三角形の合同条件」（三角形の合同条件を三角形の決定条件を基に認めること）（文部科学省）https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「正弦定理」（「正弦定理を用いて,三角形の辺の長さや外接円の半径が求められる」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>東京書籍「評価規準例 改訂版 数学Ⅰ Advanced（数Ⅰ002-901）」の「正弦定理」（「三角形の決定条件と関連付けて正弦定理を利用することができる」）https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16703_su1_hyoka.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・図はこのページのために作成したものです（出典を示したものを除く）。川をはさんだ地点の場面と数値は、学習用に作成した架空のものです。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-069",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-069",
+  "title": "正弦定理の利用",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-4", "title": "図形と計量"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(ウ)"],
+  "kaisetsu_page": "39-40",
+  "objectives": [
+    {"id": "O1", "text": "1辺と2つの角（1辺とその両端の角など）が分かる三角形で、内角の和から残りの角を求め、正弦定理を用いて残りの辺の長さを求めることができる。", "from": "正弦定理を用いて、1辺とその両端の角などから三角形の辺の長さ…を求めることができる", "sections": ["sec-1"], "checks": ["q1", "q6", "q9"]},
+    {"id": "O2", "text": "正弦定理を用いて外接円の半径 \\( R \\) や角の大きさを求めることができ、正弦の値から角を求めるときは、考えられる2つの角を内角の和で確かめることができる。", "from": "…角の大きさ、外接円の半径 R を求めることができる", "sections": ["sec-2"], "checks": ["q2", "q4", "q5", "q8", "q9"]},
+    {"id": "O3", "text": "\\( a:b:c=\\sin A:\\sin B:\\sin C \\) の関係を導き、角の大きさや正弦の比から辺の比や辺の長さを求めることができる。", "from": "a:b:c=sin A:sin B:sin C の関係も用いる", "sections": ["sec-3"], "checks": ["q3", "q7"]}
+  ],
+  "key_terms": [
+    {"term": "正弦定理", "where": "sec-1"},
+    {"term": "外接円の半径", "where": "sec-2"},
+    {"term": "a:b:c=sin A:sin B:sin C", "where": "sec-3"}
+  ],
+  "prerequisites": [
+    {"concept": "正弦定理 a/sin A=b/sin B=c/sin C=2R", "taught_in": ["hs_math_1a/数Ⅰ-068"], "where": "review"},
+    {"concept": "30°・45°・60° の三角比の値", "taught_in": ["hs_math_1a/数Ⅰ-058"], "where": "sec-1"},
+    {"concept": "三角比表で sin 75° などの値を読む", "taught_in": ["hs_math_1a/数Ⅰ-059"], "where": "sec-1"},
+    {"concept": "sin(180°−A)=sin A（sin 120°・sin 135° の値）", "taught_in": ["hs_math_1a/数Ⅰ-064"], "where": "sec-1"},
+    {"concept": "0°〜180° で sin θ の値から角を求めると2通りになること", "taught_in": ["hs_math_1a/数Ⅰ-066"], "where": "review"},
+    {"concept": "外接円の弦に対して、A が中心と同じ側か反対側かで角が A と 180°−A になること", "taught_in": ["hs_math_1a/数Ⅰ-068"], "where": "sec-2"},
+    {"concept": "分母の有理化", "taught_in": ["hs_math_1a/数Ⅰ-014", "jhs_math/中3-026"], "where": "review"},
+    {"concept": "三角形の内角の和は 180°", "taught_in": ["jhs_math/中2-048"], "where": "review"},
+    {"concept": "三角形の合同条件（1組の辺とその両端の角）", "taught_in": ["jhs_math/中2-053"], "where": "sec-1"},
+    {"concept": "2つの角が等しい三角形は二等辺三角形", "taught_in": ["jhs_math/中2-062"], "where": "sec-1"},
+    {"concept": "30°・60°・90° の直角三角形の3辺の比", "taught_in": ["jhs_math/中3-101"], "where": "sec-3"},
+    {"concept": "比と比例式", "taught_in": ["jhs_math/中1-054"], "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "余弦定理（数Ⅰ-070・数Ⅰ-071）",
+    "2辺とその間にない角が分かる場合と三角形の決定条件の関係（数Ⅰ-071）とその練習（数Ⅰ-072）",
+    "正弦の比から最大の角を求めるなど、正弦定理と余弦定理を組み合わせる問題（数Ⅰ-072）",
+    "日常の事象の計量としての測量（数Ⅰ-077）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『図形と計量』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(2)ア(ウ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.39-40 正弦定理を用いて具体的な三角形の辺の長さや角の大きさを求めること"},
+    {"name": "中学校学習指導要領（平成29年告示）解説 数学編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387018_004.pdf", "use": "第2学年 三角形の合同条件を三角形の決定条件を基に認めること（保存本文：sources/text/jhs_kaisetsu_math.txt）"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "「正弦定理を用いて,三角形の辺の長さや外接円の半径が求められる」"},
+    {"name": "評価規準例 改訂版 数学Ⅰ Advanced（数Ⅰ002-901）", "publisher": "東京書籍（東書Ｅネット）", "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16703_su1_hyoka.pdf", "use": "「三角形の決定条件と関連付けて正弦定理を利用することができる」"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>有限小数と循環小数｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.widget .w-in { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 6px 0; }
+.widget .w-in input { width: 5em; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+.widget tr.rep td { font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>数と式</span><span>数Ⅰ-010</span></div>
+  <h1>有限小数と循環小数</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">\( \dfrac{1}{7} \) を小数に直すと \( 0.142857142857\cdots \) と、同じ数字の並びがくり返されます。\( \dfrac{1}{4}=0.25 \) のように終わる分数もあります。分数を小数に直したとき、なぜ「終わる」か「くり返す」かのどちらかになるのでしょうか。割り算の余りに注目すると、その仕組みが見えてきます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>有限小数・無限小数・循環小数の意味を理解し、分数を割り算で小数に直して、循環小数を記号を使って表すことができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>分数を小数に直すとき、割り算の余りに着目して、有限小数か循環小数のどちらかになる仕組みを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>循環小数を、10倍・100倍などした数との差を考えて、分数で表すことができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-009）</span>実数と数の体系</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-010）</span>有限小数と循環小数</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-011）</span>実数と数直線</div>
+</div>
+<p class="small">前提となる単元：中学3年「正の数の平方根」（有理数と無理数）。前の時間（数Ⅰ-009）の有理数・無理数の定義を使います。小学校で学ぶ分数と割り算の関係、割り算の筆算と余りも使います（下の補足）。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、有理数の定義（数Ⅰ-009・中3-023）と、分数と割り算の関係・割り算の余り（小学校の内容。下の補足）を使います。3問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-009</span></div>
+  <p>次の数のうち、有理数でないものはどれですか。</p>
+  <div class="choices">
+    <button>\( 0.5 \)</button>
+    <button>\( -2 \)</button>
+    <button data-correct="true">\( \sqrt{2} \)</button>
+    <button>\( \dfrac{1}{3} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \sqrt{2} \) は分数で表せない無理数です。\( 0.5=\dfrac{1}{2} \)、\( -2=\dfrac{-2}{1} \)、\( \dfrac{1}{3} \) は、整数 \( m \) と 0 でない整数 \( n \) で \( \dfrac{m}{n} \) と表せるので有理数です（数Ⅰ-009）。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">補足「分数と割り算・筆算の余り」</span></div>
+  <p>\( \dfrac{3}{8} \) を小数で表したものはどれですか。</p>
+  <div class="choices">
+    <button>\( 0.38 \)</button>
+    <button data-correct="true">\( 0.375 \)</button>
+    <button>\( 2.666\cdots \)</button>
+    <button>\( 0.3 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \dfrac{3}{8}=3\div 8=0.375 \) です（分子 ÷ 分母）。\( 0.38 \) は分子と分母の数字を並べただけ、\( 2.666\cdots \) は \( 8\div 3 \) と割る順を逆にしたもの、\( 0.3 \) は小数第1位で割り算を止めたものです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">補足「分数と割り算・筆算の余り」</span></div>
+  <p>\( 20 \) を \( 7 \) で割った商と余りの組はどれですか。</p>
+  <div class="choices">
+    <button>商 3、余り \( -1 \)</button>
+    <button>商 1、余り 13</button>
+    <button data-correct="true">商 2、余り 6</button>
+    <button>商 2、余り 7</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 20=7\times 2+6 \) なので、商 2、余り 6 です。余りは 0 以上で、割る数 7 より小さい数です。余り \( -1 \) や 13、7 は、この条件を満たしません（余り 7 なら、あと1回 7 を引けます）。</div>
+</div>
+<div class="box supplement" id="supp-1">
+  <p class="box-title">分数と割り算・筆算の余り（小学校の内容）</p>
+  <p>分数 \( \dfrac{m}{n} \) は \( m\div n \) の答えです。割り算の筆算では、<strong>余りは 0 以上で、割る数より小さい</strong>数になります。たとえば \( 7 \) で割るときの余りは \( 0,\ 1,\ 2,\ \cdots,\ 6 \) のどれかです。</p>
+  <p>割り切れないときは、余りを10倍して（筆算では余りの右に 0 をつけて）割り続けると、商が小数第1位、第2位、…と求まります。この時間は、このときの「余り」に注目します。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：電卓の表示の先はどうなる？</h2>
+<div class="box think">
+  <p class="box-title">\( \dfrac{1}{7} \) はどこまで続く？</p>
+  <p>電卓で \( 1\div 7 \) を計算すると \( 0.1428571 \) のように表示され、画面に入りきらない部分は見えません。一方、\( 1\div 4 \) は \( 0.25 \) で終わります。</p>
+  <p>① \( \dfrac{1}{7} \) の小数は、この先も同じ数字の並びがくり返されるのでしょうか。② 分数を小数に直したとき、終わりもせず、くり返しもしない小数になることはあるのでしょうか。</p>
+  <p>①は「余りに注目すると仕組みが分かる」の図1と例題2で、②は同じ節の「余りから分かること」で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="有限小数と循環小数"><span class="num">3</span>有限小数・無限小数・循環小数</h2>
+<p>分数を小数に直すと、次の2つの場合があります。</p>
+<ul>
+  <li>\( \dfrac{1}{4}=0.25 \)、\( \dfrac{3}{8}=0.375 \) のように、小数第何位かで終わる小数を<strong>有限小数</strong>といいます。</li>
+  <li>\( \dfrac{1}{3}=0.333\cdots \) のように、小数部分が限りなく続く小数を<strong>無限小数</strong>といいます。</li>
+</ul>
+<p>無限小数のうち、\( \dfrac{1}{3}=0.333\cdots \)、\( \dfrac{5}{11}=0.454545\cdots \)、\( \dfrac{1}{6}=0.1666\cdots \) のように、ある位から先で同じ数字の並びが限りなくくり返される小数を<strong>循環小数</strong>といいます。</p>
+<p>有限小数・無限小数・循環小数の意味は、中学校3年の有理数と無理数の学習（中3-023）で扱われることがあります。この時間は、分数を小数に直すとどちらになるのかを、割り算の余りから確かめます。</p>
+<h3>循環小数の書き表し方</h3>
+<p>循環小数は、くり返される部分の最初と最後の数字の上に点「・」をつけて表すことがあります。くり返される部分が1けたなら、その数字の上に点を1つつけます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>分数</th><th>小数</th><th>点をつけた表し方</th><th>くり返される部分</th></tr>
+  <tr><td>\( \dfrac{1}{3} \)</td><td>\( 0.333\cdots \)</td><td>\( 0.\dot{3} \)</td><td>3（1けた）</td></tr>
+  <tr><td>\( \dfrac{5}{11} \)</td><td>\( 0.4545\cdots \)</td><td>\( 0.\dot{4}\dot{5} \)</td><td>45（2けた）</td></tr>
+  <tr><td>\( \dfrac{1}{6} \)</td><td>\( 0.1666\cdots \)</td><td>\( 0.1\dot{6} \)</td><td>6（1けた、小数第2位から）</td></tr>
+  <tr><td>\( \dfrac{1}{7} \)</td><td>\( 0.142857142857\cdots \)</td><td>\( 0.\dot{1}4285\dot{7} \)</td><td>142857（6けた）</td></tr>
+  <tr><td>\( \dfrac{22}{7} \)</td><td>\( 3.142857142857\cdots \)</td><td>\( 3.\dot{1}4285\dot{7} \)</td><td>142857（6けた）</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題1（分数を小数に直す）</p>
+  <p>\( \dfrac{7}{12} \) を小数で表し、循環小数なら点をつけて表しなさい。</p>
+  <div class="step">ステップ1：\( 7\div 12 \) を筆算で計算します。\( 70\div 12=5 \) 余り 10、\( 100\div 12=8 \) 余り 4、\( 40\div 12=3 \) 余り 4、\( 40\div 12=3 \) 余り 4、…</div>
+  <div class="step">ステップ2：余り 4 が続くので、小数第3位から先は 3 がくり返されます。\( \dfrac{7}{12}=0.58333\cdots \)</div>
+  <div class="step">答え：\( \dfrac{7}{12}=0.58\dot{3} \)（くり返されるのは小数第3位の 3 から）</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：点の位置</p><p>\( 0.1666\cdots \) を \( 0.\dot{1}\dot{6} \) と書くと、「16 がくり返される」\( 0.161616\cdots \) という別の数になります。くり返されるのは 6 だけなので \( 0.1\dot{6} \) です。また、\( \sqrt{2}=1.41421356\cdots \) のように長く続く小数でも、同じ並びのくり返しがなければ循環小数ではありません。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="余りに注目した仕組み"><span class="num">4</span>余りに注目すると仕組みが分かる</h2>
+<p>分数を小数に直す割り算では、各段階で「余りを10倍して割る」ことをくり返します。次の余りも、次の商の数字も、<strong>今の余りだけで決まります</strong>。</p>
+<div class="box example worked">
+  <p class="box-title">例題2（導入①の答え：\( \dfrac{1}{7} \)）</p>
+  <p>\( 1\div 7 \) の筆算を、余りに注目して進めなさい。</p>
+  <div class="step">ステップ1：
+    <div class="table-wrap"><table>
+      <tr><th>段階</th><th>今の余り</th><th>10倍</th><th>商の数字</th><th>次の余り</th></tr>
+      <tr><td>小数第1位</td><td>1</td><td>10</td><td>1</td><td>3</td></tr>
+      <tr><td>小数第2位</td><td>3</td><td>30</td><td>4</td><td>2</td></tr>
+      <tr><td>小数第3位</td><td>2</td><td>20</td><td>2</td><td>6</td></tr>
+      <tr><td>小数第4位</td><td>6</td><td>60</td><td>8</td><td>4</td></tr>
+      <tr><td>小数第5位</td><td>4</td><td>40</td><td>5</td><td>5</td></tr>
+      <tr><td>小数第6位</td><td>5</td><td>50</td><td>7</td><td>1</td></tr>
+    </table></div></div>
+  <div class="step">ステップ2：小数第6位を求めたあとの余りが 1 になり、最初の余り 1 と同じになりました。この先は、表の1行目からまったく同じ計算がくり返されます（図1）。</div>
+  <div class="step">答え：\( \dfrac{1}{7}=0.142857142857\cdots=0.\dot{1}4285\dot{7} \)。導入①の答えは「くり返される」です。</div>
+</div>
+<figure>
+<!--svg:f010a-->
+<svg viewBox="0 0 360 290" width="360" role="img" aria-label="1を7で割るときの余りのめぐり方。余りは 1、3、2、6、4、5 と進み、再び 1 に戻る。そのとき求まる商の数字は 1、4、2、8、5、7">
+<defs><marker id="f010-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="currentColor"/></marker></defs>
+<line x1="198.2" y1="64.5" x2="243.2" y2="90.5" stroke="currentColor" stroke-width="1.5" marker-end="url(#f010-arr)"/>
+<text x="231.6" y="65.7" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b">1</text>
+<line x1="263.1" y1="123.0" x2="263.1" y2="175.0" stroke="currentColor" stroke-width="1.5" marker-end="url(#f010-arr)"/>
+<text x="283.1" y="155.0" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b">4</text>
+<line x1="245.0" y1="208.5" x2="199.9" y2="234.5" stroke="currentColor" stroke-width="1.5" marker-end="url(#f010-arr)"/>
+<text x="231.6" y="244.3" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b">2</text>
+<line x1="161.8" y1="235.5" x2="116.8" y2="209.5" stroke="currentColor" stroke-width="1.5" marker-end="url(#f010-arr)"/>
+<text x="128.4" y="244.3" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b">8</text>
+<line x1="96.9" y1="177.0" x2="96.9" y2="125.0" stroke="currentColor" stroke-width="1.5" marker-end="url(#f010-arr)"/>
+<text x="76.9" y="155.0" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b">5</text>
+<line x1="115.0" y1="91.5" x2="160.1" y2="65.5" stroke="currentColor" stroke-width="1.5" marker-end="url(#f010-arr)"/>
+<text x="128.4" y="65.7" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b">7</text>
+<circle cx="180.0" cy="54.0" r="19" fill="#1f5fbf" fill-opacity="0.12" stroke="currentColor" stroke-width="1.4"/>
+<text x="180.0" y="59.0" text-anchor="middle" font-size="15" fill="currentColor">1</text>
+<circle cx="263.1" cy="102.0" r="19" fill="#1f5fbf" fill-opacity="0.12" stroke="currentColor" stroke-width="1.4"/>
+<text x="263.1" y="107.0" text-anchor="middle" font-size="15" fill="currentColor">3</text>
+<circle cx="263.1" cy="198.0" r="19" fill="#1f5fbf" fill-opacity="0.12" stroke="currentColor" stroke-width="1.4"/>
+<text x="263.1" y="203.0" text-anchor="middle" font-size="15" fill="currentColor">2</text>
+<circle cx="180.0" cy="246.0" r="19" fill="#1f5fbf" fill-opacity="0.12" stroke="currentColor" stroke-width="1.4"/>
+<text x="180.0" y="251.0" text-anchor="middle" font-size="15" fill="currentColor">6</text>
+<circle cx="96.9" cy="198.0" r="19" fill="#1f5fbf" fill-opacity="0.12" stroke="currentColor" stroke-width="1.4"/>
+<text x="96.9" y="203.0" text-anchor="middle" font-size="15" fill="currentColor">4</text>
+<circle cx="96.9" cy="102.0" r="19" fill="#1f5fbf" fill-opacity="0.12" stroke="currentColor" stroke-width="1.4"/>
+<text x="96.9" y="107.0" text-anchor="middle" font-size="15" fill="currentColor">5</text>
+<text x="180" y="146" text-anchor="middle" font-size="13" fill="currentColor">1÷7 の余り</text>
+<text x="180" y="164" text-anchor="middle" font-size="12" fill="#c0392b">赤＝商の数字</text>
+<text x="208.0" y="46.0" font-size="12" fill="currentColor">スタート（最初の余り）</text>
+</svg>
+<!--/svg:f010a-->
+  <figcaption>図1　\( 1\div 7 \) の余りのめぐり方。丸の中が余り、矢印の横の数字がそのとき求まる商の数字。余りが1周すると、商の数字 1、4、2、8、5、7 がくり返される</figcaption>
+</figure>
+<p>一方、\( 3\div 8 \) では、余りが \( 3\to 6\to 4\to 0 \) となり、余りが 0 になったところで割り切れます（\( 30\div 8=3 \) 余り 6、\( 60\div 8=7 \) 余り 4、\( 40\div 8=5 \) 余り 0）。だから \( \dfrac{3}{8}=0.375 \) は有限小数です。</p>
+
+<h3>余りから分かること（導入②の答え）</h3>
+<div class="box point"><p class="box-title">分数は、有限小数か循環小数のどちらかになる</p><p>正の整数 \( n \) で割るときの余りは \( 0,\ 1,\ \cdots,\ n-1 \) のどれかです。</p><ul><li>途中で余りが 0 になれば、割り切れて<strong>有限小数</strong>になります。</li><li>余りが 0 にならなければ、余りは \( 1 \) から \( n-1 \) までの \( n-1 \) 通りのどれかです。割り算を \( n \) 回続けるまでに、必ず同じ余りが2回現れます。同じ余りが現れると、そこから先は同じ計算がくり返されるので、<strong>循環小数</strong>になります。</li></ul><p>したがって、分数を小数に直すと、終わりもせず、くり返しもしない小数になることはありません。また、くり返される部分の数字の個数は \( n-1 \) 個以下です。</p></div>
+<p>「\( n-1 \) 通りしかないものを \( n \) 回選ぶと、どれかが重なる」という考え方は、教科書によっては「部屋割り論法」として紹介されています。</p>
+
+<h3>操作して確かめよう：割り算の余りを追う</h3>
+<div class="widget" id="w1">
+  <p>分子 \( m \) と分母 \( n \) に正の整数を入れて「計算する」を押すと、\( m\div n \) の筆算を1段階ずつ表にし、余りがくり返されたところを太字で示します。</p>
+  <div class="w-in">
+    <label for="w1-m">分子 m</label><input type="text" id="w1-m" value="1" inputmode="numeric">
+    <label for="w1-n">分母 n</label><input type="text" id="w1-n" value="7" inputmode="numeric">
+    <button type="button" id="w1-go">計算する</button>
+  </div>
+  <p class="w-out" id="w1-out" aria-live="polite">「計算する」を押すと、ここに結果が出ます（最初は例題2の 1÷7 が入っています）。</p>
+  <div class="table-wrap" id="w1-table"></div>
+  <p class="small">m は 1〜999、n は 1〜100 の整数を入れてください。表の「段階」は、そのとき求まる商の数字の位です。</p>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：商の数字がくり返せば循環すると考える</p><p>循環するかどうかを決めるのは<strong>余り</strong>で、商の数字ではありません。たとえば \( \dfrac{1}{7} \) の商の数字は 1、4、2、8、5、7 と、途中で同じ数字が出なくても、余りが 1 に戻ったところから循環します。反対に、商に同じ数字が2回出ても、余りが違えばその先の計算は違います。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="循環小数を分数で表す"><span class="num">5</span>循環小数を分数で表す</h2>
+<p>逆に、循環小数は分数で表せます。くり返される部分のけた数だけ10倍（2けたなら100倍、…）すると、小数点以下のくり返しの部分がそろうので、差をとると打ち消し合います。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（くり返しが2けた）</p>
+  <p>\( 0.\dot{4}\dot{5} \) を分数で表しなさい。</p>
+  <div class="step">ステップ1：\( x=0.4545\cdots \) とおきます。くり返しが2けたなので100倍すると、\( 100x=45.4545\cdots \)。</div>
+  <div class="step">ステップ2：\( 100x-x \) を計算すると、小数点以下の \( 0.4545\cdots \) が打ち消し合って、\( 99x=45 \)。</div>
+  <div class="step">答え：\( x=\dfrac{45}{99}=\dfrac{5}{11} \)。「有限小数・無限小数・循環小数」の節の表の \( \dfrac{5}{11}=0.\dot{4}\dot{5} \) と一致します。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（くり返しが小数第2位から）</p>
+  <p>\( 0.1\dot{6} \) を分数で表しなさい。</p>
+  <div class="step">ステップ1：\( x=0.1666\cdots \)。くり返しの前に 1 けた（1）あるので、まず10倍して \( 10x=1.666\cdots \)。くり返しは1けたなので、さらに10倍して \( 100x=16.666\cdots \)。</div>
+  <div class="step">ステップ2：\( 100x-10x \) で小数点以下の \( 0.666\cdots \) が打ち消し合い、\( 90x=15 \)。</div>
+  <div class="step">答え：\( x=\dfrac{15}{90}=\dfrac{1}{6} \)</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5（整数部分がある）</p>
+  <p>\( 2.\dot{1}\dot{8} \) を分数で表しなさい。</p>
+  <div class="step">ステップ1：\( x=2.1818\cdots \)、\( 100x=218.1818\cdots \)。</div>
+  <div class="step">ステップ2：\( 100x-x=99x=216 \)。</div>
+  <div class="step">答え：\( x=\dfrac{216}{99}=\dfrac{24}{11} \)。（\( 2+0.\dot{1}\dot{8}=2+\dfrac{18}{99}=2+\dfrac{2}{11} \) と考えても同じです。）</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：何倍するかを取り違える</p><p>\( 0.\dot{4}\dot{5} \) で \( 10x-x \) を計算すると、\( 4.5454\cdots-0.4545\cdots=4.0909\cdots \) となり、小数点以下が打ち消し合いません。くり返される部分のけた数（ここでは2けた）に合わせて \( 10^2=100 \) 倍します。また、\( 0.1\dot{6} \) のようにくり返しが途中から始まるときは、くり返しの前のけた数も考えて、差をとる2つの数の小数点以下をそろえます。</p></div>
+<div class="box point"><p class="box-title">有理数と小数の関係のまとめ</p><p>分数（有理数）は有限小数か循環小数になり、有限小数（\( 0.375=\dfrac{375}{1000} \) など）と循環小数は分数で表せます。つまり、<strong>有理数は、整数・有限小数・循環小数のどれかで表される数</strong>です。したがって、\( \sqrt{2}=1.41421356\cdots \) のような無理数を小数で表すと、循環しない無限小数になります。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>有限小数</dt><dd>小数第何位かで終わる小数。例：\( 0.25 \)、\( 0.375 \)。</dd>
+    <dt>無限小数</dt><dd>小数部分が限りなく続く小数。例：\( 0.333\cdots \)、\( 1.41421356\cdots \)。</dd>
+    <dt>循環小数</dt><dd>無限小数のうち、ある位から先で同じ数字の並びが限りなくくり返されるもの。くり返される部分の最初と最後の数字の上に点をつけて表すことがある（\( 0.\dot{4}\dot{5} \)、\( 0.1\dot{6} \)）。</dd>
+    <dt>余り</dt><dd>割り算で割り切れずに残った数。0 以上で、割る数より小さい（小学校の内容。補足）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>小数第何位かで終わる小数が有限小数、限りなく続く小数が無限小数、そのうち同じ並びがくり返されるものが循環小数。循環小数は点をつけて \( 0.\dot{1}4285\dot{7} \) などと表す（O1）。</li>
+    <li>分数 \( \dfrac{m}{n} \) を小数に直すと、余りが 0 になれば有限小数、ならなければ余りは \( n-1 \) 通りしかないので同じ余りが現れ、循環小数になる（O2）。</li>
+    <li>循環小数は、くり返しのけた数に合わせて10倍・100倍…した数との差をとると、分数で表せる（O3）。</li>
+    <li>有理数は整数・有限小数・循環小数のどれかで表され、無理数は循環しない無限小数になる（O2・O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">循環小数を分数に（くり返しが2けたの例）</span>$$ \begin{aligned} &amp;x=0.\dot{4}\dot{5}\ \Rightarrow\ 100x-x=45\\ &amp;\Rightarrow\ x=\frac{45}{99}=\frac{5}{11} \end{aligned} $$</div>
+  <div><span class="f-name">くり返される部分の数字の個数</span><p>分母が \( n \) の分数では、\( n-1 \) 個以下</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。分数は 5/7 のように入力してください。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>次の分数のうち、小数で表すと有限小数になるものはどれですか。</p>
+  <div class="choices"><button>\( \dfrac{1}{3} \)</button><button data-correct="true">\( \dfrac{3}{8} \)</button><button>\( \dfrac{2}{7} \)</button><button>\( \dfrac{5}{6} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( \dfrac{3}{8}=0.375 \) で、余りが \( 3\to 6\to 4\to 0 \) と 0 になって割り切れます。\( \dfrac{1}{3}=0.\dot{3} \)（余り 1 がくり返す）、\( \dfrac{2}{7}=0.\dot{2}8571\dot{4} \)（余りが \( 2\to 6\to 4\to 5\to 1\to 3\to 2 \) とめぐる）、\( \dfrac{5}{6}=0.8\dot{3} \)（余り 2 がくり返す）は、どれも余りが 0 にならないので循環小数です。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="45">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>\( \dfrac{5}{11} \) を小数で表したとき、くり返される数字の並びを答えなさい（例：142857 のように数字だけを入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 45。\( 50\div 11=4 \) 余り 6、\( 60\div 11=5 \) 余り 5、と余りが 5 に戻るので、\( \dfrac{5}{11}=0.4545\cdots=0.\dot{4}\dot{5} \) です。「4」や「5」だけでは、くり返しの1周分になっていません。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="7/9">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>\( 0.\dot{7} \) を分数で表しなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{7}{9} \)。\( x=0.777\cdots \) とおくと \( 10x=7.777\cdots \)、\( 10x-x=9x=7 \) なので \( x=\dfrac{7}{9} \) です。\( \dfrac{7}{10} \) と答えた場合は \( 0.7 \)（有限小数）を分数にしたもので、\( 0.777\cdots \) より小さい数です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>\( \dfrac{1}{13} \) を小数に直すとき、余りに着目すると、くり返される部分の数字の個数について、実際に計算しなくても言えることはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">12 個以下である（0 でない余りは 1〜12 の 12 通りしかないから）。</button>
+    <button>ちょうど 13 個である（余りは 0〜12 の 13 通りだから）。</button>
+    <button>ちょうど 12 個である（0 でない余りが 12 通りあるから）。</button>
+    <button>13 個より多くなることもある。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">13 で割る余りは 0〜12 ですが、余りが 0 になると割り切れてしまうので、循環するときの余りは 1〜12 の 12 通りのどれかです。同じ余りが現れるまでに 12 段階以下しかかからないので、くり返しは 12 個以下です。実際に計算すると \( \dfrac{1}{13}=0.\dot{0}7692\dot{3} \) で 6 個なので、「ちょうど 12 個」は言えません。「ちょうど 13 個」は余り 0 を数えた誤り、「13 個より多い」は余りの種類の数を超えるので起こりません。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="3/11">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>\( 0.\dot{2}\dot{7} \) を、それ以上約分できない分数で表しなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{3}{11} \)。\( x=0.2727\cdots \)、\( 100x=27.2727\cdots \) なので \( 99x=27 \)、\( x=\dfrac{27}{99}=\dfrac{3}{11} \) です（27 と 99 はどちらも 9 で割れる）。\( \dfrac{27}{99} \) のままでは約分が済んでいません。\( \dfrac{27}{100} \) と答えた場合は、有限小数 \( 0.27 \) の分数です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>\( 0.2\dot{5} \)（\( =0.2555\cdots \)）を分数で表したものはどれですか。</p>
+  <div class="choices"><button>\( \dfrac{25}{99} \)</button><button>\( \dfrac{5}{18} \)</button><button data-correct="true">\( \dfrac{23}{90} \)</button><button>\( \dfrac{23}{99} \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( x=0.2555\cdots \) とおくと、\( 10x=2.555\cdots \)、\( 100x=25.555\cdots \)。\( 100x-10x=90x=23 \) なので \( x=\dfrac{23}{90} \) です。\( \dfrac{25}{99} \) は 25 がくり返す \( 0.\dot{2}\dot{5}=0.2525\cdots \) の分数で、点の位置を読み違えています。\( \dfrac{5}{18}=\dfrac{25}{90} \) は \( 100x-10x \) の右辺を \( 25.555\cdots-2.555\cdots=23 \) でなく 25 としたもので、\( 0.2777\cdots \) になります。\( \dfrac{23}{99} \) は分母を 99 としたもので、\( 0.2323\cdots \) になります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O2</span></div>
+  <p>太郎さんと花子さんが話しています。</p>
+  <p>太郎：「分数を小数に直すと、終わらない小数になっても必ずどこかから循環するのは、なぜだろう。」<br>花子：「それは、……からだよ。」</p>
+  <p>花子さんの説明として最も適切なものはどれですか。</p>
+  <div class="choices">
+    <button>商の数字は 0〜9 の 10 通りしかないので、いつか同じ数字が出る</button>
+    <button>分母が素数のときにだけ循環し、それ以外は必ず割り切れる</button>
+    <button>電卓で計算すると、どの分数も同じ数字の並びが表示される</button>
+    <button data-correct="true">分母 \( n \) で割った余りは 0〜\( n-1 \) のどれかで、0 にならなければ同じ余りがいつか再び現れ、そこから先は同じ計算がくり返される</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">次の計算は今の余りだけで決まるので、同じ余りが現れると、そこから先の商の数字も同じくり返しになります。「商の数字が 10 通り」は理由になりません。商に同じ数字が出ても、余りが違えばその先の計算は違うからです。「分母が素数のときにだけ循環」は、\( \dfrac{1}{6}=0.1\dot{6} \)（6 は素数でない）が反例です。「電卓の表示」は、画面に入りきらない先のことは分からないので、理由になりません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2</span></div>
+  <p>\( \dfrac{1}{7}=0.\dot{1}4285\dot{7} \) の小数第100位の数字はどれですか。</p>
+  <div class="choices"><button data-correct="true">8</button><button>4</button><button>5</button><button>7</button></div>
+  <span class="result"></span>
+  <div class="explain">くり返される部分 142857 は 6 けたです。\( 100=6\times 16+4 \) なので、小数第100位は、16 周したあとの 4 番目の数字で、1、4、2、<strong>8</strong> の 8 です。4 は 100 を分母の 7 で割った余り 2 を使って 2 番目の数字を選んだもの、5 は 4 番目でなく 5 番目を選んだもの、7 は 100 が 6 で割り切れると考えて 6 番目の数字を選んだものです。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2・O3</span></div>
+  <p>\( 0.\dot{1}\dot{8} \) を分数で表しなさい。また、その分数を割り算で小数に直し、余りに注目して、もとの循環小数に戻ることを確かめなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　\( x=0.1818\cdots \) とおくと \( 100x=18.1818\cdots \)。\( 100x-x=99x=18 \) より \( x=\dfrac{18}{99}=\dfrac{2}{11} \)。</p>
+    <p>確かめ：\( 2\div 11 \) で、\( 20\div 11=1 \) 余り 9、\( 90\div 11=8 \) 余り 2。余りが最初の 2 に戻ったので、商の数字 1、8 がくり返され、\( \dfrac{2}{11}=0.1818\cdots=0.\dot{1}\dot{8} \) となる。</p>
+    <p><strong>採点の観点</strong>　① くり返しが2けたなので100倍し、差をとって \( 99x=18 \) としている。② 約分して \( \dfrac{2}{11} \) としている。③ 割り算の余りが 2 → 9 → 2 と戻ることを示し、くり返しを確かめている。</p>
+  </div>
+  <div class="explain">\( 10x-x \) では \( 1.8181\cdots-0.1818\cdots=1.6363\cdots \) となり、小数点以下が打ち消し合いません。くり返しのけた数（2けた）に合わせて100倍します。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(1) 数と式」のア(ア)と、学習指導要領の内容の取扱い(2)「分数が有限小数や循環小数で表される仕組みを扱うものとする」に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「解決過程を振り返り，得られた結果を意味づけたり，活用したり，統合的・発展的に考察したりすること」などを求めると述べています。余りに注目して「なぜ循環するのか」を説明するこの時間の考え方は、結果を意味づけて考察する力の土台になります。</p>
+  <p class="small">問7は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">実数と数直線（数Ⅰ-011）</p>
+  <p>次の時間は、自然数・整数・有理数・実数のそれぞれの範囲で、四則計算の答えがいつもその範囲に入るかを調べます。また、実数が数直線上の点と1つずつ対応していることを学びます。この時間に確かめた「有理数は有限小数か循環小数、無理数は循環しない無限小数」という見方は、数直線上に数を並べて考えるときにも役立ちます。</p>
+  <p>この時間では、どんな分母のときに有限小数になるかを記数法と関連付けて考えること（数学A、数Ａ-084）、\( 0.999\cdots \) のように 9 がくり返される小数を極限の考えで扱うこと（数学Ⅲ、数Ⅲ-017）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-009　実数と数の体系</div>
+  <div><span class="label">次の時間</span>数Ⅰ-011　実数と数直線</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-010「有限小数と循環小数」（学習指導要領 数学Ⅰ (1)ア(ア)、内容の取扱い(2)、解説 p.35-36。† 教科書で一般的な内容を含む行）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(1) 数と式、3 内容の取扱い(2)（「分数が有限小数や循環小数で表される仕組みを扱うものとする」）（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.35-36（「分数が有限小数や循環小数で表される仕組みについても理解できるようにする」ことの確認）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）」の「実数」（有理数が整数，有限小数，循環小数のいずれかで表される理由、分数を循環小数で，循環小数を分数で表すことの確認。† の内容）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx</li>
+    <li>東京書籍「評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）」の「実数」（有理数を小数で表すと有限小数または循環小数となる理由を説明することの確認）https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf</li>
+    <li>新興出版社啓林館「編修趣意書 数Ⅰ061-901『アルファ数学Ⅰ』」（分数は有限小数または循環小数になることを具体例で説明し、部屋割り論法にもふれることの確認）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-10.pdf</li>
+    <li>小学校学習指導要領（平成29年告示）第2章第3節 算数 第3学年「余りについて知ること」、第4学年「（被除数）＝（除数）×（商）＋（余り）」、第5学年「整数の除法の結果は，分数を用いると常に一つの数として表すことができることを理解すること」（補足「分数と割り算・筆算の余り」が小学校の内容であることの確認。中学校学習指導要領（平成29年告示）の冊子に収録）（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_02.pdf</li>
+    <li>東京書籍「令和7年度用『新編 新しい数学』年間指導計画・学習指導計画例（略案）」3年（「有限小数、無限小数、循環小数の意味」を有理数と無理数の時間で扱うことの確認。中3-023 の出典）https://ten.tokyo-shoseki.co.jp/text/chu/list/keikaku/</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-09-30　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。循環小数に点をつける書き方は、くり返される部分の最初と最後の数字の上に点をつける書き方で示しました（教科書でも確かめよう）。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  /*longdiv-begin*/
+  function longdiv(m, n) {
+    var ip = Math.floor(m / n), r = m % n, seen = {}, digits = [], steps = [];
+    while (r !== 0 && !(r in seen)) {
+      seen[r] = digits.length;
+      var ten = r * 10, q = Math.floor(ten / n), next = ten % n;
+      steps.push({ r: r, ten: ten, q: q, next: next });
+      digits.push(q);
+      r = next;
+    }
+    var start = r === 0 ? -1 : seen[r];
+    return { ip: ip, digits: digits, steps: steps, start: start, len: start < 0 ? 0 : digits.length - start };
+  }
+  /*longdiv-end*/
+  function toInt(v) {
+    var s = String(v || "").normalize("NFKC").replace(/\s+/g, "");
+    return /^\d+$/.test(s) ? parseInt(s, 10) : null;
+  }
+  function describe(m, n) {
+    if (m === null || n === null || m < 1 || m > 999 || n < 1 || n > 100) {
+      return { msg: "分子 m は 1〜999、分母 n は 1〜100 の整数を入れてください。", html: "" };
+    }
+    var d = longdiv(m, n);
+    var head = m + "/" + n + " ＝ ";
+    if (!d.digits.length) return { msg: head + d.ip + "（割り切れて整数になります）", html: "" };
+    var ds = d.digits.join("");
+    var msg;
+    if (d.start < 0) {
+      msg = head + d.ip + "." + ds + "。余りが 0 になって割り切れたので、有限小数です（小数第" + d.digits.length + "位まで）。";
+    } else {
+      var pre = ds.slice(0, d.start), rep = ds.slice(d.start);
+      msg = head + d.ip + "." + pre + rep + rep + "…。小数第" + (d.digits.length) + "位を求めたあとの余り " + d.steps[d.steps.length - 1].next +
+        " が、小数第" + (d.start + 1) + "位を求める前の余りと同じになったので、小数第" + (d.start + 1) + "位から " + rep + "（" + d.len + "けた）がくり返される循環小数です。";
+    }
+    var h = "<table><tr><th>段階</th><th>今の余り</th><th>10倍</th><th>商の数字</th><th>次の余り</th></tr>";
+    d.steps.forEach(function (s, i) {
+      h += "<tr" + (d.start >= 0 && i >= d.start ? " class=\"rep\"" : "") + "><td>小数第" + (i + 1) + "位</td><td>" + s.r + "</td><td>" + s.ten + "</td><td>" + s.q + "</td><td>" + s.next + "</td></tr>";
+    });
+    return { msg: msg, html: h + "</table>" };
+  }
+  var mEl = document.getElementById("w1-m"), nEl = document.getElementById("w1-n");
+  var out = document.getElementById("w1-out"), tbl = document.getElementById("w1-table"), go = document.getElementById("w1-go");
+  if (!mEl || !nEl || !out || !tbl || !go) return;
+  go.addEventListener("click", function () {
+    var res = describe(toInt(mEl.value), toInt(nEl.value));
+    out.textContent = res.msg;
+    tbl.innerHTML = res.html;
+  });
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-010",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-010",
+  "title": "有限小数と循環小数",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-1", "title": "数と式"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ア)", "取扱い(2)"],
+  "kaisetsu_page": "35-36",
+  "objectives": [
+    {"id": "O1", "text": "有限小数・無限小数・循環小数の意味を理解し、分数を割り算で小数に直して、循環小数を記号を使って表すことができる。", "from": "分数が有限小数や循環小数で表される", "sections": ["sec-1"], "checks": ["q1", "q2", "q8"]},
+    {"id": "O2", "text": "分数を小数に直すとき、割り算の余りに着目して、有限小数か循環小数のどちらかになる仕組みを説明できる。", "from": "仕組みを、割り算の余りに着目して理解し", "sections": ["sec-2"], "checks": ["q4", "q7", "q8", "q9"]},
+    {"id": "O3", "text": "循環小数を、10倍・100倍などした数との差を考えて、分数で表すことができる。", "from": "循環小数を分数で表すことができる", "sections": ["sec-3"], "checks": ["q3", "q5", "q6", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "有限小数", "where": "sec-1"},
+    {"term": "無限小数", "where": "sec-1"},
+    {"term": "循環小数", "where": "sec-1"}
+  ],
+  "prerequisites": [
+    {"concept": "有理数・無理数の定義（分数 m/n で表せるか）", "taught_in": ["hs_math_1a/数Ⅰ-009", "jhs_math/中3-023"], "where": "review"},
+    {"concept": "√2 が無理数であること", "taught_in": ["jhs_math/中3-023"], "where": "sec-1"},
+    {"concept": "有限小数・無限小数・循環小数の意味（中学校の教科書で扱われることがある。本編の初めで確かめる）", "taught_in": ["jhs_math/中3-023"], "gap": false, "where": "sec-1"},
+    {"concept": "平方根の近似値（√2=1.414…）", "taught_in": ["jhs_math/中3-022"], "where": "sec-1"},
+    {"concept": "約分（27/99=3/11 など）と、2数に共通な約数", "taught_in": ["jhs_math/中1-021"], "where": "sec-3"},
+    {"concept": "一次方程式を解く（99x=45 など）", "taught_in": ["jhs_math/中1-047"], "where": "sec-3"},
+    {"concept": "分数と割り算の関係（m/n=m÷n）、割り算の筆算で余りは 0 以上で割る数より小さいこと、余りを10倍して割り続けること（小学校の内容。地図は中学校から始まるため出どころの行がない）", "taught_in": [], "gap": true, "where": "supp-1"}
+  ],
+  "out_of_scope": [
+    "四則演算が閉じているかと、実数と数直線上の点の対応（数Ⅰ-011）",
+    "記数法と関連付けた、有限小数になる分数の分母の考察（数Ａ-084）",
+    "無限等比級数による循環小数の扱い、0.999…=1（数Ⅲ-017）",
+    "√2 が無理数であることの証明（数Ⅰ-029）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『数と式』の順次作成（2026-09-30）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(1)ア(ア)、内容の取扱い(2)"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.35-36 分数が有限小数や循環小数で表される仕組み"},
+    {"name": "シラバス・観点別評価規準例 数学Ⅰ（改訂版 数学Ⅰ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_su1kai.docx", "use": "有理数が整数・有限小数・循環小数のいずれかで表される理由、循環小数を分数で表すこと（† の内容）"},
+    {"name": "評価規準例 改訂版 数学Ⅰ Standard（数Ⅰ002-902）", "publisher": "東京書籍（東書Ｅネット）", "url": "https://ten.tokyo-shoseki.co.jp/ten_download/2021/2021108380/sugaku_16704_su1_hyoka.pdf", "use": "有理数を小数で表すと有限小数または循環小数となる理由の説明"},
+    {"name": "編修趣意書 数Ⅰ061-901『アルファ数学Ⅰ』", "publisher": "新興出版社啓林館（文部科学省掲載）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-10.pdf", "use": "部屋割り論法にふれる扱いの確認"},
+    {"name": "小学校学習指導要領（平成29年告示）第2章第3節 算数（中学校学習指導要領（平成29年告示）の冊子に収録）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_02.pdf", "use": "第3学年の余り、第4学年の（被除数）＝（除数）×（商）＋（余り）、第5学年の除法の結果を分数で表すこと（補足 supp-1 が小学校の内容であることの確認）"},
+    {"name": "令和7年度用『新編 新しい数学』年間指導計画・学習指導計画例（略案）3年", "publisher": "東京書籍", "url": "https://ten.tokyo-shoseki.co.jp/text/chu/list/keikaku/", "use": "有理数と無理数の時間で「有限小数、無限小数、循環小数の意味」を扱うこと（中3-023 の出典。本編の初めの文）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-09-30"
+}
+</script>
+</body>
+</html>

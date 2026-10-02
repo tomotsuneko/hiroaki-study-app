@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>敬語の大体｜言語文化</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="../assets/lesson.js"></script>
+<style>
+  .kg { border-bottom: 2px solid var(--terms); cursor: pointer; padding: 0 2px; border-radius: 3px; }
+  .kg:focus, .kg.on { outline: 2px solid var(--primary); background: var(--primary-weak); }
+  #kg-info { min-height: 5.5em; margin-top: 10px; padding: 10px 14px; border-radius: 10px; background: var(--review-bg); font-size: .95rem; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>言語文化</span><span>読むこと（古典：古文）</span><span>言文-013</span></div>
+  <h1>敬語の大体</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+    <span class="badge">個別試験：大学未指定</span>
+    <span class="badge dagger">† 教科書で一般的な内容を含む</span>
+  </div>
+  <p class="lead">古文には「誰が」が書かれていない文がたくさんあります。そのとき手掛かりになるのが敬語です。敬語の種類と向きが分かると、書かれていない人物と、人物どうしの関係が見えてきます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>古文の敬語の三つの種類（尊敬語・謙譲語・丁寧語）が、それぞれ誰を高めるのかを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>主な敬語動詞と敬語の補助動詞を見分け、尊敬語・謙譲語・丁寧語のどれかを判別できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>地の文と会話文の別に注意して、敬語が誰から誰への敬意を表しているかを判断できる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>敬語の有無と種類を手掛かりに、主語が書かれていない文の動作主を補い、人物の関係を捉えて物語の文章を文脈に即して読むことができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（言文-012）</span>助詞の意味・用法</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間</span>敬語の大体</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（言文-014）</span>和歌の修辞</div>
+</div>
+<p class="small">前提となる単元：我が国の言語文化（古典など）（中学3年）。この時間は「言語文化」の古文の単元（読むこと（古典：古文））の13コマ目です。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<p>この時間は、中学2年と「現代の国語」で学んだ現代語の敬語、中学1年と言文-002で学んだ歴史的仮名遣い、言文-004で学んだ古文の動詞の活用を使います。小問で確かめましょう。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中2-030・現国-007</span></div>
+  <p>現代語で、次のうち<strong>謙譲語</strong>はどれですか。</p>
+  <div class="choices">
+    <button>おっしゃる</button>
+    <button data-correct="true">申し上げる</button>
+    <button>話します</button>
+    <button>ご覧になる</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「申し上げる」は、話す相手（動作を受ける人）を高める謙譲語です。「おっしゃる」「ご覧になる」は動作をする人を高める尊敬語、「話します」は聞き手に丁寧に言う丁寧語です。古文の敬語もこの三種類で考えます。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中1-109・言文-002</span></div>
+  <p>古文の敬語「たまふ（給ふ）」は、どう読みますか。</p>
+  <div class="choices">
+    <button>たまふ</button>
+    <button data-correct="true">たまう</button>
+    <button>たもう</button>
+    <button>たまお</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">語の頭以外のハ行の「は・ひ・ふ・へ・ほ」は「わ・い・う・え・お」と読むので、「たまふ」は「たまう」と読みます。「のたまふ」も「のたまう」です。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：言文-004</span></div>
+  <p>「女御、更衣あまたさぶらひたまひける」の「たまひ」は、四段活用の「たまふ」の何形ですか（後ろの「ける」は過去の助動詞「けり」で、連用形に付きます）。</p>
+  <div class="choices">
+    <button>未然形</button>
+    <button data-correct="true">連用形</button>
+    <button>終止形</button>
+    <button>已然形</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">四段活用は「たまは・たまひ・たまふ・たまふ・たまへ・たまへ」と活用します。「けり」は連用形に付くので「たまひ」は連用形です。敬語の語も、ふつうの動詞と同じように活用します。</div>
+</div>
+
+<div class="box supplement" id="supp-1">
+  <p class="box-title">本動詞と補助動詞</p>
+  <p>現代語の「先生が本を<strong>くださる</strong>」の「くださる」は、「与える」という意味をもつふつうの動詞（<span class="em">本動詞</span>）です。一方、「先生が本を読んで<strong>くださる</strong>」の「くださる」は、「与える」という意味が薄れて、前の動詞に敬意などを添えています。このような動詞を<span class="em">補助動詞</span>といいます。</p>
+  <p>古文の敬語にも、本動詞として使う場合と、ほかの動詞の連用形に付いて補助動詞として使う場合があります（sec-2 で見分けます）。</p>
+</div>
+<div class="box supplement" id="supp-2">
+  <p class="box-title">地の文と会話文</p>
+  <p>物語の文章のうち、登場人物が口にした言葉や心の中で思った言葉、手紙の文面を<span class="em">会話文</span>（心の中の言葉は心内語）といい、それ以外の、語り手（書き手）が出来事を語る部分を<span class="em">地の文</span>といいます。</p>
+  <p>古文の原文にはもともとかぎかっこがないことが多く、教科書では読みやすいように「 」を付けています。会話の終わりは「と」「とて」「など」、始まりは「言ふやう」「のたまふやう」などが目印になります。</p>
+</div>
+<div class="box supplement" id="supp-3">
+  <p class="box-title">この時間の文章に出てくる宮中の人々</p>
+  <p><strong>帝</strong>（天皇）が最も高い身分です。<strong>中宮</strong>は天皇の后の位の一つ、<strong>女御</strong>・<strong>更衣</strong>も天皇の妃で、女御は更衣より上の身分です。<strong>女房</strong>は、宮中や貴族の家に仕える女性です。『枕草子』の作者の清少納言は、中宮定子に仕えた女房です。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：笑ったのは誰？</h2>
+<p>『枕草子』に、雪の日の宮中の一場面があります。中宮定子が、仕えている女房の清少納言に「少納言よ、香炉峰の雪はいかならむ」（香炉峰の雪はどうであろうか）と問いかけ、清少納言が御簾を高く巻き上げます。その直後に、原文はこう書いています。</p>
+<div class="passage"><p>…御簾高く巻き上げたれば、<strong>笑はせたまふ</strong>。</p><span class="src">『枕草紙』（國文大觀）より（表記を整えた）</span></div>
+<div class="box think">
+  <p class="box-title">「笑はせたまふ」の主語は誰だろう</p>
+  <p>主語は書かれていません。笑ったのは中宮でしょうか、清少納言でしょうか、それともまわりの女房たちでしょうか。「笑ふ」に付いている「せ」「たまふ」が何を表しているのかを考えながら、予想してみましょう。答えは sec-4 で、敬語を手掛かりにして確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="三つの種類"><span class="num">3</span>敬語の三つの種類：誰を高めるのか</h2>
+<p>古文の敬語も、現代語と同じく<strong>尊敬語・謙譲語・丁寧語</strong>の三種類に分けます。三つの違いは「<span class="em">誰を高めるか</span>」です。まず現代語で確かめ、同じ考え方を古文に当てはめます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>種類</th><th>高める人</th><th>現代語の例</th><th>古文の例（作例）</th></tr>
+  <tr><td>尊敬語</td><td>動作をする人（動作の主体）</td><td>先生が<strong>おっしゃる</strong>。</td><td>宮、「…」と<strong>のたまふ</strong>。（宮がおっしゃる）</td></tr>
+  <tr><td>謙譲語</td><td>動作を受ける人（動作の相手）</td><td>私が先生に<strong>申し上げる</strong>。</td><td>翁、帝に<strong>申す</strong>。（翁が帝に申し上げる）</td></tr>
+  <tr><td>丁寧語</td><td>話を聞く人・文章を読む人（聞き手・読み手）</td><td>雪が深い<strong>です</strong>。</td><td>「雪いと深く<strong>侍り</strong>。」（雪がとても深うございます）</td></tr>
+</table>
+</div>
+<p>三つの敬語は、どれも「話し手（書き手）が、誰かを高める」ための言葉です。高める人が、動作をする人なのか、動作を受ける人なのか、聞き手・読み手なのかで種類が決まります。図1で関係を確かめましょう。</p>
+<figure>
+  <svg viewBox="0 0 640 300" role="img" aria-label="敬意の向きの図。左の話し手・書き手から、右の三人に矢印が出ている。尊敬語は動作をする人へ、謙譲語は動作を受ける人へ、丁寧語は聞き手・読み手へ向かう。動作をする人から動作を受ける人へ、動作の矢印がある。">
+    <defs><marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+    <rect x="20" y="118" width="170" height="64" rx="10" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="105" y="145" text-anchor="middle" font-size="16" fill="currentColor">話し手・書き手</text>
+    <text x="105" y="168" text-anchor="middle" font-size="13" fill="currentColor">（敬意を払う人）</text>
+    <rect x="430" y="20" width="190" height="52" rx="10" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="525" y="51" text-anchor="middle" font-size="15" fill="currentColor">動作をする人（主体）</text>
+    <rect x="430" y="124" width="190" height="52" rx="10" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="525" y="155" text-anchor="middle" font-size="15" fill="currentColor">動作を受ける人（相手）</text>
+    <rect x="430" y="228" width="190" height="52" rx="10" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="525" y="259" text-anchor="middle" font-size="15" fill="currentColor">聞き手・読み手</text>
+    <line x1="190" y1="150" x2="428" y2="46" stroke="currentColor" stroke-width="2" marker-end="url(#ah1)"/>
+    <line x1="190" y1="150" x2="428" y2="150" stroke="currentColor" stroke-width="2" marker-end="url(#ah1)"/>
+    <line x1="190" y1="150" x2="428" y2="254" stroke="currentColor" stroke-width="2" marker-end="url(#ah1)"/>
+    <rect x="279" y="84" width="60" height="24" rx="4" style="fill: var(--card)"/>
+    <text x="309" y="102" text-anchor="middle" font-size="15" font-weight="bold" fill="currentColor">尊敬語</text>
+    <rect x="279" y="138" width="60" height="24" rx="4" style="fill: var(--card)"/>
+    <text x="309" y="156" text-anchor="middle" font-size="15" font-weight="bold" fill="currentColor">謙譲語</text>
+    <rect x="279" y="190" width="60" height="24" rx="4" style="fill: var(--card)"/>
+    <text x="309" y="208" text-anchor="middle" font-size="15" font-weight="bold" fill="currentColor">丁寧語</text>
+    <line x1="525" y1="72" x2="525" y2="122" stroke="currentColor" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ah1)"/>
+    <text x="535" y="102" font-size="13" fill="currentColor">動作</text>
+  </svg>
+  <figcaption>図1　敬意の向き（実線の矢印＝敬意、点線の矢印＝動作「言ふ」「与ふ」など）</figcaption>
+</figure>
+<div class="box point"><p class="box-title">三つの種類は「誰を高めるか」で決まる</p><p>尊敬語は<strong>動作をする人</strong>を、謙譲語は<strong>動作を受ける人</strong>を、丁寧語は<strong>聞き手・読み手</strong>を高めます。敬意を払うのは、どれも<strong>その言葉を発した人（話し手・書き手）</strong>です。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：「謙譲語＝自分がへりくだる言葉」とだけ覚える</p><p>現代語では、謙譲語は自分の動作に使うことが多いので、「自分を低める言葉」と覚えがちです。しかし古文の地の文では、作者（語り手）が、<strong>登場人物どうしの動作</strong>に謙譲語を使います。たとえば「女房が中宮に申す」の「申す」は、女房の動作ですが、作者が<strong>動作を受ける中宮</strong>を高めています。「動作を受ける人を高める」と覚えておくと、古文でも迷いません。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="敬語動詞と補助動詞"><span class="num">4</span>主な敬語動詞と補助動詞を見分ける</h2>
+<p>古文には、ふつうの動詞（「言ふ」「見る」「行く」など）の代わりに使う敬語の動詞があります。すべてを一度に覚える必要はありません。読んでいる文章に出てきたら、次の表で「もとの語」と種類を確かめる、という使い方をしましょう。</p>
+<h3>主な敬語動詞（本動詞として使うとき）</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>種類</th><th>敬語</th><th>もとの語</th><th>訳し方</th></tr>
+  <tr><td rowspan="9">尊敬語</td><td>おはす・おはします</td><td>あり・をり・行く・来</td><td>いらっしゃる・おいでになる</td></tr>
+  <tr><td>のたまふ・のたまはす</td><td>言ふ</td><td>おっしゃる</td></tr>
+  <tr><td>仰す（多く「仰せらる」の形）</td><td>言ふ</td><td>おっしゃる</td></tr>
+  <tr><td>思す・思しめす</td><td>思ふ</td><td>お思いになる</td></tr>
+  <tr><td>御覧ず</td><td>見る</td><td>ご覧になる</td></tr>
+  <tr><td>聞こしめす</td><td>聞く</td><td>お聞きになる</td></tr>
+  <tr><td>大殿籠る</td><td>寝（ぬ）</td><td>おやすみになる</td></tr>
+  <tr><td>給ふ（四段活用）</td><td>与ふ</td><td>お与えになる・くださる</td></tr>
+  <tr><td>召す</td><td>呼ぶ・取り寄す</td><td>お呼びになる・お取り寄せになる</td></tr>
+  <tr><td rowspan="7">謙譲語</td><td>申す・聞こゆ・聞こえさす</td><td>言ふ</td><td>申し上げる</td></tr>
+  <tr><td>奏す（天皇・上皇に）・啓す（中宮・皇太子に）</td><td>言ふ</td><td>申し上げる</td></tr>
+  <tr><td>参る・まうづ</td><td>行く・来</td><td>参上する・うかがう</td></tr>
+  <tr><td>まかる・まかづ</td><td>出づ・退く</td><td>退出する</td></tr>
+  <tr><td>奉る・参らす</td><td>与ふ</td><td>差し上げる</td></tr>
+  <tr><td>賜る・給はる</td><td>受く</td><td>いただく</td></tr>
+  <tr><td>さぶらふ・侍り（貴人のそばにいる意味のとき）</td><td>仕ふ・あり・をり</td><td>お仕えする・おそばに控える</td></tr>
+  <tr><td>丁寧語</td><td>侍り・さぶらふ（候ふ）</td><td>あり・をり</td><td>あります・おります・ございます</td></tr>
+</table>
+</div>
+<p class="small">「さぶらふ」「侍り」は、貴人のそばに「お仕えする・控える」という意味なら謙譲語、会話文や手紙で聞き手・読み手に丁寧に言うときは丁寧語です。このように二つの用法をもつ敬語の見分け方は、古典探究の「文語文法の整理：敬語の用法と人物関係」（古探-051）でまとめて学びます。</p>
+<h3>敬語の補助動詞</h3>
+<p>敬語の動詞のいくつかは、ほかの動詞の連用形に付いて<strong>補助動詞</strong>になります（補助動詞は「前回までの確認」の補足を参照）。補助動詞は、もとの意味（「与える」など）が薄れ、前の動詞に敬意を添えます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>種類</th><th>補助動詞</th><th>訳し方</th><th>例（作例）</th></tr>
+  <tr><td>尊敬語</td><td>給ふ（四段活用）・おはす・おはします</td><td>お～になる・～なさる・～ていらっしゃる</td><td>書き<strong>給ふ</strong>（お書きになる）</td></tr>
+  <tr><td>謙譲語</td><td>申す・聞こゆ・奉る・参らす</td><td>～申し上げる・お～する</td><td>書き<strong>奉る</strong>（お書き申し上げる）</td></tr>
+  <tr><td>丁寧語</td><td>侍り・さぶらふ（候ふ）</td><td>～です・～ます・～ございます</td><td>書き<strong>侍り</strong>（書きます）</td></tr>
+</table>
+</div>
+<h3>敬語の動詞以外の手掛かり</h3>
+<ul>
+  <li><strong>尊敬の助動詞「る・らる」</strong>：「仰せ<strong>らる</strong>」のように、尊敬語にさらに付いて敬意を強めることがあります（言文-008で学んだ助動詞です）。</li>
+  <li><strong>「す・さす」＋「給ふ」</strong>：「笑は<strong>せ給ふ</strong>」「見<strong>させ給ふ</strong>」のように尊敬の補助動詞と重なると、「す・さす」も尊敬の意味になり、とても高い敬意を表します（最高敬語・二重敬語とよばれます）。地の文でこの形が使われるのは、多くの場合、天皇や中宮など特に身分の高い人物です。ただし、「（誰々に）～させる」という使役の相手があれば、「す・さす」は使役です。</li>
+  <li><strong>接頭語「御」</strong>：「御時」「御格子」「御文」のように名詞に付き、その物や事柄に関わる人物への敬意を表します。</li>
+</ul>
+<div class="box example worked">
+  <p class="box-title">例題1　敬語の種類と、本動詞・補助動詞の別</p>
+  <p>次の作例の太字の語について、敬語の種類と、本動詞・補助動詞の別を答えなさい。<br>① 姫君、文を<strong>御覧ず</strong>。　② 中納言、姫君に文を<strong>奉る</strong>。　③ 中納言、文を書き<strong>奉る</strong>。　④ 「文はかしこに<strong>侍り</strong>。」</p>
+  <div class="step">ステップ1：語の形を表と照らします。①「御覧ず」は「見る」の尊敬語、②③「奉る」は「与ふ」の謙譲語、④「侍り」は「あり」の丁寧語か謙譲語です。</div>
+  <div class="step">ステップ2：直前を見ます。①②は目的語「文を」を受けて、それ自体が「見る」「与える」の意味をもつので本動詞です。③は動詞「書く」の連用形「書き」に付き、「与える」の意味が薄れているので補助動詞です。④は会話文の中で「あちらにございます」と、聞き手に丁寧に述べているので丁寧語の本動詞です。</div>
+  <div class="step">ステップ3：答え　①尊敬語・本動詞（ご覧になる）　②謙譲語・本動詞（差し上げる）　③謙譲語・補助動詞（お書き申し上げる）　④丁寧語・本動詞（ございます）</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：「給ふ」はいつも尊敬語？</p><p>「給ふ」には、四段活用の尊敬語のほかに、会話文などで使う下二段活用の謙譲語もあります。この時間は、最もよく出会う<strong>四段活用の尊敬語</strong>を確実にしましょう。下二段活用の「給ふ」などの見分け方は古探-051で学びます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="誰から誰への敬意か"><span class="num">5</span>誰から誰への敬意かを決める</h2>
+<p>敬語を読むときは、「<strong>誰から</strong>（敬意の主体）」と「<strong>誰へ</strong>（敬意の対象）」の二つを決めます。</p>
+<div class="table-wrap">
+<table>
+  <tr><th colspan="2">誰から（敬意の主体）</th><th colspan="2">誰へ（敬意の対象）</th></tr>
+  <tr><td>地の文</td><td>作者（語り手・書き手）</td><td>尊敬語</td><td>その動作をする人</td></tr>
+  <tr><td>会話文・心内語</td><td>その言葉を話す人・思う人</td><td>謙譲語</td><td>その動作を受ける人</td></tr>
+  <tr><td>手紙</td><td>その手紙を書いた人</td><td>丁寧語</td><td>会話の聞き手・文章の読み手</td></tr>
+</table>
+</div>
+<h3>会話文の敬語：『竹取物語』</h3>
+<p>竹の中で小さな人を見つけた翁（おじいさん）の言葉です。</p>
+<div class="passage">
+  <ol class="lines">
+    <li>翁言ふやう、</li>
+    <li>「我、朝ごと夕ごとに見る、竹の中に<strong>おはする</strong>にて知りぬ、</li>
+    <li>子になり<strong>給ふ</strong>べき人なんめり。」</li>
+    <li>とて、手にうち入れて家にもて来ぬ。</li>
+  </ol>
+  <span class="src">『竹取物語』（國民文庫）より（表記を整えた。原文の「なンめり」は「なんめり」と書いた）</span>
+</div>
+<div class="pair">
+  <div><span class="label">現代語訳（このページで作成）</span>翁が言うことには、「私が毎朝毎晩見る竹の中にいらっしゃるので分かった、（私の）子におなりになるはずの人であるようだ。」と言って、手の中に入れて家に持って来た。</div>
+  <div><span class="label">敬語の注</span>2行目「おはする」：尊敬語の本動詞「おはす」（サ行変格活用）の連体形。「いる」の尊敬語。<br>3行目「給ふ」：尊敬の補助動詞「給ふ」（四段活用）の終止形。「なる」に敬意を添える。</div>
+</div>
+<p>「おはする」「給ふ」は<strong>会話文</strong>の中にあるので、敬意の主体は話し手の<strong>翁</strong>です。どちらも尊敬語なので、敬意の対象は動作（竹の中にいる・子になる）をする人、つまり竹の中の<strong>小さな人（後のかぐや姫）</strong>です。</p>
+<p>一方、1行目・4行目の地の文の「言ふ」「もて来ぬ」には敬語がありません。作者（語り手）は翁を敬語で高めていないのです。見つけたばかりの小さな子に翁が尊敬語を使っていることから、翁がこの子を竹の中から現れた特別な存在として扱っている、と読むことができます。</p>
+
+<h3>二人を同時に高める敬語：『源氏物語』</h3>
+<p>次は『源氏物語』の冒頭、地の文です。</p>
+<div class="passage">
+  <ol class="lines">
+    <li>いづれの御時にか、女御、更衣あまた<strong>さぶらひたまひ</strong>ける中に、</li>
+    <li>いとやんごとなき際にはあらぬが、すぐれて時めき<strong>たまふ</strong>ありけり。</li>
+  </ol>
+  <span class="src">『源氏物語』「桐壺」（國文大觀）より（表記を整えた。原文は「おほん時」「きは」「優れて」「有りけり」）</span>
+</div>
+<div class="pair">
+  <div><span class="label">現代語訳（このページで作成）</span>どの帝の御代であったか、女御や更衣が大勢（帝に）お仕え申し上げていらっしゃった中に、それほど重々しい身分ではない方で、とりわけ（帝の）ご寵愛を受けて栄えていらっしゃる方があった。</div>
+  <div><span class="label">敬語の注</span>「御時」：接頭語「御」＝帝への敬意。<br>「さぶらひ」：謙譲語の本動詞「さぶらふ」の連用形（お仕え申し上げる）。<br>「たまひ」「たまふ」：尊敬の補助動詞「たまふ」の連用形・連体形。</div>
+</div>
+<p>地の文なので、敬意の主体はすべて<strong>作者</strong>です。「さぶらひ」は謙譲語なので、お仕えされる<strong>帝</strong>（動作を受ける人）を高めます。すぐ後の「たまひ」は尊敬語なので、お仕えする<strong>女御・更衣</strong>（動作をする人）を高めます。「謙譲語＋尊敬語」の組み合わせは、動作を受ける人と動作をする人の<strong>両方</strong>を同時に高める表現です（二方面への敬語とよばれます）。2行目の「時めきたまふ」は、寵愛を受けているその人（後に光源氏の母となる更衣）を高めています。</p>
+
+<div class="box example worked">
+  <p class="box-title">例題2　誰から誰への敬意か</p>
+  <p>作例「女房、中納言に『姫君は御簾の内に<strong>おはします</strong>。』と<strong>申す</strong>。」の太字の敬語は、それぞれ誰から誰への敬意ですか。</p>
+  <div class="step">ステップ1：地の文か会話文かを分けます。「おはします」は「 」の中なので会話文、「申す」は地の文です。</div>
+  <div class="step">ステップ2：敬意の主体を決めます。会話文の「おはします」は話し手の女房から、地の文の「申す」は作者からの敬意です。</div>
+  <div class="step">ステップ3：種類から対象を決めます。「おはします」は尊敬語なので、御簾の内に「いる」動作をする姫君へ。「申す」は謙譲語なので、女房の「言ふ」を受ける中納言へ。</div>
+  <div class="step">答え：「おはします」＝女房から姫君への敬意。「申す」＝作者から中納言への敬意。</div>
+</div>
+<div class="box point"><p class="box-title">「誰から」は文の場所、「誰へ」は敬語の種類で決める</p><p>① 地の文か会話文か → 敬意の主体（作者か、話し手か）。② 尊敬語・謙譲語・丁寧語のどれか → 敬意の対象（動作をする人・受ける人・聞き手）。二つを別々に決めるのがこつです。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：会話文の敬語を「作者から」とする</p><p>会話文の中の敬語は、作者ではなく<strong>話している人物</strong>の敬意です。「 」の中か外かを最初に確かめましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="敬語から主語をつかむ"><span class="num">6</span>敬語から「誰の動作か」をつかむ</h2>
+<p>導入の『枕草子』の場面を、少し前から読みます。登場するのは、<strong>中宮</strong>（中宮定子）と、作者の清少納言を含む<strong>女房たち</strong>です。身分は中宮のほうがずっと上です。</p>
+<div class="widget" id="kg-widget">
+  <p class="small">下線の語をクリック（またはタブキーで選んでEnterキー）すると、その語の敬語の種類・敬意の向き・動作主が表示されます。</p>
+  <div class="passage">
+    <ol class="lines">
+      <li>雪いと高く降りたるを、例ならず御格子<span class="kg" tabindex="0" role="button" data-kind="謙譲語「まゐらす」の連用形。ここでは「格子をお下ろし申し上げる」と解するのが一般的（別の解釈もある）" data-dir="地の文なので作者から、動作を受ける中宮への敬意" data-subj="動作主：女房たち（作者を含む）">まゐらせ</span>て、</li>
+      <li>炭櫃に火起こして、物語などして集まり<span class="kg" tabindex="0" role="button" data-kind="謙譲語「さぶらふ」（原文の表記は「侍ふ」）の連体形。動詞「集まり」（連用形）の後にあるが、「おそばにお控えする」という意味が残っているので、ここでは本動詞として読む。「中宮のおそばにお控えする」と解するのが一般的（別の解釈もある）" data-dir="地の文なので作者から、仕えられる中宮への敬意" data-subj="動作主：女房たち（作者を含む）"><ruby>侍<rt>さぶら</rt></ruby>ふ</span>に、</li>
+      <li>「少納言よ、香炉峰の雪はいかならむ」と<span class="kg" tabindex="0" role="button" data-kind="尊敬語「仰す」の未然形＋尊敬の助動詞「らる」の連用形＋過去の助動詞「けり」の已然形（おっしゃった）" data-dir="地の文なので作者から、動作をする中宮への敬意（尊敬を重ねた強い敬意）" data-subj="動作主：中宮">仰せられけれ</span>ば、</li>
+      <li>御格子<span class="kg" tabindex="0" role="button" data-kind="敬語ではない。「上げ」＋使役の助動詞「さす」の連用形「させ」（上げさせる）" data-dir="敬語がないので、動作主は作者が高めない人物" data-subj="動作主：作者（清少納言）。上げるのは作者に言われた女房">上げさせ</span>て、御簾高く<span class="kg" tabindex="0" role="button" data-kind="敬語ではない。「巻き上げ」＋完了の助動詞「たり」の已然形（巻き上げた）" data-dir="敬語がないので、動作主は作者が高めない人物" data-subj="動作主：作者（清少納言）">巻き上げたれ</span>ば、</li>
+      <li><span class="kg" tabindex="0" role="button" data-kind="「笑は」＋尊敬の助動詞「す」の連用形「せ」＋尊敬の補助動詞「たまふ」（お笑いになる）" data-dir="地の文なので作者から、動作をする中宮への敬意（尊敬を重ねた最も高い敬意）" data-subj="動作主：中宮">笑はせたまふ</span>。</li>
+    </ol>
+    <span class="src">『枕草紙』（國文大觀）より（表記を整えた。原文は「す櫃」「火起して」「香爐峰」「あげさせて」「卷き上げたれば」）。『枕草子』には系統の違う本文があり、教科書の本文と語句が少し違うことがあります。</span>
+  </div>
+  <div id="kg-info" aria-live="polite">語を選ぶと、この欄に説明が出ます。</div>
+</div>
+<div class="pair">
+  <div><span class="label">現代語訳（このページで作成）</span>雪がたいそう高く降り積もっているのに、いつもと違って御格子をお下ろし申し上げて（別の解釈もある）、炭櫃に火をおこして、（女房たちが）話などをして集まって（中宮のおそばに）お控えしていると、（中宮が）「少納言よ、香炉峰の雪はどうであろうか。」とおっしゃったので、（私は女房に）御格子を上げさせて、御簾を高く巻き上げたところ、（中宮は）お笑いになる。</div>
+  <div><span class="label">語注</span>御格子：建物の外回りの格子戸。「御」は中宮への敬意。<br>炭櫃：いろりのような暖房具。<br>少納言：作者の清少納言のこと。<br>香炉峰：中国の山の名。中宮の問いは、唐の詩人白居易の詩（「重題」）に「香爐峰雪撥簾看」という、香炉峰の雪を簾をかかげて眺めるという句があることを踏まえている。原文の続きに「人々も皆さる事は知り、歌などにさへうたへど」（ほかの女房たちも皆そういうことは知っていて、歌などにまでうたうけれど）とある。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3　書かれていない主語を補う</p>
+  <p>3行目「仰せられけれ」、4行目「上げさせ」、5行目「笑はせたまふ」の主語を、敬語を手掛かりに答えなさい。</p>
+  <div class="step">ステップ1：人物と身分を確かめます。中宮（高い）と、作者を含む女房たち（中宮に仕える）です。地の文の敬語は作者からの敬意なので、作者が高めるのは中宮です。</div>
+  <div class="step">ステップ2：3行目「仰せられけれ」は尊敬語「仰す」＋尊敬の助動詞「らる」（＋過去の「けり」）で、作者が動作主を強く高めています。主語は<strong>中宮</strong>です。会話の中で「少納言よ」と呼びかけていることも、話し手が少納言以外の人物であることと合います。</div>
+  <div class="step">ステップ3：4行目「上げさせ」「巻き上げたれ」には敬語がありません。作者が高めない人物、つまり<strong>作者自身</strong>の動作です。「させ」の後に「給ふ」がなく、女房に上げさせる（使役）という意味です。</div>
+  <div class="step">ステップ4：5行目「笑はせたまふ」は尊敬の「す」＋尊敬の「たまふ」で、最も高い敬意です。主語は<strong>中宮</strong>です。文脈でも、中宮の問いかけに作者が御簾を巻き上げるという行動で応え、それを見た中宮が笑った、と筋が通ります（導入の問いの答え）。</div>
+</div>
+<div class="box point"><p class="box-title">主語を補う手順</p><p>① 登場人物と身分の上下を確かめる　② 述語の敬語を見る（尊敬語があれば、主語は高められる人物。敬語がなければ、作者が高めない人物や作者自身）　③ 謙譲語があれば、動作を受ける側に高められる人物がいる　④ 最後に文脈（話の筋・会話の内容）で確かめる。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：「させ」「せ」をいつも尊敬と読む</p><p>「す・さす」は、「給ふ」などの尊敬語と重なり、使役の相手がいないときに尊敬になります。4行目の「上げさせて」のように後に尊敬語がなく、「（誰かに）～させる」と読める場合は使役です。</p></div>
+<div class="box caution"><p class="box-title">敬語は強い手掛かりだが、最後は文脈で確かめる</p><p>会話文では、ふつう話し手は自分の動作に尊敬語を使いません。また、身分の上下は場面や相手によって変わります。「ば」「に」「を」などで文がつながるところでは主語が変わることが多く（例：3行目から4行目、4行目から5行目）、「て」でつながるところでは同じ主語が続くことが多いのですが、これも目安です。敬語で見当をつけ、話の筋で確かめましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>敬語</dt><dd>話し手・書き手が、話題の人物や聞き手・読み手への敬意を表す言葉。古文では尊敬語・謙譲語・丁寧語に分ける。</dd>
+    <dt>尊敬語</dt><dd>動作をする人（動作の主体）を高める敬語。例：おはす、のたまふ、御覧ず、給ふ（四段）。</dd>
+    <dt>謙譲語</dt><dd>動作を受ける人（動作の相手）を高める敬語。例：申す、聞こゆ、参る、奉る。</dd>
+    <dt>丁寧語</dt><dd>聞き手・読み手を高め、丁寧に述べる敬語。例：侍り、さぶらふ（候ふ）。</dd>
+    <dt>本動詞・補助動詞</dt><dd>本動詞はそれ自体の意味で使う動詞。補助動詞はほかの動詞の連用形に付き、もとの意味が薄れて敬意などを添える動詞（例：書き給ふ、書き奉る、書き侍り）。</dd>
+    <dt>敬意の主体・敬意の対象</dt><dd>主体は敬意を払う人（地の文では作者、会話文では話し手）。対象は高められる人（尊敬語は動作をする人、謙譲語は動作を受ける人、丁寧語は聞き手・読み手）。</dd>
+    <dt>地の文・会話文</dt><dd>地の文は語り手（書き手）が出来事を語る部分。会話文は登場人物が話した言葉（心内語・手紙も同じように考える）。</dd>
+    <dt>二方面への敬語</dt><dd>謙譲語と尊敬語を重ね、動作を受ける人と動作をする人の両方を同時に高める表現（例：さぶらひたまふ）。</dd>
+    <dt>最高敬語（二重敬語）</dt><dd>尊敬の助動詞「す・さす」＋「給ふ」などのように尊敬を重ねた表現。地の文では多くの場合、天皇・中宮など特に身分の高い人物に使われる。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>（O1）尊敬語は動作をする人、謙譲語は動作を受ける人、丁寧語は聞き手・読み手を高める。敬意を払うのは、その言葉を発した人。</li>
+    <li>（O2）敬語の動詞は「もとの語」に置き換えて意味を確かめる。ほかの動詞の連用形に付くときは補助動詞（お～になる・～申し上げる・～ます）。</li>
+    <li>（O3）「誰から」は地の文（作者）か会話文（話し手）かで、「誰へ」は敬語の種類で決める。謙譲語＋尊敬語は二人を同時に高める。</li>
+    <li>（O4）主語が書かれていないときは、人物の身分を確かめ、述語の敬語の有無と種類で動作主の見当をつけ、話の筋で確かめる。「せ給ふ」などの尊敬を重ねた形は、特に身分の高い人物の動作であることが多い。</li>
+  </ul>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。問8〜問10の文章は、この問題のために作った作例です。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>古文の<strong>謙譲語</strong>が高めるのは誰ですか。</p>
+  <div class="choices"><button>動作をする人</button><button data-correct="true">動作を受ける人</button><button>話し手自身</button><button>文章の読み手</button></div>
+  <span class="result"></span>
+  <div class="explain">謙譲語は、動作を受ける人（動作の相手）を高めます。「動作をする人」を高めるのは尊敬語、「読み手」を高めるのは丁寧語です。「話し手自身」を選んだ人は、「謙譲語＝へりくだる」という現代語の感覚にひっぱられています。古文の地の文では、作者が登場人物どうしの動作に謙譲語を使い、受ける人を高めます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>「御覧ず」の敬語の種類と、もとの語（敬語でない語）の組み合わせとして正しいものはどれですか。</p>
+  <div class="choices"><button data-correct="true">尊敬語・見る</button><button>謙譲語・見る</button><button>尊敬語・聞く</button><button>丁寧語・あり</button></div>
+  <span class="result"></span>
+  <div class="explain">「御覧ず」は「見る」の尊敬語で、「ご覧になる」と訳します。現代語の「ご覧になる」と同じく尊敬語です。「聞く」の尊敬語は「聞こしめす」、「あり」の丁寧語は「侍り・さぶらふ」です。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="言ふ|いふ|言う|いう">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>尊敬語「のたまふ」を、もとの語（敬語でない古文の動詞）に直して書きなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">答えは「言ふ」です。「のたまふ」は「言ふ」の尊敬語で「おっしゃる」と訳します。同じく「言ふ」の尊敬語に「仰す」、謙譲語に「申す」「聞こゆ」があります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>次の作例のうち、太字の敬語が<strong>補助動詞</strong>として使われているものはどれですか。</p>
+  <div class="choices">
+    <button>中納言、姫君に文を<strong>奉る</strong>。</button>
+    <button data-correct="true">中納言、姫君への文を書き<strong>奉る</strong>。</button>
+    <button>宮、中納言に御衣を<strong>給ふ</strong>。</button>
+    <button>「文はかしこに<strong>侍り</strong>。」</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「書き奉る」の「奉る」は、動詞「書く」の連用形に付いて「お書き申し上げる」と敬意を添える補助動詞です。1つ目の「奉る」（差し上げる）、3つ目の「給ふ」（お与えになる）、4つ目の「侍り」（ございます）は、どれもそれ自体が「与える」「ある」の意味をもつ本動詞です。直前が動詞の連用形かどうかを見ましょう。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>『竹取物語』の翁の言葉「子になり<strong>給ふ</strong>べき人なんめり」（sec-3 の3行目）の「給ふ」は、誰から誰への敬意を表していますか。</p>
+  <div class="choices"><button>作者から翁への敬意</button><button>作者から小さな人（かぐや姫）への敬意</button><button data-correct="true">翁から小さな人（かぐや姫）への敬意</button><button>翁から嫗（妻）への敬意</button></div>
+  <span class="result"></span>
+  <div class="explain">「 」の中の会話文なので、敬意の主体は話し手の翁です（作者からとした人は、地の文か会話文かの確認が抜けています）。「給ふ」は尊敬語なので、敬意の対象は「子になる」動作をする人、つまり竹の中の小さな人です。嫗はこの場面にはまだ登場せず、動作とも関係しません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>『源氏物語』の「女御、更衣あまた<strong>さぶらひ</strong><strong>たまひ</strong>ける」（sec-3）の二つの敬語についての説明として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>「さぶらひ」も「たまひ」も、作者から女御・更衣への敬意である。</button>
+    <button data-correct="true">「さぶらひ」は作者から帝への敬意、「たまひ」は作者から女御・更衣への敬意である。</button>
+    <button>「さぶらひ」は作者から女御・更衣への敬意、「たまひ」は作者から帝への敬意である。</button>
+    <button>「さぶらひ」は女御・更衣から帝への敬意、「たまひ」は作者から女御・更衣への敬意である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">地の文なので、敬意の主体はどちらも作者です（4つ目は、女御・更衣を敬意の主体にした点が誤り）。「さぶらひ」は謙譲語で、お仕えされる帝（動作を受ける人）を高めます。「たまひ」は尊敬語で、お仕えする女御・更衣（動作をする人）を高めます。1つ目は謙譲語の対象を、3つ目は二つの対象を取り違えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O4</span></div>
+  <p>『枕草子』の4行目「御格子<strong>上げさせ</strong>て」（sec-4）の主語と、「させ」の意味の組み合わせとして正しいものはどれですか。</p>
+  <div class="choices"><button>中宮・尊敬</button><button>作者・尊敬</button><button data-correct="true">作者・使役</button><button>中宮・使役</button></div>
+  <span class="result"></span>
+  <div class="explain">「させ」の後に「給ふ」などの尊敬語がなく、「（ほかの女房に）御格子を上げさせる」と読めるので使役です。尊敬語がないので、動作主は作者が高めない人物、つまり作者自身です。「させ」を尊敬と考えて中宮を選んだ人は、「す・さす」が尊敬になるのは尊敬語と重なるときだ、という点を確かめましょう。</div>
+</div>
+
+<div class="box source">
+  <p class="box-title">問8〜問10の文章（作例）</p>
+  <p>少将（若い貴族の男性）が、姫君に手紙を送った場面です。</p>
+  <div class="passage">
+    <ol class="lines">
+      <li>少将、姫君の御もとに文を奉りたまふ。</li>
+      <li>女房、これを取りて、「少将殿より。」と申せば、</li>
+      <li>うち見たまひて、ものものたまはず。</li>
+      <li>女房、「御返り事聞こえさせたまへ。」と申す。</li>
+    </ol>
+    <span class="src">このページのために作った文章</span>
+  </div>
+  <p class="small">現代語訳：少将が、姫君のもとに手紙を差し上げなさる。女房が、これを受け取って「少将様から（のお手紙です）。」と申し上げると、（　　）はちらりとご覧になって、何もおっしゃらない。女房は「お返事を申し上げなさいませ。」と申し上げる。</p>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O3</span></div>
+  <p>1行目「奉りたまふ」の「奉り」と「たまふ」は、それぞれ誰を高めていますか。</p>
+  <div class="choices">
+    <button>奉り：少将　／　たまふ：姫君</button>
+    <button data-correct="true">奉り：姫君　／　たまふ：少将</button>
+    <button>奉り：姫君　／　たまふ：姫君</button>
+    <button>奉り：女房　／　たまふ：少将</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「奉り」は「与ふ」の謙譲語（差し上げる）で、手紙を受け取る姫君（動作を受ける人）を高めます。「たまふ」は尊敬の補助動詞で、手紙を差し上げる少将（動作をする人）を高めます。二方面への敬語で、どちらも地の文なので作者からの敬意です。女房はこの動作に関係していません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O3・O4</span></div>
+  <p>4行目「御返り事<strong>聞こえさせ</strong><strong>たまへ</strong>」についての説明として最も適当なものはどれですか。</p>
+  <div class="choices">
+    <button>「聞こえさせ」も「たまへ」も、作者から姫君への敬意を表す。</button>
+    <button>「聞こえさせ」は女房から姫君への敬意、「たまへ」は女房から少将への敬意を表す。</button>
+    <button data-correct="true">「聞こえさせ」は女房から少将への敬意、「たまへ」は女房から姫君への敬意を表す。</button>
+    <button>「聞こえさせ」は謙譲語なので、返事を書く動作をするのは女房自身である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">会話文なので敬意の主体は話し手の女房です（1つ目は作者からとした点が誤り）。「聞こえさす」は「言ふ」の謙譲語（申し上げる）で、返事を受け取る少将を高めます。「たまへ」は尊敬の補助動詞「たまふ」の命令形で、返事を申し上げる動作をする姫君を高め、「申し上げなさいませ」と促しています。4つ目は、謙譲語を「話し手がへりくだる語」と考えた誤りです。謙譲語は動作を受ける人を高めるだけで、動作主が話し手とは限りません。</div>
+</div>
+
+<div class="q" data-type="open" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O4</span></div>
+  <p>3行目「うち見たまひて、ものものたまはず」の主語を補い、そう判断できる理由を、敬語と文脈の両方に触れて説明しなさい（100字程度）。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　主語は姫君。「たまひ」「のたまは」は尊敬語で作者が動作主を高めているので、地の文で尊敬語が使われない女房ではない。また、女房が差し出した少将の手紙を見るのは受け取った姫君であり、4行目で女房が返事を促す相手とも合う。（108字）</p>
+    <p><strong>採点の観点</strong>　① 主語を「姫君」としている。② 「たまひ」または「のたまは」が尊敬語であることを根拠にしている。③ 2行目の女房の動作（取りて・申せば）に尊敬語がないことなど、女房ではない理由に触れている。④ 手紙の受け取り手であることや4行目の会話など、文脈上の根拠に触れている。①〜④がそろえば満点、①と②だけなら半分程度。</p>
+  </div>
+  <div class="explain">敬語で「高められる人物の動作」と見当をつけ（尊敬語がある→女房ではない）、話の筋で確かめる（手紙を受け取ったのは姫君、返事を求められているのも姫君）という、sec-4 の手順どおりに考えます。少将は手紙を送った側で、この場にいないので主語になりません。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『国語』の出題範囲）</p>
+  <p>令和9年度共通テスト実施要項は、『国語』について「『現代の国語』及び『言語文化』を出題範囲とし，近代以降の文章及び古典（古文，漢文）を出題する」としており、分野別の大問数と配点は「古典が２問90点（古文・漢文各45点）」です。この時間の内容は「言語文化」の古文の学習なので、出題範囲に含まれます。</p>
+  <p>問題作成方針は、『国語』で「言語を手掛かりとしながら，文章の内容を多面的・多角的な視点から解釈」する力などを求め、古典（古文，漢文）を題材の一つとしています。また、出題形式は「多肢選択式又は数値や記号等で解答する形式」とされています。敬語から「誰の動作か」「誰への敬意か」を捉えることは、主語の書かれていない古文を叙述に即して読むための、言語を手掛かりにした読み方の基礎です。どのような設問になるかは資料に書かれていないので、ここでは特定の形式を前提にせず、選択式の問題で確かめました。</p>
+  <p>個別試験：基準とする大学が未指定のため、出題範囲・形式はまだ調べていません。問10のように、根拠を示して説明する練習もしておくと、記述で答える場面にも対応しやすくなります。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">和歌の修辞（言文-014）</p>
+  <p>物語の中の和歌は、誰が誰に贈った歌なのかが分かって初めて意味が通ります。この時間の敬語の読み方は、歌の詠み手と相手を捉えるときにも使います。次の時間は、枕詞・掛詞・縁語など和歌に多く見られる修辞を、和歌を読む中で確かめ、その効果を味わいます。</p>
+  <p class="small">この時間では扱わないこと：二種類の用法をもつ敬語（下二段活用の「給ふ」、「さぶらふ」「侍り」の謙譲と丁寧の見分けなど）とその整理は古典探究の古探-051、助動詞「る・らる」「す・さす」の意味の区別は言文-008、歌物語で主語の省略と敬語から人物関係を捉える読み方は古探-008で扱います。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>言文-012　助詞の意味・用法</div>
+  <div><span class="label">次の時間</span>言文-014　和歌の修辞</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_kokugo/言文-013「敬語の大体」（学習指導要領 言語文化〔知識及び技能〕(2)ウ、〔思考力，判断力，表現力等〕B(1)ア、解説 p.119）。あわせて解説 p.127-128（B(1)ア：叙述を基に的確に捉える、人物の関係の把握）、p.137（内容の取扱い(2)イ：文語のきまりは読むことの指導に即して扱い、網羅的・詳細にしない）を参照。</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第1節 国語、同解説 国語編（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf ／ https://www.mext.go.jp/content/20250410-mxt_kyoiku01-100002620_02.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・問題作成方針（独立行政法人大学入試センター）</li>
+    <li>編修趣意書『改訂版 言語文化』（言文104-901、数研出版）：「古文チェックポイント」の項目「敬語」（地図の † の出典 S11）</li>
+    <li>古典の原文（すべてウィキソース日本語版の著作権の保護期間が終わった本文と照合し、表記（漢字・仮名の当て方、句読点、かぎかっこ）だけを整えた。語形・助動詞・助詞は変えていない。取得した本文は sources/text/ に保存）
+      <ul>
+        <li>『竹取物語』（國民文庫）冒頭「翁いふやう、…家にもてきぬ」 https://ja.wikisource.org/wiki/%E7%AB%B9%E5%8F%96%E7%89%A9%E8%AA%9E%20%28%E5%9C%8B%E6%B0%91%E6%96%87%E5%BA%AB%29 （保存：ws_taketori_kokumin.txt）</li>
+        <li>『源氏物語』（國文大觀）上「桐壺」冒頭 https://ja.wikisource.org/wiki/%E6%BA%90%E6%B0%8F%E7%89%A9%E8%AA%9E%20%28%E5%9C%8B%E6%96%87%E5%A4%A7%E8%A7%80%29/%E4%B8%8A （保存：ws_genji_kokubun_jo.txt）</li>
+        <li>『枕草紙』（國文大觀）「雪いと高く降りたるを」の段 https://ja.wikisource.org/wiki/%E6%9E%95%E8%8D%89%E7%B4%99%20%28%E5%9C%8B%E6%96%87%E5%A4%A7%E8%A7%80%29 （保存：ws_makura_kokubun.txt）</li>
+        <li>語注の白居易の詩句：維基文庫（ウィキソース中国語版）「重題（白居易）」https://zh.wikisource.org/wiki/%E9%87%8D%E9%A1%8C_(%E7%99%BD%E5%B1%85%E6%98%93) 。この段と白居易の詩「香炉峰下、新卜山居、草堂初成、偶題東壁」を並べて扱う教科書の例：編修趣意書『言語文化』（言文143-901、筑摩書房）</li>
+      </ul>
+      現代語訳・注・作例はこのページのために作成した。</li>
+    <li>中宮定子と清少納言の関係（補足・導入）：編修趣意書『古典探究 古文編 改訂版』（古探050-901、大修館書店）の「［古文の窓①］中宮定子と清少納言」。原文の続きにも、清少納言が中宮に仕える女房（「この宮の人」）として書かれている。</li>
+  </ul>
+  <p>作成：2026-09-29　版：1.1（2026-09-29 クロスチェックによる改修）　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例文・問題・データはこのページのために作成したものです（出典を示したものを除く）。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  var info = document.getElementById("kg-info");
+  var items = document.querySelectorAll("#kg-widget .kg");
+  function show(el) {
+    items.forEach(function (x) { x.classList.remove("on"); });
+    el.classList.add("on");
+    info.textContent = "";
+    var h = document.createElement("strong");
+    var base = el.cloneNode(true);
+    Array.prototype.forEach.call(base.querySelectorAll("rt"), function (r) { r.parentNode.removeChild(r); });
+    h.textContent = "「" + base.textContent + "」";
+    info.appendChild(h);
+    [el.dataset.kind, el.dataset.dir, el.dataset.subj].forEach(function (t) {
+      var p = document.createElement("div");
+      p.textContent = t;
+      info.appendChild(p);
+    });
+  }
+  items.forEach(function (el) {
+    el.addEventListener("click", function () { show(el); });
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(el); }
+    });
+  });
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_kokugo/言文-013",
+  "map": "hs_kokugo",
+  "rid": "言文-013",
+  "title": "敬語の大体",
+  "subject": "言語文化",
+  "unit": {
+    "ref": "hs_kokugo:言文-1",
+    "title": "読むこと（古典：古文）"
+  },
+  "exam": {
+    "共通テスト": "○",
+    "個別試験": ""
+  },
+  "basis": [
+    "知(2)ウ",
+    "B(1)ア"
+  ],
+  "kaisetsu_page": "119",
+  "objectives": [
+    {
+      "id": "O1",
+      "text": "古文の敬語の三つの種類（尊敬語・謙譲語・丁寧語）が、それぞれ誰を高めるのかを説明できる。",
+      "from": "敬語の大体を理解し、尊敬語・謙譲語・丁寧語の別に注意して",
+      "sections": [
+        "sec-1"
+      ],
+      "checks": [
+        "q1",
+        "q8"
+      ]
+    },
+    {
+      "id": "O2",
+      "text": "主な敬語動詞と敬語の補助動詞を見分け、尊敬語・謙譲語・丁寧語のどれかを判別できる。",
+      "from": "尊敬語・謙譲語・丁寧語の別に注意して",
+      "sections": [
+        "sec-2"
+      ],
+      "checks": [
+        "q2",
+        "q3",
+        "q4"
+      ]
+    },
+    {
+      "id": "O3",
+      "text": "地の文と会話文の別に注意して、敬語が誰から誰への敬意を表しているかを判断できる。",
+      "from": "誰に対する敬意かを捉えて",
+      "sections": [
+        "sec-3"
+      ],
+      "checks": [
+        "q5",
+        "q6",
+        "q8",
+        "q9"
+      ]
+    },
+    {
+      "id": "O4",
+      "text": "敬語の有無と種類を手掛かりに、主語が書かれていない文の動作主を補い、人物の関係を捉えて物語の文章を文脈に即して読むことができる。",
+      "from": "物語を読みながら／誰の動作か／文脈に即して読む",
+      "sections": [
+        "sec-4"
+      ],
+      "checks": [
+        "q7",
+        "q9",
+        "q10"
+      ]
+    }
+  ],
+  "key_terms": [
+    {
+      "term": "敬語",
+      "where": "sec-1"
+    },
+    {
+      "term": "尊敬語",
+      "where": "sec-1"
+    },
+    {
+      "term": "謙譲語",
+      "where": "sec-1"
+    },
+    {
+      "term": "丁寧語",
+      "where": "sec-1"
+    },
+    {
+      "term": "補助動詞",
+      "where": "sec-2"
+    },
+    {
+      "term": "敬意の主体・敬意の対象",
+      "where": "sec-3"
+    },
+    {
+      "term": "地の文・会話文",
+      "where": "supp-2"
+    },
+    {
+      "term": "二方面への敬語",
+      "where": "sec-3"
+    },
+    {
+      "term": "最高敬語（二重敬語）",
+      "where": "sec-2"
+    }
+  ],
+  "prerequisites": [
+    {
+      "concept": "現代語の敬語の三種類（尊敬語・謙譲語・丁寧語）",
+      "taught_in": [
+        "jhs_kokugo2/中2-030",
+        "hs_kokugo/現国-007"
+      ],
+      "where": "r1"
+    },
+    {
+      "concept": "歴史的仮名遣いの読み方（語中・語尾のハ行）",
+      "taught_in": [
+        "jhs_kokugo1/中1-109",
+        "hs_kokugo/言文-002"
+      ],
+      "where": "r2"
+    },
+    {
+      "concept": "動詞の活用の種類と活用形（四段活用・サ行変格活用）",
+      "taught_in": [
+        "jhs_kokugo2/中2-101",
+        "hs_kokugo/言文-004"
+      ],
+      "where": "r3"
+    },
+    {
+      "concept": "尊敬の助動詞「る・らる」「す・さす」、使役の「す・さす」",
+      "taught_in": [
+        "hs_kokugo/言文-008"
+      ],
+      "where": "sec-2"
+    },
+    {
+      "concept": "物語の人物の関係と場面の推移を叙述に即して捉える読み方",
+      "taught_in": [
+        "hs_kokugo/言文-011",
+        "jhs_kokugo1/中1-112"
+      ],
+      "where": "sec-4"
+    },
+    {
+      "concept": "本動詞と補助動詞の区別",
+      "taught_in": [],
+      "gap": true,
+      "where": "supp-1"
+    },
+    {
+      "concept": "宮中の人物の身分の上下（帝・中宮・女御・更衣・女房）",
+      "taught_in": [
+        "hs_kokugo/言文-011"
+      ],
+      "gap": false,
+      "where": "supp-3"
+    }
+  ],
+  "out_of_scope": [
+    "二種類の用法をもつ敬語（下二段活用の「給ふ」、尊敬の「奉る」、「さぶらふ」「侍り」の謙譲と丁寧の見分け）とその整理（古探-051）",
+    "助動詞「る・らる」「す・さす」の意味の区別の詳細（言文-008）",
+    "歌物語で主語の省略と敬語から人物関係を捉えて和歌の心情を読む学習（古探-008）",
+    "和歌の修辞（言文-014）"
+  ],
+  "selection_reason": "言語文化の候補として、言文-013 敬語の大体、言文-008 助動詞の意味・用法、言文-026 訓読と訓点（返り点）を比べた。敬語は「誰から誰への敬意か」という抽象的な関係を扱い、謙譲語を「へりくだる語」とする誤解が生じやすい。前提が中学2年の現代語の敬語、歴史的仮名遣い、活用、助動詞と学年・科目をまたぎ、本動詞と補助動詞・地の文と会話文など地図のどの行でも扱わない前提もある（作成時点の判断。現在の地図では、地の文と会話文は言文-013 の要点にある。本動詞と補助動詞はまだどの行にもない）。主語の書かれない古文の読解の土台で正確さの要求も高いため、最も作るのが難しいと判断した。",
+  "sources": [
+    {
+      "name": "高等学校学習指導要領（平成30年告示）第2章第1節 国語",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf",
+      "use": "言語文化 知(2)ウ・B(1)ア・内容の取扱い(2)イ"
+    },
+    {
+      "name": "高等学校学習指導要領（平成30年告示）解説 国語編",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/content/20250410-mxt_kyoiku01-100002620_02.pdf",
+      "use": "p.119（敬語の大体などを古文特有のきまりとして指導）、p.127-128（叙述を基に人物の関係を捉える）、p.137（網羅的・詳細にしない）"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項",
+      "publisher": "独立行政法人大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf&n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%AE%9F%E6%96%BD%E8%A6%81%E9%A0%85.pdf",
+      "use": "『国語』の出題範囲、分野別の大問数と配点"
+    },
+    {
+      "name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針",
+      "publisher": "独立行政法人大学入試センター",
+      "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf&n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%95%8F%E9%A1%8C%E4%BD%9C%E6%88%90%E6%96%B9%E9%87%9D.pdf",
+      "use": "『国語』の問題作成の方針、出題形式"
+    },
+    {
+      "name": "編修趣意書『改訂版 言語文化』（言文104-901）",
+      "publisher": "数研出版（文部科学省公開）",
+      "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041680-25.pdf",
+      "use": "「古文チェックポイント」の項目「敬語」（地図の † の出典 S11）"
+    },
+    {
+      "name": "竹取物語 (國民文庫)",
+      "publisher": "ウィキソース日本語版（パブリックドメインの本文）",
+      "url": "https://ja.wikisource.org/wiki/%E7%AB%B9%E5%8F%96%E7%89%A9%E8%AA%9E%20%28%E5%9C%8B%E6%B0%91%E6%96%87%E5%BA%AB%29",
+      "use": "sec-3 の引用（冒頭、翁の言葉「われ朝ごと夕ごとに見る…子になり給ふべき人なンめり」）。保存：sources/text/ws_taketori_kokumin.txt"
+    },
+    {
+      "name": "源氏物語 (國文大觀)/上",
+      "publisher": "ウィキソース日本語版（パブリックドメインの本文）",
+      "url": "https://ja.wikisource.org/wiki/%E6%BA%90%E6%B0%8F%E7%89%A9%E8%AA%9E%20%28%E5%9C%8B%E6%96%87%E5%A4%A7%E8%A7%80%29/%E4%B8%8A",
+      "use": "sec-3 の引用（桐壺冒頭「いづれのおほん時にか…時めきたまふ有りけり」）。保存：sources/text/ws_genji_kokubun_jo.txt"
+    },
+    {
+      "name": "枕草紙 (國文大觀)",
+      "publisher": "ウィキソース日本語版（パブリックドメインの本文）",
+      "url": "https://ja.wikisource.org/wiki/%E6%9E%95%E8%8D%89%E7%B4%99%20%28%E5%9C%8B%E6%96%87%E5%A4%A7%E8%A7%80%29",
+      "use": "導入・sec-4 の引用（「雪いと高く降りたるを例ならず御格子まゐらせて…笑はせたまふ」）と語注に引いた続きの一文（「人々も皆さる事は知り、歌などにさへうたへど」）。保存：sources/text/ws_makura_kokubun.txt"
+    },
+    {
+      "name": "重題 (白居易)",
+      "publisher": "維基文庫（ウィキソース中国語版。パブリックドメインの本文）",
+      "url": "https://zh.wikisource.org/wiki/%E9%87%8D%E9%A1%8C_(%E7%99%BD%E5%B1%85%E6%98%93)",
+      "use": "sec-4 の語注（白居易の詩句「香爐峰雪撥簾看」、作者：白居易 唐）。取得 2026-09-29、控え：tools/worker/lesson_review_kokugo_evidence.txt"
+    },
+    {
+      "name": "編修趣意書『言語文化』（言文143-901）",
+      "publisher": "筑摩書房（文部科学省公開）",
+      "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041680-29.pdf",
+      "use": "「雪のいと高う降りたるを」と【参考】「香爐峰下、新卜山居、草堂初成、偶題東壁」を並べる教材構成（語注の根拠）"
+    },
+    {
+      "name": "編修趣意書『古典探究 古文編 改訂版』（古探050-901）",
+      "publisher": "大修館書店（文部科学省公開）",
+      "url": "https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/260430/20260420-mxt_ope01-002.pdf",
+      "use": "「［古文の窓①］中宮定子と清少納言」（導入・補足3の「中宮定子」「清少納言」）"
+    }
+  ],
+  "version": "1.1",
+  "generated": "2026-09-29"
+}
+</script>
+</body>
+</html>

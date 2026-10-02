@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>星形七角形の先端の角の和｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.proof ol { margin: 4px 0 4px 1.2em; }
+.proof .tag { font-weight: 700; }
+.widget .w-row { margin: 4px 0; }
+.widget .w-row select { margin-right: 10px; }
+.widget .w-row input[type=range] { width: 200px; max-width: 100%; vertical-align: middle; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>図形の性質</span><span>数Ａ-055</span></div>
+  <h1>星形七角形の先端の角の和</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">活用</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">7つの点を結んでできる星の形の、とがった先の7つの角を合わせると何度になるでしょうか。分度器で測らずに、円周角の定理と円に内接する四角形の性質を使って求め、星形五角形・六角形・八角形などにも広げて考えます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>星形七角形の先端の角の和が頂点の位置によらないことを操作で予想し、7つの頂点を1つの円周上にとって考えてよいことを説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>7つの頂点を1つの円周上にとり、円周角の定理と円に内接する四角形の性質を用いて、星形七角形の先端の角の和を求めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>求め方を振り返り、星形五角形・六角形・八角形などに発展させて先端の角の和を求め、多角形の内角の和と結び付けて説明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-054）</span>2つの円の位置関係と共通接線</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-055）</span>星形七角形の先端の角の和</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-056）</span>作図（内分点・外分点、円の接線）</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」、中学1年「平面図形」「空間図形」。この時間は、円周角の定理（中3-087〜089・数Ａ-047）、円に内接する四角形の性質（数Ａ-048）、三角形・多角形の内角の和（中2-048・049）を使う活用の時間です。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：使う既習事項</h2>
+<div class="box review">
+  <p class="box-title">この時間に使うこと（中2-048・049、中3-087〜089、数Ａ-047・048）</p>
+  <ul>
+    <li><strong>円周角の定理</strong>（中3-087〜089・数Ａ-047）：1つの弧に対する円周角は、その弧に対する中心角の半分。同じ弧に対する円周角は等しい。</li>
+    <li><strong>円に内接する四角形の性質</strong>（数Ａ-048）：円に内接する四角形の対角の和は \( 180^\circ \)。</li>
+    <li><strong>三角形・多角形の内角の和</strong>（中2-048・049）：三角形の内角の和は \( 180^\circ \)、\( n \) 角形の内角の和は \( 180^\circ\times(n-2) \)。</li>
+  </ul>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中3-087</span></div>
+  <p>円 O の弧 AB に対する中心角が \( 100^\circ \) のとき、弧 AB に対する円周角の大きさはどれですか。</p>
+  <div class="choices">
+    <button>\( 100^\circ \)</button>
+    <button>\( 200^\circ \)</button>
+    <button data-correct="true">\( 50^\circ \)</button>
+    <button>\( 80^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">円周角は中心角の半分なので \( 100^\circ\div2=50^\circ \) です。\( 100^\circ \) は中心角と同じ、\( 200^\circ \) は2倍にしています。\( 80^\circ \) は \( 180^\circ-100^\circ \) で、円に内接する四角形の対角と取り違えています。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-048</span></div>
+  <p>円に内接する四角形 ABCD で \( \angle\mathrm{A}=70^\circ \) のとき、\( \angle\mathrm{C} \) の大きさはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 110^\circ \)</button>
+    <button>\( 70^\circ \)</button>
+    <button>\( 290^\circ \)</button>
+    <button>\( 20^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">円に内接する四角形の対角の和は \( 180^\circ \) なので、\( \angle\mathrm{C}=180^\circ-70^\circ=110^\circ \) です。\( 70^\circ \) は対角を等しいとした誤り、\( 290^\circ \) は \( 360^\circ-70^\circ \)、\( 20^\circ \) は \( 90^\circ-70^\circ \) とした誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中2-049</span></div>
+  <p>七角形の内角の和はどれですか。</p>
+  <div class="choices">
+    <button>\( 1260^\circ \)</button>
+    <button>\( 720^\circ \)</button>
+    <button>\( 1080^\circ \)</button>
+    <button data-correct="true">\( 900^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">七角形は1つの頂点から引いた対角線で \( 7-2=5 \) 個の三角形に分けられるので、\( 180^\circ\times5=900^\circ \) です。\( 1260^\circ \) は \( 180^\circ\times7 \) で、三角形の数を辺の数と同じにしています。\( 720^\circ \) は \( 180^\circ\times(7-3) \) で、1つの頂点から引ける対角線の数（4本）と取り違えています。\( 1080^\circ \) は八角形の内角の和です。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：とがった先の7つの角の和は？</h2>
+<div class="box think">
+  <p class="box-title">2つの星形七角形</p>
+  <p>7つの点 \( \mathrm{A}_1 \)〜\( \mathrm{A}_7 \) を、各点から (i) 2つ先の点、(ii) 3つ先の点 と結ぶと、図1のような星の形ができます。学習指導要領の解説にも、このような2つの星形七角形の図が例として挙げられています。</p>
+  <ul>
+    <li>① (i)、(ii) それぞれについて、先端の7つの角（橙の弧）の和は何度でしょうか。</li>
+    <li>② 点の位置を変えると、和は変わるでしょうか。</li>
+  </ul>
+  <p>予想してから読み進めましょう。②は「3 場面を整理して予想する」の操作部品で確かめ、①は「4 7つの頂点を円周上にとって求める」で答えます。</p>
+</div>
+<figure>
+<div class="fig-row">
+<!--svg:f055a1-->
+<svg viewBox="0 0 178 185" width="178" role="img" aria-label="7つの点 A₁〜A₇ を2つ先の点と結ぶで結んだ星形七角形。先端の7つの角に橙の弧。7つの点は1つの円周上にはない" data-fig="f055a1" data-s="62.000000" data-ox="90.550000" data-oy="102.600000">
+<line x1="93.6" y1="35.6" x2="23.6" y2="121.2" stroke="currentColor" stroke-width="1.5" data-seg="A₁A₃"/>
+<line x1="93.6" y1="35.6" x2="153.8" y2="115" stroke="currentColor" stroke-width="1.5" data-seg="A₁A₆"/>
+<line x1="33.5" y1="64.2" x2="59.5" y2="163.4" stroke="currentColor" stroke-width="1.5" data-seg="A₂A₄"/>
+<line x1="33.5" y1="64.2" x2="140.2" y2="58" stroke="currentColor" stroke-width="1.5" data-seg="A₂A₇"/>
+<line x1="23.6" y1="121.2" x2="122.8" y2="159.6" stroke="currentColor" stroke-width="1.5" data-seg="A₃A₅"/>
+<line x1="59.5" y1="163.4" x2="153.8" y2="115" stroke="currentColor" stroke-width="1.5" data-seg="A₄A₆"/>
+<line x1="122.8" y1="159.6" x2="140.2" y2="58" stroke="currentColor" stroke-width="1.5" data-seg="A₅A₇"/>
+<path d="M101.5,46 A13,13 0 0 1 85.4,45.7" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="1"/>
+<path d="M46.5,63.4 A13,13 0 0 1 36.8,76.7" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="2"/>
+<path d="M31.8,111.1 A13,13 0 0 1 35.7,125.9" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="3"/>
+<path d="M56.2,150.8 A13,13 0 0 1 71.1,157.4" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="4"/>
+<path d="M110.7,154.9 A13,13 0 0 1 125,146.8" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="5"/>
+<path d="M142.2,120.9 A13,13 0 0 1 145.9,104.6" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="6"/>
+<path d="M138,70.8 A13,13 0 0 1 127.2,58.7" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="7"/>
+<circle cx="93.65" cy="35.64" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₁" data-x="0.050000" data-y="1.080000"/>
+<circle cx="33.51" cy="64.16" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₂" data-x="-0.920000" data-y="0.620000"/>
+<circle cx="23.59" cy="121.20" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₃" data-x="-1.080000" data-y="-0.300000"/>
+<circle cx="59.55" cy="163.36" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₄" data-x="-0.500000" data-y="-0.980000"/>
+<circle cx="122.79" cy="159.64" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₅" data-x="0.520000" data-y="-0.920000"/>
+<circle cx="153.79" cy="115.00" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₆" data-x="1.020000" data-y="-0.200000"/>
+<circle cx="140.15" cy="57.96" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₇" data-x="0.800000" data-y="0.720000"/>
+<text x="6" y="16" text-anchor="start" font-size="12" fill="currentColor">(i) 2つ先の点と結ぶ</text>
+<text x="81" y="31.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₁</text>
+<text x="22.5" y="67.3" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₂</text>
+<text x="12.6" y="125.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₃</text>
+<text x="54.6" y="177.1" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₄</text>
+<text x="125.5" y="174.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₅</text>
+<text x="164.8" y="118.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₆</text>
+<text x="143.6" y="51.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₇</text>
+</svg>
+<!--/svg:f055a1-->
+<!--svg:f055a2-->
+<svg viewBox="0 0 178 185" width="178" role="img" aria-label="7つの点 A₁〜A₇ を 3つ先の点と結ぶで結んだ星形七角形。先端の7つの角に橙の弧。7つの点は1つの円周上にはない" data-fig="f055a2" data-s="62.000000" data-ox="90.550000" data-oy="102.600000">
+<line x1="93.6" y1="35.6" x2="59.5" y2="163.4" stroke="currentColor" stroke-width="1.5" data-seg="A₁A₄"/>
+<line x1="93.6" y1="35.6" x2="122.8" y2="159.6" stroke="currentColor" stroke-width="1.5" data-seg="A₁A₅"/>
+<line x1="33.5" y1="64.2" x2="122.8" y2="159.6" stroke="currentColor" stroke-width="1.5" data-seg="A₂A₅"/>
+<line x1="33.5" y1="64.2" x2="153.8" y2="115" stroke="currentColor" stroke-width="1.5" data-seg="A₂A₆"/>
+<line x1="23.6" y1="121.2" x2="153.8" y2="115" stroke="currentColor" stroke-width="1.5" data-seg="A₃A₆"/>
+<line x1="23.6" y1="121.2" x2="140.2" y2="58" stroke="currentColor" stroke-width="1.5" data-seg="A₃A₇"/>
+<line x1="59.5" y1="163.4" x2="140.2" y2="58" stroke="currentColor" stroke-width="1.5" data-seg="A₄A₇"/>
+<path d="M96.6,48.3 A13,13 0 0 1 90.3,48.2" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="1"/>
+<path d="M45.5,69.2 A13,13 0 0 1 42.4,73.7" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="2"/>
+<path d="M35,115 A13,13 0 0 1 36.6,120.6" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="3"/>
+<path d="M62.9,150.8 A13,13 0 0 1 67.4,153" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="4"/>
+<path d="M113.9,150.1 A13,13 0 0 1 119.8,147" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="5"/>
+<path d="M140.8,115.6 A13,13 0 0 1 141.8,109.9" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="6"/>
+<path d="M132.3,68.3 A13,13 0 0 1 128.7,64.2" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="7"/>
+<circle cx="93.65" cy="35.64" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₁" data-x="0.050000" data-y="1.080000"/>
+<circle cx="33.51" cy="64.16" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₂" data-x="-0.920000" data-y="0.620000"/>
+<circle cx="23.59" cy="121.20" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₃" data-x="-1.080000" data-y="-0.300000"/>
+<circle cx="59.55" cy="163.36" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₄" data-x="-0.500000" data-y="-0.980000"/>
+<circle cx="122.79" cy="159.64" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₅" data-x="0.520000" data-y="-0.920000"/>
+<circle cx="153.79" cy="115.00" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₆" data-x="1.020000" data-y="-0.200000"/>
+<circle cx="140.15" cy="57.96" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₇" data-x="0.800000" data-y="0.720000"/>
+<text x="6" y="16" text-anchor="start" font-size="12" fill="currentColor">(ii) 3つ先の点と結ぶ</text>
+<text x="81" y="31.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₁</text>
+<text x="22.5" y="67.3" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₂</text>
+<text x="12.6" y="125.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₃</text>
+<text x="54.6" y="177.1" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₄</text>
+<text x="125.5" y="174.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₅</text>
+<text x="164.8" y="118.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₆</text>
+<text x="143.6" y="51.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₇</text>
+</svg>
+<!--/svg:f055a2-->
+</div>
+  <figcaption>図1　星形七角形。(i) 各点を2つ先の点と結んだもの、(ii) 3つ先の点と結んだもの。橙の弧は先端の角。7つの点は1つの円周上にはない（学習指導要領解説 p.90 の図を参考に、学習用に作成した図）</figcaption>
+</figure>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="場面を整理して予想する"><span class="num">3</span>場面を整理して予想する</h2>
+<p>このページでは、7つの点 \( \mathrm{A}_1 \)、\( \mathrm{A}_2 \)、…、\( \mathrm{A}_7 \) が、この順に結ぶとへこみのない七角形（どの内角も \( 180^\circ \) より小さい七角形）の頂点になっているとします。各点を2つ先の点と結んだ図形を<strong>星形七角形 (i)</strong>、3つ先の点と結んだ図形を<strong>星形七角形 (ii)</strong> とよびます（このページでの呼び方。\( \mathrm{A}_7 \) の次は \( \mathrm{A}_1 \) にもどって数えます）。</p>
+<p>点 \( \mathrm{A}_1 \) で、(i) では \( \mathrm{A}_3 \) と \( \mathrm{A}_6 \)（2つ前）、(ii) では \( \mathrm{A}_4 \) と \( \mathrm{A}_5 \)（3つ前）が結ばれます。点 \( \mathrm{A}_1 \) の<strong>先端の角</strong>は、(i) では \( \angle\mathrm{A}_3\mathrm{A}_1\mathrm{A}_6 \)、(ii) では \( \angle\mathrm{A}_4\mathrm{A}_1\mathrm{A}_5 \) です。</p>
+<h3>操作して確かめよう：点の位置を変える</h3>
+<p>星形の種類と形を選び、つまみで点を動かします。つまみが 0 のとき7つの点は1つの円周上にあり、右へ動かすと円周から離れていきます。7つの先端の角と、その和を見ましょう。</p>
+<div class="widget" id="w1">
+  <div class="w-row"><label for="w1-s">星形：</label><select id="w1-s"><option value="2" selected>(i) 2つ先と結ぶ</option><option value="3">(ii) 3つ先と結ぶ</option></select>
+    <label for="w1-f">形：</label><select id="w1-f"><option value="A" selected>形A</option><option value="B">形B</option><option value="C">形C（横長）</option></select></div>
+  <div class="w-row"><label for="w1-t">円周からのずれ：</label><input type="range" id="w1-t" min="0" max="10" step="1" value="10" aria-describedby="w1-out"></div>
+  <div><svg id="w1-svg" viewBox="0 0 340 270" width="340" role="img" aria-label="7つの点と星形七角形。先端の角に橙の弧。灰の破線の円は、つまみが 0 のときに7つの点がのる円"></svg></div>
+  <p class="w-out" id="w1-out" aria-live="polite">星形七角形 (i)、形A、ずれ 10：7つの点は1つの円周上にはありません。先端の角は A₁ 74.0°、A₂ 71.6°、A₃ 81.9°、A₄ 80.6°、A₅ 84.3°、A₆ 84.6°、A₇ 63.0° で、和は 540.0° です。</p>
+  <p class="small">灰の破線の円＝つまみが 0 のときに7つの点がのる円（参考）、実線＝星形七角形の辺、橙の弧＝先端の角。角は小数第2位を四捨五入した値で、和は四捨五入する前の値から計算しています。（スクリプトが動かない場合は、図1と「5 振り返り」の説明で同じことを確かめられます）</p>
+</div>
+<p>どの形にしても、(i) の和は \( 540^\circ \)、(ii) の和は \( 180^\circ \) のまま変わりません。そこで、次のように<strong>予想</strong>します。</p>
+<div class="box point">
+  <p class="box-title">予想と、考え方の方針</p>
+  <p>予想：星形七角形の先端の角の和は、7つの点の位置によらず一定である（(i) と (ii) で値は違う）。</p>
+  <p>方針：和が位置によらず一定なら、考えやすい特別な位置で求めればよい。そこで、<strong>7つの頂点を1つの円周上にとって考える</strong>。円周上にとると、先端の角はすべて円周角になり、円周角の定理が使える。</p>
+</div>
+<p class="small">学習指導要領の解説は、星形七角形の先端の角の和を考える指導について「一つの円周上に 7 つの頂点をとって考えてもよいことを見いだし，円周角の定理や円に内接する四角形の性質などを用いること」を挙げています。</p>
+<div class="box caution"><p class="box-title">注意：操作で確かめたことは、まだ証明ではない</p><p>操作部品で確かめたのは、いくつかの形だけです。「どんな位置でも和が一定」は、この段階では予想です。円周上にとって求めた値が、円周上にない場合にも正しいことは、「5 振り返り」で (i) について円を使わずに確かめます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="円周上にとって求める"><span class="num">4</span>7つの頂点を円周上にとって求める</h2>
+<p>7つの頂点 \( \mathrm{A}_1 \)〜\( \mathrm{A}_7 \) を、この順に1つの円周上にとります。隣り合う2つの頂点の間の、ほかの頂点を含まない弧を<strong>1区間の弧</strong>とよびます（このページでの言い方）。1区間の弧は \( \mathrm{A}_1\mathrm{A}_2 \)、\( \mathrm{A}_2\mathrm{A}_3 \)、…、\( \mathrm{A}_7\mathrm{A}_1 \) の7つです。</p>
+<h3>7つの1区間の弧に対する円周角の和</h3>
+<p>円周角の定理より、1つの弧に対する円周角は、その弧を除いた円周上のどこから見ても同じ大きさです。そこで、7つの1区間の弧に対する円周角の和を、見る点をうまく選んで求めます（図3）。</p>
+<div class="box example proof">
+  <p class="box-title">性質（このページでの「性質★」）とその証明</p>
+  <p><span class="tag">性質★</span>　円周上に順に並んだ7点の、7つの1区間の弧に対する円周角の和は \( 180^\circ \) である。</p>
+  <ol>
+    <li>弧 \( \mathrm{A}_2\mathrm{A}_3 \)、\( \mathrm{A}_3\mathrm{A}_4 \)、\( \mathrm{A}_4\mathrm{A}_5 \)、\( \mathrm{A}_5\mathrm{A}_6 \)、\( \mathrm{A}_6\mathrm{A}_7 \) に対する円周角を、\( \mathrm{A}_1 \) から見た角 \( \angle\mathrm{A}_2\mathrm{A}_1\mathrm{A}_3 \)、…、\( \angle\mathrm{A}_6\mathrm{A}_1\mathrm{A}_7 \) で表す。この5つの和は \( \angle\mathrm{A}_7\mathrm{A}_1\mathrm{A}_2 \) である。</li>
+    <li>残りの弧 \( \mathrm{A}_7\mathrm{A}_1 \)、\( \mathrm{A}_1\mathrm{A}_2 \) に対する円周角を、\( \mathrm{A}_4 \) から見た角 \( \angle\mathrm{A}_7\mathrm{A}_4\mathrm{A}_1 \)、\( \angle\mathrm{A}_1\mathrm{A}_4\mathrm{A}_2 \) で表す。この2つの和は \( \angle\mathrm{A}_2\mathrm{A}_4\mathrm{A}_7 \) である。</li>
+    <li>四角形 \( \mathrm{A}_1\mathrm{A}_2\mathrm{A}_4\mathrm{A}_7 \) は円に内接し、\( \angle\mathrm{A}_7\mathrm{A}_1\mathrm{A}_2 \) と \( \angle\mathrm{A}_2\mathrm{A}_4\mathrm{A}_7 \) はその対角なので、和は \( 180^\circ \)（数Ａ-048）。</li>
+    <li>①〜③ より、7つの1区間の弧に対する円周角の和は \( 180^\circ \)。（証明終わり）</li>
+  </ol>
+  <p class="small">別の見方：円周角は中心角の半分で（中3-087）、7つの1区間の弧に対する中心角の和は \( 360^\circ \) なので、円周角の和は \( 360^\circ\div2=180^\circ \) とも考えられます。</p>
+</div>
+<figure>
+<!--svg:f055c-->
+<svg viewBox="0 0 192 192" width="192" role="img" aria-label="円周上の7点。四角形 A₁A₂A₄A₇（青の塗り）は円に内接する。A₁ の内角 ∠A₇A₁A₂（橙の弧1本）は弧 A₂A₃〜A₆A₇ の5つの弧に対する円周角の和、A₄ の内角 ∠A₂A₄A₇（橙の弧2本）は弧 A₇A₁、A₁A₂ に対する円周角の和" data-fig="f055c" data-s="72.000000" data-ox="96.000000" data-oy="100.000000">
+<polygon points="96,28 40.8,53.7 65.6,165.3 155,58.7" fill="#1f5fbf" fill-opacity="0.1" stroke="none" data-region="A₁A₂A₄A₇"/>
+<circle cx="96" cy="100" r="72" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円" data-cx="0.000000" data-cy="0.000000" data-r="1.000000"/>
+<line x1="96" y1="28" x2="40.8" y2="53.7" stroke="#1f5fbf" stroke-width="1.5" data-seg="A₁A₂"/>
+<line x1="40.8" y1="53.7" x2="65.6" y2="165.3" stroke="#1f5fbf" stroke-width="1.5" data-seg="A₂A₄"/>
+<line x1="65.6" y1="165.3" x2="155" y2="58.7" stroke="#1f5fbf" stroke-width="1.5" data-seg="A₄A₇"/>
+<line x1="155" y1="58.7" x2="96" y2="28" stroke="#1f5fbf" stroke-width="1.5" data-seg="A₇A₁"/>
+<line x1="96" y1="28" x2="26.5" y2="118.6" stroke="#8a99a8" stroke-width="1.1" stroke-dasharray="4 3" data-seg="A₁A₃"/>
+<line x1="96" y1="28" x2="120.6" y2="167.7" stroke="#8a99a8" stroke-width="1.1" stroke-dasharray="4 3" data-seg="A₁A₅"/>
+<line x1="96" y1="28" x2="165.5" y2="118.6" stroke="#8a99a8" stroke-width="1.1" stroke-dasharray="4 3" data-seg="A₁A₆"/>
+<path d="M110.2,35.4 A16,16 0 0 1 81.5,34.8" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="A₁,A₇,A₂" data-mark="1"/>
+<path d="M62.1,149.6 A16,16 0 0 1 75.9,153 M61.3,146.1 A19.6,19.6 0 0 1 78.2,150.2" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="A₄,A₂,A₇" data-mark="2"/>
+<circle cx="96.00" cy="28.00" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₁" data-x="0.000000" data-y="1.000000"/>
+<circle cx="40.84" cy="53.72" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₂" data-x="-0.766044" data-y="0.642788"/>
+<circle cx="26.45" cy="118.63" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₃" data-x="-0.965926" data-y="-0.258819"/>
+<circle cx="65.57" cy="165.25" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₄" data-x="-0.422618" data-y="-0.906308"/>
+<circle cx="120.63" cy="167.66" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₅" data-x="0.342020" data-y="-0.939693"/>
+<circle cx="165.55" cy="118.63" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₆" data-x="0.965926" data-y="-0.258819"/>
+<circle cx="154.98" cy="58.70" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₇" data-x="0.819152" data-y="0.573576"/>
+<text x="96" y="20.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₁</text>
+<text x="29.4" y="48" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₂</text>
+<text x="12" y="126.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₃</text>
+<text x="59.2" y="182.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₄</text>
+<text x="124.4" y="181.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₅</text>
+<text x="180" y="126.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₆</text>
+<text x="167.3" y="54" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₇</text>
+</svg>
+<!--/svg:f055c-->
+  <figcaption>図3　四角形 \( \mathrm{A}_1\mathrm{A}_2\mathrm{A}_4\mathrm{A}_7 \)（青の塗り）は円に内接する。\( \mathrm{A}_1 \) の内角（橙の弧1本）は5つの1区間の弧に対する円周角の和、\( \mathrm{A}_4 \) の内角（橙の弧2本）は残り2つの1区間の弧に対する円周角の和（学習用に作成した図）</figcaption>
+</figure>
+<h3>星形七角形 (ii)：先端の角は1区間の弧に対する円周角</h3>
+<p>(ii) で、\( \mathrm{A}_1 \) の先端の角 \( \angle\mathrm{A}_4\mathrm{A}_1\mathrm{A}_5 \) は、弧 \( \mathrm{A}_4\mathrm{A}_5 \)（1区間の弧）に対する円周角です（図2）。同じように、7つの先端の角は、それぞれ次の1区間の弧に対する円周角です。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>先端の頂点</th><td>\( \mathrm{A}_1 \)</td><td>\( \mathrm{A}_2 \)</td><td>\( \mathrm{A}_3 \)</td><td>\( \mathrm{A}_4 \)</td><td>\( \mathrm{A}_5 \)</td><td>\( \mathrm{A}_6 \)</td><td>\( \mathrm{A}_7 \)</td></tr>
+  <tr><th>(ii) の先端の角が対する弧</th><td>\( \mathrm{A}_4\mathrm{A}_5 \)</td><td>\( \mathrm{A}_5\mathrm{A}_6 \)</td><td>\( \mathrm{A}_6\mathrm{A}_7 \)</td><td>\( \mathrm{A}_7\mathrm{A}_1 \)</td><td>\( \mathrm{A}_1\mathrm{A}_2 \)</td><td>\( \mathrm{A}_2\mathrm{A}_3 \)</td><td>\( \mathrm{A}_3\mathrm{A}_4 \)</td></tr>
+</table>
+</div>
+<p>7つの1区間の弧がちょうど1回ずつ現れるので、性質★より、<strong>(ii) の先端の角の和は \( 180^\circ \)</strong> です。</p>
+<figure>
+<!--svg:f055b-->
+<svg viewBox="0 0 192 192" width="192" role="img" aria-label="円周上にとった7点 A₁〜A₇ を3つ先の点と結んだ星形七角形。A₁ の先端の角 ∠A₄A₁A₅（橙の弧）は、緑の太線の弧 A₄A₅ に対する円周角" data-fig="f055b" data-s="72.000000" data-ox="96.000000" data-oy="100.000000">
+<circle cx="96" cy="100" r="72" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円" data-cx="0.000000" data-cy="0.000000" data-r="1.000000"/>
+<polyline points="65.6,165.3 69,166.8 72.6,168.1 76.2,169.2 79.8,170.2 83.5,170.9 87.2,171.5 91,171.8 94.7,172 98.5,172 102.3,171.7 106,171.3 109.7,170.7 113.4,169.9 117.1,168.9 120.6,167.7" fill="none" stroke="#1e8e5a" stroke-width="3.4" stroke-linecap="round" data-carc="A₄A₅" data-c="0.000000,0.000000" data-r="1.000000" data-a1="245.000000" data-a2="290.000000"/>
+<line x1="96" y1="28" x2="65.6" y2="165.3" stroke="currentColor" stroke-width="1.5" data-seg="A₁A₄"/>
+<line x1="96" y1="28" x2="120.6" y2="167.7" stroke="currentColor" stroke-width="1.5" data-seg="A₁A₅"/>
+<line x1="40.8" y1="53.7" x2="120.6" y2="167.7" stroke="currentColor" stroke-width="1.5" data-seg="A₂A₅"/>
+<line x1="40.8" y1="53.7" x2="165.5" y2="118.6" stroke="currentColor" stroke-width="1.5" data-seg="A₂A₆"/>
+<line x1="26.5" y1="118.6" x2="165.5" y2="118.6" stroke="currentColor" stroke-width="1.5" data-seg="A₃A₆"/>
+<line x1="26.5" y1="118.6" x2="155" y2="58.7" stroke="currentColor" stroke-width="1.5" data-seg="A₃A₇"/>
+<line x1="65.6" y1="165.3" x2="155" y2="58.7" stroke="currentColor" stroke-width="1.5" data-seg="A₄A₇"/>
+<path d="M99.1,45.7 A18,18 0 0 1 92.1,45.6" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="1"/>
+<circle cx="96.00" cy="28.00" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₁" data-x="0.000000" data-y="1.000000"/>
+<circle cx="40.84" cy="53.72" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₂" data-x="-0.766044" data-y="0.642788"/>
+<circle cx="26.45" cy="118.63" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₃" data-x="-0.965926" data-y="-0.258819"/>
+<circle cx="65.57" cy="165.25" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₄" data-x="-0.422618" data-y="-0.906308"/>
+<circle cx="120.63" cy="167.66" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₅" data-x="0.342020" data-y="-0.939693"/>
+<circle cx="165.55" cy="118.63" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₆" data-x="0.965926" data-y="-0.258819"/>
+<circle cx="154.98" cy="58.70" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₇" data-x="0.819152" data-y="0.573576"/>
+<text x="96" y="20.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₁</text>
+<text x="29.4" y="48" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₂</text>
+<text x="12" y="126.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₃</text>
+<text x="59.2" y="182.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₄</text>
+<text x="124.4" y="181.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₅</text>
+<text x="180" y="126.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₆</text>
+<text x="167.3" y="54" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₇</text>
+</svg>
+<!--/svg:f055b-->
+  <figcaption>図2　円周上にとった星形七角形 (ii)。\( \mathrm{A}_1 \) の先端の角 \( \angle\mathrm{A}_4\mathrm{A}_1\mathrm{A}_5 \)（橙の弧）は、弧 \( \mathrm{A}_4\mathrm{A}_5 \)（緑の太線）に対する円周角（学習用に作成した図）</figcaption>
+</figure>
+<h3>星形七角形 (i)：先端の角は3つの1区間の弧に対する円周角の和</h3>
+<p>(i) で、\( \mathrm{A}_1 \) の先端の角 \( \angle\mathrm{A}_3\mathrm{A}_1\mathrm{A}_6 \) を、\( \mathrm{A}_1\mathrm{A}_4 \)、\( \mathrm{A}_1\mathrm{A}_5 \) で3つに分けると、弧 \( \mathrm{A}_3\mathrm{A}_4 \)、\( \mathrm{A}_4\mathrm{A}_5 \)、\( \mathrm{A}_5\mathrm{A}_6 \) に対する円周角の和になります（図4）。ほかの頂点でも同じで、どの1区間の弧も、ちょうど3つの頂点の先端の角に1回ずつ現れます（たとえば弧 \( \mathrm{A}_4\mathrm{A}_5 \) は \( \mathrm{A}_1 \)、\( \mathrm{A}_2 \)、\( \mathrm{A}_7 \) の先端の角に現れる）。したがって、性質★より、<strong>(i) の先端の角の和は \( 180^\circ\times3=540^\circ \)</strong> です。</p>
+<figure>
+<!--svg:f055d-->
+<svg viewBox="0 0 192 192" width="192" role="img" aria-label="円周上にとった7点を2つ先の点と結んだ星形七角形。A₁ の先端の角 ∠A₆A₁A₃ を、A₁A₄、A₁A₅（灰の破線）で3つに分けると、緑の太線の弧 A₃A₄、A₄A₅、A₅A₆ に対する円周角（橙の弧1本・2本・3本）になる" data-fig="f055d" data-s="72.000000" data-ox="96.000000" data-oy="100.000000">
+<circle cx="96" cy="100" r="72" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="円" data-cx="0.000000" data-cy="0.000000" data-r="1.000000"/>
+<polyline points="26.5,118.6 27.6,122.4 28.9,126.1 30.4,129.7 32.1,133.2 34,136.7 36.1,140 38.4,143.2 40.8,146.3 43.4,149.2 46.2,152 49.1,154.6 52.2,157.1 55.3,159.4 58.6,161.6 62.1,163.5 65.6,165.3" fill="none" stroke="#1e8e5a" stroke-width="3.4" stroke-linecap="round" data-carc="A₃A₄" data-c="0.000000,0.000000" data-r="1.000000" data-a1="195.000000" data-a2="245.000000"/>
+<polyline points="65.6,165.3 69,166.8 72.6,168.1 76.2,169.2 79.8,170.2 83.5,170.9 87.2,171.5 91,171.8 94.7,172 98.5,172 102.3,171.7 106,171.3 109.7,170.7 113.4,169.9 117.1,168.9 120.6,167.7" fill="none" stroke="#1e8e5a" stroke-width="3.4" stroke-linecap="round" data-carc="A₄A₅" data-c="0.000000,0.000000" data-r="1.000000" data-a1="245.000000" data-a2="290.000000"/>
+<polyline points="120.6,167.7 124.2,166.2 127.7,164.7 131.1,162.9 134.4,160.9 137.6,158.8 140.7,156.5 143.6,154 146.4,151.4 149.1,148.6 151.6,145.7 154,142.7 156.2,139.6 158.2,136.3 160,132.9 161.7,129.5 163.2,125.9 164.5,122.3 165.5,118.6" fill="none" stroke="#1e8e5a" stroke-width="3.4" stroke-linecap="round" data-carc="A₅A₆" data-c="0.000000,0.000000" data-r="1.000000" data-a1="290.000000" data-a2="345.000000"/>
+<line x1="96" y1="28" x2="26.5" y2="118.6" stroke="currentColor" stroke-width="1.5" data-seg="A₁A₃"/>
+<line x1="96" y1="28" x2="165.5" y2="118.6" stroke="currentColor" stroke-width="1.5" data-seg="A₁A₆"/>
+<line x1="40.8" y1="53.7" x2="65.6" y2="165.3" stroke="currentColor" stroke-width="1.5" data-seg="A₂A₄"/>
+<line x1="40.8" y1="53.7" x2="155" y2="58.7" stroke="currentColor" stroke-width="1.5" data-seg="A₂A₇"/>
+<line x1="26.5" y1="118.6" x2="120.6" y2="167.7" stroke="currentColor" stroke-width="1.5" data-seg="A₃A₅"/>
+<line x1="65.6" y1="165.3" x2="165.5" y2="118.6" stroke="currentColor" stroke-width="1.5" data-seg="A₄A₆"/>
+<line x1="120.6" y1="167.7" x2="155" y2="58.7" stroke="currentColor" stroke-width="1.5" data-seg="A₅A₇"/>
+<line x1="96" y1="28" x2="65.6" y2="165.3" stroke="#8a99a8" stroke-width="1.1" stroke-dasharray="4 3" data-seg="A₁A₄"/>
+<line x1="96" y1="28" x2="120.6" y2="167.7" stroke="#8a99a8" stroke-width="1.1" stroke-dasharray="4 3" data-seg="A₁A₅"/>
+<path d="M91.2,49.5 A22,22 0 0 1 82.6,45.5" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="A₁,A₃,A₄" data-mark="1"/>
+<path d="M99.8,49.7 A22,22 0 0 1 91.2,49.5 M100.4,53.2 A25.6,25.6 0 0 1 90.5,53" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="A₁,A₄,A₅" data-mark="2"/>
+<path d="M109.4,45.5 A22,22 0 0 1 99.8,49.7 M111.6,48.3 A25.6,25.6 0 0 1 100.4,53.2 M113.8,51.2 A29.2,29.2 0 0 1 101.1,56.8" fill="none" stroke="#b7791f" stroke-width="1.4" data-angle="A₁,A₅,A₆" data-mark="3"/>
+<circle cx="96.00" cy="28.00" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₁" data-x="0.000000" data-y="1.000000"/>
+<circle cx="40.84" cy="53.72" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₂" data-x="-0.766044" data-y="0.642788"/>
+<circle cx="26.45" cy="118.63" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₃" data-x="-0.965926" data-y="-0.258819"/>
+<circle cx="65.57" cy="165.25" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₄" data-x="-0.422618" data-y="-0.906308"/>
+<circle cx="120.63" cy="167.66" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₅" data-x="0.342020" data-y="-0.939693"/>
+<circle cx="165.55" cy="118.63" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₆" data-x="0.965926" data-y="-0.258819"/>
+<circle cx="154.98" cy="58.70" r="2.8" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₇" data-x="0.819152" data-y="0.573576"/>
+<text x="96" y="20.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₁</text>
+<text x="29.4" y="48" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₂</text>
+<text x="12" y="126.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₃</text>
+<text x="59.2" y="182.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₄</text>
+<text x="124.4" y="181.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₅</text>
+<text x="180" y="126.4" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₆</text>
+<text x="167.3" y="54" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₇</text>
+</svg>
+<!--/svg:f055d-->
+  <figcaption>図4　円周上にとった星形七角形 (i)。\( \mathrm{A}_1 \) の先端の角 \( \angle\mathrm{A}_3\mathrm{A}_1\mathrm{A}_6 \) は、緑の太線の3つの弧に対する円周角（橙の弧1本・2本・3本）の和（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題1（数値で確かめる。導入の問い①の答え）</p>
+  <p>図2〜4の円では、1区間の弧 \( \mathrm{A}_1\mathrm{A}_2 \)、\( \mathrm{A}_2\mathrm{A}_3 \)、\( \mathrm{A}_3\mathrm{A}_4 \)、\( \mathrm{A}_4\mathrm{A}_5 \)、\( \mathrm{A}_5\mathrm{A}_6 \)、\( \mathrm{A}_6\mathrm{A}_7 \)、\( \mathrm{A}_7\mathrm{A}_1 \) に対する中心角が、順に \( 50^\circ \)、\( 55^\circ \)、\( 50^\circ \)、\( 45^\circ \)、\( 55^\circ \)、\( 50^\circ \)、\( 55^\circ \) です。(ii) と (i) の先端の角をそれぞれ求め、和を確かめなさい。</p>
+  <div class="step">着眼点：1区間の弧に対する円周角は中心角の半分なので、順に \( 25^\circ \)、\( 27.5^\circ \)、\( 25^\circ \)、\( 22.5^\circ \)、\( 27.5^\circ \)、\( 25^\circ \)、\( 27.5^\circ \)。</div>
+  <div class="step">(ii)：表より、\( \mathrm{A}_1 \)〜\( \mathrm{A}_7 \) の先端の角は \( 22.5^\circ \)、\( 27.5^\circ \)、\( 25^\circ \)、\( 27.5^\circ \)、\( 25^\circ \)、\( 27.5^\circ \)、\( 25^\circ \)。和は \( 180^\circ \)。</div>
+  <div class="step">(i)：\( \mathrm{A}_1 \) の先端の角は弧 \( \mathrm{A}_3\mathrm{A}_4 \)、\( \mathrm{A}_4\mathrm{A}_5 \)、\( \mathrm{A}_5\mathrm{A}_6 \) の円周角の和で \( 25^\circ+22.5^\circ+27.5^\circ=75^\circ \)。同じように \( \mathrm{A}_2 \)〜\( \mathrm{A}_7 \) は \( 75^\circ \)、\( 80^\circ \)、\( 77.5^\circ \)、\( 80^\circ \)、\( 77.5^\circ \)、\( 75^\circ \)。和は \( 540^\circ \)。</div>
+  <div class="step">答え：(i) の和は \( 540^\circ \)、(ii) の和は \( 180^\circ \)。先端の角は1つ1つ違っても、和は性質★から決まります。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 円周上にとると、先端の角がすべて等しくなると思う：等しくなるのは、7つの点が円周を7等分するとき（正七角形の頂点）だけです。例題1のように、角は違っていても和は一定です。<br>② 先端の角が対する弧を取り違える：(ii) の \( \mathrm{A}_1 \) の先端の角が対するのは、\( \mathrm{A}_1 \) の両どなりの弧ではなく、向かい側の弧 \( \mathrm{A}_4\mathrm{A}_5 \) です。<br>③ 分度器で測った和を答えにする：測定には誤差があり、測った形でしか確かめられません。和が一定であることは、図形の性質から説明します。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="振り返り：円周上にとってよかったか"><span class="num">5</span>振り返り：円周上にとって考えてよかったのか</h2>
+<p>「4」で求めた値は、7つの点が円周上にある場合の値です。円周上にない場合にも同じになることを、(i) について、円を使わずに確かめます（解説に書かれた方法ではなく、このページで加えた確かめ方です）。使うのは、七角形の内角の和 \( 900^\circ \)（中2-049）と三角形の内角の和（中2-048）です。</p>
+<figure>
+<!--svg:f055e-->
+<svg viewBox="0 0 182 171" width="182" role="img" aria-label="円周上にない7点でできた七角形 A₁〜A₇（灰の線）と星形七角形(i)。A₁ の内角は、∠A₂A₁A₃（青の弧）、先端の角 ∠A₃A₁A₆（橙の弧）、∠A₆A₁A₇（緑の弧）に分かれる。三角形 A₁A₂A₃ を青で塗ってある" data-fig="f055e" data-s="64.000000" data-ox="92.600000" data-oy="88.700000">
+<polygon points="95.8,19.6 33.7,49 23.5,107.9" fill="#1f5fbf" fill-opacity="0.1" stroke="none" data-region="A₁A₂A₃"/>
+<line x1="95.8" y1="19.6" x2="33.7" y2="49" stroke="#8a99a8" stroke-width="1.3" data-seg="side0"/>
+<line x1="33.7" y1="49" x2="23.5" y2="107.9" stroke="#8a99a8" stroke-width="1.3" data-seg="side1"/>
+<line x1="23.5" y1="107.9" x2="60.6" y2="151.4" stroke="#8a99a8" stroke-width="1.3" data-seg="side2"/>
+<line x1="60.6" y1="151.4" x2="125.9" y2="147.6" stroke="#8a99a8" stroke-width="1.3" data-seg="side3"/>
+<line x1="125.9" y1="147.6" x2="157.9" y2="101.5" stroke="#8a99a8" stroke-width="1.3" data-seg="side4"/>
+<line x1="157.9" y1="101.5" x2="143.8" y2="42.6" stroke="#8a99a8" stroke-width="1.3" data-seg="side5"/>
+<line x1="143.8" y1="42.6" x2="95.8" y2="19.6" stroke="#8a99a8" stroke-width="1.3" data-seg="side6"/>
+<line x1="95.8" y1="19.6" x2="23.5" y2="107.9" stroke="currentColor" stroke-width="1.5" data-seg="A₁A₃"/>
+<line x1="95.8" y1="19.6" x2="157.9" y2="101.5" stroke="currentColor" stroke-width="1.5" data-seg="A₁A₆"/>
+<line x1="33.7" y1="49" x2="60.6" y2="151.4" stroke="currentColor" stroke-width="1.5" data-seg="A₂A₄"/>
+<line x1="33.7" y1="49" x2="143.8" y2="42.6" stroke="currentColor" stroke-width="1.5" data-seg="A₂A₇"/>
+<line x1="23.5" y1="107.9" x2="125.9" y2="147.6" stroke="currentColor" stroke-width="1.5" data-seg="A₃A₅"/>
+<line x1="60.6" y1="151.4" x2="157.9" y2="101.5" stroke="currentColor" stroke-width="1.5" data-seg="A₄A₆"/>
+<line x1="125.9" y1="147.6" x2="143.8" y2="42.6" stroke="currentColor" stroke-width="1.5" data-seg="A₅A₇"/>
+<path d="M109.1,37.1 A22,22 0 0 1 81.9,36.6" fill="none" stroke="#b7791f" stroke-width="1.5" data-tip="1"/>
+
+<path d="M76.8,42.8 A30,30 0 0 1 68.7,32.4" fill="none" stroke="#1f5fbf" stroke-width="1.4" data-angle="A₁,A₂,A₃" data-mark="1"/>
+<path d="M122.8,32.6 A30,30 0 0 1 113.9,43.5 M126.1,34.1 A33.6,33.6 0 0 1 116.1,46.4" fill="none" stroke="#1e8e5a" stroke-width="1.4" data-angle="A₁,A₆,A₇" data-mark="2"/>
+<circle cx="95.80" cy="19.58" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₁" data-x="0.050000" data-y="1.080000"/>
+<circle cx="33.72" cy="49.02" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₂" data-x="-0.920000" data-y="0.620000"/>
+<circle cx="23.48" cy="107.90" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₃" data-x="-1.080000" data-y="-0.300000"/>
+<circle cx="60.60" cy="151.42" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₄" data-x="-0.500000" data-y="-0.980000"/>
+<circle cx="125.88" cy="147.58" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₅" data-x="0.520000" data-y="-0.920000"/>
+<circle cx="157.88" cy="101.50" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₆" data-x="1.020000" data-y="-0.200000"/>
+<circle cx="143.80" cy="42.62" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A₇" data-x="0.800000" data-y="0.720000"/>
+<text x="93.4" y="12.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₁</text>
+<text x="22.7" y="52.2" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₂</text>
+<text x="12.5" y="111.9" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₃</text>
+<text x="55.6" y="165.1" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₄</text>
+<text x="128.6" y="162.1" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₅</text>
+<text x="168.9" y="104.7" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₆</text>
+<text x="154.9" y="36.5" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">A₇</text>
+</svg>
+<!--/svg:f055e-->
+  <figcaption>図5　円周上にない7点でできた七角形（灰の線）と星形七角形 (i)。\( \mathrm{A}_1 \) の内角は、青の弧の角、橙の弧の先端の角、緑の弧の角に分かれる。青の弧の角は三角形 \( \mathrm{A}_1\mathrm{A}_2\mathrm{A}_3 \)（青の塗り）の角（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example proof">
+  <p class="box-title">円を使わない説明（星形七角形 (i)）</p>
+  <ol>
+    <li>七角形 \( \mathrm{A}_1\mathrm{A}_2\cdots\mathrm{A}_7 \) の内角の和は \( 180^\circ\times(7-2)=900^\circ \)。</li>
+    <li>頂点 \( \mathrm{A}_1 \) の内角 \( \angle\mathrm{A}_7\mathrm{A}_1\mathrm{A}_2 \) は、\( \angle\mathrm{A}_2\mathrm{A}_1\mathrm{A}_3 \)（青）＋ 先端の角 \( \angle\mathrm{A}_3\mathrm{A}_1\mathrm{A}_6 \)（橙）＋ \( \angle\mathrm{A}_6\mathrm{A}_1\mathrm{A}_7 \)（緑）に分かれる。ほかの頂点も同じ。</li>
+    <li>青や緑の角は、となり合う3つの頂点でできる三角形（\( \triangle\mathrm{A}_1\mathrm{A}_2\mathrm{A}_3 \) など7つ）の、両端の頂点の角である。たとえば \( \triangle\mathrm{A}_1\mathrm{A}_2\mathrm{A}_3 \) の \( \mathrm{A}_1 \) の角は青、\( \mathrm{A}_3 \) の角は \( \mathrm{A}_3 \) での緑にあたる。1つの三角形の両端の2つの角の和は、\( 180^\circ- \)（真ん中の頂点の内角）。</li>
+    <li>7つの三角形について ③ を足すと、青と緑の角の総和は \( 180^\circ\times7-900^\circ=360^\circ \)。</li>
+    <li>先端の角の和 ＝ 内角の和 − 青と緑の角の総和 ＝ \( 900^\circ-360^\circ=540^\circ \)。</li>
+  </ol>
+</div>
+<p>この説明は、へこみのない七角形の頂点ならどんな位置でも使えるので、(i) の和がいつも \( 540^\circ \) であることが確かめられました（導入の問い②の答え：(i) では変わらない）。円周上にとって求めた値と一致しています。(ii) については、このページでは操作部品でいろいろな形を確かめるにとどめます。</p>
+<div class="box point">
+  <p class="box-title">振り返り：解決の過程</p>
+  <p>① 操作して「和は一定」と予想する → ② 一定なら特別な位置で求めてよいと考え、円周上にとる → ③ 円周角の定理と円に内接する四角形の性質で求める → ④ 円を使わない方法でも確かめる。②で特別な場合に置きかえたことは、④のように一般の場合で確かめておく必要があります。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="発展と統合"><span class="num">6</span>発展：星形五角形・六角形・八角形と、多角形の内角の和</h2>
+<p>円周上に順に並んだ \( n \) 個の点を、それぞれ \( k \) つ先の点と結んだ図形を、<strong>星形 \( n \) 角形（\( k \) つ先）</strong>とよびます（このページでの呼び方。\( k \) は \( n \) の半分より小さい正の整数）。図6の六角形・八角形（2つ先）のように、1本の線でつながらずに三角形2つや四角形2つに分かれる場合も含めます。</p>
+<figure>
+<div class="fig-row">
+<!--svg:f055f1-->
+<svg viewBox="0 0 116 132" width="116" role="img" aria-label="円周上の 5 個の点を 2 つ先の点と結んだ星形5角形（2つ先）" data-fig="f055f1" data-s="46.000000" data-ox="58.000000" data-oy="76.000000">
+<circle cx="58" cy="76" r="46" fill="none" stroke="#7b3fa0" stroke-width="1.2" stroke-dasharray="6 4" data-circle="円" data-cx="0.000000" data-cy="0.000000" data-r="1.000000"/>
+<line x1="58" y1="30" x2="31" y2="113.2" stroke="currentColor" stroke-width="1.4" data-seg="A₁A₃"/>
+<line x1="58" y1="30" x2="85" y2="113.2" stroke="currentColor" stroke-width="1.4" data-seg="A₁A₄"/>
+<line x1="14.3" y1="61.8" x2="85" y2="113.2" stroke="currentColor" stroke-width="1.4" data-seg="A₂A₄"/>
+<line x1="14.3" y1="61.8" x2="101.7" y2="61.8" stroke="currentColor" stroke-width="1.4" data-seg="A₂A₅"/>
+<line x1="31" y1="113.2" x2="101.7" y2="61.8" stroke="currentColor" stroke-width="1.4" data-seg="A₃A₅"/>
+<path d="M60.8,38.6 A9,9 0 0 1 55.2,38.6" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="1"/>
+<path d="M23.3,61.8 A9,9 0 0 1 21.5,67.1" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="2"/>
+<path d="M33.7,104.7 A9,9 0 0 1 38.2,107.9" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="3"/>
+<path d="M77.8,107.9 A9,9 0 0 1 82.3,104.7" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="4"/>
+<path d="M94.5,67.1 A9,9 0 0 1 92.7,61.8" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="5"/>
+<circle cx="58.00" cy="30.00" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P1" data-x="0.000000" data-y="1.000000"/>
+<circle cx="14.25" cy="61.79" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P2" data-x="-0.951057" data-y="0.309017"/>
+<circle cx="30.96" cy="113.21" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P3" data-x="-0.587785" data-y="-0.809017"/>
+<circle cx="85.04" cy="113.21" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P4" data-x="0.587785" data-y="-0.809017"/>
+<circle cx="101.75" cy="61.79" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P5" data-x="0.951057" data-y="0.309017"/>
+<text x="58" y="16" text-anchor="middle" font-size="12" fill="currentColor">5個の点・2つ先</text>
+</svg>
+<!--/svg:f055f1-->
+<!--svg:f055f2-->
+<svg viewBox="0 0 116 132" width="116" role="img" aria-label="円周上の 6 個の点を 2 つ先の点と結んだ星形6角形（2つ先）" data-fig="f055f2" data-s="46.000000" data-ox="58.000000" data-oy="76.000000">
+<circle cx="58" cy="76" r="46" fill="none" stroke="#7b3fa0" stroke-width="1.2" stroke-dasharray="6 4" data-circle="円" data-cx="0.000000" data-cy="0.000000" data-r="1.000000"/>
+<line x1="58" y1="30" x2="18.2" y2="99" stroke="currentColor" stroke-width="1.4" data-seg="A₁A₃"/>
+<line x1="58" y1="30" x2="97.8" y2="99" stroke="currentColor" stroke-width="1.4" data-seg="A₁A₅"/>
+<line x1="18.2" y1="53" x2="58" y2="122" stroke="currentColor" stroke-width="1.4" data-seg="A₂A₄"/>
+<line x1="18.2" y1="53" x2="97.8" y2="53" stroke="currentColor" stroke-width="1.4" data-seg="A₂A₆"/>
+<line x1="18.2" y1="99" x2="97.8" y2="99" stroke="currentColor" stroke-width="1.4" data-seg="A₃A₅"/>
+<line x1="58" y1="122" x2="97.8" y2="53" stroke="currentColor" stroke-width="1.4" data-seg="A₄A₆"/>
+<path d="M62.5,37.8 A9,9 0 0 1 53.5,37.8" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="1"/>
+<path d="M27.2,53 A9,9 0 0 1 22.7,60.8" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="2"/>
+<path d="M22.7,91.2 A9,9 0 0 1 27.2,99" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="3"/>
+<path d="M53.5,114.2 A9,9 0 0 1 62.5,114.2" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="4"/>
+<path d="M88.8,99 A9,9 0 0 1 93.3,91.2" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="5"/>
+<path d="M93.3,60.8 A9,9 0 0 1 88.8,53" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="6"/>
+<circle cx="58.00" cy="30.00" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P1" data-x="0.000000" data-y="1.000000"/>
+<circle cx="18.16" cy="53.00" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P2" data-x="-0.866025" data-y="0.500000"/>
+<circle cx="18.16" cy="99.00" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P3" data-x="-0.866025" data-y="-0.500000"/>
+<circle cx="58.00" cy="122.00" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P4" data-x="-0.000000" data-y="-1.000000"/>
+<circle cx="97.84" cy="99.00" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P5" data-x="0.866025" data-y="-0.500000"/>
+<circle cx="97.84" cy="53.00" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P6" data-x="0.866025" data-y="0.500000"/>
+<text x="58" y="16" text-anchor="middle" font-size="12" fill="currentColor">6個の点・2つ先</text>
+</svg>
+<!--/svg:f055f2-->
+<!--svg:f055f3-->
+<svg viewBox="0 0 116 132" width="116" role="img" aria-label="円周上の 8 個の点を 2 つ先の点と結んだ星形8角形（2つ先）" data-fig="f055f3" data-s="46.000000" data-ox="58.000000" data-oy="76.000000">
+<circle cx="58" cy="76" r="46" fill="none" stroke="#7b3fa0" stroke-width="1.2" stroke-dasharray="6 4" data-circle="円" data-cx="0.000000" data-cy="0.000000" data-r="1.000000"/>
+<line x1="58" y1="30" x2="12" y2="76" stroke="currentColor" stroke-width="1.4" data-seg="A₁A₃"/>
+<line x1="58" y1="30" x2="104" y2="76" stroke="currentColor" stroke-width="1.4" data-seg="A₁A₇"/>
+<line x1="25.5" y1="43.5" x2="25.5" y2="108.5" stroke="currentColor" stroke-width="1.4" data-seg="A₂A₄"/>
+<line x1="25.5" y1="43.5" x2="90.5" y2="43.5" stroke="currentColor" stroke-width="1.4" data-seg="A₂A₈"/>
+<line x1="12" y1="76" x2="58" y2="122" stroke="currentColor" stroke-width="1.4" data-seg="A₃A₅"/>
+<line x1="25.5" y1="108.5" x2="90.5" y2="108.5" stroke="currentColor" stroke-width="1.4" data-seg="A₄A₆"/>
+<line x1="58" y1="122" x2="104" y2="76" stroke="currentColor" stroke-width="1.4" data-seg="A₅A₇"/>
+<line x1="90.5" y1="108.5" x2="90.5" y2="43.5" stroke="currentColor" stroke-width="1.4" data-seg="A₆A₈"/>
+<path d="M64.4,36.4 A9,9 0 0 1 51.6,36.4" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="1"/>
+<path d="M34.5,43.5 A9,9 0 0 1 25.5,52.5" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="2"/>
+<path d="M18.4,69.6 A9,9 0 0 1 18.4,82.4" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="3"/>
+<path d="M25.5,99.5 A9,9 0 0 1 34.5,108.5" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="4"/>
+<path d="M51.6,115.6 A9,9 0 0 1 64.4,115.6" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="5"/>
+<path d="M81.5,108.5 A9,9 0 0 1 90.5,99.5" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="6"/>
+<path d="M97.6,82.4 A9,9 0 0 1 97.6,69.6" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="7"/>
+<path d="M90.5,52.5 A9,9 0 0 1 81.5,43.5" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="8"/>
+<circle cx="58.00" cy="30.00" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P1" data-x="0.000000" data-y="1.000000"/>
+<circle cx="25.47" cy="43.47" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P2" data-x="-0.707107" data-y="0.707107"/>
+<circle cx="12.00" cy="76.00" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P3" data-x="-1.000000" data-y="0.000000"/>
+<circle cx="25.47" cy="108.53" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P4" data-x="-0.707107" data-y="-0.707107"/>
+<circle cx="58.00" cy="122.00" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P5" data-x="-0.000000" data-y="-1.000000"/>
+<circle cx="90.53" cy="108.53" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P6" data-x="0.707107" data-y="-0.707107"/>
+<circle cx="104.00" cy="76.00" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P7" data-x="1.000000" data-y="-0.000000"/>
+<circle cx="90.53" cy="43.47" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P8" data-x="0.707107" data-y="0.707107"/>
+<text x="58" y="16" text-anchor="middle" font-size="12" fill="currentColor">8個の点・2つ先</text>
+</svg>
+<!--/svg:f055f3-->
+<!--svg:f055f4-->
+<svg viewBox="0 0 116 132" width="116" role="img" aria-label="円周上の 8 個の点を 3 つ先の点と結んだ星形8角形（3つ先）" data-fig="f055f4" data-s="46.000000" data-ox="58.000000" data-oy="76.000000">
+<circle cx="58" cy="76" r="46" fill="none" stroke="#7b3fa0" stroke-width="1.2" stroke-dasharray="6 4" data-circle="円" data-cx="0.000000" data-cy="0.000000" data-r="1.000000"/>
+<line x1="58" y1="30" x2="25.5" y2="108.5" stroke="currentColor" stroke-width="1.4" data-seg="A₁A₄"/>
+<line x1="58" y1="30" x2="90.5" y2="108.5" stroke="currentColor" stroke-width="1.4" data-seg="A₁A₆"/>
+<line x1="25.5" y1="43.5" x2="58" y2="122" stroke="currentColor" stroke-width="1.4" data-seg="A₂A₅"/>
+<line x1="25.5" y1="43.5" x2="104" y2="76" stroke="currentColor" stroke-width="1.4" data-seg="A₂A₇"/>
+<line x1="12" y1="76" x2="90.5" y2="108.5" stroke="currentColor" stroke-width="1.4" data-seg="A₃A₆"/>
+<line x1="12" y1="76" x2="90.5" y2="43.5" stroke="currentColor" stroke-width="1.4" data-seg="A₃A₈"/>
+<line x1="25.5" y1="108.5" x2="104" y2="76" stroke="currentColor" stroke-width="1.4" data-seg="A₄A₇"/>
+<line x1="58" y1="122" x2="90.5" y2="43.5" stroke="currentColor" stroke-width="1.4" data-seg="A₅A₈"/>
+<path d="M61.4,38.3 A9,9 0 0 1 54.6,38.3" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="1"/>
+<path d="M33.8,46.9 A9,9 0 0 1 28.9,51.8" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="2"/>
+<path d="M20.3,72.6 A9,9 0 0 1 20.3,79.4" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="3"/>
+<path d="M28.9,100.2 A9,9 0 0 1 33.8,105.1" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="4"/>
+<path d="M54.6,113.7 A9,9 0 0 1 61.4,113.7" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="5"/>
+<path d="M82.2,105.1 A9,9 0 0 1 87.1,100.2" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="6"/>
+<path d="M95.7,79.4 A9,9 0 0 1 95.7,72.6" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="7"/>
+<path d="M87.1,51.8 A9,9 0 0 1 82.2,46.9" fill="none" stroke="#b7791f" stroke-width="1.3" data-tip="8"/>
+<circle cx="58.00" cy="30.00" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P1" data-x="0.000000" data-y="1.000000"/>
+<circle cx="25.47" cy="43.47" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P2" data-x="-0.707107" data-y="0.707107"/>
+<circle cx="12.00" cy="76.00" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P3" data-x="-1.000000" data-y="0.000000"/>
+<circle cx="25.47" cy="108.53" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P4" data-x="-0.707107" data-y="-0.707107"/>
+<circle cx="58.00" cy="122.00" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P5" data-x="-0.000000" data-y="-1.000000"/>
+<circle cx="90.53" cy="108.53" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P6" data-x="0.707107" data-y="-0.707107"/>
+<circle cx="104.00" cy="76.00" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P7" data-x="1.000000" data-y="-0.000000"/>
+<circle cx="90.53" cy="43.47" r="2.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="P8" data-x="0.707107" data-y="0.707107"/>
+<text x="58" y="16" text-anchor="middle" font-size="12" fill="currentColor">8個の点・3つ先</text>
+</svg>
+<!--/svg:f055f4-->
+</div>
+  <figcaption>図6　星形五角形（2つ先）、星形六角形（2つ先）、星形八角形（2つ先・3つ先）。橙の弧は先端の角（学習用に、円周を等分した点でかいた図）</figcaption>
+</figure>
+<p>「4」と同じ考え方を使って、次のように整理します（式 \( 180^\circ\times(n-2k) \) による整理は、このページでの説明です）。</p>
+<ul>
+  <li>性質★は \( n \) 個の点でも成り立ちます（\( n \) 個の1区間の弧に対する円周角の和は \( 180^\circ \)。中心角の和が \( 360^\circ \) なので）。</li>
+  <li>頂点 \( \mathrm{A}_i \) の先端の角は、\( k \) つ先の点から \( k \) つ前の点までの、\( \mathrm{A}_i \) を含まない側の弧に対する円周角です。この弧は \( n-2k \) 個の1区間の弧からできています（全部で \( n \) 区間のうち、\( \mathrm{A}_i \) の両側の \( k \) 区間ずつを除く）。</li>
+  <li>どの1区間の弧も、\( n-2k \) 個の頂点の先端の角に1回ずつ現れるので、先端の角の和は \( 180^\circ\times(n-2k) \)。</li>
+</ul>
+<div class="table-wrap">
+<table>
+  <tr><th>点の数 \( n \)</th><th>1つ先（\( n \) 角形そのもの）</th><th>2つ先</th><th>3つ先</th></tr>
+  <tr><td>5</td><td>\( 540^\circ \)</td><td>\( 180^\circ \)</td><td>—</td></tr>
+  <tr><td>6</td><td>\( 720^\circ \)</td><td>\( 360^\circ \)</td><td>—</td></tr>
+  <tr><td>7</td><td>\( 900^\circ \)</td><td>\( 540^\circ \)（(i)）</td><td>\( 180^\circ \)（(ii)）</td></tr>
+  <tr><td>8</td><td>\( 1080^\circ \)</td><td>\( 720^\circ \)</td><td>\( 360^\circ \)</td></tr>
+</table>
+</div>
+<p class="small">表の値は \( 180^\circ\times(n-2k) \)。「—」は \( k \) が \( n \) の半分以上になる場合で、このページの星形には含めません（たとえば5個の点を3つ先と結ぶと、2つ前と結ぶのと同じで、(2つ先) と同じ図形になる）。</p>
+<div class="box point">
+  <p class="box-title">多角形の内角の和と統合して捉える</p>
+  <p>\( k=1 \)（1つ先の点と結ぶ）の場合は、星形ではなく \( n \) 角形そのもので、先端の角は内角です。式 \( 180^\circ\times(n-2k) \) に \( k=1 \) を入れると \( 180^\circ\times(n-2) \) で、中学2年で学んだ \( n \) 角形の内角の和（中2-049）と一致します。つまり、多角形の内角の和と星形の先端の角の和は、「先端の角が何区間の弧に対する円周角か」という1つの見方でまとめられます。</p>
+  <p>また、2つ先と結んだ星形 \( n \) 角形の和 \( 180^\circ\times(n-4) \) は、\( (n-2) \) 角形の内角の和と同じ値です（星形七角形 (i) の \( 540^\circ \) は五角形の内角の和）。</p>
+</div>
+<p class="small">学習指導要領の解説は、この題材の指導について、一連の思考過程を振り返り、星形五角形、六角形、八角形などについて発展的に考察させたり、得られた結果を基に、多角形の内角の和について統合的に捉えたりすることも大切であるとしています。</p>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>星形七角形 (i)・(ii)</dt><dd>7つの点 \( \mathrm{A}_1 \)〜\( \mathrm{A}_7 \) の各点を、2つ先（(i)）・3つ先（(ii)）の点と結んだ図形（このページでの呼び方）。</dd>
+    <dt>先端の角</dt><dd>星形の各頂点で、その頂点から出る2本の辺がつくる角。</dd>
+    <dt>1区間の弧</dt><dd>円周上に並んだ点のうち、隣り合う2点の間の、ほかの点を含まない弧（このページでの言い方）。</dd>
+    <dt>性質★</dt><dd>円周上に順に並んだ点の、すべての1区間の弧に対する円周角の和は \( 180^\circ \)（このページでの名前）。</dd>
+    <dt>星形 \( n \) 角形（\( k \) つ先）</dt><dd>円周上の \( n \) 個の点を \( k \) つ先の点と結んだ図形。先端の角の和は \( 180^\circ\times(n-2k) \)。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>先端の角の和は点の位置によらず一定と予想できるので、7つの頂点を1つの円周上にとって考える。(i) は円を使わない説明（七角形の内角の和）でも確かめられる（O1）。</li>
+    <li>円周上にとると、先端の角は円周角。7つの1区間の弧に対する円周角の和は、円に内接する四角形の対角の和から \( 180^\circ \)。(ii) は各弧を1回ずつ使うので \( 180^\circ \)、(i) は3回ずつ使うので \( 540^\circ \)（O2）。</li>
+    <li>星形 \( n \) 角形（\( k \) つ先）の先端の角の和は \( 180^\circ\times(n-2k) \)。\( k=1 \) は \( n \) 角形の内角の和 \( 180^\circ\times(n-2) \) と一致する（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">星形七角形の先端の角の和</span>
+  <p>(i) 2つ先：\( 540^\circ \)、(ii) 3つ先：\( 180^\circ \)</p></div>
+  <div><span class="f-name">星形 \( n \) 角形（\( k \) つ先）の先端の角の和</span>
+  <p>\( 180^\circ\times(n-2k) \)（\( k=1 \) なら \( n \) 角形の内角の和）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。どの問題でも、点はへこみのない多角形の頂点になる順に並んでいるとする。入力問題は数字だけを入力してください（分数は「160/9」のように入力します）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O2</span></div>
+  <p>円周上の7点でつくった星形七角形 (ii) で、先端の角のうち6つの和が \( 150^\circ \) でした。残りの1つの先端の角はどれですか。</p>
+  <div class="choices">
+    <button>\( 390^\circ \)</button>
+    <button>\( 210^\circ \)</button>
+    <button>\( 750^\circ \)</button>
+    <button data-correct="true">\( 30^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">(ii) の先端の角の和は \( 180^\circ \) なので、\( 180^\circ-150^\circ=30^\circ \) です。\( 390^\circ \) は (i) の和 \( 540^\circ \) から引いた値、\( 210^\circ \) は \( 360^\circ \) から引いた値、\( 750^\circ \) は七角形の内角の和 \( 900^\circ \) から引いた値で、どれも \( 180^\circ \) を超える角になってしまいます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>円周上の7点でつくった星形七角形 (i) で、\( \mathrm{A}_2 \) の先端の角 \( \angle\mathrm{A}_4\mathrm{A}_2\mathrm{A}_7 \) は、どの1区間の弧に対する円周角の和ですか。</p>
+  <div class="choices">
+    <button>弧 \( \mathrm{A}_2\mathrm{A}_3 \)、\( \mathrm{A}_3\mathrm{A}_4 \)、\( \mathrm{A}_4\mathrm{A}_5 \)</button>
+    <button data-correct="true">弧 \( \mathrm{A}_4\mathrm{A}_5 \)、\( \mathrm{A}_5\mathrm{A}_6 \)、\( \mathrm{A}_6\mathrm{A}_7 \)</button>
+    <button>弧 \( \mathrm{A}_7\mathrm{A}_1 \)、\( \mathrm{A}_1\mathrm{A}_2 \)、\( \mathrm{A}_2\mathrm{A}_3 \)</button>
+    <button>弧 \( \mathrm{A}_5\mathrm{A}_6 \) だけ</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \angle\mathrm{A}_4\mathrm{A}_2\mathrm{A}_7 \) は、\( \mathrm{A}_4 \) から \( \mathrm{A}_7 \) までの、\( \mathrm{A}_2 \) を含まない弧に対する円周角で、その弧は \( \mathrm{A}_4\mathrm{A}_5 \)、\( \mathrm{A}_5\mathrm{A}_6 \)、\( \mathrm{A}_6\mathrm{A}_7 \) の3区間です。1つ目は \( \mathrm{A}_2 \) から始まる弧で、\( \mathrm{A}_2 \) 自身を端に含むので \( \mathrm{A}_2 \) から見た円周角になりません。3つ目は \( \mathrm{A}_2 \) を含む側の弧です。4つ目は (ii) と取り違えていて、(ii) の \( \mathrm{A}_2 \) の先端の角が対する弧です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>円周上の9個の点を、それぞれ2つ先の点と結んだ星形九角形の、先端の角の和はどれですか。</p>
+  <div class="choices">
+    <button>\( 1260^\circ \)</button>
+    <button>\( 540^\circ \)</button>
+    <button data-correct="true">\( 900^\circ \)</button>
+    <button>\( 1620^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 180^\circ\times(n-2k)=180^\circ\times(9-4)=900^\circ \) です。\( 1260^\circ \) は九角形の内角の和 \( 180^\circ\times(9-2) \) で、1つ先の場合です。\( 540^\circ \) は3つ先の場合 \( 180^\circ\times(9-6) \) です。\( 1620^\circ \) は \( 180^\circ\times9 \) で、点の数をそのままかけています。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="180/7|180/7°|180/7度">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>円周を7等分する7つの点（正七角形の頂点）で星形七角形 (ii) をつくります。先端の角1つの大きさは何度ですか。分数で答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 180/7（\( \dfrac{180}{7}^\circ \)）。7つの先端の角はすべて等しく、和は \( 180^\circ \) なので、1つは \( 180^\circ\div7=\dfrac{180}{7}^\circ \) です。1区間の弧の中心角 \( \dfrac{360}{7}^\circ \) の半分と考えても同じです。540/7 と答えた場合は (i) の和 \( 540^\circ \) を使っています。360/7 と答えた場合は、中心角をそのまま答えています。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="720|720°|720度">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>円周上の10個の点を、それぞれ3つ先の点と結んだ星形十角形の、先端の角の和は何度ですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 720。先端の角は \( 10-2\times3=4 \) 区間の弧に対する円周角なので、和は \( 180^\circ\times4=720^\circ \) です。1260 と答えた場合は \( 180^\circ\times(10-3) \) で、\( k \) つ先の両側にある \( 2k \) 区間ではなく \( k \) 区間だけを除いています。1440 と答えた場合は十角形の内角の和です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O1</span></div>
+  <p>星形七角形の先端の角の和を求めるときに「7つの頂点を1つの円周上にとって考える」ことについて、正しい説明はどれですか。</p>
+  <div class="choices">
+    <button>どんな7つの点も、うまく円をかけば1つの円周上にのるから。</button>
+    <button data-correct="true">和が点の位置によらず一定なら、円周上にとった特別な場合の値が、その一定の値になるから。</button>
+    <button>操作部品でいくつかの形を確かめたので、すべての形で和が等しいことが証明されたから。</button>
+    <button>円周上にとると、先端の7つの角がすべて等しくなるから。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">円周上にとってよいのは、和が位置によらず一定だからです（このページでは操作で予想し、(i) は円を使わない説明で確かめました）。1つ目は誤りで、一直線上にない3点を通る円はただ1つ（数Ａ-037）なので、4つ目以降の点がその円周上にあるとは限りません。3つ目は、確かめたのはいくつかの形だけで、証明にはなりません。4つ目は、角がすべて等しくなるのは円周を7等分する点のときだけです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>円周上の \( n \) 個の点を \( k \) つ先の点と結んだ星形で、1つの先端の角は、何区間の弧に対する円周角ですか。</p>
+  <div class="choices">
+    <button>\( n-k \) 区間</button>
+    <button>\( 2k \) 区間</button>
+    <button>\( n-2 \) 区間</button>
+    <button data-correct="true">\( n-2k \) 区間</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">頂点の両側にある \( k \) 区間ずつ（あわせて \( 2k \) 区間）は、先端の角の外側にあるので除き、残りの \( n-2k \) 区間の弧に対する円周角です。\( n-k \) は片側の \( k \) 区間しか除いていません。\( 2k \) は除く側の区間の数です。\( n-2 \) は \( k=1 \)（\( n \) 角形の内角）の場合の値です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O3</span></div>
+  <p>12人が円形に並び、それぞれ5人先の人へひもを渡したところ、ひもで星の形ができました（学習用に作成した架空の場面。人は円周上の点、ひもは線分とみなす）。</p>
+  <p>太郎：「先端の角の和は、十二角形の内角の和と同じかな。」<br>花子：「先端の角が何区間の弧に対する円周角かを考えれば求められるよ。」</p>
+  <p>先端の角の和はどれですか。</p>
+  <div class="choices">
+    <button>\( 1260^\circ \)</button>
+    <button data-correct="true">\( 360^\circ \)</button>
+    <button>\( 1800^\circ \)</button>
+    <button>\( 180^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">先端の角は \( 12-2\times5=2 \) 区間の弧に対する円周角なので、和は \( 180^\circ\times2=360^\circ \) です。\( 1260^\circ \) は \( 180^\circ\times(12-5) \) で、片側の5区間しか除いていません。\( 1800^\circ \) は太郎さんの予想した十二角形の内角の和 \( 180^\circ\times(12-2) \) で、1人先に渡した場合です。\( 180^\circ \) は、星形七角形 (ii) や星形五角形と同じく「星形ならいつも \( 180^\circ \)」と考えた値で、先端の角が何区間の弧に対するかを確かめていません。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2</span></div>
+  <p>円周上に順に並んだ5点 \( \mathrm{B}_1 \)〜\( \mathrm{B}_5 \) を、それぞれ2つ先の点と結んだ星形五角形の先端の角の和が \( 180^\circ \) になることを、円周角の定理と円に内接する四角形の性質を使って説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　\( \mathrm{B}_1 \) の先端の角 \( \angle\mathrm{B}_3\mathrm{B}_1\mathrm{B}_4 \) は弧 \( \mathrm{B}_3\mathrm{B}_4 \) に対する円周角で、同じように \( \mathrm{B}_2 \)〜\( \mathrm{B}_5 \) の先端の角は、弧 \( \mathrm{B}_4\mathrm{B}_5 \)、\( \mathrm{B}_5\mathrm{B}_1 \)、\( \mathrm{B}_1\mathrm{B}_2 \)、\( \mathrm{B}_2\mathrm{B}_3 \) に対する円周角である。5つの1区間の弧が1回ずつ現れる。円周角の定理より、弧 \( \mathrm{B}_2\mathrm{B}_3 \)、\( \mathrm{B}_3\mathrm{B}_4 \)、\( \mathrm{B}_4\mathrm{B}_5 \) に対する円周角は \( \mathrm{B}_1 \) から見た角で表せ、その和は \( \angle\mathrm{B}_5\mathrm{B}_1\mathrm{B}_2 \)。弧 \( \mathrm{B}_5\mathrm{B}_1 \)、\( \mathrm{B}_1\mathrm{B}_2 \) に対する円周角は \( \mathrm{B}_3 \) から見た角で表せ、その和は \( \angle\mathrm{B}_2\mathrm{B}_3\mathrm{B}_5 \)。四角形 \( \mathrm{B}_1\mathrm{B}_2\mathrm{B}_3\mathrm{B}_5 \) は円に内接し、この2つの角は対角なので和は \( 180^\circ \)。よって先端の角の和は \( 180^\circ \)。</p>
+    <p><strong>採点の観点</strong>　① 各先端の角が、向かい側の1区間の弧に対する円周角であることを示している。② 円周角の定理を使って、円周角を見る点を移している。③ 円に内接する四角形の対角の和が \( 180^\circ \) であることを使っている。④ 5つの弧が1回ずつ現れることに触れている。</p>
+  </div>
+  <div class="explain">本文の性質★を、5点の場合に同じ手順で示したものです。見る点は、四角形が円に内接する形になるように選びます（\( \mathrm{B}_1 \) と \( \mathrm{B}_3 \) のように、2つの弧の組を分ける点）。中心角の和 \( 360^\circ \) の半分と考える説明も正解です。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(1) 図形の性質」のイ(ア)（図形の新たな性質を見いだし、論理的に考察したり説明したりすること）とア(イ)（円に関する基本的な性質）に関わり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「解決過程を振り返り，得られた結果を意味づけたり，活用したり，統合的・発展的に考察したりすることなどを求める」と述べています。この時間の「振り返り」と「発展」は、この過程にあたります。</p>
+  <p class="small">問8は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">作図（内分点・外分点、円の接線）（数Ａ-056）</p>
+  <p>次の時間は、定規とコンパスを使って、線分を与えられた比に内分・外分する点や、円の外部の1点を通る円の接線を作図します。着目する図形の性質から作図の方針を立て、手順が正しいことを図形の性質で説明します。この時間に使った円周角の定理（半円の弧に対する円周角は直角）は、接線の作図でも使います。</p>
+  <p>この時間では、星形七角形 (ii) の和が円周上にない場合にも \( 180^\circ \) になることの一般的な証明は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-054　2つの円の位置関係と共通接線</div>
+  <div><span class="label">次の時間</span>数Ａ-056　作図（内分点・外分点、円の接線）</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-055「星形七角形の先端の角の和」（学習指導要領 数学Ａ (1)イ(ア)・ア(イ)、解説 p.90）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(1) 図形の性質（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.90（星形七角形の先端の角の和の例と2つの図、「一つの円周上に 7 つの頂点をとって考えてもよいことを見いだし，円周角の定理や円に内接する四角形の性質などを用いることや，一連の思考過程を振り返り，星形五角形，六角形，八角形などについて発展的に考察させたり，得られた結果を基に，多角形の内角の和について統合的に捉えたりすることも大切である」）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・図はこのページのために作成したものです（出典を示したものを除く）。「星形七角形 (i)・(ii)」「1区間の弧」「性質★」「星形 \( n \) 角形（\( k \) つ先）」はこのページでの呼び方です。円を使わない説明と \( 180^\circ\times(n-2k) \) の式は、このページでの説明です（解説に書かれた展開ではありません）。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var svg = document.getElementById("w1-svg");
+  var selS = document.getElementById("w1-s");
+  var selF = document.getElementById("w1-f");
+  var sl = document.getElementById("w1-t");
+  var out = document.getElementById("w1-out");
+  if (!svg || !selS || !selF || !sl || !out) return;
+  var SC = 95, OX = 170, OY = 135;
+  var ORANGE = "#b7791f", GRAY = "#8a99a8";
+  var ANG = [90, 140, 195, 245, 290, 345, 395];
+  var SHAPE = {
+    A: { r: [1.10, 0.85, 1.05, 0.80, 1.00, 0.88, 1.12], d: [0, 5, -5, 8, -4, 6, -6] },
+    B: { r: [0.90, 1.15, 0.80, 1.10, 0.85, 1.05, 0.95], d: [6, -4, 3, -7, 5, -3, 2] }
+  };
+  var SUBS = ["₁", "₂", "₃", "₄", "₅", "₆", "₇"];
+  function X(x) { return OX + SC * x; }
+  function Y(y) { return OY - SC * y; }
+  function r1(v) { return String(Math.round(v * 10) / 10); }
+  function f1(v) { return (Math.round(v * 10 + 1e-9) / 10).toFixed(1); }
+  function points(form, t) {
+    var p = [], i, a, bx, by, tx, ty;
+    for (i = 0; i < 7; i++) {
+      a = ANG[i] * Math.PI / 180;
+      bx = Math.cos(a); by = Math.sin(a);
+      if (form === "C") { tx = bx * 1.35; ty = by * 0.80; }
+      else {
+        var s = SHAPE[form], b = (ANG[i] + s.d[i]) * Math.PI / 180;
+        tx = s.r[i] * Math.cos(b); ty = s.r[i] * Math.sin(b);
+      }
+      p.push([bx + (tx - bx) * t / 10, by + (ty - by) * t / 10]);
+    }
+    return p;
+  }
+  function angleAt(v, p, q) {
+    var ax = p[0] - v[0], ay = p[1] - v[1], bx = q[0] - v[0], by = q[1] - v[1];
+    var c = (ax * bx + ay * by) / Math.sqrt((ax * ax + ay * ay) * (bx * bx + by * by));
+    return Math.acos(Math.max(-1, Math.min(1, c))) * 180 / Math.PI;
+  }
+  function draw() {
+    var k = parseInt(selS.value, 10), form = selF.value, t = parseInt(sl.value, 10);
+    var p = points(form, t), h = [], i, j, tips = [], sum = 0;
+    h.push('<circle cx="' + X(0) + '" cy="' + Y(0) + '" r="' + SC + '" fill="none" stroke="' + GRAY + '" stroke-width="1.2" stroke-dasharray="5 4" data-circle="円"/>');
+    for (i = 0; i < 7; i++) {
+      j = (i + k) % 7;
+      h.push('<line x1="' + r1(X(p[i][0])) + '" y1="' + r1(Y(p[i][1])) + '" x2="' + r1(X(p[j][0])) + '" y2="' + r1(Y(p[j][1])) + '" stroke="currentColor" stroke-width="1.5" data-seg="' + (i + 1) + "-" + (j + 1) + '"/>');
+    }
+    for (i = 0; i < 7; i++) {
+      var a = p[(i + k) % 7], b = p[(i - k + 7) % 7], v = p[i];
+      var ang = angleAt(v, a, b);
+      tips.push(ang); sum += ang;
+      var a1 = Math.atan2(-(a[1] - v[1]), a[0] - v[0]), a2 = Math.atan2(-(b[1] - v[1]), b[0] - v[0]);
+      var d = a2 - a1;
+      while (d < -Math.PI) d += 2 * Math.PI;
+      while (d > Math.PI) d -= 2 * Math.PI;
+      var R = 13, sx = X(v[0]) + R * Math.cos(a1), sy = Y(v[1]) + R * Math.sin(a1), ex = X(v[0]) + R * Math.cos(a1 + d), ey = Y(v[1]) + R * Math.sin(a1 + d);
+      h.push('<path d="M' + r1(sx) + ',' + r1(sy) + ' A' + R + ',' + R + ' 0 0 ' + (d > 0 ? 1 : 0) + ' ' + r1(ex) + ',' + r1(ey) + '" fill="none" stroke="' + ORANGE + '" stroke-width="1.5" data-tip="' + (i + 1) + '"/>');
+    }
+    var cx = 0, cy = 0;
+    for (i = 0; i < 7; i++) { cx += p[i][0] / 7; cy += p[i][1] / 7; }
+    for (i = 0; i < 7; i++) {
+      h.push('<circle cx="' + r1(X(p[i][0])) + '" cy="' + r1(Y(p[i][1])) + '" r="2.8" fill="currentColor" data-pt="A' + (i + 1) + '" data-x="' + p[i][0].toFixed(6) + '" data-y="' + p[i][1].toFixed(6) + '"/>');
+      var ux = p[i][0] - cx, uy = p[i][1] - cy, L = Math.sqrt(ux * ux + uy * uy);
+      h.push('<text x="' + r1(X(p[i][0]) + 15 * ux / L) + '" y="' + r1(Y(p[i][1]) - 15 * uy / L + 4.5) + '" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">A' + SUBS[i] + '</text>');
+    }
+    svg.innerHTML = h.join("");
+    var parts = [];
+    for (i = 0; i < 7; i++) parts.push("A" + SUBS[i] + " " + f1(tips[i]) + "°");
+    var name = (k === 2 ? "(i)" : "(ii)"), fname = (form === "C" ? "形C" : "形" + form);
+    out.textContent = "星形七角形 " + name + "、" + fname + "、ずれ " + t + "：" + (t === 0 ? "7つの点は1つの円周上にあります。" : "7つの点は1つの円周上にはありません。") + "先端の角は " + parts.join("、") + " で、和は " + f1(sum) + "° です。";
+  }
+  selS.addEventListener("change", draw);
+  selF.addEventListener("change", draw);
+  sl.addEventListener("input", draw);
+  sl.addEventListener("change", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-055",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-055",
+  "title": "星形七角形の先端の角の和",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-2", "title": "図形の性質"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)イ(ア)", "(1)ア(イ)"],
+  "kaisetsu_page": "90",
+  "objectives": [
+    {"id": "O1", "text": "星形七角形の先端の角の和が頂点の位置によらないことを操作で予想し、7つの頂点を1つの円周上にとって考えてよいことを説明できる。", "from": "星形七角形の先端の角の和を、7つの頂点を一つの円周上にとって（解説「一つの円周上に 7 つの頂点をとって考えてもよいことを見いだし」）", "sections": ["sec-1", "sec-3"], "checks": ["q6"]},
+    {"id": "O2", "text": "7つの頂点を1つの円周上にとり、円周角の定理と円に内接する四角形の性質を用いて、星形七角形の先端の角の和を求めることができる。", "from": "円周角の定理や円に内接する四角形の性質を用いて求め", "sections": ["sec-2"], "checks": ["q1", "q2", "q4", "q9"]},
+    {"id": "O3", "text": "求め方を振り返り、星形五角形・六角形・八角形などに発展させて先端の角の和を求め、多角形の内角の和と結び付けて説明できる。", "from": "星形五角形・六角形・八角形などに発展させて考察できる（解説「多角形の内角の和について統合的に捉えたりする」）", "sections": ["sec-4"], "checks": ["q3", "q5", "q7", "q8"]}
+  ],
+  "key_terms": [
+    {"term": "星形七角形 (i)・(ii)", "where": "sec-1"},
+    {"term": "先端の角", "where": "sec-1"},
+    {"term": "1区間の弧", "where": "sec-2"},
+    {"term": "性質★", "where": "sec-2"},
+    {"term": "星形 n 角形（k つ先）", "where": "sec-4"}
+  ],
+  "prerequisites": [
+    {"concept": "円周角と中心角の関係（円周角は中心角の半分、同じ弧に対する円周角は等しい）", "taught_in": ["jhs_math/中3-087", "jhs_math/中3-088", "jhs_math/中3-089", "hs_math_1a/数Ａ-047"], "gap": false, "where": "review"},
+    {"concept": "円に内接する四角形の対角の和は180°", "taught_in": ["hs_math_1a/数Ａ-048"], "gap": false, "where": "review"},
+    {"concept": "三角形の内角の和は180°", "taught_in": ["jhs_math/中2-048"], "gap": false, "where": "review"},
+    {"concept": "n角形の内角の和は180°×(n−2)", "taught_in": ["jhs_math/中2-049"], "gap": false, "where": "review"},
+    {"concept": "一直線上にない3点を通る円はただ1つ", "taught_in": ["hs_math_1a/数Ａ-037"], "gap": false, "where": "quiz"},
+    {"concept": "どの内角も180°より小さい四角形・多角形（へこみのない多角形）の考え方", "taught_in": ["hs_math_1a/数Ａ-049"], "gap": false, "where": "sec-1"}
+  ],
+  "out_of_scope": [
+    "星形七角形 (ii) の先端の角の和が、円周上にない場合にも180°になることの一般的な証明（このページでは操作部品での確かめにとどめる）",
+    "へこみのある七角形の頂点を結んだ場合（このページでは扱わない）",
+    "定規とコンパスによる作図（数Ａ-056）"
+  ],
+  "selection_reason": "数学Ａ 単元『図形の性質』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(1)イ(ア)・ア(イ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.90 星形七角形の先端の角の和の例（本文と2つの図。図は sources/raw/hs_kaisetsu_math.pdf の PDF 102 ページで確認。保存本文：sources/text/hs_kaisetsu_math.txt 4899-4903 行）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（振り返り・統合的・発展的な考察）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

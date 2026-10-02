@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>課題学習：模擬店の利益を最大にする｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.widget .w-row { margin: 4px 0; }
+.widget .w-row output { display: inline-block; min-width: 3em; font-weight: 700; }
+.widget .w-out { font-size: .92rem; margin: 4px 0 0; }
+.stage { display: inline-block; font-size: .8rem; font-weight: 700; padding: 1px 8px; border-radius: 10px; border: 1px solid currentColor; margin-right: 6px; }
+table.data td, table.data th { text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>課題学習</span><span>数Ⅰ-094</span></div>
+  <h1>課題学習：模擬店の利益を最大にする</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">課題学習</span>
+    <span class="badge exam-tri">共通テスト △</span>
+  </div>
+  <p class="lead">文化祭の模擬店で焼き菓子を売り、その純利益を寄付することになりました。値段を高くすると1個あたりのもうけは増えますが、売れる数は減りそうです。何円で売ればよいでしょうか。この時間は、売れる数についての仮定を自分たちで置いて純利益を二次関数で表し、値段を決め、その仮定と答えを振り返ります。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>模擬店の場面で、売上と純利益の違いを説明し、純利益を求めるのに必要な数量（値段・売れる数・材料費・準備費）を整理できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>予備調査のデータをもとに、値段を上げると売れる数が一定の割合で減ると仮定して、売れる数を値段の一次式で表すことができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>純利益を値段の二次関数で表し、値段の範囲や値段の決め方に注意して、純利益が最大になる値段と売れる数を決めることができる。</span></li>
+    <li><input type="checkbox" data-obj="O4" aria-label="O4"><span><span class="oid">O4</span>置いた仮定やデータの範囲を振り返り、条件を変えたときに答えがどう変わるかを調べて、値段の決め方を説明できる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-093）</span>課題学習：直角三角錐の面積の関係</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-094）</span>課題学習：模擬店の利益を最大にする</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-095）</span>課題学習：携帯端末の利用の影響を調べる</div>
+</div>
+<p class="small">前提となる単元：なし（課題学習）。この時間は、中学2年「一次関数」と、数学Ⅰ「二次関数」の数Ⅰ-034〜043（平方完成、最大・最小、最大・最小の活用）を使います。本編の <span class="stage">①理解</span> などの印は、数Ⅰ-092 で示した課題学習の過程（①課題の理解 ②結果の予想 ③解決の方向の構想 ④解決 ⑤振り返りと発展）のどの段階かを表します。</p>
+<div class="box point">
+  <p class="box-title">数Ⅰ-043（最大・最小の活用）との違い</p>
+  <p>数Ⅰ-043 の例題4でも模擬店の利益を扱いましたが、そこでは「1円上げるごとに1個ずつ減る」という関係が問題文で与えられていました。この時間は、<strong>課題を自分たちで設定する</strong>（何を最大にするか、どんな費用があるか）、<strong>データから仮定を置き、その仮定を吟味する</strong>、<strong>答えを場面に戻して振り返る</strong>（値段の決め方、条件を変えたときの変化）ことに重点を置きます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：使う既習事項</h2>
+<p>この時間は、次の3つを使います。3問で確かめましょう。</p>
+<div class="formula-card">
+  <div><span class="f-name">① 一次関数とみなす・2点から式を求める（中2-038・033）</span><p>データの点がほぼ一直線上に並ぶとき、一次関数とみなす。2点の座標から傾き（変化の割合）を求め、1点を代入して切片を求める。</p></div>
+  <div><span class="f-name">② 平方完成と最大・最小（数Ⅰ-034・039・040）</span><p>\( y=a(x-p)^2+q \) の形にして、軸が定義域の内側か外側かを見て最大値・最小値を求める。</p></div>
+  <div><span class="f-name">③ 場面を二次関数で表して解決する（数Ⅰ-043）</span><p>変数を決める → 式をつくる → 条件から変数のとりうる値の範囲を求める → 最大・最小を求める → 場面に戻して答える。</p></div>
+</div>
+<p class="small">①〜③は、このページの中での番号です。</p>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中2-033</span></div>
+  <p>2点 \( (100,\ 300) \)、\( (150,\ 200) \) を通る直線の式はどれですか（\( x \) は値段、\( n \) は売れる数）。</p>
+  <div class="choices">
+    <button>\( n=-0.5x+350 \)</button>
+    <button>\( n=2x+100 \)</button>
+    <button data-correct="true">\( n=-2x+500 \)</button>
+    <button>\( n=-2x+300 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">傾きは \( \dfrac{200-300}{150-100}=-2 \)。\( n=-2x+b \) に \( (100,\ 300) \) を代入して \( b=500 \) なので \( n=-2x+500 \) です。\( n=-0.5x+350 \) は傾きを \( \dfrac{x\ の増加量}{n\ の増加量} \) と逆にしています。\( n=2x+100 \) は傾きの符号を誤っています（値段が上がると売れる数は減る）。\( n=-2x+300 \) は切片を求めずに、1点目の \( n \) の値 300 を切片にしています。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-034・039</span></div>
+  <p>\( y=-2x^2+400x-15000 \) の最大値として正しいものはどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( x=100 \) で最大値 5000</button>
+    <button>\( x=200 \) で最大値 \( -15000 \)</button>
+    <button>\( x=100 \) で最大値 \( -5000 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( y=-2(x^2-200x)-15000=-2\{(x-100)^2-10000\}-15000=-2(x-100)^2+5000 \)。上に凸なので \( x=100 \) で最大値 5000 です。「\( x=200 \) で \( -15000 \)」は \( x^2 \) の係数 \( -2 \) でくくらずに、\( 400\div2=200 \) を軸とした誤りです。「\( x=100 \) で \( -5000 \)」は、\( -10000 \) に \( -2 \) をかけ忘れて \( +10000 \) とした誤りです（\( 10000-15000=-5000 \)）。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-040</span></div>
+  <p>\( y=-2(x-145)^2+18050 \)（\( 100\leqq x\leqq 130 \)）の最大値として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>\( x=145 \) で最大値 18050</button>
+    <button>\( x=100 \) で最大値 14000</button>
+    <button data-correct="true">\( x=130 \) で最大値 17600</button>
+    <button>最大値はない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">上に凸で、軸 \( x=145 \) は定義域の右の外にあります。定義域では \( y \) は増加するので、右端 \( x=130 \) で最大値 \( -2\times15^2+18050=17600 \) です。「\( x=145 \) で 18050」は定義域の外の頂点です。「\( x=100 \) で 14000」は最小になる左端です。右端 130 は定義域に含まれるので、「最大値はない」ことにはなりません。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：寄付のために、何円で売る？</h2>
+<div class="box think">
+  <p class="box-title">X高校1年のあるクラスの計画（学習用に作成した架空の場面）</p>
+  <p>文化祭の模擬店で焼き菓子を売り、純利益をすべて寄付することにしました。材料費は1個 40 円、飾り付けや道具の費用が 4000 円かかります。</p>
+  <p>① 何を最大にすればよいでしょうか。たくさん売れて売上が大きければよいのでしょうか。</p>
+  <p>② 値段を上げると、売れる数はどのように変わるでしょうか。どんな仮定を置けば式に表せるでしょうか。</p>
+  <p>③ 何円で売ればよいでしょうか。</p>
+  <p>①は「課題を理解する」、②は「売れる数の仮定を置く」、③は「純利益を二次関数で表して解く」の節で答えます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="課題の理解：何を最大にするか"><span class="num">3</span>課題を理解する：何を最大にするか</h2>
+<h3><span class="stage">①理解</span>売上と純利益</h3>
+<p>寄付するのは、売上から費用を差し引いて手元に残るお金です。このページでは、次のように言葉を決めます。</p>
+<ul>
+  <li><strong>売上</strong>：（値段）×（売れる数）</li>
+  <li><strong>材料費</strong>：（1個あたりの材料費）×（作る数）。作る数は売れる見込みの数とする。</li>
+  <li><strong>準備費</strong>：飾り付けや道具の費用など、売れる数に関係なくかかる費用（このページでの言い方）。</li>
+  <li><strong>純利益</strong>：（売上）−（材料費）−（準備費）。学習指導要領解説の模擬店の例で使われている言葉です。</li>
+</ul>
+<p>1個あたりで考えると、（値段 − 1個あたりの材料費）×（売れる数）− 準備費 とも書けます。<strong>課題は、純利益を最大にする値段と、そのときの売れる数を決めること</strong>です（導入の問い①の答え：最大にするのは売上ではなく純利益）。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（1つの値段で純利益を計算する）</p>
+  <p>1個 120 円で売ると 260 個売れる見込みです。材料費は1個 40 円、準備費は 4000 円です。売上と純利益を求めなさい。</p>
+  <div class="step">ステップ1：売上は \( 120\times260=31200 \)（円）。</div>
+  <div class="step">ステップ2：材料費は \( 40\times260=10400 \)（円）、準備費は 4000 円。</div>
+  <div class="step">答え：純利益は \( 31200-10400-4000=16800 \)（円）。1個あたりの利益 \( 120-40=80 \)（円）を使って \( 80\times260-4000=16800 \) と求めてもよい。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い：売上を最大にすればよいと考える</p><p>売上が最大になる値段と、純利益が最大になる値段は、ふつう同じではありません。材料費は売れる数に比例してかかるので、たくさん売るほど費用も増えます（「振り返りと発展」の節で、2つの値段を比べます）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="売れる数の仮定を置く"><span class="num">4</span>結果を予想し、売れる数の仮定を置く</h2>
+<h3><span class="stage">②予想</span>予備調査のデータを見る</h3>
+<p>クラスで予備調査を行い、値段ごとに1日に売れる数を見積もりました。</p>
+<div class="box source">
+  <p class="box-title">資料1　値段と売れる数の見込み（学習用の架空のデータ）</p>
+  <div class="table-wrap">
+  <table class="data">
+    <tr><th>値段 \( x \)（円）</th><td>100</td><td>120</td><td>150</td><td>180</td><td>200</td></tr>
+    <tr><th>売れる数の見込み（個）</th><td>304</td><td>262</td><td>196</td><td>143</td><td>98</td></tr>
+  </table>
+  </div>
+</div>
+<figure>
+<!--svg:f094a-->
+<svg viewBox="0 0 340 235" width="340" role="img" aria-label="資料1の点（100, 304）、（120, 262）、（150, 196）、（180, 143）、（200, 98）と、直線 n=−2x+500。点はほぼ直線の近くに並ぶ" data-frame="52 320 28 200 80 220 0 340">
+<line x1="52" y1="200" x2="330" y2="200" stroke="currentColor" stroke-width="1"/>
+<polygon points="332,200 324,196.5 324,203.5" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+<line x1="52" y1="200" x2="52" y2="16" stroke="currentColor" stroke-width="1"/>
+<polygon points="52,14 48.5,22 55.5,22" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+<text x="58" y="16" text-anchor="start" font-size="11" fill="currentColor">売れる数（個）</text>
+<text x="326" y="228" text-anchor="end" font-size="11" fill="currentColor">値段 x（円）</text>
+<line x1="90.3" y1="197" x2="90.3" y2="203" stroke="currentColor" stroke-width="1"/>
+<text x="90.3" y="214" text-anchor="middle" font-size="10" fill="currentColor">100</text>
+<line x1="186" y1="197" x2="186" y2="203" stroke="currentColor" stroke-width="1"/>
+<text x="186" y="214" text-anchor="middle" font-size="10" fill="currentColor">150</text>
+<line x1="281.7" y1="197" x2="281.7" y2="203" stroke="currentColor" stroke-width="1"/>
+<text x="281.7" y="214" text-anchor="middle" font-size="10" fill="currentColor">200</text>
+<line x1="49" y1="149.4" x2="55" y2="149.4" stroke="currentColor" stroke-width="1"/>
+<text x="46" y="153.4" text-anchor="end" font-size="10" fill="currentColor">100</text>
+<line x1="49" y1="98.8" x2="55" y2="98.8" stroke="currentColor" stroke-width="1"/>
+<text x="46" y="102.8" text-anchor="end" font-size="10" fill="currentColor">200</text>
+<line x1="49" y1="48.2" x2="55" y2="48.2" stroke="currentColor" stroke-width="1"/>
+<text x="46" y="52.2" text-anchor="end" font-size="10" fill="currentColor">300</text>
+<line x1="71.1" y1="38.1" x2="300.9" y2="159.5" stroke="#b7791f" stroke-width="1.8" stroke-dasharray="6 4" data-role="model" data-line="-2 500"/>
+<circle cx="90.3" cy="46.2" r="4.5" fill="#1f5fbf" data-xy="100 304"/>
+<circle cx="128.6" cy="67.5" r="4.5" fill="#1f5fbf" data-xy="120 262"/>
+<circle cx="186" cy="100.8" r="4.5" fill="#1f5fbf" data-xy="150 196"/>
+<circle cx="243.4" cy="127.7" r="4.5" fill="#1f5fbf" data-xy="180 143"/>
+<circle cx="281.7" cy="150.4" r="4.5" fill="#1f5fbf" data-xy="200 98"/>
+<text x="330" y="177.5" text-anchor="end" font-size="11" fill="#b7791f">n＝−2x＋500</text>
+</svg>
+<!--/svg:f094a-->
+  <figcaption>図1　資料1の点（青の●）と、直線 \( n=-2x+500 \)（橙の破線）。横軸は 80 円から 220 円の部分を示している。値は学習用に作成した架空のもの</figcaption>
+</figure>
+<p>点は、ほぼ一直線上に並んでいます。値段が 100 円から 200 円に 100 円上がると、売れる数は 304 個から 98 個へ約 200 個減っているので、<strong>値段を 10 円上げるごとに、売れる数がおよそ 20 個ずつ減る</strong>と予想できます。</p>
+<h3><span class="stage">③構想</span>仮定を置いて式にする</h3>
+<p>学習指導要領解説の例では、「食品の値段を上げると売れる食品の数は一定の割合で減少すると仮定して」純利益を二次関数で表します。このページでは、これを「値段を 10 円上げるごとに、売れる数が同じ数ずつ減る」という意味で使い、次のように仮定します。</p>
+<div class="box think"><p class="box-title">この時間の仮定（学習用）</p>
+<ol>
+  <li>値段が \( x \) 円のときの売れる数を \( n=-2x+500 \)（個）とする（100 円で 300 個、10 円上げるごとに 20 個減る）。</li>
+  <li>この式を使うのは、予備調査をした \( 100\leqq x\leqq200 \) の範囲だけとする。</li>
+  <li>売れる見込みの数だけ作り、売れ残りは出ないものとする。</li>
+  <li>材料費は1個 40 円、準備費は 4000 円で、売る数によって変わらない。</li>
+</ol></div>
+<p>仮定1の直線は、点 \( (100,\ 300) \) と \( (200,\ 100) \) を通る直線です（確認1と同じ考え方）。資料1との差を確かめると、次のようになります。</p>
+<div class="table-wrap">
+<table class="data">
+  <tr><th>値段 \( x \)（円）</th><td>100</td><td>120</td><td>150</td><td>180</td><td>200</td></tr>
+  <tr><th>式の値 \( -2x+500 \)（個）</th><td>300</td><td>260</td><td>200</td><td>140</td><td>100</td></tr>
+  <tr><th>資料1 − 式の値（個）</th><td>4</td><td>2</td><td>−4</td><td>3</td><td>−2</td></tr>
+</table>
+</div>
+<p>差はどれも 4 個以内です。見積もりにもともと数個のずれがあると考えて、この式を使うことにします（導入の問い②の答え）。</p>
+<div class="box caution"><p class="box-title">注意：「一定の割合で減る」の読み方</p><p>「10 円上げるごとに売れる数が1割ずつ減る」と読むと、売れる数は 300、270、243、… となり、\( x \) の一次式ではなくなります。この場合、純利益は二次関数になりません。式を使う前に、どんな仮定を置いたのかを言葉で書いておくことが大切です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="純利益を二次関数で表して解く"><span class="num">5</span>解決する：純利益を二次関数で表して解く</h2>
+<h3><span class="stage">④解決</span>式をつくり、最大値を求める</h3>
+<div class="box example worked">
+  <p class="box-title">例題2（導入の問い③の答え）</p>
+  <p>この時間の仮定1〜4のもとで、純利益を \( y \) 円として \( y \) を \( x \) の式で表し、純利益が最大になる値段と、そのときの売れる数・純利益を求めなさい。</p>
+  <div class="step">ステップ1（式）：1個あたりの利益は \( (x-40) \) 円、売れる数は \( (-2x+500) \) 個なので、\( y=(x-40)(-2x+500)-4000 \)。</div>
+  <div class="step">ステップ2（展開）：\( (x-40)(-2x+500)=-2x^2+500x+80x-20000=-2x^2+580x-20000 \)。よって \( y=-2x^2+580x-24000 \)。\( y \) は \( x \) の二次関数です。</div>
+  <div class="step">ステップ3（平方完成）：\( y=-2(x^2-290x)-24000=-2\{(x-145)^2-21025\}-24000=-2(x-145)^2+18050 \)。</div>
+  <div class="step">ステップ4（範囲）：仮定2から \( 100\leqq x\leqq200 \)。軸 \( x=145 \) は範囲の内側にあるので、\( x=145 \) で最大値 18050。</div>
+  <div class="step">ステップ5（場面に戻す）：145 円のとき、売れる数は \( -2\times145+500=210 \)（個）、1個あたりの利益は 105 円で、\( 105\times210-4000=18050 \)（円）。</div>
+  <div class="step">答え：値段 145 円、売れる数 210 個のとき、純利益は最大で 18050 円。</div>
+</div>
+<figure>
+<!--svg:f094b-->
+<svg viewBox="0 0 340 240" width="340" role="img" aria-label="純利益 y=−2(x−145)²+18050 のグラフ。100≦x≦200 の部分を太線、外側を点線で示す。頂点 (145, 18050) で最大。両端は (100, 14000)、(200, 12000)" data-frame="40.0 320.0 30.0 215.0 0 270 -6000 21000">
+<defs><clipPath id="clip-f094b"><rect x="40" y="30" width="280" height="185"/></clipPath></defs>
+<line x1="34" y1="173.9" x2="330" y2="173.9" stroke="currentColor" stroke-width="1"/>
+<polygon points="332,173.9 324,170.4 324,177.4" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+<text x="328" y="166.9" text-anchor="end" font-size="12" fill="currentColor" font-style="italic">x</text>
+<line x1="40" y1="219" x2="40" y2="18" stroke="currentColor" stroke-width="1"/>
+<polygon points="40,16 36.5,24 43.5,24" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+<text x="47" y="24" text-anchor="start" font-size="12" fill="currentColor" font-style="italic">y</text>
+<text x="36" y="186.9" text-anchor="end" font-size="11" fill="currentColor">O</text>
+<line x1="143.7" y1="170.9" x2="143.7" y2="176.9" stroke="currentColor" stroke-width="1"/>
+<text x="143.7" y="187.9" text-anchor="middle" font-size="10" fill="currentColor">100</text>
+<line x1="190.4" y1="170.9" x2="190.4" y2="176.9" stroke="currentColor" stroke-width="1"/>
+<text x="190.4" y="187.9" text-anchor="middle" font-size="10" fill="currentColor">145</text>
+<line x1="247.4" y1="170.9" x2="247.4" y2="176.9" stroke="currentColor" stroke-width="1"/>
+<text x="247.4" y="187.9" text-anchor="middle" font-size="10" fill="currentColor">200</text>
+<line x1="299.3" y1="170.9" x2="299.3" y2="176.9" stroke="currentColor" stroke-width="1"/>
+<text x="299.3" y="187.9" text-anchor="middle" font-size="10" fill="currentColor">250</text>
+<line x1="37" y1="105.4" x2="43" y2="105.4" stroke="currentColor" stroke-width="1"/>
+<text x="35" y="109.4" text-anchor="end" font-size="10" fill="currentColor">10000</text>
+<line x1="37" y1="50.2" x2="43" y2="50.2" stroke="currentColor" stroke-width="1"/>
+<text x="35" y="54.2" text-anchor="end" font-size="10" fill="currentColor">18050</text>
+<line x1="190.4" y1="30" x2="190.4" y2="215" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="5 4" data-axis="145"/>
+<path d="M60.7,264.3 L62.8,257.5 L64.9,250.8 L67,244.3 L69,237.8 L71.1,231.4 L73.2,225.2 L75.3,219.1 L77.3,213 L79.4,207.1 L81.5,201.3 L83.6,195.6 L85.6,190 L87.7,184.5 L89.8,179.2 L91.9,173.9 L93.9,168.7 L96,163.7 L98.1,158.8 L100.1,153.9 L102.2,149.2 L104.3,144.6 L106.4,140.1 L108.4,135.7 L110.5,131.5 L112.6,127.3 L114.7,123.2 L116.7,119.3 L118.8,115.5 L120.9,111.7 L123,108.1 L125,104.6 L127.1,101.2 L129.2,97.9 L131.3,94.7 L133.3,91.7 L135.4,88.7 L137.5,85.9 L139.6,83.1 L141.6,80.5 L143.7,78" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" clip-path="url(#clip-f094b)" data-f="-2 580 -24000"/>
+<path d="M247.4,91.7 L249.5,94.7 L251.6,97.9 L253.6,101.2 L255.7,104.6 L257.8,108.1 L259.9,111.7 L261.9,115.5 L264,119.3 L266.1,123.2 L268.1,127.3 L270.2,131.5 L272.3,135.7 L274.4,140.1 L276.4,144.6 L278.5,149.2 L280.6,153.9 L282.7,158.8 L284.7,163.7 L286.8,168.7 L288.9,173.9 L291,179.2 L293,184.5 L295.1,190 L297.2,195.6 L299.3,201.3 L301.3,207.1 L303.4,213 L305.5,219.1 L307.6,225.2 L309.6,231.4" fill="none" stroke="#8a99a8" stroke-width="1.5" stroke-dasharray="2 3" clip-path="url(#clip-f094b)" data-f="-2 580 -24000"/>
+<path d="M143.7,78 L144.7,76.7 L145.8,75.6 L146.8,74.4 L147.9,73.2 L148.9,72.1 L149.9,71.1 L151,70 L152,69 L153,68 L154.1,67 L155.1,66.1 L156.1,65.1 L157.2,64.2 L158.2,63.4 L159.3,62.5 L160.3,61.7 L161.3,61 L162.4,60.2 L163.4,59.5 L164.4,58.8 L165.5,58.1 L166.5,57.5 L167.6,56.8 L168.6,56.3 L169.6,55.7 L170.7,55.2 L171.7,54.7 L172.7,54.2 L173.8,53.7 L174.8,53.3 L175.9,52.9 L176.9,52.5 L177.9,52.2 L179,51.9 L180,51.6 L181,51.3 L182.1,51.1 L183.1,50.9 L184.1,50.7 L185.2,50.6 L186.2,50.4 L187.3,50.3 L188.3,50.3 L189.3,50.2 L190.4,50.2 L191.4,50.2 L192.4,50.3 L193.5,50.3 L194.5,50.4 L195.6,50.6 L196.6,50.7 L197.6,50.9 L198.7,51.1 L199.7,51.3 L200.7,51.6 L201.8,51.9 L202.8,52.2 L203.9,52.5 L204.9,52.9 L205.9,53.3 L207,53.7 L208,54.2 L209,54.7 L210.1,55.2 L211.1,55.7 L212.1,56.3 L213.2,56.8 L214.2,57.5 L215.3,58.1 L216.3,58.8 L217.3,59.5 L218.4,60.2 L219.4,61 L220.4,61.7 L221.5,62.5 L222.5,63.4 L223.6,64.2 L224.6,65.1 L225.6,66.1 L226.7,67 L227.7,68 L228.7,69 L229.8,70 L230.8,71.1 L231.9,72.1 L232.9,73.2 L233.9,74.4 L235,75.6 L236,76.7 L237,78 L238.1,79.2 L239.1,80.5 L240.1,81.8 L241.2,83.1 L242.2,84.5 L243.3,85.9 L244.3,87.3 L245.3,88.7 L246.4,90.2 L247.4,91.7" fill="none" stroke="#1f5fbf" stroke-width="3.5" data-f="-2 580 -24000"/>
+<circle cx="190.4" cy="50.2" r="4.5" fill="#c0392b" data-xy="145 18050"/>
+<circle cx="143.7" cy="78" r="4.5" fill="#1f5fbf" data-xy="100 14000"/>
+<circle cx="247.4" cy="91.7" r="4.5" fill="#1f5fbf" data-xy="200 12000"/>
+<text x="198.4" y="43.2" text-anchor="start" font-size="12" fill="#c0392b" font-weight="700">最大 18050</text>
+<text x="137.7" y="72" text-anchor="end" font-size="10" fill="#1f5fbf">14000</text>
+<text x="253.4" y="87.7" text-anchor="start" font-size="10" fill="#1f5fbf">12000</text>
+</svg>
+<!--/svg:f094b-->
+  <figcaption>図2　純利益 \( y=-2(x-145)^2+18050 \) のグラフ。太線は仮定を使う範囲 \( 100\leqq x\leqq200 \)、点線は範囲の外。赤の●＝頂点、青の●＝範囲の両端。値は学習用に作成した架空のもの</figcaption>
+</figure>
+<h3><span class="stage">④解決</span>値段の決め方に合わせる</h3>
+<p>クラスでは、おつりの準備がしやすいように、値段を 10 円単位で決めることにしました（学習用の設定）。145 円は選べないので、近くの値段で純利益を比べます。</p>
+<div class="table-wrap">
+<table class="data">
+  <tr><th>値段 \( x \)（円）</th><td>130</td><td>140</td><td>145</td><td>150</td><td>160</td></tr>
+  <tr><th>売れる数（個）</th><td>240</td><td>220</td><td>210</td><td>200</td><td>180</td></tr>
+  <tr><th>純利益 \( y \)（円）</th><td>17600</td><td>18000</td><td>18050</td><td>18000</td><td>17600</td></tr>
+</table>
+</div>
+<p>140 円と 150 円は、軸 \( x=145 \) から同じ 5 円だけ離れているので、グラフの対称性から純利益は同じ 18000 円です。<strong>数学の計算だけでは、140 円と 150 円のどちらがよいかは決まりません。</strong>どちらにするかは、次の節で振り返ります。</p>
+<h3>仮定を変えて確かめよう</h3>
+<div class="widget" id="w1">
+  <div class="w-row"><label for="w1-x">値段 \( x \)（円）：</label><input type="range" id="w1-x" min="100" max="200" step="10" value="140"><output id="w1-xv" for="w1-x">140</output></div>
+  <div class="w-row"><label for="w1-d">10 円上げるごとに減る数（個）：</label><input type="range" id="w1-d" min="10" max="30" step="5" value="20"><output id="w1-dv" for="w1-d">20</output></div>
+  <div class="w-row"><label for="w1-f">準備費（円）：</label><input type="range" id="w1-f" min="0" max="8000" step="2000" value="4000"><output id="w1-fv" for="w1-f">4000</output></div>
+  <div><svg id="w1-svg" viewBox="0 0 360 240" width="360" role="img" aria-label="純利益のグラフ。横軸は値段 100〜200 円、縦軸は純利益。スライダーで値段、10 円上げるごとに減る数、準備費を変えると、グラフといまの値段の点が変わる"></svg></div>
+  <p class="w-out" id="w1-out" aria-live="polite">値段 140 円：売れる数 220 個、1個あたりの利益 100 円、売上 30800 円、純利益 ＝ 100 × 220 − 4000 ＝ 18000 円</p>
+  <p class="w-out" id="w1-out2" aria-live="polite">この仮定では、純利益が最大になるのは 145 円のとき（純利益 18050 円、売れる数 210 個）。10 円単位では 140 円・150 円のとき 18000 円。</p>
+  <p class="small">売れる数は「100 円で 300 個、10 円上げるごとに（減る数）個ずつ減る」として計算しています。値段は 10 円刻みで 100〜200 円、減る数は 5 個刻みで 10〜30 個、準備費は 2000 円刻みで 0〜8000 円。青の●＝いまの値段、赤の●＝頂点（範囲の外のときは表示しない）。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="振り返りと発展"><span class="num">6</span>振り返りと発展：仮定と答えを見直す</h2>
+<h3><span class="stage">⑤振り返り</span>売上を最大にする値段と比べる</h3>
+<p>売上 \( x(-2x+500)=-2x^2+500x=-2(x-125)^2+31250 \) は、125 円で最大（31250 円）になります。このときの純利益は \( (125-40)\times250-4000=17250 \)（円）で、145 円のときの 18050 円より少なくなります。</p>
+<p>純利益の式 \( (x-40)(-2x+500) \) は、\( x=40 \)（1個あたりの利益が 0）と \( x=250 \)（売れる数が 0）で 0 になるので、軸はその真ん中の \( x=\dfrac{40+250}{2}=145 \) です。売上の軸 125 は 0 と 250 の真ん中です。<strong>材料費 40 円の分だけ、最大にする値段はその半分の 20 円だけ高くなります。</strong></p>
+<h3><span class="stage">⑤振り返り</span>仮定を見直す</h3>
+<ul>
+  <li><strong>準備費</strong>：準備費 \( F \) 円とすると \( y=-2(x-145)^2+22050-F \)。準備費は最大にする値段を変えず、純利益の値だけを変えます。調べた範囲の両端でも \( y \) は 100 円で \( 18000-F \)、200 円で \( 16000-F \) です。準備費 4000 円なら、範囲内のどの値段でも純利益は正（赤字にならない）です。</li>
+  <li><strong>減り方</strong>：10 円上げるごとに減る数が 20 個でなく 25 個なら、売れる数が 0 になるのは 220 円で、最大にする値段は \( \dfrac{40+220}{2}=130 \)（円）に変わります。仮定の数値が少し変わるだけで答えも変わるので、予備調査の確かさが大切です（上の操作できる図で確かめられます）。</li>
+  <li><strong>範囲</strong>：仮定1は 100〜200 円のデータから作った式です。たとえば 250 円で売れる数が 0 になるという予測は、調べた範囲の外の話なので確かではありません。答えの 145 円が調べた範囲の内側にあることは、答えを信頼してよい理由の1つです。</li>
+</ul>
+<h3><span class="stage">⑤振り返り</span>140 円と 150 円のどちらにするか</h3>
+<p>140 円なら売れる見込みは 220 個、150 円なら 200 個です。150 円にすると、作る数が 20 個少なく、材料費が \( 40\times20=800 \)（円）少なくてすみます。一方、140 円なら、より多くの人に買ってもらえます。売れる数の見込みには数個のずれがあること（資料1との差）も考えて、クラスで話し合って決めます。どちらを選んでも、<strong>理由を数値とともに説明できること</strong>が大切です（問9）。</p>
+<h3><span class="stage">⑤発展</span>作れる数に上限があるとき</h3>
+<div class="box example worked">
+  <p class="box-title">例題3（発展：作れる数は 180 個まで）</p>
+  <p>調理の都合で、1日に作れるのは 180 個までとわかりました。純利益が最大になる値段（10 円単位）と純利益を求めなさい。</p>
+  <div class="step">ステップ1：売れる数が 180 個以下なので \( -2x+500\leqq180 \)、つまり \( x\geqq160 \)。仮定2と合わせて \( 160\leqq x\leqq200 \)（数Ⅰ-017 の連立不等式）。</div>
+  <div class="step">ステップ2：\( y=-2(x-145)^2+18050 \) の軸 \( x=145 \) は範囲の左の外にあるので、範囲内では \( y \) は減少し、左端 \( x=160 \) で最大です。</div>
+  <div class="step">確かめ：160 円より安くしても、作れるのは 180 個までなので売れるのは 180 個で、1個あたりの利益が小さくなる分だけ純利益は減ります（たとえば 150 円なら \( 110\times180-4000=15800 \) 円）。</div>
+  <div class="step">答え：160 円（売れる数 180 個）のとき、純利益は最大で \( 120\times180-4000=17600 \)（円）。160 は 10 円単位の値段なので、そのまま選べます。</div>
+</div>
+<div class="table-wrap">
+<table>
+  <tr><th>この時間の過程</th><th>したこと</th></tr>
+  <tr><td>①課題の理解</td><td>最大にするのは売上でなく純利益と決め、費用を材料費と準備費に分けた</td></tr>
+  <tr><td>②結果の予想</td><td>予備調査のデータから「10 円上げるごとに約 20 個減る」と見通した</td></tr>
+  <tr><td>③解決の方向の構想</td><td>仮定1〜4を言葉で書き、純利益を二次関数で表す方針を立てた</td></tr>
+  <tr><td>④解決</td><td>平方完成で 145 円・18050 円を求め、10 円単位では 140 円・150 円が同じ 18000 円になった</td></tr>
+  <tr><td>⑤振り返りと発展</td><td>売上最大との違い、準備費・減り方・範囲の影響、140 円と 150 円の選び方、作れる数の上限を考えた</td></tr>
+</table>
+</div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>純利益</dt><dd>（売上）−（材料費）−（準備費）。このページでは、売上からかかった費用をすべて引いたもの。学習指導要領解説の模擬店の例の言葉。</dd>
+    <dt>売上</dt><dd>（値段）×（売れる数）。費用を引く前の金額。</dd>
+    <dt>準備費</dt><dd>飾り付けや道具の費用など、売れる数に関係なくかかる費用（このページでの言い方）。最大にする値段を変えず、純利益の値だけを変える。</dd>
+    <dt>仮定</dt><dd>場面を式に表すために置く決めごと（例：10 円上げるごとに売れる数が 20 個ずつ減る）。答えは仮定のもとで成り立つので、仮定とそれを使う範囲を明示し、あとで吟味する。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>寄付するのは純利益＝売上−材料費−準備費。最大にするのは売上ではなく純利益（O1）。</li>
+    <li>予備調査のデータがほぼ一直線上に並ぶことから、「10 円上げるごとに同じ数ずつ減る」と仮定し、売れる数を \( n=-2x+500 \) と表した。使う範囲（\( 100\leqq x\leqq200 \)）も決めておく（O2）。</li>
+    <li>純利益は \( y=(x-40)(-2x+500)-4000=-2(x-145)^2+18050 \)。145 円・210 個で最大 18050 円。10 円単位では 140 円と 150 円が同じ 18000 円（O3）。</li>
+    <li>売上最大（125 円）との違い、準備費・減り方・範囲・作れる数の上限で答えがどう変わるかを確かめ、数学で決まらない部分は理由を示して決める（O4）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">純利益が最大になる値段（このページの仮定のもと）</span><p>（1個あたりの利益が 0 になる値段）と（売れる数が 0 になる値段）の真ん中：\( \dfrac{40+250}{2}=145 \)（円）</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示します。場面と数値はすべて学習用に作成した架空のものです。数を入力する問題は、単位を付けずに数だけを入力してもかまいません。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>値段が \( x \) 円のとき売れる数が \( (-2x+500) \) 個、材料費が1個 40 円、準備費が 4000 円です。純利益を表す式はどれですか。</p>
+  <div class="choices">
+    <button>\( x(-2x+500)-4000 \)</button>
+    <button>\( (x-40)(-2x+500) \)</button>
+    <button>\( x(-2x+500)-40x-4000 \)</button>
+    <button data-correct="true">\( (x-40)(-2x+500)-4000 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">純利益＝売上 \( x(-2x+500) \) − 材料費 \( 40(-2x+500) \) − 準備費 4000 ＝ \( (x-40)(-2x+500)-4000 \) です。\( x(-2x+500)-4000 \) は材料費を引き忘れています。\( (x-40)(-2x+500) \) は準備費を引き忘れています。\( x(-2x+500)-40x-4000 \) は、材料費を「40 円 × 値段 \( x \)」と、売れる数でなく値段にかけています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>ある品物は、1個 100 円で 240 個売れる見込みで、10 円上げるごとに売れる数が 12 個ずつ減ると仮定します。値段が \( x \) 円のときの売れる数を表す式はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( -1.2x+360 \)</button>
+    <button>\( -12x+240 \)</button>
+    <button>\( -1.2x+240 \)</button>
+    <button>\( 1.2x+120 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">100 円から \( (x-100) \) 円上げると、10 円ごとに 12 個減るので \( 12\times\dfrac{x-100}{10}=1.2(x-100) \) 個減ります。売れる数は \( 240-1.2(x-100)=-1.2x+360 \) です。\( -12x+240 \) は、10 でわらず、しかも 100 円からの上げ幅でなく \( x \) そのものにかけています。\( -1.2x+240 \) は、100 円からの上げ幅 \( x-100 \) でなく \( x \) にかけています（\( x=100 \) で 120 個になり、240 個になりません）。\( 1.2x+120 \) は減る向きを逆にしています。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="125|125円|x=125">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>値段が \( x \) 円のとき売れる数が \( (-3x+600) \) 個、材料費が1個 50 円、準備費が 3000 円とします（\( 100\leqq x\leqq180 \)）。純利益が最大になる値段は何円ですか。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 125 円。\( y=(x-50)(-3x+600)-3000=-3x^2+750x-33000=-3(x-125)^2+13875 \)。軸 \( x=125 \) は範囲の内側にあるので 125 円で最大（純利益 \( 75\times225-3000=13875 \) 円）です。100 と答えた場合は、売上 \( x(-3x+600) \) を最大にする値段で、材料費を考えていません。200 と答えた場合は、売れる数が 0 になる値段です（範囲の外）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>値段が \( x \) 円のとき売れる数が \( (-2x+450) \) 個、材料費が1個 40 円、準備費が 2000 円とします。値段を 10 円単位で決めるとき、純利益が最大になる値段はどれですか。</p>
+  <div class="choices">
+    <button>140 円</button>
+    <button>132.5 円</button>
+    <button data-correct="true">130 円</button>
+    <button>110 円</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">純利益 \( (x-40)(-2x+450)-2000 \) は \( x=40 \) と \( x=225 \) で \( -2000 \) になるので、軸は \( x=\dfrac{40+225}{2}=132.5 \)。軸からの距離は 130 円が 2.5、140 円が 7.5 で、上に凸のグラフでは軸に近いほど大きいので 130 円です（純利益は 130 円で 15100 円、140 円で 15000 円）。140 円は 132.5 を切り上げた値で、軸から遠い方です。132.5 円は 10 円単位ではありません。110 円は、材料費を考えずに売上 \( x(-2x+450) \) の軸 112.5 に近い値段を選んでいます。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O1・O4</span></div>
+  <p>本文の模擬店（売れる数 \( -2x+500 \)、材料費1個 40 円、準備費 4000 円）について、正しい説明はどれですか。</p>
+  <div class="choices">
+    <button>売上が最大になる値段で売れば、純利益も最大になる</button>
+    <button data-correct="true">売上が最大になるのは 125 円、純利益が最大になるのは 145 円で、材料費の分だけ最大にする値段は高くなる</button>
+    <button>純利益を最大にする値段は、売上を最大にする値段より、材料費と同じ 40 円だけ高い</button>
+    <button>準備費が増えると、純利益を最大にする値段は高くなる</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">売上の軸は 125、純利益の軸は 145 で、材料費 40 円の半分の 20 円だけ高くなります。「売上が最大なら純利益も最大」は誤りで、125 円の純利益 17250 円は 145 円の 18050 円より少なくなります。「材料費と同じ 40 円だけ高い」は、軸が 40 と 250 の真ん中になること（ずれは材料費の半分）を見落としています。「準備費が増えると値段は高くなる」は誤りで、準備費はグラフを下にずらすだけで、軸は変わりません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2・O4</span></div>
+  <p>本文の仮定1の式 \( n=-2x+500 \) は、100〜200 円の予備調査のデータから作りました。この式で「250 円なら売れる数は 0 個」と予測することについて、最も適切な説明はどれですか。</p>
+  <div class="choices">
+    <button>式から計算したのだから、この予測は必ず正しい</button>
+    <button>データと式の差が 4 個以内だったので、250 円でも差は 4 個以内になる</button>
+    <button>一次式はどんな \( x \) でも使えるので、範囲を気にする必要はない</button>
+    <button data-correct="true">調べた範囲の外の値段なので、この予測は確かではない</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">仮定1は 100〜200 円のデータでほぼ一直線になることから置いた仮定で、範囲の外で同じように減るかは調べていません。「式から計算したのだから必ず正しい」は、式が仮定にもとづくことを見落としています。「差が 4 個以内」は調べた5つの値段についてだけ言えることです。「一次式はどんな \( x \) でも使える」は、式として計算できることと、場面に当てはまることを取り違えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O3・O4</span></div>
+  <p>本文の模擬店で、1日に作れるのは 180 個までとわかりました。</p>
+  <p>太郎：「純利益の最大は 145 円のときだったから、10 円単位なら 140 円か 150 円でいいよね。」<br>花子：「でも、作れる数の上限で、選べる値段の範囲が変わるよ。範囲を求め直そう。」</p>
+  <p>純利益が最大になる値段（10 円単位）と純利益はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">160 円のとき 17600 円</button>
+    <button>145 円のとき 18050 円</button>
+    <button>140 円のとき 18000 円</button>
+    <button>200 円のとき 12000 円</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( -2x+500\leqq180 \) から \( x\geqq160 \) で、範囲は \( 160\leqq x\leqq200 \)。軸 \( x=145 \) は左の外なので、左端 160 円で最大（売れる数 180 個、純利益 \( 120\times180-4000=17600 \) 円）です。「145 円で 18050 円」は、売れる数が 210 個で上限を超えます。「140 円で 18000 円」は太郎さんの考えで、売れる数が 220 個になり作れません。「200 円で 12000 円」は範囲の右端で、最小になる方の端です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O3・O4</span></div>
+  <p>本文の模擬店で、準備費が 4000 円から 6000 円に増えました（ほかの仮定は同じ）。純利益が最大になる値段と、純利益の最大値はどれですか。</p>
+  <div class="choices">
+    <button>155 円、16050 円</button>
+    <button>145 円、18050 円</button>
+    <button data-correct="true">145 円、16050 円</button>
+    <button>145 円、20050 円</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( y=(x-40)(-2x+500)-6000=-2(x-145)^2+16050 \)。準備費はグラフを下に 2000 だけずらすだけなので、最大にする値段は 145 円のままで、最大値は \( 18050-2000=16050 \)（円）です。「155 円」は、準備費 6000 円を1個あたりの費用とみて、100 円のときの売れる数 300 個でわった \( 6000\div300=20 \)（円）を材料費に加え、軸を \( \dfrac{(40+20)+250}{2}=155 \) とした誤りです。準備費は売れる数に関係なくかかる費用なので、材料費のように1個ごとにかかる費用とは違い、軸を動かしません。「18050 円」は準備費の増加を反映していません。「20050 円」は 2000 円を引くところを足しています。</div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O4</span></div>
+  <p>本文の模擬店で、値段を 10 円単位で決めると、140 円と 150 円の純利益が同じ 18000 円になりました。あなたならどちらに決めますか。売れる数の見込みや費用の数値を根拠にして、120字程度で説明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　150円にする。どちらも純利益は18000円だが、150円なら売れる見込みは200個で、140円の220個より作る数が20個少なく、材料費も800円少なくてすむ。見込みには数個のずれがあるので、作る数が少ない方が売れ残りの心配が小さいと考える。（122字）</p>
+    <p><strong>採点の観点</strong>　①どちらに決めるかを明確に書いている（2点）。②両方の純利益が同じであることを踏まえている（2点）。③売れる数（220個・200個）や材料費の差（800円）など、ページの数値を根拠にしている（4点）。④仮定（見込みのずれ、売れ残り、多くの人に買ってもらうことなど）と結び付けて理由を述べている（2点）。計10点。字数は多少前後してよい。140 円を選び「より多くの人に買ってもらえる」「売れる数の見込みが下ぶれしても…」などを数値とともに述べた答えも、観点を満たせば同じように評価する。</p>
+  </div>
+  <div class="explain">「145 円が最大だから 145 円」は、10 円単位で決めるという条件に反します。「計算で決まらないからどちらでもよい」で終わらせず、数学の外の判断（何を大切にするか）を根拠とともに示すことが、振り返りの要点です。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト △（課題学習）</p>
+  <p>学習内容マップでは、課題学習の行に △ の印を付けています。△ は「出題範囲の内容だが、活動そのもの（実演・発表・討論・レポート作成など）は筆記の学力検査で直接は問われにくい」という意味です。この時間に使った二次関数の最大・最小は出題範囲の内容ですが、予備調査をする、仮定を話し合って決める、といった活動そのものは筆記の試験で直接は問われにくいと考えられます。</p>
+  <p>令和9年度大学入学共通テスト実施要項では、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。場面から仮定を置いて式にし、答えを場面に戻して振り返るこの時間の過程は、こうした題材の土台になります。</p>
+  <p class="small">確認問題は学習用に作成した練習問題（架空の場面・数値）で、実際の出題形式を示すものではありません。△ は出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">課題学習：携帯端末の利用の影響を調べる（数Ⅰ-095）</p>
+  <p>この時間は、データから仮定を置いて関数で表し、その仮定と答えを吟味しました。次の時間は「データの分析」の内容を使い、スマートフォンなどの使用時間と睡眠時間・家庭学習の時間などのデータを分析して結論を発表し、その結論が広げすぎになっていないかを批判的に検討します。</p>
+  <p>この時間では、携帯端末の利用のデータの分析（数Ⅰ-095）と、課題学習の過程全体の振り返り・発表の仕方（数Ⅰ-096）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-093　課題学習：直角三角錐の面積の関係</div>
+  <div><span class="label">次の時間</span>数Ⅰ-095　課題学習：携帯端末の利用の影響を調べる</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-094「課題学習：模擬店の利益を最大にする」（課題学習。学習指導要領 数学Ⅰ〔課題学習〕・(3)イ(イ)、解説 p.50）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」〔課題学習〕、内容の取扱い(4)、(3) 二次関数 イ(イ)（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.49（課題学習の過程）、p.50（課題学習の例〈二次関数〉：文化祭で模擬店を開設して食品を販売し、利益を寄付するためにその利益を最大にすることを取り上げる。食品の値段を上げると売れる食品の数は一定の割合で減少すると仮定して、純利益と食品の値段の関係を二次関数で表し、純利益が最大になるように食品の値段と売れる数を決定する）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。X高校、模擬店の計画、資料1の予備調査の値、材料費・準備費、10 円単位の決まり、作れる数の上限は、学習用に作成した架空のものです。値段と売れる数の関係は、このページで置いた仮定であり、実際の売れ方がこのとおりになるとは限りません。操作できる図は、ブラウザの JavaScript で動きます（動かない環境でも、本文の表と図で学べます）。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  function mk(parent, name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text !== undefined) e.textContent = text;
+    parent.appendChild(e);
+    return e;
+  }
+  function num(v) { return v < 0 ? "−" + String(-v) : String(v); }
+  var ix = document.getElementById("w1-x"), id = document.getElementById("w1-d"), iF = document.getElementById("w1-f");
+  var svg = document.getElementById("w1-svg");
+  var out = document.getElementById("w1-out"), out2 = document.getElementById("w1-out2");
+  if (!ix || !id || !iF || !svg) return;
+  var L = 62, R = 340, T = 22, B = 205, X0 = 90, X1 = 210, Y0 = -10000, Y1 = 34000;
+  function px(x) { return L + (x - X0) / (X1 - X0) * (R - L); }
+  function py(y) { return B - (y - Y0) / (Y1 - Y0) * (B - T); }
+  function sales(x, d) { return 300 - d * (x - 100) / 10; }
+  function profit(x, d, F) { return (x - 40) * sales(x, d) - F; }
+  function draw() {
+    var x = parseInt(ix.value, 10), d = parseInt(id.value, 10), F = parseInt(iF.value, 10);
+    var n = sales(x, d), y = profit(x, d, F);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    mk(svg, "line", { x1: L, y1: py(0), x2: R + 8, y2: py(0), stroke: "currentColor", "stroke-width": 1 });
+    mk(svg, "line", { x1: L, y1: B + 4, x2: L, y2: T - 8, stroke: "currentColor", "stroke-width": 1 });
+    mk(svg, "text", { x: L + 4, y: T - 10, "font-size": 11, fill: "currentColor" }, "純利益（円）");
+    mk(svg, "text", { x: R, y: py(0) + 26, "text-anchor": "end", "font-size": 11, fill: "currentColor" }, "値段（円）");
+    [0, 10000, 20000, 30000].forEach(function (t) {
+      mk(svg, "line", { x1: L - 3, y1: py(t), x2: L + 3, y2: py(t), stroke: "currentColor" });
+      mk(svg, "text", { x: L - 5, y: py(t) + 4, "text-anchor": "end", "font-size": 10, fill: "currentColor" }, String(t));
+    });
+    [100, 150, 200].forEach(function (t) {
+      mk(svg, "line", { x1: px(t), y1: py(0) - 3, x2: px(t), y2: py(0) + 3, stroke: "currentColor" });
+      mk(svg, "text", { x: px(t), y: py(0) + 14, "text-anchor": "middle", "font-size": 10, fill: "currentColor" }, String(t));
+    });
+    var dd = "";
+    for (var i = 0; i <= 100; i++) {
+      var t = 100 + i;
+      dd += (i ? " L" : "M") + px(t).toFixed(1) + "," + py(profit(t, d, F)).toFixed(1);
+    }
+    mk(svg, "path", { d: dd, fill: "none", stroke: "#1f5fbf", "stroke-width": 2.5, "data-role": "curve" });
+    var x0 = 100 + 3000 / d, xs = (40 + x0) / 2;
+    if (xs >= 100 && xs <= 200) {
+      mk(svg, "circle", { cx: px(xs), cy: py(profit(xs, d, F)), r: 4.5, fill: "#c0392b", "data-role": "vertex" });
+    }
+    mk(svg, "line", { x1: px(x), y1: py(0), x2: px(x), y2: py(y), stroke: "#b7791f", "stroke-dasharray": "3 3", "data-role": "guide" });
+    mk(svg, "circle", { cx: px(x), cy: py(y), r: 5.5, fill: "#1f5fbf", stroke: "#fff", "stroke-width": 1, "data-role": "pt" });
+    document.getElementById("w1-xv").textContent = String(x);
+    document.getElementById("w1-dv").textContent = String(d);
+    document.getElementById("w1-fv").textContent = String(F);
+    if (out) out.textContent = "値段 " + x + " 円：売れる数 " + n + " 個、1個あたりの利益 " + (x - 40) + " 円、売上 " + (x * n) + " 円、純利益 ＝ " + (x - 40) + " × " + n + " − " + F + " ＝ " + num(y) + " 円";
+    var best = -Infinity, arg = [];
+    for (var g = 100; g <= 200; g += 10) {
+      var v = profit(g, d, F);
+      if (v > best) { best = v; arg = [g]; } else if (v === best) arg.push(g);
+    }
+    var s;
+    if (xs >= 100 && xs <= 200) {
+      s = "この仮定では、純利益が最大になるのは " + xs + " 円のとき（純利益 " + num(profit(xs, d, F)) + " 円、売れる数 " + sales(xs, d) + " 個）。";
+    } else {
+      s = "この仮定では、頂点（" + xs + " 円）は調べた値段の範囲（100〜200 円）の外にあり、範囲内では右端で最大になる。";
+    }
+    s += "10 円単位では " + arg.join(" 円・") + " 円のとき " + num(best) + " 円。";
+    if (out2) out2.textContent = s;
+  }
+  [ix, id, iF].forEach(function (e) { e.addEventListener("input", draw); });
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-094",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-094",
+  "title": "課題学習：模擬店の利益を最大にする",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-6", "title": "課題学習"},
+  "exam": {"共通テスト": "△", "個別試験": ""},
+  "basis": ["課題学習", "(3)イ(イ)"],
+  "kaisetsu_page": "50",
+  "objectives": [
+    {"id": "O1", "text": "模擬店の場面で、売上と純利益の違いを説明し、純利益を求めるのに必要な数量（値段・売れる数・材料費・準備費）を整理できる。", "from": "文化祭の模擬店で…純利益", "sections": ["sec-1"], "checks": ["q1", "q5"]},
+    {"id": "O2", "text": "予備調査のデータをもとに、値段を上げると売れる数が一定の割合で減ると仮定して、売れる数を値段の一次式で表すことができる。", "from": "値段を上げると売れる数が一定の割合で減ると仮定して", "sections": ["sec-2"], "checks": ["q2", "q6"]},
+    {"id": "O3", "text": "純利益を値段の二次関数で表し、値段の範囲や値段の決め方に注意して、純利益が最大になる値段と売れる数を決めることができる。", "from": "純利益を二次関数で表し、純利益が最大になる値段と売れる数を決めることができる", "sections": ["sec-3"], "checks": ["q3", "q4", "q7", "q8"]},
+    {"id": "O4", "text": "置いた仮定やデータの範囲を振り返り、条件を変えたときに答えがどう変わるかを調べて、値段の決め方を説明できる。", "from": "…と仮定して（単元のねらい：解決の振り返り・発展）", "sections": ["sec-4"], "checks": ["q5", "q6", "q7", "q8", "q9"]}
+  ],
+  "key_terms": [
+    {"term": "純利益", "where": "sec-1"},
+    {"term": "売上", "where": "sec-1"},
+    {"term": "準備費", "where": "sec-1"},
+    {"term": "仮定", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "文字式で数量を表す", "taught_in": ["jhs_math/中1-029"], "gap": false, "where": "sec-1"},
+    {"concept": "2点から一次関数の式を求める", "taught_in": ["jhs_math/中2-033"], "gap": false, "where": "review"},
+    {"concept": "データがほぼ一直線上に並ぶとき一次関数とみなす", "taught_in": ["jhs_math/中2-038"], "gap": false, "where": "review"},
+    {"concept": "整式の乗法（展開）", "taught_in": ["hs_math_1a/数Ⅰ-002", "hs_math_1a/数Ⅰ-003"], "gap": false, "where": "sec-3"},
+    {"concept": "平方完成して軸・頂点を求める", "taught_in": ["hs_math_1a/数Ⅰ-034"], "gap": false, "where": "review"},
+    {"concept": "二次関数の最大・最小（定義域が限られた場合を含む）", "taught_in": ["hs_math_1a/数Ⅰ-039", "hs_math_1a/数Ⅰ-040"], "gap": false, "where": "review"},
+    {"concept": "放物線は軸について対称", "taught_in": ["hs_math_1a/数Ⅰ-032", "hs_math_1a/数Ⅰ-033"], "gap": false, "where": "sec-3"},
+    {"concept": "場面を二次関数で表し、範囲に注意して最大・最小を求め、場面に戻して答える", "taught_in": ["hs_math_1a/数Ⅰ-043"], "gap": false, "where": "review"},
+    {"concept": "一次不等式・連立不等式", "taught_in": ["hs_math_1a/数Ⅰ-016", "hs_math_1a/数Ⅰ-017"], "gap": false, "where": "sec-4"},
+    {"concept": "求めた解が問題の条件に合うかを判断する", "taught_in": ["jhs_math/中3-046"], "gap": false, "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "携帯端末の利用のデータの分析（数Ⅰ-095）",
+    "課題学習の過程全体の振り返りと発表・議論の仕方（数Ⅰ-096）",
+    "データを二次関数とみなしてよいかの判断（数Ⅰ-054）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『課題学習』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ〔課題学習〕と内容の取扱い(4)、(3)イ(イ)"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.49 課題学習の過程、p.50 課題学習の例〈二次関数〉（模擬店、一定の割合で減少すると仮定、純利益）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>

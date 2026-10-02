@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>メネラウスの定理｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.widget .w-row { margin: 4px 0; }
+.widget .w-row input[type=range] { width: 160px; vertical-align: middle; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; white-space: pre-line; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>図形の性質</span><span>数Ａ-042</span></div>
+  <h1>メネラウスの定理</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">三角形に1本の直線を引くと、直線と3辺（またはその延長）との交点が3つできます。前の時間のチェバの定理と同じように、三角形を1周する順に3つの比をかけると、どんな関係が見つかるでしょうか。平行線と相似を使って、その関係がいつも成り立つ理由を説明します。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>三角形 ABC と、頂点を通らない直線 ℓ が直線 AB、BC、CA と交わる点 D、E、F について、3つの比の積が 1 になること（メネラウスの定理）を具体的な図や操作で見いだし、式を三角形を1周する順に正しく書くことができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>平行線の性質（平行な直線は2つの線分を同じ比に分けること）を用いて、メネラウスの定理を証明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>三角形の相似（頂点から直線にひいた垂線の長さの比）を用いて、直線が3辺の延長と交わる場合も含めてメネラウスの定理を説明し、定理を用いて線分の比を求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-041）</span>チェバの定理の逆と拡張</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-042）</span>メネラウスの定理</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-043）</span>メネラウスの定理の逆と活用</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」、中学1年「平面図形」「空間図形」。この時間は、三角形と比の定理（中3-071）、内分・外分（数Ａ-035）、数Ａ-041 の「距離の比と線分の比」の性質を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">この時間に使う性質</p>
+  <ul>
+    <li><strong>平行な直線は2つの線分を同じ比に分ける</strong>（中3-071・074、数Ａ-035）：点 O から出る2本の直線上に、O の側から X、Y と X′、Y′ があり、\( \mathrm{XX'}\,/\!/\,\mathrm{YY'} \) ならば \( \mathrm{OX}:\mathrm{XY}=\mathrm{OX'}:\mathrm{X'Y'} \)。</li>
+    <li><strong>外分</strong>（数Ａ-035）：E が線分 BC の延長上にあって \( \mathrm{BE}:\mathrm{EC}=m:n \) のとき、E は線分 BC を \( m:n \) に外分する。\( m&gt;n \) なら C の側、\( m&lt;n \) なら B の側にあり、BC は \( |m-n| \) 目盛り分。</li>
+    <li><strong>数Ａ-041 の性質（距離の比と線分の比）</strong>：直線 \( \ell \) 上にない2点 X、Y を通る直線が \( \ell \) と点 Z で交わるとき、X、Y から \( \ell \) までの距離の比は ZX:ZY に等しい（直角三角形の相似、中3-067 から）。</li>
+  </ul>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中3-071・数Ａ-035</span></div>
+  <p>点 B から出る2本の直線上に、B の側から G、D と C、E があり、\( \mathrm{GC}\,/\!/\,\mathrm{DE} \) です。\( \mathrm{BG}=5 \)、\( \mathrm{GD}=1 \)、\( \mathrm{BC}=10 \) のとき、CE の長さはどれですか。</p>
+  <div class="choices">
+    <button>50</button>
+    <button data-correct="true">2</button>
+    <button>12</button>
+    <button>1</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \mathrm{BG}:\mathrm{GD}=\mathrm{BC}:\mathrm{CE} \) より \( 5:1=10:\mathrm{CE} \)、\( 5\,\mathrm{CE}=10 \)、\( \mathrm{CE}=2 \) です。50 は比を \( \mathrm{BG}:\mathrm{GD}=\mathrm{CE}:\mathrm{BC} \) と逆に対応させた値です。12 は \( \mathrm{BG}:\mathrm{BD}=\mathrm{BC}:\mathrm{CE} \)（\( 5:6=10:\mathrm{CE} \)）と、部分と全体の比を混ぜた値です。1 は「GD と CE は等しい」と考えた値で、等しいのは長さではなく比です。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-035</span></div>
+  <p>長さ 10 の線分 BC を \( 6:1 \) に外分する点を E とします。CE の長さはどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{10}{7} \)</button>
+    <button>12</button>
+    <button data-correct="true">2</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( 6&gt;1 \) なので E は C の側の延長上にあり、BC は \( 6-1=5 \) 目盛り分です。1 目盛りは \( 10\div5=2 \) なので、\( \mathrm{CE}=2 \)（\( \mathrm{BE}=12 \)）です。\( \dfrac{10}{7} \) は \( 6:1 \) に内分する点と C の距離で、内分と外分を取り違えています。12 は BE の長さです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-041</span></div>
+  <p>直線 AB が直線 \( \ell \) と点 D で交わり、A、B から \( \ell \) までの距離がそれぞれ 4、6 です。\( \mathrm{AD}:\mathrm{DB} \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 3:2 \)</button>
+    <button>\( 2:5 \)</button>
+    <button>\( 4:9 \)</button>
+    <button data-correct="true">\( 2:3 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">数Ａ-041 の性質より、\( \mathrm{AD}:\mathrm{DB} \) は A、B から \( \ell \) までの距離の比 \( 4:6=2:3 \) に等しくなります。\( 3:2 \) は順番が逆です。\( 2:5 \) は \( 4:(4+6) \) で、AD と AB の比と取り違えています。\( 4:9 \) は比を2乗しています（相似な図形の面積比と混同）。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：直線と三角形がつくる3つの比</h2>
+<figure>
+<!--svg:f042a-->
+<svg viewBox="0 0 336 194" width="336" role="img" aria-label="三角形 ABC と直線 ℓ。ℓ は辺 AB 上の点 D、辺 CA 上の点 F、辺 BC を C の先に延ばした直線上の点 E を通る。辺 AB は3等分、辺 CA は4等分、辺 BC は5等分の目盛りがあり、CE は BC の目盛り1つ分。AD:DB=1:2、BE:EC=6:1、CF:FA=1:3" data-fig="f042a" data-s="36.000000" data-ox="35.600000" data-oy="170.000000">
+<line x1="251.6" y1="170" x2="294.8" y2="170" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="2 3" data-seg="extE"/>
+<line x1="107.6" y1="26" x2="35.6" y2="170" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="35.6" y1="170" x2="251.6" y2="170" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="251.6" y1="170" x2="107.6" y2="26" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="58.3" y1="62.5" x2="320.1" y2="181.5" stroke="#1e8e5a" stroke-width="1.7" data-seg="ℓ"/>
+<circle cx="107.60" cy="26.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="2.000000" data-y="4.000000"/>
+<text x="107.6" y="17.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="35.60" cy="170.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="22.4" y="179" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="251.60" cy="170.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="6.000000" data-y="0.000000"/>
+<text x="251.6" y="189.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="83.60" cy="74.00" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="D" data-x="1.333333" data-y="2.666667"/>
+<text x="69.5" y="83.3" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">D</text>
+<circle cx="294.80" cy="170.00" r="3.2" fill="#c0392b" stroke="#c0392b" stroke-width="1.4" data-pt="E" data-x="7.200000" data-y="0.000000"/>
+<text x="293.5" y="189.1" text-anchor="middle" font-size="14" fill="#c0392b" font-weight="700">E</text>
+<circle cx="215.60" cy="134.00" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="F" data-x="5.000000" data-y="1.000000"/>
+<text x="220.7" y="124.1" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">F</text>
+<path d="M87.6,76 L79.6,72" stroke="#8a99a8" stroke-width="1.3" fill="none" data-div="AB:1/3"/>
+<path d="M63.6,124 L55.6,120" stroke="#8a99a8" stroke-width="1.3" fill="none" data-div="AB:2/3"/>
+<path d="M212.4,137.2 L218.8,130.8" stroke="#8a99a8" stroke-width="1.3" fill="none" data-div="CA:1/4"/>
+<path d="M176.4,101.2 L182.8,94.8" stroke="#8a99a8" stroke-width="1.3" fill="none" data-div="CA:2/4"/>
+<path d="M140.4,65.2 L146.8,58.8" stroke="#8a99a8" stroke-width="1.3" fill="none" data-div="CA:3/4"/>
+<path d="M78.8,165.5 L78.8,174.5" stroke="#8a99a8" stroke-width="1.3" fill="none" data-div="BC:1/5"/>
+<path d="M122,165.5 L122,174.5" stroke="#8a99a8" stroke-width="1.3" fill="none" data-div="BC:2/5"/>
+<path d="M165.2,165.5 L165.2,174.5" stroke="#8a99a8" stroke-width="1.3" fill="none" data-div="BC:3/5"/>
+<path d="M208.4,165.5 L208.4,174.5" stroke="#8a99a8" stroke-width="1.3" fill="none" data-div="BC:4/5"/>
+<path d="M78.8,165.5 L78.8,174.5" stroke="#8a99a8" stroke-width="1.3" fill="none" data-div="BE:1/6"/>
+<path d="M122,165.5 L122,174.5" stroke="#8a99a8" stroke-width="1.3" fill="none" data-div="BE:2/6"/>
+<path d="M165.2,165.5 L165.2,174.5" stroke="#8a99a8" stroke-width="1.3" fill="none" data-div="BE:3/6"/>
+<path d="M208.4,165.5 L208.4,174.5" stroke="#8a99a8" stroke-width="1.3" fill="none" data-div="BE:4/6"/>
+<path d="M251.6,165.5 L251.6,174.5" stroke="#8a99a8" stroke-width="1.3" fill="none" data-div="BE:5/6"/>
+<text x="318.1" y="173.7" text-anchor="middle" font-size="14" fill="#1e8e5a" font-style="italic">ℓ</text>
+</svg>
+<!--/svg:f042a-->
+  <figcaption>図1　△ABC と直線 \( \ell \)（緑）。D は辺 AB 上、F は辺 CA 上、E は辺 BC を C の先に延ばした直線上にある。灰の短い線は目盛りで、辺 AB は3等分、辺 CA は4等分、辺 BC は5等分してあり、CE は BC の目盛り1つ分（学習用に作成した図）</figcaption>
+</figure>
+<div class="box think">
+  <p class="box-title">目盛りから比を読み取ろう</p>
+  <p>図1の目盛りを数えて、\( \mathrm{AD}:\mathrm{DB} \)、\( \mathrm{BE}:\mathrm{EC} \)、\( \mathrm{CF}:\mathrm{FA} \) を求めましょう。A から出発して A→D→B→E→C→F→A と三角形を1周する順に、3つの比の値 \( \dfrac{\mathrm{AD}}{\mathrm{DB}} \)、\( \dfrac{\mathrm{BE}}{\mathrm{EC}} \)、\( \dfrac{\mathrm{CF}}{\mathrm{FA}} \) をかけると、いくつになるでしょうか。直線 \( \ell \) を引き直しても、同じ値になるでしょうか。</p>
+  <p>予想してから読み進めましょう。答えは「3 3つの比の積を調べる」の例題1と、操作部品で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="3つの比の積を調べる"><span class="num">3</span>3つの比の積を調べる</h2>
+<div class="box example worked">
+  <p class="box-title">例題1（導入の問いの答え）</p>
+  <p>図1で、\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}} \) を求めなさい。</p>
+  <div class="step">着眼点：辺 AB は3等分で、AD が1目盛り、DB が2目盛りです。よって \( \mathrm{AD}:\mathrm{DB}=1:2 \)。</div>
+  <div class="step">辺 BC は5等分で、CE はその1目盛り分です。BE は \( 5+1=6 \) 目盛り分なので \( \mathrm{BE}:\mathrm{EC}=6:1 \)。</div>
+  <div class="step">辺 CA は4等分で、CF が1目盛り、FA が3目盛りです。よって \( \mathrm{CF}:\mathrm{FA}=1:3 \)。</div>
+  <div class="step">\( \dfrac{1}{2}\cdot\dfrac{6}{1}\cdot\dfrac{1}{3}=1 \)。3つの比の積は 1 になりました。</div>
+</div>
+<p>ほかの直線でも調べます。次の表の (ii) は3節の図3、(iii) は3節の図4の直線です。</p>
+<div class="table-wrap">
+<table id="tbl-1">
+  <thead><tr><th>直線</th><th>AD:DB</th><th>BE:EC</th><th>CF:FA</th><th>3つの比の積</th><th>延長上の点</th></tr></thead>
+  <tbody>
+    <tr><td>(i) 図1</td><td>\( 1:2 \)</td><td>\( 6:1 \)</td><td>\( 1:3 \)</td><td>\( \dfrac{1}{2}\cdot\dfrac{6}{1}\cdot\dfrac{1}{3}=1 \)</td><td>E</td></tr>
+    <tr><td>(ii) 図3</td><td>\( 2:1 \)</td><td>\( 1:4 \)</td><td>\( 2:1 \)</td><td>\( \dfrac{2}{1}\cdot\dfrac{1}{4}\cdot\dfrac{2}{1}=1 \)</td><td>E</td></tr>
+    <tr><td>(iii) 図4</td><td>\( 1:2 \)</td><td>\( 4:1 \)</td><td>\( 1:2 \)</td><td>\( \dfrac{1}{2}\cdot\dfrac{4}{1}\cdot\dfrac{1}{2}=1 \)</td><td>D、E、F</td></tr>
+  </tbody>
+</table>
+</div>
+<h3>操作して確かめよう：直線 ℓ を動かす</h3>
+<p>2つのスライダーで点 D（直線 AB 上）と点 F（直線 CA 上）を動かすと、直線 \( \ell \)＝DF と直線 BC の交点 E が決まり、3つの比とその積が表示されます。</p>
+<div class="widget" id="w1">
+  <div class="w-row"><label for="w1-d">D を直線 AB 上で動かす：</label><input type="range" id="w1-d" min="-12" max="24" step="1" value="4"></div>
+  <div class="w-row"><label for="w1-f">F を直線 CA 上で動かす：</label><input type="range" id="w1-f" min="-12" max="24" step="1" value="9"></div>
+  <div><svg id="w1-svg" viewBox="0 0 318 318" width="318" role="img" aria-label="三角形 ABC と直線 ℓ。ℓ は直線 AB 上の点 D と直線 CA 上の点 F を通り、直線 BC と点 E で交わる。辺上の点は青、延長上の点は赤で示す"></svg></div>
+  <p class="w-out" id="w1-out" aria-live="polite">D：辺 AB 上（AD:DB = 1:2）
+E：辺 BC の延長上（BE:EC = 6:1）
+F：辺 CA 上（CF:FA = 1:3）
+AD/DB × BE/EC × CF/FA = 1/2 × 6 × 1/3 = 1
+辺の延長上にある点は E の1個です。
+（スクリプトが動かない場合は、上の表で同じことを確かめられます）</p>
+  <p class="small">黒の実線＝三角形の辺、灰の点線＝辺の延長、緑の実線＝直線 ℓ、青の点＝辺上の点、赤の点＝辺の延長上の点。ℓ が頂点を通る位置や、ℓ が辺 BC に平行になる位置では、そのことを表示します。図の範囲の外にできる点は表示しません（文で知らせます）。</p>
+</div>
+<p>どの直線でも、3つの比の積は 1 になりそうです。これがメネラウスの定理です。</p>
+<div class="box point">
+  <p class="box-title">メネラウスの定理</p>
+  <p>△ABC の頂点を通らない直線 \( \ell \) が、直線 AB、BC、CA とそれぞれ点 D、E、F で交わるとき</p>
+  $$ \frac{\mathrm{AD}}{\mathrm{DB}}\cdot\frac{\mathrm{BE}}{\mathrm{EC}}\cdot\frac{\mathrm{CF}}{\mathrm{FA}}=1 $$
+  <p>分母と分子は、A から出発して A→D→B→E→C→F→A と、頂点と交点を交互に通って三角形を1周する順に並んでいる。</p>
+</div>
+<p>直線 \( \ell \) が三角形の内部を通ると、三角形に入る点と出る点の2つが辺上にでき、残りの1つは辺の延長上にできます（図1・図3）。三角形の内部を通らなければ、3つとも延長上にできます（図4）。どちらの場合も定理は成り立ちます（3節で示します）。辺の延長上にある点は、1個か3個です。</p>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 延長上の点 E について、\( \dfrac{\mathrm{BE}}{\mathrm{EC}} \) のかわりに \( \dfrac{\mathrm{BC}}{\mathrm{CE}} \) を使う：比は「頂点から交点まで」と「交点から次の頂点まで」の長さの比です。E が延長上にあっても、B から E まで、E から C までの長さを使います。<br>② 1周する順をくずす：\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{EC}}{\mathrm{BE}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}} \) のように1つだけ向きが逆になると、積は 1 になりません。<br>③ 部分と全体の比を使う：\( \dfrac{\mathrm{AD}}{\mathrm{AB}} \) ではなく、\( \dfrac{\mathrm{AD}}{\mathrm{DB}} \)（交点で分けた2つの部分の比）です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="平行線を用いた証明"><span class="num">4</span>平行線を用いた証明</h2>
+<p>図1のように、\( \ell \) が辺 AB、CA と D、F で交わり、辺 BC の C の先の延長と E で交わる場合を証明します。三角形を1周する比をつなぐために、C を通り \( \ell \) に平行な補助線を引きます。</p>
+<figure>
+<!--svg:f042b-->
+<svg viewBox="0 0 336 194" width="336" role="img" aria-label="三角形 ABC と直線 ℓ（D、E、F を通る）。C を通り ℓ に平行な直線（灰の破線）が辺 AB と交わる点 G。G は D と B の間にある" data-fig="f042b" data-s="36.000000" data-ox="35.600000" data-oy="170.000000">
+<line x1="251.6" y1="170" x2="294.8" y2="170" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="2 3" data-seg="extE"/>
+<line x1="107.6" y1="26" x2="35.6" y2="170" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="35.6" y1="170" x2="251.6" y2="170" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="251.6" y1="170" x2="107.6" y2="26" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="58.3" y1="62.5" x2="320.1" y2="181.5" stroke="#1e8e5a" stroke-width="1.7" data-seg="ℓ"/>
+<circle cx="107.60" cy="26.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="2.000000" data-y="4.000000"/>
+<text x="107.6" y="17.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="35.60" cy="170.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="22.4" y="179" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="251.60" cy="170.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="6.000000" data-y="0.000000"/>
+<text x="251.6" y="189.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="83.60" cy="74.00" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="D" data-x="1.333333" data-y="2.666667"/>
+<circle cx="294.80" cy="170.00" r="3.2" fill="#c0392b" stroke="#c0392b" stroke-width="1.4" data-pt="E" data-x="7.200000" data-y="0.000000"/>
+<text x="293.5" y="189.1" text-anchor="middle" font-size="14" fill="#c0392b" font-weight="700">E</text>
+<circle cx="215.60" cy="134.00" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="F" data-x="5.000000" data-y="1.000000"/>
+<text x="220.7" y="124.1" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">F</text>
+<line x1="61.5" y1="83.6" x2="265.7" y2="176.4" stroke="#8a99a8" stroke-width="1.4" stroke-dasharray="6 4" data-seg="GC"/>
+<circle cx="75.60" cy="90.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="G" data-x="1.111111" data-y="2.222222"/>
+<text x="61.5" y="99.3" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">G</text>
+<text x="79" y="63.9" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">D</text>
+<text x="318.1" y="173.7" text-anchor="middle" font-size="14" fill="#1e8e5a" font-style="italic">ℓ</text>
+</svg>
+<!--/svg:f042b-->
+  <figcaption>図2　C を通り \( \ell \) に平行な直線（灰の破線）が辺 AB と交わる点を G とする。G は D と B の間にある（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">証明（メネラウスの定理：2点が辺上、1点が延長上の場合）</p>
+  <p><strong class="tag">仮定</strong>　直線 \( \ell \) は辺 AB、CA と D、F で交わり、辺 BC を C の先に延ばした直線と E で交わる。<br><strong class="tag">結論</strong>　\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}}=1 \)。</p>
+  <div class="step">ステップ1（補助線）：C を通り \( \ell \) に平行な直線を引き、辺 AB との交点を G とする（図2）。</div>
+  <div class="step">ステップ2（A から出る2直線）：A から出る直線 AB 上に D、G が、直線 AC 上に F、C があり、\( \mathrm{DF}\,/\!/\,\mathrm{GC} \) である。平行な直線は2つの線分を同じ比に分けるので \( \mathrm{AD}:\mathrm{DG}=\mathrm{AF}:\mathrm{FC} \)。よって \( \dfrac{\mathrm{CF}}{\mathrm{FA}}=\dfrac{\mathrm{DG}}{\mathrm{AD}} \)。</div>
+  <div class="step">ステップ3（B から出る2直線）：B から出る直線 BA 上に G、D が、直線 BC 上に C、E があり、\( \mathrm{GC}\,/\!/\,\mathrm{DE} \) である。同じ性質より \( \mathrm{BG}:\mathrm{GD}=\mathrm{BC}:\mathrm{CE} \)。部分を足すと \( (\mathrm{BG}+\mathrm{GD}):\mathrm{GD}=(\mathrm{BC}+\mathrm{CE}):\mathrm{CE} \)、すなわち \( \mathrm{BD}:\mathrm{DG}=\mathrm{BE}:\mathrm{EC} \)。よって \( \dfrac{\mathrm{BE}}{\mathrm{EC}}=\dfrac{\mathrm{BD}}{\mathrm{DG}} \)。</div>
+  <div class="step">ステップ4（かけ合わせる）：\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}}=\dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BD}}{\mathrm{DG}}\cdot\dfrac{\mathrm{DG}}{\mathrm{AD}}=1 \)。（証明終わり）</div>
+</div>
+<p>図1の数値で確かめると、\( \mathrm{AD}:\mathrm{DG}=\mathrm{AF}:\mathrm{FC}=3:1 \) から DG は AB の \( \dfrac{1}{9} \)、BG は AB の \( \dfrac{5}{9} \) です。ステップ3の \( \mathrm{BG}:\mathrm{GD}=5:1 \) は、\( \mathrm{BC}:\mathrm{CE}=5:1 \)（BC が5目盛り、CE が1目盛り）と一致しています。</p>
+<div class="box point"><p class="box-title">ポイント</p><p>平行線を1本引くと、3つの比のうち2つを、同じ直線 AB 上の線分（AD、DB、DG）の比に書きかえられます。すると積の中で約分され、1 になります。補助線を A を通る直線や B を通る直線にしても、同じように証明できます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="相似を用いた証明と3辺の延長の場合"><span class="num">5</span>相似を用いた証明と、直線が3辺の延長と交わる場合</h2>
+<p>数Ａ-041 の性質（2点から直線までの距離の比）を使うと、点がどこにあっても同じ形で証明できます。この性質は、直角三角形の相似から導いたものでした。</p>
+<figure>
+<!--svg:f042c-->
+<svg viewBox="0 0 343 186" width="343" role="img" aria-label="三角形 ABC と直線 ℓ。ℓ は辺 AB 上の点 D、辺 CA 上の点 F、辺 BC を B の先に延ばした直線上の点 E を通る。A、B、C から ℓ に垂線 AA′、BB′、CC′（青の破線）をひき、その長さを p、q、r とする" data-fig="f042c" data-s="34.000000" data-ox="102.500000" data-oy="162.000000">
+<line x1="102.5" y1="162" x2="34.5" y2="162" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="2 3" data-seg="extE"/>
+<line x1="170.5" y1="26" x2="102.5" y2="162" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="102.5" y1="162" x2="306.5" y2="162" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="306.5" y1="162" x2="170.5" y2="26" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="8.4" y1="175.1" x2="306.5" y2="26" stroke="#1e8e5a" stroke-width="1.7" data-seg="ℓ"/>
+<line x1="170.5" y1="26" x2="197.7" y2="80.4" stroke="#1f5fbf" stroke-width="1.4" stroke-dasharray="5 3" data-seg="AA′"/>
+<line x1="102.5" y1="162" x2="88.9" y2="134.8" stroke="#1f5fbf" stroke-width="1.4" stroke-dasharray="5 3" data-seg="BB′"/>
+<line x1="306.5" y1="162" x2="252.1" y2="53.2" stroke="#1f5fbf" stroke-width="1.4" stroke-dasharray="5 3" data-seg="CC′"/>
+<path d="M195,75 L200.4,72.4 L203.1,77.7" fill="none" stroke="currentColor" stroke-width="1.2" data-right="A′,A,F"/>
+<path d="M91.6,140.2 L96.9,137.5 L94.3,132.1" fill="none" stroke="currentColor" stroke-width="1.2" data-right="B′,B,D"/>
+<path d="M254.8,58.6 L249.4,61.2 L246.7,55.9" fill="none" stroke="currentColor" stroke-width="1.2" data-right="C′,C,F"/>
+<circle cx="170.50" cy="26.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="2.000000" data-y="4.000000"/>
+<text x="170.5" y="17.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="102.50" cy="162.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="107.6" y="180.3" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="306.50" cy="162.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="6.000000" data-y="0.000000"/>
+<text x="314" y="179.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="125.17" cy="116.67" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="D" data-x="0.666667" data-y="1.333333"/>
+<text x="114.6" y="110.3" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">D</text>
+<circle cx="215.83" cy="71.33" r="3.2" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="F" data-x="3.333333" data-y="2.666667"/>
+<text x="218.4" y="60.8" text-anchor="middle" font-size="14" fill="#1f5fbf" font-weight="700">F</text>
+<circle cx="34.50" cy="162.00" r="3.2" fill="#c0392b" stroke="#c0392b" stroke-width="1.4" data-pt="E" data-x="-2.000000" data-y="0.000000"/>
+<text x="29.4" y="180.3" text-anchor="middle" font-size="14" fill="#c0392b" font-weight="700">E</text>
+<circle cx="197.70" cy="80.40" r="2.4" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="A′" data-x="2.800000" data-y="2.400000"/>
+<text x="210.7" y="91.8" text-anchor="middle" font-size="13" fill="#1f5fbf" font-weight="700">A′</text>
+<circle cx="88.90" cy="134.80" r="2.4" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="B′" data-x="-0.400000" data-y="0.800000"/>
+<text x="75.9" y="131.2" text-anchor="middle" font-size="13" fill="#1f5fbf" font-weight="700">B′</text>
+<circle cx="252.10" cy="53.20" r="2.4" fill="#1f5fbf" stroke="#1f5fbf" stroke-width="1.4" data-pt="C′" data-x="4.400000" data-y="3.200000"/>
+<text x="257.2" y="43" text-anchor="middle" font-size="13" fill="#1f5fbf" font-weight="700">C′</text>
+<text x="174.7" y="61.8" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">p</text>
+<text x="86.3" y="157" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">q</text>
+<text x="288.7" y="106.8" text-anchor="middle" font-size="13" fill="currentColor" font-style="italic">r</text>
+<text x="300.5" y="44.2" text-anchor="middle" font-size="14" fill="#1e8e5a" font-style="italic">ℓ</text>
+</svg>
+<!--/svg:f042c-->
+  <figcaption>図3　A、B、C から直線 \( \ell \) に垂線 AA′、BB′、CC′（青の破線）をひき、長さを \( p \)、\( q \)、\( r \) とする。この図では \( \mathrm{AD}:\mathrm{DB}=2:1 \)、\( \mathrm{BE}:\mathrm{EC}=1:4 \)、\( \mathrm{CF}:\mathrm{FA}=2:1 \) で、E は辺 BC を B の先に延ばした直線上にある（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">証明（メネラウスの定理：相似を用いる）</p>
+  <p><strong class="tag">仮定</strong>　直線 \( \ell \) は △ABC の頂点を通らず、直線 AB、BC、CA と D、E、F で交わる。<br><strong class="tag">結論</strong>　\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}}=1 \)。</p>
+  <div class="step">ステップ1（垂線）：A、B、C から \( \ell \) に垂線 AA′、BB′、CC′ をひき、その長さを \( p \)、\( q \)、\( r \) とする（A、B、C は \( \ell \) 上にないので、どれも 0 ではない）。</div>
+  <div class="step">ステップ2（相似）：△DAA′ と △DBB′ は、\( \angle\mathrm{AA'D}=\angle\mathrm{BB'D}=90^\circ \) で、D の角が対頂角（D が A と B の間にあるとき）か共通な角（A、B が D から見て同じ側にあるとき）なので等しい。2組の角がそれぞれ等しいので相似（中3-067）で、\( \mathrm{AD}:\mathrm{DB}=\mathrm{AA'}:\mathrm{BB'}=p:q \)（数Ａ-041 の性質）。</div>
+  <div class="step">ステップ3（同じように）：直線 BC と \( \ell \) の交点 E について \( \mathrm{BE}:\mathrm{EC}=q:r \)、直線 CA と \( \ell \) の交点 F について \( \mathrm{CF}:\mathrm{FA}=r:p \)。</div>
+  <div class="step">ステップ4（かけ合わせる）：\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}}=\dfrac{p}{q}\cdot\dfrac{q}{r}\cdot\dfrac{r}{p}=1 \)。（証明終わり）</div>
+</div>
+<p>図3では \( p:q:r=2:1:4 \) で、\( \mathrm{AD}:\mathrm{DB}=p:q=2:1 \)、\( \mathrm{BE}:\mathrm{EC}=q:r=1:4 \)、\( \mathrm{CF}:\mathrm{FA}=r:p=4:2=2:1 \) となり、表の (ii) と一致します。</p>
+<h3>直線が3辺の延長と交わる場合</h3>
+<p>この証明では、D、E、F が辺上にあるか延長上にあるかを区別しませんでした。したがって、\( \ell \) が三角形の内部を通らず、3辺の延長とだけ交わる場合（図4）にも、メネラウスの定理はそのまま成り立ちます。これは、条件を見直して定理を拡張したことにあたります。</p>
+<figure>
+<!--svg:f042d-->
+<svg viewBox="0 0 259 308" width="259" role="img" aria-label="三角形 ABC と、3辺の延長と交わる直線 ℓ。D は辺 AB を A の先に延ばした直線上、E は辺 BC を C の先に延ばした直線上、F は辺 CA を C の先に延ばした直線上にある。AD:DB=1:2、BE:EC=4:1、CF:FA=1:2" data-fig="f042d" data-s="22.000000" data-ox="22.900000" data-oy="198.000000">
+<line x1="66.9" y1="110" x2="110.9" y2="22" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="2 3" data-seg="extD"/>
+<line x1="154.9" y1="198" x2="198.9" y2="198" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="2 3" data-seg="extE"/>
+<line x1="154.9" y1="198" x2="242.9" y2="286" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="2 3" data-seg="extF"/>
+<line x1="66.9" y1="110" x2="22.9" y2="198" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="22.9" y1="198" x2="154.9" y2="198" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="154.9" y1="198" x2="66.9" y2="110" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="95.1" y1="-9.7" x2="258.7" y2="317.7" stroke="#1e8e5a" stroke-width="1.7" data-seg="ℓ"/>
+<circle cx="66.90" cy="110.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="2.000000" data-y="4.000000"/>
+<text x="52.9" y="114.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="22.90" cy="198.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="9.7" y="207" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="154.90" cy="198.00" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="6.000000" data-y="0.000000"/>
+<text x="149.8" y="216.3" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="110.90" cy="22.00" r="3.2" fill="#c0392b" stroke="#c0392b" stroke-width="1.4" data-pt="D" data-x="4.000000" data-y="8.000000"/>
+<text x="96.9" y="26.2" text-anchor="middle" font-size="14" fill="#c0392b" font-weight="700">D</text>
+<circle cx="198.90" cy="198.00" r="3.2" fill="#c0392b" stroke="#c0392b" stroke-width="1.4" data-pt="E" data-x="8.000000" data-y="0.000000"/>
+<text x="205.9" y="190.1" text-anchor="middle" font-size="14" fill="#c0392b" font-weight="700">E</text>
+<circle cx="242.90" cy="286.00" r="3.2" fill="#c0392b" stroke="#c0392b" stroke-width="1.4" data-pt="F" data-x="10.000000" data-y="-4.000000"/>
+<text x="228.9" y="290.2" text-anchor="middle" font-size="14" fill="#c0392b" font-weight="700">F</text>
+<text x="145.9" y="70.2" text-anchor="middle" font-size="14" fill="#1e8e5a" font-style="italic">ℓ</text>
+</svg>
+<!--/svg:f042d-->
+  <figcaption>図4　直線 \( \ell \) が3辺の延長と交わる場合。D は辺 AB を A の先に延ばした直線上、E は辺 BC を C の先に、F は辺 CA を C の先に延ばした直線上にある（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題2（3つとも延長上の場合を確かめる）</p>
+  <p>図4で、D は線分 AB を \( 1:2 \) に外分する点、F は線分 CA を \( 1:2 \) に外分する点です。\( \mathrm{BE}:\mathrm{EC} \) を求め、E の位置を答えなさい。</p>
+  <div class="step">着眼点：3つとも延長上にあっても、メネラウスの定理の式はそのまま使えます。\( \mathrm{AD}:\mathrm{DB}=1:2 \)、\( \mathrm{CF}:\mathrm{FA}=1:2 \)。</div>
+  <div class="step">\( \dfrac{1}{2}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{1}{2}=1 \) より \( \dfrac{\mathrm{BE}}{\mathrm{EC}}=4 \)、\( \mathrm{BE}:\mathrm{EC}=4:1 \)。</div>
+  <div class="step">\( 4&gt;1 \) なので、E は辺 BC を C の先に延ばした直線上にあり、BC は \( 4-1=3 \) 目盛り分です。CE は BC の \( \dfrac{1}{3} \) 倍です（図4と一致）。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-4" data-toc="定理を使って比を求める"><span class="num">6</span>定理を使って比を求める・チェバの定理とくらべる</h2>
+<div class="box example worked">
+  <p class="box-title">例題3（線分の比を求める）</p>
+  <p>△ABC の辺 AB、CA 上にそれぞれ点 D、F があり、\( \mathrm{AD}:\mathrm{DB}=3:2 \)、\( \mathrm{CF}:\mathrm{FA}=1:2 \) です。直線 DF と直線 BC の交点を E とするとき、\( \mathrm{BE}:\mathrm{EC} \) を求めなさい。</p>
+  <div class="step">着眼点：△ABC と直線 DF にメネラウスの定理を使います。A→D→B→E→C→F→A の順に比を並べます。</div>
+  <div class="step">\( \dfrac{3}{2}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{1}{2}=1 \) より \( \dfrac{\mathrm{BE}}{\mathrm{EC}}=\dfrac{4}{3} \)。</div>
+  <div class="step">答え：\( \mathrm{BE}:\mathrm{EC}=4:3 \)。D、F は辺上にあるので E は延長上にあり、\( 4&gt;3 \) なので C の先にあります（BC が1目盛り分で、CE は BC の3倍）。</div>
+</div>
+<h3>チェバの定理とメネラウスの定理</h3>
+<div class="table-wrap">
+<table id="tbl-2">
+  <thead><tr><th></th><th>チェバの定理（数Ａ-040・041）</th><th>メネラウスの定理（この時間）</th></tr></thead>
+  <tbody>
+    <tr><th>図</th><td>3つの頂点と点 O を通る3本の直線</td><td>三角形と、頂点を通らない1本の直線</td></tr>
+    <tr><th>点の名前（このページ群）</th><td>P（BC）、Q（CA）、R（AB）</td><td>D（AB）、E（BC）、F（CA）</td></tr>
+    <tr><th>式</th><td>\( \dfrac{\mathrm{BP}}{\mathrm{PC}}\cdot\dfrac{\mathrm{CQ}}{\mathrm{QA}}\cdot\dfrac{\mathrm{AR}}{\mathrm{RB}}=1 \)</td><td>\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}}=1 \)</td></tr>
+    <tr><th>延長上の点の個数</th><td>0個（O が内部）か2個（O が外部）</td><td>1個か3個</td></tr>
+    <tr><th>主な証明の方法</th><td>面積比と線分比の関係（数Ａ-040 の性質2）</td><td>平行線と線分の比、三角形の相似</td></tr>
+  </tbody>
+</table>
+</div>
+<p>どちらも「三角形を1周する順に3つの比をかけると 1」という同じ形です。違いは、チェバの定理が「3本の直線が1点で交わる」ときの式、メネラウスの定理が「3つの点が1本の直線上にある」ときの式であることです。</p>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 延長上の点の個数を確かめない：メネラウスの定理では延長上の点は1個か3個です。例題3で E を辺 BC 上にとると、D、E、F の3点が辺上になり、1本の直線上に並ぶことはありません。<br>② チェバの定理と取り違える：点が「1本の直線上」にあるならメネラウス、「3本の直線が1点で交わる」ならチェバです。図にある直線を見て、どちらの形かを決めます。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">7</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>メネラウスの定理</dt><dd>△ABC の頂点を通らない直線 \( \ell \) が直線 AB、BC、CA と D、E、F で交わるとき、\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}}=1 \)。</dd>
+    <dt>三角形を1周する順</dt><dd>頂点と交点を交互に通って A→D→B→E→C→F→A と進む順。この順に、通った線分を分子・分母に交互に置く。</dd>
+    <dt>辺の延長上の点の個数</dt><dd>メネラウスの定理の D、E、F のうち延長上にある点は、直線が三角形の内部を通れば1個、通らなければ3個。</dd>
+    <dt>平行線と線分の比</dt><dd>平行な直線は、それと交わる2本の直線を同じ比に分ける（中3-071・074、数Ａ-035）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">8</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>△ABC と頂点を通らない直線の交点 D、E、F について、A→D→B→E→C→F→A の順に3つの比をかけると 1（メネラウスの定理）。延長上の点は1個か3個（O1）。</li>
+    <li>C を通り \( \ell \) に平行な直線を引くと、平行線と線分の比から2つの比を直線 AB 上の比に書きかえられ、積が 1 になることを証明できる（O2）。</li>
+    <li>A、B、C から \( \ell \) までの距離を \( p \)、\( q \)、\( r \) とすると、相似から3つの比は \( p:q \)、\( q:r \)、\( r:p \)。この証明は3辺の延長と交わる場合にも使える。2つの比が分かれば、残りの比を定理から求められる（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">メネラウスの定理（ℓ は頂点を通らない）</span>
+  <p>\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}}=1 \)（A→D→B→E→C→F→A の順）</p></div>
+  <div><span class="f-name">相似による見方</span>
+  <p>A、B、C から \( \ell \) までの距離を \( p \)、\( q \)、\( r \) とすると、\( \mathrm{AD}:\mathrm{DB}=p:q \)、\( \mathrm{BE}:\mathrm{EC}=q:r \)、\( \mathrm{CF}:\mathrm{FA}=r:p \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">9</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。比は \( 2:1 \) なら「2:1」のように入力してください。どの問題も、直線は三角形の頂点を通らないものとします。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>図1の △ABC と直線 \( \ell \)（D は辺 AB 上、F は辺 CA 上、E は辺 BC の C の先の延長上）について、正しい式はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{\mathrm{AD}}{\mathrm{AB}}\cdot\dfrac{\mathrm{BE}}{\mathrm{BC}}\cdot\dfrac{\mathrm{CF}}{\mathrm{CA}}=1 \)</button>
+    <button>\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BC}}{\mathrm{CE}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}}=1 \)</button>
+    <button data-correct="true">\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}}=1 \)</button>
+    <button>\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{EC}}{\mathrm{BE}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}}=1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">A→D→B→E→C→F→A の順に、交点で分けた2つの部分の比をかけるのが正しい式です。図1の値（\( \mathrm{AD}:\mathrm{DB}=1:2 \)、\( \mathrm{BE}:\mathrm{EC}=6:1 \)、\( \mathrm{CF}:\mathrm{FA}=1:3 \)、\( \mathrm{BC}:\mathrm{CE}=5:1 \)）で確かめると、正しい式は \( \dfrac{1}{2}\cdot6\cdot\dfrac{1}{3}=1 \) です。1つ目は部分と全体の比で、\( \dfrac{1}{3}\cdot\dfrac{6}{5}\cdot\dfrac{1}{4}=\dfrac{1}{10} \) になります。2つ目は延長上の点 E について BE のかわりに BC を使っていて、\( \dfrac{1}{2}\cdot5\cdot\dfrac{1}{3}=\dfrac{5}{6} \) です。4つ目は2つ目の比の向きが逆で、\( \dfrac{1}{2}\cdot\dfrac{1}{6}\cdot\dfrac{1}{3}=\dfrac{1}{36} \) です。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="8:3|BE:EC=8:3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O3</span></div>
+  <p>△ABC の辺 AB、CA 上の点 D、F が \( \mathrm{AD}:\mathrm{DB}=1:2 \)、\( \mathrm{CF}:\mathrm{FA}=3:4 \) を満たします。直線 DF と直線 BC の交点を E とするとき、\( \mathrm{BE}:\mathrm{EC} \) を求めなさい（例：2:1）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 8:3。メネラウスの定理より \( \dfrac{1}{2}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{3}{4}=1 \)、\( \dfrac{3}{8}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}=1 \) なので \( \dfrac{\mathrm{BE}}{\mathrm{EC}}=\dfrac{8}{3} \) です（E は C の先の延長上）。3:8 と答えた場合は、2つの比の積 \( \dfrac{3}{8} \) をそのまま答えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O1</span></div>
+  <p>△ABC と、頂点を通らずどの辺にも平行でない直線 \( \ell \) について、\( \ell \) と直線 AB、BC、CA の交点 D、E、F のうち、辺の延長上にある点の個数として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>必ず1個</button>
+    <button data-correct="true">1個または3個</button>
+    <button>0個または2個</button>
+    <button>必ず3個</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \ell \) が三角形の内部を通ると、入る点と出る点の2つが辺上にでき、残りの1つが延長上にできます（図1・図3）。内部を通らなければ3つとも延長上です（図4）。よって1個または3個です。「必ず1個」は図4の場合を忘れています。「0個または2個」はチェバの定理（O が内部か外部か）と混同しています。「必ず3個」は図1の場合を忘れています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O2</span></div>
+  <p>4節の証明（図2）で、C を通り \( \ell \) に平行な直線と辺 AB の交点を G としました。\( \mathrm{GC}\,/\!/\,\mathrm{DE} \) から直接いえる式はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( \mathrm{BG}:\mathrm{GD}=\mathrm{BC}:\mathrm{CE} \)</button>
+    <button>\( \mathrm{BG}:\mathrm{GD}=\mathrm{BE}:\mathrm{EC} \)</button>
+    <button>\( \mathrm{AD}:\mathrm{DG}=\mathrm{BC}:\mathrm{CE} \)</button>
+    <button>\( \mathrm{AF}:\mathrm{FC}=\mathrm{BG}:\mathrm{GD} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">B から出る2本の直線（BA と BC）が、平行な直線 GC と DE によって同じ比に分けられるので、\( \mathrm{BG}:\mathrm{GD}=\mathrm{BC}:\mathrm{CE} \) です。図1の値では、どちらも \( 5:1 \) です。2つ目は BC と BE を取り違えていて、\( \mathrm{BE}:\mathrm{EC}=6:1 \) は \( \mathrm{BD}:\mathrm{DG} \) と等しい比です（部分を足した後の式）。3つ目は A から出る直線の比と B から出る直線の比を混ぜています（\( \mathrm{AD}:\mathrm{DG}=3:1 \)）。4つ目の \( \mathrm{AF}:\mathrm{FC}=3:1 \) は \( \mathrm{AD}:\mathrm{DG} \) と等しい比で、\( \mathrm{BG}:\mathrm{GD}=5:1 \) とは等しくありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>直線 \( \ell \) が △ABC の3辺の延長と交わり、D は辺 AB を B の先に延ばした直線上にあって \( \mathrm{AD}:\mathrm{DB}=2:1 \)、F は辺 CA を C の先に延ばした直線上にあって \( \mathrm{CF}:\mathrm{FA}=1:4 \) です。\( \ell \) と直線 BC の交点を E とするとき、\( \mathrm{BE}:\mathrm{EC} \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 1:2 \)</button>
+    <button>\( 1:8 \)</button>
+    <button>\( 4:1 \)</button>
+    <button data-correct="true">\( 2:1 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">3つとも延長上でもメネラウスの定理は成り立つので、\( \dfrac{2}{1}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{1}{4}=1 \) より \( \dfrac{\mathrm{BE}}{\mathrm{EC}}=2 \)、\( \mathrm{BE}:\mathrm{EC}=2:1 \) です（E は C の先の延長上）。\( 1:2 \) は2つの比の積 \( \dfrac{1}{2} \) をそのまま答えた値です。\( 1:8 \) は CF:FA を \( \dfrac{4}{1} \) と逆に入れた値（\( \dfrac{2}{1}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{4}{1}=1 \)）です。\( 4:1 \) は AD:DB のかわりに \( \mathrm{AB}:\mathrm{BD}=1:1 \) を入れた値で、延長上の点 D と A の距離 AD を AB と取り違えています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>△ABC で、直線 \( \ell \) が辺 AB、CA と D、F で交わり、辺 BC を C の先に延ばした直線と E で交わります。\( \mathrm{BC}=8 \)、\( \mathrm{CE}=4 \)、\( \mathrm{AF}:\mathrm{FC}=3:2 \) のとき、\( \mathrm{AD}:\mathrm{DB} \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 3:4 \)</button>
+    <button data-correct="true">\( 1:2 \)</button>
+    <button>\( 2:1 \)</button>
+    <button>\( 2:9 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( \mathrm{BE}=8+4=12 \) なので \( \dfrac{\mathrm{BE}}{\mathrm{EC}}=\dfrac{12}{4}=3 \)、\( \dfrac{\mathrm{CF}}{\mathrm{FA}}=\dfrac{2}{3} \)。メネラウスの定理より \( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot3\cdot\dfrac{2}{3}=1 \)、\( \dfrac{\mathrm{AD}}{\mathrm{DB}}=\dfrac{1}{2} \) です。\( 3:4 \) は \( \dfrac{\mathrm{BE}}{\mathrm{EC}} \) のかわりに \( \dfrac{\mathrm{BC}}{\mathrm{CE}}=2 \) を入れた値（\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot2\cdot\dfrac{2}{3}=1 \)）です。\( 2:1 \) は2つの比の積 2 をそのまま答えた値です。\( 2:9 \) は CF:FA のかわりに \( \mathrm{AF}:\mathrm{FC}=\dfrac{3}{2} \) を入れた値（\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot3\cdot\dfrac{3}{2}=1 \)）で、1周の向きがくずれています。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="1:2|BE:EC=1:2">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>△ABC と、頂点を通らない直線 \( \ell \) があります。A、B、C から \( \ell \) までの距離がそれぞれ 2、3、6 のとき、\( \ell \) と直線 BC の交点 E について \( \mathrm{BE}:\mathrm{EC} \) を求めなさい（例：2:1）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 1:2。B、C から \( \ell \) までの距離 \( q=3 \)、\( r=6 \) について、相似（数Ａ-041 の性質）より \( \mathrm{BE}:\mathrm{EC}=q:r=3:6=1:2 \) です。E が B と C の間にあっても延長上にあっても、この比は変わりません。2:1 と答えた場合は順番が逆です。1:3 と答えた場合は A の距離 2 を使っています（\( 2:6 \)）。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O2</span></div>
+  <p>図4のように、直線 \( \ell \) が △ABC の3辺の延長と交わり、D は辺 AB を A の先に、E は辺 BC を C の先に、F は辺 CA を C の先に延ばした直線上にあります。C を通り \( \ell \) に平行な直線と直線 AB の交点を G とします（G は A と D の間にあります）。4節と同じように平行線を用いて、\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}}=1 \) を、仮定・結論・根拠を明らかにして証明しなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　仮定：\( \ell \) は直線 AB、BC、CA と、それぞれ A の先の D、C の先の E、C の先の F で交わる。\( \mathrm{GC}\,/\!/\,\ell \)。結論：\( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}}=1 \)。<br>A から出る直線 AD 上に G、D が、直線 AF 上に C、F があり、\( \mathrm{GC}\,/\!/\,\mathrm{DF} \) なので、平行な直線は2つの線分を同じ比に分けることから \( \mathrm{AG}:\mathrm{GD}=\mathrm{AC}:\mathrm{CF} \)。部分を足すと \( \mathrm{AD}:\mathrm{GD}=\mathrm{AF}:\mathrm{CF} \)、よって \( \dfrac{\mathrm{CF}}{\mathrm{FA}}=\dfrac{\mathrm{GD}}{\mathrm{DA}} \)。<br>B から出る直線 BD 上に G、D が、直線 BE 上に C、E があり、\( \mathrm{GC}\,/\!/\,\mathrm{DE} \) なので \( \mathrm{BG}:\mathrm{BD}=\mathrm{BC}:\mathrm{BE} \)。よって \( (\mathrm{BD}-\mathrm{BG}):\mathrm{BD}=(\mathrm{BE}-\mathrm{BC}):\mathrm{BE} \)、すなわち \( \mathrm{GD}:\mathrm{BD}=\mathrm{CE}:\mathrm{BE} \) で、\( \dfrac{\mathrm{BE}}{\mathrm{EC}}=\dfrac{\mathrm{BD}}{\mathrm{GD}} \)。<br>したがって \( \dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BE}}{\mathrm{EC}}\cdot\dfrac{\mathrm{CF}}{\mathrm{FA}}=\dfrac{\mathrm{AD}}{\mathrm{DB}}\cdot\dfrac{\mathrm{BD}}{\mathrm{GD}}\cdot\dfrac{\mathrm{GD}}{\mathrm{DA}}=1 \)。（証明終わり）</p>
+    <p><strong>採点の観点</strong>　① A から出る2直線と平行線 GC、DF から、CF:FA を直線 AB 上の比 GD:DA に書きかえている。② B から出る2直線と平行線 GC、DE から、BE:EC を BD:GD に書きかえている（延長上の点なので、部分を足す・引く向きに注意している）。③ 3つの比をかけて約分し、1 になることを示し、根拠（平行線と線分の比）を書いている。</p>
+  </div>
+  <div class="explain">4節の証明と同じく、平行線を1本引いて2つの比を直線 AB 上の比に書きかえます。図4では G、D が A から見て B と反対側にあるので、\( \mathrm{AD}=\mathrm{AG}+\mathrm{GD} \)、\( \mathrm{BD}=\mathrm{BG}+\mathrm{GD} \) のように、どの線分の和・差になっているかを図で確かめながら式を立てます。3節の相似を用いた証明なら、場合を分けずに示せます。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1</span></div>
+  <p>太郎さんと花子さんが、チェバの定理とメネラウスの定理について話しています。</p>
+  <p>太郎：「どちらも、三角形を1周する順に3つの比をかけると 1 になる式だね。」<br>花子：「でも、図の形と、辺の延長上にできる点の個数が違うよ。」</p>
+  <p>2つの定理の違いの説明として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>チェバの定理は3点が1本の直線上にあるときの式で、延長上の点は1個か3個。メネラウスの定理は3本の直線が1点で交わるときの式で、延長上の点は0個か2個。</button>
+    <button>どちらも延長上の点は必ず1個で、違うのは式の分母と分子の順番だけである。</button>
+    <button data-correct="true">チェバの定理は3本の直線が1点で交わるときの式で、延長上の点は0個か2個。メネラウスの定理は3点が1本の直線上にあるときの式で、延長上の点は1個か3個。</button>
+    <button>チェバの定理は点が三角形の内部にあるときだけ、メネラウスの定理は直線が三角形の内部を通るときだけ成り立つ。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">チェバの定理は頂点と点 O を通る3本の直線（O が内部なら延長上の点は0個、外部なら2個。数Ａ-041）、メネラウスの定理は三角形と1本の直線（延長上の点は1個か3個）の式です。1つ目は2つの定理を入れかえています。2つ目は、点が延長上にない場合（チェバで O が内部）や3つとも延長上の場合（図4）があることを見落としています。4つ目は誤りで、チェバの定理は O が外部でも（数Ａ-041）、メネラウスの定理は直線が3辺の延長と交わる場合でも（図4）成り立ちます。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">10</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(1) 図形の性質」のア(ア)「三角形に関する基本的な性質について理解すること」とイ(ア)「図形の構成要素間の関係や既に学習した図形の性質に着目し，図形の新たな性質を見いだし，その性質について論理的に考察したり説明したりすること」に関わり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。比を1周する順に並べた式を立てることや、平行線・相似のどちらで証明するかを選ぶことは、こうした処理の練習になります。</p>
+  <p class="small">問9は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">11</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">メネラウスの定理の逆と活用（数Ａ-043）</p>
+  <p>次の時間は、メネラウスの定理の逆（3つの比の積が 1 ならば3点が1本の直線上にあるか）が成り立つかを考えます。また、チェバの定理とメネラウスの定理を組み合わせて、三角形の中にできる線分の比や三角形の面積の比を求めます。どの三角形とどの直線にメネラウスの定理を使うかを選ぶことが大切になります。</p>
+  <p>この時間では、メネラウスの定理の逆と、2つの定理を組み合わせた問題・面積の比は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-041　チェバの定理の逆と拡張</div>
+  <div><span class="label">次の時間</span>数Ａ-043　メネラウスの定理の逆と活用</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-042「メネラウスの定理」（学習指導要領 数学Ａ (1)ア(ア)・イ(ア)、解説 p.89）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(1) 図形の性質（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.89（「平行線の性質や三角形の相似などを用いてメネラウスの定理が成り立つことを見いだし，論理的に考察したり説明したりさせる」、図「△ABC の辺 AB，AC 上に 2 点 D，F がある場合」「D，F がそれぞれの辺の延長上にある場合」）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「チェバの定理，メネラウスの定理」（「チェバの定理，メネラウスの定理を理解している」「メネラウスの定理について，論理的に考察し，証明することができる」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・図はこのページのために作成したものです（出典を示したものを除く）。点の名前 D、E、F は解説 p.89 の図に合わせました。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var svg = document.getElementById("w1-svg");
+  var sd = document.getElementById("w1-d");
+  var sf = document.getElementById("w1-f");
+  var out = document.getElementById("w1-out");
+  if (!svg || !sd || !sf) return;
+  var S = 21, XMIN = -3, XMAX = 11, YMIN = -5, YMAX = 9, PAD = 12, W = 318, H = 318;
+  var BLUE = "#1f5fbf", RED = "#c0392b", GRAY = "#8a99a8", GREEN = "#1e8e5a";
+  var K = 12, A = [24, 48], B = [0, 0], C = [72, 0];
+  function X(x) { return PAD + (x - XMIN) * S; }
+  function Y(y) { return PAD + (YMAX - y) * S; }
+  function r1(v) { return String(Math.round(v * 10) / 10); }
+  function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { var t = a % b; a = b; b = t; } return a; }
+  function sub(a, b) { return [a[0] - b[0], a[1] - b[1]]; }
+  function cr(a, b) { return a[0] * b[1] - a[1] * b[0]; }
+  function sc(p) { return [p[0] / K, p[1] / K]; }
+  function fr(p, q) { var g = gcd(p, q); p /= g; q /= g; return q === 1 ? String(p) : p + "/" + q; }
+  function rt(a, b) { a = Math.abs(a); b = Math.abs(b); var g = gcd(a, b); return [a / g, b / g]; }
+  function inView(p) { return p[0] >= XMIN && p[0] <= XMAX && p[1] >= YMIN && p[1] <= YMAX; }
+  function clip(p, q) {
+    var t0 = 0, t1 = 1, dx = q[0] - p[0], dy = q[1] - p[1];
+    var ps = [-dx, dx, -dy, dy], qs = [p[0] - XMIN, XMAX - p[0], p[1] - YMIN, YMAX - p[1]];
+    for (var i = 0; i < 4; i++) {
+      if (ps[i] === 0) { if (qs[i] < 0) return null; continue; }
+      var t = qs[i] / ps[i];
+      if (ps[i] < 0) { if (t > t1) return null; if (t > t0) t0 = t; } else { if (t < t0) return null; if (t < t1) t1 = t; }
+    }
+    return [[p[0] + t0 * dx, p[1] + t0 * dy], [p[0] + t1 * dx, p[1] + t1 * dy]];
+  }
+  function line(h, p, q, color, w, dash) {
+    var c = clip(p, q);
+    if (!c) return;
+    h.push('<line x1="' + r1(X(c[0][0])) + '" y1="' + r1(Y(c[0][1])) + '" x2="' + r1(X(c[1][0])) + '" y2="' + r1(Y(c[1][1])) + '" stroke="' + color + '" stroke-width="' + w + '"' + (dash ? ' stroke-dasharray="' + dash + '"' : '') + '/>');
+  }
+  function full(h, p, q, color, w, dash) {
+    line(h, [p[0] - 40 * (q[0] - p[0]), p[1] - 40 * (q[1] - p[1])], [p[0] + 40 * (q[0] - p[0]), p[1] + 40 * (q[1] - p[1])], color, w, dash);
+  }
+  var labs = [], dots = [];
+  function dot(h, p, nm, color, lx, ly) {
+    h.push('<circle cx="' + r1(X(p[0])) + '" cy="' + r1(Y(p[1])) + '" r="3.4" fill="' + color + '" stroke="' + color + '" stroke-width="1.2" data-pt="' + nm + '" data-x="' + p[0] + '" data-y="' + p[1] + '"/>');
+    dots.push([X(p[0]), Y(p[1])]);
+    labs.push({ x: X(p[0]), y: Y(p[1]), nm: nm, color: color, lx: lx, ly: ly });
+  }
+  function placeLabels(h) {
+    var placed = [], order = labs.slice().sort(function (a, b) { return ("ABC".indexOf(a.nm) < 0) - ("ABC".indexOf(b.nm) < 0); });
+    function box(tx, ty) { return [tx - 5, ty - 12, tx + 5, ty + 3]; }
+    function bad(b) {
+      if (b[0] < 1 || b[2] > W - 1 || b[1] < 1 || b[3] > H - 1) return true;
+      for (var i = 0; i < placed.length; i++) { var q = placed[i]; if (b[0] < q[2] && q[0] < b[2] && b[1] < q[3] && q[1] < b[3]) return true; }
+      for (i = 0; i < dots.length; i++) { var d = dots[i]; if (d[0] > b[0] - 3.5 && d[0] < b[2] + 3.5 && d[1] > b[1] - 3.5 && d[1] < b[3] + 3.5) return true; }
+      return false;
+    }
+    for (var k = 0; k < order.length; k++) {
+      var L = order[k], cands = [[L.lx, L.ly]];
+      for (var rr = 15; rr <= 27; rr += 6) for (var a = 0; a < 360; a += 30) cands.push([Math.cos(a * Math.PI / 180) * rr, -Math.sin(a * Math.PI / 180) * rr + 5]);
+      var ch = cands[0];
+      for (var c = 0; c < cands.length; c++) if (!bad(box(L.x + cands[c][0], L.y + cands[c][1]))) { ch = cands[c]; break; }
+      var tx = Math.min(Math.max(L.x + ch[0], 8), W - 8), ty = Math.min(Math.max(L.y + ch[1], 14), H - 4);
+      placed.push(box(tx, ty));
+      h.push('<text x="' + r1(tx) + '" y="' + r1(ty) + '" text-anchor="middle" font-size="14" font-weight="700" fill="' + L.color + '" data-label="' + L.nm + '">' + L.nm + '</text>');
+    }
+  }
+  function draw() {
+    var i = parseInt(sd.value, 10), j = parseInt(sf.value, 10);
+    var D = [A[0] + i * (B[0] - A[0]) / K, A[1] + i * (B[1] - A[1]) / K];
+    var F = [A[0] + j * (C[0] - A[0]) / K, A[1] + j * (C[1] - A[1]) / K];
+    var h = [], txt = [], off = [];
+    labs = []; dots = [];
+    full(h, sc(A), sc(B), GRAY, 1.2, "2 3");
+    full(h, sc(B), sc(C), GRAY, 1.2, "2 3");
+    full(h, sc(C), sc(A), GRAY, 1.2, "2 3");
+    line(h, sc(A), sc(B), "currentColor", 1.8);
+    line(h, sc(B), sc(C), "currentColor", 1.8);
+    line(h, sc(C), sc(A), "currentColor", 1.8);
+    var vtx = null;
+    if (i === 0 || j === 0) vtx = "A"; else if (i === K) vtx = "B"; else if (j === K) vtx = "C";
+    if (vtx) {
+      if (!(i === 0 && j === 0)) full(h, sc(D), sc(F), GREEN, 1.6);
+      txt.push("直線 ℓ が頂点 " + vtx + " を通るので、この位置は考えません（メネラウスの定理は、頂点を通らない直線についての定理です）。");
+    } else if (i === j) {
+      full(h, sc(D), sc(F), GREEN, 1.6);
+      txt.push("直線 ℓ＝DF が辺 BC に平行なので、E ができません。");
+    } else {
+      full(h, sc(D), sc(F), GREEN, 1.7);
+      var d0 = cr(sub(C, B), sub(F, D)), n0 = cr(sub(D, B), sub(F, D));
+      if (d0 < 0) { d0 = -d0; n0 = -n0; }
+      var E = [B[0] + n0 * (C[0] - B[0]) / d0, B[1] + n0 * (C[1] - B[1]) / d0];
+      var rD = rt(i, K - i), rE = rt(n0, d0 - n0), rF = rt(K - j, j);
+      var sD = i > 0 && i < K, sE = n0 > 0 && n0 < d0, sF = j > 0 && j < K;
+      txt.push("D：辺 AB" + (sD ? " 上" : " の延長上") + "（AD:DB = " + rD[0] + ":" + rD[1] + "）");
+      txt.push("E：辺 BC" + (sE ? " 上" : " の延長上") + "（BE:EC = " + rE[0] + ":" + rE[1] + "）");
+      txt.push("F：辺 CA" + (sF ? " 上" : " の延長上") + "（CF:FA = " + rF[0] + ":" + rF[1] + "）");
+      txt.push("AD/DB × BE/EC × CF/FA = " + fr(rD[0], rD[1]) + " × " + fr(rE[0], rE[1]) + " × " + fr(rF[0], rF[1]) + " = " + fr(rD[0] * rE[0] * rF[0], rD[1] * rE[1] * rF[1]));
+      var ex = [];
+      if (!sD) ex.push("D");
+      if (!sE) ex.push("E");
+      if (!sF) ex.push("F");
+      txt.push("辺の延長上にある点は " + ex.join("、") + " の" + ex.length + "個です。");
+      if (inView(sc(E))) dot(h, sc(E), "E", sE ? BLUE : RED, 0, 19); else off.push("E");
+    }
+    if (i !== 0 && i !== K) {
+      if (inView(sc(D))) dot(h, sc(D), "D", (i > 0 && i < K) ? BLUE : RED, -12, -6); else off.push("D");
+    }
+    if (j !== 0 && j !== K) {
+      if (inView(sc(F))) dot(h, sc(F), "F", (j > 0 && j < K) ? BLUE : RED, 12, -6); else off.push("F");
+    }
+    dot(h, sc(A), "A", "currentColor", 0, -9);
+    dot(h, sc(B), "B", "currentColor", -11, 15);
+    dot(h, sc(C), "C", "currentColor", 11, 15);
+    placeLabels(h);
+    if (off.length) txt.push("（図の範囲の外にある点は表示していません：" + off.join("、") + "）");
+    svg.innerHTML = h.join("");
+    if (out) out.textContent = txt.join("\n");
+  }
+  sd.addEventListener("input", draw);
+  sf.addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-042",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-042",
+  "title": "メネラウスの定理",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-2", "title": "図形の性質"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ア)", "(1)イ(ア)"],
+  "kaisetsu_page": "89",
+  "objectives": [
+    {"id": "O1", "text": "三角形 ABC と、頂点を通らない直線 ℓ が直線 AB、BC、CA と交わる点 D、E、F について、3つの比の積が 1 になること（メネラウスの定理）を具体的な図や操作で見いだし、式を三角形を1周する順に正しく書くことができる。", "from": "メネラウスの定理が成り立つことを見いだし", "sections": ["sec-1", "sec-4"], "checks": ["q1", "q3", "q9"]},
+    {"id": "O2", "text": "平行線の性質（平行な直線は2つの線分を同じ比に分けること）を用いて、メネラウスの定理を証明できる。", "from": "平行線の性質…を用いてメネラウスの定理が成り立つことを…論理的に説明できる", "sections": ["sec-2"], "checks": ["q4", "q8"]},
+    {"id": "O3", "text": "三角形の相似（頂点から直線にひいた垂線の長さの比）を用いて、直線が3辺の延長と交わる場合も含めてメネラウスの定理を説明し、定理を用いて線分の比を求めることができる。", "from": "三角形の相似などを用いてメネラウスの定理が成り立つことを…論理的に説明できる", "sections": ["sec-3", "sec-4"], "checks": ["q2", "q5", "q6", "q7"]}
+  ],
+  "key_terms": [
+    {"term": "メネラウスの定理", "where": "sec-1"},
+    {"term": "三角形を1周する順", "where": "sec-1"},
+    {"term": "辺の延長上の点の個数", "where": "sec-1"},
+    {"term": "平行線と線分の比", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "平行な直線は2つの線分を同じ比に分ける（三角形と比の定理・平行線と線分の比）", "taught_in": ["jhs_math/中3-071", "jhs_math/中3-074", "hs_math_1a/数Ａ-035"], "gap": false, "where": "review"},
+    {"concept": "内分・外分の意味と位置", "taught_in": ["hs_math_1a/数Ａ-035"], "gap": false, "where": "review"},
+    {"concept": "2点から直線までの距離の比（数Ａ-041 の性質、直角三角形の相似から）", "taught_in": ["hs_math_1a/数Ａ-041"], "gap": false, "where": "review"},
+    {"concept": "三角形の相似条件（2組の角）", "taught_in": ["jhs_math/中3-067"], "gap": false, "where": "sec-3"},
+    {"concept": "対頂角は等しい", "taught_in": ["jhs_math/中2-044"], "gap": false, "where": "sec-3"},
+    {"concept": "チェバの定理（O が内部・外部の場合）", "taught_in": ["hs_math_1a/数Ａ-040", "hs_math_1a/数Ａ-041"], "gap": false, "where": "sec-4"},
+    {"concept": "比例式を解く", "taught_in": ["jhs_math/中1-054"], "gap": false, "where": "review"},
+    {"concept": "絶対値 |m−n|（外分の目盛りの数）", "taught_in": ["hs_math_1a/数Ⅰ-012"], "gap": false, "where": "review"},
+    {"concept": "平行の記号 //", "taught_in": ["jhs_math/中1-076"], "gap": false, "where": "review"},
+    {"concept": "相似比と面積比（確認3の誤答の説明）", "taught_in": ["jhs_math/中3-078"], "gap": false, "where": "review"}
+  ],
+  "out_of_scope": [
+    "メネラウスの定理の逆（数Ａ-043）",
+    "チェバの定理・メネラウスの定理を組み合わせた線分の比、三角形の面積の比（数Ａ-043）",
+    "座標を用いた交点・内分点・外分点の計算（数学Ⅱの数Ⅱ-032・034 の内容。操作部品の内部計算にだけ使い、ページには座標を書かない）",
+    "向きを考えた比（符号付きの比）でのメネラウスの定理（地図の要点・解説にないので扱わない）"
+  ],
+  "selection_reason": "数学Ａ 単元『図形の性質』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(1)ア(ア)・イ(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.89 平行線の性質や三角形の相似などを用いてメネラウスの定理を見いだすこと、図（辺 AB，AC 上に D，F がある場合／D，F が延長上にある場合）（保存本文：sources/text/hs_kaisetsu_math.txt）"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "「チェバの定理，メネラウスの定理を理解している」「メネラウスの定理について，論理的に考察し，証明することができる」（保存本文：sources/text/suken_syllabus_suakai.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

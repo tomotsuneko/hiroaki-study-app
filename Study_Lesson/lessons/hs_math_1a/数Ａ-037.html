@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三角形の外心｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.proof ol { margin: 4px 0 4px 1.2em; }
+.proof .tag { font-weight: 700; }
+.widget .w-row { margin: 4px 0; }
+.widget .w-out { font-size: .92rem; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>図形の性質</span><span>数Ａ-037</span></div>
+  <h1>三角形の外心</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">三角形の3つの頂点を通る円（外接円）は、数学Ⅰの正弦定理で使いました。その中心はどこにあり、なぜどんな三角形にもあるのでしょうか。3辺の垂直二等分線が1点で交わることを証明し、その点の性質を調べます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>垂直二等分線が2点から等しい距離にある点の集まりであることを用いて、三角形の3辺の垂直二等分線が1点で交わることを証明できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>外心が3つの頂点から等しい距離にあり外接円の中心であることを理解し、鋭角・直角・鈍角三角形での外心の位置を説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>外心の性質（\( \mathrm{OA}=\mathrm{OB}=\mathrm{OC} \)）を用いて、角の大きさや外接円の半径を求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-036）</span>角の二等分線と辺の比</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-037）</span>三角形の外心</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-038）</span>三角形の内心</div>
+</div>
+<p class="small">前提となる単元：中学3年「図形の相似」「円周角と中心角の関係」、中学1年「平面図形」「空間図形」。中学1年の垂直二等分線（中1-082）、中学2年の二等辺三角形（中2-060）、数学Ⅰの外接円と正弦定理（数Ⅰ-068）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">この時間に使うこと（中1-082、中2-060、中3-087〜091、数Ⅰ-068）</p>
+  <ul>
+    <li><strong>垂直二等分線</strong>（中1-082）：線分 AB の中点を通り AB に垂直な直線。垂直二等分線は、2点 A、B から等しい距離にある点の集まりです。つまり、次の2つがどちらも成り立ちます。
+      <br>(ア) 線分 AB の垂直二等分線上の点 P は、\( \mathrm{PA}=\mathrm{PB} \) を満たす。
+      <br>(イ) \( \mathrm{PA}=\mathrm{PB} \) を満たす点 P は、線分 AB の垂直二等分線上にある（(ア)の逆）。</li>
+    <li><strong>外接円</strong>（数Ⅰ-068）：三角形の3つの頂点を通る円。半径を \( R \) で表します。</li>
+    <li>二等辺三角形の2つの底角は等しい（中2-060）。1つの弧に対する円周角は、その弧に対する中心角の半分（中3-087）。半円の弧に対する円周角は直角（中3-089）で、逆に ∠C が直角なら C は AB を直径とする円の周上にある（円周角の定理の逆、中3-091）。</li>
+  </ul>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：中1-082</span></div>
+  <p>線分 AB の垂直二等分線上の点 P について、いつも正しいものはどれですか（P は AB の中点と異なる点とします）。</p>
+  <div class="choices">
+    <button>P は線分 AB の中点である。</button>
+    <button data-correct="true">\( \mathrm{PA}=\mathrm{PB} \) である。</button>
+    <button>\( \mathrm{PA}=\mathrm{AB} \) である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">垂直二等分線上の点は、線分の両端から等しい距離にあります（中1-082）。中点も垂直二等分線上の点ですが、問題では中点と異なる点を考えています。\( \mathrm{PA}=\mathrm{AB} \) となるのは、△PAB が正三角形になる特別な位置だけです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：中2-060</span></div>
+  <p>\( \mathrm{OA}=\mathrm{OB} \) の二等辺三角形 OAB で \( \angle\mathrm{AOB}=100^\circ \) のとき、\( \angle\mathrm{OAB} \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 50^\circ \)</button>
+    <button>\( 80^\circ \)</button>
+    <button data-correct="true">\( 40^\circ \)</button>
+    <button>\( 100^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">底角 ∠OAB と ∠OBA は等しいので、\( (180^\circ-100^\circ)\div2=40^\circ \) です（中2-060、中2-048）。\( 50^\circ \) は頂角の半分、\( 80^\circ \) は \( 180^\circ-100^\circ \) を2でわり忘れた値、\( 100^\circ \) は頂角と底角を取り違えた値です。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：中3-087</span></div>
+  <p>円 O の周上に3点 A、B、C があり、弧 BC（A を含まないほう）に対する中心角が \( \angle\mathrm{BOC}=120^\circ \) です。\( \angle\mathrm{BAC} \) はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 60^\circ \)</button>
+    <button>\( 120^\circ \)</button>
+    <button>\( 240^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">円周角は、同じ弧に対する中心角の半分なので \( 120^\circ\div2=60^\circ \) です（中3-087）。\( 120^\circ \) は中心角そのもの、\( 240^\circ \) は2倍してしまった値です。</div>
+</div>
+<p>数学Ⅰの正弦定理（数Ⅰ-068）の補足では、辺 BC と辺 AB の垂直二等分線の交点 O を中心とする円が3つの頂点を通ること（外接円がただ1つあること）を確かめ、3本目の垂直二等分線（辺 CA の）も同じ点 O を通ることは数学Ａで学ぶ、としていました。この時間に、そのことを証明します。</p>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：3つの地点から等しい距離の場所</h2>
+<div class="box think">
+  <p class="box-title">3軒の家から等しい距離にある集会所</p>
+  <p>一直線上にない3軒の家 A、B、C から、等しい距離にある場所に集会所を建てたいと考えます（学習用の架空の場面。家は点とみなします）。</p>
+  <ul>
+    <li>① A と B から等しい距離にある場所は、どんな図形の上にあるでしょうか。</li>
+    <li>② A、B、C の3軒から等しい距離にある場所は、いくつあるでしょうか。どうすれば見つけられるでしょうか。</li>
+  </ul>
+  <p>予想してから読み進めましょう。答えは「3 3辺の垂直二等分線は1点で交わる」の最後で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="3辺の垂直二等分線は1点で交わる"><span class="num">3</span>3辺の垂直二等分線は1点で交わる</h2>
+<p>三角形の3辺それぞれに垂直二等分線をひくと、図1のように3本が1点で交わります。どんな三角形でもそうなることを証明します。</p>
+<figure>
+<!--svg:f037a-->
+<svg viewBox="0 0 249 219" width="249" role="img" aria-label="三角形 ABC と3辺の垂直二等分線（灰の破線）。辺 BC、CA、AB の中点 L、M、N で辺に垂直に交わり、3本は1点 O で交わる。OA、OB、OC は青の線" data-fig="f037a" data-s="34.000000" data-ox="32.700000" data-oy="172.400000">
+<line x1="124.5" y1="201" x2="124.5" y2="97" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="6 4" data-seg="bis"/>
+<line x1="158.8" y1="87.7" x2="114.6" y2="129.9" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="6 4" data-seg="bis"/>
+<line x1="16.5" y1="87.7" x2="155.9" y2="129.9" stroke="#8a99a8" stroke-width="1.3" stroke-dasharray="6 4" data-seg="bis"/>
+<line x1="76.9" y1="26.2" x2="32.7" y2="172.4" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="32.7" y1="172.4" x2="216.3" y2="172.4" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="216.3" y1="172.4" x2="76.9" y2="26.2" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="124.5" y1="120.4" x2="76.9" y2="26.2" stroke="#1f5fbf" stroke-width="1.5" data-seg="OP"/>
+<line x1="124.5" y1="120.4" x2="32.7" y2="172.4" stroke="#1f5fbf" stroke-width="1.5" data-seg="OP"/>
+<line x1="124.5" y1="120.4" x2="216.3" y2="172.4" stroke="#1f5fbf" stroke-width="1.5" data-seg="OP"/>
+<path d="M132.5,172.4 L132.5,164.4 L124.5,164.4" fill="none" stroke="currentColor" stroke-width="1.2" data-right="L,C,O"/>
+<path d="M141.1,93.5 L135.3,99 L140.8,104.8" fill="none" stroke="currentColor" stroke-width="1.2" data-right="M,A,O"/>
+<path d="M52.5,107 L60.1,109.3 L62.5,101.6" fill="none" stroke="currentColor" stroke-width="1.2" data-right="N,B,O"/>
+<path d="M70.6,64.2 L61.1,61.3" fill="none" stroke="currentColor" stroke-width="1.4" data-tick="A,N" data-mark="1"/>
+<path d="M48.5,137.3 L39,134.4" fill="none" stroke="currentColor" stroke-width="1.4" data-tick="N,B" data-mark="1"/>
+<path d="M77,167.4 L77,177.4 M80.2,167.4 L80.2,177.4" fill="none" stroke="currentColor" stroke-width="1.4" data-tick="B,L" data-mark="2"/>
+<path d="M168.8,167.4 L168.8,177.4 M172,167.4 L172,177.4" fill="none" stroke="currentColor" stroke-width="1.4" data-tick="L,C" data-mark="2"/>
+<path d="M180,141.6 L187.3,134.7 M177.8,139.3 L185.1,132.4 M175.6,137 L182.9,130.1" fill="none" stroke="currentColor" stroke-width="1.4" data-tick="C,M" data-mark="3"/>
+<path d="M110.3,68.5 L117.6,61.6 M108.1,66.2 L115.4,59.3 M105.9,63.9 L113.2,57" fill="none" stroke="currentColor" stroke-width="1.4" data-tick="M,A" data-mark="3"/>
+<circle cx="76.90" cy="26.20" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="1.300000" data-y="4.300000"/>
+<text x="74.3" y="15.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="32.70" cy="172.40" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="20.4" y="185.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="216.30" cy="172.40" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="5.400000" data-y="0.000000"/>
+<text x="228.6" y="185.2" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="124.50" cy="120.37" r="3.2" fill="#7b3fa0" stroke="#7b3fa0" stroke-width="1.4" data-pt="O" data-x="2.700000" data-y="1.530233"/>
+<text x="134" y="141" text-anchor="middle" font-size="14" fill="#7b3fa0" font-weight="700">O</text>
+<circle cx="124.50" cy="172.40" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="L" data-x="2.700000" data-y="0.000000"/>
+<text x="124.5" y="190.3" text-anchor="middle" font-size="13" fill="currentColor">L</text>
+<circle cx="146.60" cy="99.30" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="M" data-x="3.350000" data-y="2.150000"/>
+<text x="157.3" y="94.2" text-anchor="middle" font-size="13" fill="currentColor">M</text>
+<circle cx="54.80" cy="99.30" r="2.6" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="N" data-x="0.650000" data-y="2.150000"/>
+<text x="42.7" y="96.2" text-anchor="middle" font-size="13" fill="currentColor">N</text>
+</svg>
+<!--/svg:f037a-->
+  <figcaption>図1　△ABC の3辺の垂直二等分線（灰の破線）。L、M、N は辺 BC、CA、AB の中点で、同じ本数の短い線の印は長さが等しい（\( \mathrm{BL}=\mathrm{LC} \)、\( \mathrm{CM}=\mathrm{MA} \)、\( \mathrm{AN}=\mathrm{NB} \)）。3本は1点 O で交わる（学習用に作成した図）</figcaption>
+</figure>
+<div class="box example proof">
+  <p class="box-title">証明（3辺の垂直二等分線は1点で交わる）</p>
+  <p><span class="tag">仮定</span>　△ABC がある。<br><span class="tag">結論</span>　辺 AB、BC、CA の垂直二等分線は1点で交わる。</p>
+  <p>辺 AB と辺 BC は平行ではないので、それぞれに垂直な辺 AB の垂直二等分線と辺 BC の垂直二等分線も平行ではなく、1点で交わる。その交点を O とする（数Ⅰ-068 の補足と同じ点）。</p>
+  <ol>
+    <li>O は辺 AB の垂直二等分線上にあるので、\( \mathrm{OA}=\mathrm{OB} \)（中1-082 の(ア)）。</li>
+    <li>O は辺 BC の垂直二等分線上にあるので、\( \mathrm{OB}=\mathrm{OC} \)（中1-082 の(ア)）。</li>
+    <li>①、② より、\( \mathrm{OC}=\mathrm{OA} \)。</li>
+    <li>2点 C、A から等しい距離にある点は、線分 CA の垂直二等分線上にある（中1-082 の(イ)。①②で使った(ア)の逆）。③ より、O は辺 CA の垂直二等分線上にある。</li>
+  </ol>
+  <p>よって、辺 AB、BC、CA の垂直二等分線は1点 O で交わる。（証明終わり）</p>
+  <p class="small">④の(イ)は、中2で学んだ三角形の合同条件でも確かめられます。CA の中点を M とすると、\( \mathrm{OC}=\mathrm{OA} \)、\( \mathrm{CM}=\mathrm{AM} \)、OM は共通なので、3組の辺がそれぞれ等しく △OCM≡△OAM（中2-053）。よって \( \angle\mathrm{OMC}=\angle\mathrm{OMA} \) で、C、M、A は一直線上にあるので2つの角の和は \( 180^\circ \) です。したがって \( \angle\mathrm{OMC}=\angle\mathrm{OMA}=90^\circ \) で、OM は CA の垂直二等分線です（O が M と重なるときは、O はそのまま CA の垂直二等分線上にあります）。</p>
+</div>
+<div class="box point">
+  <p class="box-title">外心と外接円</p>
+  <p>三角形の3辺の垂直二等分線の交点を、その三角形の<strong>外心</strong>といいます。このページでは外心を O で表します。証明の①〜③から \( \mathrm{OA}=\mathrm{OB}=\mathrm{OC} \) なので、O を中心とする半径 OA の円は3つの頂点を通ります。つまり<strong>外心は外接円の中心</strong>で、外接円の半径は \( R=\mathrm{OA}=\mathrm{OB}=\mathrm{OC} \) です。</p>
+</div>
+<p>外接円の中心は3つの頂点から等しい距離にあるので、(イ)より3本の垂直二等分線のどれの上にもあり、外心 O と一致します。中心が1つに決まるので、<strong>どんな三角形にも外接円はただ1つ</strong>あります。数Ⅰ-068 で使った「どんな三角形にも、3つの頂点を通る円がただ1つある」ことは、こうして証明できます。</p>
+<div class="box point"><p class="box-title">導入の問いの答え</p><p>① A と B から等しい距離にある場所は、線分 AB の垂直二等分線の上にあります（中1-082）。② 3軒から等しい距離にある場所は、3つの家を頂点とする △ABC の外心で、ただ1つです。線分 AB と線分 BC の垂直二等分線をかいて、その交点を求めれば見つかります（3本目の垂直二等分線も同じ点を通ります）。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 2本の垂直二等分線の交点が O になることだけを示して、「3本が1点で交わる」とする：3本目（辺 CA の垂直二等分線）も O を通ることを、\( \mathrm{OC}=\mathrm{OA} \) と(イ)で示す必要があります。<br>② ④で(ア)を使ってしまう：(ア)は「垂直二等分線上の点 → 等しい距離」、④で必要なのは逆向きの「等しい距離 → 垂直二等分線上」で、(イ)です。<br>③ 外接円をかいてから「OA と OC は半径だから等しい」とする：外接円があることはまだ示していないので、理由になりません（循環した説明）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="外心の位置"><span class="num">4</span>外心の位置は三角形の形で変わる</h2>
+<p>外心はいつも三角形の内部にあるとは限りません。図2で、3種類の三角形の外心を比べます。三角形は、最も大きい角が鋭角か直角か鈍角かで、鋭角三角形・直角三角形・鈍角三角形に分けられます（中2-048）。</p>
+<figure>
+  <div class="fig-row">
+<!--svg:f037b-i-->
+<svg viewBox="0 0 190 200" width="190" role="img" aria-label="鋭角三角形 ABC と外接円。外心 O は三角形の内部にある" data-fig="f037b-i" data-s="27.140482" data-ox="40.719036" data-oy="149.544333">
+<text x="95" y="16" text-anchor="middle" font-size="13" fill="currentColor">(i) 鋭角三角形</text>
+<circle cx="95" cy="112" r="66" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="外接円" data-cx="2.000000" data-cy="1.383333" data-r="2.431792"/>
+<line x1="67.9" y1="51.8" x2="40.7" y2="149.5" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="40.7" y1="149.5" x2="149.3" y2="149.5" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="149.3" y1="149.5" x2="67.9" y2="51.8" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="95" y1="112" x2="67.9" y2="51.8" stroke="#1f5fbf" stroke-width="1.3" data-seg="OP"/>
+<line x1="95" y1="112" x2="40.7" y2="149.5" stroke="#1f5fbf" stroke-width="1.3" data-seg="OP"/>
+<line x1="95" y1="112" x2="149.3" y2="149.5" stroke="#1f5fbf" stroke-width="1.3" data-seg="OP"/>
+<circle cx="67.86" cy="51.84" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="1.000000" data-y="3.600000"/>
+<text x="61.7" y="42.4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="40.72" cy="149.54" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="28.4" y="162.3" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="149.28" cy="149.54" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="4.000000" data-y="0.000000"/>
+<text x="161.6" y="162.3" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="95.00" cy="112.00" r="3.2" fill="#7b3fa0" stroke="#7b3fa0" stroke-width="1.4" data-pt="O" data-x="2.000000" data-y="1.383333"/>
+<text x="103" y="133.4" text-anchor="middle" font-size="14" fill="#7b3fa0" font-weight="700">O</text>
+</svg>
+<!--/svg:f037b-i-->
+<!--svg:f037b-ii-->
+<svg viewBox="0 0 190 200" width="190" role="img" aria-label="角 C が直角の直角三角形 ABC と外接円。外心 O は斜辺 AB の中点にある" data-fig="f037b-ii" data-s="26.400000" data-ox="42.200000" data-oy="151.600000">
+<text x="95" y="16" text-anchor="middle" font-size="13" fill="currentColor">(ii) 直角三角形</text>
+<circle cx="95" cy="112" r="66" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="外接円" data-cx="2.000000" data-cy="1.500000" data-r="2.500000"/>
+<line x1="42.2" y1="151.6" x2="147.8" y2="72.4" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="147.8" y1="72.4" x2="147.8" y2="151.6" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="147.8" y1="151.6" x2="42.2" y2="151.6" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="95" y1="112" x2="42.2" y2="151.6" stroke="#1f5fbf" stroke-width="1.3" data-seg="OP"/>
+<line x1="95" y1="112" x2="147.8" y2="72.4" stroke="#1f5fbf" stroke-width="1.3" data-seg="OP"/>
+<line x1="95" y1="112" x2="147.8" y2="151.6" stroke="#1f5fbf" stroke-width="1.3" data-seg="OP"/>
+<path d="M139.8,151.6 L139.8,143.6 L147.8,143.6" fill="none" stroke="currentColor" stroke-width="1.2" data-right="C,A,B"/>
+<circle cx="42.20" cy="151.60" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="0.000000" data-y="0.000000"/>
+<text x="30.2" y="164.8" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="147.80" cy="72.40" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="4.000000" data-y="3.000000"/>
+<text x="159.8" y="67.6" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="147.80" cy="151.60" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="4.000000" data-y="0.000000"/>
+<text x="159.8" y="164.8" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="95.00" cy="112.00" r="3.2" fill="#7b3fa0" stroke="#7b3fa0" stroke-width="1.4" data-pt="O" data-x="2.000000" data-y="1.500000"/>
+<text x="86" y="104.2" text-anchor="middle" font-size="14" fill="#7b3fa0" font-weight="700">O</text>
+</svg>
+<!--/svg:f037b-ii-->
+<!--svg:f037b-iii-->
+<svg viewBox="0 0 190 200" width="190" role="img" aria-label="角 A が鈍角の鈍角三角形 ABC と外接円。外心 O は三角形の外部（辺 BC について A と反対側）にある" data-fig="f037b-iii" data-s="23.154627" data-ox="37.113433" data-oy="80.295973">
+<text x="95" y="16" text-anchor="middle" font-size="13" fill="currentColor">(iii) 鈍角三角形</text>
+<circle cx="95" cy="112" r="66" fill="none" stroke="#7b3fa0" stroke-width="1.4" stroke-dasharray="6 4" data-circle="外接円" data-cx="2.500000" data-cy="-1.369231" data-r="2.850402"/>
+<line x1="71.8" y1="50.2" x2="37.1" y2="80.3" stroke="currentColor" stroke-width="1.6" data-seg="AB"/>
+<line x1="37.1" y1="80.3" x2="152.9" y2="80.3" stroke="currentColor" stroke-width="1.6" data-seg="BC"/>
+<line x1="152.9" y1="80.3" x2="71.8" y2="50.2" stroke="currentColor" stroke-width="1.6" data-seg="CA"/>
+<line x1="95" y1="112" x2="71.8" y2="50.2" stroke="#1f5fbf" stroke-width="1.3" data-seg="OP"/>
+<line x1="95" y1="112" x2="37.1" y2="80.3" stroke="#1f5fbf" stroke-width="1.3" data-seg="OP"/>
+<line x1="95" y1="112" x2="152.9" y2="80.3" stroke="#1f5fbf" stroke-width="1.3" data-seg="OP"/>
+<circle cx="71.85" cy="50.19" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="A" data-x="1.500000" data-y="1.300000"/>
+<text x="66.6" y="40.3" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">A</text>
+<circle cx="37.11" cy="80.30" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="B" data-x="0.000000" data-y="0.000000"/>
+<text x="24" y="77.3" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">B</text>
+<circle cx="152.89" cy="80.30" r="3.2" fill="currentColor" stroke="currentColor" stroke-width="1.4" data-pt="C" data-x="5.000000" data-y="0.000000"/>
+<text x="166" y="77.3" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">C</text>
+<circle cx="95.00" cy="112.00" r="3.2" fill="#7b3fa0" stroke="#7b3fa0" stroke-width="1.4" data-pt="O" data-x="2.500000" data-y="-1.369231"/>
+<text x="95" y="131.2" text-anchor="middle" font-size="14" fill="#7b3fa0" font-weight="700">O</text>
+</svg>
+<!--/svg:f037b-iii-->
+  </div>
+  <figcaption>図2　外接円（紫の破線）と外心 O。(i) 鋭角三角形では、外心は三角形の内部にある。(ii) 直角三角形（∠C が直角）では、外心は斜辺 AB の中点にある。(iii) 鈍角三角形（∠A が鈍角）では、外心は三角形の外部にあり、最も長い辺 BC について A と反対側にある（学習用に作成した図）</figcaption>
+</figure>
+<h3>直角三角形の外心は斜辺の中点</h3>
+<p>∠C が直角のとき、円周角の定理の逆（中3-091）と、半円の弧に対する円周角が直角であること（中3-089）から、C は AB を直径とする円の周上にあります。この円は3つの頂点 A、B、C を通るので外接円で、中心は直径 AB の中点です。つまり<strong>直角三角形の外心は斜辺の中点</strong>で、\( R=\dfrac{1}{2}\times(\text{斜辺}) \) です。</p>
+<h3>操作して確かめよう：頂点 C を動かす</h3>
+<p>辺 AB を固定して頂点 C を左右に動かし、外心 O の位置と三角形の形の関係を調べましょう。∠C が直角になる位置、∠A や ∠B が直角になる位置もあります。</p>
+<div class="widget" id="w1">
+  <div class="w-row"><label for="w1-x">頂点 C を左右に動かす：</label><input type="range" id="w1-x" min="-20" max="20" step="1" value="12"></div>
+  <div><svg id="w1-svg" viewBox="0 0 300 300" width="300" role="img" aria-label="長さ 6 の辺 AB を固定し、頂点 C を AB に平行な直線上で動かしたときの三角形 ABC、外接円、外心 O。O から3つの頂点までの線分も示す"></svg></div>
+  <p class="w-out" id="w1-out" aria-live="polite">∠A ≒ 24.0°、∠B ≒ 76.0°、∠C ≒ 80.1°。最も大きい角は ∠C で鋭角なので、△ABC は鋭角三角形です。外心 O は三角形の内部にあります。OA = OB = OC ≒ 3.05（AB = 6 としたときの長さ）。（スクリプトが動かない場合は、図2で同じことを確かめられます）</p>
+  <p class="small">紫の破線の円＝外接円、紫の点＝外心 O、青の線＝OA・OB・OC。C は辺 AB から一定の距離にある、AB に平行な直線の上を動きます。図の大きさは外接円が収まるように自動で変わります。角の大きさは小数第2位を四捨五入して表示しているので、3つの角の表示の和が 180° から 0.1° ずれることがあります。</p>
+</div>
+<div class="box point"><p class="box-title">外心の位置のまとめ</p><p>鋭角三角形 → 外心は三角形の<strong>内部</strong>。直角三角形 → 外心は<strong>斜辺の中点</strong>。鈍角三角形 → 外心は三角形の<strong>外部</strong>（最も長い辺について、鈍角の頂点と反対側）。どの場合も \( \mathrm{OA}=\mathrm{OB}=\mathrm{OC}=R \) です。直角三角形の場合は上で示しました。鋭角三角形・鈍角三角形の場合の位置は、このページでは証明せず、図2と操作部品で確かめるだけにします。</p></div>
+<div class="box caution"><p class="box-title">よくある間違い：外心はいつも三角形の内部にある</p><p>鈍角三角形では、外心は三角形の外にあります。図をかくときは、外心を三角形の内部にかき込んでしまわないように、2本の垂直二等分線の交点として求めましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="外心の性質を使う"><span class="num">5</span>外心の性質を使って角や半径を求める</h2>
+<p>\( \mathrm{OA}=\mathrm{OB}=\mathrm{OC} \) なので、外心と頂点を結ぶと、△OAB、△OBC、△OCA の3つの<strong>二等辺三角形</strong>ができます。それぞれの底角が等しいことを使います（中2-060）。</p>
+<div class="box example worked">
+  <p class="box-title">例題1（二等辺三角形の底角）</p>
+  <p>鋭角三角形 ABC の外心を O とします。\( \angle\mathrm{OAB}=20^\circ \)、\( \angle\mathrm{OBC}=30^\circ \) のとき、\( \angle\mathrm{OCA} \) を求めなさい。</p>
+  <div class="step">着眼点：\( \mathrm{OA}=\mathrm{OB}=\mathrm{OC} \) より、△OAB、△OBC、△OCA は二等辺三角形です。底角が等しいので \( \angle\mathrm{OBA}=20^\circ \)、\( \angle\mathrm{OCB}=30^\circ \)、\( \angle\mathrm{OAC}=\angle\mathrm{OCA}=x \) とおけます。</div>
+  <div class="step">鋭角三角形なので O は内部にあり、△ABC の内角の和は6つの角の和です（中2-048）。\( 2\times(20^\circ+30^\circ+x)=180^\circ \)。</div>
+  <div class="step">\( 20^\circ+30^\circ+x=90^\circ \) より、\( x=40^\circ \)。答え：\( \angle\mathrm{OCA}=40^\circ \)。</div>
+  <div class="step">確かめ：\( \angle\mathrm{A}=20^\circ+40^\circ=60^\circ \)、\( \angle\mathrm{B}=20^\circ+30^\circ=50^\circ \)、\( \angle\mathrm{C}=30^\circ+40^\circ=70^\circ \) で、和は \( 180^\circ \)。どれも鋭角です。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（中心角と円周角）</p>
+  <p>鋭角三角形 ABC の外心を O とします。\( \angle\mathrm{BAC}=50^\circ \) のとき、\( \angle\mathrm{BOC} \) と \( \angle\mathrm{OBC} \) を求めなさい。</p>
+  <div class="step">着眼点：O は外接円の中心です。∠BAC は弧 BC に対する円周角、∠BOC は同じ弧に対する中心角です。</div>
+  <div class="step">円周角の定理（中3-087）より、\( \angle\mathrm{BOC}=2\times50^\circ=100^\circ \)。</div>
+  <div class="step">△OBC は \( \mathrm{OB}=\mathrm{OC} \) の二等辺三角形なので、\( \angle\mathrm{OBC}=(180^\circ-100^\circ)\div2=40^\circ \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題3（直角三角形の外接円の半径）</p>
+  <p>直角をはさむ2辺の長さが 6 と 8 の直角三角形の外接円の半径 \( R \) を求めなさい。</p>
+  <div class="step">着眼点：直角三角形の外心は斜辺の中点なので、外接円の直径は斜辺です。</div>
+  <div class="step">三平方の定理（中3-099）より、斜辺は \( \sqrt{6^2+8^2}=\sqrt{100}=10 \)。</div>
+  <div class="step">答え：\( R=10\div2=5 \)。正弦定理（数Ⅰ-068）でも、直角の向かいの辺 10 について \( 2R=\dfrac{10}{\sin90^\circ}=10 \) となり、一致します。</div>
+</div>
+<div class="box caution"><p class="box-title">よくある間違い</p><p>① 外心を「3辺から等しい距離にある点」と考える：外心は3つの<strong>頂点</strong>から等しい距離にある点です。3つの辺から等しい距離にある点は、次の時間（数Ａ-038）の内心です。<br>② 例題1で、O が内部にあることを確かめずに6つの角の和を \( 180^\circ \) とする：鈍角三角形では O が外部にあるので、この式はそのままでは使えません。<br>③ 例題2で \( \angle\mathrm{BOC}=\dfrac{1}{2}\angle\mathrm{BAC} \) とする：中心角は円周角の2倍です。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>外心</dt><dd>三角形の3辺の垂直二等分線の交点。3つの頂点から等しい距離にあり（\( \mathrm{OA}=\mathrm{OB}=\mathrm{OC} \)）、外接円の中心である。このページでは O で表す。</dd>
+    <dt>外接円</dt><dd>三角形の3つの頂点を通る円（数Ⅰ-068）。どんな三角形にもただ1つあり、中心は外心、半径は \( R=\mathrm{OA} \)。</dd>
+    <dt>垂直二等分線</dt><dd>線分の中点を通り、その線分に垂直な直線。2点から等しい距離にある点の集まり（中1-082）。</dd>
+    <dt>鋭角三角形・直角三角形・鈍角三角形</dt><dd>最も大きい角が鋭角・直角・鈍角の三角形（中2-048）。外心は順に、三角形の内部・斜辺の中点・三角形の外部にある。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>辺 AB と辺 BC の垂直二等分線の交点 O は \( \mathrm{OA}=\mathrm{OB} \)、\( \mathrm{OB}=\mathrm{OC} \) を満たすので \( \mathrm{OC}=\mathrm{OA} \) となり、(ア)の逆の(イ)から辺 CA の垂直二等分線上にもある。3辺の垂直二等分線は1点で交わる（O1）。</li>
+    <li>その点が外心 O。\( \mathrm{OA}=\mathrm{OB}=\mathrm{OC}=R \) で、外心は外接円の中心。外接円はただ1つ。外心は、鋭角三角形では内部、直角三角形では斜辺の中点、鈍角三角形では外部にある（O2）。</li>
+    <li>外心と頂点を結ぶと二等辺三角形が3つでき、底角が等しいことや円周角の定理を使って角を求められる。直角三角形では \( R \) は斜辺の半分（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">外心 O（3辺の垂直二等分線の交点）</span>
+  $$ \mathrm{OA}=\mathrm{OB}=\mathrm{OC}=R $$</div>
+  <div><span class="f-name">直角三角形（∠C が直角）</span>
+  <p>外心は斜辺 AB の中点、\( R=\dfrac{1}{2}\,\mathrm{AB} \)</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。入力問題は数字だけを入力してください（分数は 7/2 のように入力）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>三角形の外心の説明として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>3つの内角の二等分線の交点</button>
+    <button data-correct="true">3辺の垂直二等分線の交点</button>
+    <button>各頂点と向かい合う辺の中点を結ぶ線分の交点</button>
+    <button>3辺の中点を結んでできる三角形の、いずれかの頂点</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">外心は3辺の垂直二等分線の交点で、3つの頂点から等しい距離にあります。3つの内角の二等分線の交点は次の時間（数Ａ-038）の内心、頂点と向かい合う辺の中点を結ぶ線分の交点は数Ａ-039 の重心で、外心とは別の点です。3辺の中点（L、M、N）は垂直二等分線が通る点ですが、外心ではありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O1</span></div>
+  <p>3辺の垂直二等分線が1点で交わることの証明の④で、「\( \mathrm{OC}=\mathrm{OA} \) だから、O は辺 CA の垂直二等分線上にある」といえる理由として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>O は辺 AB の垂直二等分線上にあるから</button>
+    <button>OA と OC は外接円の半径だから</button>
+    <button>△OCA は正三角形だから</button>
+    <button data-correct="true">2点から等しい距離にある点は、その2点を結ぶ線分の垂直二等分線上にあるから</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">④では(ア)の逆の(イ)「2点から等しい距離にある点は、垂直二等分線上にある」（中1-082）を使います。O が辺 AB の垂直二等分線上にあることから分かるのは \( \mathrm{OA}=\mathrm{OB} \) で、CA の垂直二等分線のことではありません。外接円の半径を使う説明は、まだ示していない外接円の存在を先に使っているので理由になりません。△OCA が正三角形とは限りません（\( \mathrm{CA}=\mathrm{OA} \) とは限らない）。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2</span></div>
+  <p>∠C が直角の直角三角形 ABC の外心はどこにありますか。</p>
+  <div class="choices">
+    <button data-correct="true">斜辺 AB の中点</button>
+    <button>直角の頂点 C</button>
+    <button>辺 BC の中点</button>
+    <button>三角形の外部</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">∠C が直角なので、C は AB を直径とする円の周上にあります（中3-089・091）。この円が外接円で、中心は斜辺 AB の中点です。頂点 C は外接円の周上の点で、中心ではありません。辺 BC の中点は BC の垂直二等分線が通る点の1つにすぎません。外部にあるのは鈍角三角形の場合です。</div>
+</div>
+
+<div class="q" data-type="input" id="q4" data-accept="13/2|6.5|R=13/2|R=6.5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O3</span></div>
+  <p>直角をはさむ2辺の長さが 5 と 12 の直角三角形の外接円の半径 \( R \) を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{13}{2} \)（6.5）。斜辺は \( \sqrt{5^2+12^2}=\sqrt{169}=13 \)（中3-099）。直角三角形の外心は斜辺の中点なので、\( R=\dfrac{13}{2} \) です。13 と答えた場合は、直径（斜辺）を半径と取り違えています。6 と答えた場合は、長いほうの直角をはさむ辺 12 の半分で、斜辺ではありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>鋭角三角形 ABC の外心を O とします。\( \angle\mathrm{OAB}=25^\circ \)、\( \angle\mathrm{OCA}=35^\circ \) のとき、\( \angle\mathrm{OBC} \) はどれですか。</p>
+  <div class="choices">
+    <button>\( 60^\circ \)</button>
+    <button>\( 120^\circ \)</button>
+    <button data-correct="true">\( 30^\circ \)</button>
+    <button>\( 35^\circ \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">3つの二等辺三角形の底角から、\( 2\times(25^\circ+35^\circ+x)=180^\circ \)、\( x=90^\circ-60^\circ=30^\circ \) です（例題1と同じ考え方）。\( 60^\circ \) は \( 25^\circ+35^\circ \) を答えた値、\( 120^\circ \) は2倍を忘れて \( 180^\circ-25^\circ-35^\circ \) とした値、\( 35^\circ \) は ∠OCA と同じになると考えた値です。</div>
+</div>
+
+<div class="q" data-type="input" id="q6" data-accept="128|128°|128度">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3</span></div>
+  <p>鋭角三角形 ABC の外心を O とします。\( \angle\mathrm{BAC}=64^\circ \) のとき、\( \angle\mathrm{BOC} \) は何度ですか（数字だけを入力）。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は 128（°）。∠BOC は弧 BC に対する中心角、∠BAC は同じ弧に対する円周角なので、\( \angle\mathrm{BOC}=2\times64^\circ=128^\circ \) です（中3-087）。32 と答えた場合は、中心角を円周角の半分と逆にしています。116 と答えた場合は \( 180^\circ-64^\circ \) としていて、根拠がありません。</div>
+</div>
+
+<div class="q" data-type="choice" id="q7">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O2</span></div>
+  <p>∠A が鈍角の △ABC の外心 O の位置として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>三角形の内部</button>
+    <button data-correct="true">三角形の外部で、辺 BC について A と反対側</button>
+    <button>辺 BC の中点</button>
+    <button>頂点 A</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">鈍角三角形の外心は三角形の外部にあり、最も長い辺（鈍角 A に向かい合う辺 BC）について A と反対側にあります（図2の(iii)、操作部品で確かめられます）。内部にあるのは鋭角三角形、辺の中点にあるのは直角三角形（斜辺の中点）の場合です。頂点 A は外接円の周上の点で、中心ではありません。</div>
+</div>
+
+<div class="q" data-type="open" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2</span></div>
+  <p>導入の3軒の家 A、B、C（学習用の架空の場面）について答えなさい。(1) 3軒から等しい距離にある場所がただ1つであることを説明しなさい。(2) 3軒が一直線上に並んでいるとき、そのような場所はあるか、理由とともに答えなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　(1) 3軒から等しい距離にある点を P とすると、\( \mathrm{PA}=\mathrm{PB} \) なので P は線分 AB の垂直二等分線上にあり、\( \mathrm{PB}=\mathrm{PC} \) なので線分 BC の垂直二等分線上にある（2点から等しい距離にある点は垂直二等分線上にある：中1-082）。AB と BC は平行でないので、この2本の垂直二等分線はただ1点で交わり、P はその交点（△ABC の外心）に限られる。逆にその交点は3軒から等しい距離にある。よって、そのような場所はただ1つである。<br>(2) ない。3軒が一直線上にあると、AB と BC は同じ直線上にあるので、その2本の垂直二等分線はどちらもその直線に垂直で、平行になり交わらない（A、C は B と異なる点なので、2本は別の直線）。3軒から等しい距離にある点があれば2本の垂直二等分線の両方の上になければならないので、そのような点はない。</p>
+    <p><strong>採点の観点</strong>　① 「2点から等しい距離にある点は垂直二等分線上にある」を根拠にしている。② 2本の垂直二等分線の交点がただ1つであることを、AB と BC が平行でないことから説明している。③ (2) で、2本の垂直二等分線が平行になることから、条件を満たす点がないことを説明している。</p>
+  </div>
+  <div class="explain">(1) の「ただ1つ」は、「条件を満たす点は必ず交点になる」（(イ)を使う）と「交点は条件を満たす」（(ア)を使う）の両方で示されます。(2) は、外心を考えるには3点が三角形をつくる（一直線上にない）ことが必要だと分かる例です。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O2</span></div>
+  <p>太郎さんと花子さんが、△ABC の外心 O を中心とする円について話しています。</p>
+  <p>太郎：「O は3つの頂点から等しい距離にあるんだから、O を中心とする円は3つの辺にも接するんじゃないかな。」<br>花子：「外接円と辺の関係を、図2で確かめてみようよ。」</p>
+  <p>正しい説明はどれですか。</p>
+  <div class="choices">
+    <button>接する。\( \mathrm{OA}=\mathrm{OB}=\mathrm{OC} \) だから。</button>
+    <button>鋭角三角形のときだけ接する。</button>
+    <button>正三角形のときだけ接する。</button>
+    <button data-correct="true">接しない。外接円は3つの頂点を通るので、各辺は円の弦になり、円と辺は両端の2点で交わる。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">外接円は3つの頂点を通る円なので、たとえば辺 BC は両端 B、C が円周上にある弦です（中1-081）。円と辺は2点で交わるので、接してはいません。これは三角形の形によらず（鋭角三角形でも正三角形でも）同じです。\( \mathrm{OA}=\mathrm{OB}=\mathrm{OC} \) は「頂点までの距離」が等しいことで、「辺までの距離」が等しいことではありません。3辺に接する円は次の時間（数Ａ-038）の内接円です。</div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(1) 図形の性質」のア(ア)「三角形に関する基本的な性質について理解すること」とイ(ア)に関わり、出題範囲に含まれます。学習指導要領解説は、理解できるようにする性質の例として「重心，内心，外心などの性質」を挙げ、数学Ⅰの正弦定理の解説でも「外心，内心及び重心の性質」を数学Ａで扱うので互いの内容の関連に配慮するとしています。</p>
+  <p>令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めると述べています。外心の性質は、数学Ⅰの正弦定理（外接円の半径 \( R \)）と結びつけて使うことができます。</p>
+  <p class="small">問9は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">三角形の内心（数Ａ-038）</p>
+  <p>次の時間は、三角形の3つの内角の二等分線が1点で交わることを示し、その点（内心）が3つの辺から等しい距離にある内接円の中心であることを学びます。この時間の「垂直二等分線は2点から等しい距離にある点の集まり」の代わりに、「角の二等分線は角の2辺から等しい距離にある点の集まり」（中1-083）を使います。数学Ⅰの数Ⅰ-074 で補足として使った内接円の性質を、そこで証明します。</p>
+  <p>この時間では、円に内接する四角形の性質（数Ａ-048）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-036　角の二等分線と辺の比</div>
+  <div><span class="label">次の時間</span>数Ａ-038　三角形の内心</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-037「三角形の外心」（学習指導要領 数学Ａ (1)ア(ア)・イ(ア)、解説 p.90）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(1) 図形の性質（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.90（「重心，内心，外心などの性質などを理解できるようにし」）、p.40（数学Ⅰの正弦定理で、中学校では三角形に外接する円を必ずしも取り扱っていないこと、外心・内心・重心の性質は数学Ａで取り扱うので互いの内容の関連に配慮すること）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>数研出版「シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）」の「三角形の外心，内心，重心」（「三角形の外心，内心，重心の定義，性質を理解している」）https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx</li>
+    <li>教科書編修趣意書 数学Ａ『改訂版 最新 数学A』（数研出版 数A104-905：外心で「垂直二等分線が 1 点で交わることの証明，外心の定義」を扱う構成。文部科学省公開）https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・図はこのページのために作成したものです（出典を示したものを除く）。3軒の家の場面は学習用の架空のものです。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var svg = document.getElementById("w1-svg");
+  var sl = document.getElementById("w1-x");
+  var out = document.getElementById("w1-out");
+  if (!svg || !sl) return;
+  var W = 300, H = 300, PAD = 30, HC = 2.4;
+  var PURPLE = "#7b3fa0", BLUE = "#1f5fbf";
+  var NAMES = ["A", "B", "C"];
+  function r1(v) { return String(Math.round(v * 10) / 10); }
+  function rnd(v, d) { var m = Math.pow(10, d); return Math.round(v * m + (v >= 0 ? 1e-9 : -1e-9)) / m; }
+  function ang(v, p, q) {
+    var a = [p[0] - v[0], p[1] - v[1]], b = [q[0] - v[0], q[1] - v[1]];
+    var c = (a[0] * b[0] + a[1] * b[1]) / Math.sqrt((a[0] * a[0] + a[1] * a[1]) * (b[0] * b[0] + b[1] * b[1]));
+    return Math.acos(Math.max(-1, Math.min(1, c))) * 180 / Math.PI;
+  }
+  function hit(rc, ln) {
+    for (var t = 0; t <= 60; t++) {
+      var x = ln[0] + (ln[2] - ln[0]) * t / 60, y = ln[1] + (ln[3] - ln[1]) * t / 60;
+      if (x >= rc[0] - 1 && x <= rc[2] + 1 && y >= rc[1] - 1 && y <= rc[3] + 1) return true;
+    }
+    return false;
+  }
+  function fmtA(v) {
+    return Math.abs(v - Math.round(v)) < 1e-7 ? "= " + Math.round(v) + "°" : "≒ " + rnd(v, 1).toFixed(1) + "°";
+  }
+  function draw() {
+    var k = parseInt(sl.value, 10);
+    var P = [[-3, 0], [3, 0], [k / 5, HC]];
+    var yO = (P[2][0] * P[2][0] + HC * HC - 9) / (2 * HC);
+    var O = [0, yO];
+    var R = Math.sqrt(9 + yO * yO);
+    var s = (Math.min(W, H) - 2 * PAD) / (2 * R);
+    function X(x) { return W / 2 + s * x; }
+    function Y(y) { return H / 2 - s * (y - yO); }
+    var h = [], segs = [];
+    h.push('<circle cx="' + r1(X(0)) + '" cy="' + r1(Y(yO)) + '" r="' + r1(s * R) + '" fill="none" stroke="' + PURPLE + '" stroke-width="1.4" stroke-dasharray="6 4" data-circle="外接円"/>');
+    for (var i = 0; i < 3; i++) {
+      var p = P[i], pq = P[(i + 1) % 3];
+      segs.push([X(p[0]), Y(p[1]), X(pq[0]), Y(pq[1])], [X(0), Y(yO), X(p[0]), Y(p[1])]);
+      h.push('<line x1="' + r1(X(p[0])) + '" y1="' + r1(Y(p[1])) + '" x2="' + r1(X(pq[0])) + '" y2="' + r1(Y(pq[1])) + '" stroke="currentColor" stroke-width="1.8"/>');
+      h.push('<line x1="' + r1(X(0)) + '" y1="' + r1(Y(yO)) + '" x2="' + r1(X(p[0])) + '" y2="' + r1(Y(p[1])) + '" stroke="' + BLUE + '" stroke-width="1.2"/>');
+    }
+    for (i = 0; i < 3; i++) {
+      p = P[i];
+      var ux = (p[0] - O[0]) / R, uy = (p[1] - O[1]) / R;
+      h.push('<circle cx="' + r1(X(p[0])) + '" cy="' + r1(Y(p[1])) + '" r="3.4" fill="currentColor" data-pt="' + NAMES[i] + '" data-x="' + p[0].toFixed(6) + '" data-y="' + p[1].toFixed(6) + '"/>');
+      h.push('<text x="' + r1(X(p[0]) + ux * 16) + '" y="' + r1(Y(p[1]) - uy * 16 + 5) + '" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">' + NAMES[i] + '</text>');
+    }
+    var dirs = [];
+    for (i = 0; i < 3; i++) dirs.push(((Math.atan2(P[i][1] - yO, P[i][0]) * 180 / Math.PI) + 360) % 360);
+    dirs.sort(function (a, b) { return a - b; });
+    var best = 0, bestStart = 0;
+    for (i = 0; i < 3; i++) {
+      var g = ((dirs[(i + 1) % 3] - dirs[i]) + 360) % 360;
+      if (g > best) { best = g; bestStart = dirs[i]; }
+    }
+    var pa = bestStart + best / 2, lx = X(0), ly = Y(yO) + 5, found = false;
+    for (var j = 0; j <= 12 && !found; j++) {
+      for (var sg = -1; sg <= 1 && !found; sg += 2) {
+        if (j === 0 && sg === 1) continue;
+        for (var dd = 16; dd <= 26 && !found; dd += 5) {
+          var aa = (pa + sg * 15 * j) * Math.PI / 180;
+          var tx = X(0) + Math.cos(aa) * dd, ty = Y(yO) - Math.sin(aa) * dd + 5;
+          var rc = [tx - 4.2, ty - 11.5, tx + 4.2, ty + 3.1], ok = rc[0] >= 0 && rc[2] <= W && rc[1] >= 0 && rc[3] <= H;
+          for (var q = 0; q < segs.length && ok; q++) if (hit(rc, segs[q])) ok = false;
+          if (ok) { lx = tx; ly = ty; found = true; }
+        }
+      }
+    }
+    h.push('<circle cx="' + r1(X(0)) + '" cy="' + r1(Y(yO)) + '" r="3.4" fill="' + PURPLE + '" data-pt="O" data-x="0.000000" data-y="' + yO.toFixed(6) + '"/>');
+    h.push('<text x="' + r1(lx) + '" y="' + r1(ly) + '" text-anchor="middle" font-size="14" font-weight="700" fill="' + PURPLE + '">O</text>');
+    svg.innerHTML = h.join("");
+    var A = [ang(P[0], P[1], P[2]), ang(P[1], P[2], P[0]), ang(P[2], P[0], P[1])];
+    var mi = 0;
+    for (i = 1; i < 3; i++) if (A[i] > A[mi]) mi = i;
+    var other = [NAMES[(mi + 1) % 3], NAMES[(mi + 2) % 3]].sort().join("");
+    var kind, where;
+    if (Math.abs(A[mi] - 90) < 1e-7) {
+      kind = "直角なので、△ABC は直角三角形です。";
+      where = "外心 O は斜辺 " + other + " の中点にあります。";
+    } else if (A[mi] < 90) {
+      kind = "鋭角なので、△ABC は鋭角三角形です。";
+      where = "外心 O は三角形の内部にあります。";
+    } else {
+      kind = "鈍角なので、△ABC は鈍角三角形です。";
+      where = "外心 O は三角形の外部（辺 " + other + " について " + NAMES[mi] + " と反対側）にあります。";
+    }
+    var Rt = Math.abs(R * 100 - Math.round(R * 100)) < 1e-6 ? "= " + R.toFixed(2) : "≒ " + rnd(R, 2).toFixed(2);
+    var txt = "∠A " + fmtA(A[0]) + "、∠B " + fmtA(A[1]) + "、∠C " + fmtA(A[2]) + "。最も大きい角は ∠" + NAMES[mi] + " で" + kind + where + "OA = OB = OC " + Rt + "（AB = 6 としたときの長さ）。";
+    if (out) out.textContent = txt;
+  }
+  sl.addEventListener("input", draw);
+  draw();
+})();
+</script>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-037",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-037",
+  "title": "三角形の外心",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-2", "title": "図形の性質"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ア)", "(1)イ(ア)"],
+  "kaisetsu_page": "90",
+  "objectives": [
+    {"id": "O1", "text": "垂直二等分線が2点から等しい距離にある点の集まりであることを用いて、三角形の3辺の垂直二等分線が1点で交わることを証明できる。", "from": "三角形の3辺の垂直二等分線が1点で交わることを示し", "sections": ["sec-1"], "checks": ["q1", "q2", "q8"]},
+    {"id": "O2", "text": "外心が3つの頂点から等しい距離にあり外接円の中心であることを理解し、鋭角・直角・鈍角三角形での外心の位置を説明できる。", "from": "その点（外心）が3頂点から等しい距離にある外接円の中心であることを理解する", "sections": ["sec-1", "sec-2"], "checks": ["q3", "q7", "q8", "q9"]},
+    {"id": "O3", "text": "外心の性質（\\( \\mathrm{OA}=\\mathrm{OB}=\\mathrm{OC} \\)）を用いて、角の大きさや外接円の半径を求めることができる。", "from": "その点（外心）が3頂点から等しい距離にある外接円の中心であることを理解する（性質を用いて角・半径を求める）", "sections": ["sec-3"], "checks": ["q4", "q5", "q6"]}
+  ],
+  "key_terms": [
+    {"term": "外心", "where": "sec-1"},
+    {"term": "外接円", "where": "sec-1"},
+    {"term": "垂直二等分線", "where": "review"},
+    {"term": "鋭角三角形・直角三角形・鈍角三角形", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "垂直二等分線は2点から等しい距離にある点の集まり（(ア)垂直二等分線上の点は等距離、(イ)等距離の点は垂直二等分線上）", "taught_in": ["jhs_math/中1-082"], "gap": false, "where": "review"},
+    {"concept": "垂直・平行（平行でない2直線に垂直な2直線は平行でない）", "taught_in": ["jhs_math/中1-076"], "gap": false, "where": "sec-1"},
+    {"concept": "外接円（三角形の3つの頂点を通る円）と、2本の垂直二等分線の交点を中心とする円が3頂点を通ること（数Ⅰ-068 の補足）", "taught_in": ["hs_math_1a/数Ⅰ-068"], "gap": false, "where": "review"},
+    {"concept": "三角形の合同条件（3組の辺）", "taught_in": ["jhs_math/中2-053"], "gap": false, "where": "sec-1"},
+    {"concept": "二等辺三角形の底角は等しい", "taught_in": ["jhs_math/中2-060"], "gap": false, "where": "review"},
+    {"concept": "三角形の内角の和、角による三角形の分類（鋭角三角形・直角三角形・鈍角三角形）", "taught_in": ["jhs_math/中2-048"], "gap": false, "where": "sec-2"},
+    {"concept": "円周角と中心角の関係", "taught_in": ["jhs_math/中3-087"], "gap": false, "where": "review"},
+    {"concept": "半円の弧に対する円周角は直角", "taught_in": ["jhs_math/中3-089"], "gap": false, "where": "sec-2"},
+    {"concept": "円周角の定理の逆", "taught_in": ["jhs_math/中3-091"], "gap": false, "where": "sec-2"},
+    {"concept": "円の弦", "taught_in": ["jhs_math/中1-081"], "gap": false, "where": "quiz"},
+    {"concept": "三平方の定理（直角三角形の辺の長さ）", "taught_in": ["jhs_math/中3-097", "jhs_math/中3-099"], "gap": false, "where": "sec-3"},
+    {"concept": "正弦定理 a/sin A=2R", "taught_in": ["hs_math_1a/数Ⅰ-068"], "gap": false, "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "内心（数Ａ-038）、重心（数Ａ-039）",
+    "垂心：地図の要点にない語で、数研出版のシラバス（改訂版 数学Ａ）では「研究」、実教出版『新編数学A Flex』の編修趣意書では「参考」として扱われ、学習指導要領解説も理数数学Ⅰで「発展，拡充させる内容」として挙げているので扱わない",
+    "円に内接する四角形の性質（数Ａ-048）"
+  ],
+  "selection_reason": "数学Ａ 単元『図形の性質』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(1)ア(ア)・イ(ア)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.90 重心・内心・外心の性質、p.40 数学Ⅰとの関連の配慮、p.161 理数数学Ⅰの「発展，拡充させる内容」（垂心）（保存本文：sources/text/hs_kaisetsu_math.txt）"},
+    {"name": "シラバス・観点別評価規準例 数学Ａ（改訂版 数学Ａ）", "publisher": "数研出版", "url": "https://www.chart.co.jp/kyokasho/26kou/assets/doc/sugaku/gen/syllabus_suakai.docx", "use": "外心・内心・重心の定義・性質、垂心は p.90 研究（保存本文：sources/text/suken_syllabus_suakai.txt）"},
+    {"name": "教科書編修趣意書 数学Ａ『改訂版 最新 数学A』（数A104-905）・『新編数学A Flex』（数A007-902）", "publisher": "数研出版・実教出版（文部科学省公開）", "url": "https://www.mext.go.jp/a_menu/shotou/kyoukasho/tenji/mext_00105.html", "use": "外心で垂直二等分線が1点で交わることの証明と外心の定義を扱う構成、垂心・傍心を「参考」として載せること（保存本文：sources/text/hensyu_数研出版_数A104-905.txt・hensyu_実教出版_数A007-902.txt）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

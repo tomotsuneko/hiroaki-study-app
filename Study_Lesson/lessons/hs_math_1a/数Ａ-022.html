@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>排反な事象の確率｜数学Ａ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+<style>
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; align-items: flex-start; }
+table.dice td, table.dice th { text-align: center; padding: 6px 3px; font-size: .92rem; }
+table.dice td.mk { background: rgba(31, 95, 191, .16); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ａ</span><span>場合の数と確率</span><span>数Ａ-022</span></div>
+  <h1>排反な事象の確率</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">学習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">福引きで1本のくじを引くとき、1等と2等が同時に当たることはありません。このように同時には起こらない事象どうしなら、それぞれの確率を足すだけで「どちらかが起こる」確率が求められます。足してよいときと、いけないときの違いを、集合の要素の個数から確かめます。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>2つの事象 \( A \)、\( B \) が同時には起こらない（\( A\cap B=\emptyset \)）とき、\( A \) と \( B \) は互いに排反であるということを理解し、排反かどうかを判断できる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>事象 \( A \)、\( B \) が互いに排反であるとき \( P(A\cup B)=P(A)+P(B) \) が成り立つことを、集合の要素の個数の関係から説明できる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>求める事象を互いに排反な事象に分け、それぞれの確率を足して、玉の取り出しやさいころの目などの確率を求めることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ａ-021）</span>確率の基本性質</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ａ-022）</span>排反な事象の確率</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ａ-023）</span>A∪B の確率（排反でない場合）</div>
+</div>
+<p class="small">前提となる単元：中学2年「確率」、中学1年「データの分布／不確定な事象の起こりやすさ」、数学Ⅰ「集合と命題」。この時間は、前の時間（数Ａ-021）の積事象・和事象・空事象と、数Ａ-002（\( A\cap B=\emptyset \) のときの要素の個数）、数Ａ-020（組合せを用いた確率）を使います。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認</h2>
+<div class="box review">
+  <p class="box-title">積事象・和事象・空事象（数Ａ-021）と要素の個数（数Ａ-002）</p>
+  <p>事象 \( A \) と \( B \) がともに起こる事象が積事象 \( A\cap B \)、少なくとも一方が起こる事象が和事象 \( A\cup B \)、決して起こらない事象が空事象 \( \emptyset \) です（数Ａ-021。記号 \( \emptyset \) はこのページでの書き方です）。また数Ａ-002 では、\( A\cap B=\emptyset \) ならば \( n(A\cup B)=n(A)+n(B) \) となることを学びました。</p>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ａ-021</span></div>
+  <p>1個のさいころを投げる試行で、\( A \) を「1の目が出る」、\( B \) を「偶数の目が出る」とします。積事象 \( A\cap B \) はどれですか。</p>
+  <div class="choices">
+    <button>\( \{1,\ 2,\ 4,\ 6\} \)</button>
+    <button>\( \{1\} \)</button>
+    <button data-correct="true">\( \emptyset \)</button>
+    <button>\( \{2,\ 4,\ 6\} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( A=\{1\} \)、\( B=\{2,\ 4,\ 6\} \) に共通な要素はないので、\( A\cap B=\emptyset \)（空事象）です。\( \{1,\ 2,\ 4,\ 6\} \) は和事象 \( A\cup B \)、\( \{1\} \) と \( \{2,\ 4,\ 6\} \) はそれぞれ \( A \)、\( B \) そのものです。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ａ-002</span></div>
+  <p>\( A\cap B=\emptyset \)、\( n(A)=5 \)、\( n(B)=3 \) のとき、\( n(A\cup B) \) はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( 8 \)</button>
+    <button>\( 15 \)</button>
+    <button>\( 2 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">共通な要素がないので、\( n(A\cup B)=n(A)+n(B)=5+3=8 \) です。\( 15 \) は個数をかけた誤り、\( 2 \) は引いた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ａ-020</span></div>
+  <p>赤玉4個と白玉3個が入った袋から、2個の玉を同時に取り出します。2個とも白玉である確率はどれですか。</p>
+  <div class="choices">
+    <button>\( \dfrac{9}{49} \)</button>
+    <button data-correct="true">\( \dfrac{1}{7} \)</button>
+    <button>\( \dfrac{1}{3} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">全事象は \( {}_7\mathrm{C}_2=21 \)（通り）、2個とも白は \( {}_3\mathrm{C}_2=3 \)（通り）なので \( \dfrac{3}{21}=\dfrac{1}{7} \) です。\( \dfrac{9}{49} \)（\( =\dfrac{3}{7}\times\dfrac{3}{7} \)）は1個目を戻す場合の計算、\( \dfrac{1}{3} \) は「赤赤・赤白・白白」の色の組を同様に確からしいとした誤りです。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：確率を足してよいのはどんなとき？</h2>
+<div class="box think">
+  <p class="box-title">2つの計算</p>
+  <p>(1) X商店街の福引きの箱に、1等が1本、2等が3本、3等が10本、はずれが36本、合わせて50本のくじが入っています（学習用の架空の設定）。1本引くとき、1等が当たる確率は \( \dfrac{1}{50} \)、2等が当たる確率は \( \dfrac{3}{50} \) です。「1等または2等が当たる確率は \( \dfrac{1}{50}+\dfrac{3}{50}=\dfrac{4}{50} \)」という計算は正しいでしょうか。</p>
+  <p>(2) 1個のさいころで、偶数の目が出る確率は \( \dfrac{1}{2} \)、3の倍数の目が出る確率は \( \dfrac{1}{3} \) です。「偶数または3の倍数の目が出る確率は \( \dfrac{1}{2}+\dfrac{1}{3}=\dfrac{5}{6} \)」という計算は正しいでしょうか。</p>
+  <p><strong>2つの計算の違いは何でしょうか。</strong>答えは「4 排反な事象の和事象の確率」で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="互いに排反"><span class="num">3</span>互いに排反な事象</h2>
+<p>2つの事象 \( A \)、\( B \) が同時には起こらないとき、すなわち \( A\cap B=\emptyset \) のとき、事象 \( A \) と \( B \) は互いに<strong>排反</strong>である、といいます。「排反」は学習指導要領の数学Ａの［用語・記号］に挙げられている語です。</p>
+<p>1個のさいころを投げる試行で考えます。</p>
+<ul>
+  <li>\( A \)：1の目が出る \( \{1\} \)、\( B \)：偶数の目が出る \( \{2,\ 4,\ 6\} \)。\( A\cap B=\emptyset \) なので、\( A \) と \( B \) は互いに排反です。</li>
+  <li>\( A \)：偶数の目が出る \( \{2,\ 4,\ 6\} \)、\( C \)：3の倍数の目が出る \( \{3,\ 6\} \)。6 の目が出ると両方が起こり、\( A\cap C=\{6\}\ne\emptyset \) なので、互いに排反ではありません。</li>
+</ul>
+<figure>
+  <div class="fig-row">
+<!--svg:f022a-->
+<svg viewBox="0 0 300 184" width="300" role="img" aria-label="全事象Uの長方形に、Aは1の目、Bは偶数の目2,4,6の円。2つの円は重ならない（互いに排反）。3と5はどちらにも入らない" data-fig="f022a">
+<defs><pattern id="f022a-h" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#1f5fbf" stroke-width="1.6" stroke-opacity="0.75"/></pattern><clipPath id="f022a-cA"><circle cx="91" cy="96" r="50"/></clipPath></defs>
+<rect x="10" y="20" width="280" height="156" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<text x="12" y="14" text-anchor="start" font-size="12" fill="currentColor">(i) 互いに排反（A∩B＝∅）</text>
+<circle cx="91" cy="96" r="50" fill="none" stroke="#1f5fbf" stroke-width="2" data-set="A"/>
+<circle cx="209" cy="96" r="50" fill="none" stroke="#1e8e5a" stroke-width="2" stroke-dasharray="6 4" data-set="B"/>
+<text x="71" y="38" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf">A：1の目</text>
+<text x="229" y="38" text-anchor="middle" font-size="13" font-weight="700" fill="#1e8e5a">B：偶数の目</text>
+<text x="91" y="101" text-anchor="middle" font-size="14" fill="currentColor" data-el="1">1</text>
+<text x="209" y="80" text-anchor="middle" font-size="14" fill="currentColor" data-el="2">2</text>
+<text x="209" y="101" text-anchor="middle" font-size="14" fill="currentColor" data-el="4">4</text>
+<text x="209" y="122" text-anchor="middle" font-size="14" fill="currentColor" data-el="6">6</text>
+<text x="137" y="168" text-anchor="middle" font-size="14" fill="currentColor" data-el="3">3</text>
+<text x="163" y="168" text-anchor="middle" font-size="14" fill="currentColor" data-el="5">5</text>
+<text x="284" y="38" text-anchor="end" font-size="13" fill="currentColor">U</text>
+</svg>
+<!--/svg:f022a-->
+<!--svg:f022b-->
+<svg viewBox="0 0 300 208" width="300" role="img" aria-label="全事象Uの長方形に、Aは偶数の目2,4,6、Cは3の倍数の目3,6の円。6で重なる（排反でない）。1と5はどちらにも入らない" data-fig="f022b">
+<defs><pattern id="f022b-h" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#1f5fbf" stroke-width="1.6" stroke-opacity="0.75"/></pattern><clipPath id="f022b-cA"><circle cx="113" cy="108" r="62"/></clipPath></defs>
+<rect x="10" y="20" width="280" height="180" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<text x="12" y="14" text-anchor="start" font-size="12" fill="currentColor">(ii) 排反でない（A∩C＝{6}）</text>
+<circle cx="113" cy="108" r="62" fill="none" stroke="#1f5fbf" stroke-width="2" data-set="A"/>
+<circle cx="187" cy="108" r="62" fill="none" stroke="#1e8e5a" stroke-width="2" stroke-dasharray="6 4" data-set="B"/>
+<text x="88.2" y="38" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fbf">A：偶数の目</text>
+<text x="211.8" y="38" text-anchor="middle" font-size="13" font-weight="700" fill="#1e8e5a">C：3の倍数の目</text>
+<text x="88" y="102.5" text-anchor="middle" font-size="14" fill="currentColor" data-el="2">2</text>
+<text x="88" y="123.5" text-anchor="middle" font-size="14" fill="currentColor" data-el="4">4</text>
+<text x="150" y="113" text-anchor="middle" font-size="14" fill="currentColor" data-el="6">6</text>
+<text x="212" y="113" text-anchor="middle" font-size="14" fill="currentColor" data-el="3">3</text>
+<text x="137" y="192" text-anchor="middle" font-size="14" fill="currentColor" data-el="1">1</text>
+<text x="163" y="192" text-anchor="middle" font-size="14" fill="currentColor" data-el="5">5</text>
+<text x="284" y="38" text-anchor="end" font-size="13" fill="currentColor">U</text>
+</svg>
+<!--/svg:f022b-->
+  </div>
+  <figcaption>図1　長方形が全事象 \( U \)（1個のさいころ）。(i) \( A \)（1の目）と \( B \)（偶数の目）は円が重ならず、互いに排反。(ii) \( A \)（偶数の目）と \( C \)（3の倍数の目）は 6 で重なり、排反でない</figcaption>
+</figure>
+<p>3つ以上の事象についても、どの2つも互いに排反であるとき、それらの事象は互いに排反であるといいます。たとえば福引きの「1等が当たる」「2等が当たる」「3等が当たる」は、1本のくじで2つ以上が同時に起こることはないので、互いに排反です。</p>
+<div class="box caution"><p class="box-title">よくある間違い：「排反」を「どちらか一方は必ず起こる」と考える</p><p>排反は「同時には起こらない」という意味です。図1(i) の \( A \)（1の目）と \( B \)（偶数の目）は排反ですが、3 や 5 の目が出ると \( A \) も \( B \) も起こりません。どちらか一方が必ず起こるとは限りません。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題1（排反かどうかの判断）</p>
+  <p>大小2つのさいころを同時に投げます。事象 \( D \) を「2つの目が等しい」、事象 \( E \) を「目の和が奇数」とするとき、\( D \) と \( E \) は互いに排反ですか。</p>
+  <div class="step">着目1（\( D \) の出方）：2つの目が等しいとき、和は \( 2a \)（\( a \) は目）の形で、いつも偶数です。</div>
+  <div class="step">着目2（同時に起こるか）：\( D \) が起こるとき和は偶数なので、\( E \)（和が奇数）は起こりません。\( D\cap E=\emptyset \) です。</div>
+  <div class="step">答え：互いに排反である。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="排反な事象の和事象の確率"><span class="num">4</span>排反な事象の和事象の確率</h2>
+<p>事象 \( A \)、\( B \) が互いに排反であるとき、\( A\cap B=\emptyset \) なので、数Ａ-002 で学んだ関係から \( n(A\cup B)=n(A)+n(B) \) です。根元事象が同様に確からしいとき、両辺を \( n(U) \) で割ると</p>
+$$ P(A\cup B)=\frac{n(A\cup B)}{n(U)}=\frac{n(A)+n(B)}{n(U)}=\frac{n(A)}{n(U)}+\frac{n(B)}{n(U)}=P(A)+P(B) $$
+<p>が成り立ちます。</p>
+<div class="formula-card">
+  <div><span class="f-name">排反な事象の確率</span>事象 \( A \)、\( B \) が互いに排反であるとき $$ P(A\cup B)=P(A)+P(B) $$</div>
+</div>
+<p>3つ以上の事象 \( A \)、\( B \)、\( C \) が互いに排反であるときも、同じように \( P(A\cup B\cup C)=P(A)+P(B)+P(C) \) が成り立ちます（重なりがないので、要素の個数をそのまま足せるからです）。この式は、場合の数の和の法則（数Ａ-004。同時には起こらない2つの事柄の場合の数は足せる）を、確率に言いかえたものと見ることができます。</p>
+<h3>導入の問いの答え</h3>
+<ul>
+  <li>(1) 1本のくじで1等と2等が同時に当たることはないので、2つの事象は互いに排反です。したがって \( \dfrac{1}{50}+\dfrac{3}{50}=\dfrac{4}{50}=\dfrac{2}{25} \) は正しい計算です。</li>
+  <li>(2) 偶数と3の倍数は 6 の目で同時に起こるので、排反ではありません。足し算の \( \dfrac{5}{6} \) は 6 の目を2回数えた値で、正しくは \( \{2,\ 3,\ 4,\ 6\} \) の4個から \( \dfrac{4}{6}=\dfrac{2}{3} \) です。</li>
+</ul>
+<div class="box point"><p class="box-title">ポイント：足す前に「同時に起こらないか」を確かめる</p><p>\( P(A\cup B)=P(A)+P(B) \) は、\( A \) と \( B \) が互いに排反のときだけ使える式です（排反でないと、重なった部分を2回数えてしまいます）。排反でない場合の和事象の確率の求め方は、次の時間（数Ａ-023）で学びます。</p></div>
+<div class="box example worked">
+  <p class="box-title">例題2（3つの排反な事象）</p>
+  <p>導入 (1) の福引きで、1本引いて3等以上（1等、2等、3等のどれか）が当たる確率を求めなさい。</p>
+  <div class="step">着目1（排反か）：1等、2等、3等は1本のくじで同時には当たらないので、互いに排反です。</div>
+  <div class="step">着目2（それぞれの確率）：\( \dfrac{1}{50} \)、\( \dfrac{3}{50} \)、\( \dfrac{10}{50} \)。</div>
+  <div class="step">着目3（足す）：\( \dfrac{1}{50}+\dfrac{3}{50}+\dfrac{10}{50}=\dfrac{14}{50}=\dfrac{7}{25} \)。答え \( \dfrac{7}{25} \)。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="排反な事象に分けて求める"><span class="num">5</span>排反な事象に分けて確率を求める</h2>
+<p>求める事象を、互いに排反な事象に分けると、それぞれの確率を足して求めることができます。場合分けの考え方です。</p>
+<div class="box example worked">
+  <p class="box-title">例題3（同じ色になる確率）</p>
+  <p>赤玉4個と白玉3個が入った袋から、3個の玉を同時に取り出します。3個とも同じ色である確率を求めなさい。</p>
+  <div class="step">着目1（排反な事象に分ける）：「3個とも同じ色」は、「3個とも赤」と「3個とも白」に分けられます。この2つは同時には起こらないので、互いに排反です。</div>
+  <div class="step">着目2（それぞれの確率。数Ａ-020）：全事象は \( {}_7\mathrm{C}_3=35 \)（通り）。3個とも赤は \( {}_4\mathrm{C}_3=4 \)（通り）で \( \dfrac{4}{35} \)、3個とも白は \( {}_3\mathrm{C}_3=1 \)（通り）で \( \dfrac{1}{35} \)。</div>
+  <div class="step">着目3（足す）：\( \dfrac{4}{35}+\dfrac{1}{35}=\dfrac{5}{35}=\dfrac{1}{7} \)。答え \( \dfrac{1}{7} \)。</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（目の和が4の倍数）</p>
+  <p>大小2つのさいころを同時に投げるとき、目の和が4の倍数になる確率を求めなさい。</p>
+  <div class="step">着目1（分ける）：目の和は 2〜12 なので、4の倍数になるのは和が 4、8、12 のとき。この3つの事象は互いに排反です（和は1つの値しかとらない）。</div>
+  <div class="step">着目2（それぞれの確率）：表2から、和が4は3通り、和が8は5通り、和が12は1通り。確率は \( \dfrac{3}{36} \)、\( \dfrac{5}{36} \)、\( \dfrac{1}{36} \)。</div>
+  <div class="step">着目3（足す）：\( \dfrac{3}{36}+\dfrac{5}{36}+\dfrac{1}{36}=\dfrac{9}{36}=\dfrac{1}{4} \)。答え \( \dfrac{1}{4} \)。</div>
+</div>
+<div class="table-wrap">
+<!--gen:t022a-->
+<table class="dice" data-gen="t022a">
+  <tr><th>大＼小</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr>
+  <tr><th>1</th><td>2</td><td>3</td><td class="mk">▲4</td><td>5</td><td>6</td><td>7</td></tr>
+  <tr><th>2</th><td>3</td><td class="mk">▲4</td><td>5</td><td>6</td><td>7</td><td class="mk">◆8</td></tr>
+  <tr><th>3</th><td class="mk">▲4</td><td>5</td><td>6</td><td>7</td><td class="mk">◆8</td><td>9</td></tr>
+  <tr><th>4</th><td>5</td><td>6</td><td>7</td><td class="mk">◆8</td><td>9</td><td>10</td></tr>
+  <tr><th>5</th><td>6</td><td>7</td><td class="mk">◆8</td><td>9</td><td>10</td><td>11</td></tr>
+  <tr><th>6</th><td>7</td><td class="mk">◆8</td><td>9</td><td>10</td><td>11</td><td class="mk">■12</td></tr>
+</table>
+<!--/gen:t022a-->
+</div>
+<p class="small">表2　大小2つのさいころの目の和。▲は和が4、◆は和が8、■は和が12（塗った欄。色だけでなく記号でも区別している）</p>
+<div class="box caution"><p class="box-title">よくある間違い：分けた事象に重なりがある</p><p>分けた事象どうしに重なりがあると、確率を足すことはできません。たとえば例題3の袋から3個を取り出すとき、「赤玉が1個以上」と「白玉が1個以上」は、赤玉2個・白玉1個などの取り出し方で同時に起こるので、互いに排反ではありません。分けた事象が同時に起こらないかを、必ず確かめましょう。</p></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この時間の重要語句</p>
+  <dl>
+    <dt>排反（互いに排反）</dt><dd>2つの事象 \( A \)、\( B \) が同時には起こらないこと。\( A\cap B=\emptyset \)。3つ以上の事象では、どの2つも互いに排反であること。</dd>
+    <dt>排反な事象の確率</dt><dd>\( A \)、\( B \) が互いに排反であるとき \( P(A\cup B)=P(A)+P(B) \)。3つ以上でも同様。</dd>
+    <dt>和事象</dt><dd>\( A \) または \( B \) が起こる事象 \( A\cup B \)（数Ａ-021）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>同時には起こらない（\( A\cap B=\emptyset \)）2つの事象は互いに排反である。1の目と偶数の目は排反、偶数の目と3の倍数の目は 6 で重なるので排反でない（O1）。</li>
+    <li>排反なら \( n(A\cup B)=n(A)+n(B) \) で、\( n(U) \) で割ると \( P(A\cup B)=P(A)+P(B) \)。排反でないときに足すと、重なりを2回数えてしまう（O2）。</li>
+    <li>求める事象を排反な事象に分けて足す。例：赤4・白3から3個で同じ色 \( \dfrac{4}{35}+\dfrac{1}{35}=\dfrac{1}{7} \)、2つのさいころの和が4の倍数 \( \dfrac{1}{4} \)（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">排反な事象の確率</span>\( A\cap B=\emptyset \) のとき $$ P(A\cup B)=P(A)+P(B) $$</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）を示す。確率を入力する問題は、それ以上約分できない分数で入力してください（半角・全角のどちらでもかまいません）。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1</span></div>
+  <p>1個のさいころを投げる試行で、互いに排反である2つの事象の組はどれですか。</p>
+  <div class="choices">
+    <button>「偶数の目が出る」と「4以上の目が出る」</button>
+    <button>「3の倍数の目が出る」と「奇数の目が出る」</button>
+    <button data-correct="true">「1の目が出る」と「偶数の目が出る」</button>
+    <button>「素数の目が出る」と「偶数の目が出る」</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">「1の目」\( \{1\} \) と「偶数の目」\( \{2,\ 4,\ 6\} \) は共通な目がないので、互いに排反です。「偶数」と「4以上」は 4、6 で、「3の倍数」と「奇数」は 3 で、「素数」と「偶数」は 2 で同時に起こるので、排反ではありません。</div>
+</div>
+
+<div class="q" data-type="input" id="q2" data-accept="3/10|0.3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2</span></div>
+  <p>1 から 20 までの数字を1つずつ書いた20枚のカードから1枚引きます。事象 \( A \) を「5の倍数を引く」、事象 \( B \) を「7の倍数を引く」とするとき、\( P(A\cup B) \) を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{3}{10} \)。\( A=\{5,\ 10,\ 15,\ 20\} \)、\( B=\{7,\ 14\} \) で、5でも7でも割り切れる数（35の倍数）は 20 以下にないので、\( A \) と \( B \) は互いに排反です。\( P(A\cup B)=\dfrac{4}{20}+\dfrac{2}{20}=\dfrac{6}{20}=\dfrac{3}{10} \)。</div>
+</div>
+
+<div class="q" data-type="input" id="q3" data-accept="4/15">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O3</span></div>
+  <p>赤玉3個、白玉2個、青玉1個が入った袋から、2個の玉を同時に取り出します。2個が同じ色である確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{4}{15} \)。全事象は \( {}_6\mathrm{C}_2=15 \)（通り）。「2個とも赤」\( {}_3\mathrm{C}_2=3 \)（通り）と「2個とも白」\( {}_2\mathrm{C}_2=1 \)（通り）は互いに排反で、青玉は1個しかないので「2個とも青」は起こりません。\( \dfrac{3}{15}+\dfrac{1}{15}=\dfrac{4}{15} \)。「2個とも赤」だけを数えて \( \dfrac{3}{15}=\dfrac{1}{5} \) としないように注意しましょう。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問4</span><span class="q-obj">O1</span></div>
+  <p>大小2つのさいころを同時に投げる試行で、互いに排反である2つの事象の組はどれですか。</p>
+  <div class="choices">
+    <button>「目の和が偶数」と「目の積が偶数」</button>
+    <button data-correct="true">「目の和が奇数」と「目の積が奇数」</button>
+    <button>「2つの目が等しい」と「目の和が偶数」</button>
+    <button>「大の目が6」と「目の和が7」</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">目の積が奇数になるのは2つの目がどちらも奇数のときで、そのとき和は偶数になります。したがって「和が奇数」と「積が奇数」は同時に起こらず、互いに排反です。「和が偶数」と「積が偶数」は \( (2,\ 2) \) で、「2つの目が等しい」と「和が偶数」は \( (1,\ 1) \) で、「大の目が6」と「和が7」は \( (6,\ 1) \) で同時に起こります。</div>
+</div>
+
+<div class="q" data-type="input" id="q5" data-accept="8/15">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3</span></div>
+  <p>当たり3本を含む10本のくじから、2本を同時に引きます。2本とも当たりであるか、または2本ともはずれである確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{8}{15} \)。全事象は \( {}_{10}\mathrm{C}_2=45 \)（通り）。「2本とも当たり」\( {}_3\mathrm{C}_2=3 \)（通り）と「2本ともはずれ」\( {}_7\mathrm{C}_2=21 \)（通り）は互いに排反なので、\( \dfrac{3}{45}+\dfrac{21}{45}=\dfrac{24}{45}=\dfrac{8}{15} \)。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O2</span></div>
+  <p>花子さんは「1個のさいころで、偶数の目が出る確率は \( \frac{1}{2} \)、3の倍数の目が出る確率は \( \frac{1}{3} \) だから、偶数または3の倍数の目が出る確率は \( \frac{5}{6} \) である」と考えました。この考えについて正しいものはどれですか。</p>
+  <div class="choices">
+    <button>2つの事象は互いに排反なので、\( \frac{5}{6} \) で正しい。</button>
+    <button>2つの事象は排反でないので、かけ算をして \( \frac{1}{2}\times\frac{1}{3}=\frac{1}{6} \) になる。</button>
+    <button>2つの事象は排反でないので、この確率は求められない。</button>
+    <button data-correct="true">6 の目で2つの事象が同時に起こるので排反ではなく、足し算はできない。正しくは \( \{2,\ 3,\ 4,\ 6\} \) から \( \frac{4}{6}=\frac{2}{3} \) である。</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">偶数と3の倍数は 6 の目で同時に起こるので、排反ではありません。足し算では 6 の目を2回数えてしまいます。要素を数えれば \( \dfrac{2}{3} \) と求められるので、「求められない」は誤りです。\( \dfrac{1}{2}\times\dfrac{1}{3}=\dfrac{1}{6} \) は、「または」の確率を求める計算ではありません（この例では 6 の目が出る確率とたまたま同じ値になりますが、積事象の確率も、確率をかけて求められるとは限りません。数Ａ-021 の導入）。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="1/3">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問7</span><span class="q-obj">O3</span></div>
+  <p>大小2つのさいころを同時に投げるとき、出た目の差（大きい方から小さい方を引いた値）が3以上になる確率を求めなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( \dfrac{1}{3} \)。目の差が3以上になるのは、差が 3、4、5 のときで、この3つの事象は互いに排反です。差が3は \( (1,\ 4) \)、\( (2,\ 5) \)、\( (3,\ 6) \) とその大小を入れかえた6通り、差が4は4通り、差が5は2通り。\( \dfrac{6}{36}+\dfrac{4}{36}+\dfrac{2}{36}=\dfrac{12}{36}=\dfrac{1}{3} \)。大小の区別を忘れると \( \dfrac{3+2+1}{36}=\dfrac{1}{6} \) になります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問8</span><span class="q-obj">O1・O2</span></div>
+  <p>Y町の夏祭りの福引きの箱には、1等が2本、2等が8本、3等が30本、はずれが160本、合わせて200本のくじが入っています（学習用の架空の設定）。</p>
+  <p>太郎：「1本引いて3等以上が当たる確率を求めたいな。1等・2等・3等は1本のくじで同時には当たらないから……。」</p>
+  <p>3等以上（1等、2等、3等のどれか）が当たる確率を求める式と値として正しいものはどれですか。</p>
+  <div class="choices">
+    <button>等の種類が3つなので \( \frac{1}{3} \)</button>
+    <button>\( \frac{2}{200}\times\frac{8}{200}\times\frac{30}{200} \)</button>
+    <button data-correct="true">\( \frac{2}{200}+\frac{8}{200}+\frac{30}{200}=\frac{1}{5} \)</button>
+    <button>3等の確率だけを考えて \( \frac{30}{200}=\frac{3}{20} \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">1等・2等・3等が当たる事象は互いに排反なので、確率を足して \( \dfrac{2+8+30}{200}=\dfrac{40}{200}=\dfrac{1}{5} \) です。\( \dfrac{1}{3} \) は、本数の違う等を同様に確からしいとした誤りです。かけ算の式は、和事象の確率を求める式ではありません（1本のくじで1等と2等と3等が同時に当たることはないので、その確率は 0 です）。\( \dfrac{3}{20} \) は1等・2等を数え落としています。<br><span class="small">この会話文の問題は練習用に作成したもので、実際の入試の出題形式を示すものではありません。</span></div>
+</div>
+
+<div class="q" data-type="open" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O1・O2</span></div>
+  <p>事象 \( A \)、\( B \) が互いに排反であるとき \( P(A\cup B)=P(A)+P(B) \) が成り立つ理由を、集合の要素の個数を使って説明しなさい。また、\( A \) と \( B \) が排反でないときにこの式が成り立たない例を、1個のさいころを投げる試行で1つ挙げなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　\( A \)、\( B \) が互いに排反なら \( A\cap B=\emptyset \) で、共通な要素がないので \( n(A\cup B)=n(A)+n(B) \)。根元事象が同様に確からしいとき、両辺を \( n(U) \) で割ると \( \dfrac{n(A\cup B)}{n(U)}=\dfrac{n(A)}{n(U)}+\dfrac{n(B)}{n(U)} \)、すなわち \( P(A\cup B)=P(A)+P(B) \)。</p>
+    <p>例：\( A \)「偶数の目が出る」、\( B \)「4以上の目が出る」とすると、\( A\cap B=\{4,\ 6\} \) で排反でない。\( P(A)+P(B)=\dfrac{3}{6}+\dfrac{3}{6}=1 \) だが、\( A\cup B=\{2,\ 4,\ 5,\ 6\} \) なので \( P(A\cup B)=\dfrac{4}{6}=\dfrac{2}{3} \) で、一致しない。</p>
+    <p><strong>採点の観点</strong>　① \( A\cap B=\emptyset \) から \( n(A\cup B)=n(A)+n(B) \) を導いている。② \( n(U) \) で割って確率の式にしている。③ 排反でない例で、両辺の値が異なることを具体的に示している。</p>
+  </div>
+  <div class="explain">排反でない例は、問6の「偶数」と「3の倍数」でもかまいません。どの例でも、重なった要素の分だけ \( P(A)+P(B) \) が大きくなります。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項は、『数学Ⅰ，数学Ａ』の「数学Ａ」について「図形の性質，場合の数と確率の２項目に対応した出題とし，全てを解答する」としています。この時間の内容は、数学Ａ「(2) 場合の数と確率」のア(ウ)「確率の意味や基本的な法則についての理解を深め，それらを用いて事象の確率や期待値を求めること」に当たり、出題範囲に含まれます。「排反」は数学Ａの［用語・記号］に挙げられている語です。</p>
+  <p>学習指導要領解説は、確率の性質や法則として「事象 A，B が互いに排反であるとき P(A∪B)＝P(A)＋P(B)」を取り扱うことが考えられるとしています。令和9年度の問題作成方針は、数学について「数学の問題発見・解決の過程を重視する」とし、題材の例として「日常生活や社会の事象など様々な事象を数理的に捉え，数学的に処理できる題材」を挙げています。</p>
+  <p class="small">問8は架空の福引きと会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">A∪B の確率（排反でない場合）（数Ａ-023）</p>
+  <p>次の時間は、問6の「偶数」と「3の倍数」のように排反でない2つの事象について、和事象の確率を \( P(A) \)、\( P(B) \)、\( P(A\cap B) \) を使って求める式を、集合の要素の個数の関係 \( n(A\cup B)=n(A)+n(B)-n(A\cap B) \)（数Ａ-002）と結び付けて学びます。</p>
+  <p>この時間では、排反でない場合の和事象の確率の式（数Ａ-023）、余事象の確率（数Ａ-024）、2人目が当たる確率のように乗法定理と排反な事象の確率を組み合わせる問題（数Ａ-029）は扱っていません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ａ-021　確率の基本性質</div>
+  <div><span class="label">次の時間</span>数Ａ-023　A∪B の確率（排反でない場合）</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ａ-022「排反な事象の確率」（学習指導要領 数学Ａ (2)ア(ウ)、解説 p.94）</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ａ」(2) 場合の数と確率 ア(ウ)、［用語・記号］排反（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.93（集合の要素の個数の公式「特に，A∩B＝φならば n(A∪B)＝n(A)＋n(B)」をここで取り扱うこと）・p.94（確率の性質や法則「③事象 A，B が互いに排反であるとき P(A∪B)＝P(A)＋P(B)」）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+  </ul>
+  <p>作成：2026-10-02　版：1.0　このページは学習指導要領と同解説、公的資料をもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。X商店街・Y町の福引きは学習用に作成した架空の設定で、実在の商店街・自治体とは関係ありません。空事象の記号は、このページでは \( \emptyset \) で書いています（解説の表記は φ）。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ａ-022",
+  "map": "hs_math_1a",
+  "rid": "数Ａ-022",
+  "title": "排反な事象の確率",
+  "subject": "数学Ａ",
+  "unit": {"ref": "hs_math_1a:A-1", "title": "場合の数と確率"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(2)ア(ウ)"],
+  "kaisetsu_page": "94",
+  "objectives": [
+    {"id": "O1", "text": "2つの事象 \\( A \\)、\\( B \\) が同時には起こらない（\\( A\\cap B=\\emptyset \\)）とき、\\( A \\) と \\( B \\) は互いに排反であるということを理解し、排反かどうかを判断できる。", "from": "事象 A、B が互いに排反であるとき", "sections": ["sec-1"], "checks": ["q1", "q4", "q8", "q9"]},
+    {"id": "O2", "text": "事象 \\( A \\)、\\( B \\) が互いに排反であるとき \\( P(A\\cup B)=P(A)+P(B) \\) が成り立つことを、集合の要素の個数の関係から説明できる。", "from": "P(A∪B)=P(A)+P(B) が成り立つことを理解し", "sections": ["sec-2"], "checks": ["q2", "q6", "q8", "q9"]},
+    {"id": "O3", "text": "求める事象を互いに排反な事象に分け、それぞれの確率を足して、玉の取り出しやさいころの目などの確率を求めることができる。", "from": "確率を求めることができる", "sections": ["sec-3"], "checks": ["q3", "q5", "q7"]}
+  ],
+  "key_terms": [
+    {"term": "排反", "where": "sec-1"},
+    {"term": "排反な事象の確率", "where": "sec-2"},
+    {"term": "和事象", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "積事象・和事象・空事象（記号 ∅ はこのページでの書き方）", "taught_in": ["hs_math_1a/数Ａ-021"], "gap": false, "where": "review"},
+    {"concept": "確率の定め方 P(A)=n(A)/n(U)", "taught_in": ["hs_math_1a/数Ａ-018"], "gap": false, "where": "sec-2"},
+    {"concept": "A∩B=∅ ならば n(A∪B)=n(A)+n(B)", "taught_in": ["hs_math_1a/数Ａ-002"], "gap": false, "where": "review"},
+    {"concept": "和の法則（同時には起こらない2つの事柄の場合の数）", "taught_in": ["hs_math_1a/数Ａ-004"], "gap": false, "where": "sec-2"},
+    {"concept": "組合せ nCr", "taught_in": ["hs_math_1a/数Ａ-011"], "gap": false, "where": "sec-3"},
+    {"concept": "組合せを用いた確率", "taught_in": ["hs_math_1a/数Ａ-020"], "gap": false, "where": "review"},
+    {"concept": "2つのさいころの出方（二次元の表）", "taught_in": ["jhs_math/中2-082"], "gap": false, "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "排反でない場合の P(A∪B)=P(A)+P(B)−P(A∩B)（数Ａ-023）",
+    "余事象の確率 P(Ā)=1−P(A)（数Ａ-024）",
+    "乗法定理と排反な事象の確率を組み合わせて2人目が当たる確率を求めること（数Ａ-029）"
+  ],
+  "selection_reason": "数学Ａ 単元『場合の数と確率』の順次作成（2026-10-02）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ａ(2)ア(ウ)、用語・記号「排反」"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.93 A∩B=φ ならば n(A∪B)=n(A)+n(B)、p.94 確率の性質③（互いに排反なとき P(A∪B)=P(A)+P(B)）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-02"
+}
+</script>
+</body>
+</html>

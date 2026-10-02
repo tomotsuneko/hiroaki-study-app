@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>復習：式の展開と因数分解｜数学Ⅰ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<div class="page">
+<nav class="toc" aria-label="目次"></nav>
+<main>
+
+<header class="lesson-header">
+  <div class="crumbs"><span>高等学校</span><span>数学Ⅰ</span><span>復習（予備時間）</span><span>数Ⅰ-097</span></div>
+  <h1>復習：式の展開と因数分解</h1>
+  <div class="badges">
+    <span class="badge">授業1コマ（50分）</span>
+    <span class="badge">復習</span>
+    <span class="badge exam-ok">共通テスト ○</span>
+  </div>
+  <p class="lead">単元「数と式」の最初に学んだ式の展開と因数分解は、その後の根号の計算、証明、二次関数、二次不等式でもくり返し使ってきました。この時間は数Ⅰ-001〜008 の要点を整理し直し、式の形を見て方法を選ぶ力と、最後まで正しく変形する技能を確かにします。</p>
+</header>
+
+<section class="card">
+<h2 id="goals" data-toc="この時間のねらい"><span class="num">0</span>この時間のねらい</h2>
+<div class="box goal">
+  <p class="box-title">この時間でできるようになること</p>
+  <ul class="objectives">
+    <li><input type="checkbox" data-obj="O1" aria-label="O1"><span><span class="oid">O1</span>式の形を見て乗法公式を選び、共通な部分を1つの文字に置き換えて、式を展開することができる。</span></li>
+    <li><input type="checkbox" data-obj="O2" aria-label="O2"><span><span class="oid">O2</span>共通因数をくくり出し、因数分解の公式やたすき掛けを用いて、acx²+(ad+bc)x+bd の形の式を最後まで因数分解することができる。</span></li>
+    <li><input type="checkbox" data-obj="O3" aria-label="O3"><span><span class="oid">O3</span>2種類以上の文字を含む式や同じかたまりが現れる式を、1つの文字に着目して整理したり置き換えたりして因数分解し、展開して確かめることができる。</span></li>
+  </ul>
+  <p class="small">学習が終わったらチェックしよう（このブラウザに保存されます）。</p>
+</div>
+<h3>学習の位置づけ</h3>
+<div class="position">
+  <div><span class="label">前の時間（数Ⅰ-096）</span>課題学習：解決の過程の振り返りと発表</div>
+  <div class="arrow">→</div>
+  <div class="now"><span class="label">この時間（数Ⅰ-097）</span>復習：式の展開と因数分解</div>
+  <div class="arrow">→</div>
+  <div><span class="label">次の時間（数Ⅰ-098）</span>復習：実数・根号を含む式の計算と一次不等式</div>
+</div>
+<p class="small">範囲：単元「数と式」のうち式の計算（数Ⅰ-001〜008）。この時間は単元「復習（予備時間）」の1コマで、新しい内容は扱いません。問題は単元末演習（数Ⅰ-020）と同じものを使わず、数値を変えています。各問の「復習するなら数Ⅰ-0xx」は、その型を学んだコマです。</p>
+</section>
+
+<section class="card">
+<h2 id="review" data-toc="前回までの確認"><span class="num">1</span>前回までの確認：範囲の要点の一覧</h2>
+<p>数Ⅰ-001〜008 で学んだ要点を、学んだコマとともに並べます。</p>
+<div class="formula-card">
+  <div><span class="f-name">整式の整理（数Ⅰ-001）</span>
+    <p>1つの文字に着目し、同類項をまとめて降べきの順に並べる<br>着目した文字を含まない項が定数項（ほかの文字を含んでもよい）</p></div>
+  <div><span class="f-name">指数法則（数Ⅰ-002）</span>
+    <p>\( m,\ n \) は正の整数<br>\( a^ma^n=a^{m+n} \)<br>\( (a^m)^n=a^{mn} \)<br>\( (ab)^n=a^nb^n \)</p></div>
+  <div><span class="f-name">乗法公式（数Ⅰ-003）</span>
+    <p>\( (a\pm b)^2=a^2\pm 2ab+b^2 \)<br>\( (a+b)(a-b)=a^2-b^2 \)<br>\( (x+a)(x+b)=x^2+(a+b)x+ab \)<br>\( (ax+b)(cx+d)=acx^2+(ad+bc)x+bd \)</p></div>
+  <div><span class="f-name">置き換えを利用した展開（数Ⅰ-004）</span>
+    <p>共通な部分を1つの文字に置き換える → 公式で展開 → かっこごと戻す<br>\( (a+b+c)^2=a^2+b^2+c^2+2ab+2bc+2ca \)</p></div>
+  <div><span class="f-name">共通因数と公式（数Ⅰ-005）</span>
+    <p>\( ma+mb=m(a+b) \)<br>\( a^2\pm 2ab+b^2=(a\pm b)^2 \)<br>\( a^2-b^2=(a+b)(a-b) \)<br>\( x^2+(a+b)x+ab=(x+a)(x+b) \)</p></div>
+  <div><span class="f-name">たすき掛け（数Ⅰ-006）</span>
+    <p>\( acx^2+(ad+bc)x+bd=(ax+b)(cx+d) \)<br>\( ac \)、\( bd \)、斜めの積の和 \( ad+bc \) を確かめ、見つけた組は横に読む</p></div>
+  <div><span class="f-name">いろいろな因数分解（数Ⅰ-007・008）</span>
+    <p>同じかたまりは1つの文字に置き換える<br>2種類以上の文字は、1つの文字に着目して整理する（文字によって次数が違えば、次数の最も低い文字）<br>最後まで因数分解し、展開して確かめる</p></div>
+</div>
+<div class="q" data-type="choice" id="r1">
+  <div class="q-head"><span class="q-no">確認1</span><span class="q-obj">既習：数Ⅰ-001</span></div>
+  <p>整式 \( 2x^2y-xy^2+3y-4 \) を \( x \) に着目して整理したとき、次数と定数項の組はどれですか。</p>
+  <div class="choices">
+    <button>次数 3、定数項 \( -4 \)</button>
+    <button data-correct="true">次数 2、定数項 \( 3y-4 \)</button>
+    <button>次数 2、定数項 \( -4 \)</button>
+    <button>次数 3、定数項 \( 3y-4 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( x \) について降べきの順に整理すると \( 2y\,x^2-y^2x+(3y-4) \) です。\( x \) についての次数は 2、\( x \) を含まない項 \( 3y-4 \) が定数項です。次数 3 は、\( 2x^2y \) や \( -xy^2 \) の \( x \) と \( y \) を合わせた次数です。定数項 \( -4 \) は「定数項は数だけの項」と思い込んだ誤りで、\( x \) に着目したときは \( 3y \) も定数項に入ります（数Ⅰ-001 のよくある間違い）。</div>
+</div>
+<div class="q" data-type="choice" id="r2">
+  <div class="q-head"><span class="q-no">確認2</span><span class="q-obj">既習：数Ⅰ-002</span></div>
+  <p>\( (-3a^3b)^2\times 2ab^3 \) を計算したものはどれですか。</p>
+  <div class="choices">
+    <button>\( 18a^6b^5 \)</button>
+    <button>\( -18a^7b^5 \)</button>
+    <button data-correct="true">\( 18a^7b^5 \)</button>
+    <button>\( -6a^7b^5 \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">\( (-3a^3b)^2=(-3)^2(a^3)^2b^2=9a^6b^2 \)、これに \( 2ab^3 \) をかけて \( 18a^{6+1}b^{2+3}=18a^7b^5 \) です。\( 18a^6b^5 \) は \( (a^3)^2 \) を \( a^{3+2}=a^5 \) とした誤り（指数をかけるところでたした）、\( -18a^7b^5 \) は \( (-3)^2=9 \) と正になることを見落とした誤り、\( -6a^7b^5 \) は係数 \( -3 \) を2乗し忘れた誤りです。</div>
+</div>
+<div class="q" data-type="choice" id="r3">
+  <div class="q-head"><span class="q-no">確認3</span><span class="q-obj">既習：数Ⅰ-005</span></div>
+  <p>展開すると \( x^2-x-12 \) になる積はどれですか。</p>
+  <div class="choices">
+    <button data-correct="true">\( (x-4)(x+3) \)</button>
+    <button>\( (x+4)(x-3) \)</button>
+    <button>\( (x-6)(x+2) \)</button>
+  </div>
+  <span class="result"></span>
+  <div class="explain">積が \( -12 \)、和が \( -1 \) になる2数は \( -4 \) と 3 なので \( (x-4)(x+3) \) です。\( (x+4)(x-3)=x^2+x-12 \) は符号が逆、\( (x-6)(x+2)=x^2-4x-12 \) は積だけを合わせて和を確かめなかった誤りです。因数分解は展開の逆の変形なので、展開してもとの式に戻るかで確かめられます（数Ⅰ-005）。</div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="intro" data-toc="導入"><span class="num">2</span>導入：どの方法を使う？</h2>
+<div class="box think">
+  <p class="box-title">この4問、何に着目する？</p>
+  <p>(ア) \( (5x-2)(3x+4) \) を展開する。<br>
+  (イ) \( (a-b+3)(a-b-5) \) を展開する。<br>
+  (ウ) \( 4x^3+2x^2-6x \) を因数分解する。<br>
+  (エ) \( x^2+3xy+2y^2-x+y-6 \) を因数分解する。</p>
+  <p>解き始める前に、それぞれ「どの公式・方法を使うか」を予想しましょう。答えは、(ア)(イ) が「3 展開」の例題1・2、(ウ) が「4 因数分解」の例題3、(エ) が「5 1つの文字に着目・置き換え」の例題5で確かめます。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="sec-1" data-toc="展開：公式の選び方と置き換え"><span class="num">3</span>展開：公式の選び方と置き換え</h2>
+<p>展開は、積の形の式を、かっこをはずして和の形に表す変形です（数Ⅰ-002・003）。まず式の形を見て、どの乗法公式が使えるかを決めます。そのままでは公式が見えないときは、共通な部分を1つの文字に置き換えます（数Ⅰ-004）。</p>
+<h3>式の形と使う公式</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>式の形</th><th>使う公式・方法</th><th>学んだコマ</th></tr>
+  <tr><td>\( (a\pm b)^2 \)、\( (a+b)(a-b) \)</td><td>中学校の公式。\( a \)、\( b \) に \( 3x \) などを当てはめるときは、かっこに入れて係数も2乗する</td><td>数Ⅰ-003</td></tr>
+  <tr><td>\( (x+a)(x+b) \)</td><td>\( x^2+(a+b)x+ab \)</td><td>数Ⅰ-003</td></tr>
+  <tr><td>\( (ax+b)(cx+d) \)</td><td>\( acx^2+(ad+bc)x+bd \)。\( x \) の係数は外側の積 \( ad \) と内側の積 \( bc \) の和</td><td>数Ⅰ-003</td></tr>
+  <tr><td>同じかたまりが2回出る</td><td>かたまりを1つの文字に置き換えて公式を使い、かっこごと戻す</td><td>数Ⅰ-004</td></tr>
+  <tr><td>符号だけが反対の項がある</td><td>符号も含めて同じ項と、符号だけが反対の項に分けてくくり、和と差の積の形にする</td><td>数Ⅰ-004</td></tr>
+  <tr><td>3つの項の和の2乗</td><td>\( (a+b+c)^2=a^2+b^2+c^2+2ab+2bc+2ca \)</td><td>数Ⅰ-004</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題1（公式 \( (ax+b)(cx+d) \)）＝導入の (ア)</p>
+  <p>\( (5x-2)(3x+4) \) を展開しなさい。</p>
+  <div class="step">着目：\( (ax+b)(cx+d) \) の形。\( a=5,\ b=-2,\ c=3,\ d=4 \) です（\( b \) は負の数）。</div>
+  <div class="step">\( ac=15 \)、\( ad+bc=5\cdot 4+(-2)\cdot 3=20-6=14 \)、\( bd=-8 \)。</div>
+  <div class="step">答え：<span data-ans="ex1">\( 15x^2+14x-8 \)</span></div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題2（置き換え）＝導入の (イ)</p>
+  <p>\( (a-b+3)(a-b-5) \) を展開しなさい。</p>
+  <div class="step">着目：\( a-b \) が2回出る。\( a-b=X \) とおくと \( (X+3)(X-5)=X^2-2X-15 \)。</div>
+  <div class="step">\( X \) をかっこごと戻す：\( (a-b)^2-2(a-b)-15=a^2-2ab+b^2-2a+2b-15 \)。</div>
+  <div class="step">答え：<span data-ans="ex2">\( a^2-2ab+b^2-2a+2b-15 \)</span></div>
+</div>
+<div class="box caution"><p class="box-title">つまずきやすい点（展開）</p>
+<p>(1) \( (a+b)^2 \) の真ん中の項 \( 2ab \) を落とす。また、\( (3x)^2 \) を \( 3x^2 \) とする。正しくは \( (3x)^2=9x^2 \) です（数Ⅰ-003・008）。<br>
+(2) \( (ax+b)(cx+d) \) の \( x \) の係数を \( ac+bd \) とする。\( ac \) と \( bd \) は \( x^2 \) の係数と定数項です。例題1で \( ac+bd=15-8=7 \) とすると、\( 15x^2+7x-8 \) という誤った答えになります（数Ⅰ-003）。<br>
+(3) 置き換えた文字を戻すときに、かっこを付け忘れる。例題2の \( -2X \) は \( -2(a-b)=-2a+2b \) です（数Ⅰ-004）。<br>
+(4) 「−」でくくるときの符号。\( x-y+3 \) を \( x-(y+3) \) とくくるのは誤りで、\( x-(y+3)=x-y-3 \) になってしまいます。くくったら、かっこをはずしてもとの式に戻るかを確かめます（数Ⅰ-004）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-2" data-toc="因数分解：方針の流れとたすき掛け"><span class="num">4</span>因数分解：方針の流れとたすき掛け</h2>
+<p>因数分解は、整式をいくつかの因数の積の形に表すことで、展開の逆の変形です（数Ⅰ-005）。展開の公式の左右を入れかえると、因数分解の公式になります。</p>
+<h3>対比表：展開の公式と因数分解の公式</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>展開（積 → 和）</th><th>因数分解（和 → 積）</th><th>学んだコマ</th></tr>
+  <tr><td>\( m(a+b)=ma+mb \)</td><td>\( ma+mb=m(a+b) \)（共通因数をくくり出す）</td><td>数Ⅰ-002・005</td></tr>
+  <tr><td>\( (a\pm b)^2=a^2\pm 2ab+b^2 \)</td><td>\( a^2\pm 2ab+b^2=(a\pm b)^2 \)</td><td>数Ⅰ-003・005</td></tr>
+  <tr><td>\( (a+b)(a-b)=a^2-b^2 \)</td><td>\( a^2-b^2=(a+b)(a-b) \)</td><td>数Ⅰ-003・005</td></tr>
+  <tr><td>\( (x+a)(x+b)=x^2+(a+b)x+ab \)</td><td>\( x^2+(a+b)x+ab=(x+a)(x+b) \)</td><td>数Ⅰ-003・005</td></tr>
+  <tr><td>\( (ax+b)(cx+d)=acx^2+(ad+bc)x+bd \)</td><td>\( acx^2+(ad+bc)x+bd=(ax+b)(cx+d) \)（たすき掛け）</td><td>数Ⅰ-003・006</td></tr>
+</table>
+</div>
+<p>どの公式を使うかは、次の順に確かめると見通しがよくなります（数Ⅰ-007 のまとめの順）。</p>
+<figure>
+<!--svg:f097a-->
+<svg viewBox="0 0 440 254" width="440" role="img" aria-label="因数分解の方針の流れ図。① 共通因数をくくり出す（数Ⅰ-005）→ ② 置き換える・1つの文字に着目する（数Ⅰ-007）→ ③ 公式・たすき掛けを使う（数Ⅰ-005・006）→ ④ 最後まで確かめる：各因数がさらに因数分解できないか、展開して戻るか（数Ⅰ-005・008）" data-fig="f097a">
+<rect x="12" y="8" width="416" height="46" rx="6" fill="#1f5fbf" fill-opacity="0.08" stroke="#1f5fbf" stroke-width="1.6" data-step="1"/>
+<text x="22" y="27" text-anchor="start" font-size="13" font-weight="700" fill="#1f5fbf">① 共通因数をくくり出す</text>
+<text x="22" y="45" text-anchor="start" font-size="11" fill="currentColor">すべての項に共通な因数（数Ⅰ-005）</text>
+<line x1="220" y1="56" x2="220" y2="64" stroke="currentColor" stroke-width="1.4"/>
+<path d="M220,70 L215,63 L225,63 Z" fill="currentColor" data-arrow="1"/>
+<rect x="12" y="72" width="416" height="46" rx="6" fill="#1e8e5a" fill-opacity="0.08" stroke="#1e8e5a" stroke-width="1.6" data-step="2"/>
+<text x="22" y="91" text-anchor="start" font-size="13" font-weight="700" fill="#1e8e5a">② 置き換える・1つの文字に着目する</text>
+<text x="22" y="109" text-anchor="start" font-size="11" fill="currentColor">同じかたまり、2種類以上の文字（数Ⅰ-007）</text>
+<line x1="220" y1="120" x2="220" y2="128" stroke="currentColor" stroke-width="1.4"/>
+<path d="M220,134 L215,127 L225,127 Z" fill="currentColor" data-arrow="2"/>
+<rect x="12" y="136" width="416" height="46" rx="6" fill="#b7791f" fill-opacity="0.08" stroke="#b7791f" stroke-width="1.6" data-step="3"/>
+<text x="22" y="155" text-anchor="start" font-size="13" font-weight="700" fill="#b7791f">③ 公式・たすき掛けを使う</text>
+<text x="22" y="173" text-anchor="start" font-size="11" fill="currentColor">a²−b²、(a±b)²、acx²+(ad+bc)x+bd（数Ⅰ-005・006）</text>
+<line x1="220" y1="184" x2="220" y2="192" stroke="currentColor" stroke-width="1.4"/>
+<path d="M220,198 L215,191 L225,191 Z" fill="currentColor" data-arrow="3"/>
+<rect x="12" y="200" width="416" height="46" rx="6" fill="#c0392b" fill-opacity="0.08" stroke="#c0392b" stroke-width="1.6" data-step="4"/>
+<text x="22" y="219" text-anchor="start" font-size="13" font-weight="700" fill="#c0392b">④ 最後まで確かめる</text>
+<text x="22" y="237" text-anchor="start" font-size="11" fill="currentColor">各因数がさらに因数分解できないか、展開して戻るか（数Ⅰ-005・008）</text>
+</svg>
+<!--/svg:f097a-->
+  <figcaption>図1　因数分解の方針の流れ（学習用に作成した関係図）。①から順に確かめ、最後に④で答えを点検する</figcaption>
+</figure>
+<div class="box example worked">
+  <p class="box-title">例題3（共通因数 → たすき掛け）＝導入の (ウ)</p>
+  <p>\( 4x^3+2x^2-6x \) を因数分解しなさい。</p>
+  <div class="step">① 着目：すべての項に \( 2x \) がある。共通因数 \( 2x \) をくくり出して \( 2x(2x^2+x-3) \)。</div>
+  <div class="step">③ かっこの中をたすき掛け：\( 2=2\times 1 \)、\( -3=3\times(-1) \) と分けると、斜めの積の和は \( 2\cdot(-1)+3\cdot 1=1 \) で、\( x \) の係数 1 に合う。\( 2x^2+x-3=(2x+3)(x-1) \)。</div>
+  <div class="step">④ 確かめ：\( (2x+3)(x-1)=2x^2-2x+3x-3=2x^2+x-3 \)。各因数はこれ以上因数分解できない。</div>
+  <div class="step">答え：<span data-ans="ex3">\( 2x(2x+3)(x-1) \)</span></div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題4（2種類の文字を含むたすき掛け）</p>
+  <p>\( 6x^2+xy-12y^2 \) を因数分解しなさい。</p>
+  <div class="step">着目：\( y \) を数と同じように扱い、\( x \) の二次式とみる。\( ac=6 \)、\( bd=-12y^2 \)、\( ad+bc=y \) となる組を探す。</div>
+  <div class="step">\( a=3,\ c=2 \)、\( b=-4y,\ d=3y \) とすると、\( ad+bc=3\cdot 3y+(-4y)\cdot 2=9y-8y=y \) で合う。</div>
+  <div class="step">答え：<span data-ans="ex4">\( (3x-4y)(2x+3y) \)</span>（展開して \( 6x^2+9xy-8xy-12y^2=6x^2+xy-12y^2 \) を確かめる）</div>
+</div>
+<div class="box caution"><p class="box-title">つまずきやすい点（因数分解）</p>
+<p>(1) 共通因数をくくり出さずにたすき掛けをする。たとえば \( 4x^2+2x-6 \) を \( (4x+6)(x-1) \) と答えると、展開すればもとの式に戻りますが、\( 4x+6=2(2x+3) \) にまだ共通因数 2 が残っています。反対に、くくり出した共通因数を書き忘れる誤りもあります（数Ⅰ-005・006）。<br>
+(2) \( x \) の係数を \( b+d \) と考える。\( x^2 \) の係数が 1 でないとき、\( x \) の係数は \( ad+bc \) です（数Ⅰ-006）。<br>
+(3) たすき掛けの図を縦に読む、\( b \)、\( d \) の符号を両方とも逆にする。見つけた組は横に読み、最後に展開して確かめます（数Ⅰ-006・008）。<br>
+(4) \( x^2-4 \) を \( (x-2)^2 \) とする。和と差の積の公式と平方の公式の取り違えです（数Ⅰ-008）。</p></div>
+</section>
+
+<section class="card">
+<h2 id="sec-3" data-toc="1つの文字に着目・置き換え"><span class="num">5</span>1つの文字に着目・置き換え</h2>
+<p>2種類以上の文字を含む式や、同じかたまりがくり返し現れる式は、そのままでは公式が見えません。1つの文字に着目して降べきの順に整理するか、かたまりを1つの文字に置き換えて、公式やたすき掛けが使える形に帰着させます（数Ⅰ-007）。</p>
+<h3>どちらの見方を使うか</h3>
+<div class="table-wrap">
+<table>
+  <tr><th>式の特徴</th><th>見方</th><th>数Ⅰ-007 の例</th></tr>
+  <tr><td>同じかたまりが2回以上出る</td><td>かたまりを \( X \) とおく</td><td>例題1 \( (x+y)^2-5(x+y)+6 \)</td></tr>
+  <tr><td>\( x^4 \) と \( x^2 \) と定数だけの式</td><td>\( x^2=X \) とおく</td><td>例題2 \( x^4-5x^2+4 \)</td></tr>
+  <tr><td>どの文字についても二次</td><td>1つの文字について降べきの順に整理し、その文字を含まない部分（定数項）を先に因数分解する</td><td>例題5 \( x^2+xy-2y^2-2x+5y-3 \)</td></tr>
+  <tr><td>文字によって次数が違う</td><td>次数の最も低い文字に着目すると、共通因数が見えやすい</td><td>例題6 \( x^3+x^2y-x-y \)</td></tr>
+</table>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題5（1つの文字に着目）＝導入の (エ)</p>
+  <p>\( x^2+3xy+2y^2-x+y-6 \) を因数分解しなさい。</p>
+  <div class="step">着目：\( x \) についても \( y \) についても二次。\( x \) について降べきの順に整理する：\( x^2+(3y-1)x+(2y^2+y-6) \)。</div>
+  <div class="step">\( x \) を含まない部分（定数項）を因数分解：\( 2y^2+y-6=(2y-3)(y+2) \)。</div>
+  <div class="step">積が \( (2y-3)(y+2) \)、和が \( 3y-1 \) になる2つの式は \( 2y-3 \) と \( y+2 \)（和は \( 2y-3+y+2=3y-1 \)）。</div>
+  <div class="step">答え：<span data-ans="ex5">\( (x+2y-3)(x+y+2) \)</span>（展開してもとの式に戻ることを確かめる）</div>
+</div>
+<div class="box example worked">
+  <p class="box-title">例題6（置き換え）</p>
+  <p>\( (x^2+3x)^2-2(x^2+3x)-8 \) を因数分解しなさい。</p>
+  <div class="step">着目：\( x^2+3x \) が2回出る。\( x^2+3x=X \) とおくと \( X^2-2X-8=(X-4)(X+2) \)。</div>
+  <div class="step">\( X \) を戻す：\( (x^2+3x-4)(x^2+3x+2) \)。</div>
+  <div class="step">各因数をさらに因数分解：\( x^2+3x-4=(x+4)(x-1) \)、\( x^2+3x+2=(x+1)(x+2) \)。</div>
+  <div class="step">答え：<span data-ans="ex6">\( (x+4)(x-1)(x+1)(x+2) \)</span></div>
+</div>
+<div class="box caution"><p class="box-title">つまずきやすい点（整理・置き換え）</p>
+<p>(1) 置き換えた文字 \( X \) のまま答える、戻した後にまだ因数分解できる因数を残す。例題6を \( (x^2+3x-4)(x^2+3x+2) \) で止めると途中です（数Ⅰ-007）。<br>
+(2) 1つの文字に着目して整理するとき、その文字を含まない項（定数項）を落とす。定数項といっても数とは限らず、ほかの文字を含む式です。項の数を数えて確かめます（数Ⅰ-007）。<br>
+(3) かっこをはずすときの符号。\( x-(y-1) \) を \( x-y-1 \) とする誤りが多く見られます。正しくは \( x-y+1 \) です（数Ⅰ-007）。</p></div>
+<div class="box point"><p class="box-title">単元をまたぐ整理：展開と因数分解を、その後どこで使ったか</p>
+<div class="table-wrap">
+<table>
+  <tr><th>使った場面（コマ）</th><th>使った変形</th></tr>
+  <tr><td>根号を含む式の計算（数Ⅰ-013）</td><td>\( (\sqrt{6}-\sqrt{2})^2 \) などを乗法公式で展開する</td></tr>
+  <tr><td>分母の有理化（数Ⅰ-014）</td><td>和と差の積 \( (a+b)(a-b)=a^2-b^2 \) で根号を消す</td></tr>
+  <tr><td>対偶を利用した証明（数Ⅰ-028）</td><td>\( n=2k+1 \) のとき \( n^2=4k^2+4k+1=2(2k^2+2k)+1 \) と展開して整理する</td></tr>
+  <tr><td>平方完成（数Ⅰ-034）</td><td>\( x^2+2mx=(x+m)^2-m^2 \)（\( (a+b)^2 \) の公式を逆向きに使う）</td></tr>
+  <tr><td>グラフと \( x \) 軸の共有点（数Ⅰ-046）</td><td>因数分解して「\( AB=0 \) ならば \( A=0 \) または \( B=0 \)」で解く</td></tr>
+  <tr><td>二次不等式（数Ⅰ-049）</td><td>たすき掛けで共有点の \( x \) 座標を求める</td></tr>
+</table>
+</div></div>
+<div class="box point"><p class="box-title">この範囲の問題の型と、練習した場所</p>
+<div class="table-wrap">
+<table>
+  <tr><th>型（学んだコマ）</th><th>このページで練習する問題</th></tr>
+  <tr><td>整式の整理・次数・定数項（001）</td><td>確認1</td></tr>
+  <tr><td>指数法則（002）</td><td>確認2</td></tr>
+  <tr><td>乗法公式による展開（003）</td><td>例題1、問1</td></tr>
+  <tr><td>置き換えによる展開・3つの項の和の2乗（004）</td><td>例題2、問4・問7</td></tr>
+  <tr><td>共通因数と公式による因数分解（005）</td><td>確認3、例題3、問2</td></tr>
+  <tr><td>たすき掛け（006）</td><td>例題3・4、問3・問8</td></tr>
+  <tr><td>1つの文字に着目した因数分解（007）</td><td>例題5、問5・問9</td></tr>
+  <tr><td>置き換えによる因数分解（007）</td><td>例題6、問6・問10</td></tr>
+  <tr><td>型を見分けて方法を選ぶ（008）</td><td>導入、問10</td></tr>
+</table>
+</div></div>
+</section>
+
+<section class="card">
+<h2 id="terms" data-toc="重要語句"><span class="num">6</span>重要語句</h2>
+<div class="box terms">
+  <p class="box-title">この範囲の重要語句（すべて既習）</p>
+  <dl>
+    <dt>降べきの順・定数項</dt><dd>着目した文字について、次数の高い項から順に並べること。着目した文字を含まない項が定数項（数Ⅰ-001）。</dd>
+    <dt>展開</dt><dd>単項式や多項式の積の形の式を、かっこをはずして単項式の和の形に表すこと（数Ⅰ-002・003）。</dd>
+    <dt>乗法公式</dt><dd>よく出てくる形の積を、分配法則で展開した結果として公式にまとめたもの（数Ⅰ-003）。</dd>
+    <dt>置き換え</dt><dd>式の一部を1つの文字で表し、式を簡単な形に見直すこと。計算が終わったら、もとの式に戻す（数Ⅰ-004・007）。</dd>
+    <dt>因数分解・共通因数</dt><dd>整式をいくつかの因数の積の形に表すことが因数分解で、展開の逆の変形。各項に共通な因数が共通因数（数Ⅰ-005）。</dd>
+    <dt>たすき掛け</dt><dd>\( px^2+qx+r \) を \( (ax+b)(cx+d) \) の形に因数分解するとき、斜めに掛けた積の和 \( ad+bc \) が \( q \) になる組を探す方法（数Ⅰ-006）。</dd>
+  </dl>
+</div>
+</section>
+
+<section class="card">
+<h2 id="summary" data-toc="まとめ"><span class="num">7</span>まとめ</h2>
+<div class="box summary">
+  <p class="box-title">この時間のまとめ</p>
+  <ul>
+    <li>展開は、式の形を見て乗法公式を選ぶ。\( (ax+b)(cx+d) \) の \( x \) の係数は \( ad+bc \)。同じかたまりは1つの文字に置き換え、かっこごと戻す（O1）。</li>
+    <li>因数分解は、① 共通因数 → ② 置き換え・整理 → ③ 公式・たすき掛け → ④ 最後まで因数分解したか・展開して戻るか、の順に確かめる（O2）。</li>
+    <li>2種類以上の文字を含む式は、1つの文字に着目して降べきの順に整理する。文字によって次数が違えば次数の最も低い文字に着目し、どの文字についても二次なら定数項を先に因数分解する。置き換えたら必ず戻し、さらに因数分解できないか確かめる（O3）。</li>
+  </ul>
+</div>
+<div class="formula-card">
+  <div><span class="f-name">展開</span><p>\( (ax+b)(cx+d)=acx^2+(ad+bc)x+bd \)</p></div>
+  <div><span class="f-name">因数分解の順</span><p>共通因数 → 置き換え・整理 → 公式・たすき掛け → 確かめ</p></div>
+  <div><span class="f-name">1つの文字に着目</span><p>降べきの順に整理し、定数項を先に因数分解</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2 id="quiz" data-toc="確認問題"><span class="num">8</span>確認問題</h2>
+<p class="small">範囲（数Ⅰ-001〜008）全体から10問です。基本 → 標準 → 入試レベルの順。各問に対応するねらい（O番号）と、復習するときに戻るコマを示します。</p>
+
+<div class="q" data-type="choice" id="q1">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問1</span><span class="q-obj">O1（復習するなら数Ⅰ-003）</span></div>
+  <p>\( (2x-5)(3x+4) \) を展開したものはどれですか。</p>
+  <div class="choices"><button>\( 6x^2+7x-20 \)</button><button>\( 6x^2-14x-20 \)</button><button data-correct="true">\( 6x^2-7x-20 \)</button><button>\( 6x^2-x-20 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( a=2,\ b=-5,\ c=3,\ d=4 \) として、\( ac=6 \)、\( ad+bc=2\cdot 4+(-5)\cdot 3=8-15=-7 \)、\( bd=-20 \) なので \( 6x^2-7x-20 \) です。\( 6x^2+7x-20 \) は \( b \)、\( d \) の符号を逆にして \( b=5,\ d=-4 \) とした誤り（\( (2x+5)(3x-4) \) の展開）です。\( 6x^2-14x-20 \) は \( x \) の係数を \( ac+bd=6-20 \) とした誤り、\( 6x^2-x-20 \) は \( x \) の係数を \( b+d=-5+4 \) とした誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q2">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問2</span><span class="q-obj">O2（復習するなら数Ⅰ-005）</span></div>
+  <p>\( 12x^2-12x+3 \) を因数分解したものとして正しいものはどれですか。</p>
+  <div class="choices"><button>\( 3(2x+1)^2 \)</button><button>\( (2x-1)^2 \)</button><button>\( 3(4x-1)(x-1) \)</button><button data-correct="true">\( 3(2x-1)^2 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">共通因数 3 をくくり出して \( 3(4x^2-4x+1) \)。かっこの中は両端が \( (2x)^2 \)、\( 1^2 \) で、真ん中が \( -2\cdot 2x\cdot 1=-4x \) なので \( (2x-1)^2 \)。答えは \( 3(2x-1)^2 \) です。\( 3(2x+1)^2 \) は符号の誤りで、展開すると \( 12x^2+12x+3 \) です。\( (2x-1)^2 \) はくくり出した 3 を書き忘れた誤りで、もとの式の \( \dfrac{1}{3} \) になります。\( 3(4x-1)(x-1) \) は両端の \( 4x^2 \) と 1 だけを合わせ、真ん中の項を確かめなかった誤りで、展開すると \( 12x^2-15x+3 \) です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q3">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問3</span><span class="q-obj">O2（復習するなら数Ⅰ-006）</span></div>
+  <p>\( 4x^2+5x-6 \) を因数分解したものとして正しいものはどれですか。</p>
+  <div class="choices"><button data-correct="true">\( (4x-3)(x+2) \)</button><button>\( (4x+6)(x-1) \)</button><button>\( (4x+3)(x-2) \)</button><button>\( (4x-1)(x+6) \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( 4=4\times 1 \)、\( -6=(-3)\times 2 \) と分けると、斜めの積の和は \( 4\cdot 2+(-3)\cdot 1=5 \) で \( x \) の係数に合います。答えは \( (4x-3)(x+2) \) です。\( (4x+6)(x-1) \) は \( x \) の係数を \( b+d \) と考え、和が 5、積が \( -6 \) の 6 と \( -1 \) を当てはめた誤りで、展開すると \( 4x^2+2x-6 \) です。\( (4x+3)(x-2) \) は符号を両方とも逆にした誤りで、\( 4x^2-5x-6 \) になります。\( (4x-1)(x+6) \) は \( x^2 \) の係数と定数項だけを合わせ、\( x \) の係数を確かめなかった誤りで、\( 4x^2+23x-6 \) になります。</div>
+</div>
+
+<div class="q" data-type="choice" id="q4">
+  <div class="q-head"><span class="quiz-level lv1">基本</span><span class="q-no">問4</span><span class="q-obj">O1（復習するなら数Ⅰ-004）</span></div>
+  <p>\( (x-y+3)(x+y+3) \) を展開したものとして正しいものはどれですか。</p>
+  <div class="choices"><button>\( x^2-y^2-6y-9 \)</button><button data-correct="true">\( x^2-y^2+6x+9 \)</button><button>\( x^2+y^2+6x+9 \)</button><button>\( x^2-y^2+9 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">符号も含めて同じ項は \( x \) と 3、符号だけが反対の項は \( -y \) と \( y \) です。\( x+3=X \) とおくと \( (X-y)(X+y)=X^2-y^2 \)、戻して \( (x+3)^2-y^2 \)、整理して \( x^2-y^2+6x+9 \) です。\( x^2-y^2-6y-9 \) は \( x-y+3 \) を \( x-(y+3) \) とくくった誤りで、\( x^2-(y+3)^2 \) を計算しています（\( x-(y+3)=x-y-3 \) で、もとの式に戻りません）。\( x^2+y^2+6x+9 \) は和と差の積を \( X^2+y^2 \) とした符号の誤り、\( x^2-y^2+9 \) は \( (x+3)^2 \) の真ん中の項 \( 6x \) を落とした誤りです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q5">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問5</span><span class="q-obj">O3（復習するなら数Ⅰ-007）</span></div>
+  <p>\( x^2y+x^2-4y-4 \) を因数分解したものとして正しいものはどれですか。</p>
+  <div class="choices"><button>\( (x^2+4)(y+1) \)</button><button>\( y(x+2)(x-2) \)</button><button data-correct="true">\( (x+2)(x-2)(y+1) \)</button><button>\( (x-2)^2(y+1) \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( x \) については2次、\( y \) については1次なので、次数の低い \( y \) に着目して整理します。\( (x^2-4)y+(x^2-4)=(x^2-4)(y+1) \)、最後まで進めて \( (x+2)(x-2)(y+1) \) です。\( (x^2+4)(y+1) \) は \( -4y-4=-4(y+1) \) の符号を落とした誤りで、展開すると \( x^2y+x^2+4y+4 \) です。\( y(x+2)(x-2) \) は \( y \) に着目したときの定数項 \( x^2-4 \) を落とした誤りで、展開すると \( x^2y-4y \) です。\( (x-2)^2(y+1) \) は \( x^2-4 \) を \( (x-2)^2 \) とした公式の取り違えです。</div>
+</div>
+
+<div class="q" data-type="choice" id="q6">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問6</span><span class="q-obj">O3（復習するなら数Ⅰ-007）</span></div>
+  <p>\( x^4-13x^2+36 \) を因数分解したものとして正しいものはどれですか。</p>
+  <div class="choices"><button>\( (x^2+4)(x^2+9) \)</button><button data-correct="true">\( (x+2)(x-2)(x+3)(x-3) \)</button><button>\( (x-4)(x-9) \)</button><button>\( (x-2)^2(x-3)^2 \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( x^2=X \) とおくと \( X^2-13X+36=(X-4)(X-9) \)。戻して \( (x^2-4)(x^2-9) \)、さらに \( x^2-4=(x+2)(x-2) \)、\( x^2-9=(x+3)(x-3) \) なので、答えは \( (x+2)(x-2)(x+3)(x-3) \) です。\( (x^2+4)(x^2+9) \) は \( (X+4)(X+9) \) と符号を誤ったもので、展開すると \( x^4+13x^2+36 \) です。\( (x-4)(x-9) \) は \( X \) を \( x^2 \) に戻さずに \( x \) と書いたもので、展開すると \( x^2-13x+36 \) です。\( (x-2)^2(x-3)^2 \) は \( x^2-4 \) を \( (x-2)^2 \) とした公式の取り違えです。</div>
+</div>
+
+<div class="q" data-type="input" id="q7" data-accept="-4|−4">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問7</span><span class="q-obj">O1（復習するなら数Ⅰ-004）</span></div>
+  <p>\( (2x-y+3)^2 \) を展開したとき、\( xy \) の項の係数を答えなさい。</p>
+  <div class="answer-row"><input type="text" aria-label="解答"><button class="check">答え合わせ</button><span class="result"></span></div>
+  <div class="explain">正解は \( -4 \)。\( (a+b+c)^2=a^2+b^2+c^2+2ab+2bc+2ca \) で \( a=2x,\ b=-y,\ c=3 \) とすると、\( xy \) の項は \( 2ab=2\cdot 2x\cdot(-y)=-4xy \) です。展開した式全体は \( 4x^2+y^2+9-4xy-6y+12x \) です。\( -2 \) と答えた場合は \( 2ab \) の 2 を落としています。\( 4 \) と答えた場合は \( b=-y \) の符号を落としています。</div>
+</div>
+
+<div class="q" data-type="choice" id="q8">
+  <div class="q-head"><span class="quiz-level lv2">標準</span><span class="q-no">問8</span><span class="q-obj">O2（復習するなら数Ⅰ-006）</span></div>
+  <p>\( -6x^2+5x+6 \) を因数分解したものとして正しいものはどれですか。</p>
+  <div class="choices"><button data-correct="true">\( -(2x-3)(3x+2) \)</button><button>\( -(2x+3)(3x-2) \)</button><button>\( (2x-3)(3x+2) \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( x^2 \) の係数が負なので、まず \( -1 \) でくくって \( -(6x^2-5x-6) \)。かっこの中は、\( 6=2\times 3 \)、\( -6=(-3)\times 2 \) と分けると斜めの積の和が \( 2\cdot 2+(-3)\cdot 3=-5 \) で合い、\( (2x-3)(3x+2) \) です。答えは \( -(2x-3)(3x+2) \) です。\( -(2x+3)(3x-2) \) は、\( -1 \) でくくるときに \( x \) の項の符号を変え忘れて \( -(6x^2+5x-6) \) とした誤りで、展開すると \( -6x^2-5x+6 \) です。\( (2x-3)(3x+2) \) はくくり出した \( -1 \) を書き忘れた誤りで、展開すると \( 6x^2-5x-6 \) です。</div>
+</div>
+
+<div class="q" data-type="choice" id="q9">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問9</span><span class="q-obj">O3（復習するなら数Ⅰ-007）</span></div>
+  <p>\( 2x^2+5xy+2y^2+x-y-1 \) を因数分解したものとして正しいものはどれですか。</p>
+  <div class="choices"><button>\( (2x+y+1)(x+2y-1) \)</button><button>\( (2x+2y+1)(x+y-1) \)</button><button>\( (2x+y-1)(x+2y-1) \)</button><button data-correct="true">\( (2x+y-1)(x+2y+1) \)</button></div>
+  <span class="result"></span>
+  <div class="explain">\( x \) について整理すると \( 2x^2+(5y+1)x+(2y^2-y-1) \)。定数項は \( 2y^2-y-1=(2y+1)(y-1) \)。たすき掛けで、\( 2x \) と \( y-1 \)、\( x \) と \( 2y+1 \) を組にすると、斜めの積の和は \( 2(2y+1)+(y-1)=5y+1 \) で合います。答えは \( (2x+y-1)(x+2y+1) \) です。\( (2x+y+1)(x+2y-1) \) は定数項を \( (2y-1)(y+1) \) と符号を逆に因数分解し、\( x \) の係数を確かめなかった誤りで、展開すると \( 2x^2+5xy+2y^2-x+y-1 \) です。\( (2x+2y+1)(x+y-1) \) は組合せを誤った（斜めの積の和は \( 2(y-1)+(2y+1)=4y-1 \)）もので、\( 2x^2+4xy+2y^2-x-y-1 \) になります。\( (2x+y-1)(x+2y-1) \) は定数項を \( (y-1)(2y-1) \) とした誤りで、展開すると \( 2x^2+5xy+2y^2-3x-3y+1 \) です。</div>
+</div>
+
+<div class="q" data-type="open" id="q10">
+  <div class="q-head"><span class="quiz-level lv3">入試</span><span class="q-no">問10</span><span class="q-obj">O1・O3（復習するなら数Ⅰ-004・数Ⅰ-007）</span></div>
+  <p>太郎さんと花子さんが、\( (x+1)(x+2)(x+4)(x+5)-40 \) の因数分解について話しています。</p>
+  <p>太郎：「4つのかっこを左から順にかけると4次式になって、因数分解の見通しが立たないよ。」<br>花子：「かける組を工夫すると、同じかたまりが出てくるよ。数Ⅰ-004 の例題6 と同じ考え方だね。」</p>
+  <p>花子さんの考えで、この式を因数分解しなさい。どの2つずつを組にして、何を1つの文字に置き換えたかも書きなさい。</p>
+  <button class="show-model">解答例を見る</button>
+  <div class="model">
+    <p><strong>解答例</strong>　\( (x+1) \) と \( (x+5) \)、\( (x+2) \) と \( (x+4) \) を組にすると、\( (x+1)(x+5)=x^2+6x+5 \)、\( (x+2)(x+4)=x^2+6x+8 \) となり、\( x^2+6x \) が共通に現れる。\( x^2+6x=X \) とおくと、もとの式は \( (X+5)(X+8)-40=X^2+13X+40-40=X^2+13X=X(X+13) \)。\( X \) を戻して \( (x^2+6x)(x^2+6x+13) \)、さらに \( x^2+6x=x(x+6) \) なので、答えは \( x(x+6)(x^2+6x+13) \)。\( x^2+6x+13 \) は、積が 13、和が 6 になる整数の組がないので、係数が整数の範囲ではこれ以上因数分解できない（数Ⅰ-005）。</p>
+    <p><strong>採点の観点</strong>　① 定数項の和が等しくなる組（\( 1+5=2+4 \)）を選んで、共通なかたまり \( x^2+6x \) をつくっている。② かたまりを1つの文字に置き換え、二次式として整理・因数分解している。③ 文字を戻し、\( x^2+6x=x(x+6) \) まで最後まで因数分解している。④ 各因数がさらに因数分解できないかを確かめている。</p>
+  </div>
+  <div class="explain">\( (x+1)(x+2)=x^2+3x+2 \) と \( (x+4)(x+5)=x^2+9x+20 \) のように組むと、共通なかたまりができません。定数項の和が等しい組（\( 1+5 \) と \( 2+4 \)）を選ぶと、\( x \) の係数がそろいます。また、\( (x^2+6x)(x^2+6x+13) \) で止めるのは途中で、\( x^2+6x \) にはまだ共通因数 \( x \) があります。置き換えた文字 \( X \) のままで答えにしないことも確かめましょう（数Ⅰ-007 のよくある間違い）。</div>
+  <div class="self-check"><button data-self="ok">できた</button><button data-self="partial">一部できた</button><button data-self="ng">もう一度</button></div>
+</div>
+<div class="score" id="quiz-score"></div>
+</section>
+
+<section class="card">
+<h2 id="exam" data-toc="入試へのつながり"><span class="num">9</span>入試へのつながり</h2>
+<div class="box exam">
+  <p class="box-title">共通テスト ○（『数学Ⅰ，数学Ａ』『数学Ⅰ』の出題範囲）</p>
+  <p>令和9年度大学入学共通テスト実施要項では、数学①は『数学Ⅰ，数学Ａ』と『数学Ⅰ』のうちから1科目を選択して解答し、出題範囲に特記がない場合は「出題科目名に含まれる学習指導要領の科目の内容を総合した出題範囲」とされています。この時間の内容は、数学Ⅰ「(1) 数と式」の「二次の乗法公式及び因数分解の公式の理解を深めること」（ア(ウ)）と、「問題を解決する際に，既に学習した計算の方法と関連付けて，式を多面的に捉えたり目的に応じて適切に変形したりすること」（イ(イ)）に当たり、出題範囲に含まれます。</p>
+  <p>令和9年度の問題作成方針は、数学について「目的に応じて数，式，図，表，グラフなどの数学的な表現を用いて処理すること」などを求めています。式の形を見て変形の方法を選ぶ力は、「単元をまたぐ整理」の表のように、二次関数や二次不等式の問題でも土台になります。</p>
+  <p class="small">問10は会話を題材にした練習問題で、実際の出題形式を示すものではありません。「○」は出題範囲に含まれることを示す印で、出題の有無や頻度を示すものではありません。</p>
+</div>
+</section>
+
+<section class="card">
+<h2 id="next" data-toc="次の時間へ"><span class="num">10</span>次の時間へ</h2>
+<div class="box bridge">
+  <p class="box-title">復習：実数・根号を含む式の計算と一次不等式（数Ⅰ-098）</p>
+  <p>次の時間は、同じ単元「数と式」の後半（数Ⅰ-009〜019）を復習します。実数の分類、根号を含む式の計算と分母の有理化、一次不等式・連立不等式とその活用です。根号を含む式の計算では、この時間に確かめた乗法公式をそのまま使います。</p>
+  <p>この時間では、新しい内容は扱っていません。三次の乗法公式・因数分解は数学Ⅱで扱う内容で（数Ⅰ-003 の要点）、教科書によっては数学Ⅰで「発展」として扱われます（単元「数と式」の注）。この範囲には含まれません。</p>
+</div>
+<div class="nextprev">
+  <div><span class="label">前の時間</span>数Ⅰ-096　課題学習：解決の過程の振り返りと発表</div>
+  <div><span class="label">次の時間</span>数Ⅰ-098　復習：実数・根号を含む式の計算と一次不等式</div>
+</div>
+</section>
+
+<footer class="lesson-footer">
+  <p><strong>このページの根拠</strong></p>
+  <ul>
+    <li>学習内容マップ：hs_math_1a/数Ⅰ-097「復習：式の展開と因数分解」（区分：復習。学習指導要領 数学Ⅰ (1)ア(ウ)・イ(イ)）。単元「復習（予備時間）」の注。範囲の各行 hs_math_1a/数Ⅰ-001〜008 の要点と、それぞれの完成ページの用語・公式・よくある間違い</li>
+    <li>高等学校学習指導要領（平成30年告示）第2章第4節 数学「数学Ⅰ」(1) 数と式（文部科学省）https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf</li>
+    <li>高等学校学習指導要領（平成30年告示）解説 数学編 理数編 p.34-37（単元「数と式」：二次の乗法公式・因数分解、式を目的に応じて変形すること）（文部科学省）https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf</li>
+    <li>令和9年度大学入学者選抜に係る大学入学共通テスト実施要項・同問題作成方針（独立行政法人大学入試センター）https://www.dnc.ac.jp/</li>
+    <li>教科書編修趣意書（発展的な学習内容の記述）：東京書籍『改訂版 数学Ⅰ Standard』（数Ⅰ002-902）の「3次式の乗法公式」「3次式の因数分解」、数研出版『改訂版 数学Ⅰ』（数Ⅰ104-901）の「3次式の展開と因数分解」（文部科学省公開）https://www.mext.go.jp/content/20250415-ope_dev03-000041678-2.pdf、https://www.mext.go.jp/content/20250415-ope_dev03-000041678-14.pdf</li>
+  </ul>
+  <p>作成：2026-10-01　版：1.0　このページは学習指導要領と同解説、公的資料と、範囲の完成ページをもとに作成した学習用資料です。例題・問題・会話はこのページのために作成したものです（出典を示したものを除く）。図1は学習用に作成した関係図です。</p>
+</footer>
+
+</main>
+</div>
+
+<script type="application/json" id="lesson-meta">
+{
+  "id": "hs_math_1a/数Ⅰ-097",
+  "map": "hs_math_1a",
+  "rid": "数Ⅰ-097",
+  "title": "復習：式の展開と因数分解",
+  "subject": "数学Ⅰ",
+  "unit": {"ref": "hs_math_1a:Ⅰ-7", "title": "復習（予備時間）"},
+  "exam": {"共通テスト": "○", "個別試験": ""},
+  "basis": ["(1)ア(ウ)", "(1)イ(イ)"],
+  "kaisetsu_page": "",
+  "objectives": [
+    {"id": "O1", "text": "式の形を見て乗法公式を選び、共通な部分を1つの文字に置き換えて、式を展開することができる。", "from": "乗法公式・置き換えによる展開", "sections": ["sec-1"], "checks": ["q1", "q4", "q7", "q10"]},
+    {"id": "O2", "text": "共通因数をくくり出し、因数分解の公式やたすき掛けを用いて、acx²+(ad+bc)x+bd の形の式を最後まで因数分解することができる。", "from": "acx²+(ad+bc)x+bd の形…の因数分解の問題に取り組み", "sections": ["sec-2"], "checks": ["q2", "q3", "q8"]},
+    {"id": "O3", "text": "2種類以上の文字を含む式や同じかたまりが現れる式を、1つの文字に着目して整理したり置き換えたりして因数分解し、展開して確かめることができる。", "from": "一つの文字に着目した因数分解の問題に取り組み、式変形の技能を確かにする", "sections": ["sec-3"], "checks": ["q5", "q6", "q9", "q10"]}
+  ],
+  "key_terms": [
+    {"term": "降べきの順", "where": "review"},
+    {"term": "展開", "where": "sec-1"},
+    {"term": "乗法公式", "where": "sec-1"},
+    {"term": "置き換え", "where": "sec-1"},
+    {"term": "因数分解", "where": "sec-2"},
+    {"term": "共通因数", "where": "sec-2"},
+    {"term": "たすき掛け", "where": "sec-2"}
+  ],
+  "prerequisites": [
+    {"concept": "整式の整理（次数・定数項・降べきの順）", "taught_in": ["hs_math_1a/数Ⅰ-001"], "gap": false, "where": "review"},
+    {"concept": "指数法則", "taught_in": ["hs_math_1a/数Ⅰ-002"], "gap": false, "where": "review"},
+    {"concept": "乗法公式（中学校の公式と (ax+b)(cx+d)=acx²+(ad+bc)x+bd）", "taught_in": ["hs_math_1a/数Ⅰ-003"], "gap": false, "where": "sec-1"},
+    {"concept": "置き換えを利用した展開、3つの項の和の2乗", "taught_in": ["hs_math_1a/数Ⅰ-004"], "gap": false, "where": "sec-1"},
+    {"concept": "共通因数と因数分解の公式", "taught_in": ["hs_math_1a/数Ⅰ-005"], "gap": false, "where": "sec-2"},
+    {"concept": "たすき掛けによる因数分解", "taught_in": ["hs_math_1a/数Ⅰ-006"], "gap": false, "where": "sec-2"},
+    {"concept": "置き換え・1つの文字に着目した因数分解", "taught_in": ["hs_math_1a/数Ⅰ-007"], "gap": false, "where": "sec-3"},
+    {"concept": "展開と因数分解の型の見分け", "taught_in": ["hs_math_1a/数Ⅰ-008"], "gap": false, "where": "sec-3"},
+    {"concept": "単元をまたぐ整理で示す、展開・因数分解を使った場面（根号の計算・有理化・対偶の証明・平方完成・共有点・二次不等式）", "taught_in": ["hs_math_1a/数Ⅰ-013", "hs_math_1a/数Ⅰ-014", "hs_math_1a/数Ⅰ-028", "hs_math_1a/数Ⅰ-034", "hs_math_1a/数Ⅰ-046", "hs_math_1a/数Ⅰ-049"], "gap": false, "where": "sec-3"}
+  ],
+  "out_of_scope": [
+    "三次の乗法公式・因数分解（数学Ⅱ。単元「数と式」の注）",
+    "実数・根号を含む式の計算と一次不等式の復習（数Ⅰ-098）"
+  ],
+  "selection_reason": "数学Ⅰ 単元『復習（予備時間）』の順次作成（2026-10-01）",
+  "sources": [
+    {"name": "高等学校学習指導要領（平成30年告示）", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_03.pdf", "use": "数学Ⅰ(1)ア(ウ)・イ(イ)の事項"},
+    {"name": "高等学校学習指導要領（平成30年告示）解説 数学編 理数編", "publisher": "文部科学省", "url": "https://www.mext.go.jp/content/20260115-mxt_kyoiku02-100002620_04.pdf", "use": "p.34-37 単元「数と式」の扱い（二次の乗法公式・因数分解、式を目的に応じて変形すること）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト実施要項", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf", "use": "出題範囲（入試へのつながり）"},
+    {"name": "令和9年度大学入学者選抜に係る大学入学共通テスト問題作成方針", "publisher": "独立行政法人大学入試センター", "url": "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00005361.pdf", "use": "数学の問題作成の方針（入試へのつながり）"},
+    {"name": "教科書編修趣意書 数学Ⅰ『改訂版 数学Ⅰ Standard』（数Ⅰ002-902）", "publisher": "東京書籍（文部科学省公開）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-2.pdf", "use": "発展的な学習内容の記述（3次式の乗法公式・3次式の因数分解）"},
+    {"name": "教科書編修趣意書 数学Ⅰ『改訂版 数学Ⅰ』（数Ⅰ104-901）", "publisher": "数研出版（文部科学省公開）", "url": "https://www.mext.go.jp/content/20250415-ope_dev03-000041678-14.pdf", "use": "発展的な学習内容の記述（3次式の展開と因数分解）"}
+  ],
+  "version": "1.0",
+  "generated": "2026-10-01"
+}
+</script>
+</body>
+</html>
