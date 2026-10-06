@@ -26,13 +26,33 @@ export async function POST(req: Request) {
       const title = file.name.replace(/\.html?$/i, '');
       
       const docRef = materialsRef.doc(title);
+      const docSnap = await docRef.get();
+      
+      let versions: any[] = [];
+      if (docSnap.exists) {
+        const existingData = docSnap.data() as any;
+        versions = existingData.versions || [];
+        
+        // Push the current existing data into the versions history
+        versions.unshift({
+          content: existingData.content,
+          importedAt: existingData.importedAt || new Date().toISOString()
+        });
+        
+        // Keep only the 2 most recent old versions (plus the active one, makes 3 total)
+        if (versions.length > 2) {
+          versions = versions.slice(0, 2);
+        }
+      }
+
       batch.set(docRef, {
         title,
         content,
         filename: file.name,
         type: 'html',
         subject: subjectName,
-        importedAt: new Date().toISOString()
+        importedAt: new Date().toISOString(),
+        versions
       }, { merge: true });
       
       count++;
