@@ -9,13 +9,14 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
 
     if (!dbAdmin) return NextResponse.json({ error: 'Firebase Admin not initialized' }, { status: 500 });
     
-    const snapshot = await dbAdmin.collection('learning_materials').where('title', '==', id).limit(1).get();
+    const docRef = dbAdmin.collection('learning_materials').doc(id);
+    const docSnap = await docRef.get();
     
-    if (snapshot.empty) {
+    if (!docSnap.exists) {
       return NextResponse.json({ error: 'Material not found' }, { status: 404 });
     }
     
-    const data = snapshot.docs[0].data();
+    const data = docSnap.data() as any;
     
     if (v !== null) {
       const vIndex = parseInt(v, 10);
