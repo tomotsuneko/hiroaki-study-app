@@ -229,7 +229,7 @@ export default function MaterialsAdminPage() {
                     {items.map(item => (
                       <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', paddingBottom: '12px', borderBottom: '1px dashed #E2E8F0' }}>
                         <div>
-                          <Link href={`/materials/${encodeURIComponent(item.id)}`} target="_blank" style={{ color: '#2563EB', fontWeight: 'bold', textDecoration: 'underline', fontSize: '1.05rem' }}>
+                          <Link href={`/preview/${encodeURIComponent(item.id)}`} style={{ color: '#2563EB', fontWeight: 'bold', textDecoration: 'underline', fontSize: '1.05rem' }}>
                             {item.title}
                           </Link>
                           <div style={{ fontSize: '0.85rem', color: '#64748B', marginTop: '4px' }}>
@@ -243,7 +243,7 @@ export default function MaterialsAdminPage() {
                             {item.versions.map((v, idx) => (
                               <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px', justifyContent: 'flex-end' }}>
                                 <span style={{ color: '#94A3B8' }}>{new Date(v.importedAt).toLocaleString('ja-JP')}</span>
-                                <Link href={`/materials/${encodeURIComponent(item.id)}?v=${idx}`} target="_blank" style={{ color: '#059669', textDecoration: 'underline' }}>
+                                <Link href={`/preview/${encodeURIComponent(item.id)}?v=${idx}`} style={{ color: '#059669', textDecoration: 'underline' }}>
                                   参照
                                 </Link>
                                 <button 
