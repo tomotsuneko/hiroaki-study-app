@@ -24,12 +24,7 @@ export default function MaterialViewer() {
         const res = await fetch(url);
         const data = await res.json();
         if (data.success && data.material) {
-          let content = data.material.content;
-          const bodyMatch = content.match(/<body[^>]*>([\s\S]*)<\/body>/i);
-          if (bodyMatch && bodyMatch[1]) {
-            content = bodyMatch[1];
-          }
-          setHtmlContent(content);
+          setHtmlContent(data.material.content); // Use full HTML content
           setIsVersion(data.material.isVersion || false);
         } else {
           setError(data.error || 'コンテンツが見つかりません');
@@ -48,8 +43,8 @@ export default function MaterialViewer() {
   if (error) return <div style={{ padding: '40px', textAlign: 'center', color: 'red' }}>{error}</div>;
 
   return (
-    <div style={{ backgroundColor: 'white', minHeight: '100vh', padding: '20px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+    <div style={{ backgroundColor: 'white', height: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', borderBottom: '1px solid #E2E8F0' }}>
         <button 
           onClick={() => router.back()} 
           style={{ padding: '8px 16px', borderRadius: '8px', border: '1px solid #CBD5E1', cursor: 'pointer', backgroundColor: '#F8FAFC' }}
@@ -62,9 +57,11 @@ export default function MaterialViewer() {
           </span>
         )}
       </div>
-      <div 
-        dangerouslySetInnerHTML={{ __html: htmlContent || '' }}
-        className="material-content"
+      <iframe
+        srcDoc={htmlContent || ''}
+        style={{ flex: 1, width: '100%', border: 'none' }}
+        title="Material Content"
+        sandbox="allow-scripts allow-same-origin allow-popups"
       />
     </div>
   );
