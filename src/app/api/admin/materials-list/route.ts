@@ -6,13 +6,14 @@ export async function GET() {
     if (!dbAdmin) return NextResponse.json({ error: 'Firebase Admin not initialized' }, { status: 500 });
     
     // We only fetch metadata to save bandwidth, not the actual content.
-    const snapshot = await dbAdmin.collection('learning_materials').select('title', 'subject', 'importedAt', 'versions').get();
+    const snapshot = await dbAdmin.collection('learning_materials').select('title', 'contentTitle', 'subject', 'importedAt', 'versions').get();
     
     const materials = snapshot.docs.map(doc => {
       const data = doc.data();
       return {
         id: doc.id,
         title: data.title,
+        contentTitle: data.contentTitle || '',
         subject: data.subject || '未分類',
         importedAt: data.importedAt,
         versions: (data.versions || []).map((v: any) => ({ importedAt: v.importedAt }))

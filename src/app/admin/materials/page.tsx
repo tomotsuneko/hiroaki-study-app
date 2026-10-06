@@ -3,18 +3,10 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 
-const SUBJECTS = [
-  { id: 'math', name: '数学', color: '#3B82F6' },
-  { id: 'english', name: '英語', color: '#F59E0B' },
-  { id: 'japanese', name: '国語', color: '#EF4444' },
-  { id: 'science', name: '理科', color: '#10B981' },
-  { id: 'social', name: '社会', color: '#8B5CF6' },
-  { id: 'info', name: '情報', color: '#64748B' },
-];
-
 type Material = {
   id: string;
   title: string;
+  contentTitle?: string;
   subject: string;
   importedAt: string;
   versions: { importedAt: string }[];
@@ -26,7 +18,26 @@ export default function MaterialsAdminPage() {
   const [materials, setMaterials] = useState<Material[]>([]);
   const [isLoadingList, setIsLoadingList] = useState(true);
   
+  // Dynamic subjects from curriculum
+  const [subjects, setSubjects] = useState<{ id: string, name: string, level: string }[]>([]);
+  
   const fileInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({});
+
+  const fetchMasterDb = async () => {
+    try {
+      const res = await fetch('/api/admin/master-db');
+      const data = await res.json();
+      if (data.masterDb) {
+        setSubjects(data.masterDb.map((s: any) => ({
+          id: s.id,
+          name: s.subjectName || s.id,
+          level: s.level === 'junior_high' ? '中学校' : '高等学校'
+        })));
+      }
+    } catch (e) {
+      console.error('Failed to fetch subjects:', e);
+    }
+  };
 
   const fetchMaterials = async () => {
     try {
@@ -44,6 +55,7 @@ export default function MaterialsAdminPage() {
   };
 
   useEffect(() => {
+    fetchMasterDb();
     fetchMaterials();
   }, []);
 
@@ -98,54 +110,60 @@ export default function MaterialsAdminPage() {
           const contentType = res.headers.get('content-type');
           if (contentType && contentType.includes('application/json')) {
             const data = await res.json();
-            throw new Error(data.error || '取り込みに失敗しました');
+            throw new Error(data.error || 'アップロードに失敗しました');
           } else {
-            const text = await res.text();
-            if (text.includes('Request Entity Too Large') || res.status === 413) {
-              throw new Error('ファイルサイズが大きすぎます。もう少し少ないファイル数で試してください。');
-            }
-            throw new Error(`サーバーエラーが発生しました (${res.status})`);
+            throw new Error(`サーバーエラー: ${res.status}`);
           }
         }
         
-        const data = await res.json();
-        totalImported += data.importedCount || 0;
+        const result = await res.json();
+        totalImported += result.importedCount || chunk.length;
       }
 
-      setMessage({ text: `✅ 成功: 合計 ${totalImported}件のHTMLファイルをデータベースに反映しました。`, type: 'success' });
-      await fetchMaterials(); // Refresh list
-    } catch (err: any) {
-      setMessage({ text: `❌ エラー: ${err.message}`, type: 'error' });
+      setMessage({ text: `✅ 計 ${totalImported} 件の学習コンテンツを「${subjectName}」にインポートしました`, type: 'success' });
+      fetchMaterials(); // Refresh list
+
+    } catch (error: any) {
+      console.error(error);
+      setMessage({ text: `❌ エラー: ${error.message}`, type: 'error' });
     } finally {
       setImportingSubject(null);
-      if (e.target) e.target.value = ''; // Reset input
+      e.target.value = '';
     }
   };
 
   const handleRestore = async (id: string, versionIndex: number) => {
-    if (!confirm('この旧バージョンを最新版として復元（正規化）しますか？')) return;
+    if (!confirm('この旧バージョンを最新版として正規化（復元）しますか？\n\n現在の最新版は履歴に保存されます。')) return;
+
     try {
       const res = await fetch('/api/admin/restore-version', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id, versionIndex })
       });
-      const data = await res.json();
-      if (data.success) {
-        alert('バージョンを復元しました');
+      if (res.ok) {
+        alert('正規化が完了しました。');
         fetchMaterials();
       } else {
-        alert(data.error || '復元に失敗しました');
+        const data = await res.json();
+        alert(`エラー: ${data.error}`);
       }
     } catch (e) {
-      alert('通信エラーが発生しました');
+      alert('通信エラーが発生しました。');
     }
   };
 
-  const groupedMaterials = SUBJECTS.reduce((acc, subject) => {
-    acc[subject.name] = materials.filter(m => m.subject === subject.name);
+  // Group materials by subject ID
+  const groupedMaterials = materials.reduce((acc, curr) => {
+    if (!acc[curr.subject]) acc[curr.subject] = [];
+    acc[curr.subject].push(curr);
     return acc;
   }, {} as Record<string, Material[]>);
+  
+  // Sort materials
+  Object.keys(groupedMaterials).forEach(key => {
+    groupedMaterials[key].sort((a, b) => new Date(b.importedAt).getTime() - new Date(a.importedAt).getTime());
+  });
 
   return (
     <div className="animate-fade-in" style={{ paddingBottom: '40px' }}>
@@ -169,7 +187,7 @@ export default function MaterialsAdminPage() {
         )}
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
-          {SUBJECTS.map(subject => (
+          {subjects.map(subject => (
             <div key={subject.id}>
               <input 
                 type="file" 
@@ -185,7 +203,7 @@ export default function MaterialsAdminPage() {
                 disabled={importingSubject !== null}
                 style={{
                   padding: '8px 16px',
-                  backgroundColor: importingSubject === subject.id ? '#94A3B8' : subject.color,
+                  backgroundColor: importingSubject === subject.id ? '#94A3B8' : '#3B82F6',
                   color: 'white',
                   borderRadius: '24px',
                   border: 'none',
@@ -198,11 +216,21 @@ export default function MaterialsAdminPage() {
                   fontSize: '0.95rem'
                 }}
               >
-                📥 {subject.name}
+                📥 {subject.level} {subject.name}
               </button>
             </div>
           ))}
         </div>
+      </div>
+      
+      {/* 中段：アンカーリンク */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', padding: '0 8px', marginBottom: '24px' }}>
+        <span style={{ color: '#64748B', fontWeight: 'bold' }}>科目別ショートカット:</span>
+        {subjects.map(subject => (
+          <a key={subject.id} href={`#${subject.id}`} style={{ color: '#2563EB', textDecoration: 'underline' }}>
+            {subject.level} {subject.name}
+          </a>
+        ))}
       </div>
 
       {/* 下段：コンテンツ一覧 */}
@@ -215,23 +243,30 @@ export default function MaterialsAdminPage() {
           <div style={{ textAlign: 'center', color: '#64748B' }}>学習コンテンツはまだ登録されていません。</div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            {SUBJECTS.map(subject => {
-              const items = groupedMaterials[subject.name] || [];
+            {subjects.map(subject => {
+              const items = groupedMaterials[subject.id] || [];
               if (items.length === 0) return null;
               
               return (
-                <div key={subject.id} style={{ border: `1px solid ${subject.color}40`, borderRadius: '8px', overflow: 'hidden' }}>
-                  <div style={{ backgroundColor: `${subject.color}15`, padding: '12px 16px', fontWeight: 'bold', borderBottom: `1px solid ${subject.color}40`, color: '#1E293B', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: subject.color }}></div>
-                    {subject.name} <span style={{ fontSize: '0.9rem', color: '#64748B', fontWeight: 'normal' }}>({items.length}件)</span>
+                <div key={subject.id} id={subject.id} style={{ border: `1px solid #CBD5E1`, borderRadius: '8px', overflow: 'hidden' }}>
+                  <div style={{ backgroundColor: `#F1F5F9`, padding: '12px 16px', fontWeight: 'bold', borderBottom: `1px solid #CBD5E1`, color: '#1E293B', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#3B82F6' }}></div>
+                    {subject.level} {subject.name} <span style={{ fontSize: '0.9rem', color: '#64748B', fontWeight: 'normal' }}>({items.length}件)</span>
                   </div>
                   <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     {items.map(item => (
                       <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', paddingBottom: '12px', borderBottom: '1px dashed #E2E8F0' }}>
                         <div>
-                          <Link href={`/preview/${encodeURIComponent(item.id)}`} style={{ color: '#2563EB', fontWeight: 'bold', textDecoration: 'underline', fontSize: '1.05rem' }}>
-                            {item.title}
-                          </Link>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                            <Link href={`/preview/${encodeURIComponent(item.id)}`} style={{ color: '#2563EB', fontWeight: 'bold', textDecoration: 'underline', fontSize: '1.05rem' }}>
+                              {item.title}
+                            </Link>
+                            {item.contentTitle && (
+                              <span style={{ color: '#475569', fontSize: '0.95rem', fontWeight: '500' }}>
+                                {item.contentTitle}
+                              </span>
+                            )}
+                          </div>
                           <div style={{ fontSize: '0.85rem', color: '#64748B', marginTop: '4px' }}>
                             最終更新: {new Date(item.importedAt).toLocaleString('ja-JP')}
                           </div>

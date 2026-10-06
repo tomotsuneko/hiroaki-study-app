@@ -24,6 +24,8 @@ export async function POST(req: Request) {
     for (const file of files) {
       const content = await file.text();
       const title = file.name.replace(/\.html?$/i, '');
+      const titleMatch = content.match(/<title>(.*?)<\/title>/i);
+      const contentTitle = titleMatch ? titleMatch[1].split('｜')[0].trim() : '';
       
       const docRef = materialsRef.doc(title);
       const docSnap = await docRef.get();
@@ -47,6 +49,7 @@ export async function POST(req: Request) {
 
       batch.set(docRef, {
         title,
+        contentTitle,
         content,
         filename: file.name,
         type: 'html',
