@@ -30,23 +30,47 @@ export default function MaterialsAdminPage() {
     setMessage(null);
 
     try {
-      const formData = new FormData();
-      formData.append('subject', subjectId);
-      formData.append('subjectName', subjectName);
-      
-      Array.from(files).forEach((file) => {
-        formData.append('files', file);
-      });
+      const fileArray = Array.from(files);
+      const chunkSize = 5;
+      let totalImported = 0;
 
-      const res = await fetch('/api/admin/import-materials', {
-        method: 'POST',
-        body: formData,
-      });
+      for (let i = 0; i < fileArray.length; i += chunkSize) {
+        const chunk = fileArray.slice(i, i + chunkSize);
+        
+        const formData = new FormData();
+        formData.append('subject', subjectId);
+        formData.append('subjectName', subjectName);
+        
+        chunk.forEach((file) => {
+          formData.append('files', file);
+        });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || '取り込みに失敗しました');
-      
-      setMessage({ text: `✅ 成功: ${data.importedCount}件のHTMLファイルをデータベースに反映しました。`, type: 'success' });
+        setMessage({ text: `🔄 アップロード中... (${Math.min(i + chunkSize, fileArray.length)}/${fileArray.length}件)`, type: 'success' });
+
+        const res = await fetch('/api/admin/import-materials', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (!res.ok) {
+          const contentType = res.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            const data = await res.json();
+            throw new Error(data.error || '取り込みに失敗しました');
+          } else {
+            const text = await res.text();
+            if (text.includes('Request Entity Too Large') || res.status === 413) {
+              throw new Error('ファイルサイズが大きすぎます。もう少し少ないファイル数で試してください。');
+            }
+            throw new Error(`サーバーエラーが発生しました (${res.status})`);
+          }
+        }
+        
+        const data = await res.json();
+        totalImported += data.importedCount || 0;
+      }
+
+      setMessage({ text: `✅ 成功: 合計 ${totalImported}件のHTMLファイルをデータベースに反映しました。`, type: 'success' });
     } catch (err: any) {
       setMessage({ text: `❌ エラー: ${err.message}`, type: 'error' });
     } finally {
