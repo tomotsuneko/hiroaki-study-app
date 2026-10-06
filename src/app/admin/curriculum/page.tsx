@@ -6,7 +6,6 @@ export default function CurriculumAdminPage() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [logs, setLogs] = useState<string[]>([]);
   const [masterDb, setMasterDb] = useState<any[]>([]);
-  const [materialIds, setMaterialIds] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState<'junior_high' | 'high_school'>('high_school');
   
   // Carousel states for each tab
@@ -20,7 +19,6 @@ export default function CurriculumAdminPage() {
       const data = await res.json();
       if (data.success) {
         setMasterDb(data.masterDb);
-        setMaterialIds(data.materialIds || []);
       }
     } catch (e) {
       console.error(e);
@@ -201,20 +199,9 @@ export default function CurriculumAdminPage() {
                         <div key={j} style={{ backgroundColor: 'white', padding: '12px', borderRadius: '6px', border: '1px solid #E2E8F0' }}>
                           <div style={{ fontWeight: 'bold', color: '#059669', marginBottom: '8px' }}>📁 中分類: {mCat.name}</div>
                           <ul style={{ paddingLeft: '20px', margin: 0, color: '#475569', fontSize: '0.9rem' }}>
-                            {mCat.smallCategories?.map((sCat: any, k: number) => {
-                              const hasMaterial = materialIds.includes(sCat.id);
-                              return (
-                                <li key={k} style={{ marginBottom: '6px' }}>
-                                  {hasMaterial ? (
-                                    <a href={`/materials/${encodeURIComponent(sCat.id)}`} target="_blank" rel="noopener noreferrer" style={{ color: '#2563EB', textDecoration: 'underline', fontWeight: 'bold' }}>
-                                      {sCat.title} <span style={{ fontSize: '0.8rem', color: '#10B981' }}>[📖 教材あり]</span>
-                                    </a>
-                                  ) : (
-                                    <span>{sCat.title}</span>
-                                  )}
-                                </li>
-                              );
-                            })}
+                            {mCat.smallCategories?.map((sCat: string, k: number) => (
+                              <li key={k} style={{ marginBottom: '4px' }}>{sCat}</li>
+                            ))}
                           </ul>
                         </div>
                       ))}

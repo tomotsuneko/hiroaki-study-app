@@ -78,13 +78,9 @@ export async function POST(req: Request) {
             // format: | ID | 学年・科目 | 小項目（1コマ） | 区分 | 学習内容の要点 | ...
             // parts[0] is empty, parts[1] is ID, parts[2] is 学年, parts[3] is 小項目
             if (parts.length > 3) {
-              const idItem = parts[1].trim();
               const smallItem = parts[3].trim();
               if (smallItem && smallItem !== '') {
-                currentMedium.smallCategories.push({
-                  id: idItem,
-                  title: smallItem
-                });
+                currentMedium.smallCategories.push(smallItem);
               }
             }
           }

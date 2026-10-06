@@ -12,10 +12,7 @@ export async function GET() {
       masterDb.push({ id: doc.id, ...doc.data() });
     });
 
-    const materialsSnap = await dbAdmin.collection('learning_materials').select('title').get();
-    const materialIds = materialsSnap.docs.map((doc: any) => doc.data().title);
-
-    return NextResponse.json({ success: true, masterDb, materialIds });
+    return NextResponse.json({ success: true, masterDb });
   } catch (error: any) {
     console.error('Fetch Master DB Error:', error);
     return NextResponse.json({ error: 'Failed to fetch master DB' }, { status: 500 });
