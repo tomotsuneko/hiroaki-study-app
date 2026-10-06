@@ -1,28 +1,57 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+
+const SUBJECTS = [
+  { id: 'math', name: '数学', color: '#3B82F6' },
+  { id: 'english', name: '英語', color: '#F59E0B' },
+  { id: 'japanese', name: '国語', color: '#EF4444' },
+  { id: 'science', name: '理科', color: '#10B981' },
+  { id: 'social', name: '社会', color: '#8B5CF6' },
+  { id: 'info', name: '情報', color: '#64748B' },
+];
 
 export default function MaterialsAdminPage() {
-  const [isImporting, setIsImporting] = useState(false);
-  const [message, setMessage] = useState<string | null>(null);
+  const [importingSubject, setImportingSubject] = useState<string | null>(null);
+  const [message, setMessage] = useState<{ text: string, type: 'success' | 'error' } | null>(null);
+  
+  const fileInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({});
 
-  const handleImport = async () => {
-    if (!confirm('src/data/materials にあるHTMLファイルを一括でデータベース（Firestore）に取り込みます。よろしいですか？')) return;
-    
-    setIsImporting(true);
+  const handleFileChange = async (subjectId: string, subjectName: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    if (!confirm(`選択された ${files.length} 件のファイルを「${subjectName}」の学習コンテンツとしてインポートしますか？`)) {
+      e.target.value = '';
+      return;
+    }
+
+    setImportingSubject(subjectId);
     setMessage(null);
+
     try {
+      const formData = new FormData();
+      formData.append('subject', subjectId);
+      formData.append('subjectName', subjectName);
+      
+      Array.from(files).forEach((file) => {
+        formData.append('files', file);
+      });
+
       const res = await fetch('/api/admin/import-materials', {
         method: 'POST',
+        body: formData,
       });
+
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || '取り込みに失敗しました');
       
-      setMessage(`✅ 成功: ${data.importedCount}件のHTMLファイルをデータベースに反映しました。`);
-    } catch (e: any) {
-      setMessage(`❌ エラー: ${e.message}`);
+      setMessage({ text: `✅ 成功: ${data.importedCount}件のHTMLファイルをデータベースに反映しました。`, type: 'success' });
+    } catch (err: any) {
+      setMessage({ text: `❌ エラー: ${err.message}`, type: 'error' });
     } finally {
-      setIsImporting(false);
+      setImportingSubject(null);
+      if (e.target) e.target.value = ''; // Reset input
     }
   };
 
@@ -32,42 +61,62 @@ export default function MaterialsAdminPage() {
       
       <div className="glass-panel" style={{ padding: '24px' }}>
         <h2 style={{ fontSize: '1.2rem', marginBottom: '16px' }}>教材データのインポート</h2>
-        <p style={{ color: '#475569', marginBottom: '20px', lineHeight: '1.6' }}>
-          <code>src/data/materials</code> フォルダに配置された <b>HTMLファイル</b> (.html / .htm) を一括でデータベース（Firestore）に取り込みます。<br/>
-          ※ 取り込まれたデータは、AIチューターの知識ベース（RAG）や学習ドリル生成の参照データとして活用されます。
+        <p style={{ color: '#475569', marginBottom: '24px', lineHeight: '1.6' }}>
+          ローカルのPCに保存されている <b>HTMLファイル</b> (.html / .htm) を選択してアップロードします。<br/>
+          科目ごとのボタンからファイルを選択してください。複数ファイルを同時に選択可能です。
         </p>
-        
-        <button 
-          onClick={handleImport}
-          disabled={isImporting}
-          style={{
-            padding: '12px 24px',
-            backgroundColor: isImporting ? '#94A3B8' : '#3B82F6',
-            color: 'white',
-            borderRadius: '8px',
-            border: 'none',
-            cursor: isImporting ? 'not-allowed' : 'pointer',
-            fontWeight: 'bold',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px'
-          }}
-        >
-          {isImporting ? '🔄 取り込み中...' : '📥 HTMLファイルを一括インポート'}
-        </button>
 
         {message && (
           <div style={{ 
-            marginTop: '20px', 
             padding: '16px', 
-            borderRadius: '8px', 
-            backgroundColor: message.startsWith('✅') ? '#ECFDF5' : '#FEF2F2',
-            color: message.startsWith('✅') ? '#065F46' : '#991B1B',
+            backgroundColor: message.type === 'error' ? '#FEF2F2' : '#F0FDF4', 
+            color: message.type === 'error' ? '#991B1B' : '#166534', 
+            borderRadius: '8px',
+            marginBottom: '24px',
             fontWeight: '500'
           }}>
-            {message}
+            {message.text}
           </div>
         )}
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          {SUBJECTS.map(subject => (
+            <div key={subject.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', backgroundColor: '#F8FAFC', borderRadius: '8px', border: '1px solid #E2E8F0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: subject.color }}></div>
+                <span style={{ fontWeight: 'bold', fontSize: '1.1rem' }}>{subject.name}</span>
+              </div>
+              
+              <div>
+                <input 
+                  type="file" 
+                  multiple 
+                  accept=".html,.htm" 
+                  style={{ display: 'none' }}
+                  ref={el => { fileInputRefs.current[subject.id] = el; }}
+                  onChange={(e) => handleFileChange(subject.id, subject.name, e)}
+                  disabled={importingSubject !== null}
+                />
+                <button
+                  onClick={() => fileInputRefs.current[subject.id]?.click()}
+                  disabled={importingSubject !== null}
+                  style={{
+                    padding: '8px 16px',
+                    backgroundColor: importingSubject === subject.id ? '#94A3B8' : subject.color,
+                    color: 'white',
+                    borderRadius: '6px',
+                    border: 'none',
+                    cursor: importingSubject !== null ? 'not-allowed' : 'pointer',
+                    fontWeight: 'bold',
+                    opacity: importingSubject !== null && importingSubject !== subject.id ? 0.5 : 1
+                  }}
+                >
+                  {importingSubject === subject.id ? '🔄 インポート中...' : '📥 ファイルを選択してアップロード'}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,29 +1,19 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 import { dbAdmin } from '@/lib/firebase-admin';
 
-export async function POST() {
+export async function POST(req: Request) {
   try {
     if (!dbAdmin) {
       return NextResponse.json({ error: 'Firebase Admin is not initialized.' }, { status: 500 });
     }
 
-    const materialsDir = path.join(process.cwd(), 'src/data/materials');
-    
-    if (!fs.existsSync(materialsDir)) {
-      fs.mkdirSync(materialsDir, { recursive: true });
-    }
+    const formData = await req.formData();
+    const subject = formData.get('subject') as string;
+    const subjectName = formData.get('subjectName') as string;
+    const files = formData.getAll('files') as File[];
 
-    const files = fs.readdirSync(materialsDir);
-    const htmlFiles = files.filter(f => f.endsWith('.html') || f.endsWith('.htm'));
-
-    if (htmlFiles.length === 0) {
-      return NextResponse.json({ 
-        success: true, 
-        message: 'No HTML files found in src/data/materials',
-        importedCount: 0 
-      });
+    if (!files || files.length === 0) {
+      return NextResponse.json({ error: 'No files uploaded.' }, { status: 400 });
     }
 
     const batch = dbAdmin.batch();
@@ -31,44 +21,39 @@ export async function POST() {
     
     let count = 0;
     
-    for (const file of htmlFiles) {
-      const filePath = path.join(materialsDir, file);
-      const content = fs.readFileSync(filePath, 'utf-8');
-      
-      const title = file.replace(/\.html?$/, '');
+    for (const file of files) {
+      const content = await file.text();
+      const title = file.name.replace(/\.html?$/i, '');
       
       const docRef = materialsRef.doc(title);
       batch.set(docRef, {
         title,
         content,
-        filename: file,
+        filename: file.name,
         type: 'html',
+        subject: subjectName,
         importedAt: new Date().toISOString()
       }, { merge: true });
       
       count++;
       
-      // Firestore batch size limit is 500
+      // Batch writes can only contain up to 500 operations, 
+      // but assuming they upload reasonably sized chunks for now.
       if (count % 400 === 0) {
         await batch.commit();
+        // create new batch if needed in a more complex setup
       }
     }
-    
-    if (count % 400 !== 0) {
-      await batch.commit();
-    }
 
-    return NextResponse.json({
-      success: true,
-      message: `Successfully imported ${count} HTML files to Firestore.`,
-      importedCount: count
+    await batch.commit();
+
+    return NextResponse.json({ 
+      success: true, 
+      importedCount: count 
     });
-    
+
   } catch (error: any) {
-    console.error('Error importing materials:', error);
-    return NextResponse.json(
-      { error: 'Failed to import materials: ' + error.message },
-      { status: 500 }
-    );
+    console.error('Import Error:', error);
+    return NextResponse.json({ error: 'Failed to import materials: ' + error.message }, { status: 500 });
   }
 }
