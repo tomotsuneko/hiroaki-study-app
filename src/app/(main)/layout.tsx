@@ -3,8 +3,11 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './layout.module.css';
+import AIAvatar from '@/components/AIAvatar';
+import FloatingTimer from '@/components/FloatingTimer';
+import { useState, useEffect } from 'react';
 
-function Sidebar() {
+function Sidebar({ onClose }: { onClose: () => void }) {
   const pathname = usePathname();
 
   const navItems = [
@@ -22,8 +25,18 @@ function Sidebar() {
   return (
     <aside className={styles.sidebar}>
       <div className={styles.logoContainer}>
-        <div className={styles.logoIcon}>AI</div>
-        <span className={styles.logoText}>AI&SI Tutor</span>
+        <div className={styles.logoBrand}>
+          <div className={styles.logoIcon}>AI</div>
+          <span className={styles.logoText}>AI&SI Tutor</span>
+        </div>
+        <button 
+          className={styles.collapseBtn} 
+          onClick={onClose}
+          aria-label="メニューを閉じる"
+          title="メニューを閉じる"
+        >
+          ◁
+        </button>
       </div>
       
       <nav className={styles.nav}>
@@ -49,36 +62,56 @@ function Sidebar() {
   );
 }
 
-import AIAvatar from '@/components/AIAvatar';
-import FloatingTimer from '@/components/FloatingTimer';
-import { useState, useEffect } from 'react';
-
 export default function MainLayout({ children }: { children: React.ReactNode }) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [pathname]);
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      if (mobile) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // モバイル表示時はページ遷移で自動的に閉じる
+  useEffect(() => {
+    if (isMobile) {
+      setIsSidebarOpen(false);
+    }
+  }, [pathname, isMobile]);
 
   return (
     <div className={styles.appContainer}>
-      <button 
-        className={styles.hamburgerBtn}
-        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-      >
-        {isMobileMenuOpen ? '✕' : '☰'}
-      </button>
-
-      {isMobileMenuOpen && (
-        <div className={styles.overlay} onClick={() => setIsMobileMenuOpen(false)} />
+      {/* 閉じている時に表示されるハンバーガーボタン */}
+      {!isSidebarOpen && (
+        <button 
+          className={styles.floatingHamburgerBtn}
+          onClick={() => setIsSidebarOpen(true)}
+          aria-label="メニューを開く"
+          title="メニューを開く"
+        >
+          ☰
+        </button>
       )}
 
-      <div className={`${styles.sidebarWrapper} ${isMobileMenuOpen ? styles.sidebarOpen : ''}`}>
-        <Sidebar />
+      {/* モバイル時のオーバーレイ */}
+      {isMobile && isSidebarOpen && (
+        <div className={styles.overlay} onClick={() => setIsSidebarOpen(false)} />
+      )}
+
+      <div className={`${styles.sidebarWrapper} ${isSidebarOpen ? styles.sidebarOpen : styles.sidebarClosed}`}>
+        <Sidebar onClose={() => setIsSidebarOpen(false)} />
       </div>
 
-      <main className={styles.mainContent}>
+      <main className={`${styles.mainContent} ${!isSidebarOpen ? styles.mainContentExpanded : ''}`}>
         {children}
       </main>
       <AIAvatar />

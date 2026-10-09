@@ -19,8 +19,33 @@
 .logoContainer {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 4px 20px 4px;
+}
+
+.logoBrand {
+  display: flex;
+  align-items: center;
   gap: 10px;
-  padding: 0 8px 24px 8px;
+}
+
+.collapseBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+}
+
+.collapseBtn:hover {
+  background-color: #F1F5F9;
+  color: var(--accent-primary);
 }
 
 .logoIcon {
@@ -112,57 +137,84 @@
   overflow-y: auto;
   padding: 40px;
   position: relative;
+  transition: padding-left 0.25s ease;
 }
 
-.hamburgerBtn {
-  display: none;
+.mainContentExpanded {
+  padding-left: 68px; /* Space for the floating hamburger button on desktop */
+}
+
+.floatingHamburgerBtn {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 90;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #1E293B;
+  transition: all 0.2s ease;
+}
+
+.floatingHamburgerBtn:hover {
+  background-color: #F8FAFC;
+  color: var(--accent-primary);
+  transform: scale(1.05);
+}
+
+.sidebarWrapper {
+  display: flex;
+  height: 100%;
+  flex-shrink: 0;
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.sidebarOpen {
+  width: var(--sidebar-width);
+}
+
+.sidebarClosed {
+  width: 0;
 }
 
 .overlay {
   display: none;
 }
 
-.sidebarWrapper {
-  display: flex;
-  height: 100%;
-}
-
 @media (max-width: 768px) {
-  .hamburgerBtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 12px;
-    right: 16px;
-    z-index: 101;
-    background: white;
-    border: 1px solid #E2E8F0;
-    border-radius: 8px;
-    width: 44px;
-    height: 44px;
-    font-size: 1.5rem;
-    color: #0F172A;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-
   .sidebarWrapper {
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
     z-index: 100;
+    width: var(--sidebar-width);
     transform: translateX(-100%);
     transition: transform 0.3s ease;
   }
 
   .sidebarOpen {
     transform: translateX(0);
+    width: var(--sidebar-width);
   }
 
-  .sidebar {
-    height: 100vh;
+  .sidebarClosed {
+    transform: translateX(-100%);
+    width: var(--sidebar-width);
+  }
+
+  .floatingHamburgerBtn {
+    top: 12px;
+    left: 12px;
   }
 
   .overlay {
@@ -179,6 +231,11 @@
 
   .mainContent {
     padding: 20px;
-    padding-top: 72px; /* Space for hamburger */
+    padding-top: 64px;
+  }
+
+  .mainContentExpanded {
+    padding-left: 20px;
+    padding-top: 64px;
   }
 }
