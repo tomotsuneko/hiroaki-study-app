@@ -38,10 +38,11 @@
 │   │   │   └── layout.tsx              # サイドバーナビゲーション + FloatingTimer
 │   │   ├── admin/                      # 管理者用UI
 │   │   │   ├── curriculum/             # カリキュラム管理（マスターDB閲覧）
-│   │   │   ├── syllabus/               # シラバス管理（マスターから個人シラバス生成）
 │   │   │   ├── materials/              # 学習コンテンツ管理（HTMLインポート・3世代管理）
-│   │   │   ├── models/                 # AIモデル動的設定・フォールバック管理
-│   │   │   └── AdminNav.tsx            # 管理画面ヘッダーナビゲーション
+│   │   │   ├── tests/                  # テストコンテンツ管理（HTMLインポート・3世代管理）
+│   │   │   ├── syllabus/               # 個別シラバス管理（生徒個人シラバス閲覧・同期）
+│   │   │   ├── models/                 # AIモデル・API動的設定・フォールバック管理
+│   │   │   └── AdminNav.tsx            # 管理画面サイドバーナビゲーション
 │   │   ├── preview/[id]/               # 教材フルスクリーンプレビュー（独立iframe表示）
 │   │   ├── login/                      # ログイン / 自動新規登録 / パスワード再設定
 │   │   ├── api/                        # Next.js Route Handlers (全API一覧参照)
@@ -118,22 +119,26 @@
 1. **カリキュラム管理 (`/admin/curriculum`)**:
    - 中学校・高等学校の全教科マスターDB（`curriculum_db`）を閲覧。
    - 「マスターDBを更新」ボタンで `src/data/master_curriculum/*.md` を全件再パースしてFirestoreに同期。
-2. **シラバス管理 (`/admin/syllabus`)**:
-   - 対象生徒を選び、マスターカリキュラムをベースにした個人シラバスの自動生成・再構築。
-3. **学習コンテンツ（教材）管理 (`/admin/materials`)**:
-   - 教材HTMLファイルのインポート画面。
+2. **学習コンテンツ管理 (`/admin/materials`)**:
+   - 各科目の学習コンテンツ（HTML等）のインポート・世代管理画面。
    - **大項目連携**: カリキュラム管理の大項目（「高等学校 数学」「中学校 国語」等）と完全同期したインポートボタン。
    - **視認性**: 高等学校（青）と中学校（緑）にエリア・色分け分離。
    - **ショートカット**: 画面上部にページ内アンカーリンクを配置。
-   - **並び順**: 教材タイトル（`数Ⅰ-001` 等）の昇順ソート。
+   - **並び順**: コンテンツタイトル（`数Ⅰ-001` 等）の昇順ソート。
    - **タイトル表示**: ファイル名横にHTMLの`<title>`から抽出した正式タイトルを表示。
    - **重複アラート & 世代管理**: 同一ファイル名アップロード時はダイアログで確認。最新版＋過去2世代（計3世代）を保持。
    - **プレビュー & 正規化**: 旧バージョンの参照プレビュー、および旧バージョンを最新版へ昇格させる「正規化」機能。
-4. **AIモデル管理 (`/admin/models`)**:
+3. **テストコンテンツ管理 (`/admin/tests`)**:
+   - 各科目のテスト問題データ（HTML等）のインポート・世代管理画面。
+   - 仕様は学習コンテンツ管理と同等で、科目ごとのインポート、最新版＋過去2世代（計3世代）の履歴保持、プレビュー（`?type=test`）、正規化復元に対応。データは `test_materials` コレクションに格納。
+4. **個別シラバス管理 (`/admin/syllabus`)**:
+   - 対象生徒を選び、マスターカリキュラムと個人属性を掛け合わせた個人専用シラバス（正データ）の閲覧・管理。
+5. **AIモデル・API管理 (`/admin/models`)**:
    - Gemini APIの利用可能モデル一覧を動的取得し、フォールバックチェーン（Syllabus用 / Chat用）をGUI上で確認・再同期。
 
 ### 3.3 プレビュー専用画面 (`src/app/preview/[id]`)
-- 管理者が教材のリンクをクリックした際に遷移する独立画面。
+- 管理者が学習コンテンツまたはテストコンテンツのリンクをクリックした際に遷移する独立画面。
+- `type=test` クエリパラメータにより学習コンテンツ（`learning_materials`）とテストコンテンツ（`test_materials`）の双方のプレビューに対応。
 - 生徒画面のサイドバーに囚われないよう独立したルートで動作。
 - 上部に「← 管理画面に戻る」ボタンを常設し、教材本体は全画面 `iframe` (`srcDoc`) で埋め込み。元のCSSやJSモジュール（KaTeX等）が完全に動作。
 
@@ -158,12 +163,16 @@
 | `/api/cron/daily` | `POST` | `{ profile }` | 日次分析・ミニレッスン生成 | Gemini, `users/{userId}.db.dailyAnalysis` |
 | `/api/cron/report` | `GET` | なし (Cron実行) | 管理者宛て日次進捗メール送信 | Firestore全ユーザー集計, Nodemailer (Gmail) |
 | `/api/youtube` | `GET` | `?q=検索ワード` | YouTube解説動画検索 | YouTube Data API v3 |
-| `/api/materials/[id]` | `GET` | `?v=世代インデックス(任意)` | 教材HTML取得 | `learning_materials/{id}` |
+| `/api/materials/[id]` | `GET` | `?v=世代インデックス(任意)` | 学習コンテンツHTML取得 | `learning_materials/{id}` |
+| `/api/tests/[id]` | `GET` | `?v=世代インデックス(任意)` | テストコンテンツHTML取得 | `test_materials/{id}` |
 | `/api/admin/master-db` | `GET` | なし | 全教科マスターカリキュラム取得 | `curriculum_db` |
 | `/api/admin/generate-syllabus`| `POST` | なし | master_curriculumのMDをFirestoreへ全同期 | `curriculum_db` (全件書き換え) |
-| `/api/admin/materials-list` | `GET` | なし | 教材メタデータ一覧取得（容量削減のためselect利用） | `learning_materials` |
-| `/api/admin/import-materials` | `POST` | `FormData (subject, files)` | 教材HTML一括インポート（世代管理） | `learning_materials` (Chunk分割推奨) |
-| `/api/admin/restore-version` | `POST` | `{ id, versionIndex }` | 教材旧バージョンの正規化（最新版へ昇格） | `learning_materials/{id}` |
+| `/api/admin/materials-list` | `GET` | なし | 学習コンテンツメタデータ一覧取得 | `learning_materials` |
+| `/api/admin/import-materials` | `POST` | `FormData (subject, files)` | 学習コンテンツHTML一括インポート（世代管理） | `learning_materials` (Chunk分割) |
+| `/api/admin/restore-version` | `POST` | `{ id, versionIndex }` | 学習コンテンツ旧バージョンの正規化 | `learning_materials/{id}` |
+| `/api/admin/tests-list` | `GET` | なし | テストコンテンツメタデータ一覧取得 | `test_materials` |
+| `/api/admin/import-tests` | `POST` | `FormData (subject, files)` | テストコンテンツHTML一括インポート（世代管理） | `test_materials` (Chunk分割) |
+| `/api/admin/restore-test-version` | `POST` | `{ id, versionIndex }` | テスト旧バージョンの正規化 | `test_materials/{id}` |
 | `/api/admin/models-config` | `GET` | なし | AIモデル設定取得 | `config/ai_models` |
 | `/api/admin/update-models` | `GET` | なし | Gemini APIから最新モデル一覧を同期 | `config/ai_models` |
 | `/api/admin/users` | `GET` | なし | 登録生徒一覧取得 | `users` |

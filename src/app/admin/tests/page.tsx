@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 
-type Material = {
+type TestMaterial = {
   id: string;
   title: string;
   contentTitle?: string;
@@ -12,10 +12,10 @@ type Material = {
   versions: { importedAt: string }[];
 };
 
-export default function MaterialsAdminPage() {
+export default function TestsAdminPage() {
   const [importingSubject, setImportingSubject] = useState<string | null>(null);
   const [message, setMessage] = useState<{ text: string, type: 'success' | 'error' } | null>(null);
-  const [materials, setMaterials] = useState<Material[]>([]);
+  const [tests, setTests] = useState<TestMaterial[]>([]);
   const [isLoadingList, setIsLoadingList] = useState(true);
   
   // Dynamic subjects from curriculum
@@ -39,13 +39,13 @@ export default function MaterialsAdminPage() {
     }
   };
 
-  const fetchMaterials = async () => {
+  const fetchTests = async () => {
     try {
       setIsLoadingList(true);
-      const res = await fetch('/api/admin/materials-list');
+      const res = await fetch('/api/admin/tests-list');
       const data = await res.json();
       if (data.success) {
-        setMaterials(data.materials);
+        setTests(data.tests);
       }
     } catch (e) {
       console.error(e);
@@ -56,7 +56,7 @@ export default function MaterialsAdminPage() {
 
   useEffect(() => {
     fetchMasterDb();
-    fetchMaterials();
+    fetchTests();
   }, []);
 
   const handleFileChange = async (subjectId: string, subjectName: string, e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,16 +65,16 @@ export default function MaterialsAdminPage() {
 
     // Check for duplicates
     const fileNames = Array.from(files).map(f => f.name.replace(/\.html?$/i, ''));
-    const existingMatches = materials.filter(m => fileNames.includes(m.title));
+    const existingMatches = tests.filter(m => fileNames.includes(m.title));
     
     if (existingMatches.length > 0) {
       const matchNames = existingMatches.map(m => m.title).slice(0, 3).join(', ') + (existingMatches.length > 3 ? ' など' : '');
-      if (!confirm(`⚠️ 以下のファイルは既にインポートされています: ${matchNames}\n\nこれらをアップロードすると新バージョンとして保存されます。よろしいですか？`)) {
+      if (!confirm(`⚠️ 以下のテストファイルは既にインポートされています: ${matchNames}\n\nこれらをアップロードすると新バージョンとして保存されます。よろしいですか？`)) {
         e.target.value = '';
         return;
       }
     } else {
-      if (!confirm(`選択された ${files.length} 件のファイルを「${subjectName}」の学習コンテンツとしてインポートしますか？`)) {
+      if (!confirm(`選択された ${files.length} 件のファイルを「${subjectName}」のテストコンテンツとしてインポートしますか？`)) {
         e.target.value = '';
         return;
       }
@@ -101,7 +101,7 @@ export default function MaterialsAdminPage() {
 
         setMessage({ text: `🔄 アップロード中... (${Math.min(i + chunkSize, fileArray.length)}/${fileArray.length}件)`, type: 'success' });
 
-        const res = await fetch('/api/admin/import-materials', {
+        const res = await fetch('/api/admin/import-tests', {
           method: 'POST',
           body: formData,
         });
@@ -120,8 +120,8 @@ export default function MaterialsAdminPage() {
         totalImported += result.importedCount || chunk.length;
       }
 
-      setMessage({ text: `✅ 計 ${totalImported} 件の学習コンテンツを「${subjectName}」にインポートしました`, type: 'success' });
-      fetchMaterials(); // Refresh list
+      setMessage({ text: `✅ 計 ${totalImported} 件のテストコンテンツを「${subjectName}」にインポートしました`, type: 'success' });
+      fetchTests(); // Refresh list
 
     } catch (error: any) {
       console.error(error);
@@ -136,14 +136,14 @@ export default function MaterialsAdminPage() {
     if (!confirm('この旧バージョンを最新版として正規化（復元）しますか？\n\n現在の最新版は履歴に保存されます。')) return;
 
     try {
-      const res = await fetch('/api/admin/restore-version', {
+      const res = await fetch('/api/admin/restore-test-version', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id, versionIndex })
       });
       if (res.ok) {
         alert('正規化が完了しました。');
-        fetchMaterials();
+        fetchTests();
       } else {
         const data = await res.json();
         alert(`エラー: ${data.error}`);
@@ -153,16 +153,16 @@ export default function MaterialsAdminPage() {
     }
   };
 
-  // Group materials by subject ID
-  const groupedMaterials = materials.reduce((acc, curr) => {
+  // Group tests by subject ID
+  const groupedEarnings = tests.reduce((acc, curr) => {
     if (!acc[curr.subject]) acc[curr.subject] = [];
     acc[curr.subject].push(curr);
     return acc;
-  }, {} as Record<string, Material[]>);
+  }, {} as Record<string, TestMaterial[]>);
   
-  // Sort materials by title ascending (e.g. 001, 002, 003)
-  Object.keys(groupedMaterials).forEach(key => {
-    groupedMaterials[key].sort((a, b) => a.title.localeCompare(b.title));
+  // Sort tests by title ascending (e.g. 001, 002, 003)
+  Object.keys(groupedEarnings).forEach(key => {
+    groupedEarnings[key].sort((a, b) => a.title.localeCompare(b.title));
   });
 
   const hsSubjects = subjects.filter(s => s.level === '高等学校');
@@ -206,10 +206,10 @@ export default function MaterialsAdminPage() {
     </div>
   );
 
-  const renderMaterialList = (list: typeof subjects, color: string) => (
+  const renderTestList = (list: typeof subjects, color: string) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
       {list.map(subject => {
-        const items = groupedMaterials[subject.id] || [];
+        const items = groupedEarnings[subject.id] || [];
         if (items.length === 0) return null;
         
         return (
@@ -223,7 +223,7 @@ export default function MaterialsAdminPage() {
                 <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', paddingBottom: '12px', borderBottom: '1px dashed #E2E8F0' }}>
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <Link href={`/preview/${encodeURIComponent(item.id)}`} style={{ color: '#2563EB', fontWeight: 'bold', textDecoration: 'underline', fontSize: '1.05rem' }}>
+                      <Link href={`/preview/${encodeURIComponent(item.id)}?type=test`} style={{ color: '#2563EB', fontWeight: 'bold', textDecoration: 'underline', fontSize: '1.05rem' }}>
                         {item.title}
                       </Link>
                       {item.contentTitle && (
@@ -243,7 +243,7 @@ export default function MaterialsAdminPage() {
                       {item.versions.map((v, idx) => (
                         <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px', justifyContent: 'flex-end' }}>
                           <span style={{ color: '#94A3B8' }}>{new Date(v.importedAt).toLocaleString('ja-JP')}</span>
-                          <Link href={`/preview/${encodeURIComponent(item.id)}?v=${idx}`} style={{ color: '#059669', textDecoration: 'underline' }}>
+                          <Link href={`/preview/${encodeURIComponent(item.id)}?type=test&v=${idx}`} style={{ color: '#059669', textDecoration: 'underline' }}>
                             参照
                           </Link>
                           <button 
@@ -267,11 +267,11 @@ export default function MaterialsAdminPage() {
 
   return (
     <div className="animate-fade-in" style={{ paddingBottom: '40px' }}>
-      <h1 style={{ fontSize: '1.8rem', fontWeight: 'bold', marginBottom: '24px', color: '#1E293B' }}>📖 学習コンテンツ管理</h1>
+      <h1 style={{ fontSize: '1.8rem', fontWeight: 'bold', marginBottom: '24px', color: '#1E293B' }}>📝 テストコンテンツ管理</h1>
       
       {/* 上段：インポートボタン */}
       <div className="glass-panel" style={{ padding: '24px', marginBottom: '24px' }}>
-        <h2 style={{ fontSize: '1.2rem', marginBottom: '16px' }}>学習コンテンツデータのインポート</h2>
+        <h2 style={{ fontSize: '1.2rem', marginBottom: '16px' }}>テストデータのインポート</h2>
         
         {message && (
           <div style={{ 
@@ -325,27 +325,27 @@ export default function MaterialsAdminPage() {
 
       {/* 下段：コンテンツ一覧 */}
       <div className="glass-panel" style={{ padding: '24px' }}>
-        <h2 style={{ fontSize: '1.2rem', marginBottom: '20px' }}>登録済み学習コンテンツ</h2>
+        <h2 style={{ fontSize: '1.2rem', marginBottom: '20px' }}>登録済みテストコンテンツ</h2>
         
         {isLoadingList ? (
           <div style={{ textAlign: 'center', color: '#64748B' }}>読み込み中...</div>
-        ) : materials.length === 0 ? (
-          <div style={{ textAlign: 'center', color: '#64748B' }}>学習コンテンツはまだ登録されていません。</div>
+        ) : tests.length === 0 ? (
+          <div style={{ textAlign: 'center', color: '#64748B' }}>テストコンテンツはまだ登録されていません。</div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
             {/* 高等学校一覧 */}
-            {hsSubjects.some(s => (groupedMaterials[s.id] || []).length > 0) && (
+            {hsSubjects.some(s => (groupedEarnings[s.id] || []).length > 0) && (
               <div>
                 <h3 style={{ fontSize: '1.1rem', color: '#3B82F6', marginBottom: '16px', fontWeight: 'bold' }}>■ 高等学校</h3>
-                {renderMaterialList(hsSubjects, '#3B82F6')}
+                {renderTestList(hsSubjects, '#3B82F6')}
               </div>
             )}
             
             {/* 中学校一覧 */}
-            {jhSubjects.some(s => (groupedMaterials[s.id] || []).length > 0) && (
+            {jhSubjects.some(s => (groupedEarnings[s.id] || []).length > 0) && (
               <div>
                 <h3 style={{ fontSize: '1.1rem', color: '#10B981', marginBottom: '16px', fontWeight: 'bold' }}>■ 中学校</h3>
-                {renderMaterialList(jhSubjects, '#10B981')}
+                {renderTestList(jhSubjects, '#10B981')}
               </div>
             )}
           </div>

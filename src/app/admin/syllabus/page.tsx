@@ -27,10 +27,10 @@ export default function SyllabusAdminPage() {
   return (
     <div>
       <h1 style={{ fontSize: '1.8rem', fontWeight: 'bold', marginBottom: '20px', color: '#0F172A' }}>
-        シラバス データベース管理
+        📋 個別シラバス管理
       </h1>
       <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
-        <h2 style={{ fontSize: '1.2rem', marginBottom: '16px' }}>1. 生徒個人のシラバス管理 (正データ)</h2>
+        <h2 style={{ fontSize: '1.2rem', marginBottom: '16px' }}>1. 生徒個人のシラバス管理</h2>
         <p style={{ color: '#475569', marginBottom: '20px' }}>
           マスターDBと個人の学校・偏差値情報を掛け合わせて最適化された「個人専用シラバス」を確認します。（※過去の完了分を含む全量データ）
         </p>

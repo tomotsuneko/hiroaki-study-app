@@ -31,3 +31,9 @@
   color: white;
   font-weight: bold;
 }
+
+.divider {
+  height: 1px;
+  background-color: #334155;
+  margin: 10px 4px;
+}

@@ -9,6 +9,7 @@ export default function MaterialPreview() {
   const router = useRouter();
   const id = params.id as string;
   const v = searchParams.get('v');
+  const type = searchParams.get('type');
   
   const [htmlContent, setHtmlContent] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -20,7 +21,8 @@ export default function MaterialPreview() {
     
     async function fetchMaterial() {
       try {
-        const url = `/api/materials/${encodeURIComponent(id)}${v !== null ? `?v=${v}` : ''}`;
+        const baseEndpoint = type === 'test' ? '/api/tests' : '/api/materials';
+        const url = `${baseEndpoint}/${encodeURIComponent(id)}${v !== null ? `?v=${v}` : ''}`;
         const res = await fetch(url);
         const data = await res.json();
         if (data.success && data.material) {
@@ -37,7 +39,7 @@ export default function MaterialPreview() {
     }
     
     fetchMaterial();
-  }, [id, v]);
+  }, [id, v, type]);
 
   if (loading) return <div style={{ padding: '40px', textAlign: 'center', fontFamily: 'sans-serif' }}>読み込み中...</div>;
   if (error) return <div style={{ padding: '40px', textAlign: 'center', color: 'red', fontFamily: 'sans-serif' }}>{error}</div>;
