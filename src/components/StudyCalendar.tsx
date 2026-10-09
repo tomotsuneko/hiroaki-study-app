@@ -7,7 +7,7 @@ import { DayPlan } from '@/lib/db';
 export type DayTypeKey = 'club' | 'cram' | 'full' | 'regular' | 'rest' | 'exam_prep';
 
 export const DAY_PRESETS: Record<DayTypeKey, { label: string; icon: string; defaultMinutes: number; color: string; bg: string }> = {
-  club: { label: '部活日', icon: '⚽', defaultMinutes: 90, color: '#D97706', bg: '#FEF3C7' },
+  club: { label: '部活日', icon: '🏀', defaultMinutes: 90, color: '#D97706', bg: '#FEF3C7' },
   cram: { label: '塾・予備校', icon: '🏫', defaultMinutes: 120, color: '#0284C7', bg: '#E0F2FE' },
   full: { label: '一日勉強Day', icon: '🔥', defaultMinutes: 360, color: '#7C3AED', bg: '#EDE9FE' },
   regular: { label: '通常自習', icon: '📖', defaultMinutes: 150, color: '#4318FF', bg: '#EEF2FF' },
