@@ -21,6 +21,7 @@ export default function ProfilePage() {
   const [grade, setGrade] = useState<number>(profile.grade || 1);
   const [track, setTrack] = useState<'arts' | 'science' | 'undecided'>(profile.track || 'undecided');
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>(profile.selectedSubjects || []);
+  const [deviationScore, setDeviationScore] = useState<string>(profile.deviationScore ? String(profile.deviationScore) : '');
   
   const [saved, setSaved] = useState(false);
   const [isUpdatingCurriculum, setIsUpdatingCurriculum] = useState(false);
@@ -55,9 +56,17 @@ export default function ProfilePage() {
     const now = new Date();
     const currentAcademicYear = (now.getMonth() + 1) >= 4 ? now.getFullYear() : now.getFullYear() - 1;
     
-    setProfile({
+    const parsedDeviation = deviationScore.trim() ? Number(deviationScore.trim()) : undefined;
+    const cleanTargets = targetSchools.map(s => s.trim()).filter(s => s && !s.includes('未設定'));
+
+    // 志望校または学年・偏差値の変更があったか判定
+    const targetChanged = JSON.stringify(cleanTargets) !== JSON.stringify(profile.targetSchools || []);
+    const gradeChanged = grade !== profile.grade;
+    const deviationChanged = parsedDeviation !== profile.deviationScore;
+
+    const newProfile = {
       ...profile,
-      targetSchools: targetSchools.map(s => s.trim()).filter(s => s && !s.includes('未設定')),
+      targetSchools: cleanTargets,
       weakSubjects: weakSubjects.split(',').map(s => s.trim()).filter(Boolean),
       tutorPersona,
       currentMood,
@@ -67,10 +76,12 @@ export default function ProfilePage() {
       grade,
       track: schoolType === 'high' ? track : undefined,
       selectedSubjects,
+      deviationScore: parsedDeviation,
       lastGradeUpdateAcademicYear: currentAcademicYear,
       needsProfileUpdate: false, // Clear the alert flag on save
-    });
-    
+    };
+
+    setProfile(newProfile);
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
 
@@ -88,6 +99,26 @@ export default function ProfilePage() {
       } finally {
         setIsUpdatingCurriculum(false);
       }
+    }
+
+    // 志望校や学年・偏差値が変更された場合、シラバスの流動的自動組み換え（Rebalance）を実行
+    if ((targetChanged || gradeChanged || deviationChanged) && cleanTargets.length > 0) {
+      const reason = targetChanged ? 'target_change' : 'profile_update';
+      fetch('/api/plan/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ profile: newProfile, reason })
+      }).then(async res => {
+        if (res.ok) {
+          const data = await res.json();
+          if (data.rebalanceAlert) {
+            setProfile({
+              ...newProfile,
+              syllabusRebalanceAlert: data.rebalanceAlert
+            });
+          }
+        }
+      }).catch(err => console.error('Auto rebalance error:', err));
     }
   };
 
@@ -216,6 +247,23 @@ export default function ProfilePage() {
               placeholder={i === 0 ? "例：日本大学 理工学部（第一志望）" : `例：志望校${i + 1}`} 
             />
           ))}
+        </div>
+
+        <div className={styles.formGroup}>
+          <label className={styles.label}>現在の目安偏差値（直近の模試など）</label>
+          <input 
+            className={styles.input} 
+            type="number" 
+            min="30"
+            max="80"
+            step="0.1"
+            value={deviationScore} 
+            onChange={e => setDeviationScore(e.target.value)}
+            placeholder="例：52.5 （※未入力の場合はレベルチェックコンテンツが差し込まれます）" 
+          />
+          <p className={styles.hint} style={{fontSize: '0.8rem', color: '#64748B', marginTop: '4px'}}>
+            ※不透明・未入力の場合は、シラバスに学力判定用のレベルチェックテストが自動で差し込まれます。
+          </p>
         </div>
 
         <div className={styles.formGroup}>

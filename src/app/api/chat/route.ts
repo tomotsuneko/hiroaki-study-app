@@ -1,10 +1,20 @@
 import { getActiveModels } from '@/lib/model-manager';
 import { NextResponse } from 'next/server';
 import { genAI } from '@/lib/gemini';
+import { getChatSession, saveChatSession, addLog, ChatSession } from '@/lib/db';
+
+function getTodayJST(): string {
+  return new Intl.DateTimeFormat('ja-JP', {
+    timeZone: 'Asia/Tokyo',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(new Date()).replace(/\//g, '-');
+}
 
 export async function POST(req: Request) {
   try {
-    const { history, message, profile } = await req.json();
+    const { history, message, profile, sessionId } = await req.json();
 
     if (!message) {
       return NextResponse.json({ error: 'Message is required' }, { status: 400 });
@@ -74,7 +84,59 @@ export async function POST(req: Request) {
       text = "申し訳ありません、現在AIサーバーが非常に混み合っており、一時的にお返事することができません。💦\n\n少し時間をおいてから再度お試しいただくか、別の科目についての学習ノートを見返して復習を進めましょう！君ならできる！🔥";
     }
 
-    return NextResponse.json({ text, fallbackUsed: !success });
+    // セッションの永続化
+    const nowIso = new Date().toISOString();
+    const today = getTodayJST();
+    let currentSession: ChatSession | null = null;
+
+    if (sessionId) {
+      currentSession = await getChatSession(sessionId);
+    }
+
+    if (!currentSession) {
+      // 最初のメッセージからタイトルを生成
+      const cleanTitle = message.trim().replace(/\n/g, ' ').substring(0, 24);
+      const title = cleanTitle.length >= 24 ? `${cleanTitle}...` : cleanTitle || '新しいチャット';
+      currentSession = {
+        id: sessionId || `chat_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`,
+        title,
+        date: today,
+        createdAt: nowIso,
+        updatedAt: nowIso,
+        messages: [
+          {
+            role: 'model',
+            content: 'こんにちは！今日はどの科目を勉強しますか？基礎からゆっくりやっていきましょう。分からないところがあれば、いつでも聞いてくださいね！🔥',
+            timestamp: nowIso
+          }
+        ]
+      };
+    } else if (currentSession.title === '新しいチャット') {
+      const cleanTitle = message.trim().replace(/\n/g, ' ').substring(0, 24);
+      currentSession.title = cleanTitle.length >= 24 ? `${cleanTitle}...` : cleanTitle;
+    }
+
+    currentSession.messages.push(
+      { role: 'user', content: message, timestamp: nowIso },
+      { role: 'model', content: text, timestamp: nowIso }
+    );
+    currentSession.updatedAt = nowIso;
+
+    // 非同期でDB保存とログ記録
+    await saveChatSession(currentSession);
+    addLog('chat', {
+      sessionId: currentSession.id,
+      title: currentSession.title,
+      userMessage: message,
+      aiResponse: text,
+      timestamp: nowIso
+    }).catch(e => console.error('addLog error:', e));
+
+    return NextResponse.json({ 
+      text, 
+      fallbackUsed: !success,
+      session: currentSession
+    });
   } catch (error: any) {
     console.error('Chat API Error:', error);
     if (error?.status === 503) {

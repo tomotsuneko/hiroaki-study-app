@@ -301,3 +301,251 @@
   padding: 24px;
   background-color: white;
 }
+
+/* Rebalance Attention Banner */
+.rebalanceAlertBanner {
+  background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
+  border: 1px solid #FCD34D;
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.12);
+  animation: fadeIn 0.3s ease;
+}
+
+.rebalanceContent {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.rebalanceIcon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.rebalanceTitle {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #92400E;
+  margin-bottom: 4px;
+}
+
+.rebalanceText {
+  font-size: 0.9rem;
+  color: #B45309;
+  line-height: 1.5;
+}
+
+.dismissBtn {
+  background: #F59E0B;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.dismissBtn:hover {
+  background: #D97706;
+}
+
+/* Roadmap Summary Card (Reverse Planning View) */
+.roadmapSummaryCard {
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: 1px solid #E9EDF7;
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.summaryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.summaryTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusBadges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.currentBadge {
+  background: #F1F5F9;
+  color: #475569;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.targetBadge {
+  background: #EEF2FF;
+  color: var(--accent-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(67, 24, 255, 0.15);
+}
+
+.milestonesTimeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  position: relative;
+}
+
+.milestoneStep {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.milestoneStep:hover {
+  border-color: var(--accent-primary);
+  background: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(67, 24, 255, 0.06);
+}
+
+.milestonePhase {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.milestoneTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.milestonePeriod {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.milestoneGoal {
+  font-size: 0.85rem;
+  color: #475569;
+  margin-top: 4px;
+  padding-top: 6px;
+  border-top: 1px dashed #E2E8F0;
+  line-height: 1.4;
+}
+
+/* Level Check Card (when deviation score is unclear) */
+.levelCheckCard {
+  background: linear-gradient(135deg, #F5F3FF, #EDE9FE);
+  border: 1px solid #DDD6FE;
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.08);
+}
+
+.levelCheckInfo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.levelCheckIcon {
+  font-size: 1.8rem;
+}
+
+.levelCheckTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #5B21B6;
+  margin-bottom: 4px;
+}
+
+.levelCheckDesc {
+  font-size: 0.85rem;
+  color: #6D28D9;
+  line-height: 1.4;
+}
+
+.levelCheckActions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btnDiagnostic {
+  background: #7C3AED;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btnDiagnostic:hover {
+  background: #6D28D9;
+  transform: translateY(-1px);
+}
+
+.btnSetScore {
+  background: white;
+  color: #6D28D9;
+  border: 1px solid #C4B5FD;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btnSetScore:hover {
+  background: #F5F3FF;
+}
+
+/* Diagnostic Task Badge */
+.diagnosticBadge {
+  background: #8B5CF6;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-right: 6px;
+}
+

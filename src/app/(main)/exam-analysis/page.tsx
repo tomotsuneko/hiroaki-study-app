@@ -41,13 +41,41 @@ export default function ExamAnalysisPage() {
     }
   };
 
-  const applyToProfile = () => {
-    if (result) {
-      setProfile({
+  const [isApplying, setIsApplying] = useState(false);
+
+  const applyToProfile = async () => {
+    if (!result || isApplying) return;
+    setIsApplying(true);
+    try {
+      const updatedWeak = [...new Set([...profile.weakSubjects, ...result.analyzedSubjects])];
+      const newProfile = {
         ...profile,
-        weakSubjects: [...new Set([...profile.weakSubjects, ...result.analyzedSubjects])]
+        weakSubjects: updatedWeak
+      };
+      setProfile(newProfile);
+
+      // シラバスの自動組み換え（Rebalance）をキック
+      const res = await fetch('/api/plan/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ profile: newProfile, reason: 'exam_result' })
       });
-      alert('プロフィール（苦手科目）を更新し、シラバスを再構築しました！');
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data.rebalanceAlert) {
+          setProfile({
+            ...newProfile,
+            syllabusRebalanceAlert: data.rebalanceAlert
+          });
+        }
+      }
+      alert('模試の弱点分野を反映し、学習シラバスを無理のないペースで自動再編成しました！');
+    } catch (e) {
+      console.error(e);
+      alert('プロフィールの更新は完了しましたが、シラバスの自動組み換えに失敗しました。シラバス画面から再構築をお試しください。');
+    } finally {
+      setIsApplying(false);
     }
   };
 
@@ -99,8 +127,8 @@ export default function ExamAnalysisPage() {
               <ReactMarkdown remarkPlugins={[remarkGfm]}>{result.analysisText}</ReactMarkdown>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <button className="btn btn-primary" style={{width: '100%'}} onClick={applyToProfile}>
-                この結果をプロフィール（シラバス）に反映する
+              <button className="btn btn-primary" style={{width: '100%'}} onClick={applyToProfile} disabled={isApplying}>
+                {isApplying ? '🔄 シラバスを自動再編成中...' : '🎯 この結果をシラバスに反映・自動再編成する'}
               </button>
               <button className="btn btn-secondary" style={{width: '100%'}} onClick={() => {
                 window.location.href = `/chat?initialMessage=${encodeURIComponent('直前の模試分析で以下の弱点が見つかりました。\n' + result.analyzedSubjects.join('、') + '\n\n明日からどのように勉強方針を変えればいいか、具体的なアドバイスをください。')}`;

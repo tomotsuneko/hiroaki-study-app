@@ -11,13 +11,14 @@ type LogEntry = {
 export type SyllabusTask = {
   id: string;
   title: string;
-  type: 'core' | 'weakness';
+  type: 'core' | 'weakness' | 'diagnostic';
 };
 
 export type SyllabusPhase = {
   phase: string;
   title: string;
   period: string;
+  targetMilestone?: string;
   categories: {
     name: string;
     tasks: SyllabusTask[];
@@ -39,6 +40,11 @@ type Database = {
     learningContents?: any[];
   } | null;
   flashcards?: any[];
+  syllabusRebalanceAlert?: {
+    reason: string;
+    message: string;
+    timestamp: string;
+  } | null;
 };
 
 const defaultDb: Database = {
@@ -160,10 +166,19 @@ export async function getSyllabusUpdatedAt() {
   return db.syllabusUpdatedAt;
 }
 
-export async function updateSyllabus(syllabus: SyllabusPhase[]) {
+export async function updateSyllabus(syllabus: SyllabusPhase[], rebalanceAlert?: any) {
   const db = await readDB();
   db.syllabus = syllabus;
   db.syllabusUpdatedAt = new Date().toISOString();
+  if (rebalanceAlert !== undefined) {
+    db.syllabusRebalanceAlert = rebalanceAlert;
+  }
+  await writeDB(db);
+}
+
+export async function clearSyllabusRebalanceAlert() {
+  const db = await readDB();
+  db.syllabusRebalanceAlert = null;
   await writeDB(db);
 }
 
@@ -196,3 +211,149 @@ export async function updateFlashcardReview(id: string, correct: boolean) {
   }
   await writeDB(db);
 }
+
+export type ChatMessage = {
+  role: 'user' | 'model';
+  content: string;
+  timestamp: string;
+};
+
+export type ChatSession = {
+  id: string;
+  userId?: string;
+  title: string;
+  date: string; // YYYY-MM-DD
+  createdAt: string;
+  updatedAt: string;
+  messages: ChatMessage[];
+};
+
+export type ChatSessionMeta = {
+  id: string;
+  title: string;
+  date: string;
+  createdAt: string;
+  updatedAt: string;
+  messageCount: number;
+};
+
+// In-memory fallback if Firestore is not initialized
+const memoryChatSessions = new Map<string, Map<string, ChatSession>>();
+
+export async function getChatSessions(targetUserId?: string): Promise<ChatSessionMeta[]> {
+  try {
+    const userId = targetUserId || await getUserId();
+    if (!dbAdmin) {
+      const userSessions = memoryChatSessions.get(userId);
+      if (!userSessions) return [];
+      return Array.from(userSessions.values())
+        .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
+        .map(s => ({
+          id: s.id,
+          title: s.title,
+          date: s.date,
+          createdAt: s.createdAt,
+          updatedAt: s.updatedAt,
+          messageCount: s.messages.length
+        }));
+    }
+
+    const snapshot = await dbAdmin
+      .collection('users')
+      .doc(userId)
+      .collection('chat_sessions')
+      .orderBy('updatedAt', 'desc')
+      .get();
+
+    return snapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        title: data.title || '新しいチャット',
+        date: data.date || '',
+        createdAt: data.createdAt || '',
+        updatedAt: data.updatedAt || '',
+        messageCount: Array.isArray(data.messages) ? data.messages.length : 0
+      };
+    });
+  } catch (error) {
+    console.error('getChatSessions Error:', error);
+    return [];
+  }
+}
+
+export async function getChatSession(sessionId: string, targetUserId?: string): Promise<ChatSession | null> {
+  try {
+    const userId = targetUserId || await getUserId();
+    if (!dbAdmin) {
+      const userSessions = memoryChatSessions.get(userId);
+      return userSessions?.get(sessionId) || null;
+    }
+
+    const doc = await dbAdmin
+      .collection('users')
+      .doc(userId)
+      .collection('chat_sessions')
+      .doc(sessionId)
+      .get();
+
+    if (!doc.exists) return null;
+    const data = doc.data() as ChatSession;
+    return {
+      ...data,
+      id: doc.id,
+      messages: data.messages || []
+    };
+  } catch (error) {
+    console.error('getChatSession Error:', error);
+    return null;
+  }
+}
+
+export async function saveChatSession(session: ChatSession, targetUserId?: string): Promise<void> {
+  try {
+    const userId = targetUserId || await getUserId();
+    if (!dbAdmin) {
+      if (!memoryChatSessions.has(userId)) {
+        memoryChatSessions.set(userId, new Map());
+      }
+      memoryChatSessions.get(userId)!.set(session.id, session);
+      return;
+    }
+
+    await dbAdmin
+      .collection('users')
+      .doc(userId)
+      .collection('chat_sessions')
+      .doc(session.id)
+      .set({
+        ...session,
+        userId
+      }, { merge: true });
+  } catch (error) {
+    console.error('saveChatSession Error:', error);
+    throw error;
+  }
+}
+
+export async function deleteChatSession(sessionId: string, targetUserId?: string): Promise<void> {
+  try {
+    const userId = targetUserId || await getUserId();
+    if (!dbAdmin) {
+      const userSessions = memoryChatSessions.get(userId);
+      userSessions?.delete(sessionId);
+      return;
+    }
+
+    await dbAdmin
+      .collection('users')
+      .doc(userId)
+      .collection('chat_sessions')
+      .doc(sessionId)
+      .delete();
+  } catch (error) {
+    console.error('deleteChatSession Error:', error);
+    throw error;
+  }
+}
+

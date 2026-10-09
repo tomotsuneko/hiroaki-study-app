@@ -75,9 +75,13 @@
    - 本日の学習時間、目標校合格判定レベルバー、AIアドバイスコメント、今日のミニレッスンの表示。
    - 初回ロード時に `/api/db/daily` を呼び出し。キャッシュがない場合は `/api/cron/daily` をキックして当日レポートを生成。
 2. **AI質問チャット (`/chat`)**:
-   - 塾講師AIとの個別チャット。ペルソナ（優しいお姉さん、熱血講師など）に応じてトーンが変化。
+   - 塾講師AIとの個別チャット。Gemini Web風の左サイドバー履歴UIを搭載。
+   - **当日チャット自動再開**: 当日中は画面を切り替えても前回のチャットを自動復帰して続きから学習可能。
+   - **日付切り替え & 控えめなアテンション**: 日付が変わると自動で新規チャットを開始し、画面上部に控えめなバナーで案内。
+   - **チャット履歴一覧 & 呼び出し**: 左メニューに「今日」「昨日」「過去7日間」「それ以前」別に過去のチャットを一覧表示・ワンクリックで復元。新規チャット作成や履歴削除にも対応。
+   - ペルソナ（優しいお姉さん、熱血コーチ、論理的メンター）に応じてトーンが変化。
    - 数式（LaTeX/KaTeX）やマークダウンを美しくレンダリング。
-   - 会話ログは自動で学習履歴（logs）に記録。
+   - 会話ログは自動で学習履歴（logs）および `users/{userId}/chat_sessions` に記録。
 3. **ドリル学習 (`/drill`)**:
    - 志望校や苦手科目に合わせた4択問題・記述問題をGeminiが動的生成。
    - 解答後に `/api/drill/evaluate` で自動採点、詳細解説と弱点克服メモを提示。
@@ -87,11 +91,15 @@
 5. **暗記カード (`/flashcard`)**:
    - 単語や重要公式を登録し、忘却曲線に基づく間隔反復（Leitner System風: 正解で間隔延長、不正解でLv0リセット）で出題。
 6. **学習計画 (`/plan`)**:
-   - マスターカリキュラムからパーソナライズされた個人シラバスを表示。タスク完了チェック機能。
+   - **目標校・学年からの逆算設計**: 生徒の学年（高1/高2/高3/中学生）と目標校のボーダー偏差値から入試本番までのマイルストーン（到達目標・時期）を逆算してタイムライン化。
+   - **現在地と先の可視化**: 「合格逆算ロードマップ」カードにて現在地（学年・偏差値）と各フェーズの到達目標をグラフィカルに俯瞰表示。
+   - **レベルチェックコンテンツ**: 偏差値未診断・不透明な場合は、シラバス先頭への診断タスク（`type: "diagnostic"`）自動挿入およびワンタップ目安偏差値設定/診断ドリル案内を提供。
+   - **流動的自動組み換え（Rebalance）**: 模試画像解析（`/exam-analysis`）や志望校変更を検知すると、完了済みタスクを保持したまま無理のない現実的なペースでシラバスを自動再編成。
+   - **アテンション通知**: 自動組み換え発生時は画面上部およびダッシュボードに目立つアテンションバナーを掲示。
 7. **教材ライブラリ (`/library`)**:
    - 学習単元に関連するYouTube解説動画をYouTube Data API v3経由で検索・再生。
 8. **プロフィール (`/profile`)**:
-   - 氏名、志望校、苦手科目、学年、文理選択などを管理。年度替わり（4月）に自動で学年が進級するロジック内蔵。
+   - 氏名、志望校、目安偏差値、苦手科目、学年、文理選択などを管理。目標校や偏差値の変更時はシラバスの自動組み換えを連動。年度替わり（4月）に自動で学年が進級するロジック内蔵。
 
 ### 3.2 管理者向け画面 (`src/app/admin`)
 ヘッダーに `AdminNav` を備えた専用ダッシュボード。
@@ -126,7 +134,9 @@
 |---|---|---|---|---|
 | `/api/auth/login` | `POST` | `{ userId, password }` | 認証・自動新規登録・Cookie発行 | `users/{userId}` |
 | `/api/auth/reset` | `POST` | `{ userId, newPassword }` | パスワードリセット | `users/{userId}` |
-| `/api/chat` | `POST` | `{ message, history, persona }` | 生徒チャット応答生成 | Gemini Flash, `users/{userId}.db.logs` |
+| `/api/chat` | `POST` | `{ message, history, persona, sessionId? }` | 生徒チャット応答生成・セッション保存 | Gemini Flash, `users/{userId}/chat_sessions/{sessionId}` |
+| `/api/chat/sessions` | `GET/POST` | なし / `{ title, id }` | チャットセッション一覧取得・新規作成 | `users/{userId}/chat_sessions` |
+| `/api/chat/sessions/[id]` | `GET/DELETE` | なし | 特定セッション取得・セッション削除 | `users/{userId}/chat_sessions/{id}` |
 | `/api/drill` | `POST` | `{ subject, topic, level }` | ドリル問題自動生成 | Gemini Flash |
 | `/api/drill/evaluate` | `POST` | `{ question, userAnswer }` | 解答自動採点・解説生成 | Gemini Flash, `users/{userId}.db.logs` |
 | `/api/exam-analysis` | `POST` | `{ examData }` | 模試成績分析・改善案生成 | Gemini Pro/Flash |
@@ -163,6 +173,17 @@
     - `syllabusUpdatedAt`: string
     - `dailyAnalysis`: Map (日次AI分析、合格判定レベル、ミニレッスン等)
     - `flashcards`: Array<Flashcard> (暗記カードデータ)
+- **サブコレクション `chat_sessions`**:
+  - **Doc ID**: `sessionId` (例: `chat_1712659200000_abc`)
+  - **フィールド**:
+    - `id`: string
+    - `userId`: string
+    - `title`: string (最初のユーザー発言から自動生成)
+    - `date`: string (JST基準 `YYYY-MM-DD`)
+    - `createdAt`: string (ISO 8601)
+    - `updatedAt`: string (ISO 8601)
+    - `messages`: Array<{ role: 'user' | 'model', content: string, timestamp: string }>
+
 
 ### 5.2 `curriculum_db` コレクション
 学習指導要領準拠の公式マスターカリキュラム。

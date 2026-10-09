@@ -56,6 +56,7 @@ export default function Dashboard() {
   const [recentLogs, setRecentLogs] = useState<any[]>([]);
   const [studyTime, setStudyTime] = useState<Record<string, number>>({});
   const [syllabus, setSyllabus] = useState<any[]>([]);
+  const [rebalanceAlert, setRebalanceAlert] = useState<{ reason: string; message: string; timestamp: string } | null>(null);
 
   useEffect(() => {
     async function fetchDB() {
@@ -66,12 +67,17 @@ export default function Dashboard() {
         setRecentLogs(data.recentLogs);
         setStudyTime(data.studyTime || {});
         if (data.syllabus) setSyllabus(data.syllabus);
+        if (data.syllabusRebalanceAlert) {
+          setRebalanceAlert(data.syllabusRebalanceAlert);
+        } else if (profile.syllabusRebalanceAlert) {
+          setRebalanceAlert(profile.syllabusRebalanceAlert);
+        }
       } catch(e) {
         console.error(e);
       }
     }
     fetchDB();
-  }, []);
+  }, [profile.syllabusRebalanceAlert]);
 
   const runDailyBatch = async () => {
     alert("日次分析バッチ処理を開始します（モックアップ）...");
@@ -185,6 +191,29 @@ export default function Dashboard() {
 
   return (
     <div className={styles.container}>
+      {rebalanceAlert && (
+        <div style={{
+          backgroundColor: '#FFFBEB',
+          color: '#92400E',
+          padding: '14px 20px',
+          borderRadius: '12px',
+          marginBottom: '20px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          boxShadow: '0 4px 6px -1px rgba(245, 158, 11, 0.1)',
+          borderLeft: '4px solid #F59E0B'
+        }}>
+          <div>
+            <strong style={{ display: 'block', marginBottom: '2px' }}>🔔 【学習シラバス自動アップデート】</strong>
+            <span style={{ fontSize: '0.9rem' }}>{rebalanceAlert.message}</span>
+          </div>
+          <Link href="/plan" className="btn btn-primary" style={{ padding: '8px 16px', whiteSpace: 'nowrap', marginLeft: '16px', fontSize: '0.88rem' }}>
+            シラバスを確認
+          </Link>
+        </div>
+      )}
+
       {profile.needsProfileUpdate && (
         <div style={{
           backgroundColor: '#FEF08A',

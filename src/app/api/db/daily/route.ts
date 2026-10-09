@@ -8,7 +8,8 @@ export async function GET() {
     recentLogs: (db.logs || []).slice(-10),
     studyTime: db.studyTime || {},
     syllabus: db.syllabus,
-    syllabusUpdatedAt: db.syllabusUpdatedAt
+    syllabusUpdatedAt: db.syllabusUpdatedAt,
+    syllabusRebalanceAlert: db.syllabusRebalanceAlert || null
   });
 }
 
@@ -18,6 +19,12 @@ export async function POST(req: Request) {
     if (type === 'studyTime') {
       const date = new Date().toISOString().split('T')[0];
       await addStudyTime(date, data.minutes, data.task);
+      return NextResponse.json({ success: true });
+    }
+
+    if (type === 'clearRebalanceAlert') {
+      const { clearSyllabusRebalanceAlert } = await import('@/lib/db');
+      await clearSyllabusRebalanceAlert();
       return NextResponse.json({ success: true });
     }
     

@@ -26,6 +26,21 @@ type UserProfile = {
   selectedSubjects?: string[];
   lastGradeUpdateAcademicYear?: number;
   needsProfileUpdate?: boolean;
+
+  // 逆算シラバス & レベル判定・自動組み換え用
+  deviationScore?: number; // 目安偏差値（未入力の場合は未診断・不透明判定）
+  levelCheckCompleted?: boolean;
+  levelCheckResult?: {
+    score: number;
+    level: string;
+    evaluatedAt: string;
+    recommendedFocus: string;
+  };
+  syllabusRebalanceAlert?: {
+    reason: string;
+    message: string;
+    timestamp: string;
+  } | null;
 };
 
 type UserContextType = {
@@ -33,6 +48,7 @@ type UserContextType = {
   setProfile: (p: UserProfile) => void;
   saveNote: (title: string, content: string) => void;
   deleteNote: (id: string) => void;
+  clearRebalanceAlert: () => void;
 };
 
 const defaultProfile: UserProfile = {
@@ -43,6 +59,9 @@ const defaultProfile: UserProfile = {
   tutorPersona: '優しいお姉さん',
   currentMood: '普通',
   completedTasks: [],
+  deviationScore: undefined,
+  levelCheckCompleted: false,
+  syllabusRebalanceAlert: null,
 };
 
 const UserContext = createContext<UserContextType>({
@@ -50,6 +69,7 @@ const UserContext = createContext<UserContextType>({
   setProfile: () => {},
   saveNote: () => {},
   deleteNote: () => {},
+  clearRebalanceAlert: () => {},
 });
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
@@ -138,10 +158,18 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     setProfile(updatedProfile);
   };
 
+  const clearRebalanceAlert = () => {
+    const updatedProfile = {
+      ...profile,
+      syllabusRebalanceAlert: null,
+    };
+    setProfile(updatedProfile);
+  };
+
   if (!isLoaded) return null; // Avoid hydration mismatch
 
   return (
-    <UserContext.Provider value={{ profile, setProfile, saveNote, deleteNote }}>
+    <UserContext.Provider value={{ profile, setProfile, saveNote, deleteNote, clearRebalanceAlert }}>
       {children}
     </UserContext.Provider>
   );
