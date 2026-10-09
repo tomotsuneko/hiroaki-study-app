@@ -59,6 +59,16 @@
 .aiSuggestion {
   grid-column: 1 / -1;
   border-left: 4px solid var(--accent-primary);
+  padding: 16px 20px;
+  gap: 10px;
+}
+
+.aiHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .fullWidth {
@@ -66,16 +76,17 @@
 }
 
 .sectionTitle {
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .aiText {
-  font-size: 1.05rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #334155;
 }
 
 .aiText > *:first-child {
@@ -83,7 +94,94 @@
 }
 
 .actionButtons {
-  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+/* Dynamic Mission Card styles */
+.missionHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.missionPlanBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #EEF2FF;
+  color: var(--accent-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.missionUnsetNotice {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #F8FAFC;
+  color: #64748B;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+.taskItemGrid {
+  display: grid;
+  gap: 10px;
+}
+
+.taskCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: #F8FAFC;
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+  transition: all 0.2s ease;
+}
+
+.taskCard:hover {
+  background: #FFFFFF;
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 12px rgba(67, 24, 255, 0.06);
+}
+
+.taskLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.taskTypeTag {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.taskTitleText {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.taskMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.estTimeTag {
+  font-size: 0.75rem;
+  color: #64748B;
+  background-color: #F1F5F9;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 600;
 }
 
 .progressItem {

@@ -136,7 +136,24 @@ export default function Dashboard() {
   const weakSubjects = paddedSubjects.slice(0, 3);
   const currentFocus = weakSubjects[0];
   const achievementLevel = dailyAnalysis?.achievementLevel || 25;
-  const aiSuggestionComment = dailyAnalysis?.aiComment || `目標校に向けて、本日は**「${currentFocus}」**の基礎固めを推奨します。前回のテストで少し躓いていたポイントを復習しましょう！`;
+
+  // チューターコメントのスリム化（【弱点対策】の除去 & コンパクト化）
+  const cleanAiComment = (rawComment?: string) => {
+    if (!rawComment) {
+      return `目標校合格に向けて、本日も着実に積み重ねていきましょう！継続が一番の力になります🔥`;
+    }
+    // 3. 弱点対策 や 【弱点対策】、### 弱点対策 以降があれば切り落とす
+    let cleaned = rawComment
+      .split(/3\.\s*\*\*弱点対策\*\*/i)[0]
+      .split(/【弱点対策】/i)[0]
+      .split(/###\s*弱点対策/i)[0]
+      .split(/\*\*弱点対策\*\*/i)[0]
+      .trim();
+
+    return cleaned || rawComment;
+  };
+
+  const aiSuggestionComment = cleanAiComment(dailyAnalysis?.aiComment);
 
   useEffect(() => {
     async function fetchVideos() {
@@ -189,17 +206,53 @@ export default function Dashboard() {
 
   const mainTarget = profile.targetSchools && profile.targetSchools.length > 0 && !profile.targetSchools[0].includes('未設定') ? profile.targetSchools[0] : '未設定';
 
-  // Find next uncompleted tasks from syllabus
-  const nextTasks = [];
+  // 今日の日付 (JST)
+  const todayStr = new Intl.DateTimeFormat('ja-JP', {
+    timeZone: 'Asia/Tokyo',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(new Date()).replace(/\//g, '-');
+
+  const todayPlan = dayPlans[todayStr];
+  const hasPlan = Boolean(todayPlan && todayPlan.targetMinutes && todayPlan.targetMinutes > 0);
+  const targetMinutes = todayPlan?.targetMinutes || 0;
+
+  // カレンダー登録学習時間の有無・目安時間に応じたミッション提示ロジック
+  let missionTaskCount = 2; // デフォルト（登録なし時: 現行ロジック）
+  let missionGuideMessage = '';
+
+  if (hasPlan) {
+    if (targetMinutes <= 90) {
+      // 部活日など短時間（〜90分）: 1タスクに集中厳選
+      missionTaskCount = 1;
+      missionGuideMessage = `${todayPlan.dayType === 'club' ? '🏀' : '⏱️'} ${todayPlan.dayTypeLabel || '短時間集中'}（予定: ${targetMinutes}分）に合わせて、本日は最優先の1タスクに集中して完遂しましょう！`;
+    } else if (targetMinutes <= 180) {
+      // 通常自習・塾など標準時間（91〜180分）: 2〜3タスク
+      missionTaskCount = targetMinutes >= 150 ? 3 : 2;
+      missionGuideMessage = `📖 ${todayPlan.dayTypeLabel || '通常学習'}（予定: ${targetMinutes}分）に合わせて、${missionTaskCount}つのタスクを着実に進める配分です。`;
+    } else {
+      // 一日勉強Dayなど長時間（181分〜）: 3〜4タスク
+      missionTaskCount = 4;
+      missionGuideMessage = `🔥 ${todayPlan.dayTypeLabel || '一日勉強Day'}（予定: ${Math.round(targetMinutes / 60)}時間）に合わせて、複数科目を前進させる4タスクを提示しています！`;
+    }
+  }
+
+  // Find uncompleted tasks from syllabus based on dynamic task count
+  const nextTasks: any[] = [];
   if (syllabus && syllabus.length > 0) {
     for (const phase of syllabus) {
-      if (nextTasks.length >= 2) break;
+      if (nextTasks.length >= missionTaskCount) break;
       for (const cat of phase.categories) {
-        if (nextTasks.length >= 2) break;
+        if (nextTasks.length >= missionTaskCount) break;
         for (const task of cat.tasks) {
           if (!(profile.completedTasks || []).includes(task.title)) {
-            nextTasks.push(task);
-            if (nextTasks.length >= 2) break;
+            nextTasks.push({
+              ...task,
+              subjectName: cat.name,
+              estMinutes: targetMinutes > 0 ? Math.round(targetMinutes / missionTaskCount) : 45
+            });
+            if (nextTasks.length >= missionTaskCount) break;
           }
         }
       }
@@ -269,14 +322,14 @@ export default function Dashboard() {
 
       <div className={styles.grid}>
         <section className={`glass-panel animate-fade-in ${styles.section} ${styles.aiSuggestion}`}>
-          <h2 className={styles.sectionTitle}>✨ チューターコメント (日次分析結果)</h2>
-          <div className={`${styles.aiText} markdown-body`}>
-            <ReactMarkdown remarkPlugins={[remarkMath, remarkGfm]} rehypePlugins={[rehypeKatex]}>{aiSuggestionComment}</ReactMarkdown>
-          </div>
-          <div className={styles.actionButtons}>
-            <button className="btn btn-primary" onClick={handleGenerateSuggestion}>
+          <div className={styles.aiHeaderRow}>
+            <h2 className={styles.sectionTitle} style={{ margin: 0 }}>✨ チューターコメント (日次分析結果)</h2>
+            <button className="btn btn-primary" onClick={handleGenerateSuggestion} style={{ fontSize: '0.85rem', padding: '6px 14px' }}>
               本日の推奨課題に取り組む
             </button>
+          </div>
+          <div className={`${styles.aiText} markdown-body`}>
+            <ReactMarkdown remarkPlugins={[remarkMath, remarkGfm]} rehypePlugins={[rehypeKatex]}>{aiSuggestionComment}</ReactMarkdown>
           </div>
         </section>
 
@@ -290,56 +343,44 @@ export default function Dashboard() {
 
         {nextTasks.length > 0 && (
           <section className={`glass-panel animate-fade-in ${styles.section} ${styles.fullWidth}`}>
-            <h2 className={styles.sectionTitle}>🎯 今日のミッション (シラバスから抜粋)</h2>
+            <div className={styles.missionHeaderRow}>
+              <div>
+                <h2 className={styles.sectionTitle} style={{ marginBottom: '2px' }}>🎯 今日のミッション (シラバスから抜粋)</h2>
+                {missionGuideMessage && (
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0 }}>{missionGuideMessage}</p>
+                )}
+              </div>
+              {hasPlan && (
+                <span className={styles.missionPlanBadge}>
+                  📅 予定時間連動: 計 {targetMinutes}分
+                </span>
+              )}
+            </div>
             <div style={{ display: 'grid', gap: '12px' }}>
               {nextTasks.map((task: any, idx: number) => (
-                <div key={idx} style={{ 
-                  display: 'flex', justifyContent: 'space-between', alignItems: 'center', 
-                  padding: '16px', background: '#F8FAFC', borderRadius: '12px', borderLeft: task.type === 'weakness' ? '4px solid #f59e0b' : '4px solid #3b82f6'
+                <div key={idx} className={styles.taskCard} style={{ 
+                  borderLeft: task.type === 'weakness' ? '4px solid #f59e0b' : '4px solid #3b82f6'
                 }}>
-                  <div>
-                    <span style={{ fontSize: '0.8rem', fontWeight: 'bold', color: task.type === 'weakness' ? '#d97706' : '#2563eb', marginBottom: '4px', display: 'block' }}>
-                      {task.type === 'weakness' ? '【弱点克服】' : '【基本ルート】'}
-                    </span>
-                    <strong style={{ fontSize: '1.1rem' }}>{task.title}</strong>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                      <span style={{ fontSize: '0.8rem', fontWeight: 'bold', color: task.type === 'weakness' ? '#d97706' : '#2563eb' }}>
+                        {task.type === 'weakness' ? '【弱点克服】' : '【基本ルート】'}
+                      </span>
+                      {task.subjectName && (
+                        <span style={{ fontSize: '0.78rem', background: '#e2e8f0', color: '#475569', padding: '1px 6px', borderRadius: '4px' }}>
+                          {task.subjectName}
+                        </span>
+                      )}
+                    </div>
+                    <strong style={{ fontSize: '1.05rem', color: '#1e293b' }}>{task.title}</strong>
                   </div>
+                  {task.estMinutes && (
+                    <div className={styles.estTimeTag}>
+                      目安約 {task.estMinutes}分
+                    </div>
+                  )}
                 </div>
               ))}
-            </div>
-          </section>
-        )}
-
-        {dailyAnalysis?.miniLesson && (
-          <section className={`glass-panel animate-fade-in ${styles.section} ${styles.fullWidth}`}>
-            <h2 className={styles.sectionTitle}>📚 今日のミニレッスン (基礎の復習)</h2>
-            <div className={styles.miniLessonCard}>
-              <h3 style={{ fontSize: '1.2rem', marginBottom: '10px', color: 'var(--accent-primary)' }}>{dailyAnalysis.miniLesson.title}</h3>
-              <div className="markdown-body" style={{ marginBottom: '20px' }}>
-                <ReactMarkdown remarkPlugins={[remarkMath, remarkGfm]} rehypePlugins={[rehypeKatex]}>{dailyAnalysis.miniLesson.content}</ReactMarkdown>
-              </div>
-              
-              <div className={styles.quizBox} style={{ background: '#f8fafc', padding: '20px', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-                <h4 style={{ marginBottom: '15px' }}>📝 確認テスト: <ReactMarkdown remarkPlugins={[remarkMath, remarkGfm]} rehypePlugins={[rehypeKatex]} components={{p: 'span'}}>{dailyAnalysis.miniLesson.question}</ReactMarkdown></h4>
-                <div style={{ display: 'grid', gap: '10px' }}>
-                  {dailyAnalysis.miniLesson.options.map((opt: string, i: number) => (
-                    <button 
-                      key={i} 
-                      className="btn btn-secondary" 
-                      style={{ textAlign: 'left', padding: '12px' }}
-                      onClick={() => {
-                        if (i === dailyAnalysis.miniLesson.correctAnswerIndex) {
-                          alert('✅ 正解！\n\n' + dailyAnalysis.miniLesson.explanation);
-                          fetch('/api/db/daily', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type: 'miniLesson', data: { passed: true } }) });
-                        } else {
-                          alert('❌ 惜しい！\n\n' + dailyAnalysis.miniLesson.explanation);
-                        }
-                      }}
-                    >
-                      {opt}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
           </section>
         )}

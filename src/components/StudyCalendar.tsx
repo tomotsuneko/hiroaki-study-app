@@ -60,26 +60,24 @@ export default function StudyCalendar({ dayPlans, studyTime, recentLogs = [], on
   const [modalMemo, setModalMemo] = useState<string>('');
   const [isSaving, setIsSaving] = useState(false);
 
-  // Calculate week dates (Monday to Sunday)
+  // Calculate 7 days: past 2 days + today (index 2, 3rd from left) + future 4 days
   const weekDays = useMemo(() => {
     const today = new Date(todayStr);
-    const dayOfWeek = today.getDay(); // 0 is Sunday, 1 is Monday...
-    // Offset to Monday (in JS: 0=Sun, 1=Mon... 6=Sat)
-    const diffToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
-    
-    const monday = new Date(today);
-    monday.setDate(today.getDate() + diffToMonday + (weekOffset * 7));
+    const baseDate = new Date(today);
+    baseDate.setDate(today.getDate() + (weekOffset * 7));
 
-    const days = [];
-    for (let i = 0; i < 7; i++) {
-      const d = new Date(monday);
-      d.setDate(monday.getDate() + i);
+    // Offsets: [-2, -1, 0, 1, 2, 3, 4] -> today is index 2 (3rd from left)
+    const relativeOffsets = [-2, -1, 0, 1, 2, 3, 4];
+
+    return relativeOffsets.map(offset => {
+      const d = new Date(baseDate);
+      d.setDate(baseDate.getDate() + offset);
       const dateStr = d.toISOString().split('T')[0];
       const month = d.getMonth() + 1;
       const dateNum = d.getDate();
       const dayNames = ['日', '月', '火', '水', '木', '金', '土'];
       const dayName = dayNames[d.getDay()];
-      days.push({
+      return {
         dateStr,
         month,
         dateNum,
@@ -88,9 +86,8 @@ export default function StudyCalendar({ dayPlans, studyTime, recentLogs = [], on
         isSaturday: d.getDay() === 6,
         isSunday: d.getDay() === 0,
         isToday: dateStr === todayStr,
-      });
-    }
-    return days;
+      };
+    });
   }, [todayStr, weekOffset]);
 
   // Weekly commitment stats
@@ -186,16 +183,16 @@ export default function StudyCalendar({ dayPlans, studyTime, recentLogs = [], on
         <div className={styles.navControls}>
           <div className={styles.weekNav}>
             <button className={styles.navBtn} onClick={() => setWeekOffset(prev => prev - 1)}>
-              ◀ 前週
+              ◀ 前へ
             </button>
             <button 
               className={`${styles.navBtn} ${weekOffset === 0 ? styles.activeNavBtn : ''}`}
               onClick={() => setWeekOffset(0)}
             >
-              今週
+              今日
             </button>
             <button className={styles.navBtn} onClick={() => setWeekOffset(prev => prev + 1)}>
-              翌週 ▶
+              次へ ▶
             </button>
           </div>
         </div>
@@ -205,15 +202,15 @@ export default function StudyCalendar({ dayPlans, studyTime, recentLogs = [], on
       <div className={styles.commitmentCard}>
         <div className={styles.commitmentHeader}>
           <div className={styles.commitmentItem}>
-            <span className={styles.commitLabel}>今週の予定目標:</span>
+            <span className={styles.commitLabel}>7日間の予定目標:</span>
             <strong className={styles.targetNumber}>{formatMinutes(weeklyStats.totalTarget)}</strong>
           </div>
           <div className={styles.commitmentItem}>
-            <span className={styles.commitLabel}>今週の実績（自動抽出）:</span>
+            <span className={styles.commitLabel}>実績（自動抽出）:</span>
             <strong className={styles.actualNumber}>{formatMinutes(weeklyStats.totalActual)}</strong>
           </div>
           <div className={styles.commitmentItem}>
-            <span className={styles.commitLabel}>週間達成度:</span>
+            <span className={styles.commitLabel}>期間達成度:</span>
             <strong className={`${styles.rateNumber} ${weeklyStats.rate >= 100 ? styles.achievedRate : ''}`}>
               {weeklyStats.rate}%
             </strong>
