@@ -1,0 +1,540 @@
+.calendarSection {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  grid-column: 1 / -1; /* Full width in dashboard grid */
+}
+
+.headerArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sectionSubtitle {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.navControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.weekNav {
+  display: inline-flex;
+  background-color: #F4F7FE;
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid #E9EDF7;
+  gap: 4px;
+}
+
+.navBtn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.navBtn:hover {
+  background-color: #E2E8F0;
+}
+
+.activeNavBtn {
+  background-color: #FFFFFF;
+  color: var(--accent-primary);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* Commitment Summary Card */
+.commitmentCard {
+  background: linear-gradient(135deg, #F8FAFC, #EEF2FF);
+  border: 1px solid #E0E7FF;
+  border-radius: 16px;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.commitmentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.commitmentItem {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.commitLabel {
+  font-size: 0.85rem;
+  color: #64748B;
+  font-weight: 600;
+}
+
+.targetNumber {
+  font-size: 1.15rem;
+  color: #4318FF;
+  font-weight: 700;
+}
+
+.actualNumber {
+  font-size: 1.15rem;
+  color: #05CD99;
+  font-weight: 700;
+}
+
+.rateNumber {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #4318FF;
+}
+
+.achievedRate {
+  color: #05CD99;
+}
+
+.progressTrack {
+  width: 100%;
+  height: 8px;
+  background-color: #E2E8F0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #4318FF, #05CD99);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.commitmentAdvice {
+  font-size: 0.85rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+/* 7 Days Grid */
+.weekGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .weekGrid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+}
+
+.dayCard {
+  background: #FFFFFF;
+  border: 1px solid #E9EDF7;
+  border-radius: 14px;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  min-height: 160px;
+}
+
+.dayCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-primary);
+  box-shadow: 0 6px 16px rgba(67, 24, 255, 0.08);
+}
+
+.todayCard {
+  border: 2px solid var(--accent-primary);
+  background-color: #FAFCFF;
+  box-shadow: 0 4px 14px rgba(67, 24, 255, 0.1);
+}
+
+.achievedCard {
+  border-color: #A7F3D0;
+  background-color: #F0FDF4;
+}
+
+.dayHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dateLabel {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.dayName {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.saturday {
+  color: #2563EB;
+}
+
+.sunday {
+  color: #DC2626;
+}
+
+.dayNum {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.todayPill {
+  background: var(--accent-primary);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+}
+
+.dayTypeRow {
+  min-height: 24px;
+}
+
+.dayTypeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.dayTypeUnset {
+  font-size: 0.75rem;
+  color: #94A3B8;
+  border: 1px dashed #CBD5E1;
+  padding: 3px 6px;
+  border-radius: 6px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.timeStats {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: auto;
+}
+
+.timeRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+}
+
+.timeLabel {
+  color: #64748B;
+}
+
+.timeVal {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.hasActual {
+  color: #05CD99;
+  font-weight: 700;
+}
+
+.dayProgressArea {
+  margin-top: 4px;
+}
+
+.dayProgressBarBg {
+  width: 100%;
+  height: 6px;
+  background-color: #E2E8F0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.dayProgressBarFill {
+  height: 100%;
+  background-color: #05CD99;
+  border-radius: 999px;
+}
+
+.achievedBadge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #065F46;
+  background-color: #D1FAE5;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.emptySlot {
+  font-size: 0.7rem;
+  color: #A3AED0;
+  text-align: center;
+}
+
+.dayMemoPreview {
+  font-size: 0.72rem;
+  color: #475569;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: #F8FAFC;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border-left: 2px solid var(--accent-primary);
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(11, 15, 25, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modalCard {
+  width: 100%;
+  max-width: 540px;
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #E9EDF7;
+  padding-bottom: 14px;
+}
+
+.modalTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.modalDate {
+  color: var(--accent-primary);
+}
+
+.closeBtn {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.closeBtn:hover {
+  background-color: #F4F7FE;
+  color: var(--text-primary);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formLabel {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.presetGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.presetBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 6px;
+  border-radius: 10px;
+  border: 1px solid #E2E8F0;
+  background-color: #F8FAFC;
+  gap: 2px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.presetBtn:hover {
+  border-color: var(--accent-primary);
+  background-color: #F4F7FE;
+}
+
+.selectedPreset {
+  border-color: var(--accent-primary);
+  background-color: #EEF2FF;
+  box-shadow: 0 0 0 2px rgba(67, 24, 255, 0.2);
+}
+
+.presetIcon {
+  font-size: 1.2rem;
+}
+
+.presetTitle {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.presetTime {
+  font-size: 0.72rem;
+  color: #64748B;
+}
+
+.selectedHoursLabel {
+  font-size: 1.1rem;
+  color: var(--accent-primary);
+}
+
+.rangeSlider {
+  width: 100%;
+  accent-color: var(--accent-primary);
+  cursor: pointer;
+}
+
+.quickTimeBtns {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.quickTimeBtn {
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #E2E8F0;
+  background-color: #FFFFFF;
+  font-size: 0.78rem;
+  color: #475569;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.quickTimeBtn:hover {
+  background-color: #F1F5F9;
+}
+
+.activeQuickTime {
+  background-color: var(--accent-primary);
+  color: #FFFFFF;
+  border-color: var(--accent-primary);
+}
+
+.memoInput {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #CBD5E1;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.memoInput:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(67, 24, 255, 0.1);
+}
+
+.actualSummaryBox {
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.actualSummaryHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #334155;
+}
+
+.actualSummaryHeader strong {
+  color: #05CD99;
+}
+
+.logList {
+  list-style: none;
+  font-size: 0.78rem;
+  color: #64748B;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 0;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 10px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}

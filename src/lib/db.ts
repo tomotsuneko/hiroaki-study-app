@@ -25,6 +25,15 @@ export type SyllabusPhase = {
   }[];
 };
 
+export type DayPlan = {
+  date: string; // YYYY-MM-DD
+  targetMinutes: number; // 予定学習時間（分）
+  dayType: 'club' | 'cram' | 'full' | 'regular' | 'rest' | 'exam_prep';
+  dayTypeLabel?: string;
+  memo?: string;
+  updatedAt?: string;
+};
+
 type Database = {
   logs: LogEntry[];
   studyTime: Record<string, number>;
@@ -45,6 +54,7 @@ type Database = {
     message: string;
     timestamp: string;
   } | null;
+  dayPlans?: Record<string, DayPlan>;
 };
 
 const defaultDb: Database = {
@@ -52,7 +62,8 @@ const defaultDb: Database = {
   studyTime: {},
   syllabus: null,
   dailyAnalysis: null,
-  flashcards: []
+  flashcards: [],
+  dayPlans: {}
 };
 
 // Retrieve user ID from cookies
@@ -191,6 +202,21 @@ export async function saveFlashcards(cards: any[]) {
   const db = await readDB();
   if (!db.flashcards) db.flashcards = [];
   db.flashcards.push(...cards);
+  await writeDB(db);
+}
+
+export async function getDayPlans(): Promise<Record<string, DayPlan>> {
+  const db = await readDB();
+  return db.dayPlans || {};
+}
+
+export async function saveDayPlan(plan: DayPlan): Promise<void> {
+  const db = await readDB();
+  if (!db.dayPlans) db.dayPlans = {};
+  db.dayPlans[plan.date] = {
+    ...plan,
+    updatedAt: new Date().toISOString()
+  };
   await writeDB(db);
 }
 

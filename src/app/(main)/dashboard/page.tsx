@@ -10,6 +10,8 @@ import remarkMath from 'remark-math';
 import remarkGfm from 'remark-gfm';
 import rehypeKatex from 'rehype-katex';
 import React from 'react';
+import StudyCalendar from '@/components/StudyCalendar';
+import { DayPlan } from '@/lib/db';
 
 function Heatmap({ studyTime }: { studyTime: Record<string, number> }) {
   // 過去30日間の日付を生成
@@ -56,6 +58,7 @@ export default function Dashboard() {
   const [recentLogs, setRecentLogs] = useState<any[]>([]);
   const [studyTime, setStudyTime] = useState<Record<string, number>>({});
   const [syllabus, setSyllabus] = useState<any[]>([]);
+  const [dayPlans, setDayPlans] = useState<Record<string, DayPlan>>({});
   const [rebalanceAlert, setRebalanceAlert] = useState<{ reason: string; message: string; timestamp: string } | null>(null);
 
   useEffect(() => {
@@ -67,6 +70,7 @@ export default function Dashboard() {
         setRecentLogs(data.recentLogs);
         setStudyTime(data.studyTime || {});
         if (data.syllabus) setSyllabus(data.syllabus);
+        if (data.dayPlans) setDayPlans(data.dayPlans);
         if (data.syllabusRebalanceAlert) {
           setRebalanceAlert(data.syllabusRebalanceAlert);
         } else if (profile.syllabusRebalanceAlert) {
@@ -78,6 +82,19 @@ export default function Dashboard() {
     }
     fetchDB();
   }, [profile.syllabusRebalanceAlert]);
+
+  const handleSaveDayPlan = async (plan: DayPlan) => {
+    setDayPlans(prev => ({ ...prev, [plan.date]: plan }));
+    try {
+      await fetch('/api/db/daily', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'saveDayPlan', data: plan })
+      });
+    } catch (e) {
+      console.error('Failed to save day plan', e);
+    }
+  };
 
   const runDailyBatch = async () => {
     alert("日次分析バッチ処理を開始します（モックアップ）...");
@@ -262,6 +279,14 @@ export default function Dashboard() {
             </button>
           </div>
         </section>
+
+        {/* 📅 学習タイムマネジメント・簡易カレンダー */}
+        <StudyCalendar
+          dayPlans={dayPlans}
+          studyTime={studyTime}
+          recentLogs={recentLogs}
+          onSavePlan={handleSaveDayPlan}
+        />
 
         {nextTasks.length > 0 && (
           <section className={`glass-panel animate-fade-in ${styles.section} ${styles.fullWidth}`}>

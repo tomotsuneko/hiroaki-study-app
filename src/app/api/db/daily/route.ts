@@ -9,7 +9,8 @@ export async function GET() {
     studyTime: db.studyTime || {},
     syllabus: db.syllabus,
     syllabusUpdatedAt: db.syllabusUpdatedAt,
-    syllabusRebalanceAlert: db.syllabusRebalanceAlert || null
+    syllabusRebalanceAlert: db.syllabusRebalanceAlert || null,
+    dayPlans: db.dayPlans || {}
   });
 }
 
@@ -25,6 +26,12 @@ export async function POST(req: Request) {
     if (type === 'clearRebalanceAlert') {
       const { clearSyllabusRebalanceAlert } = await import('@/lib/db');
       await clearSyllabusRebalanceAlert();
+      return NextResponse.json({ success: true });
+    }
+
+    if (type === 'saveDayPlan') {
+      const { saveDayPlan } = await import('@/lib/db');
+      await saveDayPlan(data);
       return NextResponse.json({ success: true });
     }
     
