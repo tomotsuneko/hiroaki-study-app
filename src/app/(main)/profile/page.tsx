@@ -12,7 +12,6 @@ export default function ProfilePage() {
   const [targetSchools, setTargetSchools] = useState<string[]>(profile.targetSchools && profile.targetSchools.length > 0 ? profile.targetSchools : ['未設定 (プロフィールから設定)', '', '']);
   const [weakSubjects, setWeakSubjects] = useState(profile.weakSubjects?.join(', ') || '');
   const [tutorPersona, setTutorPersona] = useState(profile.tutorPersona || '優しいお姉さん');
-  const [currentMood, setCurrentMood] = useState(profile.currentMood || '普通');
   
   // New Fields
   const [schoolType, setSchoolType] = useState<'junior_high' | 'high'>(profile.schoolType || 'high');
@@ -69,7 +68,6 @@ export default function ProfilePage() {
       targetSchools: cleanTargets,
       weakSubjects: weakSubjects.split(',').map(s => s.trim()).filter(Boolean),
       tutorPersona,
-      currentMood,
       schoolType,
       schoolName,
       department: schoolType === 'junior_high' ? undefined : department,
@@ -287,20 +285,6 @@ export default function ProfilePage() {
             <option value="優しいお姉さん">🌸 優しいお姉さん (優しく寄り添う)</option>
             <option value="熱血コーチ">🔥 熱血コーチ (厳しく熱く励ます)</option>
             <option value="論理的メンター">🤖 論理的メンター (客観的かつ効率重視)</option>
-          </select>
-        </div>
-
-        <div className={styles.formGroup}>
-          <label className={styles.label}>今日の気分・モチベーション</label>
-          <select 
-            className={styles.input} 
-            value={currentMood} 
-            onChange={e => setCurrentMood(e.target.value)}
-          >
-            <option value="絶好調">✨ 絶好調！どんどん進めたい</option>
-            <option value="普通">🙂 普通 (いつものペースで)</option>
-            <option value="少し疲れ気味">🥱 少し疲れ気味 (基礎を中心に)</option>
-            <option value="スランプ">🌧️ スランプ気味 (とにかく励まして)</option>
           </select>
         </div>
 

@@ -12,51 +12,53 @@
   border-right: 1px solid #E9EDF7;
   display: flex;
   flex-direction: column;
-  padding: 24px 16px;
+  padding: 20px 12px;
   flex-shrink: 0;
 }
 
 .logoContainer {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 0 12px 32px 12px;
+  gap: 10px;
+  padding: 0 8px 24px 8px;
 }
 
 .logoIcon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
   background: var(--accent-gradient);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: white;
+  flex-shrink: 0;
 }
 
 .logoText {
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.5px;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  white-space: nowrap;
 }
 
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   flex: 1;
 }
 
 .navItem {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
+  gap: 10px;
+  padding: 10px 12px;
   border-radius: 10px;
   color: var(--text-secondary);
   transition: all 0.2s ease;
@@ -75,11 +77,13 @@
 }
 
 .navIcon {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  flex-shrink: 0;
 }
 
 .navLabel {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  white-space: nowrap;
 }
 
 .sidebarFooter {
