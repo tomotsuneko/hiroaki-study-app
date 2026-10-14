@@ -53,7 +53,8 @@ export async function POST(req: Request) {
         content,
         filename: file.name,
         type: 'html',
-        subject: subjectName,
+        subject,           // 科目ID（例: high_school_数学）※一覧のグルーピングキー
+        subjectName,       // 表示名（例: 数学）
         importedAt: new Date().toISOString(),
         versions
       }, { merge: true });

@@ -2,24 +2,30 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import {
+  buildSubjectSlots,
+  normalizeSubjectId,
+  type ContentItem,
+  type CurriculumSubject,
+} from '@/lib/content-slots';
 
-type TestMaterial = {
-  id: string;
-  title: string;
-  contentTitle?: string;
-  subject: string;
-  importedAt: string;
-  versions: { importedAt: string }[];
-};
+type TestMaterial = ContentItem;
 
 export default function TestsAdminPage() {
   const [importingSubject, setImportingSubject] = useState<string | null>(null);
   const [message, setMessage] = useState<{ text: string, type: 'success' | 'error' } | null>(null);
   const [tests, setTests] = useState<TestMaterial[]>([]);
   const [isLoadingList, setIsLoadingList] = useState(true);
+  const [filterMode, setFilterMode] = useState<'all' | 'filled' | 'missing'>('all');
+  const [collapsedCategories, setCollapsedCategories] = useState<Record<string, boolean>>({});
+
+  const toggleCategory = (catKey: string) => {
+    setCollapsedCategories(prev => ({ ...prev, [catKey]: !prev[catKey] }));
+  };
   
   // Dynamic subjects from curriculum
   const [subjects, setSubjects] = useState<{ id: string, name: string, level: string }[]>([]);
+  const [curriculum, setCurriculum] = useState<CurriculumSubject[]>([]);
   
   const fileInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({});
 
@@ -28,6 +34,7 @@ export default function TestsAdminPage() {
       const res = await fetch('/api/admin/master-db');
       const data = await res.json();
       if (data.masterDb) {
+        setCurriculum(data.masterDb);
         setSubjects(data.masterDb.map((s: any) => ({
           id: s.id,
           name: s.subjectName || s.id,
@@ -153,16 +160,17 @@ export default function TestsAdminPage() {
     }
   };
 
-  // Group tests by subject ID
-  const groupedEarnings = tests.reduce((acc, curr) => {
-    if (!acc[curr.subject]) acc[curr.subject] = [];
-    acc[curr.subject].push(curr);
+  // Group tests by subject ID（旧仕様で表示名が保存されたデータもタイトル接頭辞から科目IDへ正規化）
+  const groupedTests = tests.reduce((acc, curr) => {
+    const key = normalizeSubjectId(curr, curriculum);
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(curr);
     return acc;
   }, {} as Record<string, TestMaterial[]>);
   
   // Sort tests by title ascending (e.g. 001, 002, 003)
-  Object.keys(groupedEarnings).forEach(key => {
-    groupedEarnings[key].sort((a, b) => a.title.localeCompare(b.title));
+  Object.keys(groupedTests).forEach(key => {
+    groupedTests[key].sort((a, b) => a.title.localeCompare(b.title));
   });
 
   const hsSubjects = subjects.filter(s => s.level === '高等学校');
@@ -207,57 +215,237 @@ export default function TestsAdminPage() {
   );
 
   const renderTestList = (list: typeof subjects, color: string) => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
       {list.map(subject => {
-        const items = groupedEarnings[subject.id] || [];
-        if (items.length === 0) return null;
+        const curSubject = curriculum.find(c => c.id === subject.id);
+        const items = groupedTests[subject.id] || [];
         
+        // カリキュラムDBから大分類・小分類のスロットを生成
+        const { categories, unmatched } = curSubject
+          ? buildSubjectSlots(curSubject, items)
+          : { categories: [], unmatched: items };
+
+        const totalSlots = categories.reduce((sum, c) => sum + c.slots.length, 0);
+        const totalFilled = categories.reduce((sum, c) => sum + c.filled, 0) + unmatched.length;
+        const percent = totalSlots > 0 ? Math.round((totalFilled / totalSlots) * 100) : 0;
+
         return (
-          <div key={subject.id} id={subject.id} style={{ border: `1px solid #CBD5E1`, borderRadius: '8px', overflow: 'hidden' }}>
-            <div style={{ backgroundColor: `#F1F5F9`, padding: '12px 16px', fontWeight: 'bold', borderBottom: `1px solid #CBD5E1`, color: '#1E293B', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: color }}></div>
-              {subject.level} {subject.name} <span style={{ fontSize: '0.9rem', color: '#64748B', fontWeight: 'normal' }}>({items.length}件)</span>
-            </div>
-            <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {items.map(item => (
-                <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', paddingBottom: '12px', borderBottom: '1px dashed #E2E8F0' }}>
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <Link href={`/preview/${encodeURIComponent(item.id)}?type=test`} style={{ color: '#2563EB', fontWeight: 'bold', textDecoration: 'underline', fontSize: '1.05rem' }}>
-                        {item.title}
-                      </Link>
-                      {item.contentTitle && (
-                        <span style={{ color: '#475569', fontSize: '0.95rem', fontWeight: '500' }}>
-                          {item.contentTitle}
-                        </span>
-                      )}
-                    </div>
-                    <div style={{ fontSize: '0.85rem', color: '#64748B', marginTop: '4px' }}>
-                      最終更新: {new Date(item.importedAt).toLocaleString('ja-JP')}
-                    </div>
-                  </div>
-                  
-                  {item.versions && item.versions.length > 0 && (
-                    <div style={{ fontSize: '0.85rem', textAlign: 'right' }}>
-                      <div style={{ fontWeight: 'bold', color: '#475569', marginBottom: '4px' }}>世代管理 ({item.versions.length}件の旧版)</div>
-                      {item.versions.map((v, idx) => (
-                        <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px', justifyContent: 'flex-end' }}>
-                          <span style={{ color: '#94A3B8' }}>{new Date(v.importedAt).toLocaleString('ja-JP')}</span>
-                          <Link href={`/preview/${encodeURIComponent(item.id)}?type=test&v=${idx}`} style={{ color: '#059669', textDecoration: 'underline' }}>
-                            参照
-                          </Link>
-                          <button 
-                            onClick={() => handleRestore(item.id, idx)}
-                            style={{ background: 'none', border: '1px solid #CBD5E1', borderRadius: '4px', padding: '2px 6px', cursor: 'pointer', color: '#475569', fontSize: '0.8rem' }}
-                          >
-                            正規化
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+          <div key={subject.id} id={subject.id} style={{ border: `1px solid #CBD5E1`, borderRadius: '12px', overflow: 'hidden', backgroundColor: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.03)' }}>
+            {/* 科目ヘッダー */}
+            <div style={{ 
+              backgroundColor: `#F8FAFC`, 
+              padding: '16px 20px', 
+              borderBottom: `1px solid #E2E8F0`, 
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              alignItems: 'center', 
+              flexWrap: 'wrap', 
+              gap: '12px' 
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: color }}></div>
+                <h3 style={{ margin: 0, fontSize: '1.2rem', color: '#0F172A', fontWeight: 'bold' }}>
+                  {subject.level} {subject.name}
+                </h3>
+              </div>
+
+              {/* 進捗バッジ */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{ textAlign: 'right' }}>
+                  <span style={{ fontSize: '0.85rem', color: '#64748B' }}>充実度: </span>
+                  <strong style={{ fontSize: '1rem', color: totalFilled > 0 ? '#10B981' : '#64748B' }}>
+                    {totalFilled} / {totalSlots > 0 ? totalSlots : items.length} 件 ({percent}%)
+                  </strong>
                 </div>
-              ))}
+                {totalSlots > 0 && (
+                  <div style={{ width: '100px', height: '8px', backgroundColor: '#E2E8F0', borderRadius: '4px', overflow: 'hidden' }}>
+                    <div style={{ width: `${percent}%`, height: '100%', backgroundColor: color, transition: 'width 0.3s ease' }}></div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* 大分類ごとのスロット表示 */}
+            <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              {categories.length === 0 && items.length === 0 && (
+                <div style={{ color: '#94A3B8', fontSize: '0.9rem', textAlign: 'center', padding: '16px' }}>
+                  カリキュラムおよびテストコンテンツがまだ登録されていません。
+                </div>
+              )}
+
+              {categories.map((cat, catIdx) => {
+                const catKey = `${subject.id}_${cat.name}`;
+                const isCollapsed = collapsedCategories[catKey] ?? false;
+                
+                // フィルター適用
+                const displaySlots = cat.slots.filter(s => {
+                  if (filterMode === 'filled') return s.item !== null;
+                  if (filterMode === 'missing') return s.item === null;
+                  return true;
+                });
+
+                if (filterMode !== 'all' && displaySlots.length === 0) return null;
+
+                const catPercent = cat.slots.length > 0 ? Math.round((cat.filled / cat.slots.length) * 100) : 0;
+
+                return (
+                  <div key={catIdx} style={{ border: '1px solid #E2E8F0', borderRadius: '8px', overflow: 'hidden' }}>
+                    {/* 大分類タイトルバー（アコーディオン） */}
+                    <div 
+                      onClick={() => toggleCategory(catKey)}
+                      style={{ 
+                        backgroundColor: '#F1F5F9', 
+                        padding: '10px 16px', 
+                        display: 'flex', 
+                        justifyContent: 'space-between', 
+                        alignItems: 'center',
+                        cursor: 'pointer',
+                        userSelect: 'none'
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ fontSize: '0.8rem', color: '#64748B' }}>{isCollapsed ? '▶' : '▼'}</span>
+                        <strong style={{ fontSize: '1rem', color: '#1E293B' }}>
+                          📂 {cat.name}
+                        </strong>
+                        {cat.prefix && (
+                          <span style={{ fontSize: '0.78rem', background: '#E2E8F0', color: '#475569', padding: '1px 6px', borderRadius: '4px', fontFamily: 'monospace' }}>
+                            接頭辞: {cat.prefix}-###
+                          </span>
+                        )}
+                      </div>
+                      <div style={{ fontSize: '0.85rem', color: '#475569' }}>
+                        登録済: <strong style={{ color: cat.filled > 0 ? '#059669' : '#64748B' }}>{cat.filled}</strong> / {cat.slots.length}件 ({catPercent}%)
+                      </div>
+                    </div>
+
+                    {/* スロット一覧 */}
+                    {!isCollapsed && (
+                      <div style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px', backgroundColor: '#FAFAFA' }}>
+                        {displaySlots.map(slot => {
+                          const item = slot.item;
+                          if (item) {
+                            // 登録済み枠
+                            return (
+                              <div key={slot.no} style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'flex-start',
+                                padding: '10px 14px',
+                                backgroundColor: 'white',
+                                borderRadius: '6px',
+                                border: '1px solid #E2E8F0',
+                                borderLeft: '4px solid #10B981',
+                                gap: '12px'
+                              }}>
+                                <div style={{ flex: 1 }}>
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                                    <span style={{ fontSize: '0.75rem', padding: '2px 6px', background: '#DCFCE7', color: '#15803D', borderRadius: '4px', fontWeight: 'bold' }}>
+                                      ✅ 登録済
+                                    </span>
+                                    <Link 
+                                      href={`/preview/${encodeURIComponent(item.id)}?type=test`} 
+                                      style={{ color: '#2563EB', fontWeight: 'bold', textDecoration: 'underline', fontSize: '1rem', fontFamily: 'monospace' }}
+                                    >
+                                      {item.title}
+                                    </Link>
+                                    {item.contentTitle ? (
+                                      <span style={{ color: '#1E293B', fontSize: '0.95rem', fontWeight: '500' }}>
+                                        {item.contentTitle}
+                                      </span>
+                                    ) : (
+                                      <span style={{ color: '#64748B', fontSize: '0.9rem' }}>
+                                        {slot.smallName}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div style={{ fontSize: '0.8rem', color: '#64748B', marginTop: '4px' }}>
+                                    単元: <span style={{ color: '#475569' }}>{slot.mediumName} &gt; {slot.smallName}</span> ｜ 最終更新: {new Date(item.importedAt).toLocaleString('ja-JP')}
+                                  </div>
+                                </div>
+
+                                {/* 世代管理 */}
+                                {item.versions && item.versions.length > 0 && (
+                                  <div style={{ fontSize: '0.8rem', textAlign: 'right', flexShrink: 0 }}>
+                                    <div style={{ fontWeight: 'bold', color: '#64748B', marginBottom: '2px' }}>
+                                      旧版 ({item.versions.length}件)
+                                    </div>
+                                    {item.versions.map((v, idx) => (
+                                      <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '6px', justifyContent: 'flex-end', marginTop: '2px' }}>
+                                        <span style={{ color: '#94A3B8', fontSize: '0.75rem' }}>{new Date(v.importedAt).toLocaleDateString('ja-JP')}</span>
+                                        <Link href={`/preview/${encodeURIComponent(item.id)}?type=test&v=${idx}`} style={{ color: '#059669', textDecoration: 'underline', fontSize: '0.78rem' }}>
+                                          参照
+                                        </Link>
+                                        <button 
+                                          onClick={() => handleRestore(item.id, idx)}
+                                          style={{ background: 'none', border: '1px solid #CBD5E1', borderRadius: '3px', padding: '1px 4px', cursor: 'pointer', color: '#475569', fontSize: '0.75rem' }}
+                                        >
+                                          復元
+                                        </button>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          } else {
+                            // 未登録の枠（プレースホルダー）
+                            return (
+                              <div key={slot.no} style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                padding: '8px 14px',
+                                backgroundColor: '#F8FAFC',
+                                borderRadius: '6px',
+                                border: '1px dashed #CBD5E1',
+                                gap: '12px'
+                              }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                                  <span style={{ fontSize: '0.75rem', padding: '2px 6px', background: '#F1F5F9', color: '#64748B', borderRadius: '4px', fontWeight: 'bold' }}>
+                                    ⏳ 未登録枠
+                                  </span>
+                                  <span style={{ fontFamily: 'monospace', fontWeight: 'bold', color: '#94A3B8', fontSize: '0.95rem' }}>
+                                    {slot.expectedTitle || `No.${slot.no}`}
+                                  </span>
+                                  <span style={{ color: '#475569', fontSize: '0.9rem' }}>
+                                    {slot.smallName}
+                                  </span>
+                                </div>
+                                <span style={{ fontSize: '0.78rem', color: '#94A3B8', flexShrink: 0 }}>
+                                  {slot.mediumName}
+                                </span>
+                              </div>
+                            );
+                          }
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+
+              {/* カリキュラム枠に一致しなかったその他の登録済みコンテンツ */}
+              {unmatched.length > 0 && (
+                <div style={{ marginTop: '12px', border: '1px solid #E2E8F0', borderRadius: '8px', padding: '16px', backgroundColor: '#FFFBEB' }}>
+                  <strong style={{ fontSize: '0.95rem', color: '#B45309', display: 'block', marginBottom: '10px' }}>
+                    ⚠️ その他の登録テストコンテンツ ({unmatched.length}件)
+                  </strong>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {unmatched.map(item => (
+                      <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 12px', background: 'white', borderRadius: '4px', border: '1px solid #FDE68A' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <Link href={`/preview/${encodeURIComponent(item.id)}?type=test`} style={{ color: '#2563EB', fontWeight: 'bold', textDecoration: 'underline' }}>
+                            {item.title}
+                          </Link>
+                          {item.contentTitle && <span style={{ color: '#475569', fontSize: '0.9rem' }}>{item.contentTitle}</span>}
+                        </div>
+                        <span style={{ fontSize: '0.8rem', color: '#94A3B8' }}>{new Date(item.importedAt).toLocaleString('ja-JP')}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         );
@@ -325,26 +513,77 @@ export default function TestsAdminPage() {
 
       {/* 下段：コンテンツ一覧 */}
       <div className="glass-panel" style={{ padding: '24px' }}>
-        <h2 style={{ fontSize: '1.2rem', marginBottom: '20px' }}>登録済みテストコンテンツ</h2>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
+          <h2 style={{ fontSize: '1.2rem', margin: 0 }}>
+            カリキュラム連動 テストコンテンツ枠一覧
+          </h2>
+
+          {/* 表示切り替えフィルター */}
+          <div style={{ display: 'flex', gap: '6px', background: '#F1F5F9', padding: '4px', borderRadius: '8px' }}>
+            <button
+              onClick={() => setFilterMode('all')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '6px',
+                border: 'none',
+                background: filterMode === 'all' ? '#1E293B' : 'transparent',
+                color: filterMode === 'all' ? 'white' : '#64748B',
+                fontSize: '0.85rem',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
+            >
+              すべて表示
+            </button>
+            <button
+              onClick={() => setFilterMode('filled')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '6px',
+                border: 'none',
+                background: filterMode === 'filled' ? '#10B981' : 'transparent',
+                color: filterMode === 'filled' ? 'white' : '#64748B',
+                fontSize: '0.85rem',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
+            >
+              ✅ 登録済のみ
+            </button>
+            <button
+              onClick={() => setFilterMode('missing')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '6px',
+                border: 'none',
+                background: filterMode === 'missing' ? '#F59E0B' : 'transparent',
+                color: filterMode === 'missing' ? 'white' : '#64748B',
+                fontSize: '0.85rem',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
+            >
+              ⏳ 未登録枠のみ
+            </button>
+          </div>
+        </div>
         
         {isLoadingList ? (
-          <div style={{ textAlign: 'center', color: '#64748B' }}>読み込み中...</div>
-        ) : tests.length === 0 ? (
-          <div style={{ textAlign: 'center', color: '#64748B' }}>テストコンテンツはまだ登録されていません。</div>
+          <div style={{ textAlign: 'center', color: '#64748B', padding: '40px' }}>読み込み中...</div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
             {/* 高等学校一覧 */}
-            {hsSubjects.some(s => (groupedEarnings[s.id] || []).length > 0) && (
+            {hsSubjects.length > 0 && (
               <div>
-                <h3 style={{ fontSize: '1.1rem', color: '#3B82F6', marginBottom: '16px', fontWeight: 'bold' }}>■ 高等学校</h3>
+                <h3 style={{ fontSize: '1.15rem', color: '#3B82F6', marginBottom: '16px', fontWeight: 'bold' }}>■ 高等学校カリキュラム</h3>
                 {renderTestList(hsSubjects, '#3B82F6')}
               </div>
             )}
             
             {/* 中学校一覧 */}
-            {jhSubjects.some(s => (groupedEarnings[s.id] || []).length > 0) && (
+            {jhSubjects.length > 0 && (
               <div>
-                <h3 style={{ fontSize: '1.1rem', color: '#10B981', marginBottom: '16px', fontWeight: 'bold' }}>■ 中学校</h3>
+                <h3 style={{ fontSize: '1.15rem', color: '#10B981', marginBottom: '16px', fontWeight: 'bold' }}>■ 中学校カリキュラム</h3>
                 {renderTestList(jhSubjects, '#10B981')}
               </div>
             )}
