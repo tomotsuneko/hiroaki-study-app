@@ -611,32 +611,41 @@
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(28, 25, 23, 0.72);
-  backdrop-filter: blur(6px);
+  background: rgba(28, 25, 23, 0.75);
+  backdrop-filter: blur(8px);
   z-index: 1200;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 8px;
 }
 
 .modalCard {
   background: #FFFFFF;
-  width: 100%;
-  max-width: 1140px;
-  height: 90vh;
-  border-radius: 22px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  width: 98vw;
+  max-width: 98vw;
+  height: 96vh;
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  animation: modalPop 0.22s ease-out;
+  animation: modalPop 0.2s ease-out;
+  transition: all 0.2s ease;
+}
+
+.modalCardMaximized {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: 100vh !important;
+  border-radius: 0 !important;
+  border: none !important;
 }
 
 @keyframes modalPop {
   from {
     opacity: 0;
-    transform: translateY(12px) scale(0.98);
+    transform: translateY(10px) scale(0.99);
   }
   to {
     opacity: 1;
@@ -716,7 +725,7 @@
 .modalBody {
   flex: 1;
   overflow-y: auto;
-  padding: 26px;
+  padding: 16px 20px;
   background: #FFFFFF;
   display: flex;
   flex-direction: column;

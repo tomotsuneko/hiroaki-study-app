@@ -162,6 +162,7 @@ function LessonBookshelfContent() {
   const [activeLargeCategory, setActiveLargeCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [statusFilter, setStatusFilter] = useState<'available' | 'all' | 'studying' | 'mastered'>('available');
+  const [isModalMaximized, setIsModalMaximized] = useState<boolean>(false);
 
   // Selected Unit Modal state
   const [selectedUnit, setSelectedUnit] = useState<UnifiedUnit | null>(null);
@@ -848,7 +849,10 @@ function LessonBookshelfContent() {
       {/* 5. 閲覧席（読書・テストステーションモーダル） */}
       {selectedUnit && (
         <div className={styles.modalOverlay} onClick={() => setSelectedUnit(null)}>
-          <div className={styles.modalCard} onClick={e => e.stopPropagation()}>
+          <div
+            className={`${styles.modalCard} ${isModalMaximized ? styles.modalCardMaximized : ''}`}
+            onClick={e => e.stopPropagation()}
+          >
             {/* Modal Header */}
             <div className={styles.modalHeader}>
               <div>
@@ -897,6 +901,58 @@ function LessonBookshelfContent() {
                   {(profile.completedTasks || []).includes(selectedUnit.smallName)
                     ? '👑 読了・習得済 (解除)'
                     : '✅ この本を読了・習得済にする'}
+                </button>
+
+                {/* 🗗 別ウィンドウで開くボタン */}
+                {selectedUnit.material && (
+                  <button
+                    onClick={() =>
+                      window.open(
+                        `/materials/${encodeURIComponent(selectedUnit.material!.id)}`,
+                        '_blank',
+                        'noopener,noreferrer'
+                      )
+                    }
+                    style={{
+                      padding: '8px 14px',
+                      borderRadius: '10px',
+                      border: '1px solid #CBD5E1',
+                      background: '#FFFFFF',
+                      color: '#1E293B',
+                      fontWeight: 800,
+                      fontSize: '0.86rem',
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+                    }}
+                    title="別ウィンドウで教材を開く"
+                  >
+                    <span>🗗</span> 別ウィンドウ
+                  </button>
+                )}
+
+                {/* ⛶ 最大化 / 通常サイズ切替ボタン */}
+                <button
+                  onClick={() => setIsModalMaximized(!isModalMaximized)}
+                  style={{
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '10px',
+                    border: '1px solid #CBD5E1',
+                    background: '#FFFFFF',
+                    fontSize: '1rem',
+                    cursor: 'pointer',
+                    fontWeight: 'bold',
+                    color: '#475569',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  title={isModalMaximized ? '通常サイズに戻す' : '画面全体に最大化'}
+                >
+                  {isModalMaximized ? '❐' : '⛶'}
                 </button>
 
                 <button
@@ -1033,21 +1089,31 @@ function LessonBookshelfContent() {
                           >
                             📝 この単元のテストに進む →
                           </button>
-                          <Link
-                            href={`/materials/${encodeURIComponent(selectedUnit.material.id)}`}
+                          <button
+                            onClick={() =>
+                              window.open(
+                                `/materials/${encodeURIComponent(selectedUnit.material!.id)}`,
+                                '_blank',
+                                'noopener,noreferrer'
+                              )
+                            }
                             style={{
                               padding: '7px 16px',
                               borderRadius: '8px',
-                              border: '1px solid #D6D3D1',
-                              background: '#FAFAF9',
-                              color: '#44403C',
+                              border: '1px solid #CBD5E1',
+                              background: '#FFFFFF',
+                              color: '#1C1917',
                               fontWeight: 800,
                               fontSize: '0.84rem',
-                              textDecoration: 'none',
+                              cursor: 'pointer',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '6px',
                             }}
+                            title="別ウィンドウで開く"
                           >
-                            ↗ 全画面読書ビューで開く
-                          </Link>
+                            <span>🗗</span> 別ウィンドウで開く
+                          </button>
                         </div>
                       </div>
 
@@ -1061,7 +1127,8 @@ function LessonBookshelfContent() {
                           style={{
                             flex: 1,
                             width: '100%',
-                            minHeight: '540px',
+                            minHeight: isModalMaximized ? 'calc(100vh - 180px)' : 'calc(96vh - 200px)',
+                            height: '100%',
                             border: '1px solid #E7E5E4',
                             borderRadius: '14px',
                             background: '#FFFFFF',
@@ -1346,25 +1413,53 @@ function LessonBookshelfContent() {
                             </div>
 
                             {lv.item ? (
-                              <button
-                                onClick={() =>
-                                  router.push(`/tests/${encodeURIComponent(lv.item!.id)}`)
-                                }
-                                style={{
-                                  width: '100%',
-                                  padding: '12px',
-                                  borderRadius: '10px',
-                                  border: 'none',
-                                  background: lv.color,
-                                  color: '#FFFFFF',
-                                  fontWeight: 800,
-                                  fontSize: '0.94rem',
-                                  cursor: 'pointer',
-                                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-                                }}
-                              >
-                                {ans > 0 ? '🚀 続きからテストを受ける →' : '🚀 テストを開始する →'}
-                              </button>
+                              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                <button
+                                  onClick={() =>
+                                    router.push(`/tests/${encodeURIComponent(lv.item!.id)}`)
+                                  }
+                                  style={{
+                                    width: '100%',
+                                    padding: '12px',
+                                    borderRadius: '10px',
+                                    border: 'none',
+                                    background: lv.color,
+                                    color: '#FFFFFF',
+                                    fontWeight: 800,
+                                    fontSize: '0.94rem',
+                                    cursor: 'pointer',
+                                    boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                                  }}
+                                >
+                                  {ans > 0 ? '🚀 続きからテストを受ける →' : '🚀 テストを開始する →'}
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    window.open(
+                                      `/tests/${encodeURIComponent(lv.item!.id)}`,
+                                      '_blank',
+                                      'noopener,noreferrer'
+                                    )
+                                  }
+                                  style={{
+                                    width: '100%',
+                                    padding: '8px',
+                                    borderRadius: '8px',
+                                    border: '1px solid #CBD5E1',
+                                    background: '#FFFFFF',
+                                    color: '#475569',
+                                    fontWeight: 700,
+                                    fontSize: '0.82rem',
+                                    cursor: 'pointer',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: '6px',
+                                  }}
+                                >
+                                  <span>🗗</span> 別ウィンドウで受験する
+                                </button>
+                              </div>
                             ) : (
                               <div
                                 style={{
