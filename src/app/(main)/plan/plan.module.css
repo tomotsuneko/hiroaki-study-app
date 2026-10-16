@@ -549,3 +549,137 @@
   margin-right: 6px;
 }
 
+/* Integrated Task Row (Materials & Tests Fusion) */
+.taskItemRich {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.taskItemRich:hover {
+  border-color: #3B82F6;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.08);
+}
+
+.taskMainInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+  min-width: 240px;
+}
+
+.taskMetaTop {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.unitCodeBadge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  font-family: monospace;
+  background: #EEF2FF;
+  color: #4338CA;
+  padding: 2px 7px;
+  border-radius: 5px;
+}
+
+.unitBreadcrumb {
+  font-size: 0.75rem;
+  color: #64748B;
+  font-weight: 600;
+}
+
+.masteryScoreBadge {
+  font-size: 0.73rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.badgeCleared {
+  background: #DCFCE7;
+  color: #15803D;
+  border: 1px solid #86EFAC;
+}
+
+.badgeStudying {
+  background: #DBEAFE;
+  color: #1D4ED8;
+  border: 1px solid #93C5FD;
+}
+
+.taskActionGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.actionChip {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid #CBD5E1;
+  background: #FFFFFF;
+  color: #334155;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.actionChip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+}
+
+.chipMaterial {
+  background: #EFF6FF;
+  border-color: #93C5FD;
+  color: #1D4ED8;
+}
+
+.chipMaterial:hover {
+  background: #DBEAFE;
+}
+
+.chipL1 {
+  background: #ECFDF5;
+  border-color: #6EE7B7;
+  color: #047857;
+}
+
+.chipL2 {
+  background: #EFF6FF;
+  border-color: #93C5FD;
+  color: #1D4ED8;
+}
+
+.chipL3 {
+  background: #FFF7ED;
+  border-color: #FDBA74;
+  color: #C2410C;
+}
+
+.chipBookshelf {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+  color: #475569;
+}
+

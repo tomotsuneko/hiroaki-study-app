@@ -251,3 +251,280 @@ export function buildSubjectSlots(
   const unmatched = items.filter(i => !used.has(i.id)).sort((a, b) => a.title.localeCompare(b.title));
   return { categories, unmatched };
 }
+
+export type TestRecordSummary = {
+  testId?: string;
+  answeredCount: number;
+  correctCount: number;
+  firstCorrectCount: number;
+  totalQuestions: number;
+  updatedAt?: string;
+};
+
+export type UnifiedUnit = {
+  unitKey: string;
+  no: number;
+  unitCode: string | null;
+  subjectId: string;
+  subjectName: string;
+  largeName: string;
+  prefix: string | null;
+  mediumName: string;
+  smallName: string;
+  material: ContentItem | null;
+  tests: {
+    l1?: ContentItem;
+    l2?: ContentItem;
+    l3?: ContentItem;
+    all: ContentItem[];
+  };
+  testRecords: {
+    l1?: TestRecordSummary;
+    l2?: TestRecordSummary;
+    l3?: TestRecordSummary;
+  };
+  bestAccuracy: number | null;
+  totalAnswered: number;
+  isSyllabusCompleted: boolean;
+  status: 'mastered' | 'studying' | 'ready' | 'upcoming';
+};
+
+export type UnifiedLargeCategory = {
+  name: string;
+  prefix: string | null;
+  units: UnifiedUnit[];
+  mediumGroups: { name: string; units: UnifiedUnit[] }[];
+  filledMaterials: number;
+  filledTests: number;
+};
+
+export type UnifiedSubjectCatalog = {
+  subjectId: string;
+  subjectName: string;
+  largeCategories: UnifiedLargeCategory[];
+  totalUnits: number;
+  filledMaterials: number;
+  filledTests: number;
+};
+
+/**
+ * カリキュラムDB × 学習コンテンツ管理 × テストコンテンツ管理 × ユーザー回答実績 を
+ * 単元単位で完全に統合したカタログを構築する。
+ */
+export function buildUnifiedCatalog(
+  curriculum: CurriculumSubject[],
+  materials: ContentItem[],
+  tests: ContentItem[],
+  userRecords: Record<string, TestRecordSummary> = {},
+  completedTasks: string[] = []
+): {
+  units: UnifiedUnit[];
+  subjects: UnifiedSubjectCatalog[];
+} {
+  const highSchoolCurriculum = curriculum.filter(c => !c.level || c.level === 'high_school');
+  const targetCurriculum = highSchoolCurriculum.length > 0 ? highSchoolCurriculum : curriculum;
+
+  // 科目の表示順を整える（数学・英語・理科・社会・国語・情報）
+  const SUBJECT_ORDER = ['数学', '英語', '理科', '社会', '国語', '情報'];
+  const sortedCurriculum = [...targetCurriculum].sort((a, b) => {
+    const aName = a.subjectName || a.id;
+    const bName = b.subjectName || b.id;
+    const aIdx = SUBJECT_ORDER.findIndex(s => aName.includes(s));
+    const bIdx = SUBJECT_ORDER.findIndex(s => bName.includes(s));
+    return (aIdx === -1 ? 99 : aIdx) - (bIdx === -1 ? 99 : bIdx);
+  });
+
+  const completedNormSet = new Set(completedTasks.map(t => normalizeName(t)));
+  const allUnits: UnifiedUnit[] = [];
+  const subjects: UnifiedSubjectCatalog[] = [];
+
+  for (const subj of sortedCurriculum) {
+    const subjMaterials = materials.filter(m => normalizeSubjectId(m, targetCurriculum) === subj.id);
+    const subjTests = tests.filter(t => normalizeSubjectId(t, targetCurriculum) === subj.id);
+
+    const matBuilt = buildSubjectSlots(subj, subjMaterials);
+    const testBuilt = buildSubjectSlots(subj, subjTests);
+
+    const largeCategories: UnifiedLargeCategory[] = [];
+    let subjFilledMat = 0;
+    let subjFilledTest = 0;
+    let subjTotalUnits = 0;
+
+    matBuilt.categories.forEach((matCat, cIdx) => {
+      const testCat = testBuilt.categories[cIdx];
+      const catUnits: UnifiedUnit[] = [];
+      const mediumMap = new Map<string, UnifiedUnit[]>();
+      let catFilledMat = 0;
+      let catFilledTest = 0;
+
+      matCat.slots.forEach((matSlot, sIdx) => {
+        const testSlot = testCat?.slots[sIdx];
+        const l1 = testSlot?.levels.l1;
+        const l2 = testSlot?.levels.l2;
+        const l3 = testSlot?.levels.l3;
+        const allTestItems = testSlot?.items || [];
+
+        const recL1 = l1 ? userRecords[l1.id] : undefined;
+        const recL2 = l2 ? userRecords[l2.id] : undefined;
+        const recL3 = l3 ? userRecords[l3.id] : undefined;
+
+        const accuracies: number[] = [];
+        let totalAnswered = 0;
+        [recL1, recL2, recL3].forEach(r => {
+          if (r && r.answeredCount > 0) {
+            totalAnswered += r.answeredCount;
+            accuracies.push(Math.round((r.correctCount / r.answeredCount) * 100));
+          }
+        });
+
+        const bestAccuracy = accuracies.length > 0 ? Math.max(...accuracies) : null;
+        const isSyllabusCompleted = completedNormSet.has(normalizeName(matSlot.smallName));
+        const hasMaterial = matSlot.item !== null;
+        const hasTests = allTestItems.length > 0;
+
+        if (hasMaterial) catFilledMat++;
+        if (hasTests) catFilledTest++;
+
+        let status: UnifiedUnit['status'] = 'upcoming';
+        if (isSyllabusCompleted || (bestAccuracy !== null && bestAccuracy >= 80 && totalAnswered >= 5)) {
+          status = 'mastered';
+        } else if (totalAnswered > 0) {
+          status = 'studying';
+        } else if (hasMaterial || hasTests) {
+          status = 'ready';
+        }
+
+        const unit: UnifiedUnit = {
+          unitKey: `${subj.id}::${matCat.name}::${matSlot.no}`,
+          no: matSlot.no,
+          unitCode: matSlot.expectedTitle,
+          subjectId: subj.id,
+          subjectName: (subj.subjectName || subj.id).replace(/^high_school_/, ''),
+          largeName: matCat.name,
+          prefix: matCat.prefix,
+          mediumName: matSlot.mediumName,
+          smallName: matSlot.smallName,
+          material: matSlot.item,
+          tests: {
+            l1,
+            l2,
+            l3,
+            all: allTestItems,
+          },
+          testRecords: {
+            l1: recL1,
+            l2: recL2,
+            l3: recL3,
+          },
+          bestAccuracy,
+          totalAnswered,
+          isSyllabusCompleted,
+          status,
+        };
+
+        catUnits.push(unit);
+        allUnits.push(unit);
+
+        if (!mediumMap.has(unit.mediumName)) {
+          mediumMap.set(unit.mediumName, []);
+        }
+        mediumMap.get(unit.mediumName)!.push(unit);
+      });
+
+      const mediumGroups = Array.from(mediumMap.entries()).map(([name, units]) => ({
+        name,
+        units,
+      }));
+
+      largeCategories.push({
+        name: matCat.name,
+        prefix: matCat.prefix,
+        units: catUnits,
+        mediumGroups,
+        filledMaterials: catFilledMat,
+        filledTests: catFilledTest,
+      });
+
+      subjFilledMat += catFilledMat;
+      subjFilledTest += catFilledTest;
+      subjTotalUnits += catUnits.length;
+    });
+
+    subjects.push({
+      subjectId: subj.id,
+      subjectName: (subj.subjectName || subj.id).replace(/^high_school_/, ''),
+      largeCategories,
+      totalUnits: subjTotalUnits,
+      filledMaterials: subjFilledMat,
+      filledTests: subjFilledTest,
+    });
+  }
+
+  return { units: allUnits, subjects };
+}
+
+/**
+ * シラバスのタスク名（または検索クエリ）から対応する UnifiedUnit を検索する。
+ */
+export function findMatchingUnitsForTask(
+  taskTitle: string,
+  subjectHint: string | undefined,
+  allUnits: UnifiedUnit[]
+): UnifiedUnit[] {
+  if (!taskTitle || allUnits.length === 0) return [];
+
+  const cleanedTitle = taskTitle
+    .replace(/【.*?】/g, '')
+    .replace(/\[.*?\]/g, '')
+    .trim();
+
+  const normTask = normalizeName(cleanedTitle);
+  if (!normTask) return [];
+
+  // 科目ヒントがある場合はその科目を優先
+  const hintNorm = subjectHint ? normalizeName(subjectHint) : '';
+  const scopedUnits = hintNorm
+    ? allUnits.filter(
+        u =>
+          normalizeName(u.subjectName).includes(hintNorm) ||
+          hintNorm.includes(normalizeName(u.subjectName)) ||
+          normalizeName(u.largeName).includes(hintNorm) ||
+          hintNorm.includes(normalizeName(u.largeName))
+      )
+    : [];
+
+  const pools = scopedUnits.length > 0 ? [scopedUnits, allUnits] : [allUnits];
+
+  for (const pool of pools) {
+    // 1. 単元コード完全一致 (例: 数Ⅰ-001)
+    const codeMatch = pool.filter(u => u.unitCode && u.unitCode === cleanedTitle);
+    if (codeMatch.length > 0) return codeMatch;
+
+    // 2. 小分類名 (smallName) の完全一致
+    const exactSmall = pool.filter(u => normalizeName(u.smallName) === normTask);
+    if (exactSmall.length > 0) {
+      // 学習教材やテストが入っている枠を先頭に並べる
+      return exactSmall.sort((a, b) => {
+        const aScore = (a.material ? 2 : 0) + (a.tests.all.length > 0 ? 2 : 0);
+        const bScore = (b.material ? 2 : 0) + (b.tests.all.length > 0 ? 2 : 0);
+        return bScore - aScore;
+      });
+    }
+
+    // 3. 中分類名 (mediumName) の完全一致
+    const exactMedium = pool.filter(u => normalizeName(u.mediumName) === normTask);
+    if (exactMedium.length > 0) return exactMedium;
+
+    // 4. 部分一致（3文字以上の場合）
+    if (normTask.length >= 3) {
+      const partial = pool.filter(u => {
+        const s = normalizeName(u.smallName);
+        return s.length >= 3 && (s.includes(normTask) || normTask.includes(s));
+      });
+      if (partial.length > 0) return partial;
+    }
+  }
+
+  return [];
+}
+

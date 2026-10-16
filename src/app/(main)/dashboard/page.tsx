@@ -358,9 +358,20 @@ export default function Dashboard() {
             </div>
             <div style={{ display: 'grid', gap: '12px' }}>
               {nextTasks.map((task: any, idx: number) => (
-                <div key={idx} className={styles.taskCard} style={{ 
-                  borderLeft: task.type === 'weakness' ? '4px solid #f59e0b' : '4px solid #3b82f6'
-                }}>
+                <Link
+                  key={idx}
+                  href={
+                    task.type === 'diagnostic'
+                      ? `/drill?subject=${encodeURIComponent(task.subjectName || '')}&topic=レベルチェックテスト`
+                      : `/lesson?task=${encodeURIComponent(task.title)}`
+                  }
+                  className={styles.taskCard}
+                  style={{
+                    borderLeft: task.type === 'weakness' ? '4px solid #f59e0b' : '4px solid #3b82f6',
+                    textDecoration: 'none',
+                    cursor: 'pointer'
+                  }}
+                >
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
                       <span style={{ fontSize: '0.8rem', fontWeight: 'bold', color: task.type === 'weakness' ? '#d97706' : '#2563eb' }}>
@@ -374,12 +385,17 @@ export default function Dashboard() {
                     </div>
                     <strong style={{ fontSize: '1.05rem', color: '#1e293b' }}>{task.title}</strong>
                   </div>
-                  {task.estMinutes && (
-                    <div className={styles.estTimeTag}>
-                      目安約 {task.estMinutes}分
-                    </div>
-                  )}
-                </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    {task.estMinutes && (
+                      <div className={styles.estTimeTag}>
+                        目安約 {task.estMinutes}分
+                      </div>
+                    )}
+                    <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#2563EB', background: '#EFF6FF', padding: '4px 10px', borderRadius: '8px' }}>
+                      📚 学習する →
+                    </span>
+                  </div>
+                </Link>
               ))}
             </div>
           </section>
