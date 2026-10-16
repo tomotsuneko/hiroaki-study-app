@@ -81,18 +81,25 @@ export default function PlanPage() {
           setRebalanceAlert(profile.syllabusRebalanceAlert);
         }
 
-        if (curData.success && Array.isArray(curData.curriculum)) {
-          setCurriculum(curData.curriculum);
+        const curList = curData.masterDb || curData.curriculum || [];
+        if (Array.isArray(curList)) {
+          setCurriculum(curList);
         }
         if (matData.success && Array.isArray(matData.materials)) {
           setMaterials(matData.materials);
         }
-        if (testData.success && Array.isArray(testData.materials)) {
-          setTests(testData.materials);
+        const testList = testData.tests || testData.materials || [];
+        if (Array.isArray(testList)) {
+          setTests(testList);
         }
-        if (recData.success && recData.records) {
-          setUserRecords(recData.records);
+        const recMap: Record<string, TestRecordSummary> = {};
+        const rawResults = recData.results || recData.records || [];
+        if (Array.isArray(rawResults)) {
+          rawResults.forEach((r: any) => {
+            if (r.testId) recMap[r.testId] = r;
+          });
         }
+        setUserRecords(recMap);
       } catch (e) {
         console.error(e);
       } finally {
