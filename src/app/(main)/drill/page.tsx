@@ -747,7 +747,10 @@ function DrillCenterContent() {
               {/* Score Banner */}
               <div
                 style={{
-                  background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
+                  background:
+                    'radial-gradient(circle at 90% 15%, rgba(59, 130, 246, 0.22) 0%, transparent 60%), linear-gradient(135deg, #07152B 0%, #0E244B 45%, #18386B 100%)',
+                  border: '1px solid rgba(147, 197, 253, 0.28)',
+                  boxShadow: '0 14px 32px rgba(7, 21, 43, 0.25)',
                   color: '#FFFFFF',
                   borderRadius: '18px',
                   padding: '24px 28px',
@@ -760,7 +763,7 @@ function DrillCenterContent() {
                 }}
               >
                 <div>
-                  <div style={{ fontSize: '0.84rem', color: '#94A3B8', fontWeight: 700 }}>
+                  <div style={{ fontSize: '0.84rem', color: '#93C5FD', fontWeight: 700 }}>
                     採点結果：{activeRunMeta.subject}
                     {activeRunMeta.topic ? ` › ${activeRunMeta.topic}` : ''}
                   </div>
