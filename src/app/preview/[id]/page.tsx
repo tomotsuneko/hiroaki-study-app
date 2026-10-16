@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 
 export default function MaterialPreview() {
@@ -15,6 +15,9 @@ export default function MaterialPreview() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isVersion, setIsVersion] = useState(false);
+  const [syncNotice, setSyncNotice] = useState<string | null>(null);
+
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!id) return;
@@ -41,6 +44,54 @@ export default function MaterialPreview() {
     fetchMaterial();
   }, [id, v, type]);
 
+  // テストプレビュー時のリアルタイム採点・回答同期
+  useEffect(() => {
+    if (type !== 'test') return;
+
+    const handleMessage = (e: MessageEvent) => {
+      const data = e.data;
+      if (!data || data.type !== 'TEST_RECORD_UPDATE') return;
+
+      const answers = data.payload?.answers || {};
+      const answered = Object.values(answers).filter((a: any) => a?.attempts > 0).length;
+      const correct = Object.values(answers).filter((a: any) => a?.correct).length;
+
+      setSyncNotice(`採点同期中... (回答: ${answered}問 / 正解: ${correct}問)`);
+
+      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+      debounceTimerRef.current = setTimeout(async () => {
+        try {
+          const res = await fetch('/api/tests/record', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              testId: id,
+              key: data.key,
+              payload: data.payload,
+              meta: {
+                title: id,
+                subject: 'high_school_数学'
+              }
+            })
+          });
+          if (res.ok) {
+            setSyncNotice(`✅ 採点・実績をユーザーデータに保存しました (${answered}問回答済)`);
+            setTimeout(() => setSyncNotice(null), 4000);
+          }
+        } catch (err) {
+          console.warn('Sync failed in preview:', err);
+          setSyncNotice('⚠️ 同期エラー');
+        }
+      }, 500);
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => {
+      window.removeEventListener('message', handleMessage);
+      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+    };
+  }, [id, type]);
+
   if (loading) return <div style={{ padding: '40px', textAlign: 'center', fontFamily: 'sans-serif' }}>読み込み中...</div>;
   if (error) return <div style={{ padding: '40px', textAlign: 'center', color: 'red', fontFamily: 'sans-serif' }}>{error}</div>;
 
@@ -55,12 +106,24 @@ export default function MaterialPreview() {
             ← 管理画面に戻る
           </button>
           <span style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#1E293B' }}>{decodeURIComponent(id)}</span>
+          {type === 'test' && (
+            <span style={{ fontSize: '0.78rem', padding: '2px 8px', backgroundColor: '#EFF6FF', color: '#2563EB', borderRadius: '4px', fontWeight: 'bold', border: '1px solid #BFDBFE' }}>
+              📝 テストプレビュー (自動採点連動)
+            </span>
+          )}
         </div>
-        {isVersion && (
-          <span style={{ padding: '6px 16px', backgroundColor: '#FEF08A', color: '#854D0E', borderRadius: '20px', fontSize: '0.9rem', fontWeight: 'bold' }}>
-            ⚠️ 過去のバージョンをプレビュー中
-          </span>
-        )}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          {syncNotice && (
+            <span style={{ padding: '4px 12px', backgroundColor: '#DCFCE7', color: '#15803D', borderRadius: '16px', fontSize: '0.85rem', fontWeight: 'bold' }}>
+              {syncNotice}
+            </span>
+          )}
+          {isVersion && (
+            <span style={{ padding: '6px 16px', backgroundColor: '#FEF08A', color: '#854D0E', borderRadius: '20px', fontSize: '0.9rem', fontWeight: 'bold' }}>
+              ⚠️ 過去のバージョンをプレビュー中
+            </span>
+          )}
+        </div>
       </div>
       
       {/* 

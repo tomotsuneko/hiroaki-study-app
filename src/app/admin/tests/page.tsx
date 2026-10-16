@@ -250,12 +250,18 @@ export default function TestsAdminPage() {
               </div>
 
               {/* 進捗バッジ */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                 <div style={{ textAlign: 'right' }}>
-                  <span style={{ fontSize: '0.85rem', color: '#64748B' }}>充実度: </span>
-                  <strong style={{ fontSize: '1rem', color: totalFilled > 0 ? '#10B981' : '#64748B' }}>
-                    {totalFilled} / {totalSlots > 0 ? totalSlots : items.length} 件 ({percent}%)
-                  </strong>
+                  <div style={{ fontSize: '0.85rem', color: '#64748B' }}>
+                    単元枠充足: <strong style={{ fontSize: '1rem', color: totalFilled > 0 ? '#10B981' : '#64748B' }}>
+                      {totalFilled} / {totalSlots > 0 ? totalSlots : items.length} 単元 ({percent}%)
+                    </strong>
+                  </div>
+                  {items.length > 0 && (
+                    <div style={{ fontSize: '0.78rem', color: '#059669', fontWeight: '500' }}>
+                      ✨ テスト問題集: <strong>{items.length}件</strong> 登録済
+                    </div>
+                  )}
                 </div>
                 {totalSlots > 0 && (
                   <div style={{ width: '100px', height: '8px', backgroundColor: '#E2E8F0', borderRadius: '4px', overflow: 'hidden' }}>
@@ -323,67 +329,134 @@ export default function TestsAdminPage() {
                     {!isCollapsed && (
                       <div style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px', backgroundColor: '#FAFAFA' }}>
                         {displaySlots.map(slot => {
-                          const item = slot.item;
-                          if (item) {
-                            // 登録済み枠
+                          const hasContent = slot.items.length > 0 || slot.item !== null;
+                          const isMultiLevel = !!(slot.levels.l1 || slot.levels.l2 || slot.levels.l3);
+
+                          if (hasContent) {
                             return (
                               <div key={slot.no} style={{
                                 display: 'flex',
                                 justifyContent: 'space-between',
-                                alignItems: 'flex-start',
+                                alignItems: 'center',
                                 padding: '10px 14px',
                                 backgroundColor: 'white',
                                 borderRadius: '6px',
                                 border: '1px solid #E2E8F0',
                                 borderLeft: '4px solid #10B981',
-                                gap: '12px'
+                                gap: '12px',
+                                flexWrap: 'wrap'
                               }}>
-                                <div style={{ flex: 1 }}>
-                                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                                <div style={{ flex: 1, minWidth: '240px' }}>
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                                     <span style={{ fontSize: '0.75rem', padding: '2px 6px', background: '#DCFCE7', color: '#15803D', borderRadius: '4px', fontWeight: 'bold' }}>
                                       ✅ 登録済
                                     </span>
-                                    <Link 
-                                      href={`/preview/${encodeURIComponent(item.id)}?type=test`} 
-                                      style={{ color: '#2563EB', fontWeight: 'bold', textDecoration: 'underline', fontSize: '1rem', fontFamily: 'monospace' }}
-                                    >
-                                      {item.title}
-                                    </Link>
-                                    {item.contentTitle ? (
-                                      <span style={{ color: '#1E293B', fontSize: '0.95rem', fontWeight: '500' }}>
-                                        {item.contentTitle}
-                                      </span>
-                                    ) : (
-                                      <span style={{ color: '#64748B', fontSize: '0.9rem' }}>
-                                        {slot.smallName}
+                                    <span style={{ fontFamily: 'monospace', fontWeight: 'bold', color: '#1E293B', fontSize: '0.95rem' }}>
+                                      {slot.expectedTitle || `No.${slot.no}`}
+                                    </span>
+                                    <span style={{ color: '#1E293B', fontSize: '0.95rem', fontWeight: '600' }}>
+                                      {slot.item?.contentTitle || slot.smallName}
+                                    </span>
+                                  </div>
+                                  <div style={{ fontSize: '0.78rem', color: '#64748B', marginTop: '3px' }}>
+                                    単元: {slot.mediumName} &gt; {slot.smallName}
+                                    {slot.items.length > 0 && (
+                                      <span style={{ marginLeft: '8px', color: '#475569' }}>
+                                        ({slot.items.length}件のテスト)
                                       </span>
                                     )}
                                   </div>
-                                  <div style={{ fontSize: '0.8rem', color: '#64748B', marginTop: '4px' }}>
-                                    単元: <span style={{ color: '#475569' }}>{slot.mediumName} &gt; {slot.smallName}</span> ｜ 最終更新: {new Date(item.importedAt).toLocaleString('ja-JP')}
-                                  </div>
                                 </div>
 
-                                {/* 世代管理 */}
-                                {item.versions && item.versions.length > 0 && (
-                                  <div style={{ fontSize: '0.8rem', textAlign: 'right', flexShrink: 0 }}>
-                                    <div style={{ fontWeight: 'bold', color: '#64748B', marginBottom: '2px' }}>
-                                      旧版 ({item.versions.length}件)
-                                    </div>
-                                    {item.versions.map((v, idx) => (
-                                      <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '6px', justifyContent: 'flex-end', marginTop: '2px' }}>
-                                        <span style={{ color: '#94A3B8', fontSize: '0.75rem' }}>{new Date(v.importedAt).toLocaleDateString('ja-JP')}</span>
-                                        <Link href={`/preview/${encodeURIComponent(item.id)}?type=test&v=${idx}`} style={{ color: '#059669', textDecoration: 'underline', fontSize: '0.78rem' }}>
-                                          参照
-                                        </Link>
-                                        <button 
-                                          onClick={() => handleRestore(item.id, idx)}
-                                          style={{ background: 'none', border: '1px solid #CBD5E1', borderRadius: '3px', padding: '1px 4px', cursor: 'pointer', color: '#475569', fontSize: '0.75rem' }}
-                                        >
-                                          復元
-                                        </button>
-                                      </div>
-                                    ))}
+                                {/* 難易度レベル別ボタン */}
+                                {isMultiLevel ? (
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                                    {slot.levels.l1 ? (
+                                      <Link
+                                        href={`/preview/${encodeURIComponent(slot.levels.l1.id)}?type=test`}
+                                        style={{
+                                          display: 'inline-flex',
+                                          alignItems: 'center',
+                                          gap: '4px',
+                                          padding: '5px 12px',
+                                          backgroundColor: '#ECFDF5',
+                                          color: '#065F46',
+                                          border: '1px solid #A7F3D0',
+                                          borderRadius: '6px',
+                                          fontSize: '0.82rem',
+                                          fontWeight: 'bold',
+                                          textDecoration: 'none'
+                                        }}
+                                      >
+                                        🟢 L1 基礎
+                                      </Link>
+                                    ) : (
+                                      <span style={{ padding: '5px 10px', color: '#94A3B8', fontSize: '0.8rem', backgroundColor: '#F1F5F9', borderRadius: '6px' }}>未登録 (L1)</span>
+                                    )}
+
+                                    {slot.levels.l2 ? (
+                                      <Link
+                                        href={`/preview/${encodeURIComponent(slot.levels.l2.id)}?type=test`}
+                                        style={{
+                                          display: 'inline-flex',
+                                          alignItems: 'center',
+                                          gap: '4px',
+                                          padding: '5px 12px',
+                                          backgroundColor: '#EFF6FF',
+                                          color: '#1E40AF',
+                                          border: '1px solid #BFDBFE',
+                                          borderRadius: '6px',
+                                          fontSize: '0.82rem',
+                                          fontWeight: 'bold',
+                                          textDecoration: 'none'
+                                        }}
+                                      >
+                                        🔵 L2 標準
+                                      </Link>
+                                    ) : (
+                                      <span style={{ padding: '5px 10px', color: '#94A3B8', fontSize: '0.8rem', backgroundColor: '#F1F5F9', borderRadius: '6px' }}>未登録 (L2)</span>
+                                    )}
+
+                                    {slot.levels.l3 ? (
+                                      <Link
+                                        href={`/preview/${encodeURIComponent(slot.levels.l3.id)}?type=test`}
+                                        style={{
+                                          display: 'inline-flex',
+                                          alignItems: 'center',
+                                          gap: '4px',
+                                          padding: '5px 12px',
+                                          backgroundColor: '#FFF7ED',
+                                          color: '#9A3412',
+                                          border: '1px solid #FED7AA',
+                                          borderRadius: '6px',
+                                          fontSize: '0.82rem',
+                                          fontWeight: 'bold',
+                                          textDecoration: 'none'
+                                        }}
+                                      >
+                                        🟠 L3 応用
+                                      </Link>
+                                    ) : (
+                                      <span style={{ padding: '5px 10px', color: '#94A3B8', fontSize: '0.8rem', backgroundColor: '#F1F5F9', borderRadius: '6px' }}>未登録 (L3)</span>
+                                    )}
+                                  </div>
+                                ) : (
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                    <Link
+                                      href={`/preview/${encodeURIComponent(slot.item!.id)}?type=test`}
+                                      style={{
+                                        padding: '5px 14px',
+                                        backgroundColor: '#F8FAFC',
+                                        color: '#2563EB',
+                                        border: '1px solid #CBD5E1',
+                                        borderRadius: '6px',
+                                        fontSize: '0.85rem',
+                                        fontWeight: 'bold',
+                                        textDecoration: 'none'
+                                      }}
+                                    >
+                                      プレビュー
+                                    </Link>
                                   </div>
                                 )}
                               </div>
