@@ -93,7 +93,11 @@ export type CategorySlots = {
 };
 
 const normalizeName = (s: string) =>
-  (s || '').replace(/[†‡*＊]/g, '').replace(/\s+/g, '').trim();
+  (s || '')
+    .replace(/[†‡*＊]/g, '')
+    .replace(/[・_\-—](基礎|標準|応用).*$/g, '')
+    .replace(/\s+/g, '')
+    .trim();
 
 /** タイトル（例: 数Ⅰ-001_L1_基礎）から基本コード（例: 数Ⅰ-001）を抽出する */
 export function extractBaseTitleCode(title: string): string {
@@ -133,16 +137,9 @@ export function buildSubjectSlots(
   subject: CurriculumSubject,
   items: ContentItem[]
 ): { categories: CategorySlots[]; unmatched: ContentItem[] } {
-  // 基本コードごとにアイテムをマッピング (例: "数Ⅰ-001" -> [item, item_L1, ...])
-  const byBaseCode = new Map<string, ContentItem[]>();
-  items.forEach(it => {
-    const code = extractBaseTitleCode(it.title);
-    if (!byBaseCode.has(code)) byBaseCode.set(code, []);
-    byBaseCode.get(code)!.push(it);
-  });
-
   const used = new Set<string>();
 
+  // 1. 全大分類のスロット構造を構築
   const categories: CategorySlots[] = (subject.largeCategories || []).map(l => {
     const prefix = CATEGORY_PREFIX_MAP[l.name] || null;
     const slots: ContentSlot[] = [];
@@ -151,54 +148,104 @@ export function buildSubjectSlots(
       for (const s of m.smallCategories || []) {
         no++;
         const expectedTitle = prefix ? `${prefix}-${String(no).padStart(3, '0')}` : null;
-        
-        // 該当基本コードに紐づくアイテム群
-        const matchedItems: ContentItem[] = expectedTitle && byBaseCode.has(expectedTitle)
-          ? byBaseCode.get(expectedTitle)!
-          : [];
-
-        // 完全一致（単一教材）
-        let singleItem: ContentItem | null = matchedItems.find(it => it.title === expectedTitle) || null;
-
-        // 接頭辞が未定義の大分類は、コンテンツの<title>と小分類名の一致で当てはめる
-        if (!singleItem && matchedItems.length === 0 && !prefix) {
-          const found = items.find(i => !used.has(i.id) && normalizeName(i.contentTitle || '') === normalizeName(s));
-          if (found) {
-            singleItem = found;
-            matchedItems.push(found);
-          }
-        }
-
-        // L1 / L2 / L3 の振り分け
-        const levels: ContentSlot['levels'] = {};
-        matchedItems.forEach(it => {
-          used.add(it.id);
-          const t = it.title;
-          if (t.includes('_L1') || t.includes('基礎') || t.includes('-L1')) {
-            levels.l1 = it;
-          } else if (t.includes('_L2') || t.includes('標準') || t.includes('-L2')) {
-            levels.l2 = it;
-          } else if (t.includes('_L3') || t.includes('応用') || t.includes('-L3')) {
-            levels.l3 = it;
-          }
-        });
-
-        if (singleItem) used.add(singleItem.id);
-
         slots.push({
           no,
           expectedTitle,
           mediumName: m.name,
           smallName: s.replace(/\s*[†‡]\s*$/, ''),
-          item: singleItem || (matchedItems.length > 0 ? matchedItems[0] : null),
-          items: matchedItems,
-          levels
+          item: null,
+          items: [],
+          levels: {}
         });
       }
     }
+    return { name: l.name, prefix, slots, filled: 0 };
+  });
 
-    const filledCount = slots.filter(s => s.item !== null || s.items.length > 0).length;
-    return { name: l.name, prefix, slots, filled: filledCount };
+  // 2. パス1: 各大分類内で、小分類名（contentTitle）の完全一致を最優先でマッチング
+  // （ファイル番号のズレや欠番、末尾配置などがあっても単元名から本来の枠に自動整合させる）
+  categories.forEach(cat => {
+    const prefix = cat.prefix;
+    const candidateItems = items.filter(it => {
+      if (used.has(it.id)) return false;
+      if (prefix && (it.title.startsWith(prefix) || it.id.startsWith(prefix))) return true;
+      return !prefix;
+    });
+
+    cat.slots.forEach(slot => {
+      if (slot.item) return;
+      const sNorm = normalizeName(slot.smallName);
+      if (!sNorm) return;
+
+      const matchedList = candidateItems.filter(it =>
+        !used.has(it.id) && normalizeName(it.contentTitle || '') === sNorm
+      );
+
+      if (matchedList.length > 0) {
+        matchedList.forEach(it => used.add(it.id));
+        slot.items.push(...matchedList);
+        slot.item = matchedList[0];
+      }
+    });
+  });
+
+  // 3. パス2: まだ埋まっていないスロットについて、想定ファイル名（expectedTitle）でマッチング
+  categories.forEach(cat => {
+    cat.slots.forEach(slot => {
+      if (slot.item || !slot.expectedTitle) return;
+
+      const matchedList = items.filter(it =>
+        !used.has(it.id) && (it.title === slot.expectedTitle || extractBaseTitleCode(it.title) === slot.expectedTitle)
+      );
+
+      if (matchedList.length > 0) {
+        matchedList.forEach(it => used.add(it.id));
+        slot.items.push(...matchedList);
+        slot.item = matchedList[0];
+      }
+    });
+  });
+
+  // 4. パス3: まだ未マッチのアイテムについて、科目内の全スロットから contentTitle でフォールバック救済
+  const remainingItems = items.filter(it => !used.has(it.id));
+  if (remainingItems.length > 0) {
+    categories.forEach(cat => {
+      cat.slots.forEach(slot => {
+        if (slot.item) return;
+        const sNorm = normalizeName(slot.smallName);
+        if (!sNorm) return;
+
+        const matchedList = remainingItems.filter(it =>
+          !used.has(it.id) && normalizeName(it.contentTitle || '') === sNorm
+        );
+
+        if (matchedList.length > 0) {
+          matchedList.forEach(it => used.add(it.id));
+          slot.items.push(...matchedList);
+          slot.item = matchedList[0];
+        }
+      });
+    });
+  }
+
+  // 5. 各スロットのレベル（L1, L2, L3）の振り分けと充足数の計算
+  categories.forEach(cat => {
+    cat.slots.forEach(slot => {
+      const levels: ContentSlot['levels'] = {};
+      slot.items.forEach(it => {
+        const t = it.title;
+        if (t.includes('_L1') || t.includes('基礎') || t.includes('-L1')) {
+          levels.l1 = it;
+        } else if (t.includes('_L2') || t.includes('標準') || t.includes('-L2')) {
+          levels.l2 = it;
+        } else if (t.includes('_L3') || t.includes('応用') || t.includes('-L3')) {
+          levels.l3 = it;
+        }
+      });
+      slot.levels = levels;
+    });
+
+    cat.filled = cat.slots.filter(s => s.item !== null || s.items.length > 0).length;
   });
 
   const unmatched = items.filter(i => !used.has(i.id)).sort((a, b) => a.title.localeCompare(b.title));
