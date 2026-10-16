@@ -116,12 +116,53 @@ export default function ExamAnalysisPage() {
           <div className={styles.resultArea}>
             <h2 className={styles.resultTitle}>🎯 分析完了</h2>
             <div className={styles.analyzedSubjects}>
-              <strong>検出された弱点:</strong>
+              <strong>検出された弱点（クリックで直行演習も可能）:</strong>
               <div className={styles.badges}>
                 {result.analyzedSubjects.map(sub => (
                   <span key={sub} className={styles.badge}>{sub}</span>
                 ))}
               </div>
+              {result.analyzedSubjects.length > 0 && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '10px' }}>
+                  {result.analyzedSubjects.map((sub) => (
+                    <div
+                      key={`act-${sub}`}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        background: '#F8FAFC',
+                        border: '1px solid #E2E8F0',
+                        padding: '6px 10px',
+                        borderRadius: '10px',
+                        fontSize: '0.8rem',
+                      }}
+                    >
+                      <strong style={{ color: '#0F172A' }}>{sub}:</strong>
+                      <a
+                        href={`/drill?topic=${encodeURIComponent(sub)}&mode=weakness`}
+                        style={{ color: '#4F46E5', fontWeight: 700, textDecoration: 'none' }}
+                      >
+                        ⚡ 弱点ドリル
+                      </a>
+                      <span style={{ color: '#CBD5E1' }}>|</span>
+                      <a
+                        href={`/flashcard?topic=${encodeURIComponent(sub)}`}
+                        style={{ color: '#EA580C', fontWeight: 700, textDecoration: 'none' }}
+                      >
+                        📇 暗記カード
+                      </a>
+                      <span style={{ color: '#CBD5E1' }}>|</span>
+                      <a
+                        href={`/lesson?task=${encodeURIComponent(sub)}`}
+                        style={{ color: '#0284C7', fontWeight: 700, textDecoration: 'none' }}
+                      >
+                        📘 テキスト
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             <div className="markdown-body" style={{backgroundColor: '#F8FAFC', padding: '16px', borderRadius: '8px', marginBottom: '16px'}}>
               <ReactMarkdown remarkPlugins={[remarkGfm]}>{result.analysisText}</ReactMarkdown>
@@ -130,6 +171,26 @@ export default function ExamAnalysisPage() {
               <button className="btn btn-primary" style={{width: '100%'}} onClick={applyToProfile} disabled={isApplying}>
                 {isApplying ? '🔄 シラバスを自動再編成中...' : '🎯 この結果をシラバスに反映・自動再編成する'}
               </button>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => {
+                    const firstWeak = result.analyzedSubjects[0] || '';
+                    window.location.href = `/drill?topic=${encodeURIComponent(firstWeak)}&mode=weakness`;
+                  }}
+                >
+                  ⚡ 検出された弱点をAIドリルで特訓する
+                </button>
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => {
+                    const firstWeak = result.analyzedSubjects[0] || '';
+                    window.location.href = `/flashcard?topic=${encodeURIComponent(firstWeak)}`;
+                  }}
+                >
+                  📇 検出された弱点の暗記カードを作る
+                </button>
+              </div>
               <button className="btn btn-secondary" style={{width: '100%'}} onClick={() => {
                 window.location.href = `/chat?initialMessage=${encodeURIComponent('直前の模試分析で以下の弱点が見つかりました。\n' + result.analyzedSubjects.join('、') + '\n\n明日からどのように勉強方針を変えればいいか、具体的なアドバイスをください。')}`;
               }}>

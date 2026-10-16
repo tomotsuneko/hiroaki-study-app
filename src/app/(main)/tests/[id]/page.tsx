@@ -215,8 +215,71 @@ export default function TestPlayerPage() {
           </div>
         </div>
 
-        {/* 成績・進捗 & クラウド同期ステータス */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
+        {/* 成績・進捗 & 関連コンテンツ連携 & クラウド同期ステータス */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+          {(() => {
+            const decodedId = decodeURIComponent(id);
+            const codeMatch = decodedId.match(/^([A-Z0-9]+_[A-Z0-9]+)/i);
+            const unitCode = codeMatch ? codeMatch[1].toUpperCase() : '';
+            const cleanTopic = (meta?.contentTitle || decodedId)
+              .replace(/^L[123]\s*(基礎|標準|応用)?\s*[｜|]\s*/i, '')
+              .replace(/\s*\(L[123].*?\)\s*$/i, '')
+              .trim();
+            const cleanSubj = (meta?.subject || '').replace(/^high_school_/, '');
+            return (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <a
+                  href={`/lesson?task=${encodeURIComponent(cleanTopic)}&unit=${encodeURIComponent(unitCode)}&subject=${encodeURIComponent(cleanSubj)}`}
+                  style={{
+                    padding: '5px 10px',
+                    borderRadius: '6px',
+                    backgroundColor: '#EFF6FF',
+                    color: '#1D4ED8',
+                    border: '1px solid #BFDBFE',
+                    fontSize: '0.78rem',
+                    fontWeight: 'bold',
+                    textDecoration: 'none',
+                  }}
+                  title="この単元の公式学習テキストを開く"
+                >
+                  📘 公式テキスト
+                </a>
+                <a
+                  href={`/drill?subject=${encodeURIComponent(cleanSubj)}&topic=${encodeURIComponent(cleanTopic)}&unit=${encodeURIComponent(unitCode)}&mode=unit`}
+                  style={{
+                    padding: '5px 10px',
+                    borderRadius: '6px',
+                    backgroundColor: '#EEF2FF',
+                    color: '#4338CA',
+                    border: '1px solid #C7D2FE',
+                    fontSize: '0.78rem',
+                    fontWeight: 'bold',
+                    textDecoration: 'none',
+                  }}
+                  title="この単元のAI記述ドリルで演習する"
+                >
+                  ⚡ AIドリル
+                </a>
+                <a
+                  href={`/flashcard?subject=${encodeURIComponent(cleanSubj)}&topic=${encodeURIComponent(cleanTopic)}&unit=${encodeURIComponent(unitCode)}`}
+                  style={{
+                    padding: '5px 10px',
+                    borderRadius: '6px',
+                    backgroundColor: '#FFF7ED',
+                    color: '#C2410C',
+                    border: '1px solid #FED7AA',
+                    fontSize: '0.78rem',
+                    fontWeight: 'bold',
+                    textDecoration: 'none',
+                  }}
+                  title="この単元の暗記カードを開く"
+                >
+                  📇 暗記カード
+                </a>
+              </div>
+            );
+          })()}
+
           <div style={{
             display: 'flex',
             alignItems: 'center',

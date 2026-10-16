@@ -471,36 +471,39 @@ function ChatTutorContent() {
 
                     {msg.role === 'model' &&
                       idx === messages.length - 1 &&
-                      !isLoading && (
-                        <div className={styles.actionBtns}>
-                          <Link
-                            href={`/drill?subject=${encodeURIComponent(
-                              initialMessage
-                                ? initialMessage.replace(
-                                    ' について詳しく教えてください',
-                                    ''
-                                  )
-                                : '直前の学習内容'
-                            )}`}
-                            className={`btn btn-primary ${styles.actionBtn}`}
-                          >
-                            ✏️ この内容でドリルを解く
-                          </Link>
-                          <Link
-                            href={`/flashcard?subject=${encodeURIComponent(
-                              initialMessage
-                                ? initialMessage.replace(
-                                    ' について詳しく教えてください',
-                                    ''
-                                  )
-                                : '直前の学習内容'
-                            )}`}
-                            className={`btn btn-secondary ${styles.actionBtn}`}
-                          >
-                            🗂️ 暗記カードを作る
-                          </Link>
-                        </div>
-                      )}
+                      !isLoading && (() => {
+                        const lastUserMsg = [...messages]
+                          .reverse()
+                          .find((m) => m.role === 'user')?.content || '';
+                        const cleanedTopic = (
+                          initialMessage
+                            ? initialMessage.replace(' について詳しく教えてください', '')
+                            : lastUserMsg
+                            ? lastUserMsg.replace(/\s+/g, ' ').slice(0, 50)
+                            : currentSessionTitle && !currentSessionTitle.includes('チャット')
+                            ? currentSessionTitle
+                            : ''
+                        ).trim();
+                        const queryStr = cleanedTopic
+                          ? `?topic=${encodeURIComponent(cleanedTopic)}&mode=unit`
+                          : '';
+                        return (
+                          <div className={styles.actionBtns}>
+                            <Link
+                              href={`/drill${queryStr}`}
+                              className={`btn btn-primary ${styles.actionBtn}`}
+                            >
+                              ✏️ この内容でドリルを解く
+                            </Link>
+                            <Link
+                              href={`/flashcard${queryStr}`}
+                              className={`btn btn-secondary ${styles.actionBtn}`}
+                            >
+                              🗂️ 暗記カードを作る
+                            </Link>
+                          </div>
+                        );
+                      })()}
                   </div>
                   {msg.timestamp && (
                     <div className={styles.messageTime}>

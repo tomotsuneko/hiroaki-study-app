@@ -1,128 +1,573 @@
 .container {
-  max-width: 600px;
+  max-width: 1120px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  text-align: center;
+  gap: 24px;
+  padding-bottom: 48px;
 }
 
 .header {
   display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.titleArea {
+  display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .title {
-  font-size: 2.2rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.02em;
 }
 
 .subtitle {
-  color: var(--text-secondary);
-  font-size: 1.05rem;
+  color: #475569;
+  font-size: 0.98rem;
 }
 
+.statsChips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.statChip {
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #334155;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.statChip strong {
+  font-size: 1.05rem;
+  color: #0F172A;
+}
+
+/* Context Banner */
+.contextBanner {
+  background: linear-gradient(135deg, #EFF6FF 0%, #E0E7FF 100%);
+  border: 1px solid #BFDBFE;
+  border-radius: 14px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.contextInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.92rem;
+  color: #1E3A8A;
+}
+
+.contextActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Mode Tabs */
+.modeTabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .modeTabs {
+    grid-template-columns: 1fr;
+  }
+}
+
+.modeTab {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: white;
+  border: 2px solid #E2E8F0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.modeTab:hover {
+  border-color: #CBD5E1;
+  transform: translateY(-1px);
+}
+
+.modeTabActive {
+  border-color: #4F46E5;
+  background: linear-gradient(180deg, #EEF2FF 0%, #FFFFFF 100%);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.12);
+}
+
+.modeTabTitle {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modeTabDesc {
+  font-size: 0.78rem;
+  color: #64748B;
+  line-height: 1.4;
+}
+
+/* Push Recommendations */
+.pushSection {
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sectionTitle {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.weaknessTags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.weaknessTagBtn {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  color: #92400E;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+}
+
+.weaknessTagBtn:hover {
+  background: #FEF3C7;
+  transform: translateY(-1px);
+}
+
+/* Pull Selector Panel */
+.pullPanel {
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.subjectPills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.subjectPill {
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1px solid #CBD5E1;
+  background: #F8FAFC;
+  color: #334155;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.subjectPillActive {
+  background: #4F46E5;
+  color: white;
+  border-color: #4F46E5;
+}
+
+.unitSelectRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+@media (max-width: 768px) {
+  .unitSelectRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldLabel {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.selectInput, .textInput {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #CBD5E1;
+  font-size: 0.92rem;
+  background: white;
+  color: #0F172A;
+}
+
+/* Card Player Stage */
+.playerStage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+}
+
+.playerTopBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.deckTitleBadge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1E293B;
+}
+
+.viewToggleGroup {
+  display: flex;
+  gap: 6px;
+  background: #F1F5F9;
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.viewToggleBtn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #64748B;
+  cursor: pointer;
+}
+
+.viewToggleBtnActive {
+  background: white;
+  color: #0F172A;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* 3D Flip Card */
+.cardWrapper {
+  width: 100%;
+  max-width: 680px;
+  min-height: 320px;
+  perspective: 1200px;
+  cursor: pointer;
+  position: relative;
+}
+
+.flashcard {
+  width: 100%;
+  min-height: 320px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.flipped {
+  transform: rotateY(180deg);
+}
+
+.cardFront, .cardBack {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  min-height: 320px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 32px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  border: 2px solid #E2E8F0;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06);
+  overflow-y: auto;
+}
+
+.cardBack {
+  transform: rotateY(180deg);
+  background: linear-gradient(180deg, #EEF2FF 0%, #F8FAFC 100%);
+  border-color: #C7D2FE;
+}
+
+.cardMetaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.subjectBadge {
+  background: #4F46E5;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.sideIndicator {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cardBodyContent {
+  my: auto;
+  padding: 16px 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.6;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.cardBack .cardBodyContent {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #1E293B;
+  text-align: left;
+  align-items: stretch;
+}
+
+.hintText {
+  font-size: 0.82rem;
+  color: #94A3B8;
+  text-align: center;
+}
+
+.controlsRow {
+  display: flex;
+  gap: 14px;
+  width: 100%;
+  max-width: 680px;
+}
+
+.controlBtn {
+  flex: 1;
+  padding: 13px 18px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+}
+
+.btnAgain {
+  background: #FEE2E2;
+  color: #B91C1C;
+  border: 1px solid #FECACA;
+}
+
+.btnAgain:hover {
+  background: #FECACA;
+}
+
+.btnGood {
+  background: #4F46E5;
+  color: white;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+
+.btnGood:hover {
+  background: #4338CA;
+}
+
+.playerFooterLinks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 680px;
+  padding-top: 12px;
+  border-top: 1px solid #F1F5F9;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Red Sheet / List Mode */
+.redSheetList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.redSheetToolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #FFF1F2;
+  border: 1px solid #FECDD3;
+  border-radius: 12px;
+}
+
+.redSheetItem {
+  display: grid;
+  grid-template-columns: 1.1fr 1.4fr auto;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+  background: white;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .redSheetItem {
+    grid-template-columns: 1fr;
+  }
+}
+
+.redSheetQuestion {
+  font-weight: 700;
+  color: #0F172A;
+  font-size: 0.96rem;
+}
+
+.redSheetAnswer {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.redSheetHidden {
+  background: #FB7185;
+  color: transparent;
+  user-select: none;
+  position: relative;
+}
+
+.redSheetHidden::after {
+  content: '🔴 赤シートで隠しています（タップで表示）';
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 700;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.redSheetRevealed {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  color: #1E293B;
+}
+
+/* Loading */
 .loadingState {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 300px;
-  color: var(--text-secondary);
+  min-height: 260px;
+  color: #64748B;
+  gap: 12px;
 }
 
 .spinner {
-  border: 4px solid #E9EDF7;
-  border-top: 4px solid var(--accent-primary);
+  border: 4px solid #E2E8F0;
+  border-top: 4px solid #4F46E5;
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  animation: spin 1s linear infinite;
-  margin-bottom: 16px;
+  animation: spin 0.9s linear infinite;
 }
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-.cardContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-}
-
-.flashcard {
-  width: 100%;
-  height: 300px;
-  perspective: 1000px;
-  cursor: pointer;
-}
-
-.cardFront, .cardBack {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
-  border-radius: 16px;
-  background: white;
-  box-shadow: var(--shadow-card);
-  border: 1px solid #E9EDF7;
-}
-
-.cardBack {
-  transform: rotateY(180deg);
-  background: #F8FAFC;
-  font-size: 1.2rem;
-  line-height: 1.6;
-}
-
-.flashcard.flipped .cardFront {
-  transform: rotateY(180deg);
-}
-
-.flashcard.flipped .cardBack {
-  transform: rotateY(360deg);
-}
-
-.subjectBadge {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  background: var(--accent-primary);
-  color: white;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: bold;
-}
-
-.hintText {
-  position: absolute;
-  bottom: 16px;
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-}
-
-.controls {
-  display: flex;
-  gap: 16px;
-  width: 100%;
-}
-
-.controls button {
-  flex: 1;
-}
-
-.progressText {
-  color: var(--text-secondary);
-  font-weight: bold;
 }
