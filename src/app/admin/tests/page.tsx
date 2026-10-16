@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import JSZip from 'jszip';
 import {
   buildSubjectSlots,
   normalizeSubjectId,
@@ -67,36 +68,69 @@ export default function TestsAdminPage() {
   }, []);
 
   const handleFileChange = async (subjectId: string, subjectName: string, e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (!files || files.length === 0) return;
-
-    // Check for duplicates
-    const fileNames = Array.from(files).map(f => f.name.replace(/\.html?$/i, ''));
-    const existingMatches = tests.filter(m => fileNames.includes(m.title));
-    
-    if (existingMatches.length > 0) {
-      const matchNames = existingMatches.map(m => m.title).slice(0, 3).join(', ') + (existingMatches.length > 3 ? ' など' : '');
-      if (!confirm(`⚠️ 以下のテストファイルは既にインポートされています: ${matchNames}\n\nこれらをアップロードすると新バージョンとして保存されます。よろしいですか？`)) {
-        e.target.value = '';
-        return;
-      }
-    } else {
-      if (!confirm(`選択された ${files.length} 件のファイルを「${subjectName}」のテストコンテンツとしてインポートしますか？`)) {
-        e.target.value = '';
-        return;
-      }
-    }
+    const rawFiles = e.target.files;
+    if (!rawFiles || rawFiles.length === 0) return;
 
     setImportingSubject(subjectId);
-    setMessage(null);
+    setMessage({ text: '📦 ファイルを解析中...', type: 'success' });
 
     try {
-      const fileArray = Array.from(files);
-      const chunkSize = 5;
+      const extractedFiles: File[] = [];
+
+      // ZIPファイルが含まれている場合は解凍
+      for (const file of Array.from(rawFiles)) {
+        if (file.name.endsWith('.zip') || file.type.includes('zip')) {
+          setMessage({ text: `📦 ZIPファイル「${file.name}」を展開中...`, type: 'success' });
+          const zip = await JSZip.loadAsync(file);
+          
+          for (const [relativePath, zipEntry] of Object.entries(zip.files)) {
+            if (!zipEntry.dir && (relativePath.endsWith('.html') || relativePath.endsWith('.htm'))) {
+              const baseName = relativePath.split('/').pop() || '';
+              // 重複コピー（例: '数Ａ-048_L2_標準(1).html'）を除外
+              if (/\(\d+\)\.html?$/i.test(baseName)) continue;
+
+              const text = await zipEntry.async('text');
+              extractedFiles.push(new File([text], baseName, { type: 'text/html' }));
+            }
+          }
+        } else if (file.name.endsWith('.html') || file.name.endsWith('.htm')) {
+          if (!/\(\d+\)\.html?$/i.test(file.name)) {
+            extractedFiles.push(file);
+          }
+        }
+      }
+
+      if (extractedFiles.length === 0) {
+        alert('有効なHTMLテストファイルが見つかりませんでした。');
+        setImportingSubject(null);
+        e.target.value = '';
+        return;
+      }
+
+      // Check for duplicates
+      const fileNames = extractedFiles.map(f => f.name.replace(/\.html?$/i, ''));
+      const existingMatches = tests.filter(m => fileNames.includes(m.title));
+      
+      if (existingMatches.length > 0) {
+        const matchNames = existingMatches.map(m => m.title).slice(0, 3).join(', ') + (existingMatches.length > 3 ? ' など' : '');
+        if (!confirm(`⚠️ 以下のテストファイル (${existingMatches.length}件) は既にインポートされています: ${matchNames}\n\nこれらをアップロードすると新バージョンとして保存されます。よろしいですか？`)) {
+          setImportingSubject(null);
+          e.target.value = '';
+          return;
+        }
+      } else {
+        if (!confirm(`展開された ${extractedFiles.length} 件のテストコンテンツを「${subjectName}」にインポートしますか？`)) {
+          setImportingSubject(null);
+          e.target.value = '';
+          return;
+        }
+      }
+
+      const chunkSize = 10;
       let totalImported = 0;
 
-      for (let i = 0; i < fileArray.length; i += chunkSize) {
-        const chunk = fileArray.slice(i, i + chunkSize);
+      for (let i = 0; i < extractedFiles.length; i += chunkSize) {
+        const chunk = extractedFiles.slice(i, i + chunkSize);
         
         const formData = new FormData();
         formData.append('subject', subjectId);
@@ -106,7 +140,7 @@ export default function TestsAdminPage() {
           formData.append('files', file);
         });
 
-        setMessage({ text: `🔄 アップロード中... (${Math.min(i + chunkSize, fileArray.length)}/${fileArray.length}件)`, type: 'success' });
+        setMessage({ text: `🔄 アップロード中... (${Math.min(i + chunkSize, extractedFiles.length)}/${extractedFiles.length}件)`, type: 'success' });
 
         const res = await fetch('/api/admin/import-tests', {
           method: 'POST',
@@ -183,7 +217,7 @@ export default function TestsAdminPage() {
           <input 
             type="file" 
             multiple 
-            accept=".html,.htm" 
+            accept=".html,.htm,.zip,application/zip,application/x-zip-compressed" 
             style={{ display: 'none' }}
             ref={el => { fileInputRefs.current[subject.id] = el; }}
             onChange={(e) => handleFileChange(subject.id, subject.name, e)}
@@ -192,6 +226,7 @@ export default function TestsAdminPage() {
           <button
             onClick={() => fileInputRefs.current[subject.id]?.click()}
             disabled={importingSubject !== null}
+            title={`${subject.name} のテストHTMLファイル、またはZIPファイルをアップロード`}
             style={{
               padding: '8px 16px',
               backgroundColor: importingSubject === subject.id ? '#94A3B8' : color,
@@ -532,7 +567,12 @@ export default function TestsAdminPage() {
       
       {/* 上段：インポートボタン */}
       <div className="glass-panel" style={{ padding: '24px', marginBottom: '24px' }}>
-        <h2 style={{ fontSize: '1.2rem', marginBottom: '16px' }}>テストデータのインポート</h2>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
+          <h2 style={{ fontSize: '1.2rem', margin: 0 }}>テストデータのインポート</h2>
+          <span style={{ fontSize: '0.85rem', color: '#64748B' }}>
+            💡 HTMLファイル（複数選択可）またはZIPファイル（問題集パック）を直接選択できます
+          </span>
+        </div>
         
         {message && (
           <div style={{ 

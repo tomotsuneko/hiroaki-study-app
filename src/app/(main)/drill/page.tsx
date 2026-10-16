@@ -143,9 +143,9 @@ function DrillContent() {
 
   const mainSchool = profile.targetSchools && profile.targetSchools[0] ? profile.targetSchools[0] : '志望校';
 
-  // 数学Ⅰ のカリキュラムとテストをマッピング
+  // 数学（数学Ⅰ・数学Ａなど）のカリキュラムとテストをマッピング
   const mathSubject = curriculum.find(s => s.id === 'high_school_数学' || s.subjectName === '数学');
-  const mathTests = tests.filter(t => t.subject === 'high_school_数学' || t.title.startsWith('数Ⅰ'));
+  const mathTests = tests.filter(t => t.subject === 'high_school_数学' || t.title.startsWith('数Ⅰ') || t.title.startsWith('数Ａ'));
   const { categories } = mathSubject ? buildSubjectSlots(mathSubject, mathTests) : { categories: [] };
 
   return (
@@ -179,7 +179,7 @@ function DrillContent() {
               transition: 'all 0.2s ease'
             }}
           >
-            📖 数学Ⅰ 単元別テスト問題集 (全315テスト)
+            📖 単元別テスト問題集 (数Ⅰ・数Ａ 全{mathTests.length > 0 ? mathTests.length : 525}テスト)
           </button>
           <button
             onClick={() => setActiveTab('ai')}
@@ -201,7 +201,7 @@ function DrillContent() {
         </div>
       </header>
 
-      {/* 1. 数学Ⅰ 公式テスト問題集 タブ */}
+      {/* 1. 数学 公式テスト問題集 タブ */}
       {activeTab === 'official' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {/* ユーザー実績サマリーカード */}
@@ -217,12 +217,12 @@ function DrillContent() {
             gap: '16px'
           }}>
             <div>
-              <div style={{ fontSize: '0.88rem', color: '#64748B' }}>あなたの数学Ⅰ 演習実績</div>
+              <div style={{ fontSize: '0.88rem', color: '#64748B' }}>あなたの高校数学 演習実績</div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginTop: '4px' }}>
                 <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#0F172A' }}>
                   {summaryStats.totalTestsTaken}
                 </span>
-                <span style={{ color: '#64748B', fontSize: '0.9rem' }}>/ 315 テスト受講中</span>
+                <span style={{ color: '#64748B', fontSize: '0.9rem' }}>/ {mathTests.length > 0 ? mathTests.length : 525} テスト受講中</span>
               </div>
             </div>
 
