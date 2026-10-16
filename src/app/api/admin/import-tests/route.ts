@@ -95,6 +95,8 @@ export async function POST(req: Request) {
     }
 
     await batch.commit();
+    const { invalidateServerCache } = await import('@/lib/server-cache');
+    invalidateServerCache('tests_list');
 
     return NextResponse.json({
       success: true,

@@ -1,13 +1,24 @@
 import { NextResponse } from 'next/server';
 import { dbAdmin } from '@/lib/firebase-admin';
+import { getServerCache, setServerCache } from '@/lib/server-cache';
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
     if (!dbAdmin) return NextResponse.json({ error: 'Firebase Admin not initialized' }, { status: 500 });
-    
+
+    const url = new URL(req.url);
+    const force = url.searchParams.get('refresh') === '1';
+
+    if (!force) {
+      const cached = getServerCache<any[]>('tests_list');
+      if (cached) {
+        return NextResponse.json({ success: true, tests: cached, cached: true });
+      }
+    }
+
     // We only fetch metadata to save bandwidth, not the actual content.
     const snapshot = await dbAdmin.collection('test_materials').select('title', 'contentTitle', 'subject', 'importedAt', 'versions').get();
-    
+
     const tests = snapshot.docs.map(doc => {
       const data = doc.data();
       return {
@@ -19,6 +30,8 @@ export async function GET() {
         versions: (data.versions || []).map((v: any) => ({ importedAt: v.importedAt }))
       };
     });
+
+    setServerCache('tests_list', tests);
 
     return NextResponse.json({ success: true, tests });
   } catch (error: any) {

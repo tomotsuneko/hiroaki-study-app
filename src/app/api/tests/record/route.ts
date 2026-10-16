@@ -174,10 +174,62 @@ export async function POST(req: Request) {
         logs.push(logEntry);
       }
 
+      // 次回学習へのフィードバック反映（正答率80%以上＆5問以上回答で習得認定、75%未満で重点復習キューへ追加）
+      const masteredUnits: string[] = Array.isArray(currentDb.masteredUnits)
+        ? [...currentDb.masteredUnits]
+        : [];
+      let feedbackQueue: any[] = Array.isArray(currentDb.feedbackQueue)
+        ? [...currentDb.feedbackQueue]
+        : [];
+      const cleanTopic = (meta?.contentTitle || testId)
+        .replace(/^L[123]\s*(基礎|標準|応用)?\s*[｜|]\s*/i, '')
+        .replace(/\s*\(L[123].*?\)\s*$/i, '')
+        .trim();
+      const cleanSubj = (meta?.subject || '数学').replace(/^high_school_/, '');
+      const accuracyOnAnswered =
+        answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+
+      if (answeredCount >= 5 && accuracyOnAnswered >= 80) {
+        if (baseCode && !masteredUnits.includes(baseCode)) masteredUnits.push(baseCode);
+        if (cleanTopic && !masteredUnits.includes(cleanTopic)) masteredUnits.push(cleanTopic);
+        if (currentDb.profile && cleanTopic) {
+          currentDb.profile.completedTasks = Array.from(
+            new Set([...(currentDb.profile.completedTasks || []), cleanTopic])
+          );
+        }
+        feedbackQueue = feedbackQueue.filter(
+          (item: any) => item.unitCode !== baseCode && item.topic !== cleanTopic
+        );
+      } else if (answeredCount >= 3 && accuracyOnAnswered < 75) {
+        const existingFbIdx = feedbackQueue.findIndex(
+          (item: any) =>
+            (baseCode && item.unitCode === baseCode) ||
+            (cleanTopic && item.topic === cleanTopic)
+        );
+        const fbItem = {
+          id: `fb_${baseCode || testId}_${Date.now()}`,
+          unitCode: baseCode || '',
+          topic: cleanTopic || baseCode || testId,
+          subject: cleanSubj,
+          reason: 'low_accuracy',
+          scorePercent: accuracyOnAnswered,
+          source: 'official_test',
+          updatedAt: new Date().toISOString(),
+        };
+        if (existingFbIdx >= 0) {
+          feedbackQueue[existingFbIdx] = fbItem;
+        } else {
+          feedbackQueue.unshift(fbItem);
+        }
+        if (feedbackQueue.length > 20) feedbackQueue = feedbackQueue.slice(0, 20);
+      }
+
       await userRef.set({
         db: {
           ...currentDb,
-          logs
+          logs: logs.slice(-300),
+          masteredUnits,
+          feedbackQueue,
         }
       }, { merge: true });
 

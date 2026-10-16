@@ -142,20 +142,35 @@ function BookCard({
   );
 }
 
+const materialHtmlCache = new Map<string, string>();
+
 function LessonBookshelfContent() {
-  const { profile, setProfile, saveNote } = useUser();
+  const {
+    profile,
+    setProfile,
+    saveNote,
+    studyData,
+    catalog,
+    isDataReady,
+    recordMaterialStudy,
+  } = useUser();
   const searchParams = useSearchParams();
   const router = useRouter();
   const requestedTask = searchParams.get('task') || searchParams.get('unit');
   const requestedTab = searchParams.get('tab');
 
-  const [curriculum, setCurriculum] = useState<CurriculumSubject[]>([]);
-  const [materials, setMaterials] = useState<ContentItem[]>([]);
-  const [tests, setTests] = useState<ContentItem[]>([]);
-  const [userRecords, setUserRecords] = useState<Record<string, TestRecordSummary>>({});
-  const [syllabus, setSyllabus] = useState<any[]>([]);
-  const [dailyLearningContents, setDailyLearningContents] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const syllabus = studyData.syllabus || [];
+  const dailyLearningContents = useMemo(() => {
+    if (studyData.dailyAnalysis?.learningContents) {
+      return studyData.dailyAnalysis.learningContents;
+    }
+    if (studyData.dailyAnalysis?.learningContent) {
+      return [studyData.dailyAnalysis.learningContent];
+    }
+    return [];
+  }, [studyData.dailyAnalysis]);
+
+  const loading = !isDataReady && studyData.curriculum.length === 0;
 
   // Bookshelf UI filters
   const [activeSubjectId, setActiveSubjectId] = useState<string>('all');
@@ -173,78 +188,6 @@ function LessonBookshelfContent() {
   const [generatingAiNote, setGeneratingAiNote] = useState(false);
   const [unitVideos, setUnitVideos] = useState<any[]>([]);
   const [loadingVideos, setLoadingVideos] = useState(false);
-
-  // Load all master & user data with robust fallbacks
-  useEffect(() => {
-    async function loadAll() {
-      setLoading(true);
-      try {
-        const [curRes, matRes, testRes, recRes, dailyRes] = await Promise.all([
-          fetch('/api/admin/master-db'),
-          fetch('/api/admin/materials-list'),
-          fetch('/api/admin/tests-list'),
-          fetch('/api/tests/record'),
-          fetch('/api/db/daily'),
-        ]);
-
-        const [curData, matData, testData, recData, dailyData] = await Promise.all([
-          curRes.json().catch(() => ({})),
-          matRes.json().catch(() => ({})),
-          testRes.json().catch(() => ({})),
-          recRes.json().catch(() => ({})),
-          dailyRes.json().catch(() => ({})),
-        ]);
-
-        // 1. Master DB
-        const rawCur = curData.masterDb || curData.curriculum || [];
-        setCurriculum(Array.isArray(rawCur) ? rawCur : []);
-
-        // 2. Learning Materials
-        const rawMat = matData.materials || [];
-        setMaterials(Array.isArray(rawMat) ? rawMat : []);
-
-        // 3. Tests Materials
-        const rawTests = testData.tests || testData.materials || [];
-        setTests(Array.isArray(rawTests) ? rawTests : []);
-
-        // 4. Test Records
-        const recMap: Record<string, TestRecordSummary> = {};
-        const rawRecords = recData.results || recData.records || [];
-        if (Array.isArray(rawRecords)) {
-          rawRecords.forEach((r: any) => {
-            if (r.testId) recMap[r.testId] = r;
-          });
-        }
-        setUserRecords(recMap);
-
-        // 5. Syllabus & Daily Content
-        if (dailyData.syllabus && Array.isArray(dailyData.syllabus)) {
-          setSyllabus(dailyData.syllabus);
-        }
-        if (dailyData.dailyAnalysis?.learningContents) {
-          setDailyLearningContents(dailyData.dailyAnalysis.learningContents);
-        } else if (dailyData.dailyAnalysis?.learningContent) {
-          setDailyLearningContents([dailyData.dailyAnalysis.learningContent]);
-        }
-      } catch (e) {
-        console.error('Failed to load bookshelf library catalog:', e);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadAll();
-  }, []);
-
-  // Build Unified Catalog
-  const catalog = useMemo(() => {
-    return buildUnifiedCatalog(
-      curriculum,
-      materials,
-      tests,
-      userRecords,
-      profile.completedTasks || []
-    );
-  }, [curriculum, materials, tests, userRecords, profile.completedTasks]);
 
   // Handle URL ?task=xxx deep-link to open the book automatically
   useEffect(() => {
@@ -267,7 +210,7 @@ function LessonBookshelfContent() {
     }
   }, [requestedTask, requestedTab, catalog.units]);
 
-  // Load HTML content when a unit is opened in the reading modal
+  // Load HTML content (with in-memory cache) and record textbook view when a unit is opened
   useEffect(() => {
     if (!selectedUnit) {
       setMaterialHtml(null);
@@ -276,8 +219,16 @@ function LessonBookshelfContent() {
       return;
     }
 
+    // Record content usage (material view) to user's study history
+    recordMaterialStudy({
+      unitCode: selectedUnit.unitCode || selectedUnit.unitKey,
+      title: selectedUnit.smallName,
+      subject: selectedUnit.subjectName,
+      completed: false,
+    });
+
     const existingDaily = dailyLearningContents.find(
-      c =>
+      (c: any) =>
         c.taskTitle &&
         (c.taskTitle.includes(selectedUnit.smallName) ||
           selectedUnit.smallName.includes(c.taskTitle))
@@ -289,11 +240,20 @@ function LessonBookshelfContent() {
     }
 
     if (selectedUnit.material) {
+      const matId = selectedUnit.material.id;
+      const cachedHtml = materialHtmlCache.get(matId);
+      if (cachedHtml) {
+        setMaterialHtml(cachedHtml);
+        setLoadingMaterial(false);
+        return;
+      }
+
       setLoadingMaterial(true);
-      fetch(`/api/materials/${encodeURIComponent(selectedUnit.material.id)}`)
-        .then(r => r.json())
-        .then(d => {
+      fetch(`/api/materials/${encodeURIComponent(matId)}`)
+        .then((r) => r.json())
+        .then((d) => {
           if (d.success && d.material?.content) {
+            materialHtmlCache.set(matId, d.material.content);
             setMaterialHtml(d.material.content);
           } else {
             setMaterialHtml(null);
@@ -304,7 +264,8 @@ function LessonBookshelfContent() {
     } else {
       setMaterialHtml(null);
     }
-  }, [selectedUnit, dailyLearningContents]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedUnit?.unitKey]);
 
   // Load YouTube videos when reading modal tab is 'video'
   useEffect(() => {
@@ -312,8 +273,8 @@ function LessonBookshelfContent() {
     setLoadingVideos(true);
     const q = `${selectedUnit.largeName} ${selectedUnit.smallName} 高校 授業`;
     fetch(`/api/youtube?q=${encodeURIComponent(q)}`)
-      .then(r => r.json())
-      .then(d => setUnitVideos(d.items || []))
+      .then((r) => r.json())
+      .then((d) => setUnitVideos(d.items || []))
       .catch(() => setUnitVideos([]))
       .finally(() => setLoadingVideos(false));
   }, [selectedUnit, modalTab]);
@@ -346,14 +307,26 @@ function LessonBookshelfContent() {
     }
   };
 
-  // Toggle syllabus task completion from inside reading modal
+  // Toggle syllabus task completion & persist textbook completion (+15 min study time on completion)
   const handleToggleUnitMastery = (unit: UnifiedUnit) => {
     const current = profile.completedTasks || [];
-    const exists = current.includes(unit.smallName);
+    const exists =
+      current.includes(unit.smallName) ||
+      (studyData.masteredUnits || []).includes(unit.smallName);
     const updated = exists
-      ? current.filter(t => t !== unit.smallName)
+      ? current.filter((t) => t !== unit.smallName)
       : [...current, unit.smallName];
     setProfile({ ...profile, completedTasks: updated });
+
+    if (!exists) {
+      recordMaterialStudy({
+        unitCode: unit.unitCode || unit.unitKey,
+        title: unit.smallName,
+        subject: unit.subjectName,
+        completed: true,
+        minutes: 15,
+      });
+    }
   };
 
   // Build Featured "Pickup Shelf" (Syllabus active tasks + Weakness/Studying units)

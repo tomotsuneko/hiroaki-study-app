@@ -15,8 +15,16 @@ import {
 } from '@/lib/content-slots';
 
 export default function PlanPage() {
-  const { profile, setProfile, clearRebalanceAlert } = useUser();
-  const [isLoading, setIsLoading] = useState(true);
+  const {
+    profile,
+    setProfile,
+    clearRebalanceAlert,
+    studyData,
+    catalog,
+    isDataReady,
+    updateLocalSyllabus,
+  } = useUser();
+
   const [showCompleted, setShowCompleted] = useState(false);
   const [isGeneratingSyllabus, setIsGeneratingSyllabus] = useState(false);
   const [activeTabs, setActiveTabs] = useState<{ [phaseIdx: number]: number }>({});
@@ -25,12 +33,6 @@ export default function PlanPage() {
   const [showLevelModal, setShowLevelModal] = useState(false);
   const [customScoreInput, setCustomScoreInput] = useState('');
 
-  // Master & User Content Catalog State
-  const [curriculum, setCurriculum] = useState<CurriculumSubject[]>([]);
-  const [materials, setMaterials] = useState<ContentItem[]>([]);
-  const [tests, setTests] = useState<ContentItem[]>([]);
-  const [userRecords, setUserRecords] = useState<Record<string, TestRecordSummary>>({});
-
   const isTargetSet =
     profile.targetSchools &&
     profile.targetSchools.length > 0 &&
@@ -38,91 +40,16 @@ export default function PlanPage() {
   const mainTarget = isTargetSet ? profile.targetSchools[0] : '目標校未設定';
   const hasDeviation = typeof profile.deviationScore === 'number' && profile.deviationScore > 0;
 
-  const [syllabus, setSyllabus] = useState<any[]>([]);
-  const [syllabusUpdatedAt, setSyllabusUpdatedAt] = useState<string | null>(null);
-  const [rebalanceAlert, setRebalanceAlert] = useState<{
-    reason: string;
-    message: string;
-    timestamp: string;
-  } | null>(null);
+  const syllabus = studyData.syllabus || [];
+  const syllabusUpdatedAt = studyData.syllabusUpdatedAt || null;
+  const rebalanceAlert =
+    studyData.syllabusRebalanceAlert || profile.syllabusRebalanceAlert || null;
+  const isLoading = !isDataReady && studyData.curriculum.length === 0;
 
   const router = useRouter();
 
-  useEffect(() => {
-    async function fetchAllData() {
-      setIsLoading(true);
-      try {
-        const [dailyRes, curRes, matRes, testRes, recRes] = await Promise.all([
-          fetch('/api/db/daily'),
-          fetch('/api/admin/master-db'),
-          fetch('/api/admin/materials-list'),
-          fetch('/api/admin/tests-list'),
-          fetch('/api/tests/record'),
-        ]);
-
-        const [data, curData, matData, testData, recData] = await Promise.all([
-          dailyRes.json(),
-          curRes.json(),
-          matRes.json(),
-          testRes.json(),
-          recRes.json(),
-        ]);
-
-        if (data.syllabus && Array.isArray(data.syllabus)) {
-          setSyllabus(data.syllabus);
-          setSyllabusUpdatedAt(data.syllabusUpdatedAt || null);
-        } else {
-          setSyllabus([]);
-        }
-
-        if (data.syllabusRebalanceAlert) {
-          setRebalanceAlert(data.syllabusRebalanceAlert);
-        } else if (profile.syllabusRebalanceAlert) {
-          setRebalanceAlert(profile.syllabusRebalanceAlert);
-        }
-
-        const curList = curData.masterDb || curData.curriculum || [];
-        if (Array.isArray(curList)) {
-          setCurriculum(curList);
-        }
-        if (matData.success && Array.isArray(matData.materials)) {
-          setMaterials(matData.materials);
-        }
-        const testList = testData.tests || testData.materials || [];
-        if (Array.isArray(testList)) {
-          setTests(testList);
-        }
-        const recMap: Record<string, TestRecordSummary> = {};
-        const rawResults = recData.results || recData.records || [];
-        if (Array.isArray(rawResults)) {
-          rawResults.forEach((r: any) => {
-            if (r.testId) recMap[r.testId] = r;
-          });
-        }
-        setUserRecords(recMap);
-      } catch (e) {
-        console.error(e);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchAllData();
-  }, []);
-
-  // Build Unified Catalog to link each syllabus task to its learning_materials and test_materials
-  const catalog = useMemo(() => {
-    return buildUnifiedCatalog(
-      curriculum,
-      materials,
-      tests,
-      userRecords,
-      profile.completedTasks || []
-    );
-  }, [curriculum, materials, tests, userRecords, profile.completedTasks]);
-
   // Dismiss rebalance attention alert
   const handleDismissAlert = async () => {
-    setRebalanceAlert(null);
     clearRebalanceAlert();
     try {
       await fetch('/api/db/daily', {
@@ -146,10 +73,8 @@ export default function PlanPage() {
       });
       const data = await res.json();
       if (data.syllabus && Array.isArray(data.syllabus)) {
-        setSyllabus(data.syllabus);
-        setSyllabusUpdatedAt(new Date().toISOString());
+        updateLocalSyllabus(data.syllabus, data.rebalanceAlert);
         if (data.rebalanceAlert) {
-          setRebalanceAlert(data.rebalanceAlert);
           setProfile({ ...profile, syllabusRebalanceAlert: data.rebalanceAlert });
         }
         alert(
@@ -197,8 +122,7 @@ export default function PlanPage() {
       });
       const data = await res.json();
       if (data.syllabus) {
-        setSyllabus(data.syllabus);
-        setSyllabusUpdatedAt(new Date().toISOString());
+        updateLocalSyllabus(data.syllabus, data.rebalanceAlert);
         alert(`偏差値目安（${score}）を設定し、シラバスを現在地に合わせて自動再編成しました！`);
       }
     } catch (e) {
@@ -213,7 +137,7 @@ export default function PlanPage() {
       router.push(
         `/drill?subject=${encodeURIComponent(
           task.title.replace('【学力レベル診断】', '')
-        )}&topic=レベルチェックテスト`
+        )}&topic=レベルチェックテスト&mode=diagnostic`
       );
     } else {
       router.push(`/lesson?task=${encodeURIComponent(task.title)}`);
@@ -224,13 +148,14 @@ export default function PlanPage() {
     e.stopPropagation();
     const currentCompleted = profile.completedTasks || [];
     const newCompleted = currentCompleted.includes(taskName)
-      ? currentCompleted.filter(t => t !== taskName)
+      ? currentCompleted.filter((t) => t !== taskName)
       : [...currentCompleted, taskName];
     setProfile({ ...profile, completedTasks: newCompleted });
   };
 
   const isTaskCompletedOrMastered = (task: any, catName: string): boolean => {
     if ((profile.completedTasks || []).includes(task.title)) return true;
+    if ((studyData.masteredUnits || []).includes(task.title)) return true;
     const matched = findMatchingUnitsForTask(task.title, catName, catalog.units);
     if (matched.length > 0 && matched[0].status === 'mastered') return true;
     return false;

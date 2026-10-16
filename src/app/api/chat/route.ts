@@ -1,7 +1,7 @@
 import { getActiveModels } from '@/lib/model-manager';
 import { NextResponse } from 'next/server';
 import { genAI } from '@/lib/gemini';
-import { getChatSession, saveChatSession, addLog, ChatSession } from '@/lib/db';
+import { getChatSession, saveChatSession, addLog, readDB, ChatSession } from '@/lib/db';
 
 function getTodayJST(): string {
   return new Intl.DateTimeFormat('ja-JP', {
@@ -9,7 +9,9 @@ function getTodayJST(): string {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
-  }).format(new Date()).replace(/\//g, '-');
+  })
+    .format(new Date())
+    .replace(/\//g, '-');
 }
 
 export async function POST(req: Request) {
@@ -25,14 +27,40 @@ export async function POST(req: Request) {
       validHistory.shift();
     }
 
-    const userName = profile?.name || '生徒';
-    const targetSchools = profile?.targetSchools?.length > 0 ? profile.targetSchools.join('、') : '日東駒専レベルの理系学部';
-    const weakSubjects = profile?.weakSubjects?.length > 0 ? profile.weakSubjects.join('、') : '特になし';
-    const tutorPersona = profile?.tutorPersona || '優しいお姉さん';
-    const currentMood = profile?.currentMood || '普通';
+    // ユーザーの蓄積された学習データ（弱点キュー・習得単元・直近の学習ログ）を取得しAIチューターへフィードバック注入
+    const userDb = await readDB();
+    const effectiveProfile = profile || userDb.profile || {};
+    const userName = effectiveProfile?.name || '生徒';
+    const targetSchools =
+      effectiveProfile?.targetSchools?.length > 0
+        ? effectiveProfile.targetSchools.join('、')
+        : '日東駒専レベルの理系学部';
+    const weakSubjects =
+      effectiveProfile?.weakSubjects?.length > 0
+        ? effectiveProfile.weakSubjects.join('、')
+        : '特になし';
+    const tutorPersona = effectiveProfile?.tutorPersona || '優しいお姉さん';
+    const currentMood = effectiveProfile?.currentMood || '普通';
 
-    const systemInstruction = `あなたは千葉県立我孫子高校2年生（理系）の生徒「${userName}」さんを指導する専属AIチューターです。
+    const recentWeakItems = (userDb.feedbackQueue || [])
+      .slice(0, 5)
+      .map((f) => `${f.subject}: ${f.topic}${f.scorePercent !== undefined ? ` (正答率${f.scorePercent}%)` : ''}`)
+      .join('、');
+    const recentMastered = (userDb.masteredUnits || []).slice(-8).join('、');
+    const recentActivityLogs = (userDb.logs || [])
+      .slice(-6)
+      .map((l) => l.data?.message || `${l.type}`)
+      .filter(Boolean)
+      .join(' / ');
+
+    const systemInstruction = `あなたは千葉県立我孫子高校の生徒「${userName}」さんを指導する専属AIチューターです。
 目標校：「${targetSchools}」 / 苦手科目：「${weakSubjects}」 / 今日の生徒の気分：「${currentMood}」
+
+【生徒の最新の学習カルテ（テスト・ドリル・学習履歴からの自動フィードバック）】
+- 直近で正答率が低く重点補強が必要な単元：${recentWeakItems || '現在特になし'}
+- 直近で習得認定（正答率80%以上・読了）した単元：${recentMastered || 'まだ記録なし'}
+- 直近の学習アクティビティ履歴：${recentActivityLogs || 'まだ記録なし'}
+※生徒から勉強方針や質問された際は、上記の学習カルテ（特に最近つまずいた単元や頑張っている履歴）を自然に踏まえて、具体的でパーソナライズされた指導を行ってください。
 
 【チューターの人格設定】
 あなたのキャラクターは「${tutorPersona}」です。
@@ -48,18 +76,16 @@ export async function POST(req: Request) {
 
     const modelsToTry = await getActiveModels('chat');
 
-    let text = "";
+    let text = '';
     let success = false;
-    let lastError = null;
 
     for (const modelName of modelsToTry) {
       if (success) break;
-      
-      console.log(`Trying model: ${modelName}...`);
+
       try {
-        const personalizedModel = genAI.getGenerativeModel({ 
+        const personalizedModel = genAI.getGenerativeModel({
           model: modelName,
-          systemInstruction: systemInstruction
+          systemInstruction: systemInstruction,
         });
 
         const chat = personalizedModel.startChat({
@@ -71,17 +97,15 @@ export async function POST(req: Request) {
         text = response.text();
         success = true;
       } catch (err: any) {
-        lastError = err;
         console.warn(`Model ${modelName} failed. Reason: ${err.message}`);
-        // Wait a short bit before trying the next fallback
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise((resolve) => setTimeout(resolve, 800));
       }
     }
 
     if (!success) {
-      // Fallback response if all models fail (e.g. 503 Service Unavailable globally)
-      console.warn("All Gemini models failed. Using static fallback.");
-      text = "申し訳ありません、現在AIサーバーが非常に混み合っており、一時的にお返事することができません。💦\n\n少し時間をおいてから再度お試しいただくか、別の科目についての学習ノートを見返して復習を進めましょう！君ならできる！🔥";
+      console.warn('All Gemini models failed. Using static fallback.');
+      text =
+        '申し訳ありません、現在AIサーバーが非常に混み合っており、一時的にお返事することができません。💦\n\n少し時間をおいてから再度お試しいただくか、別の科目についての学習ノートを見返して復習を進めましょう！君ならできる！🔥';
     }
 
     // セッションの永続化
@@ -94,7 +118,6 @@ export async function POST(req: Request) {
     }
 
     if (!currentSession) {
-      // 最初のメッセージからタイトルを生成
       const cleanTitle = message.trim().replace(/\n/g, ' ').substring(0, 24);
       const title = cleanTitle.length >= 24 ? `${cleanTitle}...` : cleanTitle || '新しいチャット';
       currentSession = {
@@ -106,10 +129,11 @@ export async function POST(req: Request) {
         messages: [
           {
             role: 'model',
-            content: 'こんにちは！今日はどの科目を勉強しますか？基礎からゆっくりやっていきましょう。分からないところがあれば、いつでも聞いてくださいね！🔥',
-            timestamp: nowIso
-          }
-        ]
+            content:
+              'こんにちは！今日はどの科目を勉強しますか？基礎からゆっくりやっていきましょう。分からないところがあれば、いつでも聞いてくださいね！🔥',
+            timestamp: nowIso,
+          },
+        ],
       };
     } else if (currentSession.title === '新しいチャット') {
       const cleanTitle = message.trim().replace(/\n/g, ' ').substring(0, 24);
@@ -122,29 +146,32 @@ export async function POST(req: Request) {
     );
     currentSession.updatedAt = nowIso;
 
-    // 非同期でDB保存とログ記録
-    await saveChatSession(currentSession);
-    addLog('chat', {
-      sessionId: currentSession.id,
-      title: currentSession.title,
-      userMessage: message,
-      aiResponse: text,
-      timestamp: nowIso
-    }).catch(e => console.error('addLog error:', e));
+    // 確実にDB保存とログ記録を完了させる
+    await Promise.all([
+      saveChatSession(currentSession),
+      addLog('chat', {
+        sessionId: currentSession.id,
+        title: currentSession.title,
+        userMessage: message,
+        aiResponse: text.slice(0, 300),
+        message: `💬 AIチューターに「${currentSession.title}」について質問・相談しました`,
+        timestamp: nowIso,
+      }).catch((e) => console.error('addLog error:', e)),
+    ]);
 
-    return NextResponse.json({ 
-      text, 
+    return NextResponse.json({
+      text,
       fallbackUsed: !success,
-      session: currentSession
+      session: currentSession,
     });
   } catch (error: any) {
     console.error('Chat API Error:', error);
     if (error?.status === 503) {
-      return NextResponse.json({ error: '現在AIサーバーが混み合っています。数秒待ってから再度お試しください。' }, { status: 503 });
+      return NextResponse.json(
+        { error: '現在AIサーバーが混み合っています。数秒待ってから再度お試しください。' },
+        { status: 503 }
+      );
     }
-    return NextResponse.json(
-      { error: 'Failed to generate AI response.' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to generate AI response.' }, { status: 500 });
   }
 }

@@ -35,7 +35,16 @@ type Evaluation = {
 };
 
 function DrillCenterContent() {
-  const { profile, setProfile, saveNote } = useUser();
+  const {
+    profile,
+    setProfile,
+    saveNote,
+    studyData,
+    catalog,
+    isDataReady,
+    refreshStudyData,
+    updateLocalSyllabus,
+  } = useUser();
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -51,19 +60,11 @@ function DrillCenterContent() {
   // 'exam'      (Mock/Diag: 模試実戦総合 & 学力診断テスト)
   const [activeTab, setActiveTab] = useState<'recommend' | 'official' | 'custom' | 'exam'>('recommend');
 
-  // Master & User Data
-  const [curriculum, setCurriculum] = useState<CurriculumSubject[]>([]);
-  const [materials, setMaterials] = useState<ContentItem[]>([]);
-  const [tests, setTests] = useState<ContentItem[]>([]);
-  const [userRecords, setUserRecords] = useState<Record<string, TestRecordSummary>>({});
-  const [syllabus, setSyllabus] = useState<any[]>([]);
-  const [summaryStats, setSummaryStats] = useState({
-    totalTestsTaken: 0,
-    totalAnswered: 0,
-    totalCorrect: 0,
-    overallAccuracy: 0,
-  });
-  const [isLoadingData, setIsLoadingData] = useState(true);
+  const syllabus = studyData.syllabus || [];
+  const summaryStats = studyData.testSummary;
+  const feedbackQueue = studyData.feedbackQueue || [];
+  const preGeneratedDailyDrill = studyData.dailyAnalysis?.dailyDrill || [];
+  const isLoadingData = !isDataReady && studyData.curriculum.length === 0;
 
   // Official tab filter state
   const [officialSubjectId, setOfficialSubjectId] = useState<string>('high_school_数学');
@@ -98,73 +99,35 @@ function DrillCenterContent() {
   const [remainingSeconds, setRemainingSeconds] = useState<number | null>(null);
   const [isUpdatingSyllabus, setIsUpdatingSyllabus] = useState(false);
 
-  // Load all data
-  useEffect(() => {
-    async function loadAll() {
-      setIsLoadingData(true);
-      try {
-        const [curRes, matRes, testRes, recRes, dailyRes] = await Promise.all([
-          fetch('/api/admin/master-db'),
-          fetch('/api/admin/materials-list'),
-          fetch('/api/admin/tests-list'),
-          fetch('/api/tests/record'),
-          fetch('/api/db/daily'),
-        ]);
-
-        const [curData, matData, testData, recData, dailyData] = await Promise.all([
-          curRes.json().catch(() => ({})),
-          matRes.json().catch(() => ({})),
-          testRes.json().catch(() => ({})),
-          recRes.json().catch(() => ({})),
-          dailyRes.json().catch(() => ({})),
-        ]);
-
-        const curList = curData.masterDb || curData.curriculum || [];
-        if (Array.isArray(curList)) setCurriculum(curList);
-
-        const matList = matData.materials || [];
-        if (Array.isArray(matList)) setMaterials(matList);
-
-        const testList = testData.tests || testData.materials || [];
-        if (Array.isArray(testList)) setTests(testList);
-
-        const recMap: Record<string, TestRecordSummary> = {};
-        const rawResults = recData.results || recData.records || [];
-        if (Array.isArray(rawResults)) {
-          rawResults.forEach((r: any) => {
-            if (r.testId) recMap[r.testId] = r;
-          });
-        }
-        setUserRecords(recMap);
-        setSummaryStats({
-          totalTestsTaken: recData.totalTestsTaken || 0,
-          totalAnswered: recData.totalAnswered || 0,
-          totalCorrect: recData.totalCorrect || 0,
-          overallAccuracy: recData.overallAccuracy || 0,
-        });
-
-        if (dailyData.syllabus && Array.isArray(dailyData.syllabus)) {
-          setSyllabus(dailyData.syllabus);
-        }
-      } catch (e) {
-        console.error('Failed to load drill data:', e);
-      } finally {
-        setIsLoadingData(false);
-      }
-    }
-    loadAll();
-  }, []);
-
-  // Build Unified Catalog
-  const catalog = useMemo(() => {
-    return buildUnifiedCatalog(
-      curriculum,
-      materials,
-      tests,
-      userRecords,
-      profile.completedTasks || []
+  // Launch pre-generated daily drill in 0ms without waiting for Gemini API
+  const startPreGeneratedDailyDrill = () => {
+    if (!Array.isArray(preGeneratedDailyDrill) || preGeneratedDailyDrill.length === 0) return;
+    const firstUnit = preGeneratedDailyDrill[0]?.unit || '本日の重点復習';
+    setActiveRunMeta({
+      subject: studyData.dailyAnalysis?.recommendedSubjects?.[0] || '数学',
+      topic: firstUnit,
+      unitCode: '',
+      mode: 'weakness',
+      difficulty: '標準',
+    });
+    setQuestions(
+      preGeneratedDailyDrill.map((q: any, i: number) => ({
+        id: q.id || i + 1,
+        level: q.level || '基礎〜標準',
+        unit: q.unit || firstUnit,
+        question: q.question,
+        hint: q.hint || '公式テキストの基本定義・定理を確認してみましょう。',
+        answer: q.answer,
+        keyPoint: q.keyPoint || '',
+      }))
     );
-  }, [curriculum, materials, tests, userRecords, profile.completedTasks]);
+    setAnswers({});
+    setShowHints({});
+    setEvaluations([]);
+    setAddedCardIds({});
+    setRemainingSeconds(null);
+    setTestState('testing');
+  };
 
   // Seamless Handover from URL Query Params (?subject=...&topic=...&unit=...&mode=...)
   useEffect(() => {
@@ -347,6 +310,7 @@ function DrillCenterContent() {
         body: JSON.stringify({
           subject: activeRunMeta.subject,
           topic: activeRunMeta.topic,
+          unitCode: activeRunMeta.unitCode,
           mode: activeRunMeta.mode,
           questions,
           answers,
@@ -354,8 +318,20 @@ function DrillCenterContent() {
         }),
       });
       const data = await res.json();
-      setEvaluations(Array.isArray(data) ? data : []);
+      const evalList = Array.isArray(data) ? data : [];
+      setEvaluations(evalList);
       setTestState('result');
+
+      // 80%以上の場合は即時シラバス完了状態にも反映し、バックグラウンドで学習データを同期
+      const cCount = evalList.filter((e: any) => e.isCorrect).length;
+      const tCount = evalList.length || questions.length || 5;
+      if (tCount >= 3 && Math.round((cCount / tCount) * 100) >= 80 && activeRunMeta.topic) {
+        const merged = Array.from(
+          new Set([...(profile.completedTasks || []), activeRunMeta.topic])
+        );
+        setProfile({ ...profile, completedTasks: merged });
+      }
+      refreshStudyData(false);
     } catch (e) {
       alert('採点に失敗しました。もう一度お試しください。');
       setTestState('testing');
@@ -994,6 +970,99 @@ function DrillCenterContent() {
          ========================================================= */}
       {testState === 'idle' && activeTab === 'recommend' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          {/* 1-0. Instant Pre-Generated Daily Drill & Priority Feedback Queue */}
+          {(preGeneratedDailyDrill.length > 0 || feedbackQueue.length > 0) && (
+            <section
+              className={styles.panelCard}
+              style={{
+                background: 'linear-gradient(135deg, #EEF2FF 0%, #FFFFFF 100%)',
+                border: '2px solid #C7D2FE',
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  gap: '14px',
+                }}
+              >
+                <div>
+                  <h2 className={styles.sectionTitle} style={{ marginBottom: '4px', color: '#1E1B4B' }}>
+                    ⚡ デイリー事前生成パック ＆ 次回学習フィードバック（待ち時間0秒）
+                  </h2>
+                  <p className={styles.sectionSub} style={{ marginBottom: 0 }}>
+                    日次バッチと直近の演習結果（テスト・ドリル・模試分析）から事前編成された最優先メニューです。生成待ちなしで即座に開始できます。
+                  </p>
+                </div>
+                {preGeneratedDailyDrill.length > 0 && (
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    style={{ padding: '10px 20px', fontWeight: 800, fontSize: '0.92rem' }}
+                    onClick={startPreGeneratedDailyDrill}
+                  >
+                    🚀 本日の事前生成AIドリル（{preGeneratedDailyDrill.length}問）を即開始 →
+                  </button>
+                )}
+              </div>
+
+              {feedbackQueue.length > 0 && (
+                <div style={{ marginTop: '16px', paddingTop: '14px', borderTop: '1px solid #E0E7FF' }}>
+                  <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#4338CA', marginBottom: '10px' }}>
+                    📌 学習履歴から自動登録された重点補強キュー（正答率80%達成で自動クリア）：
+                  </div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                    {feedbackQueue.slice(0, 6).map((fb) => (
+                      <div
+                        key={fb.id}
+                        style={{
+                          background: 'white',
+                          border: '1px solid #C7D2FE',
+                          borderRadius: '10px',
+                          padding: '8px 12px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          fontSize: '0.83rem',
+                        }}
+                      >
+                        <div>
+                          <strong style={{ color: '#0F172A' }}>
+                            {fb.subject}: {fb.topic}
+                          </strong>
+                          {fb.scorePercent !== undefined && (
+                            <span style={{ marginLeft: '6px', color: '#DC2626', fontWeight: 700 }}>
+                              (前回 {fb.scorePercent}%)
+                            </span>
+                          )}
+                        </div>
+                        <button
+                          type="button"
+                          className="btn btn-primary"
+                          style={{ padding: '4px 10px', fontSize: '0.78rem' }}
+                          onClick={() =>
+                            startAiTest({
+                              subject: fb.subject,
+                              topic: fb.topic,
+                              unitCode: fb.unitCode || '',
+                              mode: 'weakness',
+                              difficulty: '基礎',
+                              count: 5,
+                            })
+                          }
+                        >
+                          ⚡ 弱点克服5問
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+          )}
+
           {/* 1A. Weak Units detected from Test History */}
           <section className={styles.panelCard}>
             <h2 className={styles.sectionTitle}>

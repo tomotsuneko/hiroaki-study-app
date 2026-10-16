@@ -29,7 +29,7 @@ type Flashcard = {
 };
 
 function FlashcardCenterContent() {
-  const { profile } = useUser();
+  const { profile, studyData, catalog: unifiedCatalog, refreshStudyData } = useUser();
   const searchParams = useSearchParams();
 
   const paramSubject = searchParams.get('subject') || '';
@@ -55,12 +55,13 @@ function FlashcardCenterContent() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [loadingDeck, setLoadingDeck] = useState(true);
+  const [loadingDeck, setLoadingDeck] = useState(false);
   const [reviewedCountToday, setReviewedCountToday] = useState(0);
 
-  // Saved Cards Library State
-  const [allSavedCards, setAllSavedCards] = useState<Flashcard[]>([]);
-  const [dueSavedCards, setDueSavedCards] = useState<Flashcard[]>([]);
+  // Saved Cards Library State (initialized from global studyData cache for 0ms render!)
+  const [allSavedCards, setAllSavedCards] = useState<Flashcard[]>(
+    () => (studyData.flashcards as Flashcard[]) || []
+  );
   const [librarySubjectFilter, setLibrarySubjectFilter] = useState<string>('すべて');
   const [librarySearch, setLibrarySearch] = useState<string>('');
 
@@ -70,78 +71,46 @@ function FlashcardCenterContent() {
   const [newCardBack, setNewCardBack] = useState<string>('');
   const [isAddingManual, setIsAddingManual] = useState<boolean>(false);
 
-  // Master & User Data for Push/Pull integration
-  const [curriculum, setCurriculum] = useState<CurriculumSubject[]>([]);
-  const [materials, setMaterials] = useState<ContentItem[]>([]);
-  const [tests, setTests] = useState<ContentItem[]>([]);
-  const [userRecords, setUserRecords] = useState<Record<string, TestRecordSummary>>({});
-
   // Pull Selector State
   const [selectedSubject, setSelectedSubject] = useState<string>('数学');
   const [selectedLargeCat, setSelectedLargeCat] = useState<string>('すべて');
   const [selectedUnitCode, setSelectedUnitCode] = useState<string>('');
   const [customTopic, setCustomTopic] = useState<string>('');
 
-  // Fetch Master DB & Saved Cards
+  // Sync when global studyData.flashcards updates
+  useEffect(() => {
+    if (Array.isArray(studyData.flashcards) && studyData.flashcards.length > 0) {
+      setAllSavedCards(studyData.flashcards as Flashcard[]);
+    }
+  }, [studyData.flashcards]);
+
+  const dueSavedCards = useMemo(() => {
+    const todayStr = new Date().toISOString().split('T')[0];
+    return allSavedCards.filter((c: any) => {
+      if (!c.nextReviewDate && !c.nextReview) return true;
+      if (c.nextReview && c.nextReview <= Date.now()) return true;
+      if (c.nextReviewDate && c.nextReviewDate <= todayStr) return true;
+      return false;
+    });
+  }, [allSavedCards]);
+
+  // Refresh saved cards from server & update global cache
   const refreshSavedCards = async () => {
     try {
       const res = await fetch('/api/flashcard');
       if (res.ok) {
         const data = await res.json();
-        setAllSavedCards(data.allCards || []);
-        setDueSavedCards(data.dueCards || []);
+        if (Array.isArray(data.allCards)) {
+          setAllSavedCards(data.allCards);
+        }
       }
+      refreshStudyData(false);
     } catch (e) {
       console.error('Failed to fetch saved flashcards:', e);
     }
   };
 
-  useEffect(() => {
-    async function loadMasterAndUser() {
-      try {
-        const [curRes, matRes, testRes, recRes] = await Promise.all([
-          fetch('/api/admin/master-db'),
-          fetch('/api/admin/materials-list'),
-          fetch('/api/admin/tests-list'),
-          fetch('/api/tests/record'),
-        ]);
-        const [curData, matData, testData, recData] = await Promise.all([
-          curRes.json().catch(() => ({})),
-          matRes.json().catch(() => ({})),
-          testRes.json().catch(() => ({})),
-          recRes.json().catch(() => ({})),
-        ]);
-
-        if (curData?.masterDb) setCurriculum(curData.masterDb);
-        if (matData?.materials) setMaterials(matData.materials);
-        if (testData?.tests) setTests(testData.tests);
-
-        if (recData?.results && Array.isArray(recData.results)) {
-          const map: Record<string, TestRecordSummary> = {};
-          recData.results.forEach((r: any) => {
-            if (r.testId) map[r.testId] = r;
-          });
-          setUserRecords(map);
-        }
-      } catch (e) {
-        console.error(e);
-      }
-    }
-    loadMasterAndUser();
-    refreshSavedCards();
-  }, []);
-
-  const unifiedCatalog = useMemo(() => {
-    return buildUnifiedCatalog(
-      curriculum,
-      materials,
-      tests,
-      userRecords,
-      profile.completedTasks || []
-    );
-  }, [curriculum, materials, tests, userRecords, profile.completedTasks]);
-
-  // Weak units from Official Test History (<80% accuracy)
+  // Weak units from Official Test History (<80% accuracy) + feedbackQueue
   const weakUnits = useMemo(() => {
     return unifiedCatalog.units
       .filter((u) => u.totalAnswered > 0 && (u.bestAccuracy === null || u.bestAccuracy < 80))
@@ -210,8 +179,11 @@ function FlashcardCenterContent() {
     }
   };
 
-  // Initial load & URL Context Handoff
+  // Initial load & URL Context Handoff (Instant 0ms display when cached cards exist!)
   useEffect(() => {
+    const cachedList = (studyData.flashcards as Flashcard[]) || allSavedCards;
+    const preGeneratedDaily = (studyData.dailyAnalysis?.dailyFlashcards as Flashcard[]) || [];
+
     if (paramSubject || paramTopic || paramUnitCode) {
       const cleanSubj = paramSubject
         ? paramSubject.replace(/^high_school_/, '').replace(/_/g, ' ')
@@ -219,6 +191,34 @@ function FlashcardCenterContent() {
       if (cleanSubj) setSelectedSubject(cleanSubj);
       if (paramTopic) setCustomTopic(paramTopic);
       if (paramUnitCode) setSelectedUnitCode(paramUnitCode);
+
+      // Check if we already have >= 3 matching cards in cache for instant display
+      const qTopic = (paramTopic || '').trim().toLowerCase();
+      const qCode = (paramUnitCode || '').trim().toLowerCase();
+      const matchingCached = cachedList.filter((c) => {
+        if (qCode && c.unitCode && c.unitCode.toLowerCase() === qCode) return true;
+        if (
+          qTopic &&
+          ((c.topic && c.topic.toLowerCase().includes(qTopic)) ||
+            c.front.toLowerCase().includes(qTopic) ||
+            c.back.toLowerCase().includes(qTopic))
+        ) {
+          return true;
+        }
+        return false;
+      });
+
+      if (matchingCached.length >= 3) {
+        setCards(matchingCached);
+        setActiveDeckMeta({
+          subject: cleanSubj || paramSubject,
+          topic: paramTopic,
+          unitCode: paramUnitCode,
+        });
+        setDeckTitle(`🎯 引継ぎデッキ: ${paramTopic || cleanSubj || paramUnitCode}`);
+        setLoadingDeck(false);
+        return;
+      }
 
       generateDeck({
         subject: cleanSubj || paramSubject || undefined,
@@ -228,13 +228,37 @@ function FlashcardCenterContent() {
         titleLabel: `🎯 引継ぎ特訓: ${paramTopic || cleanSubj || paramUnitCode}`,
       });
     } else {
-      generateDeck({
-        forceGenerate: false,
-        titleLabel: '🔥 本日の復習・弱点補強デッキ',
+      // No URL params: show due cards, cached cards, or daily batch cards immediately in 0ms!
+      const todayStr = new Date().toISOString().split('T')[0];
+      const due = cachedList.filter((c: any) => {
+        if (!c.nextReviewDate && !c.nextReview) return true;
+        if (c.nextReview && c.nextReview <= Date.now()) return true;
+        if (c.nextReviewDate && c.nextReviewDate <= todayStr) return true;
+        return false;
       });
+
+      if (due.length > 0) {
+        setCards(due.slice(0, 15));
+        setDeckTitle(`🔥 本日の復習期限カード (${due.length}枚)`);
+        setLoadingDeck(false);
+      } else if (cachedList.length > 0) {
+        setCards(cachedList.slice(-10));
+        setDeckTitle('🔥 保存済み重点暗記デッキ');
+        setLoadingDeck(false);
+      } else if (preGeneratedDaily.length > 0) {
+        setCards(preGeneratedDaily);
+        setDeckTitle('⚡ 本日のデイリー事前生成デッキ');
+        setLoadingDeck(false);
+      } else {
+        // First time ever with 0 cards in DB
+        generateDeck({
+          forceGenerate: false,
+          titleLabel: '🔥 本日の復習・弱点補強デッキ',
+        });
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paramSubject, paramTopic, paramUnitCode]);
+  }, [paramSubject, paramTopic, paramUnitCode, studyData.flashcards.length]);
 
   const handleReviewCard = async (id: string, correct: boolean, advanceCard = true) => {
     try {
