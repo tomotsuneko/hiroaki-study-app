@@ -286,7 +286,7 @@ export default function UsersAdminPage() {
 
   // 有効期限の残り日数判定
   const getRemainingDaysBadge = (validUntil?: string) => {
-    if (!validUntil) return <span style={{ color: '#64748B', fontSize: '0.8rem' }}>無期限</span>;
+    if (!validUntil) return <span style={{ color: '#64748B', fontSize: '0.8rem', whiteSpace: 'nowrap' }}>無期限</span>;
     const now = new Date();
     now.setHours(0, 0, 0, 0);
     const until = new Date(validUntil);
@@ -295,20 +295,20 @@ export default function UsersAdminPage() {
 
     if (diffDays < 0) {
       return (
-        <span style={{ background: '#FEE2E2', color: '#B91C1C', padding: '2px 8px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 700 }}>
+        <span style={{ display: 'inline-block', background: '#FEE2E2', color: '#B91C1C', padding: '3px 8px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 700, whiteSpace: 'nowrap' }}>
           期限切れ ({Math.abs(diffDays)}日前)
         </span>
       );
     }
     if (diffDays <= 7) {
       return (
-        <span style={{ background: '#FEF3C7', color: '#B45309', padding: '2px 8px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 700 }}>
+        <span style={{ display: 'inline-block', background: '#FEF3C7', color: '#B45309', padding: '3px 8px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 700, whiteSpace: 'nowrap' }}>
           残り {diffDays}日
         </span>
       );
     }
     return (
-      <span style={{ background: '#DCFCE7', color: '#15803D', padding: '2px 8px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 700 }}>
+      <span style={{ display: 'inline-block', background: '#DCFCE7', color: '#15803D', padding: '3px 8px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 700, whiteSpace: 'nowrap' }}>
         残り {diffDays}日
       </span>
     );
@@ -483,102 +483,102 @@ export default function UsersAdminPage() {
             該当する利用者は見つかりませんでした。
           </div>
         ) : (
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.92rem' }}>
+          <div style={{ overflowX: 'auto', width: '100%' }}>
+            <table style={{ width: '100%', minWidth: '1080px', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.92rem' }}>
               <thead>
                 <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontWeight: 700, fontSize: '0.84rem' }}>
-                  <th style={{ padding: '14px 20px' }}>ユーザーID / 氏名</th>
-                  <th style={{ padding: '14px 16px' }}>連絡先メール</th>
-                  <th style={{ padding: '14px 16px' }}>ロール</th>
-                  <th style={{ padding: '14px 16px' }}>利用有効期間</th>
-                  <th style={{ padding: '14px 16px' }}>二要素認証(2FA)</th>
-                  <th style={{ padding: '14px 16px' }}>ステータス</th>
-                  <th style={{ padding: '14px 16px' }}>最終ログイン</th>
-                  <th style={{ padding: '14px 20px', textAlign: 'right' }}>操作</th>
+                  <th style={{ padding: '14px 20px', whiteSpace: 'nowrap', minWidth: '180px' }}>ユーザーID / 氏名</th>
+                  <th style={{ padding: '14px 16px', whiteSpace: 'nowrap', minWidth: '220px' }}>連絡先メール</th>
+                  <th style={{ padding: '14px 16px', whiteSpace: 'nowrap', minWidth: '110px' }}>ロール</th>
+                  <th style={{ padding: '14px 16px', whiteSpace: 'nowrap', minWidth: '140px' }}>利用有効期間</th>
+                  <th style={{ padding: '14px 16px', whiteSpace: 'nowrap', minWidth: '130px' }}>二要素認証 (2FA)</th>
+                  <th style={{ padding: '14px 16px', whiteSpace: 'nowrap', minWidth: '110px' }}>ステータス</th>
+                  <th style={{ padding: '14px 16px', whiteSpace: 'nowrap', minWidth: '130px' }}>最終ログイン</th>
+                  <th style={{ padding: '14px 20px', whiteSpace: 'nowrap', minWidth: '220px', textAlign: 'right' }}>操作</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredUsers.map((u) => (
                   <tr key={u.userId} style={{ borderBottom: '1px solid #F1F5F9', transition: 'background 0.15s ease' }} onMouseEnter={(e) => (e.currentTarget.style.background = '#F8FAFC')} onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}>
                     {/* ID / 名前 */}
-                    <td style={{ padding: '14px 20px' }}>
-                      <div style={{ fontWeight: 800, color: '#0F172A', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <td style={{ padding: '14px 20px', whiteSpace: 'nowrap', verticalAlign: 'middle' }}>
+                      <div style={{ fontWeight: 800, color: '#0F172A', display: 'flex', alignItems: 'center', gap: '8px', whiteSpace: 'nowrap' }}>
                         <span>👤 {u.userId}</span>
                         {u.role === 'admin' && (
-                          <span style={{ background: '#EDE9FE', color: '#6D28D9', padding: '2px 8px', borderRadius: '4px', fontSize: '0.72rem', fontWeight: 800 }}>
+                          <span style={{ display: 'inline-block', background: '#EDE9FE', color: '#6D28D9', padding: '2px 8px', borderRadius: '4px', fontSize: '0.72rem', fontWeight: 800, whiteSpace: 'nowrap' }}>
                             管理者
                           </span>
                         )}
                       </div>
-                      <div style={{ fontSize: '0.82rem', color: '#64748B', marginTop: '2px' }}>
+                      <div style={{ fontSize: '0.82rem', color: '#64748B', marginTop: '2px', whiteSpace: 'nowrap' }}>
                         {u.name !== u.userId ? u.name : '（表示名未設定）'}
                       </div>
                     </td>
 
                     {/* メール */}
-                    <td style={{ padding: '14px 16px' }}>
+                    <td style={{ padding: '14px 16px', whiteSpace: 'nowrap', verticalAlign: 'middle' }}>
                       {u.email ? (
-                        <span style={{ color: '#334155' }}>📧 {u.email}</span>
+                        <span style={{ color: '#334155', whiteSpace: 'nowrap' }}>📧 {u.email}</span>
                       ) : (
-                        <span style={{ color: '#94A3B8', fontSize: '0.82rem' }}>未登録</span>
+                        <span style={{ color: '#94A3B8', fontSize: '0.82rem', whiteSpace: 'nowrap' }}>未登録</span>
                       )}
                     </td>
 
                     {/* ロール */}
-                    <td style={{ padding: '14px 16px' }}>
-                      <span style={{ fontWeight: 600, color: u.role === 'admin' ? '#7C3AED' : '#475569' }}>
+                    <td style={{ padding: '14px 16px', whiteSpace: 'nowrap', verticalAlign: 'middle' }}>
+                      <span style={{ fontWeight: 600, color: u.role === 'admin' ? '#7C3AED' : '#475569', whiteSpace: 'nowrap' }}>
                         {u.role === 'admin' ? '管理者' : '一般受講生'}
                       </span>
                     </td>
 
                     {/* 利用期間 */}
-                    <td style={{ padding: '14px 16px' }}>
-                      <div>{getRemainingDaysBadge(u.validUntil)}</div>
+                    <td style={{ padding: '14px 16px', whiteSpace: 'nowrap', verticalAlign: 'middle' }}>
+                      <div style={{ whiteSpace: 'nowrap' }}>{getRemainingDaysBadge(u.validUntil)}</div>
                       {u.validUntil && (
-                        <div style={{ fontSize: '0.78rem', color: '#64748B', marginTop: '3px' }}>
+                        <div style={{ fontSize: '0.78rem', color: '#64748B', marginTop: '3px', whiteSpace: 'nowrap' }}>
                           〜 {u.validUntil.split('T')[0]}
                         </div>
                       )}
                     </td>
 
                     {/* 2FA */}
-                    <td style={{ padding: '14px 16px' }}>
+                    <td style={{ padding: '14px 16px', whiteSpace: 'nowrap', verticalAlign: 'middle' }}>
                       {u.twoFactorEnabled ? (
-                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', background: '#EFF6FF', color: '#1D4ED8', padding: '3px 10px', borderRadius: '999px', fontSize: '0.78rem', fontWeight: 700 }}>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', background: '#EFF6FF', color: '#1D4ED8', padding: '4px 10px', borderRadius: '999px', fontSize: '0.78rem', fontWeight: 700, whiteSpace: 'nowrap' }}>
                           🛡️ メール2FA
                         </span>
                       ) : (
-                        <span style={{ color: '#94A3B8', fontSize: '0.8rem' }}>OFF</span>
+                        <span style={{ color: '#94A3B8', fontSize: '0.8rem', whiteSpace: 'nowrap' }}>OFF</span>
                       )}
                     </td>
 
                     {/* ステータス */}
-                    <td style={{ padding: '14px 16px' }}>
+                    <td style={{ padding: '14px 16px', whiteSpace: 'nowrap', verticalAlign: 'middle' }}>
                       {u.status === 'active' && (
-                        <span style={{ background: '#DCFCE7', color: '#15803D', padding: '3px 10px', borderRadius: '999px', fontSize: '0.78rem', fontWeight: 700 }}>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', background: '#DCFCE7', color: '#15803D', padding: '4px 10px', borderRadius: '999px', fontSize: '0.78rem', fontWeight: 700, whiteSpace: 'nowrap' }}>
                           ● 有効
                         </span>
                       )}
                       {u.status === 'suspended' && (
-                        <span style={{ background: '#FEE2E2', color: '#B91C1C', padding: '3px 10px', borderRadius: '999px', fontSize: '0.78rem', fontWeight: 700 }}>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', background: '#FEE2E2', color: '#B91C1C', padding: '4px 10px', borderRadius: '999px', fontSize: '0.78rem', fontWeight: 700, whiteSpace: 'nowrap' }}>
                           ■ 一時停止
                         </span>
                       )}
                       {u.status === 'expired' && (
-                        <span style={{ background: '#FEF3C7', color: '#B45309', padding: '3px 10px', borderRadius: '999px', fontSize: '0.78rem', fontWeight: 700 }}>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', background: '#FEF3C7', color: '#B45309', padding: '4px 10px', borderRadius: '999px', fontSize: '0.78rem', fontWeight: 700, whiteSpace: 'nowrap' }}>
                           ▲ 期限切れ
                         </span>
                       )}
                     </td>
 
                     {/* 最終ログイン */}
-                    <td style={{ padding: '14px 16px', fontSize: '0.82rem', color: '#64748B' }}>
+                    <td style={{ padding: '14px 16px', whiteSpace: 'nowrap', fontSize: '0.82rem', color: '#64748B', verticalAlign: 'middle' }}>
                       {u.lastLoginAt ? new Date(u.lastLoginAt).toLocaleString('ja-JP', { dateStyle: 'short', timeStyle: 'short' }) : '未ログイン'}
                     </td>
 
                     {/* 操作アクション */}
-                    <td style={{ padding: '14px 20px', textAlign: 'right' }}>
-                      <div style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
+                    <td style={{ padding: '14px 20px', whiteSpace: 'nowrap', textAlign: 'right', verticalAlign: 'middle' }}>
+                      <div style={{ display: 'inline-flex', gap: '6px', alignItems: 'center', whiteSpace: 'nowrap' }}>
                         <button
                           onClick={() => {
                             setReissueTarget(u);
@@ -586,7 +586,7 @@ export default function UsersAdminPage() {
                             setShowReissueModal(true);
                           }}
                           title="パスワード再発行"
-                          style={{ padding: '6px 10px', background: '#F1F5F9', border: '1px solid #CBD5E1', borderRadius: '8px', cursor: 'pointer', fontSize: '0.82rem', fontWeight: 600, color: '#334155' }}
+                          style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '6px 12px', background: '#F1F5F9', border: '1px solid #CBD5E1', borderRadius: '8px', cursor: 'pointer', fontSize: '0.82rem', fontWeight: 600, color: '#334155', whiteSpace: 'nowrap' }}
                         >
                           🔑 再発行
                         </button>
@@ -596,14 +596,14 @@ export default function UsersAdminPage() {
                             setShowEditModal(true);
                           }}
                           title="ユーザー編集"
-                          style={{ padding: '6px 10px', background: '#F1F5F9', border: '1px solid #CBD5E1', borderRadius: '8px', cursor: 'pointer', fontSize: '0.82rem', fontWeight: 600, color: '#2563EB' }}
+                          style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '6px 12px', background: '#F1F5F9', border: '1px solid #CBD5E1', borderRadius: '8px', cursor: 'pointer', fontSize: '0.82rem', fontWeight: 600, color: '#2563EB', whiteSpace: 'nowrap' }}
                         >
                           ✏️ 編集
                         </button>
                         <button
                           onClick={() => handleToggleStatus(u)}
                           title={u.status === 'suspended' ? '利用再開' : '一時停止'}
-                          style={{ padding: '6px 10px', background: '#F1F5F9', border: '1px solid #CBD5E1', borderRadius: '8px', cursor: 'pointer', fontSize: '0.82rem', fontWeight: 600, color: u.status === 'suspended' ? '#16A34A' : '#EA580C' }}
+                          style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '6px 12px', background: '#F1F5F9', border: '1px solid #CBD5E1', borderRadius: '8px', cursor: 'pointer', fontSize: '0.82rem', fontWeight: 600, color: u.status === 'suspended' ? '#16A34A' : '#EA580C', whiteSpace: 'nowrap' }}
                         >
                           {u.status === 'suspended' ? '▶ 再開' : '⏸ 停止'}
                         </button>
@@ -611,7 +611,7 @@ export default function UsersAdminPage() {
                           <button
                             onClick={() => handleDeleteUser(u.userId)}
                             title="ユーザー削除"
-                            style={{ padding: '6px 10px', background: '#FEF2F2', border: '1px solid #FCA5A5', borderRadius: '8px', cursor: 'pointer', fontSize: '0.82rem', fontWeight: 600, color: '#DC2626' }}
+                            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '6px 10px', background: '#FEF2F2', border: '1px solid #FCA5A5', borderRadius: '8px', cursor: 'pointer', fontSize: '0.82rem', fontWeight: 600, color: '#DC2626', whiteSpace: 'nowrap' }}
                           >
                             🗑️
                           </button>
