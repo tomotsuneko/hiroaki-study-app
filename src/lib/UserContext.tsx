@@ -204,6 +204,17 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     async (force = false) => {
       try {
         const res = await fetch(`/api/user/bootstrap${force ? '?refresh=1' : ''}`);
+        if (res.status === 403) {
+          const errData = await res.json().catch(() => ({}));
+          if (errData.accountStatus === 'expired' || errData.accountStatus === 'suspended') {
+            try {
+              localStorage.removeItem(STUDY_CACHE_KEY);
+              localStorage.removeItem('ai_tutor_profile');
+            } catch (_) {}
+            window.location.href = `/login?error=${encodeURIComponent(errData.error || '利用権限がありません')}`;
+            return;
+          }
+        }
         if (!res.ok) return;
         const data = await res.json();
         if (!data.success) return;

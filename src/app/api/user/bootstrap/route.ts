@@ -9,6 +9,22 @@ export async function GET(req: Request) {
     const force = url.searchParams.get('refresh') === '1';
     const userId = await getUserId();
 
+    // アカウントの有効期間・停止状態チェック
+    if (dbAdmin && userId && userId !== 'default_user') {
+      const userDoc = await dbAdmin.collection('users').doc(userId).get();
+      if (userDoc.exists) {
+        const udata = userDoc.data() || {};
+        if (udata.status === 'suspended') {
+          return NextResponse.json({ error: 'このアカウントは一時停止されています', accountStatus: 'suspended' }, { status: 403 });
+        }
+        const { checkAccountPeriod } = await import('@/lib/auth-util');
+        const period = checkAccountPeriod(udata.validFrom, udata.validUntil);
+        if (!period.isValid) {
+          return NextResponse.json({ error: 'アカウントの利用有効期間が終了しています', accountStatus: 'expired' }, { status: 403 });
+        }
+      }
+    }
+
     // 1. Master Data (from in-memory server cache if available)
     let masterDb = !force ? getServerCache<any[]>('master_db') : null;
     let materials = !force ? getServerCache<any[]>('materials_list') : null;
