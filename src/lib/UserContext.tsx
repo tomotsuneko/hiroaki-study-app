@@ -16,6 +16,9 @@ export type SavedNote = {
   title: string;
   content: string;
   date: string;
+  materialId?: string;
+  unitCode?: string;
+  isBookmark?: boolean;
 };
 
 export type UserProfile = {
@@ -81,7 +84,11 @@ export type SharedStudyData = {
 type UserContextType = {
   profile: UserProfile;
   setProfile: (p: UserProfile) => void;
-  saveNote: (title: string, content: string) => void;
+  saveNote: (
+    title: string,
+    content: string,
+    meta?: { materialId?: string; unitCode?: string; isBookmark?: boolean }
+  ) => void;
   deleteNote: (id: string) => void;
   clearRebalanceAlert: () => void;
   // Shared high-speed cached study data & unified catalog
@@ -398,12 +405,17 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   const saveNote = useCallback(
-    (title: string, content: string) => {
-      const newNote = {
+    (
+      title: string,
+      content: string,
+      meta?: { materialId?: string; unitCode?: string; isBookmark?: boolean }
+    ) => {
+      const newNote: SavedNote = {
         id: Date.now().toString(),
         title,
         content,
         date: new Date().toLocaleDateString('ja-JP'),
+        ...(meta || {}),
       };
       setProfileState((prev) => {
         const updatedProfile = {

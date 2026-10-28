@@ -329,6 +329,41 @@ function LessonBookshelfContent() {
     }
   };
 
+  // Check if current selectedUnit is bookmarked in savedNotes
+  const currentBookmark = useMemo(() => {
+    if (!selectedUnit) return null;
+    return (profile.savedNotes || []).find((n) => {
+      if (selectedUnit.unitCode && n.unitCode === selectedUnit.unitCode) return true;
+      if (selectedUnit.material && n.materialId === selectedUnit.material.id) return true;
+      if (n.unitCode && n.unitCode === selectedUnit.smallName) return true;
+      if (n.title.includes(selectedUnit.smallName)) return true;
+      return false;
+    });
+  }, [selectedUnit, profile.savedNotes]);
+
+  const [bookmarkFeedback, setBookmarkFeedback] = useState<string | null>(null);
+
+  const handleToggleBookmark = () => {
+    if (!selectedUnit) return;
+    if (currentBookmark) {
+      setBookmarkFeedback('この教材はすでに学習ノートにしおり保存されています。');
+      setTimeout(() => setBookmarkFeedback(null), 3500);
+      return;
+    }
+
+    const title = `🔖 ${selectedUnit.subjectName}「${selectedUnit.smallName}」`;
+    const content = `【教材しおり】\n・科目: ${selectedUnit.subjectName}\n・分野: ${selectedUnit.largeName} › ${selectedUnit.mediumName}\n・単元: ${selectedUnit.smallName}\n・教材ID: ${selectedUnit.material?.id || '-'}\n・登録日: ${new Date().toLocaleDateString('ja-JP')}\n\n※このノートから直接教材を開いて続きを学習できます。`;
+
+    saveNote(title, content, {
+      materialId: selectedUnit.material?.id,
+      unitCode: selectedUnit.unitCode || selectedUnit.smallName,
+      isBookmark: true,
+    });
+
+    setBookmarkFeedback('🔖 しおりを学習ノートに保存しました！「学習ノート」からいつでも再開できます。');
+    setTimeout(() => setBookmarkFeedback(null), 4000);
+  };
+
   // Build Featured "Pickup Shelf" (Syllabus active tasks + Weakness/Studying units)
   const pickupUnits = useMemo(() => {
     const picked: { unit: UnifiedUnit; reason: string }[] = [];
@@ -876,6 +911,29 @@ function LessonBookshelfContent() {
                     : '✅ この本を読了・習得済にする'}
                 </button>
 
+                {/* 🔖 学習ノートにしおり保存ボタン */}
+                <button
+                  onClick={handleToggleBookmark}
+                  style={{
+                    padding: '8px 14px',
+                    borderRadius: '10px',
+                    border: currentBookmark ? '1px solid #F59E0B' : '1px solid #CBD5E1',
+                    background: currentBookmark ? '#FEF3C7' : '#FFFFFF',
+                    color: currentBookmark ? '#B45309' : '#1E293B',
+                    fontWeight: 800,
+                    fontSize: '0.86rem',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+                  }}
+                  title={currentBookmark ? '学習ノートにしおり保存済み' : 'この教材を学習ノートにしおり保存'}
+                >
+                  <span>{currentBookmark ? '🔖' : '📑'}</span>
+                  {currentBookmark ? 'しおり保存済' : 'しおりを挟む'}
+                </button>
+
                 {/* 🗗 別ウィンドウで開くボタン */}
                 {selectedUnit.material && (
                   <button
@@ -968,6 +1026,41 @@ function LessonBookshelfContent() {
                 </button>
               </div>
             </div>
+
+            {bookmarkFeedback && (
+              <div
+                style={{
+                  background: '#FEF3C7',
+                  borderBottom: '1px solid #FDE68A',
+                  color: '#92400E',
+                  padding: '10px 24px',
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: '12px',
+                  animation: 'fadeIn 0.2s ease-in-out',
+                }}
+              >
+                <span>{bookmarkFeedback}</span>
+                <Link
+                  href="/library"
+                  style={{
+                    background: '#B45309',
+                    color: '#FFFFFF',
+                    padding: '5px 14px',
+                    borderRadius: '8px',
+                    fontSize: '0.8rem',
+                    fontWeight: 700,
+                    textDecoration: 'none',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  学習ノートを見る →
+                </Link>
+              </div>
+            )}
 
             {/* Reading Modes Tabs */}
             <div className={styles.modalTabs}>
@@ -1063,19 +1156,13 @@ function LessonBookshelfContent() {
                             📝 この単元のテストに進む →
                           </button>
                           <button
-                            onClick={() =>
-                              window.open(
-                                `/materials/${encodeURIComponent(selectedUnit.material!.id)}`,
-                                '_blank',
-                                'noopener,noreferrer'
-                              )
-                            }
+                            onClick={handleToggleBookmark}
                             style={{
                               padding: '7px 16px',
                               borderRadius: '8px',
-                              border: '1px solid #CBD5E1',
-                              background: '#FFFFFF',
-                              color: '#1C1917',
+                              border: currentBookmark ? '1px solid #F59E0B' : '1px solid #CBD5E1',
+                              background: currentBookmark ? '#FEF3C7' : '#FFFFFF',
+                              color: currentBookmark ? '#B45309' : '#1C1917',
                               fontWeight: 800,
                               fontSize: '0.84rem',
                               cursor: 'pointer',
@@ -1083,9 +1170,10 @@ function LessonBookshelfContent() {
                               alignItems: 'center',
                               gap: '6px',
                             }}
-                            title="別ウィンドウで開く"
+                            title={currentBookmark ? '学習ノートにしおり保存済み' : '学習ノートにしおり保存'}
                           >
-                            <span>🗗</span> 別ウィンドウで開く
+                            <span>{currentBookmark ? '🔖' : '📑'}</span>
+                            {currentBookmark ? '学習ノートにしおり保存済' : '学習ノートにしおり保存'}
                           </button>
                         </div>
                       </div>
@@ -1174,7 +1262,8 @@ function LessonBookshelfContent() {
                               onClick={() => {
                                 saveNote(
                                   `${selectedUnit.largeName}: ${selectedUnit.smallName}`,
-                                  aiGeneratedNote
+                                  aiGeneratedNote,
+                                  { unitCode: selectedUnit.unitCode || selectedUnit.smallName }
                                 );
                                 alert('学習ノートに保存しました！');
                               }}

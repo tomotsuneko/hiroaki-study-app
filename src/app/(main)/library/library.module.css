@@ -164,3 +164,110 @@
   color: #374151;
   font-size: 0.95rem;
 }
+
+/* Bookmark & Filter Styling */
+.filterBar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid #CBD5E1;
+  background: #FFFFFF;
+  color: #475569;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  alignItems: center;
+  gap: 6px;
+}
+
+.filterBtn:hover {
+  background: #F1F5F9;
+  color: #1E293B;
+}
+
+.filterBtnActive {
+  background: #0284C7;
+  color: #FFFFFF;
+  border-color: #0284C7;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+}
+
+.bookmarkPage {
+  background-color: #FFFBEB !important; /* Warm bookmark paper */
+  border-left: 6px solid #F59E0B;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.12);
+}
+
+.bookmarkRibbon {
+  position: absolute;
+  top: -10px;
+  right: 28px;
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  color: #FFFFFF;
+  padding: 4px 14px 8px 14px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 86%, 0 100%);
+}
+
+.resumeBar {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px dashed #CBD5E1;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.resumeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, #0284C7, #0369A1);
+  color: #FFFFFF;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 0.88rem;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.resumeBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(2, 132, 199, 0.35);
+}
+
+.popoutBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #FFFFFF;
+  color: #1E293B;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 0.86rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.popoutBtn:hover {
+  background: #F8FAFC;
+  border-color: #94A3B8;
+}
