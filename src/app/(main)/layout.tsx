@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import styles from './layout.module.css';
 import AIAvatar from '@/components/AIAvatar';
 import FloatingTimer from '@/components/FloatingTimer';
+import LogoutButton from '@/components/LogoutButton';
 import { useState, useEffect } from 'react';
 
 function Sidebar({ onClose }: { onClose: () => void }) {
@@ -56,7 +57,7 @@ function Sidebar({ onClose }: { onClose: () => void }) {
       </nav>
 
       <div className={styles.sidebarFooter}>
-        <Link href="/" className={styles.logoutBtn}>ログアウト</Link>
+        <LogoutButton className={styles.logoutBtn} />
       </div>
     </aside>
   );

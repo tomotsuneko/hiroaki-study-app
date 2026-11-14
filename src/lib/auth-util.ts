@@ -48,8 +48,13 @@ export function generateRandomPassword(length: number = 10): string {
     pwd += all[crypto.randomInt(0, all.length)];
   }
 
-  // シャッフル
-  return pwd.split('').sort(() => 0.5 - Math.random()).join('');
+  // Fisher-Yates シャッフル（暗号論的乱数を使用）
+  const chars = pwd.split('');
+  for (let i = chars.length - 1; i > 0; i--) {
+    const j = crypto.randomInt(0, i + 1);
+    [chars[i], chars[j]] = [chars[j], chars[i]];
+  }
+  return chars.join('');
 }
 
 /**

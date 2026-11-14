@@ -2,9 +2,12 @@ import { NextResponse } from 'next/server';
 import { dbAdmin } from '@/lib/firebase-admin';
 import { hashPassword, checkAccountPeriod } from '@/lib/auth-util';
 import { sendAccountIssuanceEmail } from '@/lib/email';
+import { requireAdminSession } from '@/lib/session';
 
 export async function GET() {
   try {
+    const adminSession = await requireAdminSession();
+    if (!adminSession) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     if (!dbAdmin) return NextResponse.json({ error: 'Firebase Admin not initialized' }, { status: 500 });
 
     const usersSnapshot = await dbAdmin.collection('users').get();
@@ -61,6 +64,8 @@ export async function GET() {
  */
 export async function POST(req: Request) {
   try {
+    const adminSession = await requireAdminSession();
+    if (!adminSession) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     if (!dbAdmin) return NextResponse.json({ error: 'Firebase Admin not initialized' }, { status: 500 });
 
     const body = await req.json();
@@ -158,6 +163,8 @@ export async function POST(req: Request) {
  */
 export async function PUT(req: Request) {
   try {
+    const adminSession = await requireAdminSession();
+    if (!adminSession) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     if (!dbAdmin) return NextResponse.json({ error: 'Firebase Admin not initialized' }, { status: 500 });
 
     const body = await req.json();
@@ -205,6 +212,8 @@ export async function PUT(req: Request) {
  */
 export async function DELETE(req: Request) {
   try {
+    const adminSession = await requireAdminSession();
+    if (!adminSession) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     if (!dbAdmin) return NextResponse.json({ error: 'Firebase Admin not initialized' }, { status: 500 });
 
     const { searchParams } = new URL(req.url);

@@ -1,23 +1,51 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { SESSION_COOKIE_NAME, verifySessionToken } from '@/lib/session';
 
-export function middleware(request: NextRequest) {
-  // If the user is on the root, login page or api auth, allow it
-  if (request.nextUrl.pathname === '/' || request.nextUrl.pathname.startsWith('/login') || request.nextUrl.pathname.startsWith('/api/auth')) {
+export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // Public routes
+  if (
+    pathname === '/' ||
+    pathname.startsWith('/login') ||
+    pathname.startsWith('/api/auth')
+  ) {
     return NextResponse.next();
   }
 
-  // Check if study_user_id cookie exists
-  const userId = request.cookies.get('study_user_id')?.value;
+  // Vercel Cron endpoint: allow if Authorization: Bearer <CRON_SECRET> matches
+  if (pathname.startsWith('/api/cron/report')) {
+    const authHeader = request.headers.get('authorization');
+    const cronSecret = process.env.CRON_SECRET;
+    if (cronSecret && authHeader === `Bearer ${cronSecret}`) {
+      return NextResponse.next();
+    }
+  }
 
-  // If not logged in and trying to access a protected route, redirect to login
-  if (!userId) {
-    // If it's an API route, return 401
-    if (request.nextUrl.pathname.startsWith('/api/')) {
+  // Verify signed session cookie
+  const sessionToken = request.cookies.get(SESSION_COOKIE_NAME)?.value;
+  const session = await verifySessionToken(sessionToken);
+
+  if (!session) {
+    if (pathname.startsWith('/api/')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-    // Otherwise redirect to /login
     return NextResponse.redirect(new URL('/login', request.url));
+  }
+
+  // Admin-only routes
+  const isAdminRoute =
+    pathname.startsWith('/admin') ||
+    pathname.startsWith('/api/admin') ||
+    pathname.startsWith('/api/debug') ||
+    pathname.startsWith('/api/cron/report');
+
+  if (isAdminRoute && session.role !== 'admin') {
+    if (pathname.startsWith('/api/')) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   return NextResponse.next();
@@ -25,7 +53,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Apply to all routes except static files, favicon, etc.
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 };

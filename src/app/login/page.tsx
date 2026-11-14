@@ -124,7 +124,7 @@ function LoginFormContent() {
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
-        background: 'radial-gradient(circle at 50% 20%, #1E293B 0%, #0F172A 100%)',
+        background: 'linear-gradient(180deg, #F8FAFC 0%, #EFF3F8 100%)',
         padding: '20px',
       }}
     >
@@ -132,8 +132,9 @@ function LoginFormContent() {
         style={{
           background: '#FFFFFF',
           padding: '40px',
-          borderRadius: '24px',
-          boxShadow: '0 20px 48px rgba(0,0,0,0.3)',
+          borderRadius: '20px',
+          border: '1px solid #E2E8F0',
+          boxShadow: '0 8px 30px rgba(15, 23, 42, 0.08)',
           width: '100%',
           maxWidth: '420px',
           position: 'relative',
@@ -145,14 +146,14 @@ function LoginFormContent() {
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              width: '56px',
-              height: '56px',
-              borderRadius: '16px',
-              background: 'linear-gradient(135deg, #07152B 0%, #1E3A8A 100%)',
+              width: '54px',
+              height: '54px',
+              borderRadius: '14px',
+              background: 'linear-gradient(135deg, #1E3A5F 0%, #335C81 100%)',
               color: '#FFFFFF',
-              fontSize: '1.8rem',
+              fontSize: '1.7rem',
               marginBottom: '12px',
-              boxShadow: '0 8px 20px rgba(30, 58, 138, 0.3)',
+              boxShadow: '0 4px 12px rgba(30, 58, 95, 0.2)',
             }}
           >
             {step === 'login' ? '🎓' : '🛡️'}
@@ -248,11 +249,11 @@ function LoginFormContent() {
               className="btn btn-primary"
               style={{
                 marginTop: '10px',
-                padding: '14px',
-                fontSize: '1.05rem',
-                fontWeight: 700,
-                background: 'linear-gradient(135deg, #07152B 0%, #1E3A8A 100%)',
-                boxShadow: '0 6px 18px rgba(15, 23, 42, 0.25)',
+                padding: '13px',
+                fontSize: '1rem',
+                fontWeight: 600,
+                background: '#1E3A5F',
+                boxShadow: '0 2px 8px rgba(30, 58, 95, 0.2)',
               }}
             >
               {isLoading ? 'ログイン確認中...' : 'ログイン'}
@@ -285,7 +286,7 @@ function LoginFormContent() {
                   width: '100%',
                   padding: '14px',
                   borderRadius: '12px',
-                  border: '2px solid #2563EB',
+                  border: '2px solid #1E3A5F',
                   fontSize: '1.6rem',
                   letterSpacing: '0.35em',
                   textAlign: 'center',
@@ -306,7 +307,7 @@ function LoginFormContent() {
                 padding: '14px',
                 fontSize: '1.05rem',
                 fontWeight: 700,
-                background: 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)',
+                background: '#1E3A5F',
               }}
             >
               {isLoading ? '認証中...' : '認証してログインを完了'}

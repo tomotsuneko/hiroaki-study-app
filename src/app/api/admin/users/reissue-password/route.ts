@@ -2,9 +2,12 @@ import { NextResponse } from 'next/server';
 import { dbAdmin } from '@/lib/firebase-admin';
 import { hashPassword, generateRandomPassword } from '@/lib/auth-util';
 import { sendPasswordResetEmail } from '@/lib/email';
+import { requireAdminSession } from '@/lib/session';
 
 export async function POST(req: Request) {
   try {
+    const adminSession = await requireAdminSession();
+    if (!adminSession) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     if (!dbAdmin) return NextResponse.json({ error: 'Firebase Admin not initialized' }, { status: 500 });
 
     const body = await req.json();

@@ -1,26 +1,26 @@
 @import 'katex/dist/katex.min.css';
 
 :root {
-  /* Bright, Stylish Light Theme */
-  --bg-app: #F4F7FE; /* Soft light blue/gray background */
+  /* Calm Academic Slate-Navy & Off-White Theme */
+  --bg-app: #F8FAFC;
   --bg-sidebar: #FFFFFF;
   --bg-card: #FFFFFF;
-  
-  --text-primary: #2B3674; /* Deep indigo for primary text */
-  --text-secondary: #A3AED0; /* Soft blue-gray for secondary text */
-  
-  --accent-primary: #4318FF; /* Vibrant purple/blue */
-  --accent-gradient: linear-gradient(135deg, #4318FF, #868CFF);
-  --accent-hover: #3311DB;
-  
-  --success: #05CD99;
-  --warning: #FFCE20;
-  --danger: #EE5D50;
-  
-  --border-glass: rgba(255, 255, 255, 0.5);
-  --shadow-card: 0px 18px 40px rgba(112, 144, 176, 0.12);
-  --shadow-button: 0px 8px 20px rgba(67, 24, 255, 0.25);
-  
+
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+
+  --accent-primary: #1E3A5F;
+  --accent-gradient: linear-gradient(135deg, #1E3A5F 0%, #335C81 100%);
+  --accent-hover: #152B47;
+
+  --success: #2E7D5B;
+  --warning: #B47B2B;
+  --danger: #B94A48;
+
+  --border-glass: #E2E8F0;
+  --shadow-card: 0 2px 12px rgba(15, 23, 42, 0.05);
+  --shadow-button: 0 2px 6px rgba(30, 58, 95, 0.18);
+
   --sidebar-width: 235px;
 }
 
@@ -31,11 +31,12 @@
 }
 
 html, body {
-  font-family: 'Meiryo', 'メイリオ', sans-serif;
+  font-family: 'Inter', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic UI', sans-serif;
   background-color: var(--bg-app);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -50,12 +51,12 @@ button {
   background: none;
 }
 
-/* Updated Stylish Cards */
+/* Refined Calm Cards */
 .glass-panel {
   background: var(--bg-card);
-  border: 1px solid #FFFFFF;
+  border: 1px solid var(--border-glass);
   box-shadow: var(--shadow-card);
-  border-radius: 20px;
+  border-radius: 16px;
 }
 
 .text-gradient {
@@ -68,12 +69,12 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 24px;
-  border-radius: 14px;
-  font-weight: 700;
-  font-size: 1rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  letter-spacing: 0.5px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  letter-spacing: 0.2px;
 }
 
 .btn-primary {
@@ -83,18 +84,19 @@ button {
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0px 12px 25px rgba(67, 24, 255, 0.35);
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30, 58, 95, 0.24);
 }
 
 .btn-secondary {
-  background: #F4F7FE;
+  background: #F1F5F9;
   color: var(--text-primary);
-  border: 1px solid #E9EDF7;
+  border: 1px solid #CBD5E1;
 }
 
 .btn-secondary:hover {
-  background: #E9EDF7;
+  background: #E2E8F0;
 }
 
 /* Animations */

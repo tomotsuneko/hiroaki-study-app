@@ -1,8 +1,13 @@
 import { getActiveModels } from '@/lib/model-manager';
 import { NextResponse } from 'next/server';
 import { genAI } from '@/lib/gemini';
+import { requireAdminSession } from '@/lib/session';
 
 export async function GET() {
+  const adminSession = await requireAdminSession();
+  if (!adminSession) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  }
   const profile = { targetSchools: ['東大'], weakSubjects: ['英語'] };
   
   const systemInstruction = `あなたはAIです。本日の分析レポートをJSON形式で返してください。

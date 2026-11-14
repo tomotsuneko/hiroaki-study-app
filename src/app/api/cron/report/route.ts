@@ -1,9 +1,18 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { aiModel } from '@/lib/gemini';
+import { requireAdminSession } from '@/lib/session';
 
 export async function GET(req: Request) {
-  // 注: 本番環境ではVercel Cron等からの呼び出しかどうかを検証するセキュリティ対策が必要です。
+  const authHeader = req.headers.get('authorization');
+  const cronSecret = process.env.CRON_SECRET;
+  const isCronAuthorized = Boolean(cronSecret && authHeader === `Bearer ${cronSecret}`);
+  if (!isCronAuthorized) {
+    const adminSession = await requireAdminSession();
+    if (!adminSession) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+  }
   try {
     const userEmail = process.env.EMAIL_USER;
     const userPass = process.env.EMAIL_PASS;

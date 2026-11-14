@@ -25,6 +25,52 @@ export default function ProfilePage() {
   const [saved, setSaved] = useState(false);
   const [isUpdatingCurriculum, setIsUpdatingCurriculum] = useState(false);
 
+  // パスワード変更用ステート
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [pwMessage, setPwMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [pwLoading, setPwLoading] = useState(false);
+
+  const handlePasswordChange = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPwMessage(null);
+    if (!currentPassword || !newPassword) {
+      setPwMessage({ type: 'error', text: '現在のパスワードと新しいパスワードを入力してください。' });
+      return;
+    }
+    if (newPassword.length < 8) {
+      setPwMessage({ type: 'error', text: '新しいパスワードは8文字以上で入力してください。' });
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setPwMessage({ type: 'error', text: '新しいパスワード（確認用）が一致しません。' });
+      return;
+    }
+
+    setPwLoading(true);
+    try {
+      const res = await fetch('/api/auth/reset', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currentPassword, newPassword }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setPwMessage({ type: 'error', text: data.error || 'パスワードの変更に失敗しました。' });
+      } else {
+        setPwMessage({ type: 'success', text: 'パスワードを変更しました。' });
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+      }
+    } catch {
+      setPwMessage({ type: 'error', text: '通信エラーが発生しました。' });
+    } finally {
+      setPwLoading(false);
+    }
+  };
+
   // トラック（文理）が変更されたときの自動科目選択ロジック
   const handleTrackChange = (newTrack: 'arts' | 'science' | 'undecided') => {
     setTrack(newTrack);
@@ -292,6 +338,73 @@ export default function ProfilePage() {
           設定を保存する
         </button>
         {saved && <span className={styles.savedMessage}>保存しました！</span>}
+      </div>
+
+      <div className={`glass-panel ${styles.formCard}`} style={{ marginTop: '24px' }}>
+        <h2 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '6px', color: 'var(--text-primary)' }}>
+          パスワード変更
+        </h2>
+        <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '18px' }}>
+          セキュリティのため、8文字以上のパスワードを設定してください。
+        </p>
+
+        <form onSubmit={handlePasswordChange}>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>現在のパスワード</label>
+            <input
+              className={styles.input}
+              type="password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              autoComplete="current-password"
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>新しいパスワード（8文字以上）</label>
+            <input
+              className={styles.input}
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              autoComplete="new-password"
+              minLength={8}
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>新しいパスワード（確認用）</label>
+            <input
+              className={styles.input}
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              autoComplete="new-password"
+              minLength={8}
+              required
+            />
+          </div>
+
+          {pwMessage && (
+            <div
+              style={{
+                padding: '10px 14px',
+                borderRadius: '8px',
+                fontSize: '0.88rem',
+                marginBottom: '14px',
+                backgroundColor: pwMessage.type === 'success' ? '#ECFDF5' : '#FEF2F2',
+                color: pwMessage.type === 'success' ? '#166534' : '#991B1B',
+                border: `1px solid ${pwMessage.type === 'success' ? '#BBF7D0' : '#FECACA'}`,
+              }}
+            >
+              {pwMessage.text}
+            </div>
+          )}
+
+          <button type="submit" className={`btn btn-primary ${styles.saveBtn}`} disabled={pwLoading}>
+            {pwLoading ? '変更中...' : 'パスワードを変更する'}
+          </button>
+        </form>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import {
   generateTemp2FaToken,
 } from '@/lib/auth-util';
 import { sendTwoFactorCodeEmail } from '@/lib/email';
+import { signSessionToken, SESSION_COOKIE_NAME, SESSION_MAX_AGE_SECONDS } from '@/lib/session';
 
 function maskEmail(email: string): string {
   if (!email || !email.includes('@')) return '';
@@ -123,15 +124,26 @@ export async function POST(req: Request) {
       pending2FA: null,
     });
 
+    const role = data.role || (cleanUserId === 'admin' ? 'admin' : 'student');
+    const sessionToken = await signSessionToken(cleanUserId, role);
+
     const res = NextResponse.json({
       success: true,
       userId: cleanUserId,
-      role: data.role || (cleanUserId === 'admin' ? 'admin' : 'student'),
+      role,
     });
 
     res.cookies.set('study_user_id', cleanUserId, {
       path: '/',
-      maxAge: 60 * 60 * 24 * 30, // 30 days
+      maxAge: SESSION_MAX_AGE_SECONDS,
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+    });
+
+    res.cookies.set(SESSION_COOKIE_NAME, sessionToken, {
+      path: '/',
+      maxAge: SESSION_MAX_AGE_SECONDS,
       httpOnly: true,
       sameSite: 'lax',
       secure: process.env.NODE_ENV === 'production',

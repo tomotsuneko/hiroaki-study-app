@@ -38,7 +38,7 @@
 }
 
 .streakCount {
-  color: var(--accent-warning);
+  color: var(--warning);
   font-weight: 700;
   font-size: 1.1rem;
 }
