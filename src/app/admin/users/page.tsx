@@ -94,6 +94,7 @@ export default function UsersAdminPage() {
     setSuccessMsg(null);
 
     try {
+      const usedPassword = newPassword || generateRandomPassword();
       const res = await fetch('/api/admin/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -101,7 +102,7 @@ export default function UsersAdminPage() {
           userId: newUserId,
           name: newName || newUserId,
           email: newEmail,
-          password: newPassword || generateRandomPassword(),
+          password: usedPassword,
           role: newRole,
           validFrom: newValidFrom,
           validUntil: newValidUntil,
@@ -113,7 +114,9 @@ export default function UsersAdminPage() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'アカウント発行に失敗しました');
 
-      setSuccessMsg(`アカウント「${newUserId}」を正常に発行しました${data.emailSent ? '（案内メール送信完了）' : ''}`);
+      setSuccessMsg(
+        `アカウント「${newUserId}」を発行しました（初期パスワード: ${usedPassword}）${data.emailSent ? ' ※案内メール送信完了' : ''}`
+      );
       setShowCreateModal(false);
       resetCreateForm();
       fetchUsers();
@@ -361,6 +364,40 @@ export default function UsersAdminPage() {
         </div>
 
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+          <button
+            onClick={() => {
+              resetCreateForm();
+              const today = new Date();
+              const datePart = today.toISOString().split('T')[0].replace(/-/g, '');
+              const rand = Math.floor(100 + Math.random() * 900);
+              const until = new Date(today);
+              until.setDate(until.getDate() + 7);
+              setNewUserId(`verify-${datePart}-${rand}`);
+              setNewName('検証用テストアカウント');
+              setNewEmail('');
+              setNewPassword(generateRandomPassword());
+              setNewRole('student');
+              setNewValidFrom(today.toISOString().split('T')[0]);
+              setNewValidUntil(until.toISOString().split('T')[0]);
+              setNewTwoFactor(false);
+              setNewSendEmail(false);
+              setShowCreateModal(true);
+            }}
+            className="btn btn-secondary"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '12px 18px',
+              fontWeight: 700,
+              fontSize: '0.94rem',
+              background: '#FFFFFF',
+              color: '#1E3A5F',
+              border: '1px solid #CBD5E1',
+            }}
+          >
+            🧪 検証用IDを発行
+          </button>
           <button
             onClick={() => {
               resetCreateForm();

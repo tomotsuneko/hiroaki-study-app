@@ -10,6 +10,22 @@ import { useState, useEffect } from 'react';
 
 function Sidebar({ onClose }: { onClose: () => void }) {
   const pathname = usePathname();
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    fetch('/api/auth/session')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (active && data?.role === 'admin') {
+          setIsAdmin(true);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const navItems = [
     { name: 'ダッシュボード', path: '/dashboard', icon: '📊' },
@@ -56,7 +72,22 @@ function Sidebar({ onClose }: { onClose: () => void }) {
         })}
       </nav>
 
-      <div className={styles.sidebarFooter}>
+      <div className={styles.sidebarFooter} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        {isAdmin && (
+          <Link
+            href="/admin/curriculum"
+            className={styles.navItem}
+            style={{
+              backgroundColor: '#EEF2F6',
+              color: 'var(--accent-primary)',
+              fontWeight: 600,
+              fontSize: '0.9rem',
+            }}
+          >
+            <span className={styles.navIcon}>⚙️</span>
+            <span className={styles.navLabel}>管理者メニューへ</span>
+          </Link>
+        )}
         <LogoutButton className={styles.logoutBtn} />
       </div>
     </aside>
