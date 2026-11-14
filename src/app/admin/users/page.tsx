@@ -319,21 +319,21 @@ export default function UsersAdminPage() {
 
   return (
     <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '24px', paddingBottom: '60px' }}>
-      {/* 1. ヘッダーカード（濃紺・スタイリッシュ） */}
+      {/* 1. ヘッダーカード（ライト＆クリーン） */}
       <header
         style={{
           background:
-            'radial-gradient(circle at 90% 12%, rgba(59, 130, 246, 0.22) 0%, transparent 60%), linear-gradient(135deg, #07152B 0%, #0E244B 45%, #18386B 100%)',
-          borderRadius: '22px',
+            'radial-gradient(circle at 90% 15%, rgba(30, 58, 95, 0.05) 0%, transparent 55%), linear-gradient(135deg, #FFFFFF 0%, #F4F7FB 60%, #EBF1F8 100%)',
+          borderRadius: '20px',
           padding: '28px 32px',
-          color: '#FFFFFF',
+          color: '#0F172A',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '20px',
-          boxShadow: '0 16px 36px rgba(7, 21, 43, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.12)',
-          border: '1px solid rgba(147, 197, 253, 0.28)',
+          boxShadow: '0 4px 20px rgba(15, 23, 42, 0.04)',
+          border: '1px solid #E2E8F0',
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
@@ -342,12 +342,12 @@ export default function UsersAdminPage() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',
-              fontSize: '0.8rem',
-              fontWeight: 800,
+              fontSize: '0.76rem',
+              fontWeight: 700,
               letterSpacing: '0.08em',
-              color: '#FEF08A',
-              background: 'rgba(251, 191, 36, 0.18)',
-              border: '1px solid rgba(251, 191, 36, 0.4)',
+              color: '#1E3A5F',
+              background: '#EEF2F6',
+              border: '1px solid #CBD5E1',
               padding: '4px 12px',
               borderRadius: '999px',
               width: 'fit-content',
@@ -355,10 +355,10 @@ export default function UsersAdminPage() {
           >
             🛡️ SECURITY & ACCESS MANAGEMENT
           </div>
-          <h1 style={{ fontSize: '1.9rem', fontWeight: 800, margin: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <h1 style={{ fontSize: '1.85rem', fontWeight: 800, margin: 0, color: '#0F172A', display: 'flex', alignItems: 'center', gap: '10px' }}>
             👥 利用者・認証アクセス管理
           </h1>
-          <p style={{ color: '#CBD5E1', fontSize: '0.94rem', margin: 0, lineHeight: 1.5 }}>
+          <p style={{ color: '#475569', fontSize: '0.94rem', margin: 0, lineHeight: 1.5 }}>
             不特定多数の利用を前提としたアカウント発行、パスワード再発行、メール二要素認証（2FA）、利用有効期間設定を一括管理します。
           </p>
         </div>

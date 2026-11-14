@@ -503,13 +503,13 @@ function LessonBookshelfContent() {
           </div>
           <div className={styles.statBox}>
             <span className={styles.statLabel}>🔖 読書・演習中</span>
-            <span className={styles.statValue} style={{ color: '#93C5FD' }}>
+            <span className={styles.statValue} style={{ color: '#2B5B84' }}>
               {studyingCount} 単元
             </span>
           </div>
           <div className={styles.statBox}>
             <span className={styles.statLabel}>👑 読了・習得済</span>
-            <span className={styles.statValue} style={{ color: '#86EFAC' }}>
+            <span className={styles.statValue} style={{ color: '#2E7D5B' }}>
               {masteredCount} 単元
             </span>
           </div>

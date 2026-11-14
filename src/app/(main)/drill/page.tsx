@@ -466,13 +466,13 @@ function DrillCenterContent() {
           </div>
           <div className={styles.statBox}>
             <span className={styles.statLabel}>🎯 全体正答率</span>
-            <span className={styles.statValue} style={{ color: '#6EE7B7' }}>
+            <span className={styles.statValue} style={{ color: '#2E7D5B' }}>
               {summaryStats.overallAccuracy}%
             </span>
           </div>
           <div className={styles.statBox}>
             <span className={styles.statLabel}>🚨 要復習単元</span>
-            <span className={styles.statValue} style={{ color: '#FCA5A5' }}>
+            <span className={styles.statValue} style={{ color: '#B94A48' }}>
               {weakReviewUnits.length} 単元
             </span>
           </div>
@@ -748,10 +748,10 @@ function DrillCenterContent() {
               <div
                 style={{
                   background:
-                    'radial-gradient(circle at 90% 15%, rgba(59, 130, 246, 0.22) 0%, transparent 60%), linear-gradient(135deg, #07152B 0%, #0E244B 45%, #18386B 100%)',
-                  border: '1px solid rgba(147, 197, 253, 0.28)',
-                  boxShadow: '0 14px 32px rgba(7, 21, 43, 0.25)',
-                  color: '#FFFFFF',
+                    'radial-gradient(circle at 90% 15%, rgba(30, 58, 95, 0.05) 0%, transparent 55%), linear-gradient(135deg, #FFFFFF 0%, #F4F7FB 60%, #EBF1F8 100%)',
+                  border: '1px solid #E2E8F0',
+                  boxShadow: '0 4px 20px rgba(15, 23, 42, 0.04)',
+                  color: '#0F172A',
                   borderRadius: '18px',
                   padding: '24px 28px',
                   marginBottom: '24px',
@@ -763,11 +763,11 @@ function DrillCenterContent() {
                 }}
               >
                 <div>
-                  <div style={{ fontSize: '0.84rem', color: '#93C5FD', fontWeight: 700 }}>
+                  <div style={{ fontSize: '0.84rem', color: '#475569', fontWeight: 700 }}>
                     採点結果：{activeRunMeta.subject}
                     {activeRunMeta.topic ? ` › ${activeRunMeta.topic}` : ''}
                   </div>
-                  <div style={{ fontSize: '2rem', fontWeight: 800, marginTop: '4px' }}>
+                  <div style={{ fontSize: '1.9rem', fontWeight: 800, marginTop: '4px', color: '#1E3A5F' }}>
                     {correctCount} / {totalQ} 問正解（正答率 {Math.round((correctCount / totalQ) * 100)}%）
                   </div>
                 </div>
@@ -775,8 +775,8 @@ function DrillCenterContent() {
                 {activeRunMeta.mode === 'diagnostic' && (
                   <div
                     style={{
-                      background: 'rgba(255,255,255,0.1)',
-                      border: '1px solid rgba(255,255,255,0.2)',
+                      background: '#FFFFFF',
+                      border: '1px solid #E2E8F0',
                       borderRadius: '14px',
                       padding: '12px 20px',
                       display: 'flex',
@@ -786,8 +786,8 @@ function DrillCenterContent() {
                     }}
                   >
                     <div>
-                      <div style={{ fontSize: '0.76rem', color: '#CBD5E1' }}>診断推定レベル</div>
-                      <div style={{ fontSize: '1.35rem', fontWeight: 800, color: '#FDE68A' }}>
+                      <div style={{ fontSize: '0.76rem', color: '#64748B' }}>診断推定レベル</div>
+                      <div style={{ fontSize: '1.35rem', fontWeight: 800, color: '#1E3A5F' }}>
                         目安偏差値 {estimatedDeviation}
                       </div>
                     </div>
