@@ -92,12 +92,26 @@ export type CategorySlots = {
   filled: number;
 };
 
-const normalizeName = (s: string) =>
-  (s || '')
+/** 単元タイトルの表記揺れ・改訂差分を吸収するエイリアスマップ */
+export const TITLE_ALIASES: Record<string, string> = {
+  // 英語コミュニケーションⅡ
+  '中学校で学んだ文構造と否定の文の活用': '中学校で学んだ文構造の活用',
+  '仮定法の活用（仮定法過去完了・as if・仮定法現在）': '仮定法の活用（仮定法過去完了・as if）',
+};
+
+const normalizeName = (s: string) => {
+  const base = (s || '')
     .replace(/[†‡*＊]/g, '')
     .replace(/[・_\-—](基礎|標準|応用).*$/g, '')
     .replace(/\s+/g, '')
     .trim();
+  const aliased = TITLE_ALIASES[base] || base;
+  return aliased
+    .replace(/[†‡*＊]/g, '')
+    .replace(/[・_\-—](基礎|標準|応用).*$/g, '')
+    .replace(/\s+/g, '')
+    .trim();
+};
 
 /** タイトル（例: 数Ⅰ-001_L1_基礎）から基本コード（例: 数Ⅰ-001）を抽出する */
 export function extractBaseTitleCode(title: string): string {
