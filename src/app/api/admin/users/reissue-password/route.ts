@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { dbAdmin } from '@/lib/firebase-admin';
 import { hashPassword, generateRandomPassword } from '@/lib/auth-util';
-import { sendPasswordResetEmail } from '@/lib/email';
+import { sendPasswordResetEmail, resolveLoginUrl } from '@/lib/email';
 import { requireAdminSession } from '@/lib/session';
 
 export async function POST(req: Request) {
@@ -44,6 +44,7 @@ export async function POST(req: Request) {
           name: userData.name || userData.db?.profile?.name || userId,
           userId,
           tempPassword: newPassword,
+          loginUrl: resolveLoginUrl(req.url),
         });
         emailSent = mailRes.success;
       } catch (mailErr) {

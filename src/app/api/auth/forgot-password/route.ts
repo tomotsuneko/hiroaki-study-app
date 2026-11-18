@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { dbAdmin } from '@/lib/firebase-admin';
 import { hashPassword, generateRandomPassword } from '@/lib/auth-util';
-import { sendPasswordResetEmail } from '@/lib/email';
+import { sendPasswordResetEmail, resolveLoginUrl } from '@/lib/email';
 
 export async function POST(req: Request) {
   try {
@@ -71,6 +71,7 @@ export async function POST(req: Request) {
           name: userData.name || userData.db?.profile?.name || userId,
           userId,
           tempPassword,
+          loginUrl: resolveLoginUrl(req.url),
         });
       } catch (mailErr) {
         console.error('Failed to send reset email:', mailErr);

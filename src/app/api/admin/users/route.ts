@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { dbAdmin } from '@/lib/firebase-admin';
 import { hashPassword, checkAccountPeriod } from '@/lib/auth-util';
-import { sendAccountIssuanceEmail } from '@/lib/email';
+import { sendAccountIssuanceEmail, resolveLoginUrl } from '@/lib/email';
 import { requireAdminSession } from '@/lib/session';
 
 export async function GET() {
@@ -139,6 +139,7 @@ export async function POST(req: Request) {
           tempPassword: password,
           validFrom,
           validUntil,
+          loginUrl: resolveLoginUrl(req.url),
         });
         emailSent = mailResult.success;
       } catch (mailErr) {

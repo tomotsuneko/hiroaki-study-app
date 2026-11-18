@@ -18,6 +18,36 @@ function getTransporter() {
 }
 
 /**
+ * ログインURLを解決する（環境変数・リクエストOrigin・既定の本番URLの順でフォールバック）
+ */
+export const DEFAULT_LOGIN_URL =
+  process.env.NEXT_PUBLIC_LOGIN_URL ||
+  (process.env.NEXT_PUBLIC_APP_URL
+    ? `${process.env.NEXT_PUBLIC_APP_URL.replace(/\/$/, '')}/login`
+    : 'https://hiroaki-study-app.vercel.app/login');
+
+export function resolveLoginUrl(reqUrl?: string, customLoginUrl?: string): string {
+  if (
+    customLoginUrl &&
+    !customLoginUrl.includes('localhost') &&
+    !customLoginUrl.includes('127.0.0.1')
+  ) {
+    return customLoginUrl;
+  }
+  if (reqUrl) {
+    try {
+      const origin = new URL(reqUrl).origin;
+      if (!origin.includes('localhost') && !origin.includes('127.0.0.1')) {
+        return `${origin}/login`;
+      }
+    } catch {
+      // ignore invalid URL
+    }
+  }
+  return DEFAULT_LOGIN_URL;
+}
+
+/**
  * 1. 新規アカウント発行通知メール
  */
 export async function sendAccountIssuanceEmail(params: {
@@ -47,7 +77,7 @@ StudyAI 学習支援システムのアカウントが発行されました。
 以下のログイン情報にてシステムにアクセスいただけます。
 
 --------------------------------------------------
-■ ログインURL: ${params.loginUrl || 'https://abiko-study-app.vercel.app/login'}
+■ ログインURL: ${resolveLoginUrl(undefined, params.loginUrl)}
 ■ ログインID: ${params.userId}${passwordInfo}${validInfo}
 --------------------------------------------------
 
@@ -85,7 +115,7 @@ ${params.name || params.userId} 様
 以下の新しい一時パスワードでログインしてください。
 
 --------------------------------------------------
-■ ログインURL: ${params.loginUrl || 'https://abiko-study-app.vercel.app/login'}
+■ ログインURL: ${resolveLoginUrl(undefined, params.loginUrl)}
 ■ ログインID: ${params.userId}
 ■ 新しい一時パスワード: ${params.tempPassword}
 --------------------------------------------------
