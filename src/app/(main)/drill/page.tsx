@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo, Suspense } from 'react';
+import { useState, useEffect, useMemo, useRef, Suspense } from 'react';
 import { useUser } from '@/lib/UserContext';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -52,6 +52,8 @@ function DrillCenterContent() {
   const paramTopic = searchParams.get('topic') || searchParams.get('task') || '';
   const paramUnitCode = searchParams.get('unit') || '';
   const paramMode = searchParams.get('mode') || '';
+  const paramAutostart = searchParams.get('autostart') === '1';
+  const hasAutoStartedRef = useRef<string | null>(null);
 
   // 4 Practical Modes:
   // 'recommend' (Push: 弱点補強・AI推奨)
@@ -129,11 +131,15 @@ function DrillCenterContent() {
     setTestState('testing');
   };
 
-  // Seamless Handover from URL Query Params (?subject=...&topic=...&unit=...&mode=...)
+  // Seamless Handover from URL Query Params (?subject=...&topic=...&unit=...&mode=...&autostart=1)
   useEffect(() => {
     if (!paramSubject && !paramTopic && !paramUnitCode && !paramMode) return;
 
     const cleanSubj = paramSubject.replace(/^high_school_/, '').trim();
+    let resolvedSubj = cleanSubj && cleanSubj !== '直前の学習内容' ? cleanSubj : selectedSubject;
+    let resolvedTopic = paramTopic;
+    let resolvedUnitCode = paramUnitCode;
+
     if (cleanSubj && cleanSubj !== '直前の学習内容') {
       setSelectedSubject(cleanSubj);
     }
@@ -147,6 +153,9 @@ function DrillCenterContent() {
       );
       if (matched.length > 0) {
         const u = matched[0];
+        resolvedSubj = u.subjectName;
+        resolvedTopic = u.smallName;
+        resolvedUnitCode = u.unitCode || '';
         setSelectedSubject(u.subjectName);
         setSelectedLargeCat(u.largeName);
         setSelectedTopic(u.smallName);
@@ -158,6 +167,7 @@ function DrillCenterContent() {
       setSelectedTopic(paramTopic);
     }
 
+    let resolvedMode: 'unit' | 'weakness' | 'comprehensive' | 'diagnostic' = 'unit';
     // Switch to the intended tab based on params
     if (
       paramMode === 'diagnostic' ||
@@ -166,18 +176,38 @@ function DrillCenterContent() {
     ) {
       setActiveTab('exam');
       setExamType('diagnostic');
+      resolvedMode = 'diagnostic';
     } else if (paramMode === 'comprehensive' || paramTopic.includes('模試')) {
       setActiveTab('exam');
       setExamType('comprehensive');
+      resolvedMode = 'comprehensive';
     } else if (paramMode === 'official') {
       setActiveTab('official');
     } else if (paramTopic || paramSubject || paramUnitCode) {
       setActiveTab('custom');
       if (paramMode === 'weakness') {
         setDrillSubMode('weakness');
+        resolvedMode = 'weakness';
       }
     }
-  }, [paramSubject, paramTopic, paramUnitCode, paramMode, catalog.units]);
+
+    // Auto-start drill immediately when requested (wait for catalog if unit resolution needed)
+    const shouldAutoStart =
+      paramAutostart || paramMode === 'diagnostic' || paramMode === 'weakness';
+    const readyForStart = catalog.units.length > 0 || isDataReady || (!paramTopic && !paramUnitCode);
+    const startKey = `${paramSubject}|${paramTopic}|${paramUnitCode}|${paramMode}|${paramAutostart}`;
+
+    if (shouldAutoStart && readyForStart && hasAutoStartedRef.current !== startKey) {
+      hasAutoStartedRef.current = startKey;
+      startAiTest({
+        subject: resolvedSubj || '数学',
+        topic: resolvedTopic,
+        unitCode: resolvedUnitCode,
+        mode: resolvedMode,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [paramSubject, paramTopic, paramUnitCode, paramMode, paramAutostart, catalog.units, isDataReady]);
 
   // Countdown timer for Mock Exam / Diagnostic mode
   useEffect(() => {

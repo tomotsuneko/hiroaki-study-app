@@ -134,15 +134,30 @@ export default function PlanPage() {
     }
   };
 
-  const handleTaskClick = (task: any) => {
+  const handleTaskClick = (
+    task: any,
+    catName?: string,
+    unitOverride?: UnifiedUnit | null
+  ) => {
+    const subjHint = catName || task.catName || '';
     if (task.type === 'diagnostic') {
       router.push(
         `/drill?subject=${encodeURIComponent(
-          task.title.replace('【学力レベル診断】', '')
-        )}&topic=レベルチェックテスト&mode=diagnostic`
+          subjHint || task.title.replace('【学力レベル診断】', '')
+        )}&topic=レベルチェックテスト&mode=diagnostic&autostart=1`
       );
     } else {
-      router.push(`/lesson?task=${encodeURIComponent(task.title)}`);
+      const targetUnit =
+        unitOverride !== undefined
+          ? unitOverride
+          : findMatchingUnitsForTask(task.title, subjHint, catalog.units)[0] || null;
+      const params = new URLSearchParams();
+      if (targetUnit?.unitCode) params.set('unit', targetUnit.unitCode);
+      if (task.title) params.set('task', task.title);
+      if (subjHint) params.set('subject', subjHint);
+      params.set('tab', 'material');
+      params.set('direct', '1');
+      router.push(`/lesson?${params.toString()}`);
     }
   };
 
@@ -163,10 +178,11 @@ export default function PlanPage() {
     return false;
   };
 
-  // Calculate overall progress & next pending task
+  // Calculate overall progress & next pending task (prefer non-diagnostic study unit when available)
   let totalTasksAll = 0;
   let completedTasksAll = 0;
-  let nextPendingTask: { title: string; type?: string; catName: string; phaseIdx: number } | null = null;
+  let firstDiagnosticTask: { title: string; type?: string; catName: string; phaseIdx: number } | null = null;
+  let firstStudyPendingTask: { title: string; type?: string; catName: string; phaseIdx: number } | null = null;
   let firstIncompletePhaseIdx = -1;
 
   for (let pIdx = 0; pIdx < syllabus.length; pIdx++) {
@@ -179,8 +195,12 @@ export default function PlanPage() {
           completedTasksAll++;
         } else {
           phaseIncomplete = true;
-          if (!nextPendingTask) {
-            nextPendingTask = { title: t.title, type: t.type, catName: cat.name, phaseIdx: pIdx };
+          if (t.type === 'diagnostic') {
+            if (!firstDiagnosticTask) {
+              firstDiagnosticTask = { title: t.title, type: t.type, catName: cat.name, phaseIdx: pIdx };
+            }
+          } else if (!firstStudyPendingTask) {
+            firstStudyPendingTask = { title: t.title, type: t.type, catName: cat.name, phaseIdx: pIdx };
           }
         }
       }
@@ -189,6 +209,7 @@ export default function PlanPage() {
       firstIncompletePhaseIdx = pIdx;
     }
   }
+  const nextPendingTask = firstStudyPendingTask || firstDiagnosticTask;
   const overallProgress =
     totalTasksAll === 0 ? 0 : Math.round((completedTasksAll / totalTasksAll) * 100);
 
@@ -224,7 +245,7 @@ export default function PlanPage() {
       <li
         key={task.id}
         className={styles.taskItemRich}
-        onClick={() => handleTaskClick(task)}
+        onClick={() => handleTaskClick(task, catName, primaryUnit)}
         style={{
           opacity: isCompletedView ? 0.68 : 1,
           borderLeft: isDiagnostic
@@ -290,6 +311,14 @@ export default function PlanPage() {
               {isWeakness && '【弱点補強】'}
               {task.title}
             </div>
+            {primaryUnit &&
+              primaryUnit.smallName &&
+              primaryUnit.smallName.replace(/[†‡*＊\s]/g, '') !==
+                task.title.replace(/[†‡*＊\s]/g, '') && (
+                <div style={{ fontSize: '0.78rem', color: '#475569', marginTop: '3px' }}>
+                  📘 直結教材: <strong>{primaryUnit.unitCode || ''}</strong> 「{primaryUnit.smallName}」
+                </div>
+              )}
           </div>
         </div>
 
@@ -299,7 +328,7 @@ export default function PlanPage() {
             <button
               className={styles.actionChip}
               style={{ background: '#7C3AED', color: '#FFFFFF', borderColor: '#7C3AED' }}
-              onClick={() => handleTaskClick(task)}
+              onClick={() => handleTaskClick(task, catName, null)}
             >
               📝 診断テストを受ける →
             </button>
@@ -309,11 +338,7 @@ export default function PlanPage() {
               {primaryUnit?.material ? (
                 <button
                   className={`${styles.actionChip} ${styles.chipMaterial}`}
-                  onClick={() =>
-                    router.push(
-                      `/lesson?task=${encodeURIComponent(task.title)}&tab=material`
-                    )
-                  }
+                  onClick={() => handleTaskClick(task, catName, primaryUnit)}
                   title={`公式学習テキスト (${primaryUnit.material.title}) を開く`}
                 >
                   📘 学習テキスト
@@ -321,11 +346,7 @@ export default function PlanPage() {
               ) : (
                 <button
                   className={`${styles.actionChip} ${styles.chipBookshelf}`}
-                  onClick={() =>
-                    router.push(
-                      `/lesson?task=${encodeURIComponent(task.title)}&tab=material`
-                    )
-                  }
+                  onClick={() => handleTaskClick(task, catName, primaryUnit)}
                   title="AIオンデマンド講義テキスト・動画で学ぶ"
                 >
                   🤖 AI講義・動画
@@ -369,7 +390,9 @@ export default function PlanPage() {
                     router.push(
                       `/drill?subject=${encodeURIComponent(
                         catName
-                      )}&topic=${encodeURIComponent(task.title)}`
+                      )}&topic=${encodeURIComponent(
+                        primaryUnit?.smallName || task.title
+                      )}&unit=${encodeURIComponent(primaryUnit?.unitCode || '')}&autostart=1`
                     )
                   }
                 >
@@ -510,7 +533,7 @@ export default function PlanPage() {
                     <button
                       type="button"
                       className="btn btn-primary"
-                      onClick={() => handleTaskClick(nextPendingTask)}
+                      onClick={() => handleTaskClick(nextPendingTask, nextPendingTask.catName)}
                       style={{ padding: '10px 18px', fontSize: '0.92rem' }}
                     >
                       ▶ 次の単元「{nextPendingTask.title.slice(0, 18)}

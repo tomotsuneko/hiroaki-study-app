@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo, Suspense } from 'react';
+import { useState, useEffect, useMemo, useRef, Suspense } from 'react';
 import { useUser } from '@/lib/UserContext';
 import { useSearchParams, useRouter } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
@@ -156,8 +156,20 @@ function LessonBookshelfContent() {
   } = useUser();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const requestedTask = searchParams.get('task') || searchParams.get('unit');
+  const requestedUnit = searchParams.get('unit');
+  const requestedTask = searchParams.get('task');
+  const requestedSubject = searchParams.get('subject');
   const requestedTab = searchParams.get('tab');
+  const isDeepLinked = Boolean(requestedUnit || requestedTask);
+  const autoAiUnitKeyRef = useRef<string | null>(null);
+
+  const closeUnitReader = () => {
+    setSelectedUnit(null);
+    setIsModalMaximized(false);
+    if (isDeepLinked) {
+      router.replace('/lesson');
+    }
+  };
 
   const syllabus = studyData.syllabus || [];
   const dailyLearningContents = useMemo(() => {
@@ -189,26 +201,98 @@ function LessonBookshelfContent() {
   const [unitVideos, setUnitVideos] = useState<any[]>([]);
   const [loadingVideos, setLoadingVideos] = useState(false);
 
-  // Handle URL ?task=xxx deep-link to open the book automatically
+  // Handle URL ?unit=xxx & ?task=xxx deep-link to open the exact learning content directly
   useEffect(() => {
-    if (!requestedTask || catalog.units.length === 0) return;
-    const matched = findMatchingUnitsForTask(requestedTask, undefined, catalog.units);
-    if (matched.length > 0) {
-      const target = matched[0];
-      setSelectedUnit(target);
-      setActiveSubjectId(target.subjectId);
-      setStatusFilter('all');
-      if (requestedTab === 'test' || requestedTab === 'video' || requestedTab === 'material') {
-        setModalTab(requestedTab);
-      } else if (target.material) {
-        setModalTab('material');
-      } else if (target.tests.all.length > 0) {
-        setModalTab('test');
-      } else {
-        setModalTab('material');
-      }
+    if (!requestedUnit && !requestedTask) {
+      setSelectedUnit(null);
+      setIsModalMaximized(false);
+      return;
     }
-  }, [requestedTask, requestedTab, catalog.units]);
+    if (catalog.units.length === 0) return;
+
+    let target: UnifiedUnit | null = null;
+
+    // 1. Exact unitCode / material.id / unitKey lookup
+    if (requestedUnit) {
+      target =
+        catalog.units.find(
+          u =>
+            u.unitCode === requestedUnit ||
+            u.material?.id === requestedUnit ||
+            u.unitKey === requestedUnit
+        ) || null;
+    }
+
+    // 2. Semantic match via requestedUnit or requestedTask with subject hint
+    if (!target && requestedUnit) {
+      target =
+        findMatchingUnitsForTask(requestedUnit, requestedSubject || undefined, catalog.units)[0] ||
+        null;
+    }
+    if (!target && requestedTask) {
+      target =
+        findMatchingUnitsForTask(requestedTask, requestedSubject || undefined, catalog.units)[0] ||
+        null;
+    }
+
+    // 3. Fallback virtual unit so deep-linking NEVER drops back to the bookshelf top page
+    if (!target) {
+      const fallbackName = (requestedTask || requestedUnit || '学習トピック').trim();
+      const subjClean = (requestedSubject || '学習ガイド')
+        .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, '')
+        .trim();
+      target = {
+        unitKey: `virtual::${requestedUnit || fallbackName}`,
+        no: 0,
+        unitCode: requestedUnit || null,
+        subjectId: 'virtual',
+        subjectName: subjClean || '学習ガイド',
+        largeName: subjClean || '学習ガイド',
+        prefix: null,
+        mediumName: '個別学習テーマ',
+        smallName: fallbackName,
+        material: null,
+        tests: { all: [] },
+        testRecords: {},
+        bestAccuracy: null,
+        totalAnswered: 0,
+        isSyllabusCompleted: false,
+        status: 'upcoming',
+      };
+    }
+
+    setSelectedUnit(target);
+    if (target.subjectId !== 'virtual') {
+      setActiveSubjectId(target.subjectId);
+    }
+    setStatusFilter('all');
+    setIsModalMaximized(true);
+
+    if (requestedTab === 'test' || requestedTab === 'video' || requestedTab === 'material') {
+      setModalTab(requestedTab);
+    } else if (target.material) {
+      setModalTab('material');
+    } else if (target.tests.all.length > 0) {
+      setModalTab('test');
+    } else {
+      setModalTab('material');
+    }
+  }, [requestedUnit, requestedTask, requestedSubject, requestedTab, catalog.units]);
+
+  // Prev / Next unit navigation within the same unit category
+  const { prevUnit, nextUnit } = useMemo(() => {
+    if (!selectedUnit || selectedUnit.unitKey.startsWith('virtual::')) {
+      return { prevUnit: null, nextUnit: null };
+    }
+    const idx = catalog.units.findIndex(u => u.unitKey === selectedUnit.unitKey);
+    if (idx < 0) return { prevUnit: null, nextUnit: null };
+    const prev = idx > 0 ? catalog.units[idx - 1] : null;
+    const next = idx < catalog.units.length - 1 ? catalog.units[idx + 1] : null;
+    return {
+      prevUnit: prev && prev.subjectId === selectedUnit.subjectId ? prev : null,
+      nextUnit: next && next.subjectId === selectedUnit.subjectId ? next : null,
+    };
+  }, [selectedUnit, catalog.units]);
 
   // Load HTML content (with in-memory cache) and record textbook view when a unit is opened
   useEffect(() => {
@@ -263,6 +347,14 @@ function LessonBookshelfContent() {
         .finally(() => setLoadingMaterial(false));
     } else {
       setMaterialHtml(null);
+      if (
+        (requestedUnit || requestedTask) &&
+        !existingDaily?.textMarkdown &&
+        autoAiUnitKeyRef.current !== selectedUnit.unitKey
+      ) {
+        autoAiUnitKeyRef.current = selectedUnit.unitKey;
+        handleGenerateAiNote(selectedUnit);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedUnit?.unitKey]);
@@ -855,9 +947,9 @@ function LessonBookshelfContent() {
         </div>
       )}
 
-      {/* 5. 閲覧席（読書・テストステーションモーダル） */}
+      {/* 5. 閲覧席（読書・テストステーションモーダル / ダイレクト学習ビュー） */}
       {selectedUnit && (
-        <div className={styles.modalOverlay} onClick={() => setSelectedUnit(null)}>
+        <div className={styles.modalOverlay} onClick={closeUnitReader}>
           <div
             className={`${styles.modalCard} ${isModalMaximized ? styles.modalCardMaximized : ''}`}
             onClick={e => e.stopPropagation()}
@@ -866,6 +958,40 @@ function LessonBookshelfContent() {
             <div className={styles.modalHeader}>
               <div>
                 <div className={styles.modalBreadcrumb}>
+                  {isDeepLinked && (
+                    <button
+                      type="button"
+                      onClick={() => router.back()}
+                      style={{
+                        padding: '3px 10px',
+                        borderRadius: '6px',
+                        border: '1px solid #CBD5E1',
+                        background: '#FFFFFF',
+                        color: '#1E3A5F',
+                        fontSize: '0.78rem',
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                      }}
+                    >
+                      ← 元の画面へ
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    onClick={closeUnitReader}
+                    style={{
+                      padding: '3px 10px',
+                      borderRadius: '6px',
+                      border: '1px solid #CBD5E1',
+                      background: '#F8FAFC',
+                      color: '#475569',
+                      fontSize: '0.78rem',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    📚 書架一覧へ
+                  </button>
                   <span
                     style={{
                       background: '#FEF3C7',
@@ -887,6 +1013,46 @@ function LessonBookshelfContent() {
               </div>
 
               <div className={styles.modalHeaderActions}>
+                {(prevUnit || nextUnit) && (
+                  <div style={{ display: 'inline-flex', gap: '4px', alignItems: 'center' }}>
+                    <button
+                      type="button"
+                      disabled={!prevUnit}
+                      onClick={() => prevUnit && setSelectedUnit(prevUnit)}
+                      style={{
+                        padding: '7px 10px',
+                        borderRadius: '8px',
+                        border: '1px solid #CBD5E1',
+                        background: prevUnit ? '#FFFFFF' : '#F1F5F9',
+                        color: prevUnit ? '#1E3A5F' : '#94A3B8',
+                        fontSize: '0.8rem',
+                        fontWeight: 700,
+                        cursor: prevUnit ? 'pointer' : 'not-allowed',
+                      }}
+                      title={prevUnit ? `前の単元: ${prevUnit.smallName}` : ''}
+                    >
+                      ◀ 前へ
+                    </button>
+                    <button
+                      type="button"
+                      disabled={!nextUnit}
+                      onClick={() => nextUnit && setSelectedUnit(nextUnit)}
+                      style={{
+                        padding: '7px 10px',
+                        borderRadius: '8px',
+                        border: '1px solid #CBD5E1',
+                        background: nextUnit ? '#FFFFFF' : '#F1F5F9',
+                        color: nextUnit ? '#1E3A5F' : '#94A3B8',
+                        fontSize: '0.8rem',
+                        fontWeight: 700,
+                        cursor: nextUnit ? 'pointer' : 'not-allowed',
+                      }}
+                      title={nextUnit ? `次の単元: ${nextUnit.smallName}` : ''}
+                    >
+                      次へ ▶
+                    </button>
+                  </div>
+                )}
                 <button
                   onClick={() => handleToggleUnitMastery(selectedUnit)}
                   style={{
@@ -1010,7 +1176,7 @@ function LessonBookshelfContent() {
                 </button>
 
                 <button
-                  onClick={() => setSelectedUnit(null)}
+                  onClick={closeUnitReader}
                   style={{
                     width: '38px',
                     height: '38px',
@@ -1140,11 +1306,11 @@ function LessonBookshelfContent() {
                         <span style={{ fontSize: '0.88rem', color: '#44403C', fontWeight: 700 }}>
                           📖 配架テキスト: <strong>{selectedUnit.material.title}</strong>
                         </span>
-                        <div style={{ display: 'flex', gap: '8px' }}>
+                        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                           <button
                             onClick={() => setModalTab('test')}
                             style={{
-                              padding: '7px 16px',
+                              padding: '7px 14px',
                               borderRadius: '8px',
                               border: '1px solid #10B981',
                               background: '#ECFDF5',
@@ -1154,8 +1320,30 @@ function LessonBookshelfContent() {
                               cursor: 'pointer',
                             }}
                           >
-                            📝 この単元のテストに進む →
+                            📝 この単元のテストへ →
                           </button>
+                          <Link
+                            href={`/flashcard?subject=${encodeURIComponent(
+                              selectedUnit.subjectName
+                            )}&topic=${encodeURIComponent(
+                              selectedUnit.smallName
+                            )}&unit=${encodeURIComponent(selectedUnit.unitCode || '')}`}
+                            style={{
+                              padding: '7px 14px',
+                              borderRadius: '8px',
+                              border: '1px solid #CBD5E1',
+                              background: '#FFFFFF',
+                              color: '#1E3A5F',
+                              fontWeight: 800,
+                              fontSize: '0.84rem',
+                              textDecoration: 'none',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '4px',
+                            }}
+                          >
+                            📇 暗記カード
+                          </Link>
                           <button
                             onClick={handleToggleBookmark}
                             style={{

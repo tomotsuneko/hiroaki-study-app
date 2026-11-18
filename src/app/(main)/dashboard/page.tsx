@@ -5,6 +5,7 @@ import styles from './dashboard.module.css';
 import planStyles from '../plan/plan.module.css';
 import Link from 'next/link';
 import { useUser } from '@/lib/UserContext';
+import { findMatchingUnitsForTask, UnifiedUnit } from '@/lib/content-slots';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import remarkGfm from 'remark-gfm';
@@ -54,6 +55,7 @@ export default function Dashboard() {
     profile,
     saveNote,
     studyData,
+    catalog,
     updateLocalDailyAnalysis,
     updateLocalDayPlan,
     refreshStudyData,
@@ -315,7 +317,7 @@ export default function Dashboard() {
     return new Set([...(profile.completedTasks || []), ...masteredUnits]);
   }, [profile.completedTasks, masteredUnits]);
 
-  const nextTasks: any[] = [];
+  const nextTasks: Array<any & { matchedUnit?: UnifiedUnit | null }> = [];
   if (syllabus && syllabus.length > 0) {
     for (const phase of syllabus) {
       if (nextTasks.length >= missionTaskCount) break;
@@ -323,9 +325,14 @@ export default function Dashboard() {
         if (nextTasks.length >= missionTaskCount) break;
         for (const task of cat.tasks || []) {
           if (!completedSet.has(task.title)) {
+            const matchedUnit =
+              task.type === 'diagnostic'
+                ? null
+                : findMatchingUnitsForTask(task.title, cat.name, catalog.units)[0] || null;
             nextTasks.push({
               ...task,
               subjectName: cat.name,
+              matchedUnit,
               estMinutes:
                 targetMinutes > 0 ? Math.round(targetMinutes / missionTaskCount) : 45,
             });
@@ -335,6 +342,29 @@ export default function Dashboard() {
       }
     }
   }
+
+  const getTaskStudyHref = (task: {
+    title: string;
+    type?: string;
+    subjectName?: string;
+    matchedUnit?: UnifiedUnit | null;
+  }) => {
+    if (task.type === 'diagnostic') {
+      return `/drill?subject=${encodeURIComponent(
+        task.subjectName || ''
+      )}&topic=レベルチェックテスト&mode=diagnostic&autostart=1`;
+    }
+    if (task.matchedUnit) {
+      return `/lesson?unit=${encodeURIComponent(
+        task.matchedUnit.unitCode || ''
+      )}&task=${encodeURIComponent(task.title)}&subject=${encodeURIComponent(
+        task.subjectName || ''
+      )}&direct=1`;
+    }
+    return `/lesson?task=${encodeURIComponent(task.title)}&subject=${encodeURIComponent(
+      task.subjectName || ''
+    )}&direct=1`;
+  };
 
   const totalTextbooksRead = Object.keys(materialViews).length;
   const dueFlashcardsCount = (studyData.flashcards || []).filter((c: any) => {
@@ -371,29 +401,39 @@ export default function Dashboard() {
 
   // ファーストビューの主役となる「次にやるべき1つ」
   const primaryFeedback = feedbackQueue.length > 0 ? feedbackQueue[0] : null;
-  const primaryTask = nextTasks.length > 0 ? nextTasks[0] : null;
+  const firstStudyTask =
+    nextTasks.find((t) => t.type !== 'diagnostic') || (nextTasks.length > 0 ? nextTasks[0] : null);
+  const fallbackUnit =
+    !primaryFeedback && !firstStudyTask
+      ? findMatchingUnitsForTask(currentFocus, currentFocus, catalog.units)[0] || null
+      : null;
+
   const primaryActionHref = primaryFeedback
     ? `/drill?subject=${encodeURIComponent(primaryFeedback.subject)}&topic=${encodeURIComponent(
         primaryFeedback.topic
-      )}&unit=${encodeURIComponent(primaryFeedback.unitCode || '')}&mode=weakness`
-    : primaryTask
-    ? primaryTask.type === 'diagnostic'
-      ? `/drill?subject=${encodeURIComponent(
-          primaryTask.subjectName || ''
-        )}&topic=レベルチェックテスト&mode=diagnostic`
-      : `/lesson?task=${encodeURIComponent(primaryTask.title)}`
-    : `/lesson?task=${encodeURIComponent(currentFocus)}`;
+      )}&unit=${encodeURIComponent(primaryFeedback.unitCode || '')}&mode=weakness&autostart=1`
+    : firstStudyTask
+    ? getTaskStudyHref(firstStudyTask)
+    : `/lesson?unit=${encodeURIComponent(fallbackUnit?.unitCode || '')}&task=${encodeURIComponent(
+        currentFocus
+      )}&subject=${encodeURIComponent(currentFocus)}&direct=1`;
+
+  const resolvedHeroUnit = primaryFeedback
+    ? null
+    : firstStudyTask?.matchedUnit || fallbackUnit || null;
 
   const primaryActionTitle = primaryFeedback
     ? `【弱点リベンジ】${primaryFeedback.subject}: ${primaryFeedback.topic}`
-    : primaryTask
-    ? primaryTask.title
+    : firstStudyTask
+    ? firstStudyTask.title
     : `${currentFocus} の学習を進める`;
 
   const primaryActionReason = primaryFeedback
     ? `直近テスト正答率 ${primaryFeedback.scorePercent ?? '-'}% の優先復習テーマです（80%以上でクリア）`
-    : primaryTask
-    ? `${primaryTask.subjectName || '重点ルート'} ・ 目安約 ${primaryTask.estMinutes || 40}分`
+    : resolvedHeroUnit
+    ? `📘 ${resolvedHeroUnit.unitCode || resolvedHeroUnit.largeName}: ${resolvedHeroUnit.smallName} ・ 目安約 ${firstStudyTask?.estMinutes || 40}分`
+    : firstStudyTask
+    ? `${firstStudyTask.subjectName || '重点ルート'} ・ 目安約 ${firstStudyTask.estMinutes || 40}分`
     : `志望校「${mainTarget}」に向けたAI推奨フォーカス科目`;
 
   const achievementsList =
@@ -569,13 +609,7 @@ export default function Dashboard() {
               {nextTasks.map((task: any, idx: number) => (
                 <Link
                   key={idx}
-                  href={
-                    task.type === 'diagnostic'
-                      ? `/drill?subject=${encodeURIComponent(
-                          task.subjectName || ''
-                        )}&topic=レベルチェックテスト&mode=diagnostic`
-                      : `/lesson?task=${encodeURIComponent(task.title)}`
-                  }
+                  href={getTaskStudyHref(task)}
                   className={styles.compactMissionRow}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
@@ -603,6 +637,21 @@ export default function Dashboard() {
                     >
                       {task.title}
                     </span>
+                    {task.matchedUnit?.unitCode && (
+                      <span
+                        style={{
+                          fontSize: '0.72rem',
+                          fontWeight: 700,
+                          color: '#2B5B84',
+                          background: '#EFF6FF',
+                          padding: '1px 6px',
+                          borderRadius: '4px',
+                          flexShrink: 0,
+                        }}
+                      >
+                        📘 {task.matchedUnit.unitCode}
+                      </span>
+                    )}
                   </div>
                   <span style={{ fontSize: '0.78rem', color: '#64748B', flexShrink: 0 }}>
                     約{task.estMinutes || 40}分 →

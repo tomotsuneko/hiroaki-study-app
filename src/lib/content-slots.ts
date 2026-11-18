@@ -477,6 +477,198 @@ export function buildUnifiedCatalog(
   return { units: allUnits, subjects };
 }
 
+/** 検索・照合用に表記揺れや数字表記（1次/一次 等）、記号、空白を正規化する */
+export function normalizeSearchText(s: string): string {
+  return (s || '')
+    .normalize('NFKC')
+    .replace(/1次/g, '一次')
+    .replace(/2次/g, '二次')
+    .replace(/3次/g, '三次')
+    .replace(/2倍角/g, '二倍角')
+    .replace(/2項/g, '二項')
+    .replace(/[\s\u3000・･,、。.:：/／()（）「」『』【】\[\]!?！？†‡*＊\-ー—]+/g, '')
+    .toLowerCase()
+    .trim();
+}
+
+/** 中分類名先頭の章番号接頭辞（例: "Ⅰ-4 ", "英Ⅰ-5 ", "A-1 "）を除去する */
+export function stripMediumPrefix(mediumName: string): string {
+  return (mediumName || '').replace(/^[^\s]+[-ー－]\d+\s*/u, '').trim();
+}
+
+function stripLeadingDecorators(str: string): string {
+  return (str || '')
+    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, '')
+    .trim();
+}
+
+function sortByMaterialAvailability(units: UnifiedUnit[]): UnifiedUnit[] {
+  return [...units].sort((a, b) => {
+    const aScore =
+      (a.material ? 40 : 0) +
+      (a.tests.all.length > 0 ? 20 : 0) +
+      (a.status !== 'mastered' ? 10 : 0);
+    const bScore =
+      (b.material ? 40 : 0) +
+      (b.tests.all.length > 0 ? 20 : 0) +
+      (b.status !== 'mastered' ? 10 : 0);
+    if (bScore !== aScore) return bScore - aScore;
+    return a.no - b.no;
+  });
+}
+
+function getScopedUnitsByHint(
+  subjectHint: string | undefined,
+  taskTitle: string,
+  allUnits: UnifiedUnit[]
+): UnifiedUnit[] {
+  const hintClean = stripLeadingDecorators(subjectHint || '').normalize('NFKC');
+  const combined = `${hintClean} ${stripLeadingDecorators(taskTitle).normalize('NFKC')}`;
+
+  let candidates: UnifiedUnit[] = [];
+
+  if (/数学\s*(?:IA|I・A|1A|I\s*・?\s*A)/i.test(hintClean) || /数学IA/i.test(combined)) {
+    candidates = allUnits.filter(u => u.largeName === '数学Ⅰ' || u.largeName === '数学Ａ');
+  } else if (/数学\s*(?:IIBC|II・B・C|IIB|2BC|2B)/i.test(hintClean) || /数学IIBC/i.test(combined)) {
+    candidates = allUnits.filter(
+      u => u.largeName === '数学Ⅱ' || u.largeName === '数学Ｂ' || u.largeName === '数学Ｃ'
+    );
+  } else if (/数学\s*(?:III|Ⅲ|3)/i.test(hintClean)) {
+    candidates = allUnits.filter(u => u.largeName === '数学Ⅲ');
+  } else if (/数学\s*(?:I|Ⅰ|1)$/i.test(hintClean)) {
+    candidates = allUnits.filter(u => u.largeName === '数学Ⅰ');
+  } else if (/数学\s*(?:A|Ａ)$/i.test(hintClean)) {
+    candidates = allUnits.filter(u => u.largeName === '数学Ａ');
+  } else if (/数学\s*(?:II|Ⅱ|2)$/i.test(hintClean)) {
+    candidates = allUnits.filter(u => u.largeName === '数学Ⅱ');
+  } else if (/数学\s*(?:B|Ｂ)$/i.test(hintClean)) {
+    candidates = allUnits.filter(u => u.largeName === '数学Ｂ');
+  } else if (/数学/.test(hintClean)) {
+    candidates = allUnits.filter(u => u.subjectName === '数学');
+  } else if (/現代文/.test(hintClean)) {
+    candidates = allUnits.filter(
+      u => u.largeName === '現代の国語' || u.largeName === '論理国語' || u.largeName === '文学国語'
+    );
+  } else if (/古文|漢文|古典/.test(hintClean)) {
+    candidates = allUnits.filter(u => u.largeName === '言語文化' || u.largeName === '古典探究');
+  } else if (/国語/.test(hintClean)) {
+    candidates = allUnits.filter(u => u.subjectName === '国語');
+  } else if (/英語/.test(hintClean)) {
+    candidates = allUnits.filter(u => u.subjectName === '英語');
+  } else if (/物理/.test(hintClean)) {
+    candidates = allUnits.filter(u => u.largeName === '物理基礎' || u.largeName === '物理');
+  } else if (/化学/.test(hintClean)) {
+    candidates = allUnits.filter(u => u.largeName === '化学基礎' || u.largeName === '化学');
+  } else if (/生物/.test(hintClean)) {
+    candidates = allUnits.filter(u => u.largeName === '生物基礎' || u.largeName === '生物');
+  } else if (/地学/.test(hintClean)) {
+    candidates = allUnits.filter(u => u.largeName === '地学基礎' || u.largeName === '地学');
+  } else if (/日本史/.test(hintClean)) {
+    candidates = allUnits.filter(u => u.largeName === '歴史総合' || u.largeName === '日本史探究');
+  } else if (/世界史/.test(hintClean)) {
+    candidates = allUnits.filter(u => u.largeName === '歴史総合' || u.largeName === '世界史探究');
+  } else if (/地理/.test(hintClean)) {
+    candidates = allUnits.filter(u => u.largeName === '地理総合' || u.largeName === '地理探究');
+  } else if (/政経|政治・経済|倫理|公共|公民/.test(hintClean)) {
+    candidates = allUnits.filter(
+      u => u.largeName === '公共' || u.largeName === '倫理' || u.largeName === '政治・経済'
+    );
+  } else if (/情報/.test(hintClean)) {
+    candidates = allUnits.filter(u => u.largeName === '情報Ⅰ');
+  }
+
+  if (candidates.length > 0) return candidates;
+
+  const hintNorm = normalizeSearchText(hintClean);
+  if (!hintNorm) return [];
+  return allUnits.filter(u => {
+    const sNorm = normalizeSearchText(u.subjectName);
+    const lNorm = normalizeSearchText(u.largeName);
+    return (
+      sNorm.includes(hintNorm) ||
+      hintNorm.includes(sNorm) ||
+      lNorm.includes(hintNorm) ||
+      hintNorm.includes(lNorm)
+    );
+  });
+}
+
+const SYNONYM_EXPANSIONS: Array<[RegExp, string[]]> = [
+  [/受動態/, ['受け身', '受身']],
+  [/5文型|基本文型|文型/, ['文構造']],
+  [/準動詞/, ['不定詞', '動名詞', '分詞']],
+  [/関係詞/, ['関係代名詞', '関係副詞']],
+  [/比較構文|比較/, ['比較']],
+  [/仮定法/, ['仮定法']],
+  [/時制/, ['時制', '完了形']],
+  [/助動詞/, ['助動詞']],
+  [/語法|イディオム|英単語|熟語|語彙/, ['語句', '文構造']],
+  [/長文|パラグラフ|精読|読解/, ['読解', '説明文', '論証文']],
+  [/式と証明/, ['いろいろな式', '乗法公式', '二項定理', '恒等式', '因数分解']],
+  [/複素数と方程式|高次方程式/, ['複素数', '解と係数の関係', '剰余の定理', '因数定理', '高次方程式']],
+  [/整数の性質/, ['約数と倍数', 'ユークリッドの互除法', '一次不定方程式']],
+  [/微分法と積分法|微分係数|導関数/, ['微分', '導関数', '微分係数', '接線']],
+  [/不定積分|定積分|積分と面積/, ['不定積分', '定積分', '面積']],
+  [/平面ベクトル|平面上のベクトル/, ['ベクトル', '成分による演算', '内積']],
+  [/空間のベクトル|空間ベクトル/, ['空間', 'ベクトル']],
+  [/評論/, ['論証', '論理', '説明文', '主張', '要約']],
+  [/小説|随筆/, ['文学', '小説', '表現']],
+  [/漢字/, ['語句', '表記']],
+];
+
+const SEARCH_STOP_TOKENS = new Set([
+  '性質', '公式', '基本', '基礎', '標準', '応用', '演習', '練習',
+  '整理', '意味', '活用', '表現', '用法', '構造', '種類', '関係',
+  '特徴', '役割', '確認', 'まとめ', '総復習', '復習', '単元末',
+  '計算', '把握', '理解', '習得', '解放', '解法', '定着', '課題',
+]);
+
+function extractSearchTokens(query: string): string[] {
+  const cleaned = stripLeadingDecorators(query)
+    .normalize('NFKC')
+    .replace(/【.*?】/g, '')
+    .replace(/\[.*?\]/g, '')
+    .trim();
+
+  const rawParts = cleaned
+    .split(/[\s\u3000・･,、。.:：/／()（）「」『』【】\[\]とや及・]+/)
+    .map(part =>
+      part
+        .replace(/(?:の基礎|の基本|の応用|の解法|の演習|の整理|の習得|の把握|の理解|の性質|の計算|の基本公式|フレームワーク|プロセス|演習|入門|基礎|標準|応用|総合)$/g, '')
+        .trim()
+    )
+    .filter(p => p.length >= 2);
+
+  const tokens = new Set<string>();
+  const fullNorm = normalizeSearchText(cleaned);
+  if (fullNorm.length >= 2 && !SEARCH_STOP_TOKENS.has(fullNorm)) tokens.add(fullNorm);
+
+  for (const p of rawParts) {
+    const np = normalizeSearchText(p);
+    if (np.length >= 2 && !SEARCH_STOP_TOKENS.has(np)) {
+      tokens.add(np);
+    }
+    // 「三角関数の基本公式」等から「の」前の主要概念（「三角関数」）も抽出
+    for (const sub of p.split('の')) {
+      const ns = normalizeSearchText(sub);
+      if (ns.length >= 2 && !SEARCH_STOP_TOKENS.has(ns)) {
+        tokens.add(ns);
+      }
+    }
+  }
+
+  for (const [pattern, expansions] of SYNONYM_EXPANSIONS) {
+    if (pattern.test(cleaned)) {
+      for (const exp of expansions) {
+        const ne = normalizeSearchText(exp);
+        if (ne.length >= 2) tokens.add(ne);
+      }
+    }
+  }
+
+  return Array.from(tokens);
+}
+
 /**
  * シラバスのタスク名（または検索クエリ）から対応する UnifiedUnit を検索する。
  */
@@ -487,56 +679,85 @@ export function findMatchingUnitsForTask(
 ): UnifiedUnit[] {
   if (!taskTitle || allUnits.length === 0) return [];
 
-  const cleanedTitle = taskTitle
+  const cleanedTitle = stripLeadingDecorators(taskTitle)
+    .normalize('NFKC')
     .replace(/【.*?】/g, '')
     .replace(/\[.*?\]/g, '')
     .trim();
 
-  const normTask = normalizeName(cleanedTitle);
-  if (!normTask) return [];
+  // 1. 全単元から単元コード / 教材ID の完全一致を最優先で確認 (例: 数Ⅰ-001, 英Ⅰ-028)
+  const exactCodeMatch = allUnits.filter(
+    u =>
+      (u.unitCode && u.unitCode.normalize('NFKC') === cleanedTitle) ||
+      (u.material?.id && u.material.id.normalize('NFKC') === cleanedTitle)
+  );
+  if (exactCodeMatch.length > 0) return sortByMaterialAvailability(exactCodeMatch);
 
-  // 科目ヒントがある場合はその科目を優先
-  const hintNorm = subjectHint ? normalizeName(subjectHint) : '';
-  const scopedUnits = hintNorm
-    ? allUnits.filter(
-        u =>
-          normalizeName(u.subjectName).includes(hintNorm) ||
-          hintNorm.includes(normalizeName(u.subjectName)) ||
-          normalizeName(u.largeName).includes(hintNorm) ||
-          hintNorm.includes(normalizeName(u.largeName))
-      )
-    : [];
+  const normTask = normalizeSearchText(cleanedTitle);
+  const scopedUnits = getScopedUnitsByHint(subjectHint, cleanedTitle, allUnits);
+  // 科目スコープが特定できている場合は、別科目への誤マッチを防ぐためその科目内でのみ探索する
+  const pool = scopedUnits.length > 0 ? scopedUnits : allUnits;
 
-  const pools = scopedUnits.length > 0 ? [scopedUnits, allUnits] : [allUnits];
-
-  for (const pool of pools) {
-    // 1. 単元コード完全一致 (例: 数Ⅰ-001)
-    const codeMatch = pool.filter(u => u.unitCode && u.unitCode === cleanedTitle);
-    if (codeMatch.length > 0) return codeMatch;
-
+  if (normTask) {
     // 2. 小分類名 (smallName) の完全一致
-    const exactSmall = pool.filter(u => normalizeName(u.smallName) === normTask);
-    if (exactSmall.length > 0) {
-      // 学習教材やテストが入っている枠を先頭に並べる
-      return exactSmall.sort((a, b) => {
-        const aScore = (a.material ? 2 : 0) + (a.tests.all.length > 0 ? 2 : 0);
-        const bScore = (b.material ? 2 : 0) + (b.tests.all.length > 0 ? 2 : 0);
-        return bScore - aScore;
-      });
-    }
+    const exactSmall = pool.filter(u => normalizeSearchText(u.smallName) === normTask);
+    if (exactSmall.length > 0) return sortByMaterialAvailability(exactSmall);
 
-    // 3. 中分類名 (mediumName) の完全一致
-    const exactMedium = pool.filter(u => normalizeName(u.mediumName) === normTask);
-    if (exactMedium.length > 0) return exactMedium;
+    // 3. 中分類名 (mediumName: 先頭番号除去後も含む) の完全一致
+    const exactMedium = pool.filter(u => {
+      const mFull = normalizeSearchText(u.mediumName);
+      const mStripped = normalizeSearchText(stripMediumPrefix(u.mediumName));
+      return mFull === normTask || (mStripped && mStripped === normTask);
+    });
+    if (exactMedium.length > 0) return sortByMaterialAvailability(exactMedium);
 
-    // 4. 部分一致（3文字以上の場合）
-    if (normTask.length >= 3) {
+    // 4. 部分一致（2文字以上）& トークン＋同義語スコアリング
+    if (normTask.length >= 2) {
       const partial = pool.filter(u => {
-        const s = normalizeName(u.smallName);
-        return s.length >= 3 && (s.includes(normTask) || normTask.includes(s));
+        const s = normalizeSearchText(u.smallName);
+        return s.length >= 2 && (s.includes(normTask) || normTask.includes(s));
       });
-      if (partial.length > 0) return partial;
+      if (partial.length > 0) return sortByMaterialAvailability(partial);
     }
+
+    const tokens = extractSearchTokens(cleanedTitle);
+    if (tokens.length > 0) {
+      const scored: { unit: UnifiedUnit; score: number }[] = [];
+      for (const u of pool) {
+        const sNorm = normalizeSearchText(u.smallName);
+        const mNorm = normalizeSearchText(stripMediumPrefix(u.mediumName));
+        const lNorm = normalizeSearchText(u.largeName);
+
+        let contentScore = 0;
+        for (const tok of tokens) {
+          if (sNorm.includes(tok)) {
+            contentScore += 30 * tok.length;
+          } else if (mNorm && (mNorm.includes(tok) || (mNorm.length >= 2 && tok.includes(mNorm)))) {
+            contentScore += 18 * Math.min(tok.length, mNorm.length);
+          } else if (lNorm.includes(tok)) {
+            contentScore += 8 * tok.length;
+          }
+        }
+
+        if (contentScore > 0) {
+          const bonus =
+            (u.material ? 25 : 0) +
+            (u.tests.all.length > 0 ? 10 : 0) +
+            (u.status !== 'mastered' ? 8 : 0);
+          scored.push({ unit: u, score: contentScore + bonus });
+        }
+      }
+
+      if (scored.length > 0) {
+        scored.sort((a, b) => b.score - a.score || a.unit.no - b.unit.no);
+        return scored.map(x => x.unit);
+      }
+    }
+  }
+
+  // 5. 科目スコープが特定できている場合は、同科目内の教材が配架済みの先頭単元に確実に着地させる
+  if (scopedUnits.length > 0) {
+    return sortByMaterialAvailability(scopedUnits);
   }
 
   return [];
