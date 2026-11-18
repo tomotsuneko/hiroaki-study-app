@@ -445,35 +445,34 @@ function DrillCenterContent() {
 
   return (
     <div className={styles.container}>
-      {/* 1. Header & Global Stats */}
+      {/* 1. Compact Header & Inline Stats */}
       <header className={styles.headerCard}>
         <div className={styles.headerLeft}>
-          <h1 className={styles.title}>📝 AIドリル・実践テストセンター</h1>
+          <h1 className={styles.title}>📝 AIドリル・実践テスト</h1>
           <p className={styles.subtitle}>
-            「弱点分析によるプッシュ型補強」「公式3段階テスト問題集」「単元別カスタムAI演習」「模試・学力診断テスト」を統合。<br />
-            間違えた問題はワンクリックで暗記カードや学習ノートに登録し、確実な定着へ繋げられます。
+            弱点補強・単元別公式テスト・AIカスタム演習をワンクリックで開始できます。
           </p>
         </div>
 
         <div className={styles.statsRow}>
           <div className={styles.statBox}>
-            <span className={styles.statLabel}>📝 受験済テスト</span>
-            <span className={styles.statValue}>{summaryStats.totalTestsTaken} 回</span>
+            <span className={styles.statLabel}>📝 受験</span>
+            <span className={styles.statValue}>{summaryStats.totalTestsTaken}回</span>
           </div>
           <div className={styles.statBox}>
-            <span className={styles.statLabel}>✍️ 累計回答数</span>
-            <span className={styles.statValue}>{summaryStats.totalAnswered} 問</span>
+            <span className={styles.statLabel}>✍️ 回答</span>
+            <span className={styles.statValue}>{summaryStats.totalAnswered}問</span>
           </div>
           <div className={styles.statBox}>
-            <span className={styles.statLabel}>🎯 全体正答率</span>
+            <span className={styles.statLabel}>🎯 正答率</span>
             <span className={styles.statValue} style={{ color: '#2E7D5B' }}>
               {summaryStats.overallAccuracy}%
             </span>
           </div>
           <div className={styles.statBox}>
-            <span className={styles.statLabel}>🚨 要復習単元</span>
+            <span className={styles.statLabel}>🚨 要復習</span>
             <span className={styles.statValue} style={{ color: '#B94A48' }}>
-              {weakReviewUnits.length} 単元
+              {weakReviewUnits.length}単元
             </span>
           </div>
         </div>
@@ -517,47 +516,35 @@ function DrillCenterContent() {
         </div>
       )}
 
-      {/* 2. 4-Mode Navigation Tabs */}
+      {/* 2. 4-Mode Compact Segmented Bar */}
       {testState === 'idle' && (
         <div className={styles.modeTabs}>
           <button
             className={`${styles.modeTab} ${activeTab === 'recommend' ? styles.modeTabActive : ''}`}
             onClick={() => setActiveTab('recommend')}
           >
-            <div className={styles.modeTabTitle}>🎯 弱点補強・おすすめ (Push)</div>
-            <div className={styles.modeTabDesc}>
-              テスト誤答単元やシラバスからAIが今解くべき課題を自動提示
-            </div>
+            <div className={styles.modeTabTitle}>🎯 おすすめ弱点補強</div>
           </button>
 
           <button
             className={`${styles.modeTab} ${activeTab === 'official' ? styles.modeTabActive : ''}`}
             onClick={() => setActiveTab('official')}
           >
-            <div className={styles.modeTabTitle}>📖 単元別 公式テスト問題集</div>
-            <div className={styles.modeTabDesc}>
-              カリキュラム全単元の基礎(L1)・標準(L2)・応用(L3)テストを受験
-            </div>
+            <div className={styles.modeTabTitle}>📖 単元別 公式テスト</div>
           </button>
 
           <button
             className={`${styles.modeTab} ${activeTab === 'custom' ? styles.modeTabActive : ''}`}
             onClick={() => setActiveTab('custom')}
           >
-            <div className={styles.modeTabTitle}>⚡ 単元選択 AIカスタム特訓 (Pull)</div>
-            <div className={styles.modeTabDesc}>
-              科目・単元・難易度を自由に選んで公式教材連動の記述5問を生成
-            </div>
+            <div className={styles.modeTabTitle}>⚡ AIカスタム特訓</div>
           </button>
 
           <button
             className={`${styles.modeTab} ${activeTab === 'exam' ? styles.modeTabActive : ''}`}
             onClick={() => setActiveTab('exam')}
           >
-            <div className={styles.modeTabTitle}>🏆 模試実戦・学力診断テスト</div>
-            <div className={styles.modeTabDesc}>
-              制限時間付きの単元横断総合テスト＆偏差値算出レベルチェック
-            </div>
+            <div className={styles.modeTabTitle}>🏆 模試・学力診断</div>
           </button>
         </div>
       )}
@@ -972,116 +959,131 @@ function DrillCenterContent() {
           MODE 1: PUSH RECOMMENDATIONS (弱点補強・AI推奨)
          ========================================================= */}
       {testState === 'idle' && activeTab === 'recommend' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          {/* 1-0. Instant Pre-Generated Daily Drill & Priority Feedback Queue */}
-          {(preGeneratedDailyDrill.length > 0 || feedbackQueue.length > 0) && (
-            <section
-              className={styles.panelCard}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+          {/* 1-0. 1-Tap Quick Drill Hero */}
+          <section
+            className={styles.panelCard}
+            style={{
+              background: 'linear-gradient(135deg, #FFFFFF 0%, #F4F7FB 100%)',
+              border: '1px solid #CBD5E1',
+            }}
+          >
+            <div
               style={{
-                background: 'linear-gradient(135deg, #EEF2FF 0%, #FFFFFF 100%)',
-                border: '2px solid #C7D2FE',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: '14px',
               }}
             >
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  flexWrap: 'wrap',
-                  gap: '14px',
-                }}
-              >
-                <div>
-                  <h2 className={styles.sectionTitle} style={{ marginBottom: '4px', color: '#1E1B4B' }}>
-                    ⚡ デイリー事前生成パック ＆ 次回学習フィードバック（待ち時間0秒）
-                  </h2>
-                  <p className={styles.sectionSub} style={{ marginBottom: 0 }}>
-                    日次バッチと直近の演習結果（テスト・ドリル・模試分析）から事前編成された最優先メニューです。生成待ちなしで即座に開始できます。
-                  </p>
-                </div>
-                {preGeneratedDailyDrill.length > 0 && (
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    style={{ padding: '10px 20px', fontWeight: 800, fontSize: '0.92rem' }}
-                    onClick={startPreGeneratedDailyDrill}
-                  >
-                    🚀 本日の事前生成AIドリル（{preGeneratedDailyDrill.length}問）を即開始 →
-                  </button>
-                )}
+              <div>
+                <h2 className={styles.sectionTitle} style={{ marginBottom: '4px', color: '#0F172A' }}>
+                  ⚡ {preGeneratedDailyDrill.length > 0 ? 'デイリー事前生成パック（待ち時間0秒）' : `今日のクイック演習（${selectedSubject}・5問）`}
+                </h2>
+                <p className={styles.sectionSub} style={{ marginBottom: 0 }}>
+                  {preGeneratedDailyDrill.length > 0
+                    ? '日次バッチと直近の演習結果から事前編成された最優先メニューを即開始できます。'
+                    : 'あなたの現在のシラバス・苦手分野に合わせてAIが最適な実践問題をすぐに出題します。'}
+                </p>
               </div>
-
-              {feedbackQueue.length > 0 && (
-                <div style={{ marginTop: '16px', paddingTop: '14px', borderTop: '1px solid #E0E7FF' }}>
-                  <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#4338CA', marginBottom: '10px' }}>
-                    📌 学習履歴から自動登録された重点補強キュー（正答率80%達成で自動クリア）：
-                  </div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                    {feedbackQueue.slice(0, 6).map((fb) => (
-                      <div
-                        key={fb.id}
-                        style={{
-                          background: 'white',
-                          border: '1px solid #C7D2FE',
-                          borderRadius: '10px',
-                          padding: '8px 12px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '10px',
-                          fontSize: '0.83rem',
-                        }}
-                      >
-                        <div>
-                          <strong style={{ color: '#0F172A' }}>
-                            {fb.subject}: {fb.topic}
-                          </strong>
-                          {fb.scorePercent !== undefined && (
-                            <span style={{ marginLeft: '6px', color: '#DC2626', fontWeight: 700 }}>
-                              (前回 {fb.scorePercent}%)
-                            </span>
-                          )}
-                        </div>
-                        <button
-                          type="button"
-                          className="btn btn-primary"
-                          style={{ padding: '4px 10px', fontSize: '0.78rem' }}
-                          onClick={() =>
-                            startAiTest({
-                              subject: fb.subject,
-                              topic: fb.topic,
-                              unitCode: fb.unitCode || '',
-                              mode: 'weakness',
-                              difficulty: '基礎',
-                              count: 5,
-                            })
-                          }
-                        >
-                          ⚡ 弱点克服5問
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              {preGeneratedDailyDrill.length > 0 ? (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  style={{ padding: '12px 22px', fontWeight: 700, fontSize: '0.95rem' }}
+                  onClick={startPreGeneratedDailyDrill}
+                >
+                  ▶ 事前生成ドリル（{preGeneratedDailyDrill.length}問）を即開始 →
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  style={{ padding: '12px 22px', fontWeight: 700, fontSize: '0.95rem' }}
+                  onClick={() =>
+                    startAiTest({
+                      subject: selectedSubject,
+                      mode: 'weakness',
+                      count: 5,
+                    })
+                  }
+                >
+                  ▶ 5問クイック演習を開始 →
+                </button>
               )}
-            </section>
-          )}
+            </div>
 
-          {/* 1A. Weak Units detected from Test History */}
-          <section className={styles.panelCard}>
-            <h2 className={styles.sectionTitle}>
-              🚨 テスト履歴から検出された「要復習・弱点単元」（正答率80%未満）
-            </h2>
-            <p className={styles.sectionSub}>
-              過去に受験した単元テストでつまずいた単元です。再テストまたはAI弱点ドリルで80%以上（👑習得）を目指しましょう。
-            </p>
+            {feedbackQueue.length > 0 && (
+              <div style={{ marginTop: '14px', paddingTop: '14px', borderTop: '1px solid #E2E8F0' }}>
+                <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#1E3A5F', marginBottom: '8px' }}>
+                  📌 重点補強キュー（正答率80%達成で自動クリア）：
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                  {feedbackQueue.slice(0, 6).map((fb) => (
+                    <div
+                      key={fb.id}
+                      style={{
+                        background: 'white',
+                        border: '1px solid #CBD5E1',
+                        borderRadius: '10px',
+                        padding: '7px 12px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '10px',
+                        fontSize: '0.82rem',
+                      }}
+                    >
+                      <div>
+                        <strong style={{ color: '#0F172A' }}>
+                          {fb.subject}: {fb.topic}
+                        </strong>
+                        {fb.scorePercent !== undefined && (
+                          <span style={{ marginLeft: '6px', color: '#B94A48', fontWeight: 700 }}>
+                            (前回 {fb.scorePercent}%)
+                          </span>
+                        )}
+                      </div>
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        style={{ padding: '4px 10px', fontSize: '0.78rem' }}
+                        onClick={() =>
+                          startAiTest({
+                            subject: fb.subject,
+                            topic: fb.topic,
+                            unitCode: fb.unitCode || '',
+                            mode: 'weakness',
+                            difficulty: '基礎',
+                            count: 5,
+                          })
+                        }
+                      >
+                        ⚡ 5問演習
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
 
-            {weakReviewUnits.length > 0 ? (
+          {/* 1A. Weak Units detected from Test History (only rendered when weak units exist) */}
+          {weakReviewUnits.length > 0 && (
+            <section className={styles.panelCard}>
+              <h2 className={styles.sectionTitle}>
+                🚨 要復習・弱点単元（正答率80%未満）
+              </h2>
+              <p className={styles.sectionSub}>
+                再テストまたはAI弱点ドリルで80%以上（👑習得）を目指しましょう。
+              </p>
+
               <div className={styles.recommendGrid}>
                 {weakReviewUnits.map(u => (
                   <div
                     key={u.unitKey}
                     className={styles.recommendCard}
-                    style={{ borderLeft: '5px solid #EF4444' }}
+                    style={{ borderLeft: '4px solid #B94A48' }}
                   >
                     <div>
                       <div
@@ -1097,8 +1099,8 @@ function DrillCenterContent() {
                             fontSize: '0.75rem',
                             fontWeight: 800,
                             fontFamily: 'monospace',
-                            background: '#FEE2E2',
-                            color: '#B91C1C',
+                            background: '#FEF2F2',
+                            color: '#B94A48',
                             padding: '2px 8px',
                             borderRadius: '6px',
                           }}
@@ -1158,20 +1160,8 @@ function DrillCenterContent() {
                   </div>
                 ))}
               </div>
-            ) : (
-              <div
-                style={{
-                  padding: '24px',
-                  background: '#F8FAFC',
-                  borderRadius: '12px',
-                  color: '#475569',
-                  fontSize: '0.9rem',
-                }}
-              >
-                現在、正答率80%未満の要復習テストはありません。下のシラバス連動課題または公式テスト問題集から新しい単元に挑戦しましょう！
-              </div>
-            )}
-          </section>
+            </section>
+          )}
 
           {/* 1B. Syllabus & Profile Weakness Push */}
           <section className={styles.panelCard}>

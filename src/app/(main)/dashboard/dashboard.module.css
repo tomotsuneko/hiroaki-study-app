@@ -1,8 +1,8 @@
 .container {
-  padding: 40px 0;
+  padding: 12px 0 40px 0;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 }
 
 .header {
@@ -10,37 +10,271 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 12px;
 }
 
 .title {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 5px;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 2px;
+  letter-spacing: -0.02em;
 }
 
 .greeting {
   color: var(--text-secondary);
+  font-size: 0.92rem;
 }
 
-.streakBadge {
-  background: rgba(245, 158, 11, 0.1);
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  padding: 10px 16px;
-  border-radius: 20px;
+/* First-View Hero Grid */
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+@media (max-width: 960px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.nextStepCard {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F4F7FB 100%);
+  border: 1px solid #CBD5E1;
+  border-radius: 18px;
+  padding: 22px 24px;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.nextStepBadgeRow {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
+.nextStepEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1E3A5F;
+  background: #EEF2F6;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #CBD5E1;
+}
+
+.nextStepTitle {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.nextStepSub {
+  font-size: 0.88rem;
+  color: #475569;
+  margin: 4px 0 0 0;
+}
+
+.heroCtaRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.primaryStartBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  background: #1E3A5F;
+  color: #FFFFFF;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(30, 58, 95, 0.22);
+  transition: all 0.2s ease;
+}
+
+.primaryStartBtn:hover {
+  background: #152B47;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(30, 58, 95, 0.28);
+}
+
+.secondaryQuickBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  background: #FFFFFF;
+  color: #1E3A5F;
+  border: 1px solid #CBD5E1;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.secondaryQuickBtn:hover {
+  background: #F1F5F9;
+  border-color: #94A3B8;
+}
+
+.compactMissionList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid #E2E8F0;
+}
+
+.compactMissionRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  text-decoration: none;
+  color: #0F172A;
+  transition: all 0.15s ease;
+}
+
+.compactMissionRow:hover {
+  border-color: #1E3A5F;
+  background: #F8FAFC;
+}
+
+.aiStrip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  font-size: 0.84rem;
+  color: #334155;
+}
+
+.aiStripText {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.45;
+  flex: 1;
+}
+
+.habitCard {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.streakHero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+  border: 1px solid #FDE68A;
+}
+
+.weekDotsRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.weekDotCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.weekDotCircle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #F1F5F9;
+  color: #94A3B8;
+  border: 1px solid #E2E8F0;
+}
+
+.weekDotActive {
+  background: #1E3A5F;
+  color: #FFFFFF;
+  border-color: #1E3A5F;
+}
+
+.kpiMiniGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.kpiMiniTile {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.streakBadge {
+  background: rgba(180, 123, 43, 0.08);
+  border: 1px solid rgba(180, 123, 43, 0.28);
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .fireIcon {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
 }
 
 .streakCount {
   color: var(--warning);
-  font-weight: 700;
-  font-size: 1.1rem;
+  font-weight: 800;
+  font-size: 1.05rem;
 }
 
 .grid {

@@ -388,23 +388,23 @@ function FlashcardCenterContent() {
       {/* Header */}
       <header className={styles.header}>
         <div className={styles.titleArea}>
-          <h1 className={styles.title}>📇 AI 暗記カード・重要定義マスター</h1>
+          <h1 className={styles.title}>📇 AI 暗記カード</h1>
           <p className={styles.subtitle}>
-            忘却曲線（SRS）による自動復習、公式学習テキストからの定義・公式抽出、赤シート一問一答で知識を完全定着させます。
+            タップで解答表示・忘却曲線（SRS）で復習タイミングを最適化
           </p>
         </div>
         <div className={styles.statsChips}>
           <div className={styles.statChip}>
-            <span>🔥 本日の要復習:</span>
-            <strong style={{ color: '#EA580C' }}>{dueSavedCards.length}枚</strong>
+            <span>🔥 要復習</span>
+            <strong style={{ color: '#B47B2B' }}>{dueSavedCards.length}枚</strong>
           </div>
           <div className={styles.statChip}>
-            <span>🗂️ 保存済み総カード:</span>
+            <span>✅ 本日済</span>
+            <strong style={{ color: '#2E7D5B' }}>{reviewedCountToday}枚</strong>
+          </div>
+          <div className={styles.statChip}>
+            <span>🗂️ 総数</span>
             <strong>{allSavedCards.length}枚</strong>
-          </div>
-          <div className={styles.statChip}>
-            <span>✅ 本日チェック済:</span>
-            <strong style={{ color: '#16A34A' }}>{reviewedCountToday}枚</strong>
           </div>
         </div>
       </header>
@@ -452,19 +452,14 @@ function FlashcardCenterContent() {
         </div>
       )}
 
-      {/* 3 Mode Navigation Tabs */}
+      {/* 3 Compact Mode Tabs */}
       <div className={styles.modeTabs}>
         <button
           type="button"
           className={`${styles.modeTab} ${activeTab === 'push' ? styles.modeTabActive : ''}`}
           onClick={() => setActiveTab('push')}
         >
-          <div className={styles.modeTabTitle}>
-            <span>🔥 本日の復習・弱点デッキ (Push)</span>
-          </div>
-          <div className={styles.modeTabDesc}>
-            忘却曲線で復習時期が来たカードや、テスト誤答・苦手単元の重要カードを自動編成
-          </div>
+          <div className={styles.modeTabTitle}>🔥 本日の復習デッキ</div>
         </button>
 
         <button
@@ -472,12 +467,7 @@ function FlashcardCenterContent() {
           className={`${styles.modeTab} ${activeTab === 'pull' ? styles.modeTabActive : ''}`}
           onClick={() => setActiveTab('pull')}
         >
-          <div className={styles.modeTabTitle}>
-            <span>📖 単元選択・公式テキスト抽出 (Pull)</span>
-          </div>
-          <div className={styles.modeTabDesc}>
-            カリキュラム単元や公式学習テキストから、定義・定理・公式カードをピンポイント生成
-          </div>
+          <div className={styles.modeTabTitle}>📖 単元からカード作成</div>
         </button>
 
         <button
@@ -485,103 +475,11 @@ function FlashcardCenterContent() {
           className={`${styles.modeTab} ${activeTab === 'library' ? styles.modeTabActive : ''}`}
           onClick={() => setActiveTab('library')}
         >
-          <div className={styles.modeTabTitle}>
-            <span>🗂️ マイカード一覧・赤シート暗記帳</span>
-          </div>
-          <div className={styles.modeTabDesc}>
-            保存済み全カード（{allSavedCards.length}枚）の赤シート一問一答チェック＆自作カード追加
-          </div>
+          <div className={styles.modeTabTitle}>🗂️ 一覧・赤シート暗記帳 ({allSavedCards.length})</div>
         </button>
       </div>
 
-      {/* Tab 1: Push Recommendations */}
-      {activeTab === 'push' && (
-        <div className={styles.pushSection}>
-          <div className={styles.sectionHeader}>
-            <div className={styles.sectionTitle}>
-              <span>🎯 あなたへの重点暗記レコメンド（テスト履歴・忘却曲線連動）</span>
-            </div>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              {dueSavedCards.length > 0 && (
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  style={{ padding: '7px 14px', fontSize: '0.84rem' }}
-                  onClick={() => {
-                    setCards(dueSavedCards);
-                    setCurrentIndex(0);
-                    setIsFlipped(false);
-                    setDeckTitle(`🔥 本日の復習期限カード (${dueSavedCards.length}枚)`);
-                  }}
-                >
-                  ⏰ 復習期限のカード({dueSavedCards.length}枚)を開始
-                </button>
-              )}
-              <button
-                type="button"
-                className="btn btn-secondary"
-                style={{ padding: '7px 14px', fontSize: '0.84rem' }}
-                onClick={() =>
-                  generateDeck({
-                    forceGenerate: true,
-                    titleLabel: '🔥 苦手科目 重点暗記カード (新規AI生成)',
-                  })
-                }
-              >
-                ✨ 苦手分野の新しいカードを生成
-              </button>
-            </div>
-          </div>
-
-          {weakUnits.length > 0 ? (
-            <div>
-              <div style={{ fontSize: '0.83rem', color: '#64748B', marginBottom: '8px' }}>
-                ⚠️ 公式テストで正答率80%未満の単元（クリックすると公式テキストから重要公式・定義カードを即座に作成します）：
-              </div>
-              <div className={styles.weaknessTags}>
-                {weakUnits.slice(0, 6).map((u) => (
-                  <button
-                    key={u.unitKey}
-                    type="button"
-                    className={styles.weaknessTagBtn}
-                    onClick={() =>
-                      generateDeck({
-                        subject: u.subjectName,
-                        topic: u.smallName,
-                        unitCode: u.unitCode || '',
-                        forceGenerate: true,
-                        titleLabel: `⚠️ 弱点克服: ${u.subjectName} › ${u.smallName}`,
-                      })
-                    }
-                  >
-                    <span>
-                      {u.subjectName}: {u.smallName}
-                    </span>
-                    <span
-                      style={{
-                        background: '#FEF3C7',
-                        padding: '2px 7px',
-                        borderRadius: '6px',
-                        fontSize: '0.75rem',
-                      }}
-                    >
-                      正答率 {u.bestAccuracy ?? 0}%
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div style={{ fontSize: '0.85rem', color: '#64748B' }}>
-              💡 プロフィールの苦手科目（
-              {profile.weakSubjects.length > 0
-                ? profile.weakSubjects.join('・')
-                : '数学・英語・物理基礎'}
-              ）および志望校レベルに合わせて、AIが暗記すべき重要定義・公式を自動セレクトしています。
-            </div>
-          )}
-        </div>
-      )}
+      {/* Tab 2 Header Selector comes before player when in 'pull' mode */}
 
       {/* Tab 2: Pull Unit & Official Textbook Selector */}
       {activeTab === 'pull' && (
@@ -708,7 +606,7 @@ function FlashcardCenterContent() {
         </div>
       )}
 
-      {/* Tab 1 & Tab 2 Shared Active Deck Player */}
+      {/* Tab 1 & Tab 2 Shared Active Deck Player (First View in Push mode!) */}
       {(activeTab === 'push' || activeTab === 'pull') && (
         <div className={styles.playerStage}>
           <div className={styles.playerTopBar}>
@@ -717,39 +615,66 @@ function FlashcardCenterContent() {
               {cards.length > 0 && (
                 <span
                   style={{
-                    fontSize: '0.8rem',
+                    fontSize: '0.78rem',
                     padding: '3px 10px',
                     borderRadius: '12px',
                     background: '#F1F5F9',
-                    color: '#475569',
+                    color: '#1E3A5F',
+                    fontWeight: 700,
                   }}
                 >
-                  全 {cards.length} 枚
+                  {currentIndex + 1} / {cards.length} 枚
                 </span>
               )}
             </div>
 
-            <div className={styles.viewToggleGroup}>
-              <button
-                type="button"
-                className={`${styles.viewToggleBtn} ${
-                  playerViewMode === 'flip' ? styles.viewToggleBtnActive : ''
-                }`}
-                onClick={() => setPlayerViewMode('flip')}
-              >
-                🃏 3Dカードめくり
-              </button>
-              <button
-                type="button"
-                className={`${styles.viewToggleBtn} ${
-                  playerViewMode === 'redsheet' ? styles.viewToggleBtnActive : ''
-                }`}
-                onClick={() => setPlayerViewMode('redsheet')}
-              >
-                🔴 赤シート一問一答一覧
-              </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+              {activeTab === 'push' && (
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  style={{ padding: '5px 11px', fontSize: '0.78rem' }}
+                  onClick={() =>
+                    generateDeck({
+                      forceGenerate: true,
+                      titleLabel: '🔥 苦手科目 重点暗記カード (新規AI生成)',
+                    })
+                  }
+                >
+                  ✨ 新規AI生成
+                </button>
+              )}
+              <div className={styles.viewToggleGroup}>
+                <button
+                  type="button"
+                  className={`${styles.viewToggleBtn} ${
+                    playerViewMode === 'flip' ? styles.viewToggleBtnActive : ''
+                  }`}
+                  onClick={() => setPlayerViewMode('flip')}
+                >
+                  🃏 カード
+                </button>
+                <button
+                  type="button"
+                  className={`${styles.viewToggleBtn} ${
+                    playerViewMode === 'redsheet' ? styles.viewToggleBtnActive : ''
+                  }`}
+                  onClick={() => setPlayerViewMode('redsheet')}
+                >
+                  🔴 赤シート
+                </button>
+              </div>
             </div>
           </div>
+
+          {cards.length > 0 && playerViewMode === 'flip' && (
+            <div className={styles.deckProgressBar}>
+              <div
+                className={styles.deckProgressFill}
+                style={{ width: `${Math.round(((currentIndex + 1) / cards.length) * 100)}%` }}
+              />
+            </div>
+          )}
 
           {loadingDeck ? (
             <div className={styles.loadingState}>
@@ -949,6 +874,80 @@ function FlashcardCenterContent() {
                   </div>
                 );
               })}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Below Player: Compact Deck Switcher & Weak Unit Shortcuts in Push Mode */}
+      {activeTab === 'push' && (
+        <div className={styles.pushSection}>
+          <div className={styles.sectionHeader}>
+            <div className={styles.sectionTitle}>
+              <span>🎯 弱点・目的別デッキ切り替え</span>
+            </div>
+            {dueSavedCards.length > 0 && (
+              <button
+                type="button"
+                className="btn btn-secondary"
+                style={{ padding: '6px 12px', fontSize: '0.82rem' }}
+                onClick={() => {
+                  setCards(dueSavedCards);
+                  setCurrentIndex(0);
+                  setIsFlipped(false);
+                  setDeckTitle(`🔥 本日の復習期限カード (${dueSavedCards.length}枚)`);
+                }}
+              >
+                ⏰ 復習期限デッキ ({dueSavedCards.length}枚) に戻す
+              </button>
+            )}
+          </div>
+
+          {weakUnits.length > 0 ? (
+            <div>
+              <div style={{ fontSize: '0.82rem', color: '#64748B', marginBottom: '8px' }}>
+                ⚠️ 正答率80%未満の単元からデッキを作成：
+              </div>
+              <div className={styles.weaknessTags}>
+                {weakUnits.slice(0, 6).map((u) => (
+                  <button
+                    key={u.unitKey}
+                    type="button"
+                    className={styles.weaknessTagBtn}
+                    onClick={() =>
+                      generateDeck({
+                        subject: u.subjectName,
+                        topic: u.smallName,
+                        unitCode: u.unitCode || '',
+                        forceGenerate: true,
+                        titleLabel: `⚠️ 弱点克服: ${u.subjectName} › ${u.smallName}`,
+                      })
+                    }
+                  >
+                    <span>
+                      {u.subjectName}: {u.smallName}
+                    </span>
+                    <span
+                      style={{
+                        background: '#FEF3C7',
+                        padding: '2px 7px',
+                        borderRadius: '6px',
+                        fontSize: '0.75rem',
+                      }}
+                    >
+                      正答率 {u.bestAccuracy ?? 0}%
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div style={{ fontSize: '0.84rem', color: '#64748B' }}>
+              💡 苦手科目（
+              {profile.weakSubjects.length > 0
+                ? profile.weakSubjects.join('・')
+                : '数学・英語・物理基礎'}
+              ）と忘却曲線に基づき自動出題しています。単元を指定したい場合は上の「📖 単元からカード作成」タブをご利用ください。
             </div>
           )}
         </div>

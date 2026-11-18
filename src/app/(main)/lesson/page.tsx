@@ -481,85 +481,86 @@ function LessonBookshelfContent() {
 
   return (
     <div className={styles.container}>
-      {/* 1. 図書館エントランス & 蔵書カウンター */}
+      {/* 1. コンパクト図書館ヘッダー */}
       <header className={styles.libraryHeaderCard}>
         <div className={styles.headerLeft}>
-          <div className={styles.libraryBadge}>🏛️ DIGITAL STUDY LIBRARY & TESTING HUB</div>
-          <h1 className={styles.title}>学習コンテンツ図書館</h1>
+          <h1 className={styles.title}>📖 学習コンテンツ図書館</h1>
           <p className={styles.subtitle}>
-            各科目の書架から学びたい単元の本を手に取り、公式テキストの読書と3段階レベル別テスト（L1基礎 / L2標準 / L3応用）の演習を行えます。<br />
-            テストの採点結果や読了実績はあなたのアカウントに自動記録され、合格逆算シラバスに直結します。
+            公式テキストの閲覧と3段階テスト（L1〜L3）の演習を行えます。
           </p>
         </div>
 
         <div className={styles.statsRow}>
           <div className={styles.statBox}>
-            <span className={styles.statLabel}>📘 配架テキスト</span>
-            <span className={styles.statValue}>{totalMaterialsCount} 冊</span>
+            <span className={styles.statLabel}>📘 テキスト</span>
+            <span className={styles.statValue}>{totalMaterialsCount}冊</span>
           </div>
           <div className={styles.statBox}>
-            <span className={styles.statLabel}>📝 配架テスト単元</span>
-            <span className={styles.statValue}>{totalTestUnitsCount} 単元</span>
+            <span className={styles.statLabel}>📝 テスト</span>
+            <span className={styles.statValue}>{totalTestUnitsCount}単元</span>
           </div>
           <div className={styles.statBox}>
-            <span className={styles.statLabel}>🔖 読書・演習中</span>
+            <span className={styles.statLabel}>🔖 演習中</span>
             <span className={styles.statValue} style={{ color: '#2B5B84' }}>
-              {studyingCount} 単元
+              {studyingCount}
             </span>
           </div>
           <div className={styles.statBox}>
-            <span className={styles.statLabel}>👑 読了・習得済</span>
+            <span className={styles.statLabel}>👑 習得</span>
             <span className={styles.statValue} style={{ color: '#2E7D5B' }}>
-              {masteredCount} 単元
+              {masteredCount}
             </span>
           </div>
         </div>
       </header>
 
-      {/* 2. 図書館の特設展示コーナー（シラバス・復習推奨本） */}
+      {/* 2. おすすめ単元ピックアップ（コンパクト1行表示） */}
       {pickupUnits.length > 0 && !searchQuery && (
         <section className={styles.pickupSection}>
           <div className={styles.pickupHeader}>
-            <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
               <h2 className={styles.pickupTitle}>
-                🌟 本日の特設展示（学習シラバス・弱点復習おすすめ本）
+                🌟 今日のおすすめ単元
               </h2>
               <span className={styles.pickupSub}>
-                個別シラバスの進行中タスクや、テスト結果から復習が推奨される単元本を優先配架しています
+                シラバス進行中・復習推奨から優先表示
               </span>
             </div>
             <Link
               href="/plan"
               style={{
-                fontSize: '0.86rem',
-                fontWeight: 800,
-                color: '#78350F',
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                color: '#1E3A5F',
                 background: '#FFFFFF',
-                border: '1px solid #D97706',
-                padding: '7px 16px',
+                border: '1px solid #CBD5E1',
+                padding: '5px 12px',
                 borderRadius: '999px',
                 textDecoration: 'none',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.06)',
               }}
             >
-              🗺️ 学習シラバス全体を見る →
+              🗺️ 学習シラバスを見る →
             </Link>
           </div>
 
-          <div className={`${styles.shelfBoard} ${styles.shelfBoardWood}`}>
-            <div className={styles.booksGrid}>
-              {pickupUnits.map(({ unit, reason }) => (
-                <BookCard
-                  key={`pickup-${unit.unitKey}`}
-                  unit={unit}
-                  badgeOverride={reason}
-                  onSelect={u => {
-                    setSelectedUnit(u);
-                    setModalTab(u.material ? 'material' : u.tests.all.length > 0 ? 'test' : 'material');
-                  }}
-                />
-              ))}
-            </div>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '12px',
+            }}
+          >
+            {pickupUnits.slice(0, 3).map(({ unit, reason }) => (
+              <BookCard
+                key={`pickup-${unit.unitKey}`}
+                unit={unit}
+                badgeOverride={reason}
+                onSelect={u => {
+                  setSelectedUnit(u);
+                  setModalTab(u.material ? 'material' : u.tests.all.length > 0 ? 'test' : 'material');
+                }}
+              />
+            ))}
           </div>
         </section>
       )}

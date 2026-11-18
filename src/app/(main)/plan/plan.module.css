@@ -1,25 +1,93 @@
 .container {
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 18px;
+  padding-bottom: 48px;
 }
 
 .header {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .title {
-  font-size: 2.2rem;
-  font-weight: 700;
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.02em;
 }
 
 .subtitle {
   color: var(--text-secondary);
-  font-size: 1.05rem;
+  font-size: 0.92rem;
+}
+
+/* Compact Hero + Progress + Phase Stepper */
+.compactHeroCard {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F4F7FB 100%);
+  border: 1px solid #CBD5E1;
+  border-radius: 18px;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.heroTopRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.overallProgressTrack {
+  width: 100%;
+  height: 8px;
+  background: #E2E8F0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.overallProgressFill {
+  height: 100%;
+  background: #1E3A5F;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.phaseStepperGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+}
+
+.phaseStepBtn {
+  text-align: left;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.phaseStepBtn:hover {
+  border-color: #94A3B8;
+  background: #F8FAFC;
+}
+
+.phaseStepActive {
+  background: #EEF2F6;
+  border: 2px solid #1E3A5F;
+  box-shadow: 0 2px 8px rgba(30, 58, 95, 0.12);
 }
 
 .emptyState {
@@ -31,38 +99,13 @@
 .roadmap {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
   position: relative;
-}
-
-.roadmap::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 24px;
-  width: 2px;
-  background: var(--border-glass);
-  z-index: 0;
 }
 
 .phase {
-  padding: 24px;
-  margin-left: 40px;
+  padding: 20px 22px;
   position: relative;
-}
-
-.phase::before {
-  content: '';
-  position: absolute;
-  top: 32px;
-  left: -21px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--accent-primary);
-  box-shadow: 0 0 10px var(--accent-primary);
-  z-index: 1;
 }
 
 .phaseHeader {

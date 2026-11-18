@@ -3,82 +3,60 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 16px;
   padding-bottom: 60px;
 }
 
-/* 🏛️ 図書館エントランス・案内ヘッダー（ライト＆クリーン） */
+/* 🏛️ 図書館エントランス・案内ヘッダー（コンパクト＆クリーン） */
 .libraryHeaderCard {
-  background: radial-gradient(circle at 90% 15%, rgba(30, 58, 95, 0.05) 0%, transparent 55%),
-              linear-gradient(135deg, #FFFFFF 0%, #F4F7FB 60%, #EBF1F8 100%);
-  border-radius: 20px;
-  padding: 28px 34px;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F4F7FB 100%);
+  border-radius: 16px;
+  padding: 18px 24px;
   color: #0F172A;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 24px;
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  gap: 16px;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04);
   position: relative;
   overflow: hidden;
   border: 1px solid #E2E8F0;
 }
 
-.libraryHeaderCard::after {
-  content: '🏛️';
-  position: absolute;
-  right: 28px;
-  bottom: -20px;
-  font-size: 7.5rem;
-  opacity: 0.05;
-  pointer-events: none;
-}
-
 .headerLeft {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   z-index: 1;
 }
 
 .libraryBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #1E3A5F;
-  background: #EEF2F6;
-  border: 1px solid #CBD5E1;
-  padding: 4px 12px;
-  border-radius: 999px;
-  width: fit-content;
+  display: none;
 }
 
 .title {
-  font-size: 1.95rem;
+  font-size: 1.55rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #0F172A;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   margin: 0;
 }
 
 .subtitle {
   color: #475569;
-  font-size: 0.94rem;
+  font-size: 0.88rem;
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.45;
 }
 
-/* 図書館の蔵書カウンター（ライトカード調） */
+/* 図書館の蔵書カウンター（コンパクトインラインピル） */
 .statsRow {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   flex-wrap: wrap;
   z-index: 1;
 }
@@ -86,18 +64,12 @@
 .statBox {
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
-  border-radius: 14px;
-  padding: 12px 18px;
+  border-radius: 12px;
+  padding: 8px 14px;
   display: flex;
-  flex-direction: column;
-  min-width: 115px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.statBox:hover {
-  transform: translateY(-2px);
-  border-color: #CBD5E1;
+  align-items: baseline;
+  gap: 8px;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.03);
 }
 
 .statLabel {
@@ -107,19 +79,18 @@
 }
 
 .statValue {
-  font-size: 1.4rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: #1E3A5F;
-  margin-top: 2px;
 }
 
-/* 🌟 特設展示コーナー（ピックアップ棚） */
+/* 🌟 おすすめ学習コーナー（落ち着いたコンパクト1行表示） */
 .pickupSection {
-  background: linear-gradient(180deg, #FEF3C7 0%, #FDE68A 100%);
-  border: 2px solid #F59E0B;
-  border-radius: 20px;
-  padding: 24px 26px 30px 26px;
-  box-shadow: 0 8px 24px rgba(217, 119, 6, 0.12);
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 14px 18px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
 }
 
 .pickupHeader {
@@ -127,23 +98,23 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 18px;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
 .pickupTitle {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 800;
-  color: #78350F;
+  color: #0F172A;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin: 0;
 }
 
 .pickupSub {
-  font-size: 0.88rem;
-  color: #92400E;
+  font-size: 0.8rem;
+  color: #64748B;
   margin-top: 2px;
 }
 

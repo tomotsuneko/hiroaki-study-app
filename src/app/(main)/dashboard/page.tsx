@@ -65,6 +65,7 @@ export default function Dashboard() {
   const [aiContent, setAiContent] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [isRunningBatch, setIsRunningBatch] = useState(false);
+  const [activeBottomTab, setActiveBottomTab] = useState<'analytics' | 'videos'>('analytics');
 
   const dailyAnalysis = studyData.dailyAnalysis;
   const recentLogs = studyData.recentLogs;
@@ -343,6 +344,68 @@ export default function Dashboard() {
     return false;
   }).length;
 
+  // 過去7日間の習慣トラッキング
+  const last7Days = useMemo(() => {
+    const activeDates = new Set<string>();
+    Object.entries(studyTime || {}).forEach(([date, mins]) => {
+      if ((mins || 0) > 0) activeDates.add(date);
+    });
+    (recentLogs || []).forEach((l: any) => {
+      if (l.timestamp) activeDates.add(l.timestamp.slice(0, 10));
+    });
+    const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+    const result: { dateStr: string; label: string; active: boolean; isToday: boolean }[] = [];
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      const dateStr = d.toISOString().split('T')[0];
+      result.push({
+        dateStr,
+        label: weekdays[d.getDay()],
+        active: activeDates.has(dateStr) || (i === 0 && streakCount >= 1),
+        isToday: i === 0,
+      });
+    }
+    return result;
+  }, [studyTime, recentLogs, streakCount]);
+
+  // ファーストビューの主役となる「次にやるべき1つ」
+  const primaryFeedback = feedbackQueue.length > 0 ? feedbackQueue[0] : null;
+  const primaryTask = nextTasks.length > 0 ? nextTasks[0] : null;
+  const primaryActionHref = primaryFeedback
+    ? `/drill?subject=${encodeURIComponent(primaryFeedback.subject)}&topic=${encodeURIComponent(
+        primaryFeedback.topic
+      )}&unit=${encodeURIComponent(primaryFeedback.unitCode || '')}&mode=weakness`
+    : primaryTask
+    ? primaryTask.type === 'diagnostic'
+      ? `/drill?subject=${encodeURIComponent(
+          primaryTask.subjectName || ''
+        )}&topic=レベルチェックテスト&mode=diagnostic`
+      : `/lesson?task=${encodeURIComponent(primaryTask.title)}`
+    : `/lesson?task=${encodeURIComponent(currentFocus)}`;
+
+  const primaryActionTitle = primaryFeedback
+    ? `【弱点リベンジ】${primaryFeedback.subject}: ${primaryFeedback.topic}`
+    : primaryTask
+    ? primaryTask.title
+    : `${currentFocus} の学習を進める`;
+
+  const primaryActionReason = primaryFeedback
+    ? `直近テスト正答率 ${primaryFeedback.scorePercent ?? '-'}% の優先復習テーマです（80%以上でクリア）`
+    : primaryTask
+    ? `${primaryTask.subjectName || '重点ルート'} ・ 目安約 ${primaryTask.estMinutes || 40}分`
+    : `志望校「${mainTarget}」に向けたAI推奨フォーカス科目`;
+
+  const achievementsList =
+    dailyAnalysis?.achievements ||
+    (profile.targetSchools.length > 0 ? profile.targetSchools : ['未設定']).map(
+      (s: string, i: number) => ({
+        school: s,
+        level: Math.min(85, Math.max(20, 25 + completedSet.size * 2 - i * 5)),
+      })
+    );
+  const mainAchievement = achievementsList[0] || { school: mainTarget, level: 25 };
+
   return (
     <div className={styles.container}>
       {rebalanceAlert && (
@@ -415,296 +478,94 @@ export default function Dashboard() {
       )}
 
       <header className={styles.header}>
-        <div className={styles.headerLeft}>
+        <div>
           <h1 className={styles.title}>ダッシュボード</h1>
           <p className={styles.greeting}>
-            おかえりなさい、
-            <span className="text-gradient" style={{ fontWeight: 'bold' }}>
-              {profile.name}
-            </span>
-            さん！今日の学習を始めましょう。
+            おかえりなさい、<strong>{profile.name}</strong>さん！今日も一歩ずつ進めましょう。
           </p>
         </div>
-        <div className={styles.headerRight} style={{ display: 'flex', gap: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+          {mainTarget !== '未設定' && (
+            <span
+              style={{
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                color: '#1E3A5F',
+                background: '#EEF2F6',
+                border: '1px solid #CBD5E1',
+                padding: '6px 12px',
+                borderRadius: '999px',
+              }}
+            >
+              🏁 目標: {mainTarget}
+            </span>
+          )}
           <button
             onClick={runDailyBatch}
             disabled={isRunningBatch}
             className="btn btn-secondary"
-            style={{ fontSize: '0.8rem' }}
+            style={{ fontSize: '0.82rem', padding: '7px 14px' }}
           >
-            {isRunningBatch ? '🔄 バッチ更新中...' : '🔄 日次バッチ更新'}
+            {isRunningBatch ? '🔄 更新中...' : '🔄 最新データに更新'}
           </button>
-          <div className={styles.streakBadge}>
-            <span className={styles.fireIcon}>🔥</span>
-            <span className={styles.streakCount}>{streakCount}日連続</span>
-          </div>
         </div>
       </header>
 
-      <div className={styles.grid}>
-        <section
-          className={`glass-panel animate-fade-in ${styles.section} ${styles.aiSuggestion}`}
-        >
-          <div className={styles.aiHeaderRow}>
-            <h2 className={styles.sectionTitle} style={{ margin: 0 }}>
-              ✨ チューターコメント (日次分析＆学習フィードバック)
-            </h2>
-            <button
-              className="btn btn-primary"
-              onClick={handleGenerateSuggestion}
-              style={{ fontSize: '0.85rem', padding: '6px 14px' }}
-            >
-              本日の推奨課題に取り組む
-            </button>
-          </div>
-          <div className={`${styles.aiText} markdown-body`}>
-            <ReactMarkdown remarkPlugins={[remarkMath, remarkGfm]} rehypePlugins={[rehypeKatex]}>
-              {aiSuggestionComment}
-            </ReactMarkdown>
-          </div>
-        </section>
-
-        {/* 🔄 学習実績の蓄積サマリー ＆ 次回学習へのAIフィードバックパネル */}
-        <section
-          className={`glass-panel animate-fade-in ${styles.section} ${styles.fullWidth}`}
-          style={{ borderLeft: '4px solid #4F46E5' }}
-        >
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: '12px',
-              marginBottom: '14px',
-            }}
-          >
-            <div>
-              <h2 className={styles.sectionTitle} style={{ marginBottom: '2px' }}>
-                🔄 学習カルテ蓄積状況 ＆ 次の学習へのフィードバック
-              </h2>
-              <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', margin: 0 }}>
-                テキスト閲覧・公式テスト・AIドリル・暗記カードの実施結果から、習得認定と重点復習タスクを自動更新しています。
-              </p>
-            </div>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              <Link
-                href="/drill?mode=recommend"
-                className="btn btn-primary"
-                style={{ fontSize: '0.82rem', padding: '7px 14px' }}
-              >
-                ⚡ 弱点補強ドリルへ
-              </Link>
-              <Link
-                href="/flashcard"
-                className="btn btn-secondary"
-                style={{ fontSize: '0.82rem', padding: '7px 14px' }}
-              >
-                📇 要復習カード ({dueFlashcardsCount}枚)
-              </Link>
-            </div>
-          </div>
-
-          {/* 4つの蓄積KPI */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-              gap: '12px',
-              marginBottom: feedbackQueue.length > 0 ? '16px' : '0',
-            }}
-          >
-            <div
-              style={{
-                background: '#F8FAFC',
-                border: '1px solid #E2E8F0',
-                borderRadius: '12px',
-                padding: '12px 16px',
-              }}
-            >
-              <div style={{ fontSize: '0.78rem', color: '#64748B', fontWeight: 700 }}>
-                🏆 習得認定単元（シラバス連動）
-              </div>
-              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: '#0F172A', marginTop: '4px' }}>
-                {completedSet.size} <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>単元</span>
-              </div>
-            </div>
-
-            <div
-              style={{
-                background: '#F8FAFC',
-                border: '1px solid #E2E8F0',
-                borderRadius: '12px',
-                padding: '12px 16px',
-              }}
-            >
-              <div style={{ fontSize: '0.78rem', color: '#64748B', fontWeight: 700 }}>
-                📝 公式テスト実施・通算正答率
-              </div>
-              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: '#2563EB', marginTop: '4px' }}>
-                {testSummary.overallAccuracy}%{' '}
-                <span style={{ fontSize: '0.82rem', color: '#64748B', fontWeight: 600 }}>
-                  ({testSummary.totalAnswered}問回答)
-                </span>
-              </div>
-            </div>
-
-            <div
-              style={{
-                background: '#F8FAFC',
-                border: '1px solid #E2E8F0',
-                borderRadius: '12px',
-                padding: '12px 16px',
-              }}
-            >
-              <div style={{ fontSize: '0.78rem', color: '#64748B', fontWeight: 700 }}>
-                📘 公式テキスト学習済み
-              </div>
-              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: '#0284C7', marginTop: '4px' }}>
-                {totalTextbooksRead} <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>単元</span>
-              </div>
-            </div>
-
-            <div
-              style={{
-                background: '#FFFBEB',
-                border: '1px solid #FDE68A',
-                borderRadius: '12px',
-                padding: '12px 16px',
-              }}
-            >
-              <div style={{ fontSize: '0.78rem', color: '#92400E', fontWeight: 700 }}>
-                📌 次回重点補強キュー（正答率75%未満等）
-              </div>
-              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: '#D97706', marginTop: '4px' }}>
-                {feedbackQueue.length} <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>件</span>
-              </div>
-            </div>
-          </div>
-
-          {/* 弱点フィードバックキューがある場合の直行アクションリスト */}
-          {feedbackQueue.length > 0 && (
-            <div
-              style={{
-                background: '#FFFBEB',
-                border: '1px solid #FDE68A',
-                borderRadius: '12px',
-                padding: '14px 16px',
-              }}
-            >
-              <div
-                style={{
-                  fontSize: '0.85rem',
-                  fontWeight: 800,
-                  color: '#92400E',
-                  marginBottom: '10px',
-                }}
-              >
-                🎯 直近のテスト・ドリル・模試結果から自動抽出された最優先復習テーマ（80%以上達成で自動クリア）：
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                {feedbackQueue.slice(0, 5).map((item) => (
-                  <div
-                    key={item.id}
-                    style={{
-                      background: 'white',
-                      border: '1px solid #FCD34D',
-                      borderRadius: '10px',
-                      padding: '8px 12px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '10px',
-                      fontSize: '0.82rem',
-                    }}
-                  >
-                    <div>
-                      <strong style={{ color: '#0F172A' }}>
-                        {item.subject}: {item.topic}
-                      </strong>
-                      {item.scorePercent !== undefined && (
-                        <span
-                          style={{
-                            marginLeft: '6px',
-                            color: '#B45309',
-                            fontWeight: 700,
-                            fontSize: '0.76rem',
-                          }}
-                        >
-                          (前回 {item.scorePercent}%)
-                        </span>
-                      )}
-                    </div>
-                    <div style={{ display: 'flex', gap: '6px' }}>
-                      <Link
-                        href={`/lesson?task=${encodeURIComponent(
-                          item.topic
-                        )}&unit=${encodeURIComponent(item.unitCode || '')}`}
-                        style={{
-                          padding: '3px 8px',
-                          borderRadius: '6px',
-                          background: '#EFF6FF',
-                          color: '#1D4ED8',
-                          fontWeight: 700,
-                          textDecoration: 'none',
-                        }}
-                      >
-                        📘 テキスト
-                      </Link>
-                      <Link
-                        href={`/drill?subject=${encodeURIComponent(
-                          item.subject
-                        )}&topic=${encodeURIComponent(
-                          item.topic
-                        )}&unit=${encodeURIComponent(item.unitCode || '')}&mode=weakness`}
-                        style={{
-                          padding: '3px 8px',
-                          borderRadius: '6px',
-                          background: '#EEF2FF',
-                          color: '#4F46E5',
-                          fontWeight: 700,
-                          textDecoration: 'none',
-                        }}
-                      >
-                        ⚡ リベンジ演習
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </section>
-
-        {/* 📅 学習タイムマネジメント・簡易カレンダー */}
-        <StudyCalendar
-          dayPlans={dayPlans}
-          studyTime={studyTime}
-          recentLogs={recentLogs}
-          onSavePlan={handleSaveDayPlan}
-        />
-
-        {nextTasks.length > 0 && (
-          <section
-            className={`glass-panel animate-fade-in ${styles.section} ${styles.fullWidth}`}
-          >
-            <div className={styles.missionHeaderRow}>
-              <div>
-                <h2 className={styles.sectionTitle} style={{ marginBottom: '2px' }}>
-                  🎯 今日のミッション (シラバスから抜粋)
-                </h2>
-                {missionGuideMessage && (
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0 }}>
-                    {missionGuideMessage}
-                  </p>
-                )}
-              </div>
-              {hasPlan && (
-                <span className={styles.missionPlanBadge}>
-                  📅 予定時間連動: 計 {targetMinutes}分
+      {/* =========================================================
+          FIRST VIEW: ワンタップ開始 & 継続ストリーク
+         ========================================================= */}
+      <div className={styles.heroGrid}>
+        {/* Left: Primary Next Action + Today's Mission */}
+        <section className={styles.nextStepCard}>
+          <div>
+            <div className={styles.nextStepBadgeRow}>
+              <span className={styles.nextStepEyebrow}>
+                🎯 {primaryFeedback ? '最優先のリベンジ課題' : '今日まず取り組む1ステップ'}
+              </span>
+              {hasPlan ? (
+                <span className={styles.missionPlanBadge}>📅 今日の予定 {targetMinutes}分</span>
+              ) : (
+                <span style={{ fontSize: '0.78rem', color: '#64748B' }}>
+                  カレンダーで予定設定可能
                 </span>
               )}
             </div>
-            <div style={{ display: 'grid', gap: '12px' }}>
+
+            <h2 className={styles.nextStepTitle} style={{ marginTop: '12px' }}>
+              {primaryActionTitle}
+            </h2>
+            <p className={styles.nextStepSub}>{primaryActionReason}</p>
+          </div>
+
+          <div className={styles.heroCtaRow}>
+            <Link href={primaryActionHref} className={styles.primaryStartBtn}>
+              ▶ 今すぐ学習をはじめる
+            </Link>
+            <Link href="/drill?mode=recommend" className={styles.secondaryQuickBtn}>
+              ⚡ 弱点ドリル
+            </Link>
+            <Link href="/flashcard" className={styles.secondaryQuickBtn}>
+              📇 暗記カード ({dueFlashcardsCount}枚)
+            </Link>
+          </div>
+
+          {nextTasks.length > 0 && (
+            <div className={styles.compactMissionList}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  fontSize: '0.8rem',
+                  fontWeight: 700,
+                  color: '#475569',
+                }}
+              >
+                <span>📋 今日のミッション（シラバス連動・計 {nextTasks.length}件）</span>
+                <Link href="/plan" style={{ color: '#1E3A5F', textDecoration: 'underline' }}>
+                  全体計画 →
+                </Link>
+              </div>
               {nextTasks.map((task: any, idx: number) => (
                 <Link
                   key={idx}
@@ -715,213 +576,358 @@ export default function Dashboard() {
                         )}&topic=レベルチェックテスト&mode=diagnostic`
                       : `/lesson?task=${encodeURIComponent(task.title)}`
                   }
-                  className={styles.taskCard}
-                  style={{
-                    borderLeft:
-                      task.type === 'weakness' ? '4px solid #f59e0b' : '4px solid #3b82f6',
-                    textDecoration: 'none',
-                    cursor: 'pointer',
-                  }}
+                  className={styles.compactMissionRow}
                 >
-                  <div style={{ flex: 1 }}>
-                    <div
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        marginBottom: '4px',
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontSize: '0.8rem',
-                          fontWeight: 'bold',
-                          color: task.type === 'weakness' ? '#d97706' : '#2563eb',
-                        }}
-                      >
-                        {task.type === 'weakness' ? '【弱点克服】' : '【基本ルート】'}
-                      </span>
-                      {task.subjectName && (
-                        <span
-                          style={{
-                            fontSize: '0.78rem',
-                            background: '#e2e8f0',
-                            color: '#475569',
-                            padding: '1px 6px',
-                            borderRadius: '4px',
-                          }}
-                        >
-                          {task.subjectName}
-                        </span>
-                      )}
-                    </div>
-                    <strong style={{ fontSize: '1.05rem', color: '#1e293b' }}>
-                      {task.title}
-                    </strong>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    {task.estMinutes && (
-                      <div className={styles.estTimeTag}>目安約 {task.estMinutes}分</div>
-                    )}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
                     <span
                       style={{
-                        fontSize: '0.82rem',
+                        fontSize: '0.72rem',
                         fontWeight: 700,
-                        color: '#2563EB',
-                        background: '#EFF6FF',
-                        padding: '4px 10px',
-                        borderRadius: '8px',
+                        padding: '2px 7px',
+                        borderRadius: '6px',
+                        background: task.type === 'weakness' ? '#FEF3C7' : '#EEF2F6',
+                        color: task.type === 'weakness' ? '#92400E' : '#1E3A5F',
+                        flexShrink: 0,
                       }}
                     >
-                      📚 学習する →
+                      {task.subjectName || (task.type === 'weakness' ? '弱点' : '重点')}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: '0.92rem',
+                        fontWeight: 700,
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      }}
+                    >
+                      {task.title}
                     </span>
                   </div>
+                  <span style={{ fontSize: '0.78rem', color: '#64748B', flexShrink: 0 }}>
+                    約{task.estMinutes || 40}分 →
+                  </span>
                 </Link>
               ))}
             </div>
-          </section>
-        )}
+          )}
 
-        <section
-          className={`glass-panel animate-fade-in ${styles.section} ${styles.fullWidth}`}
-        >
-          <h2 className={styles.sectionTitle}>📊 目標達成度</h2>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '20px',
-              marginBottom: '16px',
-            }}
-          >
-            {(
-              dailyAnalysis?.achievements ||
-              (profile.targetSchools.length > 0 ? profile.targetSchools : ['未設定']).map(
-                (s: string, i: number) => ({
-                  school: s,
-                  level: Math.min(85, Math.max(20, 25 + completedSet.size * 2 - i * 5)),
-                })
-              )
-            )
-              .slice(0, 3)
-              .map((ach: any, idx: number) => (
-                <div key={idx} className={styles.progressItem}>
-                  <div className={styles.progressHeader}>
-                    <span
-                      style={{
-                        fontWeight: idx === 0 ? 'bold' : 'normal',
-                        color: idx === 0 ? 'var(--accent-primary)' : 'inherit',
-                      }}
-                    >
-                      {idx === 0
-                        ? '🎯 第一志望: '
-                        : idx === 1
-                        ? '🎯 第二志望: '
-                        : '🎯 第三志望: '}{' '}
-                      {ach.school}
-                    </span>
-                    <span style={{ fontWeight: 'bold' }}>{ach.level}%</span>
-                  </div>
-                  <div className={styles.progressBarBg}>
-                    <div
-                      className={styles.progressBarFill}
-                      style={{ width: `${ach.level}%`, opacity: idx === 0 ? 1 : 0.7 }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
+          {/* Compact AI Comment Bar */}
+          <div className={styles.aiStrip}>
+            <span style={{ fontSize: '1.1rem', flexShrink: 0 }}>✨</span>
+            <div className={styles.aiStripText}>
+              {aiSuggestionComment.replace(/[#*_`]/g, '')}
+            </div>
+            <button
+              type="button"
+              onClick={handleGenerateSuggestion}
+              style={{
+                flexShrink: 0,
+                padding: '5px 10px',
+                borderRadius: '8px',
+                background: '#FFFFFF',
+                border: '1px solid #CBD5E1',
+                color: '#1E3A5F',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+              }}
+            >
+              解説を見る
+            </button>
           </div>
-
-          <h3 className={styles.subTitle}>今週の重点科目（自動算出）</h3>
-          <ul className={styles.subjectList}>
-            {weakSubjects.map((subject: string, idx: number) => (
-              <li key={idx}>
-                <span
-                  className={styles.subjectDot}
-                  style={{
-                    backgroundColor:
-                      idx === 0 ? '#3b82f6' : idx === 1 ? '#10b981' : '#f59e0b',
-                  }}
-                ></span>
-                {subject}
-              </li>
-            ))}
-          </ul>
-
-          <h3 className={styles.subTitle} style={{ marginTop: '24px' }}>
-            🔥 過去30日間の学習ヒートマップ
-          </h3>
-          <p
-            style={{
-              fontSize: '0.85rem',
-              color: 'var(--text-secondary)',
-              marginBottom: '8px',
-            }}
-          >
-            タイマーや公式テキスト読了で記録された集中学習時間
-          </p>
-          <Heatmap studyTime={studyTime} />
         </section>
 
-        {videos.length > 0 ? (
-          videos.map((subjectData: any) => (
-            <section
-              key={subjectData.subject}
-              className={`glass-panel animate-fade-in ${styles.section} ${styles.videoSection}`}
+        {/* Right: Habit Streak + Progress & KPIs */}
+        <section className={styles.habitCard}>
+          {/* Prominent Streak Hero */}
+          <div className={styles.streakHero}>
+            <div>
+              <div style={{ fontSize: '0.76rem', fontWeight: 700, color: '#92400E' }}>
+                🔥 継続記録（ストリーク）
+              </div>
+              <div style={{ fontSize: '1.65rem', fontWeight: 800, color: '#78350F', lineHeight: 1.2 }}>
+                {streakCount}日連続 達成中！
+              </div>
+            </div>
+            <span style={{ fontSize: '2rem' }}>🔥</span>
+          </div>
+
+          {/* 7-Day Activity Dots */}
+          <div>
+            <div
+              style={{
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                color: '#64748B',
+                marginBottom: '8px',
+              }}
             >
-              <h2 className={styles.sectionTitle}>
-                📺 関連授業動画 ({subjectData.subject})
-              </h2>
-              <div className={styles.videoGrid}>
-                {subjectData.items.map((video: any) => (
+              直近7日間の学習リズム
+            </div>
+            <div className={styles.weekDotsRow}>
+              {last7Days.map((d) => (
+                <div key={d.dateStr} className={styles.weekDotCol}>
                   <div
-                    key={video.id.videoId}
-                    style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}
+                    className={`${styles.weekDotCircle} ${d.active ? styles.weekDotActive : ''}`}
+                    title={d.dateStr}
                   >
-                    <iframe
-                      width="100%"
-                      height="180"
-                      src={`https://www.youtube.com/embed/${video.id.videoId}?rel=0`}
-                      title={video.snippet.title}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      style={{
-                        borderRadius: '12px',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-                      }}
-                    ></iframe>
-                    <button
-                      className="btn btn-secondary"
-                      style={{ fontSize: '0.8rem', padding: '4px' }}
-                      onClick={() => {
-                        saveNote(
-                          video.snippet.title,
-                          `[動画リンク](https://www.youtube.com/watch?v=${video.id.videoId})\n\nここに動画のメモを書き込んでください。`
-                        );
-                        alert('ノートに動画リンクを保存しました！');
-                      }}
-                    >
-                      📝 ノートに保存して見返す
-                    </button>
+                    {d.active ? '✓' : ''}
+                  </div>
+                  <span
+                    style={{
+                      fontSize: '0.72rem',
+                      fontWeight: d.isToday ? 800 : 600,
+                      color: d.isToday ? '#1E3A5F' : '#64748B',
+                    }}
+                  >
+                    {d.isToday ? '今日' : d.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Primary Goal Progress Bar */}
+          <div
+            style={{
+              background: '#F8FAFC',
+              border: '1px solid #E2E8F0',
+              borderRadius: '12px',
+              padding: '12px 14px',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                fontSize: '0.84rem',
+                fontWeight: 700,
+                marginBottom: '8px',
+              }}
+            >
+              <span style={{ color: '#0F172A' }}>🎯 {mainAchievement.school}</span>
+              <span style={{ color: '#1E3A5F' }}>{mainAchievement.level}%</span>
+            </div>
+            <div className={styles.progressBarBg}>
+              <div
+                className={styles.progressBarFill}
+                style={{ width: `${mainAchievement.level}%`, background: '#1E3A5F' }}
+              />
+            </div>
+          </div>
+
+          {/* 3 Compact KPIs */}
+          <div className={styles.kpiMiniGrid}>
+            <div className={styles.kpiMiniTile}>
+              <div style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 700 }}>習得認定</div>
+              <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0F172A', marginTop: '2px' }}>
+                {completedSet.size}
+                <span style={{ fontSize: '0.72rem', fontWeight: 600 }}>単元</span>
+              </div>
+            </div>
+            <div className={styles.kpiMiniTile}>
+              <div style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 700 }}>テスト正答</div>
+              <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#2E7D5B', marginTop: '2px' }}>
+                {testSummary.overallAccuracy}%
+              </div>
+            </div>
+            <div className={styles.kpiMiniTile}>
+              <div style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 700 }}>テキスト</div>
+              <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1E3A5F', marginTop: '2px' }}>
+                {totalTextbooksRead}
+                <span style={{ fontSize: '0.72rem', fontWeight: 600 }}>冊</span>
+              </div>
+            </div>
+          </div>
+
+          {feedbackQueue.length > 0 && (
+            <div style={{ fontSize: '0.78rem', color: '#92400E', background: '#FFFBEB', padding: '8px 10px', borderRadius: '8px', border: '1px solid #FDE68A' }}>
+              📌 要復習キューが <strong>{feedbackQueue.length}件</strong> あります →{' '}
+              <Link href="/drill?mode=recommend" style={{ fontWeight: 800, textDecoration: 'underline', color: '#92400E' }}>
+                一覧を見る
+              </Link>
+            </div>
+          )}
+        </section>
+      </div>
+
+      {/* =========================================================
+          SECOND LAYER: カレンダー & ドリルダウン詳細
+         ========================================================= */}
+      <div className={styles.grid}>
+        {/* 📅 学習タイムマネジメント・簡易カレンダー */}
+        <StudyCalendar
+          dayPlans={dayPlans}
+          studyTime={studyTime}
+          recentLogs={recentLogs}
+          onSavePlan={handleSaveDayPlan}
+        />
+
+        {/* Progressive Disclosure Panel: 詳細進捗 or 関連動画 */}
+        <section className={`glass-panel animate-fade-in ${styles.section} ${styles.fullWidth}`}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '12px',
+              borderBottom: '1px solid #E2E8F0',
+              paddingBottom: '12px',
+            }}
+          >
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button
+                type="button"
+                onClick={() => setActiveBottomTab('analytics')}
+                className={activeBottomTab === 'analytics' ? 'btn btn-primary' : 'btn btn-secondary'}
+                style={{ padding: '7px 14px', fontSize: '0.86rem' }}
+              >
+                📊 目標達成度・30日ヒートマップ
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveBottomTab('videos')}
+                className={activeBottomTab === 'videos' ? 'btn btn-primary' : 'btn btn-secondary'}
+                style={{ padding: '7px 14px', fontSize: '0.86rem' }}
+              >
+                📺 関連授業動画 ({videos.length})
+              </button>
+            </div>
+            <Link
+              href="/exam-analysis"
+              style={{ fontSize: '0.84rem', fontWeight: 700, color: '#1E3A5F' }}
+            >
+              📈 模試・成績分析を見る →
+            </Link>
+          </div>
+
+          {activeBottomTab === 'analytics' ? (
+            <div>
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                  gap: '16px',
+                  marginBottom: '16px',
+                }}
+              >
+                {achievementsList.slice(0, 3).map((ach: any, idx: number) => (
+                  <div key={idx} className={styles.progressItem}>
+                    <div className={styles.progressHeader}>
+                      <span
+                        style={{
+                          fontWeight: idx === 0 ? 'bold' : 'normal',
+                          color: idx === 0 ? 'var(--accent-primary)' : 'inherit',
+                        }}
+                      >
+                        {idx === 0
+                          ? '🎯 第一志望: '
+                          : idx === 1
+                          ? '🎯 第二志望: '
+                          : '🎯 第三志望: '}{' '}
+                        {ach.school}
+                      </span>
+                      <span style={{ fontWeight: 'bold' }}>{ach.level}%</span>
+                    </div>
+                    <div className={styles.progressBarBg}>
+                      <div
+                        className={styles.progressBarFill}
+                        style={{ width: `${ach.level}%`, opacity: idx === 0 ? 1 : 0.7 }}
+                      ></div>
+                    </div>
                   </div>
                 ))}
               </div>
-            </section>
-          ))
-        ) : (
-          <section
-            className={`glass-panel animate-fade-in ${styles.section} ${styles.videoSection}`}
-          >
-            <h2 className={styles.sectionTitle}>📺 関連授業動画 ({currentFocus})</h2>
-            <div className={styles.videoGrid}>
-              <div className={styles.videoCardPlaceholder}>
-                <p>おすすめの動画を検索中...</p>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '12px' }}>
+                <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#475569' }}>
+                  今週の重点科目:
+                </span>
+                {weakSubjects.map((subject: string, idx: number) => (
+                  <span
+                    key={idx}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      fontSize: '0.86rem',
+                      background: '#F1F5F9',
+                      padding: '4px 10px',
+                      borderRadius: '999px',
+                      fontWeight: 600,
+                    }}
+                  >
+                    <span
+                      className={styles.subjectDot}
+                      style={{
+                        backgroundColor:
+                          idx === 0 ? '#1E3A5F' : idx === 1 ? '#2E7D5B' : '#B47B2B',
+                      }}
+                    ></span>
+                    {subject}
+                  </span>
+                ))}
               </div>
+
+              <h3 className={styles.subTitle} style={{ marginTop: '12px' }}>
+                🔥 過去30日間の学習ヒートマップ
+              </h3>
+              <Heatmap studyTime={studyTime} />
             </div>
-          </section>
-        )}
+          ) : videos.length > 0 ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              {videos.map((subjectData: any) => (
+                <div key={subjectData.subject}>
+                  <h3 className={styles.subTitle} style={{ marginBottom: '10px', marginTop: 0 }}>
+                    📺 {subjectData.subject}
+                  </h3>
+                  <div className={styles.videoGrid}>
+                    {subjectData.items.map((video: any) => (
+                      <div
+                        key={video.id.videoId}
+                        style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}
+                      >
+                        <iframe
+                          width="100%"
+                          height="170"
+                          src={`https://www.youtube.com/embed/${video.id.videoId}?rel=0`}
+                          title={video.snippet.title}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          style={{
+                            borderRadius: '12px',
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+                          }}
+                        ></iframe>
+                        <button
+                          className="btn btn-secondary"
+                          style={{ fontSize: '0.8rem', padding: '5px' }}
+                          onClick={() => {
+                            saveNote(
+                              video.snippet.title,
+                              `[動画リンク](https://www.youtube.com/watch?v=${video.id.videoId})\n\nここに動画のメモを書き込んでください。`
+                            );
+                            alert('ノートに動画リンクを保存しました！');
+                          }}
+                        >
+                          📝 ノートに保存して見返す
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className={styles.videoCardPlaceholder}>
+              <p>おすすめの授業動画を読み込み中です...</p>
+            </div>
+          )}
+        </section>
       </div>
 
       {showModal && (

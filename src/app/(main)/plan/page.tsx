@@ -28,6 +28,8 @@ export default function PlanPage() {
   const [showCompleted, setShowCompleted] = useState(false);
   const [isGeneratingSyllabus, setIsGeneratingSyllabus] = useState(false);
   const [activeTabs, setActiveTabs] = useState<{ [phaseIdx: number]: number }>({});
+  const [selectedPhaseIdx, setSelectedPhaseIdx] = useState<number>(0);
+  const [showAllPhases, setShowAllPhases] = useState<boolean>(false);
 
   // Quick diagnostic modal state
   const [showLevelModal, setShowLevelModal] = useState(false);
@@ -161,19 +163,41 @@ export default function PlanPage() {
     return false;
   };
 
-  // Calculate overall progress (including test-based mastery)
+  // Calculate overall progress & next pending task
   let totalTasksAll = 0;
   let completedTasksAll = 0;
-  syllabus.forEach((phase: any) => {
-    (phase.categories || []).forEach((cat: any) => {
-      (cat.tasks || []).forEach((t: any) => {
+  let nextPendingTask: { title: string; type?: string; catName: string; phaseIdx: number } | null = null;
+  let firstIncompletePhaseIdx = -1;
+
+  for (let pIdx = 0; pIdx < syllabus.length; pIdx++) {
+    const phase: any = syllabus[pIdx];
+    let phaseIncomplete = false;
+    for (const cat of phase.categories || []) {
+      for (const t of cat.tasks || []) {
         totalTasksAll++;
-        if (isTaskCompletedOrMastered(t, cat.name)) completedTasksAll++;
-      });
-    });
-  });
+        if (isTaskCompletedOrMastered(t, cat.name)) {
+          completedTasksAll++;
+        } else {
+          phaseIncomplete = true;
+          if (!nextPendingTask) {
+            nextPendingTask = { title: t.title, type: t.type, catName: cat.name, phaseIdx: pIdx };
+          }
+        }
+      }
+    }
+    if (phaseIncomplete && firstIncompletePhaseIdx === -1) {
+      firstIncompletePhaseIdx = pIdx;
+    }
+  }
   const overallProgress =
     totalTasksAll === 0 ? 0 : Math.round((completedTasksAll / totalTasksAll) * 100);
+
+  // Sync default phase to first phase with pending tasks when syllabus loads
+  useEffect(() => {
+    if (firstIncompletePhaseIdx >= 0) {
+      setSelectedPhaseIdx(firstIncompletePhaseIdx);
+    }
+  }, [firstIncompletePhaseIdx]);
 
   const renderTaskRow = (task: any, catName: string, isCompletedView: boolean) => {
     const isWeakness = task.type === 'weakness';
@@ -454,42 +478,122 @@ export default function PlanPage() {
         </div>
       ) : (
         <>
-          {/* 3. Reverse Planning Roadmap Summary Card */}
+          {/* 3. Compact First-View Hero & Interactive Phase Stepper */}
           {syllabus.length > 0 && (
-            <div className={styles.roadmapSummaryCard}>
-              <div className={styles.summaryHeader}>
-                <div className={styles.summaryTitle}>
-                  <span>🗺️</span> 合格逆算ロードマップ（現在地と合格までの道筋）
+            <div className={styles.compactHeroCard}>
+              <div className={styles.heroTopRow}>
+                <div style={{ flex: 1, minWidth: '240px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
+                    <span className={styles.targetBadge}>🏁 {mainTarget}</span>
+                    <span className={styles.currentBadge}>
+                      {profile.schoolType === 'junior_high' ? '中学' : '高校'}
+                      {profile.grade || 2}年生
+                      {hasDeviation ? ` / 偏差値 ${profile.deviationScore}` : ''}
+                    </span>
+                    <span
+                      className={styles.currentBadge}
+                      style={{ background: '#ECFDF5', color: '#166534' }}
+                    >
+                      達成度 {overallProgress}% ({completedTasksAll}/{totalTasksAll}単元)
+                    </span>
+                  </div>
+                  <div className={styles.overallProgressTrack}>
+                    <div
+                      className={styles.overallProgressFill}
+                      style={{ width: `${overallProgress}%` }}
+                    />
+                  </div>
                 </div>
-                <div className={styles.statusBadges}>
-                  <span className={styles.currentBadge}>
-                    現在地: {profile.schoolType === 'junior_high' ? '中学' : '高校'}
-                    {profile.grade || 2}年生
-                    {hasDeviation ? ` / 偏差値 ${profile.deviationScore}` : ' / 偏差値未診断'}
-                  </span>
-                  <span className={styles.targetBadge}>🏁 第一志望: {mainTarget}</span>
-                  <span
-                    className={styles.currentBadge}
-                    style={{ background: '#ECFDF5', color: '#059669' }}
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                  {nextPendingTask && (
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={() => handleTaskClick(nextPendingTask)}
+                      style={{ padding: '10px 18px', fontSize: '0.92rem' }}
+                    >
+                      ▶ 次の単元「{nextPendingTask.title.slice(0, 18)}
+                      {nextPendingTask.title.length > 18 ? '…' : ''}」へ
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => generateSyllabus('manual_refresh')}
+                    style={{ padding: '9px 14px', fontSize: '0.84rem' }}
                   >
-                    総合達成度: {overallProgress}% ({completedTasksAll}/{totalTasksAll}単元)
-                  </span>
+                    🔄 再構築
+                  </button>
                 </div>
               </div>
 
-              {/* Milestones Timeline */}
-              <div className={styles.milestonesTimeline}>
-                {syllabus.map((phase: any, idx: number) => (
-                  <div key={idx} className={styles.milestoneStep}>
-                    <div className={styles.milestonePhase}>{phase.phase}</div>
-                    <div className={styles.milestoneTitle}>{phase.title}</div>
-                    <div className={styles.milestonePeriod}>時期: {phase.period}</div>
-                    <div className={styles.milestoneGoal}>
-                      <strong>🎯 到達目標:</strong>{' '}
-                      {phase.targetMilestone || '標準典型問題の完成'}
-                    </div>
-                  </div>
-                ))}
+              {/* Interactive Phase Stepper */}
+              <div className={styles.phaseStepperGrid}>
+                {syllabus.map((phase: any, idx: number) => {
+                  let pTotal = 0;
+                  let pDone = 0;
+                  (phase.categories || []).forEach((cat: any) => {
+                    (cat.tasks || []).forEach((t: any) => {
+                      pTotal++;
+                      if (isTaskCompletedOrMastered(t, cat.name)) pDone++;
+                    });
+                  });
+                  const pPct = pTotal === 0 ? 0 : Math.round((pDone / pTotal) * 100);
+                  const isStepActive = !showAllPhases && selectedPhaseIdx === idx;
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => {
+                        setShowAllPhases(false);
+                        setSelectedPhaseIdx(idx);
+                      }}
+                      className={`${styles.phaseStepBtn} ${
+                        isStepActive ? styles.phaseStepActive : ''
+                      }`}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#1E3A5F', textTransform: 'uppercase' }}>
+                          {phase.phase}
+                        </span>
+                        <span style={{ fontSize: '0.75rem', fontWeight: 700, color: pPct === 100 ? '#2E7D5B' : '#64748B' }}>
+                          {pDone}/{pTotal} ({pPct}%)
+                        </span>
+                      </div>
+                      <div style={{ fontSize: '0.94rem', fontWeight: 700, color: '#0F172A' }}>
+                        {phase.title}
+                      </div>
+                      <div style={{ fontSize: '0.76rem', color: '#64748B' }}>
+                        {phase.period}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', fontSize: '0.78rem', color: '#64748B' }}>
+                <span>💡 テストで80%以上正解した単元は自動的に習得済みとして反映されます</span>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                  {syllabusUpdatedAt && (
+                    <span>更新: {new Date(syllabusUpdatedAt).toLocaleDateString('ja-JP')}</span>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setShowAllPhases(!showAllPhases)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: '#1E3A5F',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      textDecoration: 'underline',
+                      fontSize: '0.8rem',
+                    }}
+                  >
+                    {showAllPhases ? '選択中のフェーズのみ表示' : '全フェーズを一覧表示'}
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -514,7 +618,7 @@ export default function PlanPage() {
                     margin: '0 auto 20px auto',
                     width: '40px',
                     height: '40px',
-                    borderTopColor: '#3B82F6',
+                    borderTopColor: '#1E3A5F',
                   }}
                 ></div>
                 <h3 style={{ color: '#1E293B', marginBottom: '8px' }}>
@@ -547,47 +651,10 @@ export default function PlanPage() {
               </div>
             )}
 
-            {!isGeneratingSyllabus && syllabus.length > 0 && (
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  flexWrap: 'wrap',
-                  gap: '12px',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-                  {syllabusUpdatedAt && (
-                    <span style={{ fontSize: '0.85rem', color: '#94A3B8' }}>
-                      最終更新: {new Date(syllabusUpdatedAt).toLocaleString('ja-JP')}
-                    </span>
-                  )}
-                  <span
-                    style={{
-                      fontSize: '0.8rem',
-                      color: '#475569',
-                      background: '#F1F5F9',
-                      padding: '4px 10px',
-                      borderRadius: '999px',
-                    }}
-                  >
-                    💡 テストで80%以上正解した単元は自動的に「👑 テスト習得済」として進捗に反映されます
-                  </span>
-                </div>
-                <button
-                  className="btn btn-secondary"
-                  onClick={() => generateSyllabus('manual_refresh')}
-                  style={{ fontSize: '0.85rem' }}
-                >
-                  🔄 最新のプロフィールに基づきシラバスを再構築
-                </button>
-              </div>
-            )}
-
             {!isGeneratingSyllabus &&
               syllabus.length > 0 &&
               syllabus.map((phase: any, pIdx: number) => {
+                if (!showAllPhases && pIdx !== selectedPhaseIdx) return null;
                 let totalTasks = 0;
                 let completedPhaseTasks = 0;
                 (phase.categories || []).forEach((cat: any) => {
