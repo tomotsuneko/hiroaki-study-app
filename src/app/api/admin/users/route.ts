@@ -139,6 +139,7 @@ export async function POST(req: Request) {
           tempPassword: password,
           validFrom,
           validUntil,
+          twoFactorEnabled: Boolean(twoFactorEnabled),
           loginUrl: resolveLoginUrl(req.url),
         });
         emailSent = mailResult.success;
