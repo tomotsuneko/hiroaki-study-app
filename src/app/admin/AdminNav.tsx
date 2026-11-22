@@ -16,6 +16,7 @@ export default function AdminNav() {
   const bottomNavItems = [
     { name: '👥 利用者・認証管理', path: '/admin/users' },
     { name: '📋 個別シラバス管理', path: '/admin/syllabus' },
+    { name: '📊 利用状況分析', path: '/admin/analytics' },
     { name: '🤖 AIモデル・API管理', path: '/admin/models' },
   ];
 
