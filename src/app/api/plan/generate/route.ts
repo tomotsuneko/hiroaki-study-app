@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import { genAI } from '@/lib/gemini';
-import { updateSyllabus, SyllabusPhase } from '@/lib/db';
+import { updateSyllabus, SyllabusPhase, getUserId } from '@/lib/db';
 import { dbAdmin } from '@/lib/firebase-admin';
-import { cookies } from 'next/headers';
 import { getActiveModels } from '@/lib/model-manager';
 
 export const maxDuration = 60; // Increase Vercel timeout to 60 seconds
@@ -10,8 +9,7 @@ export const maxDuration = 60; // Increase Vercel timeout to 60 seconds
 export async function POST(req: Request) {
   try {
     const { profile, reason } = await req.json();
-    const cookieStore = await cookies();
-    const userId = cookieStore.get('study_user_id')?.value || 'anonymous';
+    const userId = await getUserId();
 
     let personalizedData: any = null;
     let masterCurriculum: any[] = [];

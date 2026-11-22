@@ -1,9 +1,12 @@
 import { NextResponse } from 'next/server';
 import { dbAdmin } from '@/lib/firebase-admin';
+import { requireAdminSession } from '@/lib/session';
 import JSZip from 'jszip';
 
 export async function POST(req: Request) {
   try {
+    const adminSession = await requireAdminSession();
+    if (!adminSession) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     if (!dbAdmin) {
       return NextResponse.json({ error: 'Firebase Admin is not initialized.' }, { status: 500 });
     }

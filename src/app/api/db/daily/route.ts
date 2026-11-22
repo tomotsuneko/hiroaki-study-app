@@ -54,7 +54,7 @@ export async function POST(req: Request) {
     }
 
     if (type === 'learningFeedback') {
-      const res = await recordLearningFeedback(data);
+      const res = await recordLearningFeedback({ ...data, targetUserId: undefined });
       return NextResponse.json({ success: true, ...res });
     }
 

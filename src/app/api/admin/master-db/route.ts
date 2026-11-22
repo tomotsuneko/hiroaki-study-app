@@ -1,9 +1,12 @@
 import { NextResponse } from 'next/server';
 import { dbAdmin } from '@/lib/firebase-admin';
 import { getServerCache, setServerCache } from '@/lib/server-cache';
+import { requireAdminSession } from '@/lib/session';
 
 export async function GET(req: Request) {
   try {
+    const adminSession = await requireAdminSession();
+    if (!adminSession) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     if (!dbAdmin) return NextResponse.json({ error: 'Firebase Admin not initialized' }, { status: 500 });
 
     const url = new URL(req.url);

@@ -1,9 +1,12 @@
 import { NextResponse } from 'next/server';
 import { dbAdmin } from '@/lib/firebase-admin';
 import { setActiveModels, DEFAULT_MODELS } from '@/lib/model-manager';
+import { requireAdminSession } from '@/lib/session';
 
 export async function GET(req: Request) {
   try {
+    const adminSession = await requireAdminSession();
+    if (!adminSession) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       throw new Error("GEMINI_API_KEY is not set.");

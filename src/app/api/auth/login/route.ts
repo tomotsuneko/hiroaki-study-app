@@ -26,7 +26,10 @@ export async function POST(req: Request) {
     }
 
     if (!dbAdmin) {
-      // ローカルモード・フォールバック
+      if (process.env.NODE_ENV === 'production') {
+        return NextResponse.json({ error: '認証データベースに接続できません' }, { status: 500 });
+      }
+      // 開発時ローカルモード・フォールバック
       const res = NextResponse.json({ success: true, message: 'Local mode' });
       res.cookies.set('study_user_id', userId, { path: '/', maxAge: 60 * 60 * 24 * 30 });
       return res;

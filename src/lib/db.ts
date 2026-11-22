@@ -1,5 +1,6 @@
 import { dbAdmin } from './firebase-admin';
 import { cookies } from 'next/headers';
+import { getSessionFromCookies } from './session';
 
 export type LogEntry = {
   id: string;
@@ -100,8 +101,12 @@ const defaultDb: Database = {
   masteredUnits: [],
 };
 
-// Retrieve user ID from cookies
+// Retrieve user ID from verified signed session cookie first, falling back to study_user_id cookie
 export async function getUserId(): Promise<string> {
+  const session = await getSessionFromCookies();
+  if (session?.userId) {
+    return session.userId;
+  }
   const cookieStore = await cookies();
   const userId = cookieStore.get('study_user_id')?.value;
   return userId || 'anonymous';

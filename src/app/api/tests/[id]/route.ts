@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { dbAdmin } from '@/lib/firebase-admin';
-import { cookies } from 'next/headers';
+import { getUserId } from '@/lib/db';
 
 export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
@@ -32,11 +32,10 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
     }
 
     // ユーザーの保存済み回答履歴を取得
-    const cookieStore = await cookies();
-    const userId = cookieStore.get('study_user_id')?.value;
+    const userId = await getUserId();
     let savedRecord = null;
 
-    if (userId) {
+    if (userId && userId !== 'anonymous') {
       try {
         const recordSnap = await dbAdmin
           .collection('users')

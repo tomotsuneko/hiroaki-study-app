@@ -1,13 +1,12 @@
 import { NextResponse } from 'next/server';
 import { aiModel } from '@/lib/gemini';
 import { dbAdmin } from '@/lib/firebase-admin';
-import { cookies } from 'next/headers';
+import { getUserId } from '@/lib/db';
 
 export async function POST(req: Request) {
   try {
     const { schoolName, department, grade, schoolType, track, selectedSubjects } = await req.json();
-    const cookieStore = await cookies();
-    const userId = cookieStore.get('study_user_id')?.value || 'anonymous';
+    const userId = await getUserId();
 
     if (!schoolName) {
       return NextResponse.json({ error: 'School name is required' }, { status: 400 });

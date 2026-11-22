@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { dbAdmin } from '@/lib/firebase-admin';
+import { requireAdminSession } from '@/lib/session';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -17,6 +18,8 @@ const getBaseSubject = (filename: string) => {
 
 export async function POST(req: Request) {
   try {
+    const adminSession = await requireAdminSession();
+    if (!adminSession) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     const dir = path.join(process.cwd(), 'src', 'data', 'master_curriculum');
     if (!fs.existsSync(dir)) {
       throw new Error(`Directory not found: ${dir}`);

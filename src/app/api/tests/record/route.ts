@@ -1,20 +1,7 @@
 import { NextResponse } from 'next/server';
 import { dbAdmin } from '@/lib/firebase-admin';
-import { cookies } from 'next/headers';
+import { getUserId } from '@/lib/db';
 import { extractBaseTitleCode } from '@/lib/content-slots';
-
-async function getAuthUserId(req: Request): Promise<string> {
-  const cookieStore = await cookies();
-  const cookieUserId = cookieStore.get('study_user_id')?.value;
-  if (cookieUserId) return cookieUserId;
-
-  // Authorization ヘッダーや URL クエリパラメータのフォールバック
-  const url = new URL(req.url);
-  const qUserId = url.searchParams.get('userId');
-  if (qUserId) return qUserId;
-
-  return 'anonymous';
-}
 
 export async function GET(req: Request) {
   try {
@@ -22,7 +9,7 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: 'Firebase Admin not initialized' }, { status: 500 });
     }
 
-    const userId = await getAuthUserId(req);
+    const userId = await getUserId();
     const url = new URL(req.url);
     const testId = url.searchParams.get('testId');
 
@@ -78,7 +65,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Firebase Admin not initialized' }, { status: 500 });
     }
 
-    const userId = await getAuthUserId(req);
+    const userId = await getUserId();
     const body = await req.json();
     const { testId, key, payload, meta } = body;
 

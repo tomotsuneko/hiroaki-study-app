@@ -10,16 +10,16 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
-    "@opentelemetry/api": "^1.9.1",
-    "dotenv": "^18.0.4",
+    "@opentelemetry/api": "^1.10.0",
+    "dotenv": "^18.0.10",
     "firebase": "^12.19.0",
-    "firebase-admin": "^14.5.0",
+    "firebase-admin": "^14.5.1",
     "jszip": "^3.10.2",
     "katex": "^0.19.1",
-    "next": "16.4.3",
-    "nodemailer": "^10.0.10",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
+    "next": "16.4.6",
+    "nodemailer": "^10.6.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "react-markdown": "^10.1.0",
     "rehype-katex": "^7.0.1",
     "remark-gfm": "^4.0.1",
@@ -31,12 +31,14 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.4.3",
+    "eslint-config-next": "16.4.6",
     "typescript": "^5"
   },
   "overrides": {
     "@grpc/grpc-js": "^1.14.0",
+    "glob": "^14.0.6",
     "katex": "^0.19.1",
+    "minimatch": "^11.0.9",
     "uuid": "^11.1.1"
   }
 }
