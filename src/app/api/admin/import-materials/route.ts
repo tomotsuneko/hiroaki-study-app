@@ -2,6 +2,36 @@ import { NextResponse } from 'next/server';
 import { dbAdmin } from '@/lib/firebase-admin';
 import { requireAdminSession } from '@/lib/session';
 
+function compactOversizedHtml(content: string): string {
+  if (Buffer.byteLength(content, 'utf8') <= 800000) return content;
+
+  return content.replace(/data-states="([^"]*)"/g, (fullMatch, raw) => {
+    try {
+      const decoded = raw
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&');
+      const obj = JSON.parse(decoded);
+      for (const k of Object.keys(obj)) {
+        if (obj[k] && typeof obj[k].svg === 'string') {
+          obj[k].svg = obj[k].svg
+            .replace(/ data-(?:cop|role|spec|t0|t1)="[^"]*"/g, '')
+            .replace(/(\d+\.\d)\d(?=[ ,<"])/g, '$1')
+            .replace(/\.0(?=[ ,<"])/g, '');
+        }
+      }
+      const serialized = JSON.stringify(obj)
+        .replace(/&/g, '&amp;')
+        .replace(/'/g, '&#39;');
+      return `data-states='${serialized}'`;
+    } catch {
+      return fullMatch;
+    }
+  });
+}
+
 export async function POST(req: Request) {
   try {
     const adminSession = await requireAdminSession();
@@ -25,7 +55,8 @@ export async function POST(req: Request) {
     let count = 0;
     
     for (const file of files) {
-      const content = await file.text();
+      const content = compactOversizedHtml(await file.text());
+      const contentBytes = Buffer.byteLength(content, 'utf8');
       const title = file.name.replace(/\.html?$/i, '');
       const titleMatch = content.match(/<title>(.*?)<\/title>/i);
       const contentTitle = titleMatch ? titleMatch[1].split('｜')[0].trim() : '';
@@ -47,6 +78,18 @@ export async function POST(req: Request) {
         // Keep only the 2 most recent old versions (plus the active one, makes 3 total)
         if (versions.length > 2) {
           versions = versions.slice(0, 2);
+        }
+
+        // Keep total Firestore document size under 900 KB
+        while (versions.length > 0) {
+          const totalBytes =
+            contentBytes +
+            versions.reduce(
+              (acc: number, v: any) => acc + Buffer.byteLength(v?.content || '', 'utf8'),
+              0
+            );
+          if (totalBytes <= 900000) break;
+          versions.pop();
         }
       }
 
